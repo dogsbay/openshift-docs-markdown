@@ -10,6 +10,7 @@ You can use the **+Add** view to add multiple components or services to your pro
 **Procedure**
 
 *   To add a service to the existing application group, press <kbd>Shift</kbd>+ drag it to the existing application group. Dragging a component and adding it to an application group adds the required labels to the component.
+
     **Figure 1. Application grouping**
 
     ![odc_app_grouping_label](/_assets/images/odc_app_grouping_label.png)

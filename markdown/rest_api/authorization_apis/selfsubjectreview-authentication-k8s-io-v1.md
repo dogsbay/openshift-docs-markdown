@@ -1,5 +1,5 @@
 ---
-title: "SelfSubjectReview []"
+title: "SelfSubjectReview [authentication.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `status` | `object` | SelfSubjectReviewStatus is filled by the kube-apiserver and sent back to a user. |
+
 ### .status {id="_status"}
 
 Description
@@ -35,6 +36,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `userInfo` | `object` | UserInfo holds the information about the user needed to implement the user.Info interface. |
+
 ### .status.userInfo {id="_statususerinfo"}
 
 Description
@@ -51,6 +53,7 @@ Type
 | `groups` | `array (string)` | The names of groups this user is a part of. |
 | `uid` | `string` | A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs. |
 | `username` | `string` | The name that uniquely identifies this user among all active users. |
+
 ### .status.userInfo.extra {id="_statususerinfoextra"}
 
 Description

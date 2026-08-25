@@ -155,7 +155,7 @@ spec:
 </tr>
 <tr>
   <td>kiali: install: service: nodePort:</td>
-  <td>Use to specify the <code>nodePort</code> for the component's service <code>Values.<component>.service.nodePort.port</code></td>
+  <td>Use to specify the <code>nodePort</code> for the component's service <code>Values.&lt;component&gt;.service.nodePort.port</code></td>
   <td>integer</td>
   <td>N/A</td>
 </tr>

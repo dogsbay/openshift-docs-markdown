@@ -3,8 +3,8 @@ title: Important changes to OpenShift Jenkins images
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Important changes to OpenShift Jenkins images {id="important-changes-to-openshift-jenkins-images"}
 {% include "./_attributes/common-attributes.md" %}
+# Important changes to OpenShift Jenkins images {id="important-changes-to-openshift-jenkins-images"}
 {%- set context = "important-changes-to-openshift-jenkins-images" %}
 
 
@@ -38,7 +38,7 @@ These changes support the {{ product_title }} 4.10 recommendation to use [multip
 
 {% leveloffset +1 %}{% include "./modules/specifying-oc-ocp-jenkins-image.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_important-changes-to-openshift-jenkins-images_{{ context }}"}
+## Additional resources {id="additional-resources_important-changes-to-openshift-jenkins-images_{{ context }}" ._additional-resources}
 
 *   [Adding tags to image streams](/openshift_images/managing_images/tagging-images#images-add-tags-to-imagestreams_tagging-images)
 *   [Configuring periodic importing of image stream tags](/openshift_images/image-streams-manage#images-imagestream-import_image-streams-managing)

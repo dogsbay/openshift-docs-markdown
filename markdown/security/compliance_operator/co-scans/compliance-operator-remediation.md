@@ -3,11 +3,11 @@ title: Managing Compliance Operator result and remediation
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing Compliance Operator result and remediation {id="compliance-operator-remediation"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing Compliance Operator result and remediation {id="compliance-operator-remediation"}
 {%- set context = "compliance-remediation" %}
 
-You can review compliance scan results and apply remediations to resolve failing rules. Remediations are not applied automatically, so you can verify each change before applying it to your cluster.
+You can review compliance scan results and apply remediations to resolve failing rules. Remediations are not applied automatically, so you can verify each change before applying it to your cluster. {._abstract}
 
 
 :::important
@@ -47,7 +47,7 @@ FIPS mode is supported on the following architectures:
 
 {% leveloffset +1 %}{% include "./modules/compliance-inconsistent.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Modifying nodes](/nodes/nodes/nodes-nodes-managing#nodes-nodes-managing-about_nodes-nodes-managing)
 *   [Ignition specification](https://coreos.github.io/ignition/specs/)

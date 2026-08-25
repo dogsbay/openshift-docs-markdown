@@ -7,7 +7,7 @@ title: "Installing a cluster into a shared VPC on {{ gcp_short }} using Infrastr
 # Installing a cluster into a shared VPC on {{ gcp_short }} using Infrastructure Manager templates {id="installing-gcp-user-infra-vpc"}
 {%- set context = "installing-gcp-user-infra-vpc" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster into a shared Virtual Private Cloud (VPC) on {{ gcp_first }} that uses infrastructure that you provide. In this context, a cluster installed into a shared VPC is a cluster that is configured to use a VPC from a project different from where the cluster is being deployed.
+In {{ product_title }} version {{ product_version }}, you can install a cluster into a shared Virtual Private Cloud (VPC) on {{ gcp_first }} that uses infrastructure that you provide. In this context, a cluster installed into a shared VPC is a cluster that is configured to use a VPC from a project different from where the cluster is being deployed. {._abstract}
 
 A shared VPC enables an organization to connect resources from multiple projects to a common VPC network. You can communicate within the organization securely and efficiently by using internal IPs from that network. For more information about shared VPC, see [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc) in the {{ gcp_short }} documentation.
 
@@ -70,6 +70,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -86,6 +87,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ gcp_short }}](/installing/installing_gcp/installation-config-parameters-gcp#installation-config-parameters-gcp)
 
@@ -94,6 +96,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-gcp-enabling-confidential-vms.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Additional {{ gcp_first }} configuration parameters](/installing/installing_gcp/installation-config-parameters-gcp#installation-configuration-parameters-additional-gcp_installation-config-parameters-gcp)
 
@@ -103,7 +106,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-generate-k8s-manifest-ignition.md" %}{% endleveloffset %}
 
-## Exporting common variables {id="installation-gcp-user-infra-exporting-common-variables-vpc"}
+## Exporting common variables {id="installation-gcp-user-infra-exporting-common-variables-vpc" ._additional-resources}
 
 {% leveloffset +2 %}{% include "./modules/installation-extracting-infraid.md" %}{% endleveloffset %}
 
@@ -177,10 +180,11 @@ If you encounter issues when creating these rule-based events, you can configure
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
 
-## Next steps {id="_next_steps"}
+## Next steps {id="_next_steps" ._additional-resources}
 
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).
 *   If necessary, you can

@@ -19,7 +19,7 @@ You can add optional environment details and scripts to the `must-gather` comman
 **Procedure**
 
 *   Run the `must-gather` command to collect data about {{ VirtProductName }}:
-    ```terminal
+    ```terminal {minja}
     $ oc adm must-gather \
       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
       -- /usr/bin/gather
@@ -36,7 +36,7 @@ You can add optional environment details and scripts to the `must-gather` comman
     :::
 
     1.  Run the following command to modify the number of processes running in parallel when collecting `must-gather` data:
-        ```terminal
+        ```terminal {minja}
         $ oc adm must-gather \
           --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
           -- PROS=<number> /usr/bin/gather
@@ -44,7 +44,7 @@ You can add optional environment details and scripts to the `must-gather` comman
 
         `PROS` defines the number of parallel processes running to collect data. The default number of processes is 5. Increasing the number of processes may result in faster data collection, but uses more resources. Increasing the maximum number of parallel processes is not recommended.
     1.  Run the following command to collect detailed information for a specific VM in a specific namespace:
-        ```terminal
+        ```terminal {minja}
         $ oc adm must-gather \
           --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
           -- NS=<namespace name> VM=<VM name> /usr/bin/gather --vms_details
@@ -52,13 +52,13 @@ You can add optional environment details and scripts to the `must-gather` comman
 
         `NS` is the environment variable for `namespace`. It is mandatory when using the `VM` environment variable.
     1.  Run the following command to collect image, image-stream, and image-stream-tags information from the cluster:
-        ```terminal
+        ```terminal {minja}
         $ oc adm must-gather \
          --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
          /usr/bin/gather --images
         ```
     1.  Run the following command to collect information about instance types from the cluster:
-        ```terminal
+        ```terminal {minja}
         $ oc adm must-gather \
          --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
          /usr/bin/gather --instancetypes

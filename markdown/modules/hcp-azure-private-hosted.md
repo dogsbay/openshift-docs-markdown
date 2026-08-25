@@ -38,7 +38,7 @@ Create a private hosted cluster to ensure that the communication between compute
       --endpoint-access Private \
       --endpoint-access-private-nat-subnet-id "${NAT_SUBNET_ID}"
     ```
-    *   When you choose a value for the `--external-dns-domain` flag, ensure that the value does not match `{{ cluster_name }}.{{ base_domain }}`. If you use `{{ cluster_name }}.{{ base_domain }}` for the value, the Control Plane Operator creates a private DNS zone that can shadow the `*.apps` domain, which causes the console and ingress to become unreachable.
+    *   When you choose a value for the `--external-dns-domain` flag, ensure that the value does not match `{{ cluster_name }}.{{ base_domain }}`{minja}. If you use `{{ cluster_name }}.{{ base_domain }}`{minja} for the value, the Control Plane Operator creates a private DNS zone that can shadow the `*.apps` domain, which causes the console and ingress to become unreachable.
     *   `--endpoint-access` accepts 3 values:
         *   `Public`, which is the default value. When you specify `Public`, the API server is accessible through public endpoint only.
         *   `PublicAndPrivate`, where the API server is accessible through both public and private endpoints.
@@ -58,6 +58,7 @@ Create a private hosted cluster to ensure that the communication between compute
     ```terminal
     $ oc get azureprivatelinkservices -n clusters-${CLUSTER_NAME} -o yaml
     ```
+
     **Setup progress conditions**
 
     | Condition | Description |

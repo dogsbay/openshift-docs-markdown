@@ -47,8 +47,8 @@ spec:
     name: <service_account_name>
   pipelines:
     - name: my-pipeline
-      inputRefs: audit # (1)
-      filterRefs: my-policy # (2)
+      inputRefs: audit (1)
+      filterRefs: my-policy (2)
   filters:
     - name: my-policy
       type: kubeAPIAudit

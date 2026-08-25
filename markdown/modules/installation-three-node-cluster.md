@@ -20,12 +20,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring a three-node cluster {id="installation-three-node-cluster_{{ context }}"}
 
-{%- if not (ibm_z or ibm_z_kvm) %}
+{% if not (ibm_z or ibm_z_kvm) %}
 To create smaller, resource-efficient clusters for testing and production, deploy a bare-metal cluster with zero compute machines. This optional configuration uses only three control plane machines, optimizing infrastructure resources for administrators and developers.
 {% endif %}
 {% if ibm_z or ibm_z_kvm %}
-To create smaller, resource-efficient clusters for testing and production, deploy a bare-metal cluster with zero compute machines in a minimal three-node cluster. This optional configuration uses only three control plane machines, optimizing infrastructure resources for testing, development, and production purposes.
-{% endif %} {._abstract}
+To create smaller, resource-efficient clusters for testing and production, deploy a bare-metal cluster with zero compute machines in a minimal three-node cluster. This optional configuration uses only three control plane machines, optimizing infrastructure resources for testing, development, and production purposes. {._abstract}
+{% endif %}
 
 In three-node {{ product_title }} environments, the three control plane machines are schedulable, which means that your application workloads run on them.
 
@@ -50,7 +50,7 @@ In three-node {{ product_title }} environments, the three control plane machines
     
     :::
 
-{%- if ibm_z or ibm_z_kvm %}
+{% if ibm_z or ibm_z_kvm %}
 
     :::note
 
@@ -69,20 +69,20 @@ For three-node cluster installations, follow these next steps:
 *   Do not deploy any compute nodes when you create the {{ op_system_first }} machines.
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}

@@ -1,5 +1,5 @@
 ---
-title: "EgressService []"
+title: "EgressService [k8s.ovn.org/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | EgressServiceSpec defines the desired state of EgressService |
 | `status` | `object` | EgressServiceStatus defines the observed state of EgressService |
+
 ### .spec {id="_spec"}
 
 Description
@@ -43,6 +44,7 @@ Type
 | `network` | `string` | The network which this service should send egress and corresponding ingress replies to. This is typically implemented as VRF mapping, representing a numeric id or string name of a routing table which by omission uses the default host routing. |
 | `nodeSelector` | `object` | Allows limiting the nodes that can be selected to handle the service’s traffic when sourceIPBy=LoadBalancerIP. When present only a node whose labels match the specified selectors can be selected for handling the service’s traffic. When it is not specified any node in the cluster can be chosen to manage the service’s traffic. |
 | `sourceIPBy` | `string` | Determines the source IP of egress traffic originating from the pods backing the LoadBalancer Service. When `LoadBalancerIP` the source IP is set to its LoadBalancer ingress IP. When `Network` the source IP is set according to the interface of the Network, leveraging the masquerade rules that are already in place. Typically these rules specify SNAT to the IP of the outgoing interface, which means the packet will typically leave with the IP of the node. |
+
 ### .spec.nodeSelector {id="_specnodeselector"}
 
 Description
@@ -60,6 +62,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.nodeSelector.matchExpressions {id="_specnodeselectormatchexpressions"}
 
 Description
@@ -89,6 +92,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status {id="_status"}
 
 Description
@@ -112,16 +116,16 @@ The following API endpoints are available:
 
 *   `/apis/k8s.ovn.org/v1/egressservices`
     *   `GET`: list objects of kind EgressService
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices`{minja}
     *   `DELETE`: delete collection of EgressService
     *   `GET`: list objects of kind EgressService
     *   `POST`: create an EgressService
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices/{{ name }}`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices/{{ name }}`{minja}
     *   `DELETE`: delete an EgressService
     *   `GET`: read the specified EgressService
     *   `PATCH`: partially update the specified EgressService
     *   `PUT`: replace the specified EgressService
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices/{{ name }}/status`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressservices/{{ name }}/status`{minja}
     *   `GET`: read status of the specified EgressService
     *   `PATCH`: partially update status of the specified EgressService
     *   `PUT`: replace status of the specified EgressService

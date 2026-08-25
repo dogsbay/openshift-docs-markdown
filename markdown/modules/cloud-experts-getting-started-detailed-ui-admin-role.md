@@ -26,7 +26,7 @@ If you created a **Basic OpenShift Cluster Manager role** earlier, you will need
     $ rosa create operator-roles --mode auto --cluster <cluster-name> --yes
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Creating roles using 'arn:aws:iam::000000000000:user/rosauser'
     I: Created role 'rosacluster-b736-openshift-ingress-operator-cloud-credentials' with ARN 'arn:aws:iam::000000000000:role/rosacluster-b736-openshift-ingress-operator-cloud-credentials'

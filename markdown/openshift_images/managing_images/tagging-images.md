@@ -3,12 +3,12 @@ title: Tagging images
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Tagging images {id="tagging-images"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "tagging-images" %}
 
-Image tags identify specific versions of container images in image streams. You can use image tags to organize images and control which versions your builds and deployments use.
+Image tags identify specific versions of container images in image streams. You can use image tags to organize images and control which versions your builds and deployments use. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/images-tag.md" %}{% endleveloffset %}
 

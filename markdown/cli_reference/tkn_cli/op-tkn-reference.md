@@ -3,8 +3,8 @@ title: OpenShift Pipelines tkn reference
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# OpenShift Pipelines tkn reference {id="op-tkn-reference"}
 {% include "./_attributes/common-attributes.md" %}
+# OpenShift Pipelines tkn reference {id="op-tkn-reference"}
 {%- set context = "op-tkn-reference" %}
 
 This section lists the basic `tkn` CLI commands.

@@ -3,11 +3,11 @@ title: Mirroring OpenShift Container Platform images
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Mirroring {{ product_title }} images {id="mirroring-ocp-image-repository"}
 {% include "./_attributes/common-attributes.md" %}
+# Mirroring {{ product_title }} images {id="mirroring-ocp-image-repository"}
 {%- set context = "mirroring-ocp-image-repository" %}
 
-You must mirror container images onto a mirror registry to update a cluster in a disconnected environment. In connected environments, mirroring images ensures that your clusters run only approved container images that meet your organizational controls for external content.
+You must mirror container images onto a mirror registry to update a cluster in a disconnected environment. In connected environments, mirroring images ensures that your clusters run only approved container images that meet your organizational controls for external content. {._abstract}
 
 
 :::note
@@ -44,12 +44,14 @@ The `oc-mirror` plugin offers the following advantages over the `oc adm release 
 {% leveloffset +1 %}{% include "./modules/mirror-oc-mirror-plugin.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
 {% leveloffset +1 %}{% include "./modules/mirror-oc-adm-release.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying Red Hat Quay for proof-of-concept purposes](https://docs.redhat.com/en/documentation/red_hat_quay/3/html/proof_of_concept_-_deploying_red_hat_quay/index)
 *   [Deploying Red Hat Quay by using the Quay Operator](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploying_the_red_hat_quay_operator_on_openshift_container_platform/index)
@@ -64,6 +66,7 @@ The `oc-mirror` plugin offers the following advantages over the `oc adm release 
 {% leveloffset +3 %}{% include "./modules/cli-installing-cli-macos.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing and using CLI plugins](/cli_reference/openshift_cli/extending-cli-plugins#cli-installing-plugins_cli-extend-plugins)
 

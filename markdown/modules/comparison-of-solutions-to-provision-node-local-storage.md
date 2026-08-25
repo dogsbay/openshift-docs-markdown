@@ -6,7 +6,7 @@ Compare {{ lvms }}, Local Storage Operator (LSO), and HostPath Provisioner (HPP)
 ## Comparison of the support for storage types and filesystems {id="comparing-storage-types_{{ context }}"}
 The following table compares the support for storage types and filesystems provided by {{ lvms }}, Local Storage Operator (LSO), and HostPath Provisioner (HPP) to provision local storage:
 
-***Comparison of the support for storage types and filesystems***
+**Comparison of the support for storage types and filesystems**
 
 <table>
 <thead>
@@ -31,7 +31,7 @@ The following table compares the support for storage types and filesystems provi
   <td>Yes</td>
 </tr>
 <tr>
-  <td>Support for object storage ^[1]^</td>
+  <td>Support for object storage <sup>[1]</sup></td>
   <td>No</td>
   <td>No</td>
   <td>No</td>
@@ -50,7 +50,7 @@ The following table compares the support for storage types and filesystems provi
 ## Comparison of the support for core functionalities {id="comparing-core-functionalities_{{ context }}"}
 The following table compares how {{ lvms }}, Local Storage Operator (LSO), and HostPath Provisioner (HPP) support core functionalities for provisioning local storage:
 
-***Comparison of the support for core functionalities***
+**Comparison of the support for core functionalities**
 
 <table>
 <thead>
@@ -128,7 +128,7 @@ The following table compares how {{ lvms }}, Local Storage Operator (LSO), and H
 ## Comparison of performance and isolation capabilities {id="comparing-performance-and-isolation-boundary_{{ context }}"}
 The following table compares the performance and isolation capabilities of {{ lvms }}, Local Storage Operator (LSO), and HostPath Provisioner (HPP) in provisioning local storage.
 
-***Comparison of performance and isolation capabilities***
+**Comparison of performance and isolation capabilities**
 
 <table>
 <thead>
@@ -147,7 +147,7 @@ The following table compares the performance and isolation capabilities of {{ lv
   <td>I/O speed is shared for all workloads that use the same storage class.<br><br>The restrictions imposed by the underlying filesystem can affect the I/O speed.</td>
 </tr>
 <tr>
-  <td>Isolation boundary ^[1]^</td>
+  <td>Isolation boundary <sup>[1]</sup></td>
   <td>LVM Logical Volume (LV)<br><br>It provides higher level of isolation compared to HPP.</td>
   <td>LVM Logical Volume (LV)<br><br>It provides higher level of isolation compared to HPP</td>
   <td>Filesystem path<br><br>It provides lower level of isolation compared to LSO and {{ lvms }}.</td>
@@ -161,7 +161,7 @@ The following table compares the performance and isolation capabilities of {{ lv
 
 The following table compares the additional features provided by {{ lvms }}, Local Storage Operator (LSO), and HostPath Provisioner (HPP) to provision local storage:
 
-***Comparison of the support for additional functionalities***
+**Comparison of the support for additional functionalities**
 
 <table>
 <thead>
@@ -192,7 +192,7 @@ The following table compares the additional features provided by {{ lvms }}, Loc
   <td>No</td>
 </tr>
 <tr>
-  <td>Support for <code>ReadWriteMany</code> (RWX) access mode ^[1]^</td>
+  <td>Support for <code>ReadWriteMany</code> (RWX) access mode <sup>[1]</sup></td>
   <td>No</td>
   <td>No</td>
   <td>No</td>

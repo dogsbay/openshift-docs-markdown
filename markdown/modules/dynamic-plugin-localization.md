@@ -27,7 +27,7 @@ The [plugin template](https://github.com/openshift/console-plugin-template) demo
 
 1.  Set the `spec.i18n.loadType` field based on needed behavior.
 
-    `plugin__console-demo-plugin` ***Example***
+    `plugin__console-demo-plugin` **Example**
     ```yaml
     spec:
       backend:

@@ -1,5 +1,5 @@
 ---
-title: "NetworkAttachmentDefinition []"
+title: "NetworkAttachmentDefinition [k8s.cni.cncf.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NetworkAttachmentDefinition spec defines the desired state of a network attachment |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,11 +43,11 @@ The following API endpoints are available:
 
 *   `/apis/k8s.cni.cncf.io/v1/network-attachment-definitions`
     *   `GET`: list objects of kind NetworkAttachmentDefinition
-*   `/apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions`
+*   `/apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions`{minja}
     *   `DELETE`: delete collection of NetworkAttachmentDefinition
     *   `GET`: list objects of kind NetworkAttachmentDefinition
     *   `POST`: create a NetworkAttachmentDefinition
-*   `/apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions/{{ name }}`
+*   `/apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions/{{ name }}`{minja}
     *   `DELETE`: delete a NetworkAttachmentDefinition
     *   `GET`: read the specified NetworkAttachmentDefinition
     *   `PATCH`: partially update the specified NetworkAttachmentDefinition

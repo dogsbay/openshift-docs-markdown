@@ -14,7 +14,7 @@ Starting with {{ SMProductName }} 2.5, {{ JaegerName }} and {{ es_op }} have bee
 **Procedure**
 
 1.  Log in to the {{ Product_title }} console.
-1.  Navigate to **Networking** -> **Routes** and
+1.  Navigate to **Networking** → **Routes** and
 search for the Jaeger route, which is the URL listed under **Location**.
 1.  To query for details of the route using the command line, enter the following command. In this example, `istio-system` is the {{ SMProductShortName }} control plane namespace.
     ```terminal

@@ -3,13 +3,13 @@ title: Web Console Overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Web Console Overview {id="web-console-overview"}
-
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Web Console Overview {id="web-console-overview"}
+
 {%- set context = "web-console-overview" %}
 
-The {{ product_title }} web console provides a graphical user interface to visualize your project data and perform administrative, management, and troubleshooting tasks. The web console runs as pods on the control plane nodes in the openshift-console project. It is managed by a `console-operator` pod.
+The {{ product_title }} web console provides a graphical user interface to visualize your project data and perform administrative, management, and troubleshooting tasks. The web console runs as pods on the control plane nodes in the openshift-console project. It is managed by a `console-operator` pod. {._abstract}
 
 {% if not openshift_rosa_hcp %}
 {% include "./snippets/snip-unified-perspective-web-console.md" %}
@@ -25,6 +25,7 @@ You can create quick start tutorials for {{ product_title }} that provide guided
 {% leveloffset +1 %}{% include "./modules/enabling-developer-perspective_web-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Learn more about Cluster Administrator](/welcome/learn_more_about_openshift#learn_more_about_openshift)
@@ -40,4 +41,4 @@ You can create quick start tutorials for {{ product_title }} that provide guided
 *   [Creating quick start tutorials](/web_console/creating-quick-start-tutorials#creating-quick-start-tutorials)
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Disabling the web console](/web_console/disabling-web-console#disabling-web-console)
-{% endif %}
+{%- endif %}

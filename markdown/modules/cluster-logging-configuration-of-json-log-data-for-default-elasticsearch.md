@@ -54,8 +54,8 @@ spec:
     - default
     parse: json (2)
 ```
-1.  Uses the value of the key-value pair that is formed by the Kubernetes `logFormat` label.
-1.  Enables parsing JSON logs.
+    1.  Uses the value of the key-value pair that is formed by the Kubernetes `logFormat` label.
+    1.  Enables parsing JSON logs.
 
 In that case, the following structured log record goes to the `app-apache-write` index:
 

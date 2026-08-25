@@ -90,60 +90,61 @@ For {{ type }} profiles, the namespace must be labeled to allow [privileged](htt
     ```
 {% endif %}
 {% if selinux %}
-    1.  Apply the `scc.podSecurityLabelSync=false` label to the `nginx-deploy` namespace by running the following command:
-        ```terminal
-        $ oc label ns nginx-deploy security.openshift.io/scc.podSecurityLabelSync=false
-        ```
-    1.  Apply the `privileged` label to the `nginx-deploy` namespace by running the following command:
-        ```terminal
-        $ oc label ns nginx-deploy --overwrite=true pod-security.kubernetes.io/enforce=privileged
-        ```
-    1.  Obtain the SELinux profile usage string by running the following command:
-        ```terminal
-        $ oc get selinuxprofile.security-profiles-operator.x-k8s.io/nginx-secure -ojsonpath='{.status.usage}'
-        ```
-        ```terminal title="Example output"
-        nginx-secure.process
-        ```
-    1.  Apply the output string in the workload manifest in the `.spec.containers[].securityContext.seLinuxOptions` attribute:
-        ```yaml
-        apiVersion: v1
-        kind: Pod
-        metadata:
-          name: nginx-secure
-          namespace: nginx-deploy
-        spec:
+
+1.  Apply the `scc.podSecurityLabelSync=false` label to the `nginx-deploy` namespace by running the following command:
+    ```terminal
+    $ oc label ns nginx-deploy security.openshift.io/scc.podSecurityLabelSync=false
+    ```
+1.  Apply the `privileged` label to the `nginx-deploy` namespace by running the following command:
+    ```terminal
+    $ oc label ns nginx-deploy --overwrite=true pod-security.kubernetes.io/enforce=privileged
+    ```
+1.  Obtain the SELinux profile usage string by running the following command:
+    ```terminal
+    $ oc get selinuxprofile.security-profiles-operator.x-k8s.io/nginx-secure -ojsonpath='{.status.usage}'
+    ```
+    ```terminal title="Example output"
+    nginx-secure.process
+    ```
+1.  Apply the output string in the workload manifest in the `.spec.containers[].securityContext.seLinuxOptions` attribute:
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: nginx-secure
+      namespace: nginx-deploy
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - image: nginxinc/nginx-unprivileged:1.21
+          name: nginx
           securityContext:
-            runAsNonRoot: true
-            seccompProfile:
-              type: RuntimeDefault
-          containers:
-            - image: nginxinc/nginx-unprivileged:1.21
-              name: nginx
-              securityContext:
-                allowPrivilegeEscalation: false
-                capabilities:
-                  drop: [ALL]
-                seLinuxOptions:
-                  # NOTE: This uses an appropriate SELinux type
-                  type: nginx-secure.process
-        ```
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+            seLinuxOptions:
+              # NOTE: This uses an appropriate SELinux type
+              type: nginx-secure.process
+    ```
 
-        :::important
+    :::important
 
-        The SELinux `type` must exist before creating the workload.
-        
-        :::
+    The SELinux `type` must exist before creating the workload.
+    
+    :::
 
 {% endif %}
 
 {% if context == "spo-seccomp" %}
-{%- set seccomp = false -%}
-{%- set type = false -%}
-{%- set kind = false -%}
+{%- set seccomp = "" -%}
+{%- set type = "" -%}
+{%- set kind = "" -%}
 {% endif %}
 {% if context == "spo-selinux" %}
-{%- set selinux = false -%}
-{%- set type = false -%}
-{%- set kind = false -%}
+{%- set selinux = "" -%}
+{%- set type = "" -%}
+{%- set kind = "" -%}
 {% endif %}

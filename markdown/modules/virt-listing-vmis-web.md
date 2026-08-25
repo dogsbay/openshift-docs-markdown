@@ -13,6 +13,6 @@ VMIs that are owned by VMs or other objects are not displayed in the web console
 
 **Procedure**
 
-*   Click **Virtualization** -> **VirtualMachines** from the side menu.
+*   Click **Virtualization** → **VirtualMachines** from the side menu.
 
     You can identify a standalone VMI by a dark colored badge next to its name.

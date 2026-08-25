@@ -25,6 +25,7 @@ Not all installation options are supported for all platforms, as shown in the fo
 | Government regions | [&#10003;](/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region) |  | [&#10003;](/installing/installing_azure/ipi/installing-azure-government-region#installing-azure-government-region) |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Secret regions | [&#10003;](/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | China regions | [&#10003;](/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+
 {% endif %}
 
 {%- if openshift_origin %}
@@ -39,6 +40,7 @@ Not all installation options are supported for all platforms, as shown in the fo
 | Government regions | [&#10003;](/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region) | [&#10003;](/installing/installing_azure/ipi/installing-azure-government-region#installing-azure-government-region) |  |  |  |  |  |  |  |  |  |
 | Secret regions | [&#10003;](/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region) |  |  |  |  |  |  |  |  |  |  |
 | China regions | [&#10003;](/installing/installing_aws/ipi/installing-aws-specialized-region#installing-aws-specialized-region) |  |  |  |  |  |  |  |  |  |  |
+
 {% endif %}
 
 **User-provisioned infrastructure options**
@@ -50,6 +52,7 @@ Not all installation options are supported for all platforms, as shown in the fo
 | Network customization |  |  |  |  |  |  |  |  |  | [&#10003;](/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installing-bare-metal-network-customizations) | [&#10003;](/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installing-bare-metal-network-customizations) | [&#10003;](/installing/installing_vsphere/upi/installing-vsphere-network-customizations#installing-vsphere-network-customizations) |  |  |  |  |  |
 | Restricted network | [&#10003;](/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws) | [&#10003;](/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws) |  |  |  | [&#10003;](/installing/installing_gcp/installing-restricted-networks-gcp#installing-restricted-networks-gcp) | [&#10003;](/installing/installing_gcp/installing-restricted-networks-gcp#installing-restricted-networks-gcp) |  |  | [&#10003;](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal) | [&#10003;](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal) | [&#10003;](/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere) |  | [&#10003;](/installing/installing_ibm_z/upi/installing-restricted-networks-ibm-z#installing-restricted-networks-ibm-z) | [&#10003;](/installing/installing_ibm_z/upi/installing-restricted-networks-ibm-z-kvm#installing-restricted-networks-ibm-z-kvm) | [&#10003;](/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power) |  |
 | Shared VPC hosted outside of cluster project |  |  |  |  |  | [&#10003;](/installing/installing_gcp/installing-gcp-user-infra-vpc#installing-gcp-user-infra-vpc) | [&#10003;](/installing/installing_gcp/installing-gcp-user-infra-vpc#installing-gcp-user-infra-vpc) |  |  |  |  |  |  |  |  |  |  |
+
 {% endif %}
 
 {%- if openshift_origin %}
@@ -59,4 +62,5 @@ Not all installation options are supported for all platforms, as shown in the fo
 | Network customization |  |  |  |  |  |  | [&#10003;](/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installing-bare-metal-network-customizations) | [&#10003;](/installing/installing_vsphere/upi/installing-vsphere-network-customizations#installing-vsphere-network-customizations) |  |  |  |  |  |
 | Restricted network | [&#10003;](/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws) |  |  | [&#10003;](/installing/installing_gcp/installing-restricted-networks-gcp#installing-restricted-networks-gcp) |  |  | [&#10003;](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal) | [&#10003;](/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere) |  | [&#10003;](/installing/installing_ibm_z/upi/installing-restricted-networks-ibm-z#installing-restricted-networks-ibm-z) | [&#10003;](/installing/installing_ibm_z/upi/installing-restricted-networks-ibm-z-kvm#installing-restricted-networks-ibm-z-kvm) | [&#10003;](/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power) |  |
 | Shared VPC hosted outside of cluster project |  |  |  | [&#10003;](/installing/installing_gcp/installing-gcp-user-infra-vpc#installing-gcp-user-infra-vpc) |  |  |  |  |  |  |  |  |  |
+
 {% endif %}

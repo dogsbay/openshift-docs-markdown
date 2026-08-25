@@ -49,14 +49,14 @@ Verify the machine configuration on your hosts to confirm that the maximum trans
         ```
 
 {% if context == "aws-compute-edge-tasks-local-zone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-tasks-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set post_aws_zones = false -%}
+{%- set post_aws_zones = "" -%}
 {% endif %}
 {% if context == "installing-aws-outposts" %}
-{%- set outposts = false -%}
+{%- set outposts = "" -%}
 {% endif %}

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing {{ pipelines_shortname }} {id="installing-pipelines"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing {{ pipelines_shortname }} {id="installing-pipelines"}
 {%- set context = "installing-pipelines" %}
 
 This guide walks cluster administrators through the process of installing the {{ pipelines_title }} Operator to an {{ product_title }} cluster. {._abstract}

@@ -220,8 +220,8 @@ The following section lists all of the various resources that are used in this l
     ```
 
 
-:::note
+    :::note
 
-To simplify deployment of the OSToy application, all of the objects required in the above deployment manifests are grouped together. For a typical enterprise deployment, a separate manifest file for each Kubernetes object is recommended.
-
-:::
+    To simplify deployment of the OSToy application, all of the objects required in the above deployment manifests are grouped together. For a typical enterprise deployment, a separate manifest file for each Kubernetes object is recommended.
+    
+    :::

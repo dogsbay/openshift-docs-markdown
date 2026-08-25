@@ -3,11 +3,11 @@ title: User-provided certificates for the API server
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# User-provided certificates for the API server {id="cert-types-user-provided-certificates-for-the-api-server"}
 {% include "./_attributes/common-attributes.md" %}
+# User-provided certificates for the API server {id="cert-types-user-provided-certificates-for-the-api-server"}
 {%- set context = "cert-types-user-provided-certificates-for-the-api-server" %}
 
-Review user-provided TLS certificates for the API server in {{ product_title }} to understand their purpose, location, management, and expiration for external client access.
+Review user-provided TLS certificates for the API server in {{ product_title }} to understand their purpose, location, management, and expiration for external client access. {._abstract}
 
 ## Purpose {id="user-provided-certificates-for-api-server-purpose_{{ context }}"}
 
@@ -29,6 +29,6 @@ API server client certificate expiration is less than five minutes.
 
 Update the secret containing the user-managed certificate as needed.
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Adding API server certificates](/security/certificates/api-server#api-server-certificates)

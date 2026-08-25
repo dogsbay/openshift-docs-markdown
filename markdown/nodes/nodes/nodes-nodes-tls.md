@@ -4,8 +4,8 @@ title: Enabling TLS security profiles for the kubelet
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-nodes-tls" %}
-# Enabling TLS security profiles for the kubelet {id="nodes-nodes-tls"}
 {% include "./_attributes/common-attributes.md" %}
+# Enabling TLS security profiles for the kubelet {id="nodes-nodes-tls"}
 
 You can use a TLS (Transport Layer Security) security profile to define which TLS ciphers are required by the kubelet when it is acting as an HTTP server. The kubelet uses its HTTP/GRPC server to communicate with the Kubernetes API server, which sends commands to pods, gathers logs, and run exec commands on pods through the kubelet.
 

@@ -10,13 +10,13 @@ To remove a PCI host device from the cluster, delete the information for that de
 **Procedure**
 
 1.  Edit the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Remove the PCI device information from the `spec.permittedHostDevices.pciHostDevices` array by deleting the `pciDeviceSelector`, `resourceName` and `externalResourceProvider` (if applicable), fields for the appropriate device. In this example, the user deletes the `nvidia.com/TU104GL_Tesla_T4`.
 
     Example configuration file:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

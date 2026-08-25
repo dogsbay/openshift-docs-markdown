@@ -25,7 +25,7 @@ Supported platforms are AWS and {{ gcp_short }}.
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1.  In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 1.  In the table on the **Secrets** page, find the root secret for your cloud provider.
     | Platform | Secret name |
     | --- | --- |

@@ -143,6 +143,7 @@ Combine conditions
 
 
 If authentication fails after the configuration is applied
+
 **Troubleshooting**
 
 :   Even if your claim validation rules pass the configuration validation gates, runtime authentication errors can occur. Check the kube-apiserver logs for detailed error messages explaining why authentication failed:

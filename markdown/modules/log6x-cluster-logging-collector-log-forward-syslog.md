@@ -20,31 +20,31 @@ To configure log forwarding using the syslog protocol, you must create a `Cluste
     spec:
       managementState: Managed
       outputs:
-      - name: rsyslog-east # (1)
+      - name: rsyslog-east (1)
         syslog:
-          appName: <app_name> # (2)
+          appName: <app_name> (2)
           enrichment: KubernetesMinimal
-          facility: <facility_value> # (3)
-          msgId: <message_ID> # (4)
-          payloadKey: <record_field> # (5)
-          procId: <process_ID> # (6)
-          rfc: <RFC3164_or_RFC5424> # (7)
-          severity: informational # (8)
+          facility: <facility_value> (3)
+          msgId: <message_ID> (4)
+          payloadKey: <record_field> (5)
+          procId: <process_ID> (6)
+          rfc: <RFC3164_or_RFC5424> (7)
+          severity: informational (8)
           tuning:
-            deliveryMode: <AtLeastOnce_or_AtMostOnce> # (9)
-          url: <url> # (10)
-        tls: # (11)
+            deliveryMode: <AtLeastOnce_or_AtMostOnce> (9)
+          url: <url> (10)
+        tls: (11)
           ca:
             key: ca-bundle.crt
             secretName: syslog-secret
         type: syslog
       pipelines:
-      - inputRefs: # (12)
+      - inputRefs: (12)
         - application
-        name: syslog-east # (13)
+        name: syslog-east (13)
         outputRefs:
         - rsyslog-east
-      serviceAccount: # (14)
+      serviceAccount: (14)
         name: logcollector
     ```
     1.  Specify a name for the output.

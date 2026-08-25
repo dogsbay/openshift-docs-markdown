@@ -20,7 +20,7 @@ where:
 
 
 `fileName`
-:   Specifies `PtpConfigMaster.yaml` or `PtpConfigSlave.yaml` depending on your requirements. For configurations based on `{{ policy_prefix }}group-du-sno-ranGen.yaml` or `{{ policy_prefix }}group-du-3node-ranGen.yaml`, use `PtpConfigSlave.yaml`.
+:   Specifies `PtpConfigMaster.yaml` or `PtpConfigSlave.yaml` depending on your requirements. For configurations based on `{{ policy_prefix }}group-du-sno-ranGen.yaml`{minja} or `{{ policy_prefix }}group-du-3node-ranGen.yaml`{minja}, use `PtpConfigSlave.yaml`.
 
 `spec.profile.interface`
 :   Specifies the device specific interface name.

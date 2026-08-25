@@ -12,6 +12,7 @@ To enable distributed tracing using Jaeger, you must install and configure Jaege
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster or dedicated administrator access.
 {% endif %}
+
 *   You have installed the {{ ServerlessOperatorName }}, Knative Serving, and Knative Eventing.
 *   You have installed the {{ JaegerName }} Operator.
 *   You have installed the OpenShift CLI (`oc`).

@@ -41,7 +41,7 @@ You can create a `NodeNetworkConfigurationPolicy` (NNCP) manifest for a Linux br
     *   `spec.desiredState.interfaces.ipv4.enabled` defines whether the ipv4 protocol is active. Setting this to `false` disables IPv4 addressing on this bridge.
     *   `spec.desiredState.interfaces.bridge.options.stp.enabled` defines whether Spanning Tree Protocol (STP) is active. Setting this to `false` disables STP on this bridge.
     *   `spec.desiredState.interfaces.bridge.port.name` defines the node NIC that the bridge is attached to.
-{%- if not openshift_dedicated %}
+{% if not openshift_dedicated %}
 
         :::note
 

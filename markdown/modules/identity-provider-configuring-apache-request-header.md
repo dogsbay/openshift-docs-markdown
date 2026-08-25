@@ -21,22 +21,22 @@ an {{ product_title }} `ConfigMap` object containing the CA. This is done by run
     ```
     1.  The CA must be stored in the `ca.crt` key of the `ConfigMap` object.
 
-        :::tip
+    :::tip
 
-        You can alternatively apply the following YAML to create the config map:
+    You can alternatively apply the following YAML to create the config map:
 
-        ```yaml
-        apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: ca-config-map
-          namespace: openshift-config
-        data:
-          ca.crt: |
-            <CA_certificate_PEM>
-        ```
-        
-        :::
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: ca-config-map
+      namespace: openshift-config
+    data:
+      ca.crt: |
+        <CA_certificate_PEM>
+    ```
+    
+    :::
 
 *   Generate a client certificate for the proxy. You can generate this certificate
 by using any x509 certificate tooling. The client certificate must be signed by

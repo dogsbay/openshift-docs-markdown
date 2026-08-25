@@ -5,6 +5,6 @@ The `ObjectReference` object acts as a pointer to a specific Kubernetes resource
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `name` | _string_ | `name` specifies the name of the resource being referred to. |  | The maximum length is 253 characters. The minimum length is 1 character. Required |
-| `kind` | _string_ | `kind` specifies the kind of the resource being referred to. |  | The maximum length is 253 characters. The minimum length is 1 character. Optional |
-| `group` | _string_ | `group` specifies the group of the resource being referred to. |  | The maximum length is 253 characters. The minimum length is 1 character. Optional |
+| `name` | _string_ | `name` specifies the name of the resource being referred to. |  | The maximum length is 253 characters.<br>The minimum length is 1 character.<br>Required |
+| `kind` | _string_ | `kind` specifies the kind of the resource being referred to. |  | The maximum length is 253 characters.<br>The minimum length is 1 character.<br>Optional |
+| `group` | _string_ | `group` specifies the group of the resource being referred to. |  | The maximum length is 253 characters.<br>The minimum length is 1 character.<br>Optional |

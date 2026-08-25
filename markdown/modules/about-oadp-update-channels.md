@@ -5,15 +5,15 @@ When you install an {{ oadp_short }} Operator, you choose an update channel. Thi
 
 The following update channels are available:
 
-*   The **stable-1.3** channel contains `{{ oadp_short }}.v1.3.z`, the most recent {{ oadp_short }} 1.3 `ClusterServiceVersion`.
-*   The **stable-1.4** channel contains `{{ oadp_short }}.v1.4.z`, the most recent {{ oadp_short }} 1.4 `ClusterServiceVersion`.
+*   The **stable-1.3** channel contains `{{ oadp_short }}.v1.3.z`{minja}, the most recent {{ oadp_short }} 1.3 `ClusterServiceVersion`.
+*   The **stable-1.4** channel contains `{{ oadp_short }}.v1.4.z`{minja}, the most recent {{ oadp_short }} 1.4 `ClusterServiceVersion`.
 *   Starting with {{ oadp_short }} 1.5 on {{ product_title }} v4.19, {{ oadp_short }} reintroduces the **stable** channel which contains a single supported {{ oadp_short }} version for a particular {{ product_title }} version.
 
 For more information, see _OpenShift Operator Life Cycles_.
 
 **Which update channel is right for you?**
 
-*   If you are already using the **stable** channel, you will continue to get updates from `{{ oadp_short }}.v1.5.z`.
+*   If you are already using the **stable** channel, you will continue to get updates from `{{ oadp_short }}.v1.5.z`{minja}.
 *   Choose the **stable-1.y** update channel to install {{ oadp_short }} 1.y and to continue receiving patches for it. If you choose this channel, you will receive all z-stream patches for version 1.y.z.
 
 **When must you switch update channels?**

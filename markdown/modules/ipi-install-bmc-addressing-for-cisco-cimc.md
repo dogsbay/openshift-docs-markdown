@@ -15,7 +15,7 @@ For Cisco UCS C-Series and X-Series servers, Red Hat supports Cisco Integrated M
 <tbody>
 <tr>
   <td>Redfish virtual media</td>
-  <td><code>redfish-virtualmedia://<server_kvm_ip>/redfish/v1/Systems/<serial_number></code></td>
+  <td><code>redfish-virtualmedia://&lt;server_kvm_ip&gt;/redfish/v1/Systems/&lt;serial_number&gt;</code></td>
 </tr>
 </tbody>
 </table>

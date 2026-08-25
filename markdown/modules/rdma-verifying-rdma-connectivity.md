@@ -666,114 +666,114 @@ Confirm Remote Direct Memory Access (RDMA) connectivity is working between the s
 
         Upon completion of the `ib_write_bw` command, the server side output also appears on the server pod. See the following example:
 
-```terminal title="Example output"
-WARNING: BW peak won't be measured in this run.
-Perftest doesn't supports CUDA tests with inline messages: inline size set to 0
+        ```terminal title="Example output"
+        WARNING: BW peak won't be measured in this run.
+        Perftest doesn't supports CUDA tests with inline messages: inline size set to 0
 
-************************************
-* Waiting for client to connect... *
-************************************
-Requested mtu is higher than active mtu 
-Changing to active mtu - 3
-initializing CUDA
-Listing all CUDA devices in system:
-CUDA device 0: PCIe address is 61:00
+        ************************************
+        * Waiting for client to connect... *
+        ************************************
+        Requested mtu is higher than active mtu 
+        Changing to active mtu - 3
+        initializing CUDA
+        Listing all CUDA devices in system:
+        CUDA device 0: PCIe address is 61:00
 
-Picking device No. 0
-[pid = 9226, dev = 0] device name = [NVIDIA A40]
-creating CUDA Ctx
-making it the current CUDA Ctx
-CUDA device integrated: 0
-using DMA-BUF for GPU buffer address at 0x7f447a600000 aligned at 0x7f447a600000 with aligned size 2097152
-allocated GPU buffer of a 2097152 address at 0x2406400 for type CUDA_MEM_DEVICE
-Calling ibv_reg_dmabuf_mr(offset=0, size=2097152, addr=0x7f447a600000, fd=40) for QP #0
----------------------------------------------------------------------------------------
-                    RDMA_Write BW Test
- Dual-port       : OFF		Device         : mlx5_7
- Number of qps   : 16		Transport type : IB
- Connection type : RC		Using SRQ      : OFF
- PCIe relax order: ON		Lock-free      : OFF
- ibv_wr* API     : ON		Using DDP      : OFF
- CQ Moderation   : 1
- CQE Poll Batch  : 16
- Mtu             : 1024[B]
- Link type       : Ethernet
- GID index       : 3
- Max inline data : 0[B]
- rdma_cm QPs	 : ON
- Data ex. method : rdma_cm 	TOS    : 41
----------------------------------------------------------------------------------------
- Waiting for client rdma_cm QP to connect
- Please run the same command with the IB/RoCE interface IP
----------------------------------------------------------------------------------------
- local address: LID 0000 QPN 0x026d PSN 0x359409
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x026e PSN 0xe387bf
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x026f PSN 0x5be79d
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0270 PSN 0x1b4b28
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0271 PSN 0x76a61b
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0272 PSN 0x3d50e1
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0273 PSN 0x1b572c
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0274 PSN 0x4ae1b5
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0275 PSN 0x5591b5
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0276 PSN 0xfa2593
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0277 PSN 0xd9473b
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0278 PSN 0x2116b2
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x0279 PSN 0x9b83b6
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x027a PSN 0xa0822b
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x027b PSN 0x6d930d
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- local address: LID 0000 QPN 0x027c PSN 0xb1a4d
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
- remote address: LID 0000 QPN 0x012d PSN 0x3cb6d7
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x012e PSN 0x90e0ac
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x012f PSN 0x153f50
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0130 PSN 0x5e0128
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0131 PSN 0xd89752
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0132 PSN 0xe5fc16
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0133 PSN 0x236787
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0134 PSN 0xd9273e
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0135 PSN 0x37cfd4
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0136 PSN 0x3bff8f
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0137 PSN 0x81f2bd
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0138 PSN 0x575c43
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x0139 PSN 0x6cf53d
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x013a PSN 0xcaaf6f
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x013b PSN 0x346437
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
- remote address: LID 0000 QPN 0x013c PSN 0xcc5865
- GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
----------------------------------------------------------------------------------------
- #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
- 65536      10329004         0.00               180.47 		     0.344228
----------------------------------------------------------------------------------------
-deallocating GPU buffer 00007f447a600000
-destroying current CUDA Ctx
-```
+        Picking device No. 0
+        [pid = 9226, dev = 0] device name = [NVIDIA A40]
+        creating CUDA Ctx
+        making it the current CUDA Ctx
+        CUDA device integrated: 0
+        using DMA-BUF for GPU buffer address at 0x7f447a600000 aligned at 0x7f447a600000 with aligned size 2097152
+        allocated GPU buffer of a 2097152 address at 0x2406400 for type CUDA_MEM_DEVICE
+        Calling ibv_reg_dmabuf_mr(offset=0, size=2097152, addr=0x7f447a600000, fd=40) for QP #0
+        ---------------------------------------------------------------------------------------
+                            RDMA_Write BW Test
+         Dual-port       : OFF		Device         : mlx5_7
+         Number of qps   : 16		Transport type : IB
+         Connection type : RC		Using SRQ      : OFF
+         PCIe relax order: ON		Lock-free      : OFF
+         ibv_wr* API     : ON		Using DDP      : OFF
+         CQ Moderation   : 1
+         CQE Poll Batch  : 16
+         Mtu             : 1024[B]
+         Link type       : Ethernet
+         GID index       : 3
+         Max inline data : 0[B]
+         rdma_cm QPs	 : ON
+         Data ex. method : rdma_cm 	TOS    : 41
+        ---------------------------------------------------------------------------------------
+         Waiting for client rdma_cm QP to connect
+         Please run the same command with the IB/RoCE interface IP
+        ---------------------------------------------------------------------------------------
+         local address: LID 0000 QPN 0x026d PSN 0x359409
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x026e PSN 0xe387bf
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x026f PSN 0x5be79d
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0270 PSN 0x1b4b28
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0271 PSN 0x76a61b
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0272 PSN 0x3d50e1
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0273 PSN 0x1b572c
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0274 PSN 0x4ae1b5
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0275 PSN 0x5591b5
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0276 PSN 0xfa2593
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0277 PSN 0xd9473b
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0278 PSN 0x2116b2
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x0279 PSN 0x9b83b6
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x027a PSN 0xa0822b
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x027b PSN 0x6d930d
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         local address: LID 0000 QPN 0x027c PSN 0xb1a4d
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:225
+         remote address: LID 0000 QPN 0x012d PSN 0x3cb6d7
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x012e PSN 0x90e0ac
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x012f PSN 0x153f50
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0130 PSN 0x5e0128
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0131 PSN 0xd89752
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0132 PSN 0xe5fc16
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0133 PSN 0x236787
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0134 PSN 0xd9273e
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0135 PSN 0x37cfd4
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0136 PSN 0x3bff8f
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0137 PSN 0x81f2bd
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0138 PSN 0x575c43
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x0139 PSN 0x6cf53d
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x013a PSN 0xcaaf6f
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x013b PSN 0x346437
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+         remote address: LID 0000 QPN 0x013c PSN 0xcc5865
+         GID: 00:00:00:00:00:00:00:00:00:00:255:255:192:168:04:226
+        ---------------------------------------------------------------------------------------
+         #bytes     #iterations    BW peak[Gb/sec]    BW average[Gb/sec]   MsgRate[Mpps]
+         65536      10329004         0.00               180.47 		     0.344228
+        ---------------------------------------------------------------------------------------
+        deallocating GPU buffer 00007f447a600000
+        destroying current CUDA Ctx
+        ```

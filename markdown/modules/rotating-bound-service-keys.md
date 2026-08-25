@@ -20,25 +20,25 @@
 {% endif %}
 
 You can rotate the bound service account signer key for an {{ product_title }} cluster
-{% if rotate_aws %}
+{%- if rotate_aws %}
 on {{ aws_first }}
-{% endif %}
-{% if rotate_gcp %}
+{%- endif %}
+{%- if rotate_gcp %}
 on {{ gcp_first }}
-{% endif %}
-{% if rotate_azure %}
+{%- endif %}
+{%- if rotate_azure %}
 on {{ azure_first }}
-{% endif %}
+{%- endif %}
 that uses the Cloud Credential Operator (CCO) in manual mode with
-{% if rotate_aws %}
+{%- if rotate_aws %}
 {{ sts_short }}.
-{% endif %}
-{% if rotate_gcp %}
+{%- endif %}
+{%- if rotate_gcp %}
 {{ gcp_wid_short }}.
-{% endif %}
-{% if rotate_azure %}
-{{ entra_first }}.
-{% endif %} {._abstract}
+{%- endif %}
+{%- if rotate_azure %}
+{{ entra_first }}. {._abstract}
+{%- endif %}
 
 To rotate the key, you delete the existing key on your cluster, which causes the Kubernetes API server to create a new key.
 To reduce authentication failures during this process, you must immediately add the new public key to the existing issuer file.
@@ -77,29 +77,29 @@ You can confirm that the cluster is stable by running the following command:
 **Procedure**
 
 1.  Configure the following environment variables:
-    ```text
-{%- if rotate_aws %}
+    ```text {minja}
+    {% if rotate_aws %}
     INFRA_ID=$(oc get infrastructures cluster -o jsonpath='{.status.infrastructureName}')
     CLUSTER_NAME=${INFRA_ID%-*}
-{% endif %}
-{% if rotate_gcp %}
+    {% endif %}
+    {% if rotate_gcp %}
     CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}')
     GCP_BUCKET=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4)
     CLUSTER_NAME=${GCP_BUCKET%-*}
-{% endif %}
-{% if rotate_azure %}
+    {% endif %}
+    {% if rotate_azure %}
     CURRENT_ISSUER=$(oc get authentication cluster -o jsonpath='{.spec.serviceAccountIssuer}')
     AZURE_STORAGE_ACCOUNT=$(echo ${CURRENT_ISSUER} | cut -d "/" -f3 | cut -d "." -f1)
     AZURE_STORAGE_CONTAINER=$(echo ${CURRENT_ISSUER} | cut -d "/" -f4)
-{%- endif %}
+    {% endif %}
     ```
-{%- if rotate_aws %}
+{% if rotate_aws %}
 
     where:
 
     `CLUSTER_NAME`
     :   This value should match the name of the cluster that was specified in the `metadata.name` field of the `install-config.yaml` file during installation.
-{%- endif %}
+{% endif %}
 
     :::note
 
@@ -108,41 +108,41 @@ You can confirm that the cluster is stable by running the following command:
     
     :::
 
-{%- if rotate_aws %}
-*   For {{ aws_short }} clusters that store the OIDC configuration in a public S3 bucket, configure the following environment variable:
-    ```text
-    AWS_BUCKET=$(oc get authentication cluster -o jsonpath={'.spec.serviceAccountIssuer'} | awk -F'://' '{print$2}' |awk -F'.' '{print$1}')
-    ```
-*   For {{ aws_short }} clusters that store the OIDC configuration in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL, complete the following steps:
-    1.  Extract the public CloudFront distribution URL by running the following command:
-        ```terminal
-        $ basename $(oc get authentication cluster -o jsonpath={'.spec.serviceAccountIssuer'} )
-        ```
-        ```text title="Example output"
-        <subdomain>.cloudfront.net
-        ```
-
-        where `<subdomain>` is an alphanumeric string.
-    1.  Determine the private S3 bucket name by running the following command:
-        ```terminal
-        $ aws cloudfront list-distributions --query "DistributionList.Items[].{DomainName: DomainName, OriginDomainName: Origins.Items[0].DomainName}[?contains(DomainName, '<subdomain>.cloudfront.net')]"
-        ```
-        ```text title="Example output"
-        [
-            {
-                "DomainName": "<subdomain>.cloudfront.net",
-                "OriginDomainName": "<s3_bucket>.s3.us-east-2.amazonaws.com"
-            }
-        ]
-        ```
-
-        where `<s3_bucket>` is the private S3 bucket name for your cluster.
-    1.  Configure the following environment variable:
+{% if rotate_aws %}
+    *   For {{ aws_short }} clusters that store the OIDC configuration in a public S3 bucket, configure the following environment variable:
         ```text
-        AWS_BUCKET=$<s3_bucket>
+        AWS_BUCKET=$(oc get authentication cluster -o jsonpath={'.spec.serviceAccountIssuer'} | awk -F'://' '{print$2}' |awk -F'.' '{print$1}')
         ```
+    *   For {{ aws_short }} clusters that store the OIDC configuration in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL, complete the following steps:
+        1.  Extract the public CloudFront distribution URL by running the following command:
+            ```terminal
+            $ basename $(oc get authentication cluster -o jsonpath={'.spec.serviceAccountIssuer'} )
+            ```
+            ```text title="Example output"
+            <subdomain>.cloudfront.net
+            ```
 
-        where `<s3_bucket>` is the private S3 bucket name for your cluster.
+            where `<subdomain>` is an alphanumeric string.
+        1.  Determine the private S3 bucket name by running the following command:
+            ```terminal
+            $ aws cloudfront list-distributions --query "DistributionList.Items[].{DomainName: DomainName, OriginDomainName: Origins.Items[0].DomainName}[?contains(DomainName, '<subdomain>.cloudfront.net')]"
+            ```
+            ```text title="Example output"
+            [
+                {
+                    "DomainName": "<subdomain>.cloudfront.net",
+                    "OriginDomainName": "<s3_bucket>.s3.us-east-2.amazonaws.com"
+                }
+            ]
+            ```
+
+            where `<s3_bucket>` is the private S3 bucket name for your cluster.
+        1.  Configure the following environment variable:
+            ```text
+            AWS_BUCKET=$<s3_bucket>
+            ```
+
+            where `<s3_bucket>` is the private S3 bucket name for your cluster.
 {% endif %}
 1.  Create a temporary directory to use and assign it an environment variable by running the following command:
     ```terminal
@@ -172,7 +172,7 @@ You can confirm that the cluster is stable by running the following command:
       -d > ${TEMPDIR}/serviceaccount-signer.public
     ```
 1.  Use the public key to create a `keys.json` file by running the following command:
-    {%- if rotate_aws %}
+{%- if rotate_aws %}
     ```terminal
     $ ccoctl aws create-identity-provider \
       --dry-run \
@@ -196,8 +196,8 @@ You can confirm that the cluster is stable by running the following command:
     `--region`
     :   Any valid {{ aws_short }} region, such as `us-east-1`.
         This value does not need to match the region the cluster is in.
-{% endif %}
-{% if rotate_gcp %}
+{%- endif %}
+{%- if rotate_gcp %}
     ```terminal
     $ ccoctl gcp create-workload-identity-provider \
       --dry-run \
@@ -207,12 +207,19 @@ You can confirm that the cluster is stable by running the following command:
       --project fake \
       --workload-identity-pool fake
     ```
+
     where:
-    `--dry-run`:: The dry run mode outputs files, including the new `keys.json` file, to the disk without making API calls.
-    `--public-key-file`:: The path to the public key that you downloaded in the previous step.
-    `--name`:: Some parameters do not require real values because the `--dry-run` option does not make any API calls.
-{% endif %}
-{% if rotate_azure %}
+
+    `--dry-run`
+    :   The dry run mode outputs files, including the new `keys.json` file, to the disk without making API calls.
+
+    `--public-key-file`
+    :   The path to the public key that you downloaded in the previous step.
+
+    `--name`
+    :   Some parameters do not require real values because the `--dry-run` option does not make any API calls.
+{%- endif %}
+{%- if rotate_azure %}
     ```terminal
     $ ccoctl aws create-identity-provider \
       --dry-run \
@@ -221,16 +228,26 @@ You can confirm that the cluster is stable by running the following command:
       --name fake \
       --region us-east-1
     ```
-    where:
-    `ccoctl aws`:: The command does not include a `--dry-run` option.
-    To use the `--dry-run` option, you must specify `aws` for an {{ azure_short }} cluster.
-    `--dry-run`:: The dry run mode outputs files, including the new `keys.json` file, to the disk without making API calls.
-    `--public-key-file`:: The path to the public key that you downloaded in the previous step.
-    `--name`:: Some parameters do not require real values because the `--dry-run` option does not make any API calls.
-    `--region`:: Any valid {{ aws_short }} region, such as `us-east-1`.
-    This value does not need to match the region the cluster is in.
-{% endif %}
 
+    where:
+
+    `ccoctl aws`
+    :   The command does not include a `--dry-run` option.
+        To use the `--dry-run` option, you must specify `aws` for an {{ azure_short }} cluster.
+
+    `--dry-run`
+    :   The dry run mode outputs files, including the new `keys.json` file, to the disk without making API calls.
+
+    `--public-key-file`
+    :   The path to the public key that you downloaded in the previous step.
+
+    `--name`
+    :   Some parameters do not require real values because the `--dry-run` option does not make any API calls.
+
+    `--region`
+    :   Any valid {{ aws_short }} region, such as `us-east-1`.
+        This value does not need to match the region the cluster is in.
+{%- endif %}
 1.  Rename the `keys.json` file by running the following command:
     ```terminal
     $ cp ${TEMPDIR}/<number>-keys.json ${TEMPDIR}/jwks.new.json
@@ -238,14 +255,14 @@ You can confirm that the cluster is stable by running the following command:
 
     where `<number>` is a two-digit numerical value that varies depending on your environment.
 1.  Download the existing `keys.json` file from the cloud provider by running the following command:
-    {%- if rotate_aws %}
+{%- if rotate_aws %}
     ```terminal
     $ aws s3api get-object \
       --bucket ${AWS_BUCKET} \
       --key keys.json ${TEMPDIR}/jwks.current.json
     ```
-{% endif %}
-{% if rotate_gcp %}
+{%- endif %}
+{%- if rotate_gcp %}
     *   For {{ gcp_short }} clusters that store OIDC keys in a public bucket, run the following command:
         ```terminal
         $ gcloud storage cp gs://${GCP_BUCKET}/keys.json ${TEMPDIR}/jwks.current.json
@@ -258,22 +275,22 @@ You can confirm that the cluster is stable by running the following command:
           --workload-identity-pool ${CLUSTER_NAME} ${CLUSTER_NAME} \
           | jq -r ".oidc.jwksJson" > ${TEMPDIR}/jwks.current.json
         ```
-{% endif %}
-{% if rotate_azure %}
-        ```terminal
-        $ az storage blob download \
-          --container-name ${AZURE_STORAGE_CONTAINER} \
-          --account-name ${AZURE_STORAGE_ACCOUNT} \
-          --name 'openid/v1/jwks' \
-          -f ${TEMPDIR}/jwks.current.json
-        ```
-{% endif %}
+{%- endif %}
+{%- if rotate_azure %}
+    ```terminal
+    $ az storage blob download \
+      --container-name ${AZURE_STORAGE_CONTAINER} \
+      --account-name ${AZURE_STORAGE_ACCOUNT} \
+      --name 'openid/v1/jwks' \
+      -f ${TEMPDIR}/jwks.current.json
+    ```
+{%- endif %}
 1.  Combine the two `keys.json` files by running the following command:
     ```terminal
     $ jq -s '{ keys: map(.keys[])}' ${TEMPDIR}/jwks.current.json ${TEMPDIR}/jwks.new.json > ${TEMPDIR}/jwks.combined.json
     ```
 1.  To enable authentication for the old and new keys during the rotation, upload the combined `keys.json` file to the cloud provider by running the following command:
-    {%- if rotate_aws %}
+{%- if rotate_aws %}
     ```terminal
     $ aws s3api put-object \
       --bucket ${AWS_BUCKET} \
@@ -281,8 +298,8 @@ You can confirm that the cluster is stable by running the following command:
       --key keys.json \
       --body ${TEMPDIR}/jwks.combined.json
     ```
-{% endif %}
-{% if rotate_gcp %}
+{%- endif %}
+{%- if rotate_gcp %}
     *   For {{ gcp_short }} clusters that store OIDC keys in a public bucket, run the following command:
         ```terminal
         $ gcloud storage cp ${TEMPDIR}/jwks.combined.json gs://${GCP_BUCKET}/keys.json
@@ -294,17 +311,17 @@ You can confirm that the cluster is stable by running the following command:
           --workload-identity-pool=${CLUSTER_NAME} \
           --jwk-json-path=${TEMPDIR}/jwks.combined.json
         ```
-{% endif %}
-{% if rotate_azure %}
-        ```terminal
-        $ az storage blob upload \
-          --overwrite \
-          --account-name ${AZURE_STORAGE_ACCOUNT} \
-          --container-name ${AZURE_STORAGE_CONTAINER} \
-          --name 'openid/v1/jwks' \
-          -f ${TEMPDIR}/jwks.combined.json
-        ```
-{% endif %}
+{%- endif %}
+{%- if rotate_azure %}
+    ```terminal
+    $ az storage blob upload \
+      --overwrite \
+      --account-name ${AZURE_STORAGE_ACCOUNT} \
+      --container-name ${AZURE_STORAGE_CONTAINER} \
+      --name 'openid/v1/jwks' \
+      -f ${TEMPDIR}/jwks.combined.json
+    ```
+{%- endif %}
 1.  Wait for the Kubernetes API server to update and use the new key.
 You can monitor the update progress by running the following command:
     ```terminal
@@ -350,7 +367,7 @@ You can monitor the update progress by running the following command:
     All clusteroperators are stable
     ```
 1.  Replace the combined `keys.json` file with the updated `keys.json` file on the cloud provider by running the following command:
-    {%- if rotate_aws %}
+{%- if rotate_aws %}
     ```terminal
     $ aws s3api put-object \
       --bucket ${AWS_BUCKET} \
@@ -358,8 +375,8 @@ You can monitor the update progress by running the following command:
       --key keys.json \
       --body ${TEMPDIR}/jwks.new.json
     ```
-{% endif %}
-{% if rotate_gcp %}
+{%- endif %}
+{%- if rotate_gcp %}
     *   For {{ gcp_short }} clusters that store OIDC keys in a public bucket, run the following command:
         ```terminal
         $ gcloud storage cp ${TEMPDIR}/jwks.new.json gs://${GCP_BUCKET}/keys.json
@@ -371,24 +388,24 @@ You can monitor the update progress by running the following command:
           --workload-identity-pool=${CLUSTER_NAME} \
           --jwk-json-path=${TEMPDIR}/jwks.new.json
         ```
-{% endif %}
-{% if rotate_azure %}
-        ```terminal
-        $ az storage blob upload \
-          --overwrite \
-          --account-name ${AZURE_STORAGE_ACCOUNT} \
-          --container-name ${AZURE_STORAGE_CONTAINER} \
-          --name 'openid/v1/jwks' \
-          -f ${TEMPDIR}/jwks.new.json
-        ```
-{% endif %}
+{%- endif %}
+{%- if rotate_azure %}
+    ```terminal
+    $ az storage blob upload \
+      --overwrite \
+      --account-name ${AZURE_STORAGE_ACCOUNT} \
+      --container-name ${AZURE_STORAGE_CONTAINER} \
+      --name 'openid/v1/jwks' \
+      -f ${TEMPDIR}/jwks.new.json
+    ```
+{%- endif %}
 
 {% if context == "key-rotation-aws" %}
-{%- set rotate_aws = false -%}
+{%- set rotate_aws = "" -%}
 {% endif %}
 {% if context == "key-rotation-gcp" %}
-{%- set rotate_gcp = false -%}
+{%- set rotate_gcp = "" -%}
 {% endif %}
 {% if context == "key-rotation-azure" %}
-{%- set rotate_azure = false -%}
+{%- set rotate_azure = "" -%}
 {% endif %}

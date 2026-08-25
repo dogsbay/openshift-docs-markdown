@@ -3,11 +3,11 @@ title: Catalog source pod scheduling
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Catalog source pod scheduling {id="olm-cs-podsched"}
 {% include "./_attributes/common-attributes.md" %}
+# Catalog source pod scheduling {id="olm-cs-podsched"}
 {%- set context = "olm-cs-podsched" %}
 
-When a `grpc` type catalog source defines the `spec.image` field, the Catalog Operator creates a pod to serve that image.
+When a `grpc` type catalog source defines the `spec.image` field, the Catalog Operator creates a pod to serve that image. {._abstract}
 
 By default, the pod specification configures the following default settings:
 
@@ -28,12 +28,14 @@ To apply persistent changes to `CatalogSource` object, you must first disable a 
 
 
 **Additional resources**
+{._additional-resources}
 
-*   [OLM concepts and resources -> Catalog source](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
+*   [OLM concepts and resources → Catalog source](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
 
 {% leveloffset +1 %}{% include "./modules/disabling-catalogsource-objects.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [OperatorHub custom resource](/operators/understanding/olm-understanding-software-catalog#olm-software-catalog-arch-operatorhub-crd_olm-understanding-software-catalog)
 
@@ -44,12 +46,14 @@ To apply persistent changes to `CatalogSource` object, you must first disable a 
 {% leveloffset +1 %}{% include "./modules/olm-node-selector.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Placing pods on specific nodes using node selectors](/nodes/scheduling/nodes-scheduler-node-selectors#nodes-scheduler-node-selectors)
 
 {% leveloffset +1 %}{% include "./modules/olm-priority-class-name.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Pod priority classes](/nodes/pods/nodes-pods-priority#admin-guide-priority-preemption-priority-class_nodes-pods-priority)
 
@@ -58,6 +62,7 @@ To apply persistent changes to `CatalogSource` object, you must first disable a 
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
-{% endif %}
+{%- endif %}

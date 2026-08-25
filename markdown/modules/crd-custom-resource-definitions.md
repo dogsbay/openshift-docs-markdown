@@ -24,4 +24,4 @@ While only cluster administrators can create CRDs, developers can create the CR 
 
 :::
 
-{% endif %}
+{%- endif %}

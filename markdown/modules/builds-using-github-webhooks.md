@@ -45,7 +45,7 @@ https://<openshift_api_host:port>/apis/build.openshift.io/v1/namespaces/<namespa
         https://api.starter-us-east-1.openshift.com:443/apis/build.openshift.io/v1/namespaces/<namespace>/buildconfigs/<name>/webhooks/<secret>/github
         ```
     1.  Cut and paste this URL into GitHub, from the GitHub web console.
-    1.  In your GitHub repository, select **Add Webhook** from **Settings -> Webhooks**.
+    1.  In your GitHub repository, select **Add Webhook** from **Settings → Webhooks**.
     1.  Paste the URL output into the **Payload URL** field.
     1.  Change the **Content Type** from GitHub’s default `application/x-www-form-urlencoded` to `application/json`.
     1.  Click **Add webhook**.
@@ -69,11 +69,11 @@ https://<openshift_api_host:port>/apis/build.openshift.io/v1/namespaces/<namespa
     signed certificate.
 
 
-:::note
+    :::note
 
-The build will only be triggered if the `ref` value from GitHub webhook event matches the `ref` value specified in the `source.git` field of the `BuildConfig` resource.
-
-:::
+    The build will only be triggered if the `ref` value from GitHub webhook event matches the `ref` value specified in the `source.git` field of the `BuildConfig` resource.
+    
+    :::
 
 
 **Additional resources**

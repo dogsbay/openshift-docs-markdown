@@ -1,5 +1,5 @@
 ---
-title: "EgressRouter []"
+title: "EgressRouter [network.operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -44,6 +44,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of the desired egress router. |
 | `status` | `object` | Observed status of EgressRouter. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -66,6 +67,7 @@ Required
 | `mode` | `string` | mode depicts the mode that is used for the egress router. The default mode is "Redirect" and is the only supported mode currently. |
 | `networkInterface` | `object` | Specification of interface to create/use. The default is macvlan. Currently only macvlan is supported. |
 | `redirect` | `object` | redirect represents the configuration parameters specific to redirect mode. |
+
 ### .spec.addresses {id="_specaddresses"}
 
 Description
@@ -92,6 +94,7 @@ Required
 | --- | --- | --- |
 | `gateway` | `string` | IP address of the next-hop gateway, if it cannot be automatically determined. Can be IPv4 or IPv6. |
 | `ip` | `string` | ip is the address to configure on the router’s interface. Can be IPv4 or IPv6. |
+
 ### .spec.networkInterface {id="_specnetworkinterface"}
 
 Description
@@ -105,6 +108,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `macvlan` | `object` | Arguments specific to the interfaceType macvlan |
+
 ### .spec.networkInterface.macvlan {id="_specnetworkinterfacemacvlan"}
 
 Description
@@ -121,8 +125,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `master` | `string` | Name of the master interface. Need not be specified if it can be inferred from the IP address. |
-| `mode` | `string` | mode depicts the mode that is used for the macvlan interface; one of Bridge\ |
-| Private\ | VEPA\ | Passthru. The default mode is "Bridge". |
+| `mode` | `string` | mode depicts the mode that is used for the macvlan interface; one of Bridge\|Private\|VEPA\|Passthru. The default mode is "Bridge". |
+
 ### .spec.redirect {id="_specredirect"}
 
 Description
@@ -137,6 +141,7 @@ Type
 | `fallbackIP` | `string` | fallbackIP specifies the remote destination’s IP address. Can be IPv4 or IPv6. If no redirect rules are specified, all traffic from the router are redirected to this IP. If redirect rules are specified, then any connections on any other port (undefined in the rules) on the router will be redirected to this IP. If redirect rules are specified and no fallback IP is provided, connections on other ports will simply be rejected. |
 | `redirectRules` | `array` | List of L4RedirectRules that define the DNAT redirection from the pod to the destination in redirect mode. |
 | `redirectRules[]` | `object` | L4RedirectRule defines a DNAT redirection from a given port to a destination IP and port. |
+
 ### .spec.redirect.redirectRules {id="_specredirectredirectrules"}
 
 Description
@@ -167,6 +172,7 @@ Required
 | `port` | `integer` | port is the port number to which clients should send traffic to be redirected. |
 | `protocol` | `string` | protocol can be TCP, SCTP or UDP. |
 | `targetPort` | `integer` | targetPort allows specifying the port number on the remote destination to which the traffic gets redirected to. If unspecified, the value from "Port" is used. |
+
 ### .status {id="_status"}
 
 Description
@@ -184,6 +190,7 @@ Required
 | --- | --- | --- |
 | `conditions` | `array` | Observed status of the egress router |
 | `conditions[]` | `object` | EgressRouterStatusCondition represents the state of the egress router’s managed and monitored components. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -222,16 +229,16 @@ The following API endpoints are available:
 
 *   `/apis/network.operator.openshift.io/v1/egressrouters`
     *   `GET`: list objects of kind EgressRouter
-*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters`
+*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters`{minja}
     *   `DELETE`: delete collection of EgressRouter
     *   `GET`: list objects of kind EgressRouter
     *   `POST`: create an EgressRouter
-*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }}`
+*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }}`{minja}
     *   `DELETE`: delete an EgressRouter
     *   `GET`: read the specified EgressRouter
     *   `PATCH`: partially update the specified EgressRouter
     *   `PUT`: replace the specified EgressRouter
-*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }}/status`
+*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/egressrouters/{{ name }}/status`{minja}
     *   `GET`: read status of the specified EgressRouter
     *   `PATCH`: partially update status of the specified EgressRouter
     *   `PUT`: replace status of the specified EgressRouter

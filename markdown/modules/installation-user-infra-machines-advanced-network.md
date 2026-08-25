@@ -25,7 +25,7 @@ To configure an ISO installation, use the following procedure.
 1.  Boot the ISO installer.
 1.  From the live system shell prompt, configure networking for the live system by using available RHEL tools, such as `nmcli` or `nmtui`.
 1.  Run the `coreos-installer` command to install the system, adding the `--copy-network` option to copy networking configuration. For example:
-    {%- if not restricted %}
+{% if not restricted %}
     ```terminal
     $ sudo coreos-installer install --copy-network \
          --ignition-url=http://host/worker.ign /dev/disk/by-id/scsi-<serial_number>
@@ -38,7 +38,7 @@ To configure an ISO installation, use the following procedure.
     --offline \
     /dev/disk/by-id/scsi-<serial_number>
     ```
-{%- endif %}
+{% endif %}
 
     :::important
 
@@ -49,5 +49,5 @@ To configure an ISO installation, use the following procedure.
 1.  Reboot into the installed system.
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

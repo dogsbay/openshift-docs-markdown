@@ -93,5 +93,5 @@ Check your pod counts by using the CLI, the web UI, or the OSToy application:
     ```
 1.  In the web UI, select **Workloads > Deployments > ostoy-microservice**.
     ![Verify the workload pods](/_assets/images/deploy-scale-verify-workload.png)
-1.  You can also confirm that there are two pods by selecting ***Networking*** in the navigation menu of the OSToy application. There should be two colored boxes for the two pods.
+1.  You can also confirm that there are two pods by selecting **Networking** in the navigation menu of the OSToy application. There should be two colored boxes for the two pods.
     ![UI Scale](/_assets/images/deploy-scale-colorspods.png)

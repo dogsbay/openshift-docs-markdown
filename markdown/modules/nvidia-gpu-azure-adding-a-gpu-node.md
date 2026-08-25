@@ -317,8 +317,8 @@ This will be the basis for the GPU-enabled compute machine set definition.
     ```
 
 
-:::note
+    :::note
 
-There is no need to specify a namespace for the node. The node definition is cluster scoped.
-
-:::
+    There is no need to specify a namespace for the node. The node definition is cluster scoped.
+    
+    :::

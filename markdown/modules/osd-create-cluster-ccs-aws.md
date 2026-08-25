@@ -126,7 +126,7 @@ You have completed the following tasks:
     :::
 
 1.  Optional: To install the cluster in an existing AWS Virtual Private Cloud (VPC):
-{% include "./snippets/snip_install-cluster-in-vpc.md" %}
+    {% include "./snippets/snip_install-cluster-in-vpc.md" %}
 
     1.  Select **Install into an existing VPC**.
     1.  If you are installing into an existing VPC and opted to use private API endpoints, you can select **Use a PrivateLink**. This option enables connections to the cluster by Red Hat Site Reliability Engineering (SRE) using only AWS PrivateLink endpoints.
@@ -212,5 +212,5 @@ By default, clusters are created with the delete protection feature disabled.
 *   You can monitor the progress of the installation in the **Overview** page for your cluster. You can view the installation logs on the same page. Your cluster is ready when the **Status** in the **Details** section of the page is listed as **Ready**.
 
 {% if context == "osd-creating-a-cluster-on-aws" %}
-{%- set osd_on_aws = false -%}
+{%- set osd_on_aws = "" -%}
 {% endif %}

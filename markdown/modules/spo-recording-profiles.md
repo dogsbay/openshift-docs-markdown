@@ -37,7 +37,7 @@ A container with `privileged: true` security context restraints prevents log-bas
     $ oc label ns my-namespace spo.x-k8s.io/enable-recording=true
     ```
 1.  Create a `ProfileRecording` object containing a `recorder: logs` variable:
-    ```yaml
+    ```yaml {minja}
     apiVersion: security-profiles-operator.x-k8s.io/v1alpha1
     kind: ProfileRecording
     metadata:
@@ -136,14 +136,14 @@ A container with `privileged: true` security context restraints prevents log-bas
 {% endif %}
 
 {% if context == "spo-seccomp" %}
-{%- set seccomp = false -%}
-{%- set type = false -%}
-{%- set kind = false -%}
-{%- set object = false -%}
+{%- set seccomp = "" -%}
+{%- set type = "" -%}
+{%- set kind = "" -%}
+{%- set object = "" -%}
 {% endif %}
 {% if context == "spo-selinux" %}
-{%- set selinux = false -%}
-{%- set type = false -%}
-{%- set kind = false -%}
-{%- set object = false -%}
+{%- set selinux = "" -%}
+{%- set type = "" -%}
+{%- set kind = "" -%}
+{%- set object = "" -%}
 {% endif %}

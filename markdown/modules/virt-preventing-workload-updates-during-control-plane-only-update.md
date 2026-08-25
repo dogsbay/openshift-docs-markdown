@@ -36,17 +36,17 @@ For supported {{ product_title }} releases and their {{ op_system_base }} versio
 **Procedure**
 
 1.  Run the following command and record the `workloadUpdateMethods` value:
-    ```terminal
+    ```terminal {minja}
     $ oc get kv kubevirt-kubevirt-hyperconverged \
       -n {{ CNVNamespace }} -o jsonpath='{.spec.workloadUpdateStrategy.workloadUpdateMethods}'
     ```
 1.  Disable workload update methods by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
       --type json -p '[{"op":"replace","path":"/spec/workloadUpdateStrategy/workloadUpdateMethods", "value":[]}]'
     ```
 1.  Ensure that the `HyperConverged` Operator is `Upgradeable`:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o json | jq ".status.conditions"
     ```
 1.  Update your cluster from the source EUS version to the next minor version of {{ product_title }}:
@@ -68,11 +68,11 @@ For supported {{ product_title }} releases and their {{ op_system_base }} versio
     *   With the default **Automatic** approval strategy, {{ VirtProductName }} automatically updates after the {{ product_title }} update completes.
     *   If you use the **Manual** approval strategy, approve the pending update in the web console.
 1.  Monitor the {{ VirtProductName }} update:
-    ```terminal
+    ```terminal {minja}
     $ oc get csv -n {{ CNVNamespace }}
     ```
 1.  Confirm that {{ VirtProductName }} updated to the latest z-stream release of the intermediate version:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o json | jq ".status.versions"
     ```
 1.  Wait until the `HyperConverged` Operator again reports the `Upgradeable` condition.
@@ -85,13 +85,13 @@ For supported {{ product_title }} releases and their {{ op_system_base }} versio
     *   With the default **Automatic** approval strategy, {{ VirtProductName }} updates automatically.
     *   If you use the **Manual** approval strategy, approve the pending update in the web console.
 1.  Monitor the update:
-    ```terminal
+    ```terminal {minja}
     $ oc get csv -n {{ CNVNamespace }}
     ```
 
     The update completes when the `VERSION` field matches the target EUS version and the `PHASE` field reads `Succeeded`.
 1.  Restore the `workloadUpdateMethods` configuration recorded in step 1:
-    ```terminal
+    ```terminal {minja}
     $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type json -p \
     "[{\"op\":\"add\",\"path\":\"/spec/workloadUpdateStrategy/workloadUpdateMethods\", \"value\":{{ WorkloadUpdateMethodConfig }}}]"
     ```

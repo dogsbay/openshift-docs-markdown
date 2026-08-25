@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Projecting binding data {id="projecting-binding-data"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Projecting binding data {id="projecting-binding-data"}
 {%- set context = "projecting-binding-data" %}
 
 This section provides information on how you can consume the binding data. {._abstract}

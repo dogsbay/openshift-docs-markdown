@@ -42,7 +42,7 @@ Follow the steps in this procedure to create an {{ product_title }} cluster on {
         :::
 
     1.  Select a channel from the **Channel** drop-down menu.
-{% include "./snippets/rosa-osd-channel-group-options.md" %}
+        {% include "./snippets/rosa-osd-channel-group-options.md" %}
     1.  Select a cloud provider region from the **Region** drop-down menu.
     1.  Select a **Single zone** or **Multi-zone** configuration.
     1.  Optional: Select **Enable Secure Boot support for Shielded VMs** to use Shielded VMs when installing your cluster. Once you create your cluster, the **Enable Secure Boot support for Shielded VMs** setting cannot be changed. For more information, see [Shielded VMs](https://cloud.google.com/security/products/shielded-vm).
@@ -125,7 +125,7 @@ Follow the steps in this procedure to create an {{ product_title }} cluster on {
         For more information about custom application ingress settings, click on the information icon provided for each setting.
 1.  Click **Next**.
 1.  Optional: To install the cluster into a {{ gcp_short }} Shared VPC, follow these steps.
-{% include "./snippets/snip_install-cluster-in-vpc.md" %}
+    {% include "./snippets/snip_install-cluster-in-vpc.md" %}
     1.  Select **Install into {{ gcp_short }} Shared VPC**.
     1.  Specify the **Host project ID**. If the specified host project ID is incorrect, cluster creation fails.
 
@@ -143,8 +143,8 @@ Follow the steps in this procedure to create an {{ product_title }} cluster on {
 
     1.  Optional. To use a pre-created DNS zone and reduce host project permissions, complete the following actions:
         1.  View the provided CLI command instructions to create a zone if you have not already done so. For more information about creating a DNS zone using the ocm CLI, see _Creating a managed DNS zone_ in the _Additional resources_ section.
-        1.  Click the ***Refresh*** button to update the list of available zones.
-        1.  Select your preferred zone from the ***DNS Zone*** list. The list displays the zone ID alongside the {{ GCP }} project and managed zone ID for easy identification.
+        1.  Click the **Refresh** button to update the list of available zones.
+        1.  Select your preferred zone from the **DNS Zone** list. The list displays the zone ID alongside the {{ GCP }} project and managed zone ID for easy identification.
 
             :::note
 
@@ -236,9 +236,9 @@ If your cluster deployment fails during installation, certain resources created 
 
 :::
 
-{%- if context == "osd-creating-a-cluster-on-aws" %}
-{%- set osd_on_aws = false -%}
+{% if context == "osd-creating-a-cluster-on-aws" %}
+{%- set osd_on_aws = "" -%}
 {% endif %}
 {% if context == "osd-creating-a-cluster-on-gcp" %}
-{%- set osd_on_gcp = false -%}
+{%- set osd_on_gcp = "" -%}
 {% endif %}

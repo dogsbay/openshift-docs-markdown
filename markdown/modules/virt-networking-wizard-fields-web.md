@@ -17,7 +17,7 @@ Information about networking fields in the virtual machine wizard. {._abstract}
 </tr>
 <tr>
   <td>Model</td>
-  <td>Indicates the model of the network interface controller. Supported values are <strong>e1000e</strong> and <strong>virtio</strong>.</td>
+  <td>Indicates the model of the network interface controller. Supported values are <strong>e1000e</strong> and <strong>virtio</strong>.<br><br>For {{ ibm_z_name }} (<code>s390x</code>) and ARM64 (<code>arm64</code>) systems, use the <strong>virtio</strong> NIC model option. The <strong>e1000e</strong> model is not supported on these architectures.</td>
 </tr>
 <tr>
   <td>Network</td>
@@ -25,7 +25,7 @@ Information about networking fields in the virtual machine wizard. {._abstract}
 </tr>
 <tr>
   <td>Type</td>
-  <td>List of available binding methods. Select the binding method suitable for the network interface:<br><br><ul><li>Default pod network: <code>masquerade</code></li><li>Linux bridge network: <code>bridge</code></li><li>SR-IOV network: <code>SR-IOV</code></li></ul>+On {{ ibm_z_name }}, <code>SR-IOV</code> is not supported.</td>
+  <td>List of available binding methods. Select the binding method suitable for the network interface:<br><br><ul><li>Default pod network: <code>masquerade</code></li><li>Linux bridge network: <code>bridge</code></li><li>SR-IOV network: <code>SR-IOV</code></li></ul>On {{ ibm_z_name }}, <code>SR-IOV</code> is not supported.</td>
 </tr>
 <tr>
   <td>MAC Address</td>

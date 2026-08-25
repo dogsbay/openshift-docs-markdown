@@ -3,11 +3,11 @@ title: Creating VMs by uploading images
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating VMs by uploading images {id="virt-creating-vms-uploading-images"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating VMs by uploading images {id="virt-creating-vms-uploading-images"}
 {%- set context = "virt-creating-vms-uploading-images" %}
 
-You can create virtual machines (VMs) by uploading operating system images from your local machine.
+You can create virtual machines (VMs) by uploading operating system images from your local machine. {._abstract}
 
 You can create a Windows VM by uploading a Windows image to a PVC. Then you clone the PVC when you create the VM.
 
@@ -33,7 +33,7 @@ You must also install VirtIO drivers on Windows VMs. Download VirtIO drivers onl
 
 {% leveloffset +1 %}{% include "./modules/virt-uploading-image-virtctl.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Installing the QEMU guest agent](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
 *   [Installing VirtIO drivers on Windows VMs](/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-install-virtio-drivers-on-windows-vms)
 *   [Red&#160;Hat VirtIO drivers download page](https://access.redhat.com/downloads/content/479/virtio-win/noarch/package-latest)

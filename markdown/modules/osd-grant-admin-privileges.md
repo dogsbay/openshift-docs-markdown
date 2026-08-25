@@ -19,4 +19,4 @@ After you have configured an identity provider for your cluster and added a user
 
 **Verification**
 
-*   After granting the privileges, the user is listed as part of the `dedicated-admins` group under **Access control** -> **Cluster Roles and Access** on the {{ cluster_manager }} page for your cluster.
+*   After granting the privileges, the user is listed as part of the `dedicated-admins` group under **Access control** → **Cluster Roles and Access** on the {{ cluster_manager }} page for your cluster.

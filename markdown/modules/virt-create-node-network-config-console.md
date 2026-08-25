@@ -10,7 +10,7 @@ You can create a policy by using either a form or YAML in the web console. When 
 
     :::note
 
-    To create a policy using YAML, click **Create** -> **With YAML** option. However, the following steps apply only to the form method.
+    To create a policy using YAML, click **Create** → **With YAML** option. However, the following steps apply only to the form method.
     
     :::
 

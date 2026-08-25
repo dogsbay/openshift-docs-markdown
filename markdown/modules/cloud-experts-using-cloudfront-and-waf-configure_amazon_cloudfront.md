@@ -46,7 +46,8 @@ Create an Amazon CloudFront distribution that directs traffic through AWS Web Ap
     | Choose a web ACL | `cloudfront-waf` |
     | Alternate domain name (CNAME) | *.apps.example.com ^[c]^ |
     | Custom SSL certificate | Select the certificate you imported from the step above ^[d]^ |
-    a. Run `echo ${{ NLB }}` to get the origin domain.
+
+    a. Run `echo ${{ NLB }}`{minja} to get the origin domain.
     b. If you have multiple clusters, ensure the origin name is unique.
     c. This should match the wildcard domain you used to create the custom ingress controller.
     d. This should match the alternate domain name entered above.

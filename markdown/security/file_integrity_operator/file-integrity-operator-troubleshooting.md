@@ -3,11 +3,11 @@ title: Troubleshooting the File Integrity Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting the File Integrity Operator {id="troubleshooting-file-integrity-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting the File Integrity Operator {id="troubleshooting-file-integrity-operator"}
 {%- set context = "file-integrity-operator" %}
 
-Use the following information to troubleshoot common issues with the File Integrity Operator.
+Use the following information to troubleshoot common issues with the File Integrity Operator. {._abstract}
 
 ## General troubleshooting {id="_general_troubleshooting"}
 

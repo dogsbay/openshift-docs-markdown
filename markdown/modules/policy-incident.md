@@ -37,25 +37,40 @@ Red&#160;Hat can assist with activities including but not limited to:
 ## Backup and recovery {id="backup-recovery_{{ context }}"}
 All {{ product_title }} clusters are backed up using cloud provider snapshots. Notably, this does not include customer data stored on persistent volumes (PVs). All snapshots are taken using the appropriate cloud provider snapshot APIs and are uploaded to a secure object storage bucket (S3 in AWS, and GCS in {{ gcp_full }}) in the same account as the cluster.
 
-| Component |
-| --- |
-| Snapshot frequency |
-| Retention |
-| Notes .2+ |
-| Full object store backup |
-| Daily |
-| 7 days .2+ |
-| This is a full backup of all Kubernetes objects like etcd. No PVs are backed up in this backup schedule. |
-| Weekly |
-| 30 days |
-| Full object store backup |
-| Hourly |
-| 24 hours |
-| This is a full backup of all Kubernetes objects like etcd. No PVs are backed up in this backup schedule. |
-| Node root volume |
-| Never |
-| N/A |
-| Nodes are considered to be short-term. Nothing critical should be stored on a node’s root volume. |
+<table>
+<thead>
+<tr>
+  <th>Component</th>
+  <th>Snapshot frequency</th>
+  <th>Retention</th>
+  <th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td rowspan="2">Full object store backup</td>
+  <td>Daily</td>
+  <td>7 days</td>
+  <td rowspan="2">This is a full backup of all Kubernetes objects like etcd. No PVs are backed up in this backup schedule.</td>
+</tr>
+<tr>
+  <td>Weekly</td>
+  <td>30 days</td>
+</tr>
+<tr>
+  <td>Full object store backup</td>
+  <td>Hourly</td>
+  <td>24 hours</td>
+  <td>This is a full backup of all Kubernetes objects like etcd. No PVs are backed up in this backup schedule.</td>
+</tr>
+<tr>
+  <td>Node root volume</td>
+  <td>Never</td>
+  <td>N/A</td>
+  <td>Nodes are considered to be short-term. Nothing critical should be stored on a node's root volume.</td>
+</tr>
+</tbody>
+</table>
 
 *   Red Hat does not commit to any Recovery Point Objective (RPO) or Recovery Time Objective (RTO).
 *   Customers are responsible for taking regular backups of their data.

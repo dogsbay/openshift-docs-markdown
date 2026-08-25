@@ -53,7 +53,7 @@ where
 
 `allowedCapabilities`
 :   A list of capabilities that a pod can request. An empty list means
-    that none of capabilities can be requested while the special symbol `*****`
+    that none of capabilities can be requested while the special symbol `***`
     allows any capabilities.
 
 `defaultAddCapabilities`

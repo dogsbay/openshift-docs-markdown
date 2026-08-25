@@ -8,7 +8,7 @@ title: "Installing a cluster on {{ aws_short }} with customizations"
 {%- set context = "installing-aws-customizations" -%}
 {%- set platform = "AWS" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ aws_first }} by using installer-provisioned infrastructure with customizations, including network configuration options.
+In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ aws_first }} by using installer-provisioned infrastructure with customizations, including network configuration options. {._abstract}
 
 In each, you modify parameters in the `install-config.yaml` file before you install the cluster. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.
 
@@ -31,12 +31,14 @@ The scope of the {{ product_title }} installation configurations is intentionall
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ aws_short }}](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -49,6 +51,7 @@ The scope of the {{ product_title }} installation configurations is intentionall
 {% leveloffset +2 %}{% include "./modules/installation-aws-config-yaml-customizations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ aws_short }}](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
@@ -73,6 +76,7 @@ The scope of the {{ product_title }} installation configurations is intentionall
 {% leveloffset +1 %}{% include "./modules/nw-modifying-operator-install-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring Ingress cluster traffic on {{ aws_short }} using a Network Load Balancer](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-aws#nw-configuring-ingress-cluster-traffic-aws-network-load-balancer_configuring-ingress-cluster-traffic-aws)
 
@@ -81,6 +85,7 @@ The scope of the {{ product_title }} installation configurations is intentionall
 {% leveloffset +1 %}{% include "./modules/configuring-hybrid-ovnkubernetes.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding Windows container workloads](/windows_containers/understanding-windows-container-workloads#understanding-windows-container-workloads)
 
@@ -92,7 +97,7 @@ The scope of the {{ product_title }} installation configurations is intentionall
 
 {% leveloffset +1 %}{% include "./modules/logging-in-by-using-the-web-console.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 *   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)

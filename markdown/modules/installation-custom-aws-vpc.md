@@ -18,7 +18,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About using a custom VPC {id="installation-custom-aws-vpc_{{ context }}"}
 
-{%- if not aws_outposts %}
+{% if not aws_outposts %}
 You can deploy a cluster into existing subnets in an existing Amazon Virtual Private Cloud (VPC) in Amazon Web Services (AWS). {._abstract}
 
 By deploying {{ product_title }} into an existing AWS VPC, you might be able to avoid limit constraints in new accounts or more easily abide by the operational constraints that your company’s guidelines set. If you cannot obtain the infrastructure creation permissions that are required to create the VPC yourself, use this installation option.
@@ -187,7 +187,7 @@ When configuring the proxy in the `install-config.yaml` file, add these endpoint
 You must provide a suitable VPC and subnets that allow communication to your
 machines.
 
-***Required VPC components***
+**Required VPC components**
 
 <table>
 <thead>
@@ -200,45 +200,52 @@ machines.
 <tbody>
 <tr>
   <td>VPC</td>
-  <td><ul><li><code>AWS::EC2::VPC</code></li><li><code>AWS::EC2::VPCEndpoint</code></li></ul>2+</td>
-  <td>You must provide a public VPC for the cluster to use. The VPC uses an endpoint that references the route tables for each subnet to improve communication with the registry that is hosted in S3.</td>
+  <td><ul><li><code>AWS::EC2::VPC</code></li><li><code>AWS::EC2::VPCEndpoint</code></li></ul></td>
+  <td colspan="2">You must provide a public VPC for the cluster to use. The VPC uses an endpoint that references the route tables for each subnet to improve communication with the registry that is hosted in S3.</td>
+</tr>
+<tr>
   <td>Public subnets</td>
+  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::SubnetNetworkAclAssociation</code></li></ul></td>
+  <td colspan="2">Your VPC must have public subnets for between 1 and 3 availability zones and associate them with appropriate Ingress rules.</td>
 </tr>
 <tr>
-  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::SubnetNetworkAclAssociation</code></li></ul>2+</td>
-  <td>Your VPC must have public subnets for between 1 and 3 availability zones and associate them with appropriate Ingress rules.</td>
   <td>Internet gateway</td>
-  <td><ul><li><code>AWS::EC2::InternetGateway</code></li><li><code>AWS::EC2::VPCGatewayAttachment</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::Route</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li><li><code>AWS::EC2::NatGateway</code></li><li><code>AWS::EC2::EIP</code></li></ul>2+</td>
+  <td><ul><li><code>AWS::EC2::InternetGateway</code></li><li><code>AWS::EC2::VPCGatewayAttachment</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::Route</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li><li><code>AWS::EC2::NatGateway</code></li><li><code>AWS::EC2::EIP</code></li></ul></td>
+  <td colspan="2">You must have a public internet gateway, with public routes, attached to the VPC. In the provided templates, each public subnet has a NAT gateway with an EIP address. These NAT gateways allow cluster resources, like private subnet instances, to reach the internet and are not required for some restricted network or proxy scenarios.</td>
 </tr>
 <tr>
-  <td>You must have a public internet gateway, with public routes, attached to the VPC. In the provided templates, each public subnet has a NAT gateway with an EIP address. These NAT gateways allow cluster resources, like private subnet instances, to reach the internet and are not required for some restricted network or proxy scenarios. .7+</td>
-  <td>Network access control .7+</td>
-  <td>* <code>AWS::EC2::NetworkAcl</code> * <code>AWS::EC2::NetworkAclEntry</code></td>
+  <td rowspan="7">Network access control</td>
+  <td rowspan="7"><ul><li><code>AWS::EC2::NetworkAcl</code></li><li><code>AWS::EC2::NetworkAclEntry</code></li></ul></td>
   <td colspan="2">You must allow the VPC to access the following ports:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Port h</td>
-  <td>Reason</td>
-  <td><code>80</code></td>
+  <th>Port</th>
+  <th>Reason</th>
 </tr>
 <tr>
+  <td><code>80</code></td>
   <td>Inbound HTTP traffic</td>
+</tr>
+<tr>
   <td><code>443</code></td>
   <td>Inbound HTTPS traffic</td>
-  <td><code>22</code></td>
 </tr>
 <tr>
+  <td><code>22</code></td>
   <td>Inbound SSH traffic</td>
+</tr>
+<tr>
   <td><code>1024</code> - <code>65535</code></td>
   <td>Inbound ephemeral traffic</td>
-  <td><code>0</code> - <code>65535</code></td>
 </tr>
 <tr>
+  <td><code>0</code> - <code>65535</code></td>
   <td>Outbound ephemeral traffic</td>
+</tr>
+<tr>
   <td>Private subnets</td>
-  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li></ul>2+</td>
-  <td>Your VPC can have private subnets. The provided CloudFormation templates</td>
+  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li></ul></td>
+  <td colspan="2">Your VPC can have private subnets. The provided CloudFormation templates can create private subnets for between 1 and 3 availability zones. {% if aws_outposts %} To enable remote workers running in the Outpost, the VPC must include a private subnet located within the Outpost instance, in addition to the private subnets located within the corresponding AWS region. {% endif %} If you use private subnets, you must provide appropriate routes and tables for them.</td>
 </tr>
 </tbody>
 </table>
@@ -252,8 +259,8 @@ To ensure that the subnets that you provide are suitable, the installation progr
 *   The subnet CIDRs belong to the machine CIDR that you specified.
 {%- if not aws_outposts %}
 *   You provide subnets for each availability zone. Each availability zone contains no more than one public and one private subnet. If you use a private cluster, provide only a private subnet for each availability zone. Otherwise, provide exactly one public and private subnet for each availability zone.
-{% endif %}
-{% if aws_outposts %}
+{%- endif %}
+{%- if aws_outposts %}
 *   You provide subnets for each availability zone. Each availability zone contains exactly one public and one private subnet in the AWS region (not created in the Outpost instance). The availability zone in which the Outpost instance is installed should include one aditional private subnet in the Outpost instance.
 {%- endif %}
 *   You provide a public subnet for each private subnet availability zone. Machines are not provisioned in availability zones that you do not provide private subnets for.
@@ -285,8 +292,8 @@ If you deploy {{ product_title }} to an existing network, the isolation of clust
 {%- if public %}
 *   [VPC with public and private subnets (NAT) ({{ aws_full }} documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
 *   [Finding a subnet ID ({{ aws_full }} documentation)](https://docs.aws.amazon.com/managedservices/latest/userguide/find-subnet.html)
-{% endif %}
-{% if aws_outposts %}
+{%- endif %}
+{%- if aws_outposts %}
 *   [VPC with public and private subnets (NAT) ({{ aws_full }} documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
 *   [Finding a subnet ID ({{ aws_full }} documentation)](https://docs.aws.amazon.com/managedservices/latest/userguide/find-subnet.html)
 *   [VPC associations ({{ aws_full }} documentation)](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-local-gateways.html#vpc-associations)
@@ -295,18 +302,18 @@ If you deploy {{ product_title }} to an existing network, the isolation of clust
 *   [DNS Support in Your VPC ({{ aws_full }} documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support)
 
 {% if context == "installing-aws-china-region" %}
-{%- set aws_china = false -%}
+{%- set aws_china = "" -%}
 {% endif %}
 {% if context == "installing-aws-vpc" %}
-{%- set public = false -%}
+{%- set public = "" -%}
 {% endif %}
 {% if context == "installing-aws-secret-region" %}
-{%- set aws_secret = false -%}
+{%- set aws_secret = "" -%}
 {% endif %}
 {% if context == "installing-aws-outposts-remote-workers" %}
-{%- set aws_outposts = false -%}
+{%- set aws_outposts = "" -%}
 {% endif %}
 {% if context == "installing-aws-specialized-region" %}
-{%- set aws_secret = false -%}
-{%- set aws_china = false -%}
+{%- set aws_secret = "" -%}
+{%- set aws_china = "" -%}
 {% endif %}

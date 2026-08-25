@@ -10,7 +10,8 @@ However, other instances that are not dedicated can share hardware with Dedicate
 
 {{ product_title }} supports instances with public or dedicated tenancy.
 
-{% include "./snippets/apply-machine-configuration-method.md" %}
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file.
+Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 ```yaml title="Sample Dedicated Instances configuration"
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2

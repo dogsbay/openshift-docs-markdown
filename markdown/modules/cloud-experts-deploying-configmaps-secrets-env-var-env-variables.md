@@ -7,7 +7,7 @@ Using environment variables is an easy way to change application behavior withou
 
 *   In the OSToy app, in the left menu, click **ENV Variables**, displaying the environment variables available to the OSToy application. The code snippet shows an example of an environmental variable configuration:
 
-    ***Example output:***
+    **Example output:**
     ```text
     {
       "npm_config_local_prefix": "/opt/app-root/src",

@@ -1,5 +1,5 @@
 ---
-title: "Lease []"
+title: "Lease [coordination.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | LeaseSpec is a specification of a Lease. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -50,18 +51,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind Lease
 *   `/apis/coordination.k8s.io/v1/watch/leases`
     *   `GET`: watch individual changes to a list of Lease. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases`
+*   `/apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases`{minja}
     *   `DELETE`: delete collection of Lease
     *   `GET`: list or watch objects of kind Lease
     *   `POST`: create a Lease
-*   `/apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases`
+*   `/apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases`{minja}
     *   `GET`: watch individual changes to a list of Lease. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases/{{ name }}`
+*   `/apis/coordination.k8s.io/v1/namespaces/{{ namespace }}/leases/{{ name }}`{minja}
     *   `DELETE`: delete a Lease
     *   `GET`: read the specified Lease
     *   `PATCH`: partially update the specified Lease
     *   `PUT`: replace the specified Lease
-*   `/apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases/{{ name }}`
+*   `/apis/coordination.k8s.io/v1/watch/namespaces/{{ namespace }}/leases/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Lease. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/coordination.k8s.io/v1/leases {id="_apiscoordinationk8siov1leases"}

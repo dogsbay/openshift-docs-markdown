@@ -22,38 +22,34 @@ You can configure {{ kueue_name }} to manage quota for workloads that explicitly
 **Procedure**
 
 1.  Use the following command to add a `deviceClassMappings` entry to the {{ kueue_name }} configuration that maps each `DeviceClass` to a logical resource name for quota:
-
-    [source,yaml]  
-```
-$ oc patch kueue cluster -n openshift-kueue-operator --type=merge -p '{
-  "spec": {
-    "config": {
-      "resources": {
-        "deviceClassMappings": [{
-          "name": "nvidia.com/gpu",
-          "deviceClassNames": ["gpu.nvidia.com"]
-        }]
+    ```yaml
+    $ oc patch kueue cluster -n openshift-kueue-operator --type=merge -p '{
+      "spec": {
+        "config": {
+          "resources": {
+            "deviceClassMappings": [{
+              "name": "nvidia.com/gpu",
+              "deviceClassNames": ["gpu.nvidia.com"]
+            }]
+          }
+        }
       }
-    }
-  }
-}'
-```
+    }'
+    ```
 
-Replace `"nvidia.com/gpu"` with the resource name used in `ClusterQueue` quotas and `Workload` status.
+    Replace `"nvidia.com/gpu"` with the resource name used in `ClusterQueue` quotas and `Workload` status.
 
-Replace `"gpu.nvidia.com"` with one or more `DeviceClass` names that map to this resource.
+    Replace `"gpu.nvidia.com"` with one or more `DeviceClass` names that map to this resource.
 
-Multiple device classes can map to the same logical resource name. For example, if you have separate device classes for different GPU models but want a single quota pool, as shown in the following example: 
-
-```yaml
-resources:
-  deviceClassMappings:
-  - name: nvidia.com/gpu
-    deviceClassNames:
-    - gpu-a100.nvidia.com
-    - gpu-h100.nvidia.com
-```
-
+    Multiple device classes can map to the same logical resource name. For example, if you have separate device classes for different GPU models but want a single quota pool, as shown in the following example: 
+    ```yaml
+    resources:
+      deviceClassMappings:
+      - name: nvidia.com/gpu
+        deviceClassNames:
+        - gpu-a100.nvidia.com
+        - gpu-h100.nvidia.com
+    ```
 1.  Create a file called `rct-queues.yaml` that contains the following content:
     ```yaml title="Example quota configuration for a ResourceClaimTemplate object"
     apiVersion: kueue.x-k8s.io/v1beta2

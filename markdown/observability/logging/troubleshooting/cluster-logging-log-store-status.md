@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "cluster-logging-elasticsearch" %}
-# Viewing the status of the Elasticsearch log store {id="cluster-logging-log-store-status"}
 {% include "./_attributes/common-attributes.md" %}
+# Viewing the status of the Elasticsearch log store {id="cluster-logging-log-store-status"}
 
 You can view the status of the {{ es_op }} and for a number of Elasticsearch components.
 

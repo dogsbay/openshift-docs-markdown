@@ -7,7 +7,7 @@ title: "Deploying {{ hcp }} on {{ VirtProductName }} in a disconnected environme
 # Deploying {{ hcp }} on {{ VirtProductName }} in a disconnected environment {id="hcp-deploy-dc-virt"}
 {%- set context = "hcp-deploy-dc-virt" %}
 
-When you deploy {{ hcp }} in a disconnected environment, some of the steps differ depending on whether you use bare metal or {{ VirtProductName }}.
+When you deploy {{ hcp }} in a disconnected environment, some of the steps differ depending on whether you use bare metal or {{ VirtProductName }}. {._abstract}
 
 To get started, you must meet the following requirements:
 
@@ -23,12 +23,14 @@ A known limitation exists for hosted clusters on an {{ product_title }} manageme
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [About disconnected installation mirroring](/disconnected/index#installing-mirroring-disconnected-about)
 
 {% leveloffset +1 %}{% include "./modules/hcp-dc-image-mirror.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring an image set in a partially disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
 *   [Mirroring an image set in a fully disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)
@@ -37,12 +39,14 @@ A known limitation exists for hosted clusters on an {{ product_title }} manageme
 {% leveloffset +1 %}{% include "./modules/hcp-dc-apply-objects.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
 {% leveloffset +1 %}{% include "./modules/hcp-dc-mce-virt.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About cluster lifecycle with multicluster engine operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#mce-intro)
 *   [Installing and upgrading multicluster engine operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#mce-install-intro)
@@ -60,6 +64,7 @@ A known limitation exists for hosted clusters on an {{ product_title }} manageme
 {% leveloffset +2 %}{% include "./modules/hcp-virt-create-hc-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 

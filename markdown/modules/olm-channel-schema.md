@@ -7,9 +7,7 @@ If a bundle entry represents an edge in multiple `olm.channel` blobs, it can onl
 
 It is valid for an entry’s `replaces` value to reference another bundle name that cannot be found in this catalog or another catalog. However, all other channel invariants must hold true, such as a channel not having multiple heads.
 
-<details>
-<summary>`olm.channel` schema</summary>
-
+:::details{title="`olm.channel` schema"}
 ```go
 #Channel: {
   schema: "olm.channel"
@@ -37,7 +35,7 @@ It is valid for an entry’s `replaces` value to reference another bundle name t
   skipRange?: string & !=""
 }
 ```
-</details>
+:::
 
 
 :::warning

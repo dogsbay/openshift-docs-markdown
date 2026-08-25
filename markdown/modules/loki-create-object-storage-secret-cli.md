@@ -22,11 +22,11 @@ To configure Loki object storage, you must create a secret. You can do this by u
     ```
 
 
-:::note
+    :::note
 
-Use generic or opaque secrets for best results.
-
-:::
+    Use generic or opaque secrets for best results.
+    
+    :::
 
 
 **Verification**

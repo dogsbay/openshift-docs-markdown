@@ -94,7 +94,7 @@ The verification steps assume the MetalLB Operator is installed in the `metallb-
     ```
 
     The following is example output:
-    ```terminal
+    ```terminal {minja}
     NAME            CSV                                                 APPROVAL    APPROVED
     install-wzg94   metallb-operator.{{ product_version }}.0-nnnnnnnnnnnn   Automatic   true
     ```

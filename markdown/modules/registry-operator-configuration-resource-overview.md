@@ -14,7 +14,7 @@ The resource provides parameters for managing registry state, storage, logging, 
 <tbody>
 <tr>
   <td><code>managementState</code></td>
-  <td><code>Managed</code>: The Operator updates the registry as configuration resourcesare updated.<br><br><code>Unmanaged</code>: The Operator ignores changes to the configuration resources.<br><br><code>Removed</code>: The Operator removes the registry instance and tear down anystorage that the Operator provisioned.</td>
+  <td><code>Managed</code>: The Operator updates the registry as configuration resources are updated.<br><br><code>Unmanaged</code>: The Operator ignores changes to the configuration resources.<br><br><code>Removed</code>: The Operator removes the registry instance and tear down any storage that the Operator provisioned.</td>
 </tr>
 <tr>
   <td><code>logLevel</code></td>
@@ -30,7 +30,7 @@ The resource provides parameters for managing registry state, storage, logging, 
 </tr>
 <tr>
   <td><code>proxy</code></td>
-  <td>Defines the Proxy to be used when calling master APIand upstream registries.</td>
+  <td>Defines the Proxy to be used when calling master API and upstream registries.</td>
 </tr>
 <tr>
   <td><code>affinity</code></td>
@@ -38,7 +38,7 @@ The resource provides parameters for managing registry state, storage, logging, 
 </tr>
 <tr>
   <td><code>storage</code></td>
-  <td><code>Storagetype</code>: Details for configuring registry storage, for example S3 bucketcoordinates. Normally configured by default.</td>
+  <td><code>Storagetype</code>: Details for configuring registry storage, for example S3 bucket coordinates. Normally configured by default.</td>
 </tr>
 <tr>
   <td><code>readOnly</code></td>
@@ -46,15 +46,15 @@ The resource provides parameters for managing registry state, storage, logging, 
 </tr>
 <tr>
   <td><code>requests</code></td>
-  <td>API Request Limit details. Controls how many parallel requests a given registryinstance will handle before queuing additional requests.</td>
+  <td>API Request Limit details. Controls how many parallel requests a given registry instance will handle before queuing additional requests.</td>
 </tr>
 <tr>
   <td><code>defaultRoute</code></td>
-  <td>Determines whether or not an external route is defined using the defaulthostname. If enabled, the route uses re-encrypt encryption. Defaults to <code>false</code>.</td>
+  <td>Determines whether or not an external route is defined using the default hostname. If enabled, the route uses re-encrypt encryption. Defaults to <code>false</code>.</td>
 </tr>
 <tr>
   <td><code>routes</code></td>
-  <td>Array of additional routes to create. You provide the hostname and certificatefor the route.</td>
+  <td>Array of additional routes to create. You provide the hostname and certificate for the route.</td>
 </tr>
 <tr>
   <td><code>rolloutStrategy</code></td>
@@ -70,7 +70,7 @@ The resource provides parameters for managing registry state, storage, logging, 
 </tr>
 <tr>
   <td><code>spec.storage.managementState</code></td>
-  <td>The Image Registry Operator sets the <code>spec.storage.managementState</code> parameter to <code>Managed</code> on new installations or upgrades of clusters using installer-provisioned infrastructure on AWS or Azure.<br><br>The Image Registry Operator sets the <code>spec.storage.managementState</code> parameter to <code>Managed</code> on new installations or upgrades of clusters on AWS.<br><br><ul><li><code>Managed</code>: Determines that the Image Registry Operator manages underlying storage. If the Image Registry Operator's <code>managementState</code> is set to <code>Removed</code>, then the storage is deleted.<ul><li>If the <code>managementState</code> is set to <code>Managed</code>, the Image Registry Operator attempts to apply some default configuration on the underlying storage unit. For example, if set to <code>Managed</code>, the Operator tries to enable encryption on the S3 bucket before making it available to the registry. If you do not want the default settings to be applied on the storage you are providing, make sure the <code>managementState</code> is set to <code>Unmanaged</code>.</li></ul></li><li><code>Unmanaged</code>: Determines that the Image Registry Operator ignores the storage settings. If the Image Registry Operator's <code>managementState</code> is set to <code>Removed</code>, then the storage is not deleted. If you provided an underlying storage unit configuration, such as a bucket or container name, and the <code>spec.storage.managementState</code> is not yet set to any value, then the Image Registry Operator configures it to <code>Unmanaged</code>.</li></ul></td>
+  <td>{% if not (openshift_dedicated or openshift_rosa) %} The Image Registry Operator sets the <code>spec.storage.managementState</code> parameter to <code>Managed</code> on new installations or upgrades of clusters using installer-provisioned infrastructure on AWS or Azure. {% endif %} <br><br> {% if openshift_dedicated or openshift_rosa %} The Image Registry Operator sets the <code>spec.storage.managementState</code> parameter to <code>Managed</code> on new installations or upgrades of clusters on AWS. {% endif %} <br><br><ul><li><code>Managed</code>: Determines that the Image Registry Operator manages underlying storage. If the Image Registry Operator's <code>managementState</code> is set to <code>Removed</code>, then the storage is deleted.<ul><li>If the <code>managementState</code> is set to <code>Managed</code>, the Image Registry Operator attempts to apply some default configuration on the underlying storage unit. For example, if set to <code>Managed</code>, the Operator tries to enable encryption on the S3 bucket before making it available to the registry. If you do not want the default settings to be applied on the storage you are providing, make sure the <code>managementState</code> is set to <code>Unmanaged</code>.</li></ul></li><li><code>Unmanaged</code>: Determines that the Image Registry Operator ignores the storage settings. If the Image Registry Operator's <code>managementState</code> is set to <code>Removed</code>, then the storage is not deleted. If you provided an underlying storage unit configuration, such as a bucket or container name, and the <code>spec.storage.managementState</code> is not yet set to any value, then the Image Registry Operator configures it to <code>Unmanaged</code>.</li></ul></td>
 </tr>
 </tbody>
 </table>

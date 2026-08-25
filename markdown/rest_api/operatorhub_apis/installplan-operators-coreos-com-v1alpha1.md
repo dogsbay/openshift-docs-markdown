@@ -1,5 +1,5 @@
 ---
-title: "InstallPlan []"
+title: "InstallPlan [operators.coreos.com/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,7 +28,8 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | InstallPlanSpec defines a set of Application resources to be installed |
-| `status` | `object` | InstallPlanStatus represents the information about the status of steps required to complete installation. Status may trail the actual state of a system. |
+| `status` | `object` | InstallPlanStatus represents the information about the status of steps required to complete installation.<br>Status may trail the actual state of a system. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -52,6 +53,7 @@ Required
 | `generation` | `integer` |  |
 | `source` | `string` |  |
 | `sourceNamespace` | `string` |  |
+
 ### .status {id="_status"}
 
 Description
@@ -83,6 +85,7 @@ Required
 | `plan` | `array` |  |
 | `plan[]` | `object` | Step represents the status of an individual step in an InstallPlan. |
 | `startTime` | `string` | StartTime is the time when the controller began applying the resources listed in the plan to the cluster. |
+
 ### .status.attenuatedServiceAccountRef {id="_statusattenuatedserviceaccountref"}
 
 Description
@@ -102,6 +105,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status.bundleLookups {id="_statusbundlelookups"}
 
 Description
@@ -136,6 +140,7 @@ Required
 | `path` | `string` | Path refers to the location of a bundle to pull. It’s typically an image reference. |
 | `properties` | `string` | The effective properties of the unpacked bundle. |
 | `replaces` | `string` | Replaces is the name of the bundle to replace with the one found at Path. |
+
 ### .status.bundleLookups[].catalogSourceRef {id="_statusbundlelookupscatalogsourceref"}
 
 Description
@@ -154,6 +159,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status.bundleLookups[].conditions {id="_statusbundlelookupsconditions"}
 
 Description
@@ -184,6 +190,7 @@ Required
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
 | `type` | `string` | Type of condition. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -210,6 +217,7 @@ Type
 | `reason` | `string` | ConditionReason is a camelcased reason for the state transition. |
 | `status` | `string` |  |
 | `type` | `string` | InstallPlanConditionType describes the state of an InstallPlan at a certain point as a whole. |
+
 ### .status.plan {id="_statusplan"}
 
 Description
@@ -239,6 +247,7 @@ Required
 | `resolving` | `string` |  |
 | `resource` | `object` | StepResource represents the status of a resource to be tracked by an InstallPlan. |
 | `status` | `string` | StepStatus is the current status of a particular resource an in InstallPlan |
+
 ### .status.plan[].resource {id="_statusplanresource"}
 
 Description
@@ -274,16 +283,16 @@ The following API endpoints are available:
 
 *   `/apis/operators.coreos.com/v1alpha1/installplans`
     *   `GET`: list objects of kind InstallPlan
-*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans`
+*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans`{minja}
     *   `DELETE`: delete collection of InstallPlan
     *   `GET`: list objects of kind InstallPlan
     *   `POST`: create an InstallPlan
-*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }}`
+*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }}`{minja}
     *   `DELETE`: delete an InstallPlan
     *   `GET`: read the specified InstallPlan
     *   `PATCH`: partially update the specified InstallPlan
     *   `PUT`: replace the specified InstallPlan
-*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }}/status`
+*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/installplans/{{ name }}/status`{minja}
     *   `GET`: read status of the specified InstallPlan
     *   `PATCH`: partially update status of the specified InstallPlan
     *   `PUT`: replace status of the specified InstallPlan

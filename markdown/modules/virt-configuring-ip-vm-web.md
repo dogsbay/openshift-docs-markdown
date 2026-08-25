@@ -17,7 +17,7 @@ If the VM is connected to the pod network, the pod network interface is the defa
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **Catalog** in the web console.
+1.  Navigate to **Virtualization** → **Catalog** in the web console.
 1.  Click a template tile.
 1.  Click **Customize VirtualMachine**.
 1.  Click **Next**.

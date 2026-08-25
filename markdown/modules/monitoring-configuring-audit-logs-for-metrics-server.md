@@ -34,7 +34,7 @@ You can configure audit log rules to record specific events and a subset of asso
       config.yaml: |
         metricsServer:
           audit:
-            profile: <audit_log_profile> # (1)
+            profile: <audit_log_profile> (1)
     ```
     1.  Specify the audit profile for Metrics Server.
 1.  Save the file to apply the changes. The pods affected by the new configuration are automatically redeployed.

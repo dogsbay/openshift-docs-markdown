@@ -14,7 +14,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Downloading playbook dependencies {id="installation-osp-downloading-modules_{{ context }}"}
 
-{%- if osp_user %}
+{% if osp_user %}
 The Ansible playbooks that simplify the installation process on user-provisioned infrastructure require several ansible collections and Python modules. On the machine where you will run the installation program, add the {{ rh_openstack_first }} repositories and then install the packages. {._abstract}
 
 The following dependencies are required:
@@ -28,8 +28,8 @@ The following dependencies are required:
     *   `ansible-collections-openstack`, which installs Ansible Core
     *   `ansible-collection-community-general`
     *   `ansible-collection-ansible-netcommon`
-        {% endif %}
-        {% if osp_user_uninstall %}
+{% endif %}
+{% if osp_user_uninstall %}
     The Ansible playbooks that simplify the removal process on user-provisioned
     infrastructure require several Python modules. On the machine where you will run the process,
     add the modules' repositories and then download them.
@@ -95,14 +95,14 @@ These instructions assume that you are using {{ op_system_base_full }} 8.
     ```
 
 {% if context == "installing-openstack-user" %}
-{%- set osp_user = false -%}
+{%- set osp_user = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user-sr-iov" %}
-{%- set osp_user = false -%}
+{%- set osp_user = "" -%}
 {% endif %}
 {% if context == "uninstalling-cluster-openstack" %}
-{%- set osp_user_uninstall = false -%}
+{%- set osp_user_uninstall = "" -%}
 {% endif %}
 {% if context == "uninstalling-openstack-user" %}
-{%- set osp_user_uninstall = false -%}
+{%- set osp_user_uninstall = "" -%}
 {% endif %}

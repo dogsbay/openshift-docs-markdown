@@ -9,4 +9,4 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 :::
 
-{%- set FeatureName = false -%}
+{%- set FeatureName = "" -%}

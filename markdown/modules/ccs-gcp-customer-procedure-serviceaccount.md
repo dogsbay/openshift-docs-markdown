@@ -10,7 +10,7 @@ Besides the required customer procedures listed in _Required customer procedure_
 
 The following roles must be [granted to the service account](https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource):
 
-***Required roles***
+**Required roles**
 
 <table>
 <thead>

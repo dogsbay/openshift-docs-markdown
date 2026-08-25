@@ -8,10 +8,10 @@ Sync all groups from your LDAP server with {{ product_title }} so you can mirror
 *   An LDAP sync configuration file exists. This procedure uses an example file named `config.yaml`.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

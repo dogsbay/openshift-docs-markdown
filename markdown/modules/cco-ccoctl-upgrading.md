@@ -161,7 +161,7 @@ On AWS clusters, some `ccoctl` commands make AWS API calls to create or modify A
     `<path_to_directory_for_credentials_requests>`
     :   Specifies the directory containing the files for the component `CredentialsRequest` objects.
 
-    `"${{ OIDC_ISSUER_URL }}"`
+    `"${{ OIDC_ISSUER_URL }}"`{minja}
     :   Specifies the OIDC issuer URL from the existing cluster.
         You can obtain this value by running the following command:
         ```terminal
@@ -173,7 +173,7 @@ On AWS clusters, some `ccoctl` commands make AWS API calls to create or modify A
     `<azure_dns_zone_resourcegroup_name>`
     :   Specifies the name of the resource group that contains the DNS zone.
 
-    `"${{ AZURE_INSTALL_RG }}"`
+    `"${{ AZURE_INSTALL_RG }}"`{minja}
     :   Specifies the {{ azure_short }} resource group name.
         You can obtain this value by running the following command:
         ```terminal

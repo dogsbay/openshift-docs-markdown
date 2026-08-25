@@ -3,11 +3,11 @@ title: Ingress certificates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Ingress certificates {id="cert-types-ingress-certificates"}
 {% include "./_attributes/common-attributes.md" %}
+# Ingress certificates {id="cert-types-ingress-certificates"}
 {%- set context = "cert-types-ingress-certificates" %}
 
-Manage ingress certificates in {{ product_title }}, including Prometheus metrics and secured routes, secret locations, default and custom workflows, expiration, and Operator renewal.
+Manage ingress certificates in {{ product_title }}, including Prometheus metrics and secured routes, secret locations, default and custom workflows, expiration, and Operator renewal. {._abstract}
 
 ## Purpose {id="ingress-certificates-purpose_{{ context }}"}
 
@@ -26,6 +26,6 @@ The Ingress Operator uses certificates for:
 
 {% leveloffset +1 %}{% include "./modules/ingress-certificates-management-renewal.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)

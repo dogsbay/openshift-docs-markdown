@@ -10,9 +10,9 @@ The eBPF Manager Operator reduces the attack surface and ensures compliance, sec
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Operator Hub**.
+1.  In the web console, navigate to **Ecosystem** → **Operator Hub**.
 1.  Install **eBPF Manager**.
-1.  Check **Workloads** -> **Pods** in the `bpfman` namespace to make sure they are all up and running.
+1.  Check **Workloads** → **Pods** in the `bpfman` namespace to make sure they are all up and running.
 1.  Configure the `FlowCollector` custom resource to use the eBPF Manager Operator:
     ```yaml title="Example FlowCollector configuration"
     apiVersion: flows.netobserv.io/v1beta2
@@ -28,7 +28,7 @@ The eBPF Manager Operator reduces the attack surface and ensures compliance, sec
 
 **Verification**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
-1.  Click **eBPF Manager Operator** -> **All instances** tab.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
+1.  Click **eBPF Manager Operator** → **All instances** tab.
 
     For each node, verify that a `BpfApplication` named `netobserv` and a pair of `BpfProgram` objects, one for Traffic Control (TCx) ingress and another for TCx egress, exist. If you enable other eBPF Agent features, you might have more objects.

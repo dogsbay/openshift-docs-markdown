@@ -8,7 +8,7 @@ title: "Configure and use {{ oadp_short }} VMFR"
 # Configure and use {{ oadp_short }} VMFR {id="oadp-configuring-using-vmfr"}
 {%- set context = "oadp-using-vmfr" %}
 
-Discover VM backups, restore files, and access restored files through a web browser or SSH-based tools.
+Discover VM backups, restore files, and access restored files through a web browser or SSH-based tools. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/oadp-vmfr-enabling.md" %}{% endleveloffset %}
 

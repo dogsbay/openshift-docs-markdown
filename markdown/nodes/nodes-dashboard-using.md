@@ -3,11 +3,11 @@ title: Node metrics dashboard
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Node metrics dashboard {id="nodes-dashboard-using"}
 {% include "./_attributes/common-attributes.md" %}
+# Node metrics dashboard {id="nodes-dashboard-using"}
 {%- set context = "nodes-dashboard-using" %}
 
-You can use the node metrics dashboard to help you identify potential pod scaling issues.
+You can use the node metrics dashboard to help you identify potential pod scaling issues. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-dashboard-using-about.md" %}{% endleveloffset %}
 

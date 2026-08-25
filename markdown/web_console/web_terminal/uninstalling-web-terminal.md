@@ -3,13 +3,13 @@ title: Uninstalling the web terminal
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Uninstalling the web terminal {id="uninstalling-web-terminal"}
-
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Uninstalling the web terminal {id="uninstalling-web-terminal"}
+
 {%- set context = "uninstalling-web-terminal" %}
 
-Uninstalling the {{ web_terminal_op }} does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the Operator is installed. For security purposes, you must manually uninstall these components. By removing these components, you save cluster resources because terminals do not idle when the Operator is uninstalled.
+Uninstalling the {{ web_terminal_op }} does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the Operator is installed. For security purposes, you must manually uninstall these components. By removing these components, you save cluster resources because terminals do not idle when the Operator is uninstalled. {._abstract}
 
 Uninstalling the web terminal is a two-step process:
 

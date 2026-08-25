@@ -18,7 +18,7 @@ CPU requirements for {{ VirtProductName }}
     
     :::
 
-*   Supports AMD64, Intel 64-bit (x86-64-v2), {{ ibm_z_name }} (`s390x`), or ARM64-based (`arm64` or `aarch64`) architectures and their respective CPU extensions.
-*   Intel VT-x, AMD-V, or ARM virtualization extensions are enabled, or `s390x` virtualization support is enabled.
-*   NX (no execute) flag is enabled.
-*   If you use `s390x` architecture, the default CPU model is set to `gen15b`. For more information, see "Configuring the default CPU model" in the Additional resources section.
+    *   Supports AMD64, Intel 64-bit (x86-64-v2), {{ ibm_z_name }} (`s390x`), or ARM64-based (`arm64` or `aarch64`) architectures and their respective CPU extensions.
+    *   Intel VT-x, AMD-V, or ARM virtualization extensions are enabled, or `s390x` virtualization support is enabled.
+    *   NX (no execute) flag is enabled.
+    *   If you use `s390x` architecture, the default CPU model is set to `gen15b`. For more information, see "Configuring the default CPU model" in the Additional resources section.

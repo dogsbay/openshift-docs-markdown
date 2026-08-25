@@ -6,7 +6,7 @@
 
 You can use the following `virtctl image-upload` commands to upload a VM image to a data volume. {._abstract}
 
-***Image upload commands***
+**Image upload commands**
 
 <table>
 <thead>
@@ -17,15 +17,15 @@ You can use the following `virtctl image-upload` commands to upload a VM image t
 </thead>
 <tbody>
 <tr>
-  <td><code>virtctl image-upload dv <datavolume_name> --image-path=</path/to/image> --no-create</code></td>
+  <td><code>virtctl image-upload dv &lt;datavolume_name&gt; --image-path=&lt;/path/to/image&gt; --no-create</code></td>
   <td>Upload a VM image to a data volume that already exists.</td>
 </tr>
 <tr>
-  <td><code>virtctl image-upload dv <datavolume_name> --size=<datavolume_size> --image-path=</path/to/image></code></td>
+  <td><code>virtctl image-upload dv &lt;datavolume_name&gt; --size=&lt;datavolume_size&gt; --image-path=&lt;/path/to/image&gt;</code></td>
   <td>Upload a VM image to a new data volume of a specified requested size.</td>
 </tr>
 <tr>
-  <td><code>virtctl image-upload dv <datavolume_name> --datasource --size=<datavolume_size> --image-path=</path/to/image></code></td>
+  <td><code>virtctl image-upload dv &lt;datavolume_name&gt; --datasource --size=&lt;datavolume_size&gt; --image-path=&lt;/path/to/image&gt;</code></td>
   <td>Upload a VM image to a new data volume and create an associated <code>DataSource</code> object for it.</td>
 </tr>
 </tbody>

@@ -11,7 +11,7 @@ title: "Upgrading {{ oadp_short }} 1.5 to 1.6"
 
 {%- set context = "oadp-upgrade-notes-1-6" %}
 
-Learn how to upgrade your existing {{ oadp_full }} 1.5 installation to {{ oadp_short }} 1.6.
+Learn how to upgrade your existing {{ oadp_full }} 1.5 installation to {{ oadp_short }} 1.6. {._abstract}
 
 
 :::note

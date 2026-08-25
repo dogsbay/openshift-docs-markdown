@@ -1,10 +1,10 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Approved access {id="approved-access"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- if openshift_dedicated %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "approved-access" %}
 
 You can use the Approved Access feature to review, approve, or deny elevated access requests from Red&#160;Hat Site Reliability Engineering (SRE) to your {{ product_title }} cluster resources. {._abstract}

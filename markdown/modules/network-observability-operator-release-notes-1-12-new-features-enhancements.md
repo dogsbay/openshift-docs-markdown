@@ -17,15 +17,17 @@ Transport Layer Security traffic metadata tracking
 
 Support for Kafka compression
 :   Message compression configuration is now available when using Kafka to scale network flow collection. Enabling compression reduces the network bandwidth required to transport flows and decreases the storage footprint on Kafka brokers.
-    The following key benefits include:
-    * Reduced network load: Compressing flow data minimizes the traffic volume between the eBPF agent or flowlogs-pipeline and your Kafka cluster.
-    * Storage efficiency: Smaller message sizes lead to improved disk space utilization on Kafka brokers.
-    * Tunable performance: Choose from several compression algorithms, such as `gzip`, `snappy`, `lz4`, or `zstd`, to balance CPU usage with compression ratios.
-    To enable this feature, configure the `spec.kafka.compression` and `spec.exporters.kafka.compression` fields in the `FlowCollector` custom resource.
 
+    The following key benefits include:
+    *   Reduced network load: Compressing flow data minimizes the traffic volume between the eBPF agent or flowlogs-pipeline and your Kafka cluster.
+    *   Storage efficiency: Smaller message sizes lead to improved disk space utilization on Kafka brokers.
+    *   Tunable performance: Choose from several compression algorithms, such as `gzip`, `snappy`, `lz4`, or `zstd`, to balance CPU usage with compression ratios.
+
+    To enable this feature, configure the `spec.kafka.compression` and `spec.exporters.kafka.compression` fields in the `FlowCollector` custom resource.
 
 Simplified secondary network indexing
 :   The configuration process for secondary network indexing is now simplified.
+
     The `name` field in the `spec.processor.advanced.secondaryNetworks` list is deprecated and ignored. The Network Observability Operator automatically evaluates all secondary networks regardless of their assigned names, removing the requirement for manual name-matching entries in the `FlowCollector` CR.
 
 

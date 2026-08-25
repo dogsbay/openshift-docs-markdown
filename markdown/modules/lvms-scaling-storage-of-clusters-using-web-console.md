@@ -11,11 +11,11 @@ Scale up worker node storage capacity when running out of space, adding new appl
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Click **Ecosystem** -> **Installed Operators**. 
+1.  Click **Ecosystem** → **Installed Operators**. 
 1.  Click **{{ lvms }}** in the `openshift-lvm-storage` namespace.
 1.  Click the **LVMCluster** tab to view the `LVMCluster` CR created on the cluster.
 1.  From the **Actions** menu, select **Edit LVMCluster**.
 1.  Click the **YAML** tab.
 1.  Edit the `LVMCluster` CR to add the new device path in the `deviceSelector` field:
-{% include "./snippets/lvms-scaling-up-storage-lvmcluster-cr-snippet.md" %}
+    {% include "./snippets/lvms-scaling-up-storage-lvmcluster-cr-snippet.md" %}
 1.  Click **Save**.

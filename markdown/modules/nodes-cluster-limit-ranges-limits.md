@@ -152,7 +152,7 @@ Image limits
 
 `spec.limit.max.storage`
 :   Specifies the maximum size of an image that can be pushed to an {{ product_registry }}.
-{%- if openshift_enterprise or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
     :::note
 
@@ -161,7 +161,7 @@ Image limits
     
     :::
 
-{%- endif %}
+{% endif %}
 
     :::warning
 

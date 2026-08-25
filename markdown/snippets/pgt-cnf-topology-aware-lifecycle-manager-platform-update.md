@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-```yaml
+```yaml {minja}
 apiVersion: ran.openshift.io/v1
 kind: PolicyGenTemplate
 metadata:
@@ -43,6 +43,6 @@ spec:
 ```
 
 *   `ImageSignature.yaml` - The `ConfigMap` CR contains the signature of the required release image to update to.
-*   `${{ DIGEST_ALGO }}-${{ DIGEST_ENCODED }}: ${{ SIGNATURE_BASE64 }}` - Shows the image signature of the required {{ product_title }} release. Get the signature from the `checksum-${{ OCP_RELEASE_NUMBER }}.yaml` file you saved when following the procedures in the "Setting up the environment" section.
+*   `${{ DIGEST_ALGO }}-${{ DIGEST_ENCODED }}: ${{ SIGNATURE_BASE64 }}`{minja} - Shows the image signature of the required {{ product_title }} release. Get the signature from the `checksum-${{ OCP_RELEASE_NUMBER }}.yaml`{minja} file you saved when following the procedures in the "Setting up the environment" section.
 *   `repositoryDigestMirrors` - Shows the mirror repository that contains the required {{ product_title }} image. Get the mirrors from the `imageContentSources.yaml` file that you saved when following the procedures in the "Setting up the environment" section.
 *   `ClusterVersion.yaml` - Shows the `ClusterVersion` CR to trigger the update. The `channel`, `upstream`, and `desiredVersion` fields are all required for image precaching.

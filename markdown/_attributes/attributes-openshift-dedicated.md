@@ -24,7 +24,7 @@
 {%- set gcp_short = "Google Cloud" -%}
 {%- set openshift_networking = "Red Hat OpenShift Networking" -%}
 {%- set product_registry = "OpenShift image registry" -%}
-{%- set kebab = "![](kebab.png 'Options menu')" -%}
+{%- set kebab = "![](/_assets/images/kebab.png 'Options menu')" -%}
 {%- set rhq_short = "Red&#160;Hat Quay" -%}
 {%- set SMProductName = "Red Hat OpenShift Service Mesh" -%}
 {%- set pipelines_title = "Red Hat OpenShift Pipelines" -%}

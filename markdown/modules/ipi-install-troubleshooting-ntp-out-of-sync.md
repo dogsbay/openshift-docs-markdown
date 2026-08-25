@@ -38,9 +38,9 @@ The deployment of {{ product_title }} clusters depends on NTP synchronized clock
               RTC in local TZ: no
     ```
 
-    Ensure that the `System clock synchronized` value is ***yes*** before proceeding with the installation. 
+    Ensure that the `System clock synchronized` value is **yes** before proceeding with the installation. 
 1.  Resolve clock drift based on your deployment stage:
-    *   ***Addressing clock synchronization for clock drift in an existing cluster:***
+    *   **Addressing clock synchronization for clock drift in an existing cluster:**
         1.  Create a Butane config file including the contents of the `chrony.conf` file to be delivered to the nodes. In the following example, create `99-master-chrony.bu` to add the file to the control plane nodes. You can modify the file for compute nodes or repeat this procedure for the compute role.
 
             :::note
@@ -49,7 +49,7 @@ The deployment of {{ product_title }} clusters depends on NTP synchronized clock
             
             :::
 
-            ```yaml
+            ```yaml {minja}
             variant: openshift
             version: {{ product_version }}.0
             metadata:
@@ -87,7 +87,7 @@ The deployment of {{ product_title }} clusters depends on NTP synchronized clock
             ```terminal
             $ oc apply -f 99-master-chrony.yaml
             ```
-        1.  Ensure the `System clock synchronized` value is ***yes*** by running the following command:
+        1.  Ensure the `System clock synchronized` value is **yes** by running the following command:
             ```terminal
             $ sudo timedatectl
             ```
@@ -100,7 +100,7 @@ The deployment of {{ product_title }} clusters depends on NTP synchronized clock
                           NTP service: active
                       RTC in local TZ: no
             ```
-    *   ***Addressing clock synchronization for clock drift before deployment:***
+    *   **Addressing clock synchronization for clock drift before deployment:**
         1.  Generate the manifest files and add this file to the `openshift` directory.
 
             For example:

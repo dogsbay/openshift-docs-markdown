@@ -11,5 +11,5 @@ If you do not want to keep the PVCs, you can delete them. If you want to recover
 
 **Procedure**
 
-1.  Go to the **Storage** -> **Persistent Volume Claims** page.
+1.  Go to the **Storage** → **Persistent Volume Claims** page.
 1.  Click the Options menu {{ kebab }} next to each PVC, and select **Delete Persistent Volume Claim**.

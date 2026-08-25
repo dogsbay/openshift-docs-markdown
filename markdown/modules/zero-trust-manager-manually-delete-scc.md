@@ -5,7 +5,7 @@ You can delete the `spire-spiffe-csi-driver` custom SCC when the SPIFFE CSI driv
 
 **Prerequisites**
 
-*   You have upgraded {{ zero_trust_full }} to 1.1.0 from the ***OperatorHub*** catalog.
+*   You have upgraded {{ zero_trust_full }} to 1.1.0 from the **OperatorHub** catalog.
 
 **Procedure**
 

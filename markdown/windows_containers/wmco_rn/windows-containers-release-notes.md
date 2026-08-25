@@ -7,6 +7,6 @@ title: "{{ productwinc }} release notes"
 # {{ productwinc }} release notes {id="windows-containers-release-notes"}
 {%- set context = "windows-containers-release-notes" %}
 
-You can review the release notes to learn about the changes introduced through each release of the {{ productwinc }} and the Windows Machine Config Operator (WMCO). 
+You can review the release notes to learn about the changes introduced through each release of the {{ productwinc }} and the Windows Machine Config Operator (WMCO).  {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/windows-containers-release-notes-10-22-1.md" %}{% endleveloffset %}

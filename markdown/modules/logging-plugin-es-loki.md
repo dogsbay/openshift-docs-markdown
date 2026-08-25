@@ -40,4 +40,4 @@ In {{ logging }} version 5.8 and later, if the Elasticsearch log store is your d
     "lokistack-dev"
     ```
 
-The {{ log_plug }} pod is now deployed. You can view logging data by navigating to the {{ product_title }} web console and viewing the **Observe** -> **Logs** page.
+The {{ log_plug }} pod is now deployed. You can view logging data by navigating to the {{ product_title }} web console and viewing the **Observe** → **Logs** page.

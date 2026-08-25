@@ -14,13 +14,12 @@ Service control policy (SCP) management is the responsibility of the customer. T
 </thead>
 <tbody>
 <tr>
-  <td>.15+</td>
-  <td>Required</td>
+  <td rowspan="15">Required</td>
   <td>Amazon EC2</td>
   <td>All</td>
+  <td>Allow</td>
 </tr>
 <tr>
-  <td>Allow</td>
   <td>Amazon EC2 Auto Scaling</td>
   <td>All</td>
   <td>Allow</td>
@@ -29,16 +28,18 @@ Service control policy (SCP) management is the responsibility of the customer. T
   <td>Amazon S3</td>
   <td>All</td>
   <td>Allow</td>
-  <td>Identity And Access Management</td>
 </tr>
 <tr>
+  <td>Identity And Access Management</td>
   <td>All</td>
   <td>Allow</td>
+</tr>
+<tr>
   <td>Elastic Load Balancing</td>
   <td>All</td>
+  <td>Allow</td>
 </tr>
 <tr>
-  <td>Allow</td>
   <td>Elastic Load Balancing V2</td>
   <td>All</td>
   <td>Allow</td>
@@ -47,16 +48,18 @@ Service control policy (SCP) management is the responsibility of the customer. T
   <td>Amazon CloudWatch</td>
   <td>All</td>
   <td>Allow</td>
-  <td>Amazon CloudWatch Events</td>
 </tr>
 <tr>
+  <td>Amazon CloudWatch Events</td>
   <td>All</td>
   <td>Allow</td>
+</tr>
+<tr>
   <td>Amazon CloudWatch Logs</td>
   <td>All</td>
+  <td>Allow</td>
 </tr>
 <tr>
-  <td>Allow</td>
   <td>AWS Support</td>
   <td>All</td>
   <td>Allow</td>
@@ -65,16 +68,18 @@ Service control policy (SCP) management is the responsibility of the customer. T
   <td>AWS Key Management Service</td>
   <td>All</td>
   <td>Allow</td>
-  <td>AWS Security Token Service</td>
 </tr>
 <tr>
+  <td>AWS Security Token Service</td>
   <td>All</td>
   <td>Allow</td>
+</tr>
+<tr>
   <td>AWS Resource Tagging</td>
   <td>All</td>
+  <td>Allow</td>
 </tr>
 <tr>
-  <td>Allow</td>
   <td>AWS Route53 DNS</td>
   <td>All</td>
   <td>Allow</td>
@@ -82,22 +87,22 @@ Service control policy (SCP) management is the responsibility of the customer. T
 <tr>
   <td>AWS Service Quotas</td>
   <td>ListServices GetRequestedServiceQuotaChange GetServiceQuota RequestServiceQuotaIncrease ListServiceQuotas</td>
-  <td>Allow<br><br><br><br>.3+</td>
-  <td>Optional</td>
+  <td>Allow</td>
 </tr>
 <tr>
+  <td rowspan="3">Optional</td>
   <td>AWS Billing</td>
   <td>ViewAccount<br><br>Viewbilling<br><br>ViewUsage</td>
   <td>Allow</td>
-  <td>AWS Cost and Usage Report</td>
 </tr>
 <tr>
+  <td>AWS Cost and Usage Report</td>
   <td>All</td>
   <td>Allow</td>
-  <td>AWS Cost Explorer Services</td>
-  <td>All</td>
 </tr>
 <tr>
+  <td>AWS Cost Explorer Services</td>
+  <td>All</td>
   <td>Allow</td>
 </tr>
 </tbody>

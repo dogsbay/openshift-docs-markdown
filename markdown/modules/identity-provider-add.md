@@ -46,7 +46,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
 
     As long as the `kubeadmin` user has been removed, the `oc login` command provides instructions on how to access a web page where you can retrieve the token.
 
-    You can also access this page from the web console by navigating to **(?) Help** -> **Command Line Tools** -> **Copy Login Command**.
+    You can also access this page from the web console by navigating to **(?) Help** → **Command Line Tools** → **Copy Login Command**.
 1.  Log in to the cluster, passing in the token to authenticate, by running the following command:
     ```terminal
     $ oc login --token=<token>
@@ -54,7 +54,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
 
     :::note
 
-{%- if oidc %}
+{% if oidc %}
     After the OIDC identity provider is configured in {{ product_title }}, you can also log in by running the following command, which prompts for your username and password:
 
     ```terminal
@@ -66,7 +66,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
 
 {% if not oidc %}
     This identity provider does not support logging in with a username and password.
-{%- endif %}
+{% endif %}
     
     :::
 
@@ -77,12 +77,12 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
     ```
 
 {%- if context == "configuring-google-identity-provider" %}
-{%- set no_username_password_login = false -%}
+{%- set no_username_password_login = "" -%}
 {% endif %}
 {% if context == "configuring-oidc-identity-provider" %}
-{%- set no_username_password_login = false -%}
-{%- set oidc = false -%}
+{%- set no_username_password_login = "" -%}
+{%- set oidc = "" -%}
 {% endif %}
 {% if context == "configuring-github-identity-provider" %}
-{%- set no_username_password_login = false -%}
+{%- set no_username_password_login = "" -%}
 {% endif %}

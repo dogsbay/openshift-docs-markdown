@@ -46,15 +46,15 @@ If you configure retention for user-workload Prometheus, Thanos Ruler automatica
     The default is `24h`.
 
         The following example sets the retention time to 10 days for Thanos Ruler data:
-        ```yaml
-        apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: user-workload-monitoring-config
-          namespace: openshift-user-workload-monitoring
-        data:
-          config.yaml: |
-            thanosRuler:
-              retention: 10d
-        ```
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: user-workload-monitoring-config
+      namespace: openshift-user-workload-monitoring
+    data:
+      config.yaml: |
+        thanosRuler:
+          retention: 10d
+    ```
 1.  Save the file to apply the changes. The pods affected by the new configuration are automatically redeployed.

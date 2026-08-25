@@ -21,7 +21,7 @@ Use OStoy to create a file and upload it to the S3 bucket. While S3 can accept a
     $ aws s3 ls s3://${OSTOY_NAMESPACE}-bucket
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     $ aws s3 ls s3://ostoy-bucket
     2023-05-04 22:20:51         51 OSToy.txt

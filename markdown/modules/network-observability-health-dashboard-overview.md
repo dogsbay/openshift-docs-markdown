@@ -3,7 +3,7 @@
 
 View the Network Observability Operator health dashboards in the {{ product_title }} web console to monitor the health status, resource usage, and internal statistics of the operator and its components. {._abstract}
 
-Metrics are located in the **Observe** -> **Dashboards** page in the {{ product_title }} web console. You can view metrics about the health of the Network Observability Operator in the following categories:
+Metrics are located in the **Observe** → **Dashboards** page in the {{ product_title }} web console. You can view metrics about the health of the Network Observability Operator in the following categories:
 
 *   **Flows per second**
 *   **Sampling**

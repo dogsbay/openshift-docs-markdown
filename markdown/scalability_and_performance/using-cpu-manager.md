@@ -3,11 +3,11 @@ title: Using CPU Manager and Topology Manager
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using CPU Manager and Topology Manager {id="using-cpu-manager"}
 {% include "./_attributes/common-attributes.md" %}
+# Using CPU Manager and Topology Manager {id="using-cpu-manager"}
 {%- set context = "using-cpu-manager-and-topology-manager" %}
 
-CPU Manager manages groups of CPUs and constrains workloads to specific CPUs.
+CPU Manager manages groups of CPUs and constrains workloads to specific CPUs. {._abstract}
 
 CPU Manager is useful for workloads that have some of these attributes:
 
@@ -34,5 +34,6 @@ To use Topology Manager you must configure CPU Manager with the `static` policy.
 {% leveloffset +1 %}{% include "./modules/pod-interactions-with-topology-manager.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Topology Manager policies](/scalability_and_performance/using-cpu-manager#topology-manager-policies_using-cpu-manager-and-topology-manager)

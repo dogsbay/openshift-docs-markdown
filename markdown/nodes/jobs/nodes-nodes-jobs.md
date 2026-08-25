@@ -3,11 +3,11 @@ title: Running tasks in pods using jobs
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Running tasks in pods using jobs {id="nodes-nodes-jobs"}
 {% include "./_attributes/common-attributes.md" %}
+# Running tasks in pods using jobs {id="nodes-nodes-jobs"}
 {%- set context = "nodes-nodes-jobs" %}
 
-Jobs execute one-time or scheduled tasks in your cluster, tracking completion status and managing pod lifecycles for batch workloads, parallel processing, and recurring operations.
+Jobs execute one-time or scheduled tasks in your cluster, tracking completion status and managing pod lifecycles for batch workloads, parallel processing, and recurring operations. {._abstract}
 
 A _job_ executes a task in your {{ product_title }} cluster.
 

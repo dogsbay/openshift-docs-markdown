@@ -3,11 +3,11 @@ title: Configuring ingress cluster traffic by using an Ingress Controller
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring ingress cluster traffic by using an Ingress Controller {id="configuring-ingress-cluster-traffic-ingress-controller"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring ingress cluster traffic by using an Ingress Controller {id="configuring-ingress-cluster-traffic-ingress-controller"}
 {%- set context = "configuring-ingress-cluster-traffic-ingress-controller" %}
 
-You can use the Ingress Controller to control how external users communicate with services that run inside the cluster.
+You can use the Ingress Controller to control how external users communicate with services that run inside the cluster. {._abstract}
 
 {% if openshift_enterprise or openshift_webscale or openshift_origin %}
 Before you begin any of the procedures that are listed in the Configuring ingress cluster traffic by using an Ingress Controller document, ensure that you meet the following prerequisites. A cluster administrator performs these prerequisites:

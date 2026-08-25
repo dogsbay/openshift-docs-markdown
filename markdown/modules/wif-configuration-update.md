@@ -21,7 +21,7 @@ To align your existing WIF configurations with these updated permissions, you ca
 
 When you update a wif-config or create a new one, ensure your {{ cluster_manager }} CLI (`ocm`) is up to date. Not updating to the latest version of the `ocm` can result in error messages and service disruptions.
 
-***Example output***
+**Example output**
 ```text
 Error: failed to create wif-config: failed to create wif-config: status is 400, identifier is '400', code is 'CLUSTERS-MGMT-400', at '2025-10-06T15:18:37Z' and operation identifier is 'f9551d63-a58a-4e3c-b847-5f99ba1b0b74': Client version is out of date for WIF operations. Please update from vOCM-CLI/1.0.7 to v1.0.8 and try again.
 ```

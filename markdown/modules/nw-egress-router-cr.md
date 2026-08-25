@@ -66,7 +66,7 @@ where:
 `spec.redirect.fallbackIP`
 :   Optional parameter. Specifies a destination IP address. If you do not specify any redirect rules, the egress router sends all traffic to this fallback IP address. If you specify redirect rules, any connections to network ports that are not defined in the rules are sent by the egress router to this fallback IP address. If you do not specify this field, the egress router rejects connections to network ports that are not defined in the rules.
 
-```yaml title="Example egress router specification"
+```yaml title="Example egress router specification" {minja}
 apiVersion: network.operator.openshift.io/v1
 kind: EgressRouter
 metadata:
@@ -107,8 +107,8 @@ spec:
   }
 ```
 
-{%- set router_name = false -%}
-{%- set router_type = false -%}
+{%- set router_name = "" -%}
+{%- set router_type = "" -%}
 {% if redirect %}
-{%- set redirect = false -%}
+{%- set redirect = "" -%}
 {% endif %}

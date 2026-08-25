@@ -3,11 +3,11 @@ title: Syncing LDAP groups
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Syncing LDAP groups {id="ldap-syncing"}
 {% include "./_attributes/common-attributes.md" %}
+# Syncing LDAP groups {id="ldap-syncing"}
 {%- set context = "ldap-syncing-groups" %}
 
-Sync LDAP groups with {{ product_title }} so you can manage user membership and permissions using groups stored in your LDAP directory.
+Sync LDAP groups with {{ product_title }} so you can manage user membership and permissions using groups stored in your LDAP directory. {._abstract}
 
 {% if openshift_enterprise or openshift_webscale or openshift_origin %}
 As an administrator,
@@ -72,10 +72,11 @@ You must have `dedicated-admin` privileges to sync groups.
 {% leveloffset +1 %}{% include "./modules/ldap-auto-syncing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring an LDAP identity provider](/authentication/identity_providers/configuring-ldap-identity-provider#configuring-ldap-identity-provider)
 *   [Creating cron jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs-creating-cron_nodes-nodes-jobs)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/ldap-syncing-examples.md" %}{% endleveloffset %}
 
@@ -96,6 +97,7 @@ You must have `dedicated-admin` privileges to sync groups.
 {% leveloffset +1 %}{% include "./modules/ldap-syncing-spec.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [LDAP nested membership sync](#ldap-syncing-nesting-about_{{ context }})
 

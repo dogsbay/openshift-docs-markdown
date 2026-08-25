@@ -3,11 +3,11 @@ title: Improve east-west performance by routing pods on the underlay with BGP
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Improve east-west performance by routing pods on the underlay with BGP {id="no-overlay-mode-bgp-routing"}
 {% include "./_attributes/common-attributes.md" %}
+# Improve east-west performance by routing pods on the underlay with BGP {id="no-overlay-mode-bgp-routing"}
 {%- set context = "no-overlay-mode-bgp-routing" %}
 
-To improve east-west performance on bare-metal clusters, configure no-overlay mode with Border Gateway Protocol (BGP) so pod traffic uses underlay routing instead of Geneve encapsulation.
+To improve east-west performance on bare-metal clusters, configure no-overlay mode with Border Gateway Protocol (BGP) so pod traffic uses underlay routing instead of Geneve encapsulation. {._abstract}
 
 {%- set FeatureName = "No-overlay mode with BGP" %}
 {% leveloffset +1 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}
@@ -19,6 +19,7 @@ To improve east-west performance on bare-metal clusters, configure no-overlay mo
 {% leveloffset +1 %}{% include "./modules/nw-no-overlay-enable-default-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About BGP routing](/networking/advanced_networking/bgp_routing/about-bgp-routing#about-bgp-routing)
 *   [Enabling BGP routing](/networking/advanced_networking/bgp_routing/enabling-bgp-routing#enabling-bgp-routing)
@@ -31,7 +32,7 @@ To improve east-west performance on bare-metal clusters, configure no-overlay mo
 
 {% leveloffset +1 %}{% include "./modules/nw-no-overlay-troubleshooting.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [About BGP routing](/networking/advanced_networking/bgp_routing/about-bgp-routing#about-bgp-routing)
 *   [About route advertisements](/networking/advanced_networking/route_advertisements/about-route-advertisements#about-route-advertisements)

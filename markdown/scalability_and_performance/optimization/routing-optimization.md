@@ -3,15 +3,15 @@ title: Optimizing routing
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Optimizing routing {id="routing-optimization"}
 {% include "./_attributes/common-attributes.md" %}
+# Optimizing routing {id="routing-optimization"}
 {%- set context = "routing-optimization" %}
 
-You can scale or configure the {{ product_title }} HAProxy router to optimize routing performance.
+You can scale or configure the {{ product_title }} HAProxy router to optimize routing performance. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/baseline-router-performance.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring Ingress Controller sharding by using route labels](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding-route-labels_configuring-ingress-cluster-traffic-ingress-controller)
 *   [Configuring Ingress Controller sharding by using namespace labels](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#nw-ingress-sharding-namespace-labels_configuring-ingress-cluster-traffic-ingress-controller)

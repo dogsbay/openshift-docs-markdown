@@ -23,7 +23,7 @@ You can change the masquerade subnet used by OVN-Kubernetes as a post-installati
 
         `ipv6_masquerade_subnet`
         :   Specifies an IP address to be used as the IPv6 masquerade subnet. This range cannot overlap with any other subnets used by {{ product_title }} or on the host itself. The default value for IPv6 is `fd69::/125`.
-        *   For clusters using IPv4, run the following command:
+    *   For clusters using IPv4, run the following command:
         ```terminal
         $ oc patch networks.operator.openshift.io cluster --type=merge -p '{"spec":{"defaultNetwork":{"ovnKubernetesConfig":{"gatewayConfig":{"ipv4":{"internalMasqueradeSubnet": "<ipv4_masquerade_subnet>"}}}}}}'
         ```

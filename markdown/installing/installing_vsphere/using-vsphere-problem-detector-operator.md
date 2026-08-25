@@ -3,13 +3,13 @@ title: Using the vSphere Problem Detector Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the vSphere Problem Detector Operator {id="using-vsphere-problem-detector-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Using the vSphere Problem Detector Operator {id="using-vsphere-problem-detector-operator"}
 {%- set context = "vsphere-problem-detector" %}
 
 {%- set operator_name = "vSphere Problem Detector Operator" %}
 
-You can use the {{ operator_name }} to check a cluster that you deployed on {{ vmw_full }} for common installation and configuration issues that relate to storage.
+You can use the {{ operator_name }} to check a cluster that you deployed on {{ vmw_full }} for common installation and configuration issues that relate to storage. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/vsphere-problem-detector-about.md" %}{% endleveloffset %}
 
@@ -25,8 +25,8 @@ You can use the {{ operator_name }} to check a cluster that you deployed on {{ v
 
 {% leveloffset +1 %}{% include "./modules/vsphere-problem-detector-metrics.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [About {{ product_title }} monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 
-{%- set operator_name = false -%}
+{%- set operator_name = "" -%}

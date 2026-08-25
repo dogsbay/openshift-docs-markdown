@@ -51,7 +51,7 @@ After you install the NUMA Resources Operator, do the following to deploy the NU
         ```
 1.  Create the `NUMAResourcesScheduler` custom resource that deploys the NUMA-aware custom pod scheduler:
     1.  Save the following YAML in the `nro-scheduler.yaml` file:
-        ```yaml
+        ```yaml {minja}
         apiVersion: nodetopology.openshift.io/v1
         kind: NUMAResourcesScheduler
         metadata:
@@ -62,12 +62,12 @@ After you install the NUMA Resources Operator, do the following to deploy the NU
         ```
         1.  Enter an interval value in seconds for synchronization of the scheduler cache. A value of `5s` is typical for most implementations.
 
-            :::note
+        :::note
 
-            *   Enable the `cacheResyncPeriod` specification to help the NUMA Resource Operator report more exact resource availability by monitoring pending resources on nodes and synchronizing this information in the scheduler cache at a defined interval. This also helps to minimize `Topology Affinity Error` errors because of sub-optimal scheduling decisions. The lower the interval the greater the network load. The `cacheResyncPeriod` specification is disabled by default.
-            *   Setting a value of `Enabled` for the `podsFingerprinting` specification in the `NUMAResourcesOperator` CR is a requirement for the implementation of the `cacheResyncPeriod` specification.
-            
-            :::
+        *   Enable the `cacheResyncPeriod` specification to help the NUMA Resource Operator report more exact resource availability by monitoring pending resources on nodes and synchronizing this information in the scheduler cache at a defined interval. This also helps to minimize `Topology Affinity Error` errors because of sub-optimal scheduling decisions. The lower the interval the greater the network load. The `cacheResyncPeriod` specification is disabled by default.
+        *   Setting a value of `Enabled` for the `podsFingerprinting` specification in the `NUMAResourcesOperator` CR is a requirement for the implementation of the `cacheResyncPeriod` specification.
+        
+        :::
 
     1.  Create the `NUMAResourcesScheduler` CR by running the following command:
         ```terminal

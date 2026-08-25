@@ -20,7 +20,7 @@ Cluster autoscaling can be enabled at cluster creation by checking the **Enable 
     $ rosa list machinepools -c <cluster-name>
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     ID         AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS     TAINTS    AVAILABILITY ZONES
     Default    Yes          2-4       m5.xlarge                           us-east-1a

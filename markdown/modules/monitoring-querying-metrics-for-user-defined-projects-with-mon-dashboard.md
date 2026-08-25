@@ -24,12 +24,12 @@ Developers cannot access the third-party UIs provided with {{ product_title }} m
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Observe** -> **Metrics**.
+1.  In the {{ product_title }} web console, click **Observe** → **Metrics**.
 1.  To add one or more queries, perform any of the following actions:
     | Option | Description |
     | --- | --- |
     | Select an existing query. | From the **Select query** drop-down list, select an existing query. |
-    | Create a custom query. | Add your Prometheus Query Language (PromQL) query to the **Expression** field. As you type a PromQL expression, autocomplete suggestions appear in a drop-down list. These suggestions include functions, metrics, labels, and time tokens. Use the keyboard arrows to select one of these suggested items and then press Enter to add the item to your expression. Move your mouse pointer over a suggested item to view a brief description of that item. |
+    | Create a custom query. | Add your Prometheus Query Language (PromQL) query to the **Expression** field.<br>As you type a PromQL expression, autocomplete suggestions appear in a drop-down list. These suggestions include functions, metrics, labels, and time tokens. Use the keyboard arrows to select one of these suggested items and then press Enter to add the item to your expression. Move your mouse pointer over a suggested item to view a brief description of that item. |
     | Add multiple queries. | Click **Add query**. |
     | Duplicate an existing query. | Click the options menu {{ kebab }} next to the query, then choose **Duplicate query**. |
     | Disable a query from being run. | Click the options menu {{ kebab }} next to the query and choose **Disable query**. |

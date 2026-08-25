@@ -34,7 +34,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if not (ibm_z or ibm_z_kvm or ibm_power or agnostic) %}
+{% if not (ibm_z or ibm_z_kvm or ibm_power or agnostic) %}
 # Sample install-config.yaml file for bare metal {id="installation-bare-metal-config-yaml_{{ context }}"}
 {% endif %}
 {% if ibm_z or ibm_z_kvm %}
@@ -49,7 +49,7 @@
 
 You can customize the `install-config.yaml` file to specify more details about your {{ product_title }} cluster platform or modify the values of the required parameters. {._abstract}
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 compute:
@@ -58,8 +58,8 @@ compute:
   replicas: 0
 {%- if ibm_z or ibm_z_kvm %}
   architecture: s390x
-{% endif %}
-{% if ibm_power %}
+{%- endif %}
+{%- if ibm_power %}
   architecture: ppc64le
 {%- endif %}
 controlPlane:
@@ -68,8 +68,8 @@ controlPlane:
   replicas: 3
 {%- if ibm_z or ibm_z_kvm %}
   architecture: s390x
-{% endif %}
-{% if ibm_power %}
+{%- endif %}
+{%- if ibm_power %}
   architecture: ppc64le
 {%- endif %}
 metadata:
@@ -87,81 +87,81 @@ platform:
   none: {}
 {%- if not openshift_origin %}
 fips: false
-{% endif %}
-{% if not restricted %}
-{% if not openshift_origin %}
-pullSecret: '{"auths": ...}'
-{% endif %}
-{% if openshift_origin %}
-pullSecret: '{"auths": ...}'
-{% endif %}
-{% if not openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% if openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% endif %}
-{% if restricted %}
-{% if not openshift_origin %}
-pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
-{% endif %}
-{% if openshift_origin %}
-pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
-{% endif %}
-{% if not openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% if openshift_origin %}
-sshKey: 'ssh-ed25519 AAAA...'
-{% endif %}
-{% endif %}
-{% if restricted %}
-{% if not openshift_origin %}
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-  -----END CERTIFICATE-----
-imageContentSources:
-- mirrors:
-  {%- if ibm_z or ibm_z_kvm %}
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% if not (ibm_z or ibm_z_kvm) %}
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% endif %}
-{% if openshift_origin %}
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-  -----END CERTIFICATE-----
-imageContentSources:
-- mirrors:
-  {%- if ibm_z or ibm_z_kvm %}
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_repository>/ocp4/openshift4
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% if not (ibm_z or ibm_z_kvm) %}
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-release
-- mirrors:
-  - <local_registry>/<local_repository_name>/release
-  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% endif %}
 {%- endif %}
+{%- if not restricted %}
+{% if not openshift_origin %}
+pullSecret: '{"auths": ...}'
+{% endif %}
+{% if openshift_origin %}
+pullSecret: '{"auths": ...}'
+{% endif %}
+{% if not openshift_origin %}
+sshKey: 'ssh-ed25519 AAAA...'
+{% endif %}
+{% if openshift_origin %}
+sshKey: 'ssh-ed25519 AAAA...'
+{% endif %}
+{% endif %}
+{% if restricted %}
+{% if not openshift_origin %}
+pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
+{% endif %}
+{% if openshift_origin %}
+pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
+{% endif %}
+{% if not openshift_origin %}
+sshKey: 'ssh-ed25519 AAAA...'
+{% endif %}
+{% if openshift_origin %}
+sshKey: 'ssh-ed25519 AAAA...'
+{% endif %}
+{% endif %}
+{% if restricted %}
+{% if not openshift_origin %}
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+  -----END CERTIFICATE-----
+imageContentSources:
+- mirrors:
+{%- if ibm_z or ibm_z_kvm %}
+  - <local_repository>/ocp4/openshift4
+  source: quay.io/openshift-release-dev/ocp-release
+- mirrors:
+  - <local_repository>/ocp4/openshift4
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+{%- endif %}
+{%- if not (ibm_z or ibm_z_kvm) %}
+  - <local_registry>/<local_repository_name>/release
+  source: quay.io/openshift-release-dev/ocp-release
+- mirrors:
+  - <local_registry>/<local_repository_name>/release
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+{%- endif %}
+{% endif %}
+{% if openshift_origin %}
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+  -----END CERTIFICATE-----
+imageContentSources:
+- mirrors:
+{%- if ibm_z or ibm_z_kvm %}
+  - <local_repository>/ocp4/openshift4
+  source: quay.io/openshift-release-dev/ocp-release
+- mirrors:
+  - <local_repository>/ocp4/openshift4
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+{%- endif %}
+{%- if not (ibm_z or ibm_z_kvm) %}
+  - <local_registry>/<local_repository_name>/release
+  source: quay.io/openshift-release-dev/ocp-release
+- mirrors:
+  - <local_registry>/<local_repository_name>/release
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+{%- endif %}
+{% endif %}
+{% endif %}
 ```
 
 where:
@@ -179,13 +179,13 @@ where:
 
 `hyperthreading`
 :   Specifies whether to enable or disable simultaneous multithreading (SMT), or hyperthreading. By default, SMT is enabled to increase the performance of the cores in your machines. You can disable it by setting the parameter value to `Disabled`. If you disable SMT, you must disable it in all cluster machines; this includes both control plane and compute machines.
-{% endif %}
-{% if ibm_power %}
+{%- endif %}
+{%- if ibm_power %}
 
 `hyperthreading`
 :   Specifies simultaneous multithreading (SMT), which you configure as a post-installation task.
-{% endif %}
-{% if not (ibm_z or ibm_z_kvm or ibm_power) %}
+{%- endif %}
+{%- if not (ibm_z or ibm_z_kvm or ibm_power) %}
 
 
 :::note
@@ -202,8 +202,8 @@ If you disable `hyperthreading`, whether in the BIOS or in the `install-config.y
 
 :::
 
-{% endif %}
-{% if ibm_z or ibm_z_kvm %}
+{%- endif %}
+{%- if ibm_z or ibm_z_kvm %}
 
 
 :::note
@@ -264,15 +264,15 @@ Class E CIDR range is reserved for a future use. To use the Class E CIDR range, 
 
 `platform`
 :   Specifies the platform. You must set the platform to `none`. You cannot provide additional platform configuration variables for
-{% if not (ibm_z or ibm_z_kvm or ibm_power) %}
+{%- if not (ibm_z or ibm_z_kvm or ibm_power) %}
     your platform.
-{% endif %}
-{% if ibm_z or ibm_z_kvm %}
+{%- endif %}
+{%- if ibm_z or ibm_z_kvm %}
     {{ ibm_z_name }} infrastructure.
-{% endif %}
-{% if ibm_power %}
+{%- endif %}
+{%- if ibm_power %}
     {{ ibm_power_name }} infrastructure.
-{% endif %}
+{%- endif %}
 
 
 :::important
@@ -281,7 +281,7 @@ Clusters that are installed with the platform type `none` are unable to use some
 
 :::
 
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 
 `fips`
 :   Specifies either enabling or disabling FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
@@ -303,25 +303,17 @@ Clusters that are installed with the platform type `none` are unable to use some
 {% endif %}
 {% if restricted %}
 {% if not openshift_origin %}
-
-`pullSecret`
-:   Specifies the registry domain name for `<local_registry>`, and optionally the port, that your mirror registry uses to serve content. For example, `registry.example.com` or `registry.example.com:5000`. For `<credentials>`, specify the base64-encoded user name and password for your mirror registry.
+`pullSecret`:: Specifies the registry domain name for `<local_registry>`, and optionally the port, that your mirror registry uses to serve content. For example, `registry.example.com` or `registry.example.com:5000`. For `<credentials>`, specify the base64-encoded user name and password for your mirror registry.
 {% endif %}
 {% if openshift_origin %}
-
-`pullSecret`
-:   Specifies the registry domain name for `<local_registry>`, and optionally the port, that your mirror registry uses to serve content. For example, `registry.example.com` or `registry.example.com:5000`. For `<credentials>`, specify the base64-encoded user name and password for your mirror registry.
+`pullSecret`:: Specifies the registry domain name for `<local_registry>`, and optionally the port, that your mirror registry uses to serve content. For example, `registry.example.com` or `registry.example.com:5000`. For `<credentials>`, specify the base64-encoded user name and password for your mirror registry.
 {% endif %}
 {% endif %}
 {% if not openshift_origin %}
-
-`sshKey`
-:   Specifies the SSH public key for the `core` user in {{ op_system_first }}.
+`sshKey`:: Specifies the SSH public key for the `core` user in {{ op_system_first }}.
 {% endif %}
 {% if openshift_origin %}
-
-`sshKey`
-:   Specifies the SSH public key for the `core` user in {{ op_system_first }}.
+`sshKey`:: Specifies the SSH public key for the `core` user in {{ op_system_first }}.
 {% endif %}
 
 
@@ -346,14 +338,10 @@ For production {{ product_title }} clusters on which you want to perform install
 {% endif %}
 {% endif %}
 {% if ibm_z or ibm_z_kvm %}
-
-`additionalTrustBundle`
-:   Specifies the `additionalTrustBundle` parameter and value. The value must be the contents of the certificate file that you used for your mirror registry. The certificate file can be an existing, trusted certificate authority or the self-signed certificate that you generated for the mirror registry.
+`additionalTrustBundle`:: Specifies the `additionalTrustBundle` parameter and value. The value must be the contents of the certificate file that you used for your mirror registry. The certificate file can be an existing, trusted certificate authority or the self-signed certificate that you generated for the mirror registry.
 {% endif %}
 {% if not openshift_origin %}
-
-`imageContentSources`
-:   Specifies the `imageContentSources` section according to the output of the command that you used to mirror the repository.
+`imageContentSources`:: Specifies the `imageContentSources` section according to the output of the command that you used to mirror the repository.
 
 
 :::important
@@ -373,38 +361,38 @@ For production {{ product_title }} clusters on which you want to perform install
 {% endif %}
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if openshift_origin %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z_kvm = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-platform-agnostic" %}
-{%- set agnostic = false -%}
+{%- set agnostic = "" -%}
 {% endif %}

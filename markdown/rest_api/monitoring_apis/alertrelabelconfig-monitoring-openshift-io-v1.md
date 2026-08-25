@@ -1,5 +1,5 @@
 ---
-title: "AlertRelabelConfig []"
+title: "AlertRelabelConfig [monitoring.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec describes the desired state of this AlertRelabelConfig object. |
 | `status` | `object` | status describes the current state of this AlertRelabelConfig object. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,6 +49,7 @@ Required
 | --- | --- | --- |
 | `configs` | `array` | configs is a list of sequentially evaluated alert relabel configs. |
 | `configs[]` | `object` | RelabelConfig allows dynamic rewriting of label sets for alerts. See Prometheus documentation: - https://prometheus.io/docs/prometheus/latest/configuration/configuration/#alert_relabel_configs - https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config |
+
 ### .spec.configs {id="_specconfigs"}
 
 Description
@@ -78,6 +80,7 @@ Type
 | `separator` | `string` | separator placed between concatenated source label values. When omitted, Prometheus will use its default value of ';'. |
 | `sourceLabels` | `array (string)` | sourceLabels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the 'Replace', 'Keep', and 'Drop' actions. Not allowed for actions 'LabelKeep' and 'LabelDrop'. |
 | `targetLabel` | `string` | targetLabel to which the resulting value is written in a 'Replace' action. It is required for 'Replace' and 'HashMod' actions and forbidden for actions 'LabelKeep' and 'LabelDrop'. Regex capture groups are available. |
+
 ### .status {id="_status"}
 
 Description
@@ -91,6 +94,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | conditions contains details on the state of the AlertRelabelConfig, may be empty. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -133,16 +137,16 @@ The following API endpoints are available:
 
 *   `/apis/monitoring.openshift.io/v1/alertrelabelconfigs`
     *   `GET`: list objects of kind AlertRelabelConfig
-*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs`
+*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs`{minja}
     *   `DELETE`: delete collection of AlertRelabelConfig
     *   `GET`: list objects of kind AlertRelabelConfig
     *   `POST`: create an AlertRelabelConfig
-*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }}`
+*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }}`{minja}
     *   `DELETE`: delete an AlertRelabelConfig
     *   `GET`: read the specified AlertRelabelConfig
     *   `PATCH`: partially update the specified AlertRelabelConfig
     *   `PUT`: replace the specified AlertRelabelConfig
-*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }}/status`
+*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertrelabelconfigs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified AlertRelabelConfig
     *   `PATCH`: partially update status of the specified AlertRelabelConfig
     *   `PUT`: replace status of the specified AlertRelabelConfig

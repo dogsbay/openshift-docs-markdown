@@ -3,11 +3,11 @@ title: Configuring the master interface in the container network namespace
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the master interface in the container network namespace {id="configuring-master-interface-secondary-nwt"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the master interface in the container network namespace {id="configuring-master-interface-secondary-nwt"}
 {%- set context = "configuring-additional-network" %}
 
-You can create and manage a MAC-VLAN, IP-VLAN, and VLAN subinterface based on a `master` interface.
+You can create and manage a MAC-VLAN, IP-VLAN, and VLAN subinterface based on a `master` interface. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-about-configuring-master-interface-container.md" %}{% endleveloffset %}
 

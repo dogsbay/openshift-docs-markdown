@@ -8,11 +8,11 @@ To customize the generation of performance profiles, review the arguments for th
 | Argument | Description |
 | --- | --- |
 | `mcp-name` | Name for MCP; for example, `worker-cnf` corresponding to the target machines. |
-| `must-gather-dir-path` | The path of the must gather directory. This argument is only required if you run the PPC tool by using Podman. If you use the PPC with the wrapper script, do not use this argument. Instead, specify the directory path to the `must-gather` tarball by using the `-t` option for the wrapper script. |
+| `must-gather-dir-path` | The path of the must gather directory.<br>This argument is only required if you run the PPC tool by using Podman. If you use the PPC with the wrapper script, do not use this argument. Instead, specify the directory path to the `must-gather` tarball by using the `-t` option for the wrapper script. |
 | `reserved-cpu-count` | Number of reserved CPUs. Use a natural number greater than zero. |
-| `rt-kernel` | Enables real-time kernel. Possible values: `true` or `false`. |
+| `rt-kernel` | Enables real-time kernel.<br>Possible values: `true` or `false`. |
 
-***Optional Performance Profile Creator arguments***
+**Optional Performance Profile Creator arguments**
 
 <table>
 <thead>
@@ -24,7 +24,7 @@ To customize the generation of performance profiles, review the arguments for th
 <tbody>
 <tr>
   <td><code>disable-ht</code></td>
-  <td>Disable Hyper-Threading.<br><br>Possible values: <code>true</code> or <code>false</code>.<br><br>Default: <code>false</code>.<br><br><dl><dt>Warning</dt><dd>If this argument is set to <code>true</code> you should not disable Hyper-Threading in the BIOS. Disabling Hyper-Threading is accomplished with a kernel command-line argument.</dd></dl></td>
+  <td>Disable Hyper-Threading.<br><br>Possible values: <code>true</code> or <code>false</code>.<br><br>Default: <code>false</code>.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>If this argument is set to <code>true</code> you should not disable Hyper-Threading in the BIOS. Disabling Hyper-Threading is accomplished with a kernel command-line argument.</dd></dl></td>
 </tr>
 <tr>
   <td>enable-hardware-tuning</td>
@@ -36,7 +36,7 @@ To customize the generation of performance profiles, review the arguments for th
 </tr>
 <tr>
   <td><code>offlined-cpu-count</code></td>
-  <td>Number of offlined CPUs.<br><br><dl><dt>Note</dt><dd>Use a natural number greater than zero. If not enough logical processors are offlined, then error messages are logged. The messages are:<pre>Error: failed to compute the reserved and isolated CPUs: please ensure that reserved-cpu-count plus offlined-cpu-count should be in the range [0,1]</pre><pre>Error: failed to compute the reserved and isolated CPUs: please specify the offlined CPU count in the range [0,1]</pre></dd></dl></td>
+  <td>Number of offlined CPUs.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Use a natural number greater than zero. If not enough logical processors are offlined, then error messages are logged. The messages are:<pre>Error: failed to compute the reserved and isolated CPUs: please ensure that reserved-cpu-count plus offlined-cpu-count should be in the range [0,1]</pre><pre>Error: failed to compute the reserved and isolated CPUs: please specify the offlined CPU count in the range [0,1]</pre></dd></dl></td>
 </tr>
 <tr>
   <td><code>power-consumption-mode</code></td>
@@ -48,11 +48,11 @@ To customize the generation of performance profiles, review the arguments for th
 </tr>
 <tr>
   <td><code>profile-name</code></td>
-  <td>Name of the performance profile to create.</td>
+  <td>Name of the performance profile to create.<br><br>Default: <code>performance</code>.</td>
 </tr>
 <tr>
   <td><code>split-reserved-cpus-across-numa</code></td>
-  <td>Split the reserved CPUs across NUMA nodes.</td>
+  <td>Split the reserved CPUs across NUMA nodes.<br><br>Possible values: <code>true</code> or <code>false</code>.<br><br>Default: <code>false</code>.</td>
 </tr>
 <tr>
   <td><code>topology-manager-policy</code></td>
@@ -60,7 +60,7 @@ To customize the generation of performance profiles, review the arguments for th
 </tr>
 <tr>
   <td><code>user-level-networking</code></td>
-  <td>Run with user level networking (DPDK) enabled.</td>
+  <td>Run with user level networking (DPDK) enabled.<br><br>Possible values: <code>true</code> or <code>false</code>.<br><br>Default: <code>false</code>.</td>
 </tr>
 </tbody>
 </table>

@@ -1,5 +1,5 @@
 ---
-title: "BuildRequest []"
+title: "BuildRequest [build.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -35,6 +35,7 @@ Type
 | `triggeredBy` | `array` | triggeredBy describes which triggers started the most recent update to the build configuration and contains information about those triggers. |
 | `triggeredBy[]` | `object` | BuildTriggerCause holds information about a triggered build. It is used for displaying build trigger data for each build and build configuration in oc describe. It is also used to describe which triggers led to the most recent update in the build configuration. |
 | `triggeredByImage` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | triggeredByImage is the Image that triggered this build. |
+
 ### .binary {id="_binary"}
 
 Description
@@ -47,6 +48,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `asFile` | `string` | asFile indicates that the provided binary input should be considered a single file within the build input. For example, specifying "webapp.war" would place the provided binary as `/webapp.war` for the builder. If left empty, the Docker and Source build strategies assume this file is a zip, tar, or tar.gz file and extract it as the source. The custom strategy receives this binary as standard input. This filename may not contain slashes or be '..' or '.'. |
+
 ### .dockerStrategyOptions {id="_dockerstrategyoptions"}
 
 Description
@@ -60,6 +62,7 @@ Type
 | --- | --- | --- |
 | `buildArgs` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | Args contains any build arguments that are to be passed to Docker.  See https://docs.docker.com/engine/reference/builder/#/arg for more details |
 | `noCache` | `boolean` | noCache overrides the docker-strategy noCache option in the build config |
+
 ### .revision {id="_revision"}
 
 Description
@@ -77,6 +80,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .revision.git {id="_revisiongit"}
 
 Description
@@ -92,6 +96,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .revision.git.author {id="_revisiongitauthor"}
 
 Description
@@ -105,6 +110,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .revision.git.committer {id="_revisiongitcommitter"}
 
 Description
@@ -118,6 +124,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .sourceStrategyOptions {id="_sourcestrategyoptions"}
 
 Description
@@ -130,6 +137,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `incremental` | `boolean` | incremental overrides the source-strategy incremental option in the build config |
+
 ### .triggeredBy {id="_triggeredby"}
 
 Description
@@ -156,6 +164,7 @@ Type
 | `gitlabWebHook` | `object` | GitLabWebHookCause has information about a GitLab webhook that triggered a build. |
 | `imageChangeBuild` | `object` | ImageChangeCause contains information about the image that triggered a build |
 | `message` | `string` | message is used to store a human readable message for why the build was triggered. E.g.: "Manually triggered by user", "Configuration change",etc. |
+
 ### .triggeredBy[].bitbucketWebHook {id="_triggeredbybitbucketwebhook"}
 
 Description
@@ -169,6 +178,7 @@ Type
 | --- | --- | --- |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
+
 ### .triggeredBy[].bitbucketWebHook.revision {id="_triggeredbybitbucketwebhookrevision"}
 
 Description
@@ -186,6 +196,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .triggeredBy[].bitbucketWebHook.revision.git {id="_triggeredbybitbucketwebhookrevisiongit"}
 
 Description
@@ -201,6 +212,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .triggeredBy[].bitbucketWebHook.revision.git.author {id="_triggeredbybitbucketwebhookrevisiongitauthor"}
 
 Description
@@ -214,6 +226,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .triggeredBy[].bitbucketWebHook.revision.git.committer {id="_triggeredbybitbucketwebhookrevisiongitcommitter"}
 
 Description
@@ -227,6 +240,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .triggeredBy[].genericWebHook {id="_triggeredbygenericwebhook"}
 
 Description
@@ -240,6 +254,7 @@ Type
 | --- | --- | --- |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
+
 ### .triggeredBy[].genericWebHook.revision {id="_triggeredbygenericwebhookrevision"}
 
 Description
@@ -257,6 +272,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .triggeredBy[].genericWebHook.revision.git {id="_triggeredbygenericwebhookrevisiongit"}
 
 Description
@@ -272,6 +288,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .triggeredBy[].genericWebHook.revision.git.author {id="_triggeredbygenericwebhookrevisiongitauthor"}
 
 Description
@@ -285,6 +302,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .triggeredBy[].genericWebHook.revision.git.committer {id="_triggeredbygenericwebhookrevisiongitcommitter"}
 
 Description
@@ -298,6 +316,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .triggeredBy[].githubWebHook {id="_triggeredbygithubwebhook"}
 
 Description
@@ -311,6 +330,7 @@ Type
 | --- | --- | --- |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
+
 ### .triggeredBy[].githubWebHook.revision {id="_triggeredbygithubwebhookrevision"}
 
 Description
@@ -328,6 +348,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .triggeredBy[].githubWebHook.revision.git {id="_triggeredbygithubwebhookrevisiongit"}
 
 Description
@@ -343,6 +364,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .triggeredBy[].githubWebHook.revision.git.author {id="_triggeredbygithubwebhookrevisiongitauthor"}
 
 Description
@@ -356,6 +378,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .triggeredBy[].githubWebHook.revision.git.committer {id="_triggeredbygithubwebhookrevisiongitcommitter"}
 
 Description
@@ -369,6 +392,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .triggeredBy[].gitlabWebHook {id="_triggeredbygitlabwebhook"}
 
 Description
@@ -382,6 +406,7 @@ Type
 | --- | --- | --- |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
+
 ### .triggeredBy[].gitlabWebHook.revision {id="_triggeredbygitlabwebhookrevision"}
 
 Description
@@ -399,6 +424,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .triggeredBy[].gitlabWebHook.revision.git {id="_triggeredbygitlabwebhookrevisiongit"}
 
 Description
@@ -414,6 +440,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .triggeredBy[].gitlabWebHook.revision.git.author {id="_triggeredbygitlabwebhookrevisiongitauthor"}
 
 Description
@@ -427,6 +454,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .triggeredBy[].gitlabWebHook.revision.git.committer {id="_triggeredbygitlabwebhookrevisiongitcommitter"}
 
 Description
@@ -440,6 +468,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .triggeredBy[].imageChangeBuild {id="_triggeredbyimagechangebuild"}
 
 Description
@@ -458,9 +487,9 @@ Type
 
 The following API endpoints are available:
 
-*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/clone`
+*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/clone`{minja}
     *   `POST`: create clone of a Build
-*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/instantiate`
+*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/instantiate`{minja}
     *   `POST`: create instantiate of a BuildConfig
 
 ### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/clone {id="_apisbuildopenshiftiov1namespaces_namespace_builds_name_clone"}

@@ -3,15 +3,16 @@ title: AWS Elastic Block Store CSI Driver Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# AWS Elastic Block Store CSI Driver Operator {id="persistent-storage-csi-ebs"}
 {% include "./_attributes/common-attributes.md" %}
+# AWS Elastic Block Store CSI Driver Operator {id="persistent-storage-csi-ebs"}
 {%- set context = "persistent-storage-csi-ebs" %}
 
-You can provision and manage AWS Elastic Block Storage (EBS) in {{ product_title }} by using the AWS EBS Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning and eliminate the need to pre-provision storage.
+You can provision and manage AWS Elastic Block Storage (EBS) in {{ product_title }} by using the AWS EBS Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning and eliminate the need to pre-provision storage. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-aws-ebs-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
 *   [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -25,6 +26,7 @@ You can provision and manage AWS Elastic Block Storage (EBS) in {{ product_title
 {% leveloffset +1 %}{% include "./modules/persistent-storage-byok.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optional AWS configuration parameters](/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional-aws_installation-config-parameters-aws)
 {% endif %}
@@ -33,6 +35,7 @@ You can provision and manage AWS Elastic Block Storage (EBS) in {{ product_title
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-eusc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [AWS EUSC region](/installing/installing_aws/installing-aws-account#installation-aws-eusc_region_installing-aws-account)
 {% endif %}

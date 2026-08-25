@@ -14,9 +14,9 @@ If the virtual machine is running, changes do not take effect until you restart 
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines** from the side menu.
+1.  Click **Virtualization** → **VirtualMachines** from the side menu.
 1.  Select a virtual machine to open the **VirtualMachine details** page.
-1.  Click **Configuration** -> **Environment**.
+1.  Click **Configuration** → **Environment**.
 1.  Click **Add Config Map, Secret or Service Account**.
 1.  Click **Select a resource** and select a resource from the list. A six character serial number is automatically generated for the selected resource.
 1.  Optional: Click **Reload** to revert the environment to its last saved state.
@@ -24,7 +24,7 @@ If the virtual machine is running, changes do not take effect until you restart 
 
 **Verification**
 
-1.  On the **VirtualMachine details** page, click **Configuration** -> **Disks** and verify that the resource is displayed in the list of disks.
-1.  Restart the virtual machine by clicking **Actions** -> **Restart**.
+1.  On the **VirtualMachine details** page, click **Configuration** → **Disks** and verify that the resource is displayed in the list of disks.
+1.  Restart the virtual machine by clicking **Actions** → **Restart**.
 
 You can now mount the secret, config map, or service account as you would mount any other disk.

@@ -14,7 +14,7 @@ You can change the {{ aws_first }} instance type that your control plane machine
 1.  Choose one control plane machine instance.
     1.  For the selected control plane machine, back up the etcd data by creating an etcd snapshot. For more information, see "Backing up etcd".
     1.  In the {{ aws_short }} console, stop the control plane machine instance.
-    1.  Select the stopped instance, and click **Actions** -> **Instance Settings** -> **Change instance type**.
+    1.  Select the stopped instance, and click **Actions** → **Instance Settings** → **Change instance type**.
     1.  Change the instance to a larger type, ensuring that the type is the same base as the previous selection, and apply changes. For example, you can change `m6i.xlarge` to `m6i.2xlarge` or `m6i.4xlarge`.
     1.  Start the instance.
     1.  If your {{ product_title }} cluster has a corresponding `Machine` object for the instance, update the instance type of the object to match the instance type set in the {{ aws_short }} console.

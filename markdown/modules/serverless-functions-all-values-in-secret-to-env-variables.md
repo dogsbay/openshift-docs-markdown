@@ -24,12 +24,12 @@ You can set an environment variable from all values defined in a secret. Values 
     1.  Substitute `mysecret` with the name of the target secret.
 
         For example, to access all user data that is stored in `userdetailssecret`, use the following YAML:
-        ```yaml
-        name: test
-        namespace: ""
-        runtime: go
-        ...
-        envs:
-        - value: '{{ configMap:userdetailssecret }}'
-        ```
+    ```yaml
+    name: test
+    namespace: ""
+    runtime: go
+    ...
+    envs:
+    - value: '{{ configMap:userdetailssecret }}'
+    ```
 1.  Save the configuration.

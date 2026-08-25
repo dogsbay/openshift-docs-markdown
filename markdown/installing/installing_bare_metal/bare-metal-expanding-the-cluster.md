@@ -3,11 +3,11 @@ title: Expanding the cluster
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Expanding the cluster {id="bare-metal-expanding-the-cluster"}
 {% include "./_attributes/common-attributes.md" %}
+# Expanding the cluster {id="bare-metal-expanding-the-cluster"}
 {%- set context = "bare-metal-expanding" %}
 
-You can expand a bare-metal cluster by adding worker nodes after initial deployment to increase capacity and maintain high availability.
+You can expand a bare-metal cluster by adding worker nodes after initial deployment to increase capacity and maintain high availability. {._abstract}
 
 
 :::note
@@ -20,6 +20,7 @@ Expanding the cluster using Redfish Virtual Media involves meeting minimum firmw
 {% leveloffset +1 %}{% include "./modules/ipi-install-preparing-the-bare-metal-node.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optional: Configuring host network interfaces in the install-config.yaml file](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-host-network-interfaces-in-the-install-config-yaml-file_ipi-install-installation-workflow)
 *   [Automatically scaling machines to the number of available bare-metal hosts](/scalability_and_performance/managing-bare-metal-hosts#automatically-scaling-machines-to-available-bare-metal-hosts_managing-bare-metal-hosts)
@@ -27,6 +28,7 @@ Expanding the cluster using Redfish Virtual Media involves meeting minimum firmw
 {% leveloffset +1 %}{% include "./modules/ipi-install-replacing-a-bare-metal-control-plane-node.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Replacing an unhealthy etcd member](/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member#replacing-the-unhealthy-etcd-member)
 *   [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd-data_backup-etcd)

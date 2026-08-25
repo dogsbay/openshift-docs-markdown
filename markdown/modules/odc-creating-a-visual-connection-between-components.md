@@ -14,12 +14,14 @@ This procedure walks you through an example of creating a visual connection betw
 
 1.  In the **Developer** perspective, switch to the relevant project, for example, `my-petclinic`.
 1.  Hover over the Spring PetClinic sample application to see a dangling arrow on the node.
+
     **Figure 1. Visual connector**
 
     ![odc_connector](/_assets/images/odc_connector.png)
 1.  Click and drag the arrow towards the `hippo-pgbouncer` deployment to connect the Spring PetClinic sample application with it.
 1.  Click the `spring-petclinic` deployment to see the **Overview** panel. Under the **Details** tab, click the edit icon in the **Annotations** section to see the **Key = `app.openshift.io/connects-to`** and **Value = `[{"apiVersion":"apps/v1","kind":"Deployment","name":"hippo-pgbouncer"}]`** annotation added to the deployment.
 1.  Optional: You can repeat these steps to establish visual connections between other applications and components you create.
+
     **Figure 2. Connecting multiple applications**
 
     ![odc_connecting_multiple_applications](/_assets/images/odc_connecting_multiple_applications.png)

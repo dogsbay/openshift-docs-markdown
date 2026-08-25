@@ -22,17 +22,17 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
 **Procedure**
 
 *   To add a machine pool that does not use autoscaling, create the machine pool and define the instance type, compute (also known as worker) node count, and node labels:
-    ```terminal
+    ```terminal {minja}
     $ rosa create machinepool --cluster=<cluster-name> \
                               --name=<machine_pool_id> \
                               --replicas=<replica_count> \
                               --instance-type=<instance_type> \
                               --labels=<key>=<value>,<key>=<value> \
                               --taints=<key>=<value>:<effect>,<key>=<value>:<effect> \
-{%- if openshift_rosa %}
+    {%- if openshift_rosa %}
                               --use-spot-instances \
                               --spot-max-price=<price> \
-{%- endif %}
+    {%- endif %}
                               --disk-size=<disk_size> \
                               --availability-zone=<availability_zone_name> \
                               --additional-security-group-ids <sec_group_id> \
@@ -79,9 +79,9 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
     `--availability-zone=<availability_zone_name>`
 {%- if openshift_rosa_hcp %}
     :   Optional: You can create a machine pool in an availability zone of your choice. Replace `<availability_zone_name>` with an availability zone name.
-{% endif %}
-{% if openshift_rosa %}
-        Optional: For Multi-AZ clusters, you can create a machine pool in a Single-AZ of your choice. Replace `<availability_zone_name>` with a Single-AZ name.
+{%- endif %}
+{%- if openshift_rosa %}
+    :   Optional: For Multi-AZ clusters, you can create a machine pool in a Single-AZ of your choice. Replace `<availability_zone_name>` with a Single-AZ name.
 
         :::note
 
@@ -108,8 +108,8 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
     :   Optional: For machine pools in clusters that do not have Red&#160;Hat managed VPCs, you can select additional custom security groups to use in your machine pools. You must have already created the security groups and associated them with the VPC that you selected for this cluster. You cannot add or edit security groups after you create the machine pool.
 {%- if openshift_rosa %}
         For more information, see the requirements for security groups in the "Additional resources" section.
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 
         :::important
 
@@ -146,7 +146,7 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
     I: To view all machine pools, run 'rosa list machinepools -c mycluster'
     ```
 *   To add a machine pool that uses autoscaling, create the machine pool and define the autoscaling configuration, instance type and node labels:
-    ```terminal
+    ```terminal {minja}
     $ rosa create machinepool --cluster=<cluster-name> \
                               --name=<machine_pool_id> \
                               --enable-autoscaling \
@@ -155,14 +155,14 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
                               --instance-type=<instance_type> \
                               --labels=<key>=<value>,<key>=<value> \
                               --taints=<key>=<value>:<effect>,<key>=<value>:<effect> \
-{%- if openshift_rosa_hcp %}
+    {%- if openshift_rosa_hcp %}
                               --availability-zone=<availability_zone_name>
-{% endif %}
-{% if not openshift_rosa_hcp %}
+    {%- endif %}
+    {%- if not openshift_rosa_hcp %}
                               --availability-zone=<availability_zone_name> \
                               --use-spot-instances \
                               --spot-max-price=<price>
-{%- endif %}
+    {%- endif %}
     ```
 
     where:
@@ -179,8 +179,8 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
 {%- if not openshift_rosa_hcp %}
 
         If you deployed {{ product_title }} using a single availability zone, the `--min-replicas` and `--max-replicas` arguments define the autoscaling limits in the machine pool for the zone. If you deployed your cluster using multiple availability zones, the arguments define the autoscaling limits in total across all zones and the counts must be multiples of 3.
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 
         The `--min-replicas` and `--max-replicas` arguments define the autoscaling limits in the machine pool for the availability zone.
 {%- endif %}
@@ -197,11 +197,11 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
     `--availability-zone=<availability_zone_name>`
 {%- if openshift_rosa %}
     :   Optional: For Multi-AZ clusters, you can create a machine pool in a Single-AZ of your choice. Replace `<availability_zone_name>` with a Single-AZ name.
-{% endif %}
-{% if openshift_rosa_hcp %}
-        Optional: You can create a machine pool in an availability zone of your choice. Replace `<availability_zone_name>` with an availability zone name.
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
+    :   Optional: You can create a machine pool in an availability zone of your choice. Replace `<availability_zone_name>` with an availability zone name.
+{%- endif %}
+{%- if openshift_rosa %}
 
     `--use-spot-instances`
     :   Optional: Configures your machine pool to deploy machines as non-guaranteed AWS Spot Instances. For information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/) in the AWS documentation. If you select **Use Amazon EC2 Spot Instances** for a machine pool, you cannot disable the option after the machine pool is created.
@@ -217,18 +217,17 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
     `--spot-max-price=<price>`
     :   Optional: If you choose to use Spot Instances, you can specify this argument to define a maximum hourly price for a Spot Instance. If this argument is not specified, the on-demand price is used.
 {%- endif %}
-
-    The following example creates a machine pool called `mymachinepool` that uses the `m7i.xlarge` instance type and has autoscaling enabled. The minimum compute node limit is 3 and the maximum is 6 overall. The example also adds 2 workload-specific labels:
+    :   The following example creates a machine pool called `mymachinepool` that uses the `m7i.xlarge` instance type and has autoscaling enabled. The minimum compute node limit is 3 and the maximum is 6 overall. The example also adds 2 workload-specific labels:
     ```terminal
     $ rosa create machinepool --cluster=mycluster --name=mymachinepool --enable-autoscaling --min-replicas=3 --max-replicas=6 --instance-type=m7i.xlarge --labels=app=db,tier=backend
     ```
-    ```terminal title="Example output"
-{%- if not openshift_rosa_hcp %}
+    ```terminal title="Example output" {minja}
+    {% if not openshift_rosa_hcp %}
     I: Machine pool 'mymachinepool' created successfully on cluster 'mycluster'
-{% endif %}
-{% if openshift_rosa_hcp %}
+    {% endif %}
+    {% if openshift_rosa_hcp %}
     I: Machine pool 'mymachinepool' created successfully on hosted cluster 'mycluster'
-{%- endif %}
+    {%- endif %}
     I: To view all machine pools, run 'rosa list machinepools -c mycluster'
     ```
 
@@ -240,7 +239,7 @@ You can list all machine pools on your cluster or describe individual machine po
     ```terminal
     $ rosa list machinepools --cluster=<cluster_name>
     ```
-{%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
     ```terminal title="Example output"
     ID             AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS                  TAINTS    AVAILABILITY ZONES                    SPOT INSTANCES
     Default        No           3         m7i.xlarge                                        us-east-1a, us-east-1b, us-east-1c    N/A
@@ -258,7 +257,7 @@ You can list all machine pools on your cluster or describe individual machine po
     ```terminal
     $ rosa describe machinepool --cluster=<cluster_name> --machinepool=mymachinepool
     ```
-{%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
     ```terminal title="Example output"
     ID:                         mymachinepool
     Cluster ID:                 27iimopsg1mge0m81l0sqivkne2qu6dr

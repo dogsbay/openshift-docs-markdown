@@ -51,7 +51,7 @@ The following query returns the top 3 VMs waiting for I/O at every given moment 
 ```promql
 topk(3, sum by (name, namespace) (rate(kubevirt_vmi_vcpu_wait_seconds_total[6m]))) > 0
 ```
-{% endif %}
+{%- endif %}
 
 ## Network metrics {id="virt-promql-network-metrics_{{ context }}"}
 
@@ -184,7 +184,7 @@ The following metrics are exposed by the Application Aware Quota (AAQ) controlle
     You can expose and ignore specific labels by editing the `kubevirt-vm-labels-config` config map. After you apply the config map to your cluster, the configuration is loaded dynamically.
 
     Example config map:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     kind: ConfigMap
     metadata:

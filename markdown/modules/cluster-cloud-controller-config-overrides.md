@@ -3,7 +3,7 @@
 
 The CCM Operator overrides specific options, which you might recognize from configuring {{ rh_openstack }}. Do not configure these options. The options are for informational purposes only. {._abstract}
 
-***Options overridden by the CCM Operator***
+**Options overridden by the CCM Operator**
 
 <table>
 <thead>
@@ -39,7 +39,7 @@ The CCM Operator overrides specific options, which you might recognize from conf
 </tr>
 <tr>
   <td><code>tenant-id</code></td>
-  <td>The Identity service project ID. Leave this option unset if you are using Identity service application credentials.</td>
+  <td>The Identity service project ID. Leave this option unset if you are using Identity service application credentials.<br><br>In version 3 of the Identity API, which changed the identifier <code>tenant</code> to <code>project</code>, the value of <code>tenant-id</code> is automatically mapped to the project construct in the API.</td>
 </tr>
 <tr>
   <td><code>tenant-name</code></td>

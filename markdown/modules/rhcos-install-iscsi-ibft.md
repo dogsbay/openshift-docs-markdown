@@ -34,16 +34,16 @@ On a completely diskless machine, the iSCSI target and initiator values can be p
     $ mpathconf --enable && systemctl start multipathd.service
     ```
 1.  Install {{ op_system }} onto the iSCSI target by running the following command and using the necessary kernel arguments, for example:
-    ```text
-{%- if not restricted %}
+    ```text {minja}
+    {% if not restricted %}
     $ coreos-installer install \
         /dev/mapper/mpatha \
         --append-karg rd.iscsi.firmware=1 \
         --append-karg rd.multipath=default \
         --console ttyS0 \
         --ignition-file <path_to_file>
-{% endif %}
-{% if restricted %}
+    {% endif %}
+    {% if restricted %}
     $ coreos-installer install \
         /dev/mapper/mpatha \
         --append-karg rd.iscsi.firmware=1 \
@@ -51,7 +51,7 @@ On a completely diskless machine, the iSCSI target and initiator values can be p
         --console ttyS0 \
         --ignition-file <path_to_file> \
         --offline
-{%- endif %}
+    {% endif %}
     ```
 
     where:
@@ -74,5 +74,5 @@ On a completely diskless machine, the iSCSI target and initiator values can be p
     You can also perform this procedure by using the `coreos-installer iso customize` or `coreos-installer pxe customize` subcommands.
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

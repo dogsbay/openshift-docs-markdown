@@ -10,7 +10,7 @@ An image can consume the following resources:
 
 The following table shows the supported constraints for an image. If specified, the constraints must hold true for each image.
 
-***Image limits***
+**Image limits**
 
 <table>
 <thead>
@@ -22,7 +22,7 @@ The following table shows the supported constraints for an image. If specified, 
 <tbody>
 <tr>
   <td><code>Max</code></td>
-  <td><code>image.dockerimagemetadata.size</code> less than or equal to <code>Max[<resource>]</code></td>
+  <td><code>image.dockerimagemetadata.size</code> less than or equal to <code>Max[&lt;resource&gt;]</code></td>
 </tr>
 </tbody>
 </table>

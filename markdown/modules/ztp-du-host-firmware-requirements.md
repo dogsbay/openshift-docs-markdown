@@ -15,6 +15,7 @@ Bare-metal hosts require the firmware to be configured before the host can be pr
     
     :::
 
+
     **Sample firmware configuration**
 
     | Firmware setting | Configuration |
@@ -22,15 +23,16 @@ Bare-metal hosts require the firmware to be configured before the host can be pr
     | CPU Power and Performance Policy | Performance |
     | Uncore Frequency Scaling | Disabled |
     | Performance P-limit | Disabled |
-    | Enhanced Intel SpeedStep (R) Tech | Enabled |
+    | Enhanced Intel SpeedStep ® Tech | Enabled |
     | Intel Configurable TDP | Enabled |
     | Configurable TDP Level | Level 2 |
-    | Intel(R) Turbo Boost Technology | Enabled |
+    | Intel® Turbo Boost Technology | Enabled |
     | Energy Efficient Turbo | Disabled |
     | Hardware P-States | Disabled |
     | Package C-State | C0/C1 state |
     | C1E | Disabled |
     | Processor C6 | Disabled |
+
 
     :::note
 

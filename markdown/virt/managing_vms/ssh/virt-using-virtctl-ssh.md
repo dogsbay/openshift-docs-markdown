@@ -7,7 +7,7 @@ title: Configure SSH by using the virtctl CLI tool
 # Configure SSH by using the virtctl CLI tool {id="virt-using-virtctl-ssh"}
 {%- set context = "virt-using-virtctl-ssh" %}
 
-You can add a public SSH key to a virtual machine (VM) and connect to the VM by running the `virtctl ssh` command, or add the `virtctl port-foward` command to your `.ssh/config` file and connect to the VM by using OpenSSH.
+You can add a public SSH key to a virtual machine (VM) and connect to the VM by running the `virtctl ssh` command, or add the `virtctl port-foward` command to your `.ssh/config` file and connect to the VM by using OpenSSH. {._abstract}
 
 
 :::important
@@ -38,7 +38,7 @@ Alternatively, right-click the VM in the tree view and select **Copy SSH command
 {% leveloffset +2 %}{% include "./modules/virt-adding-key-creating-vm-template.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/virt-creating-vm-instancetype.md" %}{% endleveloffset %}
-{%- set static_key = false %}
+{%- set static_key = "" %}
 
 {% leveloffset +2 %}{% include "./modules/virt-adding-public-key-vm-cli.md" %}{% endleveloffset %}
 
@@ -51,7 +51,7 @@ Alternatively, right-click the VM in the tree view and select **Copy SSH command
 {% leveloffset +2 %}{% include "./modules/virt-creating-vm-instancetype.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/virt-editing-vm-dynamic-key-injection.md" %}{% endleveloffset %}
-{%- set dynamic_key = false %}
+{%- set dynamic_key = "" %}
 
 {% leveloffset +2 %}{% include "./modules/virt-enabling-dynamic-key-injection-cli.md" %}{% endleveloffset %}
 

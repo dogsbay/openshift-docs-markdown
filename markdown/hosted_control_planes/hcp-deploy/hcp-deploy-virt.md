@@ -7,7 +7,7 @@ title: "Deploying {{ hcp }} on {{ VirtProductName }}"
 # Deploying {{ hcp }} on {{ VirtProductName }} {id="hcp-deploy-virt"}
 {%- set context = "hcp-deploy-virt" %}
 
-With {{ hcp }} and {{ VirtProductName }}, you can create {{ product_title }} clusters with worker nodes that are hosted by KubeVirt virtual machines. 
+With {{ hcp }} and {{ VirtProductName }}, you can create {{ product_title }} clusters with worker nodes that are hosted by KubeVirt virtual machines.  {._abstract}
 
 {{ hcp_capital }} on {{ VirtProductName }} provides several benefits:
 
@@ -21,12 +21,14 @@ The {{ hcp }} feature is enabled by default.
 You can use the hosted control plane command-line interface, `hcp`, to create an {{ product_title }} hosted cluster. The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see "Disabling the automatic import of hosted clusters into multicluster engine Operator".
 
 **Additional resources**
+{._additional-resources}
 
 *   [Disabling the automatic import of hosted clusters into {{ mce_short }}](/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
 
 {% leveloffset +1 %}{% include "./modules/hcp-virt-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing OpenShift Virtualization using the web console](/virt/install/installing-virt#installing-virt-web)
 *   [Postinstallation storage configuration](/post_installation_configuration/post-install-storage-configuration#post-install-storage-configuration)
@@ -43,6 +45,7 @@ You can use the hosted control plane command-line interface, `hcp`, to create an
 {% leveloffset +1 %}{% include "./modules/hcp-metallb.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the MetalLB Operator](/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install_metallb-operator-install)
 
@@ -51,6 +54,7 @@ You can use the hosted control plane command-line interface, `hcp`, to create an
 {% leveloffset +2 %}{% include "./modules/hcp-virt-create-hc-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 *   [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
@@ -58,6 +62,7 @@ You can use the hosted control plane command-line interface, `hcp`, to create an
 {% leveloffset +2 %}{% include "./modules/hcp-virt-create-hc-ext-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 *   [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
@@ -65,6 +70,7 @@ You can use the hosted control plane command-line interface, `hcp`, to create an
 {% leveloffset +2 %}{% include "./modules/hcp-virt-create-hc-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
 *   [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
@@ -102,12 +108,14 @@ You can use the hosted control plane command-line interface, `hcp`, to create an
 {% leveloffset +1 %}{% include "./modules/hcp-virt-scale-nodepool.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Scaling up and down workloads in a hosted cluster](/hosted_control_planes/hcp-machine-config#scale-up-down-autoscaler-hcp_hcp-machine-config)
 
 {% leveloffset +2 %}{% include "./modules/hcp-virt-add-node.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Scaling down the data plane to zero](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.15/html/hosted_control_planes/troubleshooting-hosted-control-planes#scale-down-data-plane_hcp-troubleshooting)
 

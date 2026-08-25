@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the 3scale Istio adapter {id="threescale-adapter-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Using the 3scale Istio adapter {id="threescale-adapter-v1x"}
 {%- set context = "threescale-adapter-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

@@ -17,7 +17,7 @@ The following non-configurable parameters are not listed in the table:
 :::
 
 
-***Image controller configuration parameters***
+**Image controller configuration parameters**
 
 <table>
 <thead>
@@ -49,7 +49,7 @@ The following non-configurable parameters are not listed in the table:
 </tr>
 <tr>
   {% if not (openshift_rosa or openshift_dedicated) %}<td><code>imageStreamImportMode</code></td>{% endif %}
-  {% if not (openshift_rosa or openshift_dedicated) %}<td>Controls the import mode behavior of image streams.<br><br>You must enable the <code>TechPreviewNoUpgrade</code> feature set in the <code>FeatureGate</code> custom resource (CR) to enable the <code>imageStreamImportMode</code> feature.For more information about feature gates, see "Understanding feature gates".<br><br>You can set the <code>imageStreamImportMode</code> field to either of the following values:<br><br><ul><li><code>Legacy</code>: Indicates that the legacy behavior must be used. The legacy behavior discards the manifest list and imports a single sub-manifest. In this case, the platform is chosen in the following order of priority:</li></ul><ol><li>Tag annotations: Determining the platform by using the platform-specific annotations in the image tags.</li><li>Control plane architecture or the operating system: Selecting the platform based on the architecture or the operating system of the control plane.</li><li><code>linux/amd64</code>: If no platform is selected by the preceeding methods, the <code>linux/amd64</code> platform is selected.</li><li>The first manifest in the list is selected.</li></ol><ul><li><code>PreserveOriginal</code>: Indicates that the original manifest is preserved. The manifest list and its sub-manifests are imported.</li></ul>If you specify a value for this field, the value is applied to the newly created image stream tags that do not already have this value manually set.<br><br>If you do not configure this field, the behavior is decided based on the payload type advertised by the <code>ClusterVersion</code> status. In this case, the platform is chosen as follows:<br><br><ul><li>The single architecture payload implies that the <code>Legacy</code> mode is applicable.</li><li>The multi payload implies that the <code>PreserveOriginal</code> mode is applicable.</li></ul>For information about importing manifest lists, see "Working with manifest lists".<br><br>{%- set FeatureName = "`imageStreamImportMode`" %}{% include "./snippets/technology-preview.md" %}</td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td>Controls the import mode behavior of image streams.<br><br>You must enable the <code>TechPreviewNoUpgrade</code> feature set in the <code>FeatureGate</code> custom resource (CR) to enable the <code>imageStreamImportMode</code> feature. For more information about feature gates, see "Understanding feature gates".<br><br>You can set the <code>imageStreamImportMode</code> field to either of the following values:<br><br><ul><li><code>Legacy</code>: Indicates that the legacy behavior must be used. The legacy behavior discards the manifest list and imports a single sub-manifest. In this case, the platform is chosen in the following order of priority:</li></ul><ol><li>Tag annotations: Determining the platform by using the platform-specific annotations in the image tags.</li><li>Control plane architecture or the operating system: Selecting the platform based on the architecture or the operating system of the control plane.</li><li><code>linux/amd64</code>: If no platform is selected by the preceeding methods, the <code>linux/amd64</code> platform is selected.</li><li>The first manifest in the list is selected.</li></ol><ul><li><code>PreserveOriginal</code>: Indicates that the original manifest is preserved. The manifest list and its sub-manifests are imported.</li></ul>If you specify a value for this field, the value is applied to the newly created image stream tags that do not already have this value manually set.<br><br>If you do not configure this field, the behavior is decided based on the payload type advertised by the <code>ClusterVersion</code> status. In this case, the platform is chosen as follows:<br><br><ul><li>The single architecture payload implies that the <code>Legacy</code> mode is applicable.</li><li>The multi payload implies that the <code>PreserveOriginal</code> mode is applicable.</li></ul>For information about importing manifest lists, see "Working with manifest lists".<br><br>{%- set FeatureName = "`imageStreamImportMode`" %}{% include "./snippets/technology-preview.md" %}</td>{% endif %}
 </tr>
 </tbody>
 </table>
@@ -58,7 +58,7 @@ The following non-configurable parameters are not listed in the table:
 
 The `status` field of the `image.config.openshift.io/cluster` resource holds observed values from the cluster.
 
-***Image controller status field parameters***
+**Image controller status field parameters**
 
 <table>
 <thead>

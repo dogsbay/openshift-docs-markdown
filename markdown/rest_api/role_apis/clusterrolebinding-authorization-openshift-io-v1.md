@@ -1,5 +1,5 @@
 ---
-title: "ClusterRoleBinding []"
+title: "ClusterRoleBinding [authorization.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -42,7 +42,7 @@ The following API endpoints are available:
 *   `/apis/authorization.openshift.io/v1/clusterrolebindings`
     *   `GET`: list objects of kind ClusterRoleBinding
     *   `POST`: create a ClusterRoleBinding
-*   `/apis/authorization.openshift.io/v1/clusterrolebindings/{{ name }}`
+*   `/apis/authorization.openshift.io/v1/clusterrolebindings/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterRoleBinding
     *   `GET`: read the specified ClusterRoleBinding
     *   `PATCH`: partially update the specified ClusterRoleBinding

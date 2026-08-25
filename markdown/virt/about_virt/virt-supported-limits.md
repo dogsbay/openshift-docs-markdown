@@ -3,15 +3,15 @@ title: Supported limits
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Supported limits {id="virt-supported-limits"}
 {% include "./_attributes/common-attributes.md" %}
+# Supported limits {id="virt-supported-limits"}
 {%- set context = "virt-supported-limits" %}
 
-Refer to tested object maximums when planning your environment for your specific use case, and consider all factors that can impact cluster scaling. For information options that impact performance, see the "{{ VirtProductName }} - Tuning & Scaling Guide" in the Red&#160;Hat Knowledgebase.
+Refer to tested object maximums when planning your environment for your specific use case, and consider all factors that can impact cluster scaling. For information options that impact performance, see the "{{ VirtProductName }} - Tuning & Scaling Guide" in the Red&#160;Hat Knowledgebase. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-tested-maximums.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [{{ VirtProductName }} - Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)
 *   [Virtualization limits for Red Hat&#160;Enterprise Linux with KVM](https://access.redhat.com/articles/rhel-kvm-limits)
 *   [Planning your environment according to object maximums](/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)

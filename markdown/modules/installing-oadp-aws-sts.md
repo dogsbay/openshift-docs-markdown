@@ -61,7 +61,7 @@ In an {{ aws_short }} cluster that uses STS authentication, restoring backed-up 
         :::
 
 1.  Install the OADP Operator:
-    1.  In the {{ product_title }} web console, browse to **Ecosystem** -> **Software Catalog**.
+    1.  In the {{ product_title }} web console, browse to **Ecosystem** → **Software Catalog**.
     1.  Search for the **OADP Operator**.
     1.  In the **role_ARN** field, paste the role_arn that you created previously and click **Install**.
 1.  Create {{ aws_short }} cloud storage using your {{ aws_short }} credentials by entering the following command:

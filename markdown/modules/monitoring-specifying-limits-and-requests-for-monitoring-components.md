@@ -12,7 +12,7 @@
 {%- set prometheus = "prometheus" -%}
 {%- set thanos = "thanosRuler" %}
 
-To configure CPU and memory resources, specify values for resource limits and requests in the `{{ configmap_name }}` `ConfigMap` object in the `{{ namespace_name }}` namespace.
+To configure CPU and memory resources, specify values for resource limits and requests in the `{{ configmap_name }}`{minja} `ConfigMap` object in the `{{ namespace_name }}`{minja} namespace.
 
 **Prerequisites**
 
@@ -24,8 +24,8 @@ To configure CPU and memory resources, specify values for resource limits and re
 
 **Procedure**
 
-1.  Edit the `{{ configmap_name }}` config map in the `{{ namespace_name }}` project:
-    ```terminal
+1.  Edit the `{{ configmap_name }}`{minja} config map in the `{{ namespace_name }}`{minja} project:
+    ```terminal {minja}
     $ oc -n {{ namespace_name }} edit configmap {{ configmap_name }}
     ```
 1.  Add values to define resource limits and requests for each component you want to configure.
@@ -37,7 +37,7 @@ To configure CPU and memory resources, specify values for resource limits and re
     
     :::
 
-    ```yaml title="Example of setting resource limits and requests"
+    ```yaml title="Example of setting resource limits and requests" {minja}
     apiVersion: v1
     kind: ConfigMap
     metadata:
@@ -138,8 +138,8 @@ To configure CPU and memory resources, specify values for resource limits and re
     ```
 1.  Save the file to apply the changes. The pods affected by the new configuration are automatically redeployed.
 
-{%- set configmap_name = false -%}
-{%- set namespace_name = false -%}
-{%- set alertmanager = false -%}
-{%- set prometheus = false -%}
-{%- set thanos = false -%}
+{%- set configmap_name = "" -%}
+{%- set namespace_name = "" -%}
+{%- set alertmanager = "" -%}
+{%- set prometheus = "" -%}
+{%- set thanos = "" -%}

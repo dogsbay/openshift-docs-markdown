@@ -12,7 +12,7 @@ If you want to avoid storing sensitive information such as an API key in the fun
 
 *   To refer to a local environment variable, use the following syntax:
     ```
-{{ env:ENV_VAR }}
+    {{ env:ENV_VAR }}
     ```
 
     Substitute `ENV_VAR` with the name of the variable in the local environment that you want to use.

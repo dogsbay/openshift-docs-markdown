@@ -21,13 +21,12 @@ You must use the output of either the `oc adm release mirror` command or the oc-
     :::
 
 
-```yaml title="Example install-config.yaml file"
-  additionalTrustBundle: |
-    -----BEGIN CERTIFICATE-----
-    ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-    -----END CERTIFICATE-----
-```
-
+    ```yaml title="Example install-config.yaml file"
+      additionalTrustBundle: |
+        -----BEGIN CERTIFICATE-----
+        ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+        -----END CERTIFICATE-----
+    ```
 1.  If you are using {{ ztp }} manifests: add the `registries.conf` and `ca-bundle.crt` files  to the `mirror` path to add the mirror configuration in the agent ISO image.
 
     :::note
@@ -37,14 +36,14 @@ You must use the output of either the `oc adm release mirror` command or the oc-
     :::
 
 
-```toml title="Example registries.conf file"
-[[registry]]
-location = "registry.ci.openshift.org/ocp/release" mirror-by-digest-only = true
+    ```toml title="Example registries.conf file"
+    [[registry]]
+    location = "registry.ci.openshift.org/ocp/release" mirror-by-digest-only = true
 
-[[registry.mirror]] location = "virthost.ostest.test.metalkube.org:5000/localimages/local-release-image"
+    [[registry.mirror]] location = "virthost.ostest.test.metalkube.org:5000/localimages/local-release-image"
 
-[[registry]]
-location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev" mirror-by-digest-only = true
+    [[registry]]
+    location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev" mirror-by-digest-only = true
 
-[[registry.mirror]] location = "virthost.ostest.test.metalkube.org:5000/localimages/local-release-image"
-```
+    [[registry.mirror]] location = "virthost.ostest.test.metalkube.org:5000/localimages/local-release-image"
+    ```

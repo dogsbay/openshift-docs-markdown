@@ -1,5 +1,5 @@
 ---
-title: "MachineConfiguration []"
+title: "MachineConfiguration [operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the specification of the desired behavior of the Machine Config Operator |
 | `status` | `object` | status is the most recently observed status of the Machine Config Operator |
+
 ### .spec {id="_spec"}
 
 Description
@@ -45,14 +46,15 @@ Type
 | `bootImageSkewEnforcement` | `object` | bootImageSkewEnforcement allows an admin to configure how boot image version skew is enforced on the cluster. When omitted, this will default to Automatic for clusters that support automatic boot image updates. For clusters that do not support automatic boot image updates, cluster upgrades will be disabled until a skew enforcement mode has been specified. When version skew is being enforced, cluster upgrades will be disabled until the version skew is deemed acceptable for the current release payload. |
 | `failedRevisionLimit` | `integer` | failedRevisionLimit is the number of failed static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `forceRedeploymentReason` | `string` | forceRedeploymentReason can be used to force the redeployment of the operand by providing a unique string. This provides a mechanism to kick a previously failed deployment and provide a reason why you think it will work this time instead of failing again on the same config. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managedBootImages` | `object` | managedBootImages allows configuration for the management of boot images for machine resources within the cluster. This configuration allows users to select resources that should be updated to the latest boot images during cluster upgrades, ensuring that new machines always boot with the current cluster version’s boot image. When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The default for each machine manager mode is All for GCP and AWS platforms, and None for all other platforms. |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `nodeDisruptionPolicy` | `object` | nodeDisruptionPolicy allows an admin to set granular node disruption actions for MachineConfig-based updates, such as drains, service reloads, etc. Specifying this will allow for less downtime when doing small configuration updates to the cluster. This configuration has no effect on cluster upgrades which will still incur node disruption where required. |
 | `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `succeededRevisionLimit` | `integer` | succeededRevisionLimit is the number of successful static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+
 ### .spec.bootImageSkewEnforcement {id="_specbootimageskewenforcement"}
 
 Description
@@ -76,6 +78,7 @@ Required
 | --- | --- | --- |
 | `manual` | `object` | manual describes the current boot image of the cluster. This should be set to the oldest boot image used amongst all machine resources in the cluster. This must include either the RHCOS version of the boot image or the OCP release version which shipped with that RHCOS boot image. Required when mode is set to "Manual" and forbidden otherwise. |
 | `mode` | `string` | mode determines the underlying behavior of skew enforcement mechanism. Valid values are Manual and None. Manual means that the cluster admin is expected to perform manual boot image updates and store the OCP & RHCOS version associated with the last boot image update in the manual field. In Manual mode, the MCO will prevent upgrades when the boot image skew exceeds the skew limit described by the release image. None means that the MCO will no longer monitor the boot image skew. This may affect the cluster’s ability to scale. This field is required. |
+
 ### .spec.bootImageSkewEnforcement.manual {id="_specbootimageskewenforcementmanual"}
 
 Description
@@ -98,6 +101,7 @@ Required
 | `mode` | `string` | mode is used to configure which boot image field is defined in Manual mode. Valid values are OCPVersion and RHCOSVersion. OCPVersion means that the cluster admin is expected to set the OCP version associated with the last boot image update in the OCPVersion field. RHCOSVersion means that the cluster admin is expected to set the RHCOS version associated with the last boot image update in the RHCOSVersion field. This field is required. |
 | `ocpVersion` | `string` | ocpVersion provides a string which represents the OCP version of the boot image. This field must match the OCP semver compatible format of x.y.z. This field must be between 5 and 10 characters long. Required when mode is set to "OCPVersion" and forbidden otherwise. |
 | `rhcosVersion` | `string` | rhcosVersion provides a string which represents the RHCOS version of the boot image This field must match rhcosVersion formatting of [major].[minor].[datestamp(YYYYMMDD)]-[buildnumber] or the legacy format of [major].[minor].[timestamp(YYYYMMDDHHmm)]-[buildnumber]. This field must be between 14 and 21 characters long. Required when mode is set to "RHCOSVersion" and forbidden otherwise. |
+
 ### .spec.managedBootImages {id="_specmanagedbootimages"}
 
 Description
@@ -117,6 +121,7 @@ Type
 | --- | --- | --- |
 | `machineManagers` | `array` | machineManagers can be used to register machine management resources for boot image updates. The Machine Config Operator will watch for changes to this list. Only one entry is permitted per type of machine management resource. |
 | `machineManagers[]` | `object` | MachineManager describes a target machine resource that is registered for boot image updates. It stores identifying information such as the resource type and the API Group of the resource. It also provides granular control via the selection field. |
+
 ### .spec.managedBootImages.machineManagers {id="_specmanagedbootimagesmachinemanagers"}
 
 Description
@@ -148,6 +153,7 @@ Required
 | `apiGroup` | `string` | apiGroup is name of the APIGroup that the machine management resource belongs to. The only current valid value is machine.openshift.io. machine.openshift.io means that the machine manager will only register resources that belong to OpenShift machine API group. |
 | `resource` | `string` | resource is the machine management resource’s type. Valid values are machinesets and controlplanemachinesets. machinesets means that the machine manager will only register resources of the kind MachineSet. controlplanemachinesets means that the machine manager will only register resources of the kind ControlPlaneMachineSet. |
 | `selection` | `object` | selection allows granular control of the machine management resources that will be registered for boot image updates. |
+
 ### .spec.managedBootImages.machineManagers[].selection {id="_specmanagedbootimagesmachinemanagersselection"}
 
 Description
@@ -165,6 +171,7 @@ Required
 | --- | --- | --- |
 | `mode` | `string` | mode determines how machine managers will be selected for updates. Valid values are All, Partial and None. All means that every resource matched by the machine manager will be updated. Partial requires specified selector(s) and allows customisation of which resources matched by the machine manager will be updated. Partial is not permitted for the controlplanemachinesets resource type as they are a singleton within the cluster. None means that every resource matched by the machine manager will not be updated. |
 | `partial` | `object` | partial provides label selector(s) that can be used to match machine management resources. Only permitted when mode is set to "Partial". |
+
 ### .spec.managedBootImages.machineManagers[].selection.partial {id="_specmanagedbootimagesmachinemanagersselectionpartial"}
 
 Description
@@ -182,6 +189,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `machineResourceSelector` | `object` | machineResourceSelector is a label selector that can be used to select machine resources like MachineSets. |
+
 ### .spec.managedBootImages.machineManagers[].selection.partial.machineResourceSelector {id="_specmanagedbootimagesmachinemanagersselectionpartialmachineresourceselector"}
 
 Description
@@ -196,6 +204,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.managedBootImages.machineManagers[].selection.partial.machineResourceSelector.matchExpressions {id="_specmanagedbootimagesmachinemanagersselectionpartialmachineresourceselectormatchexpressions"}
 
 Description
@@ -225,6 +234,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.nodeDisruptionPolicy {id="_specnodedisruptionpolicy"}
 
 Description
@@ -244,6 +254,7 @@ Type
 | `sshkey` | `object` | sshkey maps to the ignition.sshkeys field in the MachineConfig object, definition an action for this will apply to all sshkey changes in the cluster |
 | `units` | `array` | units is a list MachineConfig unit definitions and actions to take on changes to those services This list supports a maximum of 50 entries. |
 | `units[]` | `object` | NodeDisruptionPolicySpecUnit is a systemd unit name and corresponding actions to take and is used in the NodeDisruptionPolicyConfig object |
+
 ### .spec.nodeDisruptionPolicy.files {id="_specnodedisruptionpolicyfiles"}
 
 Description
@@ -273,6 +284,7 @@ Required
 | `actions` | `array` | actions represents the series of commands to be executed on changes to the file at the corresponding file path. Actions will be applied in the order that they are set in this list. If there are other incoming changes to other MachineConfig entries in the same update that require a reboot, the reboot will supercede these actions. Valid actions are Reboot, Drain, Reload, DaemonReload and None. The Reboot action and the None action cannot be used in conjunction with any of the other actions. This list supports a maximum of 10 entries. |
 | `actions[]` | `object` |  |
 | `path` | `string` | path is the location of a file being managed through a MachineConfig. The Actions in the policy will apply to changes to the file at this path. |
+
 ### .spec.nodeDisruptionPolicy.files[].actions {id="_specnodedisruptionpolicyfilesactions"}
 
 Description
@@ -305,6 +317,7 @@ Required
 | `reload` | `object` | reload specifies the service to reload, only valid if type is reload |
 | `restart` | `object` | restart specifies the service to restart, only valid if type is restart |
 | `type` | `string` | type represents the commands that will be carried out if this NodeDisruptionPolicySpecActionType is executed Valid values are Reboot, Drain, Reload, Restart, DaemonReload and None. reload/restart requires a corresponding service target specified in the reload/restart field. Other values require no further configuration |
+
 ### .spec.nodeDisruptionPolicy.files[].actions[].reload {id="_specnodedisruptionpolicyfilesactionsreload"}
 
 Description
@@ -321,6 +334,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .spec.nodeDisruptionPolicy.files[].actions[].restart {id="_specnodedisruptionpolicyfilesactionsrestart"}
 
 Description
@@ -337,6 +351,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .spec.nodeDisruptionPolicy.sshkey {id="_specnodedisruptionpolicysshkey"}
 
 Description
@@ -355,6 +370,7 @@ Required
 | --- | --- | --- |
 | `actions` | `array` | actions represents the series of commands to be executed on changes to the file at the corresponding file path. Actions will be applied in the order that they are set in this list. If there are other incoming changes to other MachineConfig entries in the same update that require a reboot, the reboot will supercede these actions. Valid actions are Reboot, Drain, Reload, DaemonReload and None. The Reboot action and the None action cannot be used in conjunction with any of the other actions. This list supports a maximum of 10 entries. |
 | `actions[]` | `object` |  |
+
 ### .spec.nodeDisruptionPolicy.sshkey.actions {id="_specnodedisruptionpolicysshkeyactions"}
 
 Description
@@ -387,6 +403,7 @@ Required
 | `reload` | `object` | reload specifies the service to reload, only valid if type is reload |
 | `restart` | `object` | restart specifies the service to restart, only valid if type is restart |
 | `type` | `string` | type represents the commands that will be carried out if this NodeDisruptionPolicySpecActionType is executed Valid values are Reboot, Drain, Reload, Restart, DaemonReload and None. reload/restart requires a corresponding service target specified in the reload/restart field. Other values require no further configuration |
+
 ### .spec.nodeDisruptionPolicy.sshkey.actions[].reload {id="_specnodedisruptionpolicysshkeyactionsreload"}
 
 Description
@@ -403,6 +420,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .spec.nodeDisruptionPolicy.sshkey.actions[].restart {id="_specnodedisruptionpolicysshkeyactionsrestart"}
 
 Description
@@ -419,6 +437,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .spec.nodeDisruptionPolicy.units {id="_specnodedisruptionpolicyunits"}
 
 Description
@@ -448,6 +467,7 @@ Required
 | `actions` | `array` | actions represents the series of commands to be executed on changes to the file at the corresponding file path. Actions will be applied in the order that they are set in this list. If there are other incoming changes to other MachineConfig entries in the same update that require a reboot, the reboot will supercede these actions. Valid actions are Reboot, Drain, Reload, DaemonReload and None. The Reboot action and the None action cannot be used in conjunction with any of the other actions. This list supports a maximum of 10 entries. |
 | `actions[]` | `object` |  |
 | `name` | `string` | name represents the service name of a systemd service managed through a MachineConfig Actions specified will be applied for changes to the named service. Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .spec.nodeDisruptionPolicy.units[].actions {id="_specnodedisruptionpolicyunitsactions"}
 
 Description
@@ -480,6 +500,7 @@ Required
 | `reload` | `object` | reload specifies the service to reload, only valid if type is reload |
 | `restart` | `object` | restart specifies the service to restart, only valid if type is restart |
 | `type` | `string` | type represents the commands that will be carried out if this NodeDisruptionPolicySpecActionType is executed Valid values are Reboot, Drain, Reload, Restart, DaemonReload and None. reload/restart requires a corresponding service target specified in the reload/restart field. Other values require no further configuration |
+
 ### .spec.nodeDisruptionPolicy.units[].actions[].reload {id="_specnodedisruptionpolicyunitsactionsreload"}
 
 Description
@@ -496,6 +517,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .spec.nodeDisruptionPolicy.units[].actions[].restart {id="_specnodedisruptionpolicyunitsactionsrestart"}
 
 Description
@@ -512,6 +534,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .status {id="_status"}
 
 Description
@@ -529,6 +552,7 @@ Type
 | `managedBootImagesStatus` | `object` | managedBootImagesStatus reflects what the latest cluster-validated boot image configuration is and will be used by Machine Config Controller while performing boot image updates. |
 | `nodeDisruptionPolicyStatus` | `object` | nodeDisruptionPolicyStatus status reflects what the latest cluster-validated policies are, and will be used by the Machine Config Daemon during future node updates. |
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with |
+
 ### .status.bootImageSkewEnforcementStatus {id="_statusbootimageskewenforcementstatus"}
 
 Description
@@ -552,6 +576,7 @@ Required
 | `automatic` | `object` | automatic describes the current boot image of the cluster. This will be populated by the MCO when performing boot image updates. This value will be compared against the cluster’s skew limit to determine skew compliance. Required when mode is set to "Automatic" and forbidden otherwise. |
 | `manual` | `object` | manual describes the current boot image of the cluster. This will be populated by the MCO using the values provided in the spec.bootImageSkewEnforcement.manual field. This value will be compared against the cluster’s skew limit to determine skew compliance. Required when mode is set to "Manual" and forbidden otherwise. |
 | `mode` | `string` | mode determines the underlying behavior of skew enforcement mechanism. Valid values are Automatic, Manual and None. Automatic means that the MCO will perform boot image updates and store the OCP & RHCOS version associated with the last boot image update in the automatic field. Manual means that the cluster admin is expected to perform manual boot image updates and store the OCP & RHCOS version associated with the last boot image update in the manual field. In Automatic and Manual mode, the MCO will prevent upgrades when the boot image skew exceeds the skew limit described by the release image. None means that the MCO will no longer monitor the boot image skew. This may affect the cluster’s ability to scale. This field is required. |
+
 ### .status.bootImageSkewEnforcementStatus.automatic {id="_statusbootimageskewenforcementstatusautomatic"}
 
 Description
@@ -568,6 +593,7 @@ Type
 | --- | --- | --- |
 | `ocpVersion` | `string` | ocpVersion provides a string which represents the OCP version of the boot image. This field must match the OCP semver compatible format of x.y.z. This field must be between 5 and 10 characters long. |
 | `rhcosVersion` | `string` | rhcosVersion provides a string which represents the RHCOS version of the boot image This field must match rhcosVersion formatting of [major].[minor].[datestamp(YYYYMMDD)]-[buildnumber] or the legacy format of [major].[minor].[timestamp(YYYYMMDDHHmm)]-[buildnumber]. This field must be between 14 and 21 characters long. |
+
 ### .status.bootImageSkewEnforcementStatus.manual {id="_statusbootimageskewenforcementstatusmanual"}
 
 Description
@@ -589,6 +615,7 @@ Required
 | `mode` | `string` | mode is used to configure which boot image field is defined in Manual mode. Valid values are OCPVersion and RHCOSVersion. OCPVersion means that the cluster admin is expected to set the OCP version associated with the last boot image update in the OCPVersion field. RHCOSVersion means that the cluster admin is expected to set the RHCOS version associated with the last boot image update in the RHCOSVersion field. This field is required. |
 | `ocpVersion` | `string` | ocpVersion provides a string which represents the OCP version of the boot image. This field must match the OCP semver compatible format of x.y.z. This field must be between 5 and 10 characters long. Required when mode is set to "OCPVersion" and forbidden otherwise. |
 | `rhcosVersion` | `string` | rhcosVersion provides a string which represents the RHCOS version of the boot image This field must match rhcosVersion formatting of [major].[minor].[datestamp(YYYYMMDD)]-[buildnumber] or the legacy format of [major].[minor].[timestamp(YYYYMMDDHHmm)]-[buildnumber]. This field must be between 14 and 21 characters long. Required when mode is set to "RHCOSVersion" and forbidden otherwise. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -623,6 +650,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.managedBootImagesStatus {id="_statusmanagedbootimagesstatus"}
 
 Description
@@ -637,6 +665,7 @@ Type
 | --- | --- | --- |
 | `machineManagers` | `array` | machineManagers can be used to register machine management resources for boot image updates. The Machine Config Operator will watch for changes to this list. Only one entry is permitted per type of machine management resource. |
 | `machineManagers[]` | `object` | MachineManager describes a target machine resource that is registered for boot image updates. It stores identifying information such as the resource type and the API Group of the resource. It also provides granular control via the selection field. |
+
 ### .status.managedBootImagesStatus.machineManagers {id="_statusmanagedbootimagesstatusmachinemanagers"}
 
 Description
@@ -668,6 +697,7 @@ Required
 | `apiGroup` | `string` | apiGroup is name of the APIGroup that the machine management resource belongs to. The only current valid value is machine.openshift.io. machine.openshift.io means that the machine manager will only register resources that belong to OpenShift machine API group. |
 | `resource` | `string` | resource is the machine management resource’s type. Valid values are machinesets and controlplanemachinesets. machinesets means that the machine manager will only register resources of the kind MachineSet. controlplanemachinesets means that the machine manager will only register resources of the kind ControlPlaneMachineSet. |
 | `selection` | `object` | selection allows granular control of the machine management resources that will be registered for boot image updates. |
+
 ### .status.managedBootImagesStatus.machineManagers[].selection {id="_statusmanagedbootimagesstatusmachinemanagersselection"}
 
 Description
@@ -685,6 +715,7 @@ Required
 | --- | --- | --- |
 | `mode` | `string` | mode determines how machine managers will be selected for updates. Valid values are All, Partial and None. All means that every resource matched by the machine manager will be updated. Partial requires specified selector(s) and allows customisation of which resources matched by the machine manager will be updated. Partial is not permitted for the controlplanemachinesets resource type as they are a singleton within the cluster. None means that every resource matched by the machine manager will not be updated. |
 | `partial` | `object` | partial provides label selector(s) that can be used to match machine management resources. Only permitted when mode is set to "Partial". |
+
 ### .status.managedBootImagesStatus.machineManagers[].selection.partial {id="_statusmanagedbootimagesstatusmachinemanagersselectionpartial"}
 
 Description
@@ -702,6 +733,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `machineResourceSelector` | `object` | machineResourceSelector is a label selector that can be used to select machine resources like MachineSets. |
+
 ### .status.managedBootImagesStatus.machineManagers[].selection.partial.machineResourceSelector {id="_statusmanagedbootimagesstatusmachinemanagersselectionpartialmachineresourceselector"}
 
 Description
@@ -716,6 +748,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .status.managedBootImagesStatus.machineManagers[].selection.partial.machineResourceSelector.matchExpressions {id="_statusmanagedbootimagesstatusmachinemanagersselectionpartialmachineresourceselectormatchexpressions"}
 
 Description
@@ -745,6 +778,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status.nodeDisruptionPolicyStatus {id="_statusnodedisruptionpolicystatus"}
 
 Description
@@ -758,6 +792,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `clusterPolicies` | `object` | clusterPolicies is a merge of cluster default and user provided node disruption policies. |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies {id="_statusnodedisruptionpolicystatusclusterpolicies"}
 
 Description
@@ -774,6 +809,7 @@ Type
 | `sshkey` | `object` | sshkey is the overall sshkey MachineConfig definition |
 | `units` | `array` | units is a list MachineConfig unit definitions and actions to take on changes to those services |
 | `units[]` | `object` | NodeDisruptionPolicyStatusUnit is a systemd unit name and corresponding actions to take and is used in the NodeDisruptionPolicyClusterStatus object |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.files {id="_statusnodedisruptionpolicystatusclusterpoliciesfiles"}
 
 Description
@@ -802,6 +838,7 @@ Required
 | `actions` | `array` | actions represents the series of commands to be executed on changes to the file at the corresponding file path. Actions will be applied in the order that they are set in this list. If there are other incoming changes to other MachineConfig entries in the same update that require a reboot, the reboot will supercede these actions. Valid actions are Reboot, Drain, Reload, DaemonReload and None. The Reboot action and the None action cannot be used in conjunction with any of the other actions. This list supports a maximum of 10 entries. |
 | `actions[]` | `object` |  |
 | `path` | `string` | path is the location of a file being managed through a MachineConfig. The Actions in the policy will apply to changes to the file at this path. |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.files[].actions {id="_statusnodedisruptionpolicystatusclusterpoliciesfilesactions"}
 
 Description
@@ -834,6 +871,7 @@ Required
 | `reload` | `object` | reload specifies the service to reload, only valid if type is reload |
 | `restart` | `object` | restart specifies the service to restart, only valid if type is restart |
 | `type` | `string` | type represents the commands that will be carried out if this NodeDisruptionPolicyStatusActionType is executed Valid values are Reboot, Drain, Reload, Restart, DaemonReload, None and Special. reload/restart requires a corresponding service target specified in the reload/restart field. Other values require no further configuration |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.files[].actions[].reload {id="_statusnodedisruptionpolicystatusclusterpoliciesfilesactionsreload"}
 
 Description
@@ -850,6 +888,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.files[].actions[].restart {id="_statusnodedisruptionpolicystatusclusterpoliciesfilesactionsrestart"}
 
 Description
@@ -866,6 +905,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.sshkey {id="_statusnodedisruptionpolicystatusclusterpoliciessshkey"}
 
 Description
@@ -883,6 +923,7 @@ Required
 | --- | --- | --- |
 | `actions` | `array` | actions represents the series of commands to be executed on changes to the file at the corresponding file path. Actions will be applied in the order that they are set in this list. If there are other incoming changes to other MachineConfig entries in the same update that require a reboot, the reboot will supercede these actions. Valid actions are Reboot, Drain, Reload, DaemonReload and None. The Reboot action and the None action cannot be used in conjunction with any of the other actions. This list supports a maximum of 10 entries. |
 | `actions[]` | `object` |  |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.sshkey.actions {id="_statusnodedisruptionpolicystatusclusterpoliciessshkeyactions"}
 
 Description
@@ -915,6 +956,7 @@ Required
 | `reload` | `object` | reload specifies the service to reload, only valid if type is reload |
 | `restart` | `object` | restart specifies the service to restart, only valid if type is restart |
 | `type` | `string` | type represents the commands that will be carried out if this NodeDisruptionPolicyStatusActionType is executed Valid values are Reboot, Drain, Reload, Restart, DaemonReload, None and Special. reload/restart requires a corresponding service target specified in the reload/restart field. Other values require no further configuration |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.sshkey.actions[].reload {id="_statusnodedisruptionpolicystatusclusterpoliciessshkeyactionsreload"}
 
 Description
@@ -931,6 +973,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.sshkey.actions[].restart {id="_statusnodedisruptionpolicystatusclusterpoliciessshkeyactionsrestart"}
 
 Description
@@ -947,6 +990,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be restarted Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.units {id="_statusnodedisruptionpolicystatusclusterpoliciesunits"}
 
 Description
@@ -975,6 +1019,7 @@ Required
 | `actions` | `array` | actions represents the series of commands to be executed on changes to the file at the corresponding file path. Actions will be applied in the order that they are set in this list. If there are other incoming changes to other MachineConfig entries in the same update that require a reboot, the reboot will supercede these actions. Valid actions are Reboot, Drain, Reload, DaemonReload and None. The Reboot action and the None action cannot be used in conjunction with any of the other actions. This list supports a maximum of 10 entries. |
 | `actions[]` | `object` |  |
 | `name` | `string` | name represents the service name of a systemd service managed through a MachineConfig Actions specified will be applied for changes to the named service. Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.units[].actions {id="_statusnodedisruptionpolicystatusclusterpoliciesunitsactions"}
 
 Description
@@ -1007,6 +1052,7 @@ Required
 | `reload` | `object` | reload specifies the service to reload, only valid if type is reload |
 | `restart` | `object` | restart specifies the service to restart, only valid if type is restart |
 | `type` | `string` | type represents the commands that will be carried out if this NodeDisruptionPolicyStatusActionType is executed Valid values are Reboot, Drain, Reload, Restart, DaemonReload, None and Special. reload/restart requires a corresponding service target specified in the reload/restart field. Other values require no further configuration |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.units[].actions[].reload {id="_statusnodedisruptionpolicystatusclusterpoliciesunitsactionsreload"}
 
 Description
@@ -1023,6 +1069,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `serviceName` | `string` | serviceName is the full name (e.g. crio.service) of the service to be reloaded Service names should be of the format ${{ NAME }}${{ SERVICETYPE }} and can up to 255 characters long. ${{ NAME }} must be atleast 1 character long and can only consist of alphabets, digits, ":", "-", "_", ".", and "\". ${{ SERVICETYPE }} must be one of ".service", ".socket", ".device", ".mount", ".automount", ".swap", ".target", ".path", ".timer", ".snapshot", ".slice" or ".scope". |
+
 ### .status.nodeDisruptionPolicyStatus.clusterPolicies.units[].actions[].restart {id="_statusnodedisruptionpolicystatusclusterpoliciesunitsactionsrestart"}
 
 Description
@@ -1048,12 +1095,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of MachineConfiguration
     *   `GET`: list objects of kind MachineConfiguration
     *   `POST`: create a MachineConfiguration
-*   `/apis/operator.openshift.io/v1/machineconfigurations/{{ name }}`
+*   `/apis/operator.openshift.io/v1/machineconfigurations/{{ name }}`{minja}
     *   `DELETE`: delete a MachineConfiguration
     *   `GET`: read the specified MachineConfiguration
     *   `PATCH`: partially update the specified MachineConfiguration
     *   `PUT`: replace the specified MachineConfiguration
-*   `/apis/operator.openshift.io/v1/machineconfigurations/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1/machineconfigurations/{{ name }}/status`{minja}
     *   `GET`: read status of the specified MachineConfiguration
     *   `PATCH`: partially update status of the specified MachineConfiguration
     *   `PUT`: replace status of the specified MachineConfiguration

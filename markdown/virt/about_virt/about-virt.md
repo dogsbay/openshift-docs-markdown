@@ -7,7 +7,7 @@ title: "About {{ VirtProductName }}"
 # About {{ VirtProductName }} {id="about-virt"}
 {%- set context = "about-virt" %}
 
-{{ VirtProductName }} provides a comprehensive virtualization solution that allows you to run and manage virtual machine workloads alongside container workloads in your {{ product_title }} cluster.
+{{ VirtProductName }} provides a comprehensive virtualization solution that allows you to run and manage virtual machine workloads alongside container workloads in your {{ product_title }} cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-what-you-can-do-with-virt.md" %}{% endleveloffset %}
 
@@ -25,9 +25,9 @@ title: "About {{ VirtProductName }}"
 
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 {% leveloffset +1 %}{% include "./modules/virt-sno-differences.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 {% if not (openshift_origin or openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [{{ ove_first }} and related products](https://www.redhat.com/en/resources/self-managed-openshift-subscription-guide#section-8)
@@ -55,4 +55,4 @@ title: "About {{ VirtProductName }}"
 *   [Configure eviction and run strategies](/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)
 {%- if not openshift_dedicated %}
 *   [Tuning & Scaling Guide in the Red&#160;Hat Knowledgebase](https://access.redhat.com/articles/6994974)
-{% endif %}
+{%- endif %}

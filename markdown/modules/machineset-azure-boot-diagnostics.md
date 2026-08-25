@@ -10,9 +10,9 @@ You can enable boot diagnostics on {{ azure_full }} machines that your machine s
 **Prerequisites**
 
 *   Have an existing {{ azure_short }}
-{% if ash %}
+{%- if ash %}
 Stack Hub
-{% endif %}
+{%- endif %}
 cluster.
 
 **Procedure**
@@ -62,5 +62,5 @@ cluster.
 *   On the {{ azure_short }} portal, review the **Boot diagnostics** page for a machine deployed by the machine set, and verify that you can see the serial logs for the machine.
 
 {% if context == "creating-machineset-azure-stack-hub" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}

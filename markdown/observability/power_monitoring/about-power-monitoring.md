@@ -7,7 +7,7 @@ title: "About {{ PM_title }}"
 # About {{ PM_title }} {id="about-power-monitoring"}
 {%- set context = "about-power-monitoring" %}
 
-With {{ PM_title_c }}, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to help you identify and optimize workload energy usage.
+With {{ PM_title_c }}, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to help you identify and optimize workload energy usage. {._abstract}
 
 
 :::important

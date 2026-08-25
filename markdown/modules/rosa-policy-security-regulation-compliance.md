@@ -28,10 +28,10 @@ AWS customers can configure a private network connection to their ROSA cluster t
 Fine-grained network access control rules can be configured by customers, on a per-project basis, using `NetworkPolicy` objects and the
 {%- if openshift_rosa_hcp %}
 OVN-Kubernetes CNI.
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 OpenShift SDN.
-{% endif %}
+{%- endif %}
 
 ## Penetration testing {id="rosa-policy-penetration-testing_{{ context }}"}
 Red&#160;Hat performs periodic penetration tests against ROSA. Tests are performed by an independent internal team by using industry standard tools and best practices.
@@ -42,13 +42,14 @@ Any issues that may be discovered are prioritized based on severity. Any issues 
 {{ product_title }} follows common industry best practices for security and controls. The certifications are outlined in the following table.
 
 {% if openshift_rosa_hcp %}
+
 **Security and control certifications for {{ product_title }}**
 
 | Compliance | {{ hcp_title_first }} |
 | --- |
 | FIPS |
 | Yes |
-| HIPAA Qualified^[1]^ |
+| HIPAA Qualified<sup>[1]</sup> |
 | Yes |
 | ISO 27001 |
 | Yes |
@@ -64,19 +65,21 @@ Any issues that may be discovered are prioritized based on severity. Any issues 
 | Yes |
 | SOC 3 |
 | Yes |
-| FedRAMP High^[2]^ |
+| FedRAMP High<sup>[2]</sup> |
 | Yes |
+
 1.  For more information about Red Hat’s HIPAA Qualified ROSA offerings, see the [HIPAA Overview](https://access.redhat.com/articles/compliance_activities_and_gov_standards#hipaa-overview-13).
 1.  For more information about ROSA on GovCloud, see  [FedRAMP Marketplace ROSA Agency](https://marketplace.fedramp.gov/products/FR2102031769).
 
 {% endif %}
 
 {% if not openshift_rosa_hcp %}
+
 **Security and control certifications for {{ product_title }}**
 
 | Compliance | {{ product_title }} (ROSA) | {{ hcp_title_first }} |
 | --- |
-| HIPAA Qualified^[1]^ |
+| HIPAA Qualified<sup>[1]</sup> |
 | Yes |
 | Yes |
 | ISO 27001 |
@@ -100,9 +103,10 @@ Any issues that may be discovered are prioritized based on severity. Any issues 
 | SOC 3 |
 | Yes |
 | Yes |
-| FedRAMP High^[2]^ |
+| FedRAMP High<sup>[2]</sup> |
 | Yes ([GovCloud](https://aws.amazon.com/govcloud-us/?whats-new-ess.sort-by=item.additionalFields.postDateTime&whats-new-ess.sort-order=desc) requisite) |
 | Yes |
+
 1.  For more information about Red Hat’s HIPAA Qualified ROSA offerings, see the [HIPAA Overview](https://access.redhat.com/articles/compliance_activities_and_gov_standards#hipaa-overview-13).
 1.  For more information about ROSA on GovCloud, see  [FedRAMP Marketplace ROSA Agency](https://marketplace.fedramp.gov/products/FR2102031769).
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if openshift_dedicated %}
+{% if openshift_dedicated %}
 # Running the network verification manually {id="running-network-verification-manually-ocm_{{ context }}"}
 
 {% endif %}

@@ -13,15 +13,15 @@ For more information about persistent disk types, compatibility, regional availa
 
 1.  In a text editor, open the YAML file for an existing machine set or create a new one.
 1.  Edit the following line under the `providerSpec` field:
-    ```yaml
-{%- if not cpmso %}
+    ```yaml {minja}
+    {% if not cpmso %}
     apiVersion: machine.openshift.io/v1beta1
     kind: MachineSet
-{% endif %}
-{% if cpmso %}
+    {% endif %}
+    {% if cpmso %}
     apiVersion: machine.openshift.io/v1
     kind: ControlPlaneMachineSet
-{%- endif %}
+    {%- endif %}
     ...
     spec:
       template:
@@ -29,12 +29,12 @@ For more information about persistent disk types, compatibility, regional availa
           providerSpec:
             value:
               disks:
-{%- if not cpmso %}
+    {%- if not cpmso %}
                 type: <pd-disk-type>
-{% endif %}
-{% if cpmso %}
+    {%- endif %}
+    {%- if cpmso %}
                 type: pd-ssd
-{%- endif %}
+    {%- endif %}
     ```
 
 {% if not cpmso %}
@@ -57,5 +57,5 @@ For more information about persistent disk types, compatibility, regional availa
 *   Using the {{ gcp_full }} console, review the details for a machine deployed by the machine set and verify that the `Type` field matches the configured disk type.
 
 {% if context == "cpmso-supported-features-gcp" %}
-{%- set cpmso = false -%}
+{%- set cpmso = "" -%}
 {% endif %}

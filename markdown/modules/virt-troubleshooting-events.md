@@ -5,7 +5,7 @@ To monitor and troubleshoot virtual machine (VM), namespace, and resource issues
 
 **Procedure**
 
-*   To view VM events, go to **VirtualMachine details** -> **Events** in the web console.
+*   To view VM events, go to **VirtualMachine details** → **Events** in the web console.
 *   To view namespace events, run the following command:
     ```terminal
     $ oc get events -n <namespace>

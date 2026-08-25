@@ -3,13 +3,13 @@ title: "Pre-caching images for {{ sno }} deployments"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Pre-caching images for {{ sno }} deployments {id="ztp-pre-staging-tool"}
 {% include "./_attributes/common-attributes.md" %}
+# Pre-caching images for {{ sno }} deployments {id="ztp-pre-staging-tool"}
 {%- set context = "pre-caching" %}
 
 In environments with limited bandwidth where you use the {{ ztp_first }} solution to deploy a large number of clusters, you want to avoid downloading all the images that are required for bootstrapping and installing {{ product_title }}.
 The limited bandwidth at remote {{ sno }} sites can cause long deployment times.
-The {{ factory_prestaging_tool }} allows you to pre-stage servers before shipping them to the remote site for ZTP provisioning.
+The {{ factory_prestaging_tool }} allows you to pre-stage servers before shipping them to the remote site for ZTP provisioning. {._abstract}
 
 The {{ factory_prestaging_tool }} does the following:
 
@@ -29,6 +29,7 @@ The {{ factory_prestaging_tool }} does the following:
 {% leveloffset +1 %}{% include "./modules/ztp-precaching-booting-from-live-os.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About Butane](/installing/install_config/installing-customizing#installation-special-config-butane-about_installing-customizing)
 *   [Creating a custom live {{ op_system }} ISO for remote server access](/installing/installing_sno/install-sno-installing-sno#create-custom-live-rhcos-iso_install-sno-installing-sno-with-the-assisted-installer)
@@ -43,6 +44,7 @@ The {{ factory_prestaging_tool }} does the following:
 {% leveloffset +2 %}{% include "./modules/ztp-precaching-preparing-ocp-images.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [OpenShift installation customization tools](https://console.redhat.com/openshift/downloads#tool-pull-secret)
 *   [About cluster lifecycle with the multicluster engine operator](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview#mce-intro)

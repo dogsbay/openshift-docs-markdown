@@ -7,7 +7,7 @@ Config maps allow you to decouple configuration artifacts from container image c
 
 *   In the OSToy app, in the left menu, click **Config Maps**, displaying the contents of the config map available to the OSToy application. The code snippet shows an example of a config map configuration:
 
-    ***Example output:***
+    **Example output:**
     ```text
     kind: ConfigMap
     apiVersion: v1

@@ -1,5 +1,5 @@
 ---
-title: "NodeSlicePool []"
+title: "NodeSlicePool [whereabouts.cni.cncf.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NodeSlicePoolSpec defines the desired state of NodeSlicePool |
 | `status` | `object` | NodeSlicePoolStatus defines the desired state of NodeSlicePool |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,6 +43,7 @@ Required
 | --- | --- | --- |
 | `range` | `string` | Range is a RFC 4632/4291-style string that represents an IP address and prefix length in CIDR notation this refers to the entire range where the node is allocated a subset |
 | `sliceSize` | `string` | SliceSize is the size of subnets or slices of the range that each node will be assigned |
+
 ### .status {id="_status"}
 
 Description
@@ -59,6 +61,7 @@ Required
 | --- | --- | --- |
 | `allocations` | `array` | Allocations holds the allocations of nodes to slices |
 | `allocations[]` | `object` |  |
+
 ### .status.allocations {id="_statusallocations"}
 
 Description
@@ -92,11 +95,11 @@ The following API endpoints are available:
 
 *   `/apis/whereabouts.cni.cncf.io/v1alpha1/nodeslicepools`
     *   `GET`: list objects of kind NodeSlicePool
-*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/nodeslicepools`
+*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/nodeslicepools`{minja}
     *   `DELETE`: delete collection of NodeSlicePool
     *   `GET`: list objects of kind NodeSlicePool
     *   `POST`: create a NodeSlicePool
-*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/nodeslicepools/{{ name }}`
+*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/nodeslicepools/{{ name }}`{minja}
     *   `DELETE`: delete a NodeSlicePool
     *   `GET`: read the specified NodeSlicePool
     *   `PATCH`: partially update the specified NodeSlicePool

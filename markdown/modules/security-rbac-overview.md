@@ -27,6 +27,7 @@ Bindings
 
     :::note
 
+
     You can bind more than one role to a user or group.
     
     :::

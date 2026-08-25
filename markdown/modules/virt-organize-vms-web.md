@@ -17,14 +17,14 @@ For more information about the support scope of Red&#160;Hat Technology Preview 
 
 :::note
 
-{{ VirtProductName }} does not enable folders in the virtual machine tree by default. To enable folders, go to **Virtualization** -> **Settings**. In the **Preview features** tab, select **Enable folders in Virtual Machines tree view**.
+{{ VirtProductName }} does not enable folders in the virtual machine tree by default. To enable folders, go to **Virtualization** → **Settings**. In the **Preview features** tab, select **Enable folders in Virtual Machines tree view**.
 
 :::
 
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines** from the side menu to access the tree view with all projects and VMs in your cluster.
+1.  Click **Virtualization** → **VirtualMachines** from the side menu to access the tree view with all projects and VMs in your cluster.
 1.  Perform one of the following actions depending on your use case:
     *   To move the VM to a new folder in the same project:
         1.  Right-click the name of the VM in the tree view.

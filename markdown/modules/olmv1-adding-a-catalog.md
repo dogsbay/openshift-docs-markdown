@@ -6,7 +6,7 @@ To add a catalog to a cluster for {{ olmv1_first }} usage, create a `ClusterCata
 **Procedure**
 
 1.  Create a catalog custom resource (CR), similar to the following example:
-    ```yaml title="Example my-redhat-operators.yaml file"
+    ```yaml title="Example my-redhat-operators.yaml file" {minja}
     apiVersion: olm.operatorframework.io/v1
     kind: ClusterCatalog
     metadata:
@@ -61,7 +61,7 @@ To add a catalog to a cluster for {{ olmv1_first }} usage, create a `ClusterCata
         ```terminal
         $ oc describe clustercatalog my-redhat-operators
         ```
-        ```text title="Example output"
+        ```text title="Example output" {minja}
         Name:         my-redhat-operators
         Namespace:
         Labels:       olm.operatorframework.io/metadata.name=my-redhat-operators

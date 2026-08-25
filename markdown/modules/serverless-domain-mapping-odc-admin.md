@@ -49,18 +49,18 @@ If you have cluster or dedicated administrator permissions, you can create a `Do
     1.  The namespace of both the `DomainMapping` CR and the target CR.
     1.  The name of the target CR to map to the custom domain.
     1.  The type of CR being mapped to the custom domain.
-        ```yaml title="Example domain mapping to a Knative service"
-        apiVersion: serving.knative.dev/v1alpha1
-        kind: DomainMapping
-        metadata:
-         name: custom-ksvc-domain.example.com
-         namespace: default
-        spec:
-         ref:
-           name: example-service
-           kind: Service
-           apiVersion: serving.knative.dev/v1
-        ```
+    ```yaml title="Example domain mapping to a Knative service"
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: DomainMapping
+    metadata:
+     name: custom-ksvc-domain.example.com
+     namespace: default
+    spec:
+     ref:
+       name: example-service
+       kind: Service
+       apiVersion: serving.knative.dev/v1
+    ```
 
 **Verification**
 

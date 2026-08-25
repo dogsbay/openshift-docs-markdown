@@ -29,8 +29,8 @@ After you add a catalog to your cluster, you can query the catalog to find Opera
     :   Specifies the URL of the catalog registry, such as `registry.redhat.io/redhat/redhat-operator-index`.
 
     `tag`
-    :   Specifies the tag or version of the catalog, such as `v{{ product_version }}` or `latest`.
-    ```terminal title="Example command"
+    :   Specifies the tag or version of the catalog, such as `v{{ product_version }}`{minja} or `latest`.
+    ```terminal title="Example command" {minja}
     $ opm render \
       registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
       | jq -cs '[.[] | select(.schema == "olm.bundle" \
@@ -68,7 +68,7 @@ After you add a catalog to your cluster, you can query the catalog to find Opera
       | jq -s '.[] | select( .schema == "olm.package") \
       | select( .name == "<package_name>")'
     ```
-    ```terminal title="Example command"
+    ```terminal title="Example command" {minja}
     $ opm render \
       registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
       | jq -s '.[] | select( .schema == "olm.package") \

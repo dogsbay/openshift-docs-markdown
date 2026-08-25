@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# The CI/CD methodology and practice {id="cicd_gitops"}
 {% include "./_attributes/common-attributes.md" %}
+# The CI/CD methodology and practice {id="cicd_gitops"}
 {%- set context = "cicd_gitops" %}
 
 Using a _continuous integration/continuous delivery_ (CI/CD) methodology enables you to regularly deliver applications to customers by introducing automation into the stages of application development, from integration and testing phases to delivery and deployment. The CI/CD process is often referred to as a "CI/CD pipeline." The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment.

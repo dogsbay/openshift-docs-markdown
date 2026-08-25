@@ -7,7 +7,7 @@ A `PersistentVolumeClaim` resource can consume storage resources.
 
 The following table shows the supported constraints for a persistent volume claim. If specified, the constraints must hold true for each persistent volume claim.
 
-***`PersistentVolumeClaim` resource limits***
+**`PersistentVolumeClaim` resource limits**
 
 <table>
 <thead>

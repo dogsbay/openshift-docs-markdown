@@ -11,7 +11,7 @@ You can delete an `LVMCluster` custom resource (CR) when decommissioning {{ lvms
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Click **Ecosystem** -> **Installed Operators** to view all the installed Operators.
+1.  Click **Ecosystem** → **Installed Operators** to view all the installed Operators.
 1.  Click **{{ lvms }}** in the `openshift-lvm-storage` namespace.
 1.  Click the **LVMCluster** tab.
 1.  From the **Actions**, select **Delete LVMCluster**.

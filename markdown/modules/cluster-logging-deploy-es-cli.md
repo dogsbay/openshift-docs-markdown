@@ -38,10 +38,10 @@ You can use the {{ oc_first }} to install the {{ es_op }}.
         openshift.io/cluster-monitoring: "true" (2)
     ```
     1.  You must specify the `openshift-operators-redhat` namespace. To prevent possible conflicts with metrics, configure the Prometheus Cluster Monitoring stack to scrape metrics from the `openshift-operators-redhat` namespace and not the `openshift-operators` namespace. The `openshift-operators` namespace might contain community Operators, which are untrusted and could publish a metric with the same name as
-        {%- if openshift_rosa %}
+{%- if openshift_rosa %}
      a ROSA
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
      an {{ product_title }}
 {%- endif %}
     metric, which would cause conflicts.
@@ -84,13 +84,13 @@ You can use the {{ oc_first }} to install the {{ es_op }}.
     1.  Specify `redhat-operators`. If your {{ product_title }} cluster is installed on a restricted network, also known as a disconnected cluster,
     specify the name of the `CatalogSource` object created when you configured the Operator Lifecycle Manager (OLM).
 
-        :::note
+    :::note
 
-        Specifying `stable` installs the current version of the latest stable release. Using `stable` with `installPlanApproval: "Automatic"` automatically upgrades your Operators to the latest stable major and minor release.
+    Specifying `stable` installs the current version of the latest stable release. Using `stable` with `installPlanApproval: "Automatic"` automatically upgrades your Operators to the latest stable major and minor release.
 
-        Specifying `stable-x.y` installs the current minor version of a specific major release. Using `stable-x.y` with `installPlanApproval: "Automatic"` automatically upgrades your Operators to the latest stable minor release within the major release.
-        
-        :::
+    Specifying `stable-x.y` installs the current minor version of a specific major release. Using `stable-x.y` with `installPlanApproval: "Automatic"` automatically upgrades your Operators to the latest stable minor release within the major release.
+    
+    :::
 
 1.  Apply the subscription by running the following command:
     ```terminal

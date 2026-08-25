@@ -11,6 +11,7 @@ Successful autoscaling is dependent on having the correct AWS resource quotas in
     ```terminal
     $ rosa list machinepools --cluster=<cluster_name>
     ```
+
     **Example output**
 
 {%- if not openshift_rosa_hcp %}
@@ -19,14 +20,14 @@ Successful autoscaling is dependent on having the correct AWS resource quotas in
     worker  No           2         m7i.xlarge                          us-east-2a                       No              300 GiB
     mp1     No           2         m7i.xlarge                          us-east-2a                       No              300 GiB  
     ```
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     ```terminal
     ID       AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS    TAINTS    AVAILABILITY ZONE  SUBNET                    VERSION  AUTOREPAIR  
     workers  No           2/2       m7i.xlarge                          us-east-2a         subnet-03c2998b482bf3b20  4.16.6   Yes
     mp1      No           2/2       m7i.xlarge                          us-east-2a         subnet-03c2998b482bf3b20  4.16.6   Yes
     ```
-{% endif %}
+{%- endif %}
 1.  Get the ID of the machine pools that you want to configure.
 1.  To enable autoscaling on a machine pool, enter the following command:
     ```terminal

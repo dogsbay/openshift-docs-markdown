@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Deploying applications on Service Mesh {id="deploying-applications-ossm-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Deploying applications on Service Mesh {id="deploying-applications-ossm-v1x"}
 {%- set context = "deploying-applications-ossm-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

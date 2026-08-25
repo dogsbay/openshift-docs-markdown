@@ -32,26 +32,26 @@ You can limit the rate of incoming logs that are collected by configuring the `C
     1.  The input name.
     1.  A list of labels. If these labels match labels that are applied to a pod, the per-container limit specified in the `maxRecordsPerSecond` field is applied to those containers.
     1.  Configures the rate limit. Setting the `maxRecordsPerSecond` field to `0` means that no logs are collected for the container. Setting the `maxRecordsPerSecond` field to some other value means that a maximum of that number of records per second are collected for the container.
-        ```yaml title="Example ClusterLogForwarder CR that sets a per-container limit for containers in selected namespaces"
-        apiVersion: logging.openshift.io/v1
-        kind: ClusterLogForwarder
-        metadata:
-        # ...
-        spec:
-        # ...
-          inputs:
-            - name: <input_name> (1)
-              application:
-                namespaces: [ example-ns-1, example-ns-2 ] (2)
-                containerLimit:
-                  maxRecordsPerSecond: 10 (3)
-            - name: <input_name>
-              application:
-                namespaces: [ test ]
-                containerLimit:
-                  maxRecordsPerSecond: 1000
-        # ...
-        ```
+    ```yaml title="Example ClusterLogForwarder CR that sets a per-container limit for containers in selected namespaces"
+    apiVersion: logging.openshift.io/v1
+    kind: ClusterLogForwarder
+    metadata:
+    # ...
+    spec:
+    # ...
+      inputs:
+        - name: <input_name> (1)
+          application:
+            namespaces: [ example-ns-1, example-ns-2 ] (2)
+            containerLimit:
+              maxRecordsPerSecond: 10 (3)
+        - name: <input_name>
+          application:
+            namespaces: [ test ]
+            containerLimit:
+              maxRecordsPerSecond: 1000
+    # ...
+    ```
     1.  The input name.
     1.  A list of namespaces. The per-container limit specified in the `maxRecordsPerSecond` field is applied to all containers in the namespaces listed.
     1.  Configures the rate limit. Setting the `maxRecordsPerSecond` field to `10` means that a maximum of 10 records per second are collected for each container in the namespaces listed.

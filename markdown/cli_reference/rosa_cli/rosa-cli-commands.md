@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# ROSA CLI command reference {id="rosa-cli-commands"}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# ROSA CLI command reference {id="rosa-cli-commands"}
 {%- set context = "rosa-cli-commands" %}
 
 This reference provides descriptions and example commands for {{ rosa_cli_first }} commands. {._abstract}

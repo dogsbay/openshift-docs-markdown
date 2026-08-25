@@ -21,21 +21,21 @@ You can find information about available {{ product_title }} advisories and upda
 
 **Procedure**
 
-1.  From the web console, click **Administration** -> **Cluster Settings** and review the contents of the **Details** tab.
+1.  From the web console, click **Administration** → **Cluster Settings** and review the contents of the **Details** tab.
 
 {% if not openshift_origin %}
-1.  For production clusters, ensure that the **Channel** is set to the correct channel for the version that you want to update to, such as `stable-{{ product_version }}`.
+1.  For production clusters, ensure that the **Channel** is set to the correct channel for the version that you want to update to, such as `stable-{{ product_version }}`{minja}.
 
     :::important
 
-    For production clusters, you must subscribe to a `stable-\*`, `eus-**` or `fast-**` channel.
+    For production clusters, you must subscribe to a `stable-\*`, `eus-*` or `fast-*` channel.
     
     :::
 
 {% endif %}
 {% if openshift_origin %}
 1.  For production clusters, ensure that the **Channel** is set to `stable-4`.
-{%- endif %}
+{% endif %}
 
     :::note
 
@@ -65,10 +65,10 @@ You can find information about available {{ product_title }} advisories and upda
 
 1.  After the update completes and the Cluster Version Operator refreshes the available updates, check if more updates are available in your current channel.
     *   If updates are available, continue to perform updates in the current channel until you can no longer update.
-        {%- if not openshift_origin %}
-    *   If no updates are available, change the **Channel** to the `stable-\*`, `eus-**` or `fast-**` channel for the next minor version, and update to the version that you want in that channel.
-        {% endif %}
-        {% if openshift_origin %}
+{%- if not openshift_origin %}
+    *   If no updates are available, change the **Channel** to the `stable-\*`, `eus-*` or `fast-*` channel for the next minor version, and update to the version that you want in that channel.
+{%- endif %}
+{%- if openshift_origin %}
     *   If no updates are available, change the **Channel** to the `stable-*` channel for the next minor version, and update to the version that you want in that channel.
 {%- endif %}
 

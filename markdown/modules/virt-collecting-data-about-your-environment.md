@@ -8,7 +8,7 @@ Collecting data about your environment minimizes the time required to analyze an
 {%- if openshift_dedicated or openshift_rosa %}
 *   You have set the retention time for Prometheus metrics data to a minimum of seven days.
 *   You have configured the Alertmanager to capture relevant alerts and to send alert notifications to a dedicated mailbox so that they can be viewed and persisted outside the cluster.
-{% endif %}
+{%- endif %}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   You have set the retention time for Prometheus metrics data to a minimum of seven days.
@@ -22,7 +22,7 @@ Collecting data about your environment minimizes the time required to analyze an
 1.  Collect must-gather data for the cluster.
 1.  Collect must-gather data for {{ rh_storage_first }}, if necessary.
 1.  Collect must-gather data for {{ VirtProductName }}.
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 1.  Collect Prometheus metrics for the cluster.
 {%- endif %}

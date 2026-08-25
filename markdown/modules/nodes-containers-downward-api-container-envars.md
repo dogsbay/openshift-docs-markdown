@@ -37,7 +37,7 @@ string.
           restartPolicy: Never
         # ...
         ```
-    1.  Create the pod from the `**_pod.yaml_**` file by using the following command:
+    1.  Create the pod from the `*_pod.yaml_*` file by using the following command:
         ```terminal
         $ oc create -f pod.yaml
         ```

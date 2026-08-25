@@ -3,8 +3,8 @@ title: "About image-based deployments for managed {{ sno }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About image-based deployments for managed {{ sno }} {id="ibi-edge-image-based-install"}
 {% include "./_attributes/common-attributes.md" %}
+# About image-based deployments for managed {{ sno }} {id="ibi-edge-image-based-install"}
 {%- set context = "ibi-edge-image-based-install" %}
 
 When a host preinstalled with {{ sno }} using an image-based installation arrives at a remote site, a technician can easily reconfigure and deploy the host in a matter of minutes.
@@ -37,6 +37,7 @@ Alternatively, you can manually deploy a preinstalled host for a cluster without
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying a {{ sno }} cluster using the `openshift-install` program](/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#create-standalone-config-iso_ibi-edge-image-based-install)
 
@@ -45,6 +46,7 @@ Alternatively, you can manually deploy a preinstalled host for a cluster without
 {% leveloffset +1 %}{% include "./modules/ibi-create-config-iso.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using image pull secrets](/openshift_images/managing_images/using-image-pull-secrets)
 *   [Cluster configuration resources for deploying a preinstalled host](/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install#ibi-managed-cluster-config-resources_ibi-edge-image-based-install)
@@ -56,6 +58,7 @@ Alternatively, you can manually deploy a preinstalled host for a cluster without
 {% leveloffset +1 %}{% include "./modules/ibi-extra-manifests-configmap.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the BareMetalHost resource](/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-about-the-baremetalhost-resource_bare-metal-postinstallation-configuration)
 *   [Using image pull secrets](/openshift_images/managing_images/using-image-pull-secrets)

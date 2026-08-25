@@ -13,7 +13,7 @@ After the control plane initializes, you must immediately configure some Operato
     ```terminal
     $ watch -n5 oc get clusteroperators
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
     authentication                             {{ product_version }}.0    True        False         False      19m
     baremetal                                  {{ product_version }}.0    True        False         False      37m

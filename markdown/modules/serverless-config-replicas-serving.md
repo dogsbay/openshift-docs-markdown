@@ -12,11 +12,12 @@ To specify three minimum replicas for the eligible deployment resources, set the
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster administrator or dedicated administrator access.
 {% endif %}
+
 *   The {{ ServerlessOperatorName }} and Knative Serving are installed on your cluster.
 
 **Procedure**
 
-1.  In the {{ product_title }} web console **Administrator** perspective, navigate to **OperatorHub** -> **Installed Operators**.
+1.  In the {{ product_title }} web console **Administrator** perspective, navigate to **OperatorHub** → **Installed Operators**.
 1.  Select the `knative-serving` namespace.
 1.  Click **Knative Serving** in the list of **Provided APIs** for the {{ ServerlessOperatorName }} to go to the **Knative Serving** tab.
 1.  Click **knative-serving**, then go to the **YAML** tab in the **knative-serving** page.

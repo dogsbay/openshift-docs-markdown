@@ -5,6 +5,6 @@ View and modify the `FlowCollector` resource in the {{ product_title }} web cons
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster** then select the **YAML** tab. There, you can modify the `FlowCollector` resource to configure the Network Observability Operator.

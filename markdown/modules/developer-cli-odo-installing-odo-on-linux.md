@@ -2,7 +2,7 @@
 
 # Installing {{ odo_title }} on Linux {id="installing-odo-on-linux_{{ context }}"}
 
-The `{{ odo_title }}` CLI is available to download as a binary and as a tarball for multiple operating systems and architectures including:
+The `{{ odo_title }}`{minja} CLI is available to download as a binary and as a tarball for multiple operating systems and architectures including:
 
 | Operating System | Binary | Tarball |
 | --- | --- | --- |
@@ -28,13 +28,13 @@ The `{{ odo_title }}` CLI is available to download as a binary and as a tarball 
     ```terminal
     $ chmod +x <filename>
     ```
-1.  Place the `{{ odo_title }}` binary in a directory that is on your `PATH`.
+1.  Place the `{{ odo_title }}`{minja} binary in a directory that is on your `PATH`.
 
     To check your `PATH`, execute the following command:
     ```terminal
     $ echo $PATH
     ```
-1.  Verify that `{{ odo_title }}` is now available on your system:
+1.  Verify that `{{ odo_title }}`{minja} is now available on your system:
     ```terminal
     $ odo version
     ```

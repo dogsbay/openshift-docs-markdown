@@ -3,11 +3,11 @@ title: Installing Operators in your namespace
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing Operators in your namespace {id="olm-installing-operators-in-namespace"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing Operators in your namespace {id="olm-installing-operators-in-namespace"}
 {%- set context = "olm-installing-operators-in-namespace" %}
 
-If a cluster administrator has delegated Operator installation permissions to your account, you can install and subscribe an Operator to your namespace in a self-service manner.
+If a cluster administrator has delegated Operator installation permissions to your account, you can install and subscribe an Operator to your namespace in a self-service manner. {._abstract}
 
 ## Prerequisites {id="olm-installing-operators-in-namespace-prereqs"}
 
@@ -22,6 +22,7 @@ If a cluster administrator has delegated Operator installation permissions to yo
 {% leveloffset +1 %}{% include "./modules/olm-installing-operators-from-software-catalog.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Allowing non-cluster administrators to install Operators](/operators/admin/olm-creating-policy#olm-creating-policy)
 *   [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
@@ -32,11 +33,13 @@ If a cluster administrator has delegated Operator installation permissions to yo
 {% leveloffset +1 %}{% include "./modules/olm-installing-from-software-catalog-using-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Operator groups](/operators/understanding/olm/olm-understanding-olm#olm-operatorgroups-about_olm-understanding-olm)
 *   [Channel names](/operators/understanding/olm/olm-understanding-olm#olm-subscription_olm-understanding-olm)
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually approving a pending Operator update](/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)
 {% endif %}

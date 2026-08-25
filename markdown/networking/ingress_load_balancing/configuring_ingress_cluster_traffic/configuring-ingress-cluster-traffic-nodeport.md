@@ -3,11 +3,11 @@ title: Configuring ingress cluster traffic by using a NodePort
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring ingress cluster traffic by using a NodePort {id="configuring-ingress-cluster-traffic-nodeport"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring ingress cluster traffic by using a NodePort {id="configuring-ingress-cluster-traffic-nodeport"}
 {%- set context = "configuring-ingress-cluster-traffic-nodeport" %}
 
-To enable external access to your application for specific networking requirements, expose a service by using a `NodePort`. 
+To enable external access to your application for specific networking requirements, expose a service by using a `NodePort`.  {._abstract}
 
 This configuration opens a specific port on every node in the cluster, allowing external traffic to reach your workloads by using an IP address of any node.
 
@@ -28,7 +28,7 @@ Before starting the following procedures, the administrator must complete the fo
 
 {% leveloffset +1 %}{% include "./modules/nw-exposing-service.md" %}{% endleveloffset %}
 
-## Additional resources {id="configuring-ingress-cluster-traffic-nodeport-additional-resources"}
+## Additional resources {id="configuring-ingress-cluster-traffic-nodeport-additional-resources" ._additional-resources}
 
 *   [Configuring the node port service range](/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
 *   [Adding a single NodePort service to an Ingress Controller](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingress-controller-nodeportservice-projects_nw-configuring-ingress-controller-endpoint-publishing-strategy)

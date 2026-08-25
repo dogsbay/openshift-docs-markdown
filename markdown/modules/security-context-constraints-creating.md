@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not openshift_dedicated %}
+{% if not openshift_dedicated %}
 # Creating security context constraints {id="security-context-constraints-creating_{{ context }}"}
 
 {% endif %}

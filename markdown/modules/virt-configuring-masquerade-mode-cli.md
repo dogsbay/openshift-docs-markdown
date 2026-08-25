@@ -17,37 +17,37 @@ editing your virtual machine configuration file.
 
 1.  Edit the `interfaces` spec of your virtual machine configuration file:
 
-```yaml
-apiVersion: kubevirt.io/v1
-kind: VirtualMachine
-metadata:
-  name: example-vm
-spec:
-  template:
+    ```yaml
+    apiVersion: kubevirt.io/v1
+    kind: VirtualMachine
+    metadata:
+      name: example-vm
     spec:
-      domain:
-        devices:
-          interfaces:
-            - name: default
-              masquerade: {}
-              ports:
-                - port: 80
-# ...
-      networks:
-      - name: default
-        pod: {}
-```
-*   `spec.template.spec.domain.devices.interfaces.masquerade` connects the virtual machine using masquerade mode.
-*   `spec.template.spec.domain.devices.interfaces.ports` is optional and defines the list of ports that you want to expose from the virtual machine, each specified by the `port` field. The `port` value must be a number between 0 and 65536. When the `ports` array is not used, all ports in the valid range are open to incoming traffic. In this example, incoming traffic is allowed on port `80`.
+      template:
+        spec:
+          domain:
+            devices:
+              interfaces:
+                - name: default
+                  masquerade: {}
+                  ports:
+                    - port: 80
+    # ...
+          networks:
+          - name: default
+            pod: {}
+    ```
+    *   `spec.template.spec.domain.devices.interfaces.masquerade` connects the virtual machine using masquerade mode.
+    *   `spec.template.spec.domain.devices.interfaces.ports` is optional and defines the list of ports that you want to expose from the virtual machine, each specified by the `port` field. The `port` value must be a number between 0 and 65536. When the `ports` array is not used, all ports in the valid range are open to incoming traffic. In this example, incoming traffic is allowed on port `80`.
 
-    :::note
+        :::note
 
-    Ports 49152 and 49153 are reserved for use by the libvirt platform and all other incoming traffic to these ports is dropped.
-    
-    :::
+        Ports 49152 and 49153 are reserved for use by the libvirt platform and all other incoming traffic to these ports is dropped.
+        
+        :::
 
-    1.  Create the virtual machine:
+1.  Create the virtual machine:
 
-```terminal
-$ oc create -f <vm-name>.yaml
-```
+    ```terminal
+    $ oc create -f <vm-name>.yaml
+    ```

@@ -3,14 +3,14 @@ title: Configuring multitenant isolation with network policy
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring multitenant isolation with network policy {id="multitenant-network-policy"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring multitenant isolation with network policy {id="multitenant-network-policy"}
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "multitenant-network-policy" %}
 
-You can configure network policies to isolate network traffic between projects in a multitenant cluster. This isolation helps prevent unauthorized communication between workloads in different namespaces.
+You can configure network policies to isolate network traffic between projects in a multitenant cluster. This isolation helps prevent unauthorized communication between workloads in different namespaces. {._abstract}
 
 As a cluster administrator, you can configure your network policies to provide multitenant network isolation.
 

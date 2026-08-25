@@ -66,5 +66,5 @@
     ```
 
 {% if context == "rosa-hcp-cluster-no-cni" %}
-{%- set hcp = false -%}
+{%- set hcp = "" -%}
 {% endif %}

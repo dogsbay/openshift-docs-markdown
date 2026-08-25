@@ -27,45 +27,45 @@ Back up the back-end Redis database by configuring Velero annotations and creati
     ```
 1.  Create a YAML file with the following configuration to back up the Redis database:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: redis-backup
-  namespace: openshift-adp
-spec:
-  csiSnapshotTimeout: 10m0s
-  defaultVolumesToFsBackup: true
-  includedNamespaces:
-  - threescale
-  includedResources:
-  - deployment
-  - pods
-  - replicationcontrollers
-  - persistentvolumes
-  - persistentvolumeclaims
-  itemOperationTimeout: 1h0m0s
-  labelSelector:
-    matchLabels:
-      app: 3scale-api-management
-      threescale_component: backend
-      threescale_component_element: redis
-  snapshotMoveData: false
-  snapshotVolumes: false
-  ttl: 720h0m0s
-```
+    ```yaml
+    apiVersion: velero.io/v1
+    kind: Backup
+    metadata:
+      name: redis-backup
+      namespace: openshift-adp
+    spec:
+      csiSnapshotTimeout: 10m0s
+      defaultVolumesToFsBackup: true
+      includedNamespaces:
+      - threescale
+      includedResources:
+      - deployment
+      - pods
+      - replicationcontrollers
+      - persistentvolumes
+      - persistentvolumeclaims
+      itemOperationTimeout: 1h0m0s
+      labelSelector:
+        matchLabels:
+          app: 3scale-api-management
+          threescale_component: backend
+          threescale_component_element: redis
+      snapshotMoveData: false
+      snapshotVolumes: false
+      ttl: 720h0m0s
+    ```
 
-`name`
-:   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the Redis database.
+    `name`
+    :   Specifies the value of the `metadata.name` parameter in the backup. Use this value in the `metadata.backupName` parameter when restoring the Redis database.
 
 1.  Back up the Redis database by running the following command:
     ```terminal
     $ oc create -f redis-backup.yaml
     ```
 
-```terminal title="Example output"
-backup.velero.io/redis-backup created
-```
+    ```terminal title="Example output"
+    backup.velero.io/redis-backup created
+    ```
 
 **Verification**
 
@@ -74,15 +74,15 @@ backup.velero.io/redis-backup created
     $ oc get backups.velero.io redis-backup -o yaml
     ```
 
-```terminal title="Example output"
-status:
-completionTimestamp: "2025-04-17T13:25:19Z"
-errors: 1
-expiration: "2025-05-17T13:25:16Z"
-formatVersion: 1.1.0
-hookStatus: {}
-phase: Completed
-progress: {}
-startTimestamp: "2025-04-17T13:25:16Z"
-version: 1
-```
+    ```terminal title="Example output"
+    status:
+    completionTimestamp: "2025-04-17T13:25:19Z"
+    errors: 1
+    expiration: "2025-05-17T13:25:16Z"
+    formatVersion: 1.1.0
+    hookStatus: {}
+    phase: Completed
+    progress: {}
+    startTimestamp: "2025-04-17T13:25:16Z"
+    version: 1
+    ```

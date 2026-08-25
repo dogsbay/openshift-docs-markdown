@@ -18,7 +18,7 @@ You can uninstall the Multiarch Tuning Operator by using the {{ product_title }}
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Enter **Multiarch Tuning Operator** in the search field.
 1.  Click **Multiarch Tuning Operator**.
 1.  Click the **Details** tab. 
@@ -27,5 +27,5 @@ You can uninstall the Multiarch Tuning Operator by using the {{ product_title }}
 
 **Verification**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  On the **Installed Operators** page, verify that the **Multiarch Tuning Operator** is not listed.

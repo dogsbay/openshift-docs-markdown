@@ -13,6 +13,6 @@ You can uninstall the {{ cert_manager_operator }} by using the web console. {._a
 
 1.  Log in to the {{ product_title }} web console.
 1.  Uninstall the {{ cert_manager_operator }} Operator.
-    1.  Navigate to **Ecosystem** -> **Installed Operators**.
+    1.  Navigate to **Ecosystem** → **Installed Operators**.
     1.  Click the Options menu {{ kebab }} next to the **{{ cert_manager_operator }}** entry and click **Uninstall Operator**.
     1.  In the confirmation dialog, click **Uninstall**.

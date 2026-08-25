@@ -11,9 +11,7 @@ Graviton instance types are only available for new clusters created after 24 Jul
 :::
 
 
-<details>
-<summary>General purpose</summary>
-
+:::details{title="General purpose"}
 *   a1.xlarge (2 vCPU, 4 GiB)
 *   a1.2xlarge (4 vCPU, 8 GiB)
 *   a1.4xlarge (8 vCPU, 16 GiB)
@@ -86,18 +84,14 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   m8gn.48xlarge (192 vCPU, 768 GiB)
 *   m8gn.metal-24xl (96 vCPU, 384 GiB)
 *   m8gn.metal-48xl (192 vCPU, 768 GiB)
-</details>
+:::
 
-<details>
-<summary>Burstable general purpose</summary>
-
+:::details{title="Burstable general purpose"}
 *   t4g.xlarge (4 vCPU, 16 GiB)
 *   t4g.2xlarge (8 vCPU, 32 GiB)
-</details>
+:::
 
-<details>
-<summary>Memory intensive</summary>
-
+:::details{title="Memory intensive"}
 *   x2gd.xlarge (2 vCPU, 64 GiB)
 *   x2gd.2xlarge (4 vCPU, 128 GiB)
 *   x2gd.4xlarge (8 vCPU, 256 GiB)
@@ -115,11 +109,9 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   x8g.48xlarge (192 vCPU, 3,072 GiB)
 *   x8g.metal-24xl (96 vCPU, 1,536 GiB)
 *   x8g.metal-48xl (192 vCPU, 3,072 GiB)
-</details>
+:::
 
-<details>
-<summary>Memory optimized</summary>
-
+:::details{title="Memory optimized"}
 *   r6g.xlarge (4 vCPU, 32 GiB)
 *   r6g.2xlarge (8 vCPU, 64 GiB)
 *   r6g.4xlarge (16 vCPU, 128 GiB)
@@ -158,22 +150,18 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   r8g.48xlarge (192 vCPU, 1,536 GiB)
 *   r8g.metal-24xl (96 vCPU, 768 GiB)
 *   r8g.metal-48xl (192 vCPU, 1,536 GiB)
-</details>
+:::
 
-<details>
-<summary>Accelerated computing</summary>
-
+:::details{title="Accelerated computing"}
 *   g5g.xlarge (4 vCPU, 8 GiB)
 *   g5g.2xlarge (8 vCPU, 16 GiB)
 *   g5g.4xlarge (16 vCPU, 32 GiB)
 *   g5g.8xlarge (32 vCPU, 64 GiB)
 *   g5g.16xlarge (64 vCPU, 128 GiB)
 *   g5g.metal (64 vCPU, 128 GiB)
-</details>
+:::
 
-<details>
-<summary>Compute optimized</summary>
-
+:::details{title="Compute optimized"}
 *   c6g.xlarge (4 vCPU, 8 GiB)
 *   c6g.2xlarge (8 vCPU, 16 GiB)
 *   c6g.4xlarge (16 vCPU, 32 GiB)
@@ -235,11 +223,9 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   c8gd.48xlarge (192 vCPU, 384 GiB)
 *   c8gd.metal-24xl (96 vCPU, 192 GiB)
 *   c8gd.metal-48xl (192 vCPU, 384 GiB)
-</details>
+:::
 
-<details>
-<summary>Storage optimized</summary>
-
+:::details{title="Storage optimized"}
 *   i4g.xlarge (4 vCPU, 32 GiB)
 *   i4g.2xlarge (8 vCPU, 64 GiB)
 *   i4g.4xlarge (16 vCPU, 128 GiB)
@@ -254,12 +240,10 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   im4gn.4xlarge (16 vCPU, 64 GiB)
 *   im4gn.8xlarge (32 vCPU, 128 GiB)
 *   im4gn.16xlarge (64 vCPU, 256 GiB)
-</details>
+:::
 
-<details>
-<summary>High performance computing (HPC)</summary>
-
+:::details{title="High performance computing (HPC)"}
 *   hpc7g.4xlarge (16 vCPU, 128 GiB)
 *   hpc7g.8xlarge (32 vCPU, 128 GiB)
 *   hpc7g.16xlarge (64 vCPU, 128 GiB)
-</details>
+:::

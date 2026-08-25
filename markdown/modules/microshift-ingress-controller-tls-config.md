@@ -36,8 +36,8 @@ To configure the TLS security profile for the ingress controller in {{ microshif
     *   `intermediate: {}`
     *   `custom:`
 
-`spec.tlsSecurityProfile.custom.ciphers`
-:   Specifies a list of TLS ciphers and minimum accepted TLS version.
+    `spec.tlsSecurityProfile.custom.ciphers`
+    :   Specifies a list of TLS ciphers and minimum accepted TLS version.
 
     :::warning
 

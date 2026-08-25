@@ -6,10 +6,10 @@ You can configure NTP servers on control plane nodes and set compute nodes as NT
 {{ product_title }} installs the `chrony` Network Time Protocol (NTP) service on the cluster nodes.
 {%- if context == "ipi-install-configuration-files" %}
 Use the following procedure to configure NTP servers on the control plane nodes and configure compute nodes as NTP clients of the control plane nodes before deployment.
-{% endif %}
-{% if context == "bare-metal-postinstallation-configuration" %}
+{%- endif %}
+{%- if context == "bare-metal-postinstallation-configuration" %}
 Use the following procedure to configure NTP servers on the control plane nodes and configure compute nodes as NTP clients of the control plane nodes after a successful deployment.
-{% endif %}
+{%- endif %}
 
 **Figure 1. Configuring NTP for disconnected clusters**
 
@@ -31,7 +31,7 @@ Use the following procedure to configure NTP servers on the control plane nodes 
     
     :::
 
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:
@@ -89,7 +89,7 @@ Use the following procedure to configure NTP servers on the control plane nodes 
     $ butane 99-master-chrony-conf-override.bu -o 99-master-chrony-conf-override.yaml
     ```
 1.  Create a Butane config, `99-worker-chrony-conf-override.bu`, including the contents of the `chrony.conf` file for the compute nodes that references the NTP servers on the control plane nodes.
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

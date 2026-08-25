@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ VirtProductName }} release notes {id="virt-4-9-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ VirtProductName }} release notes {id="virt-4-9-release-notes"}
 {%- set context = "virt-4-9-release-notes" %}
 
 ## About Red Hat {{ VirtProductName }} {id="_about_red_hat_virtproductname"}
@@ -37,9 +37,9 @@ Other operating system templates shipped with {{ VirtProductName }} are not supp
 
 *   If your {{ VirtProductName }} Operator subscription used any update channel other than **stable**, it is now automatically subscribed to the **stable** channel. This single update channel delivers z-stream and minor version updates and ensures that your {{ VirtProductName }} and {{ product_title }} versions are compatible.
 
-*   You can now use the `virtctl guestfs` command [to maintain, repair, and debug virtual machine disks](/virt/virt-using-the-cli-tools.html#virt-creating-pvc-with-virtctl-guestfs_virt-using-the-cli-tools).
+*   You can now use the `virtctl guestfs` command [to maintain, repair, and debug virtual machine disks](/virt/virt-using-the-cli-tools#virt-creating-pvc-with-virtctl-guestfs_virt-using-the-cli-tools).
 
-*   You can now [boot virtual machines with EFI mode](/virt/virtual_machines/advanced_vm_management/virt-efi-mode-for-vms.html#virt-booting-vms-efi-mode_virt-efi-mode-for-vms) without mandatory Secure Boot.
+*   You can now [boot virtual machines with EFI mode](/virt/virtual_machines/advanced_vm_management/virt-efi-mode-for-vms#virt-booting-vms-efi-mode_virt-efi-mode-for-vms) without mandatory Secure Boot.
 
 ### Quick starts {id="virt-4-9-quick-starts"}
 
@@ -61,7 +61,7 @@ Other operating system templates shipped with {{ VirtProductName }} are not supp
 
 ### Web console {id="virt-4-9-web-new"}
 
-*   You can now [automate your Windows virtual machine setup](/virt/virtual_machines/virt-create-vms#virt-creating-vm-wizard-web_virt-create-vms) by uploading answer files in XML format in the **Advanced** -> **SysPrep** section of the **Create virtual machine from template** wizard.
+*   You can now [automate your Windows virtual machine setup](/virt/virtual_machines/virt-create-vms#virt-creating-vm-wizard-web_virt-create-vms) by uploading answer files in XML format in the **Advanced** → **SysPrep** section of the **Create virtual machine from template** wizard.
 
 *   You can use the [{{ VirtProductName }} dashboard](/virt/logging_events_monitoring/virt-reviewing-vm-dashboard#virt-reviewing-vm-dashboard) in the web console to get data on resource consumption for virtual machines and associated pods. The dashboard provides visual representations of cluster metrics so you can quickly understand the state of your cluster.
 
@@ -120,7 +120,7 @@ Some features in this release are currently in Technology Preview. These experim
 
 *   RHV VM import fails if the VM affinity policy is `Migratable` even when live migration is enabled in {{ VirtProductName }}. VM import succeeds if the affinity policy is `Pinned`. ([**BZ#1977277**](https://bugzilla.redhat.com/show_bug.cgi?id=1977277))
 
-*   Selecting **Create** -> **With Import wizard** on the **Virtualization** page of the {{ VirtProductName }} console displays the following warning message:
+*   Selecting **Create** → **With Import wizard** on the **Virtualization** page of the {{ VirtProductName }} console displays the following warning message:
     ```
     Could not load VirtualMachines
     No model registered for VirtualMachines

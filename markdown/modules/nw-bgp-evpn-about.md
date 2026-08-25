@@ -48,110 +48,62 @@ BGP EVPN with primary CUDNs is supported only on bare-metal clusters.
 
 The following table lists the supported and unsupported features when EVPN is enabled on primary CUDNs.
 
-***BGP EVPN with primary CUDNs feature compatibility***
+**BGP EVPN with primary CUDNs feature compatibility**
 
 <table>
 <thead>
 <tr>
-  <th>^</th>
   <th>Network feature ^</th>
+  <th>Supported</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Supported ^</td>
   <td>Egress firewall</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Supported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>Egress QoS</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Supported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>Network QoS</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Supported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>Network Policy</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Supported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>Services (Cluster IP)</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Supported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>Services (NodePort, External IP, LoadBalancer)</td>
+  <td>Limited<sup>[1]</sup></td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Limited^[1]^</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Multicast (MAC-VRF)</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Supported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>Multicast (IP-VRF)</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Unsupported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>Multiple External Gateways (MEG)</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Unsupported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>EgressIP</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Unsupported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>Egress Service</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Unsupported</td>
 </tr>
 <tr>
-  <td>^</td>
   <td>IPsec</td>
-</tr>
-<tr>
-  <td>^</td>
   <td>Unsupported</td>
 </tr>
 </tbody>

@@ -9,7 +9,7 @@ You can create a persistent volume claim to dynamically provision and bind stora
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Storage** -> **Persistent Volume Claims**.
+1.  In the {{ product_title }} web console, click **Storage** → **Persistent Volume Claims**.
 1.  In the persistent volume claims overview, click **Create Persistent Volume Claim**.
 1.  Define the required options on the page that is displayed.
     1.  Select the previously-created storage class from the drop-down menu.

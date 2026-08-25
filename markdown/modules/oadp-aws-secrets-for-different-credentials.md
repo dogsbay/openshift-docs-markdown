@@ -18,11 +18,11 @@ Then, you create a `Secret` object and specify the profiles in the `DataProtecti
     aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
     ```
 1.  Create a `Secret` object with the `credentials-velero` file:
-    ```terminal
+    ```terminal {minja}
     $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero (1)
     ```
 1.  Add the profiles to the `DataProtectionApplication` CR, as in the following example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:

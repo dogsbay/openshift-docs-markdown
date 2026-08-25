@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Securing webhooks with event listeners {id="securing-webhooks-with-event-listeners"}
 {% include "./_attributes/common-attributes.md" %}
+# Securing webhooks with event listeners {id="securing-webhooks-with-event-listeners"}
 {%- set context = "securing-webhooks-with-event-listeners" %}
 
 As an administrator, you can secure webhooks with event listeners. After creating a namespace, you enable HTTPS for the `Eventlistener` resource by adding the `operator.tekton.dev/enable-annotation=enabled` label to the namespace. Then, you create a `Trigger` resource and a secured route using the re-encrypted TLS termination.

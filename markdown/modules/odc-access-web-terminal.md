@@ -10,8 +10,8 @@ The web terminal remains open until you close it or until you close the browser 
 *   You have access to 
 {%- if not (openshift_rosa_hcp or openshift_rosa) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa_hcp or openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa_hcp or openshift_rosa %}
 a {{ product_title }} 
 {%- endif %}
 cluster and are logged into the web console.
@@ -26,7 +26,7 @@ cluster and are logged into the web console.
 
     *   One `DevWorkspace` CR defines the web terminal of one user. This CR contains details about the user’s web terminal status and container image components.
     *   The `DevWorkspace` CR is created only if it does not already exist.
-        {%- if not (openshift_rosa or openshift_dedicated) %}
+{%- if not (openshift_rosa or openshift_dedicated) %}
     *   The `openshift-terminal` project is the default project used for cluster administrators. They do not have the option to choose another project. The {{ web_terminal_op }} installs the DevWorkspace Operator as a dependency.
 {%- endif %}
     

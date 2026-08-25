@@ -1,5 +1,5 @@
 ---
-title: "EgressQoS []"
+title: "EgressQoS [k8s.ovn.org/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | EgressQoSSpec defines the desired state of EgressQoS |
 | `status` | `object` | EgressQoSStatus defines the observed state of EgressQoS |
+
 ### .spec {id="_spec"}
 
 Description
@@ -45,6 +46,7 @@ Required
 | --- | --- | --- |
 | `egress` | `array` | a collection of Egress QoS rule objects |
 | `egress[]` | `object` |  |
+
 ### .spec.egress {id="_specegress"}
 
 Description
@@ -71,6 +73,7 @@ Required
 | `dscp` | `integer` | DSCP marking value for matching pods' traffic. |
 | `dstCIDR` | `string` | DstCIDR specifies the destination’s CIDR. Only traffic heading to this CIDR will be marked with the DSCP value. This field is optional, and in case it is not set the rule is applied to all egress traffic regardless of the destination. |
 | `podSelector` | `object` | PodSelector applies the QoS rule only to the pods in the namespace whose label matches this definition. This field is optional, and in case it is not set results in the rule being applied to all pods in the namespace. |
+
 ### .spec.egress[].podSelector {id="_specegresspodselector"}
 
 Description
@@ -87,6 +90,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.egress[].podSelector.matchExpressions {id="_specegresspodselectormatchexpressions"}
 
 Description
@@ -116,6 +120,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status {id="_status"}
 
 Description
@@ -128,8 +133,9 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `conditions` | `array` | An array of condition objects indicating details about status of EgressQoS object. |
-| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, 	type FooStatus struct{ 	    // Represents the observations of a foo’s current state. 	    // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 	    // +patchMergeKey=type 	    // +patchStrategy=merge 	    // +listType=map 	    // +listMapKey=type 	    Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` 	    // other fields 	} |
+| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example,<br>	type FooStatus struct{ 	    // Represents the observations of a foo’s current state. 	    // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 	    // +patchMergeKey=type 	    // +patchStrategy=merge 	    // +listType=map 	    // +listMapKey=type 	    Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`<br>	    // other fields 	} |
 | `status` | `string` | A concise indication of whether the EgressQoS resource is applied with success. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -187,16 +193,16 @@ The following API endpoints are available:
 
 *   `/apis/k8s.ovn.org/v1/egressqoses`
     *   `GET`: list objects of kind EgressQoS
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressqoses`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressqoses`{minja}
     *   `DELETE`: delete collection of EgressQoS
     *   `GET`: list objects of kind EgressQoS
     *   `POST`: create an EgressQoS
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressqoses/{{ name }}`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressqoses/{{ name }}`{minja}
     *   `DELETE`: delete an EgressQoS
     *   `GET`: read the specified EgressQoS
     *   `PATCH`: partially update the specified EgressQoS
     *   `PUT`: replace the specified EgressQoS
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressqoses/{{ name }}/status`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressqoses/{{ name }}/status`{minja}
     *   `GET`: read status of the specified EgressQoS
     *   `PATCH`: partially update status of the specified EgressQoS
     *   `PUT`: replace status of the specified EgressQoS

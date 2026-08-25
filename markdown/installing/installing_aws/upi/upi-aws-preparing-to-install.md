@@ -3,8 +3,8 @@ title: Preparing to install a cluster on AWS
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster on AWS {id="upi-aws-preparing-to-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster on AWS {id="upi-aws-preparing-to-install"}
 {%- set context = "upi-aws-preparing-to-install" %}
 
 You prepare to install an {{ product_title }} cluster on AWS by completing the following steps:
@@ -46,5 +46,6 @@ You prepare to install an {{ product_title }} cluster on AWS by completing the f
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service.

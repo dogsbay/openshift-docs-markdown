@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Understanding metrics {id="understanding-metrics_{{ context }}"}
 
-{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 In {{ product_title }} {{ product_version }},
 {% endif %}
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}

@@ -16,10 +16,11 @@ You can create a binding connection with Operator-backed components, as demonstr
 1.  In the **Topology** view, hover over the Spring PetClinic sample application to see a dangling arrow on the node.
 1.  Drag and drop the arrow onto the **hippo** database icon in the Postgres Cluster to make a binding connection with the Spring PetClinic sample application.
 1.  In the **Create Service Binding** dialog, keep the default name or add a different name for the service binding, and then click **Create**.
+
     **Figure 1. Service Binding dialog**
 
     ![odc-sbc-modal](/_assets/images/odc-sbc-modal.png)
-1.  Optional: If there is difficulty in making a binding connection using the Topology view, go to **+Add** -> **YAML** -> **Import YAML**.
+1.  Optional: If there is difficulty in making a binding connection using the Topology view, go to **+Add** → **YAML** → **Import YAML**.
 1.  Optional: In the YAML editor, add the `ServiceBinding` resource:
     ```YAML
     apiVersion: binding.operators.coreos.com/v1alpha1
@@ -41,6 +42,7 @@ You can create a binding connection with Operator-backed components, as demonstr
     ```
 
     A service binding request is created and a binding connection is created through a `ServiceBinding` resource. When the database service connection request succeeds, the application is redeployed and the connection is established.
+
     **Figure 2. Binding connector**
 
     ![odc-binding-connector](/_assets/images/odc-binding-connector.png)

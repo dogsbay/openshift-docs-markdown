@@ -1,5 +1,5 @@
 ---
-title: "Project []"
+title: "Project [project.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -33,6 +33,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ProjectSpec describes the attributes on a Project |
 | `status` | `object` | ProjectStatus is information about the current status of a Project |
+
 ### .spec {id="_spec"}
 
 Description
@@ -45,6 +46,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `finalizers` | `array (string)` | finalizers is an opaque list of values that must be empty to permanently remove object from storage |
+
 ### .status {id="_status"}
 
 Description
@@ -57,7 +59,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `conditions` | [`array (NamespaceCondition)`](/rest_api/objects/index#io-k8s-api-core-v1-NamespaceCondition) | Represents the latest available observations of the project current state. |
-| `phase` | `string` | phase is the current lifecycle phase of the project Possible enum values:  - `"Active"` means the namespace is available for use in the system  - `"Terminating"` means the namespace is undergoing graceful termination |
+| `phase` | `string` | phase is the current lifecycle phase of the project<br>Possible enum values:  - `"Active"` means the namespace is available for use in the system  - `"Terminating"` means the namespace is undergoing graceful termination |
 
 ## API endpoints {id="_api_endpoints"}
 
@@ -68,12 +70,12 @@ The following API endpoints are available:
     *   `POST`: create a Project
 *   `/apis/project.openshift.io/v1/watch/projects`
     *   `GET`: watch individual changes to a list of Project. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/project.openshift.io/v1/projects/{{ name }}`
+*   `/apis/project.openshift.io/v1/projects/{{ name }}`{minja}
     *   `DELETE`: delete a Project
     *   `GET`: read the specified Project
     *   `PATCH`: partially update the specified Project
     *   `PUT`: replace the specified Project
-*   `/apis/project.openshift.io/v1/watch/projects/{{ name }}`
+*   `/apis/project.openshift.io/v1/watch/projects/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Project. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/project.openshift.io/v1/projects {id="_apisprojectopenshiftiov1projects"}

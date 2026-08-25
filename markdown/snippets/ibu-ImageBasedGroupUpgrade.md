@@ -46,7 +46,6 @@ If you add the seed image pull secret in the hub cluster, in the same namespace 
 
 :::
 
-
 *   `extraManifests`: Optional: Applies additional manifests, which are not in the seed image, to the target cluster. Also applies `ConfigMap` objects for custom catalog sources.
 *   `oadpContent`: `ConfigMap` resources that contain the OADP `Backup` and `Restore` CRs.
 *   `plan`: Upgrade plan details.

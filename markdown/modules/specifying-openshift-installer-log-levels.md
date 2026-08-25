@@ -15,4 +15,4 @@ By default, the {{ product_title }} installer log level is set to `info`. If mor
     ```
 
     where
-:   *   Possible log levels include `info`, `warn`, `error,` and `debug`.
+    :   *   Possible log levels include `info`, `warn`, `error,` and `debug`.

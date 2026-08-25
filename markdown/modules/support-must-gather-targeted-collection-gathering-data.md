@@ -16,7 +16,7 @@ The `must-gather` tool uses `oc adm inspect` internally. You can specify what to
     ```terminal
     $ oc adm must-gather --dest-dir=apiserver-must-gather -- oc adm inspect clusteroperator/openshift-apiserver
     ```
-*   To exclude rotated logs, such as `**.gz` or `**.1` files, from data collection, set the `REDUCE_LOGS` environment variable by running the following command:
+*   To exclude rotated logs, such as `*.gz` or `*.1` files, from data collection, set the `REDUCE_LOGS` environment variable by running the following command:
     ```terminal
     $ oc adm must-gather -- REDUCE_LOGS=skip_rotated_logs /usr/bin/gather
     ```

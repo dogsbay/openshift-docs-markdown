@@ -21,7 +21,7 @@ As an administrator, you can access dashboards for core {{ product_title }} comp
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Observe** -> **Dashboards**.
+1.  In the {{ product_title }} web console, navigate to **Observe** → **Dashboards**.
 1.  Choose a dashboard in the **Dashboard** list. Some dashboards, such as the **etcd** dashboard, produce additional sub-menus when selected.
 1.  Optional: Select a time range for the graphs in the **Time Range** list.
     *   Select a pre-defined time period.

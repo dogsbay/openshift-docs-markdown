@@ -3,11 +3,11 @@ title: Edit the boot order of a virtual machine
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Edit the boot order of a virtual machine {id="virt-edit-boot-order"}
 {% include "./_attributes/common-attributes.md" %}
+# Edit the boot order of a virtual machine {id="virt-edit-boot-order"}
 {%- set context = "virt-edit-boot-order" %}
 
-You can configure the boot order of disks and network devices on your virtual machine (VM) by using the web console or the CLI.
+You can configure the boot order of disks and network devices on your virtual machine (VM) by using the web console or the CLI. {._abstract}
 
 With **Boot Order** in the **VirtualMachine details** page, you can:
 

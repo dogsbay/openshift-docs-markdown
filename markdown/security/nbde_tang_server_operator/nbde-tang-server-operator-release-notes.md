@@ -4,10 +4,10 @@ title: NBDE Tang Server Operator release notes
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 
+{% include "./_attributes/common-attributes.md" %}
 # NBDE Tang Server Operator release notes {id="nbde-tang-server-operator-release-notes"}
 
 {%- set context = "nbde-tang-server-operator-release-notes" %}
-{% include "./_attributes/common-attributes.md" %}
 
 The following release notes track the development of the NBDE Tang Server Operator in {{ product_title }}.
 

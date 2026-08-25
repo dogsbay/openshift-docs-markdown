@@ -3,14 +3,14 @@ title: Configuring the OpenShift API for Data Protection with AWS S3 compatible 
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the OpenShift API for Data Protection with AWS S3 compatible storage {id="installing-oadp-aws"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the OpenShift API for Data Protection with AWS S3 compatible storage {id="installing-oadp-aws"}
 {%- set context = "installing-oadp-aws" -%}
 {%- set installing_oadp_aws = true -%}
 {%- set credentials = "cloud-credentials" -%}
 {%- set provider = "aws" %}
 
-Install the {{ oadp_first }} with Amazon Web Services (AWS) S3 compatible storage by installing the {{ oadp_short }} Operator. The Operator installs Velero {{ velero_version }}.
+Install the {{ oadp_first }} with Amazon Web Services (AWS) S3 compatible storage by installing the {{ oadp_short }} Operator. The Operator installs Velero {{ velero_version }}. {._abstract}
 
 You configure AWS for Velero, create a default `Secret`, and then install the Data Protection Application. For more details, see _Installing the OADP Operator_.
 
@@ -69,6 +69,7 @@ To install the OADP Operator in a restricted network environment, you must first
 {% leveloffset +1 %}{% include "./modules/oadp-about-disable-node-agent-dpa.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
 *   [Velero {{ velero_version }}](https://{{ velero_domain }}/docs/v{{ velero_version }}/)
@@ -76,4 +77,4 @@ To install the OADP Operator in a restricted network environment, you must first
 *   [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)
 *   [Running tasks in pods using jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)
 
-{%- set installing_oadp_aws = false -%}
+{%- set installing_oadp_aws = "" -%}

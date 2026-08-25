@@ -3,11 +3,11 @@ title: Mirroring images for a disconnected installation by using the oc adm comm
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Mirroring images for a disconnected installation by using the oc adm command {id="installing-mirroring-installation-images"}
 {% include "./_attributes/common-attributes.md" %}
+# Mirroring images for a disconnected installation by using the oc adm command {id="installing-mirroring-installation-images"}
 {%- set context = "installing-mirroring-installation-images" %}
 
-You can ensure your clusters only use container images that satisfy your organizational controls on external content. Before you install a cluster on infrastructure that you provision in a restricted network, you must mirror the required container images into that environment.
+You can ensure your clusters only use container images that satisfy your organizational controls on external content. Before you install a cluster on infrastructure that you provision in a restricted network, you must mirror the required container images into that environment. {._abstract}
 
 By using the `oc adm` command, you can mirror release and catalog images in OpenShift. To mirror container images, you must have a registry for mirroring.
 
@@ -37,6 +37,7 @@ When using the `oc adm release mirror` command, release image signatures are not
 {% leveloffset +1 %}{% include "./modules/installation-about-mirror-registry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Viewing the image pull source](/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation)
 
@@ -59,6 +60,7 @@ When using the `oc adm release mirror` command, release image signatures are not
 {% leveloffset +1 %}{% include "./modules/olm-mirroring-catalog.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
 *   [Docker v2-2](https://docs.docker.com/registry/spec/manifest-v2-2/)
@@ -73,6 +75,7 @@ When using the `oc adm release mirror` command, release image signatures are not
 {% leveloffset +3 %}{% include "./modules/olm-mirroring-catalog-airgapped.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Unauthorized error thrown while using catalog mirror command with Quay registry](https://access.redhat.com/solutions/5440741)
 
@@ -81,11 +84,12 @@ When using the `oc adm release mirror` command, release image signatures are not
 {% leveloffset +2 %}{% include "./modules/olm-mirroring-catalog-post.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Populating the software catalog from mirrored Operator catalogs](/post_installation_configuration/preparing-for-users#post-install-mirrored-catalogs_post-install-preparing-for-users)
 *   [Updating or filtering a file-based catalog image](/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)
 
-## Additional resources {id="restricted-networks-additional-resources"}
+## Additional resources {id="restricted-networks-additional-resources" ._additional-resources}
 
 *   [Gathering data about specific features](/support/gathering-cluster-data#gathering-data-specific-features_gathering-cluster-data)
 *   [Installing a cluster on vSphere in a disconnected environment with user-provisioned infrastructure](/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere)

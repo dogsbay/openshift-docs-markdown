@@ -42,16 +42,15 @@ You create an {{ ibm_cloud_object_storage }} instance to store the {{ oadp_short
     $ ibmcloud target
     ```
 
-```yaml title="Example output"
-API endpoint:     https://cloud.ibm.com
-Region:           
-User:             test-user
-Account:          Test Account (fb6......e95) <-> 2...122
-Resource group:   Default
-```
+    ```yaml title="Example output"
+    API endpoint:     https://cloud.ibm.com
+    Region:           
+    User:             test-user
+    Account:          Test Account (fb6......e95) <-> 2...122
+    Resource group:   Default
+    ```
 
-In the example output, the resource group is set to `Default`.
-
+    In the example output, the resource group is set to `Default`.
 1.  Set a resource group name by running the following command:
     ```terminal
     $ RESOURCE_GROUP=<resource_group>

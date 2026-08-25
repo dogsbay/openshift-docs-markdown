@@ -28,7 +28,7 @@ spec:
 
 Each element in the `services` array represents a 3scale service.
 
-***`services` object fields***
+**`services` object fields**
 
 <table>
 <thead>
@@ -46,25 +46,22 @@ Each element in the `services` array represents a 3scale service.
 </tr>
 <tr>
   <td><code>token</code></td>
-  <td>This <code>token</code> can be found in the proxy configuration for your service in System or you can retrieve the it from System with following <code>curl</code> command:<br><br>`curl \https://<system_host>/admin/api/services/<service_id>/proxy/configs/production/latest.json?access_token=<access_token>" \</td>
-  <td>jq '.proxy_config.content.backend_authentication_value`</td>
+  <td>This <code>token</code> can be found in the proxy configuration for your service in System or you can retrieve the it from System with following <code>curl</code> command:<br><br><code>curl \https://&lt;system_host&gt;/admin/api/services/&lt;service_id&gt;/proxy/configs/production/latest.json?access_token=&lt;access_token&gt;" | jq '.proxy_config.content.backend_authentication_value</code></td>
+  <td>Optional</td>
 </tr>
 <tr>
-  <td>Optional</td>
   <td><code>authorities</code></td>
   <td>An array of strings, each one representing the <em>Authority</em> of a <em>URL</em> to match. These strings accept glob patterns supporting the asterisk (<em>*</em>), plus sign (<em>+</em>), and question mark (<em>?</em>) matchers.</td>
+  <td>Yes</td>
 </tr>
 <tr>
-  <td>Yes</td>
   <td><code>credentials</code></td>
   <td>An object defining which kind of credentials to look for and where.</td>
+  <td>Yes</td>
 </tr>
 <tr>
-  <td>Yes</td>
   <td><code>mapping_rules</code></td>
   <td>An array of objects representing mapping rules and 3scale methods to hit.</td>
-</tr>
-<tr>
   <td>Optional</td>
 </tr>
 </tbody>

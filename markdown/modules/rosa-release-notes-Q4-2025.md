@@ -8,10 +8,10 @@ AWS GovCloud
 :   The Amazon Web Services (AWS) GovCloud service is now available for federal and government agencies. Commercial organizations and Federal Information Security Modernization Act (FISMA) R&D Universities may also use the service if they support a current government contract or are in the process of bidding on a government contract such as a request for proposal (RFP) or request for information (RFI) pre-bid stage. For more information, see
 {%- if openshift_rosa_hcp %}
     [Getting started with ROSA GovCloud](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/getting_started_with_red_hat_openshift_service_on_aws_in_aws_govcloud).
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
     [Getting started with ROSA GovCloud](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/getting_started_with_red_hat_openshift_service_on_aws_in_aws_govcloud).
-{% endif %}
+{%- endif %}
 
 
 New version of {{ product_title }} available
@@ -37,11 +37,12 @@ ImageDigestMirrorSets (IDMS) is supported
     For more information on region availabilities, see [Regions and availability zones](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-sdpolicy-regions-az_rosa-hcp-service-definition).
 {% endif %}
 
-    The EUS channel group is available
-    :   You can select the Extended Update Support (EUS) channel group when creating or editing your {{ product_title }} cluster. The EUS channel group allows you to extend the life cycle of your even-numbered version {{ product_title }} cluster, giving you additional time to plan and budget for future upgrades as well as providing continued security patches and critical bug fixes. For more information, see
+
+The EUS channel group is available
+:   You can select the Extended Update Support (EUS) channel group when creating or editing your {{ product_title }} cluster. The EUS channel group allows you to extend the life cycle of your even-numbered version {{ product_title }} cluster, giving you additional time to plan and budget for future upgrades as well as providing continued security patches and critical bug fixes. For more information, see
 {%- if openshift_rosa_hcp %}
     [Life cycle dates](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition#sd-life-cycle-dates_rosa-hcp-life-cycle).
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
     [Life cycle dates](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/introduction_to_rosa/policies-and-service-definition#sd-life-cycle-dates_rosa-life-cycle).
-{% endif %}
+{%- endif %}

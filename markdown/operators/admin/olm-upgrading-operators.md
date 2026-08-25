@@ -3,11 +3,11 @@ title: Updating installed Operators
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Updating installed Operators {id="olm-upgrading-operators"}
 {% include "./_attributes/common-attributes.md" %}
+# Updating installed Operators {id="olm-upgrading-operators"}
 {%- set context = "olm-upgrading-operators" %}
 
-You can update Operators previously installed with Operator Lifecycle Manager (OLM) on your {{ product_title }} cluster.
+You can update Operators previously installed with Operator Lifecycle Manager (OLM) on your {{ product_title }} cluster. {._abstract}
 
 
 :::note
@@ -20,6 +20,7 @@ For information on how OLM handles updates for installed Operators colocated in 
 {% leveloffset +1 %}{% include "./modules/olm-preparing-upgrade.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)
 
@@ -28,7 +29,7 @@ For information on how OLM handles updates for installed Operators colocated in 
 {% leveloffset +1 %}{% include "./modules/olm-approving-pending-upgrade.md" %}{% endleveloffset %}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
-## Additional resources {id="additional-resources_olm-upgrading-operators"}
+## Additional resources {id="additional-resources_olm-upgrading-operators" ._additional-resources}
 
 *   [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/)
 *   [Multitenancy and Operator colocation](/operators/understanding/olm/olm-colocation#olm-colocation)

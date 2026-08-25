@@ -41,7 +41,7 @@ The following procedure deploys `nationalparks`, which is the back-end component
 
 **Verification**
 
-1.  Navigate to **Workloads** -> **Topology**.
+1.  Navigate to **Workloads** → **Topology**.
 1.  Click the `nationalparks` deployment in the `national-parks-app` application.
 1.  Click the **Resources** tab.
 

@@ -1,5 +1,5 @@
 ---
-title: "ClusterAutoscaler []"
+title: "ClusterAutoscaler [autoscaling.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Desired state of ClusterAutoscaler resource |
 | `status` | `object` | Most recently observed status of ClusterAutoscaler resource |
+
 ### .spec {id="_spec"}
 
 Description
@@ -39,7 +40,7 @@ Type
 | `balancingIgnoredLabels` | `array (string)` | BalancingIgnoredLabels sets "--balancing-ignore-label &lt;label name>" flag on cluster-autoscaler for each listed label. This option specifies labels that cluster autoscaler should ignore when considering node group similarity. For example, if you have nodes with "topology.ebs.csi.aws.com/zone" label, you can add name of this label here to prevent cluster autoscaler from spliting nodes into different node groups based on its value. |
 | `expanders` | `array (string)` | Sets the type and order of expanders to be used during scale out operations. This option specifies an ordered list, highest priority first, of expanders that will be used by the cluster autoscaler to select node groups for expansion when scaling out. Expanders instruct the autoscaler on how to choose node groups when scaling out the cluster. They can be specified in order so that the result from the first expander is used as the input to the second, and so forth. For example, if set to `[LeastWaste, Random]` the autoscaler will first evaluate node groups to determine which will have the least resource waste, if multiple groups are selected the autoscaler will then randomly choose between those groups to determine the group for scaling. The following expanders are available: * LeastWaste - selects the node group that will have the least idle CPU (if tied, unused memory) after scale-up. * Priority - selects the node group that has the highest priority assigned by the user. For details, please see https://github.com/openshift/kubernetes-autoscaler/blob/master/cluster-autoscaler/expander/priority/readme.md * Random - selects the node group randomly. If not specified, the default value is `Random`, available options are: `LeastWaste`, `Priority`, `Random`. |
 | `ignoreDaemonsetsUtilization` | `boolean` | Enables/Disables `--ignore-daemonsets-utilization` CA feature flag. Should CA ignore DaemonSet pods when calculating resource utilization for scaling down. false by default |
-| `logVerbosity` | `integer` | Sets the autoscaler log level. Default value is 1, level 4 is recommended for DEBUGGING and level 6 will enable almost everything. This option has priority over log level set by the `CLUSTER_AUTOSCALER_VERBOSITY` environment variable. |
+| `logVerbosity` | `integer` | Sets the autoscaler log level. Default value is 1, level 4 is recommended for DEBUGGING and level 6 will enable almost everything.<br>This option has priority over log level set by the `CLUSTER_AUTOSCALER_VERBOSITY` environment variable. |
 | `maxNodeProvisionTime` | `string` | Maximum time CA waits for node to be provisioned |
 | `maxPodGracePeriod` | `integer` | Gives pods graceful termination time before scaling down |
 | `podPriorityThreshold` | `integer` | To allow users to schedule "best-effort" pods, which shouldn’t trigger Cluster Autoscaler actions, but only run when there are spare resources available, More info: https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-does-cluster-autoscaler-work-with-pod-priority-and-preemption |
@@ -47,6 +48,7 @@ Type
 | `scaleDown` | `object` | Configuration of scale down operation |
 | `scaleUp` | `object` | Configuration of scale up operation |
 | `skipNodesWithLocalStorage` | `boolean` | Enables/Disables `--skip-nodes-with-local-storage` CA feature flag. If true cluster autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath. true by default at autoscaler |
+
 ### .spec.resourceLimits {id="_specresourcelimits"}
 
 Description
@@ -63,6 +65,7 @@ Type
 | `gpus[]` | `object` |  |
 | `maxNodesTotal` | `integer` | Maximum number of nodes in all node groups. Cluster autoscaler will not grow the cluster beyond this number. |
 | `memory` | `object` | Minimum and maximum number of GiB of memory in cluster, in the format &lt;min>:&lt;max>. Cluster autoscaler will not scale the cluster beyond these numbers. |
+
 ### .spec.resourceLimits.cores {id="_specresourcelimitscores"}
 
 Description
@@ -82,6 +85,7 @@ Required
 | --- | --- | --- |
 | `max` | `integer` |  |
 | `min` | `integer` |  |
+
 ### .spec.resourceLimits.gpus {id="_specresourcelimitsgpus"}
 
 Description
@@ -111,6 +115,7 @@ Required
 | `max` | `integer` |  |
 | `min` | `integer` |  |
 | `type` | `string` | The type of GPU to associate with the minimum and maximum limits. This value is used by the Cluster Autoscaler to identify Nodes that will have GPU capacity by searching for it as a label value on the Node objects. For example, Nodes that carry the label key `cluster-api/accelerator` with the label value being the same as the Type field will be counted towards the resource limits by the Cluster Autoscaler. |
+
 ### .spec.resourceLimits.memory {id="_specresourcelimitsmemory"}
 
 Description
@@ -130,6 +135,7 @@ Required
 | --- | --- | --- |
 | `max` | `integer` |  |
 | `min` | `integer` |  |
+
 ### .spec.scaleDown {id="_specscaledown"}
 
 Description
@@ -152,6 +158,7 @@ Required
 | `enabled` | `boolean` | Should CA scale down the cluster |
 | `unneededTime` | `string` | How long a node should be unneeded before it is eligible for scale down |
 | `utilizationThreshold` | `string` | Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down |
+
 ### .spec.scaleUp {id="_specscaleup"}
 
 Description
@@ -164,6 +171,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `newPodScaleUpDelay` | `string` | Scale up delay for new pods, if omitted defaults to 0 seconds |
+
 ### .status {id="_status"}
 
 Description
@@ -181,12 +189,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ClusterAutoscaler
     *   `GET`: list objects of kind ClusterAutoscaler
     *   `POST`: create a ClusterAutoscaler
-*   `/apis/autoscaling.openshift.io/v1/clusterautoscalers/{{ name }}`
+*   `/apis/autoscaling.openshift.io/v1/clusterautoscalers/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterAutoscaler
     *   `GET`: read the specified ClusterAutoscaler
     *   `PATCH`: partially update the specified ClusterAutoscaler
     *   `PUT`: replace the specified ClusterAutoscaler
-*   `/apis/autoscaling.openshift.io/v1/clusterautoscalers/{{ name }}/status`
+*   `/apis/autoscaling.openshift.io/v1/clusterautoscalers/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ClusterAutoscaler
     *   `PATCH`: partially update status of the specified ClusterAutoscaler
     *   `PUT`: replace status of the specified ClusterAutoscaler

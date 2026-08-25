@@ -10,9 +10,9 @@ You can customize a developer catalog by using the form view in the Web Console.
 
 **Procedure**
 
-1.  In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.
+1.  In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 1.  Select the **Configuration** tab and click the **Console (operator.openshift.io)** resource.
-1.  Click **Actions** -> **Customize**.
+1.  Click **Actions** → **Customize**.
 1.  Enable or disable items in the **Pre-pinned navigation items**, **Add page**, and **Developer Catalog** sections.
 
     **Verification**
@@ -21,16 +21,16 @@ You can customize a developer catalog by using the form view in the Web Console.
     ![Developer catalog customization options in the form view](/_assets/images/odc_customizing_developer_catalog.png)
 
 
-:::note
+    :::note
 
-As an administrator, you can define the navigation items that appear by default for all users. You can also reorder the navigation items.
+    As an administrator, you can define the navigation items that appear by default for all users. You can also reorder the navigation items.
+    
+    :::
 
-:::
 
 
+    :::tip
 
-:::tip
-
-You can use a similar procedure to customize Web UI items such as Quick starts, Cluster roles, and Actions.
-
-:::
+    You can use a similar procedure to customize Web UI items such as Quick starts, Cluster roles, and Actions.
+    
+    :::

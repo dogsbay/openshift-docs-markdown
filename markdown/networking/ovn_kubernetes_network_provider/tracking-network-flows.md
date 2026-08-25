@@ -3,8 +3,8 @@ title: Tracking network flows
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Tracking network flows {id="tracking-network-flows"}
 {% include "./_attributes/common-attributes.md" %}
+# Tracking network flows {id="tracking-network-flows"}
 {%- set context = "tracking-network-flows" %}
 
 As a cluster administrator, you can collect information about pod network flows from your cluster to assist with the following areas:
@@ -44,6 +44,6 @@ Enabling network flow collectors might have an impact on the overall performance
 
 {% leveloffset +1 %}{% include "./modules/nw-network-flows-delete.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_tracking-network-flows"}
+## Additional resources {id="additional-resources_tracking-network-flows" ._additional-resources}
 
 *   [Network [operator.openshift.io/v1\]](/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)

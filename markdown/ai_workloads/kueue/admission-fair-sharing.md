@@ -7,7 +7,7 @@ title: Admission fair sharing
 # Admission fair sharing {id="admission-fair-sharing"}
 {%- set context = "admission-fair-sharing" %}
 
-Use admission fair sharing to fairly distribute workloads across local Queues that share a single `ClusterQueue`. 
+Use admission fair sharing to fairly distribute workloads across local Queues that share a single `ClusterQueue`.  {._abstract}
 
 You can balance workload admission by prioritizing workloads from local Queues that have used fewer resources historically. With admission fair sharing, you can track usage over time with a configurable decay function and apply admission penalties when workloads are admitted.
 

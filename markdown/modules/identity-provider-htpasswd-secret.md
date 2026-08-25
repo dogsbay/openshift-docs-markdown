@@ -16,19 +16,19 @@ contains the htpasswd user file.
     ```
     1.  The secret key containing the users file for the `--from-file` argument must be named `htpasswd`, as shown in the above command.
 
-        :::tip
+    :::tip
 
-        You can alternatively apply the following YAML to create the secret:
+    You can alternatively apply the following YAML to create the secret:
 
-        ```yaml
-        apiVersion: v1
-        kind: Secret
-        metadata:
-          name: htpass-secret
-          namespace: openshift-config
-        type: Opaque
-        data:
-          htpasswd: <base64_encoded_htpasswd_file_contents>
-        ```
-        
-        :::
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: htpass-secret
+      namespace: openshift-config
+    type: Opaque
+    data:
+      htpasswd: <base64_encoded_htpasswd_file_contents>
+    ```
+    
+    :::

@@ -13,7 +13,7 @@ If worker nodes are not created after 15 to 20 minutes, depending on the speed o
        --namespace=openshift-machine-api get deployments
     ```
 
-    If `${{ INSTALL_DIR }}` is not set in your environment, replace the value with the name of the installation directory.
+    If `${{ INSTALL_DIR }}`{minja} is not set in your environment, replace the value with the name of the installation directory.
     ```terminal title="Example output"
     NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
     cluster-autoscaler-operator   1/1     1            1           86m

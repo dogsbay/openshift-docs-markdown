@@ -20,7 +20,7 @@ spec:
 # ...
 ```
 
-***`credentials` object fields***
+**`credentials` object fields**
 
 <table>
 <thead>

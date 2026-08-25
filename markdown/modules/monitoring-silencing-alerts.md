@@ -20,7 +20,7 @@ You can silence a specific alert or silence alerts that match a specification th
 
 To silence a specific alert:
 
-1.  In the {{ product_title }} web console, go to **Observe** -> **Alerting** -> **Alerts**.
+1.  In the {{ product_title }} web console, go to **Observe** → **Alerting** → **Alerts**.
 1.  For the alert that you want to silence, click {{ kebab }} and select **Silence alert** to open the **Silence alert** page with a default configuration for the chosen alert.
 1.  Optional: Change the default configuration details for the silence.
 
@@ -34,7 +34,7 @@ To silence a specific alert:
 
 To silence a set of alerts:
 
-1.  In the {{ product_title }} web console, go to **Observe** -> **Alerting** -> **Silences**.
+1.  In the {{ product_title }} web console, go to **Observe** → **Alerting** → **Silences**.
 1.  Click **Create silence**.
 1.  On the **Create silence** page, set the schedule, duration, and label details for an alert.
 

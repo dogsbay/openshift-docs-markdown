@@ -1,5 +1,5 @@
 ---
-title: "SelfSubjectRulesReview []"
+title: "SelfSubjectRulesReview [authorization.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | SelfSubjectRulesReviewSpec defines the specification for SelfSubjectRulesReview. |
 | `status` | `object` | SubjectRulesReviewStatus contains the result of a rules check. This check can be incomplete depending on the set of authorizers the server is configured with and any errors experienced during evaluation. Because authorization rules are additive, if a rule appears in a list it’s safe to assume the subject has that permission, even if that list is incomplete. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -40,6 +41,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `namespace` | `string` | Namespace to evaluate rules for. Required. |
+
 ### .status {id="_status"}
 
 Description
@@ -63,6 +65,7 @@ Required
 | `nonResourceRules[]` | `object` | NonResourceRule holds information that describes a rule for the non-resource |
 | `resourceRules` | `array` | ResourceRules is the list of actions the subject is allowed to perform on resources. The list ordering isn’t significant, may contain duplicates, and possibly be incomplete. |
 | `resourceRules[]` | `object` | ResourceRule is the list of actions the subject is allowed to perform on resources. The list ordering isn’t significant, may contain duplicates, and possibly be incomplete. |
+
 ### .status.nonResourceRules {id="_statusnonresourcerules"}
 
 Description
@@ -89,6 +92,7 @@ Required
 | --- | --- | --- |
 | `nonResourceURLs` | `array (string)` | NonResourceURLs is a set of partial urls that a user should have access to.  **s are allowed, but only as the full, final step in the path.  "**" means all. |
 | `verbs` | `array (string)` | Verb is a list of kubernetes non-resource API verbs, like: get, post, put, delete, patch, head, options.  "*" means all. |
+
 ### .status.resourceRules {id="_statusresourcerules"}
 
 Description

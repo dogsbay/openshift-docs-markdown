@@ -1,5 +1,5 @@
-# Installing the Knative CLI {id="installing-kn"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing the Knative CLI {id="installing-kn"}
 {%- set context = "installing-kn" %}
 
 The Knative (`kn`) CLI does not have its own login mechanism. To log in to the cluster, you must install the OpenShift CLI (`oc`) and use the `oc login` command. Installation options for the CLIs may vary depending on your operating system.

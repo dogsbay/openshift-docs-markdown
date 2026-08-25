@@ -7,6 +7,7 @@ In order to provision {{ hcp }} on the {{ aws_first }} with PrivateLink, you nee
 
 1.  Create an {{ aws_short }} credential secret for the HyperShift Operator and name it `hypershift-operator-private-link-credentials`. The secret must reside in the managed cluster namespace that is the namespace of the managed cluster being used as the management cluster. If you used `local-cluster`, create the secret in the `local-cluster` namespace.
 1.  See the following table to confirm that the secret contains the required fields:
+
     **Required fields for the {{ aws_short }} secret**
 
     | Field name | Description | Optional or required |

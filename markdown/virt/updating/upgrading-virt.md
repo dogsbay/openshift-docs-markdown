@@ -7,7 +7,7 @@ title: "Updating {{ VirtProductName }}"
 # Updating {{ VirtProductName }} {id="upgrading-virt"}
 {%- set context = "upgrading-virt" %}
 
-Learn how to keep {{ VirtProductName }} updated and compatible with {{ product_title }}.
+Learn how to keep {{ VirtProductName }} updated and compatible with {{ product_title }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-about-upgrading-virt.md" %}{% endleveloffset %}
 
@@ -39,7 +39,7 @@ Learn how to keep {{ VirtProductName }} updated and compatible with {{ product_t
 {% leveloffset +1 %}{% include "./modules/virt-early-access-releases.md" %}{% endleveloffset %}
 {% endif %}
 
-## Additional resources {id="additional-resources_upgrading-virt"}
+## Additional resources {id="additional-resources_upgrading-virt" ._additional-resources}
 {%- if not (openshift_rosa or openshift_dedicated or openshift_origin or openshift_rosa_hcp) %}
 *   [{{ product_title }} Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift)
 *   [Performing a Control Plane Only update](/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)

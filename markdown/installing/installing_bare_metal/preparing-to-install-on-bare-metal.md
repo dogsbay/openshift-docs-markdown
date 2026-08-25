@@ -3,11 +3,11 @@ title: Preparing for bare-metal cluster installation
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing for bare-metal cluster installation {id="preparing-to-install-on-bare-metal"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing for bare-metal cluster installation {id="preparing-to-install-on-bare-metal"}
 {%- set context = "preparing-to-install-on-bare-metal" %}
 
-Review the different methods for installing {{ product_title }} on bare metal and prepare your environment for installation.
+Review the different methods for installing {{ product_title }} on bare metal and prepare your environment for installation. {._abstract}
 
 ## Prerequisites {id="preparing_preparing-to-install-on-bare-metal"}
 
@@ -34,7 +34,7 @@ The clusters have the following characteristics:
 You can install a cluster on bare-metal infrastructure that is provisioned by the {{ product_title }} installation program, by using the following method:
 
 
-***Installing an installer-provisioned cluster on bare metal***
+**Installing an installer-provisioned cluster on bare metal**
 :   You can install {{ product_title }} on bare metal by using installer provisioning.
 
 ## Installing a cluster on user-provisioned infrastructure {id="choosing-a-method-to-install-ocp-on-bare-metal-user-provisioned"}
@@ -42,22 +42,22 @@ You can install a cluster on bare-metal infrastructure that is provisioned by th
 You can install a cluster on bare-metal infrastructure that you provision, by using one of the following methods:
 
 
-***Installing a user-provisioned cluster on bare metal***
+**Installing a user-provisioned cluster on bare metal**
 :   You can install {{ product_title }} on bare-metal infrastructure that you provision. For a cluster that contains user-provisioned infrastructure, you must deploy all of the required machines.
 
 
-***Installing a user-provisioned bare-metal cluster with network customizations***
+**Installing a user-provisioned bare-metal cluster with network customizations**
 :   You can install a bare-metal cluster on user-provisioned infrastructure with network-customizations. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations. Most of the network customizations must be applied at the installation stage.
 
 
-***Installing a user-provisioned bare-metal cluster on a restricted network***
+**Installing a user-provisioned bare-metal cluster on a restricted network**
 :   You can install a user-provisioned bare-metal cluster on a restricted or disconnected network by using a mirror registry. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.
 
 {% leveloffset +1 %}{% include "./modules/virt-planning-bare-metal-cluster-for-ocp-virt.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-sriov-dual-nic-con.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_preparing-to-install-on-bare-metal"}
+## Additional resources {id="additional-resources_preparing-to-install-on-bare-metal" ._additional-resources}
 
 *   [{{ product_title }} installation and update processes](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)

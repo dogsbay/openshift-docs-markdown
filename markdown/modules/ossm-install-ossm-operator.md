@@ -37,7 +37,7 @@ If you have already installed the {{ es_op }} as part of OpenShift {{ logging_uc
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 1.  Log in to the {{ product_title }} web console as a user with the `dedicated-admin` role.
 {% endif %}
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
 1.  Type the name of the Operator into the filter box and select the Red Hat version of the Operator. Community versions of the Operators are not supported.
 1.  Click **Install**.
 1.  On the **Install Operator** page for each Operator, accept  the default settings.
@@ -64,4 +64,4 @@ If you have already installed the {{ es_op }} as part of OpenShift {{ logging_uc
 
 **Verification**
 
-*   After all you have installed all four Operators, click **Ecosystem** -> **Installed Operators** to verify that your Operators are installed.
+*   After all you have installed all four Operators, click **Ecosystem** → **Installed Operators** to verify that your Operators are installed.

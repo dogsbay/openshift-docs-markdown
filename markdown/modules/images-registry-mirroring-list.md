@@ -9,6 +9,7 @@ You can list all image mirror configurations from a {{ product_title }} cluster 
     ```terminal
     $ rosa list image-mirrors [arguments]
     ```
+
     **Arguments**
 
     |     |     |

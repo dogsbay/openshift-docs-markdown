@@ -35,18 +35,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind Secret
 *   `/api/v1/watch/secrets`
     *   `GET`: watch individual changes to a list of Secret. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/secrets`
+*   `/api/v1/namespaces/{{ namespace }}/secrets`{minja}
     *   `DELETE`: delete collection of Secret
     *   `GET`: list or watch objects of kind Secret
     *   `POST`: create a Secret
-*   `/api/v1/watch/namespaces/{{ namespace }}/secrets`
+*   `/api/v1/watch/namespaces/{{ namespace }}/secrets`{minja}
     *   `GET`: watch individual changes to a list of Secret. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/secrets/{{ name }}`
+*   `/api/v1/namespaces/{{ namespace }}/secrets/{{ name }}`{minja}
     *   `DELETE`: delete a Secret
     *   `GET`: read the specified Secret
     *   `PATCH`: partially update the specified Secret
     *   `PUT`: replace the specified Secret
-*   `/api/v1/watch/namespaces/{{ namespace }}/secrets/{{ name }}`
+*   `/api/v1/watch/namespaces/{{ namespace }}/secrets/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Secret. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /api/v1/secrets {id="_apiv1secrets"}

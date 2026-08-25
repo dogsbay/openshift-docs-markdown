@@ -21,12 +21,12 @@ Reducing permissions only applies to GCP clusters using Workload Identity Federa
     gcloud iam service-accounts add-iam-policy-binding "${WORKER_NODE_SA}" --project="${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
     ```
     *   `GOOGLE_PROJECT_ID`: The unique ID of your Google Cloud project.
-    *   `SERVICE_ACCOUNT_EMAIL`: The email address of the "Member" (the person or service account) who is being granted the new permissions. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${{ CLUSTER_NAME }}-openshift-gcp-pd-csi-*`. 
+    *   `SERVICE_ACCOUNT_EMAIL`: The email address of the "Member" (the person or service account) who is being granted the new permissions. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${{ CLUSTER_NAME }}-openshift-gcp-pd-csi-*`{minja}. 
     *   `MASTER_NODE_SA`: The email address of the service account used by your cluster’s master node.
     *   `WORKER_NODE_SA`: The email address of the service account used by your cluster’s worker nodes.
 1.  Remove project-level `iam.serviceAccountUser` role from the binding created by the installation program by running the following Bash commands:
     ```terminal
     gcloud projects remove-iam-policy-binding "${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
     ```
-    *   `SERVICE_ACCOUNT_EMAIL`: The email address of the account losing the permission. For example, `my-app-sa@my-project.iam.gserviceaccount.com`. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${{ CLUSTER_NAME }}-openshift-gcp-pd-csi-*`. 
+    *   `SERVICE_ACCOUNT_EMAIL`: The email address of the account losing the permission. For example, `my-app-sa@my-project.iam.gserviceaccount.com`. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${{ CLUSTER_NAME }}-openshift-gcp-pd-csi-*`{minja}. 
     *   `GOOGLE_PROJECT_ID`: The unique ID of the Google Cloud project where this is occurring. For example, `prod-data-789`.

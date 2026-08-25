@@ -3,8 +3,8 @@ title: About CI/CD
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About CI/CD {id="ci-cd-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# About CI/CD {id="ci-cd-overview"}
 {%- set context = "ci-cd-overview" %}
 
 {{ product_title }} is an enterprise-ready Kubernetes platform for developers, which enables organizations to automate the application delivery process through DevOps practices, such as continuous integration (CI) and continuous delivery (CD). To meet your organizational needs, the {{ product_title }} provides the following CI/CD solutions:

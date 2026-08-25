@@ -47,43 +47,42 @@ You can review the NAB logs only if you are using a `NonAdminBackupStorageLocati
     $ oc get nadr test-nadr-backup -o yaml 
     ```
 
-```yaml title="Example output"
-apiVersion: oadp.openshift.io/v1alpha1
-kind: NonAdminDownloadRequest
-metadata:
-  creationTimestamp: "2025-03-06T10:05:22Z"
-  generation: 1
-  name: test-nadr-backup
-  namespace: test-nac-ns
-  resourceVersion: "134866"
-  uid: 520...8d9
-spec:
-  target:
-    kind: BackupLog
-    name: test-nab
-status:
-  conditions:
-  - lastTransitionTime: "202...5:22Z"
-    message: ""
-    reason: Success
-    status: "True"
-    type: Processed
-  phase: Created
-  velero:
+    ```yaml title="Example output"
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: NonAdminDownloadRequest
+    metadata:
+      creationTimestamp: "2025-03-06T10:05:22Z"
+      generation: 1
+      name: test-nadr-backup
+      namespace: test-nac-ns
+      resourceVersion: "134866"
+      uid: 520...8d9
+    spec:
+      target:
+        kind: BackupLog
+        name: test-nab
     status:
-      downloadURL: https://...
-      expiration: "202...22Z"
-      phase: Processed
-```
+      conditions:
+      - lastTransitionTime: "202...5:22Z"
+        message: ""
+        reason: Success
+        status: "True"
+        type: Processed
+      phase: Created
+      velero:
+        status:
+          downloadURL: https://...
+          expiration: "202...22Z"
+          phase: Processed
+    ```
 
-where:
+    where:
 
+    `downloadURL`
+    :   The `status.downloadURL` field contains the download URL of the NAB logs. You can use the `downloadURL` to download and review the NAB logs.
 
-`downloadURL`
-:   The `status.downloadURL` field contains the download URL of the NAB logs. You can use the `downloadURL` to download and review the NAB logs.
-
-`phase`
-:   The `status.phase` is `Processed`.
+    `phase`
+    :   The `status.phase` is `Processed`.
 
 1.  Download and analyze the backup information by using the `status.downloadURL` URL.
 1.  To review NAR CR logs, create a `NonAdminDownloadRequest` CR and specify the NAR CR name as shown in the following example:
@@ -111,42 +110,41 @@ where:
     $ oc get nadr test-nadr-restore -o yaml
     ```
 
-```yaml title="Example output"
-apiVersion: oadp.openshift.io/v1alpha1
-kind: NonAdminDownloadRequest
-metadata:
-  creationTimestamp: "2025-03-06T11:26:01Z"
-  generation: 1
-  name: test-nadr-restore
-  namespace: test-nac-ns
-  resourceVersion: "157842"
-  uid: f3e...7862f
-spec:
-  target:
-    kind: RestoreLog
-    name: test-nar
-status:
-  conditions:
-  - lastTransitionTime: "202..:01Z"
-    message: ""
-    reason: Success
-    status: "True"
-    type: Processed
-  phase: Created
-  velero:
+    ```yaml title="Example output"
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: NonAdminDownloadRequest
+    metadata:
+      creationTimestamp: "2025-03-06T11:26:01Z"
+      generation: 1
+      name: test-nadr-restore
+      namespace: test-nac-ns
+      resourceVersion: "157842"
+      uid: f3e...7862f
+    spec:
+      target:
+        kind: RestoreLog
+        name: test-nar
     status:
-      downloadURL: https://...
-      expiration: "202..:01Z"
-      phase: Processed
-```
+      conditions:
+      - lastTransitionTime: "202..:01Z"
+        message: ""
+        reason: Success
+        status: "True"
+        type: Processed
+      phase: Created
+      velero:
+        status:
+          downloadURL: https://...
+          expiration: "202..:01Z"
+          phase: Processed
+    ```
 
-where:
+    where:
 
+    `downloadURL`
+    :   The `status.downloadURL` field contains the download URL of the NAR logs. You can use the `downloadURL` to download and review the NAR logs.
 
-`downloadURL`
-:   The `status.downloadURL` field contains the download URL of the NAR logs. You can use the `downloadURL` to download and review the NAR logs.
-
-`phase`
-:   The `status.phase` is `Processed`.
+    `phase`
+    :   The `status.phase` is `Processed`.
 
 1.  Download and analyze the restore information by using the `status.downloadURL` URL.

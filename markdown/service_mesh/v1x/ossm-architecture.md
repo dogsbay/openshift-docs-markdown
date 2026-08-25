@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding Service Mesh {id="ossm-architecture-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding Service Mesh {id="ossm-architecture-v1x"}
 {%- set context = "ossm-architecture-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

@@ -1,5 +1,5 @@
 ---
-title: "IPAddress []"
+title: "IPAddress [networking.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | IPAddressSpec describe the attributes in an IP Address. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -39,6 +40,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `parentRef` | `object` | ParentReference describes a reference to a parent object. |
+
 ### .spec.parentRef {id="_specparentref"}
 
 Description
@@ -70,12 +72,12 @@ The following API endpoints are available:
     *   `POST`: create an IPAddress
 *   `/apis/networking.k8s.io/v1/watch/ipaddresses`
     *   `GET`: watch individual changes to a list of IPAddress. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/networking.k8s.io/v1/ipaddresses/{{ name }}`
+*   `/apis/networking.k8s.io/v1/ipaddresses/{{ name }}`{minja}
     *   `DELETE`: delete an IPAddress
     *   `GET`: read the specified IPAddress
     *   `PATCH`: partially update the specified IPAddress
     *   `PUT`: replace the specified IPAddress
-*   `/apis/networking.k8s.io/v1/watch/ipaddresses/{{ name }}`
+*   `/apis/networking.k8s.io/v1/watch/ipaddresses/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind IPAddress. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/networking.k8s.io/v1/ipaddresses {id="_apisnetworkingk8siov1ipaddresses"}

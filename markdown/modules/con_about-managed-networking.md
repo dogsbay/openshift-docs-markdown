@@ -21,10 +21,10 @@ The following list details some of the most commonly used {{ openshift_networkin
 
 {% if openshift_rosa or openshift_dedicated %}
 
-:::important
+    :::important
 
-Before upgrading {{ product_title }} clusters that are configured with the OpenShift SDN network plugin to version 4.17, you must migrate to the OVN-Kubernetes network plugin. For more information, see _Migrating from the OpenShift SDN network plugin to the OVN-Kubernetes network plugin_.
-
-:::
+    Before upgrading {{ product_title }} clusters that are configured with the OpenShift SDN network plugin to version 4.17, you must migrate to the OVN-Kubernetes network plugin. For more information, see _Migrating from the OpenShift SDN network plugin to the OVN-Kubernetes network plugin_.
+    
+    :::
 
 {% endif %}

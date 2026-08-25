@@ -33,7 +33,7 @@ Enabling NBDE disk encryption in an {{ ibm_z_name }} or {{ ibm_linuxone_name }} 
 1.  Create Butane configuration files for the control plane and compute nodes.
 
     The following example of a Butane configuration for a control plane node creates a file named `master-storage.bu` for disk encryption:
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:
@@ -92,40 +92,40 @@ Enabling NBDE disk encryption in an {{ ibm_z_name }} or {{ ibm_linuxone_name }} 
     **Example kernel parameter file for the control plane machine**
 
 {% if not ibm_z_kvm %}
-```terminal
-cio_ignore=all,!condev rd.neednet=1 \
-console=ttysclp0 \
-coreos.inst.install_dev=/dev/<block_device> \
-ignition.firstboot ignition.platform.id=metal \
-coreos.inst.ignition_url=http://<http_server>/master.ign \
-coreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \
-ip=<ip>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \
-rd.znet=qeth,0.0.bdd0,0.0.bdd1,0.0.bdd2,layer2=1 \
-rd.zfcp=0.0.5677,0x600606680g7f0056,0x034F000000000000 \
-zfcp.allow_lun_scan=0
-```
+    ```terminal
+    cio_ignore=all,!condev rd.neednet=1 \
+    console=ttysclp0 \
+    coreos.inst.install_dev=/dev/<block_device> \
+    ignition.firstboot ignition.platform.id=metal \
+    coreos.inst.ignition_url=http://<http_server>/master.ign \
+    coreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \
+    ip=<ip>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \
+    rd.znet=qeth,0.0.bdd0,0.0.bdd1,0.0.bdd2,layer2=1 \
+    rd.zfcp=0.0.5677,0x600606680g7f0056,0x034F000000000000 \
+    zfcp.allow_lun_scan=0
+    ```
 
-where:
+    where:
 
 {% if ibm_z %}
 
-`coreos.inst.install_dev`
-:   Specifies the block device type. For installations on DASD-type disks, specify `/dev/dasda`. For installations on FCP-type disks, specify `/dev/sda`.
+    `coreos.inst.install_dev`
+    :   Specifies the block device type. For installations on DASD-type disks, specify `/dev/dasda`. For installations on FCP-type disks, specify `/dev/sda`.
 {% endif %}
 {% if ibm_z_lpar %}
 
-`coreos.inst.install_dev`
-:   Specifies the block device type. For installations on DASD-type disks, specify `/dev/dasda`. For installations on FCP-type disks, specify `/dev/sda`. For installations on NVMe-type disks, specify `/dev/nvme0n1`.
+    `coreos.inst.install_dev`
+    :   Specifies the block device type. For installations on DASD-type disks, specify `/dev/dasda`. For installations on FCP-type disks, specify `/dev/sda`. For installations on NVMe-type disks, specify `/dev/nvme0n1`.
 {%- endif %}
 
-`coreos.inst.ignition_url`
-:   Specifies the location of the Ignition config file. Use `master.ign` or `worker.ign`. Only HTTP and HTTPS protocols are supported.
+    `coreos.inst.ignition_url`
+    :   Specifies the location of the Ignition config file. Use `master.ign` or `worker.ign`. Only HTTP and HTTPS protocols are supported.
 
-`coreos.live.rootfs_url`
-:   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` you are booting. Only HTTP and HTTPS protocols are supported.
+    `coreos.live.rootfs_url`
+    :   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` you are booting. Only HTTP and HTTPS protocols are supported.
 
-`rd.zfcp`
-:   Specifies the FCP device. For installations on DASD-type disks, replace with `rd.dasd=0.0.xxxx` to specify the DASD device.
+    `rd.zfcp`
+    :   Specifies the FCP device. For installations on DASD-type disks, replace with `rd.dasd=0.0.xxxx` to specify the DASD device.
 {% endif %}
 {% if ibm_z_kvm %}
     ```terminal
@@ -142,38 +142,36 @@ where:
 
     where:
 
+    `coreos.inst.ignition_url`
+    :   Specifies the location of the Ignition config file. Use `master.ign` or `worker.ign`. Only HTTP and HTTPS protocols are supported.
 
-`coreos.inst.ignition_url`
-:   Specifies the location of the Ignition config file. Use `master.ign` or `worker.ign`. Only HTTP and HTTPS protocols are supported.
+    `coreos.live.rootfs_url`
+    :   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` you are booting. Only HTTP and HTTPS protocols are supported.
 
-`coreos.live.rootfs_url`
-:   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` you are booting. Only HTTP and HTTPS protocols are supported.
+{% endif %}
 
-{%- endif %}
+    :::note
 
-
-:::note
-
-Write all options in the parameter file as a single line and make sure you have no newline characters.
-
-:::
+    Write all options in the parameter file as a single line and make sure you have no newline characters.
+    
+    :::
 
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}

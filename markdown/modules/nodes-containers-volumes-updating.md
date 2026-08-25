@@ -17,13 +17,11 @@ persistent volume claim **pvc1**:
     $ oc set volume rc/r1 --add --overwrite --name=v1 --type=persistentVolumeClaim --claim-name=pvc1
     ```
 
-    :::tip
+    ::::tip
 
     You can alternatively apply the following YAML to replace the volume:
 
-    
-    :::
-
+    :::details{title="Sample replication controller with persistent volume claim named `pvc1`"}
     ```yaml
     kind: ReplicationController
     apiVersion: v1
@@ -58,21 +56,22 @@ persistent volume claim **pvc1**:
                 - name: v1
                   mountPath: /data
     ```
-
+    +
     The `spec.template.spec.volumes` stanza sets the persistent volume claim to `pvc1`.
+    :::
+    
+    ::::
 
 *   To change the `DeploymentConfig` object **d1** mount point to **_/opt_** for volume **v1**:
     ```terminal
     $ oc set volume dc/d1 --add --overwrite --name=v1 --mount-path=/opt
     ```
 
-    :::tip
+    ::::tip
 
     You can alternatively apply the following YAML to change the mount point:
 
-    
-    :::
-
+    :::details{title="Sample deployment config with mount point set to `opt`."}
     ```yaml
     kind: DeploymentConfig
     apiVersion: apps.openshift.io/v1
@@ -108,5 +107,8 @@ persistent volume claim **pvc1**:
                 - name: v1
                   mountPath: /opt
     ```
-
+    +
     The `spec.template.spec.containers.volumeMounts` stanza sets the mount point to `/opt`.
+    :::
+    
+    ::::

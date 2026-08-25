@@ -28,11 +28,13 @@ Installing {{ product_title }} on a single node is supported on bare metal and C
     *   {{ gcp_first }}, where you use `platform=gcp`
     *   {{ azure_first }}, where you use `platform=azure`
 *   **Production-grade server:** Installing {{ product_title }} on a single node requires a server with sufficient resources to run {{ product_title }} services and a production workload.
+
     **Minimum resource requirements**
 
     | Profile | Compute | Memory | Storage |
     | --- | --- | --- | --- |
     | Minimum | 4 vCPUs | 16 GB of RAM | 120 GB |
+
 
     :::important
 
@@ -64,6 +66,7 @@ Installing {{ product_title }} on a single node is supported on bare metal and C
     :::
 
 *   **Networking:** The server must have access to the internet or access to a local registry if it is not connected to a routable network. The server must have a DHCP reservation or a static IP address for the Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN):
+
     **Required DNS records**
 
     | Usage | FQDN | Description |
@@ -71,6 +74,7 @@ Installing {{ product_title }} on a single node is supported on bare metal and C
     | Kubernetes API | `api.<cluster_name>.<base_domain>` | Add a DNS A/AAAA or CNAME record. This record must be resolvable by both clients external to the cluster and within the cluster. |
     | Internal API | `api-int.<cluster_name>.<base_domain>` | Add a DNS A/AAAA or CNAME record when creating the ISO manually. This record must be resolvable by nodes within the cluster. |
     | Ingress route | `*.apps.<cluster_name>.<base_domain>` | Add a wildcard DNS A/AAAA or CNAME record that targets the node. This record must be resolvable by both clients external to the cluster and within the cluster. |
+
 
     :::important
 

@@ -28,15 +28,15 @@ If you do not want to use a dedicated service account for the KMS encryption, th
       --role roles/cloudkms.cryptoKeyEncrypterDecrypter
     ```
 1.  Configure the encryption key under the `providerSpec` field in your machine set YAML file. For example:
-    ```yaml
-{%- if not cpmso %}
+    ```yaml {minja}
+    {% if not cpmso %}
     apiVersion: machine.openshift.io/v1beta1
     kind: MachineSet
-{% endif %}
-{% if cpmso %}
+    {% endif %}
+    {% if cpmso %}
     apiVersion: machine.openshift.io/v1
     kind: ControlPlaneMachineSet
-{%- endif %}
+    {%- endif %}
     ...
     spec:
       template:
@@ -72,6 +72,6 @@ If you do not want to use a dedicated service account for the KMS encryption, th
     :   Optional: Specifies the service account that is used for the encryption request for the given KMS key. If a service account is not set, the Compute Engine default service account is used.
 
         When a new machine is created by using the updated `providerSpec` object configuration, the disk encryption key is encrypted with the KMS key.
-{%- if context == "cpmso-supported-features-gcp" %}
-{%- set cpmso = false -%}
+{% if context == "cpmso-supported-features-gcp" %}
+{%- set cpmso = "" -%}
 {% endif %}

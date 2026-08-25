@@ -11,17 +11,17 @@ Updated version requirements for migration from OpenShift SDN to OVN-Kubernetes
 {%- if openshift_rosa %}
 
     For more information about migrating to OVN-Kubernetes, see [Migrating from OpenShift SDN network plugin to OVN-Kubernetes network plugin](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/ovn-kubernetes_network_plugin/index#migrate-from-openshift-sdn).
-{% endif %}
+{%- endif %}
 
 
 AWS Trainium and Inferentia instance types now supported
 :   You can now use {{ AWS }} Trainium and Inferentia instance types for your {{ product_title }} clusters. For more information, see
 {%- if openshift_rosa %}
     [{{ product_title }} instance types](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/introduction_to_rosa/index#rosa-instance-types).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     [{{ product_title }} instance types](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-hcp-instance-types).
-{% endif %}
+{%- endif %}
 
 {% if openshift_rosa %}
 

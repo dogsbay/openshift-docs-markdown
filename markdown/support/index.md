@@ -3,12 +3,12 @@ title: Support overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Support overview {id="support-overview"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "support-overview" %}
 
-You can identify and resolve {{ product_title }} cluster issues by using diagnostic tools, support procedures, and remote health monitoring.
+You can identify and resolve {{ product_title }} cluster issues by using diagnostic tools, support procedures, and remote health monitoring. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/support-get-support.md" %}{% endleveloffset %}
 
@@ -18,7 +18,7 @@ You can identify and resolve {{ product_title }} cluster issues by using diagnos
 
 {% leveloffset +1 %}{% include "./modules/support-troubleshooting-issues.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Getting support](/support/getting-support#getting-support)
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
@@ -27,8 +27,8 @@ You can identify and resolve {{ product_title }} cluster issues by using diagnos
 *   [Troubleshooting CRI-O issues](/support/troubleshooting/troubleshooting-crio-issues#troubleshooting-crio-issues)
 *   [Troubleshooting operating system issues](/support/troubleshooting/troubleshooting-operating-system-issues#troubleshooting-operating-system-issues)
 *   [Troubleshooting network issues](/support/troubleshooting/troubleshooting-network-issues#troubleshooting-network-issues)
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp) %}
 *   [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)
 {%- endif %}
 *   [Showing data collected by remote health monitoring](/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring#showing-data-collected-by-remote-health-monitoring)

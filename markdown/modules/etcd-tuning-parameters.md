@@ -31,6 +31,7 @@ By selecting one of the other values, you are overriding the default. If you see
     ```
 
     The following table indicates the heartbeat interval and leader election timeout for each profile. These values are subject to change.
+
     **Heartbeat interval and leader election timeout by hardware speed profile**
 
     |     |     |     |

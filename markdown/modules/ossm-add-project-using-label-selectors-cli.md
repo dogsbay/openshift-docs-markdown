@@ -9,10 +9,10 @@ You can use label selectors to add a project to the {{ SMProductShortName }} wit
 *   The deployment has an existing `ServiceMeshMemberRoll` resource.
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You are logged in to {{ product_title }} as`cluster-admin`.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

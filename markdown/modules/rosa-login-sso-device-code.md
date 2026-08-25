@@ -16,6 +16,7 @@ If you are working with containers, remote hosts, and other environments without
     ```
 
     Running this command redirects you to the Red&#160;Hat SSO login and provides a login code.
+
     **Optional arguments inherited from parent commands**
 
     | Option | Definition |

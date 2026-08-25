@@ -302,8 +302,8 @@ ClusterLoggingSpec defines the desired state of ClusterLogging
 | Property | Type | Description |
 | --- | --- | --- |
 | collection | object | Specification of the Collection component for the cluster |
-| curation | object | ***(DEPRECATED)*** **(optional)** Deprecated. Specification of the Curation component for the cluster |
-| forwarder | object | ***(DEPRECATED)*** **(optional)** Deprecated. Specification for Forwarder component for the cluster |
+| curation | object | **(DEPRECATED)** **(optional)** Deprecated. Specification of the Curation component for the cluster |
+| forwarder | object | **(DEPRECATED)** **(optional)** Deprecated. Specification for Forwarder component for the cluster |
 | logStore | object | **(optional)** Specification of the Log Storage component for the cluster |
 | managementState | string | **(optional)** Indicator if the resource is &#39;Managed&#39; or &#39;Unmanaged&#39; by the operator |
 | visualization | object | **(optional)** Specification of the Visualization component for the cluster |
@@ -321,7 +321,7 @@ This is the struct that will contain information pertinent to Log and event coll
 | nodeSelector | object | **(optional)** Define which Nodes the Pods are scheduled on. |
 | tolerations | array | **(optional)** Define the tolerations the Pods will accept |
 | fluentd | object | **(optional)** Fluentd represents the configuration for forwarders of type fluentd. |
-| logs | object | ***(DEPRECATED)*** **(optional)** Deprecated. Specification of Log Collection for the cluster |
+| logs | object | **(DEPRECATED)** **(optional)** Deprecated. Specification of Log Collection for the cluster |
 | type | string | **(optional)** The type of Log Collection to configure |
 
 ### .spec.collection.fluentd {id="_speccollectionfluentd"}
@@ -818,12 +818,17 @@ It points to an existing LokiStack in the same namespace.
 <tr>
   <td>application</td>
   <td>object</td>
-  <td>audit</td>
+  <td></td>
 </tr>
 <tr>
+  <td>audit</td>
   <td>object</td>
+  <td></td>
+</tr>
+<tr>
   <td>infra</td>
   <td>object</td>
+  <td></td>
 </tr>
 </tbody>
 </table>

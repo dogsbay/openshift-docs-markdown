@@ -27,7 +27,7 @@ For {{ op_system_base_full }}, you can install the Knative (`kn`) CLI as an RPM 
         ```terminal
         # subscription-manager repos --enable="openshift-serverless-1-for-rhel-8-x86_64-rpms"
         ```
-{%- if not openshift_rosa %}
+{% if not openshift_rosa %}
     *   Linux on {{ ibm_z_name }} and {{ ibm_linuxone_name }} (s390x)
         ```terminal
         # subscription-manager repos --enable="openshift-serverless-1-for-rhel-8-s390x-rpms"

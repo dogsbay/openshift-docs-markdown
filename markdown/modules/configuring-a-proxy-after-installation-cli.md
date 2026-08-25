@@ -60,6 +60,7 @@ The cluster applies the proxy configuration to the control plane and compute nod
     worker   rendered-worker-f6827a4efe21e155c25c21b43c46f65e   True      False      False      6              6                   6                     0                      31h
     ```
 {% endif %}
+
 1.  Display the proxy configuration for your cluster and verify that the details are as expected:
     ```terminal
     $ oc get proxy cluster -o yaml

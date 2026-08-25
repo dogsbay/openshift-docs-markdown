@@ -3,11 +3,11 @@ title: Working with projects
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Working with projects {id="working-with-projects"}
 {% include "./_attributes/common-attributes.md" %}
+# Working with projects {id="working-with-projects"}
 {%- set context = "projects" %}
 
-A _project_ allows a community of users to organize and manage their content in isolation from other communities.
+A _project_ allows a community of users to organize and manage their content in isolation from other communities. {._abstract}
 
 
 :::note
@@ -15,15 +15,15 @@ A _project_ allows a community of users to organize and manage their content in 
 Projects starting with `openshift-` and `kube-` are 
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 default projects. For more information, see "Default projects".
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 default projects. 
 {%- endif %}
 These projects host cluster components that run as pods and other infrastructure components. As such, {{ product_title }} does not allow you to create projects starting with `openshift-` or `kube-` using the `oc new-project` command.
 {%- if not openshift_dedicated %}
 Cluster administrators can create these projects using the `oc adm new-project` command.
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 For {{ product_title }} clusters that use the Customer Cloud Subscription (CCS) model, users with `cluster-admin` privileges can create these projects using the `oc adm new-project` command.
 {%- endif %}
 
@@ -87,6 +87,6 @@ While a project is in **Terminating** status, you cannot add new content to the 
 
 {% leveloffset +1 %}{% include "./modules/deleting-a-project-using-the-CLI.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Default projects](/authentication/using-rbac#rbac-default-projects_using-rbac)

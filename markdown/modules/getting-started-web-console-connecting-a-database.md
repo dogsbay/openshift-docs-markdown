@@ -20,6 +20,7 @@ Deploy a MongoDB database application to contain the information that your appli
 1.  In the **Resource type** field, ensure that **Deployment** is selected.
 1.  Click **Show advanced Deployment option**.
 1.  Under **Environment variables (runtime only)**, add the following names and values:
+
     **Environment variable names and values**
 
     | Name | Value |
@@ -28,6 +29,7 @@ Deploy a MongoDB database application to contain the information that your appli
     | `MONGODB_PASSWORD` | `mongodb` |
     | `MONGODB_DATABASE` | `mongodb` |
     | `MONGODB_ADMIN_PASSWORD` | `mongodb` |
+
 
     :::tip
 

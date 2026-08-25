@@ -7,13 +7,13 @@ The settings in the following example are based on 1,000 services and 1,000 requ
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu and select the project where you installed the {{ SMProductShortName }} control plane, for example **istio-system**.
 1.  Click the {{ SMProductName }} Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane`, for example `basic`.
 1.  Add the name of your standalone Jaeger instance to the `ServiceMeshControlPlane`.
     1.  Click the **YAML** tab.
     1.  Set the values for `spec.proxy.runtime.container.resources.requests.cpu`, `spec.proxy.runtime.container.resources.requests.memory`, `components.kiali.container`, and `components.global.oauthproxy` in your `ServiceMeshControlPlane` resource.
-        ```yaml title="Example version {{ MaistraVersion }} ServiceMeshControlPlane"
+        ```yaml title="Example version {{ MaistraVersion }} ServiceMeshControlPlane" {minja}
         apiVersion: maistra.io/v2
         kind: ServiceMeshControlPlane
         metadata:

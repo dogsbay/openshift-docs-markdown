@@ -3,11 +3,11 @@ title: Expanding single-node OpenShift clusters with GitOps ZTP
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Expanding single-node OpenShift clusters with GitOps ZTP {id="ztp-sno-additional-worker-node"}
 {% include "./_attributes/common-attributes.md" %}
+# Expanding single-node OpenShift clusters with GitOps ZTP {id="ztp-sno-additional-worker-node"}
 {%- set context = "sno-additional-worker" %}
 
-You can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the control plane node role. Adding a worker node does not require any downtime for the existing {{ sno }} cluster.
+You can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the control plane node role. Adding a worker node does not require any downtime for the existing {{ sno }} cluster. {._abstract}
 
 
 :::note
@@ -26,6 +26,7 @@ If you create the workload partitioning manifests after installing the worker no
 {% include "./snippets/technology-preview.md" %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Reference configuration for deploying vDUs on {{ sno }}](/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)
 *   [Adding worker nodes to {{ sno }} clusters](/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
@@ -45,4 +46,4 @@ If you create the workload partitioning manifests after installing the worker no
 
 {% leveloffset +1 %}{% include "./modules/ztp-adding-worker-nodes.md" %}{% endleveloffset %}
 
-{%- set policy_gen_cr = false -%}
+{%- set policy_gen_cr = "" -%}

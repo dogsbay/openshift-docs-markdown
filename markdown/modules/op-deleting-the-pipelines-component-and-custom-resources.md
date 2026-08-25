@@ -5,7 +5,7 @@ Delete the Custom Resources (CRs) created by default during installation of the 
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Administration** -> **Custom Resource Definition**.
+1.  In the **Administrator** perspective of the web console, navigate to **Administration** → **Custom Resource Definition**.
 1.  Type `config.operator.tekton.dev` in the **Filter by name** box to search for the {{ pipelines_title }} Operator CRs.
 1.  Click **CRD Config** to see the **Custom Resource Definition Details** page.
 1.  Click the **Actions** drop-down menu and select **Delete Custom Resource Definition**.

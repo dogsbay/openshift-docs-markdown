@@ -9,7 +9,7 @@ Red Hat uses this data to understand and resolve issues in a _connected cluster_
 
 {%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 Red&#160;Hat uses this data to understand and resolve issues in a _connected cluster_. {{ product_title }} collects data and monitors health using the following:
-{% endif %}
+{%- endif %}
 
 *   **Telemetry**: The Telemetry Client gathers and uploads the metrics values to Red Hat every four minutes and thirty seconds. Red Hat uses this data to:
     *   Monitor the clusters.

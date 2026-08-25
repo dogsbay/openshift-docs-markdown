@@ -7,23 +7,23 @@
 # Sample YAML for a compute machine set custom resource on {{ ibm_cloud_title }} {id="machineset-yaml-ibm-cloud_{{ context }}"}
 
 You can use the sample YAML file to automate the provisioning of compute or infrastructure nodes within a specific Virtual Private Cloud (VPC). The sample YAML defines a compute machine set that runs in a specified {{ ibm_cloud_name }} zone in a region and creates nodes that are labeled with
-{% if not infra %}
+{%- if not infra %}
 `node-role.kubernetes.io/<role>: ""`.
-{% endif %}
-{% if infra %}
-`node-role.kubernetes.io/infra: ""`.
-{% endif %} {._abstract}
+{%- endif %}
+{%- if infra %}
+`node-role.kubernetes.io/infra: ""`. {._abstract}
+{%- endif %}
 
 In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-{% if not infra %}
+{%- if not infra %}
 `<role>`
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `<infra>`
-{% endif %}
+{%- endif %}
 is the node label to add.
 
-```yaml
+```yaml {minja}
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
@@ -33,8 +33,8 @@ metadata:
     machine.openshift.io/cluster-api-machine-role: <role>
     machine.openshift.io/cluster-api-machine-type: <role>
   name: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
     machine.openshift.io/cluster-api-machine-role: <infra>
     machine.openshift.io/cluster-api-machine-type: <infra>
   name: <infrastructure_id>-<infra>-<region>
@@ -47,8 +47,8 @@ spec:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
 {%- if not infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<region>
 {%- endif %}
   template:
@@ -59,8 +59,8 @@ spec:
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
         machine.openshift.io/cluster-api-machine-role: <infra>
         machine.openshift.io/cluster-api-machine-type: <infra>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<region>
@@ -70,8 +70,8 @@ spec:
         labels:
 {%- if not infra %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           node-role.kubernetes.io/infra: ""
 {%- endif %}
       providerSpec:
@@ -108,7 +108,7 @@ where:
     ```terminal
     $ oc get -o jsonpath='{.status.infrastructureName}{"\n"}' infrastructure cluster
     ```
-{%- if not infra %}
+{% if not infra %}
 
 `<role>`
 :   Specifies the node label to add.
@@ -160,5 +160,5 @@ where:
 {%- endif %}
 
 {% if context == "creating-infrastructure-machinesets" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}

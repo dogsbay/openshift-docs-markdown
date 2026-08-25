@@ -42,7 +42,8 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `subsets` | `array` | The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service. |
-| `subsets[]` | `object` | EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given: 	{ 	  Addresses: [{"ip": "10.10.1.1"}, {"ip": "10.10.2.2"}], 	  Ports:     [{"name": "a", "port": 8675}, {"name": "b", "port": 309}] 	} The resulting set of endpoints can be viewed as: 	a: [ 10.10.1.1:8675, 10.10.2.2:8675 ], 	b: [ 10.10.1.1:309, 10.10.2.2:309 ] Deprecated: This API is deprecated in v1.33+. |
+| `subsets[]` | `object` | EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given:<br>	{ 	  Addresses: [{"ip": "10.10.1.1"}, {"ip": "10.10.2.2"}], 	  Ports:     [{"name": "a", "port": 8675}, {"name": "b", "port": 309}] 	}<br>The resulting set of endpoints can be viewed as:<br>	a: [ 10.10.1.1:8675, 10.10.2.2:8675 ], 	b: [ 10.10.1.1:309, 10.10.2.2:309 ]<br>Deprecated: This API is deprecated in v1.33+. |
+
 ### .subsets {id="_subsets"}
 
 Description
@@ -85,6 +86,7 @@ Type
 | `notReadyAddresses[]` | `object` | EndpointAddress is a tuple that describes single IP address. Deprecated: This API is deprecated in v1.33+. |
 | `ports` | `array` | Port numbers available on the related IP addresses. |
 | `ports[]` | `object` | EndpointPort is a tuple that describes a single port. Deprecated: This API is deprecated in v1.33+. |
+
 ### .subsets[].addresses {id="_subsetsaddresses"}
 
 Description
@@ -113,6 +115,7 @@ Required
 | `ip` | `string` | The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16). |
 | `nodeName` | `string` | Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node. |
 | `targetRef` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
+
 ### .subsets[].addresses[].targetRef {id="_subsetsaddressestargetref"}
 
 Description
@@ -131,6 +134,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .subsets[].notReadyAddresses {id="_subsetsnotreadyaddresses"}
 
 Description
@@ -159,6 +163,7 @@ Required
 | `ip` | `string` | The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16). |
 | `nodeName` | `string` | Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node. |
 | `targetRef` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
+
 ### .subsets[].notReadyAddresses[].targetRef {id="_subsetsnotreadyaddressestargetref"}
 
 Description
@@ -177,6 +182,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .subsets[].ports {id="_subsetsports"}
 
 Description
@@ -201,10 +207,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names:   * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
+| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:<br>* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).<br>* Kubernetes-defined prefixed names:   * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455<br>* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
 | `name` | `string` | The name of this port.  This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined. |
 | `port` | `integer` | The port number of the endpoint. |
-| `protocol` | `string` | The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP. Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.<br>Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
 
 ## API endpoints {id="_api_endpoints"}
 
@@ -214,18 +220,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind Endpoints
 *   `/api/v1/watch/endpoints`
     *   `GET`: watch individual changes to a list of Endpoints. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/endpoints`
+*   `/api/v1/namespaces/{{ namespace }}/endpoints`{minja}
     *   `DELETE`: delete collection of Endpoints
     *   `GET`: list or watch objects of kind Endpoints
     *   `POST`: create Endpoints
-*   `/api/v1/watch/namespaces/{{ namespace }}/endpoints`
+*   `/api/v1/watch/namespaces/{{ namespace }}/endpoints`{minja}
     *   `GET`: watch individual changes to a list of Endpoints. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/endpoints/{{ name }}`
+*   `/api/v1/namespaces/{{ namespace }}/endpoints/{{ name }}`{minja}
     *   `DELETE`: delete Endpoints
     *   `GET`: read the specified Endpoints
     *   `PATCH`: partially update the specified Endpoints
     *   `PUT`: replace the specified Endpoints
-*   `/api/v1/watch/namespaces/{{ namespace }}/endpoints/{{ name }}`
+*   `/api/v1/watch/namespaces/{{ namespace }}/endpoints/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Endpoints. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /api/v1/endpoints {id="_apiv1endpoints"}

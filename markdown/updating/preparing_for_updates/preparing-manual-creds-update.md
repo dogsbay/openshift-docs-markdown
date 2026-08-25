@@ -3,11 +3,11 @@ title: Preparing to update a cluster with manually maintained credentials
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to update a cluster with manually maintained credentials {id="preparing-manual-creds-update"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to update a cluster with manually maintained credentials {id="preparing-manual-creds-update"}
 {%- set context = "preparing-manual-creds-update" %}
 
-Before you update a cluster that uses manually maintained credentials, accommodate any new or changed cloud provider credentials in the target release. This preparation ensures the Cloud Credential Operator (CCO) does not block the upgrade.
+Before you update a cluster that uses manually maintained credentials, accommodate any new or changed cloud provider credentials in the target release. This preparation ensures the Cloud Credential Operator (CCO) does not block the upgrade. {._abstract}
 
 The CCO `Upgradeable` status for a cluster with manually maintained credentials is `False` by default.
 
@@ -17,6 +17,7 @@ The CCO `Upgradeable` status for a cluster with manually maintained credentials 
 {% leveloffset +1 %}{% include "./modules/about-manually-maintained-credentials-upgrade.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Determining the Cloud Credential Operator mode by using the web console](/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-gui_preparing-manual-creds-update)
 *   [Determining the Cloud Credential Operator mode by using the CLI](/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-cli_preparing-manual-creds-update)
@@ -26,6 +27,7 @@ The CCO `Upgradeable` status for a cluster with manually maintained credentials 
 {% leveloffset +2 %}{% include "./modules/cco-determine-mode-gui.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Extracting and preparing credentials request resources](/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)
 
@@ -34,12 +36,14 @@ The CCO `Upgradeable` status for a cluster with manually maintained credentials 
 {% leveloffset +2 %}{% include "./modules/cco-determine-mode-next.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Extracting and preparing credentials request resources](/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)
 
 {% leveloffset +1 %}{% include "./modules/manually-maintained-credentials-upgrade-extract.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the Cloud Credential Operator utility for a cluster update](/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-configuring_preparing-manual-creds-update)
 *   [Manually updating cloud provider resources](/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update)
@@ -49,12 +53,14 @@ The CCO `Upgradeable` status for a cluster with manually maintained credentials 
 {% leveloffset +1 %}{% include "./modules/cco-ccoctl-upgrading.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Indicating that the cluster is ready to upgrade](/updating/preparing_for_updates/preparing-manual-creds-update#cco-manual-upgrade-annotation_preparing-manual-creds-update)
 
 {% leveloffset +1 %}{% include "./modules/manually-maintained-credentials-upgrade.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually creating long-term credentials for AWS](/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
 *   [Manually creating long-term credentials for Azure](/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)

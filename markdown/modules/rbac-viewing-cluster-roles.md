@@ -19,7 +19,7 @@ perform any action on any resource, including viewing cluster roles and bindings
 **Procedure**
 
 1.  To view the cluster roles and their associated rule sets:
-    {%- if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
     ```terminal
     $ oc describe clusterrole.rbac
     ```
@@ -213,7 +213,7 @@ perform any action on any resource, including viewing cluster roles and bindings
 {% endif %}
 1.  To view the current set of cluster role bindings, which shows the users and
     groups that are bound to various roles:
-    {%- if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+    {% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
     ```terminal
     $ oc describe clusterrolebinding.rbac
     ```

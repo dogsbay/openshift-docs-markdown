@@ -67,35 +67,35 @@ spec:
   <td>Number of Elasticsearch nodes to create.</td>
   <td>Integer value.</td>
   <td>1</td>
-  <td>Proof of concept = 1,Minimum deployment =3</td>
+  <td>Proof of concept = 1, Minimum deployment =3</td>
 </tr>
 <tr>
   <td>requests: cpu:</td>
   <td>Number of central processing units for requests, based on your environment's configuration.</td>
   <td>Specified in cores or millicores (for example, 200m, 0.5, 1).</td>
   <td>1Gi</td>
-  <td>Proof of concept = 500m,Minimum deployment =1</td>
+  <td>Proof of concept = 500m, Minimum deployment =1</td>
 </tr>
 <tr>
   <td>requests: memory:</td>
   <td>Available memory for requests, based on your environment's configuration.</td>
   <td>Specified in bytes (for example, 200Ki, 50Mi, 5Gi).</td>
   <td>500m</td>
-  <td>Proof of concept = 1Gi,Minimum deployment = 16Gi*</td>
+  <td>Proof of concept = 1Gi, Minimum deployment = 16Gi*</td>
 </tr>
 <tr>
   <td>limits: cpu:</td>
   <td>Limit on number of central processing units, based on your environment's configuration.</td>
   <td>Specified in cores or millicores (for example, 200m, 0.5, 1).</td>
   <td></td>
-  <td>Proof of concept = 500m,Minimum deployment =1</td>
+  <td>Proof of concept = 500m, Minimum deployment =1</td>
 </tr>
 <tr>
   <td>limits: memory:</td>
   <td>Available memory limit based on your environment's configuration.</td>
   <td>Specified in bytes (for example, 200Ki, 50Mi, 5Gi).</td>
   <td></td>
-  <td>Proof of concept = 1Gi,Minimum deployment = 16Gi*</td>
+  <td>Proof of concept = 1Gi, Minimum deployment = 16Gi*</td>
 </tr>
 <tr>
   <td></td>
@@ -107,7 +107,7 @@ spec:
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console as a user with the `cluster-admin` role.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the {{ SMProductName }} Operator.
 1.  Click the **Istio Service Mesh Control Plane** tab.
 1.  Click the name of your control plane file, for example, `basic-install`.

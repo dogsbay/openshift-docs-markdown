@@ -8,8 +8,8 @@ You can delete a network policy in a namespace. {._abstract}
 *   You logged in to {{ cluster_manager_url }}.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   You created an {{ product_title }} cluster.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   You created a {{ product_title }} cluster.
 {%- endif %}
 *   You configured an identity provider for your cluster.

@@ -7,13 +7,14 @@ title: "Deploying {{ hcp }} on bare metal in a disconnected environment"
 # Deploying {{ hcp }} on bare metal in a disconnected environment {id="hcp-deploy-dc-bm"}
 {%- set context = "hcp-deploy-dc-bm" %}
 
-In the context of {{ hcp }}, a disconnected environment is an {{ product_title }} deployment that is not connected to the internet and that uses {{ hcp }} as a base. You can deploy {{ hcp }} in a disconnected environment on bare metal.
+In the context of {{ hcp }}, a disconnected environment is an {{ product_title }} deployment that is not connected to the internet and that uses {{ hcp }} as a base. You can deploy {{ hcp }} in a disconnected environment on bare metal. {._abstract}
 
 When you provision {{ hcp }} on bare metal, you use the Agent platform. The Agent platform and {{ mce }} work together to enable disconnected deployments. The Agent platform uses the central infrastructure management service to add worker nodes to a hosted cluster. For an introduction to the central infrastructure management service, see "Enabling the central infrastructure management service".
 
 {% leveloffset +1 %}{% include "./modules/hcp-dc-bm-arch.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding the registry CA to the management cluster](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-tls-mgmt_hcp-deploy-dc-bm)
 *   [Adding the registry CA to the compute nodes for the hosted cluster](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-tls-hosted_hcp-deploy-dc-bm)
@@ -29,9 +30,10 @@ When you provision {{ hcp }} on bare metal, you use the Agent platform. The Agen
 {% leveloffset +1 %}{% include "./modules/hcp-dc-mgmt-cluster.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing and upgrading multicluster engine operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#mce-install-intro)
-*   [Manually enabling the hypershift-addon managed cluster add-on for local-cluster](/hosted_control_planes/hcp-prepare/hcp-enable-disable.html#hcp-enable-manual-addon_hcp-enable-disable)
+*   [Manually enabling the hypershift-addon managed cluster add-on for local-cluster](/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual-addon_hcp-enable-disable)
 *   [Cluster lifecycle with multicluster engine operator overview](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#mce-intro)
 
 {% leveloffset +1 %}{% include "./modules/hcp-dc-web-server.md" %}{% endleveloffset %}
@@ -39,6 +41,7 @@ When you provision {{ hcp }} on bare metal, you use the Agent platform. The Agen
 {% leveloffset +1 %}{% include "./modules/hcp-dc-image-mirror.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring an image set in a partially disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2)
 *   [Mirroring an image set in a fully disconnected environment](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-fully-disconnected-v2_about-installing-oc-mirror-v2)
@@ -47,6 +50,7 @@ When you provision {{ hcp }} on bare metal, you use the Agent platform. The Agen
 {% leveloffset +1 %}{% include "./modules/hcp-dc-apply-objects.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
@@ -67,12 +71,13 @@ When you provision {{ hcp }} on bare metal, you use the Agent platform. The Agen
 {% leveloffset +2 %}{% include "./modules/hcp-bm-hosts.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Provisioning new hosts in a user-provisioned cluster by using the BMO](/installing/installing_bare_metal/upi/scaling-a-user-provisioned-cluster-with-the-bare-metal-operator#upi-provisioning-new-hosts-in-a-upi-cluster_scaling-a-user-provisioned-cluster-with-the-bare-metal-operator)
 *   [Understanding secrets](/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)
 
 {% leveloffset +2 %}{% include "./modules/hcp-dc-scale-np.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)

@@ -3,11 +3,11 @@ title: Preparing to install a cluster on Azure
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster on Azure {id="installing-azure-preparing-ipi"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster on Azure {id="installing-azure-preparing-ipi"}
 {%- set context = "installing-azure-preparing-ipi" %}
 
-Before you install an {{ product_title }} cluster on {{ azure_short }} with installer-provisioned infrastructure, you must configure your account, obtain the installation program and `oc` CLI, and optionally prepare disk encryption sets.
+Before you install an {{ product_title }} cluster on {{ azure_short }} with installer-provisioned infrastructure, you must configure your account, obtain the installation program and `oc` CLI, and optionally prepare disk encryption sets. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/prerequisites-installing-azure.md" %}{% endleveloffset %}
 
@@ -26,6 +26,7 @@ Before you install an {{ product_title }} cluster on {{ azure_short }} with inst
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
@@ -34,6 +35,7 @@ Before you install an {{ product_title }} cluster on {{ azure_short }} with inst
 {% leveloffset +1 %}{% include "./modules/installation-azure-preparing-diskencryptionsets.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Install a cluster with customizations on installer-provisioned infrastructure](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
 *   [Install a cluster into an existing VNet on installer-provisioned infrastructure](/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet)

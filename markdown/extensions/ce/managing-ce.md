@@ -3,11 +3,11 @@ title: Managing cluster extensions
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing cluster extensions {id="managing-ce"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing cluster extensions {id="managing-ce"}
 {%- set context = "managing-ce" %}
 
-You use catalogs to access the versions, patches, and over-the-air updates for extensions and Operators. You use custom resources (CRs) to manage extensions declaratively from the CLI.
+You use catalogs to access the versions, patches, and over-the-air updates for extensions and Operators. You use custom resources (CRs) to manage extensions declaratively from the CLI. {._abstract}
 
 {% include "./snippets/olmv1-cli-only.md" %}
 
@@ -36,6 +36,7 @@ You use catalogs to access the versions, patches, and over-the-air updates for e
 {% leveloffset +1 %}{% include "./modules/olmv1-installing-an-operator-in-a-specific-namespace.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Supported extensions](/extensions/ce/olmv1-supported-extensions#olmv1-supported-extensions)
 *   [Projects and namespaces](/authentication/using-rbac#rbac-projects-namespaces_using-rbac)
@@ -48,6 +49,7 @@ You use catalogs to access the versions, patches, and over-the-air updates for e
 {% leveloffset +1 %}{% include "./modules/olmv1-updating-an-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Update paths](/extensions/ce/update-paths#update-paths)
 

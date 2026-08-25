@@ -3,11 +3,11 @@ title: Reducing resource consumption with application idling
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Reducing resource consumption with application idling {id="idling-applications"}
 {% include "./_attributes/common-attributes.md" %}
+# Reducing resource consumption with application idling {id="idling-applications"}
 {%- set context = "idling-applications" %}
 
-As an administrator, you can reduce cluster resource consumption and lower public cloud costs by temporarily scaling inactive application resources to zero replicas.
+As an administrator, you can reduce cluster resource consumption and lower public cloud costs by temporarily scaling inactive application resources to zero replicas. {._abstract}
 
 If any scalable resources are not in use, {{ product_title }} discovers and idles them by scaling their replicas to `0`. The next time network traffic is directed to the resources, the resources are unidled by scaling up the replicas, and normal operation continues.
 

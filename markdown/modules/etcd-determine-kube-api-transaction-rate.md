@@ -19,7 +19,7 @@ To test the control plane, `kube-burner-ocp` has three workload profiles: `clust
     ```terminal
     # kube-burner ocp cluster-density-ms --churn-duration 20m --churn-delay 0s --iterations 10 --timeout 30m
     ```
-1.  The {{ product_title }} console provides a dashboard with all the relevant API performance information. To access API performance information, click **Observe** -> **Dashboards**. From the **Dashboards** menu, click **API Performance**.
-1.  During the run, observe the API performance dashboard in the {{ product_title }} console by clicking **Observe** -> **Dashboards**. From the **Dashboards** menu, click **API Performance**.
+1.  The {{ product_title }} console provides a dashboard with all the relevant API performance information. To access API performance information, click **Observe** → **Dashboards**. From the **Dashboards** menu, click **API Performance**.
+1.  During the run, observe the API performance dashboard in the {{ product_title }} console by clicking **Observe** → **Dashboards**. From the **Dashboards** menu, click **API Performance**.
 
     On the dashboard, notice how the control plane responds during load and the 99th percentile transaction rate it can achieve for the execution of various verbs and request rates by read and write. Use this information and the knowledge of your organization’s workload to determine the load that the organization can put in the clusters for the specific stretched control plane deployment.

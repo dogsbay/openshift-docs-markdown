@@ -3,11 +3,11 @@ title: Configuring a basic authentication identity provider
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring a basic authentication identity provider {id="configuring-basic-authentication-identity-provider"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring a basic authentication identity provider {id="configuring-basic-authentication-identity-provider"}
 {%- set context = "configuring-basic-authentication-identity-provider" %}
 
-Configure the `basic-authentication` identity provider. Users can log in to {{ product_title }} with credentials validated against a remote authentication service, without maintaining a separate user store in the cluster.
+Configure the `basic-authentication` identity provider. Users can log in to {{ product_title }} with credentials validated against a remote authentication service, without maintaining a separate user store in the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
 
@@ -20,6 +20,7 @@ Configure the `basic-authentication` identity provider. Users can log in to {{ p
 {% leveloffset +1 %}{% include "./modules/identity-provider-basic-authentication-CR.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 

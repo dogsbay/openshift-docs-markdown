@@ -9,8 +9,8 @@
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Ecosystem** -> **Installed Operators** to verify that the {{ gitops_title }} Operator is installed.
-1.  Navigate to the {{ rh_app_icon }} menu -> **OpenShift GitOps** -> **Cluster Argo CD**. The login page of the Argo CD UI is displayed in a new window.
+1.  In the **Administrator** perspective of the web console, navigate to **Ecosystem** → **Installed Operators** to verify that the {{ gitops_title }} Operator is installed.
+1.  Navigate to the {{ rh_app_icon }} menu → **OpenShift GitOps** → **Cluster Argo CD**. The login page of the Argo CD UI is displayed in a new window.
 1.  Optional: To log in with your {{ product_title }} credentials, ensure you are a user of the `cluster-admins` group and then select the `LOG IN VIA OPENSHIFT` option in the Argo CD user interface.
 
     :::note

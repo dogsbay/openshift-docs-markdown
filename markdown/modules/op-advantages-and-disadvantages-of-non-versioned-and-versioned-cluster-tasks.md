@@ -3,7 +3,7 @@
 
 Before adopting non-versioned or versioned cluster tasks as a standard in production environments, cluster administrators might consider their advantages and disadvantages.
 
-***Advantages and disadvantages of non-versioned and versioned cluster tasks***
+**Advantages and disadvantages of non-versioned and versioned cluster tasks**
 
 <table>
 <thead>

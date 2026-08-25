@@ -37,11 +37,11 @@ How the cluster behaves after disabling or re-enabling the feature, depends upon
     *   When you scale up nodes, the new nodes use the current {{ product_title }} version in the cluster. 
 
 
-:::note
+    :::note
 
-Because a boot image is used only when a node is scaled up, this feature has no effect on existing nodes.
-
-:::
+    Because a boot image is used only when a node is scaled up, this feature has no effect on existing nodes.
+    
+    :::
 
 
 To view the current {{ op_system_first }} boot image version used in your cluster, you can view the `/sysroot/.coreos-aleph-version.json` file on that node.

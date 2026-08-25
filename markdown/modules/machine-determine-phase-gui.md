@@ -10,7 +10,7 @@ To troubleshoot issues with a machine, you can find the phase of a machine by us
 **Procedure**
 
 1.  Log in to the web console as a user with the `cluster-admin` role.
-1.  Navigate to **Compute** -> **Machines**.
+1.  Navigate to **Compute** → **Machines**.
 1.  On the **Machines** page, select the name of the machine that you want to find the phase of.
 1.  On the **Machine details** page, select the **YAML** tab.
 1.  In the YAML block, find the value of the `status.phase` field.

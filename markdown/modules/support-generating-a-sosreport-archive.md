@@ -27,7 +27,7 @@ The recommended way to generate a `sosreport` for an {{ product_title }} {{ prod
     ```terminal
     $ oc debug node/my-cluster-node
     ```
-{%- if not openshift_dedicated %}
+{% if not openshift_dedicated %}
 
     To enter into a debug session on the target node that is tainted with the `NoExecute` effect, add a toleration to a dummy namespace, and start the debug pod in the dummy namespace:
     ```terminal
@@ -58,7 +58,7 @@ The recommended way to generate a `sosreport` for an {{ product_title }} {{ prod
 
     :::note
 
-    If an existing `toolbox` pod is already running, the `toolbox` command outputs ’toolbox-' already exists. Trying to start...`. Remove the running toolbox container with `podman rm toolbox-` and spawn a new toolbox container, to avoid issues with `sosreport` plugins.
+    If an existing `toolbox` pod is already running, the `toolbox` command outputs `'toolbox-' already exists. Trying to start...`. Remove the running toolbox container with `podman rm toolbox-` and spawn a new toolbox container, to avoid issues with `sosreport` plugins.
     
     :::
 
@@ -69,8 +69,8 @@ The recommended way to generate a `sosreport` for an {{ product_title }} {{ prod
         ```
 
         where
-:   *   `-k` enables you to define `sosreport` plugin parameters outside of the defaults.
-        1.  Optional: To include information on OVN-Kubernetes networking configurations from a node in your report, run the following command:
+        :   *   `-k` enables you to define `sosreport` plugin parameters outside of the defaults.
+    1.  Optional: To include information on OVN-Kubernetes networking configurations from a node in your report, run the following command:
         ```terminal
         # sos report --all-logs
         ```
@@ -85,7 +85,7 @@ The recommended way to generate a `sosreport` for an {{ product_title }} {{ prod
         ```
 
         where
-:   *   The `sosreport` archive’s file path is outside of the `chroot` environment because the toolbox container mounts the host’s root directory at `/host`.
+        :   *   The `sosreport` archive’s file path is outside of the `chroot` environment because the toolbox container mounts the host’s root directory at `/host`.
 1.  Provide the `sosreport` archive to Red Hat Support for analysis, using one of the following methods.
     *   Upload the file to an existing Red Hat support case.
         1.  Concatenate the `sosreport` archive by running the `oc debug node/<node_name>` command and redirect the output to a file. This command assumes you have exited the previous `oc debug` session:
@@ -94,7 +94,7 @@ The recommended way to generate a `sosreport` for an {{ product_title }} {{ prod
             ```
 
             where
-    :   *   The debug container mounts the host’s root directory at `/host`. Reference the absolute path from the debug container’s root directory, including `/host`, when specifying target files for concatenation.
+            :   *   The debug container mounts the host’s root directory at `/host`. Reference the absolute path from the debug container’s root directory, including `/host`, when specifying target files for concatenation.
 
         :::note
 

@@ -32,9 +32,9 @@ Save the policy as `BareMetalHostBackupPolicy.yaml`.
               name: set-bmh-backup-label
             spec:
               object-templates-raw: |
-{{- /* Set cluster-activation label on all BMH resources */ -}}
-{{- $infra_label := "infraenvs.agent-install.openshift.io" }}
-{{- range $bmh := (lookup "metal3.io/v1alpha1" "BareMetalHost" "" "" $infra_label).items }}
+                {{- /* Set cluster-activation label on all BMH resources */ -}}
+                {{- $infra_label := "infraenvs.agent-install.openshift.io" }}
+                {{- range $bmh := (lookup "metal3.io/v1alpha1" "BareMetalHost" "" "" $infra_label).items }}
                     - complianceType: musthave
                       objectDefinition:
                         kind: BareMetalHost
@@ -44,7 +44,7 @@ Save the policy as `BareMetalHostBackupPolicy.yaml`.
                           namespace: {{ $bmh.metadata.namespace }}
                           labels:
                             cluster.open-cluster-management.io/backup: cluster-activation
-{{- end }}
+                {{- end }}
               remediationAction: enforce
               severity: high
     ---

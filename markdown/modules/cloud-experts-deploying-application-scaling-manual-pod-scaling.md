@@ -26,7 +26,7 @@ This workshop starts by using only one pod for the microservice. By defining a r
     $ oc get pods
     ```
 
-    ***Example output:***
+    **Example output:**
     ```terminal
     NAME                                  READY     STATUS    RESTARTS   AGE
     ostoy-frontend-679cb85695-5cn7x       1/1       Running   0          1h
@@ -59,7 +59,7 @@ This workshop starts by using only one pod for the microservice. By defining a r
 
     The output shows that there are now 3 pods for the microservice instead of only one.
 
-    ***Example output:***
+    **Example output:**
     ```terminal
     NAME                                  READY   STATUS    RESTARTS   AGE
     ostoy-frontend-5fbcc7d9-rzlgz         1/1     Running   0          26m
@@ -82,7 +82,7 @@ This workshop starts by using only one pod for the microservice. By defining a r
         $ oc get pods
         ```
 
-        ***Example output:***
+        **Example output:**
         ```terminal
         NAME                                  READY   STATUS    RESTARTS   AGE
         ostoy-frontend-5fbcc7d9-rzlgz         1/1     Running   0          75m
@@ -91,5 +91,5 @@ This workshop starts by using only one pod for the microservice. By defining a r
         ```
     *   In the web UI, select **Workloads > Deployments > ostoy-microservice**.
         ![Verify the workload pods](/_assets/images/deploy-scale-verify-workload.png)
-    *   You can also confirm that there are two pods in use by selecting ***Networking*** in the navigational menu of the OSToy app. There should be two colored boxes for the two pods.
+    *   You can also confirm that there are two pods in use by selecting **Networking** in the navigational menu of the OSToy app. There should be two colored boxes for the two pods.
         ![UI Scale](/_assets/images/deploy-scale-colorspods.png)

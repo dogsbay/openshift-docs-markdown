@@ -14,11 +14,11 @@ In other words, if you do not use the default Elasticsearch log store, you can r
     ```
 
 
-:::warning
+    :::warning
 
-Suppose the `ClusterLogForwarder` CR forwards log data to the internal Elasticsearch cluster, and you remove the `logStore` component from the `ClusterLogging` CR. In that case, the internal Elasticsearch cluster will not be present to store the log data. This absence can cause data loss.
-
-:::
+    Suppose the `ClusterLogForwarder` CR forwards log data to the internal Elasticsearch cluster, and you remove the `logStore` component from the `ClusterLogging` CR. In that case, the internal Elasticsearch cluster will not be present to store the log data. This absence can cause data loss.
+    
+    :::
 
 
 **Procedure**

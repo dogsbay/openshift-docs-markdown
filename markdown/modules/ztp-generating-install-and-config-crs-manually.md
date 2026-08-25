@@ -20,11 +20,11 @@ Use the `ztp-site-generate` container to extract reference custom resources (CRs
     $ podman login registry.redhat.io
     ```
 1.  Extract the reference and example CRs from the `ztp-site-generate` container image by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }} extract /home/ztp --tar | tar x -C ./out
     ```
 
-    The `./out` directory contains the reference `{{ policy_gen_cr }}` and `ClusterInstance` CRs in the `out/argocd/example/` folder.
+    The `./out` directory contains the reference `{{ policy_gen_cr }}`{minja} and `ClusterInstance` CRs in the `out/argocd/example/` folder.
     ```terminal title="Example output"
     out
      └── argocd
@@ -50,8 +50,8 @@ Use the `ztp-site-generate` container to extract reference custom resources (CRs
     *   `example-standard.yaml`
 
         Change the cluster and host details in the example file to match the type of cluster you want to install. For example:
-        ```yaml title="Example {{ sno }} ClusterInstance CR"
-{% include "./snippets/ztp_example-sno.yaml" %}
+        ```yaml title="Example {{ sno }} ClusterInstance CR" {minja}
+        {% include "./snippets/ztp_example-sno.yaml" %}
         ```
 
         :::note
@@ -60,13 +60,13 @@ Use the `ztp-site-generate` container to extract reference custom resources (CRs
         
         :::
 
-1.  Optional: Generate Day 2 configuration CRs from the reference `{{ policy_gen_cr }}` CRs:
+1.  Optional: Generate Day 2 configuration CRs from the reference `{{ policy_gen_cr }}`{minja} CRs:
     1.  Create an output folder for the configuration CRs by running the following command:
         ```terminal
         $ mkdir -p ./ref
         ```
     1.  Generate the configuration CRs by running the following command:
-        ```terminal
+        ```terminal {minja}
         $ podman run -it --rm -v `pwd`/out/argocd/example/policygentemplates:/resources:Z -v `pwd`/ref:/output:Z,U registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }} generator config -N . /output
         ```
 

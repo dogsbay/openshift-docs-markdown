@@ -21,22 +21,26 @@ Automatic creation of ClusterGroupUpgrade CRs
 
     The automatic creation of an enabled `ClusterGroupUpgrade` ensures that initial zero-touch deployment of clusters proceeds without the need for user intervention. Additionally, the automatic creation of a `ClusterGroupUpgrade` CR for any `ManagedCluster` without the `ztp-done` label allows a failed {{ ztp }} installation to be restarted by simply deleting the `ClusterGroupUpgrade` CR for the cluster.
 
-    Waves
-    :   Each policy generated from a `PolicyGenerator` or `PolicyGentemplate` CR includes a `ztp-deploy-wave` annotation. This annotation is based on the same annotation from each CR which is included in that policy. The wave annotation is used to order the policies in the auto-generated `ClusterGroupUpgrade` CR. The wave annotation is not used other than for the auto-generated `ClusterGroupUpgrade` CR.
+Waves
+:   Each policy generated from a `PolicyGenerator` or `PolicyGentemplate` CR includes a `ztp-deploy-wave` annotation. This annotation is based on the same annotation from each CR which is included in that policy. The wave annotation is used to order the policies in the auto-generated `ClusterGroupUpgrade` CR. The wave annotation is not used other than for the auto-generated `ClusterGroupUpgrade` CR.
 
     :::note
+
 
     All CRs in the same policy must have the same setting for the `ztp-deploy-wave` annotation. The default value of this annotation for each CR can be overridden in the `PolicyGenerator` or `PolicyGentemplate`. The wave annotation in the source CR is used for determining and setting the policy wave annotation. This annotation is removed from each built CR which is included in the generated policy at runtime.
     
     :::
 
+
     The {{ cgu_operator }} applies the configuration policies in the order specified by the wave annotations. The {{ cgu_operator }} waits for each policy to be compliant before moving to the next policy. It is important to ensure that the wave annotation for each CR takes into account any prerequisites for those CRs to be applied to the cluster. For example, an Operator must be installed before or concurrently with the configuration for the Operator. Similarly, the `CatalogSource` for an Operator must be installed in a wave before or concurrently with the Operator Subscription. The default wave value for each CR takes these prerequisites into account.
 
     :::note
 
+
     Multiple CRs and policies can share the same wave number. Having fewer policies can result in faster deployments and lower CPU usage. It is a best practice to group many CRs into relatively few waves.
     
     :::
+
 
     To check the default wave value in each source CR, run the following command against the `out/source-crs` directory that is extracted from the `ztp-site-generate` container image:
     ```terminal
@@ -46,7 +50,9 @@ Automatic creation of ClusterGroupUpgrade CRs
 
 Phase labels
 :   The `ClusterGroupUpgrade` CR is automatically created and includes directives to annotate the `ManagedCluster` CR with labels at the start and end of the {{ ztp }} process.
+
     When {{ ztp }} configuration postinstallation commences, the `ManagedCluster` has the `ztp-running` label applied. When all policies are remediated to the cluster and are fully compliant, these directives cause the {{ cgu_operator }} to remove the `ztp-running` label and apply the `ztp-done` label.
+
     For deployments that make use of the `informDuValidator` policy, the `ztp-done` label is applied when the cluster is fully ready for deployment of applications. This includes all reconciliation and resulting effects of the {{ ztp }} applied configuration CRs. The `ztp-done` label affects automatic `ClusterGroupUpgrade` CR creation by {{ cgu_operator }}. Do not manipulate this label after the initial {{ ztp }} installation of the cluster.
 
 

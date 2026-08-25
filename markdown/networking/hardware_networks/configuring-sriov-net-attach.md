@@ -3,17 +3,18 @@ title: Configuring an SR-IOV Ethernet network attachment
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring an SR-IOV Ethernet network attachment {id="configuring-sriov-net-attach"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring an SR-IOV Ethernet network attachment {id="configuring-sriov-net-attach"}
 {%- set context = "configuring-sriov-net-attach" %}
 
-You can configure an Ethernet network attachment for an Single Root I/O Virtualization (SR-IOV) device in the cluster.
+You can configure an Ethernet network attachment for an Single Root I/O Virtualization (SR-IOV) device in the cluster. {._abstract}
 
 Before you perform any tasks in the following documentation, ensure that you installed the SR-IOV Network Operator.
 
 {% leveloffset +1 %}{% include "./modules/nw-sriov-network-object.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
 *   [Configuring namespaced SR-IOV resources](/networking/hardware_networks/configuring-namespaced-sriov-resources#introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources)
@@ -42,7 +43,7 @@ Before you perform any tasks in the following documentation, ensure that you ins
 
 {% leveloffset +1 %}{% include "./modules/nw-sriov-configure-exclude-topology-manager.md" %}{% endleveloffset %}
 
-## Additional resources {id="configuring-sriov-net-attach-additional-resources"}
+## Additional resources {id="configuring-sriov-net-attach-additional-resources" ._additional-resources}
 
 *   [Configuring an SR-IOV network device](/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
 *   [Using CPU Manager](/scalability_and_performance/using-cpu-manager#using-cpu-manager)

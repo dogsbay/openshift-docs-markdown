@@ -20,6 +20,6 @@ Due to this limitation, the following Container Storage Interface (CSI) drivers 
 
 *   Azure Disk CSI driver does not support resize.
 *   Cinder CSI driver does not support snapshot.
-{%- endif %}
+{% endif %}
 
 :::

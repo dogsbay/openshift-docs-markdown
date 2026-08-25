@@ -8,8 +8,8 @@ To remove an installed Operator from a namespace, cluster administrators can del
 *   You have access to the {{ product_title }} cluster using an account with
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
 `cluster-admin` permissions.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 `dedicated-admin` permissions.
 {%- endif %}
 *   The OpenShift CLI (`oc`) is installed on your workstation.

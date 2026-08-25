@@ -15,39 +15,39 @@
 # Configuring Capacity Reservations by using machine sets {id="machineset-capacity-reservation_{{ context }}"}
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using
-{% if azure %}
+{%- if azure %}
 on-demand Capacity Reservation with Capacity Reservation groups on {{ azure_full }} clusters.
-{% endif %}
-{% if aws %}
-Capacity Reservations on {{ aws_full }} clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
-{% endif %} {._abstract}
+{%- endif %}
+{%- if aws %}
+Capacity Reservations on {{ aws_full }} clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML. {._abstract}
+{%- endif %}
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define. {._abstract}
 
 These parameters specify the
-{% if azure %}
+{%- if azure %}
 VM size,
-{% endif %}
-{% if aws %}
+{%- endif %}
+{%- if aws %}
 instance type,
-{% endif %}
+{%- endif %}
 region, and number of instances that you want to reserve.
 If your
-{% if azure %}
+{%- if azure %}
 {{ azure_short }} subscription quota
-{% endif %}
-{% if aws %}
+{%- endif %}
+{%- if aws %}
 Capacity Reservation
-{% endif %}
+{%- endif %}
 can accommodate the capacity request, the deployment succeeds.
 
 For more information, including limitations and suggested use cases for this
-{% if azure %}
+{%- if azure %}
 {{ azure_full }} offering, see [On-demand Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) in the {{ azure_short }} documentation.
-{% endif %}
-{% if aws %}
+{%- endif %}
+{%- if aws %}
 {{ aws_full }} offering, see [On-Demand Capacity Reservations and Capacity Blocks for ML](https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/capacity-reservation-overview.html) in the {{ aws_short }} documentation.
-{% endif %}
+{%- endif %}
 
 {% if azure %}
 
@@ -67,11 +67,11 @@ To use a different Capacity Reservation group, you must replace the machine set 
 {%- if azure %}
 *   You have created a Capacity Reservation group.
 For more information, see [Create a Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-create) in the {{ azure_full }} documentation.
-{% endif %}
-{% if aws %}
+{%- endif %}
+{%- if aws %}
 *   You have purchased an On-Demand Capacity Reservation or Capacity Block for ML.
 For more information, see [On-Demand Capacity Reservations and Capacity Blocks for ML](https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/capacity-reservation-overview.html) in the {{ aws_short }} documentation.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -88,7 +88,7 @@ tag::compute[]
 end::compute[]
 
 1.  Update the CR to implement your configuration changes:
-    ```yaml title="Sample configuration"
+    ```yaml title="Sample configuration" {minja}
     tag::compute[]
     apiVersion: machine.openshift.io/v1beta1
     kind: MachineSet
@@ -98,13 +98,13 @@ end::compute[]
         spec:
           providerSpec:
             value:
-{%- if azure %}
+    {%- if azure %}
               capacityReservationGroupID: <capacity_reservation_group>
-{% endif %}
-{% if aws %}
+    {%- endif %}
+    {%- if aws %}
               capacityReservationId: <capacity_reservation>
               marketType: <market_type>
-{%- endif %}
+    {%- endif %}
     end::compute[]
     tag::controlplane[]
     apiVersion: machine.openshift.io/v1
@@ -116,13 +116,13 @@ end::compute[]
           spec:
             providerSpec:
               value:
-{%- if azure %}
+    {%- if azure %}
                 capacityReservationGroupID: <capacity_reservation_group>
-{% endif %}
-{% if aws %}
+    {%- endif %}
+    {%- if aws %}
                 capacityReservationId: <capacity_reservation>
                 marketType: <market_type>
-{%- endif %}
+    {%- endif %}
     end::controlplane[]
     # ...
     ```
@@ -156,7 +156,6 @@ end::compute[]
         This option is not compatible with Capacity Reservations.
         end::compute[]
 {% endif %}
-
 1.  Save your changes and exit the object specification.
 tag::controlplane[]
 
@@ -189,14 +188,14 @@ tag::controlplane[]
     In the output, verify that the characteristics of the listed machines match the parameters of your Capacity Reservation.
 
 {% if context == "creating-machineset-azure" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "cpmso-supported-features-azure" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "creating-machineset-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "cpmso-supported-features-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}

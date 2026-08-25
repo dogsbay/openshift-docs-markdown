@@ -18,6 +18,6 @@ A Knative _event source_ can be any Kubernetes object that generates or imports 
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** -> **Eventing**.
+1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** → **Eventing**.
 1.  In the **Create** list, select **Event Source**. You will be directed to the **Event Sources** page.
 1.  Select the event source type that you want to create.

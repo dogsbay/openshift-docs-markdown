@@ -5,8 +5,8 @@ You can install {{ servicebinding_title }} using the {{ product_title }} softwar
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Ecosystem** -> **Software Catalog**.
-1.  Use the **Filter by keyword** box to search for `{{ servicebinding_title }}` in the catalog. Click the **{{ servicebinding_title }}** tile.
+1.  In the **Administrator** perspective of the web console, navigate to **Ecosystem** → **Software Catalog**.
+1.  Use the **Filter by keyword** box to search for `{{ servicebinding_title }}`{minja} in the catalog. Click the **{{ servicebinding_title }}** tile.
 1.  Read the brief description about the Operator on the **{{ servicebinding_title }}** page. Click **Install**.
 1.  On the **Install Operator** page:
     1.  Select **All namespaces on the cluster (default)** for the **Installation Mode**. This mode installs the Operator in the default `openshift-operators` namespace, which enables the Operator to watch and be made available to all namespaces in the cluster.
@@ -21,5 +21,5 @@ You can install {{ servicebinding_title }} using the {{ product_title }} softwar
     
     :::
 
-1.  On the ***Installed Operator -- ready for use*** pane, click **View Operator**. You will see the Operator listed on the **Installed Operators** page.
+1.  On the **Installed Operator -- ready for use** pane, click **View Operator**. You will see the Operator listed on the **Installed Operators** page.
 1.  Verify that the **Status** is set to **Succeeded**  to confirm successful installation of {{ servicebinding_title }}.

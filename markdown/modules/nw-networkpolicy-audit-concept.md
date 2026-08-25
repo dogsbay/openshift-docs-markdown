@@ -85,7 +85,7 @@ For more information about the previous field descriptions, go to the OVS manual
 
 The following table describes namespace annotation values:
 
-***Audit logging namespace annotation for `k8s.ovn.org/acl-logging`***
+**Audit logging namespace annotation for `k8s.ovn.org/acl-logging`**
 
 <table>
 <thead>

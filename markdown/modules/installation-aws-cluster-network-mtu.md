@@ -62,8 +62,8 @@ sshKey: ssh-ed25519 AAAA...
 {% endif %}
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}

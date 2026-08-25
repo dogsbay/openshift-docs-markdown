@@ -18,7 +18,7 @@ To analyze system performance and track execution delays, generate a JUnit laten
     
     :::
 
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -v $(pwd)/junit:/junit \
     -e KUBECONFIG=/kubeconfig/kubeconfig registry.redhat.io/openshift4/cnf-tests-rhel9:v{{ product_version }} \
     /usr/bin/test-run.sh --ginkgo.junit-report junit/<file_name>.xml --ginkgo.v

@@ -3,11 +3,11 @@ title: Installing a cluster on AWS in a disconnected environment
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on AWS in a disconnected environment {id="installing-restricted-networks-aws-installer-provisioned"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on AWS in a disconnected environment {id="installing-restricted-networks-aws-installer-provisioned"}
 {%- set context = "installing-restricted-networks-aws-installer-provisioned" %}
 
-You can install a cluster on {{ aws_first }} in a restricted network by creating an internal mirror of the installation release content on an existing {{ aws_short }} Virtual Private Cloud (VPC). By using this configuration, you can deploy a cluster in an environment with limited internet connectivity to help ensure compliance with security policies.
+You can install a cluster on {{ aws_first }} in a restricted network by creating an internal mirror of the installation release content on an existing {{ aws_short }} Virtual Private Cloud (VPC). By using this configuration, you can deploy a cluster in an environment with limited internet connectivity to help ensure compliance with security policies. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installing-aws-restricted-prereqs.md" %}{% endleveloffset %}
 
@@ -18,12 +18,14 @@ You can install a cluster on {{ aws_first }} in a restricted network by creating
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -32,6 +34,7 @@ You can install a cluster on {{ aws_first }} in a restricted network by creating
 {% leveloffset +2 %}{% include "./modules/installation-aws-config-yaml-customizations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
@@ -59,7 +62,7 @@ You can install a cluster on {{ aws_first }} in a restricted network by creating
 
 {% leveloffset +1 %}{% include "./modules/olm-restricted-networks-configuring-operatorhub.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)

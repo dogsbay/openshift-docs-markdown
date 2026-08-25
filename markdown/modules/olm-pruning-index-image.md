@@ -25,7 +25,7 @@ An index image, based on the Operator bundle format, is a containerized snapshot
 {% if context != "olm-managing-custom-catalogs" %}
 When configuring Operator Lifecycle Manager (OLM) to use mirrored content on restricted network {{ product_title }} clusters, use this pruning method if you want to only mirror a subset of Operators from the default catalogs.
 
-For the steps in this procedure, the target registry is an existing mirror registry that is accessible by your workstation with unrestricted network access. This example also shows pruning the index image for the default `{{ catalog_name }}` catalog, but the process is the same for any index image.
+For the steps in this procedure, the target registry is an existing mirror registry that is accessible by your workstation with unrestricted network access. This example also shows pruning the index image for the default `{{ catalog_name }}`{minja} catalog, but the process is the same for any index image.
 {% endif %}
 
 **Prerequisites**
@@ -33,10 +33,10 @@ For the steps in this procedure, the target registry is an existing mirror regis
 {% if context != "olm-managing-custom-catalogs" %}
 *   A workstation with unrestricted network access.
 {%- endif %}
-*   You have `podman` version 1.9.3+.
-*   You have [`grpcurl`](https://github.com/fullstorydev/grpcurl) (third-party command-line tool).
-*   You have installed the `opm` CLI.
-*   You have access to a registry that supports
+* You have `podman` version 1.9.3+.
+* You have [`grpcurl`](https://github.com/fullstorydev/grpcurl) (third-party command-line tool).
+* You have installed the `opm` CLI.
+* You have access to a registry that supports
 [Docker v2-2](https://docs.docker.com/registry/spec/manifest-v2-2/).
 
 **Procedure**
@@ -49,17 +49,18 @@ For the steps in this procedure, the target registry is an existing mirror regis
     ```
 {% endif %}
 {% endif %}
+
 1.  Authenticate with your target registry:
     ```terminal
     $ podman login <target_registry>
     ```
 1.  Determine the list of packages you want to include in your pruned index.
     1.  Run the source index image that you want to prune in a container. For example:
-        ```terminal
+        ```terminal {minja}
         $ podman run -p50051:50051 \
             -it {{ index_image_pullspec }}
         ```
-        ```terminal title="Example output"
+        ```terminal title="Example output" {minja}
         Trying to pull {{ index_image_pullspec }}...
         Getting image source signatures
         Copying blob ae8a0c23f5b1 done
@@ -71,7 +72,7 @@ For the steps in this procedure, the target registry is an existing mirror regis
         $ grpcurl -plaintext localhost:50051 api.Registry/ListPackages > packages.out
         ```
     1.  Inspect the `packages.out` file and identify which package names from this list you want to keep in your pruned index. For example:
-        ```text title="Example snippets of packages list"
+        ```text title="Example snippets of packages list" {minja}
         ...
         {
           "name": "{{ package1 }}"
@@ -89,11 +90,11 @@ For the steps in this procedure, the target registry is an existing mirror regis
         ```
     1.  In the terminal session where you executed the `podman run` command, press <kbd>Ctrl</kbd> and <kbd>C</kbd> to stop the container process.
 1.  Run the following command to prune the source index of all but the specified packages:
-    ```text
+    ```text {minja}
     $ opm index prune \
-        -f {{ index_image_pullspec }} \// (1)
-        -p {{ package1 }},{{ package2 }},{{ package3 }} \// (2)
-        [-i {{ registry_image }}] \// (3)
+        -f {{ index_image_pullspec }} \ (1)
+        -p {{ package1 }},{{ package2 }},{{ package3 }} \ (2)
+        [-i {{ registry_image }}] \ (3)
         -t <target_registry>:<port>/<namespace>/{{ index_image }} (4)
     ```
     1.  Index to prune.
@@ -101,19 +102,19 @@ For the steps in this procedure, the target registry is an existing mirror regis
     1.  Required only for {{ ibm_power_name }} and {{ ibm_z_name }} images: Operator Registry base image with the tag that matches the target {{ product_title }} cluster major and minor version.
     1.  Custom tag for new index image being built.
 1.  Run the following command to push the new index image to your target registry:
-    ```text
+    ```text {minja}
     $ podman push <target_registry>:<port>/<namespace>/{{ index_image }}
     ```
 
     where `<namespace>` is any existing namespace on the registry.
 {%- if context != "olm-managing-custom-catalogs" %}
     For example, you might create an `olm-mirror` namespace to push all mirrored content to.
-{% endif %}
+{%- endif %}
 
-{%- set catalog_name = false -%}
-{%- set index_image_pullspec = false -%}
-{%- set index_image = false -%}
-{%- set registry_image = false -%}
-{%- set package1 = false -%}
-{%- set package2 = false -%}
-{%- set package3 = false -%}
+{%- set catalog_name = "" -%}
+{%- set index_image_pullspec = "" -%}
+{%- set index_image = "" -%}
+{%- set registry_image = "" -%}
+{%- set package1 = "" -%}
+{%- set package2 = "" -%}
+{%- set package3 = "" -%}

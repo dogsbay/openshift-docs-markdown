@@ -8,10 +8,10 @@ Run the nested group LDAP sync example with an allowlisted group so you can veri
 *   An LDAP sync configuration file exists. This procedure uses an example file named `augmented_active_directory_config_nested.yaml`.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

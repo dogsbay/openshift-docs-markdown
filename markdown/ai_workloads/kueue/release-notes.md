@@ -7,7 +7,7 @@ title: Release notes
 # Release notes {id="release-notes"}
 {%- set context = "release-notes" %}
 
-{{ kueue_name }} is released as an Operator that is supported on {{ product_title }}.
+{{ kueue_name }} is released as an Operator that is supported on {{ product_title }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/kueue-compatible-environments.md" %}{% endleveloffset %}
 
@@ -27,5 +27,5 @@ title: Release notes
 
 {% leveloffset +1 %}{% include "./modules/kueue-release-notes-1.0.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Kueue (upstream documentation)](https://kueue.sigs.k8s.io/docs/overview/)

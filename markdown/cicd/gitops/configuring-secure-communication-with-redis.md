@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring secure communication with Redis {id="configuring-secure-communication-with-redis"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring secure communication with Redis {id="configuring-secure-communication-with-redis"}
 {%- set context = "configuring-secure-communication-with-redis" %}
 
 Using the Transport Layer Security (TLS) encryption with {{ gitops_title }}, you can secure the communication between the Argo CD components and Redis cache and protect the possibly sensitive data in transit.

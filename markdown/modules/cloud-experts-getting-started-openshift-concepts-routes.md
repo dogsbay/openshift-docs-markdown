@@ -7,18 +7,18 @@ Similar to the Kubernetes `Ingress` object, Red Hat created the concept of route
 
 | Feature | Ingress on OpenShift | Route on OpenShift |
 | --- | --- | --- |
-| Standard Kubernetes object | ***X*** |  |
-| External access to services | ***X*** | ***X*** |
-| Persistent (sticky) sessions | ***X*** | ***X*** |
-| Load-balancing strategies (e.g. round robin) | ***X*** | ***X*** |
-| Rate-limit and throttling | ***X*** | ***X*** |
-| IP whitelisting | ***X*** | ***X*** |
-| TLS edge termination for improved security | ***X*** | ***X*** |
-| TLS re-encryption for improved security |  | ***X*** |
-| TLS passhtrough for improved security |  | ***X*** |
-| Multiple weighted backends (split traffic) |  | ***X*** |
-| Generated pattern-based hostnames |  | ***X*** |
-| Wildcard domains |  | ***X*** |
+| Standard Kubernetes object | **X** |  |
+| External access to services | **X** | **X** |
+| Persistent (sticky) sessions | **X** | **X** |
+| Load-balancing strategies (e.g. round robin) | **X** | **X** |
+| Rate-limit and throttling | **X** | **X** |
+| IP whitelisting | **X** | **X** |
+| TLS edge termination for improved security | **X** | **X** |
+| TLS re-encryption for improved security |  | **X** |
+| TLS passhtrough for improved security |  | **X** |
+| Multiple weighted backends (split traffic) |  | **X** |
+| Generated pattern-based hostnames |  | **X** |
+| Wildcard domains |  | **X** |
 
 
 :::note

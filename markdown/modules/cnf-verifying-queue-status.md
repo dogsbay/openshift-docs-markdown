@@ -78,7 +78,8 @@ Example 1
     *   `Combined`: Specifies the combined channel that shows the total count of reserved CPUs for _all_ supported devices is 2. This matches what is configured in the performance profile.
 
 Example 2
-    :   Example 2 demonstrates that the net queue count is set to the reserved CPU count (2) for _all_ supported network devices with a specific `vendorID`.
+:   Example 2 demonstrates that the net queue count is set to the reserved CPU count (2) for _all_ supported network devices with a specific `vendorID`.
+
     The relevant section from the performance profile is:
     ```yaml
     apiVersion: performance.openshift.io/v2
@@ -96,9 +97,11 @@ Example 2
           - vendorID = 0x1af4
     # ...
     ```
+
     The following command displays the status of the queues associated with a device:
 
     :::note
+
 
     Run this command on the node where the performance profile was applied.
     
@@ -107,6 +110,7 @@ Example 2
     ```terminal
     $ ethtool -l <device>
     ```
+
     The following command verifies the queue status after the profile is applied:
     ```terminal
     $ ethtool -l ens4
@@ -124,10 +128,10 @@ Example 2
     Other:      0
     Combined:   2
     ```
-*   `Combined`: Specifies that the total count of reserved CPUs for all supported devices with `vendorID=0x1af4` is 2. For example, if there is another network device `ens2` with `vendorID=0x1af4` it will also have total net queues of 2. This matches what is configured in the performance profile.
+    *   `Combined`: Specifies that the total count of reserved CPUs for all supported devices with `vendorID=0x1af4` is 2. For example, if there is another network device `ens2` with `vendorID=0x1af4` it will also have total net queues of 2. This matches what is configured in the performance profile.
 
 Example 3
-    :   Example 3 shows that the net queue count is set to the reserved CPU count (2) for _all_ supported network devices that match any of the defined device identifiers. The command `udevadm info` provides a detailed report on a device. In this example the devices are:
+:   Example 3 shows that the net queue count is set to the reserved CPU count (2) for _all_ supported network devices that match any of the defined device identifiers. The command `udevadm info` provides a detailed report on a device. In this example the devices are:
     ```terminal
     # udevadm info -p /sys/class/net/ens4
     ...
@@ -144,6 +148,7 @@ Example 3
     E: INTERFACE=eth0
     ...
     ```
+
     Set the net queues to 2 for a device with `interfaceName` equal to `eth0` and any devices that have a `vendorID=0x1af4` with the following performance profile:
     ```terminal
     apiVersion: performance.openshift.io/v2
@@ -162,6 +167,7 @@ Example 3
             - vendorID = 0x1af4
     # ...
     ```
+
     The following command verifies the queue status after the profile is applied:
     ```terminal
     $ ethtool -l ens4
@@ -179,6 +185,6 @@ Example 3
     Other:      0
     Combined:   2
     ```
-*   `Combined`: Specifies that the total count of reserved CPUs for all supported devices with `vendorID=0x1af4` is set to 2.
+    *   `Combined`: Specifies that the total count of reserved CPUs for all supported devices with `vendorID=0x1af4` is set to 2.
 
     For example, if there is another network device `ens2` with `vendorID=0x1af4`, it will also have the total net queues set to 2. Similarly, a device with `interfaceName` equal to `eth0` will have total net queues set to 2.

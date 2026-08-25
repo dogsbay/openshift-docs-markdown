@@ -14,9 +14,9 @@
 # CSI snapshot controller capability {id="_csi_snapshot_controller_capability"}
 {% endif %}
 
-{%- if operator_ref %}
-The Cluster CSI Snapshot Controller Operator is an optional cluster capability that can be disabled by cluster administrators during installation. For more information about optional cluster capabilities, see "Cluster capabilities" in _Installing_.
-{% endif %} {._abstract}
+{% if operator_ref %}
+The Cluster CSI Snapshot Controller Operator is an optional cluster capability that can be disabled by cluster administrators during installation. For more information about optional cluster capabilities, see "Cluster capabilities" in _Installing_. {._abstract}
+{% endif %}
 
 {% if cluster_caps %}
 The Cluster CSI Snapshot Controller Operator provides the features for the `CSISnapshot` capability.
@@ -31,9 +31,9 @@ Project
 {% endif %}
 
 {% if context == "operator-reference" %}
-{%- set operator_ref = false -%}
+{%- set operator_ref = "" -%}
 {% endif %}
 
 {% if context == "cluster-caps" %}
-{%- set cluster_caps = false -%}
+{%- set cluster_caps = "" -%}
 {% endif %}

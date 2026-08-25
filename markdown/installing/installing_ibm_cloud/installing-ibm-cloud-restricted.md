@@ -7,11 +7,12 @@ title: "Installing a cluster on {{ ibm_cloud_title }} in a disconnected environm
 # Installing a cluster on {{ ibm_cloud_title }} in a disconnected environment {id="installing-ibm-cloud-restricted"}
 {%- set context = "installing-ibm-cloud-restricted" %}
 
-In {{ product_title }} {{ product_version }}, you can install a cluster in a restricted network by creating an internal mirror of the installation release content that is accessible to an existing Virtual Private Cloud (VPC) on {{ ibm_cloud_name }}.
+In {{ product_title }} {{ product_version }}, you can install a cluster in a restricted network by creating an internal mirror of the installation release content that is accessible to an existing Virtual Private Cloud (VPC) on {{ ibm_cloud_name }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-cloud-restricted.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Configuring an {{ ibm_cloud_name }} account](/installing/installing_ibm_cloud/installing-ibm-cloud-account#installing-ibm-cloud-account)
@@ -24,6 +25,7 @@ In {{ product_title }} {{ product_version }}, you can install a cluster in a res
 {% leveloffset +1 %}{% include "./modules/installation-about-restricted-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 *   [Additional {{ ibm_cloud_title }} configuration parameters](/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)
@@ -43,6 +45,7 @@ In {{ product_title }} {{ product_version }}, you can install a cluster in a res
 {% leveloffset +2 %}{% include "./modules/installation-configure-proxy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_cloud_name }}](/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-config-parameters-ibm-cloud-vpc)
 
@@ -64,6 +67,6 @@ In {{ product_title }} {{ product_version }}, you can install a cluster in a res
 
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_installing-ibm-cloud-restricted"}
+## Additional resources {id="additional-resources_installing-ibm-cloud-restricted" ._additional-resources}
 *   [Accessing the web console](/web_console/web-console#web-console)
 *   [Postinstallation configuration for a disconnected {{ ibm_cloud_title }} cluster](/installing/installing_ibm_cloud/installing-ibm-cloud-restricted-postinstallation-configuration#installing-ibm-cloud-restricted-postinstallation-configuration)

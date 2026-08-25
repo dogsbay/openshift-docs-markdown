@@ -30,26 +30,26 @@ When you create the {{ SMProductShortName }} control plane, the {{ SMProductShor
 
 You can verify the {{ SMProductShortName }} control plane installation in the {{ product_title }} web console.
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Select the `istio-system` namespace.
 1.  Select the {{ SMProductName }} Operator.
     1.  Click the **Istio Service Mesh Control Plane** tab.
     1.  Click the name of your control plane, for example `basic`.
     1.  To view the resources created by the deployment, click the **Resources** tab. You can use the filter to narrow your view, for example, to check that all the **Pods** have a status of `running`.
     1.  If the SMCP status indicates any problems, check the `status:` output in the YAML file for more information.
-1.  Navigate back to **Ecosystem** -> **Installed Operators**.
+1.  Navigate back to **Ecosystem** → **Installed Operators**.
 1.  Select the OpenShift Elasticsearch Operator.
     1.  Click the **Elasticsearch** tab.
     1.  Click the name of the deployment, for example `elasticsearch`.
     1.  To view the resources created by the deployment, click the **Resources** tab. .
     1.  If the `Status` column any problems, check the `status:` output on the **YAML** tab for more information.
-1.  Navigate back to **Ecosystem** -> **Installed Operators**.
+1.  Navigate back to **Ecosystem** → **Installed Operators**.
 1.  Select the {{ JaegerName }} Operator.
     1.  Click the **Jaeger** tab.
     1.  Click the name of your deployment, for example `jaeger`.
     1.  To view the resources created by the deployment, click the **Resources** tab.
     1.  If the `Status` column indicates any problems, check the `status:` output on the **YAML** tab for more information.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Select the Kiali Operator.
     1.  Click the **Istio Service Mesh Control Plane** tab.
     1.  Click the name of your deployment, for example `kiali`.

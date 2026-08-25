@@ -6,7 +6,7 @@ You can configure the Network Time Protocol (NTP) server for your hosted cluster
 **Procedure**
 
 1.  Create a Butane config file, `99-worker-chrony.bu`, that includes the contents of the `chrony.conf` file. For more information about Butane, see "Creating machine configs with Butane".
-    ```yaml title="Example 99-worker-chrony.bu configuration"
+    ```yaml title="Example 99-worker-chrony.bu configuration" {minja}
     # ...        
     variant: openshift
     version: {{ product_version }}.0

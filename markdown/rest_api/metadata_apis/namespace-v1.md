@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NamespaceSpec describes the attributes on a Namespace. |
 | `status` | `object` | NamespaceStatus is information about the current status of a Namespace. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -36,6 +37,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `finalizers` | `array (string)` | Finalizers is an opaque list of values that must be empty to permanently remove object from storage. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/ |
+
 ### .status {id="_status"}
 
 Description
@@ -49,7 +51,8 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | Represents the latest available observations of a namespace’s current state. |
 | `conditions[]` | `object` | NamespaceCondition contains details about state of namespace. |
-| `phase` | `string` | Phase is the current lifecycle phase of the namespace. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/ Possible enum values:  - `"Active"` means the namespace is available for use in the system  - `"Terminating"` means the namespace is undergoing graceful termination |
+| `phase` | `string` | Phase is the current lifecycle phase of the namespace. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/<br>Possible enum values:  - `"Active"` means the namespace is available for use in the system  - `"Terminating"` means the namespace is undergoing graceful termination |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -90,18 +93,18 @@ The following API endpoints are available:
     *   `POST`: create a Namespace
 *   `/api/v1/watch/namespaces`
     *   `GET`: watch individual changes to a list of Namespace. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ name }}`
+*   `/api/v1/namespaces/{{ name }}`{minja}
     *   `DELETE`: delete a Namespace
     *   `GET`: read the specified Namespace
     *   `PATCH`: partially update the specified Namespace
     *   `PUT`: replace the specified Namespace
-*   `/api/v1/watch/namespaces/{{ name }}`
+*   `/api/v1/watch/namespaces/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Namespace. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/api/v1/namespaces/{{ name }}/status`
+*   `/api/v1/namespaces/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Namespace
     *   `PATCH`: partially update status of the specified Namespace
     *   `PUT`: replace status of the specified Namespace
-*   `/api/v1/namespaces/{{ name }}/finalize`
+*   `/api/v1/namespaces/{{ name }}/finalize`{minja}
     *   `PUT`: replace finalize of the specified Namespace
 
 ### /api/v1/namespaces {id="_apiv1namespaces"}

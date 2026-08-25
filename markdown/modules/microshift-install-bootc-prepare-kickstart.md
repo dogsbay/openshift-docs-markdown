@@ -19,7 +19,7 @@ You must create the Kickstart file to use during installation. {._abstract}
     $ PULL_SECRET=~/.pull-secret.json
     ```
 1.  Set the `IMAGE_REF` environment variable to reference the image mode for your container image to use during installation by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ IMAGE_REF="quay.io/_<myorg>/<mypath>_/microshift-{{ product_version }}-bootc"
     ```
 

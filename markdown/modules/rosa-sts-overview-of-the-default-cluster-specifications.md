@@ -28,11 +28,11 @@ You can quickly create a {{ product_title }} cluster by using the default instal
 <tbody>
 <tr>
   <td>Accounts and roles</td>
-  <td><ul><li>Default IAM role prefix: <code>rosa-<6-digit-alphanumeric-string></code></li><li>Default IAM role prefix: <code>ManagedOpenShift</code></li><li>Default IAM role prefix: <code>HCP-ROSA</code></li><li>No cluster admin role created</li></ul></td>
+  <td>{% if tf_classic or tf_hcp %} <ul><li>Default IAM role prefix: <code>rosa-&lt;6-digit-alphanumeric-string&gt;</code></li></ul> {% endif %} {% if not (tf_classic or tf_hcp) %} {% if openshift_rosa %} <ul><li>Default IAM role prefix: <code>ManagedOpenShift</code></li></ul> {% endif %} {% if openshift_rosa_hcp or hcp %} <ul><li>Default IAM role prefix: <code>HCP-ROSA</code></li></ul> {% endif %} {% endif %} {% if not (openshift_rosa_hcp or hcp) %} <ul><li>No cluster admin role created</li></ul> {% endif %}</td>
 </tr>
 <tr>
   <td>Cluster settings</td>
-  <td><ul><li>Default cluster version: <code>4.14</code></li><li>Cluster name: <code>rosa-<6-digit-alphanumeric-string></code></li><li>Default AWS region for installations using the {{ cluster_manager_first }} {{ hybrid_console_second }}: us-east-2 (US East, Ohio)</li><li>Availability: Multi zone for the data plane</li><li>EC2 Instance Metadata Service (IMDS) is enabled and allows the use of IMDSv1 or IMDSv2 (token optional)</li><li>Default cluster version: Latest</li><li>Default AWS region for installations using the {{ cluster_manager_first }} {{ hybrid_console_second }}: us-east-1 (US East, North Virginia)</li><li>Default AWS region for installations using the {{ rosa_cli }} (<code>rosa</code>): Defined by your <code>aws</code> CLI configuration</li><li>Default EC2 IMDS endpoints (both v1 and v2) are enabled</li><li>EC2 Instance Metadata Service (IMDS) is enabled and allows the use of IMDSv1 or IMDSv2 (token optional)</li><li>Availability: Single zone for the data plane</li><li>Monitoring for user-defined projects: Enabled</li><li>No cluster admin role created</li></ul></td>
+  <td>{% if tf_classic or tf_hcp %} <ul><li>Default cluster version: <code>4.14</code></li><li>Cluster name: <code>rosa-&lt;6-digit-alphanumeric-string&gt;</code></li><li>Default AWS region for installations using the {{ cluster_manager_first }} {{ hybrid_console_second }}: us-east-2 (US East, Ohio)</li><li>Availability: Multi zone for the data plane</li><li>EC2 Instance Metadata Service (IMDS) is enabled and allows the use of IMDSv1 or IMDSv2 (token optional)</li></ul> {% endif %} {% if not (tf_classic or tf_hcp) %} <ul><li>Default cluster version: Latest</li></ul> {% if openshift_rosa %} <ul><li>Default AWS region for installations using the {{ cluster_manager_first }} {{ hybrid_console_second }}: us-east-1 (US East, North Virginia)</li></ul> {% endif %} {% if openshift_rosa_hcp or hcp %} <ul><li>Default AWS region for installations using the {{ rosa_cli }} (<code>rosa</code>): Defined by your <code>aws</code> CLI configuration</li><li>Default EC2 IMDS endpoints (both v1 and v2) are enabled</li></ul> {% endif %} {% endif %} {% if not (openshift_rosa_hcp or tf_hcp or hcp) %} <ul><li>EC2 Instance Metadata Service (IMDS) is enabled and allows the use of IMDSv1 or IMDSv2 (token optional)</li></ul> {% endif %} <ul><li>Availability: Single zone for the data plane</li></ul> {% if not openshift_rosa_hcp %} <ul><li>Monitoring for user-defined projects: Enabled</li></ul> {% endif %} {% if openshift_rosa_hcp or hcp %} <ul><li>No cluster admin role created</li></ul> {% endif %}</td>
 </tr>
 <tr>
   {% if not (openshift_rosa_hcp or hcp) %}<td>Encryption</td>{% endif %}
@@ -48,19 +48,19 @@ You can quickly create a {{ product_title }} cluster by using the default instal
 </tr>
 <tr>
   <td>Compute node machine pool</td>
-  <td><ul><li>Compute node instance type: m5.xlarge (4 vCPU 16, GiB RAM)</li><li>Compute node count: 2</li><li>Compute node count: 3</li><li>Autoscaling: Not enabled</li><li>No additional node labels</li></ul></td>
+  <td><ul><li>Compute node instance type: m5.xlarge (4 vCPU 16, GiB RAM)</li></ul> {% if not (tf_classic or tf_hcp) %} <ul><li>Compute node count: 2</li></ul> {% endif %} {% if tf_classic or tf_hcp %} <ul><li>Compute node count: 3</li></ul> {% endif %} <ul><li>Autoscaling: Not enabled</li><li>No additional node labels</li></ul></td>
 </tr>
 <tr>
   <td>Networking configuration</td>
-  <td><ul><li>Cluster privacy: Public</li><li>Cluster privacy: public or private</li><li>You can choose to create a new VPC during the Terraform cluster creation process.</li><li>You must have configured your own Virtual Private Cloud (VPC)</li><li>No cluster-wide proxy is configured</li></ul></td>
+  <td>{% if not (tf_classic or tf_hcp) %} <ul><li>Cluster privacy: Public</li></ul> {% endif %} {% if tf_classic or tf_hcp %} <ul><li>Cluster privacy: public or private</li><li>You can choose to create a new VPC during the Terraform cluster creation process.</li></ul> {% endif %} {% if openshift_rosa %} <ul><li>You must have configured your own Virtual Private Cloud (VPC)</li></ul> {% endif %} <ul><li>No cluster-wide proxy is configured</li></ul></td>
 </tr>
 <tr>
   <td>Classless Inter-Domain Routing (CIDR) ranges</td>
-  <td><ul><li>Machine CIDR: 10.0.0.0/16</li><li>Service CIDR: 172.30.0.0/16</li><li>Pod CIDR: 10.128.0.0/14</li><li>Machine CIDR: 10.0.0.0/16</li><li>Service CIDR: 172.30.0.0/16</li><li>Pod CIDR: 10.128.0.0/14</li><li>Host prefix: /23</li></ul>+<dl><dt>Note</dt><dd>The static IP address <code>172.20.0.1</code> is reserved for the internal Kubernetes API address. The machine, pod, and service CIDRs ranges must not conflict with this IP address.</dd></dl></td>
+  <td>{% if tf_classic or tf_hcp %} <ul><li>Machine CIDR: 10.0.0.0/16</li><li>Service CIDR: 172.30.0.0/16</li><li>Pod CIDR: 10.128.0.0/14</li></ul> {% endif %} {% if not (tf_classic or tf_hcp) %} <ul><li>Machine CIDR: 10.0.0.0/16</li><li>Service CIDR: 172.30.0.0/16</li><li>Pod CIDR: 10.128.0.0/14</li></ul> {% endif %} <ul><li>Host prefix: /23</li></ul> {% if openshift_rosa_hcp or hcp %} <dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The static IP address <code>172.20.0.1</code> is reserved for the internal Kubernetes API address. The machine, pod, and service CIDRs ranges must not conflict with this IP address.</dd></dl> {% endif %}</td>
 </tr>
 <tr>
   <td>Cluster roles and policies</td>
-  <td><ul><li>Mode used to create the Operator roles and the OpenID Connect (OIDC) provider: <code>auto</code></li><li>A configured <code>ocm-role</code>, which is required for all {{ product_title }} clusters.</li></ul>+<dl><dt>Note</dt><dd>For installations that use {{ cluster_manager }} on the {{ hybrid_console_second }}, the <code>auto</code> mode requires an admin-privileged {{ cluster_manager }} role (ocm-role).</dd></dl><ul><li>Default Operator role prefix: <code>rosa-<6-digit-alphanumeric-string></code></li><li>Default Operator role prefix: <code><cluster_name>-<4_digit_random_string></code></li></ul></td>
+  <td><ul><li>Mode used to create the Operator roles and the OpenID Connect (OIDC) provider: <code>auto</code></li><li>A configured <code>ocm-role</code>, which is required for all {{ product_title }} clusters.</li></ul><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>For installations that use {{ cluster_manager }} on the {{ hybrid_console_second }}, the <code>auto</code> mode requires an admin-privileged {{ cluster_manager }} role (ocm-role).</dd></dl> {% if tf_classic or tf_hcp %} <ul><li>Default Operator role prefix: <code>rosa-&lt;6-digit-alphanumeric-string&gt;</code></li></ul> {% endif %} {% if not (tf_classic or tf_hcp) %} <ul><li>Default Operator role prefix: <code>&lt;cluster_name&gt;-&lt;4_digit_random_string&gt;</code></li></ul> {% endif %}</td>
 </tr>
 <tr>
   <td>Storage</td>
@@ -74,14 +74,14 @@ You can quickly create a {{ product_title }} cluster by using the default instal
 </table>
 
 {% if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}
-{%- set tf_classic = false -%}
+{%- set tf_classic = "" -%}
 {% endif %}
 {% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_hcp = false -%}
+{%- set tf_hcp = "" -%}
 {% endif %}
 {% if context == "rosa-hcp-quickstart-guide" %}
-{%- set hcp_quickstart = false -%}
+{%- set hcp_quickstart = "" -%}
 {% endif %}
 {% if context == "rosa-hcp-sts-creating-a-cluster-quickly" %}
-{%- set hcp = false -%}
+{%- set hcp = "" -%}
 {% endif %}

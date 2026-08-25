@@ -1,5 +1,5 @@
 ---
-title: "OperatorPKI []"
+title: "OperatorPKI [network.operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -51,6 +51,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OperatorPKISpec is the PKI configuration. |
 | `status` | `object` | OperatorPKIStatus is not implemented. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -67,6 +68,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `targetCert` | `object` | targetCert configures the certificate signed by the CA. It will have both ClientAuth and ServerAuth enabled |
+
 ### .spec.targetCert {id="_spectargetcert"}
 
 Description
@@ -84,6 +86,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `commonName` | `string` | commonName is the value in the certificate’s CN |
+
 ### .status {id="_status"}
 
 Description
@@ -99,11 +102,11 @@ The following API endpoints are available:
 
 *   `/apis/network.operator.openshift.io/v1/operatorpkis`
     *   `GET`: list objects of kind OperatorPKI
-*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/operatorpkis`
+*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/operatorpkis`{minja}
     *   `DELETE`: delete collection of OperatorPKI
     *   `GET`: list objects of kind OperatorPKI
     *   `POST`: create an OperatorPKI
-*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/operatorpkis/{{ name }}`
+*   `/apis/network.operator.openshift.io/v1/namespaces/{{ namespace }}/operatorpkis/{{ name }}`{minja}
     *   `DELETE`: delete an OperatorPKI
     *   `GET`: read the specified OperatorPKI
     *   `PATCH`: partially update the specified OperatorPKI

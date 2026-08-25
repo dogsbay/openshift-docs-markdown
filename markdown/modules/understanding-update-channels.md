@@ -6,11 +6,11 @@
 {% if not openshift_origin %}
 ## fast-{{ product_version }} channel {id="fast-version-channel_{{ context }}"}
 
-The `fast-{{ product_version }}` channel is updated with new versions of {{ product_title }} {{ product_version }} as soon as Red&#160;Hat declares the version as a general availability (GA) release. As such, these releases are fully supported and purposed to be used in production environments.
+The `fast-{{ product_version }}`{minja} channel is updated with new versions of {{ product_title }} {{ product_version }} as soon as Red&#160;Hat declares the version as a general availability (GA) release. As such, these releases are fully supported and purposed to be used in production environments.
 
 ## stable-{{ product_version }} channel {id="stable-version-channel_{{ context }}"}
 
-While the `fast-{{ product_version }}` channel contains releases as soon as their errata are published, releases are added to the `stable-{{ product_version }}` channel after a delay. During this delay, data is collected from multiple sources and analyzed for indications of product regressions. Once a significant number of data points have been collected, these releases are added to the stable channel.
+While the `fast-{{ product_version }}`{minja} channel contains releases as soon as their errata are published, releases are added to the `stable-{{ product_version }}`{minja} channel after a delay. During this delay, data is collected from multiple sources and analyzed for indications of product regressions. Once a significant number of data points have been collected, these releases are added to the stable channel.
 
 
 :::note
@@ -36,7 +36,7 @@ Both standard and non-EUS subscribers can access all EUS repositories and necess
 
 ## candidate-{{ product_version }} channel {id="candidate-version-channel_{{ context }}"}
 
-The `candidate-{{ product_version }}` channel offers unsupported early access to releases as soon as they are built. Releases present only in candidate channels
+The `candidate-{{ product_version }}`{minja} channel offers unsupported early access to releases as soon as they are built. Releases present only in candidate channels
 may not contain the full feature set of eventual GA releases or features may be removed prior to GA. Additionally, these releases have not been subject to full
 Red&#160;Hat Quality Assurance and may not offer update paths to later GA releases. Given these caveats, the candidate channel is only suitable for testing purposes
 where destroying and recreating a cluster is acceptable.

@@ -11,7 +11,7 @@ To resolve or prevent routing conflicts, ensure that your listeners adhere to th
 *   Distinct hostnames: A gateway can have distinct listeners that use the exact same protocol and port, provided their hostnames are different.
 *   Specificity precedence: If one listener uses a wildcard domain (for example, `+++*+++.<example_domain.tld>`) and another listener uses a more specific endpoint for that exact same domain (for example, `<www.example_domain.tld>`), the more specific entry takes precedence. 
 
-    This specificity rule also applies to multiple wildcard domains. For example, `+++**+++.<example_domain.tld>` takes precedence over `+++**+++.<tld>`. This ensures that traffic intended for a specific subdomain is accurately routed to its dedicated listener, even if a broader wildcard listener exists.
+    This specificity rule also applies to multiple wildcard domains. For example, `+++*+++.<example_domain.tld>` takes precedence over `+++*+++.<tld>`. This ensures that traffic intended for a specific subdomain is accurately routed to its dedicated listener, even if a broader wildcard listener exists.
 
     :::note
 

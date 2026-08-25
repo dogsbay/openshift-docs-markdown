@@ -3,8 +3,8 @@ title: About disk encryption technology
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About disk encryption technology {id="nbde-about-disk-encryption-technology"}
 {% include "./_attributes/common-attributes.md" %}
+# About disk encryption technology {id="nbde-about-disk-encryption-technology"}
 {%- set context = "nbde-implementation" %}
 
 Network-Bound Disk Encryption (NBDE) allows you to encrypt root volumes of hard drives on physical and virtual

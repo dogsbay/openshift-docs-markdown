@@ -84,6 +84,7 @@ For clusters that use a default {{ op_system_first }} image, you can configure t
         | `projects/redhat-marketplace-public/global/images/` | GCP Marketplace {{ op_system }} image |
         | No machine set present/custom prefix | User-provisioned infrastructure |
 
+
         Default {{ op_system }} clusters use images from the `rhcos-cloud` project in the `rhcos-<version>-<platform>-<arch>` format.
 
         GCP Marketplace {{ op_system }} clusters use images from the `redhat-marketplace-public` project in the `redhat-coreos-<offering>-<version>-<arch>-<date>` format.

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Uninstalling OpenShift GitOps {id="uninstalling-openshift-gitops"}
 {% include "./_attributes/common-attributes.md" %}
+# Uninstalling OpenShift GitOps {id="uninstalling-openshift-gitops"}
 {%- set context = "uninstalling-openshift-gitops" %}
 
 Uninstalling the {{ gitops_title }} Operator is a two-step process:

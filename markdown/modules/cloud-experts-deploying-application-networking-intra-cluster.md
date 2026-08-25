@@ -13,7 +13,7 @@ You can view your networking configurations in your OSToy application. {._abstra
     $ oc get service <name_of_service> -o yaml
     ```
 
-    ***Example output***
+    **Example output**
     ```yaml
     apiVersion: v1
     kind: Service

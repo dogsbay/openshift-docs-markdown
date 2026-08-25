@@ -33,6 +33,7 @@ You might need to perform manual recovery steps if a disruption event prevents f
         ```
 
         The secret contains the following data keys:
+
         **Data keys**
 
         | Key | Description | Changes during credential rotation? |
@@ -41,6 +42,7 @@ You might need to perform manual recovery steps if a disruption event prevents f
         | `password` | BMC password | Yes |
         | `address` | Full Redfish URL (for example, `redfish+https://192.168.1.10:443/redfish/v1/Systems/1`) | Only if BMC address changed |
         | `certificateVerification` | `Disabled` or `Enabled` | Only if TLS settings changed |
+
 
         :::note
 

@@ -19,7 +19,7 @@ You can create a {{ OTELName }} instance in a mesh namespace and configure it to
     kind: OpenTelemetryCollector
     metadata:
       name: otel
-      namespace: bookinfo  # (1)
+      namespace: bookinfo  (1)
     spec:
       mode: deployment
       config: |
@@ -30,7 +30,7 @@ You can create a {{ OTELName }} instance in a mesh namespace and configure it to
                 endpoint: 0.0.0.0:4317
         exporters:
           otlp:
-            endpoint: "tempo-sample-distributor.tracing-system.svc.cluster.local:4317" # (2)
+            endpoint: "tempo-sample-distributor.tracing-system.svc.cluster.local:4317" (2)
             tls:
               insecure: true
         service:
@@ -43,12 +43,12 @@ You can create a {{ OTELName }} instance in a mesh namespace and configure it to
     1.  Include the namespace in the `ServiceMeshMemberRoll` member list.
     1.  In this example, a TempoStack instance is running in the `tracing-system` namespace. You do not have to include the TempoStack namespace, such as`tracing-system`, in the `ServiceMeshMemberRoll` member list.
 
-        :::note
+    :::note
 
-        *   Create a single  instance of the OpenTelemetry Collector in one of the `ServiceMeshMemberRoll` member namespaces.
-        *   You can add an `otel-collector` as a part of the mesh by adding `sidecar.istio.io/inject: 'true'` to the `OpenTelemetryCollector` resource.
-        
-        :::
+    *   Create a single  instance of the OpenTelemetry Collector in one of the `ServiceMeshMemberRoll` member namespaces.
+    *   You can add an `otel-collector` as a part of the mesh by adding `sidecar.istio.io/inject: 'true'` to the `OpenTelemetryCollector` resource.
+    
+    :::
 
 1.  Check the `otel-collector` pod log and verify that the pod is running:
     ```terminal title="Example otel-collector pod log check"
@@ -116,20 +116,20 @@ You can create a {{ OTELName }} instance in a mesh namespace and configure it to
     spec:
       external_services:
         tracing:
-          query_timeout: 30 #<1>
+          query_timeout: 30 (1)
           enabled: true
           in_cluster_url: 'http://tempo-sample-query-frontend.tracing-system.svc.cluster.local:16685'
           url: '[Tempo query frontend Route url]'
-          use_grpc: true # (2)
+          use_grpc: true (2)
     ```
     1.  The default `query_timeout` integer value is 30 seconds. If you set the value to greater than 30 seconds, you must update `.spec.server.write_timeout` in the Kiali CR and add the annotation `haproxy.router.openshift.io/timeout=50s` to the Kiali route. Both `.spec.server.write_timeout` and `haproxy.router.openshift.io/timeout=` must be greater than `query_timeout`.
     1.  If you are not using the default HTTP or gRPC port, replace the `in_cluster_url:` port with your custom port.
 
-        :::note
+    :::note
 
-        Kiali 1.73 uses the Jaeger Query API, which causes a longer response time depending on Tempo resource limits. If you see a `Could not fetch spans` error message in the Kiali UI, then check your Tempo configuration or reduce the limit per query in Kiali.
-        
-        :::
+    Kiali 1.73 uses the Jaeger Query API, which causes a longer response time depending on Tempo resource limits. If you see a `Could not fetch spans` error message in the Kiali UI, then check your Tempo configuration or reduce the limit per query in Kiali.
+    
+    :::
 
 1.  Send requests to your application.
 1.  Verify the `istiod` pod logs and the `otel-collector` pod logs.

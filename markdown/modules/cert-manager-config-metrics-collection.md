@@ -50,6 +50,6 @@ The `istio-csr` operand exposes metrics by default on port `9402` at the `/metri
 **Verification**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Click **Observe** -> **Targets**.
-1.  In the ***Label filter*** field, enter the `service=cert-manager-istio-csr` label to filter the metrics targets.
+1.  Click **Observe** → **Targets**.
+1.  In the **Label filter** field, enter the `service=cert-manager-istio-csr` label to filter the metrics targets.
 1.  Confirm that the **Status** column shows **Up** for the `cert-manager-istio-csr` target.

@@ -10,6 +10,7 @@ You can use the {{ oc_first }} to install the {{ clo }}.
 
     If you have the pull secret, add the `redhat-operators` catalog to the OperatorHub custom resource (CR) as shown in **Configuring {{ product_title }} to use Red Hat Operators**.
 {% endif %}
+
 *   You have administrator permissions.
 *   You have installed the {{ oc_first }}.
 

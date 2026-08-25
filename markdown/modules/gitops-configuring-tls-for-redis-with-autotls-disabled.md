@@ -7,7 +7,7 @@ You can manually configure TLS encryption for Redis by creating the `argocd-oper
 
 1.  Log in to the {{ product_title }} web console.
 1.  Create an Argo CD instance:
-    1.  In the **Administrator** perspective of the web console, use the left navigation panel to go to **Administration** -> **CustomResourceDefinitions**.
+    1.  In the **Administrator** perspective of the web console, use the left navigation panel to go to **Administration** → **CustomResourceDefinitions**.
     1.  Search for `argocds.argoproj.io` and click `ArgoCD` custom resource definition (CRD).
     1.  On the **CustomResourceDefinition details** page, click the **Instances** tab, and then click **Create ArgoCD**.
     1.  Edit or replace the YAML similar to the following example:
@@ -30,30 +30,30 @@ You can manually configure TLS encryption for Redis by creating the `argocd-oper
         $ oc get pods -n <namespace> (1)
         ```
         1.  Specify a namespace where the Argo CD instance is running, for example `openshift-gitops`.
-            ```terminal title="Example output with HA disabled"
-            NAME                                  READY   STATUS    RESTARTS   AGE
-            argocd-application-controller-0       1/1     Running   0          26s
-            argocd-redis-84b77d4f58-vp6zm         1/1     Running   0          37s
-            argocd-repo-server-5b959b57f4-znxjq   1/1     Running   0          37s
-            argocd-server-6b8787d686-wv9zh        1/1     Running   0          37s
-            ```
+        ```terminal title="Example output with HA disabled"
+        NAME                                  READY   STATUS    RESTARTS   AGE
+        argocd-application-controller-0       1/1     Running   0          26s
+        argocd-redis-84b77d4f58-vp6zm         1/1     Running   0          37s
+        argocd-repo-server-5b959b57f4-znxjq   1/1     Running   0          37s
+        argocd-server-6b8787d686-wv9zh        1/1     Running   0          37s
+        ```
 
-            :::note
+        :::note
 
-            The HA-enabled TLS configuration requires a cluster with at least three worker nodes. It can take a few minutes for the output to appear if you have enabled the Argo CD instances with HA configuration.
-            
-            :::
+        The HA-enabled TLS configuration requires a cluster with at least three worker nodes. It can take a few minutes for the output to appear if you have enabled the Argo CD instances with HA configuration.
+        
+        :::
 
-            ```terminal title="Example output with HA enabled"
-            NAME                                       READY   STATUS    RESTARTS   AGE
-            argocd-application-controller-0            1/1     Running   0          10m
-            argocd-redis-ha-haproxy-669757fdb7-5xg8h   1/1     Running   0          10m
-            argocd-redis-ha-server-0                   2/2     Running   0          9m9s
-            argocd-redis-ha-server-1                   2/2     Running   0          98s
-            argocd-redis-ha-server-2                   2/2     Running   0          53s
-            argocd-repo-server-576499d46d-8hgbh        1/1     Running   0          10m
-            argocd-server-9486f88b7-dk2ks              1/1     Running   0          10m
-            ```
+        ```terminal title="Example output with HA enabled"
+        NAME                                       READY   STATUS    RESTARTS   AGE
+        argocd-application-controller-0            1/1     Running   0          10m
+        argocd-redis-ha-haproxy-669757fdb7-5xg8h   1/1     Running   0          10m
+        argocd-redis-ha-server-0                   2/2     Running   0          9m9s
+        argocd-redis-ha-server-1                   2/2     Running   0          98s
+        argocd-redis-ha-server-2                   2/2     Running   0          53s
+        argocd-repo-server-576499d46d-8hgbh        1/1     Running   0          10m
+        argocd-server-9486f88b7-dk2ks              1/1     Running   0          10m
+        ```
 1.  Create a self-signed certificate for the Redis server by using one of the following options depending on your HA configuration:
     *   For the Argo CD instance with HA disabled, run the following command:
         ```terminal
@@ -69,12 +69,12 @@ You can manually configure TLS encryption for Redis by creating the `argocd-oper
           -days 10
         ```
         1.  Specify a namespace where the Argo CD instance is running, for example `openshift-gitops`.
-            ```terminal title="Example output"
-            Generating a RSA private key
-            ...............++++
-            ............................++++
-            writing new private key to '/tmp/redis.key'
-            ```
+        ```terminal title="Example output"
+        Generating a RSA private key
+        ...............++++
+        ............................++++
+        writing new private key to '/tmp/redis.key'
+        ```
     *   For the Argo CD instance with HA enabled, run the following command:
         ```terminal
         $ openssl req -new -x509 -sha256 \
@@ -89,12 +89,12 @@ You can manually configure TLS encryption for Redis by creating the `argocd-oper
           -days 10
         ```
         1.  Specify a namespace where the Argo CD instance is running, for example `openshift-gitops`.
-            ```terminal title="Example output"
-            Generating a RSA private key
-            ...............++++
-            ............................++++
-            writing new private key to '/tmp/redis-ha.key'
-            ```
+        ```terminal title="Example output"
+        Generating a RSA private key
+        ...............++++
+        ............................++++
+        writing new private key to '/tmp/redis-ha.key'
+        ```
 1.  Verify that the generated certificate and key are available in the `/tmp` directory by running the following commands:
     ```terminal
     $ cd /tmp
@@ -131,35 +131,35 @@ You can manually configure TLS encryption for Redis by creating the `argocd-oper
     $ oc annotate secret argocd-operator-redis-tls argocds.argoproj.io/name=<instance-name> (1)
     ```
     1.  Specify a name of the Argo CD instance, for example `argocd`.
-        ```terminal title="Example output"
-        secret/argocd-operator-redis-tls annotated
-        ```
+    ```terminal title="Example output"
+    secret/argocd-operator-redis-tls annotated
+    ```
 1.  Verify that the Argo CD pods are ready and running:
     ```terminal
     $ oc get pods -n <namespace> (1)
     ```
     1.  Specify a namespace where the Argo CD instance is running, for example `openshift-gitops`.
-        ```terminal title="Example output with HA disabled"
-        NAME                                  READY   STATUS    RESTARTS   AGE
-        argocd-application-controller-0       1/1     Running   0          26s
-        argocd-redis-84b77d4f58-vp6zm         1/1     Running   0          37s
-        argocd-repo-server-5b959b57f4-znxjq   1/1     Running   0          37s
-        argocd-server-6b8787d686-wv9zh        1/1     Running   0          37s
-        ```
+    ```terminal title="Example output with HA disabled"
+    NAME                                  READY   STATUS    RESTARTS   AGE
+    argocd-application-controller-0       1/1     Running   0          26s
+    argocd-redis-84b77d4f58-vp6zm         1/1     Running   0          37s
+    argocd-repo-server-5b959b57f4-znxjq   1/1     Running   0          37s
+    argocd-server-6b8787d686-wv9zh        1/1     Running   0          37s
+    ```
 
-        :::note
+    :::note
 
-        It can take a few minutes for the output to appear if you have enabled the Argo CD instances with HA configuration.
-        
-        :::
+    It can take a few minutes for the output to appear if you have enabled the Argo CD instances with HA configuration.
+    
+    :::
 
-        ```terminal title="Example output with HA enabled"
-        NAME                                       READY   STATUS    RESTARTS   AGE
-        argocd-application-controller-0            1/1     Running   0          10m
-        argocd-redis-ha-haproxy-669757fdb7-5xg8h   1/1     Running   0          10m
-        argocd-redis-ha-server-0                   2/2     Running   0          9m9s
-        argocd-redis-ha-server-1                   2/2     Running   0          98s
-        argocd-redis-ha-server-2                   2/2     Running   0          53s
-        argocd-repo-server-576499d46d-8hgbh        1/1     Running   0          10m
-        argocd-server-9486f88b7-dk2ks              1/1     Running   0          10m
-        ```
+    ```terminal title="Example output with HA enabled"
+    NAME                                       READY   STATUS    RESTARTS   AGE
+    argocd-application-controller-0            1/1     Running   0          10m
+    argocd-redis-ha-haproxy-669757fdb7-5xg8h   1/1     Running   0          10m
+    argocd-redis-ha-server-0                   2/2     Running   0          9m9s
+    argocd-redis-ha-server-1                   2/2     Running   0          98s
+    argocd-redis-ha-server-2                   2/2     Running   0          53s
+    argocd-repo-server-576499d46d-8hgbh        1/1     Running   0          10m
+    argocd-server-9486f88b7-dk2ks              1/1     Running   0          10m
+    ```

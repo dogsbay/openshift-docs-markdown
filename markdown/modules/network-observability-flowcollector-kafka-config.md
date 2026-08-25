@@ -11,7 +11,7 @@ You must have a running Kafka instance and create a Kafka topic in that instance
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the Network Observability Operator, select **Flow Collector**.
 1.  Select the cluster and then click the **YAML** tab.
 1.  Change the `FlowCollector` resource for {{ product_title }} Network Observability Operator to use Kafka, as shown in the following sample YAML:

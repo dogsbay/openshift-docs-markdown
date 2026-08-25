@@ -1,5 +1,5 @@
 ---
-title: "StorageVersionMigration []"
+title: "StorageVersionMigration [migration.k8s.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of the migration. |
 | `status` | `object` | Status of the migration. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,6 +42,7 @@ Required
 | --- | --- | --- |
 | `continueToken` | `string` | The token used in the list options to get the next chunk of objects to migrate. When the .status.conditions indicates the migration is "Running", users can use this token to check the progress of the migration. |
 | `resource` | `object` | The resource that is being migrated. The migrator sends requests to the endpoint serving the resource. Immutable. |
+
 ### .spec.resource {id="_specresource"}
 
 Description
@@ -55,6 +57,7 @@ Type
 | `group` | `string` | The name of the group. |
 | `resource` | `string` | The name of the resource. |
 | `version` | `string` | The name of the version. |
+
 ### .status {id="_status"}
 
 Description
@@ -68,6 +71,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | The latest available observations of the migration’s current state. |
 | `conditions[]` | `object` | Describes the state of a migration at a certain point. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -107,12 +111,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of StorageVersionMigration
     *   `GET`: list objects of kind StorageVersionMigration
     *   `POST`: create a StorageVersionMigration
-*   `/apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }}`
+*   `/apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }}`{minja}
     *   `DELETE`: delete a StorageVersionMigration
     *   `GET`: read the specified StorageVersionMigration
     *   `PATCH`: partially update the specified StorageVersionMigration
     *   `PUT`: replace the specified StorageVersionMigration
-*   `/apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }}/status`
+*   `/apis/migration.k8s.io/v1alpha1/storageversionmigrations/{{ name }}/status`{minja}
     *   `GET`: read status of the specified StorageVersionMigration
     *   `PATCH`: partially update status of the specified StorageVersionMigration
     *   `PUT`: replace status of the specified StorageVersionMigration

@@ -3,13 +3,13 @@ title: Content Security Policy (CSP)
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Content Security Policy (CSP) {id="content-security-policy_{{ context }}"}
-
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Content Security Policy (CSP) {id="content-security-policy_{{ context }}"}
+
 {%- set context = "content-security-policy" %}
 
-Specify Content Security Policy (CSP) directives for your dynamic plugin using the `contentSecurityPolicy` field in `ConsolePluginSpec`. CSP restricts which sources supply scripts, styles, images, and fonts, mitigating risks for plugins loading resources externally.
+Specify Content Security Policy (CSP) directives for your dynamic plugin using the `contentSecurityPolicy` field in `ConsolePluginSpec`. CSP restricts which sources supply scripts, styles, images, and fonts, mitigating risks for plugins loading resources externally. {._abstract}
 
 
 :::important
@@ -21,9 +21,9 @@ The console currently uses the `Content-Security-Policy-Report-Only` response he
 
 {% leveloffset +1 %}{% include "./modules/csp-overview.md" %}{% endleveloffset %}
 
-## Additional resources {id="content-security-policy_additional-resources"}
+## Additional resources {id="content-security-policy_additional-resources" ._additional-resources}
 
 *   [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
 {%- if not (openshift_rosa_hcp or openshift_rosa) %}
 *   [Enabling feature sets using the web console](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-console_nodes-cluster-enabling)
-{% endif %}
+{%- endif %}

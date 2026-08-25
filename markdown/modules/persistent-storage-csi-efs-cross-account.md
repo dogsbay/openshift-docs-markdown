@@ -7,10 +7,10 @@ To mount AWS Elastic File System (EFS) volumes across AWS accounts, configure cr
 **Prerequisites**
 
 *   Access to
-    {%- if openshift_rosa or openshift_rosa_hcp %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
  a {{ product_title }} cluster
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp) %}
  an {{ product_title }} cluster
 {%- endif %}
 with administrator rights

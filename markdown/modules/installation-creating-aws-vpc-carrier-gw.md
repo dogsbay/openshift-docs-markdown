@@ -7,7 +7,7 @@
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-{%- if wavelength_zone %}
+{% if wavelength_zone %}
 # Creating a VPC carrier gateway {id="installation-creating-aws-vpc-carrier-gw_{{ context }}" ._abstract}
 
 {% endif %}
@@ -104,8 +104,8 @@ If you do not use the provided CloudFormation template to create your AWS infras
     :   The ID of the Route Table in the Carrier infrastructure.
 
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set post_aws_zones = false -%}
+{%- set post_aws_zones = "" -%}
 {% endif %}

@@ -19,7 +19,7 @@ Kubernetes also supports authentication using client certificates, instead of a 
 **Procedure**
 
 1.  Set the `deployVmConsoleProxy` field value in the `HyperConverged` (`HCO`) custom resource (CR) to `true`:
-    ```terminal
+    ```terminal {minja}
     $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type json -p '[{"op": "replace", "path": "/spec/deployVmConsoleProxy", "value": true}]'
     ```
 1.  Generate a token by entering the following command:
@@ -53,14 +53,14 @@ Kubernetes also supports authentication using client certificates, instead of a 
     ```
 
 
-:::warning
+    :::warning
 
-You cannot currently revoke a specific token.
+    You cannot currently revoke a specific token.
 
-To revoke a token, you must delete the service account that you used to create it. However, this also revokes all other tokens that you created by using the service account. Use the following command with caution:
+    To revoke a token, you must delete the service account that you used to create it. However, this also revokes all other tokens that you created by using the service account. Use the following command with caution:
 
-```terminal
-$ virtctl delete serviceaccount --namespace "<namespace>" "<vm_name>-vnc-access"
-```
-
-:::
+    ```terminal
+    $ virtctl delete serviceaccount --namespace "<namespace>" "<vm_name>-vnc-access"
+    ```
+    
+    :::

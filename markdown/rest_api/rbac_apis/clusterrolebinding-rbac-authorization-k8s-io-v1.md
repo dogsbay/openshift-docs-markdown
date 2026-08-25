@@ -1,5 +1,5 @@
 ---
-title: "ClusterRoleBinding []"
+title: "ClusterRoleBinding [rbac.authorization.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `roleRef` | `object` | RoleRef contains information that points to the role being used |
 | `subjects` | `array` | Subjects holds references to the objects the role applies to. |
 | `subjects[]` | `object` | Subject contains a reference to the object or user identities a role binding applies to.  This can either hold a direct API object reference, or a value for non-objects such as user and group names. |
+
 ### .roleRef {id="_roleref"}
 
 Description
@@ -49,6 +50,7 @@ Required
 | `apiGroup` | `string` | APIGroup is the group for the resource being referenced |
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
+
 ### .subjects {id="_subjects"}
 
 Description
@@ -89,12 +91,12 @@ The following API endpoints are available:
     *   `POST`: create a ClusterRoleBinding
 *   `/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings`
     *   `GET`: watch individual changes to a list of ClusterRoleBinding. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{{ name }}`
+*   `/apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterRoleBinding
     *   `GET`: read the specified ClusterRoleBinding
     *   `PATCH`: partially update the specified ClusterRoleBinding
     *   `PUT`: replace the specified ClusterRoleBinding
-*   `/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/{{ name }}`
+*   `/apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind ClusterRoleBinding. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/rbac.authorization.k8s.io/v1/clusterrolebindings {id="_apisrbacauthorizationk8siov1clusterrolebindings"}

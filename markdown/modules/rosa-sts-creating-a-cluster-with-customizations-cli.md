@@ -54,7 +54,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
 
         The following example shows sample output:
 
-        ```terminal
+        ```terminal {minja}
         I: Logged in as '<red_hat_username>' on 'https://api.openshift.com'
         I: Validating AWS credentials...
         I: AWS credentials are valid!

@@ -11,16 +11,16 @@ Description
 :   {{ cgu_operator }} is an Operator that runs only on the hub cluster for managing how changes like cluster upgrades, Operator upgrades, and cluster configuration are rolled out to the network.
     {{ cgu_operator }} supports the following features:
 
-*   Progressive rollout of policy updates to fleets of clusters in user configurable batches.
-*   Per-cluster actions add `ztp-done` labels or other user-configurable labels following configuration changes to managed clusters.
-*   Precaching of {{ sno }} clusters images: {{ cgu_operator }} supports optional pre-caching of OpenShift, OLM Operator, and additional user images to {{ sno }} clusters before initiating an upgrade.
-The precaching feature is not applicable when using the recommended image-based upgrade method for upgrading {{ sno }} clusters.
-    *   Specifying optional pre-caching configurations with `PreCachingConfig` CRs.
-    Review the [sample reference `PreCachingConfig` CR](https://github.com/openshift-kni/cluster-group-upgrades-operator/blob/main/config/pre-cache/precachingconfig.yaml) for more information.
-    *   Excluding unused images with configurable filtering.
-    *   Enabling before and after pre-caching storage space validations with configurable space-required parameters.
+    *   Progressive rollout of policy updates to fleets of clusters in user configurable batches.
+    *   Per-cluster actions add `ztp-done` labels or other user-configurable labels following configuration changes to managed clusters.
+    *   Precaching of {{ sno }} clusters images: {{ cgu_operator }} supports optional pre-caching of OpenShift, OLM Operator, and additional user images to {{ sno }} clusters before initiating an upgrade.
+    The precaching feature is not applicable when using the recommended image-based upgrade method for upgrading {{ sno }} clusters.
+        *   Specifying optional pre-caching configurations with `PreCachingConfig` CRs.
+        Review the [sample reference `PreCachingConfig` CR](https://github.com/openshift-kni/cluster-group-upgrades-operator/blob/main/config/pre-cache/precachingconfig.yaml) for more information.
+        *   Excluding unused images with configurable filtering.
+        *   Enabling before and after pre-caching storage space validations with configurable space-required parameters.
 
-    Limits and requirements
+Limits and requirements
 :   *   Supports concurrent cluster deployment in batches of 400
     *   Pre-caching and backup are limited to {{ sno }} clusters only
 

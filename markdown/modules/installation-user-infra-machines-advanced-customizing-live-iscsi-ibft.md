@@ -76,5 +76,6 @@ You can set the iSCSI target and initiator values for automatic mounting, bootin
 
     `rd.multipath=default`
     :   Specifies if you want to enable multipathing. Optional parameter.
-{%- endif %}
+{% endif %}
+
     For more information about see the `dracut.cmdline` manual page.

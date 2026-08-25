@@ -20,10 +20,10 @@ AWS PrivateLink is supported on existing VPCs only.
 *   For [Private Marketplace](https://docs.aws.amazon.com/rosa/latest/userguide/integration-marketplace.html#_private_marketplace), you have enabled the {{ product_title }} service in the AWS Console.
 {%- if openshift_rosa %}
 For more information, see [AWS Marketplace listings for ROSA](https://aws.amazon.com/marketplace/pp/prodview-tnyp2h3acabm6).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 For more information, see [AWS Marketplace listings for ROSA](https://aws.amazon.com/marketplace/pp/prodview-juiwfhpeizxro).
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

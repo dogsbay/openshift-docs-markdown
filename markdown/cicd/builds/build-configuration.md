@@ -3,8 +3,8 @@ title: Build configuration resources
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Build configuration resources {id="build-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Build configuration resources {id="build-configuration"}
 {%- set context = "build-configuration" %}
 
 Use the following procedure to configure build settings.

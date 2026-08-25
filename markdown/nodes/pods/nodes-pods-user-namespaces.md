@@ -4,10 +4,10 @@ title: Running pods in Linux user namespaces
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-pods-user-namespaces" %}
-# Running pods in Linux user namespaces {id="nodes-pods-user-namespaces"}
 {% include "./_attributes/common-attributes.md" %}
+# Running pods in Linux user namespaces {id="nodes-pods-user-namespaces"}
 
-To enhance container security and prevent potential breakouts, you can isolate pod processes by using Linux user namespaces. By using this configuration, you can allow containers to run with administrative privileges inside the namespace, but remain unprivileged on the host system.
+To enhance container security and prevent potential breakouts, you can isolate pod processes by using Linux user namespaces. By using this configuration, you can allow containers to run with administrative privileges inside the namespace, but remain unprivileged on the host system. {._abstract}
 
 Linux user namespaces allow administrators to isolate the container user and group identifiers (UIDs and GIDs) so that a container can have a different set of permissions in the user namespace than on the host system where it is running. This allows containers to run processes with full privileges inside the user namespace, but the processes can be unprivileged for operations on the host machine.
 
@@ -30,6 +30,7 @@ To check user namespaces support for storage options, see [CSI drivers supported
 {% leveloffset +1 %}{% include "./modules/nodes-pods-user-namespaces-configuring.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Managing security context constraints](/authentication/managing-security-context-constraints#configuring-internal-oauth)
 *   [OpenShift CLI administrator command reference](/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)

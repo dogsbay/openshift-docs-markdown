@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Collecting debugging data for a support case {id="collecting-debugging-data-for-support"}
 {% include "./_attributes/common-attributes.md" %}
+# Collecting debugging data for a support case {id="collecting-debugging-data-for-support"}
 {%- set context = "collecting-debugging-data-for-support" %}
 
 When you open a support case, you must provide debugging information about your cluster to the Red Hat Support team. You can use the `must-gather` tool to collect diagnostic information for project-level resources, cluster-level resources, and {{ gitops_title }} components. 

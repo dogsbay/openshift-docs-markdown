@@ -3,12 +3,12 @@ title: Glossary of common terms for OpenShift Container Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Glossary of common terms for {{ product_title }} {id="getting-started-openshift-common-terms_{{ context }}"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "glossary" %}
 
-To better use {{ product_title }}, you should first understand common Kubernetes and {{ product_title }} terms.
+To better use {{ product_title }}, you should first understand common Kubernetes and {{ product_title }} terms. {._abstract}
 
 
 access policies
@@ -22,13 +22,13 @@ admission plugins
 authentication
 {%- if not (openshift_dedicated or openshift_rosa) %}
 :   To control access to an {{ product_title }} cluster, a cluster administrator can configure user authentication to ensure only approved users access the cluster. To interact with an {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
-{% endif %}
-{% if openshift_rosa %}
-    To control access to a {{ product_title }} cluster, an administrator with the `dedicated-admin` role can configure user authentication to ensure only approved users access the cluster. To interact with a {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
-{% endif %}
-{% if openshift_dedicated %}
-    To control access to an {{ product_title }} cluster, an administrator with the `dedicated-admin` role can configure user authentication to ensure only approved users access the cluster. To interact with an {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
-{% endif %}
+{%- endif %}
+{%- if openshift_rosa %}
+:   To control access to a {{ product_title }} cluster, an administrator with the `dedicated-admin` role can configure user authentication to ensure only approved users access the cluster. To interact with a {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
+{%- endif %}
+{%- if openshift_dedicated %}
+:   To control access to an {{ product_title }} cluster, an administrator with the `dedicated-admin` role can configure user authentication to ensure only approved users access the cluster. To interact with an {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
+{%- endif %}
 
 
 bootstrap
@@ -104,10 +104,10 @@ hosted control planes
 hosted control planes
 :   A {{ product_title }} feature that enables hosting a control plane on the {{ product_title }} cluster from its data plane and workers. This model performs the following actions:
 
-*   Optimize infrastructure costs required for the control planes.
-*   Improve the cluster creation time.
-*   Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
-*   Allow a strong network segmentation between the control plane and workloads.
+    *   Optimize infrastructure costs required for the control planes.
+    *   Improve the cluster creation time.
+    *   Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
+    *   Allow a strong network segmentation between the control plane and workloads.
 {% endif %}
 
 hybrid cloud deployments
@@ -196,11 +196,12 @@ Operator
 :   The preferred method of packaging, deploying, and managing a Kubernetes application in
 {%- if openshift_rosa %}
     a
-{% endif %}
-{% if not openshift_rosa %}
+{%- endif %}
+{%- if not openshift_rosa %}
     an
 {%- endif %}
     {{ product_title }} cluster. An Operator is a Kubernetes-native application designed to translate operational knowledge into a software that is packaged and shared with customers. Traditionally, tasks such as installation, configuration, scaling, updates, and failover were managed manually by administrators by using scripts or automation tools like Ansible. Operators bring these capabilities into Kubernetes, making them natively integrated and automated within the cluster.
+
     Operators manage both Day 1 operations such as installation and configuration, and Day 2 operations such as scaling, updates, backups, failover and restores. By leveraging Kubernetes APIs and concepts, Operators provide an automated and consistent way to manage complex applications.
 
 
@@ -232,6 +233,7 @@ private registry
 
 project
 :   {{ product_title }} uses projects to enable groups of users or developers to work together. A project defines the scope of resources, manages user access, and enforces resource quotas and limits.
+
     A project is a Kubernetes namespace with additional annotations that provide role-based access control (RBAC) and management capabilities. It serves as the central mechanism for organizing resources, ensuring isolation between different user groups.
 
 
@@ -282,13 +284,13 @@ Source-to-Image (S2I) image
 storage
 {%- if not (openshift_dedicated or openshift_rosa) %}
 :   {{ product_title }} supports many types of storage, both for on-premise and cloud providers. You can manage container storage for persistent and non-persistent data in an {{ product_title }} cluster.
-{% endif %}
-{% if openshift_rosa %}
-    {{ product_title }} supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in a {{ product_title }} cluster.
-{% endif %}
-{% if openshift_dedicated %}
-    {{ product_title }} supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in an {{ product_title }} cluster.
-{% endif %}
+{%- endif %}
+{%- if openshift_rosa %}
+:   {{ product_title }} supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in a {{ product_title }} cluster.
+{%- endif %}
+{%- if openshift_dedicated %}
+:   {{ product_title }} supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in an {{ product_title }} cluster.
+{%- endif %}
 
 
 telemetry

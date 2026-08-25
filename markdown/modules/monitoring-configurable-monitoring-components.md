@@ -12,7 +12,7 @@
 {%- set thanosname = "Thanos Ruler" -%}
 {%- set thanos = "thanosRuler" %}
 
-This table shows the monitoring components you can configure and the keys used to specify the components in the `{{ configmap_name }}` config map.
+This table shows the monitoring components you can configure and the keys used to specify the components in the `{{ configmap_name }}`{minja} config map.
 
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 
@@ -29,9 +29,9 @@ Do not modify the monitoring components in the `cluster-monitoring-config` `Conf
 | Component | {{ configmap_name }} config map key |
 | --- | --- |
 | Prometheus Operator | `prometheusOperator` |
-| Prometheus | `{{ prometheus }}` |
-| Alertmanager | `{{ alertmanager }}` |
-| {{ thanosname }} | `{{ thanos }}` |
+| Prometheus | `{{ prometheus }}`{minja} |
+| Alertmanager | `{{ alertmanager }}`{minja} |
+| {{ thanosname }} | `{{ thanos }}`{minja} |
 | kube-state-metrics | `kubeStateMetrics` |
 | monitoring-plugin | `monitoringPlugin` |
 | openshift-state-metrics | `openshiftStateMetrics` |
@@ -49,7 +49,7 @@ Different configuration changes to the `ConfigMap` object result in different ou
 
 {% if not openshift_rosa_hcp %}
     *   For single-node clusters, this results in temporary service outage.
-        {% endif %}
+{% endif %}
     *   For multi-node clusters, because of high-availability, the affected pods are gradually rolled out and the monitoring stack remains available.
     *   Configuring and resizing a persistent volume always results in a service outage, regardless of high availability.
 
@@ -59,8 +59,8 @@ Each procedure that requires a change in the config map includes its expected ou
 
 {% endif %}
 
-{%- set configmap_name = false -%}
-{%- set alertmanager = false -%}
-{%- set prometheus = false -%}
-{%- set thanosname = false -%}
-{%- set thanos = false -%}
+{%- set configmap_name = "" -%}
+{%- set alertmanager = "" -%}
+{%- set prometheus = "" -%}
+{%- set thanosname = "" -%}
+{%- set thanos = "" -%}

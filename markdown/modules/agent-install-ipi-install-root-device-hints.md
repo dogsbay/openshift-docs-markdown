@@ -15,7 +15,7 @@ The installation program examines the devices in the order it discovers them, an
 </tr>
 <tr>
   <td><code>deviceName</code></td>
-  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>.</td>
+  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>. [NOTE] ==== It is recommended to use the <code>/dev/disk/by-path/&lt;device_path&gt;</code> link to the storage location. ====<br><br>The hint must match the actual value exactly.</td>
 </tr>
 <tr>
   <td><code>hctl</code></td>
@@ -39,7 +39,7 @@ The installation program examines the devices in the order it discovers them, an
 </tr>
 <tr>
   <td><code>wwn</code></td>
-  <td>A string containing the unique storage identifier. The hint must match the actual value exactly.</td>
+  <td>A string containing the unique storage identifier. The hint must match the actual value exactly. If you use the <code>udevadm</code> command to retrieve the <code>wwn</code> value, and the command outputs a value for <code>ID_WWN_WITH_EXTENSION</code>, then you must use this value to specify the <code>wwn</code> subfield.</td>
 </tr>
 <tr>
   <td><code>rotational</code></td>

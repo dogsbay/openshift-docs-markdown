@@ -10,17 +10,17 @@ You can disable automatic updates for an individual boot source, whether it is c
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Disable automatic updates for an individual boot source by editing the `spec.dataImportCronTemplates` field.
 
     Custom boot source
-:   *   Remove the boot source from the `spec.dataImportCronTemplates` field. Automatic updates are disabled for custom boot sources by default.
+    :   *   Remove the boot source from the `spec.dataImportCronTemplates` field. Automatic updates are disabled for custom boot sources by default.
 
 
     System-defined boot source
-:   1.  Add the boot source to `spec.dataImportCronTemplates`.
+    :   1.  Add the boot source to `spec.dataImportCronTemplates`.
 
     :::note
 
@@ -29,7 +29,7 @@ You can disable automatic updates for an individual boot source, whether it is c
     
     :::
 
-    1.  Set the value of the `dataimportcrontemplate.kubevirt.io/enable` annotation to ’false'`.
+    1.  Set the value of the `dataimportcrontemplate.kubevirt.io/enable` annotation to `'false'`.
 
     For example:
     ```yaml

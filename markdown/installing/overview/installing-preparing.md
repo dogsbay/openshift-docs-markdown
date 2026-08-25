@@ -3,11 +3,11 @@ title: Selecting a cluster installation method and preparing it for users
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Selecting a cluster installation method and preparing it for users {id="installing-preparing"}
 {% include "./_attributes/common-attributes.md" %}
+# Selecting a cluster installation method and preparing it for users {id="installing-preparing"}
 {%- set context = "installing-preparing" %}
 
-Before you install {{ product_title }}, decide what kind of installation process to follow and verify that you have all of the required resources to prepare the cluster for users.
+Before you install {{ product_title }}, decide what kind of installation process to follow and verify that you have all of the required resources to prepare the cluster for users. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installing-preparing-selecting-cluster-type-reference.md" %}{% endleveloffset %}
 

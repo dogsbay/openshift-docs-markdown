@@ -7,10 +7,10 @@ Use the following workflow to install multiple instances of the same Operator:
 
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 1.  Create a namespace for the tenant Operator that is separate from the tenant’s namespace.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 1.  Create a namespace for the tenant Operator that is separate from the tenant’s namespace. You can do this by creating a project.
-{% endif %}
+{%- endif %}
 1.  Create an Operator group for the tenant Operator scoped only to the tenant’s namespace.
 1.  Install the Operator in the tenant Operator namespace.
 
@@ -45,4 +45,4 @@ As an administrator, use caution when allowing non-cluster administrators to ins
 
 :::
 
-{% endif %}
+{%- endif %}

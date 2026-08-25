@@ -41,6 +41,7 @@ Required
 | `series` | `object` | EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time. |
 | `source` | `object` | EventSource contains information for an event. |
 | `type` | `string` | Type of this event (Normal, Warning), new types could be added in the future |
+
 ### .involvedObject {id="_involvedobject"}
 
 Description
@@ -59,6 +60,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .related {id="_related"}
 
 Description
@@ -77,6 +79,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .series {id="_series"}
 
 Description
@@ -90,6 +93,7 @@ Type
 | --- | --- | --- |
 | `count` | `integer` | Number of occurrences in this series up to the last heartbeat time |
 | `lastObservedTime` | [`MicroTime`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-MicroTime) | Time of the last occurrence observed |
+
 ### .source {id="_source"}
 
 Description
@@ -112,18 +116,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind Event
 *   `/api/v1/watch/events`
     *   `GET`: watch individual changes to a list of Event. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/events`
+*   `/api/v1/namespaces/{{ namespace }}/events`{minja}
     *   `DELETE`: delete collection of Event
     *   `GET`: list or watch objects of kind Event
     *   `POST`: create an Event
-*   `/api/v1/watch/namespaces/{{ namespace }}/events`
+*   `/api/v1/watch/namespaces/{{ namespace }}/events`{minja}
     *   `GET`: watch individual changes to a list of Event. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/events/{{ name }}`
+*   `/api/v1/namespaces/{{ namespace }}/events/{{ name }}`{minja}
     *   `DELETE`: delete an Event
     *   `GET`: read the specified Event
     *   `PATCH`: partially update the specified Event
     *   `PUT`: replace the specified Event
-*   `/api/v1/watch/namespaces/{{ namespace }}/events/{{ name }}`
+*   `/api/v1/watch/namespaces/{{ namespace }}/events/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Event. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /api/v1/events {id="_apiv1events"}

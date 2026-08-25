@@ -4,10 +4,10 @@ title: Automatically scaling pods with the horizontal pod autoscaler
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-pods-autoscaling" %}
-# Automatically scaling pods with the horizontal pod autoscaler {id="nodes-pods-autoscaling"}
 {% include "./_attributes/common-attributes.md" %}
+# Automatically scaling pods with the horizontal pod autoscaler {id="nodes-pods-autoscaling"}
 
-As a developer, you can use a horizontal pod autoscaler (HPA) to specify how {{ product_title }} should automatically increase or decrease the scale of a replication controller or deployment configuration, based on metrics collected from the pods that belong to that replication controller or deployment configuration. 
+As a developer, you can use a horizontal pod autoscaler (HPA) to specify how {{ product_title }} should automatically increase or decrease the scale of a replication controller or deployment configuration, based on metrics collected from the pods that belong to that replication controller or deployment configuration.  {._abstract}
 
 You can create an HPA for any deployment, deployment config, replica set, replication controller, or stateful set.
 
@@ -52,7 +52,7 @@ these objects, see "Understanding deployments".
 
 {% leveloffset +2 %}{% include "./modules/nodes-pods-autoscaling-status-viewing.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Automatically scaling pods based on custom metrics](/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom)
 *   [Understanding deployments](/applications/deployments/what-deployments-are#what-deployments-are)
 *   [Understanding resource requests and limits](/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy)

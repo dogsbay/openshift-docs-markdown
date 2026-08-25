@@ -3,11 +3,11 @@ title: Learn more about OpenShift Container Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Learn more about {{ product_title }} {id="learn_more_about_openshift"}
 {% include "./_attributes/common-attributes.md" %}
+# Learn more about {{ product_title }} {id="learn_more_about_openshift"}
 {%- set context = "welcome-personas" %}
 
-To better use {{ product_title }}, you should first learn about and better understand how {{ product_title }} functions.
+To better use {{ product_title }}, you should first learn about and better understand how {{ product_title }} functions. {._abstract}
 
 You can use the following sections to find content to help you learn about {{ product_title }}.
 

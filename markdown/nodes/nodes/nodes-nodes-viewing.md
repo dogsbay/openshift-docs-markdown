@@ -3,12 +3,12 @@ title: Viewing and listing the nodes in your OpenShift Container Platform cluste
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Viewing and listing the nodes in your {{ product_title }} cluster {id="nodes-nodes-viewing"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Viewing and listing the nodes in your {{ product_title }} cluster {id="nodes-nodes-viewing"}
 {%- set context = "nodes-nodes-viewing" %}
 
-You can list all the nodes in your cluster to obtain information such as status, age, memory usage, and details about the nodes.
+You can list all the nodes in your cluster to obtain information such as status, age, memory usage, and details about the nodes. {._abstract}
 
 When you perform node management operations, the CLI interacts with node objects that are representations of actual node hosts.
 The master uses the information from node objects to validate nodes with health checks.
@@ -25,7 +25,7 @@ The master uses the information from node objects to validate nodes with health 
 {% leveloffset +1 %}{% include "./modules/nodes-nodes-viewing-memory.md" %}{% endleveloffset %}
 
 {% if not openshift_dedicated %}
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 {% endif %}
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   [Understanding how to update labels on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)

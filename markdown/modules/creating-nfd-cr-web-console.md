@@ -11,7 +11,7 @@ Create a `NodeFeatureDiscovery` CR by using the {{ product_title }} web console 
 
 **Procedure**
 
-1.  Navigate to the **Ecosystem** -> **Installed Operators** page.
+1.  Navigate to the **Ecosystem** → **Installed Operators** page.
 1.  In the **Node Feature Discovery** section, under **Provided APIs**, click **Create instance**.
 1.  Edit the values of the `NodeFeatureDiscovery` CR.
 1.  Click **Create**.

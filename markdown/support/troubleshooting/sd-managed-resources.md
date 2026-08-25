@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # Red&#160;Hat managed resources {id="sd-managed-resources"}
 
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "sd-managed-resources" %}
 
 The following covers all {{ product_title }} resources that are managed or protected by the Service Reliability Engineering Platform (SRE-P) Team. Customers must not modify these resources because doing so can lead to cluster instability. {._abstract}
@@ -10,7 +10,7 @@ The following covers all {{ product_title }} resources that are managed or prote
 
 The following covers all {{ product_title }} resources that are managed or protected by the Service Reliability Engineering Platform (SRE-P) Team. Customers must not modify these resources because doing so can lead to cluster instability.
 
-{%- if openshift_rosa or openshift_dedicated %}
+{% if openshift_rosa or openshift_dedicated %}
 ## Hive managed resources {id="sd-managed-resources-all_{{ context }}"}
 
 The following list displays the {{ product_title }} resources managed by OpenShift Hive, the centralized fleet configuration management system. These resources are in addition to the OpenShift Container Platform resources created during installation. OpenShift Hive continually attempts to maintain consistency across all {{ product_title }} clusters. Changes to {{ product_title }} resources should be made through {{ cluster_manager }} so that {{ cluster_manager }} and Hive are synchronized. Contact `ocm-feedback@redhat.com` if {{ cluster_manager }} does not support modifying the resources in question.
@@ -24,8 +24,7 @@ The following resources are created and managed by the management cluster, which
 
 **List of Red&#160;Hat managed resources**
 
-{%- endif %}
-```yaml
+{% endif %}
 ```yaml
 Resources:
   ConfigMap:
@@ -199,8 +198,6 @@ Resources:
   - namespace: openshift-monitoring
     name: configure-alertmanager-operator
   - namespace: openshift-monitoring
-    name: osd-cluster-ready
-  - namespace: openshift-monitoring
     name: osd-rebalance-infra-nodes
   - namespace: openshift-monitoring
     name: sre-dns-latency-exporter
@@ -288,7 +285,6 @@ Resources:
   - name: logger-clusterrolebinding
   - name: openshift-backplane-managed-scripts-reader
   - name: osd-cluster-admin
-  - name: osd-cluster-ready
   - name: osd-delete-backplane-script-resources
   - name: osd-delete-ownerrefs-serviceaccounts
   - name: osd-patch-subscription-source
@@ -318,7 +314,6 @@ Resources:
   - name: logger-clusterrole
   - name: openshift-backplane-managed-scripts-reader
   - name: openshift-splunk-forwarder-operator
-  - name: osd-cluster-ready
   - name: osd-custom-domains-dedicated-admin-cluster
   - name: osd-delete-backplane-script-resources
   - name: osd-delete-backplane-serviceaccounts
@@ -359,8 +354,6 @@ Resources:
     name: muo-pullsecret-reader
   - namespace: openshift-config
     name: oao-openshiftconfig-reader
-  - namespace: openshift-config
-    name: osd-cluster-ready
   - namespace: openshift-custom-domains-operator
     name: osd-rebalance-infra-nodes-openshift-pod-rebalance
   - namespace: openshift-customer-monitoring
@@ -390,8 +383,6 @@ Resources:
   - namespace: openshift-logging
     name: openshift-logging:serviceaccounts:dedicated-admin
   - namespace: openshift-machine-api
-    name: osd-cluster-ready
-  - namespace: openshift-machine-api
     name: sre-ebs-iops-reporter-read-machine-info
   - namespace: openshift-machine-api
     name: sre-stuck-ebs-vols-read-machine-info
@@ -407,8 +398,6 @@ Resources:
     name: muo-monitoring-reader
   - namespace: openshift-monitoring
     name: oao-monitoring-manager
-  - namespace: openshift-monitoring
-    name: osd-cluster-ready
   - namespace: openshift-monitoring
     name: osd-rebalance-infra-nodes-openshift-monitoring
   - namespace: openshift-monitoring
@@ -496,8 +485,6 @@ Resources:
     name: muo-pullsecret-reader
   - namespace: openshift-config
     name: oao-openshiftconfig-reader
-  - namespace: openshift-config
-    name: osd-cluster-ready
   - namespace: openshift-customer-monitoring
     name: dedicated-admins-openshift-customer-monitoring
   - namespace: openshift-customer-monitoring
@@ -517,8 +504,6 @@ Resources:
   - namespace: openshift-logging
     name: dedicated-admins-openshift-logging
   - namespace: openshift-machine-api
-    name: osd-cluster-ready
-  - namespace: openshift-machine-api
     name: osd-disable-cpms
   - namespace: openshift-marketplace
     name: dedicated-admins-openshift-marketplace
@@ -528,8 +513,6 @@ Resources:
     name: muo-monitoring-reader
   - namespace: openshift-monitoring
     name: oao-monitoring-manager
-  - namespace: openshift-monitoring
-    name: osd-cluster-ready
   - namespace: openshift-monitoring
     name: osd-rebalance-infra-nodes-openshift-monitoring
   - namespace: openshift-must-gather-operator
@@ -581,9 +564,6 @@ Resources:
     name: bz1980755
   - namespace: openshift-sre-pruning
     name: deployments-pruner
-  Job:
-  - namespace: openshift-monitoring
-    name: osd-cluster-ready
   CredentialsRequest:
   - namespace: openshift-cloud-ingress-operator
     name: cloud-ingress-operator-credentials-aws
@@ -1056,7 +1036,6 @@ Resources:
   - namespace: openshift-velero
     name: weekly-full-backup
 ```
-```
 
 ## {{ product_title }} core namespaces {id="sd-core-namespaces_{{ context }}"}
 
@@ -1181,8 +1160,8 @@ data:
       - name: openshift-validation-webhook
       - name: openshift-vsphere-infra
         ```
-        {% endif %}
-        {% if openshift_rosa_hcp %}
+        {%- endif %}
+        {%- if openshift_rosa_hcp %}
         ```yaml
         apiVersion: v1
         kind: ConfigMap
@@ -1274,9 +1253,8 @@ data:
       - name: openshift-service-ca-operator
       - name: openshift-user-workload-monitoring
 ```
-{% endif %}
-{% if openshift_dedicated %}
-```yaml
+{%- endif %}
+{%- if openshift_dedicated %}
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -1352,8 +1330,7 @@ data:
       - name: openshift-vsphere-infra
 
 ```
-```
-{% endif %}
+{%- endif %}
 
 {% if openshift_rosa or openshift_dedicated %}
 ## {{ product_title }} add-on namespaces {id="sd-add-on-managed-namespaces_{{ context }}"}
@@ -1361,7 +1338,6 @@ data:
 {{ product_title }} add-ons are services available for installation after cluster installation. These additional services include AWS CloudWatch, {{ openshift_dev_spaces_productname }}, Red&#160;Hat OpenShift API Management, and Cluster Logging Operator. Any changes to resources within the following namespaces might be overridden by the add-on during upgrades, which can lead to unsupported configurations for the add-on functionality.
 
 ```yaml title="List of add-on managed namespaces"
-```yaml
 addon-namespaces:
   ocs-converged-dev: openshift-storage
   managed-api-service-internal: redhat-rhoami-operator
@@ -1382,7 +1358,6 @@ addon-namespaces:
   reference-addon: redhat-reference-addon
   ocm-addon-test-operator: redhat-ocm-addon-test-operator
 ```
-```
 {% endif %}
 
 ## {{ product_title }} validating webhooks {id="sd-validating-webhooks_{{ context }}"}
@@ -1390,7 +1365,6 @@ addon-namespaces:
 {{ product_title }} validating webhooks are a set of dynamic admission controls maintained by the OpenShift SRE team. These HTTP callbacks, also known as webhooks, are called for various types of requests to ensure cluster stability. The webhooks evaluate each request and either accept or reject them. The following list describes the various webhooks with rules containing the registered operations and resources that are controlled. Any attempt to circumvent these validating webhooks could affect the stability and supportability of the cluster.
 
 ```json title="List of validating webhooks"
-```json
 [
   {
     "webhookName": "clusterlogging-validation",
@@ -2002,5 +1976,4 @@ addon-namespaces:
     "documentString": "Managed OpenShift Customers may not use TechPreviewNoUpgrade FeatureGate that could prevent any future ability to do a y-stream upgrade to their clusters."
   }
 ]
-```
 ```

@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if aws_gov %}
+{% if aws_gov %}
 # AWS government regions {id="installation-aws-about-gov-secret-region_{{ context }}"}
 
 {% endif %}
@@ -15,13 +15,15 @@
 
 {% endif %}
 
-{%- if aws_gov %}
-{{ product_title }} supports deploying a cluster to an [AWS GovCloud (US)](https://aws.amazon.com/govcloud-us) region. {._abstract}
+{% if aws_gov %}
+{{ product_title }} supports deploying a cluster to an AWS GovCloud (US) region. {._abstract}
 
 The following AWS GovCloud partitions are supported:
 
 *   `us-gov-east-1`
 *   `us-gov-west-1`
+
+See "AWS GovCloud (US)" for more information.
 {% endif %}
 
 {% if aws_secret %}
@@ -44,9 +46,17 @@ a cluster on AWS with network customizations_
 
 {% endif %}
 
+{% if aws_gov %}
+
+**Additional resources**
+{._additional-resources}
+
+*   [AWS GovCloud (US) ({{ aws_first }} documentation)](https://aws.amazon.com/govcloud-us) {._additional-resources}
+{% endif %}
+
 {% if context == "installing-aws-government-region" %}
-{%- set aws_gov = false -%}
+{%- set aws_gov = "" -%}
 {% endif %}
 {% if context == "installing-aws-secret-region" %}
-{%- set aws_secret = false -%}
+{%- set aws_secret = "" -%}
 {% endif %}

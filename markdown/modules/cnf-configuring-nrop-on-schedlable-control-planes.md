@@ -101,16 +101,15 @@ After applying the configuration, verify that the NUMA Resources Operator is cor
     $ oc get nodes
     ```
 
-```terminal title="Example output:"
-NAME                STATUS   ROLES                         AGE     VERSION
-worker-0            Ready    worker,worker-cnf             100m    v1.35.4
-worker-1            Ready    worker                        93m     v1.35.4
-master-0            Ready    control-plane,master,worker   108m    v1.35.4
-master-1            Ready    control-plane,master,worker   107m    v1.35.4
-master-2            Ready    control-plane,master,worker   107m    v1.35.4
-worker-2            Ready    worker                        100m    v1.35.4
-```
-
+    ```terminal title="Example output:"
+    NAME                STATUS   ROLES                         AGE     VERSION
+    worker-0            Ready    worker,worker-cnf             100m    v1.35.4
+    worker-1            Ready    worker                        93m     v1.35.4
+    master-0            Ready    control-plane,master,worker   108m    v1.35.4
+    master-1            Ready    control-plane,master,worker   107m    v1.35.4
+    master-2            Ready    control-plane,master,worker   107m    v1.35.4
+    worker-2            Ready    worker                        100m    v1.35.4
+    ```
 1.  Verify that the NUMA Resources Operator’s pods are running on the intended nodes by running the following command. You should see a numaresourcesoperator pod for each node group you specified in the CR:
     ```terminal
     $ oc get pods -n openshift-numaresources -o wide

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Knative Eventing {id="about-knative-eventing"}
 {%- set context = "about-knative-eventing" %}
-{% include "./_attributes/common-attributes.md" %}
 
 Knative Eventing on {{ product_title }} enables developers to use an [event-driven architecture](https://www.redhat.com/en/topics/integration/what-is-event-driven-architecture) with serverless applications. An event-driven architecture is based on the concept of decoupled relationships between event producers and event consumers.
 

@@ -3,11 +3,11 @@ title: Overview of nodes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Overview of nodes {id="overview-of-nodes"}
 {% include "./_attributes/common-attributes.md" %}
+# Overview of nodes {id="overview-of-nodes"}
 {%- set context = "overview-of-nodes" %}
 
-In an {{ product_title }} cluster, nodes, pods, and application containers are foundational components that you use to create and manage workloads.
+In an {{ product_title }} cluster, nodes, pods, and application containers are foundational components that you use to create and manage workloads. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-overview-glossary-common-terms.md" %}{% endleveloffset %}
 
@@ -27,8 +27,9 @@ In an {{ product_title }} cluster, nodes, pods, and application containers are f
 {% leveloffset +1 %}{% include "./modules/nodes-overview-about-autoscaling-pods.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Automatically scaling pods with the horizontal pod autoscaler](/nodes/pods/nodes-pods-autoscaling#nodes-pods-autoscaling)
 *   [Custom Metrics Autoscaler Operator overview](/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom)
 *   [Automatically adjust pod resource levels with the vertical pod autoscaler](/nodes/pods/nodes-pods-vertical-autoscaler#nodes-pods-vpa)
-{% endif %}
+{%- endif %}

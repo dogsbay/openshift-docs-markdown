@@ -7,12 +7,9 @@
 
 Use the `02_storage.json` Azure Resource Manager (ARM) template to deploy stored {{ op_system_first }} image resources for your {{ product_title }} cluster. {._abstract}
 
-<details>
-<summary>`02_storage.json` ARM template</summary>
-
-```json
-{%- if not ash %}
-```json
+:::details{title="`02_storage.json` ARM template"}
+```json {minja}
+{% if not ash %}
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -166,10 +163,8 @@ Use the `02_storage.json` Azure Resource Manager (ARM) template to deploy stored
     }
   ]
 }
-```
 {% endif %}
 {% if ash %}
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -211,11 +206,10 @@ Use the `02_storage.json` Azure Resource Manager (ARM) template to deploy stored
     }
   ]
 }
+{% endif %}
 ```
-{%- endif %}
-```
-</details>
+:::
 
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}

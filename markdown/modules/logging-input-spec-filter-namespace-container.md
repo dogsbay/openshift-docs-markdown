@@ -23,11 +23,11 @@ You can include or exclude the application logs based on the namespace and conta
         - name: mylogs
           application:
             includes:
-              - namespace: "my-project" # (1)
-                container: "my-container" # (2)
+              - namespace: "my-project" (1)
+                container: "my-container" (2)
             excludes: 
-              - container: "other-container*" # (3)
-                namespace: "other-namespace" # (4)
+              - container: "other-container*" (3)
+                namespace: "other-namespace" (4)
     # ...
     ```
     1.  Specifies that the logs are only collected from these namespaces.

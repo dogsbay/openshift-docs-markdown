@@ -13,7 +13,7 @@ After you uninstall the {{ cert_manager_operator }}, you can delete its associat
 1.  Log in to the {{ product_title }} web console.
 1.  Remove the deployments of the cert-manager components, such as `cert-manager`, `cainjector`, and `webhook`, present in the `cert-manager` namespace.
     1.  Click the **Project** drop-down menu to see a list of all available projects, and select the **cert-manager** project.
-    1.  Navigate to **Workloads** -> **Deployments**.
+    1.  Navigate to **Workloads** → **Deployments**.
     1.  Select the deployment that you want to delete.
     1.  Click the **Actions** drop-down menu, and select **Delete Deployment** to see a confirmation dialog box.
     1.  Click **Delete** to delete the deployment.
@@ -26,7 +26,7 @@ After you uninstall the {{ cert_manager_operator }}, you can delete its associat
         ```terminal
         $ oc patch certmanagers.operator cluster --type=merge -p='{"metadata":{"finalizers":null}}'
         ```
-    1.  Navigate to **Administration** -> **CustomResourceDefinitions**.
+    1.  Navigate to **Administration** → **CustomResourceDefinitions**.
     1.  Enter `certmanager` in the **Name** field to filter the CRDs.
     1.  Click the Options menu {{ kebab }} next to each of the following CRDs, and select **Delete Custom Resource Definition**:
         *   `Certificate`
@@ -37,6 +37,6 @@ After you uninstall the {{ cert_manager_operator }}, you can delete its associat
         *   `Issuer`
         *   `Order`
 1.  Optional: Remove the `cert-manager-operator` namespace.
-    1.  Navigate to **Administration** -> **Namespaces**.
+    1.  Navigate to **Administration** → **Namespaces**.
     1.  Click the Options menu {{ kebab }} next to the **cert-manager-operator** and select **Delete Namespace**.
     1.  In the confirmation dialog, enter `cert-manager-operator` in the field and click **Delete**.

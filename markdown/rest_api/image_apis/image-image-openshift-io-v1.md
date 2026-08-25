@@ -1,5 +1,5 @@
 ---
-title: "Image []"
+title: "Image [image.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -37,7 +37,8 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signatures` | `array` | signatures holds all signatures of the image. |
-| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+
 ### .dockerImageLayers {id="_dockerimagelayers"}
 
 Description
@@ -67,6 +68,7 @@ Required
 | `mediaType` | `string` | mediaType of the referenced object. |
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
+
 ### .dockerImageManifests {id="_dockerimagemanifests"}
 
 Description
@@ -101,6 +103,7 @@ Required
 | `mediaType` | `string` | mediaType defines the type of the manifest, possible values are application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json or application/vnd.docker.distribution.manifest.v1+json. |
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
+
 ### .signatures {id="_signatures"}
 
 Description
@@ -141,6 +144,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
+
 ### .signatures[].conditions {id="_signaturesconditions"}
 
 Description
@@ -172,6 +176,7 @@ Required
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
+
 ### .signatures[].issuedBy {id="_signaturesissuedby"}
 
 Description
@@ -185,6 +190,7 @@ Type
 | --- | --- | --- |
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
+
 ### .signatures[].issuedTo {id="_signaturesissuedto"}
 
 Description
@@ -214,12 +220,12 @@ The following API endpoints are available:
     *   `POST`: create an Image
 *   `/apis/image.openshift.io/v1/watch/images`
     *   `GET`: watch individual changes to a list of Image. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/image.openshift.io/v1/images/{{ name }}`
+*   `/apis/image.openshift.io/v1/images/{{ name }}`{minja}
     *   `DELETE`: delete an Image
     *   `GET`: read the specified Image
     *   `PATCH`: partially update the specified Image
     *   `PUT`: replace the specified Image
-*   `/apis/image.openshift.io/v1/watch/images/{{ name }}`
+*   `/apis/image.openshift.io/v1/watch/images/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Image. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/image.openshift.io/v1/images {id="_apisimageopenshiftiov1images"}

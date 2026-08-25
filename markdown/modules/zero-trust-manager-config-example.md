@@ -35,7 +35,7 @@ Example 1: Using ACME for automatic certificate management
     ```
 
     *   The `profile` field uses `https_web` profile for Web PKI certificate-based authentication.
-*   The `directoryURL` field is used for the production directory. For testing, use staging URL `https://acme-staging-v02.api.letsencrypt.org/directory`
+    *   The `directoryURL` field is used for the production directory. For testing, use staging URL `https://acme-staging-v02.api.letsencrypt.org/directory`
 
 Example 2: Using manual certificate management with cert-manager
 
@@ -65,8 +65,8 @@ Example 2: Using manual certificate management with cert-manager
         managedRoute: "true"
     ```
 
-*   The `fileSyncInterval` field checks for certificate updates every 24 hours.
-*   The `externalSecretRef` field is the name of the Kubernetes Secret containing `tls.crt` and `tls.key`
+    *   The `fileSyncInterval` field checks for certificate updates every 24 hours.
+    *   The `externalSecretRef` field is the name of the Kubernetes Secret containing `tls.crt` and `tls.key`
 
 Example 3: Using https_spiffe profile for SPIRE-to-SPIRE federation
 
@@ -94,8 +94,8 @@ Example 3: Using https_spiffe profile for SPIRE-to-SPIRE federation
         managedRoute: "true"
     ```
 
-*   The `profile` field uses `https_spiffe` profile for SPIFFE-based TLS authentication.
-*   The `endpointSiffeId` field contains the SPIFFE ID of the remote SPIRE server, required for identity validation.
+    *   The `profile` field uses `https_spiffe` profile for SPIFFE-based TLS authentication.
+    *   The `endpointSiffeId` field contains the SPIFFE ID of the remote SPIRE server, required for identity validation.
 
 Example 4: Mixed federation with multiple authentication profiles
 
@@ -128,5 +128,5 @@ Example 4: Mixed federation with multiple authentication profiles
         managedRoute: "true"
     ```
 
-*   The `profile` field cluster exposes its bundle using `https_spiffe` profile.
-*   The `bundleEndpointProfile` field cluster exposes its bundle using `https_spiffe` profile.
+    *   The `profile` field cluster exposes its bundle using `https_spiffe` profile.
+    *   The `bundleEndpointProfile` field cluster exposes its bundle using `https_spiffe` profile.

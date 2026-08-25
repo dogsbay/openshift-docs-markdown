@@ -3,8 +3,8 @@ title: Upgrading Service Mesh
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Upgrading Service Mesh {id="upgrading-ossm"}
 {% include "./_attributes/common-attributes.md" %}
+# Upgrading Service Mesh {id="upgrading-ossm"}
 {%- set context = "ossm-upgrade" %}
 
 To access the most current features of {{ SMProductName }}, upgrade to the current version, {{ SMProductVersion }}.

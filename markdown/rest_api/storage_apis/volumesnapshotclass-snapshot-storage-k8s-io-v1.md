@@ -1,5 +1,5 @@
 ---
-title: "VolumeSnapshotClass []"
+title: "VolumeSnapshotClass [snapshot.storage.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -42,7 +42,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of VolumeSnapshotClass
     *   `GET`: list objects of kind VolumeSnapshotClass
     *   `POST`: create a VolumeSnapshotClass
-*   `/apis/snapshot.storage.k8s.io/v1/volumesnapshotclasses/{{ name }}`
+*   `/apis/snapshot.storage.k8s.io/v1/volumesnapshotclasses/{{ name }}`{minja}
     *   `DELETE`: delete a VolumeSnapshotClass
     *   `GET`: read the specified VolumeSnapshotClass
     *   `PATCH`: partially update the specified VolumeSnapshotClass

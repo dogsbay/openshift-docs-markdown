@@ -9,10 +9,10 @@ You can configure the `ServiceMeshControlPlane` resource for cluster-wide deploy
 *   You have access to the OpenShift CLI (`oc`).
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You are logged in to {{ product_title }} as`cluster-admin`.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -21,8 +21,8 @@ You can configure the `ServiceMeshControlPlane` resource for cluster-wide deploy
     $ oc new-project istio-system
     ```
 1.  Create a `ServiceMeshControlPlane` file named `istio-installation.yaml` using the following example:
-    {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-    ```yaml title="Example version {{ MaistraVersion }} istio-installation.yaml"
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+    ```yaml title="Example version {{ MaistraVersion }} istio-installation.yaml" {minja}
     apiVersion: maistra.io/v2
     kind: ServiceMeshControlPlane
     metadata:
@@ -34,7 +34,7 @@ You can configure the `ServiceMeshControlPlane` resource for cluster-wide deploy
     ```
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-    ```yaml title="Example ServiceMeshControlPlane resource"
+    ```yaml title="Example ServiceMeshControlPlane resource" {minja}
     apiVersion: maistra.io/v2
     kind: ServiceMeshControlPlane
     metadata:
@@ -48,12 +48,12 @@ You can configure the `ServiceMeshControlPlane` resource for cluster-wide deploy
           type: ThirdParty (2)
     ```
     1.  Specifies that the resource is for a cluster-wide deployment.
-        {%- if openshift_rosa or openshift_rosa_hcp %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
     1.  Specifies a required setting for {{ product_rosa }}. 
-        {% endif %}
-        {% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
     1.  Specifies a required setting for {{ product_dedicated }}. 
-{% endif %}
+{%- endif %}
 {% endif %}
 1.  Run the following command to deploy the {{ SMProductShortName }} control plane:
     ```terminal

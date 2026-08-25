@@ -29,7 +29,7 @@ To upgrade {{ SMProductName }}, you must update the version field of the {{ SMPr
 1.  Update the `.spec.version` field and apply the configuration.
 
     For example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: maistra.io/v2
     kind: ServiceMeshControlPlane
     metadata:
@@ -39,7 +39,7 @@ To upgrade {{ SMProductName }}, you must update the version field of the {{ SMPr
     ```
 
     Alternatively, instead of using the command line, you can use the web console to edit the {{ SMProductShortName }} control plane. In the {{ product_title }} web console, click **Project** and select the project name you just entered.
-    1.  Click **Ecosystem** -> **Installed Operators**.
+    1.  Click **Ecosystem** → **Installed Operators**.
     1.  Find your `ServiceMeshControlPlane` instance.
     1.  Select **YAML view** and update text of the YAML file, as shown in the previous example.
     1.  Click **Save**.

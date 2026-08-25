@@ -11,7 +11,7 @@ You can change your existing global cluster pull secret to enable remote health 
 **Procedure**
 
 1.  Go to the [Downloads](https://console.redhat.com/openshift/downloads) page on the {{ hybrid_console }}.
-1.  From **Tokens** -> **Pull secret**, click the **Download** button.
+1.  From **Tokens** → **Pull secret**, click the **Download** button.
 
     The `pull-secret` file contains your `cloud.openshift.com` access token in JSON format:
     ```json

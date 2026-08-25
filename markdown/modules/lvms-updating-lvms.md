@@ -26,12 +26,12 @@ The default namespace for the {{ lvms }} Operator is `openshift-lvm-storage`.
     $ oc patch subscription lvms-operator -n openshift-lvm-storage --type merge --patch '{"spec":{"channel":"<update_channel>"}}'
     ```
 
-    Replace `<update_channel>` with the version of {{ lvms }} that you want to install. For example, `stable-{{ product_version }}`.
+    Replace `<update_channel>` with the version of {{ lvms }} that you want to install. For example, `stable-{{ product_version }}`{minja}.
 1.  View the update events to check that the installation is complete by running the following command:
     ```terminal
     $ oc get events -n openshift-lvm-storage
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     ...
     8m13s       Normal    RequirementsUnknown   clusterserviceversion/lvms-operator.v{{ product_version }}   requirements not yet checked
     8m11s       Normal    RequirementsNotMet    clusterserviceversion/lvms-operator.v{{ product_version }}   one or more requirements couldn't be found
@@ -48,6 +48,6 @@ The default namespace for the {{ lvms }} Operator is `openshift-lvm-storage`.
     ```terminal
     $ oc get subscription lvms-operator -n openshift-lvm-storage -o jsonpath='{.status.installedCSV}'
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     lvms-operator.v{{ product_version }}
     ```

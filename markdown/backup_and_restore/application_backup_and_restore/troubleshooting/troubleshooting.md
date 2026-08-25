@@ -3,11 +3,11 @@ title: Troubleshooting
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # Troubleshooting {id="troubleshooting"}
 {%- set toc = true %}
 
-{% include "./_attributes/common-attributes.md" %}
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "oadp-troubleshooting" -%}
 {%- set oadp_troubleshooting = true -%}
 {%- set namespace = "openshift-adp" -%}
@@ -15,7 +15,7 @@ title: Troubleshooting
 {%- set must_gather_v1_3 = "registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.3" -%}
 {%- set must_gather_v1_4 = "registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.4" %}
 
-Troubleshoot {{ oadp_first }} issues by using diagnostic tools such as the OADP CLI, webhooks, `must-gather` custom resource, and other methods. This helps you identify and resolve problems with backup and restore operations.
+Troubleshoot {{ oadp_first }} issues by using diagnostic tools such as the OADP CLI, webhooks, `must-gather` custom resource, and other methods. This helps you identify and resolve problems with backup and restore operations. {._abstract}
 
 You can troubleshoot OADP issues by using the following methods:
 
@@ -28,7 +28,7 @@ You can troubleshoot OADP issues by using the following methods:
 *   Collect logs and CR information by using the `must-gather` tool.
 *   Monitor and analyze the workload performance with the help of OADP monitoring.
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Debugging with the OpenShift CLI tool](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#oadp-debugging-oc-cli_oadp-cli-tool)
 *   [Debugging backups and restores using the OADP CLI](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool#migration-debugging-velero-resources_oadp-cli-tool)

@@ -24,7 +24,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not (ibm_z or ibm_power) %}
+{% if not (ibm_z or ibm_power) %}
 # Configuring registry storage for bare metal and other manual installations {id="registry-configuring-storage-baremetal_{{ context }}"}
 
 {% endif %}
@@ -43,15 +43,15 @@ As a cluster administrator, following installation you must configure your regis
 
 *   You have access to the cluster as a user with the `cluster-admin` role.
 *   You have a cluster
-{% if not (ibm_z or ibm_power) %}
+{%- if not (ibm_z or ibm_power) %}
 that uses manually-provisioned {{ op_system_first }} nodes, such as bare metal.
-{% endif %}
-{% if ibm_z %}
+{%- endif %}
+{%- if ibm_z %}
 on {{ ibm_z_name }}.
-{% endif %}
-{% if ibm_power %}
+{%- endif %}
+{%- if ibm_power %}
 on {{ ibm_power_name }}.
-{% endif %}
+{%- endif %}
 *   You have provisioned persistent storage for your cluster, such as {{ rh_storage_first }}.
 
     :::important
@@ -103,7 +103,7 @@ the `configs.imageregistry/cluster` resource.
     ```terminal
     $ oc get clusteroperator image-registry
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME             VERSION              AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
     image-registry   {{ product_version }}                 True        False         False      6h50m
     ```
@@ -124,26 +124,26 @@ the `configs.imageregistry/cluster` resource.
         ```
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}

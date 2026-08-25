@@ -95,8 +95,8 @@ If you do not specify the region, the installation program selects the region cl
 {% endif %}
 
 {% if context == "installing-ibm-cloud-account" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-account-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}

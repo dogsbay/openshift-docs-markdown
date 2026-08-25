@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Adding additional constraints for IP-based AWS role assumption {id="rosa-adding-additional-constraints-for-ip-based-aws-role-assumption"}
-
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
 {% include "./_attributes/common-attributes.md" %}
+# Adding additional constraints for IP-based AWS role assumption {id="rosa-adding-additional-constraints-for-ip-based-aws-role-assumption"}
+
 {%- set context = "rosa-adding-additional-constraints-for-ip-based-aws-role-assumption" %}
 
 Create an identity-based policy that denies requests from non-allowlisted IP addresses. Restricting role access can improve your AWS account security. {._abstract}

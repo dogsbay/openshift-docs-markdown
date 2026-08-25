@@ -81,4 +81,4 @@ Begin to set up your environment for cluster installation by preparing the provi
     $ vim pull-secret.txt
     ```
 
-    In a web browser, navigate to [Install OpenShift on Bare Metal with installer-provisioned infrastructure](https://console.redhat.com/openshift/install/metal/installer-provisioned). Click ***Copy pull secret***. Paste the contents into the `pull-secret.txt` file and save the contents in the `kni` user’s home directory.
+    In a web browser, navigate to [Install OpenShift on Bare Metal with installer-provisioned infrastructure](https://console.redhat.com/openshift/install/metal/installer-provisioned). Click **Copy pull secret**. Paste the contents into the `pull-secret.txt` file and save the contents in the `kni` user’s home directory.

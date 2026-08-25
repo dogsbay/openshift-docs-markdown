@@ -3,8 +3,8 @@ title: Custom image builds with Buildah
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Custom image builds with Buildah {id="custom-builds-buildah"}
 {% include "./_attributes/common-attributes.md" %}
+# Custom image builds with Buildah {id="custom-builds-buildah"}
 {%- set context = "custom-builds-buildah" %}
 
 With {{ product_title }} {{ product_version }}, a docker socket will not be present on the host

@@ -3,11 +3,11 @@ title: Creating and using config maps
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating and using config maps {id="configmaps"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating and using config maps {id="configmaps"}
 {%- set context = "configmaps" %}
 
-You can review the following sections to learn how to create and use config maps. By using a config map, you can decouple environment-specific configuration from your container images, so that your applications are easily portable.
+You can review the following sections to learn how to create and use config maps. By using a config map, you can decouple environment-specific configuration from your container images, so that your applications are easily portable. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-pods-configmap-overview.md" %}{% endleveloffset %}
 

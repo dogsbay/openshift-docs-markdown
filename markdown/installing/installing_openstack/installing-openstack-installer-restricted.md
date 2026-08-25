@@ -3,8 +3,8 @@ title: Installing a cluster on OpenStack in a disconnected environment
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on OpenStack in a disconnected environment {id="installing-openstack-installer-restricted"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on OpenStack in a disconnected environment {id="installing-openstack-installer-restricted"}
 {%- set context = "installing-openstack-installer-restricted" -%}
 
 {% if context == "installing-openstack-user-sr-iov" %}
@@ -17,7 +17,7 @@ title: Installing a cluster on OpenStack in a disconnected environment
 {%- set osp_sr_iov = true -%}
 {% endif %}
 
-In {{ product_title }} {{ product_version }}, you can install a cluster on {{ rh_openstack_first }} in a restricted network by creating an internal mirror of the installation release content.
+In {{ product_title }} {{ product_version }}, you can install a cluster on {{ rh_openstack_first }} in a restricted network by creating an internal mirror of the installation release content. {._abstract}
 
 Ensure that you meet the following prerequisites:
 
@@ -39,6 +39,7 @@ You can complete the following configurations after you install a cluster on {{ 
 *   If you did not configure {{ rh_openstack }} to accept application traffic over floating IP addresses, configure {{ rh_openstack }} access with floating IP addresses.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -62,6 +63,7 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +2 %}{% include "./modules/installation-osp-compute-machines.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [huge pages](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/configuring_the_compute_service_for_instance_creation/assembly_configuring-compute-nodes-for-performance_compute-performance#proc_configuring-huge-pages-on-compute-nodes_compute-performance)
 *   [Configuring Compute nodes for performance](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html-single/configuring_the_compute_service_for_instance_creation/configuring-compute-nodes-for-performance#configuring-compute-nodes-for-performance)
@@ -81,6 +83,7 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ rh_openstack }}](/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)
 
@@ -103,6 +106,7 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
@@ -111,15 +115,16 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
 {% if context == "installing-openstack-user-sr-iov" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-sr-iov" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-ovs-dpdk" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}

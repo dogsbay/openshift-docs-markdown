@@ -3,11 +3,11 @@ title: Pinning images to nodes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Pinning images to nodes {id="machine-config-pin-preload-images-about"}
 {% include "./_attributes/common-attributes.md" %}
+# Pinning images to nodes {id="machine-config-pin-preload-images-about"}
 {%- set context = "machine-config-operator" %}
 
-You can prevent a slow, unreliable connection to an image registry from interfering with operations that require pulled images by pulling those images in advance and _pinning_ those images to a specific machine config pool (MCP) before they are actually needed. 
+You can prevent a slow, unreliable connection to an image registry from interfering with operations that require pulled images by pulling those images in advance and _pinning_ those images to a specific machine config pool (MCP) before they are actually needed.  {._abstract}
 
 This problem can affect clusters that have low bandwidth, clusters with unreliable internet connectivity, or clusters in a disconnected environment. For example, a cluster update might require pulling more than one hundred images. Failure to pull those images could cause retries that can interfere with the update process and might cause the update to fail. 
 
@@ -28,5 +28,6 @@ Before pulling the images, the Machine Config Operator (MCO) verifies that there
 {% leveloffset +1 %}{% include "./modules/machine-config-pin-preload-images.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About checking machine config node status](/machine_configuration/index#checking-mco-node-status_machine-config-overview)

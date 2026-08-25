@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if storage %}
+{% if storage %}
 # Overview of Secrets Store CSI Driver Operator {id="persistent-storage-csi-secrets-store-driver-overview_{{ context }}"}
 
 {% endif %}
@@ -26,8 +26,8 @@ For more information about CSI inline volumes, see "CSI inline ephemeral volumes
 Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".
 
 {% if context == "persistent-storage-csi-secrets-store" %}
-{%- set storage = false -%}
+{%- set storage = "" -%}
 {% endif %}
 {% if context == "nodes-pods-secrets-store" %}
-{%- set nodes = false -%}
+{%- set nodes = "" -%}
 {% endif %}

@@ -7,23 +7,23 @@ Argo CD-server and Argo CD-repo-server workloads are stateless. To better distri
 
 *   Set the `replicas` parameters for the `repo` and `server` spec to the number of replicas you want to run:
 
-```yaml title="Example Argo CD custom resource"
-apiVersion: argoproj.io/v1alpha1
-kind: ArgoCD
-metadata:
-  name: example-argocd
-  labels:
-    example: repo
-spec:
-  repo:
-    replicas: <number_of_replicas>
-  server:
-    replicas: <number_of_replicas>
-    route:
-      enabled: true
-      path: /
-      tls:
-        insecureEdgeTerminationPolicy: Redirect
-        termination: passthrough
-      wildcardPolicy: None
-```
+    ```yaml title="Example Argo CD custom resource"
+    apiVersion: argoproj.io/v1alpha1
+    kind: ArgoCD
+    metadata:
+      name: example-argocd
+      labels:
+        example: repo
+    spec:
+      repo:
+        replicas: <number_of_replicas>
+      server:
+        replicas: <number_of_replicas>
+        route:
+          enabled: true
+          path: /
+          tls:
+            insecureEdgeTerminationPolicy: Redirect
+            termination: passthrough
+          wildcardPolicy: None
+    ```

@@ -3,11 +3,11 @@ title: Postinstallation configuration overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Postinstallation configuration overview {id="post-install-configuration-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Postinstallation configuration overview {id="post-install-configuration-overview"}
 {%- set context = "post-installation-configuration-overview" %}
 
-After installing {{ product_title }}, you can configure machines, cluster services, nodes, networking, storage, users, and alert notifications to meet your operational requirements.
+After installing {{ product_title }}, you can configure machines, cluster services, nodes, networking, storage, users, and alert notifications to meet your operational requirements. {._abstract}
 
 After installing {{ product_title }}, a cluster administrator can configure and customize the following components:
 
@@ -22,7 +22,7 @@ After installing {{ product_title }}, a cluster administrator can configure and 
 
 {% leveloffset +1 %}{% include "./modules/post-install-configuration-tasks-reference.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configure operating system features](/machine_configuration/index#machine-config-overview)
 *   [Configure cluster features](/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)

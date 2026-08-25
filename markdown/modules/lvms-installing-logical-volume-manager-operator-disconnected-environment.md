@@ -12,6 +12,6 @@ Install {{ lvms }} in a disconnected environment where your cluster has no inter
 **Procedure**
 
 1.  Follow the steps in the "Creating the image set configuration" procedure. To create an `ImageSetConfiguration` custom resource (CR) for {{ lvms }}, you can use the following example `ImageSetConfiguration` CR configuration:
-{% include "./snippets/lvms-disconnected-ImageSetConfig.md" %}
+    {% include "./snippets/lvms-disconnected-ImageSetConfig.md" %}
 1.  Follow the procedure in "Mirroring an image set to a mirror registry".
 1.  Follow the procedure in "Configuring image registry repository mirroring".

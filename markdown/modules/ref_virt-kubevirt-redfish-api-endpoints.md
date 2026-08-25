@@ -9,7 +9,7 @@ Access these endpoints using the full URL format `https://<route_hostname>/<endp
 
 :::note
 
-In endpoint paths, `{{ system_id }}` refers to the VM identifier.
+In endpoint paths, `{{ system_id }}`{minja} refers to the VM identifier.
 With the `enhanced` system ID convention, this is `<namespace>.<vm-name>`.
 With the `legacy` convention, this is `<vm-name>` only.
 
@@ -22,9 +22,9 @@ With the `legacy` convention, this is `<vm-name>` only.
 | --- | --- | --- |
 | GET | `/redfish/v1/` | Service root. Returns available resource collections. |
 | GET | `/redfish/v1/Systems` | List all VMs exposed as Redfish systems. |
-| GET | `/redfish/v1/Systems/{{ system_id }}` | Get details for a specific VM, including power state and boot settings. |
-| POST | `/redfish/v1/Systems/{{ system_id }}/Actions/ComputerSystem.Reset` | Power operations. Supported `ResetType` values: `On`, `ForceOff`, `GracefulShutdown`. |
-| GET | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd` | Get VirtualMedia status for the VM’s virtual CD drive. |
-| POST | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd/Actions/VirtualMedia.InsertMedia` | Attach an ISO image to the VM. Requires `Image` URL parameter. |
-| POST | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd/Actions/VirtualMedia.EjectMedia` | Detach the ISO image from the VM. |
-| PATCH | `/redfish/v1/Systems/{{ system_id }}` | Modify boot settings. Set `Boot.BootSourceOverrideTarget` (`Cd`, `Hdd`, `Pxe`) and `Boot.BootSourceOverrideEnabled` (`Once`, `Continuous`, `Disabled`). |
+| GET | `/redfish/v1/Systems/{{ system_id }}`{minja} | Get details for a specific VM, including power state and boot settings. |
+| POST | `/redfish/v1/Systems/{{ system_id }}/Actions/ComputerSystem.Reset`{minja} | Power operations. Supported `ResetType` values: `On`, `ForceOff`, `GracefulShutdown`. |
+| GET | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd`{minja} | Get VirtualMedia status for the VM’s virtual CD drive. |
+| POST | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd/Actions/VirtualMedia.InsertMedia`{minja} | Attach an ISO image to the VM. Requires `Image` URL parameter. |
+| POST | `/redfish/v1/Systems/{{ system_id }}/VirtualMedia/Cd/Actions/VirtualMedia.EjectMedia`{minja} | Detach the ISO image from the VM. |
+| PATCH | `/redfish/v1/Systems/{{ system_id }}`{minja} | Modify boot settings. Set `Boot.BootSourceOverrideTarget` (`Cd`, `Hdd`, `Pxe`) and `Boot.BootSourceOverrideEnabled` (`Once`, `Continuous`, `Disabled`). |

@@ -3,11 +3,11 @@ title: Installing a cluster on Alibaba Cloud by using the Assisted Installer
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Alibaba Cloud by using the Assisted Installer {id="installing-alibaba-assisted-installer"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Alibaba Cloud by using the Assisted Installer {id="installing-alibaba-assisted-installer"}
 {%- set context = "installing-alibaba-assisted-installer" %}
 
-You can install an {{ product_title }} cluster on {{ alibaba }} using the {{ ai_full }}.
+You can install an {{ product_title }} cluster on {{ alibaba }} using the {{ ai_full }}. {._abstract}
 
 {{ alibaba }} provides a broad range of cloud computing and data storage services to online businesses and global enterprises.
 

@@ -5,7 +5,7 @@ You can use {{ cloud_auth_short }} authentication with applications in customer 
 
 To use this authentication method with your applications, you must complete configuration steps on the cloud provider console and your {{ product_title }} cluster.
 
-{%- set context = false -%}
-{%- set cloud_auth_first = false -%}
-{%- set cloud_auth_full = false -%}
-{%- set cloud_auth_short = false -%}
+{%- set context = "" -%}
+{%- set cloud_auth_first = "" -%}
+{%- set cloud_auth_full = "" -%}
+{%- set cloud_auth_short = "" -%}

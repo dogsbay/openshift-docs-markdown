@@ -2,7 +2,7 @@
 
 The following example illustrates the `spec.tracing` parameters for the `ServiceMeshControlPlane` object, and a description of the available parameters with appropriate values.
 
-```yaml title="Example tracing parameters"
+```yaml title="Example tracing parameters" {minja}
 apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:

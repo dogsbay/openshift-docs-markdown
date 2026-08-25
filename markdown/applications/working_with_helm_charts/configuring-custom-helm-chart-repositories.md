@@ -3,12 +3,12 @@ title: Configuring custom Helm chart repositories
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring custom Helm chart repositories {id="configuring-custom-helm-chart-repositories"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring custom Helm chart repositories {id="configuring-custom-helm-chart-repositories"}
 {%- set context = "configuring-custom-helm-chart-repositories" %}
 
-{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-You can create Helm releases on an {{ product_title }} cluster using the following methods:
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+You can create Helm releases on an {{ product_title }} cluster using the following methods: {._abstract}
 
 *   The CLI.
 *   The **Developer** perspective of the web console.

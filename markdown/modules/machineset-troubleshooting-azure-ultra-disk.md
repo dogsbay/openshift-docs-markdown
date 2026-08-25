@@ -63,14 +63,14 @@ If the deletion of ultra disks as data disks is not working as expected, the mac
 {% endif %}
 
 {% if context == "creating-machineset-azure" %}
-{%- set mapi = false -%}
+{%- set mapi = "" -%}
 {% endif %}
 {% if context == "cpmso-supported-features-azure" %}
-{%- set mapi = false -%}
+{%- set mapi = "" -%}
 {% endif %}
 {% if context == "persistent-storage-azure" %}
-{%- set pvc = false -%}
+{%- set pvc = "" -%}
 {% endif %}
 {% if context == "persistent-storage-csi-azure" %}
-{%- set pvc = false -%}
+{%- set pvc = "" -%}
 {% endif %}

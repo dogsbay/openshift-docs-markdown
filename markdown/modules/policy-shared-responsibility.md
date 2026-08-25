@@ -14,8 +14,9 @@ The customer is responsible for incident and operations management of customer a
 | Monitor cloud load balancers and native OpenShift router service, and respond to alerts. |
 | * Monitor health of service load balancer endpoints. * Monitor health of application routes, and the endpoints behind them. * Report outages to Red Hat. |
 | Virtual networking |
-| * Monitor cloud load balancers, subnets, and public cloud components necessary for default platform networking, and respond to alerts. * Monitor the Red Hat Management project in {{ GCP }} and the Private Service Connect (PSC) attachments. ^[1]^ |
+| * Monitor cloud load balancers, subnets, and public cloud components necessary for default platform networking, and respond to alerts. * Monitor the Red Hat Management project in {{ GCP }} and the Private Service Connect (PSC) attachments. <sup>[1]</sup> |
 | Monitor network traffic that is optionally configured through VPC to VPC connection, VPN connection, or Direct connection for potential issues or security threats. |
+
 1.  Applies to {{ product_title }} on {{ GCP }} clusters with PSC only.
 
 ## Change management {id="change-management_{{ context }}"}
@@ -47,8 +48,8 @@ Red Hat is responsible for enabling changes to the cluster infrastructure and se
 </tr>
 <tr>
   <td>Virtual networking</td>
-  <td><ul><li>Set up and configure virtual networking components required to provision the cluster, including virtual private cloud, subnets, load balancers, internet gateways, NAT gateways, etc.</li><li>Provide the ability for the customer to manage VPN connectivity with on-premise resources, VPC to VPC connectivity, and Direct connectivity as required through {{ cluster_manager }}.</li><li>Setup and configure PSC attachments. ^[1]^</li><li>Enable customers to create and deploy public cloud load balancers for use with service load balancers.</li></ul></td>
-  <td><ul><li>Set up and maintain optional public cloud networking components, such as VPC to VPC connection, VPN connection, or Direct connection.</li><li>Request and configure any additional service load balancers for specific services.</li><li>Create a PSC subnet. ^[1]^</li></ul></td>
+  <td><ul><li>Set up and configure virtual networking components required to provision the cluster, including virtual private cloud, subnets, load balancers, internet gateways, NAT gateways, etc.</li><li>Provide the ability for the customer to manage VPN connectivity with on-premise resources, VPC to VPC connectivity, and Direct connectivity as required through {{ cluster_manager }}.</li><li>Setup and configure PSC attachments. <sup>[1]</sup></li><li>Enable customers to create and deploy public cloud load balancers for use with service load balancers.</li></ul></td>
+  <td><ul><li>Set up and maintain optional public cloud networking components, such as VPC to VPC connection, VPN connection, or Direct connection.</li><li>Request and configure any additional service load balancers for specific services.</li><li>Create a PSC subnet. <sup>[1]</sup></li></ul></td>
 </tr>
 <tr>
   <td>Cluster version</td>

@@ -3,7 +3,7 @@
 
 Use {{ rh_rhacm_first }} installed on a hub cluster to monitor and report on whether your managed clusters are compliant with applied policies. {{ rh_rhacm }} uses policy templates to apply predefined policy controllers and policies. Policy controllers are Kubernetes custom resource definition (CRD) instances. {._abstract}
 
-You can override the default policy evaluation intervals with `{{ policy_gen_cr }}` custom resources (CRs). You configure duration settings that define how long a `ConfigurationPolicy` CR can be in a state of policy compliance or non-compliance before {{ rh_rhacm }} re-evaluates the applied cluster policies.
+You can override the default policy evaluation intervals with `{{ policy_gen_cr }}`{minja} custom resources (CRs). You configure duration settings that define how long a `ConfigurationPolicy` CR can be in a state of policy compliance or non-compliance before {{ rh_rhacm }} re-evaluates the applied cluster policies.
 
 The {{ ztp_first }} policy generator generates `ConfigurationPolicy` CR policies with pre-defined policy evaluation intervals. The default value for the `noncompliant` state is 10 seconds. The default value for the `compliant` state is 10 minutes. To disable the evaluation interval, set the value to `never`.
 
@@ -15,21 +15,21 @@ The {{ ztp_first }} policy generator generates `ConfigurationPolicy` CR policies
 
 **Procedure**
 
-1.  To configure the evaluation interval for all policies in a `{{ policy_gen_cr }}` CR, set appropriate `compliant` and `noncompliant` values for the `evaluationInterval` field.
+1.  To configure the evaluation interval for all policies in a `{{ policy_gen_cr }}`{minja} CR, set appropriate `compliant` and `noncompliant` values for the `evaluationInterval` field.
 For example:
-    ```yaml
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
+    ```yaml {minja}
+    {% if policy-gen-cr == "PolicyGenTemplate" %}
     spec:
       evaluationInterval:
         compliant: 30m
         noncompliant: 20s
-{% endif %}
-{% if policy-gen-cr == "PolicyGenerator" %}
+    {% endif %}
+    {% if policy-gen-cr == "PolicyGenerator" %}
     policyDefaults:
       evaluationInterval:
         compliant: 30m
         noncompliant: 45s
-{%- endif %}
+    {% endif %}
     ```
 
     :::note
@@ -38,10 +38,10 @@ For example:
     
     :::
 
-1.  To configure the evaluation interval for an individual policy object in a `{{ policy_gen_cr }}` CR, add the `evaluationInterval` field and set appropriate values.
+1.  To configure the evaluation interval for an individual policy object in a `{{ policy_gen_cr }}`{minja} CR, add the `evaluationInterval` field and set appropriate values.
 For example:
-    ```yaml
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
+    ```yaml {minja}
+    {% if policy-gen-cr == "PolicyGenTemplate" %}
     spec:
       sourceFiles:
         - fileName: SriovSubscription.yaml
@@ -49,8 +49,8 @@ For example:
           evaluationInterval:
             compliant: never
             noncompliant: 10s
-{% endif %}
-{% if policy-gen-cr == "PolicyGenerator" %}
+    {% endif %}
+    {% if policy-gen-cr == "PolicyGenerator" %}
     policies:
       - name: "sriov-sub-policy"
         manifests:
@@ -58,9 +58,9 @@ For example:
             evaluationInterval:
               compliant: never
               noncompliant: 10s
-{%- endif %}
+    {% endif %}
     ```
-1.  Commit the `{{ policy_gen_cr }}` CRs files in the Git repository and push your changes.
+1.  Commit the `{{ policy_gen_cr }}`{minja} CRs files in the Git repository and push your changes.
 
 **Verification**
 

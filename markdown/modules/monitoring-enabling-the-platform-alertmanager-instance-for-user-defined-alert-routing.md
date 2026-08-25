@@ -26,7 +26,7 @@ You can allow users to create user-defined alert routing configurations that use
       config.yaml: |
         # ...
         alertmanagerMain:
-          enableUserAlertmanagerConfig: true # (1)
+          enableUserAlertmanagerConfig: true (1)
         # ...
     ```
     1.  Set the `enableUserAlertmanagerConfig` value to `true` to allow users to create user-defined alert routing configurations that use the main platform instance of Alertmanager.

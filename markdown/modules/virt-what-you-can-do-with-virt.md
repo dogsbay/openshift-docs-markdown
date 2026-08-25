@@ -59,7 +59,7 @@ You can use {{ VirtProductName }} with OVN-Kubernetes or one of the other certif
 
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 You can check your {{ VirtProductName }} cluster for compliance issues by installing the Compliance Operator and running a scan with the `ocp4-moderate` and `ocp4-moderate-node` profiles. The Compliance Operator uses OpenSCAP, a NIST-certified tool, to scan and enforce security policies.
-{% endif %}
+{%- endif %}
 
 {% if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
 You can check your {{ VirtProductName }} cluster for compliance issues by installing the Compliance Operator and running a scan with the `ocp4-moderate` and `ocp4-moderate-node` profiles. The Compliance Operator uses OpenSCAP, a NIST-certified tool, to scan and enforce security policies.

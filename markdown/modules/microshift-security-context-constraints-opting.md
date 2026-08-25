@@ -16,7 +16,7 @@ Namespaces that are defined as part of the node payload have pod security admiss
 *   `kube-public`
 *   `openshift`
 *   All system-created namespaces that are prefixed with `openshift-`, except for `openshift-operators`
-By default, all namespaces that have an `openshift-` prefix are not synchronized. You can enable synchronization for any user-created `openshift-**` namespaces. You cannot enable synchronization for any system-created `openshift-**` namespaces, except for `openshift-operators`.
+By default, all namespaces that have an `openshift-` prefix are not synchronized. You can enable synchronization for any user-created `openshift-*` namespaces. You cannot enable synchronization for any system-created `openshift-*` namespaces, except for `openshift-operators`.
 
 If an Operator is installed in a user-created `openshift-*` namespace, synchronization is turned on by default after a node service version (CSV) is created in the namespace. The synchronized label inherits the permissions of the service accounts in the namespace.
 

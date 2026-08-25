@@ -14,7 +14,7 @@ You can install the {{ lws_operator }} through the {{ product_title }} web conso
 1.  Log in to the {{ product_title }} web console.
 1.  Verify that the {{ cert_manager_operator }} is installed.
 1.  Install the {{ lws_operator }}.
-    1.  Navigate to **Ecosystem** -> **Software Catalog**.
+    1.  Navigate to **Ecosystem** → **Software Catalog**.
     1.  Enter **{{ lws_operator }}** into the filter box.
     1.  Select the **{{ lws_operator }}** and click **Install**.
     1.  On the **Install Operator** page:
@@ -26,6 +26,6 @@ You can install the {{ lws_operator }} through the {{ product_title }} web conso
             *   The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.
         1.  Click **Install**.
 1.  Create the custom resource (CR) for the {{ lws_operator }}:
-    1.  Navigate to **Installed Operators** -> **{{ lws_operator }}**.
+    1.  Navigate to **Installed Operators** → **{{ lws_operator }}**.
     1.  Under **Provided APIs**, click **Create instance** in the **LeaderWorkerSetOperator** pane.
     1.  Click **Create**.

@@ -89,6 +89,6 @@ This integration reduces manual tasks for multi-VM environments and ensures that
 
 1.  Log in to the {{ product_title }} web console.
 1.  Verify that you can apply bulk actions to VMs.
-    1.  Go to **Virtualization** -> **VirtualMachines**.
+    1.  Go to **Virtualization** → **VirtualMachines**.
     1.  Select the checkboxes for two or more existing VMs.
     1.  Click the **Actions** drop-down menu. Confirm that you can run the custom action you created.

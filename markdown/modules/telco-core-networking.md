@@ -32,7 +32,6 @@ If you have custom `FRRConfiguration` CRs in the `metallb-system` namespace, you
 :::
 
 
-
 Description
 
 :   *   The cluster is configured for dual-stack IP (IPv4 and IPv6).

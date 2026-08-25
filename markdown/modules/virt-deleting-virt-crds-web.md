@@ -9,6 +9,6 @@ You can delete the {{ VirtProductName }} custom resource definitions (CRDs) by u
 
 **Procedure**
 
-1.  Navigate to **Administration** -> **CustomResourceDefinitions**.
+1.  Navigate to **Administration** → **CustomResourceDefinitions**.
 1.  Select the **Label** filter and enter `operators.coreos.com/kubevirt-hyperconverged.openshift-cnv` in the **Search** field to display the {{ VirtProductName }} CRDs.
 1.  Click the Options menu {{ kebab }} beside each CRD and select **Delete CustomResourceDefinition**.

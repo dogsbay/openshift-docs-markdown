@@ -9,7 +9,7 @@ If your use case does not permit the use of network address translation (NAT), y
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Networking** -> **Physical networks**.
+1.  In the {{ product_title }} web console, go to **Networking** → **Physical networks**.
 1.  Click the Options menu {{ kebab }} next to the network that you want to edit.
 1.  Click **Create a virtual machines network using this physical network**. The **Create virtual machine network** wizard is displayed with the network name populated.
 1.  Select a **Physical network**.

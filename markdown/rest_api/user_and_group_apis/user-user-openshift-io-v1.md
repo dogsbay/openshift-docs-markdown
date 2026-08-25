@@ -1,5 +1,5 @@
 ---
-title: "User []"
+title: "User [user.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -43,12 +43,12 @@ The following API endpoints are available:
     *   `POST`: create an User
 *   `/apis/user.openshift.io/v1/watch/users`
     *   `GET`: watch individual changes to a list of User. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/user.openshift.io/v1/users/{{ name }}`
+*   `/apis/user.openshift.io/v1/users/{{ name }}`{minja}
     *   `DELETE`: delete an User
     *   `GET`: read the specified User
     *   `PATCH`: partially update the specified User
     *   `PUT`: replace the specified User
-*   `/apis/user.openshift.io/v1/watch/users/{{ name }}`
+*   `/apis/user.openshift.io/v1/watch/users/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind User. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/user.openshift.io/v1/users {id="_apisuseropenshiftiov1users"}

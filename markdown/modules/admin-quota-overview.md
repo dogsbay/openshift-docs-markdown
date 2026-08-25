@@ -13,7 +13,7 @@ A pod is in a terminal state if `status.phase` is `Failed` or `Succeeded`.
 :::
 
 
-***Compute resources managed by quota***
+**Compute resources managed by quota**
 
 <table>
 <thead>
@@ -33,7 +33,7 @@ A pod is in a terminal state if `status.phase` is `Failed` or `Succeeded`.
 </tr>
 <tr>
   <td><code>ephemeral-storage</code></td>
-  <td>The sum of local ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and<code>requests.ephemeral-storage</code> are the same value and can be used interchangeably. This resource is available only if you enabled the ephemeral storage technology preview. This feature is disabled by default.</td>
+  <td>The sum of local ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and <code>requests.ephemeral-storage</code> are the same value and can be used interchangeably. This resource is available only if you enabled the ephemeral storage technology preview. This feature is disabled by default.</td>
 </tr>
 <tr>
   <td><code>requests.cpu</code></td>
@@ -45,7 +45,7 @@ A pod is in a terminal state if `status.phase` is `Failed` or `Succeeded`.
 </tr>
 <tr>
   <td><code>requests.ephemeral-storage</code></td>
-  <td>The sum of ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and<code>requests.ephemeral-storage</code> are the same value and can be used interchangeably. This resource is available only if you enabled the ephemeral storage technology preview. This feature is disabled by default.</td>
+  <td>The sum of ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and <code>requests.ephemeral-storage</code> are the same value and can be used interchangeably. This resource is available only if you enabled the ephemeral storage technology preview. This feature is disabled by default.</td>
 </tr>
 <tr>
   <td><code>limits.cpu</code></td>
@@ -62,7 +62,7 @@ A pod is in a terminal state if `status.phase` is `Failed` or `Succeeded`.
 </tbody>
 </table>
 
-***Storage resources managed by quota***
+**Storage resources managed by quota**
 
 <table>
 <thead>
@@ -81,17 +81,17 @@ A pod is in a terminal state if `status.phase` is `Failed` or `Succeeded`.
   <td>The total number of persistent volume claims that can exist in the project.</td>
 </tr>
 <tr>
-  <td><code><storage-class-name>.storageclass.storage.k8s.io/requests.storage</code></td>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/requests.storage</code></td>
   <td>The sum of storage requests across all persistent volume claims in any state that have a matching storage class, cannot exceed this value.</td>
 </tr>
 <tr>
-  <td><code><storage-class-name>.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
   <td>The total number of persistent volume claims with a matching storage class that can exist in the project.</td>
 </tr>
 </tbody>
 </table>
 
-***Object counts managed by quota***
+**Object counts managed by quota**
 
 <table>
 <thead>

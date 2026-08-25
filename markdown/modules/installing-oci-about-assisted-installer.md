@@ -59,8 +59,8 @@ The procedure for using the {{ ai_full }} in a connected environment to install 
     1.  Install the cluster.
 
 
-:::important
+    :::important
 
-The steps for provisioning {{ oci }} resources are provided as an example only. You can also choose to create the required resources through other methods; the scripts are just an example. Installing a cluster with infrastructure that you provide requires knowledge of the cloud provider and the installation process on {{ product_title }}. You can access {{ oci }} configurations to complete these steps, or use the configurations to model your own custom script.
-
-:::
+    The steps for provisioning {{ oci }} resources are provided as an example only. You can also choose to create the required resources through other methods; the scripts are just an example. Installing a cluster with infrastructure that you provide requires knowledge of the cloud provider and the installation process on {{ product_title }}. You can access {{ oci }} configurations to complete these steps, or use the configurations to model your own custom script.
+    
+    :::

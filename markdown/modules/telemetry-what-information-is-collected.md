@@ -19,11 +19,11 @@ Sizing Information
 :   *   Sizing information about clusters, machine types, and machines, including the number of CPU cores and the amount of RAM used for each
 {%- if virt_cluster %}
     *   The number of running virtual machine instances in a cluster
-        {%- endif %}
+{%- endif %}
     *   The number of etcd members and the number of objects stored in the etcd cluster
-        {%- if not openshift_dedicated %}
+{%- if not openshift_dedicated %}
     *   Number of application builds by build strategy type
-{% endif %}
+{%- endif %}
 
 Usage information
 :   *   Usage information about components, features, and extensions

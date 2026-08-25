@@ -14,7 +14,7 @@ You can create a virtual machine by using the {{ op_system_base_full }} boot ISO
 1.  Download the {{ op_system_base_full }} boot ISO image from the [Download Red&#160;Hat Enterprise Linux](https://developers.redhat.com/products/rhel/download).
 1.  Copy the downloaded file to the `/var/lib/libvirt/images` directory.
 1.  Configure the VMNAME environment variable with your value by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ VMNAME=microshift-{{ product_version }}-bootc
     ```
 1.  Configure the NETNAME environment variable with your value by running the following command:
@@ -22,7 +22,7 @@ You can create a virtual machine by using the {{ op_system_base_full }} boot ISO
     $ NETNAME=default
     ```
 1.  Create a {{ op_system_base }} virtual machine with 2 cores, 2GB of RAM and 20GB of storage by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo virt-install \
         --name ${{ VMNAME }} \
         --vcpus 2 \

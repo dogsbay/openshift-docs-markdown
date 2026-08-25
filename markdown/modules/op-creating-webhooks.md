@@ -28,7 +28,7 @@ Adding webhooks requires administrative privileges to the repository. If you do 
         Note the URL obtained in the output.
 1.  Configure webhooks manually on the front-end repository:
     1.  Open the front-end Git repository `pipelines-vote-ui` in your browser.
-    1.  Click **Settings** -> **Webhooks** -> **Add Webhook**
+    1.  Click **Settings** → **Webhooks** → **Add Webhook**
     1.  On the **Webhooks/Add Webhook** page:
         1.  Enter the webhook URL from step 1 in **Payload URL** field
         1.  Select **application/json** for the **Content type**

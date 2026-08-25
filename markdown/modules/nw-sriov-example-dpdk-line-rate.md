@@ -69,8 +69,8 @@ You can then use the Node Tuning Operator with Single Root I/O Virtualization (S
 
     `spec.nodeSelector`
     :   Specifies the node selector label for nodes that this performance profile applies to.
-    1.  Save the `yaml` file as `mlx-dpdk-perfprofile-policy.yaml`.
-    1.  Apply the performance profile using the following command:
+1.  Save the `yaml` file as `mlx-dpdk-perfprofile-policy.yaml`.
+1.  Apply the performance profile using the following command:
     ```terminal
     $ oc create -f mlx-dpdk-perfprofile-policy.yaml
     ```

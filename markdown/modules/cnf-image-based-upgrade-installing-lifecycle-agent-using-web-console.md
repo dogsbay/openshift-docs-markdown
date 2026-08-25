@@ -9,7 +9,7 @@ You can use the {{ product_title }} web console to install the {{ lcao }}. {._ab
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, navigate to **Ecosystem** → **Software Catalog**.
 1.  Search for the **{{ lcao }}** from the list of available Operators, and then click **Install**.
 1.  On the **Install Operator** page, under **A specific namespace on the cluster** select **openshift-lifecycle-agent**.
 1.  Click **Install**.
@@ -17,7 +17,7 @@ You can use the {{ product_title }} web console to install the {{ lcao }}. {._ab
 **Verification**
 
 1.  To confirm that the installation is successful:
-    1.  Click **Ecosystem** -> **Installed Operators**.
+    1.  Click **Ecosystem** → **Installed Operators**.
     1.  Ensure that the {{ lcao }} is listed in the **openshift-lifecycle-agent** project with a **Status** of **InstallSucceeded**.
 
         :::note
@@ -29,5 +29,5 @@ You can use the {{ product_title }} web console to install the {{ lcao }}. {._ab
 
 If the Operator is not installed successfully:
 
-1.  Click **Ecosystem** -> **Installed Operators**, and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-1.  Click **Workloads** -> **Pods**, and check the logs for pods in the **openshift-lifecycle-agent** project.
+1.  Click **Ecosystem** → **Installed Operators**, and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+1.  Click **Workloads** → **Pods**, and check the logs for pods in the **openshift-lifecycle-agent** project.

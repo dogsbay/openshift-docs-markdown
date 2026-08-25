@@ -4,10 +4,10 @@ title: About clusters with multi-architecture compute machines
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "multi-architecture-configuration" %}
-# About clusters with multi-architecture compute machines {id="post-install-multi-architecture-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# About clusters with multi-architecture compute machines {id="post-install-multi-architecture-configuration"}
 
-An {{ product_title }} cluster with multi-architecture compute machines is a cluster that supports compute machines with different architectures.
+An {{ product_title }} cluster with multi-architecture compute machines is a cluster that supports compute machines with different architectures. {._abstract}
 
 Configuring multi-architecture compute machines involves some additional considerations:
 
@@ -27,6 +27,7 @@ Configuring multi-architecture compute machines involves some additional conside
 {% leveloffset +1 %}{% include "./modules/multi-architecture-configuring-your-cluster.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a cluster with multi-architecture compute machines on Azure](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure#creating-multi-arch-compute-nodes-azure)
 *   [Creating a cluster with multi-architecture compute machines on AWS](/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws#creating-multi-arch-compute-nodes-aws)
@@ -39,10 +40,11 @@ Configuring multi-architecture compute machines involves some additional conside
 {% leveloffset +1 %}{% include "./modules/multi-architecture-verifying-cluster-compatibility.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Migrating to a cluster with multi-architecture compute machines](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Assigning pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
 *   [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red&#160;Hat Knowledgebase article)](https://access.redhat.com/articles/4207611) 

@@ -7,7 +7,7 @@ title: Understanding virtualized control planes
 # Understanding virtualized control planes {id="vcp-overview"}
 {%- set context = "vcp-overview" %}
 
-A virtualized control plane deployment is an {{ product_title }} cluster whose control plane nodes run as virtual machines (VMs) on a hosting cluster with {{ VirtProductName }}.
+A virtualized control plane deployment is an {{ product_title }} cluster whose control plane nodes run as virtual machines (VMs) on a hosting cluster with {{ VirtProductName }}. {._abstract}
 
 {%- set FeatureName = "KubeVirt Redfish" %}
 {% include "./snippets/technology-preview.md" %}
@@ -45,7 +45,7 @@ With {{ hcp_capital }}, the control plane runs as pods with container-level isol
 
 {% leveloffset +1 %}{% include "./modules/proc_virt-vcp-deployment-workflow.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Prerequisites for virtualized control planes](/vcp/vcp-prerequisites#vcp-prerequisites)
 *   [Installing KubeVirt Redfish](/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish)

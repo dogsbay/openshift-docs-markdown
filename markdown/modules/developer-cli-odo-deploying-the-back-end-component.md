@@ -2,7 +2,7 @@
 
 # Deploying the back-end component {id="deploying-the-back-end-component_{{ context }}"}
 
-To create a Java component, import the Java builder image, download the Java application and push the source code to your cluster with `{{ odo_title }}`.
+To create a Java component, import the Java builder image, download the Java application and push the source code to your cluster with `{{ odo_title }}`{minja}.
 
 **Procedure**
 

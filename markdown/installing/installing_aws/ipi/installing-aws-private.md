@@ -3,11 +3,11 @@ title: Installing a private cluster on AWS
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a private cluster on AWS {id="installing-aws-private"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a private cluster on AWS {id="installing-aws-private"}
 {%- set context = "installing-aws-private" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a private cluster into an existing Virtual Private Cloud (VPC) on {{ aws_first }}. The installation program provisions the rest of the required infrastructure, which you can further customize. To customize the installation, you modify parameters in the `install-config.yaml` file before you install the cluster.
+In {{ product_title }} version {{ product_version }}, you can install a private cluster into an existing Virtual Private Cloud (VPC) on {{ aws_first }}. The installation program provisions the rest of the required infrastructure, which you can further customize. To customize the installation, you modify parameters in the `install-config.yaml` file before you install the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installing-aws-private-prereqs.md" %}{% endleveloffset %}
 
@@ -22,12 +22,14 @@ In {{ product_title }} version {{ product_version }}, you can install a private 
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -40,6 +42,7 @@ In {{ product_title }} version {{ product_version }}, you can install a private 
 {% leveloffset +2 %}{% include "./modules/installation-aws-config-yaml-customizations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
@@ -69,7 +72,7 @@ In {{ product_title }} version {{ product_version }}, you can install a private 
 
 {% leveloffset +1 %}{% include "./modules/logging-in-by-using-the-web-console.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 *   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)

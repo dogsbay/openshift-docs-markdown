@@ -3,11 +3,11 @@ title: "Load balancing on {{ rh_openstack }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Load balancing on {{ rh_openstack }} {id="load-balancing-openstack"}
 {% include "./_attributes/common-attributes.md" %}
+# Load balancing on {{ rh_openstack }} {id="load-balancing-openstack"}
 {%- set context = "load-balancing-openstack" %}
 
-To distribute network traffic and communications activity evenly across your compute instances in {{ rh_openstack }}, configure load balancing services.
+To distribute network traffic and communications activity evenly across your compute instances in {{ rh_openstack }}, configure load balancing services. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-osp-loadbalancer-limitations.md" %}{% endleveloffset %}
 

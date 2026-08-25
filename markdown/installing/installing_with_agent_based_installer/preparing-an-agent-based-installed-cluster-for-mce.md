@@ -7,13 +7,14 @@ title: "Preparing an Agent-based installed cluster for the {{ mce }}"
 # Preparing an Agent-based installed cluster for the {{ mce }} {id="preparing-an-agent-based-installed-cluster-for-mce"}
 {%- set context = "preparing-an-agent-based-installed-cluster-for-mce" %}
 
-You can install the {{ mce_short }} and deploy a hub cluster with the Agent-based Installer.
+You can install the {{ mce_short }} and deploy a hub cluster with the Agent-based Installer. {._abstract}
 
 The following procedure is partially automated and requires manual steps after the initial cluster is deployed.
 
 {% leveloffset +1 %}{% include "./modules/preparing-mce-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster lifecycle with multicluster engine operator overview](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview)
 *   [Persistent storage using local volumes](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
@@ -26,5 +27,6 @@ The following procedure is partially automated and requires manual steps after t
 {% leveloffset +1 %}{% include "./modules/preparing-an-initial-cluster-deployment-for-mce-connected.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [The Local Storage Operator](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)

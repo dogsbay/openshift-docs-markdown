@@ -17,6 +17,7 @@ Depending on your deployment method, the image-based upgrade requires the follow
 | {{ ztp }} plugin | 4.16 | Only for {{ ztp }} deployment method |
 | {{ gitops_title }} | 1.12 | Only for {{ ztp }} deployment method |
 | {{ cgu_operator_first }} | 4.16 | Only for {{ ztp }} deployment method |
-| Local Storage Operator ^[1]^ | 4.14 | Yes |
-| {{ lvms_first }} ^[1]^ | 4.14.2 | Yes |
+| Local Storage Operator <sup>[1]</sup> | 4.14 | Yes |
+| {{ lvms_first }} <sup>[1]</sup> | 4.14.2 | Yes |
+
 1.  The persistent storage must be provided by either the {{ lvms }} or the Local Storage Operator, not both.

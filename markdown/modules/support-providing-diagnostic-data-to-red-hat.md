@@ -6,7 +6,7 @@ When investigating {{ product_title }} issues, Red Hat Support might ask you to 
 **Prerequisites**
 
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{%- if openshift_dedicated %}
+{% if openshift_dedicated %}
 
     :::note
 
@@ -14,7 +14,7 @@ When investigating {{ product_title }} issues, Red Hat Support might ask you to 
     
     :::
 
-{%- endif %}
+{% endif %}
 *   You have installed the OpenShift CLI (`oc`).
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You have SSH access to your hosts.
@@ -43,7 +43,7 @@ When investigating {{ product_title }} issues, Red Hat Support might ask you to 
         
         :::
 
-{% endif %}
+{%- endif %}
 
     1.  Navigate to an existing support case within [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.
     1.  Select **Attach files** and follow the prompts to upload the file.

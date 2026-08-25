@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if local_zone %}
+{% if local_zone %}
 # Install a cluster quickly in AWS Local Zones {id="installation-cluster-quickly-extend-compute-nodes_{{ context }}"}
 
 {% endif %}
@@ -20,8 +20,8 @@ You can quickly install a cluster on Amazon Web Services (AWS) to extend compute
 By using this installation route, the installation program automatically creates network resources and {{ zone_type }} subnets for each zone that you defined in your configuration file. To customize the installation, you must modify parameters in the `install-config.yaml` file before you deploy the cluster.
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}

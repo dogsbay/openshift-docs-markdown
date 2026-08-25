@@ -3,11 +3,11 @@ title: "Using {{ bmaas_first }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using {{ bmaas_first }} {id="bare-metal-using-bare-metal-as-a-service"}
 {% include "./_attributes/common-attributes.md" %}
+# Using {{ bmaas_first }} {id="bare-metal-using-bare-metal-as-a-service"}
 {%- set context = "bare-metal-using-bmaas" %}
 
-You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the {{ product_title }} cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access.
+You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the {{ product_title }} cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access. {._abstract}
 
 {{ bmaas_first }} has the following capabilities:
 
@@ -25,6 +25,7 @@ As standalone systems, these hosts operate independently of the {{ product_title
 {% leveloffset +1 %}{% include "./modules/bmo-creating-a-bmc-secret.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About BMC addressing](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
 

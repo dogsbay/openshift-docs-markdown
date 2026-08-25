@@ -51,7 +51,7 @@ If you are using an OSA network device in Processor Resource/Systems Manager (PR
 
     For VLAN configurations:
 
-    *   Define both the ***base interface*** and the ***tagged VLAN interface*** separately.
+    *   Define both the **base interface** and the **tagged VLAN interface** separately.
     *   The `vlan=` parameter links the tagged interface (for example, `encbdf0.300`) to the underlying physical interface (`encbdf0`).
 
     For bonded interfaces:

@@ -27,11 +27,11 @@ To use the Log Forward API to forward audit logs to the internal Elasticsearch i
         ```
         1.  A pipeline defines the type of logs to forward using the specified output. The default output forwards logs to the internal Elasticsearch instance.
 
-            :::note
+        :::note
 
-            You must specify all three types of logs in the pipeline: application, infrastructure, and audit. If you do not specify a log type, those logs are not stored and will be lost.
-            
-            :::
+        You must specify all three types of logs in the pipeline: application, infrastructure, and audit. If you do not specify a log type, those logs are not stored and will be lost.
+        
+        :::
 
     *   If you have an existing `ClusterLogForwarder` CR, add a pipeline to the default output for the audit logs. You do not need to define the default output. For example:
         ```yaml

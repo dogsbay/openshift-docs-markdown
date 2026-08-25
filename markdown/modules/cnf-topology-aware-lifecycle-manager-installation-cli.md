@@ -38,7 +38,7 @@ You can use the OpenShift CLI (`oc`) to install the {{ cgu_operator_first }}. {.
     ```terminal
     $ oc get csv -n openshift-operators
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME                                                   DISPLAY                            VERSION               REPLACES                           PHASE
     topology-aware-lifecycle-manager.{{ product_version }}.x   Topology Aware Lifecycle Manager   {{ product_version }}.x                                      Succeeded
     ```

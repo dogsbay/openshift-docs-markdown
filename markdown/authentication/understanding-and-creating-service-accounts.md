@@ -3,11 +3,11 @@ title: Understanding and creating service accounts
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding and creating service accounts {id="understanding-and-creating-service-accounts"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding and creating service accounts {id="understanding-and-creating-service-accounts"}
 {%- set context = "understanding-service-accounts" %}
 
-To control API access without sharing regular user credentials, you can use service accounts.
+To control API access without sharing regular user credentials, you can use service accounts. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/service-accounts-overview.md" %}{% endleveloffset %}
 

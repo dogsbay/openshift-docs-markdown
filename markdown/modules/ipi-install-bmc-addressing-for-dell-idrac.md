@@ -16,15 +16,15 @@ The `address` configuration setting for each `bmc` entry is a URL for connecting
 <tbody>
 <tr>
   <td>iDRAC virtual media</td>
-  <td><code>idrac-virtualmedia://<out_of_band_ip>/redfish/v1/Systems/System.Embedded.1</code></td>
+  <td><code>idrac-virtualmedia://&lt;out_of_band_ip&gt;/redfish/v1/Systems/System.Embedded.1</code></td>
 </tr>
 <tr>
   <td>Redfish network boot</td>
-  <td><code>redfish://<out_of_band_ip>/redfish/v1/Systems/System.Embedded.1</code></td>
+  <td><code>redfish://&lt;out_of_band_ip&gt;/redfish/v1/Systems/System.Embedded.1</code></td>
 </tr>
 <tr>
   <td>IPMI</td>
-  <td><code>ipmi://<out_of_band_ip></code></td>
+  <td><code>ipmi://&lt;out_of_band_ip&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -70,7 +70,7 @@ It is recommended to have a certificate of authority for the out-of-band managem
 
 :::note
 
-Ensure the {{ product_title }} cluster nodes have **AutoAttach** enabled through the iDRAC console. The menu path is: **Configuration** -> **Virtual Media** -> **Attach Mode** -> **AutoAttach**.
+Ensure the {{ product_title }} cluster nodes have **AutoAttach** enabled through the iDRAC console. The menu path is: **Configuration** → **Virtual Media** → **Attach Mode** → **AutoAttach**.
 
 :::
 
@@ -188,8 +188,8 @@ platform:
 
 :::note
 
-There is a known issue on Dell iDRAC 9 with firmware version `04.40.00.00` and all releases up to including the `5.xx` series for installer-provisioned installations on bare metal deployments. The virtual console plugin defaults to eHTML5, an enhanced version of HTML5, which causes problems with the **InsertVirtualMedia** workflow. Set the plugin to use HTML5 to avoid this issue. The menu path is **Configuration** -> **Virtual console** -> **Plug-in Type** -> **HTML5** .
+There is a known issue on Dell iDRAC 9 with firmware version `04.40.00.00` and all releases up to including the `5.xx` series for installer-provisioned installations on bare metal deployments. The virtual console plugin defaults to eHTML5, an enhanced version of HTML5, which causes problems with the **InsertVirtualMedia** workflow. Set the plugin to use HTML5 to avoid this issue. The menu path is **Configuration** → **Virtual console** → **Plug-in Type** → **HTML5** .
 
-Ensure the {{ product_title }} cluster nodes have **AutoAttach** enabled through the iDRAC console. The menu path is: **Configuration** -> **Virtual Media** -> **Attach Mode** -> **AutoAttach** .
+Ensure the {{ product_title }} cluster nodes have **AutoAttach** enabled through the iDRAC console. The menu path is: **Configuration** → **Virtual Media** → **Attach Mode** → **AutoAttach** .
 
 :::

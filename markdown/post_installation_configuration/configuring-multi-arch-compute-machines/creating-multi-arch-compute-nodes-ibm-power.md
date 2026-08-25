@@ -7,7 +7,7 @@ title: "Creating a cluster with multi-architecture compute machines on {{ ibm_po
 {% include "./_attributes/common-attributes.md" %}
 # Creating a cluster with multi-architecture compute machines on {{ ibm_power_title }} {id="creating-multi-arch-compute-nodes-ibm-power"}
 
-To create a cluster with multi-architecture compute machines on {{ ibm_power_name }} (`ppc64le`), you must have an existing single-architecture (`x86_64`) cluster. You can then add `ppc64le` compute machines to your {{ product_title }} cluster.
+To create a cluster with multi-architecture compute machines on {{ ibm_power_name }} (`ppc64le`), you must have an existing single-architecture (`x86_64`) cluster. You can then add `ppc64le` compute machines to your {{ product_title }} cluster. {._abstract}
 
 
 :::important
@@ -33,6 +33,7 @@ Before adding a secondary architecture node to your cluster, Red Hat recommends 
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Migrating to a cluster with multi-architecture compute machines](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)
 *   [Installing a cluster on {{ ibm_power_name }}](/installing/installing_ibm_power/preparing-to-install-on-ibm-power#preparing-to-install-on-ibm-power)

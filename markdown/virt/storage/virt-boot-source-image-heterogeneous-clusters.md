@@ -3,11 +3,11 @@ title: Heterogeneous cluster support
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Heterogeneous cluster support {id="virt-boot-source-image-heterogeneous-clusters"}
 {% include "./_attributes/common-attributes.md" %}
+# Heterogeneous cluster support {id="virt-boot-source-image-heterogeneous-clusters"}
 {%- set context = "virt-boot-source-image-heterogeneous-clusters" %}
 
-A heterogeneous cluster is a cluster where nodes have differing architectures. Heterogeneous clusters promote optimal compute resource usage by mixing different types of hardware in one cluster.
+A heterogeneous cluster is a cluster where nodes have differing architectures. Heterogeneous clusters promote optimal compute resource usage by mixing different types of hardware in one cluster. {._abstract}
 
 With heterogeneous clusters, you can match workloads to hardware intended for the workload task instead of general purpose compute platforms. For example, you can combine GPU and general purpose compute resources and assign workloads to the appropriate hardware.
 

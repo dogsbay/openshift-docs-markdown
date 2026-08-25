@@ -3,15 +3,16 @@ title: Custom resource definition (CRD) upgrade safety
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Custom resource definition (CRD) upgrade safety {id="crd-upgrade-safety"}
 {% include "./_attributes/common-attributes.md" %}
+# Custom resource definition (CRD) upgrade safety {id="crd-upgrade-safety"}
 {%- set context = "crd-upgrade-safety" %}
 
-When you update a custom resource definition (CRD) provided by a cluster extension, {{ olmv1_first }} runs a CRD upgrade safety preflight check to ensure compatibility with earlier versions.
+When you update a custom resource definition (CRD) provided by a cluster extension, {{ olmv1_first }} runs a CRD upgrade safety preflight check to ensure compatibility with earlier versions. {._abstract}
 
 The CRD update must pass the validation checks before the change is allowed to progress on a cluster.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Updating a cluster extension](/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce)
 

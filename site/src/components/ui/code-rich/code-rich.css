@@ -12,7 +12,12 @@
   min-width: 4ch;
   margin-right: 1.5ch;
   text-align: right;
-  color: oklch(0.35 0 0 / 0.7);
+  /* Theme-aware, and NO alpha. This was a fixed dark grey at 70%
+     opacity: fine on a light code background, 1.3:1 against the dark
+     one — line numbers were effectively invisible in dark mode.
+     Opacity compounds it, since it blends toward whatever is behind.
+     --muted-foreground already flips per theme (L 0.45 / 0.708). */
+  color: var(--muted-foreground);
   user-select: none;
   flex-shrink: 0;
 }
@@ -21,6 +26,18 @@
 }
 .code-rich-body .gutter.remove {
   color: oklch(0.55 0.2 25);
+}
+
+/* Dark mode: the diff gutters sit on TINTED line backgrounds, not on
+   the plain code background, and at L0.55 they measure 2.89:1 (add)
+   and 2.63:1 (remove) there — both well under AA. Light mode is
+   unaffected, so these are overrides rather than a changed base.
+   Raised to L0.72 for headroom over the 4.5:1 floor. */
+.dark .code-rich-body .gutter.add {
+  color: oklch(0.72 0.2 145);
+}
+.dark .code-rich-body .gutter.remove {
+  color: oklch(0.72 0.14 25);
 }
 
 /* ── Diff line backgrounds ────────────────────────────── */

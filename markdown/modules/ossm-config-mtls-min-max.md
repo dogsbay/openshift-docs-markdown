@@ -19,7 +19,7 @@ The default is `TLS_AUTO` and does not specify a version of TLS.
 
 1.  Log in to the web console.
 1.  Click the **Project** menu and select the project where you installed the {{ SMProductShortName }} control plane, for example **istio-system**.
-1.  Click **Ecosystem** -> **Installed Operators**.
+1.  Click **Ecosystem** → **Installed Operators**.
 1.  Click **Service Mesh Control Plane** under **Provided APIs**.
 1.  Click the name of your `ServiceMeshControlPlane` resource, for example, `basic`.
 1.  Click the **YAML** tab.

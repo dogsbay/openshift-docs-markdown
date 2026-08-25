@@ -10,7 +10,7 @@
 
 **Procedure**
 
-1.  Navigate to **Administration** -> **Workloads**.
+1.  Navigate to **Administration** → **Workloads**.
 1.  Identify the type of workload you want to view details for. For example, `Pod`, `Deployment`, `DeploymentConfigs` objects and so on.
 1.  Choose the corresponding workload from the list.
 1.  On the **Details** page, navigate to `runtimeClass`.

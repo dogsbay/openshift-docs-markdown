@@ -24,7 +24,7 @@ The node update process consists of the following phases and subphases that are 
         :::
 
 {%- set FeatureName = "The `AppliedFiles` and `AppliedOSImage` condition" %}
-{% include "./snippets/technology-preview.md" %}
+        {% include "./snippets/technology-preview.md" %}
 *   **PinnedImageSetsProgressing** The MCO is performing the steps needed to pin and pre-load container images. 
 *   **PinnedImageSetsDegraded** The pinned image process failed. You can view the reason for the failure by using the `oc describe machineconfignode` command, as described later in this section.
 *   **NodeDegraded** The node update failed. You can view the reason for the failure by using the `oc describe machineconfignode` command, as described later in this section.
@@ -45,7 +45,7 @@ The node update process consists of the following phases and subphases that are 
     :::
 
 {%- set FeatureName = "The `ImagePulledFromRegistry` condition" %}
-{% include "./snippets/technology-preview.md" %}
+    {% include "./snippets/technology-preview.md" %}
 
 As the update moves through these phases, you can query the `MachineConfigNode` custom resource, which reports one of the following conditions for each phase:
 
@@ -94,7 +94,7 @@ The `ci-ln-ds73n5t-72292-9xsm9-worker-b-gw5sd` node is currently being updated t
 
 The `ci-ln-ds73n5t-72292-9xsm9-worker-c-t227w` node has not yet been updated to the new machine config. The previous machine config is shown as the desired and current machine configs.
 
-***Basic machine config node fields***
+**Basic machine config node fields**
 
 <table>
 <thead>

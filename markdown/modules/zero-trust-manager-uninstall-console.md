@@ -13,7 +13,7 @@ To remove the {{ zero_trust_full }} from your cluster, uninstall the Operator us
 
 1.  Log in to the {{ product_title }} web console.
 1.  Uninstall the {{ zero_trust_full }}.
-    1.  Go to **Ecosystem** -> **Installed Operators**.
+    1.  Go to **Ecosystem** → **Installed Operators**.
     1.  Click the **Options** menu next to the **{{ zero_trust_full }}** entry, and then click **Uninstall Operator**.
     1.  In the confirmation dialog, click **Uninstall**.
 

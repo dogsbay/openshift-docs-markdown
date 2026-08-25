@@ -6,9 +6,9 @@ To manage cluster-scoped resources, update the existing `Subscription` object fo
 
 **Procedure**
 
-1.  In the ***Administrator*** perspective of the web console, navigate to ***Operators*** → ***Installed Operators*** → ***{{ gitops_title }}*** → ***Subscription***.
-1.  Click the ***Actions*** drop-down menu then click ***Edit Subscription***.
-1.  On the ***openshift-gitops-operator*** Subscription details page, under the ***YAML*** tab, edit the `Subscription` YAML file by adding the namespace of the Argo CD instance to the `ARGOCD_CLUSTER_CONFIG_NAMESPACES` environment variable in the `spec` section:
+1.  In the **Administrator** perspective of the web console, navigate to **Operators** → **Installed Operators** → **{{ gitops_title }}** → **Subscription**.
+1.  Click the **Actions** drop-down menu then click **Edit Subscription**.
+1.  On the **openshift-gitops-operator** Subscription details page, under the **YAML** tab, edit the `Subscription` YAML file by adding the namespace of the Argo CD instance to the `ARGOCD_CLUSTER_CONFIG_NAMESPACES` environment variable in the `spec` section:
     ```yaml
     apiVersion: operators.coreos.com/v1alpha1
     kind: Subscription
@@ -24,10 +24,10 @@ To manage cluster-scoped resources, update the existing `Subscription` object fo
     ...
     ```
 1.  To verify that the Argo instance is configured with a cluster role to manage cluster-scoped resources, perform the following steps:
-    1.  Navigate to ***User Management*** → ***Roles*** and from the ***Filter***  drop-down menu select ***Cluster-wide Roles***.
-    1.  Search for the `argocd-application-controller` by using the ***Search by name*** field.
+    1.  Navigate to **User Management** → **Roles** and from the **Filter**  drop-down menu select **Cluster-wide Roles**.
+    1.  Search for the `argocd-application-controller` by using the **Search by name** field.
 
-        The ***Roles*** page displays the created cluster role.
+        The **Roles** page displays the created cluster role.
 
         :::tip
 

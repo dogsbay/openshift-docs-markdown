@@ -15,7 +15,7 @@ By default, the `autotls` setting is disabled.
 
 1.  Log in to the {{ product_title }} web console.
 1.  Create an Argo CD instance with `autotls` enabled:
-    1.  In the **Administrator** perspective of the web console, use the left navigation panel to go to **Administration** -> **CustomResourceDefinitions**.
+    1.  In the **Administrator** perspective of the web console, use the left navigation panel to go to **Administration** → **CustomResourceDefinitions**.
     1.  Search for `argocds.argoproj.io` and click `ArgoCD` custom resource definition (CRD).
     1.  On the **CustomResourceDefinition details** page, click the **Instances** tab, and then click **Create ArgoCD**.
     1.  Edit or replace the YAML similar to the following example:
@@ -36,15 +36,15 @@ By default, the `autotls` setting is disabled.
         1.  The flag that enables the `autotls` setting and creates a TLS certificate for Redis.
         1.  The flag value that enables the HA feature. If you do not want to enable HA, do not include this line or set the flag value as `false`.
 
-            :::tip
+        :::tip
 
-            Alternatively, you can enable the `autotls` setting on an already existing Argo CD instance by running the following command:
+        Alternatively, you can enable the `autotls` setting on an already existing Argo CD instance by running the following command:
 
-            ```terminal
-            $ oc patch argocds.argoproj.io <instance-name> --type=merge -p '{"spec":{"redis":{"autotls":"openshift"}}}'
-            ```
-            
-            :::
+        ```terminal
+        $ oc patch argocds.argoproj.io <instance-name> --type=merge -p '{"spec":{"redis":{"autotls":"openshift"}}}'
+        ```
+        
+        :::
 
     1.  Click **Create**.
     1.  Verify that the Argo CD pods are ready and running:
@@ -52,38 +52,38 @@ By default, the `autotls` setting is disabled.
         $ oc get pods -n <namespace> (1)
         ```
         1.  Specify a namespace where the Argo CD instance is running, for example `openshift-gitops`.
-            ```terminal title="Example output with HA disabled"
-            NAME                                  READY   STATUS    RESTARTS   AGE
-            argocd-application-controller-0       1/1     Running   0          26s
-            argocd-redis-84b77d4f58-vp6zm         1/1     Running   0          37s
-            argocd-repo-server-5b959b57f4-znxjq   1/1     Running   0          37s
-            argocd-server-6b8787d686-wv9zh        1/1     Running   0          37s
-            ```
+        ```terminal title="Example output with HA disabled"
+        NAME                                  READY   STATUS    RESTARTS   AGE
+        argocd-application-controller-0       1/1     Running   0          26s
+        argocd-redis-84b77d4f58-vp6zm         1/1     Running   0          37s
+        argocd-repo-server-5b959b57f4-znxjq   1/1     Running   0          37s
+        argocd-server-6b8787d686-wv9zh        1/1     Running   0          37s
+        ```
 
-            :::note
+        :::note
 
-            The HA-enabled TLS configuration requires a cluster with at least three worker nodes. It can take a few minutes for the output to appear if you have enabled the Argo CD instances with HA configuration.
-            
-            :::
+        The HA-enabled TLS configuration requires a cluster with at least three worker nodes. It can take a few minutes for the output to appear if you have enabled the Argo CD instances with HA configuration.
+        
+        :::
 
-            ```terminal title="Example output with HA enabled"
-            NAME                                       READY   STATUS    RESTARTS   AGE
-            argocd-application-controller-0            1/1     Running   0          10m
-            argocd-redis-ha-haproxy-669757fdb7-5xg8h   1/1     Running   0          10m
-            argocd-redis-ha-server-0                   2/2     Running   0          9m9s
-            argocd-redis-ha-server-1                   2/2     Running   0          98s
-            argocd-redis-ha-server-2                   2/2     Running   0          53s
-            argocd-repo-server-576499d46d-8hgbh        1/1     Running   0          10m
-            argocd-server-9486f88b7-dk2ks              1/1     Running   0          10m
-            ```
+        ```terminal title="Example output with HA enabled"
+        NAME                                       READY   STATUS    RESTARTS   AGE
+        argocd-application-controller-0            1/1     Running   0          10m
+        argocd-redis-ha-haproxy-669757fdb7-5xg8h   1/1     Running   0          10m
+        argocd-redis-ha-server-0                   2/2     Running   0          9m9s
+        argocd-redis-ha-server-1                   2/2     Running   0          98s
+        argocd-redis-ha-server-2                   2/2     Running   0          53s
+        argocd-repo-server-576499d46d-8hgbh        1/1     Running   0          10m
+        argocd-server-9486f88b7-dk2ks              1/1     Running   0          10m
+        ```
 1.  Verify that the `argocd-operator-redis-tls` secret is created:
     ```terminal
     $ oc get secrets argocd-operator-redis-tls -n <namespace> (1)
     ```
     1.  Specify a namespace where the Argo CD instance is running, for example `openshift-gitops`.
-        ```terminal title="Example output "
-        NAME                        TYPE                DATA   AGE
-        argocd-operator-redis-tls   kubernetes.io/tls   2      30s
-        ```
+    ```terminal title="Example output "
+    NAME                        TYPE                DATA   AGE
+    argocd-operator-redis-tls   kubernetes.io/tls   2      30s
+    ```
 
-        The secret must be of the `kubernetes.io/tls` type and a size of `2`.
+    The secret must be of the `kubernetes.io/tls` type and a size of `2`.

@@ -39,5 +39,5 @@ By default, this configuration is stored in the `worker-user-data` secret in the
     Specifies the directory that was used to store your installation assets during cluster installation.
 
 {% if context == "creating-machineset-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}

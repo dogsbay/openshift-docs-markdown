@@ -31,9 +31,9 @@ To connect the sample application to the database service, you must create a `Se
     1.  The sample application that points to a Deployment or any other similar resource with an embedded PodSpec.
 
         The output verifies that the `ServiceBinding` CR is created to project the binding data into the sample application.
-        ```terminal title="Example output"
-        servicebinding.binding.operators.coreos.com/spring-petclinic created
-        ```
+    ```terminal title="Example output"
+    servicebinding.binding.operators.coreos.com/spring-petclinic created
+    ```
 1.  Verify that the request for service binding is successful:
     ```terminal
     $ oc get servicebindings -n my-petclinic
@@ -45,6 +45,7 @@ To connect the sample application to the database service, you must create a `Se
 
     By default, the values from the binding data of the database service are projected as files into the workload container that runs the sample application. For example, all the values from the Secret resource are projected into the `bindings/spring-petclinic-pgcluster` directory.
 1.  Once this is created, you can go to the topology to see the visual connection.
+
     **Figure 1. Connecting spring-petclinic to a sample database**
 
     ![img_power](/_assets/images/img_power.png)

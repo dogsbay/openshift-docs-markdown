@@ -3,11 +3,11 @@ title: Uninstalling the OpenShift Update Service from a cluster
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Uninstalling the OpenShift Update Service from a cluster {id="uninstalling-osus"}
 {% include "./_attributes/common-attributes.md" %}
+# Uninstalling the OpenShift Update Service from a cluster {id="uninstalling-osus"}
 {%- set context = "uninstalling-osus" %}
 
-You can remove a local copy of the OpenShift Update Service (OSUS) from your cluster. To do this, you must first delete the OSUS application and then uninstall the OSUS Operator.
+You can remove a local copy of the OpenShift Update Service (OSUS) from your cluster. To do this, you must first delete the OSUS application and then uninstall the OSUS Operator. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/delete-update-service-application.md" %}{% endleveloffset %}
 

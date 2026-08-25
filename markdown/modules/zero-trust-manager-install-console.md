@@ -19,7 +19,7 @@ A minimum of 1Gi persistent volume is required to install the SPIRE Server.
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Go to **Ecosystem** -> **Software Catalog**.
+1.  Go to **Ecosystem** → **Software Catalog**.
 1.  Search for **{{ zero_trust_full }}**.
 1.  On the **Install Operator** page:
     1.  Update the **Update channel**, if necessary. The channel defaults to `stable-v1`, which installs the latest `stable-v1` release of the {{ zero_trust_full }}.
@@ -40,7 +40,7 @@ A minimum of 1Gi persistent volume is required to install the SPIRE Server.
 
 **Verification**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
     1.  Verify that **Zero Trust Workload Identity Manager** is listed with a **Status** of **Succeeded** in the `zero-trust-workload-identity-manager` namespace.
     1.  Verify that Zero Trust Workload Identity Manager controller manager deployment is ready and available by running the following command:
         ```terminal

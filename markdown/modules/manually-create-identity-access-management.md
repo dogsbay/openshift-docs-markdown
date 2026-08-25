@@ -110,13 +110,13 @@
 
 {% endif %}
 
-{%- if cco_multi_mode %}
-The Cloud Credential Operator (CCO) can be put into manual mode prior to installation in environments where the cloud identity and access management (IAM) APIs are not reachable, or the administrator prefers not to store an administrator-level credential secret in the cluster `kube-system` namespace.
-{% endif %} {._abstract}
+{% if cco_multi_mode %}
+The Cloud Credential Operator (CCO) can be put into manual mode prior to installation in environments where the cloud identity and access management (IAM) APIs are not reachable, or the administrator prefers not to store an administrator-level credential secret in the cluster `kube-system` namespace. {._abstract}
+{% endif %}
 
 {%- if cco_manual_mode %}
 The Cloud Credential Operator (CCO) only supports your cloud provider in manual mode. As a result, you must specify the identity and access management (IAM) secrets for your cloud provider.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -146,6 +146,7 @@ The Cloud Credential Operator (CCO) only supports your cloud provider in manual 
     # ...
     ```
 {% endif %}
+
 1.  If you have not previously created installation manifest files, do so by running the following command:
     ```terminal
     $ openshift-install create manifests --dir <installation_directory>
@@ -177,7 +178,7 @@ The Cloud Credential Operator (CCO) only supports your cloud provider in manual 
     `<path_to_directory_for_credentials_requests>`
     :   Specifies the path to the directory where you want to store the `CredentialsRequest` objects. If the specified directory does not exist, this command creates it.
     This command creates a YAML file for each `CredentialsRequest` object.
-    ```yaml title="Sample CredentialsRequest object"
+    ```yaml title="Sample CredentialsRequest object" {minja}
     apiVersion: cloudcredential.openshift.io/v1
     kind: CredentialsRequest
     metadata:
@@ -187,7 +188,7 @@ The Cloud Credential Operator (CCO) only supports your cloud provider in manual 
     spec:
       providerSpec:
         apiVersion: cloudcredential.openshift.io/v1
-{%- if aws %}
+    {%- if aws %}
         kind: AWSProviderSpec
         statementEntries:
         - effect: Allow
@@ -196,24 +197,24 @@ The Cloud Credential Operator (CCO) only supports your cloud provider in manual 
           - iam:GetUserPolicy
           - iam:ListAccessKeys
           resource: "*"
-{% endif %}
-{% if azure or ash %}
+    {%- endif %}
+    {%- if azure or ash %}
         kind: AzureProviderSpec
         roleBindings:
         - role: Contributor
-          {% endif %}
-          {% if google_cloud_platform %}
+    {%- endif %}
+    {%- if google_cloud_platform %}
         kind: GCPProviderSpec
         predefinedRoles:
         - roles/storage.admin
         - roles/iam.serviceAccountUser
         skipServiceCheck: true
-{%- endif %}
+    {%- endif %}
       ...
     ```
 
 1.  Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
-    ```yaml title="Sample CredentialsRequest object with secrets"
+    ```yaml title="Sample CredentialsRequest object with secrets" {minja}
     apiVersion: cloudcredential.openshift.io/v1
     kind: CredentialsRequest
     metadata:
@@ -223,7 +224,7 @@ The Cloud Credential Operator (CCO) only supports your cloud provider in manual 
     spec:
       providerSpec:
         apiVersion: cloudcredential.openshift.io/v1
-{%- if aws %}
+    {%- if aws %}
         kind: AWSProviderSpec
         statementEntries:
         - effect: Allow
@@ -231,37 +232,37 @@ The Cloud Credential Operator (CCO) only supports your cloud provider in manual 
           - s3:CreateBucket
           - s3:DeleteBucket
           resource: "*"
-{% endif %}
-{% if ash or azure %}
+    {%- endif %}
+    {%- if ash or azure %}
         kind: AzureProviderSpec
         roleBindings:
         - role: Contributor
-          {% endif %}
-          {% if gcp %}
+    {%- endif %}
+    {%- if gcp %}
         kind: GCPProviderSpec
           predefinedRoles:
           - roles/iam.securityReviewer
           - roles/iam.roleViewer
           skipServiceCheck: true
-{%- endif %}
+    {%- endif %}
           ...
       secretRef:
         name: <component_secret>
         namespace: <component_namespace>
       ...
     ```
-    ```yaml title="Sample Secret object"
+    ```yaml title="Sample Secret object" {minja}
     apiVersion: v1
     kind: Secret
     metadata:
       name: <component_secret>
       namespace: <component_namespace>
-{%- if aws %}
+    {%- if aws %}
     data:
       aws_access_key_id: <base64_encoded_aws_access_key_id>
       aws_secret_access_key: <base64_encoded_aws_secret_access_key>
-{% endif %}
-{% if azure or ash %}
+    {%- endif %}
+    {%- if azure or ash %}
     data:
       azure_subscription_id: <base64_encoded_azure_subscription_id>
       azure_client_id: <base64_encoded_azure_client_id>
@@ -270,11 +271,11 @@ The Cloud Credential Operator (CCO) only supports your cloud provider in manual 
       azure_resource_prefix: <base64_encoded_azure_resource_prefix>
       azure_resourcegroup: <base64_encoded_azure_resourcegroup>
       azure_region: <base64_encoded_azure_region>
-{% endif %}
-{% if google_cloud_platform %}
+    {%- endif %}
+    {%- if google_cloud_platform %}
     data:
       service_account.json: <base64_encoded_gcp_service_account_file>
-{%- endif %}
+    {%- endif %}
     ```
 
     :::important
@@ -285,106 +286,106 @@ The Cloud Credential Operator (CCO) only supports your cloud provider in manual 
 
 
 {%- if context == "installing-azure-stack-hub-default" %}
-{%- set ash = false -%}
-{%- set cco_manual_mode = false -%}
+{%- set ash = "" -%}
+{%- set cco_manual_mode = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-network-customizations" %}
-{%- set ash = false -%}
-{%- set cco_manual_mode = false -%}
+{%- set ash = "" -%}
+{%- set cco_manual_mode = "" -%}
 {% endif %}
 
 {%- if context == "installing-aws-customizations" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-aws-network-customizations" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws-installer-provisioned" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-aws-vpc" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-aws-specialized-region" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-aws-private" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-aws-government-region" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-aws-secret-region" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-aws-china-region" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-aws-outposts-remote-workers" %}
-{%- set aws = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set aws = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 
 {%- if context == "installing-gcp-customizations" %}
-{%- set google_cloud_platform = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set google_cloud_platform = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-gcp-network-customizations" %}
-{%- set google_cloud_platform = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set google_cloud_platform = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp-installer-provisioned" %}
-{%- set google_cloud_platform = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set google_cloud_platform = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-gcp-vpc" %}
-{%- set google_cloud_platform = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set google_cloud_platform = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-gcp-shared-vpc" %}
-{%- set google_cloud_platform = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set google_cloud_platform = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
-{%- set google_cloud_platform = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set google_cloud_platform = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 
 {%- if context == "manually-creating-iam-azure" %}
-{%- set azure = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set azure = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 
 {%- if context == "installing-azure-customizations" %}
-{%- set azure = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set azure = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-azure-government-region" %}
-{%- set azure = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set azure = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-azure-network-customizations" %}
-{%- set azure = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set azure = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-azure-private" %}
-{%- set azure = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set azure = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-azure-vnet" %}
-{%- set azure = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set azure = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-installer-provisioned" %}
-{%- set azure = false -%}
-{%- set cco_multi_mode = false -%}
+{%- set azure = "" -%}
+{%- set cco_multi_mode = "" -%}
 {% endif %}

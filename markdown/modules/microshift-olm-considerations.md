@@ -11,8 +11,8 @@ You must consider the application of Operators and steps to use them when planni
     *   To mirror your catalogs and Operators for disconnected or offline nodes, install [the oc-mirror OpenShift CLI plugin](https://docs.openshift.com/container-platform/{{ ocp_version }}/installing/disconnected_install/installing-mirroring-disconnected.html#installation-oc-mirror-installing-plugin_installing-mirroring-disconnected).
 
 
-:::important
+    :::important
 
-Before using an Operator, verify with the provider that the Operator is supported on {{ product_title }}.
-
-:::
+    Before using an Operator, verify with the provider that the Operator is supported on {{ product_title }}.
+    
+    :::

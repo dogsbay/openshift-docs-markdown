@@ -7,7 +7,7 @@ title: "Installing {{ kueue_name }} in a disconnected environment"
 # Installing {{ kueue_name }} in a disconnected environment {id="install-disconnected"}
 {%- set context = "install-disconnected" %}
 
-You can install {{ kueue_name }} on a disconnected {{ product_title }} cluster after enabling {{ olm_first }} in your disconnected environment.
+You can install {{ kueue_name }} on a disconnected {{ product_title }} cluster after enabling {{ olm_first }} in your disconnected environment. {._abstract}
 
 Before you can install {{ kueue_name }}, you must complete the following steps:
 
@@ -24,6 +24,7 @@ For full documentation on completing these steps, see "Using Operator Lifecycle 
 {% leveloffset +1 %}{% include "./modules/kueue-install-kueue-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the {{ cert_manager_operator }}](/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
 
@@ -33,5 +34,5 @@ For full documentation on completing these steps, see "Using Operator Lifecycle 
 
 {% leveloffset +1 %}{% include "./modules/kueue-label-namespaces.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)

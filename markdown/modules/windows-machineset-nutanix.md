@@ -95,12 +95,12 @@ where:
     *   `value.cluster`. Specifies a Nutanix Prism Element cluster configuration. In this example, the cluster type is `uuid`, so there is a `uuid` stanza. Replace `<cluster_uuid>` with the cluster UUID.
     *   `value.credentialsSecret.name`. Specifies the secret name for the cluster. Do not change this value.
     *   `value.image`. Specifies the image to use. Replace `<image_id>` with an image from an existing default compute machine set for the cluster, one of the following options: 
-    *   `nutanix-windows-server-2022` for Windows Server 2022
-    *   `nutanix-windows-server-2025` for Windows Server 2025
-        *   `value.kind`. Specifies the cloud provider platform type. Do not change this value.
-        *   `value.memorySize`. Specifies the amount of memory for the cluster in Gi.
-        *   `value.subnets`. Specifies a subnet configuration. In this example, the subnet type is `uuid`, so there is a `uuid` stanza. Replace `<subnet_uuid>` with the subnet UUID.
-        *   `value.systemDiskSize`. Specifies the size of the system disk in Gi.
-        *   `value.userDataSecret.name`. Specifies the name of the secret in the user data YAML file that is in the `openshift-machine-api` namespace. Use the value that installation program populates in the default compute machine set.
-        *   `value.vcpuSockets`. Specifies the number of vCPU sockets.
-        *   `value.vcpusPerSocket`. Specifies the number of vCPUs per socket.
+        *   `nutanix-windows-server-2022` for Windows Server 2022
+        *   `nutanix-windows-server-2025` for Windows Server 2025
+    *   `value.kind`. Specifies the cloud provider platform type. Do not change this value.
+    *   `value.memorySize`. Specifies the amount of memory for the cluster in Gi.
+    *   `value.subnets`. Specifies a subnet configuration. In this example, the subnet type is `uuid`, so there is a `uuid` stanza. Replace `<subnet_uuid>` with the subnet UUID.
+    *   `value.systemDiskSize`. Specifies the size of the system disk in Gi.
+    *   `value.userDataSecret.name`. Specifies the name of the secret in the user data YAML file that is in the `openshift-machine-api` namespace. Use the value that installation program populates in the default compute machine set.
+    *   `value.vcpuSockets`. Specifies the number of vCPU sockets.
+    *   `value.vcpusPerSocket`. Specifies the number of vCPUs per socket.

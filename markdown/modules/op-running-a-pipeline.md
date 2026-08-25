@@ -6,7 +6,7 @@ A `PipelineRun` resource starts a pipeline and ties it to the Git and image reso
 **Procedure**
 
 1.  Start the pipeline for the back-end application:
-    ```yaml
+    ```yaml {minja}
     $ tkn pipeline start build-and-deploy \
         -w name=shared-workspace,volumeClaimTemplateFile=https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/01_pipeline/03_persistent_volume_claim.yaml \
         -p deployment-name=pipelines-vote-api \
@@ -23,7 +23,7 @@ A `PipelineRun` resource starts a pipeline and ties it to the Git and image reso
 
     The &lt;pipelinerun_id> in the above command is the ID for the `PipelineRun` that was returned in the output of the previous command.
 1.  Start the pipeline for the front-end application:
-    ```yaml
+    ```yaml {minja}
     $ tkn pipeline start build-and-deploy \
         -w name=shared-workspace,volumeClaimTemplateFile=https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/01_pipeline/03_persistent_volume_claim.yaml \
         -p deployment-name=pipelines-vote-ui \

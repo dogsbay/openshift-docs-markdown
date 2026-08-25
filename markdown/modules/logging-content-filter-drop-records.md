@@ -22,15 +22,15 @@ When the `drop` filter is configured, the log collector evaluates log streams ac
     spec:
       filters:
       - name: <filter_name>
-        type: drop # (1)
-        drop: # (2)
-        - test: # (3)
-          - field: .kubernetes.labels."foo-bar/baz" # (4)
-            matches: .+ # (5)
+        type: drop (1)
+        drop: (2)
+        - test: (3)
+          - field: .kubernetes.labels."foo-bar/baz" (4)
+            matches: .+ (5)
           - field: .kubernetes.pod_name
-            notMatches: "my-pod" # (6)
+            notMatches: "my-pod" (6)
       pipelines:
-      - name: <pipeline_name> # (7)
+      - name: <pipeline_name> (7)
         filterRefs: ["<filter_name>"]
     # ...
     ```

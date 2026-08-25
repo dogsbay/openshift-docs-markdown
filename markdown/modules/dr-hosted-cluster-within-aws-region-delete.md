@@ -10,7 +10,7 @@ After you back up your hosted cluster and restore it to your destination managem
 
 :::tip
 
-Ensure that the `kubeconfig` file of the destination management cluster is placed as it is set in the `KUBECONFIG` variable or, if you use the script, in the `MGMT_KUBECONFIG` variable. Use `export KUBECONFIG=<Kubeconfig FilePath>` or, if you use the script, use `export KUBECONFIG=${{ MGMT_KUBECONFIG }}`.
+Ensure that the `kubeconfig` file of the destination management cluster is placed as it is set in the `KUBECONFIG` variable or, if you use the script, in the `MGMT_KUBECONFIG` variable. Use `export KUBECONFIG=<Kubeconfig FilePath>` or, if you use the script, use `export KUBECONFIG=${{ MGMT_KUBECONFIG }}`{minja}.
 
 :::
 

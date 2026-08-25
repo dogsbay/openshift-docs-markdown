@@ -3,16 +3,16 @@ title: APIs used with OADP
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # APIs used with OADP {id="oadp-api"}
 {%- set toc = true %}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "oadp-api" -%}
 {%- set namespace = "openshift-adp" -%}
 {%- set local_product = "OADP" -%}
 {%- set velero_domain = "velero.io" %}
 
-You can use the following APIs with {{ oadp_short }}:
+You can use the following APIs with {{ oadp_short }}: {._abstract}
 
 
 Velero API
@@ -54,7 +54,7 @@ OADP API
 
 {% leveloffset +1 %}{% include "./modules/datamover-type.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Velero API types](https://velero.io/docs/main/api-types/)
 *   [OADP Operator (Go documentation)](https://pkg.go.dev/github.com/openshift/oadp-operator) 

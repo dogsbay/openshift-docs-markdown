@@ -7,7 +7,7 @@ title: Installation methods
 # Installation methods {id="preparing-to-install-on-ibm-z"}
 {%- set context = "preparing-to-install-on-ibm-z" %}
 
-You can install an {{ product_title }} cluster on {{ ibm_z_name }} and {{ ibm_linuxone_name }} by using a variety of different installation methods. Choose the method that best fits your environment, such as a disconnected deployment or a minimally configured installation.
+You can install an {{ product_title }} cluster on {{ ibm_z_name }} and {{ ibm_linuxone_name }} by using a variety of different installation methods. Choose the method that best fits your environment, such as a disconnected deployment or a minimally configured installation. {._abstract}
 
 
 :::note
@@ -21,7 +21,7 @@ While this document refers only to {{ ibm_z_name }}, all information in it also 
 
 {% leveloffset +1 %}{% include "./modules/ibm-z-upi-installation-overview.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [{{ ai_full }}](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
 *   [Preparing to install with the Agent-based Installer](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)

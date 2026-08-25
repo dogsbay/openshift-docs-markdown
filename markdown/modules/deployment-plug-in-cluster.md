@@ -32,7 +32,7 @@ After pushing an image with your changes to a registry, you can deploy the plugi
 
     `--set plugin.image=my-plugin-image-location`
     :   Specifies the location of the image within the `plugin.image` parameter.
-{%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
 
     :::note
 
@@ -109,7 +109,7 @@ After pushing an image with your changes to a registry, you can deploy the plugi
 
 **Verification**
 
-*   View the list of enabled plugins by navigating from **Administration** -> **Cluster Settings** -> **Configuration** -> **Console** `operator.openshift.io` -> **Console plugins** or by visiting the **Overview** page.
+*   View the list of enabled plugins by navigating from **Administration** → **Cluster Settings** → **Configuration** → **Console** `operator.openshift.io` → **Console plugins** or by visiting the **Overview** page.
 
 
 :::note

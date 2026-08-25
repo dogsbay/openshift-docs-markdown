@@ -27,6 +27,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `target` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
+
 ### .target {id="_target"}
 
 Description
@@ -50,9 +51,9 @@ Type
 
 The following API endpoints are available:
 
-*   `/api/v1/namespaces/{{ namespace }}/bindings`
+*   `/api/v1/namespaces/{{ namespace }}/bindings`{minja}
     *   `POST`: create a Binding
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/binding`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/binding`{minja}
     *   `POST`: create binding of a Pod
 
 ### /api/v1/namespaces/{{ namespace }}/bindings {id="_apiv1namespaces_namespace_bindings"}

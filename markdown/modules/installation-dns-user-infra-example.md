@@ -46,7 +46,7 @@ In the example, the same load balancer is used for the Kubernetes API and applic
 :::
 
 
-```text
+```text {minja}
 $TTL 1W
 @	IN	SOA	ns1.example.com.	root (
 			2019070700	; serial
@@ -105,11 +105,11 @@ where:
 
 `compute0.ocp4.example.com.`
 :   Provides name resolution for the compute machines.
-{% endif %}
+{%- endif %}
 
 The following example BIND zone file shows sample PTR records for reverse name resolution in a user-provisioned cluster:
 
-```text
+```text {minja}
 $TTL 1W
 @	IN	SOA	ns1.example.com.	root (
 			2019070700	; serial
@@ -155,7 +155,7 @@ where:
 
 `compute0.ocp4.example.com.`
 :   Provides reverse DNS resolution for the compute machines.
-{% endif %}
+{%- endif %}
 
 
 :::note
@@ -166,20 +166,20 @@ A PTR record is not required for the {{ product_title }} application wildcard.
 
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}

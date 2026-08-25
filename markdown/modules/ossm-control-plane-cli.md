@@ -9,10 +9,10 @@ You can deploy a basic `ServiceMeshControlPlane` from the command line.
 *   Access to the OpenShift CLI (`oc`).
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You are logged in to {{ product_title }} as`cluster-admin`.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -20,14 +20,14 @@ You can deploy a basic `ServiceMeshControlPlane` from the command line.
     ```terminal
     $ oc new-project istio-system
     ```
-{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 
     The `ServiceMeshControlPlane` resource must be installed in the `istio-system` project, separate from your microservices and Operators.
 {% endif %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 1.  Create a `ServiceMeshControlPlane` file named `istio-installation.yaml` using the following example. The version of the {{ SMProductShortName }} control plane determines the features available regardless of the version of the Operator.
-    ```yaml title="Example version {{ MaistraVersion }} istio-installation.yaml"
+    ```yaml title="Example version {{ MaistraVersion }} istio-installation.yaml" {minja}
     apiVersion: maistra.io/v2
     kind: ServiceMeshControlPlane
     metadata:
@@ -48,7 +48,7 @@ You can deploy a basic `ServiceMeshControlPlane` from the command line.
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 1.  Create a `ServiceMeshControlPlane` file named `istio-installation.yaml` using the following example. The version of the {{ SMProductShortName }} control plane determines the features available regardless of the version of the Operator.
-    ```yaml title="Example ServiceMeshControlPlane resource"
+    ```yaml title="Example ServiceMeshControlPlane resource" {minja}
     apiVersion: maistra.io/v2
     kind: ServiceMeshControlPlane
     metadata:
@@ -74,13 +74,13 @@ You can deploy a basic `ServiceMeshControlPlane` from the command line.
       telemetry:
         type: Istiod
     ```
-{%- if openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_rosa or openshift_rosa_hcp %}
     1.  Specifies a required setting for {{ product_rosa }}.
-        {% endif %}
-        {% if openshift_dedicated %}
+{% endif %}
+{% if openshift_dedicated %}
     1.  Specifies a required setting for {{ product_dedicated }}.
 {% endif %}
-{%- endif %}
+{% endif %}
 1.  Run the following command to deploy the {{ SMProductShortName }} control plane, where `<istio_installation.yaml>` includes the full path to your file.
     ```terminal
     $ oc create -n istio-system -f <istio_installation.yaml>

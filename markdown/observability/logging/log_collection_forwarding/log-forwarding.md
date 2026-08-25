@@ -45,4 +45,4 @@ In order to support multi log forwarding in additional namespaces other than the
 *   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
 *   [Using service accounts in applications](/authentication/using-service-accounts-in-applications#using-service-accounts-in-applications)
 {%- endif %}
-*   [Using RBAC Authorization Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+* [Using RBAC Authorization Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)

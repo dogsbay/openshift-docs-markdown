@@ -5,7 +5,7 @@ You can review rule fields and examples to define which ingress traffic is allow
 
 The fields for the Ingress Node Firewall rules object are described in the following table:
 
-***Ingress Node Firewall rules object***
+**Ingress Node Firewall rules object**
 
 <table>
 <thead>
@@ -24,7 +24,7 @@ The fields for the Ingress Node Firewall rules object are described in the follo
 <tr>
   <td><code>interfaces</code></td>
   <td><code>array</code></td>
-  <td>The fields for this object specify the interfaces to apply the firewall rules to. For example, <code>- en0</code> and<code>- en1</code>.</td>
+  <td>The fields for this object specify the interfaces to apply the firewall rules to. For example, <code>- en0</code> and <code>- en1</code>.</td>
 </tr>
 <tr>
   <td><code>nodeSelector</code></td>
@@ -43,7 +43,7 @@ The fields for the Ingress Node Firewall rules object are described in the follo
 
 The values for the `ingress` object are defined in the following table:
 
-***`ingress` object***
+**`ingress` object**
 
 <table>
 <thead>
@@ -57,12 +57,12 @@ The values for the `ingress` object are defined in the following table:
 <tr>
   <td><code>sourceCIDRs</code></td>
   <td><code>array</code></td>
-  <td>Allows you to set the CIDR block. You can configure multiple CIDRs from different address families.<br><br><dl><dt>Note</dt><dd>Different CIDRs allow you to use the same order rule. In the case that there are multiple <code>IngressNodeFirewall</code> objects for the same nodes and interfaces with overlapping CIDRs, the <code>order</code> field will specify which rule is applied first. Rules are applied in ascending order.</dd></dl></td>
+  <td>Allows you to set the CIDR block. You can configure multiple CIDRs from different address families.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Different CIDRs allow you to use the same order rule. In the case that there are multiple <code>IngressNodeFirewall</code> objects for the same nodes and interfaces with overlapping CIDRs, the <code>order</code> field will specify which rule is applied first. Rules are applied in ascending order.</dd></dl></td>
 </tr>
 <tr>
   <td><code>rules</code></td>
   <td><code>array</code></td>
-  <td>Ingress firewall <code>rules.order</code> objects are ordered starting at <code>1</code> for each <code>source.CIDR</code> with up to 100 rules per CIDR. Lower order rules are executed first.<br><br><code>rules.protocolConfig.protocol</code> supports the following protocols: TCP, UDP, SCTP, ICMP and ICMPv6. ICMP and ICMPv6 rules can match against ICMP and ICMPv6 types or codes. TCP, UDP, and SCTP rules can match against a single destination port or a range of ports using <code><start : end-1></code> format.<br><br>Set <code>rules.action</code> to <code>allow</code> to apply the rule or <code>deny</code> to disallow the rule.<br><br><dl><dt>Note</dt><dd>Ingress firewall rules are verified using a verification webhook that blocks any invalid configuration. The verification webhook prevents you from blocking any critical cluster services such as the API server.</dd></dl></td>
+  <td>Ingress firewall <code>rules.order</code> objects are ordered starting at <code>1</code> for each <code>source.CIDR</code> with up to 100 rules per CIDR. Lower order rules are executed first.<br><br><code>rules.protocolConfig.protocol</code> supports the following protocols: TCP, UDP, SCTP, ICMP and ICMPv6. ICMP and ICMPv6 rules can match against ICMP and ICMPv6 types or codes. TCP, UDP, and SCTP rules can match against a single destination port or a range of ports using <code>&lt;start : end-1&gt;</code> format.<br><br>Set <code>rules.action</code> to <code>allow</code> to apply the rule or <code>deny</code> to disallow the rule.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Ingress firewall rules are verified using a verification webhook that blocks any invalid configuration. The verification webhook prevents you from blocking any critical cluster services such as the API server.</dd></dl></td>
 </tr>
 </tbody>
 </table>

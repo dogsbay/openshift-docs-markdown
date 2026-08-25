@@ -29,7 +29,7 @@ AWS PrivateLink is supported on existing VPCs only.
     
     :::
 
-{% include "./snippets/rosa-long-cluster-name.md" %}
+    {% include "./snippets/rosa-long-cluster-name.md" %}
     *   To create a Single-AZ cluster:
         ```terminal
         $ rosa create cluster --private-link --cluster-name=<cluster-name> [--machine-cidr=<VPC CIDR>/16] --subnet-ids=<private-subnet-id>

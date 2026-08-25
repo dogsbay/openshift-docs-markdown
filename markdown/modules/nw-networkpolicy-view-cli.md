@@ -35,7 +35,7 @@ If you log in with `cluster-admin` privileges, you can edit network policies in 
 
 *   You installed the {{ oc_first }}.
 {%- if not microshift %}
-*   You are logged in to the cluster with a user with `{{ role }}` privileges.
+*   You are logged in to the cluster with a user with `{{ role }}`{minja} privileges.
 {%- endif %}
 *   You are working in the namespace where the {{ name }} policy exists.
 
@@ -44,11 +44,11 @@ If you log in with `cluster-admin` privileges, you can edit network policies in 
 1.  List {{ name }} policies in a namespace.
     1.  To view {{ name }} policy objects defined in a namespace enter the following
     command:
-        ```terminal
+        ```terminal {minja}
         $ oc get {{ name }}policy
         ```
     1.  Optional: To examine a specific {{ name }} policy enter the following command:
-        ```terminal
+        ```terminal {minja}
         $ oc describe {{ name }}policy <policy_name> -n <namespace>
         ```
 
@@ -78,10 +78,10 @@ If you log in with `cluster-admin` privileges, you can edit network policies in 
           Not affecting egress traffic
           Policy Types: Ingress
         ```
-{% endif %}
+{%- endif %}
 
 {% if multi %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
-{%- set name = false -%}
-{%- set role = false -%}
+{%- set name = "" -%}
+{%- set role = "" -%}

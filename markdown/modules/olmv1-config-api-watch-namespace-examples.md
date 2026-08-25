@@ -38,7 +38,6 @@ spec:
     catalog:
       packageName: example-operator
 ```
-
 *   You must set the `watchNamespace` field to use the `OwnNamespace` install mode.
 *   The `watchNamespace` value must match the `spec.namespace` field value.
 
@@ -60,7 +59,6 @@ spec:
     catalog:
       packageName: example-operator
 ```
-
 *   You must set the `watchNamespace` field to use the `SingleNamespace` install mode.
 *   The `watchNamespace` value must differ from the `spec.namespace` field value.
 *   In this example, the extension runs in the `example-operators` namespace but watches resources in the `production` namespace.

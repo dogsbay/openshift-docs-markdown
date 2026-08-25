@@ -18,4 +18,4 @@ During the system boot process, the `dmcrypt` utility uses the TPM PCR values to
 
 {%- set FeatureName = "Configuring disk encryption by using the `diskEncryption` field in the `ClusterInstance` CR" %}
 {% include "./snippets/technology-preview.md" %}
-{%- set FeatureName = false -%}
+{%- set FeatureName = "" -%}

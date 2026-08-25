@@ -16,5 +16,6 @@ content:
 attributes:
   product_title: OpenShift Container Platform
   product_version: 4.22
-  openshift_enterprise: true
+  openshift_enterprise: "true"
+undefinedRefs: asciidoc-literal
 output: ./site

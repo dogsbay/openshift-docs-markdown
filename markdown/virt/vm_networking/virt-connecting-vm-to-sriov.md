@@ -3,11 +3,11 @@ title: Connecting a virtual machine to an SR-IOV network
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Connecting a virtual machine to an SR-IOV network {id="virt-connecting-vm-to-sriov"}
 {% include "./_attributes/common-attributes.md" %}
+# Connecting a virtual machine to an SR-IOV network {id="virt-connecting-vm-to-sriov"}
 {%- set context = "virt-connecting-vm-to-sriov" %}
 
-You can connect a virtual machine (VM) to the physical network by using a Single Root I/O Virtualization (SR-IOV) device. 
+You can connect a virtual machine (VM) to the physical network by using a Single Root I/O Virtualization (SR-IOV) device.  {._abstract}
 
 To configure the SR-IOV network and attach the VM to that network, perform the following steps:
 
@@ -23,5 +23,5 @@ To configure the SR-IOV network and attach the VM to that network, perform the f
 
 {% leveloffset +1 %}{% include "./modules/virt-attaching-vm-to-sriov-network-web-console.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Configuring DPDK workloads for improved performance](/virt/vm_networking/virt-using-dpdk-with-sriov#virt-using-dpdk-with-sriov)

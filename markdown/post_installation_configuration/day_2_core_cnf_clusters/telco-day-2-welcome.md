@@ -3,11 +3,11 @@ title: Day 2 operations for OpenShift Container Platform clusters
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Day 2 operations for {{ product_title }} clusters {id="telco-day-2-welcome"}
 {% include "./_attributes/common-attributes.md" %}
+# Day 2 operations for {{ product_title }} clusters {id="telco-day-2-welcome"}
 {%- set context = "telco-day-2-welcome" %}
 
-You can use the following Day 2 operations to manage {{ product_title }} clusters.
+You can use the following Day 2 operations to manage {{ product_title }} clusters. {._abstract}
 
 
 Updating an {{ product_title }} cluster

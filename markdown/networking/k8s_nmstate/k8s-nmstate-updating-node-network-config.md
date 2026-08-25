@@ -3,12 +3,12 @@ title: Observing and updating the node network state and configuration
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Observing and updating the node network state and configuration {id="k8s-nmstate-updating-node-network-config"}
 {% include "./_attributes/common-attributes.md" %}
+# Observing and updating the node network state and configuration {id="k8s-nmstate-updating-node-network-config"}
 {%- set VirtProductName = "OpenShift Container Platform" -%}
 {%- set context = "k8s-nmstate-updating-node-network-config" %}
 
-To observe and update the node network state and configuration in your cluster, you can use the Kubernetes NMState Operator. You can view network states, create and manage network configuration policies, and configure interfaces on cluster nodes.
+To observe and update the node network state and configuration in your cluster, you can use the Kubernetes NMState Operator. You can view network states, create and manage network configuration policies, and configure interfaces on cluster nodes. {._abstract}
 
 For more information about how to install the NMState Operator, see [Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator).
 
@@ -94,6 +94,7 @@ For more information, see "Creating a manifest object that includes a customized
 {% leveloffset +2 %}{% include "./modules/virt-example-predictable-route-table-id.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About virtual routing and forwarding](/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)
 *   [Exposing a service through a network VRF](/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers)
@@ -105,6 +106,7 @@ For more information, see "Creating a manifest object that includes a customized
 {% leveloffset +2 %}{% include "./modules/virt-example-inherit-static-ip-from-nic.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [The NMPolicy project - Policy syntax](https://nmstate.io/nmpolicy/user-guide/102-policy-syntax.html)
 
@@ -115,6 +117,7 @@ For more information, see "Creating a manifest object that includes a customized
 {% leveloffset +1 %}{% include "./modules/virt-routes-route-rules.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a manifest object that includes a customized br-ex bridge (Installer-provisioned infrastructure)](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)
 *   [Creating a manifest object that includes a customized br-ex bridge (User-provisioned infrastructure)](/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal)

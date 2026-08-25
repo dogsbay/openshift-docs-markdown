@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if local_zone %}
+{% if local_zone %}
 # Cluster limitations in AWS Local Zones {id="cluster-limitations-aws-zone_{{ context }}"}
 
 Some limitations exist when you try to deploy a cluster with a default installation configuration in an Amazon Web Services (AWS) Local Zone.
@@ -14,8 +14,8 @@ Some limitations exist when you try to deploy a cluster with a default installat
 {% if wavelength_zone %}
 = Cluster limitations in AWS Wavelength Zones {._abstract}
 
-Some limitations exist when you try to deploy a cluster with a default installation configuration in an Amazon Web Services (AWS) Wavelength Zone.
-{% endif %} {._abstract}
+Some limitations exist when you try to deploy a cluster with a default installation configuration in an Amazon Web Services (AWS) Wavelength Zone. {._abstract}
+{% endif %}
 
 
 :::important
@@ -49,8 +49,8 @@ The following configuration limitation applies when you set the installation pro
 
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}

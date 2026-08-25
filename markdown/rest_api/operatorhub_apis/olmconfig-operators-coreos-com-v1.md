@@ -1,5 +1,5 @@
 ---
-title: "OLMConfig []"
+title: "OLMConfig [operators.coreos.com/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OLMConfigSpec is the spec for an OLMConfig resource. |
 | `status` | `object` | OLMConfigStatus is the status for an OLMConfig resource. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -40,6 +41,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `features` | `object` | Features contains the list of configurable OLM features. |
+
 ### .spec.features {id="_specfeatures"}
 
 Description
@@ -53,6 +55,7 @@ Type
 | --- | --- | --- |
 | `disableCopiedCSVs` | `boolean` | DisableCopiedCSVs is used to disable OLM’s "Copied CSV" feature for operators installed at the cluster scope, where a cluster scoped operator is one that has been installed in an OperatorGroup that targets all namespaces. When reenabled, OLM will recreate the "Copied CSVs" for each cluster scoped operator. |
 | `packageServerSyncInterval` | `string` | PackageServerSyncInterval is used to define the sync interval for packagerserver pods. Packageserver pods periodically check the status of CatalogSources; this specifies the period using duration format (e.g. "60m"). For this parameter, only hours ("h"), minutes ("m"), and seconds ("s") may be specified. When not specified, the period defaults to the value specified within the packageserver. |
+
 ### .status {id="_status"}
 
 Description
@@ -66,6 +69,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` |  |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -108,12 +112,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of OLMConfig
     *   `GET`: list objects of kind OLMConfig
     *   `POST`: create an OLMConfig
-*   `/apis/operators.coreos.com/v1/olmconfigs/{{ name }}`
+*   `/apis/operators.coreos.com/v1/olmconfigs/{{ name }}`{minja}
     *   `DELETE`: delete an OLMConfig
     *   `GET`: read the specified OLMConfig
     *   `PATCH`: partially update the specified OLMConfig
     *   `PUT`: replace the specified OLMConfig
-*   `/apis/operators.coreos.com/v1/olmconfigs/{{ name }}/status`
+*   `/apis/operators.coreos.com/v1/olmconfigs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified OLMConfig
     *   `PATCH`: partially update status of the specified OLMConfig
     *   `PUT`: replace status of the specified OLMConfig

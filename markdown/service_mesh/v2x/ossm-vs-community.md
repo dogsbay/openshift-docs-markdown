@@ -3,14 +3,14 @@ title: Service Mesh and Istio differences
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Service Mesh and Istio differences {id="ossm-vs-community"}
 {% include "./_attributes/common-attributes.md" %}
+# Service Mesh and Istio differences {id="ossm-vs-community"}
 {%- set context = "ossm-vs-istio" %}
 
 {{ SMProductName }} differs from an installation of Istio to provide additional features or to handle differences when deploying on {{ product_title }}.
 
 {% leveloffset +1 %}{% include "./modules/ossm-vs-istio.md" %}{% endleveloffset %}
-#### Additional resources {id="additional-resources_ossm-vs-istio-v2x"}
+#### Additional resources {id="additional-resources_ossm-vs-istio-v2x" ._additional-resources}
 
 *   [Automatic route creation](/service_mesh/v2x/ossm-traffic-manage#ossm-auto-route_traffic-management)
 

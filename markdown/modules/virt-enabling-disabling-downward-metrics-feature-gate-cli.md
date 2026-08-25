@@ -12,14 +12,14 @@ To expose downward metrics for a host virtual machine, you can enable the `downw
 
 *   Choose to enable or disable the `downwardMetrics` feature gate as follows:
     *   Enable the `downwardMetrics` feature gate by running the command shown in the following example:
-        ```terminal
+        ```terminal {minja}
         $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
           --type json -p '[{"op": "replace", "path": \
           "/spec/featureGates/downwardMetrics", \
           "value": true}]'
         ```
     *   Disable the `downwardMetrics` feature gate by running the command shown in the following example:
-        ```terminal
+        ```terminal {minja}
         $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
           --type json -p '[{"op": "replace", "path": \
           "/spec/featureGates/downwardMetrics", \

@@ -1,5 +1,5 @@
 ---
-title: "KubeletConfig []"
+title: "KubeletConfig [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec contains the desired kubelet configuration. |
 | `status` | `object` | status contains observed information about the kubelet configuration. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -47,6 +48,7 @@ Type
 | `logLevel` | `integer` | logLevel sets the kubelet log verbosity, controlling the amount of detail in kubelet logs. Valid values range from 0 (minimal logging) to 10 (maximum verbosity with trace-level detail). Higher log levels may impact node performance. When omitted, the platform chooses a reasonable default, which is subject to change over time. The current default is 2 (standard informational logging). |
 | `machineConfigPoolSelector` | `object` | machineConfigPoolSelector selects which pools the KubeletConfig should apply to. When omitted or set to an empty selector {}, no pools are selected, which is equivalent to not matching any MachineConfigPool. |
 | `tlsSecurityProfile` | `object` | tlsSecurityProfile configures TLS settings for the kubelet. When omitted, the TLS configuration defaults to the value from apiservers.config.openshift.io/cluster. When specified, the type field can be set to either "Old", "Intermediate", "Modern", "Custom" or omitted for backward compatibility. |
+
 ### .spec.machineConfigPoolSelector {id="_specmachineconfigpoolselector"}
 
 Description
@@ -63,6 +65,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.machineConfigPoolSelector.matchExpressions {id="_specmachineconfigpoolselectormatchexpressions"}
 
 Description
@@ -92,6 +95,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.tlsSecurityProfile {id="_spectlssecurityprofile"}
 
 Description
@@ -105,11 +109,12 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `custom` | `` | custom is a user-defined TLS security profile. Be extremely careful using a custom profile as invalid configurations can be catastrophic. An example custom profile looks like this:   minTLSVersion: VersionTLS11   ciphers:     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256 |
-| `intermediate` | `` | intermediate is a TLS profile for use when you do not need compatibility with legacy clients and want to remain highly secure while being compatible with most clients currently in use. This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS12   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305 |
-| `modern` | `` | modern is a TLS security profile for use with clients that support TLS 1.3 and do not need backward compatibility for older clients. This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS13   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256 |
-| `old` | `` | old is a TLS profile for use when services need to be accessed by very old clients or libraries and should be used only as a last resort. This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS10   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-ECDSA-AES128-SHA256     - ECDHE-RSA-AES128-SHA256     - ECDHE-ECDSA-AES128-SHA     - ECDHE-RSA-AES128-SHA     - ECDHE-ECDSA-AES256-SHA     - ECDHE-RSA-AES256-SHA     - AES128-GCM-SHA256     - AES256-GCM-SHA384     - AES128-SHA256     - AES128-SHA     - AES256-SHA     - DES-CBC3-SHA |
-| `type` | `string` | type is one of Old, Intermediate, Modern or Custom. Custom provides the ability to specify individual TLS security profile parameters. The profiles are based on version 5.7 of the Mozilla Server Side TLS configuration guidelines. The cipher lists consist of the configuration’s "ciphersuites" followed by the Go-specific "ciphers" from the guidelines. See: https://ssl-config.mozilla.org/guidelines/5.7.json The profiles are intent based, so they may change over time as new ciphers are developed and existing ciphers are found to be insecure. Depending on precisely which ciphers are available to a process, the list may be reduced. |
+| `custom` | `` | custom is a user-defined TLS security profile. Be extremely careful using a custom profile as invalid configurations can be catastrophic. An example custom profile looks like this:<br>  minTLSVersion: VersionTLS11   ciphers:     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256 |
+| `intermediate` | `` | intermediate is a TLS profile for use when you do not need compatibility with legacy clients and want to remain highly secure while being compatible with most clients currently in use.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS12   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305 |
+| `modern` | `` | modern is a TLS security profile for use with clients that support TLS 1.3 and do not need backward compatibility for older clients.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS13   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256 |
+| `old` | `` | old is a TLS profile for use when services need to be accessed by very old clients or libraries and should be used only as a last resort.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS10   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-ECDSA-AES128-SHA256     - ECDHE-RSA-AES128-SHA256     - ECDHE-ECDSA-AES128-SHA     - ECDHE-RSA-AES128-SHA     - ECDHE-ECDSA-AES256-SHA     - ECDHE-RSA-AES256-SHA     - AES128-GCM-SHA256     - AES256-GCM-SHA384     - AES128-SHA256     - AES128-SHA     - AES256-SHA     - DES-CBC3-SHA |
+| `type` | `string` | type is one of Old, Intermediate, Modern or Custom. Custom provides the ability to specify individual TLS security profile parameters.<br>The profiles are based on version 5.7 of the Mozilla Server Side TLS configuration guidelines. The cipher lists consist of the configuration’s "ciphersuites" followed by the Go-specific "ciphers" from the guidelines. See: https://ssl-config.mozilla.org/guidelines/5.7.json<br>The profiles are intent based, so they may change over time as new ciphers are developed and existing ciphers are found to be insecure. Depending on precisely which ciphers are available to a process, the list may be reduced. |
+
 ### .status {id="_status"}
 
 Description
@@ -124,6 +129,7 @@ Type
 | `conditions` | `array` | conditions represents the latest available observations of current state. |
 | `conditions[]` | `object` | KubeletConfigCondition defines the state of the KubeletConfig |
 | `observedGeneration` | `integer` | observedGeneration represents the generation observed by the controller. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -158,12 +164,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of KubeletConfig
     *   `GET`: list objects of kind KubeletConfig
     *   `POST`: create a KubeletConfig
-*   `/apis/machineconfiguration.openshift.io/v1/kubeletconfigs/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/kubeletconfigs/{{ name }}`{minja}
     *   `DELETE`: delete a KubeletConfig
     *   `GET`: read the specified KubeletConfig
     *   `PATCH`: partially update the specified KubeletConfig
     *   `PUT`: replace the specified KubeletConfig
-*   `/apis/machineconfiguration.openshift.io/v1/kubeletconfigs/{{ name }}/status`
+*   `/apis/machineconfiguration.openshift.io/v1/kubeletconfigs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified KubeletConfig
     *   `PATCH`: partially update status of the specified KubeletConfig
     *   `PUT`: replace status of the specified KubeletConfig

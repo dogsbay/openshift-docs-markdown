@@ -22,7 +22,7 @@ Users can then submit their workloads to the local queue.
 
 <a name="clusterqueues-next-steps_{{ context }}"></a>**Next steps**
 
-The cluster queue is not ready for use until a [`ResourceFlavor` object](/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas) has also been configured.
+The cluster queue is not ready for use until a [`ResourceFlavor` object](/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas) has also been configured. {._next-steps}
 
 {% leveloffset +1 %}{% include "./modules/kueue-configuring-resourceflavors.md" %}{% endleveloffset %}
 
@@ -30,6 +30,6 @@ The cluster queue is not ready for use until a [`ResourceFlavor` object](/ai_wor
 
 {% leveloffset +1 %}{% include "./modules/kueue-configuring-localqueue-defaults.md" %}{% endleveloffset %}
 
-## Additional resources {id="clusterqueues-additional-resources_{{ context }}"}
+## Additional resources {id="clusterqueues-additional-resources_{{ context }}" ._additional-resources}
 *   [RBAC permissions](/ai_workloads/kueue/rbac-permissions#rbac-permissions)
 *   [Kubernetes documentation about cluster queues](https://kueue.sigs.k8s.io/docs/concepts/cluster_queue/)

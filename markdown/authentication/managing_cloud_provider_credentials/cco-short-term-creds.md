@@ -3,11 +3,11 @@ title: About the Cloud Credential Operator in manual mode with short-term creden
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About the Cloud Credential Operator in manual mode with short-term credentials for components {id="cco-short-term-creds"}
 {% include "./_attributes/common-attributes.md" %}
+# About the Cloud Credential Operator in manual mode with short-term credentials for components {id="cco-short-term-creds"}
 {%- set context = "cco-short-term-creds" %}
 
-During installation, you can configure the Cloud Credential Operator (CCO) to operate in manual mode and use the CCO utility (`ccoctl`) to implement short-term security credentials for individual components that are created and managed outside the {{ product_title }} cluster.
+During installation, you can configure the Cloud Credential Operator (CCO) to operate in manual mode and use the CCO utility (`ccoctl`) to implement short-term security credentials for individual components that are created and managed outside the {{ product_title }} cluster. {._abstract}
 
 
 :::note
@@ -35,6 +35,7 @@ Cloud providers use different terms for their implementation of this authenticat
 {% leveloffset +1 %}{% include "./modules/cco-short-term-creds-aws-sts.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring an {{ aws_short }} cluster to use short-term credentials](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)
 
@@ -47,12 +48,14 @@ Cloud providers use different terms for their implementation of this authenticat
 {% leveloffset +2 %}{% include "./modules/cco-short-term-creds-aws-olm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [CCO-based workflow for OLM-managed Operators with {{ aws_short }} {{ sts_short }}](/operators/operator_sdk/token_auth/osdk-cco-aws-sts#osdk-cco-aws-sts)
 
 {% leveloffset +1 %}{% include "./modules/cco-short-term-creds-gcp-wid.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring a {{ gcp_short }} cluster to use short-term credentials](/installing/installing_gcp/installing-gcp-customizations#installing-gcp-with-short-term-creds_installing-gcp-customizations)
 
@@ -65,6 +68,7 @@ Cloud providers use different terms for their implementation of this authenticat
 {% leveloffset +2 %}{% include "./modules/cco-short-term-creds-gcp-olm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [CCO-based workflow for OLM-managed Operators with {{ gcp_wid_first }}](/operators/operator_sdk/token_auth/osdk-cco-gcp#osdk-cco-gcp)
 
@@ -74,6 +78,7 @@ Cloud providers use different terms for their implementation of this authenticat
 {% leveloffset +2 %}{% include "./modules/cco-short-term-creds-workloads.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring {{ gcp_wid_short }} authentication for applications on {{ gcp_short }}](/nodes/pods/nodes-pods-short-term-auth#nodes-pods-short-term-auth-configuring-gcp_nodes-pods-short-term-auth)
 
@@ -82,6 +87,7 @@ Cloud providers use different terms for their implementation of this authenticat
 {% leveloffset +1 %}{% include "./modules/cco-short-term-creds-gcp-entra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring a global {{ azure_first }} cluster to use short-term credentials](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
 
@@ -94,10 +100,11 @@ Cloud providers use different terms for their implementation of this authenticat
 {% leveloffset +2 %}{% include "./modules/cco-short-term-creds-azure-olm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [CCO-based workflow for OLM-managed Operators with {{ entra_first }}](/operators/operator_sdk/token_auth/osdk-cco-azure#osdk-cco-azure)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Enabling token-based authentication](/post_installation_configuration/changing-cloud-credentials-configuration#post-install-enable-token-auth_changing-cloud-credentials-configuration)
 *   [Configuring an {{ aws_short }} cluster to use short-term credentials](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-with-short-term-creds_installing-aws-customizations)

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Monitoring Argo CD instances {id="monitoring-argo-cd-instances"}
 {% include "./_attributes/common-attributes.md" %}
+# Monitoring Argo CD instances {id="monitoring-argo-cd-instances"}
 {%- set context = "monitoring-argo-cd-instances" %}
 
 By default, the {{ gitops_title }} Operator automatically detects an installed Argo CD instance in your defined namespace, for example, `openshift-gitops`, and connects it to the monitoring stack of the cluster to provide alerts for out-of-sync applications.

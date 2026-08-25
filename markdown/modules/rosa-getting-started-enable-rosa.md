@@ -31,7 +31,7 @@ You can enable {{ product_title }} in your AWS account by verifying prerequisite
         After a short wait, a checkmark and `You enabled ROSA` message are displayed.
 1.  Under **Service Quotas**, ensure that a checkmark and `Your quotas meet the requirements for ROSA` are displayed.
 
-    If you see `Your quotas don’t meet the minimum requirements`, take note of the quota type and the minimum listed in the error message. See the Amazon documentation on [requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) for guidance. It might take several hours for Amazon to approve your quota request.
+    If you see `Your quotas don't meet the minimum requirements`, take note of the quota type and the minimum listed in the error message. See the Amazon documentation on [requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) for guidance. It might take several hours for Amazon to approve your quota request.
 1.  Under **ELB service-linked role**, ensure that a checkmark and `AWSServiceRoleForElasticLoadBalancing already exists` are displayed.
 1.  Click **Continue to Red&#160;Hat**.
 

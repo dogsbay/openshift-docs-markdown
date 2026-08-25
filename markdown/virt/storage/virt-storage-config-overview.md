@@ -3,11 +3,11 @@ title: Storage configuration overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Storage configuration overview {id="virt-storage-config-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Storage configuration overview {id="virt-storage-config-overview"}
 {%- set context = "virt-storage-config-overview" %}
 
-You can configure a default storage class, storage profiles, Containerized Data Importer (CDI), data volumes (DVs), and automatic boot source updates.
+You can configure a default storage class, storage profiles, Containerized Data Importer (CDI), data volumes (DVs), and automatic boot source updates. {._abstract}
 
 {% if openshift_dedicated %}
 On {{ product_title }}, specific configurations for Hyperdisk are required to ensure performance and support features like live migration. For more information, see "Storage configuration for {{ VirtProductName }} 4.21.x on Google Cloud" in the "Additional resources" section.
@@ -85,7 +85,7 @@ Manage automatic boot source updates
 
 :   Boot sources can make virtual machine (VM) creation more accessible and efficient for users. If automatic boot source updates are enabled, CDI imports, polls, and updates the images so that they are ready to be cloned for new VMs. By default, CDI automatically updates Red Hat boot sources. You can enable automatic updates for custom boot sources.
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Defining a storage class](/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)
@@ -101,4 +101,4 @@ Manage automatic boot source updates
 *   [Manage automatic boot source updates](/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)
 {%- if openshift_dedicated %}
 *   [Storage configuration for {{ VirtProductName }} 4.22.x on Google Cloud](https://access.redhat.com/articles/7139046)
-{% endif %}
+{%- endif %}

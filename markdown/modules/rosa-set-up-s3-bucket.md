@@ -60,16 +60,16 @@ If you have logs that need long-term storage or large-scale data analysis, set u
 
     &lt;example_group1>
     :   Add one or more of the following groups: `api`, `authentication`, `controller manager`, `scheduler`.
-    1.  Enable the log forwarder to send logs to your {{ product_title }} cluster.
-        1.  To enable control plane log forwarding on a new cluster, include the log forwarding configuration by running the following command:
+1.  Enable the log forwarder to send logs to your {{ product_title }} cluster.
+    1.  To enable control plane log forwarding on a new cluster, include the log forwarding configuration by running the following command:
         ```terminal
         $ rosa create cluster --log-fwd-config="<path_to_file>.yaml"
         ```
-        1.  To enable control plane log forwarding on an existing cluster, include the log forwarding configuration by running the following command:
+    1.  To enable control plane log forwarding on an existing cluster, include the log forwarding configuration by running the following command:
         ```terminal
         $ rosa create log-forwarder -c <cluster> --log-fwd-config="<path_to_file>.yaml" -o yaml
         ```
-    1.  Optional: For an example for forwarding logs to the S3 bucket, apply the following sample YAML:
+1.  Optional: For an example for forwarding logs to the S3 bucket, apply the following sample YAML:
     ```yaml
     s3:
       s3_config_bucket_name: "s3-bucket-name"

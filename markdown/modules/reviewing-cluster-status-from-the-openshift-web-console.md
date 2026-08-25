@@ -20,4 +20,4 @@ The **Overview** page displays the following information:
 
 **Procedure**
 
-*   Navigate to **Home** -> **Overview**.
+*   Navigate to **Home** → **Overview**.

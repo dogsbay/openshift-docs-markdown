@@ -3,11 +3,11 @@ title: OpenShift Container Platform CLI tools overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ product_title }} CLI tools overview {id="cli-tools-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ product_title }} CLI tools overview {id="cli-tools-overview"}
 {%- set context = "cli-tools-overview" %}
 
-{{ product_title }} offers a set of command-line interface (CLI) tools that enable users to perform various administration and development operations from the terminal. These tools expose simple commands to manage the applications, as well as interact with each component of the system.
+{{ product_title }} offers a set of command-line interface (CLI) tools that enable users to perform various administration and development operations from the terminal. These tools expose simple commands to manage the applications, as well as interact with each component of the system. {._abstract}
 
 For example, you can use the CLI to complete the following operations:
 

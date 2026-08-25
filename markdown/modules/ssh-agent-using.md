@@ -105,7 +105,7 @@ As a result, newly provisioned {{ product_title }} nodes are not accessible usin
     ```
 
     Specifies the path and file name, such as `~/.ssh/id_ed25519`, of the new SSH key. If you have an existing key pair, ensure your public key is in the your `~/.ssh` directory.
-{%- if not ibm_power_vs %}
+{% if not ibm_power_vs %}
 
     :::note
 
@@ -138,7 +138,7 @@ As a result, newly provisioned {{ product_title }} nodes are not accessible usin
         ```terminal title="Example output"
         Agent pid 31874
         ```
-{%- if not ibm_power_vs %}
+{% if not ibm_power_vs %}
 
         :::note
 
@@ -162,65 +162,65 @@ As a result, newly provisioned {{ product_title }} nodes are not accessible usin
 *   When you install {{ product_title }}, provide the SSH public key to the installation program.
 {%- if user_infra %}
 If you install a cluster on infrastructure that you provision, you must provide the key to the installation program.
-{% endif %}
+{%- endif %}
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set user_infra = false -%}
+{%- set user_infra = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws" %}
-{%- set user_infra = false -%}
+{%- set user_infra = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-customizations" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-private-cluster" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-gcp-customizations" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-gcp-default" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-gcp-network-customizations" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-gcp-vpc" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp-installer-provisioned" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-bare-metal" %}
-{%- set user_infra = false -%}
+{%- set user_infra = "" -%}
 {% endif %}
 {% if context == "installing-aws-user-infra" %}
-{%- set user_infra = false -%}
+{%- set user_infra = "" -%}
 {% endif %}
 {% if context == "installing-azure-user-infra" %}
-{%- set user_infra = false -%}
+{%- set user_infra = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-custom" %}
-{%- set osp = false -%}
+{%- set osp = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer" %}
-{%- set osp = false -%}
+{%- set osp = "" -%}
 {% endif %}
 {% if context == "upi-ibm-z-preparing-to-install" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-platform-agnostic" %}
-{%- set user_infra = false -%}
+{%- set user_infra = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set user_infra = false -%}
+{%- set user_infra = "" -%}
 {% endif %}
 {% if context == "upi-vsphere-preparing-to-install" %}
-{%- set user_infra = false -%}
+{%- set user_infra = "" -%}
 {% endif %}

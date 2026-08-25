@@ -9,7 +9,7 @@ You can create a `ConsoleLink` custom resource to add a link to the help menu, u
 
 **Procedure**
 
-1.  From **Administration** -> **Custom Resource Definitions**, click **ConsoleLink**.
+1.  From **Administration** → **Custom Resource Definitions**, click **ConsoleLink**.
 1.  Select the **Instances** tab.
 1.  Click **Create Console Link** and edit the file:
     ```yaml

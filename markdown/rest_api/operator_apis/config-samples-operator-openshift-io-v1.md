@@ -1,5 +1,5 @@
 ---
-title: "Config []"
+title: "Config [samples.operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ConfigSpec contains the desired configuration and state for the Samples Operator, controlling various behavior around the imagestreams and templates it creates/updates in the openshift namespace. |
 | `status` | `object` | ConfigStatus contains the actual configuration in effect, as well as various details that describe the state of the Samples Operator. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -51,6 +52,7 @@ Type
 | `skippedHelmCharts` | `array (string)` | skippedHelmCharts specifies names of helm charts that should NOT be managed. Admins can use this to allow them to delete content they don’t want. They will still have to MANUALLY DELETE the content but the operator will not recreate(or update) anything listed here. Few examples of the name of helmcharts which can be skipped are 'redhat-redhat-perl-imagestreams','redhat-redhat-nodejs-imagestreams','redhat-nginx-imagestreams', 'redhat-redhat-ruby-imagestreams','redhat-redhat-python-imagestreams','redhat-redhat-php-imagestreams', 'redhat-httpd-imagestreams','redhat-redhat-dotnet-imagestreams'. Rest of the names can be obtained from openshift console --> helmcharts -->installed helmcharts. This will display the list of all the 12 helmcharts(of imagestreams)being installed by Samples Operator. The skippedHelmCharts must be a valid Kubernetes resource name. May contain only lowercase alphanumeric characters, hyphens and periods, and each period separated segment must begin and end with an alphanumeric character. It must be non-empty and at most 253 characters in length |
 | `skippedImagestreams` | `array (string)` | skippedImagestreams specifies names of image streams that should NOT be created/updated.  Admins can use this to allow them to delete content they don’t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
 | `skippedTemplates` | `array (string)` | skippedTemplates specifies names of templates that should NOT be created/updated.  Admins can use this to allow them to delete content they don’t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
+
 ### .status {id="_status"}
 
 Description
@@ -71,6 +73,7 @@ Type
 | `skippedImagestreams` | `array (string)` | skippedImagestreams specifies names of image streams that should NOT be created/updated.  Admins can use this to allow them to delete content they don’t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
 | `skippedTemplates` | `array (string)` | skippedTemplates specifies names of templates that should NOT be created/updated.  Admins can use this to allow them to delete content they don’t want.  They will still have to manually delete the content but the operator will not recreate(or update) anything listed here. |
 | `version` | `string` | version is the value of the operator’s payload based version indicator when it was last successfully processed |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -113,12 +116,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Config
     *   `GET`: list objects of kind Config
     *   `POST`: create a Config
-*   `/apis/samples.operator.openshift.io/v1/configs/{{ name }}`
+*   `/apis/samples.operator.openshift.io/v1/configs/{{ name }}`{minja}
     *   `DELETE`: delete a Config
     *   `GET`: read the specified Config
     *   `PATCH`: partially update the specified Config
     *   `PUT`: replace the specified Config
-*   `/apis/samples.operator.openshift.io/v1/configs/{{ name }}/status`
+*   `/apis/samples.operator.openshift.io/v1/configs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Config
     *   `PATCH`: partially update status of the specified Config
     *   `PUT`: replace status of the specified Config

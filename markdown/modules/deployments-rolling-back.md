@@ -19,8 +19,8 @@ Rollbacks revert an application back to a previous revision and can be performed
     ```
 
 
-:::note
+    :::note
 
-Deployment configs also support automatically rolling back to the last successful revision of the configuration in case the latest deployment process fails. In that case, the latest template that failed to deploy stays intact by the system and it is up to users to fix their configurations.
-
-:::
+    Deployment configs also support automatically rolling back to the last successful revision of the configuration in case the latest deployment process fails. In that case, the latest template that failed to deploy stays intact by the system and it is up to users to fix their configurations.
+    
+    :::

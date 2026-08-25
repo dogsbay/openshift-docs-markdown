@@ -3,11 +3,11 @@ title: "Requirements for {{ hcp }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Requirements for {{ hcp }} {id="hcp-requirements"}
 {% include "./_attributes/common-attributes.md" %}
+# Requirements for {{ hcp }} {id="hcp-requirements"}
 {%- set context = "hcp-requirements" %}
 
-Ensure you are familiar with the general requirements to deploy {{ hcp }}.
+Ensure you are familiar with the general requirements to deploy {{ hcp }}. {._abstract}
 
 The following requirements apply to {{ hcp }}:
 
@@ -21,7 +21,7 @@ The following requirements apply to {{ hcp }}:
 
 {% leveloffset +1 %}{% include "./modules/hcp-support-matrix.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)
 *   [Shared infrastructure between hosted and standalone control planes](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)
@@ -32,6 +32,7 @@ The following requirements apply to {{ hcp }}:
 {% leveloffset +1 %}{% include "./modules/hcp-fips.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)
 *   [Red&#160;Hat {{ product_title }} Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?operator=multicluster-engine&&upgrade_path=4.14%20to%204.16)
@@ -40,5 +41,6 @@ The following requirements apply to {{ hcp }}:
 {% leveloffset +1 %}{% include "./modules/hcp-cidr-ranges.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [CIDR range definitions](/networking/networking_overview/cidr-range-definitions#cidr-range-definitions)

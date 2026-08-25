@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "cluster-logging-enabling-json-logging" %}
-# Enabling JSON log forwarding {id="cluster-logging-enabling-json-logging"}
 {% include "./_attributes/common-attributes.md" %}
+# Enabling JSON log forwarding {id="cluster-logging-enabling-json-logging"}
 
 You can configure the Log Forwarding API to parse JSON strings into a structured object.
 

@@ -25,12 +25,12 @@ The Jenkins server can be configured with the following environment variables:
 <tr>
   <td><code>JAVA_MAX_HEAP_PARAM</code>, <code>CONTAINER_HEAP_PERCENT</code>, <code>JENKINS_MAX_HEAP_UPPER_BOUND_MB</code></td>
   <td>These values control the maximum heap size of the Jenkins JVM. If <code>JAVA_MAX_HEAP_PARAM</code> is set, its value takes precedence. Otherwise, the maximum heap size is dynamically calculated as <code>CONTAINER_HEAP_PERCENT</code> of the container memory limit, optionally capped at <code>JENKINS_MAX_HEAP_UPPER_BOUND_MB</code> MiB. By default, the maximum heap size of the Jenkins JVM is set to 50% of the container memory limit with no cap.</td>
-  <td><code>JAVA_MAX_HEAP_PARAM</code> example setting: <code>-Xmx512m</code></td>
+  <td><code>JAVA_MAX_HEAP_PARAM</code> example setting: <code>-Xmx512m</code><br><br><code>CONTAINER_HEAP_PERCENT</code> default: <code>0.5</code>, or 50%<br><br><code>JENKINS_MAX_HEAP_UPPER_BOUND_MB</code> example setting: <code>512 MiB</code></td>
 </tr>
 <tr>
   <td><code>JAVA_INITIAL_HEAP_PARAM</code>, <code>CONTAINER_INITIAL_PERCENT</code></td>
   <td>These values control the initial heap size of the Jenkins JVM. If <code>JAVA_INITIAL_HEAP_PARAM</code> is set, its value takes precedence. Otherwise, the initial heap size is dynamically calculated as <code>CONTAINER_INITIAL_PERCENT</code> of the dynamically calculated maximum heap size. By default, the JVM sets the initial heap size.</td>
-  <td><code>JAVA_INITIAL_HEAP_PARAM</code> example setting: <code>-Xms32m</code></td>
+  <td><code>JAVA_INITIAL_HEAP_PARAM</code> example setting: <code>-Xms32m</code><br><br><code>CONTAINER_INITIAL_PERCENT</code> example setting: <code>0.1</code>, or 10%</td>
 </tr>
 <tr>
   <td><code>CONTAINER_CORE_LIMIT</code></td>
@@ -85,12 +85,12 @@ The Jenkins server can be configured with the following environment variables:
 <tr>
   <td><code>AGENT_BASE_IMAGE</code></td>
   <td>Setting this value overrides the image used for the <code>jnlp</code> container in the sample Kubernetes plugin pod templates provided with this image. Otherwise, the image from the <code>jenkins-agent-base-rhel8:latest</code> image stream tag in the <code>openshift</code> namespace is used.</td>
-  <td>Default:</td>
+  <td>Default: <code>image-registry.openshift-image-registry.svc:5000/openshift/jenkins-agent-base-rhel8:latest</code></td>
 </tr>
 <tr>
   <td><code>JAVA_BUILDER_IMAGE</code></td>
   <td>Setting this value overrides the image used for the <code>java-builder</code> container in the <code>java-builder</code> sample Kubernetes plugin pod templates provided with this image. Otherwise, the image from the <code>java:latest</code> image stream tag in the <code>openshift</code> namespace is used.</td>
-  <td>Default:</td>
+  <td>Default: <code>image-registry.openshift-image-registry.svc:5000/openshift/java:latest</code></td>
 </tr>
 <tr>
   <td><code>JAVA_FIPS_OPTIONS</code></td>

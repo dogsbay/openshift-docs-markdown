@@ -3,11 +3,11 @@ title: Adding compute machines to bare metal
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Adding compute machines to bare metal {id="adding-bare-metal-compute-user-infra"}
 {% include "./_attributes/common-attributes.md" %}
+# Adding compute machines to bare metal {id="adding-bare-metal-compute-user-infra"}
 {%- set context = "adding-bare-metal-compute-user-infra" %}
 
-To scale your {{ product_title }} cluster on bare-metal or platform-agnostic infrastructure, you can add more compute machines. Create {{ op_system }} machines, then approve their certificate signing requests.
+To scale your {{ product_title }} cluster on bare-metal or platform-agnostic infrastructure, you can add more compute machines. Create {{ op_system }} machines, then approve their certificate signing requests. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/adding-bare-metal-compute-user-infra-prereqs.md" %}{% endleveloffset %}
 
@@ -18,6 +18,7 @@ To scale your {{ product_title }} cluster on bare-metal or platform-agnostic inf
 {% leveloffset +2 %}{% include "./modules/machine-user-infra-machines-pxe.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red&#160;Hat Knowledgebase article)](https://access.redhat.com/articles/7212)
 *   [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)

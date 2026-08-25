@@ -26,7 +26,7 @@ The `Conflicted` listener condition uses negative polarity. This means that a st
 | `DNSReady` | `True` | DNS records for all listeners are functioning correctly. |
 | `DNSReady` | `False` | One or more listeners have DNS provisioning issues. |
 
-***Listener-level status conditions***
+**Listener-level status conditions**
 
 <table>
 <thead>
@@ -90,7 +90,7 @@ The `Conflicted` listener condition uses negative polarity. This means that a st
 <tr>
   <td><code>DNSReady</code></td>
   <td><code>Unknown</code></td>
-  <td>The DNS status cannot be determined or is unmanaged.<br><br><dl><dt>Note</dt><dd>Listeners without a configured hostname will not have DNS conditions added to their <code>status</code>.</dd></dl></td>
+  <td>The DNS status cannot be determined or is unmanaged.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Listeners without a configured hostname will not have DNS conditions added to their <code>status</code>.</dd></dl></td>
 </tr>
 </tbody>
 </table>

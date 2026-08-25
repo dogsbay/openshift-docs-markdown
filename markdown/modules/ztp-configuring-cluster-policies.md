@@ -33,6 +33,6 @@ The following recommended structuring of policies combines configuration CRs to 
 
 | Policy category | Description |
 | --- | --- |
-| Common | A policy that exists in the common category is applied to all clusters in the fleet. Use common `{{ policy_gen_cr }}` CRs to apply common installation settings across all cluster types. |
-| Groups | A policy that exists in the groups category is applied to a group of clusters in the fleet. Use group `{{ policy_gen_cr }}` CRs to manage specific aspects of single-node, three-node, and standard cluster installations. Cluster groups can also follow geographic region, hardware variant, etc. |
+| Common | A policy that exists in the common category is applied to all clusters in the fleet. Use common `{{ policy_gen_cr }}`{minja} CRs to apply common installation settings across all cluster types. |
+| Groups | A policy that exists in the groups category is applied to a group of clusters in the fleet. Use group `{{ policy_gen_cr }}`{minja} CRs to manage specific aspects of single-node, three-node, and standard cluster installations. Cluster groups can also follow geographic region, hardware variant, etc. |
 | Sites | A policy that exists in the sites category is applied to a specific cluster site. Any cluster can have its own specific policies maintained. |

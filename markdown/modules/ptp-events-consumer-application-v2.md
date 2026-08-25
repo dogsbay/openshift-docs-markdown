@@ -49,7 +49,7 @@ func createSubscription(resourceAddress string) (sub pubsub.PubSub, err error) {
   var status int
   apiPath := "/api/ocloudNotifications/v2/"
   localAPIAddr := "consumer-events-subscription-service.cloud-events.svc.cluster.local:9043" // vDU service API address
-  apiAddr := "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043" // (1)
+  apiAddr := "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043" (1)
   apiVersion := "2.0"
 
   subURL := &types.URI{URL: url.URL{Scheme: "http",
@@ -82,7 +82,7 @@ func createSubscription(resourceAddress string) (sub pubsub.PubSub, err error) {
 func getCurrentState(resource string) {
   //Create publisher
   url := &types.URI{URL: url.URL{Scheme: "http",
-    Host: "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043", // (1)
+    Host: "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043", (1)
     Path: fmt.SPrintf("/api/ocloudNotifications/v2/%s/CurrentState",resource}}
   rc := restclient.New()
   status, event := rc.Get(url)

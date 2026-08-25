@@ -45,7 +45,7 @@ Create a `ServiceMonitor` resource to scrape Velero metrics from the {{ oadp_sho
 **Verification**
 
 *   Confirm that the new service monitor is in an **Up** state by using the **Administrator** perspective of the {{ product_title }} web console. Wait a few minutes for the service monitor to reach the **Up** state.
-    1.  Navigate to the **Observe** -> **Targets** page.
+    1.  Navigate to the **Observe** → **Targets** page.
     1.  Ensure the **Filter** is unselected or that the **User** source is selected and type `openshift-adp` in the `Text` search field.
     1.  Verify that the status for the **Status** for the service monitor is **Up**.
 

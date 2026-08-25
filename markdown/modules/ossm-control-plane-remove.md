@@ -11,7 +11,7 @@ You can remove the {{ SMProductName }} control plane by using the web console.
 
 1.  Log in to the {{ product_title }} web console.
 1.  Click the **Project** menu and select the project where you installed the {{ SMProductShortName }} control plane, for example **istio-system**.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click **Service Mesh Control Plane** under **Provided APIs**.
 1.  Click the `ServiceMeshControlPlane` menu {{ kebab }}.
 1.  Click **Delete Service Mesh Control Plane**.

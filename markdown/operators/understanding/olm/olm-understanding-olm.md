@@ -3,11 +3,11 @@ title: Operator Lifecycle Manager concepts and resources
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Operator Lifecycle Manager concepts and resources {id="olm-understanding-olm"}
 {% include "./_attributes/common-attributes.md" %}
+# Operator Lifecycle Manager concepts and resources {id="olm-understanding-olm"}
 {%- set context = "olm-understanding-olm" %}
 
-Key concepts for understanding Operator Lifecycle Manager (OLM) include cluster service versions (CSVs), catalog sources, subscriptions, and Operator groups.
+Key concepts for understanding Operator Lifecycle Manager (OLM) include cluster service versions (CSVs), catalog sources, subscriptions, and Operator groups. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/olm-overview.md" %}{% endleveloffset %}
 
@@ -18,6 +18,7 @@ Key concepts for understanding Operator Lifecycle Manager (OLM) include cluster 
 {% leveloffset +2 %}{% include "./modules/olm-catalogsource.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 *   [Red Hat-provided Operator catalogs](/operators/understanding/olm-rh-catalogs#olm-rh-catalogs)
@@ -37,6 +38,7 @@ Key concepts for understanding Operator Lifecycle Manager (OLM) include cluster 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Removing custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-removing-catalogs_olm-managing-custom-catalogs)
 *   [Disabling the default OperatorHub catalog sources](/operators/admin/olm-managing-custom-catalogs#olm-restricted-networks-operatorhub_olm-managing-custom-catalogs)
@@ -45,6 +47,7 @@ Key concepts for understanding Operator Lifecycle Manager (OLM) include cluster 
 {% leveloffset +2 %}{% include "./modules/olm-subscription.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   [Multitenancy and Operator colocation](/operators/understanding/olm/olm-colocation#olm-colocation)
@@ -56,6 +59,7 @@ Key concepts for understanding Operator Lifecycle Manager (OLM) include cluster 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Multitenancy and Operator colocation](/operators/understanding/olm/olm-colocation#olm-colocation)
 *   [Allowing non-cluster administrators to install Operators](/operators/admin/olm-creating-policy#olm-creating-policy)
@@ -64,11 +68,13 @@ Key concepts for understanding Operator Lifecycle Manager (OLM) include cluster 
 {% leveloffset +2 %}{% include "./modules/olm-operatorgroups-about.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Operator groups](/operators/understanding/olm/olm-understanding-operatorgroups#olm-understanding-operatorgroups)
 
 {% leveloffset +2 %}{% include "./modules/olm-operatorconditions-about.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Operator conditions](/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)

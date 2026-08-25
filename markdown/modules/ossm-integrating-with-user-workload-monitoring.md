@@ -29,7 +29,7 @@ The following steps show how to integrate Service Mesh with user-workload monito
       namespace: istio-system
     ```
 1.  Configure Kiali for user-workload monitoring:
-    {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
     ```yaml
     apiVersion: kiali.io/v1alpha1
     kind: Kiali
@@ -111,7 +111,7 @@ The following steps show how to integrate Service Mesh with user-workload monito
               url: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
           version: v1.65
         ```
-{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 
         :::note
 
@@ -140,9 +140,9 @@ The following steps show how to integrate Service Mesh with user-workload monito
     spec:
       addons:
         prometheus:
-          enabled: false # (1)
+          enabled: false (1)
         grafana:
-          enabled: false # (2)
+          enabled: false (2)
         kiali:
           name: kiali-user-workload-monitoring
       meshConfig:
@@ -158,7 +158,7 @@ The following steps show how to integrate Service Mesh with user-workload monito
     kind: NetworkPolicy
     metadata:
       name: user-workload-access
-      namespace: istio-system # (1)
+      namespace: istio-system (1)
     spec:
       ingress:
       - from:
@@ -176,9 +176,9 @@ The following steps show how to integrate Service Mesh with user-workload monito
     kind: Telemetry
     metadata:
       name: enable-prometheus-metrics
-      namespace: istio-system # (1)
+      namespace: istio-system (1)
     spec:
-      selector: # (2)
+      selector: (2)
         matchLabels:
           app: bookinfo
       metrics:
@@ -193,7 +193,7 @@ The following steps show how to integrate Service Mesh with user-workload monito
     kind: ServiceMonitor
     metadata:
       name: istiod-monitor
-      namespace: istio-system # (1)
+      namespace: istio-system (1)
     spec:
       targetLabels:
       - app
@@ -205,21 +205,21 @@ The following steps show how to integrate Service Mesh with user-workload monito
         interval: 30s
         relabelings:
         - action: replace
-          replacement: "basic-istio-system" # (2)
+          replacement: "basic-istio-system" (2)
           targetLabel: mesh_id
     ```
     1.  Create  this `ServiceMonitor` object in the Istio control plane namespace because it monitors the Istiod service. In this example, the namespace is `istio-system`.
     1.  The string `"basic-istio-system"` is a combination of the SMCP name and its namespace, but any label can be used as long as it is unique for every mesh using user workload monitoring in the cluster. The `spec.prometheus.query_scope` of the Kiali resource configured in Step 2 needs to match this value.
 
-        :::note
+    :::note
 
-        If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
+    If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
 
-        If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
+    If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
 
-        If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
-        
-        :::
+    If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
+    
+    :::
 
 1.  Apply a `PodMonitor` object to collect metrics from Istio proxies:
     ```yaml
@@ -227,7 +227,7 @@ The following steps show how to integrate Service Mesh with user-workload monito
     kind: PodMonitor
     metadata:
       name: istio-proxies-monitor
-      namespace: istio-system # (1)
+      namespace: istio-system (1)
     spec:
       selector:
         matchExpressions:
@@ -263,20 +263,20 @@ The following steps show how to integrate Service Mesh with user-workload monito
           action: replace
           targetLabel: pod_name
         - action: replace
-          replacement: "basic-istio-system" # (2)
+          replacement: "basic-istio-system" (2)
           targetLabel: mesh_id
     ```
     1.  Since {{ product_title }} monitoring ignores the `namespaceSelector` spec in `ServiceMonitor` and `PodMonitor` objects, you must apply the `PodMonitor` object in all mesh namespaces, including the control plane namespace.
     1.  The string `"basic-istio-system"` is a combination of the SMCP name and its namespace, but any label can be used as long as it is unique for every mesh using user workload monitoring in the cluster. The `spec.prometheus.query_scope` of the Kiali resource configured in Step 2 needs to match this value.
 
-        :::note
+    :::note
 
-        If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
+    If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
 
-        If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
+    If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
 
-        If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
-        
-        :::
+    If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
+    
+    :::
 
 1.  Open the {{ product_title }} web console, and check that metrics are visible.

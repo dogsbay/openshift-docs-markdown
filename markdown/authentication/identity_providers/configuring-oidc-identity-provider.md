@@ -3,8 +3,8 @@ title: Configuring an OpenID Connect identity provider
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring an OpenID Connect identity provider {id="configuring-oidc-identity-provider"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring an OpenID Connect identity provider {id="configuring-oidc-identity-provider"}
 {%- set context = "configuring-oidc-identity-provider" %}
 
 Configure the `oidc` identity provider to integrate with an OpenID Connect identity provider using an [Authorization Code Flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth).
@@ -29,6 +29,7 @@ Configure the `oidc` identity provider to integrate with an OpenID Connect ident
 {% leveloffset +1 %}{% include "./modules/identity-provider-oidc-CR.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
 

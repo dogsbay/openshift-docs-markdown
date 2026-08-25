@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# AWS Load Balancer Operator {id="aws-load-balancer"}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# AWS Load Balancer Operator {id="aws-load-balancer"}
 {%- set context = "aws-load-balancer-operator" %}
 
 The AWS Load Balancer Operator is an Operator supported by Red&#160;Hat that you can optionally install on Site Reliability Engineering (SRE)-managed {{ product_title }} clusters. {._abstract}
@@ -35,8 +35,8 @@ Compared with the default AWS in-tree load balancer provider, this controller pr
 
 {%- if openshift_rosa %}
 *   [Creating a {{ product_title }} cluster with STS using the default options](/rosa_install_access_delete_clusters/rosa-sts-creating-a-cluster-quickly#rosa-sts-creating-a-cluster-quickly)
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 *   [Creating {{ product_title }} clusters using the default options](/rosa_hcp/rosa-hcp-sts-creating-a-cluster-quickly#rosa-hcp-sts-creating-a-cluster-quickly_rosa-hcp-sts-creating-a-cluster-quickly)
 {%- endif %}
 *   [AWS Load Balancer Operator on GitHub](https://github.com/openshift/aws-load-balancer-operator)

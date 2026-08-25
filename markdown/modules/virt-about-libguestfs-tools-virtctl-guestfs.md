@@ -19,10 +19,10 @@ By default, `virtctl guestfs` creates a session with everything needed to manage
 | Flag Option | Description |
 | --- | --- |
 | `--h` or `--help` | Provides help for `guestfs`. |
-| `-n <namespace>` option with a `<pvc_name>` argument | To use a PVC from a specific namespace. If you do not use the `-n <namespace>` option, your current project is used. To change projects, use `oc project <namespace>`. If you do not include a `<pvc_name>` argument, an error message appears. |
-| `--image string` | Lists the `libguestfs-tools` container image. You can configure the container to use a custom image by using the `--image` option. |
-| `--kvm` | Indicates that `kvm` is used by the `libguestfs-tools` container. By default, `virtctl guestfs` sets up `kvm` for the interactive container, which greatly speeds up the `libguest-tools` execution because it uses QEMU. If a cluster does not have any `kvm` supporting nodes, you must disable `kvm` by setting the option `--kvm=false`. If not set, the `libguestfs-tools` pod remains pending because it cannot be scheduled on any node. |
-| `--pull-policy string` | Shows the pull policy for the `libguestfs` image. You can also overwrite the image’s pull policy by setting the `pull-policy` option. |
+| `-n <namespace>` option with a `<pvc_name>` argument | To use a PVC from a specific namespace.<br>If you do not use the `-n <namespace>` option, your current project is used. To change projects, use `oc project <namespace>`.<br>If you do not include a `<pvc_name>` argument, an error message appears. |
+| `--image string` | Lists the `libguestfs-tools` container image.<br>You can configure the container to use a custom image by using the `--image` option. |
+| `--kvm` | Indicates that `kvm` is used by the `libguestfs-tools` container.<br>By default, `virtctl guestfs` sets up `kvm` for the interactive container, which greatly speeds up the `libguest-tools` execution because it uses QEMU.<br>If a cluster does not have any `kvm` supporting nodes, you must disable `kvm` by setting the option `--kvm=false`.<br>If not set, the `libguestfs-tools` pod remains pending because it cannot be scheduled on any node. |
+| `--pull-policy string` | Shows the pull policy for the `libguestfs` image.<br>You can also overwrite the image’s pull policy by setting the `pull-policy` option. |
 
 The command also checks if a PVC is in use by another pod, in which case an error message appears. However, once the `libguestfs-tools` process starts, the setup cannot avoid a new pod using the same PVC. You must verify that there are no active `virtctl guestfs` pods before starting the VM that accesses the same PVC.
 

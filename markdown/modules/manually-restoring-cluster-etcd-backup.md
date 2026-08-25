@@ -56,7 +56,7 @@ When you restore your cluster, you must use an etcd backup that was taken from t
         ```terminal
         $ crictl stop <container_id>
         ```
-    1.  Repeat the same steps for `kube-controller-manager-pod.yaml`, `kube-scheduler-pod.yaml` and ***finally*** `etcd-pod.yaml`.
+    1.  Repeat the same steps for `kube-controller-manager-pod.yaml`, `kube-scheduler-pod.yaml` and **finally** `etcd-pod.yaml`.
         1.  Stop the `kube-controller-manager` pod with the following command:
             ```terminal
             $ mv /etc/kubernetes/manifests/kube-controller-manager-pod.yaml /root/manifests-backup/
@@ -204,7 +204,7 @@ When you restore your cluster, you must use an etcd backup that was taken from t
 
     1.  Repeat these steps on the other control plane hosts.
 1.  Restart the etcd cluster.
-    1.  The following steps must be executed on all control plane hosts, but ***one host at a time***.
+    1.  The following steps must be executed on all control plane hosts, but **one host at a time**.
     1.  Move the `etcd` static pod manifest back to the kubelet manifest directory, in order to make kubelet start the related containers :
         ```terminal
         $ mv /root/manifests-backup/etcd-pod.yaml /etc/kubernetes/manifests

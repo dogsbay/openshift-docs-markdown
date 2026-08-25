@@ -5,7 +5,7 @@ To use advanced container management features, you might want to use Podman with
 
 **Procedure**
 
-1.  Start the Podman service that serves the Docker API on a UNIX socket at `${{ XDG_RUNTIME_DIR }}/podman/podman.sock`:
+1.  Start the Podman service that serves the Docker API on a UNIX socket at `${{ XDG_RUNTIME_DIR }}/podman/podman.sock`{minja}:
     ```terminal
     $ systemctl start --user podman.socket
     ```

@@ -5,7 +5,7 @@ You can use the {{ product_title }} web console to enable feature sets for all o
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, switch to the **Administration** -> **Custom Resource Definitions** page.
+1.  In the {{ product_title }} web console, switch to the **Administration** → **Custom Resource Definitions** page.
 1.  On the **Custom Resource Definitions** page, click **FeatureGate**.
 1.  On the **Custom Resource Definition Details** page, click the **Instances** tab.
 1.  Click the **cluster** feature gate, then click the **YAML** tab.

@@ -23,7 +23,7 @@ To enable the use of {{ FunctionsProductName }} on your cluster, you must comple
 {%- endif %}
 {%- if openshift_dedicated or openshift_rosa %}
 *   You have the `oc` CLI installed.
-{% endif %}
+{%- endif %}
 *   You have the [Knative (`kn`) CLI](/serverless/install/installing-kn#installing-kn) installed. Installing the Knative CLI enables the use of `kn func` commands which you can use to create and manage functions.
 *   You have installed Docker Container Engine or Podman version 3.4.7 or higher.
 *   You have access to an available image registry, such as the OpenShift Container Registry.
@@ -33,14 +33,14 @@ To enable the use of {{ FunctionsProductName }} on your cluster, you must comple
 {%- endif %}
 {%- if openshift_dedicated or openshift_rosa %}
 *   If you are using [Quay.io](https://quay.io/) as the image registry, you must ensure that either the repository is not private, or that you have allowed pods on your cluster to reference images from other secured registries.
-{% endif %}
+{%- endif %}
 
 {% if openshift_enterprise %}
 *   If you are using the OpenShift Container Registry, a cluster administrator must [expose the registry](/registry/securing-exposing-registry#securing-exposing-registry).
 {%- endif %}
 {%- if openshift_dedicated or openshift_rosa %}
 *   If you are using the OpenShift Container Registry, a cluster or dedicated administrator must expose the registry.
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/serverless-functions-podman.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/serverless-functions-podman-macos.md" %}{% endleveloffset %}
@@ -50,4 +50,5 @@ To enable the use of {{ FunctionsProductName }} on your cluster, you must comple
 {% if openshift_enterprise %}
 *   For more information about Docker Container Engine or Podman, see [Container build tool options](/architecture/understanding-development#container-build-tool-options).
 {%- endif %}
+
 *   See [Getting started with functions](/serverless/functions/serverless-functions-getting-started#serverless-functions-getting-started).

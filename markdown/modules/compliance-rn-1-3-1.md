@@ -12,7 +12,7 @@ This update addresses a CVE in an underlying dependency.
 ## New features and enhancements {id="compliance-operator-1-3-1-new-features-and-enhancements_{{ context }}"}
 
 *   You can install and use the Compliance Operator in an {{ product_title }} cluster running in FIPS mode.
-{% include "./snippets/fips-snippet.md" %}
+    {% include "./snippets/fips-snippet.md" %}
 
 ## Known issue {id="compliance-operator-1-3-1-known-issue_{{ context }}"}
 

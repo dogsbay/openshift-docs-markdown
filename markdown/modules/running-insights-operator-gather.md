@@ -10,7 +10,7 @@ An on-demand `DataGather` operation is:
 *   Useful for one-off data collections that require different CRD configurations to the periodic data gathering (`InsightsDataGather`) specification.
 *   Independent from the periodic data gathering. When you create an on-demand `DataGather` CRD, the configuration is independent from the `InsightsDataGather` CRD specification of your periodic data gathering job.
 
-***Custom specification options***
+**Custom specification options**
 
 You can optionally customize the following items for the on-demand data gather operation:
 

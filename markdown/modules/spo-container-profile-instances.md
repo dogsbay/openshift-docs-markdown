@@ -19,7 +19,7 @@ To reuse one recorded profile when deploying applications with a `ReplicaSet` or
 **Procedure**
 
 1.  Edit a `ProfileRecording` object to include a `mergeStrategy: containers` variable:
-    ```yaml
+    ```yaml {minja}
     apiVersion: security-profiles-operator.x-k8s.io/v1alpha1
     kind: ProfileRecording
     metadata:
@@ -72,10 +72,10 @@ To reuse one recorded profile when deploying applications with a `ReplicaSet` or
     $ oc delete profilerecording test-recording -n my-namespace
     ```
 1.  To start the merge operation and generate the results profile, run the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ object }} -lspo.x-k8s.io/recording-id=test-recording -n my-namespace
     ```
-{%- if selinux %}
+{% if selinux %}
     ```terminal title="Example output for SELinux profile"
     NAME                          USAGE                            STATE
     test-recording-nginx-record   test-recording-nginx-record.process   Installed
@@ -88,19 +88,19 @@ To reuse one recorded profile when deploying applications with a `ReplicaSet` or
     ```
 {%- endif %}
 1.  To view the permissions used by any of the containers, run the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ object }} test-recording-nginx-record -o yaml
     ```
 
 {% if context == "spo-seccomp" %}
-{%- set seccomp = false -%}
-{%- set type = false -%}
-{%- set kind = false -%}
-{%- set object = false -%}
+{%- set seccomp = "" -%}
+{%- set type = "" -%}
+{%- set kind = "" -%}
+{%- set object = "" -%}
 {% endif %}
 {% if context == "spo-selinux" %}
-{%- set selinux = false -%}
-{%- set type = false -%}
-{%- set kind = false -%}
-{%- set object = false -%}
+{%- set selinux = "" -%}
+{%- set type = "" -%}
+{%- set kind = "" -%}
+{%- set object = "" -%}
 {% endif %}

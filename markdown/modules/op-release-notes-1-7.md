@@ -112,7 +112,7 @@ In addition to the fixes and stability improvements, the following sections high
           value: "false"
     ...
     ```
-*   With this update, you can disable the integration of Tekton Hub with the ***Developer*** perspective by setting the `enable-devconsole-integration` flag in the `TektonConfig` custom resource to `false`. For example:
+*   With this update, you can disable the integration of Tekton Hub with the **Developer** perspective by setting the `enable-devconsole-integration` flag in the `TektonConfig` custom resource to `false`. For example:
     ```yaml
     ...
     hub:

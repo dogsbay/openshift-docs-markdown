@@ -16,7 +16,7 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 :::
 
 
-***`ImageSetConfiguration` parameters***
+**`ImageSetConfiguration` parameters**
 
 <table>
 <thead>
@@ -30,17 +30,17 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 <tr>
   <td><code>apiVersion</code></td>
   <td>The API version of the <code>ImageSetConfiguration</code> content.</td>
-  <td>StringExample: <code>mirror.openshift.io/v2alpha1</code></td>
+  <td>String Example: <code>mirror.openshift.io/v2alpha1</code></td>
 </tr>
 <tr>
   {% if not microshift %}<td><code>archiveSize</code></td>{% endif %}
   {% if not microshift %}<td>The maximum size, in GiB, of each archive file within the image set.</td>{% endif %}
-  {% if not microshift %}<td>IntegerExample: <code>4</code></td>{% endif %}
+  {% if not microshift %}<td>Integer Example: <code>4</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>kubeVirtContainer</code></td>{% endif %}
   {% if not microshift %}<td>When set to <code>true</code>, includes images from the HyperShift KubeVirt CoreOS container.</td>{% endif %}
-  {% if not microshift %}<td>BooleanExample <code>ImageSetConfiguration</code> file:<pre>apiVersion: mirror.openshift.io/v2alpha1&#10;kind: ImageSetConfiguration&#10;mirror:&#10;  platform:&#10;    channels:&#10;    - name: stable-4.16&#10;      minVersion: 4.16.0&#10;      maxVersion: 4.16.0&#10;    kubeVirtContainer: true</pre></td>{% endif %}
+  {% if not microshift %}<td>Boolean Example <code>ImageSetConfiguration</code> file:<pre>apiVersion: mirror.openshift.io/v2alpha1&#10;kind: ImageSetConfiguration&#10;mirror:&#10;  platform:&#10;    channels:&#10;    - name: stable-4.16&#10;      minVersion: 4.16.0&#10;      maxVersion: 4.16.0&#10;    kubeVirtContainer: true</pre></td>{% endif %}
 </tr>
 <tr>
   <td><code>mirror</code></td>
@@ -55,7 +55,7 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 <tr>
   <td><code>mirror.additionalImages.name</code></td>
   <td>The tag or digest of the image to mirror.</td>
-  <td>StringExample: <code>registry.redhat.io/ubi8/ubi:latest</code></td>
+  <td>String Example: <code>registry.redhat.io/ubi8/ubi:latest</code></td>
 </tr>
 <tr>
   <td><code>mirror.additionalImages.targetRepo</code></td>
@@ -70,7 +70,7 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 <tr>
   <td><code>mirror.blockedImages</code></td>
   <td>List of images with a tag or digest (SHA) to block from mirroring.</td>
-  <td>Array of stringsExample: <code>docker.io/library/alpine</code></td>
+  <td>Array of strings Example: <code>docker.io/library/alpine</code></td>
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.helm</code></td>{% endif %}
@@ -84,7 +84,7 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.helm.local.charts.imagePaths</code></td>{% endif %}
-  {% if not microshift %}<td>The custom path of a container image inside of the local helm chart.+<dl><dt>Note</dt><dd><code>oc-mirror</code> detects and mirrors container images from the helm chart by searching well-known paths. You can also specify custom paths using this field.</dd></dl>+<dl><dt>Note</dt><dd>Operand images, dynamically deployed by Operator controllers at runtime, are typically referenced by environment variables within the controller's deployment template. Before {{ product_title }} 4.20, while <code>oc-mirror</code> could access these environment variables, it attempted to mirror all values, including non-image references, for example, log levels, leading to failures. With this update, you can mirror only the container images referenced in these environment variables.</dd></dl></td>{% endif %}
+  {% if not microshift %}<td>The custom path of a container image inside of the local helm chart.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd><code>oc-mirror</code> detects and mirrors container images from the helm chart by searching well-known paths. You can also specify custom paths using this field.</dd></dl><br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Operand images, dynamically deployed by Operator controllers at runtime, are typically referenced by environment variables within the controller's deployment template. Before {{ product_title }} 4.20, while <code>oc-mirror</code> could access these environment variables, it attempted to mirror all values, including non-image references, for example, log levels, leading to failures. With this update, you can mirror only the container images referenced in these environment variables.</dd></dl></td>{% endif %}
   {% if not microshift %}<td>Array of string. For example:  <code>"- {.spec.template.spec.custom[*].image}"</code>.</td>{% endif %}
 </tr>
 <tr>
@@ -124,7 +124,7 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.helm.repositories.charts.imagePaths</code></td>{% endif %}
-  {% if not microshift %}<td>The custom path of a container image inside of the helm chart.+<dl><dt>Note</dt><dd><code>oc-mirror</code> detects and mirrors container images from the helm chart by searching well-known paths. You can also specify custom paths using this field.</dd></dl>+<dl><dt>Note</dt><dd>Operand images, dynamically deployed by Operator controllers at runtime, are typically referenced by environment variables within the controller's deployment template. Before {{ product_title }} 4.20, while <code>oc-mirror</code> could access these environment variables, it attempted to mirror all values, including non-image references, for example, log levels, leading to failures. With this update, you can mirror only the container images referenced in these environment variables.</dd></dl></td>{% endif %}
+  {% if not microshift %}<td>The custom path of a container image inside of the helm chart.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd><code>oc-mirror</code> detects and mirrors container images from the helm chart by searching well-known paths. You can also specify custom paths using this field.</dd></dl><br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Operand images, dynamically deployed by Operator controllers at runtime, are typically referenced by environment variables within the controller's deployment template. Before {{ product_title }} 4.20, while <code>oc-mirror</code> could access these environment variables, it attempted to mirror all values, including non-image references, for example, log levels, leading to failures. With this update, you can mirror only the container images referenced in these environment variables.</dd></dl></td>{% endif %}
   {% if not microshift %}<td>Array of string. For example:  <code>"- {.spec.template.spec.custom[*].image}"</code>.</td>{% endif %}
 </tr>
 <tr>
@@ -135,12 +135,12 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 <tr>
   <td><code>mirror.operators.catalog</code></td>
   <td>The Operator catalog to include in the image set.</td>
-  <td>StringExample: <code>registry.redhat.io/redhat/redhat-operator-index:v4.15</code></td>
+  <td>String Example: <code>registry.redhat.io/redhat/redhat-operator-index:v4.15</code></td>
 </tr>
 <tr>
   <td><code>mirror.operators.full</code></td>
   <td>When <code>true</code>, downloads the full catalog, Operator package, or Operator channel.</td>
-  <td>BooleanThe default value is <code>false</code>.</td>
+  <td>Boolean The default value is <code>false</code>.</td>
 </tr>
 <tr>
   <td><code>mirror.operators.packages</code></td>
@@ -150,7 +150,7 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 <tr>
   <td><code>mirror.operators.packages.name</code></td>
   <td>The Operator package name to include in the image set.</td>
-  <td>StringExample: <code>elasticsearch-operator</code></td>
+  <td>String Example: <code>elasticsearch-operator</code></td>
 </tr>
 <tr>
   <td><code>mirror.operators.packages.channels</code></td>
@@ -159,43 +159,43 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 </tr>
 <tr>
   <td><code>mirror.operators.packages.channels.name</code></td>
-  <td>The Operator channel name, unique within a package, to include in the image set.+<dl><dt>Note</dt><dd>You must use explicit registry hostnames for all images listed under <code>additionalImages</code>. Without explicit hostnames, the plugin mirrors the images to unexpected target paths.</dd></dl></td>
-  <td>StringExample: <code>fast</code> or <code>stable-v4.15</code></td>
+  <td>The Operator channel name, unique within a package, to include in the image set.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You must use explicit registry hostnames for all images listed under <code>additionalImages</code>. Without explicit hostnames, the plugin mirrors the images to unexpected target paths.</dd></dl></td>
+  <td>String Example: <code>fast</code> or <code>stable-v4.15</code></td>
 </tr>
 <tr>
   <td><code>mirror.operators.packages.channels.maxVersion</code></td>
   <td>The highest version of the Operator mirror across all channels in which it exists.</td>
-  <td>StringExample: <code>5.2.3-31</code></td>
+  <td>String Example: <code>5.2.3-31</code></td>
 </tr>
 <tr>
   <td><code>mirror.operators.packages.channels.minVersion</code></td>
   <td>The lowest version of the Operator to mirror across all channels in which it exists</td>
-  <td>StringExample: <code>5.2.3-31</code></td>
+  <td>String Example: <code>5.2.3-31</code></td>
 </tr>
 <tr>
   <td><code>mirror.operators.packages.maxVersion</code></td>
   <td>The highest version of the Operator to mirror across all channels in which it exists.</td>
-  <td>StringExample: <code>5.2.3-31</code></td>
+  <td>String Example: <code>5.2.3-31</code></td>
 </tr>
 <tr>
   <td><code>mirror.operators.packages.minVersion</code></td>
   <td>The lowest version of the Operator to mirror across all channels in which it exists.</td>
-  <td>StringExample: <code>5.2.3-31</code></td>
+  <td>String Example: <code>5.2.3-31</code></td>
 </tr>
 <tr>
   <td><code>mirror.operators.targetCatalog</code></td>
   <td>An alternative name and optional namespace hierarchy to mirror the referenced catalog as</td>
-  <td>StringExample: <code>my-namespace/my-operator-catalog</code></td>
+  <td>String Example: <code>my-namespace/my-operator-catalog</code></td>
 </tr>
 <tr>
   <td><code>mirror.operators.targetCatalogSourceTemplate</code></td>
   <td>Path on disk for a template to use to complete catalogSource custom resource generated by oc-mirror plugin v2.</td>
-  <td>StringExample: <code>/tmp/catalog-source_template.yaml</code>Example of a template file:<pre>apiVersion: operators.coreos.com/v1alpha1&#10;kind: CatalogSource&#10;metadata:&#10;  name: discarded&#10;  namespace: openshift-marketplace&#10;spec:&#10;  image: discarded&#10;  sourceType: grpc&#10;  updateStrategy:&#10;    registryPoll:&#10;      interval: 30m0s</pre></td>
+  <td>String Example: <code>/tmp/catalog-source_template.yaml</code> Example of a template file:<pre>apiVersion: operators.coreos.com/v1alpha1&#10;kind: CatalogSource&#10;metadata:&#10;  name: discarded&#10;  namespace: openshift-marketplace&#10;spec:&#10;  image: discarded&#10;  sourceType: grpc&#10;  updateStrategy:&#10;    registryPoll:&#10;      interval: 30m0s</pre></td>
 </tr>
 <tr>
   <td><code>mirror.operators.targetTag</code></td>
   <td>An alternative tag to append to the <code>targetName</code> or <code>targetCatalog</code>.</td>
-  <td>StringExample: <code>v1</code></td>
+  <td>String Example: <code>v1</code></td>
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform</code></td>{% endif %}
@@ -205,47 +205,47 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 <tr>
   {% if not microshift %}<td><code>mirror.platform.architectures</code></td>{% endif %}
   {% if not microshift %}<td>The architecture of the platform release payload to mirror.</td>{% endif %}
-  {% if not microshift %}<td>Array of stringsExample:<pre>architectures:&#10;  - amd64&#10;  - arm64&#10;  - multi&#10;  - ppc64le&#10;  - s390x</pre><br><br>The default value is <code>amd64</code>. The value <code>multi</code> ensures that the mirroring is supported for all available architectures, eliminating the need to specify individual architectures</td>{% endif %}
+  {% if not microshift %}<td>Array of strings Example:<pre>architectures:&#10;  - amd64&#10;  - arm64&#10;  - multi&#10;  - ppc64le&#10;  - s390x</pre><br><br>The default value is <code>amd64</code>. The value <code>multi</code> ensures that the mirroring is supported for all available architectures, eliminating the need to specify individual architectures</td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform.channels</code></td>{% endif %}
   {% if not microshift %}<td>The platform channel configuration of the image set.</td>{% endif %}
-  {% if not microshift %}<td>Array of objectsExample:<pre>channels:&#10;  - name: stable-4.12&#10;  - name: stable-{product-version}</pre></td>{% endif %}
+  {% if not microshift %}<td>Array of objects Example:<pre>channels:&#10;  - name: stable-4.12&#10;  - name: stable-{product-version}</pre></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform.channels.full</code></td>{% endif %}
   {% if not microshift %}<td>When <code>true</code>, sets the <code>minVersion</code> to the first release in the channel and the <code>maxVersion</code> to the last release in the channel.</td>{% endif %}
-  {% if not microshift %}<td>BooleanThe default value is <code>false</code></td>{% endif %}
+  {% if not microshift %}<td>Boolean The default value is <code>false</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform.channels.name</code></td>{% endif %}
   {% if not microshift %}<td>Name of the release channel</td>{% endif %}
-  {% if not microshift %}<td>StringExample: <code>stable-4.15</code></td>{% endif %}
+  {% if not microshift %}<td>String Example: <code>stable-4.15</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform.channels.minVersion</code></td>{% endif %}
   {% if not microshift %}<td>The minimum version of the referenced platform to be mirrored.</td>{% endif %}
-  {% if not microshift %}<td>StringExample: <code>4.12.6</code></td>{% endif %}
+  {% if not microshift %}<td>String Example: <code>4.12.6</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform.channels.maxVersion</code></td>{% endif %}
   {% if not microshift %}<td>The highest version of the referenced platform to be mirrored.</td>{% endif %}
-  {% if not microshift %}<td>StringExample: <code>4.15.1</code></td>{% endif %}
+  {% if not microshift %}<td>String Example: <code>4.15.1</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform.channels.shortestPath</code></td>{% endif %}
   {% if not microshift %}<td>Toggles shortest path mirroring or full range mirroring.</td>{% endif %}
-  {% if not microshift %}<td>BooleanThe default value is <code>false</code></td>{% endif %}
+  {% if not microshift %}<td>Boolean The default value is <code>false</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform.channels.type</code></td>{% endif %}
   {% if not microshift %}<td>Type of the platform to be mirrored</td>{% endif %}
-  {% if not microshift %}<td>StringExample: <code>ocp</code> or <code>okd</code>. The default is <code>ocp</code>.</td>{% endif %}
+  {% if not microshift %}<td>String Example: <code>ocp</code> or <code>okd</code>. The default is <code>ocp</code>.</td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.platform.graph</code></td>{% endif %}
   {% if not microshift %}<td>Indicates whether the OSUS graph is added to the image set and subsequently published to the mirror.</td>{% endif %}
-  {% if not microshift %}<td>BooleanThe default value is <code>false</code></td>{% endif %}
+  {% if not microshift %}<td>Boolean The default value is <code>false</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>mirror.operators.packages.defaultChannel</code></td>{% endif %}
@@ -259,7 +259,7 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 
 To remove images with the oc-mirror plugin v2, you must use a `DeleteImageSetConfiguration.yaml` configuration file that defines which images to delete from the mirror registry. The following table lists the available parameters for the `DeleteImageSetConfiguration` resource.
 
-***`DeleteImageSetConfiguration` parameters***
+**`DeleteImageSetConfiguration` parameters**
 
 <table>
 <thead>
@@ -273,7 +273,7 @@ To remove images with the oc-mirror plugin v2, you must use a `DeleteImageSetCon
 <tr>
   <td><code>apiVersion</code></td>
   <td>The API version for the <code>DeleteImageSetConfiguration</code> content.</td>
-  <td>StringExample: <code>mirror.openshift.io/v2alpha1</code></td>
+  <td>String Example: <code>mirror.openshift.io/v2alpha1</code></td>
 </tr>
 <tr>
   <td><code>delete</code></td>
@@ -283,12 +283,12 @@ To remove images with the oc-mirror plugin v2, you must use a `DeleteImageSetCon
 <tr>
   <td><code>delete.additionalImages</code></td>
   <td>The additional images configuration of the delete image set.</td>
-  <td>Array of objectsExample:<pre>additionalImages:&#10;  - name: registry.redhat.io/ubi8/ubi:latest</pre></td>
+  <td>Array of objects Example:<pre>additionalImages:&#10;  - name: registry.redhat.io/ubi8/ubi:latest</pre></td>
 </tr>
 <tr>
   <td><code>delete.additionalImages.name</code></td>
   <td>The tag or digest of the image to delete.</td>
-  <td>StringExample: <code>registry.redhat.io/ubi8/ubi:latest</code></td>
+  <td>String Example: <code>registry.redhat.io/ubi8/ubi:latest</code></td>
 </tr>
 <tr>
   <td><code>delete.additionalImages.targetRepo</code></td>
@@ -303,27 +303,27 @@ To remove images with the oc-mirror plugin v2, you must use a `DeleteImageSetCon
 <tr>
   <td><code>delete.operators</code></td>
   <td>The Operators configuration of the delete image set.</td>
-  <td>Array of objectsExample:<pre>operators:&#10;  - catalog: registry.redhat.io/redhat/redhat-operator-index:{product-version}&#10;    packages:&#10;      - name: elasticsearch-operator&#10;        minVersion: '2.4.0'</pre></td>
+  <td>Array of objects Example:<pre>operators:&#10;  - catalog: registry.redhat.io/redhat/redhat-operator-index:{product-version}&#10;    packages:&#10;      - name: elasticsearch-operator&#10;        minVersion: '2.4.0'</pre></td>
 </tr>
 <tr>
   <td><code>delete.operators.catalog</code></td>
   <td>The Operator catalog to include in the delete image set.</td>
-  <td>StringExample: <code>registry.redhat.io/redhat/redhat-operator-index:v4.15</code></td>
+  <td>String Example: <code>registry.redhat.io/redhat/redhat-operator-index:v4.15</code></td>
 </tr>
 <tr>
   <td><code>delete.operators.full</code></td>
   <td>When true, deletes the full catalog, Operator package, or Operator channel.</td>
-  <td>BooleanThe default value is <code>false</code></td>
+  <td>Boolean The default value is <code>false</code></td>
 </tr>
 <tr>
   <td><code>delete.operators.packages</code></td>
   <td>Operator packages configuration</td>
-  <td>Array of objectsExample:<pre>operators:&#10;  - catalog: registry.redhat.io/redhat/redhat-operator-index:{product-version}&#10;    packages:&#10;      - name: elasticsearch-operator&#10;        minVersion: '5.2.3-31'</pre></td>
+  <td>Array of objects Example:<pre>operators:&#10;  - catalog: registry.redhat.io/redhat/redhat-operator-index:{product-version}&#10;    packages:&#10;      - name: elasticsearch-operator&#10;        minVersion: '5.2.3-31'</pre></td>
 </tr>
 <tr>
   <td><code>delete.operators.packages.name</code></td>
   <td>The Operator package name to include in the delete image set.</td>
-  <td>StringExample: <code>elasticsearch-operator</code></td>
+  <td>String Example: <code>elasticsearch-operator</code></td>
 </tr>
 <tr>
   <td><code>delete.operators.packages.channels</code></td>
@@ -333,27 +333,27 @@ To remove images with the oc-mirror plugin v2, you must use a `DeleteImageSetCon
 <tr>
   <td><code>delete.operators.packages.channels.name</code></td>
   <td>The Operator channel name, unique within a package, to include in the delete image set.</td>
-  <td>StringExample: <code>fast</code> or <code>stable-v4.15</code></td>
+  <td>String Example: <code>fast</code> or <code>stable-v4.15</code></td>
 </tr>
 <tr>
   <td><code>delete.operators.packages.channels.maxVersion</code></td>
   <td>The highest version of the Operator to delete within the selected channel.</td>
-  <td>StringExample: <code>5.2.3-31</code></td>
+  <td>String Example: <code>5.2.3-31</code></td>
 </tr>
 <tr>
   <td><code>delete.operators.packages.channels.minVersion</code></td>
   <td>The lowest version of the Operator to delete within the selection in which it exists.</td>
-  <td>StringExample: <code>5.2.3-31</code></td>
+  <td>String Example: <code>5.2.3-31</code></td>
 </tr>
 <tr>
   <td><code>delete.operators.packages.maxVersion</code></td>
   <td>The highest version of the Operator to delete across all channels in which it exists.</td>
-  <td>StringExample: <code>5.2.3-31</code></td>
+  <td>String Example: <code>5.2.3-31</code></td>
 </tr>
 <tr>
   <td><code>delete.operators.packages.minVersion</code></td>
   <td>The lowest version of the Operator to delete across all channels in which it exists.</td>
-  <td>StringExample: <code>5.2.3-31</code></td>
+  <td>String Example: <code>5.2.3-31</code></td>
 </tr>
 <tr>
   {% if not microshift %}<td><code>delete.platform</code></td>{% endif %}
@@ -363,7 +363,7 @@ To remove images with the oc-mirror plugin v2, you must use a `DeleteImageSetCon
 <tr>
   {% if not microshift %}<td><code>delete.platform.architectures</code></td>{% endif %}
   {% if not microshift %}<td>The architecture of the platform release payload to delete.</td>{% endif %}
-  {% if not microshift %}<td>Array of stringsExample:<pre>architectures:&#10;  - amd64&#10;  - arm64&#10;  - multi&#10;  - ppc64le&#10;  - s390x</pre><br><br>The default value is <code>amd64</code></td>{% endif %}
+  {% if not microshift %}<td>Array of strings Example:<pre>architectures:&#10;  - amd64&#10;  - arm64&#10;  - multi&#10;  - ppc64le&#10;  - s390x</pre><br><br>The default value is <code>amd64</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>delete.platform.channels</code></td>{% endif %}
@@ -373,37 +373,37 @@ To remove images with the oc-mirror plugin v2, you must use a `DeleteImageSetCon
 <tr>
   {% if not microshift %}<td><code>delete.platform.channels.full</code></td>{% endif %}
   {% if not microshift %}<td>When <code>true</code>, sets the <code>minVersion</code> to the first release in the channel and the <code>maxVersion</code> to the last release in the channel.</td>{% endif %}
-  {% if not microshift %}<td>BooleanThe default value is <code>false</code></td>{% endif %}
+  {% if not microshift %}<td>Boolean The default value is <code>false</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>delete.platform.channels.name</code></td>{% endif %}
   {% if not microshift %}<td>Name of the release channel</td>{% endif %}
-  {% if not microshift %}<td>StringExample: <code>stable-4.15</code></td>{% endif %}
+  {% if not microshift %}<td>String Example: <code>stable-4.15</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>delete.platform.channels.minVersion</code></td>{% endif %}
   {% if not microshift %}<td>The minimum version of the referenced platform to be deleted.</td>{% endif %}
-  {% if not microshift %}<td>StringExample: <code>4.12.6</code></td>{% endif %}
+  {% if not microshift %}<td>String Example: <code>4.12.6</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>delete.platform.channels.maxVersion</code></td>{% endif %}
   {% if not microshift %}<td>The highest version of the referenced platform to be deleted.</td>{% endif %}
-  {% if not microshift %}<td>StringExample: <code>4.15.1</code></td>{% endif %}
+  {% if not microshift %}<td>String Example: <code>4.15.1</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>delete.platform.channels.shortestPath</code></td>{% endif %}
   {% if not microshift %}<td>Toggles between deleting the shortest path and deleting the full range.</td>{% endif %}
-  {% if not microshift %}<td>BooleanThe default value is <code>false</code></td>{% endif %}
+  {% if not microshift %}<td>Boolean The default value is <code>false</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>delete.platform.channels.type</code></td>{% endif %}
   {% if not microshift %}<td>Type of the platform to be deleted</td>{% endif %}
-  {% if not microshift %}<td>StringExample: <code>ocp</code> or <code>okd</code>The default is <code>ocp</code></td>{% endif %}
+  {% if not microshift %}<td>String Example: <code>ocp</code> or <code>okd</code> The default is <code>ocp</code></td>{% endif %}
 </tr>
 <tr>
   {% if not microshift %}<td><code>delete.platform.graph</code></td>{% endif %}
   {% if not microshift %}<td>Determines whether the OSUS graph is deleted as well on the mirror registry as well.</td>{% endif %}
-  {% if not microshift %}<td>BooleanThe default value is <code>false</code></td>{% endif %}
+  {% if not microshift %}<td>Boolean The default value is <code>false</code></td>{% endif %}
 </tr>
 </tbody>
 </table>

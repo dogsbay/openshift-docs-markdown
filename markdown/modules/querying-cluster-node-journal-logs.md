@@ -19,17 +19,17 @@ You can gather `journald` unit logs and other logs within `/var/log` on individu
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   Your API service is still functional.
 *   You have SSH access to your hosts.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
 {% if not openshift_rosa_hcp %}
 1.  Query `kubelet` `journald` unit logs from {{ product_title }} cluster nodes. The following example queries control plane nodes only:
-    {% endif %}
-    {% if openshift_rosa_hcp %}
+{% endif %}
+{% if openshift_rosa_hcp %}
     *   Query `kubelet` `journald` unit logs from {{ product_title }} cluster nodes. The following example queries worker nodes only:
-        {%- endif %}
-        {%- if not openshift_rosa_hcp %}
+{% endif %}
+{% if not openshift_rosa_hcp %}
     ```terminal
     $ oc adm node-logs --role=master -u kubelet  (1)
     ```

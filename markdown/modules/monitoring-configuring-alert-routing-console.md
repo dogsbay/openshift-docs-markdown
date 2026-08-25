@@ -17,7 +17,7 @@ The {{ product_title }} web console provides fewer settings to configure alert r
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Administration** -> **Cluster Settings** -> **Configuration** -> **Alertmanager**.
+1.  In the {{ product_title }} web console, go to **Administration** → **Cluster Settings** → **Configuration** → **Alertmanager**.
 
     :::note
 

@@ -35,11 +35,11 @@ The key is added to the VM by the QEMU guest agent, which is installed with {{ o
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **Catalog** in the web console.
+1.  Navigate to **Virtualization** → **Catalog** in the web console.
 {%- if dynamic_key %}
 1.  Click the **Red Hat Enterprise Linux 9 VM** tile.
-{% endif %}
-{% if static_key %}
+{%- endif %}
+{%- if static_key %}
 1.  Click a template tile.
 
     The guest operating system must support configuration from a cloud-init data source.
@@ -68,8 +68,8 @@ The key is added to the VM by the QEMU guest agent, which is installed with {{ o
     The secret name is displayed in the **Authorized SSH key** section.
 
 {% if context == "static-key" %}
-{%- set static_key = false -%}
+{%- set static_key = "" -%}
 {% endif %}
 {% if context == "dynamic-key" %}
-{%- set dynamic_key = false -%}
+{%- set dynamic_key = "" -%}
 {% endif %}

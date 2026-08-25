@@ -3,11 +3,11 @@ title: CCO-based workflow for OLM-managed Operators with AWS STS
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# CCO-based workflow for OLM-managed Operators with AWS STS {id="osdk-cco-aws-sts"}
 {% include "./_attributes/common-attributes.md" %}
+# CCO-based workflow for OLM-managed Operators with AWS STS {id="osdk-cco-aws-sts"}
 {%- set context = "osdk-cco-aws-sts" %}
 
-When an {{ product_title }} cluster running on AWS is in Security Token Service (STS) mode, it means the cluster is utilizing features of AWS and {{ product_title }} to use IAM roles at an application level. STS enables applications to provide a JSON Web Token (JWT) that can assume an IAM role.
+When an {{ product_title }} cluster running on AWS is in Security Token Service (STS) mode, it means the cluster is utilizing features of AWS and {{ product_title }} to use IAM roles at an application level. STS enables applications to provide a JSON Web Token (JWT) that can assume an IAM role. {._abstract}
 
 The JWT includes an Amazon Resource Name (ARN) for the `sts:AssumeRoleWithWebIdentity` IAM action to allow temporarily-granted permission for the service account. The JWT contains the signing keys for the `ProjectedServiceAccountToken` that AWS IAM can validate. The service account token itself, which is signed, is used as the JWT required for assuming the AWS role.
 
@@ -41,6 +41,7 @@ Your code should check for secrets that never appear and warn users to follow th
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [OLM-managed Operator support for authentication with AWS STS](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-aws-olm_cco-short-term-creds)
 *   [Installing from OperatorHub using the web console](/operators/admin/olm-adding-operators-to-cluster#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster)

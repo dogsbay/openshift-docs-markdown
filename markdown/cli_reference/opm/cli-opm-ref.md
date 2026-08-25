@@ -3,8 +3,8 @@ title: opm CLI reference
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# opm CLI reference {id="cli-opm-ref"}
 {% include "./_attributes/common-attributes.md" %}
+# opm CLI reference {id="cli-opm-ref"}
 {%- set context = "cli-opm-ref" %}
 
 The `opm` command-line interface (CLI) is a tool for creating and maintaining Operator catalogs.
@@ -38,6 +38,7 @@ The `opm` CLI is not forward compatible. The version of the `opm` CLI used to ge
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Operator Framework packaging format](/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
 *   [Managing custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)

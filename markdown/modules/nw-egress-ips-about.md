@@ -33,8 +33,8 @@ Egress IP addresses must not be configured in any Linux network configuration fi
 The assignment of egress IP addresses to control plane nodes with the EgressIP feature is
 {%- if openshift_rosa %}
 not supported.
-{% endif %}
-{% if not openshift_rosa %}
+{%- endif %}
+{%- if not openshift_rosa %}
 not supported on a cluster provisioned on {{ aws_first }}. For more information, see "BZ#2039656".
 {%- endif %}
 
@@ -58,11 +58,11 @@ The following sections describe the IP address capacity for supported public clo
 {% if not openshift_rosa %}
 
 {{ aws_first }} IP address capacity limits
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
 
 {{ aws_first }} IP address capacity limits
-{% endif %}
+{%- endif %}
 
 :   On {{ aws_short }}, constraints on IP address assignments depend on the instance type configured. For more information, see "IP addresses per network interface per instance type".
 

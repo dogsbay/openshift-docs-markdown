@@ -34,15 +34,15 @@ Create a subnet in an {{ aws_first }} {{ zone_type }} when you need workloads to
 **Procedure**
 
 1.  List the zones that are available in your AWS Region by running the following command:
-    {%- if local_zone or post_aws_zones %}
+{%- if local_zone or post_aws_zones %}
     ```terminal title="Example command for listing available AWS Local Zones in an AWS Region"
     $ aws --region "<value_of_AWS_Region>" ec2 describe-availability-zones \
         --query 'AvailabilityZones[].[{ZoneName: ZoneName, GroupName: GroupName, Status: OptInStatus}]' \
         --filters Name=zone-type,Values=local-zone \
         --all-availability-zones
     ```
-{% endif %}
-{% if wavelength_zone or post_aws_zones %}
+{%- endif %}
+{%- if wavelength_zone or post_aws_zones %}
     ```terminal title="Example command for listing available AWS Wavelength Zones in an AWS Region"
     $ aws --region "<value_of_AWS_Region>" ec2 describe-availability-zones \
         --query 'AvailabilityZones[].[{ZoneName: ZoneName, GroupName: GroupName, Status: OptInStatus}]' \
@@ -73,17 +73,17 @@ Create a subnet in an {{ aws_first }} {{ zone_type }} when you need workloads to
     :   Replace with the name of the group of the {{ zone_type }} where you want to create subnets.
 {%- if local_zone %}
         For example, specify `us-east-1-nyc-1` to use the zone `us-east-1-nyc-1a` (US East New York).
-{% endif %}
-{% if wavelength_zone %}
+{%- endif %}
+{%- if wavelength_zone %}
         As an example for Wavelength Zones, specify `us-east-1-wl1` to use the zone `us-east-1-wl1-nyc-wlz-1` (US East New York).
-{% endif %}
+{%- endif %}
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set post_aws_zones = false -%}
+{%- set post_aws_zones = "" -%}
 {% endif %}

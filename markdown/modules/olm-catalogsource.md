@@ -13,14 +13,14 @@ A _catalog source_ represents a store of metadata, typically by referencing an _
 
 :::tip
 
-Cluster administrators can view the full list of Operators provided by an enabled catalog source on a cluster by using the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page in the web console.
+Cluster administrators can view the full list of Operators provided by an enabled catalog source on a cluster by using the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page in the web console.
 
 :::
 
 
 The `spec` of a `CatalogSource` object indicates how to construct a pod or how to communicate with a service that serves the Operator Registry gRPC API.
 
-```yaml title="Example CatalogSource object"
+```yaml title="Example CatalogSource object" {minja}
 ﻿apiVersion: operators.coreos.com/v1alpha1
 kind: CatalogSource
 metadata:
@@ -70,7 +70,7 @@ where:
 :   Specifies the name for the `CatalogSource` object. This value is also used as part of the name for the related pod that is created in the requested namespace.
 
 `metadata.namespace`
-:   Specifies the namespace to create the catalog in. To make the catalog available cluster-wide in all namespaces, set this value to `{{ global_ns }}`. The default Red Hat-provided catalog sources also use the `{{ global_ns }}` namespace. Otherwise, set the value to a specific namespace to make the Operator only available in that namespace.
+:   Specifies the namespace to create the catalog in. To make the catalog available cluster-wide in all namespaces, set this value to `{{ global_ns }}`{minja}. The default Red Hat-provided catalog sources also use the `{{ global_ns }}`{minja} namespace. Otherwise, set the value to a specific namespace to make the Operator only available in that namespace.
 
 `metadata.annotations.olm.catalogImageTemplate`
 :   To avoid cluster upgrades potentially leaving Operator installations in an unsupported state or without a continued update path, you can enable automatically changing your Operator catalog’s index image version as part of cluster upgrades. This field is optional.
@@ -129,7 +129,7 @@ where:
 
 Referencing the `name` of a `CatalogSource` object in a subscription instructs OLM where to search to find a requested Operator:
 
-```yaml title="Example Subscription object referencing a catalog source"
+```yaml title="Example Subscription object referencing a catalog source" {minja}
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
@@ -143,8 +143,8 @@ spec:
 ```
 
 {% if openshift_origin %}
-{%- set global_ns = false -%}
+{%- set global_ns = "" -%}
 {% endif %}
 {% if not openshift_origin %}
-{%- set global_ns = false -%}
+{%- set global_ns = "" -%}
 {% endif %}

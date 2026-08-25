@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing {{ gitops_title }} {id="getting-started-with-openshift-gitops"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing {{ gitops_title }} {id="getting-started-with-openshift-gitops"}
 {%- set context = "installing-openshift-gitops" %}
 
 {{ gitops_title }} uses Argo CD to manage specific cluster-scoped resources, including cluster Operators, optional Operator Lifecycle Manager (OLM) Operators, and user management. {._abstract}

@@ -7,7 +7,7 @@ title: "Backing up etcd data for {{ hcp }} by using the etcd snapshot method"
 # Backing up etcd data for {{ hcp }} by using the etcd snapshot method {id="hcp-backup-etcd-snapshot"}
 {%- set context = "hcp-backup-etcd-snapshot" %}
 
-To back up etcd data for {{ hcp }}, you can use the default volume snapshot approach, or you can take the etcd snapshot approach, which results in smaller backup artifacts.
+To back up etcd data for {{ hcp }}, you can use the default volume snapshot approach, or you can take the etcd snapshot approach, which results in smaller backup artifacts. {._abstract}
 
 {%- set FeatureName = "The etcd snapshot method" %}
 {% include "./snippets/technology-preview.md" %}
@@ -17,6 +17,7 @@ To back up etcd data for {{ hcp }}, you can use the default volume snapshot appr
 {% leveloffset +1 %}{% include "./modules/hcp-backup-etcd-snapshot-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring {{ oadp_short }}](/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-oadp-auto#hcp-dr-prep-oadp-auto_hcp-disaster-recovery-oadp-auto)
 *   [Automating the backup and restore process by using DPA](/hosted_control_planes/hcp_high_availability/hcp-disaster-recovery-oadp-auto#hcp-dr-oadp-dpa_hcp-disaster-recovery-oadp-auto)
@@ -25,12 +26,14 @@ To back up etcd data for {{ hcp }}, you can use the default volume snapshot appr
 {% leveloffset +1 %}{% include "./modules/hcp-backup-etcd-snapshot-backup.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the etcd snapshot method](/hosted_control_planes/hcp_high_availability/hcp-backup-etcd-snapshot#hcp-backup-etcd-snapshot-config_hcp-backup-etcd-snapshot)
 
 {% leveloffset +1 %}{% include "./modules/hcp-backup-etcd-snapshot-restore.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the etcd snapshot method](/hosted_control_planes/hcp_high_availability/hcp-backup-etcd-snapshot#hcp-backup-etcd-snapshot-config_hcp-backup-etcd-snapshot)
 

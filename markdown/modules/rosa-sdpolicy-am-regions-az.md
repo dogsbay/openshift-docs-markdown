@@ -8,10 +8,10 @@
 The following AWS regions are currently available
 {%- if openshift_rosa_hcp %}
 for {{ hcp_title }}.
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 for Red&#160;Hat OpenShift 4 and are supported for {{ product_title }}.
-{% endif %}
+{%- endif %}
 
 
 :::note
@@ -36,7 +36,7 @@ For more information about AWS GovCloud regions, see the [The AWS GovCloud (US) 
 :::
 
 
-***AWS regions***
+**AWS regions**
 
 <table>
 <thead>
@@ -266,22 +266,22 @@ Clusters can only be deployed in regions with at least 3 availability zones. For
 Each new
 {%- if not openshift_rosa_hcp %}
 {{ product_title }}
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 {{ hcp_title }}
 {%- endif %}
 cluster is installed within
 {%- if openshift_rosa_hcp %}
 a
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 an installer-created or
 {%- endif %}
 preexisting Virtual Private Cloud (VPC) in a single region, with the option to deploy
 {%- if not openshift_rosa_hcp %}
 into a single availability zone (Single-AZ) or across multiple availability zones (Multi-AZ).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 up to the total number of availability zones for the given region.
 {%- endif %}
 This provides cluster-level network and resource isolation, and enables cloud-provider VPC settings, such as VPN connections and VPC Peering. Persistent volumes (PVs) are backed by Amazon Elastic Block Storage (Amazon EBS), and are specific to the availability zone in which they are provisioned. Persistent volume claims (PVCs) do not bind to a volume until the associated pod resource is assigned into a specific availability zone to prevent unschedulable pods. Availability zone-specific resources are only usable by resources in the same availability zone.
@@ -299,5 +299,5 @@ cannot be changed after a cluster has been deployed.
 
 
 {% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = false -%}
+{%- set rosa_with_hcp = "" -%}
 {% endif %}

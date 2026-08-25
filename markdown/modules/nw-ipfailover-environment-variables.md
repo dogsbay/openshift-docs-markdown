@@ -3,7 +3,7 @@
 
 The IP failover environment variables reference lists all variables you can use to configure IP failover in {{ product_title }}, including VIP addresses, monitoring ports, and network interfaces. {._abstract}
 
-***IP failover environment variables***
+**IP failover environment variables**
 
 <table>
 <thead>

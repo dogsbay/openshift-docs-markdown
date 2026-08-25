@@ -63,10 +63,10 @@ Field validation rules
 :   The following validation rules are enforced by the operator:
 
     *   Profile immutability: The `bundleEndpoint.profile` field cannot be changed after initial configuration. Changing it requires deleting and recreating the `SpireServer` resource (re-installation of the system).
-*   Mutual exclusivity: Within `httpsWeb`, only one of `acme` or `servingCert` can be specified.
-*   Conditional requirements: When `profile` is `https_web`, the `httpsWeb` object must be present with either `acme` or `servingCert` configured.
-*   SPIFFE ID requirement: When `bundleEndpointProfile` is `https_spiffe` in the `federatesWith` list, the `endpointSpiffeId` field is required.
-*   Array limits: The `federatesWith` array supports a maximum of 50 entries.
-*   Numeric ranges:
+    *   Mutual exclusivity: Within `httpsWeb`, only one of `acme` or `servingCert` can be specified.
+    *   Conditional requirements: When `profile` is `https_web`, the `httpsWeb` object must be present with either `acme` or `servingCert` configured.
+    *   SPIFFE ID requirement: When `bundleEndpointProfile` is `https_spiffe` in the `federatesWith` list, the `endpointSpiffeId` field is required.
+    *   Array limits: The `federatesWith` array supports a maximum of 50 entries.
+    *   Numeric ranges:
     *   `refreshHint`: 60-3600 seconds
     *   `fileSyncInterval`: 3600-7776000 seconds

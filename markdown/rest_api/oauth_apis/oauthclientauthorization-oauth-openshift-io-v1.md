@@ -1,5 +1,5 @@
 ---
-title: "OAuthClientAuthorization []"
+title: "OAuthClientAuthorization [oauth.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -40,12 +40,12 @@ The following API endpoints are available:
     *   `POST`: create an OAuthClientAuthorization
 *   `/apis/oauth.openshift.io/v1/watch/oauthclientauthorizations`
     *   `GET`: watch individual changes to a list of OAuthClientAuthorization. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/oauth.openshift.io/v1/oauthclientauthorizations/{{ name }}`
+*   `/apis/oauth.openshift.io/v1/oauthclientauthorizations/{{ name }}`{minja}
     *   `DELETE`: delete an OAuthClientAuthorization
     *   `GET`: read the specified OAuthClientAuthorization
     *   `PATCH`: partially update the specified OAuthClientAuthorization
     *   `PUT`: replace the specified OAuthClientAuthorization
-*   `/apis/oauth.openshift.io/v1/watch/oauthclientauthorizations/{{ name }}`
+*   `/apis/oauth.openshift.io/v1/watch/oauthclientauthorizations/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind OAuthClientAuthorization. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/oauth.openshift.io/v1/oauthclientauthorizations {id="_apisoauthopenshiftiov1oauthclientauthorizations"}

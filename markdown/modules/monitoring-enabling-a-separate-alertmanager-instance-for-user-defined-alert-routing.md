@@ -37,8 +37,8 @@ In these cases, you can optionally enable a separate instance of Alertmanager to
     data:
       config.yaml: |
         alertmanager:
-          enabled: true # (1)
-          enableAlertmanagerConfig: true # (2)
+          enabled: true (1)
+          enableAlertmanagerConfig: true (2)
     ```
     1.  Set the `enabled` value to `true` to enable a dedicated instance of the Alertmanager for user-defined projects in a cluster. Set the value to `false` or omit the key entirely to disable the Alertmanager for user-defined projects.
     If you set this value to `false` or if the key is omitted, user-defined alerts are routed to the default platform Alertmanager instance.
@@ -69,4 +69,4 @@ In these cases, you can optionally enable a separate instance of Alertmanager to
     alertmanager-user-workload-1           6/6     Running   0          38s
     ...
     ```
-{% endif %}
+{%- endif %}

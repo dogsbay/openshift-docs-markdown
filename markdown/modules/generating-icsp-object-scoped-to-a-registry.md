@@ -24,7 +24,7 @@ To widen the scope of the mirror image catalog in the `ImageContentSourcePolicy`
     :   is the local registry you have configured for your disconnected cluster, for example, `local.registry:5000`.
 
     &lt;pull_spec>
-    :   is the pull specification as configured in your disconnected registry, for example, `redhat/redhat-operator-index:v{{ product_version }}`
+    :   is the pull specification as configured in your disconnected registry, for example, `redhat/redhat-operator-index:v{{ product_version }}`{minja}
 
     &lt;pull_secret_file>
     :   is the `registry.redhat.io` pull secret in `.json` file format. You can download the {{ cluster_manager_url_pull }}.
@@ -42,16 +42,16 @@ To widen the scope of the mirror image catalog in the `ImageContentSourcePolicy`
     $ oc get ImageContentSourcePolicy -o yaml
     ```
 
-```yaml title="Example output"
-apiVersion: v1
-items:
-- apiVersion: operator.openshift.io/v1alpha1
-  kind: ImageContentSourcePolicy
-  metadata:
-    annotations:
-      kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"operator.openshift.io/v1alpha1","kind":"ImageContentSourcePolicy","metadata":{"annotations":{},"name":"redhat-operator-index"},"spec":{"repositoryDigestMirrors":[{"mirrors":["local.registry:5000"],"source":"registry.redhat.io"}]}}
-...
-```
+    ```yaml title="Example output"
+    apiVersion: v1
+    items:
+    - apiVersion: operator.openshift.io/v1alpha1
+      kind: ImageContentSourcePolicy
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/last-applied-configuration: |
+            {"apiVersion":"operator.openshift.io/v1alpha1","kind":"ImageContentSourcePolicy","metadata":{"annotations":{},"name":"redhat-operator-index"},"spec":{"repositoryDigestMirrors":[{"mirrors":["local.registry:5000"],"source":"registry.redhat.io"}]}}
+    ...
+    ```
 
 After you update the `ImageContentSourcePolicy` resource, {{ product_title }} deploys the new settings to each node and the cluster starts using the mirrored repository for requests to the source repository.

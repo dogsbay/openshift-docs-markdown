@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Additional custom security groups {id="rosa-security-groups-custom_{{ context }}"}
 
-{%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
 When you create a cluster using an existing non-managed VPC, you
 {% endif %}
 {% if openshift_rosa_hcp %}

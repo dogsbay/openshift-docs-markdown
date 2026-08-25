@@ -20,7 +20,7 @@ Using discovery selectors to determine which namespaces the mesh can discover ha
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the {{ SMProductName }} Operator.
 1.  Click **Istio Service Mesh Member Roll**.
 1.  Click the `ServiceMeshMemberRoll` resource.

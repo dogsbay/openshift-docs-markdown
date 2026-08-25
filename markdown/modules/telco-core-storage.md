@@ -9,7 +9,8 @@ New in this release
 :   *   There are no reference design updates in this release.
 
 Description
-    :   Cloud native storage services can be provided by {{ rh_storage }} or other third-party solutions.
+:   Cloud native storage services can be provided by {{ rh_storage }} or other third-party solutions.
+
 
     {{ rh_storage }} is a Red Hat Ceph Storage based software-defined storage solution for containers.
     It provides block storage, file system storage, and on-premise object storage, which can be dynamically provisioned for both persistent and non-persistent data requirements.
@@ -17,6 +18,7 @@ Description
 
 
     :::note
+
 
     All storage data might not be encrypted in flight.
     To reduce risk, isolate the storage network from other cluster networks.

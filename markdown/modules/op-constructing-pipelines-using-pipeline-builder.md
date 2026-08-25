@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Constructing pipelines using the Pipeline builder {id="op-constructing-pipelines-using-pipeline-builder_{{ context }}"}
 
-In the **Developer** perspective of the console, you can use the **+Add** -> **Pipeline** -> **Pipeline builder** option to: {._abstract}
+In the **Developer** perspective of the console, you can use the **+Add** → **Pipeline** → **Pipeline builder** option to: {._abstract}
 
 *   Configure pipelines using either the **Pipeline builder** or the **YAML view**.
 *   Construct a pipeline flow using existing tasks and cluster tasks. When you install the {{ pipelines_shortname }} Operator, it adds reusable pipeline cluster tasks to your cluster.
@@ -12,7 +12,6 @@ In the **Developer** perspective of the console, you can use the **+Add** -> **P
 In {{ pipelines_title }} 1.10, cluster task functionality is deprecated and is planned to be removed in a future release.
 
 :::
-
 
 *   Specify the type of resources required for the pipeline run, and if required, add additional parameters to the pipeline.
 *   Reference these pipeline resources in each of the tasks in the pipeline as input and output resources.
@@ -40,6 +39,7 @@ If you do not deploy any local Tekton Hub instance, by default, you can only acc
     
     :::
 
+
     **Figure 1. YAML view**
 
     ![op-pipeline-yaml](/_assets/images/op-pipeline-yaml.png)
@@ -57,14 +57,15 @@ If you do not deploy any local Tekton Hub instance, by default, you can only acc
             :::
 
             *   To add sequential tasks to the pipeline:
-                *   Click the plus icon to the right or left of the task -> click **Add task**.
+                *   Click the plus icon to the right or left of the task → click **Add task**.
                 *   Search for a task using the quick search field and select the required task from the displayed list.
                 *   Click **Add** or **Install and add**.
+
                     **Figure 2. Pipeline builder**
 
                     ![op-pipeline-builder](/_assets/images/op-pipeline-builder.png)
             *   To add a final task:
-                *   Click the **Add finally task** -> Click **Add task**.
+                *   Click the **Add finally task** → Click **Add task**.
                 *   Search for a task using the quick search field and select the required task from the displayed list.
                 *   Click **Add** or **Install and add**.
     1.  In the **Resources** section, click **Add Resources** to specify the name and type of resources for the pipeline run. These resources are then used by the tasks in the pipeline as inputs and outputs. For this example:

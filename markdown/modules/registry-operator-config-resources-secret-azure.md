@@ -21,4 +21,4 @@ contents of a credentials file provided by Azure:
     $ oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_AZURE_ACCOUNTKEY=<accountkey> --namespace openshift-image-registry
     ```
 
-{%- set KEY1 = false -%}
+{%- set KEY1 = "" -%}

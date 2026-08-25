@@ -4,8 +4,8 @@
 To control access to an {{ product_title }} cluster,
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 a cluster administrator
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 an administrator with the `dedicated-admin` role
 {%- endif %}
 can configure [user authentication](/authentication/understanding-authentication#understanding-authentication) and ensure only approved users access the cluster. {._abstract}

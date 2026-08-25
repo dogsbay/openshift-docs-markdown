@@ -52,7 +52,7 @@ The following content describes the API specifications for the `ImageClusterInst
 <tr>
   <td><code>imageDigestSources</code></td>
   <td><code>string</code></td>
-  <td>Specifies the sources or repositories for the release-image content, for example:</td>
+  <td>Specifies the sources or repositories for the release-image content, for example: [source,yaml] ---- imageDigestSources: - mirrors: - "registry.example.com:5000/ocp4/openshift4" source: "quay.io/openshift-release-dev/ocp-release" ----</td>
 </tr>
 <tr>
   <td><code>extraManifestsRefs</code></td>
@@ -72,7 +72,7 @@ The following content describes the API specifications for the `ImageClusterInst
 <tr>
   <td><code>proxy</code></td>
   <td><code>string</code></td>
-  <td>Specifies proxy settings for the cluster, for example:</td>
+  <td>Specifies proxy settings for the cluster, for example: [source,yaml]<br><br>---- proxy: httpProxy: "http://proxy.example.com:8080" httpsProxy: "http://proxy.example.com:8080" noProxy: "no_proxy.example.com" ----</td>
 </tr>
 <tr>
   <td><code>caBundleRef</code></td>

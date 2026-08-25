@@ -21,82 +21,77 @@ The {{ product_title }} web console runs in a container connected to the cluster
     
     :::
 
-1.  Create a GitHub repository for the template by clicking **Use this template** -> **_Create new repository_**.
+1.  Create a GitHub repository for the template by clicking **Use this template** → **_Create new repository_**.
 1.  Rename the new repository with the name of your plugin.
 1.  Clone the new repository to your local machine so you can edit the code.
 1.  Edit the `package.json` file, adding your plugin’s metadata to the `consolePlugin` declaration. For example:
 
-```json
-"consolePlugin": {
-  "name": "my-plugin",
-  "version": "0.0.1",
-  "displayName": "My Plugin",
-  "description": "Enjoy this shiny, new console plugin!",
-  "exposedModules": {
-    "ExamplePage": "./components/ExamplePage"
-  },
-  "dependencies": {
-    "@console/pluginAPI": "/*"
-  }
-}
-```
+    ```json
+    "consolePlugin": {
+      "name": "my-plugin",
+      "version": "0.0.1",
+      "displayName": "My Plugin",
+      "description": "Enjoy this shiny, new console plugin!",
+      "exposedModules": {
+        "ExamplePage": "./components/ExamplePage"
+      },
+      "dependencies": {
+        "@console/pluginAPI": "/*"
+      }
+    }
+    ```
+    where:
 
-where:
 
+    `consolePlugin.name.my-plugin`
+    :   Update the name of your plugin.
 
-`consolePlugin.name.my-plugin`
-:   Update the name of your plugin.
+    `consolePlugin.version.0.0.1`
+    :   Update the version.
 
-`consolePlugin.version.0.0.1`
-:   Update the version.
+    `consolePlugin.displayName.My Plugin`
+    :   Update the display name for your plugin.
 
-`consolePlugin.displayName.My Plugin`
-:   Update the display name for your plugin.
-
-`consolePlugin.description.Enjoy this shiny, new console plugin!`
-:   Update the description with a synopsis about your plugin.
-
+    `consolePlugin.description.Enjoy this shiny, new console plugin!`
+    :   Update the description with a synopsis about your plugin.
 1.  Add the following to the `console-extensions.json` file:
 
-```json
-{
-  "type": "console.tab/horizontalNav",
-  "properties": {
-    "page": {
-      "name": "Example Tab",
-      "href": "example"
-    },
-    "model": {
-      "group": "core",
-      "version": "v1",
-      "kind": "Pod"
-    },
-    "component": { "$codeRef": "ExampleTab" }
-  }
-}
-```
-
+    ```json
+    {
+      "type": "console.tab/horizontalNav",
+      "properties": {
+        "page": {
+          "name": "Example Tab",
+          "href": "example"
+        },
+        "model": {
+          "group": "core",
+          "version": "v1",
+          "kind": "Pod"
+        },
+        "component": { "$codeRef": "ExampleTab" }
+      }
+    }
+    ```
 1.  Edit the `package.json` file to include the following changes:
 
-```json
-        "exposedModules": {
-            "ExamplePage": "./components/ExamplePage",
-            "ExampleTab": "./components/ExampleTab"
-        }
-```
-
+    ```json
+            "exposedModules": {
+                "ExamplePage": "./components/ExamplePage",
+                "ExampleTab": "./components/ExampleTab"
+            }
+    ```
 1.  Write a message to display on a new custom tab on the **Pods** page by creating a new file `src/components/ExampleTab.tsx` and adding the following script:
 
-```tsx
-import * as React from 'react';
+    ```tsx
+    import * as React from 'react';
 
-export default function ExampleTab() {
-    return (
-        <p>This is a custom tab added to a resource using a dynamic plugin.</p>
-    );
-}
-```
-
+    export default function ExampleTab() {
+        return (
+            <p>This is a custom tab added to a resource using a dynamic plugin.</p>
+        );
+    }
+    ```
 1.  Install a Helm chart with the name of the plugin as the Helm release name into a new namespace or an existing namespace as specified by the `-n` command-line option to deploy your plugin on a cluster. Provide the location of the image within the `plugin.image` parameter by using the following command:
 
     ```terminal

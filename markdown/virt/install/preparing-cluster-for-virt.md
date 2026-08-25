@@ -8,7 +8,7 @@ title: "Preparing your cluster for {{ VirtProductName }}"
 {%- set context = "preparing-cluster-for-virt" -%}
 {%- set toclevels = "3" %}
 
-Review platform compatibility information before you install {{ VirtProductName }}. For detailed system requirements, see "Hardware, software, and operational requirements" in the Additional resources section.
+Review platform compatibility information before you install {{ VirtProductName }}. For detailed system requirements, see "Hardware, software, and operational requirements" in the Additional resources section. {._abstract}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 {% leveloffset +1 %}{% include "./modules/virt-compatible-platforms.md" %}{% endleveloffset %}
@@ -30,7 +30,7 @@ Review platform compatibility information before you install {{ VirtProductName 
 {% leveloffset +1 %}{% include "./modules/virt-object-maximums.md" %}{% endleveloffset %}
 {% endif %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [About installation methods for {{ VirtProductName }}](/virt/install/installing-virt#virt-about-installation-methods_installing-virt)
@@ -53,8 +53,8 @@ Review platform compatibility information before you install {{ VirtProductName 
 *   [Exposing a virtual machine by using a service](/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Optimizing ODF PersistentVolumes for Windows VMs](https://access.redhat.com/articles/6978371)
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 *   [{{ gcp_full }} NetApp Volumes](https://cloud.google.com/netapp/volumes/docs)
 *   [GCNV storage pool limits](https://docs.cloud.google.com/netapp/volumes/docs/quotas#storage_pool_limits)
 {%- endif %}

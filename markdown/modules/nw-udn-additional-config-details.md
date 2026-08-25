@@ -5,7 +5,7 @@ Configure optional advanced settings for `ClusterUserDefinedNetwork` and `UserDe
 
 It is not recommended to set these fields without explicit need and understanding of OVN-Kubernetes network topology.
 
-***Optional configurations for user-defined networks***
+**Optional configurations for user-defined networks**
 
 <table>
 <thead>
@@ -18,18 +18,18 @@ It is not recommended to set these fields without explicit need and understandin
 <tbody>
 <tr>
   <td><strong>Description</strong></td>
-  <td><code>spec.network.<topology>.joinSubnets</code></td>
-  <td><code>spec.<topology>.joinSubnets</code></td>
+  <td><code>spec.network.&lt;topology&gt;.joinSubnets</code></td>
+  <td><code>spec.&lt;topology&gt;.joinSubnets</code></td>
 </tr>
 <tr>
   <td>object</td>
   <td>When omitted, the platform sets default values for the <code>joinSubnets</code> field of <code>100.65.0.0/16</code> for IPv4 and  <code>fd99::/64</code> for IPv6. If the default address values are used anywhere in the cluster's network you must override it by setting the <code>joinSubnets</code> field. If you choose to set this field, ensure it does not conflict with other subnets in the cluster such as the cluster subnet, the <code>default</code> network cluster subnet, and the masquerade subnet. The <code>joinSubnets</code> field configures the routing between different segments within a user-defined network. Dual-stack clusters can set 2 subnets, one for each IP family; otherwise, only 1 subnet is allowed. This field is only allowed for the <code>Primary</code> network.</td>
-  <td><code>spec.network.<topology>.excludeSubnets</code></td>
+  <td><code>spec.network.&lt;topology&gt;.excludeSubnets</code></td>
 </tr>
 <tr>
-  <td><code>spec.<topology>.excludeSubnets</code></td>
+  <td><code>spec.&lt;topology&gt;.excludeSubnets</code></td>
   <td>string</td>
-  <td>Specifies a list of CIDRs to be removed from the CIDRs specified in the <code>subnets</code> field. The CIDRs in this list must be in range of at least one subnet specified in the <code>subnets</code> field. When omitted, OVN-Kubernetes assigns all IP addresses specified in the <code>subnets</code> field. You must use standard CIDR notation. For example, <code>10.128.0.0/16</code>. You must omit this field if the <code>subnets</code> field is not set or if the <code>ipam.mode</code> field is set to <code>Disabled</code>. You can only set 25 values for the <code>excludeSubnets</code> field.</td>
+  <td>Specifies a list of CIDRs to be removed from the CIDRs specified in the <code>subnets</code> field. The CIDRs in this list must be in range of at least one subnet specified in the <code>subnets</code> field. When omitted, OVN-Kubernetes assigns all IP addresses specified in the <code>subnets</code> field. You must use standard CIDR notation. For example, <code>10.128.0.0/16</code>. You must omit this field if the <code>subnets</code> field is not set or if the <code>ipam.mode</code> field is set to <code>Disabled</code>. You can only set 25 values for the <code>excludeSubnets</code> field.<br><br>When deploying a secondary network with <code>Localnet</code> topology, the IP ranges used in your physical network must be explicitly listed in the <code>excludeSubnets</code> field to prevent IP duplication in your subnet.</td>
 </tr>
 <tr>
   <td><code>spec.network.layer2.reservedSubnets</code></td>
@@ -52,22 +52,22 @@ It is not recommended to set these fields without explicit need and understandin
   <td>This field is optional and specifies an IP address that overrides the addresses assigned by default for the gateway. Acceptable values are both IPv4 and IPv6 addresses for dual stack clusters. Specifies the default gateway IP address used in the internal OVN-Kubernetes topology. Dual-stack clusters can set two IP addresses (one for each IP family), otherwise only one IP address can be used. This field is only allowed when the <code>role</code> field is set to <code>Primary</code>. It is not recommended to set this field without explicit need and understanding of the OVN-Kubernetes network topology. When omitted, OVN-Kubernetes assigns the first IP address from the network's <code>subnet</code> field.</td>
 </tr>
 <tr>
-  <td><code>spec.network.<topology>.ipam.lifecycle</code></td>
+  <td><code>spec.network.&lt;topology&gt;.ipam.lifecycle</code></td>
   <td><code>spec.layer2.ipam.lifecycle</code></td>
   <td>object</td>
 </tr>
 <tr>
   <td>The <code>spec.ipam.lifecycle</code> field configures the IP address management system (IPAM). You might use this field for virtual workloads to ensure persistent IP addresses. The only allowed value is <code>Persistent</code>, which ensures that your virtual workloads have persistent IP addresses across reboots and migration. These are assigned by the container network interface (CNI) and used by OVN-Kubernetes to program pod IP addresses. You must not change this for pod annotations. Setting a value of Persistent is only supported when <code>ipam.mode</code> parameter is set to <code>Enabled</code>.</td>
-  <td><code>spec.network.<topology>.ipam.mode</code></td>
-  <td><code>spec.<topology></code>ipam.mode`</td>
+  <td><code>spec.network.&lt;topology&gt;.ipam.mode</code></td>
+  <td><code>spec.&lt;topology&gt;</code>ipam.mode`</td>
 </tr>
 <tr>
   <td>object</td>
   <td>The <code>mode</code> parameter controls how much of the IP configuration is managed by OVN-Kubernetes. The following options are available:<ul><li><code>Enabled</code>: When enabled, OVN-Kubernetes applies the IP configuration to the SDN infrastructure and assigns IP addresses from the selected subnet to the individual pods. This is the default setting. When set to <code>Enabled</code>, the <code>subnets</code> field must be defined. <code>Enabled</code> is the default configuration.</li><li><code>Disabled</code>: When disabled, OVN-Kubernetes only assigns MAC addresses and provides layer 2 communication, which allows users to configure IP addresses. <code>Disabled</code> is only available for layer 2 (secondary) networks. By disabling IPAM, features that rely on selecting pods by IP, for example, network policy, services, and so on, no longer function. Additionally, IP port security is also disabled for interfaces attached to this network. The <code>subnets</code> field must be empty when <code>spec.ipam.mode</code> is set to <code>Disabled.</code></li></ul></td>
-  <td><code>spec.network.<topology>.mtu</code></td>
+  <td><code>spec.network.&lt;topology&gt;.mtu</code></td>
 </tr>
 <tr>
-  <td><code>spec.<topology>.mtu</code></td>
+  <td><code>spec.&lt;topology&gt;.mtu</code></td>
   <td>integer</td>
   <td>The maximum transmission units (MTU). The default value is <code>1400</code>. The boundary for IPv4 is <code>576</code>, and for IPv6 it is <code>1280</code>.</td>
 </tr>

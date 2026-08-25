@@ -7,7 +7,7 @@ To deploy a small registry by using Podman, complete the following steps.
 
 **Procedure**
 
-1.  As a privileged user, access the `${{ HOME }}` directory and create the following script:
+1.  As a privileged user, access the `${{ HOME }}`{minja} directory and create the following script:
     ```bash
     #!/usr/bin/env bash
 

@@ -28,7 +28,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
 **Procedure**
 
 {% if mapi or cpmso %}
-1.  Create a custom secret in the `openshift-machine-api` namespace by using the `{{ machine_role }}` data secret by running the following command:
+1.  Create a custom secret in the `openshift-machine-api` namespace by using the `{{ machine_role }}`{minja} data secret by running the following command:
     ```terminal
     $ oc -n openshift-machine-api \
     get secret <role>-user-data \
@@ -38,7 +38,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
     where:
 
     `<role>`
-    :   Replace with `{{ machine_role }}`.
+    :   Replace with `{{ machine_role }}`{minja}.
 
     `userData.txt`
     :   Specifies `userData.txt` as the name of the new custom secret.
@@ -109,7 +109,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
     --template='{{index .data.disableTemplating | base64decode}}' | jq > disableTemplating.txt
     ```
 
-    Replace `<role>` with `{{ machine_role }}`.
+    Replace `<role>` with `{{ machine_role }}`{minja}.
 1.  Combine the `userData.txt` file and `disableTemplating.txt` file to create a data secret file by running the following command:
     ```terminal
     $ oc -n openshift-machine-api create secret generic <role>-user-data-x5 \
@@ -117,7 +117,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
     --from-file=disableTemplating=disableTemplating.txt
     ```
 
-    For `<role>-user-data-x5`, specify the name of the secret. Replace `<role>` with `{{ machine_role }}`.
+    For `<role>-user-data-x5`, specify the name of the secret. Replace `<role>` with `{{ machine_role }}`{minja}.
 {% endif %}
 
 {% if not cpmso %}
@@ -132,7 +132,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
     :   Indicates the machine set that you want to provision machines with ultra disks.
 
 1.  Add the following lines in the positions indicated:
-    ```yaml
+    ```yaml {minja}
     apiVersion: machine.openshift.io/v1beta1
     kind: MachineSet
     spec:
@@ -144,7 +144,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
           providerSpec:
             value:
               ultraSSDCapability: Enabled
-{%- if mapi %}
+    {%- if mapi %}
               dataDisks:
               - nameSuffix: ultrassd
                 lun: 0
@@ -155,7 +155,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
                   storageAccountType: UltraSSD_LRS
               userDataSecret:
                 name: <role>-user-data-x5
-{%- endif %}
+    {%- endif %}
     ```
 
     where:
@@ -172,7 +172,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
     :   Ensure you include the entire stanza for `dataDisks`.
 
     `spec.template.spec.providerSpec.value.userDataSecret.name`
-    :   Specifies the user data secret created earlier. Replace `<role>` with `{{ machine_role }}`.
+    :   Specifies the user data secret created earlier. Replace `<role>` with `{{ machine_role }}`{minja}.
 {%- endif %}
 1.  Create a machine set by using the updated configuration by running the following command:
     ```terminal
@@ -219,7 +219,7 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
     :   Enables the use of ultra disks. For `dataDisks`, include the entire stanza.
 
     `spec.template.spec.providerSpec.value.userDataSecret.name`
-    :   Specifies the user data secret created earlier. Replace `<role>` with `{{ machine_role }}`.
+    :   Specifies the user data secret created earlier. Replace `<role>` with `{{ machine_role }}`{minja}.
 1.  Save your changes.
     *   For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
     *   For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.
@@ -366,14 +366,14 @@ You can deploy machines with ultra disks on {{ azure_first }} by editing your ma
 {% endif %}
 
 {% if context == "creating-machineset-azure" %}
-{%- set mapi = false -%}
+{%- set mapi = "" -%}
 {% endif %}
 {% if context == "cpmso-supported-features-azure" %}
-{%- set cpmso = false -%}
+{%- set cpmso = "" -%}
 {% endif %}
 {% if context == "persistent-storage-azure" %}
-{%- set pvc = false -%}
+{%- set pvc = "" -%}
 {% endif %}
 {% if context == "persistent-storage-csi-azure" %}
-{%- set pvc = false -%}
+{%- set pvc = "" -%}
 {% endif %}

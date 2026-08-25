@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Traffic flow display settings {id="network-observability-configuring-options-trafficflow_{{ context }}"}
 
-The ***Traffic flows*** view contains settings to customize the display density, data columns, and data export options. {._abstract}
+The **Traffic flows** view contains settings to customize the display density, data columns, and data export options. {._abstract}
 
 ## Display options {id="display-options_{{ context }}"}
 The following elements are available in the **Traffic flows** view:

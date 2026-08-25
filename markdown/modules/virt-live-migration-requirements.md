@@ -6,12 +6,12 @@ Live migration requires shared storage, sufficient resources, and compatible CPU
 
 Live migration requirements
 
-{% if openshift_dedicated %}
+{%- if openshift_dedicated %}
 :   *   Shared storage that supports live migration.
-{% endif %}
-{% if not openshift_dedicated %}
-    *   Shared storage with `ReadWriteMany` (RWX) access mode.
-        {%- endif %}
+{%- endif %}
+{%- if not openshift_dedicated %}
+:   *   Shared storage with `ReadWriteMany` (RWX) access mode.
+{%- endif %}
     *   Sufficient RAM and network bandwidth.
 
     :::note
@@ -28,7 +28,7 @@ Live migration requirements
     
     :::
 
-*   If the virtual machine uses a host model CPU, the nodes must support the virtual machine’s host model CPU.
+    *   If the virtual machine uses a host model CPU, the nodes must support the virtual machine’s host model CPU.
 
 {% if not openshift_dedicated %}
 

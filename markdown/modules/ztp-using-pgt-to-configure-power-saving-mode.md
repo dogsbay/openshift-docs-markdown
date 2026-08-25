@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring power saving mode using {{ policy_gen_cr }} CRs {id="ztp-using-pgt-to-configure-power-saving-mode_{{ context }}"}
 
-Follow this example to set power saving mode by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `{{ policy_gen_cr }}` CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`. {._abstract}
+Follow this example to set power saving mode by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `{{ policy_gen_cr }}`{minja} CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`{minja}. {._abstract}
 
 The power saving mode balances reduced power consumption with increased latency.
 
@@ -11,14 +11,14 @@ The power saving mode balances reduced power consumption with increased latency.
 
 **Procedure**
 
-1.  Update the `{{ policy_gen_cr }}` entry for `PerformanceProfile` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` reference file in `{{ argocd_folder }}` as follows to configure power saving mode. It is recommended to configure the CPU governor for the power saving mode through the additional kernel arguments object.
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/pgt-ztp-using-pgt-to-configure-power-saving-mode.md" %}
+1.  Update the `{{ policy_gen_cr }}`{minja} entry for `PerformanceProfile` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`{minja} reference file in `{{ argocd_folder }}`{minja} as follows to configure power saving mode. It is recommended to configure the CPU governor for the power saving mode through the additional kernel arguments object.
+{% if policy-gen-cr == "PolicyGenTemplate" %}
+    {% include "./snippets/pgt-ztp-using-pgt-to-configure-power-saving-mode.md" %}
 {% endif %}
 {% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/pg-ztp-using-pg-to-configure-power-saving-mode.md" %}
-{%- endif %}
-1.  Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository being monitored by the {{ ztp }} Argo CD application.
+    {% include "./snippets/pg-ztp-using-pg-to-configure-power-saving-mode.md" %}
+{% endif %}
+1.  Commit the `{{ policy_gen_cr }}`{minja} change in Git, and then push to the Git repository being monitored by the {{ ztp }} Argo CD application.
 
 **Verification**
 

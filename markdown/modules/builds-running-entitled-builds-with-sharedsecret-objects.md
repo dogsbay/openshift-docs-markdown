@@ -22,11 +22,11 @@ The Shared Resource CSI Driver feature is now generally available in [{{ builds_
     *   Determine if the `builder` service account available to you in your namespace is allowed to use the given `SharedSecret` CR instance. In other words, you can run `oc adm policy who-can use <identifier of specific SharedSecret>` to see if the `builder` service account in your namespace is listed.
 
 
-:::note
+    :::note
 
-If neither of the last two prerequisites in this list are met, establish, or ask someone to establish, the necessary role-based access control (RBAC) so that you can discover `SharedSecret` CR instances and enable service accounts to use `SharedSecret` CR instances.
-
-:::
+    If neither of the last two prerequisites in this list are met, establish, or ask someone to establish, the necessary role-based access control (RBAC) so that you can discover `SharedSecret` CR instances and enable service accounts to use `SharedSecret` CR instances.
+    
+    :::
 
 
 **Procedure**

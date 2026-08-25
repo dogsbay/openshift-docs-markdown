@@ -22,7 +22,7 @@ Complete the cluster configuration by installing software on the control plane a
         *   **Password**: The root user password you configured.
     1.  Click **Save and Mount**.
     1.  Verify the ISO mounted successfully.
-    1.  Restart the server by selecting **Remote Control** -> **Power Control** -> **Reset Server** -> **Perform Action**.
+    1.  Restart the server by selecting **Remote Control** → **Power Control** → **Reset Server** → **Perform Action**.
 1.  Return to the **Assisted Installer** service.
 1.  Select the **Install {{ VirtProductName }}** and **Install {{ rh_storage }}** checkboxes in the **Assisted Installer** options.
 1.  Select a role for each host.
@@ -47,9 +47,9 @@ Complete the cluster configuration by installing software on the control plane a
         
         :::
 
-    1.  Select **Virtual Media** -> **CD-Rom Image**.
+    1.  Select **Virtual Media** → **CD-Rom Image**.
     1.  Click **Unmount**.
-    1.  Select **Remote Control** -> **Power Control** -> **Reset Server** -> **Perform Action** to restart the server.
+    1.  Select **Remote Control** → **Power Control** → **Reset Server** → **Perform Action** to restart the server.
 1.  Locate the **Cluster Credentials** section of the installation summary.
 1.  Perform the following tasks in the **Cluster Credentials** section:
     1.  Download the `kubeconfig` file.

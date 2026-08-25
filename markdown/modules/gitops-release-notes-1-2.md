@@ -80,6 +80,7 @@ These are the known issues in {{ gitops_title }} 1.2:
     | CPU | 6688m | 13750m |
     | Memory | 4544Mi | 9070Mi |
 
+
     You can use the below command to update the CPU limits.
     ```terminal
     $ oc patch resourcequota openshift-gitops-compute-resources -n openshift-gitops --type='json' -p='[{"op": "replace", "path": "/spec/hard/limits.cpu", "value":"9000m"}]'

@@ -16,6 +16,7 @@ The following y-stream versions were used in validation of the telco hub solutio
 | {{ cgu_operator_first }} | 4.22 |
 | Cluster Logging Operator | 6.5 |
 | {{ oadp_first }} | The version aligned with the {{ rh_rhacm }} release. |
+
 *   {{ odf_short }} will be updated to 4.22 when the aligned {{ odf_short }} version is released.
 *   Cluster Logging Operator will be updated to 6.6 when the aligned Cluster Logging Operator version is released.
 *   The cert-manager Operator and {{ gitops_title }} Operator are platform agnostic operators. 

@@ -37,10 +37,10 @@ MCO uses Ignition as the configuration format. {{ product_title }} 4.6 moved fro
 ## What can you change with machine configs? {id="_what_can_you_change_with_machine_configs"}
 The kinds of components that MCO can change include:
 
-*   ***config***: Create Ignition config objects to do things like modify files, systemd services, and other features on {{ product_title }} machines, including:
-    *   ***Configuration files***: Create or overwrite files in the `/var` or `/etc` directory.
-    *   ***systemd units***: Create and set the status of a systemd service or add to an existing systemd service by dropping in additional settings.
-    *   ***users and groups***: Change SSH keys in the passwd section postinstallation.
+*   **config**: Create Ignition config objects to do things like modify files, systemd services, and other features on {{ product_title }} machines, including:
+    *   **Configuration files**: Create or overwrite files in the `/var` or `/etc` directory.
+    *   **systemd units**: Create and set the status of a systemd service or add to an existing systemd service by dropping in additional settings.
+    *   **users and groups**: Change SSH keys in the passwd section postinstallation.
 
         :::important
 
@@ -49,15 +49,15 @@ The kinds of components that MCO can change include:
         
         :::
 
-*   ***kernelArguments***: Add arguments to the kernel command line when {{ product_title }} nodes boot.
-*   ***kernelType***: Optionally identify a non-standard kernel to use instead of the standard kernel. Use `realtime` to use the RT kernel (for RAN). This is only supported on select platforms. Use the `64k-pages` parameter to enable the 64k page size kernel. This setting is exclusive to machines with 64-bit ARM architectures.
+*   **kernelArguments**: Add arguments to the kernel command line when {{ product_title }} nodes boot.
+*   **kernelType**: Optionally identify a non-standard kernel to use instead of the standard kernel. Use `realtime` to use the RT kernel (for RAN). This is only supported on select platforms. Use the `64k-pages` parameter to enable the 64k page size kernel. This setting is exclusive to machines with 64-bit ARM architectures.
 {%- if not openshift_origin %}
-*   ***fips***: Enable FIPS mode. FIPS should be set at installation-time setting and not a postinstallation procedure. For more information, see "Using system-wide cryptographic policies".
-{% include "./snippets/fips-snippet.md" %}
+*   **fips**: Enable FIPS mode. FIPS should be set at installation-time setting and not a postinstallation procedure. For more information, see "Using system-wide cryptographic policies".
+    {% include "./snippets/fips-snippet.md" %}
 
 {%- endif %}
-*   ***extensions***: Extend {{ op_system }} features by adding selected pre-packaged software. For this feature, available extensions include usbguard and kernel modules. For more information, see "Protecting systems against intrusive USB devices" in the _Additional resources_ section.
-*   ***Custom resources (for `ContainerRuntime` and `Kubelet`)***: Outside of machine configs, MCO manages two special custom resources for modifying CRI-O container runtime settings (`ContainerRuntime` CR) and the Kubelet service (`Kubelet` CR).
+*   **extensions**: Extend {{ op_system }} features by adding selected pre-packaged software. For this feature, available extensions include usbguard and kernel modules. For more information, see "Protecting systems against intrusive USB devices" in the _Additional resources_ section.
+*   **Custom resources (for `ContainerRuntime` and `Kubelet`)**: Outside of machine configs, MCO manages two special custom resources for modifying CRI-O container runtime settings (`ContainerRuntime` CR) and the Kubelet service (`Kubelet` CR).
 
 The MCO is not the only Operator that can change operating system components on {{ product_title }} nodes. Other Operators can modify operating system-level features as well. One example is the Node Tuning Operator, which allows you to do node-level tuning through Tuned daemon profiles.
 

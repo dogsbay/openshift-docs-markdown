@@ -3,13 +3,13 @@ title: Multiarch Tuning Operator release notes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Multiarch Tuning Operator release notes {id="multi-arch-tuning-operator-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# Multiarch Tuning Operator release notes {id="multi-arch-tuning-operator-release-notes"}
 {%- set context = "multi-arch-tuning-operator-release-notes" %}
 
-The Multiarch Tuning Operator (MTO) optimizes workload management within multi-architecture clusters and in single-architecture clusters transitioning to multi-architecture environments. Use the release notes to track the development of the Multiarch Tuning Operator.
+The Multiarch Tuning Operator (MTO) optimizes workload management within multi-architecture clusters and in single-architecture clusters transitioning to multi-architecture environments. Use the release notes to track the development of the Multiarch Tuning Operator. {._abstract}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
 

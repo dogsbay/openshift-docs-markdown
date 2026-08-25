@@ -41,10 +41,10 @@ Binding names declared through annotations are processed for their name change b
     If your workload requires a different format, you can define a custom naming strategy and change the binding name using a prefix and a separator, for example, `PORT_DATABASE`.
 
 
-:::note
+    :::note
 
-*   When the binding names are projected as files, by default the predefined `none` naming strategy is applied, and the binding names do not change.
-*   When the binding names are projected as environment variables and no `namingStrategy` is defined, by default the predefined `uppercase` naming strategy is applied.
-*   You can override the predefined naming strategies by defining custom naming strategies using different combinations of custom binding names and predefined post-processing functions.
-
-:::
+    *   When the binding names are projected as files, by default the predefined `none` naming strategy is applied, and the binding names do not change.
+    *   When the binding names are projected as environment variables and no `namingStrategy` is defined, by default the predefined `uppercase` naming strategy is applied.
+    *   You can override the predefined naming strategies by defining custom naming strategies using different combinations of custom binding names and predefined post-processing functions.
+    
+    :::

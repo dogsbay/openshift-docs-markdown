@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring live migration limits and timeouts {id="virt-configuring-live-migration-limits_{{ context }}"}
 
-Configure live migration limits and timeouts for the cluster by updating the `HyperConverged` custom resource (CR), which is located in the `{{ CNVNamespace }}` namespace. {._abstract}
+Configure live migration limits and timeouts for the cluster by updating the `HyperConverged` custom resource (CR), which is located in the `{{ CNVNamespace }}`{minja} namespace. {._abstract}
 
 **Prerequisites**
 
@@ -10,12 +10,12 @@ Configure live migration limits and timeouts for the cluster by updating the `Hy
 **Procedure**
 
 *   Edit the `HyperConverged` CR and add the necessary live migration parameters:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 
     Example configuration file:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

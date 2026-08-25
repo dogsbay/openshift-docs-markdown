@@ -9,9 +9,7 @@ If you use `Manual` mode, add the ARN of the account that creates the cluster as
 
 You must add the following actions to the policy:
 
-<details>
-<summary>Required actions for shared VPC installation</summary>
-
+:::details{title="Required actions for shared VPC installation"}
 *   `route53:ChangeResourceRecordSets`
 *   `route53:ListHostedZones`
 *   `route53:ListHostedZonesByName`
@@ -24,4 +22,4 @@ You must add the following actions to the policy:
 *   `route53:UpdateHostedZoneComment`
 *   `tag:GetResources`
 *   `tag:UntagResources`
-</details>
+:::

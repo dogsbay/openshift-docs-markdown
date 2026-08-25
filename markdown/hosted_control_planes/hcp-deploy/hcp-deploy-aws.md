@@ -7,7 +7,7 @@ title: "Deploying {{ hcp }} on {{ aws_short }}"
 # Deploying {{ hcp }} on {{ aws_short }} {id="hcp-deploy-aws"}
 {%- set context = "hcp-deploy-aws" %}
 
-To reduce infrastructure costs and improve cluster management efficiency, you can deploy {{ hcp }} on {{ aws_short }}. This configuration decouples the control plane from the data plane so that you can manage multiple clusters from a central management service.
+To reduce infrastructure costs and improve cluster management efficiency, you can deploy {{ hcp }} on {{ aws_short }}. This configuration decouples the control plane from the data plane so that you can manage multiple clusters from a central management service. {._abstract}
 
 A _hosted cluster_ is an {{ product_title }} cluster with its API endpoint and control plane that are hosted on the management cluster. The hosted cluster includes the control plane and its corresponding data plane. To configure {{ hcp }} on premises, you must install {{ mce }} in a management cluster. By deploying the HyperShift Operator on an existing managed cluster by using the `hypershift-addon` managed cluster add-on, you can enable that cluster as a management cluster and start to create the hosted cluster. The `hypershift-addon` managed cluster add-on is enabled by default for the `local-cluster` managed cluster.
 
@@ -18,6 +18,7 @@ You can use the {{ mce_short }} console or the hosted control plane command-line
 {% leveloffset +2 %}{% include "./modules/hcp-aws-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring Ansible Automation Platform jobs to run on hosted clusters](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#ansible-config-hosted-cluster)
 *   [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
@@ -47,6 +48,7 @@ You can use the {{ mce_short }} console or the hosted control plane command-line
 {% leveloffset +1 %}{% include "./modules/hcp-create-hc-aws.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Disabling the automatic import of hosted clusters into {{ mce_short }}](/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
 *   [Running hosted clusters on an ARM64 architecture](/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-enable-arm-amd_hcp-deploy-aws)
@@ -54,6 +56,7 @@ You can use the {{ mce_short }} console or the hosted control plane command-line
 {% leveloffset +2 %}{% include "./modules/hcp-aws-deploy-hc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
 
@@ -74,6 +77,7 @@ You can use the {{ mce_short }} console or the hosted control plane command-line
 {% leveloffset +2 %}{% include "./modules/hcp-create-hc-arm64-aws.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Extracting the release image digest](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
 *   [Create an {{ product_title }} Cluster: {{ aws_short }} (ARM)](https://console.redhat.com/openshift/install/aws/arm)
@@ -82,12 +86,14 @@ You can use the {{ mce_short }} console or the hosted control plane command-line
 {% leveloffset +2 %}{% include "./modules/hcp-create-np-arm64-aws.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Multi-architecture nightly images](https://multi.ocp.releases.ci.openshift.org/)
 
 {% leveloffset +1 %}{% include "./modules/hcp-create-private-hc-aws.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Enabling {{ aws_short }} PrivateLink for {{ hcp }}](/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-enable-private-link_hcp-deploy-aws)
 *   [Creating an {{ aws_short }} IAM role and STS credentials](/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)

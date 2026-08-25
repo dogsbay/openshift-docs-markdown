@@ -14,5 +14,5 @@ Before updating a hosted cluster, you must refer to the available and conditiona
 **Procedure**
 
 1.  Select **All clusters**.
-1.  Navigate to **Infrastructure** -> **Clusters** to view managed hosted clusters.
+1.  Navigate to **Infrastructure** → **Clusters** to view managed hosted clusters.
 1.  Click the **Upgrade available** link to update the control plane and node pools.

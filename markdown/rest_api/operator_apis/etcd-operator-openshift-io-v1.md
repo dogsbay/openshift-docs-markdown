@@ -1,5 +1,5 @@
 ---
-title: "Etcd []"
+title: "Etcd [operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` |  |
 | `status` | `object` |  |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,12 +45,13 @@ Type
 | `controlPlaneHardwareSpeed` | `string` | HardwareSpeed allows user to change the etcd tuning profile which configures the latency parameters for heartbeat interval and leader election timeouts allowing the cluster to tolerate longer round-trip-times between etcd members. Valid values are "", "Standard" and "Slower". 	"" means no opinion and the platform is left to choose a reasonable default 	which is subject to change without notice. |
 | `failedRevisionLimit` | `integer` | failedRevisionLimit is the number of failed static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `forceRedeploymentReason` | `string` | forceRedeploymentReason can be used to force the redeployment of the operand by providing a unique string. This provides a mechanism to kick a previously failed deployment and provide a reason why you think it will work this time instead of failing again on the same config. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `succeededRevisionLimit` | `integer` | succeededRevisionLimit is the number of successful static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+
 ### .status {id="_status"}
 
 Description
@@ -72,6 +74,7 @@ Type
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with |
 | `readyReplicas` | `integer` | readyReplicas indicates how many replicas are ready and at the desired state |
 | `version` | `string` | version is the level this availability applies to |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -103,6 +106,7 @@ Required
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.generations {id="_statusgenerations"}
 
 Description
@@ -136,6 +140,7 @@ Required
 | `name` | `string` | name is the name of the thing you’re tracking |
 | `namespace` | `string` | namespace is where the thing you’re tracking is |
 | `resource` | `string` | resource is the resource type of the thing you’re tracking |
+
 ### .status.nodeStatuses {id="_statusnodestatuses"}
 
 Description
@@ -178,12 +183,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Etcd
     *   `GET`: list objects of kind Etcd
     *   `POST`: create an Etcd
-*   `/apis/operator.openshift.io/v1/etcds/{{ name }}`
+*   `/apis/operator.openshift.io/v1/etcds/{{ name }}`{minja}
     *   `DELETE`: delete an Etcd
     *   `GET`: read the specified Etcd
     *   `PATCH`: partially update the specified Etcd
     *   `PUT`: replace the specified Etcd
-*   `/apis/operator.openshift.io/v1/etcds/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1/etcds/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Etcd
     *   `PATCH`: partially update status of the specified Etcd
     *   `PUT`: replace status of the specified Etcd

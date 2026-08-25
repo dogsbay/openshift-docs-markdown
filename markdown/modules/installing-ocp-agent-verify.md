@@ -66,7 +66,7 @@ After the installation has started, you can track installation progress and veri
     
     :::
 
-    ```yaml title="Example of dual-stack networking"
+    ```yaml title="Example of dual-stack networking" {minja}
     apiVIP: 192.168.11.3
     ingressVIP: 192.168.11.4
     clusterDeploymentRef:
@@ -90,5 +90,5 @@ After the installation has started, you can track installation progress and veri
 {% endif %}
 
 {% if context == "installing-with-agent-basic" %}
-{%- set basic = false -%}
+{%- set basic = "" -%}
 {% endif %}

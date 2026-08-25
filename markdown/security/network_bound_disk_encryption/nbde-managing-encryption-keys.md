@@ -3,8 +3,8 @@ title: Tang server encryption key management
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Tang server encryption key management {id="nbde-managing-encryption-keys"}
 {% include "./_attributes/common-attributes.md" %}
+# Tang server encryption key management {id="nbde-managing-encryption-keys"}
 {%- set context = "nbde-implementation" %}
 
 The cryptographic mechanism to recreate the encryption key is based on the _blinded key_ stored on the node and the private key of the involved Tang servers.

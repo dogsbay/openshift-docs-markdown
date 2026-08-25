@@ -4,6 +4,7 @@
 You can use the {{ hybrid_console_second }} to approve or deny access requests for your {{ product_rosa }} clusters to control when Red&#160;Hat Site Reliability Engineering (SRE) can access your cluster resources. {._abstract}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+
 **Prerequisites**
 
 *   You have access to the cluster as a user with the `Cluster Owner` role.

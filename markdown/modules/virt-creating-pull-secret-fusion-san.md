@@ -24,5 +24,5 @@ After installing the {{ FusionSAN }} Operator, you must create a Kubernetes secr
 
 **Verification**
 
-1.  In the {{ product_title }} web console, navigate to **Workloads** -> **Secrets**.
+1.  In the {{ product_title }} web console, navigate to **Workloads** → **Secrets**.
 1.  Find the `fusion-pullsecret` in the list.

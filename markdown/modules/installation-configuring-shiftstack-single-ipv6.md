@@ -13,8 +13,13 @@ For {{ rh_openstack }} 17.1, you can also deploy a dual-stack {{ product_title }
 :::
 
 
-**❗ IMPORTANT**\
+
+:::important
+
 You cannot convert a dual-stack cluster into a single-stack IPv6 cluster.
+
+:::
+
 
 **Prerequisites**
 
@@ -22,8 +27,13 @@ You cannot convert a dual-stack cluster into a single-stack IPv6 cluster.
 *   DNS is configured for the existing IPv6 subnet.
 *   The IPv6 subnet is added to a {{ rh_openstack }} router, and the router is configured to send router advertisements (RAs).
 *   You added any additional IPv6 subnets that are used in the cluster to an {{ rh_openstack }} router to enable router advertisements.
-    **📌 NOTE**\
+
+    :::note
+
     Using an IPv6 SLAAC subnet is not supported because any `dns_nameservers` addresses are not enforced by {{ rh_openstack }} Neutron.
+    
+    :::
+
 *   You have a mirror registry with an IPv6 interface.
 *   The {{ rh_openstack }} network accepts a minimum MTU size of 1442 bytes.
 *   You created API and ingress virtual IP addresses (VIPs) as {{ rh_openstack }} ports on the machine network and included those addresses in the `install-config.yaml` file.

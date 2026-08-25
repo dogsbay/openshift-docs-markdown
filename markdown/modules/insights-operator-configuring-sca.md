@@ -10,15 +10,15 @@ This procedure describes how to update the import interval to two hours (2h). Yo
 *   Remote health reporting is enabled, which is the default.
 {%- if not (openshift_rosa or openshift_dedicated) %}
 *   You are logged in to the {{ product_title }} web console as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 *   You are logged in to the {{ product_title }} web console as a user with the `dedicated-admin` role.
 {%- endif %}
 *   The **insights-config** `ConfigMap` object exists in the `openshift-insights` namespace.
 
 **Procedure**
 
-1.  Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.
+1.  Go to **Workloads** → **ConfigMaps** and select **Project: openshift-insights**.
 1.  Click on the **insights-config** `ConfigMap` object to open it.
 1.  Click **Actions** and select **Edit ConfigMap**.
 1.  Click the **YAML view** radio button.

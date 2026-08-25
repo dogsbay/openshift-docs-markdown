@@ -25,8 +25,8 @@ The supported profiles are:
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Ecosystem** -> **Software Catalog**.
-1.  Use the **Filter by keyword** box to search for `{{ pipelines_title }}` Operator in the catalog. Click the **{{ pipelines_title }}** Operator tile.
+1.  In the **Administrator** perspective of the web console, navigate to **Ecosystem** → **Software Catalog**.
+1.  Use the **Filter by keyword** box to search for `{{ pipelines_title }}`{minja} Operator in the catalog. Click the **{{ pipelines_title }}** Operator tile.
 1.  Read the brief description about the Operator on the **{{ pipelines_title }}** Operator page. Click **Install**.
 1.  On the **Install Operator** page:
     1.  Select **All namespaces on the cluster (default)** for the **Installation Mode**. This mode installs the Operator in the default `openshift-operators` namespace, which enables the Operator to watch and be made available to all namespaces in the cluster.
@@ -59,38 +59,33 @@ The supported profiles are:
 
 1.  Verify that all components of the {{ pipelines_title }} Operator were installed successfully. Login to the cluster on the terminal, and run the following command:
 
-```terminal
-$ oc get tektonconfig config
-```
+    ```terminal
+    $ oc get tektonconfig config
+    ```
+    ```text title="Example output"
+    NAME     VERSION   READY   REASON
+    config   1.11.0     True
+    ```
 
-.Example output
-```
-NAME     VERSION   READY   REASON
-config   1.11.0     True
-```
+    If the **READY** condition is **True**, the Operator and its components have been installed successfully.
 
-If the **READY** condition is **True**, the Operator and its components have been installed successfully.
+    Additonally, check the components' versions by running the following command:
+    ```terminal
+    $ oc get tektonpipeline,tektontrigger,tektonchain,tektonaddon,pac
+    ```
+    ```text title="Example output"
+    NAME                                          VERSION   READY   REASON
+    tektonpipeline.operator.tekton.dev/pipeline   v0.47.0   True
 
-Additonally, check the components' versions by running the following command:
+    NAME                                        VERSION   READY   REASON
+    tektontrigger.operator.tekton.dev/trigger   v0.23.1   True
 
-```terminal
-$ oc get tektonpipeline,tektontrigger,tektonchain,tektonaddon,pac
-```
+    NAME                                    VERSION   READY   REASON
+    tektonchain.operator.tekton.dev/chain   v0.16.0   True
 
-.Example output
-```
-NAME                                          VERSION   READY   REASON
-tektonpipeline.operator.tekton.dev/pipeline   v0.47.0   True
+    NAME                                    VERSION   READY   REASON
+    tektonaddon.operator.tekton.dev/addon   1.11.0     True
 
-NAME                                        VERSION   READY   REASON
-tektontrigger.operator.tekton.dev/trigger   v0.23.1   True
-
-NAME                                    VERSION   READY   REASON
-tektonchain.operator.tekton.dev/chain   v0.16.0   True
-
-NAME                                    VERSION   READY   REASON
-tektonaddon.operator.tekton.dev/addon   1.11.0     True
-
-NAME                                                             VERSION   READY   REASON
-openshiftpipelinesascode.operator.tekton.dev/pipelines-as-code   v0.19.0   True
-```
+    NAME                                                             VERSION   READY   REASON
+    openshiftpipelinesascode.operator.tekton.dev/pipelines-as-code   v0.19.0   True
+    ```

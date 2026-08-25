@@ -31,10 +31,10 @@ Additionally, this installation example uses the `netobserv` namespace, which is
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
 1.  Choose  **Network Observability Operator** from the list of available Operators in the software catalog, and click **Install**.
 1.  Select the checkbox `Enable Operator recommended cluster monitoring on this Namespace`.
-1.  Navigate to **Operators** -> **Installed Operators**. Under Provided APIs for Network Observability, select the **Flow Collector** link.
+1.  Navigate to **Operators** → **Installed Operators**. Under Provided APIs for Network Observability, select the **Flow Collector** link.
 1.  Follow the **Network Observability FlowCollector setup** wizard.
 1.  Click **Create**.
 

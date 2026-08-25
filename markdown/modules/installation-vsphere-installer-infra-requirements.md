@@ -9,12 +9,12 @@
 # vCenter requirements {id="installation-vsphere-installer-infra-requirements_{{ context }}"}
 
 {% if not upi %}
-Before you install an {{ product_title }} cluster on your vCenter that uses infrastructure that the installation program provisions, you must prepare your environment.
-{% endif %} {._abstract}
+Before you install an {{ product_title }} cluster on your vCenter that uses infrastructure that the installation program provisions, you must prepare your environment. {._abstract}
+{% endif %}
 
 {% if upi %}
-Before you install an {{ product_title }} cluster on your vCenter that uses infrastructure that you provided, you must prepare your environment.
-{% endif %} {._abstract}
+Before you install an {{ product_title }} cluster on your vCenter that uses infrastructure that you provided, you must prepare your environment. {._abstract}
+{% endif %}
 
 ## Required vCenter account privileges {id="installation-vsphere-installer-infra-requirements-account_{{ context }}"}
 
@@ -38,7 +38,7 @@ The following tables do not explicitly list the ESXi host object. In the {{ vmw_
 :::
 
 
-***Roles and privileges required for installation in vSphere API***
+**Roles and privileges required for installation in vSphere API**
 
 <table>
 <thead>
@@ -88,7 +88,7 @@ The following tables do not explicitly list the ESXi host object. In the {{ vmw_
 </tbody>
 </table>
 
-***Roles and privileges required for installation in vCenter graphical user interface (GUI)***
+**Roles and privileges required for installation in vCenter graphical user interface (GUI)**
 
 <table>
 <thead>
@@ -140,7 +140,7 @@ The following tables do not explicitly list the ESXi host object. In the {{ vmw_
 
 Additionally, the user requires some `ReadOnly` permissions, and some of the roles require permission to propagate the permissions to child objects. These settings vary depending on whether or not you install the cluster into an existing folder.
 
-***Required permissions and propagation settings***
+**Required permissions and propagation settings**
 
 <table>
 <thead>
@@ -162,10 +162,10 @@ Additionally, the user requires some `ReadOnly` permissions, and some of the rol
   {% if upi %}<td>vSphere vCenter data center</td>{% endif %}
   {% if upi %}<td>Existing folder</td>{% endif %}
   {% if upi %}<td>False</td>{% endif %}
-  {% if upi %}<td><code>ReadOnly</code> permission<br><br>.2+</td>{% endif %}
+  {% if upi %}<td><code>ReadOnly</code> permission</td>{% endif %}
 </tr>
 <tr>
-  {% if ipi %}<td>vSphere vCenter data center</td>{% endif %}
+  {% if ipi %}<td rowspan="2">vSphere vCenter data center</td>{% endif %}
   {% if ipi %}<td>Existing folder</td>{% endif %}
   {% if ipi %}<td>False</td>{% endif %}
   {% if ipi %}<td><code>ReadOnly</code> permission</td>{% endif %}
@@ -174,39 +174,39 @@ Additionally, the user requires some `ReadOnly` permissions, and some of the rol
   {% if ipi %}<td>Installation program creates the folder</td>{% endif %}
   {% if ipi %}<td>True</td>{% endif %}
   {% if ipi %}<td>Listed required privileges</td>{% endif %}
-  <td>vSphere vCenter Cluster</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Cluster</td>
   <td>Always</td>
   <td>True</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Datastore</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Datastore</td>
   <td>Always</td>
   <td>False</td>
   <td>Listed required privileges</td>
-  <td>vSphere Switch</td>
 </tr>
 <tr>
+  <td>vSphere Switch</td>
   <td>Always</td>
   <td>False</td>
   <td><code>ReadOnly</code> permission</td>
-  <td>vSphere Port Group</td>
 </tr>
 <tr>
+  <td>vSphere Port Group</td>
   <td>Always</td>
   <td>False</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Virtual Machine Folder</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Virtual Machine Folder</td>
   <td>Existing folder</td>
   <td>True</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Resource Pool</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Resource Pool</td>
   <td>Existing resource pool</td>
   <td>True</td>
   <td>Listed required privileges</td>
@@ -245,7 +245,7 @@ The following tables specify how the required vCenter account privileges provide
 {% if not upi %}
 <a name="installation-vsphere-minimum-permissions-ipi_{{ context }}"></a>
 
-***Minimum permissions on installer-provisioned infrastructure***
+**Minimum permissions on installer-provisioned infrastructure**
 
 <table>
 <thead>
@@ -298,7 +298,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="post-installation-vsphere-minimum-permissions_{{ context }}"></a>
 
-***Minimum permissions for postinstallation management of components***
+**Minimum permissions for postinstallation management of components**
 
 <table>
 <thead>
@@ -350,7 +350,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="installation-vsphere-minimum-permissions-storage_{{ context }}"></a>
 
-***Minimum permissions for the storage components***
+**Minimum permissions for the storage components**
 
 <table>
 <thead>
@@ -402,7 +402,7 @@ The following tables specify how the required vCenter account privileges provide
 
 <a name="post-installation-vsphere-minimum-machine-api_{{ context }}"></a>
 
-***Minimum permissions for the Machine API***
+**Minimum permissions for the Machine API**
 
 <table>
 <thead>
@@ -534,8 +534,8 @@ Additionally, you must create the following networking resources before you inst
 ## Required IP addresses {id="installation-vsphere-installer-infra-requirements-_{{ context }}"}
 For a network that uses DHCP, an installer-provisioned vSphere installation requires two static IP addresses:
 
-*   The ***API*** address for accessing the cluster API.
-*   The ***Ingress*** address for cluster ingress traffic.
+*   The **API** address for accessing the cluster API.
+*   The **Ingress** address for cluster ingress traffic.
 
 You must give these IP addresses to the installation program when you install the {{ product_title }} cluster.
 {% endif %}
@@ -543,7 +543,7 @@ You must give these IP addresses to the installation program when you install th
 ## DNS records {id="installation-vsphere-installer-infra-requirements-dns-records_{{ context }}"}
 You must create DNS records for two static IP addresses in the appropriate DNS server for the vCenter instance that hosts your {{ product_title }} cluster. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the cluster base domain that you specify when you install the cluster. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -556,20 +556,20 @@ You must create DNS records for two static IP addresses in the appropriate DNS s
 <tbody>
 <tr>
   <td>API VIP</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME (Canonical Name) record must point to the load balancer for the control plane machines. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Ingress VIP</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>A wildcard DNS A/AAAA or CNAME record that points to the load balancer that targets the machines that run the Ingress router pods, which are the worker nodes by default. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 </tbody>
 </table>
 
 {% if context == "ipi-vsphere-installation-reqs" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "upi-vsphere-installation-reqs" %}
-{%- set upi = false -%}
+{%- set upi = "" -%}
 {% endif %}

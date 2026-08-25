@@ -3,11 +3,11 @@ title: About control plane machine sets
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About control plane machine sets {id="cpmso-about"}
 {% include "./_attributes/common-attributes.md" %}
+# About control plane machine sets {id="cpmso-about"}
 {%- set context = "cpmso-about" %}
 
-With control plane machine sets, you can automate management of the control plane machine resources within your {{ product_title }} cluster, simplifying upgrades and recovery from degraded control plane machines.
+With control plane machine sets, you can automate management of the control plane machine resources within your {{ product_title }} cluster, simplifying upgrades and recovery from degraded control plane machines. {._abstract}
 
 
 :::important
@@ -23,7 +23,7 @@ Control plane machine sets provide for control plane machines similar management
 
 {% leveloffset +2 %}{% include "./modules/cpmso-limitations.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_cpmso-about"}
+## Additional resources {id="additional-resources_cpmso-about" ._additional-resources}
 
 *   [Control Plane Machine Set Operator reference](/operators/operator-reference#control-plane-machine-set-operator_operator-reference)
 *   [`ControlPlaneMachineSet` custom resource](/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1)

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Monitoring managed cluster policy deployment progress {id="ztp-monitoring-policy-deployment-progress_{{ context }}"}
 
-The ArgoCD pipeline uses `{{ policy_gen_cr }}` CRs in Git to generate the {{ rh_rhacm }} policies and then sync them to the hub cluster. You can monitor the progress of the managed cluster policy synchronization after the assisted service installs {{ product_title }} on the managed cluster. {._abstract}
+The ArgoCD pipeline uses `{{ policy_gen_cr }}`{minja} CRs in Git to generate the {{ rh_rhacm }} policies and then sync them to the hub cluster. You can monitor the progress of the managed cluster policy synchronization after the assisted service installs {{ product_title }} on the managed cluster. {._abstract}
 
 **Prerequisites**
 
@@ -47,14 +47,14 @@ The ArgoCD pipeline uses `{{ policy_gen_cr }}` CRs in Git to generate the {{ rh_
         ztp-site.example1-perf-policy                            inform               NonCompliant       3h42m
         ```
     1.  To check policy status from the {{ rh_rhacm }} web console, perform the following actions:
-        1.  Click **Governance** -> **Find policies**.
+        1.  Click **Governance** → **Find policies**.
         1.  Click on a cluster policy to check its status.
 
 
-:::note
+        :::note
 
-When all of the cluster policies become compliant, {{ ztp }} installation and configuration for the cluster is complete. The `ztp-done` label is added to the cluster.
+        When all of the cluster policies become compliant, {{ ztp }} installation and configuration for the cluster is complete. The `ztp-done` label is added to the cluster.
 
-In the reference configuration, the final policy that becomes compliant is the one defined in the `*-du-validator-policy` policy. This policy, when compliant on a cluster, ensures that all cluster configuration, Operator installation, and Operator configuration is complete.
-
-:::
+        In the reference configuration, the final policy that becomes compliant is the one defined in the `*-du-validator-policy` policy. This policy, when compliant on a cluster, ensures that all cluster configuration, Operator installation, and Operator configuration is complete.
+        
+        :::

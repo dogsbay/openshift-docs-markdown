@@ -32,13 +32,13 @@ Because the internal {{ product_title }} Elasticsearch log store does not provid
 {% if openshift_rosa or openshift_dedicated %}
 {% leveloffset +1 %}{% include "./modules/cluster-logging-cloudwatch.md" %}{% endleveloffset %}
 For information, see [About log collection and forwarding](/observability/logging/log_collection_forwarding/log-forwarding#about-log-collection_log-forwarding).
-{% endif %} {._additional-resources}
+{% endif %}
 
 {% leveloffset +2 %}{% include "./modules/cluster-logging-json-logging-about.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/cluster-logging-collecting-storing-kubernetes-events.md" %}{% endleveloffset %}
 
-For information, see [Collecting and storing Kubernetes events](/observability/logging/log_collection_forwarding/cluster-logging-eventrouter#cluster-logging-eventrouter).
+For information, see [Collecting and storing Kubernetes events](/observability/logging/log_collection_forwarding/cluster-logging-eventrouter#cluster-logging-eventrouter). {._additional-resources}
 
 {% leveloffset +2 %}{% include "./modules/cluster-logging-troubleshoot-logging.md" %}{% endleveloffset %}
 

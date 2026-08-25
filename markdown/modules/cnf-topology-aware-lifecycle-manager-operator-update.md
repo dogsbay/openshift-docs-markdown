@@ -14,14 +14,14 @@ You can perform an Operator update with the {{ cgu_operator }}. {._abstract}
 
 **Procedure**
 
-1.  Update the `{{ policy_gen_cr }}` CR for the Operator update.
-    1.  Update the `du-upgrade` `{{ policy_gen_cr }}` CR with the following additional contents in the `du-upgrade.yaml` file:
-        {%- if policy-gen-cr == "PolicyGenTemplate" %}
+1.  Update the `{{ policy_gen_cr }}`{minja} CR for the Operator update.
+    1.  Update the `du-upgrade` `{{ policy_gen_cr }}`{minja} CR with the following additional contents in the `du-upgrade.yaml` file:
+{% if policy-gen-cr == "PolicyGenTemplate" %}
         {% include "./snippets/pgt-cnf-topology-aware-lifecycle-manager-operator-update.md" %}
-        {% endif %}
-        {% if policy-gen-cr == "PolicyGenerator" %}
+{% endif %}
+{% if policy-gen-cr == "PolicyGenerator" %}
         {% include "./snippets/pg-cnf-topology-aware-lifecycle-manager-operator-update.md" %}
-        {% endif %}
+{% endif %}
     1.  This update generates one policy, `du-upgrade-operator-catsrc-policy`, to update the `redhat-operators-disconnected` catalog source with the new index images that contain the required Operators images.
 
         :::note
@@ -35,21 +35,21 @@ You can perform an Operator update with the {{ cgu_operator }}. {._abstract}
 
 
         For example, the required SRIOV-FEC Operator is available in the `certified-operators` catalog source. To update the catalog source and the Operator subscription, add the following contents to generate two policies, `du-upgrade-fec-catsrc-policy` and `du-upgrade-subscriptions-fec-policy`:
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/pgt-sriov-fec-cnf-topology-aware-lifecycle-manager-operator-update.md" %}
+{% if policy-gen-cr == "PolicyGenTemplate" %}
+        {% include "./snippets/pgt-sriov-fec-cnf-topology-aware-lifecycle-manager-operator-update.md" %}
 {% endif %}
 {% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/pg-sriov-fec-cnf-topology-aware-lifecycle-manager-operator-update.md" %}
+        {% include "./snippets/pg-sriov-fec-cnf-topology-aware-lifecycle-manager-operator-update.md" %}
 {% endif %}
-    1.  Remove the specified subscriptions channels in the common `{{ policy_gen_cr }}` CR, if they exist. The default subscriptions channels from the {{ ztp }} image are used for the update.
+    1.  Remove the specified subscriptions channels in the common `{{ policy_gen_cr }}`{minja} CR, if they exist. The default subscriptions channels from the {{ ztp }} image are used for the update.
 
         :::note
 
-        The default channel for the Operators applied through {{ ztp }} {{ product_version }} is `stable`, except for the `performance-addon-operator`. As of {{ product_title }} 4.11, the `performance-addon-operator` functionality was moved to the `node-tuning-operator`. For the 4.10 release, the default channel for PAO is `v4.10`. You can also specify the default channels in the common `{{ policy_gen_cr }}` CR.
+        The default channel for the Operators applied through {{ ztp }} {{ product_version }} is `stable`, except for the `performance-addon-operator`. As of {{ product_title }} 4.11, the `performance-addon-operator` functionality was moved to the `node-tuning-operator`. For the 4.10 release, the default channel for PAO is `v4.10`. You can also specify the default channels in the common `{{ policy_gen_cr }}`{minja} CR.
         
         :::
 
-    1.  Push the `{{ policy_gen_cr }}` CRs updates to the {{ ztp }} Git repository.
+    1.  Push the `{{ policy_gen_cr }}`{minja} CRs updates to the {{ ztp }} Git repository.
 
         ArgoCD pulls the changes from the Git repository and generates the policies on the hub cluster.
     1.  Check the created policies by running the following command:
@@ -82,7 +82,7 @@ You can perform an Operator update with the {{ cgu_operator }}. {._abstract}
         $ oc get policies -A | grep -E "catsrc-policy"
         ```
 1.  Create the `ClusterGroupUpgrade` CR for the Operator update with the `spec.enable` field set to `false`.
-    1.  Save the content of the Operator update `ClusterGroupUpgrade` CR with the `du-upgrade-operator-catsrc-policy` policy and the subscription policies created from the common `{{ policy_gen_cr }}` and the target clusters to the `cgu-operator-upgrade.yml` file, as shown in the following example:
+    1.  Save the content of the Operator update `ClusterGroupUpgrade` CR with the `du-upgrade-operator-catsrc-policy` policy and the subscription policies created from the common `{{ policy_gen_cr }}`{minja} and the target clusters to the `cgu-operator-upgrade.yml` file, as shown in the following example:
         ```yaml
         apiVersion: ran.openshift.io/v1alpha1
         kind: ClusterGroupUpgrade

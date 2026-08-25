@@ -7,4 +7,4 @@ Before deploying your cluster, ensure that you plan for your egresses and ingres
 *   Red&#160;Hat must have egress allowed to the domains documented in the "AWS Firewall prerequisites" section. 
 {%- if openshift_rosa_hcp %}
 Clusters with {{ egress_zero }} are exempt from this requirement.
-{% endif %}
+{%- endif %}

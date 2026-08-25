@@ -14,7 +14,7 @@
     3-card NIC grandmaster clocks can be used for distributed RAN (D-RAN) configurations where the Radio Unit (RU) is connected directly to the distributed unit (DU) without a front haul switch, for example, if the RU and DU are located in the same radio cell site.
     D-RAN distributes radio functions across multiple sites, with backhaul connections linking them to the core network.
 
-**Figure 1. 3-card Intel E810 PTP grandmaster clock**
+    **Figure 1. 3-card Intel E810 PTP grandmaster clock**
 
     ![3-card PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/_assets/images/openshift-ptp-3-card-grandmaster.png)
 

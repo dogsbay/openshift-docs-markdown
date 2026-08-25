@@ -7,7 +7,7 @@ title: Use a secondary network for SSH access
 # Use a secondary network for SSH access {id="virt-using-secondary-networks-ssh"}
 {%- set context = "virt-using-secondary-networks-ssh" %}
 
-You can configure a secondary network, attach a virtual machine (VM) to the secondary network interface, and connect to the DHCP-allocated IP address by using SSH.
+You can configure a secondary network, attach a virtual machine (VM) to the secondary network interface, and connect to the DHCP-allocated IP address by using SSH. {._abstract}
 
 
 :::important

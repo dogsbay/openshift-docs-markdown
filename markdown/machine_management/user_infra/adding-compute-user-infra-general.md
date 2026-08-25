@@ -3,11 +3,11 @@ title: Adding compute machines to clusters with user-provisioned infrastructure 
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Adding compute machines to clusters with user-provisioned infrastructure manually {id="adding-compute-user-infra-general"}
 {% include "./_attributes/common-attributes.md" %}
+# Adding compute machines to clusters with user-provisioned infrastructure manually {id="adding-compute-user-infra-general"}
 {%- set context = "adding-compute-user-infra-general" %}
 
-To scale a {{ product_title }} cluster that uses user-provisioned infrastructure, you can manually add compute machines during or after installation. The postinstallation process requires some of the same configuration files and parameters that you used for installation.
+To scale a {{ product_title }} cluster that uses user-provisioned infrastructure, you can manually add compute machines during or after installation. The postinstallation process requires some of the same configuration files and parameters that you used for installation. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/upi-adding-compute-aws.md" %}{% endleveloffset %}
 

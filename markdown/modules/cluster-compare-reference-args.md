@@ -34,7 +34,7 @@ The following content describes the options for the `cluster-compare` plugin.  {
 </tr>
 <tr>
   <td><code>--show-template-functions</code></td>
-  <td>Displays the available template functions.<br><br><dl><dt>Note</dt><dd>You must use a file path for the target template that is relative to the <code>metadata.yaml</code> file. For example, if the file path for the <code>metadata.yaml</code> file is <code>./compare/metadata.yaml</code>, a relative file path for the template might be <code>optional/my-template.yaml</code>.</dd></dl></td>
+  <td>Displays the available template functions.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You must use a file path for the target template that is relative to the <code>metadata.yaml</code> file. For example, if the file path for the <code>metadata.yaml</code> file is <code>./compare/metadata.yaml</code>, a relative file path for the template might be <code>optional/my-template.yaml</code>.</dd></dl></td>
 </tr>
 <tr>
   <td><code>-h</code>, <code>--help</code></td>

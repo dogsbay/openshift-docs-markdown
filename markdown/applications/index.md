@@ -3,17 +3,17 @@ title: Building applications overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Building applications overview {id="building-applications-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Building applications overview {id="building-applications-overview"}
 {%- set context = "building-applications-overview" %}
 
-You can organize workloads into isolated projects and streamline your application lifecycle by using the web console or command-line interface (CLI) to create, manage, and deploy applications in {{ product_title }}.
+You can organize workloads into isolated projects and streamline your application lifecycle by using the web console or command-line interface (CLI) to create, manage, and deploy applications in {{ product_title }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/applications-projects-overview.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/applications-application-lifecycle.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Working with projects](/applications/projects/working-with-projects#working-with-projects)
 *   [Customizing the available cluster roles using the web console](/applications/projects/working-with-projects#odc-customizing-available-cluster-roles-using-the-web-console_projects)

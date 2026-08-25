@@ -35,7 +35,7 @@ You can configure the following types of identity providers:
 </tr>
 <tr>
   <td>htpasswd</td>
-  <td>Configure an htpasswd identity provider for a single, static administration user. You can log in to the cluster as the user to troubleshoot issues.<br><br><dl><dt>Important</dt><dd>The htpasswd identity provider option is included only to enable the creation of a single, static administration user. htpasswd is not supported as a general-use identity provider for {{ product_title }}. For the steps to configure the single user, see <em>Configuring an htpasswd identity provider</em>.</dd></dl></td>
+  <td>Configure an htpasswd identity provider for a single, static administration user. You can log in to the cluster as the user to troubleshoot issues.<br><br> {% if not (openshift_rosa or openshift_rosa_hcp) %} <dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The htpasswd identity provider option is included only to enable the creation of a single, static administration user. htpasswd is not supported as a general-use identity provider for {{ product_title }}. For the steps to configure the single user, see <em>Configuring an htpasswd identity provider</em>.</dd></dl> {% endif %}</td>
 </tr>
 </tbody>
 </table>

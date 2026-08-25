@@ -3,11 +3,11 @@ title: Persistent storage using FlexVolume
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using FlexVolume {id="persistent-storage-using-flexvolume"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using FlexVolume {id="persistent-storage-using-flexvolume"}
 {%- set context = "persistent-storage-flexvolume" %}
 
-To use storage from a back-end that does not have a built-in plugin, you can extend {{ product_title }} through FlexVolume drivers and provide persistent storage to applications.
+To use storage from a back-end that does not have a built-in plugin, you can extend {{ product_title }} through FlexVolume drivers and provide persistent storage to applications. {._abstract}
 
 FlexVolume is an out-of-tree plugin that uses an executable model to interface with drivers.
 
@@ -26,6 +26,7 @@ For the most recent list of major functionality that has been deprecated or remo
 Pods interact with FlexVolume drivers through the `flexvolume` in-tree plugin.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Expanding persistent volumes](/storage/expanding-persistent-volumes#expanding-persistent-volumes)
 

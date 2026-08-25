@@ -1,5 +1,5 @@
 ---
-title: "PerformanceProfile []"
+title: "PerformanceProfile [performance.openshift.io/v2]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PerformanceProfileSpec defines the desired state of PerformanceProfile. |
 | `status` | `object` | PerformanceProfileStatus defines the observed state of PerformanceProfile. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -53,6 +54,7 @@ Required
 | `numa` | `object` | NUMA defines options related to topology aware affinities |
 | `realTimeKernel` | `object` | RealTimeKernel defines a set of real time kernel related parameters. RT kernel won’t be installed when not set. |
 | `workloadHints` | `object` | WorkloadHints defines hints for different types of workloads. It will allow defining exact set of tuned and kernel arguments that should be applied on top of the node. |
+
 ### .spec.cpu {id="_speccpu"}
 
 Description
@@ -74,6 +76,7 @@ Required
 | `offlined` | `string` | Offline defines a set of CPUs that will be unused and set offline |
 | `reserved` | `string` | Reserved defines a set of CPUs that will not be used for any container workloads initiated by kubelet. |
 | `shared` | `string` | Shared defines a set of CPUs that will be shared among guaranteed workloads that needs additional cpus which are not exclusive, alongside the isolated, exclusive resources that are being used already by those workloads. |
+
 ### .spec.hardwareTuning {id="_spechardwaretuning"}
 
 Description
@@ -87,6 +90,7 @@ Type
 | --- | --- | --- |
 | `isolatedCpuFreq` | `integer` | IsolatedCpuFreq defines a minimum frequency to be set across isolated cpus |
 | `reservedCpuFreq` | `integer` | ReservedCpuFreq defines a maximum frequency to be set across reserved cpus |
+
 ### .spec.hugepages {id="_spechugepages"}
 
 Description
@@ -105,6 +109,7 @@ Type
 | `defaultHugepagesSize` | `string` | DefaultHugePagesSize defines huge pages default size under kernel boot parameters. |
 | `pages` | `array` | Pages defines huge pages that we want to allocate at boot time. |
 | `pages[]` | `object` | HugePage defines the number of allocated huge pages of the specific size. |
+
 ### .spec.hugepages.pages {id="_spechugepagespages"}
 
 Description
@@ -128,6 +133,7 @@ Type
 | `count` | `integer` | Count defines amount of huge pages, maps to the 'hugepages' kernel boot parameter. |
 | `node` | `integer` | Node defines the NUMA node where hugepages will be allocated, if not specified, pages will be allocated equally between NUMA nodes |
 | `size` | `string` | Size defines huge page size, maps to the 'hugepagesz' kernel boot parameter. |
+
 ### .spec.net {id="_specnet"}
 
 Description
@@ -142,6 +148,7 @@ Type
 | `devices` | `array` | Devices contains a list of network device representations that will be set with a netqueue count equal to CPU.Reserved . If no devices are specified then the default is all devices. |
 | `devices[]` | `object` | Device defines a way to represent a network device in several options: device name, vendor ID, model ID, PCI path and MAC address |
 | `userLevelNetworking` | `boolean` | UserLevelNetworking when enabled - sets either all or specified network devices queue size to the amount of reserved CPUs. Defaults to "false". |
+
 ### .spec.net.devices {id="_specnetdevices"}
 
 Description
@@ -168,6 +175,7 @@ Type
 | `deviceID` | `string` | Network device ID (model) represnted as a 16 bit hexmadecimal number. |
 | `interfaceName` | `string` | Network device name to be matched. It uses a syntax of shell-style wildcards which are either positive or negative. |
 | `vendorID` | `string` | Network device vendor ID represnted as a 16 bit Hexmadecimal number. |
+
 ### .spec.numa {id="_specnuma"}
 
 Description
@@ -180,6 +188,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `topologyPolicy` | `string` | Name of the policy applied when TopologyManager is enabled Operator defaults to "best-effort" |
+
 ### .spec.realTimeKernel {id="_specrealtimekernel"}
 
 Description
@@ -192,6 +201,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `enabled` | `boolean` | Enabled defines if the real time kernel packages should be installed. Defaults to "false" |
+
 ### .spec.workloadHints {id="_specworkloadhints"}
 
 Description
@@ -208,6 +218,7 @@ Type
 | `mixedCpus` | `boolean` | MixedCpus enables the mixed-cpu-node-plugin on the node. Defaults to false. |
 | `perPodPowerManagement` | `boolean` | PerPodPowerManagement defines if the node should be configured in per pod power management. PerPodPowerManagement and HighPowerConsumption hints can not be enabled together. Defaults to false. |
 | `realTime` | `boolean` | RealTime defines if the node should be configured for the real time workload. Defaults to true. |
+
 ### .status {id="_status"}
 
 Description
@@ -223,6 +234,7 @@ Type
 | `conditions[]` | `object` | Condition represents the state of the operator’s reconciliation functionality. |
 | `runtimeClass` | `string` | RuntimeClass contains the name of the RuntimeClass resource created by the operator. |
 | `tuned` | `string` | Tuned points to the Tuned custom resource object that contains the tuning values generated by this operator. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -264,12 +276,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of PerformanceProfile
     *   `GET`: list objects of kind PerformanceProfile
     *   `POST`: create a PerformanceProfile
-*   `/apis/performance.openshift.io/v2/performanceprofiles/{{ name }}`
+*   `/apis/performance.openshift.io/v2/performanceprofiles/{{ name }}`{minja}
     *   `DELETE`: delete a PerformanceProfile
     *   `GET`: read the specified PerformanceProfile
     *   `PATCH`: partially update the specified PerformanceProfile
     *   `PUT`: replace the specified PerformanceProfile
-*   `/apis/performance.openshift.io/v2/performanceprofiles/{{ name }}/status`
+*   `/apis/performance.openshift.io/v2/performanceprofiles/{{ name }}/status`{minja}
     *   `GET`: read status of the specified PerformanceProfile
     *   `PATCH`: partially update status of the specified PerformanceProfile
     *   `PUT`: replace status of the specified PerformanceProfile

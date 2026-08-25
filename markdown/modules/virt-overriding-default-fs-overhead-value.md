@@ -10,7 +10,7 @@ Change the amount of persistent volume claim (PVC) space that the {{ VirtProduct
 **Procedure**
 
 1.  Open the `HCO` object for editing by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Edit the `spec.filesystemOverhead` fields, populating them with your chosen values:

@@ -21,14 +21,14 @@ Custom boot sources are not affected by this setting.
 
 *   Enable or disable automatic boot source updates by editing the `HyperConverged` custom resource (CR).
     *   To disable automatic boot source updates, set the `spec.enableCommonBootImageImport` field value in the `HyperConverged` CR to `false`. For example:
-        ```terminal
+        ```terminal {minja}
         $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
           --type json -p '[{"op": "replace", "path": \
           "/spec/enableCommonBootImageImport", \
           "value": false}]'
         ```
     *   To re-enable automatic boot source updates, set the `spec.enableCommonBootImageImport` field value in the `HyperConverged` CR to `true`. For example:
-        ```terminal
+        ```terminal {minja}
         $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
           --type json -p '[{"op": "replace", "path": \
           "/spec/enableCommonBootImageImport", \

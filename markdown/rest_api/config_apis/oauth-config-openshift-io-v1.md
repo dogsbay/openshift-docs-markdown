@@ -1,5 +1,5 @@
 ---
-title: "OAuth []"
+title: "OAuth [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -33,6 +33,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,6 +49,7 @@ Type
 | `identityProviders[]` | `object` | IdentityProvider provides identities for users authenticating using credentials |
 | `templates` | `object` | templates allow you to customize pages like the login page. |
 | `tokenConfig` | `object` | tokenConfig contains options for authorization and access tokens |
+
 ### .spec.identityProviders {id="_specidentityproviders"}
 
 Description
@@ -81,6 +83,7 @@ Type
 | `openID` | `object` | openID enables user authentication using OpenID credentials |
 | `requestHeader` | `object` | requestHeader enables user authentication using request header credentials |
 | `type` | `string` | type identifies the identity provider type for this entry. |
+
 ### .spec.identityProviders[].basicAuth {id="_specidentityprovidersbasicauth"}
 
 Description
@@ -96,6 +99,7 @@ Type
 | `tlsClientCert` | `object` | tlsClientCert is an optional reference to a secret by name that contains the PEM-encoded TLS client certificate to present when connecting to the server. The key "tls.crt" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `tlsClientKey` | `object` | tlsClientKey is an optional reference to a secret by name that contains the PEM-encoded TLS private key for the client certificate referenced in tlsClientCert. The key "tls.key" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `url` | `string` | url is the remote URL to connect to |
+
 ### .spec.identityProviders[].basicAuth.ca {id="_specidentityprovidersbasicauthca"}
 
 Description
@@ -118,6 +122,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.identityProviders[].basicAuth.tlsClientCert {id="_specidentityprovidersbasicauthtlsclientcert"}
 
 Description
@@ -139,6 +144,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].basicAuth.tlsClientKey {id="_specidentityprovidersbasicauthtlsclientkey"}
 
 Description
@@ -160,6 +166,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].github {id="_specidentityprovidersgithub"}
 
 Description
@@ -177,6 +184,7 @@ Type
 | `hostname` | `string` | hostname is the optional domain (e.g. "mycompany.com") for use with a hosted instance of GitHub Enterprise. It must match the GitHub Enterprise settings value configured at /setup/settings#hostname. |
 | `organizations` | `array (string)` | organizations optionally restricts which organizations are allowed to log in |
 | `teams` | `array (string)` | teams optionally restricts which teams are allowed to log in. Format is &lt;org>/&lt;team>. |
+
 ### .spec.identityProviders[].github.ca {id="_specidentityprovidersgithubca"}
 
 Description
@@ -200,6 +208,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.identityProviders[].github.clientSecret {id="_specidentityprovidersgithubclientsecret"}
 
 Description
@@ -219,6 +228,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].gitlab {id="_specidentityprovidersgitlab"}
 
 Description
@@ -234,6 +244,7 @@ Type
 | `clientID` | `string` | clientID is the oauth client ID |
 | `clientSecret` | `object` | clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `url` | `string` | url is the oauth server base URL |
+
 ### .spec.identityProviders[].gitlab.ca {id="_specidentityprovidersgitlabca"}
 
 Description
@@ -256,6 +267,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.identityProviders[].gitlab.clientSecret {id="_specidentityprovidersgitlabclientsecret"}
 
 Description
@@ -275,6 +287,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].google {id="_specidentityprovidersgoogle"}
 
 Description
@@ -289,6 +302,7 @@ Type
 | `clientID` | `string` | clientID is the oauth client ID |
 | `clientSecret` | `object` | clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `hostedDomain` | `string` | hostedDomain is the optional Google App domain (e.g. "mycompany.com") to restrict logins to |
+
 ### .spec.identityProviders[].google.clientSecret {id="_specidentityprovidersgoogleclientsecret"}
 
 Description
@@ -308,6 +322,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].htpasswd {id="_specidentityprovidershtpasswd"}
 
 Description
@@ -320,6 +335,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `fileData` | `object` | fileData is a required reference to a secret by name containing the data to use as the htpasswd file. The key "htpasswd" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. If the specified htpasswd data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config. |
+
 ### .spec.identityProviders[].htpasswd.fileData {id="_specidentityprovidershtpasswdfiledata"}
 
 Description
@@ -340,6 +356,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].keystone {id="_specidentityproviderskeystone"}
 
 Description
@@ -356,6 +373,7 @@ Type
 | `tlsClientCert` | `object` | tlsClientCert is an optional reference to a secret by name that contains the PEM-encoded TLS client certificate to present when connecting to the server. The key "tls.crt" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `tlsClientKey` | `object` | tlsClientKey is an optional reference to a secret by name that contains the PEM-encoded TLS private key for the client certificate referenced in tlsClientCert. The key "tls.key" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `url` | `string` | url is the remote URL to connect to |
+
 ### .spec.identityProviders[].keystone.ca {id="_specidentityproviderskeystoneca"}
 
 Description
@@ -378,6 +396,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.identityProviders[].keystone.tlsClientCert {id="_specidentityproviderskeystonetlsclientcert"}
 
 Description
@@ -399,6 +418,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].keystone.tlsClientKey {id="_specidentityproviderskeystonetlsclientkey"}
 
 Description
@@ -420,6 +440,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].ldap {id="_specidentityprovidersldap"}
 
 Description
@@ -437,6 +458,7 @@ Type
 | `ca` | `object` | ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key "ca.crt" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config. |
 | `insecure` | `boolean` | insecure, if true, indicates the connection should not use TLS WARNING: Should not be set to `true` with the URL scheme "ldaps://" as "ldaps://" URLs always          attempt to connect using TLS, even when `insecure` is set to `true` When `true`, "ldap://" URLS connect insecurely. When `false`, "ldap://" URLs are upgraded to a TLS connection using StartTLS as specified in https://tools.ietf.org/html/rfc2830. |
 | `url` | `string` | url is an RFC 2255 URL which specifies the LDAP search parameters to use. The syntax of the URL is: ldap://host:port/basedn?attribute?scope?filter |
+
 ### .spec.identityProviders[].ldap.attributes {id="_specidentityprovidersldapattributes"}
 
 Description
@@ -452,6 +474,7 @@ Type
 | `id` | `array (string)` | id is the list of attributes whose values should be used as the user ID. Required. First non-empty attribute is used. At least one attribute is required. If none of the listed attribute have a value, authentication fails. LDAP standard identity attribute is "dn" |
 | `name` | `array (string)` | name is the list of attributes whose values should be used as the display name. Optional. If unspecified, no display name is set for the identity LDAP standard display name attribute is "cn" |
 | `preferredUsername` | `array (string)` | preferredUsername is the list of attributes whose values should be used as the preferred username. LDAP standard login attribute is "uid" |
+
 ### .spec.identityProviders[].ldap.bindPassword {id="_specidentityprovidersldapbindpassword"}
 
 Description
@@ -472,6 +495,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].ldap.ca {id="_specidentityprovidersldapca"}
 
 Description
@@ -494,6 +518,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.identityProviders[].openID {id="_specidentityprovidersopenid"}
 
 Description
@@ -512,6 +537,7 @@ Type
 | `extraAuthorizeParameters` | `object (string)` | extraAuthorizeParameters are any custom parameters to add to the authorize request. |
 | `extraScopes` | `array (string)` | extraScopes are any scopes to request in addition to the standard "openid" scope. |
 | `issuer` | `string` | issuer is the URL that the OpenID Provider asserts as its Issuer Identifier. It must use the https scheme with no query or fragment component. |
+
 ### .spec.identityProviders[].openID.ca {id="_specidentityprovidersopenidca"}
 
 Description
@@ -534,6 +560,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.identityProviders[].openID.claims {id="_specidentityprovidersopenidclaims"}
 
 Description
@@ -549,6 +576,7 @@ Type
 | `groups` | `array (string)` | groups is the list of claims value of which should be used to synchronize groups from the OIDC provider to OpenShift for the user. If multiple claims are specified, the first one with a non-empty value is used. |
 | `name` | `array (string)` | name is the list of claims whose values should be used as the display name. Optional. If unspecified, no display name is set for the identity |
 | `preferredUsername` | `array (string)` | preferredUsername is the list of claims whose values should be used as the preferred username. If unspecified, the preferred username is determined from the value of the sub claim |
+
 ### .spec.identityProviders[].openID.clientSecret {id="_specidentityprovidersopenidclientsecret"}
 
 Description
@@ -568,6 +596,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.identityProviders[].requestHeader {id="_specidentityprovidersrequestheader"}
 
 Description
@@ -587,6 +616,7 @@ Type
 | `loginURL` | `string` | loginURL is a URL to redirect unauthenticated /authorize requests to Unauthenticated requests from OAuth clients which expect interactive logins will be redirected here ${{ url }} is replaced with the current URL, escaped to be safe in a query parameter   https://www.example.com/sso-login?then=${{ url }} ${{ query }} is replaced with the current query string   https://www.example.com/auth-proxy/oauth/authorize?${{ query }} Required when login is set to true. |
 | `nameHeaders` | `array (string)` | nameHeaders is the set of headers to check for the display name |
 | `preferredUsernameHeaders` | `array (string)` | preferredUsernameHeaders is the set of headers to check for the preferred username |
+
 ### .spec.identityProviders[].requestHeader.ca {id="_specidentityprovidersrequestheaderca"}
 
 Description
@@ -609,6 +639,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.templates {id="_spectemplates"}
 
 Description
@@ -623,6 +654,7 @@ Type
 | `error` | `object` | error is the name of a secret that specifies a go template to use to render error pages during the authentication or grant flow. The key "errors.html" is used to locate the template data. If specified and the secret or expected key is not found, the default error page is used. If the specified template is not valid, the default error page is used. If unspecified, the default error page is used. The namespace for this secret is openshift-config. |
 | `login` | `object` | login is the name of a secret that specifies a go template to use to render the login page. The key "login.html" is used to locate the template data. If specified and the secret or expected key is not found, the default login page is used. If the specified template is not valid, the default login page is used. If unspecified, the default login page is used. The namespace for this secret is openshift-config. |
 | `providerSelection` | `object` | providerSelection is the name of a secret that specifies a go template to use to render the provider selection page. The key "providers.html" is used to locate the template data. If specified and the secret or expected key is not found, the default provider selection page is used. If the specified template is not valid, the default provider selection page is used. If unspecified, the default provider selection page is used. The namespace for this secret is openshift-config. |
+
 ### .spec.templates.error {id="_spectemplateserror"}
 
 Description
@@ -645,6 +677,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.templates.login {id="_spectemplateslogin"}
 
 Description
@@ -666,6 +699,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.templates.providerSelection {id="_spectemplatesproviderselection"}
 
 Description
@@ -688,6 +722,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.tokenConfig {id="_spectokenconfig"}
 
 Description
@@ -699,9 +734,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `accessTokenInactivityTimeout` | `string` | accessTokenInactivityTimeout defines the token inactivity timeout for tokens granted by any client. The value represents the maximum amount of time that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. The user will need to acquire a new token to regain access once a token times out. Takes valid time duration string such as "5m", "1.5h" or "2h45m". The minimum allowed value for duration is 300s (5 minutes). If the timeout is configured per client, then that value takes precedence. If the timeout value is not specified and the client does not override the value, then tokens are valid until their lifetime. WARNING: existing tokens' timeout will not be affected (lowered) by changing this value |
+| `accessTokenInactivityTimeout` | `string` | accessTokenInactivityTimeout defines the token inactivity timeout for tokens granted by any client. The value represents the maximum amount of time that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. The user will need to acquire a new token to regain access once a token times out. Takes valid time duration string such as "5m", "1.5h" or "2h45m". The minimum allowed value for duration is 300s (5 minutes). If the timeout is configured per client, then that value takes precedence. If the timeout value is not specified and the client does not override the value, then tokens are valid until their lifetime.<br>WARNING: existing tokens' timeout will not be affected (lowered) by changing this value |
 | `accessTokenInactivityTimeoutSeconds` | `integer` | accessTokenInactivityTimeoutSeconds - DEPRECATED: setting this field has no effect. |
 | `accessTokenMaxAgeSeconds` | `integer` | accessTokenMaxAgeSeconds defines the maximum age of access tokens |
+
 ### .status {id="_status"}
 
 Description
@@ -719,12 +755,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of OAuth
     *   `GET`: list objects of kind OAuth
     *   `POST`: create an OAuth
-*   `/apis/config.openshift.io/v1/oauths/{{ name }}`
+*   `/apis/config.openshift.io/v1/oauths/{{ name }}`{minja}
     *   `DELETE`: delete an OAuth
     *   `GET`: read the specified OAuth
     *   `PATCH`: partially update the specified OAuth
     *   `PUT`: replace the specified OAuth
-*   `/apis/config.openshift.io/v1/oauths/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/oauths/{{ name }}/status`{minja}
     *   `GET`: read status of the specified OAuth
     *   `PATCH`: partially update status of the specified OAuth
     *   `PUT`: replace status of the specified OAuth

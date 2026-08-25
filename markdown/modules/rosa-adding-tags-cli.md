@@ -22,7 +22,7 @@ You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-cl
 *   Create a machine pool with a custom tag by running the following command:
     ```terminal
     $ rosa create machinepools --cluster=<name> --replicas=<replica_count> \
-         --name <mp_name> --tags='<key> <value>,<key> <value>' // (1)
+         --name <mp_name> --tags='<key> <value>,<key> <value>' (1)
     ```
     1.  Replace `<key> <value>,<key> <value>` with a key and value for each tag.
     ```terminal title="Example output"
@@ -40,6 +40,7 @@ You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-cl
     ```terminal
     $ rosa describe machinepool --cluster=<cluster_name> --machinepool=<machinepool_name>
     ```
+
     **Example output**
 
 {%- if not openshift_rosa_hcp %}
@@ -58,8 +59,8 @@ You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-cl
     Additional Security Group IDs:
     Tags:                                  red-hat-clustertype=rosa, red-hat-managed=true, tagkey1=tagvalue1, tagkey2=tagvaluev2
     ```
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     ```terminal
     ID:                            db-nodes-mp
     Cluster ID:                    <ID_of_cluster>
@@ -73,4 +74,4 @@ You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-cl
     Availability zone:             us-east-2a
     ...
     ```
-{% endif %}
+{%- endif %}

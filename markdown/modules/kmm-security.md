@@ -25,13 +25,13 @@ The authorization model for that workload depends on the namespace of the `Modul
     *   If the `Module` resource is created in any other namespace, then KMM runs the pods with the namespace’s `default` `ServiceAccount`. The `Module` resource cannot run a privileged workload unless you manually enable it to use the `privileged` SCC.
 
 
-:::important
+    :::important
 
-`openshift-kmm` is a trusted namespace.
+    `openshift-kmm` is a trusted namespace.
 
-When setting up RBAC permissions, remember that any user or `ServiceAccount` creating a `Module` resource in the `openshift-kmm` namespace results in KMM automatically running privileged workloads on potentially all nodes in the cluster.
-
-:::
+    When setting up RBAC permissions, remember that any user or `ServiceAccount` creating a `Module` resource in the `openshift-kmm` namespace results in KMM automatically running privileged workloads on potentially all nodes in the cluster.
+    
+    :::
 
 
 To allow any `ServiceAccount` to use the `privileged` SCC and run worker or device plugin pods, you can use the `oc adm policy` command, as in the following example:

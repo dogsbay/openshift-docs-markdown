@@ -18,11 +18,11 @@ In {{ product_title }} {{ product_version }}, you can deploy a cluster using an 
 Because the installation program cannot know what other components are in your existing subnets, it cannot choose subnet CIDRs and so forth. You must configure networking for the subnets to which you will install the cluster.
 {% endif %}
 {% if restricted %}
-In {{ product_title }} {{ product_version }}, you can deploy a cluster into the subnets of an existing {{ ibm_name }} Virtual Private Cloud (VPC).
+In {{ product_title }} {{ product_version }}, you can deploy a cluster into the subnets of an existing {{ ibm_name }} Virtual Private Cloud (VPC). {._abstract}
 {% endif %}
-{% endif %} {._abstract}
+{% endif %}
 
-{%- if private %}
+{% if private %}
 # Requirements for using your Virtual Private Cloud (VPC) {id="installation-custom-ibm-power-vs-requirements_{{ context }}"}
 
 You must correctly configure the existing VPC and its subnets before you install the cluster. The installation program does not create a VPC or VPC subnet in this scenario. {._abstract}
@@ -72,11 +72,11 @@ If you deploy {{ product_title }} to an existing network, cluster service isolat
 *   Control plane TCP 22623 Ingress (MCS) is allowed to the entire network.
 
 {% if context == "installing-ibm-power-vs-private-cluster" %}
-{%- set private = false -%}
+{%- set private = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power-vs" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-powervs-vpc" %}
-{%- set ibm_powervs_vpc = false -%}
+{%- set ibm_powervs_vpc = "" -%}
 {% endif %}

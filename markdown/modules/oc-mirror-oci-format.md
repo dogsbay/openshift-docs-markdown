@@ -38,7 +38,7 @@ If you used the Technology Preview OCI local catalogs feature for the oc-mirror 
 1.  Create the image set configuration file and adjust the settings as necessary.
 
     The following example image set configuration mirrors an OCI catalog on disk along with an {{ product_title }} release and a UBI image from `registry.redhat.io`.
-    ```yaml
+    ```yaml {minja}
     kind: ImageSetConfiguration
     apiVersion: mirror.openshift.io/v1alpha2
     storageConfig:

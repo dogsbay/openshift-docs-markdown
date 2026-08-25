@@ -3,7 +3,7 @@
 Sometimes specific labels or annotations are needed in an OpenShift route.
 {%- if openshift_enterprise %}
 For example, some advanced features in OpenShift routes are managed using special annotations. See "Route-specific annotations" in the following "Additional resources" section.
-{% endif %}
+{%- endif %}
 
 For this and other use cases, {{ SMProductName }} will copy all labels and annotations present in the Istio gateway resource (with the exception of annotations starting with `kubectl.kubernetes.io`) into the managed OpenShift route resource.
 

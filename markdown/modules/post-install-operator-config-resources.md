@@ -24,7 +24,7 @@ owned by a particular Operator.
 </tr>
 <tr>
   <td><code>config.samples.operator.openshift.io</code></td>
-  <td>Configures the<a href="/openshift_images/configuring-samples-operator#configuring-samples-operator">Samples Operator</a>to control which example image streams and templates are installed on the cluster.</td>
+  <td>Configures the <a href="/openshift_images/configuring-samples-operator#configuring-samples-operator">Samples Operator</a> to control which example image streams and templates are installed on the cluster.</td>
 </tr>
 </tbody>
 </table>

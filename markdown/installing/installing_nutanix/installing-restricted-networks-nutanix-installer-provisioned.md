@@ -3,11 +3,11 @@ title: Installing a cluster on Nutanix in a disconnected environment
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Nutanix in a disconnected environment {id="installing-restricted-networks-nutanix-installer-provisioned"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Nutanix in a disconnected environment {id="installing-restricted-networks-nutanix-installer-provisioned"}
 {%- set context = "installing-restricted-networks-nutanix-installer-provisioned" %}
 
-In {{ product_title }} {{ product_version }}, you can install a cluster on Nutanix infrastructure in a restricted network by creating an internal mirror of the installation release content.
+In {{ product_title }} {{ product_version }}, you can install a cluster on Nutanix infrastructure in a restricted network by creating an internal mirror of the installation release content. {._abstract}
 
 ## Prerequisites {id="_prerequisites"}
 
@@ -47,6 +47,7 @@ In {{ product_title }} {{ product_version }}, you can install a cluster on Nutan
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Nutanix](/installing/installing_nutanix/installation-config-parameters-nutanix#installation-config-parameters-nutanix)
 
@@ -71,6 +72,7 @@ In {{ product_title }} {{ product_version }}, you can install a cluster on Nutan
 {% leveloffset +1 %}{% include "./modules/oc-mirror-updating-restricted-cluster-manifests.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding a catalog to a cluster in Extensions](/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)
 
@@ -78,7 +80,7 @@ In {{ product_title }} {{ product_version }}, you can install a cluster on Nutan
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [{{ product_title }} installation and update processes](/architecture/architecture-installation#architecture-installation)
 *   [Configuring your firewall to grant required access](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)

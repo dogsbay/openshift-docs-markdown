@@ -4,6 +4,7 @@
 To control when Red&#160;Hat Site Reliability Engineering (SRE) can access your cluster resources, you can review and respond to access requests from email notifications. {._abstract}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+
 **Prerequisites**
 
 *   You have access to the cluster as a user with the `cluster-admin` role.

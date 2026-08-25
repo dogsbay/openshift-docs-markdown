@@ -51,46 +51,46 @@ Although logging version 5.9 and higher supports schema v12, v13 is recommended.
     1.  Contains the [LogQL query](https://grafana.com/docs/loki/latest/logql/query_examples/#query-examples) used to define the log stream.spec:
       limits:
 
-```yaml title="Example per-tenant stream-based retention for AWS"
-apiVersion: loki.grafana.com/v1
-kind: LokiStack
-metadata:
-  name: logging-loki
-  namespace: openshift-logging
-spec:
-  limits:
-    global:
-      retention:
-        days: 20
-    tenants: (1)
-      application:
-        retention:
-          days: 1
-          streams:
-            - days: 4
-              selector: '{kubernetes_namespace_name=~"test.+"}' (2)
-      infrastructure:
-        retention:
-          days: 5
-          streams:
-            - days: 1
-              selector: '{kubernetes_namespace_name=~"openshift-cluster.+"}'
-  managementState: Managed
-  replicationFactor: 1
-  size: 1x.small
-  storage:
-    schemas:
-    - effectiveDate: "2020-10-11"
-      version: v11
-    secret:
-      name: logging-loki-s3
-      type: aws
-  storageClassName: gp3-csi
-  tenants:
-    mode: openshift-logging
-```
-1.  Sets retention policy by tenant. Valid tenant types are `application`, `audit`, and `infrastructure`.
-1.  Contains the [LogQL query](https://grafana.com/docs/loki/latest/logql/query_examples/#query-examples) used to define the log stream.
+    ```yaml title="Example per-tenant stream-based retention for AWS"
+    apiVersion: loki.grafana.com/v1
+    kind: LokiStack
+    metadata:
+      name: logging-loki
+      namespace: openshift-logging
+    spec:
+      limits:
+        global:
+          retention:
+            days: 20
+        tenants: (1)
+          application:
+            retention:
+              days: 1
+              streams:
+                - days: 4
+                  selector: '{kubernetes_namespace_name=~"test.+"}' (2)
+          infrastructure:
+            retention:
+              days: 5
+              streams:
+                - days: 1
+                  selector: '{kubernetes_namespace_name=~"openshift-cluster.+"}'
+      managementState: Managed
+      replicationFactor: 1
+      size: 1x.small
+      storage:
+        schemas:
+        - effectiveDate: "2020-10-11"
+          version: v11
+        secret:
+          name: logging-loki-s3
+          type: aws
+      storageClassName: gp3-csi
+      tenants:
+        mode: openshift-logging
+    ```
+    1.  Sets retention policy by tenant. Valid tenant types are `application`, `audit`, and `infrastructure`.
+    1.  Contains the [LogQL query](https://grafana.com/docs/loki/latest/logql/query_examples/#query-examples) used to define the log stream.
 
 2 Apply the `LokiStack` CR:
 

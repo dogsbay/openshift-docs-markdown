@@ -2,7 +2,7 @@
 
 If the YAML definition of the service or custom resource (CR) has invalid or placeholder data, you can use the `--dry-run` flag to get the YAML definition, specify the correct values, and start the service using the corrected YAML definition.
 Printing and modifying the YAML used to start a service
-`{{ odo_title }}` provides the feature to print the YAML definition of the service or CR provided by the Operator before starting a service.
+`{{ odo_title }}`{minja} provides the feature to print the YAML definition of the service or CR provided by the Operator before starting a service.
 
 1.  To display the YAML of the service, run:
     ```terminal
@@ -20,9 +20,9 @@ Printing and modifying the YAML used to start a service
     apiVersion: etcd.database.coreos.com/v1beta2
     kind: EtcdCluster
     metadata:
-      name: my-etcd-cluster // (1)
+      name: my-etcd-cluster (1)
     spec:
-      size: 1 // (2)
+      size: 1 (2)
       version: 3.2.13
     ```
     1.  Change the name from `example` to `my-etcd-cluster`

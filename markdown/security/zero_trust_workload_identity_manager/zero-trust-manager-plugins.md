@@ -3,11 +3,11 @@ title: SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager {id="zero-trust-manager-plugins"}
 {% include "./_attributes/common-attributes.md" %}
+# SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager {id="zero-trust-manager-plugins"}
 {%- set context = "zero-trust-manager-plugins" %}
 
-To integrate {{ spire_full }} (SPIRE) with your existing certificate management infrastructure and keep {{ spiffe_full }} (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities.
+To integrate {{ spire_full }} (SPIRE) with your existing certificate management infrastructure and keep {{ spiffe_full }} (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities. {._abstract}
 
 You can configure SPIRE Server to use one of the following UpstreamAuthority plugins:
 
@@ -26,6 +26,7 @@ Choose the plugin that matches your certificate management infrastructure. You c
 {% leveloffset +1 %}{% include "./modules/zero-trust-manager-preparing-plugin-use.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [cert-manager Operator for Red Hat OpenShift](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift)
 

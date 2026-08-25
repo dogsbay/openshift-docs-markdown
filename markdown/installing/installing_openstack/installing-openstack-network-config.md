@@ -8,7 +8,7 @@ title: Configuring network settings after installing OpenStack
 # Configuring network settings after installing OpenStack {id="installing-openstack-network-config"}
 {%- set context = "installing-openstack-network-config" %}
 
-You can configure network settings for an {{ product_title }} on {{ rh_openstack_first }} cluster after installation.
+You can configure network settings for an {{ product_title }} on {{ rh_openstack_first }} cluster after installation. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-osp-configuring-api-floating-ip.md" %}{% endleveloffset %}
 

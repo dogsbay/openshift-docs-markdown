@@ -4,5 +4,5 @@
 Red&#160;Hat {{ product_title }} enables the following hardware accelerators:
 
 *   NVIDIA GPU
-*   AMD Instinct(R) GPU
-*   Intel(R) Gaudi(R)
+*   AMD Instinct® GPU
+*   Intel® Gaudi®

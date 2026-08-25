@@ -8,9 +8,10 @@ New in this release
 :   *   No reference design updates in this release.
 
 Description
-    :   The cert-manager Operator for {{ product_title }} manages the lifecycle of TLS certificates for cluster components and workloads.
+:   The cert-manager Operator for {{ product_title }} manages the lifecycle of TLS certificates for cluster components and workloads.
     The cert-manager Operator automates certificate issuance, renewal, and rotation, eliminating manual certificate management.
     The reference configuration includes the cert-manager Operator to optionally manage certificates for the API server and ingress controller endpoints.
+
 
     You can use {{ rh_rhacm }} `CertificatePolicy` resources to monitor certificate health across all managed clusters.
 

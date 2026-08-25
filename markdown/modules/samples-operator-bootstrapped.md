@@ -13,20 +13,20 @@ Certain circumstances result in the Cluster Samples Operator bootstrapping itsel
 *   If the image controller configuration parameters prevent the creation of image streams by using the default image registry, or by using the image registry specified by `samplesRegistry` setting. For more information, see the following links:
     *   [Image controller configuration parameters](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/images/image-configuration-classic#images-configuration-parameters_image-configuration)
     *   [Cluster Samples Operator configuration parameters](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/images/configuring-samples-operator#samples-operator-configuration_configuring-samples-operator)
-{% endif %}
-
-
-:::note
-
-For {{ product_title }}, the default image registry is
-{%- if openshift_enterprise %}
-`registry.redhat.io`.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated or openshift_rosa_hcp or openshift_origin %}
-`registry.access.redhat.com` or `quay.io`.
 {%- endif %}
 
-:::
+
+    :::note
+
+    For {{ product_title }}, the default image registry is
+{%- if openshift_enterprise %}
+    `registry.redhat.io`.
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated or openshift_rosa_hcp or openshift_origin %}
+    `registry.access.redhat.com` or `quay.io`.
+{%- endif %}
+    
+    :::
 
 
 {% if openshift_enterprise or openshift_dedicated or openshift_origin %}

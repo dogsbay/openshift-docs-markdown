@@ -1,5 +1,5 @@
 ---
-title: "TestExtensionAdmission []"
+title: "TestExtensionAdmission [testextension.redhat.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of permitted ImageStreams |
 | `status` | `` | Status of the TestExtensionAdmission |
+
 ### .spec {id="_spec"}
 
 Description
@@ -49,12 +50,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of TestExtensionAdmission
     *   `GET`: list objects of kind TestExtensionAdmission
     *   `POST`: create a TestExtensionAdmission
-*   `/apis/testextension.redhat.io/v1/testextensionadmissions/{{ name }}`
+*   `/apis/testextension.redhat.io/v1/testextensionadmissions/{{ name }}`{minja}
     *   `DELETE`: delete a TestExtensionAdmission
     *   `GET`: read the specified TestExtensionAdmission
     *   `PATCH`: partially update the specified TestExtensionAdmission
     *   `PUT`: replace the specified TestExtensionAdmission
-*   `/apis/testextension.redhat.io/v1/testextensionadmissions/{{ name }}/status`
+*   `/apis/testextension.redhat.io/v1/testextensionadmissions/{{ name }}/status`{minja}
     *   `GET`: read status of the specified TestExtensionAdmission
     *   `PATCH`: partially update status of the specified TestExtensionAdmission
     *   `PUT`: replace status of the specified TestExtensionAdmission

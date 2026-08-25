@@ -32,7 +32,7 @@ Create remote secrets on both clusters so `Istiod` can discover services in the 
     $ istioctl remote-clusters --kubeconfig="${CLUSTER_A_KUBECONFIG}"
     ```
 
-    The output must show `${{ CLUSTER_B }}` with status `synced`.
+    The output must show `${{ CLUSTER_B }}`{minja} with status `synced`.
     ```text title="Example output"
     NAME         STATUS   SECRET
     cluster-b    synced   istio-remote-secret-cluster-b
@@ -42,7 +42,7 @@ Create remote secrets on both clusters so `Istiod` can discover services in the 
     $ istioctl remote-clusters --kubeconfig="${CLUSTER_B_KUBECONFIG}"
     ```
 
-    The output must show `${{ CLUSTER_A }}` with status `synced`.
+    The output must show `${{ CLUSTER_A }}`{minja} with status `synced`.
     ```text title="Example output"
     NAME         STATUS   SECRET
     cluster-a    synced   istio-remote-secret-cluster-a

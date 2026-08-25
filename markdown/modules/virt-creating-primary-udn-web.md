@@ -1,6 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-[id="virt-creating-primary-udn-web_{{ context }}"]                                   
-= Creating a primary namespace-scoped user-defined network by using the web console
+# Creating a primary namespace-scoped user-defined network by using the web console {id="virt-creating-primary-udn-web_{{ context }}"}
 
 You can create an isolated primary network in your project namespace by creating a `UserDefinedNetwork` custom resource in the {{ product_title }} web console. {._abstract}
 
@@ -11,7 +10,7 @@ You can create an isolated primary network in your project namespace by creating
 
 **Procedure**
 
-1.  From the **Administrator** perspective, click **Networking** -> **UserDefinedNetworks**.
+1.  From the **Administrator** perspective, click **Networking** → **UserDefinedNetworks**.
 1.  Click **Create UserDefinedNetwork**.
 1.  From the **Project name** list, select the namespace that you previously created.
 1.  Specify a value in the **Subnet** field.

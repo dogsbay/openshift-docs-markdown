@@ -3,12 +3,12 @@ title: Deploying Zero Trust Workload Identity Manager operands
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Deploying Zero Trust Workload Identity Manager operands {id="zero-trust-manager-configuration_{{ context }}"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "zero-trust-manager-configuration" %}
 
-Deploy the {{ zero_trust_full }} operands by creating their custom resources in a specific order. Adhering to the sequence ensures the successful installation of components, such as the Security Production Identity Framework for Everyone (SPIRE) Server, SPIRE Agent, and Secure Production Identity Framework For Everyone (SPIFFE) CSI driver.
+Deploy the {{ zero_trust_full }} operands by creating their custom resources in a specific order. Adhering to the sequence ensures the successful installation of components, such as the Security Production Identity Framework for Everyone (SPIRE) Server, SPIRE Agent, and Secure Production Identity Framework For Everyone (SPIFFE) CSI driver. {._abstract}
 
 You must deploy the operands in the following sequence to ensure successful installation:
 

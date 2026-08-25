@@ -1,5 +1,5 @@
 ---
-title: "BuildLog []"
+title: "BuildLog [build.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,7 +29,7 @@ Type
 
 The following API endpoints are available:
 
-*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/log`
+*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/log`{minja}
     *   `GET`: read log of the specified Build
 
 ### /apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/log {id="_apisbuildopenshiftiov1namespaces_namespace_builds_name_log"}

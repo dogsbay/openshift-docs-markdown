@@ -38,7 +38,7 @@ Once the rendezvous node has been booted from the ISO image, configure details a
 
     1.  Optional: Under **Encryption of installation disks**, select the toggle switch for each disk you want to encrypt.
     1.  If you are encrypting disks, select either **TPM v2** or **Tang** as your encryption method.
-    1.  If you are encrypting disks using a Tang server, enter the ***Server URL*** and ***Server Thumbprint*** in the ***Tang servers*** section of the page. You can select ***Add another Tang server*** to configure details for additional Tang server.
+    1.  If you are encrypting disks using a Tang server, enter the **Server URL** and **Server Thumbprint** in the **Tang servers** section of the page. You can select **Add another Tang server** to configure details for additional Tang server.
     1.  Click **Next** to continue.
     Once you proceed to the next page, you cannot go back to change any of these cluster details.
 1.  Choose additional Operators to install in the **Operators** page:

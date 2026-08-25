@@ -6,7 +6,7 @@ When investigating potential network-related {{ product_title }} issues, Red Hat
 **Prerequisites**
 
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{%- if openshift_dedicated %}
+{% if openshift_dedicated %}
 
     :::note
 
@@ -14,14 +14,14 @@ When investigating potential network-related {{ product_title }} issues, Red Hat
     
     :::
 
-{%- endif %}
+{% endif %}
 *   You have installed the OpenShift CLI (`oc`).
 *   You have an existing Red Hat Support case ID.
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You have a Red Hat standard or premium Subscription.
 *   You have a Red Hat Customer Portal account.
 *   You have SSH access to your hosts.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -37,7 +37,7 @@ When investigating potential network-related {{ product_title }} issues, Red Hat
     ```terminal
     # chroot /host
     ```
-{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
     :::note
 
@@ -57,7 +57,7 @@ When investigating potential network-related {{ product_title }} issues, Red Hat
 
     :::note
 
-    If an existing `toolbox` pod is already running, the `toolbox` command outputs ’toolbox-' already exists. Trying to start...`. To avoid `tcpdump` issues, remove the running toolbox container with `podman rm toolbox-` and spawn a new toolbox container.
+    If an existing `toolbox` pod is already running, the `toolbox` command outputs `'toolbox-' already exists. Trying to start...`. To avoid `tcpdump` issues, remove the running toolbox container with `podman rm toolbox-` and spawn a new toolbox container.
     
     :::
 
@@ -109,7 +109,7 @@ When investigating potential network-related {{ product_title }} issues, Red Hat
             
             :::
 
-{% endif %}
+{%- endif %}
 
         1.  Navigate to an existing support case within [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.
         1.  Select **Attach files** and follow the prompts to upload the file.

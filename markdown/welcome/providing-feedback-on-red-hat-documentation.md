@@ -7,7 +7,7 @@ title: Providing feedback on OpenShift Container Platform documentation
 
 # Providing feedback on {{ product_title }} documentation {id="providing-feedback-on-red-hat-documentation"}
 
-To report an error or to improve our documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, then you will be prompted to create an account.
+To report an error or to improve our documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, then you will be prompted to create an account. {._abstract}
 
 **Procedure**
 

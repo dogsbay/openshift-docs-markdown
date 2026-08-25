@@ -14,19 +14,19 @@ You can use these examples to configure requests to your services using the 3sca
     *   You will need to properly configure the Service Mesh Control Plane (SMCP) when upgrading.
 
 
-:::note
+    :::note
 
-To configure the 3scale Istio Adapter, refer to {{ SMProductName }} custom resources for instructions on adding adapter parameters to the custom resource file.
+    To configure the 3scale Istio Adapter, refer to {{ SMProductName }} custom resources for instructions on adding adapter parameters to the custom resource file.
+    
+    :::
 
-:::
 
 
+    :::note
 
-:::note
-
-Pay particular attention to the `kind: handler` resource. You must update this with your 3scale account credentials. You can optionally add a `service_id` to a handler, but this is kept for backwards compatibility only, since it would render the handler only useful for one service in your 3scale account. If you add `service_id` to a handler, enabling 3scale for other services requires you to create more handlers with different `service_ids`.
-
-:::
+    Pay particular attention to the `kind: handler` resource. You must update this with your 3scale account credentials. You can optionally add a `service_id` to a handler, but this is kept for backwards compatibility only, since it would render the handler only useful for one service in your 3scale account. If you add `service_id` to a handler, enabling 3scale for other services requires you to create more handlers with different `service_ids`.
+    
+    :::
 
 
 Use a single handler per 3scale account by following the steps below:

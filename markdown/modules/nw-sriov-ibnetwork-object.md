@@ -42,4 +42,4 @@ where:
 :   Optional parameter. The link state of virtual function (VF). Allowed values are `enable`, `disable` and `auto`.
 
 `capabilities`
-:   Optional parameter. The capabilities to configure for this network. You can specify ’{ "ips": true }'` to enable IP address support or ’{ "infinibandGUID": true }'` to enable IB Global Unique Identifier (GUID) support.
+:   Optional parameter. The capabilities to configure for this network. You can specify `'{ "ips": true }'` to enable IP address support or `'{ "infinibandGUID": true }'` to enable IB Global Unique Identifier (GUID) support.

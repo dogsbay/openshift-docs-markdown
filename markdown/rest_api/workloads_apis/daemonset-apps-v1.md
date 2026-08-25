@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | DaemonSetSpec is the specification of a daemon set. |
 | `status` | `object` | DaemonSetStatus represents the current status of a daemon set. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -45,6 +46,7 @@ Required
 | `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
 | `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template’s node selector (or on every node if no node selector is specified). The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template |
 | `updateStrategy` | `object` | DaemonSetUpdateStrategy is a struct used to control the update strategy for a DaemonSet. |
+
 ### .spec.updateStrategy {id="_specupdatestrategy"}
 
 Description
@@ -57,7 +59,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `rollingUpdate` | `object` | Spec to control the desired behavior of daemon set rolling update. |
-| `type` | `string` | Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is RollingUpdate. Possible enum values:  - `"OnDelete"` Replace the old daemons only when it’s killed  - `"RollingUpdate"` Replace the old daemons by new ones using rolling update i.e replace them on each node one after the other. |
+| `type` | `string` | Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is RollingUpdate.<br>Possible enum values:  - `"OnDelete"` Replace the old daemons only when it’s killed  - `"RollingUpdate"` Replace the old daemons by new ones using rolling update i.e replace them on each node one after the other. |
+
 ### .spec.updateStrategy.rollingUpdate {id="_specupdatestrategyrollingupdate"}
 
 Description
@@ -71,6 +74,7 @@ Type
 | --- | --- | --- |
 | `maxSurge` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediately created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption. |
 | `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxSurge is 0 Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update. |
+
 ### .status {id="_status"}
 
 Description
@@ -100,6 +104,7 @@ Required
 | `numberUnavailable` | `integer` | The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds) |
 | `observedGeneration` | `integer` | The most recent generation observed by the daemon set controller. |
 | `updatedNumberScheduled` | `integer` | The total number of nodes that are running updated daemon pod |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -139,20 +144,20 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind DaemonSet
 *   `/apis/apps/v1/watch/daemonsets`
     *   `GET`: watch individual changes to a list of DaemonSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets`{minja}
     *   `DELETE`: delete collection of DaemonSet
     *   `GET`: list or watch objects of kind DaemonSet
     *   `POST`: create a DaemonSet
-*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets`
+*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets`{minja}
     *   `GET`: watch individual changes to a list of DaemonSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }}`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }}`{minja}
     *   `DELETE`: delete a DaemonSet
     *   `GET`: read the specified DaemonSet
     *   `PATCH`: partially update the specified DaemonSet
     *   `PUT`: replace the specified DaemonSet
-*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets/{{ name }}`
+*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/daemonsets/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind DaemonSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }}/status`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/daemonsets/{{ name }}/status`{minja}
     *   `GET`: read status of the specified DaemonSet
     *   `PATCH`: partially update status of the specified DaemonSet
     *   `PUT`: replace status of the specified DaemonSet

@@ -109,34 +109,34 @@ error.
  you cannot access the required image stream tags.
 
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-restricted" %}
-{%- set ibm_cloud = false -%}
-{%- set ipi = false -%}
+{%- set ibm_cloud = "" -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power-vs" %}
-{%- set ipi = false -%}
-{%- set ipi_powervs = false -%}
+{%- set ipi = "" -%}
+{%- set ipi_powervs = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp-installer-provisioned" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-restricted" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-installer-provisioned-vsphere" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws-installer-provisioned" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-nutanix-installer-provisioned" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-installer-provisioned" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}

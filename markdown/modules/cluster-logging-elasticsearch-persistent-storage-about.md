@@ -27,7 +27,7 @@ in the CRD.
 </tr>
 <tr>
   <td><code>openshift_logging_elasticsearch_storage_type</code></td>
-  <td>Specify the storage type as <code>pvc</code>.<dl><dt>Note</dt><dd>This is an optional parameter. Setting the <code>openshift_logging_es_pvc_size</code> parameter to a value greater than 0 automatically sets this parameter to <code>pvc</code> by default.</dd></dl></td>
+  <td>Specify the storage type as <code>pvc</code>.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This is an optional parameter. Setting the <code>openshift_logging_es_pvc_size</code> parameter to a value greater than 0 automatically sets this parameter to <code>pvc</code> by default.</dd></dl></td>
 </tr>
 <tr>
   <td><code>openshift_logging_es_pvc_prefix</code></td>

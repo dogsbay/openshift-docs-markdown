@@ -1,5 +1,5 @@
 ---
-title: "SecretList []"
+title: "SecretList [image.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,7 +32,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/secrets`
+*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/secrets`{minja}
     *   `GET`: read secrets of the specified ImageStream
 
 ### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/secrets {id="_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_secrets"}

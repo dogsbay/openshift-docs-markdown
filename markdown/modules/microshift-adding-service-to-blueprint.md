@@ -6,7 +6,7 @@ Adding the {{ microshift_short }} RPM package to an image builder blueprint enab
 **Procedure**
 
 1.  Use the blueprint installed in the `/usr/share/microshift/blueprint` directory that is specific to your platform architecture. See the following example snippet for an explanation of the blueprint sections:
-    ```text title="Generated image builder blueprint example snippet"
+    ```text title="Generated image builder blueprint example snippet" {minja}
     name = "microshift_blueprint"
     description = "MicroShift {{ ocp_version }}.1 on x86_64 platform"
     version = "0.0.1"
@@ -50,7 +50,7 @@ Adding the {{ microshift_short }} RPM package to an image builder blueprint enab
     ```terminal
     $ sudo composer-cli blueprints depsolve microshift_blueprint | grep microshift
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     blueprint: microshift_blueprint v0.0.1
         microshift-release-info-{{ ocp_version }}.1-202511250827.p0.g4105d3b.assembly.{{ ocp_version }}.1.el9.noarch
         microshift-{{ ocp_version }}.1-202511250827.p0.g4105d3b.assembly.{{ ocp_version }}.1.el9.x86_64

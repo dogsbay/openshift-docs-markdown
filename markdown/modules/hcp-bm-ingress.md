@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not non_bm %}
+{% if not non_bm %}
 # Handling ingress in a hosted cluster on bare metal {id="hcp-bm-ingress_{{ context }}"}
 
 {% endif %}
@@ -157,5 +157,5 @@ To set up a load balancer and wildcard DNS record for the `*.apps` domain, perfo
         Replace `<4.x.y>` with the supported {{ product_title }} version that you want to use, for example, `4.22.0-multi`.
 
 {% if context == "hcp-manage-non-bm" %}
-{%- set non_bm = false -%}
+{%- set non_bm = "" -%}
 {% endif %}

@@ -1,5 +1,5 @@
 ---
-title: "RoleBinding []"
+title: "RoleBinding [authorization.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -41,10 +41,10 @@ The following API endpoints are available:
 
 *   `/apis/authorization.openshift.io/v1/rolebindings`
     *   `GET`: list objects of kind RoleBinding
-*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindings`
+*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindings`{minja}
     *   `GET`: list objects of kind RoleBinding
     *   `POST`: create a RoleBinding
-*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindings/{{ name }}`
+*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindings/{{ name }}`{minja}
     *   `DELETE`: delete a RoleBinding
     *   `GET`: read the specified RoleBinding
     *   `PATCH`: partially update the specified RoleBinding

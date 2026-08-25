@@ -21,10 +21,10 @@ Windows images mirrored through `ImageDigestMirrorSet` and `ImageTagMirrorSet` o
 
 {%- if not (openshift_rosa or openshift_dedicated) %}
 *   Access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 *   Access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -41,7 +41,7 @@ Windows images mirrored through `ImageDigestMirrorSet` and `ImageTagMirrorSet` o
         ```
 
         In this example, you have a container image registry named `example.io` and image repository named `example`. You want to copy the `ubi9/ubi-minimal` image from `registry.access.redhat.com` to `example.io`. After you create the mirrored registry, you can configure your {{ product_title }} cluster to redirect requests made to the source repository to the mirrored repository.
-{%- if winc %}
+{% if winc %}
 
     :::important
 
@@ -147,7 +147,7 @@ Windows images mirrored through `ImageDigestMirrorSet` and `ImageTagMirrorSet` o
     ```terminal
     $ oc create -f registryrepomirror.yaml
     ```
-{%- if not winc %}
+{% if not winc %}
 
     After the object is created, the Machine Config Operator (MCO) drains the nodes for `ImageTagMirrorSet` objects only. The MCO does not drain the nodes for `ImageDigestMirrorSet` and `ImageContentSourcePolicy` objects.
 {% endif %}
@@ -268,7 +268,7 @@ Windows images mirrored through `ImageDigestMirrorSet` and `ImageTagMirrorSet` o
         :   Indicates that the image pull from the mirror is a tag reference image.
 {% endif %}
 {% if winc %}
-        1.  Check that the WMCO generated a `hosts.toml` file for each registry on each Windows instance. For the previous example IDMS object, there should be three files in the following file structure:
+    1.  Check that the WMCO generated a `hosts.toml` file for each registry on each Windows instance. For the previous example IDMS object, there should be three files in the following file structure:
         ```terminal
         $ tree $config_path
         ```
@@ -286,24 +286,24 @@ Windows images mirrored through `ImageDigestMirrorSet` and `ImageTagMirrorSet` o
         ```terminal title="Example host.toml files"
         $ cat "$config_path"/registry.access.redhat.com/host.toml
         server = "https://registry.access.redhat.com" # default fallback server since "AllowContactingSource" mirrorSourcePolicy is set
-    
+
         [host."https://example.io/example/ubi-minimal"]
          capabilities = ["pull"]
-    
+
         [host."https://example.com/example2/ubi-minimal"] # secondary mirror
          capabilities = ["pull"]
-    
-    
+
+
         $ cat "$config_path"/registry.redhat.io/host.toml
         # "server" omitted since "NeverContactSource" mirrorSourcePolicy is set
-    
+
         [host."https://mirror.example.com"]
          capabilities = ["pull"]
-    
-    
+
+
         $ cat "$config_path"/docker.io/host.toml
         server = "https://docker.io"
-    
+
         [host."https://docker-mirror.internal"]
          capabilities = ["pull", "resolve"] # resolve tags
         ```
@@ -322,8 +322,8 @@ If the repository mirroring procedure does not work as described, use the follow
 *   From the system context, the `Insecure` flags are used as fallback.
 {%- if not winc %}
 *   The format of the `/etc/containers/registries.conf` file has changed recently. It is now version 2 and in TOML format.
-{% endif %}
+{%- endif %}
 
 {% if context == "enabling-windows-container-workloads" %}
-{%- set winc = false -%}
+{%- set winc = "" -%}
 {%- endif %}

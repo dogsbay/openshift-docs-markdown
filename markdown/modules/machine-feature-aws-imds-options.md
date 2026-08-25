@@ -4,7 +4,8 @@
 You can restrict the version of the Amazon EC2 Instance Metadata Service (IMDS) that machines on {{ aws_first }} clusters use.
 Machines can require the use of IMDSv2, or allow the use of IMDSv1 in addition to IMDSv2. {._abstract}
 
-{% include "./snippets/apply-machine-configuration-method.md" %}
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file.
+Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 
 :::important

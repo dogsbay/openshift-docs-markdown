@@ -17,7 +17,8 @@ You can set environment variables to streamline resource creation for your {{ pr
     ```terminal
     $ echo <variable_name>
     ```
-{%- if rosa_egress_lockdown_install %}
+{% if rosa_egress_lockdown_install %}
+
     **Suggested variables for disconnected {{ product_title }} clusters**
 
     | Variable name | Variable value | Notes |
@@ -29,8 +30,9 @@ You can set environment variables to streamline resource creation for your {{ pr
     | `PRIVATE_SUBNET` | The ID of your private subnets. | You must enclose this value in quotation marks (") and separate the subnet IDs with commas. |
     | `REGION` | Your AWS region. | - |
     | `SUBNET_IDS` | The IDs of all your subnets. | You must enclose this value in quotation marks (") and separate the subnet IDs with commas. |
+
 {% endif %}
 
 {% if context == "rosa-hcp-egress-zero-install" %}
-{%- set rosa_egress_lockdown_install = false -%}
+{%- set rosa_egress_lockdown_install = "" -%}
 {% endif %}

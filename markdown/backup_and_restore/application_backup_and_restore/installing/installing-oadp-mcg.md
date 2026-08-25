@@ -3,15 +3,15 @@ title: Configuring the OpenShift API for Data Protection with Multicloud Object 
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the OpenShift API for Data Protection with Multicloud Object Gateway {id="installing-oadp-mcg"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Configuring the OpenShift API for Data Protection with Multicloud Object Gateway {id="installing-oadp-mcg"}
 {%- set context = "installing-oadp-mcg" -%}
 {%- set installing_oadp_mcg = true -%}
 {%- set credentials = "cloud-credentials" -%}
 {%- set provider = "aws" %}
 
-Configure {{ oadp_first }} to use Multicloud Object Gateway (MCG), a component of {{ rh_storage }}, as a backup storage location by setting up credentials, secrets, and the Data Protection Application.
+Configure {{ oadp_first }} to use Multicloud Object Gateway (MCG), a component of {{ rh_storage }}, as a backup storage location by setting up credentials, secrets, and the Data Protection Application. {._abstract}
 
 You can install the {{ oadp_first }} with MCG by installing the OADP Operator. The Operator installs Velero {{ velero_version }}.
 
@@ -61,7 +61,7 @@ To install the OADP Operator in a restricted network environment, you must first
 
 {% leveloffset +2 %}{% include "./modules/oadp-about-disable-node-agent-dpa.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Velero {{ velero_version }}](https://{{ velero_domain }}/docs/v{{ velero_version }}/)
 *   [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)

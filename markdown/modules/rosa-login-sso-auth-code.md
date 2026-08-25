@@ -16,6 +16,7 @@ You can log in to your account with the {{ rosa_cli }} by using a Red&#160;Hat s
     ```
 
     Running this command redirects you to the Red&#160;Hat single sign-on login. Log in with your Red&#160;Hat login or email.
+
     **Optional arguments inherited from parent commands+**
 
     | Option | Definition |

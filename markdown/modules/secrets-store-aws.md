@@ -138,7 +138,7 @@ You can use the {{ secrets_store_operator }} to mount secrets from {{ secrets_st
         $ mkdir <aws_creds_directory_name>
         ```
     1.  Create a YAML file that defines the `CredentialsRequest` resource configuration. See the following example configuration:
-        ```yaml
+        ```yaml {minja}
         apiVersion: cloudcredential.openshift.io/v1
         kind: CredentialsRequest
         metadata:
@@ -148,22 +148,22 @@ You can use the {{ secrets_store_operator }} to mount secrets from {{ secrets_st
           providerSpec:
             apiVersion: cloudcredential.openshift.io/v1
             kind: AWSProviderSpec
-{%- if aws_secrets_manager %}
+        {%- if aws_secrets_manager %}
             statementEntries:
             - action:
               - "secretsmanager:GetSecretValue"
               - "secretsmanager:DescribeSecret"
               effect: Allow
               resource: "arn:*:secretsmanager:*:*:secret:testSecret-??????"
-{% endif %}
-{% if aws_systems_manager_parameter_store %}
+        {%- endif %}
+        {%- if aws_systems_manager_parameter_store %}
             statementEntries:
             - action:
               - "ssm:GetParameter"
               - "ssm:GetParameters"
               effect: Allow
               resource: "arn:*:ssm:*:*:parameter/testParameter*"
-{%- endif %}
+        {%- endif %}
           secretRef:
             name: aws-creds
             namespace: my-namespace
@@ -199,7 +199,7 @@ You can use the {{ secrets_store_operator }} to mount secrets from {{ secrets_st
         ```
 1.  Create a secret provider class to define your secrets store provider:
     1.  Create a YAML file that defines the `SecretProviderClass` object:
-        ```yaml title="Example secret-provider-class-aws.yaml"
+        ```yaml title="Example secret-provider-class-aws.yaml" {minja}
         apiVersion: secrets-store.csi.x-k8s.io/v1
         kind: SecretProviderClass
         metadata:
@@ -208,16 +208,16 @@ You can use the {{ secrets_store_operator }} to mount secrets from {{ secrets_st
         spec:
           provider: aws
           parameters:
-{%- if aws_secrets_manager %}
+        {%- if aws_secrets_manager %}
             objects: |
               - objectName: "testSecret"
                 objectType: "secretsmanager"
-{% endif %}
-{% if aws_systems_manager_parameter_store %}
+        {%- endif %}
+        {%- if aws_systems_manager_parameter_store %}
             objects: |
               - objectName: "testParameter"
                 objectType: "ssmparameter"
-{%- endif %}
+        {%- endif %}
         ```
 
         where:
@@ -299,13 +299,13 @@ You can use the {{ secrets_store_operator }} to mount secrets from {{ secrets_st
         ```terminal
         $ oc exec my-aws-deployment-<hash> -n my-namespace -- ls /mnt/secrets-store/
         ```
-        ```terminal title="Example output"
-{%- if aws_secrets_manager %}
+        ```terminal title="Example output" {minja}
+        {% if aws_secrets_manager %}
         testSecret
-{% endif %}
-{% if aws_systems_manager_parameter_store %}
+        {% endif %}
+        {% if aws_systems_manager_parameter_store %}
         testParameter
-{%- endif %}
+        {% endif %}
         ```
     1.  View a secret in the pod mount by running the following command:
         ```terminal
@@ -316,8 +316,8 @@ You can use the {{ secrets_store_operator }} to mount secrets from {{ secrets_st
         ```
 
 {% if secrets-store-provider == "AWS Secrets Manager" %}
-{%- set aws_secrets_manager = false -%}
+{%- set aws_secrets_manager = "" -%}
 {% endif %}
 {% if secrets-store-provider == "AWS Systems Manager Parameter Store" %}
-{%- set aws_systems_manager_parameter_store = false -%}
+{%- set aws_systems_manager_parameter_store = "" -%}
 {% endif %}

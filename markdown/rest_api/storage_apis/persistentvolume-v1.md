@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PersistentVolumeSpec is the specification of a persistent volume. |
 | `status` | `object` | PersistentVolumeStatus is the current status of a persistent volume. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -36,7 +37,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `accessModes` | `array (string)` | accessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes |
-| `awsElasticBlockStore` | `object` | Represents a Persistent Disk resource in AWS. An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling. |
+| `awsElasticBlockStore` | `object` | Represents a Persistent Disk resource in AWS.<br>An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling. |
 | `azureDisk` | `object` | AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. |
 | `azureFile` | `object` | AzureFile represents an Azure File Service mount on the host and bind mount to the pod. |
 | `capacity` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the description of the persistent volume’s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity |
@@ -47,7 +48,7 @@ Type
 | `fc` | `object` | Represents a Fibre Channel volume. Fibre Channel volumes can only be mounted as read/write once. Fibre Channel volumes support ownership management and SELinux relabeling. |
 | `flexVolume` | `object` | FlexPersistentVolumeSource represents a generic persistent volume resource that is provisioned/attached using an exec based plugin. |
 | `flocker` | `object` | Represents a Flocker volume mounted by the Flocker agent. One and only one of datasetName and datasetUUID should be set. Flocker volumes do not support ownership management or SELinux relabeling. |
-| `gcePersistentDisk` | `object` | Represents a Persistent Disk resource in Google Compute Engine. A GCE PD must exist before mounting to a container. The disk must also be in the same GCE project and zone as the kubelet. A GCE PD can only be mounted as read/write once or read-only many times. GCE PDs support ownership management and SELinux relabeling. |
+| `gcePersistentDisk` | `object` | Represents a Persistent Disk resource in Google Compute Engine.<br>A GCE PD must exist before mounting to a container. The disk must also be in the same GCE project and zone as the kubelet. A GCE PD can only be mounted as read/write once or read-only many times. GCE PDs support ownership management and SELinux relabeling. |
 | `glusterfs` | `object` | Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling. |
 | `hostPath` | `object` | Represents a host path mapped into a pod. Host path volumes do not support ownership management or SELinux relabeling. |
 | `iscsi` | `object` | ISCSIPersistentVolumeSource represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling. |
@@ -55,7 +56,7 @@ Type
 | `mountOptions` | `array (string)` | mountOptions is the list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options |
 | `nfs` | `object` | Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling. |
 | `nodeAffinity` | `object` | VolumeNodeAffinity defines constraints that limit what nodes this volume can be accessed from. |
-| `persistentVolumeReclaimPolicy` | `string` | persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming Possible enum values:  - `"Delete"` means the volume will be deleted from Kubernetes on release from its claim. The volume plugin must support Deletion.  - `"Recycle"` means the volume will be recycled back into the pool of unbound persistent volumes on release from its claim. The volume plugin must support Recycling.  - `"Retain"` means the volume will be left in its current phase (Released) for manual reclamation by the administrator. The default policy is Retain. |
+| `persistentVolumeReclaimPolicy` | `string` | persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming<br>Possible enum values:  - `"Delete"` means the volume will be deleted from Kubernetes on release from its claim. The volume plugin must support Deletion.  - `"Recycle"` means the volume will be recycled back into the pool of unbound persistent volumes on release from its claim. The volume plugin must support Recycling.  - `"Retain"` means the volume will be left in its current phase (Released) for manual reclamation by the administrator. The default policy is Retain. |
 | `photonPersistentDisk` | `object` | Represents a Photon Controller persistent disk resource. |
 | `portworxVolume` | `object` | PortworxVolumeSource represents a Portworx volume resource. |
 | `quobyte` | `object` | Represents a Quobyte mount that lasts the lifetime of a pod. Quobyte volumes do not support ownership management or SELinux relabeling. |
@@ -64,8 +65,9 @@ Type
 | `storageClassName` | `string` | storageClassName is the name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass. |
 | `storageos` | `object` | Represents a StorageOS persistent volume resource. |
 | `volumeAttributesClassName` | `string` | Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. |
-| `volumeMode` | `string` | volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec. Possible enum values:  - `"Block"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `"Filesystem"` means the volume will be or is formatted with a filesystem. |
+| `volumeMode` | `string` | volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.<br>Possible enum values:  - `"Block"` means the volume will not be formatted with a filesystem and will remain a raw block device.  - `"Filesystem"` means the volume will be or is formatted with a filesystem. |
 | `vsphereVolume` | `object` | Represents a vSphere volume resource. |
+
 ### .spec.awsElasticBlockStore {id="_specawselasticblockstore"}
 
 Description
@@ -88,6 +90,7 @@ Required
 | `partition` | `integer` | partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). |
 | `readOnly` | `boolean` | readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore |
 | `volumeID` | `string` | volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore |
+
 ### .spec.azureDisk {id="_specazuredisk"}
 
 Description
@@ -104,12 +107,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `cachingMode` | `string` | cachingMode is the Host Caching mode: None, Read Only, Read Write. Possible enum values:  - `"None"`  - `"ReadOnly"`  - `"ReadWrite"` |
+| `cachingMode` | `string` | cachingMode is the Host Caching mode: None, Read Only, Read Write.<br>Possible enum values:  - `"None"`  - `"ReadOnly"`  - `"ReadWrite"` |
 | `diskName` | `string` | diskName is the Name of the data disk in the blob storage |
 | `diskURI` | `string` | diskURI is the URI of data disk in the blob storage |
 | `fsType` | `string` | fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. |
-| `kind` | `string` | kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared Possible enum values:  - `"Dedicated"`  - `"Managed"`  - `"Shared"` |
+| `kind` | `string` | kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared<br>Possible enum values:  - `"Dedicated"`  - `"Managed"`  - `"Shared"` |
 | `readOnly` | `boolean` | readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
+
 ### .spec.azureFile {id="_specazurefile"}
 
 Description
@@ -130,6 +134,7 @@ Required
 | `secretName` | `string` | secretName is the name of secret that contains Azure Storage Account Name and Key |
 | `secretNamespace` | `string` | secretNamespace is the namespace of the secret that contains Azure Storage Account Name and Key default is the same as the Pod |
 | `shareName` | `string` | shareName is the azure Share Name |
+
 ### .spec.cephfs {id="_speccephfs"}
 
 Description
@@ -151,6 +156,7 @@ Required
 | `secretFile` | `string` | secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it |
 | `secretRef` | `object` | SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace |
 | `user` | `string` | user is Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it |
+
 ### .spec.cephfs.secretRef {id="_speccephfssecretref"}
 
 Description
@@ -164,6 +170,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.cinder {id="_speccinder"}
 
 Description
@@ -183,6 +190,7 @@ Required
 | `readOnly` | `boolean` | readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md |
 | `secretRef` | `object` | SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace |
 | `volumeID` | `string` | volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md |
+
 ### .spec.cinder.secretRef {id="_speccindersecretref"}
 
 Description
@@ -196,6 +204,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.claimRef {id="_specclaimref"}
 
 Description
@@ -214,6 +223,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .spec.csi {id="_speccsi"}
 
 Description
@@ -240,6 +250,7 @@ Required
 | `readOnly` | `boolean` | readOnly value to pass to ControllerPublishVolumeRequest. Defaults to false (read/write). |
 | `volumeAttributes` | `object (string)` | volumeAttributes of the volume to publish. |
 | `volumeHandle` | `string` | volumeHandle is the unique volume name returned by the CSI volume plugin’s CreateVolume to refer to the volume on all subsequent calls. Required. |
+
 ### .spec.csi.controllerExpandSecretRef {id="_speccsicontrollerexpandsecretref"}
 
 Description
@@ -253,6 +264,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.csi.controllerPublishSecretRef {id="_speccsicontrollerpublishsecretref"}
 
 Description
@@ -266,6 +278,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.csi.nodeExpandSecretRef {id="_speccsinodeexpandsecretref"}
 
 Description
@@ -279,6 +292,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.csi.nodePublishSecretRef {id="_speccsinodepublishsecretref"}
 
 Description
@@ -292,6 +306,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.csi.nodeStageSecretRef {id="_speccsinodestagesecretref"}
 
 Description
@@ -305,6 +320,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.fc {id="_specfc"}
 
 Description
@@ -321,6 +337,7 @@ Type
 | `readOnly` | `boolean` | readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `targetWWNs` | `array (string)` | targetWWNs is Optional: FC target worldwide names (WWNs) |
 | `wwids` | `array (string)` | wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously. |
+
 ### .spec.flexVolume {id="_specflexvolume"}
 
 Description
@@ -341,6 +358,7 @@ Required
 | `options` | `object (string)` | options is Optional: this field holds extra command options if any. |
 | `readOnly` | `boolean` | readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `secretRef` | `object` | SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace |
+
 ### .spec.flexVolume.secretRef {id="_specflexvolumesecretref"}
 
 Description
@@ -354,6 +372,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.flocker {id="_specflocker"}
 
 Description
@@ -365,8 +384,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `datasetName` | `string` | datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated |
+| `datasetName` | `string` | datasetName is Name of the dataset stored as metadata → name on the dataset for Flocker should be considered as deprecated |
 | `datasetUUID` | `string` | datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset |
+
 ### .spec.gcePersistentDisk {id="_specgcepersistentdisk"}
 
 Description
@@ -389,6 +409,7 @@ Required
 | `partition` | `integer` | partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
 | `pdName` | `string` | pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
+
 ### .spec.glusterfs {id="_specglusterfs"}
 
 Description
@@ -409,6 +430,7 @@ Required
 | `endpointsNamespace` | `string` | endpointsNamespace is the namespace that contains Glusterfs endpoint. If this field is empty, the EndpointNamespace defaults to the same namespace as the bound PVC. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod |
 | `path` | `string` | path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod |
 | `readOnly` | `boolean` | readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod |
+
 ### .spec.hostPath {id="_spechostpath"}
 
 Description
@@ -425,7 +447,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `path` | `string` | path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
-| `type` | `string` | type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath Possible enum values:  - `""` For backwards compatible, leave it empty if unset  - `"BlockDevice"` A block device must exist at the given path  - `"CharDevice"` A character device must exist at the given path  - `"Directory"` A directory must exist at the given path  - `"DirectoryOrCreate"` If nothing exists at the given path, an empty directory will be created there as needed with file mode 0755, having the same group and ownership with Kubelet.  - `"File"` A file must exist at the given path  - `"FileOrCreate"` If nothing exists at the given path, an empty file will be created there as needed with file mode 0644, having the same group and ownership with Kubelet.  - `"Socket"` A UNIX socket must exist at the given path |
+| `type` | `string` | type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath<br>Possible enum values:  - `""` For backwards compatible, leave it empty if unset  - `"BlockDevice"` A block device must exist at the given path  - `"CharDevice"` A character device must exist at the given path  - `"Directory"` A directory must exist at the given path  - `"DirectoryOrCreate"` If nothing exists at the given path, an empty directory will be created there as needed with file mode 0755, having the same group and ownership with Kubelet.  - `"File"` A file must exist at the given path  - `"FileOrCreate"` If nothing exists at the given path, an empty file will be created there as needed with file mode 0644, having the same group and ownership with Kubelet.  - `"Socket"` A UNIX socket must exist at the given path |
+
 ### .spec.iscsi {id="_speciscsi"}
 
 Description
@@ -454,6 +477,7 @@ Required
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. |
 | `secretRef` | `object` | SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace |
 | `targetPortal` | `string` | targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260). |
+
 ### .spec.iscsi.secretRef {id="_speciscsisecretref"}
 
 Description
@@ -467,6 +491,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.local {id="_speclocal"}
 
 Description
@@ -484,6 +509,7 @@ Required
 | --- | --- | --- |
 | `fsType` | `string` | fsType is the filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default value is to auto-select a filesystem if unspecified. |
 | `path` | `string` | path of the full path to the volume on the node. It can be either a directory or block device (disk, partition, ...). |
+
 ### .spec.nfs {id="_specnfs"}
 
 Description
@@ -503,6 +529,7 @@ Required
 | `path` | `string` | path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
 | `readOnly` | `boolean` | readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
 | `server` | `string` | server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
+
 ### .spec.nodeAffinity {id="_specnodeaffinity"}
 
 Description
@@ -515,6 +542,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `required` | `object` | A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms. |
+
 ### .spec.nodeAffinity.required {id="_specnodeaffinityrequired"}
 
 Description
@@ -532,6 +560,7 @@ Required
 | --- | --- | --- |
 | `nodeSelectorTerms` | `array` | Required. A list of node selector terms. The terms are ORed. |
 | `nodeSelectorTerms[]` | `object` | A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm. |
+
 ### .spec.nodeAffinity.required.nodeSelectorTerms {id="_specnodeaffinityrequirednodeselectorterms"}
 
 Description
@@ -556,6 +585,7 @@ Type
 | `matchExpressions[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchFields` | `array` | A list of node selector requirements by node’s fields. |
 | `matchFields[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.nodeAffinity.required.nodeSelectorTerms[].matchExpressions {id="_specnodeaffinityrequirednodeselectortermsmatchexpressions"}
 
 Description
@@ -582,8 +612,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The label key that the selector applies to. |
-| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
+| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.<br>Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.nodeAffinity.required.nodeSelectorTerms[].matchFields {id="_specnodeaffinityrequirednodeselectortermsmatchfields"}
 
 Description
@@ -610,8 +641,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The label key that the selector applies to. |
-| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
+| `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.<br>Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.photonPersistentDisk {id="_specphotonpersistentdisk"}
 
 Description
@@ -629,6 +661,7 @@ Required
 | --- | --- | --- |
 | `fsType` | `string` | fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. |
 | `pdID` | `string` | pdID is the ID that identifies Photon Controller persistent disk |
+
 ### .spec.portworxVolume {id="_specportworxvolume"}
 
 Description
@@ -647,6 +680,7 @@ Required
 | `fsType` | `string` | fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified. |
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `volumeID` | `string` | volumeID uniquely identifies a Portworx volume |
+
 ### .spec.quobyte {id="_specquobyte"}
 
 Description
@@ -669,6 +703,7 @@ Required
 | `tenant` | `string` | tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin |
 | `user` | `string` | user to map volume access to Defaults to serivceaccount user |
 | `volume` | `string` | volume is a string that references an already created Quobyte volume by name. |
+
 ### .spec.rbd {id="_specrbd"}
 
 Description
@@ -693,6 +728,7 @@ Required
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it |
 | `secretRef` | `object` | SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace |
 | `user` | `string` | user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it |
+
 ### .spec.rbd.secretRef {id="_specrbdsecretref"}
 
 Description
@@ -706,6 +742,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.scaleIO {id="_specscaleio"}
 
 Description
@@ -733,6 +770,7 @@ Required
 | `storagePool` | `string` | storagePool is the ScaleIO Storage Pool associated with the protection domain. |
 | `system` | `string` | system is the name of the storage system as configured in ScaleIO. |
 | `volumeName` | `string` | volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source. |
+
 ### .spec.scaleIO.secretRef {id="_specscaleiosecretref"}
 
 Description
@@ -746,6 +784,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.storageos {id="_specstorageos"}
 
 Description
@@ -762,6 +801,7 @@ Type
 | `secretRef` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 | `volumeName` | `string` | volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace. |
 | `volumeNamespace` | `string` | volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod’s namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created. |
+
 ### .spec.storageos.secretRef {id="_specstorageossecretref"}
 
 Description
@@ -780,6 +820,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .spec.vsphereVolume {id="_specvspherevolume"}
 
 Description
@@ -799,6 +840,7 @@ Required
 | `storagePolicyID` | `string` | storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName. |
 | `storagePolicyName` | `string` | storagePolicyName is the storage Policy Based Management (SPBM) profile name. |
 | `volumePath` | `string` | volumePath is the path that identifies vSphere volume vmdk |
+
 ### .status {id="_status"}
 
 Description
@@ -812,7 +854,7 @@ Type
 | --- | --- | --- |
 | `lastPhaseTransitionTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastPhaseTransitionTime is the time the phase transitioned from one to another and automatically resets to current time everytime a volume phase transitions. |
 | `message` | `string` | message is a human-readable message indicating details about why the volume is in this state. |
-| `phase` | `string` | phase indicates if a volume is available, bound to a claim, or released by a claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#phase Possible enum values:  - `"Available"` used for PersistentVolumes that are not yet bound Available volumes are held by the binder and matched to PersistentVolumeClaims  - `"Bound"` used for PersistentVolumes that are bound  - `"Failed"` used for PersistentVolumes that failed to be correctly recycled or deleted after being released from a claim  - `"Pending"` used for PersistentVolumes that are not available  - `"Released"` used for PersistentVolumes where the bound PersistentVolumeClaim was deleted released volumes must be recycled before becoming available again this phase is used by the persistent volume claim binder to signal to another process to reclaim the resource |
+| `phase` | `string` | phase indicates if a volume is available, bound to a claim, or released by a claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#phase<br>Possible enum values:  - `"Available"` used for PersistentVolumes that are not yet bound Available volumes are held by the binder and matched to PersistentVolumeClaims  - `"Bound"` used for PersistentVolumes that are bound  - `"Failed"` used for PersistentVolumes that failed to be correctly recycled or deleted after being released from a claim  - `"Pending"` used for PersistentVolumes that are not available  - `"Released"` used for PersistentVolumes where the bound PersistentVolumeClaim was deleted released volumes must be recycled before becoming available again this phase is used by the persistent volume claim binder to signal to another process to reclaim the resource |
 | `reason` | `string` | reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI. |
 
 ## API endpoints {id="_api_endpoints"}
@@ -825,14 +867,14 @@ The following API endpoints are available:
     *   `POST`: create a PersistentVolume
 *   `/api/v1/watch/persistentvolumes`
     *   `GET`: watch individual changes to a list of PersistentVolume. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/persistentvolumes/{{ name }}`
+*   `/api/v1/persistentvolumes/{{ name }}`{minja}
     *   `DELETE`: delete a PersistentVolume
     *   `GET`: read the specified PersistentVolume
     *   `PATCH`: partially update the specified PersistentVolume
     *   `PUT`: replace the specified PersistentVolume
-*   `/api/v1/watch/persistentvolumes/{{ name }}`
+*   `/api/v1/watch/persistentvolumes/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind PersistentVolume. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/api/v1/persistentvolumes/{{ name }}/status`
+*   `/api/v1/persistentvolumes/{{ name }}/status`{minja}
     *   `GET`: read status of the specified PersistentVolume
     *   `PATCH`: partially update status of the specified PersistentVolume
     *   `PUT`: replace status of the specified PersistentVolume

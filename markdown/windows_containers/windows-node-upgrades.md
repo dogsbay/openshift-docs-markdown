@@ -3,11 +3,11 @@ title: Windows node updates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Windows node updates {id="windows-node-upgrades"}
 {% include "./_attributes/common-attributes.md" %}
+# Windows node updates {id="windows-node-upgrades"}
 {%- set context = "windows-node-upgrades" %}
 
-You can ensure your Windows nodes have the latest updates by updating the Windows Machine Config Operator (WMCO).
+You can ensure your Windows nodes have the latest updates by updating the Windows Machine Config Operator (WMCO). {._abstract}
 
 You can update the WMCO in any of the following scenarios:
 
@@ -23,7 +23,7 @@ You can update the WMCO in any of the following scenarios:
 
 {% leveloffset +2 %}{% include "./modules/wmco-upgrades-eus-using-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 *   [Performing a Control Plane Only update](/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
 *   [Installing the Windows Machine Config Operator using the CLI](/windows_containers/enabling-windows-container-workloads#installing-wmco-using-cli_enabling-windows-container-workloads)

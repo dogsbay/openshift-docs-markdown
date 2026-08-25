@@ -18,7 +18,7 @@ The `osd-managed-admin` IAM service account is created immediately after taking 
 
 The following roles are attached to the service account:
 
-***IAM roles for osd-managed-admin***
+**IAM roles for osd-managed-admin**
 
 <table>
 <thead>
@@ -86,7 +86,7 @@ The `sd-sre-platform-gcp-access` Google group is granted access to the {{ gcp_sh
 
 The following roles are attached to the group:
 
-***IAM roles for sd-sre-platform-gcp-access***
+**IAM roles for sd-sre-platform-gcp-access**
 
 <table>
 <thead>

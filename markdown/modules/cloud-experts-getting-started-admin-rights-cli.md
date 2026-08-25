@@ -19,7 +19,7 @@ As the cluster creator, you can use the {{ rosa_cli_first }} tool to create your
     $ rosa list users --cluster=<cluster-name>
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     $ rosa list users --cluster=my-rosa-cluster
     ID                 GROUPS

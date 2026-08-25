@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Responding to symlinks alerts for the Local Storage Operator {id="local-storage-symlinks-procedure_{{ context }}"}
 
-[role="_abstract"] 
-To prevent storage breakage during {{ product_title }} upgrades, an administrator can elect to detect, alert, and remap broken symlinks without manual node-level intervention.
+To prevent storage breakage during {{ product_title }} upgrades, an administrator can elect to detect, alert, and remap broken symlinks without manual node-level intervention. {._abstract}
 
 By default, LSO engages in link monitoring and generates an alert if the current and preferred paths do not match.
 
@@ -22,6 +21,7 @@ If an alert occurs, an administrator can choose to either have LSO:
 1.  To view volumes generating alerts:
     1.  On the left navigation menu, click **Observe** > **Alerting**.
     1.  In the **Alert Name** filter box, search for the required LSO alerts:
+
         **Symlink alerts for LSO**
 
         | Alert | Description |
@@ -29,6 +29,7 @@ If an alert occurs, an administrator can choose to either have LSO:
         | lso_no_stable_volume_path | Device does not have a stable path and is being referenced by device name, which can change between reboots |
         | lso_device_link_mismatch | Device has mismatching preferred and current symlink |
         | lso_lv_missing_device_path | LV object has missing devicePath on actual node |
+
 
         Alternatively, you can list volumes triggering device link alerts by running the following command:
         ```terminal
@@ -57,7 +58,7 @@ If an alert occurs, an administrator can choose to either have LSO:
     1.  On the **Operator details** page, click the **YAML** tab.
     1.  Go to the `localVolumeDeviceLink.status` field and view its nested fields that are shown in the following table for a list of valid symlink targets, current link (`by-id`), and the generated preferred symlink.
 
-        ***`localVolumeDeviceLink.status` nested fields***
+        **`localVolumeDeviceLink.status` nested fields**
 
 <table>
 <thead>

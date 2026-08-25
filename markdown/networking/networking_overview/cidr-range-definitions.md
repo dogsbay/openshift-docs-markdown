@@ -3,14 +3,14 @@ title: CIDR range definitions
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# CIDR range definitions {id="cidr-range-definitions"}
 {% include "./_attributes/common-attributes.md" %}
+# CIDR range definitions {id="cidr-range-definitions"}
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "cidr-range-definitions" %}
 
-If your cluster uses OVN-Kubernetes, you must specify non-overlapping ranges for Classless Inter-Domain Routing (CIDR) subnet ranges.
+If your cluster uses OVN-Kubernetes, you must specify non-overlapping ranges for Classless Inter-Domain Routing (CIDR) subnet ranges. {._abstract}
 
 
 :::important
@@ -68,6 +68,7 @@ The earlier list includes join, transit, and masquerade IPv4 and IPv6 address su
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring OVN-Kubernetes internal IP address subnets](/networking/ovn_kubernetes_network_provider/configure-ovn-kubernetes-subnets#configure-ovn-kubernetes-subnets)
 {% endif %}
@@ -77,6 +78,7 @@ The earlier list includes join, transit, and masquerade IPv4 and IPv6 address su
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster Network Operator configuration](/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
 {% endif %}
@@ -86,7 +88,9 @@ The earlier list includes join, transit, and masquerade IPv4 and IPv6 address su
 {% leveloffset +1 %}{% include "./modules/pod-cidr-description.md" %}{% endleveloffset %}
 
 {% if openshift_enterprise %}
+
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster Network Operator configuration](/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
 *   [Configuring the cluster network range](/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
@@ -96,4 +100,4 @@ The earlier list includes join, transit, and masquerade IPv4 and IPv6 address su
 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 {% leveloffset +1 %}{% include "./modules/hcp-cidr-ranges.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}

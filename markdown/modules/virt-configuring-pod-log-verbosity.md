@@ -10,7 +10,7 @@ To gather more detailed diagnostic information for troubleshooting, you can conf
 **Procedure**
 
 1.  To set log verbosity for specific components, open the `HyperConverged` CR in your default text editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Set the log level for one or more components by editing the `spec.logVerbosityConfig` stanza. For example:

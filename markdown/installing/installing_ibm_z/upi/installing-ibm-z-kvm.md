@@ -7,7 +7,7 @@ title: "Installing a cluster with {{ op_system_base }} KVM on {{ ibm_z_title }} 
 # Installing a cluster with {{ op_system_base }} KVM on {{ ibm_z_title }} and {{ ibm_linuxone_title }} {id="installing-ibm-z-kvm"}
 {%- set context = "installing-ibm-z-kvm" %}
 
-You can install {{ product_title }} on {{ ibm_z_name }} or {{ ibm_linuxone_name }} by using {{ op_system_base }} KVM on infrastructure that you provision, giving you full control over networking, storage, and compute resources.
+You can install {{ product_title }} on {{ ibm_z_name }} or {{ ibm_linuxone_name }} by using {{ op_system_base }} KVM on infrastructure that you provision, giving you full control over networking, storage, and compute resources. {._abstract}
 
 
 :::note
@@ -20,6 +20,7 @@ While this document refers only to {{ ibm_z_name }}, all information in it also 
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-z-kvm-upi.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing to install a cluster on {{ ibm_z_title }} using user-provisioned infrastructure](/installing/installing_ibm_z/upi/upi-ibm-z-preparing-to-install#upi-ibm-z-preparing-to-install)
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
@@ -34,6 +35,7 @@ While this document refers only to {{ ibm_z_name }}, all information in it also 
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_z_name }}](/installing/installing_ibm_z/installation-config-parameters-ibm-z#installation-config-parameters-ibm-z)
 
@@ -54,6 +56,7 @@ While this document refers only to {{ ibm_z_name }}, all information in it also 
 {% leveloffset +3 %}{% include "./modules/ibm-z-secure-execution.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Introducing {{ ibm_name }} Secure Execution for Linux](https://www.ibm.com/docs/en/linux-on-systems?topic=virtualization-secure-execution)
 *   [Linux as an {{ ibm_name }} Secure Execution host or guest](https://www.ibm.com/docs/en/linux-on-systems?topic=ibm-z-secure-execution)
@@ -64,6 +67,7 @@ While this document refers only to {{ ibm_z_name }}, all information in it also 
 {% leveloffset +3 %}{% include "./modules/ibm-z-configure-nbde-with-static-ip.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 
@@ -74,6 +78,7 @@ While this document refers only to {{ ibm_z_name }}, all information in it also 
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-machines-static-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -109,7 +114,7 @@ While this document refers only to {{ ibm_z_name }}, all information in it also 
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 *   [How to generate SOSREPORT within {{ product_title }} version 4 nodes without SSH](https://access.redhat.com/solutions/4387261)

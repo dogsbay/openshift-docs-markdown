@@ -12,11 +12,11 @@ You can filter Helm charts based on their certification level in the **Developer
     *   Use the **Source** filter to filter charts sourced from **Partners**, **Community**, or **Red Hat**. Certified charts are indicated with the (![title="Certified icon"](/_assets/images/odc_verified_icon.png)) icon.
 
 
-:::note
+    :::note
 
-The **Source** filter will not be visible when there is only one provider type.
-
-:::
+    The **Source** filter will not be visible when there is only one provider type.
+    
+    :::
 
 
 You can now select the required chart and install it.

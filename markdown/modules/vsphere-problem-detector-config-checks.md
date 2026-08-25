@@ -3,7 +3,7 @@
 
 The following tables identify the configuration checks that the {{ operator_name }} runs. Some checks verify the configuration of the cluster. Other checks verify the configuration of each node in the cluster. {._abstract}
 
-***Cluster configuration checks***
+**Cluster configuration checks**
 
 <table>
 <thead>
@@ -36,7 +36,7 @@ The following tables identify the configuration checks that the {{ operator_name
 </tbody>
 </table>
 
-***Node configuration checks***
+**Node configuration checks**
 
 <table>
 <thead>

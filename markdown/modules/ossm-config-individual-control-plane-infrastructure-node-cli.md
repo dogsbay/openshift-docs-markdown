@@ -10,10 +10,10 @@ If the control plane will run on a worker node, skip this task.
 *   You have installed the {{ SMProductName }} Operator.
 {%- if not (openshift_rosa or openshift_dedicated) %}
 *   You are logged in to {{ product_title }} as`cluster-admin`.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

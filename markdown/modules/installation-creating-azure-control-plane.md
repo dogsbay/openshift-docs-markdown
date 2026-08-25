@@ -43,7 +43,7 @@ This template describes the control plane machines that your cluster requires.
     $ export MASTER_IGNITION=`cat <installation_directory>/master.ign | base64 | tr -d '\n'`
     ```
 1.  Create the deployment by using the `az` CLI:
-    {%- if azure %}
+{% if azure %}
     ```terminal
     $ az deployment group create -g ${RESOURCE_GROUP} \
       --template-file "<installation_directory>/05_masters.json" \
@@ -64,32 +64,32 @@ This template describes the control plane machines that your cluster requires.
     :   Specifies the size of the Control Plane VM. Use a VM size compatible with your specified architecture. If this value is not defined, the default value from the template is set. This parameter is optional.
 {% endif %}
 {% if ash %}
-        ```terminal
-        $ az deployment group create -g ${RESOURCE_GROUP} \
-          --template-file "<installation_directory>/05_masters.json" \
-          --parameters masterIgnition="${MASTER_IGNITION}" \
-          --parameters baseName="${INFRA_ID}" \
-          --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
-        ```
+    ```terminal
+    $ az deployment group create -g ${RESOURCE_GROUP} \
+      --template-file "<installation_directory>/05_masters.json" \
+      --parameters masterIgnition="${MASTER_IGNITION}" \
+      --parameters baseName="${INFRA_ID}" \
+      --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
+    ```
+
     where:
 
+    `masterIgnition`
+    :   Specifies the Ignition content for the control plane nodes (also known as the master nodes).
 
-`masterIgnition`
-:   Specifies the Ignition content for the control plane nodes (also known as the master nodes).
+    `baseName`
+    :   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
 
-`baseName`
-:   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
-
-`diagnosticsStorageAccountName`
-:   Specifies the name of the storage account for your cluster.
+    `diagnosticsStorageAccountName`
+    :   Specifies the name of the storage account for your cluster.
 {% endif %}
 
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}

@@ -38,7 +38,7 @@ Enable DNS tracking in the Network Observability Operator to monitor DNS query n
 
 **Verification**
 
-1.  In the {{ product_title }} web console, navigate to **Observe** -> **Network Traffic**.
+1.  In the {{ product_title }} web console, navigate to **Observe** → **Network Traffic**.
 1.  In the **Traffic Flows** view, click the **Manage columns** icon.
 1.  Ensure that the **DNS Query Name**, **DNS Response Code**, and **DNS Latency** columns are selected.
 1.  Filter the results by setting **Port** to `53`.

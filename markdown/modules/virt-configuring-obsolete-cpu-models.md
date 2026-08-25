@@ -6,7 +6,7 @@ You can configure a list of obsolete CPU models by editing the `HyperConverged` 
 **Procedure**
 
 *   Edit the `HyperConverged` custom resource, specifying the obsolete CPU models in the `obsoleteCPUs` array. For example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

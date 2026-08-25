@@ -14,7 +14,7 @@ You can use an alternate or mirror registry to host your images streams instead 
 Most image streams in the `openshift` namespace managed by the Cluster Samples Operator point to images located in the Red&#160;Hat registry at [registry.redhat.io](https://registry.redhat.io).
 {%- if restrictednetwork %}
 Mirroring does not apply to these image streams.
-{% endif %}
+{%- endif %}
 
 
 :::note
@@ -36,8 +36,8 @@ The Cluster Samples Operator must be set to `Managed` in a disconnected environm
 
 {%- if not (openshift_rosa or openshift_dedicated) %}
 *   Access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 *   Access to the cluster as a user with the `dedicated-admin` role.
 {%- endif %}
 *   Create a pull secret for your mirror registry.
@@ -51,8 +51,8 @@ The Cluster Samples Operator must be set to `Managed` in a disconnected environm
 1.  Mirror images from [registry.redhat.io](https://registry.redhat.io) associated with any image streams you need
     {%- if restrictednetwork %}
     in the restricted network environment into one of the defined mirrors, for example:
-    {% endif %}
-    {% if configsamplesoperator %}
+    {%- endif %}
+    {%- if configsamplesoperator %}
     into your defined preferred registry, for example:
     {%- endif %}
     ```terminal
@@ -89,9 +89,9 @@ The Cluster Samples Operator must be set to `Managed` in a disconnected environm
     Many of the templates in the `openshift` namespace reference the image streams. You can use `Removed` to purge both the image streams and templates. This eliminates the possibility of attempts to use the templates if they are not functional because of any missing image streams.
 
 {% if context == "post-install-cluster-tasks" %}
-{%- set restrictednetwork = false -%}
+{%- set restrictednetwork = "" -%}
 {% endif %}
 
 {% if context == "samples-operator-alt-registry" %}
-{%- set samplesoperatoraltreg = false -%}
+{%- set samplesoperatoraltreg = "" -%}
 {% endif %}

@@ -23,7 +23,7 @@ You can create an OIDC provider that is hosted in your AWS account with the {{ p
 
         ```terminal title="Command output"
         aws iam create-open-id-connect-provider \
-        	--url https://oidc.op1.openshiftapps.com/<oidc_config_id> \// (1)
+        	--url https://oidc.op1.openshiftapps.com/<oidc_config_id> \ (1)
         	--client-id-list openshift sts.<aws_region>.amazonaws.com \
         	--thumbprint-list <thumbprint> (2)
         ```

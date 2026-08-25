@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Obtaining information from your {{ product_title }} cluster {id="aws-outposts-environment-info-oc_{{ context }}"}
 
-You can use the {{ oc_first }} to obtain information from your {{ product_title }} cluster.
+You can use the {{ oc_first }} to obtain information from your {{ product_title }} cluster. {._abstract}
 
 
 :::tip

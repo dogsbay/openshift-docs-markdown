@@ -19,7 +19,7 @@ The `ostoy-frontend-deployment.yaml` file shows that front-end deployment define
     $ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     persistentvolumeclaim/ostoy-pvc created
     deployment.apps/ostoy-frontend created

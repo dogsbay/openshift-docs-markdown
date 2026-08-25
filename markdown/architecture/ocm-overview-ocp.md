@@ -3,8 +3,8 @@ title: Red Hat OpenShift Cluster Manager
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Red Hat OpenShift Cluster Manager {id="ocm-overview-ocp"}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Red Hat OpenShift Cluster Manager {id="ocm-overview-ocp"}
 {%- set context = "ocm-overview-ocp" %}
 
 {{ cluster_manager_first }} is a managed service where you can install, modify, operate, and upgrade your Red Hat OpenShift clusters. This service allows you to work with all of your organization´s clusters from a single dashboard.
@@ -26,9 +26,9 @@ You can use {{ cluster_manager }} to do the following actions:
 
 On the top right of the cluster page, there are some actions that a user can perform on the entire cluster:
 
-*   ***Open console*** launches a web console so that the cluster owner can issue commands to the cluster.
-*   ***Actions*** drop-down menu allows the cluster owner to rename the display name of the cluster, change the amount of load balancers and persistent storage on the cluster, if applicable, manually set the node count, and delete the cluster.
-*   ***Refresh*** icon forces a refresh of the cluster.
+*   **Open console** launches a web console so that the cluster owner can issue commands to the cluster.
+*   **Actions** drop-down menu allows the cluster owner to rename the display name of the cluster, change the amount of load balancers and persistent storage on the cluster, if applicable, manually set the node count, and delete the cluster.
+*   **Refresh** icon forces a refresh of the cluster.
 
 ## Cluster tabs {id="ocm-cluster-tabs-ocp"}
 

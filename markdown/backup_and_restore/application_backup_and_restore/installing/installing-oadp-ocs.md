@@ -3,14 +3,14 @@ title: Configuring the OpenShift API for Data Protection with OpenShift Data Fou
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the OpenShift API for Data Protection with OpenShift Data Foundation {id="installing-oadp-ocs"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the OpenShift API for Data Protection with OpenShift Data Foundation {id="installing-oadp-ocs"}
 {%- set context = "installing-oadp-ocs" -%}
 {%- set installing_oadp_ocs = true -%}
 {%- set credentials = "cloud-credentials" -%}
 {%- set provider = "gcp" %}
 
-Install the {{ oadp_first }} with {{ rh_storage }} by installing the {{ oadp_short }} Operator and configuring a backup location and a snapshot location. You then install the Data Protection Application.
+Install the {{ oadp_first }} with {{ rh_storage }} by installing the {{ oadp_short }} Operator and configuring a backup location and a snapshot location. You then install the Data Protection Application. {._abstract}
 
 You can configure Multicloud Object Gateway or any AWS S3-compatible object storage as a backup location.
 
@@ -62,7 +62,7 @@ To install the OADP Operator in a restricted network environment, you must first
 
 {% leveloffset +2 %}{% include "./modules/oadp-about-disable-node-agent-dpa.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring OADP with Multicloud Object Gateway](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
 *   [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)

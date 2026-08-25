@@ -5,7 +5,7 @@ You can uninstall the {{ SMPlugin }} by using the {{ product_title }} web consol
 
 **Procedure**
 
-1.  Navigate to **Installed Operators** -> **Operator details**.
+1.  Navigate to **Installed Operators** → **Operator details**.
 1.  Select the **OpenShift Service Mesh Console** tab.
 1.  Click **Delete OSSMConsole** from the options menu.
 

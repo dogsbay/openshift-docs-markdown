@@ -38,7 +38,7 @@ The PPC uses the `must-gather` data from your hosted cluster to create the perfo
     Password: <password>
     ```
 1.  Create a performance profile on the hosted cluster, by running the following command. The example uses sample PPC arguments and values:
-    ```terminal
+    ```terminal {minja}
     $ podman run --entrypoint performance-profile-creator \
         -v /path/to/must-gather:/must-gather:z \
         registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} \

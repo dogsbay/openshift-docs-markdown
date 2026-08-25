@@ -15,9 +15,9 @@ To revert the changes implemented by using a `ContainerRuntimeConfig` CR, you mu
 
 You can modify the following settings by using a `ContainerRuntimeConfig` CR:
 
-*   ***Log level***: The `logLevel` parameter sets the CRI-O `log_level` parameter, which is the level of verbosity for log messages. The default is `info` (`log_level = info`). Other options include `fatal`, `panic`, `error`, `warn`, `debug`, and `trace`.
-*   ***Overlay size***: The `overlaySize` parameter sets the CRI-O Overlay storage driver `size` parameter, which is the maximum size of a container image.
-*   ***Container runtime***: The `defaultRuntime` parameter sets the container runtime to either `crun` or `runc`. The default is `crun`.
+*   **Log level**: The `logLevel` parameter sets the CRI-O `log_level` parameter, which is the level of verbosity for log messages. The default is `info` (`log_level = info`). Other options include `fatal`, `panic`, `error`, `warn`, `debug`, and `trace`.
+*   **Overlay size**: The `overlaySize` parameter sets the CRI-O Overlay storage driver `size` parameter, which is the maximum size of a container image.
+*   **Container runtime**: The `defaultRuntime` parameter sets the container runtime to either `crun` or `runc`. The default is `crun`.
 
 You should have one `ContainerRuntimeConfig` CR for each machine config pool with all the config changes you want for that pool. If you are applying the same content to all the pools, you only need one `ContainerRuntimeConfig` CR for all the pools.
 

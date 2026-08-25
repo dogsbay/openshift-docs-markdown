@@ -1,3 +1,3 @@
 # About logging curation {id="cluster-logging-about-curator_{{ context }}"}
 
-In {{ product_title }} {{ product_version }}, log curation is performed by Elasticsearch based on a [retention policy](/logging/config/cluster-logging-log-store.html#cluster-logging-elasticsearch-retention_cluster-logging-store) that you define. The Elasticsearch Curator tool removes Elasticsearch indices that use the data model prior to {{ product_title }} 4.5.
+In {{ product_title }} {{ product_version }}, log curation is performed by Elasticsearch based on a [retention policy](/logging/config/cluster-logging-log-store#cluster-logging-elasticsearch-retention_cluster-logging-store) that you define. The Elasticsearch Curator tool removes Elasticsearch indices that use the data model prior to {{ product_title }} 4.5.

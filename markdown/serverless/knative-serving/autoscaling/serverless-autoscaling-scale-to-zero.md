@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Scale-to-zero {id="serverless-autoscaling-scale-to-zero"}
 {% include "./_attributes/common-attributes.md" %}
+# Scale-to-zero {id="serverless-autoscaling-scale-to-zero"}
 {%- set context = "serverless-autoscaling-scale-to-zero" %}
 
 Knative Serving provides automatic scaling, or _autoscaling_, for applications to match incoming demand.

@@ -73,15 +73,15 @@ Ignition config files.
 {% endif %}
 
 {% if context == "installing-bare-metal-network-customizations" %}
-{%- set ignition_config = false -%}
+{%- set ignition_config = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-customizations" %}
-{%- set ignition_config = false -%}
-{%- set vsphere = false -%}
+{%- set ignition_config = "" -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-installer-provisioned-customizations" %}
-{%- set vsphere_ipi = false -%}
+{%- set vsphere_ipi = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-customizations" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}

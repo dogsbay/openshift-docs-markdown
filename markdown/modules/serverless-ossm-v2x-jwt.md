@@ -8,7 +8,7 @@ Adding sidecar injection to pods in system namespaces, such as `knative-serving`
 
 {% if openshift_enterprise %}
 If you require sidecar injection for pods in these namespaces, see the {{ ServerlessProductName }} documentation on _Integrating {{ SMProductShortName }} with {{ ServerlessProductName }} natively_.
-{%- endif %}
+{% endif %}
 
 :::
 

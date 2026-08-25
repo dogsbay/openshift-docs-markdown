@@ -3,9 +3,7 @@
 
 The `olm.package` schema specifies package-level metadata for Operators in file-based catalogs, including name, default channel, and icon. Use this schema reference when you build or validate Operator package definitions for Operator Lifecycle Manager (OLM). {._abstract}
 
-<details>
-<summary>`olm.package` schema</summary>
-
+:::details{title="`olm.package` schema"}
 ```go
 #Package: {
   schema: "olm.package"
@@ -26,4 +24,4 @@ The `olm.package` schema specifies package-level metadata for Operators in file-
   }
 }
 ```
-</details>
+:::

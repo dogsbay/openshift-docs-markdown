@@ -20,7 +20,7 @@ If you use your own catalogs and Operators, you can push the images directly to 
 **Procedure**
 
 1.  Get a list of available Red&#160;Hat-provided Operator catalogs to filter by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc mirror list operators --version {{ product_version }} --catalogs --v2
     ```
 1.  Get a list of Operators in the Red Hat Operators catalog by running the following command:
@@ -28,15 +28,15 @@ If you use your own catalogs and Operators, you can push the images directly to 
     $ oc mirror list operators --catalog=<catalog_source> --v2
     ```
 
-    Replace `<catalog_source>` with your catalog source, such as `registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}` or `quay.io/operatorhubio/catalog:latest`.
+    Replace `<catalog_source>` with your catalog source, such as `registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}`{minja} or `quay.io/operatorhubio/catalog:latest`.
 1.  Select an Operator. This example uses the `amq-broker-rhel9` Operator.
 1.  Optional: To inspect the channels and versions of the Operator you want to filter, enter the following commands:
     1.  Get a list of channels by running the following command:
-        ```terminal
+        ```terminal {minja}
         $ oc mirror list operators --catalog=registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} --package=amq-broker-rhel9 --v2
         ```
     1.  Get a list of versions within a channel by running the following command:
-        ```terminal
+        ```terminal {minja}
         $ oc mirror list operators --catalog=registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} --package=amq-broker-rhel9 --channel=7.13.x --v2
         ```
 

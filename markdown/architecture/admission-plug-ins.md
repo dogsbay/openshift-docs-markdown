@@ -3,11 +3,11 @@ title: Admission plugins
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Admission plugins {id="admission-plug-ins"}
 {% include "./_attributes/common-attributes.md" %}
+# Admission plugins {id="admission-plug-ins"}
 {%- set context = "admission-plug-ins" %}
 
-You can use admission plugins to regulate how {{ product_title }} functions. The default set of admission plugins for {{ product_title }} ensures proper functioning for your cluster.
+You can use admission plugins to regulate how {{ product_title }} functions. The default set of admission plugins for {{ product_title }} ensures proper functioning for your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/admission-plug-ins-about.md" %}{% endleveloffset %}
 
@@ -19,9 +19,9 @@ You can use admission plugins to regulate how {{ product_title }} functions. The
 
 {%- if not (openshift_rosa or openshift_dedicated) %}
 {% leveloffset +1 %}{% include "./modules/configuring-dynamic-admission.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
-## Additional resources {id="admission-plug-ins-additional-resources"}
+## Additional resources {id="admission-plug-ins-additional-resources" ._additional-resources}
 
 {% if not (openshift_rosa or openshift_dedicated) %}
 *   [Configuring the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#configuring-sriov-operator_configuring-sriov-operator)

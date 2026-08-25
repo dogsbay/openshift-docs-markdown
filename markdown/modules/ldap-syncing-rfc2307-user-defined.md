@@ -51,10 +51,10 @@ where:
 *   An LDAP sync configuration file exists. This procedure uses an example file named `rfc2307_config_user_defined.yaml`.
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

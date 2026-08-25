@@ -6,7 +6,7 @@ You can add a virtual disk to a virtual machine (VM) by using the {{ product_tit
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Select a VM to open the **VirtualMachine details** page.
 1.  On the **Disks** tab, click **Add disk**.
 1.  Specify the **Source**, **Name**, **Size**, **Type**, **Interface**, and **Storage Class**.

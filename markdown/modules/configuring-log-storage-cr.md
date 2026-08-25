@@ -37,20 +37,20 @@ You can configure which log storage type your {{ logging }} uses by modifying th
     1.  Optional configuration options for the Elasticsearch log store.
     1.  Specify the redundancy type. This value can be `ZeroRedundancy`, `SingleRedundancy`, `MultipleRedundancy`, or `FullRedundancy`.
     1.  Optional configuration options for LokiStack.
-        ```yaml title="Example ClusterLogging CR to specify LokiStack as the log store"
-        apiVersion: logging.openshift.io/v1
-        kind: ClusterLogging
-        metadata:
-          name: instance
-          namespace: openshift-logging
-        spec:
-          managementState: Managed
-          logStore:
-            type: lokistack
-            lokistack:
-              name: logging-loki
-        # ...
-        ```
+    ```yaml title="Example ClusterLogging CR to specify LokiStack as the log store"
+    apiVersion: logging.openshift.io/v1
+    kind: ClusterLogging
+    metadata:
+      name: instance
+      namespace: openshift-logging
+    spec:
+      managementState: Managed
+      logStore:
+        type: lokistack
+        lokistack:
+          name: logging-loki
+    # ...
+    ```
 1.  Apply the `ClusterLogging` CR by running the following command:
     ```terminal
     $ oc apply -f <filename>.yaml

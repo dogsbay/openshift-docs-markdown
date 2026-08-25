@@ -3,11 +3,11 @@ title: "{{ cert_manager_operator }} overview"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ cert_manager_operator }} overview {id="cert-manager-operator-about"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ cert_manager_operator }} overview {id="cert-manager-operator-about"}
 {%- set context = "cert-manager-operator-about" %}
 
-The {{ cert_manager_operator }} is a cluster-wide service that provides application certificate lifecycle management. The {{ cert_manager_operator }} allows you to integrate with external certificate authorities and provides certificate provisioning, renewal, and retirement.
+The {{ cert_manager_operator }} is a cluster-wide service that provides application certificate lifecycle management. The {{ cert_manager_operator }} allows you to integrate with external certificate authorities and provides certificate provisioning, renewal, and retirement. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/cert-manager-about.md" %}{% endleveloffset %}
 
@@ -19,7 +19,7 @@ The {{ cert_manager_operator }} is a cluster-wide service that provides applicat
 
 {% leveloffset +1 %}{% include "./modules/cert-manager-fips-support.md" %}{% endleveloffset %}
 
-## Additional resources {id="cert-manager-operator-about_additional-resources"}
+## Additional resources {id="cert-manager-operator-about_additional-resources" ._additional-resources}
 
 *   [Cryptographic module validation program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)
 *   [cert-manager project documentation](https://cert-manager.io/docs/)

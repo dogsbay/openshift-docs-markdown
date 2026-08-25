@@ -3,13 +3,13 @@ title: Using pod-level bonding
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using pod-level bonding {id="using-pod-level-bonding"}
 {% include "./_attributes/common-attributes.md" %}
+# Using pod-level bonding {id="using-pod-level-bonding"}
 {%- set context = "using-pod-level-bonding" %}
 
 {%- set FeatureName = "Bond Container Network Interface (CNI)" %}
 
-Bonding at the pod level is vital to enable workloads inside pods that require high availability and more throughput. With pod-level bonding, you can create a bond interface from multiple single root I/O virtualization (SR-IOV) virtual function interfaces in a kernel mode interface. The SR-IOV virtual functions are passed into the pod and attached to a kernel driver.
+Bonding at the pod level is vital to enable workloads inside pods that require high availability and more throughput. With pod-level bonding, you can create a bond interface from multiple single root I/O virtualization (SR-IOV) virtual function interfaces in a kernel mode interface. The SR-IOV virtual functions are passed into the pod and attached to a kernel driver. {._abstract}
 
 One scenario where pod level bonding is required is creating a bond interface from multiple SR-IOV virtual functions on different physical functions. Creating a bond interface from two different physical functions on the host can be used to achieve high availability and throughput at pod level.
 

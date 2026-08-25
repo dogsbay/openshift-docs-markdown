@@ -34,8 +34,8 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: cluster-logging-application-view # (1)
-subjects: # (2)
+  name: cluster-logging-application-view (1)
+subjects: (2)
 - kind: Group
   name: system:authenticated
   apiGroup: rbac.authorization.k8s.io
@@ -52,7 +52,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: allow-read-logs
-  namespace: log-test-0 # (1)
+  namespace: log-test-0 (1)
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -89,15 +89,15 @@ metadata:
 spec:
   tenants:
 # tag::LokiMode[]
-    mode: openshift-logging # (1)
+    mode: openshift-logging (1)
 # end::LokiMode[]
 # tag::NetObservMode[]
-    mode: openshift-network # (1)
+    mode: openshift-network (1)
 # end::NetObservMode[]
     openshift:
-      adminGroups: # (2)
+      adminGroups: (2)
       - cluster-admin
-      - custom-admin-group # (3)
+      - custom-admin-group (3)
 ```
 1.  Custom admin groups are only available in this mode.
 1.  Entering an empty list `[]` value for this field disables admin groups.

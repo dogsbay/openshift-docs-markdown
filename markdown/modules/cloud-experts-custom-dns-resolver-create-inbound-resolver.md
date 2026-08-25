@@ -47,7 +47,7 @@ In this example, the [Amazon Route 53 Inbound Resolver](https://docs.aws.amazon.
       --output text \
       --query 'ResolverEndpoint.Id')
     ```
-   \
+    +
     where:
 
 

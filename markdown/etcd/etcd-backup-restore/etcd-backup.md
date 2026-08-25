@@ -3,11 +3,11 @@ title: Backing up and restoring etcd data
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Backing up and restoring etcd data {id="etcd-backup"}
 {% include "./_attributes/common-attributes.md" %}
+# Backing up and restoring etcd data {id="etcd-backup"}
 {%- set context = "etcd-backup" %}
 
-Back up etcd data regularly and store it in a secure location so you can restore your cluster to a previous state, using a snapshot from the same z-stream release.
+Back up etcd data regularly and store it in a secure location so you can restore your cluster to a previous state, using a snapshot from the same z-stream release. {._abstract}
 
 As the key-value store for {{ product_title }}, etcd persists the state of all resource objects.
 
@@ -28,6 +28,7 @@ After you have an etcd backup, you can restore to a previous cluster state.
 {% leveloffset +1 %}{% include "./modules/backup-etcd.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Restoring to an earlier cluster state](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
 *   [Recovering an unhealthy etcd cluster for {{ hcp }}](/hosted_control_planes/hcp_high_availability/hcp-recovering-etcd-cluster#hcp-recovering-etcd-cluster)

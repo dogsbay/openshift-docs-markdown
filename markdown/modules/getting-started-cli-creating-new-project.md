@@ -28,7 +28,7 @@ If you are using Developer Sandbox to complete this tutorial, skip this procedur
     $ oc new-project user-getting-started
     ```
 
-```terminal title="Example output"
-Now using project "user-getting-started" on server "https://openshift.example.com:6443".
-...
-```
+    ```terminal title="Example output"
+    Now using project "user-getting-started" on server "https://openshift.example.com:6443".
+    ...
+    ```

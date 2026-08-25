@@ -18,7 +18,7 @@ Your control plane only supports machine pools within two minor y-stream version
 # Updating the hosted control plane {id="_updating_the_hosted_control_plane"}
 
 When you need to update the whole cluster, update the hosted control plane first.
-{% endif %}
+{%- endif %}
 
 **Prerequisites**
 
@@ -74,6 +74,7 @@ When you need to update the whole cluster, update the hosted control plane first
         Your hosted control plane is scheduled for an update at the specified time in Coordinated Universal Time (UTC).
 
 {% if context != "rosa-hcp-upgrading-whole-cluster" %}
+
 **Troubleshooting**
 
 *   Sometimes a scheduled update does not initiate. See [Upgrade maintenance canceled](https://access.redhat.com/solutions/6648291) for more information.

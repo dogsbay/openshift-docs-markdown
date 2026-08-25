@@ -3,8 +3,8 @@ title: Configuring the automatic image cleanup of the container storage disk
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the automatic image cleanup of the container storage disk {id="cnf-image-based-upgrade-configure-auto-image-cleanup"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the automatic image cleanup of the container storage disk {id="cnf-image-based-upgrade-configure-auto-image-cleanup"}
 {%- set context = "auto-cleanup" %}
 
 Configure when the {{ lcao }} cleans up unpinned images in the `Prep` stage by setting a minimum threshold for available storage space through annotations.

@@ -32,10 +32,9 @@ For {{ ibm_power_title }} and {{ ibm_z_title }}, the following exceptions apply:
 | {{ hcp_capital }} for {{ product_title }} on {{ rh_openstack }} | Technology Preview | Technology Preview | Technology Preview |
 | Custom taints and tolerations | Technology Preview | Technology Preview | Technology Preview |
 | NVIDIA GPU devices on {{ hcp }} for {{ VirtProductName }} | Technology Preview | Technology Preview | Technology Preview |
-| {{ hcp_capital }} for {{ VirtProductName }} on {{ ibm_z_title }} ^[1]^ | Not Available | Technology Preview | General Availability |
+| {{ hcp_capital }} for {{ VirtProductName }} on {{ ibm_z_title }} <sup>[1]</sup> | Not Available | Technology Preview | General Availability |
 | {{ hcp_capital }} on {{ ibm_z_title }} in a disconnected environment | General Availability | General Availability | General Availability |
 | {{ hcp_capital }} for {{ product_title }} on {{ azure_first }} | Not Available | Not Available | Technology Preview |
 | Backup and restore with the etcd snapshot method | Not Available | Not Available | Technology Preview |
 | Restoring a hosted cluster to a new management cluster by using {{ oadp_short }} | Technology Preview | Technology Preview | Technology Preview |
-
-1.  {{ hcp_capital }} for {{ VirtProductName }} on {{ ibm_z_title }} is supported as Technology Preview starting with {{ product_title }} 4.21, {{ mce }} 2.11, and {{ rh_rhacm_first }} 2.16. Creating {{ hcp }} with external infrastructure is not supported.
+    1.  {{ hcp_capital }} for {{ VirtProductName }} on {{ ibm_z_title }} is supported as Technology Preview starting with {{ product_title }} 4.21, {{ mce }} 2.11, and {{ rh_rhacm_first }} 2.16. Creating {{ hcp }} with external infrastructure is not supported.

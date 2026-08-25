@@ -46,7 +46,7 @@ for more information.
 1.  Select **OpenID** from the drop-down menu.
 1.  Enter a unique name for the identity provider. This name cannot be changed later.
     *   An **OAuth callback URL** is automatically generated in the provided field.
-        {%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
         ```
         https://oauth-openshift.apps.<cluster_name>.<cluster_domain>/oauth2callback/<idp_provider_name>
         ```
@@ -55,7 +55,7 @@ for more information.
         ```
         https://oauth.<cluster_name>.<cluster_domain>/oauth2callback/<idp_provider_name>
         ```
-{%- endif %}
+{% endif %}
 
         For example:
         ```

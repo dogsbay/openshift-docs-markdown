@@ -9,7 +9,7 @@ This secret is required to allow the WMCO to communicate with the Windows virtua
 
 *   You installed the Windows Machine Config Operator (WMCO) using Operator Lifecycle Manager (OLM).
 *   You created a PEM-encoded file containing a private key by using a strong algorithm, such as ECDSA.
-{% include "./snippets/wmco-key-ascii-encoding.md" %}
+    {% include "./snippets/wmco-key-ascii-encoding.md" %}
 
 **Procedure**
 

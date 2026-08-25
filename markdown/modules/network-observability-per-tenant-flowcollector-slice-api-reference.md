@@ -15,6 +15,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers might infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | `object` | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | FlowCollectorSliceSpec defines the desired state of FlowCollectorSlice |
+
 ## .metadata {id="_metadata"}
 
 Description
@@ -36,7 +37,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `sampling` | `integer` | `sampling` is an optional sampling interval to apply to this slice. For example, a value of `50` means that 1 matching flow in 50 is sampled. |
-| `subnetLabels` | `array` | `subnetLabels` allows you to customize subnets and IPs labeling, such as to identify cluster external workloads or web services. External subnets must be labeled with the prefix `EXT:`, or not labeled at all, in order to work with default quick filters and some metrics examples provided.<br> Beware that the subnet labels configured in FlowCollectorSlice are not limited to the flows of the related namespace: any flow in the whole cluster can be labeled using this configuration. However, subnet labels defined in the cluster-scoped FlowCollector take precedence in case of conflicting rules. |
+| `subnetLabels` | `array` | `subnetLabels` allows you to customize subnets and IPs labeling, such as to identify cluster external workloads or web services. External subnets must be labeled with the prefix `EXT:`, or not labeled at all, in order to work with default quick filters and some metrics examples provided.<br><br>Beware that the subnet labels configured in FlowCollectorSlice are not limited to the flows of the related namespace: any flow in the whole cluster can be labeled using this configuration. However, subnet labels defined in the cluster-scoped FlowCollector take precedence in case of conflicting rules. |
+
 ## .spec.subnetLabels {id="_specsubnetlabels"}
 
 Description

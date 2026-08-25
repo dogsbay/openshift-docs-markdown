@@ -2,7 +2,7 @@
 
 # Installing {{ odo_title }} on Windows {id="installing-odo-on-windows_{{ context }}"}
 
-The `{{ odo_title }}` CLI for Windows is available to download as a binary and as an archive.
+The `{{ odo_title }}`{minja} CLI for Windows is available to download as a binary and as an archive.
 
 | Operating System | Binary | Tarball |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ The `{{ odo_title }}` CLI for Windows is available to download as a binary and a
     ```terminal
     C:\> path
     ```
-1.  Verify that `{{ odo_title }}` is now available on your system:
+1.  Verify that `{{ odo_title }}`{minja} is now available on your system:
     ```terminal
     C:\> odo version
     ```

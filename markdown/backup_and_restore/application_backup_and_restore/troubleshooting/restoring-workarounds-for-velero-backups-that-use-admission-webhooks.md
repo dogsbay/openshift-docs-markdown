@@ -3,16 +3,16 @@ title: Restoring workarounds for Velero backups that use admission webhooks
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # Restoring workarounds for Velero backups that use admission webhooks {id="restoring-workarounds-for-velero-backups-that-use-admission-webhooks"}
 {%- set toc = true %}
 
-{% include "./_attributes/common-attributes.md" %}
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "restoring-workarounds-for-velero-backups-that-use-admission-webhooks" -%}
 {%- set namespace = "openshift-adp" -%}
 {%- set local_product = "OADP" %}
 
-Resolve restore failures caused by admission webhooks by applying workarounds for workloads such as Knative and {{ ibm_title }} AppConnect resources. This helps you to successfully restore workloads that have mutating or validating admission webhooks.
+Resolve restore failures caused by admission webhooks by applying workarounds for workloads such as Knative and {{ ibm_title }} AppConnect resources. This helps you to successfully restore workloads that have mutating or validating admission webhooks. {._abstract}
 
 Velero has limited abilities to resolve admission webhook issues during a restore. If you have workloads with admission webhooks, you might need to use an additional Velero plugin or make changes to how you restore the workload. Typically, workloads with admission webhooks require you to create a resource of a specific kind first. This is especially true if your workload has child resources because admission webhooks typically block child resources.
 
@@ -36,6 +36,7 @@ Receiving a `received EOF, stopping recv loop` message in the debug logs indicat
 {% leveloffset +1 %}{% include "./modules/workaround-for-openshift-adp-controller-segmentation-fault.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Admission plugins](/architecture/admission-plug-ins#admission-plug-ins)
 *   [Webhook admission plugins](/architecture/admission-plug-ins#admission-webhooks-about_admission-plug-ins)

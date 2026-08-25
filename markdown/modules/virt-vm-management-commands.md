@@ -6,7 +6,7 @@
 
 You can use the following `virtctl` commands to manage and migrate virtual machines (VMs) and VM instances (VMIs). {._abstract}
 
-***VM management commands***
+**VM management commands**
 
 <table>
 <thead>
@@ -17,39 +17,39 @@ You can use the following `virtctl` commands to manage and migrate virtual machi
 </thead>
 <tbody>
 <tr>
-  <td><code>virtctl start <vm_name></code></td>
+  <td><code>virtctl start &lt;vm_name&gt;</code></td>
   <td>Start a VM.</td>
 </tr>
 <tr>
-  <td><code>virtctl start --paused <vm_name></code></td>
+  <td><code>virtctl start --paused &lt;vm_name&gt;</code></td>
   <td>Start a VM in a paused state. This option enables you to interrupt the boot process from the VNC console.</td>
 </tr>
 <tr>
-  <td><code>virtctl stop <vm_name></code></td>
+  <td><code>virtctl stop &lt;vm_name&gt;</code></td>
   <td>Stop a VM.</td>
 </tr>
 <tr>
-  <td><code>virtctl stop <vm_name> --grace-period 0 --force</code></td>
+  <td><code>virtctl stop &lt;vm_name&gt; --grace-period 0 --force</code></td>
   <td>Force stop a VM. This option might cause data inconsistency or data loss.</td>
 </tr>
 <tr>
-  <td><code>virtctl pause vm <vm_name></code></td>
+  <td><code>virtctl pause vm &lt;vm_name&gt;</code></td>
   <td>Pause a VM. The machine state is kept in memory.</td>
 </tr>
 <tr>
-  <td><code>virtctl unpause vm <vm_name></code></td>
+  <td><code>virtctl unpause vm &lt;vm_name&gt;</code></td>
   <td>Unpause a VM.</td>
 </tr>
 <tr>
-  <td><code>virtctl migrate <vm_name></code></td>
+  <td><code>virtctl migrate &lt;vm_name&gt;</code></td>
   <td>Migrate a VM.</td>
 </tr>
 <tr>
-  <td><code>virtctl migrate-cancel <vm_name></code></td>
+  <td><code>virtctl migrate-cancel &lt;vm_name&gt;</code></td>
   <td>Cancel a VM migration.</td>
 </tr>
 <tr>
-  <td><code>virtctl restart <vm_name></code></td>
+  <td><code>virtctl restart &lt;vm_name&gt;</code></td>
   <td>Restart a VM.</td>
 </tr>
 </tbody>

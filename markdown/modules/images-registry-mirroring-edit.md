@@ -17,6 +17,7 @@ When editing an image mirror configuration, the new mirrors list completely repl
     ```terminal
     $ rosa edit image-mirror [arguments]
     ```
+
     **Arguments**
 
     | Option | Definition |

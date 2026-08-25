@@ -7,16 +7,16 @@ You can disable workload monitoring for specific Argo CD instances. Disabling wo
 
 *   Set the `.spec.monitoring.enabled` field value to `false` on a given Argo CD instance:
 
-```yaml title="Example Argo CD custom resource"
-apiVersion: argoproj.io/v1alpha1
-kind: ArgoCD
-metadata:
-  name: example-argocd
-  labels:
-    example: repo
-spec:
-  ...
-  monitoring:
-    enabled: false
-  ...
-```
+    ```yaml title="Example Argo CD custom resource"
+    apiVersion: argoproj.io/v1alpha1
+    kind: ArgoCD
+    metadata:
+      name: example-argocd
+      labels:
+        example: repo
+    spec:
+      ...
+      monitoring:
+        enabled: false
+      ...
+    ```

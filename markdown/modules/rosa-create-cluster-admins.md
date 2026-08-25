@@ -26,7 +26,7 @@ Additionally, only the user who created the cluster can grant cluster access to 
     cluster-admins    rh-rosa-test-user
     dedicated-admins  rh-rosa-test-user
     ```
-{%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
 1.  Enter the following command to verify that your user now has `cluster-admin` access. A cluster administrator can run this command without errors, but a dedicated administrator cannot.
     ```terminal
     $ oc get all -n openshift-apiserver

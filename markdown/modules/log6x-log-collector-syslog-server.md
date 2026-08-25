@@ -29,11 +29,11 @@ You can configure your log collector to collect journal format infrastructure lo
       serviceAccount:
         name: <service_account_name>
       inputs:
-        - name: syslog-receiver # (1)
+        - name: syslog-receiver (1)
           type: receiver
           receiver:
-            type: syslog # (2)
-            port: 10514 # (3)
+            type: syslog (2)
+            port: 10514 (3)
       outputs:
       - name: default-lokistack
         lokiStack:
@@ -49,7 +49,7 @@ You can configure your log collector to collect journal format infrastructure lo
             configMapName: openshift-service-ca.crt
         type: lokiStack
     # ...      
-      pipelines: # (4)
+      pipelines: (4)
         - name: syslog-pipeline
           inputRefs:
             - syslog-receiver

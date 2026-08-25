@@ -7,7 +7,7 @@ title: Getting support
 # Getting support {id="getting-support"}
 {%- set context = "getting-support" %}
 
-If you experience difficulty with a procedure described in this documentation, or with {{ kueue_name }} in general, visit the Red&#160;Hat Customer Portal.
+If you experience difficulty with a procedure described in this documentation, or with {{ kueue_name }} in general, visit the Red&#160;Hat Customer Portal. {._abstract}
 
 From the Customer Portal, you can:
 
@@ -21,7 +21,7 @@ The Red&#160;Hat Knowledgebase provides rich content aimed at helping you make t
 
 {% leveloffset +1 %}{% include "./modules/kueue-gathering-cluster-data.md" %}{% endleveloffset %}
 
-## Additional resources {id="getting-support-additional-resources"}
+## Additional resources {id="getting-support-additional-resources" ._additional-resources}
 *   [Red&#160;Hat Customer Portal](https://access.redhat.com)
 *   [Red&#160;Hat Knowledgebase](https://access.redhat.com/knowledgebase)
 *   [How to find the cluster-id or name on OpenShift cluster](https://access.redhat.com/solutions/5280291)

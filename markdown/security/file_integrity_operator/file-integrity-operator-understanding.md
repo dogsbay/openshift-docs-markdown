@@ -3,11 +3,11 @@ title: Understanding the File Integrity Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding the File Integrity Operator {id="understanding-file-integrity-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding the File Integrity Operator {id="understanding-file-integrity-operator"}
 {%- set context = "file-integrity-operator" %}
 
-The File Integrity Operator is an {{ product_title }} Operator that continually runs file integrity checks on the cluster nodes. It deploys a daemon set that initializes and runs privileged advanced intrusion detection environment (AIDE) containers on each node, providing a status object with a log of files that are modified during the initial run of the daemon set pods.
+The File Integrity Operator is an {{ product_title }} Operator that continually runs file integrity checks on the cluster nodes. It deploys a daemon set that initializes and runs privileged advanced intrusion detection environment (AIDE) containers on each node, providing a status object with a log of files that are modified during the initial run of the daemon set pods. {._abstract}
 
 
 :::important

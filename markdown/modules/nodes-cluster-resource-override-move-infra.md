@@ -180,5 +180,5 @@ ip-10-0-67-453.us-west-2.compute.internal   Ready    infra                  55m 
     ```
 
 {% if context == "nodes-pods-vertical-autoscaler" %}
-{%- set cro = false -%}
+{%- set cro = "" -%}
 {% endif %}

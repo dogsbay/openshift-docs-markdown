@@ -23,7 +23,7 @@ The following example shows the use of `-rhel9` to acquire the correct image.
 **Procedure**
 
 1.  Create a `NodeFeatureDiscovery` CR:
-    ```yaml title="Example NodeFeatureDiscovery CR"
+    ```yaml title="Example NodeFeatureDiscovery CR" {minja}
     apiVersion: nfd.openshift.io/v1
     kind: NodeFeatureDiscovery
     metadata:

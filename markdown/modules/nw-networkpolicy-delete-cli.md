@@ -38,14 +38,14 @@ If you log in with `cluster-admin` privileges, you can delete network policies i
 {%- endif %}
 *   You installed the OpenShift CLI (`oc`).
 {%- if not microshift %}
-*   You logged in to the cluster with a user with `{{ role }}` privileges.
+*   You logged in to the cluster with a user with `{{ role }}`{minja} privileges.
 {%- endif %}
 *   You are working in the namespace where the {{ name }} policy exists.
 
 **Procedure**
 
 *   To delete a {{ name }} policy object, enter the following command. Successful output lists the name of the policy object and the `deleted` status.
-    ```terminal
+    ```terminal {minja}
     $ oc delete {{ name }}policy <policy_name> -n <namespace>
     ```
 
@@ -58,7 +58,7 @@ If you log in with `cluster-admin` privileges, you can delete network policies i
     :   Optional parameter. If you defined the object in a different namespace than the current namespace, the parameter specifices the namespace.
 
 {% if multi %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
-{%- set name = false -%}
-{%- set role = false -%}
+{%- set name = "" -%}
+{%- set role = "" -%}

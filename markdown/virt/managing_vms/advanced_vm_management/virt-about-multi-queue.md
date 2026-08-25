@@ -3,11 +3,11 @@ title: About multi-queue functionality
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About multi-queue functionality {id="virt-about-multi-queue"}
 {% include "./_attributes/common-attributes.md" %}
+# About multi-queue functionality {id="virt-about-multi-queue"}
 {%- set context = "virt-about-multi-queue" %}
 
-Use multi-queue functionality to scale network throughput and performance on virtual machines (VMs) with multiple vCPUs.
+Use multi-queue functionality to scale network throughput and performance on virtual machines (VMs) with multiple vCPUs. {._abstract}
 
 By default, the `queueCount` value, which is derived from the domain XML, is determined by the number of vCPUs allocated to a VM. Network performance does not scale as the number of vCPUs increases. Additionally, because `virtio-net` has only one transmit and receive queue, guests cannot send or receive packs in parallel.
 

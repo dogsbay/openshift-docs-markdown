@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Obtaining information from your AWS account {id="aws-outposts-environment-info-aws_{{ context }}"}
 
-You can use the AWS CLI (`aws`) to obtain information from your AWS account.
+You can use the AWS CLI (`aws`) to obtain information from your AWS account. {._abstract}
 
 
 :::tip

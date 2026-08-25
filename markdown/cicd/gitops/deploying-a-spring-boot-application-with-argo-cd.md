@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Deploying a Spring Boot application with Argo CD {id="deploying-a-spring-boot-application-with-argo-cd"}
 {% include "./_attributes/common-attributes.md" %}
+# Deploying a Spring Boot application with Argo CD {id="deploying-a-spring-boot-application-with-argo-cd"}
 {%- set context = "deploying-a-spring-boot-application-with-argo-cd" %}
 
 With Argo CD, you can deploy your applications to the OpenShift cluster either by using the Argo CD dashboard or by using the `oc` tool.

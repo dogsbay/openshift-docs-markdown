@@ -35,14 +35,14 @@ You can use Git repository providers that are supported by the `go-scm` library.
     spec:
       pipeline:
         git-resolver-config:
-          default-revision: main # (1)
-          fetch-timeout: 1m # (2)
-          scm-type: github # (3)
-          server-url: api.internal-github.com # (4)
-          api-token-secret-name: github-auth-secret # (5)
-          api-token-secret-key: github-auth-key # (6)
-          api-token-secret-namespace: github-auth-namespace # (7)
-          default-org: tektoncd # (8)
+          default-revision: main (1)
+          fetch-timeout: 1m (2)
+          scm-type: github (3)
+          server-url: api.internal-github.com (4)
+          api-token-secret-name: github-auth-secret (5)
+          api-token-secret-key: github-auth-key (6)
+          api-token-secret-namespace: github-auth-namespace (7)
+          default-org: tektoncd (8)
     ```
     1.  The default Git revision to use if none is specified.
     1.  The maximum time any single Git clone resolution may take, for example, `1m`, `2s`, `700ms`. {{ pipelines_title }} also enforces a global maximum timeout of 1 minute on all resolution requests.
@@ -54,8 +54,8 @@ You can use Git repository providers that are supported by the `go-scm` library.
     1.  Optional: The default organization for the repository, when using the authenticated API. This organization is used if you do not specify an organization in the resolver parameters.
 
 
-:::note
+    :::note
 
-The `scm-type`, `api-token-secret-name`, and `api-token-secret-key` settings are required to use the authenticated SCM API.
-
-:::
+    The `scm-type`, `api-token-secret-name`, and `api-token-secret-key` settings are required to use the authenticated SCM API.
+    
+    :::

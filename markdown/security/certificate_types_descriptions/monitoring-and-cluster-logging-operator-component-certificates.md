@@ -3,11 +3,11 @@ title: Monitoring and OpenShift Logging Operator component certificates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Monitoring and OpenShift Logging Operator component certificates {id="cert-types-monitoring-and-cluster-logging-operator-component-certificates"}
 {% include "./_attributes/common-attributes.md" %}
+# Monitoring and OpenShift Logging Operator component certificates {id="cert-types-monitoring-and-cluster-logging-operator-component-certificates"}
 {%- set context = "cert-types-monitoring-and-cluster-logging-operator-component-certificates" %}
 
-Review service certificate authority (CA) certificates for monitoring and {{ clo }} components in {{ product_title }}, including validity, automatic rotation, and system-managed namespaces.
+Review service certificate authority (CA) certificates for monitoring and {{ clo }} components in {{ product_title }}, including validity, automatic rotation, and system-managed namespaces. {._abstract}
 
 ## Expiration {id="monitor-logging-component-certificates-expiration_{{ context }}"}
 

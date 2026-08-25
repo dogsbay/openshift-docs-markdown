@@ -9,8 +9,8 @@ The {{ SMProductName }} Operator supports multiple versions of the `ServiceMeshC
 
 {%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   Red Hat OpenShift Container Platform version 4.10 or later
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   Red Hat {{ product_title }} version 4.10 or later
 {%- endif %}
 *   {{ product_dedicated }} version 4

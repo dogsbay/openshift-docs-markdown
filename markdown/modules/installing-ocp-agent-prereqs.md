@@ -25,5 +25,5 @@ Before beginning to prepare PXE assets, you must complete prerequisite tasks. {.
 {% endif %}
 
 {% if context == "prepare-pxe-assets-agent" %}
-{%- set pxe_boot = false -%}
+{%- set pxe_boot = "" -%}
 {% endif %}

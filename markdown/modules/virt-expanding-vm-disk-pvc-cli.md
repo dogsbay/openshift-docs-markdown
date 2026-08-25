@@ -22,19 +22,19 @@ If the PVC uses the file system volume mode, the disk image file expands to the 
     $ oc edit pvc <pvc_name>
     ```
 1.  Update the disk size:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
        name: vm-disk-expand
     spec:
       accessModes:
-{%- if openshift_dedicated %}
+    {%- if openshift_dedicated %}
          - ReadWriteOnce
-           {% endif %}
-           {% if not openshift_dedicated %}
+    {%- endif %}
+    {%- if not openshift_dedicated %}
          - ReadWriteMany
-           {%- endif %}
+    {%- endif %}
       resources:
         requests:
            storage: 3Gi

@@ -18,6 +18,6 @@ Limits and requirements
         *   `vfio` drivers for PFs require the usage of a `vfio-token` that is injected into the pods.
         Applications in the pod can pass the VF token to DPDK by using EAL parameter `--vfio-vf-token`.
 
-    Engineering considerations
+Engineering considerations
 :   *   The SRIOV-FEC Operator uses CPU cores from the isolated CPU set.
     *   You can validate FEC readiness as part of the pre-checks for application deployment, for example, by extending the validation policy.

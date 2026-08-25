@@ -11,7 +11,7 @@ To route traffic to your backends, you must define service destinations and traf
 **Procedure**
 
 1.  Create or edit an `HTTPRoute` YAML file to include your desired service destinations under the `spec.rules.backendRefs` field.
-    The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a single backend destination that routes traffic to a service named `<service_v1>`. For details on configuring weights and routing to multiple destinations, see [#!httproute-backendref-configuration_{{ context }}](#httproute-backendref-configuration_{{ context }}).
+    The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a single backend destination that routes traffic to a service named `<service_v1>`. For details on configuring weights and routing to multiple destinations, see [httproute-backendref-configuration_{{ context }}](#httproute-backendref-configuration_{{ context }}).
 
     ```yaml
     apiVersion: gateway.networking.k8s.io/v1

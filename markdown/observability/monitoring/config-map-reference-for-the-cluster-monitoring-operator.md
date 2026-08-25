@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Config map reference for the Cluster Monitoring Operator {id="config-map-reference-for-the-cluster-monitoring-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Config map reference for the Cluster Monitoring Operator {id="config-map-reference-for-the-cluster-monitoring-operator"}
 {%- set context = "config-map-reference-for-the-cluster-monitoring-operator" %}
 
 ## Cluster Monitoring Operator configuration reference {id="cluster-monitoring-operator-configuration-reference"}
@@ -340,9 +340,7 @@ Appears in: [ClusterMonitoringConfiguration](#clustermonitoringconfiguration)
 | queryLogFile | string | Specifies the file to which PromQL queries are logged. This setting can be either a filename, in which case the queries are saved to an `emptyDir` volume at `/var/log/prometheus`, or a full path to a location where an `emptyDir` volume will be mounted and the queries saved. Writing to `/dev/stderr`, `/dev/stdout` or `/dev/null` is supported, but writing to any other `/dev/` path is not supported. Relative paths are also not supported. By default, PromQL queries are not logged. |
 | remoteWrite | [][RemoteWriteSpec](#remotewritespec) | Defines the remote write configuration, including URL, authentication, and relabeling settings. |
 | resources | *v1.ResourceRequirements | Defines resource requests and limits for the `Prometheus` container. |
-| retention | string | Defines the duration for which Prometheus retains data. This definition must be specified using the following regular expression pattern: `[0-9]+(ms\ |
-| s\ | m\ | h\ |
-| d\ | w\ | y)` (ms = milliseconds, s= seconds,m = minutes, h = hours, d = days, w = weeks, y = years). The default value is `15d`. |
+| retention | string | Defines the duration for which Prometheus retains data. This definition must be specified using the following regular expression pattern: `[0-9]+(ms\|s\|m\|h\|d\|w\|y)` (ms = milliseconds, s= seconds,m = minutes, h = hours, d = days, w = weeks, y = years). The default value is `15d`. |
 | retentionSize | string | Defines the maximum amount of disk space used by data blocks plus the write-ahead log (WAL). Supported values are `B`, `KB`, `KiB`, `MB`, `MiB`, `GB`, `GiB`, `TB`, `TiB`, `PB`, `PiB`, `EB`, and `EiB`. By default, no limit is defined. |
 | tolerations | []v1.Toleration | Defines tolerations for the pods. |
 | topologySpreadConstraints | []v1.TopologySpreadConstraint | Defines the pod’s topology spread constraints. |
@@ -403,9 +401,7 @@ Appears in: [UserWorkloadConfiguration](#userworkloadconfiguration)
 | queryLogFile | string | Specifies the file to which PromQL queries are logged. This setting can be either a filename, in which case the queries are saved to an `emptyDir` volume at `/var/log/prometheus`, or a full path to a location where an `emptyDir` volume will be mounted and the queries saved. Writing to `/dev/stderr`, `/dev/stdout` or `/dev/null` is supported, but writing to any other `/dev/` path is not supported. Relative paths are also not supported. By default, PromQL queries are not logged. |
 | remoteWrite | [][RemoteWriteSpec](#remotewritespec) | Defines the remote write configuration, including URL, authentication, and relabeling settings. |
 | resources | *v1.ResourceRequirements | Defines resource requests and limits for the Prometheus container. |
-| retention | string | Defines the duration for which Prometheus retains data. This definition must be specified using the following regular expression pattern: `[0-9]+(ms\ |
-| s\ | m\ | h\ |
-| d\ | w\ | y)` (ms = milliseconds, s= seconds,m = minutes, h = hours, d = days, w = weeks, y = years). The default value is `24h`. |
+| retention | string | Defines the duration for which Prometheus retains data. This definition must be specified using the following regular expression pattern: `[0-9]+(ms\|s\|m\|h\|d\|w\|y)` (ms = milliseconds, s= seconds,m = minutes, h = hours, d = days, w = weeks, y = years). The default value is `24h`. |
 | retentionSize | string | Defines the maximum amount of disk space used by data blocks plus the write-ahead log (WAL). Supported values are `B`, `KB`, `KiB`, `MB`, `MiB`, `GB`, `GiB`, `TB`, `TiB`, `PB`, `PiB`, `EB`, and `EiB`. The default value is `nil`. |
 | tolerations | []v1.Toleration | Defines tolerations for the pods. |
 | topologySpreadConstraints | []v1.TopologySpreadConstraint | Defines the pod’s topology spread constraints. |
@@ -541,9 +537,7 @@ Appears in: [UserWorkloadConfiguration](#userworkloadconfiguration)
 | logLevel | string | Defines the log level setting for Thanos Ruler. The possible values are `error`, `warn`, `info`, and `debug`. The default value is `info`. |
 | nodeSelector | map[string]string | Defines the nodes on which the Pods are scheduled. |
 | resources | *v1.ResourceRequirements | Defines resource requests and limits for the Alertmanager container. |
-| retention | string | Defines the duration for which Prometheus retains data. This definition must be specified using the following regular expression pattern: `[0-9]+(ms\ |
-| s\ | m\ | h\ |
-| d\ | w\ | y)` (ms = milliseconds, s= seconds,m = minutes, h = hours, d = days, w = weeks, y = years). The default value is `24h`. |
+| retention | string | Defines the duration for which Prometheus retains data. This definition must be specified using the following regular expression pattern: `[0-9]+(ms\|s\|m\|h\|d\|w\|y)` (ms = milliseconds, s= seconds,m = minutes, h = hours, d = days, w = weeks, y = years). The default value is `24h`. |
 | tolerations | []v1.Toleration | Defines tolerations for the pods. |
 | topologySpreadConstraints | []v1.TopologySpreadConstraint | Defines the pod’s topology spread constraints. |
 | volumeClaimTemplate | *monv1.EmbeddedPersistentVolumeClaim | Defines persistent storage for Thanos Ruler. Use this setting to configure the storage class and size of a volume. |
@@ -572,4 +566,4 @@ The `UserWorkloadConfiguration` resource defines the settings responsible for us
 | prometheus | *[PrometheusRestrictedConfig](#prometheusrestrictedconfig) | Defines the settings for the Prometheus component in user workload monitoring. |
 | prometheusOperator | *[PrometheusOperatorConfig](#prometheusoperatorconfig) | Defines the settings for the Prometheus Operator component in user workload monitoring. |
 | thanosRuler | *[ThanosRulerConfig](#thanosrulerconfig) | Defines the settings for the Thanos Ruler component in user workload monitoring. |
-| namespacesWithoutLabelEnforcement | []string | Defines the list of namespaces for which Prometheus and Thanos Ruler in user-defined monitoring do not enforce the `namespace` label value in `PrometheusRule` objects. The `namespacesWithoutLabelEnforcement` property allows users to define recording and alerting rules that can query across multiple projects (not limited to user-defined projects) instead of deploying identical `PrometheusRule` objects in each user project. To make the resulting alerts and metrics visible to project users, the query expressions should return a `namespace` label with a non-empty value. |
+| namespacesWithoutLabelEnforcement | []string | Defines the list of namespaces for which Prometheus and Thanos Ruler in user-defined monitoring do not enforce the `namespace` label value in `PrometheusRule` objects.<br>The `namespacesWithoutLabelEnforcement` property allows users to define recording and alerting rules that can query across multiple projects (not limited to user-defined projects) instead of deploying identical `PrometheusRule` objects in each user project.<br>To make the resulting alerts and metrics visible to project users, the query expressions should return a `namespace` label with a non-empty value. |

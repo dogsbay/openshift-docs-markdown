@@ -20,11 +20,11 @@ Fix failures by taking a snapshot of etcd on a hosted cluster.  {._abstract}
     *   When you restore a hosted cluster to a different management cluster, all services in the hosted cluster must be configured with a fixed hostname in its `servicePublishingStrategy` property. This requirement applies to all platforms. Restoring a hosted cluster to a different management cluster is a Technology Preview feature. Restoring a hosted cluster to its original management cluster is supported.
 
 
-:::important
+    :::important
 
-After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.
-
-:::
+    After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.
+    
+    :::
 
 
 **Procedure**

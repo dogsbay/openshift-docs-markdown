@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if local_zone %}
+{% if local_zone %}
 # Cluster installation options for an AWS Local Zones environment {id="aws-cluster-installation-options-aws-lzs_{{ context }}"}
 
 {% endif %}
@@ -23,8 +23,8 @@ Choose one of the following installation options:
 *   Existing VPC option: Installing a cluster on AWS into an existing VPC, where you supply {{ zone_type }} subnets to the `install-config.yaml` file.
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}

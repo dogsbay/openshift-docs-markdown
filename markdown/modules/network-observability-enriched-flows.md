@@ -15,7 +15,7 @@ After configuration, network flows data can be sent to an available output. For 
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster** and then select the **YAML** tab.
 1.  Edit the `FlowCollector` to configure `spec.exporters` as follows:

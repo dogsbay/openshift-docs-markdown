@@ -3,27 +3,27 @@ title: Customizing the web console in OpenShift Container Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Customizing the web console in {{ product_title }} {id="customizing-web-console"}
-
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Customizing the web console in {{ product_title }} {id="customizing-web-console"}
+
 {%- set context = "customizing-web-console" %}
 
 You can customize the
 {%- if not (openshift_rosa_hcp or openshift_rosa or openshift_dedicated) %}
 {{ product_title }}
-{% endif %}
-{% if openshift_rosa_hcp or openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa_hcp or openshift_rosa or openshift_dedicated %}
 {{ product_title }}
 {%- endif %}
 web console to set
 {%- if not (openshift_rosa_hcp or openshift_rosa or openshift_dedicated) %}
 a custom logo, product name, links, notifications, and command-line downloads.
-{% endif %}
-{% if openshift_rosa_hcp or openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa_hcp or openshift_rosa or openshift_dedicated %}
 a custom logo and product name.
 {%- endif %}
-This is especially helpful if you need to tailor the web console to meet specific corporate or government requirements.
+This is especially helpful if you need to tailor the web console to meet specific corporate or government requirements. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/adding-a-custom-logo.md" %}{% endleveloffset %}
 

@@ -3,11 +3,11 @@ title: Configuring ingress cluster traffic on AWS
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring ingress cluster traffic on AWS {id="configuring-ingress-cluster-traffic-aws"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring ingress cluster traffic on AWS {id="configuring-ingress-cluster-traffic-aws"}
 {%- set context = "configuring-ingress-cluster-traffic-aws" %}
 
-{{ product_title }} provides methods for communicating from outside the cluster with services running in the cluster. This method uses load balancers on {{ aws_first }}, specifically a Network Load Balancer (NLB) or a Classic Load Balancer (CLB). Both types of load balancers can forward the IP address of the client to the node, but a CLB requires proxy protocol support, which {{ product_title }} automatically enables.
+{{ product_title }} provides methods for communicating from outside the cluster with services running in the cluster. This method uses load balancers on {{ aws_first }}, specifically a Network Load Balancer (NLB) or a Classic Load Balancer (CLB). Both types of load balancers can forward the IP address of the client to the node, but a CLB requires proxy protocol support, which {{ product_title }} automatically enables. {._abstract}
 
 There are two ways to switch an Ingress Controller from using a CLB to using an NLB. Use only one of these approaches for a given Ingress Controller; do not combine them.
 
@@ -42,7 +42,7 @@ You can configure these load balancers on a new or existing {{ aws_short }} clus
 
 {% leveloffset +2 %}{% include "./modules/nw-ingress-aws-static-eip-nlb-configuration.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_configuring-ingress-cluster-traffic-aws"}
+## Additional resources {id="additional-resources_configuring-ingress-cluster-traffic-aws" ._additional-resources}
 
 *   [Converting to a dual-stack cluster network](/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 *   [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)

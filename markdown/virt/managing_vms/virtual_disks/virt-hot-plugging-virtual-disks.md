@@ -3,11 +3,11 @@ title: Hot-plug virtual disks to running VMs
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Hot-plug virtual disks to running VMs {id="virt-hot-plugging-virtual-disks"}
 {% include "./_attributes/common-attributes.md" %}
+# Hot-plug virtual disks to running VMs {id="virt-hot-plugging-virtual-disks"}
 {%- set context = "virt-hot-plugging-virtual-disks" %}
 
-You can hot-plug or hot-unplug virtual disks from running VMs to dynamically adjust storage without downtime.
+You can hot-plug or hot-unplug virtual disks from running VMs to dynamically adjust storage without downtime. {._abstract}
 
 Only data volumes and persistent volume claims (PVCs) can be hot plugged and hot-unplugged. You cannot hot plug or hot-unplug container disks.
 
@@ -27,5 +27,5 @@ When you hot plug disks to the VirtIO (`virtio-blk`) bus, each disk uses a PCI E
 
 {% leveloffset +1 %}{% include "./modules/virt-hot-plugging-disk-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Available VirtIO Ports](https://kubevirt.io/user-guide/storage/hotplug_volumes/#available-virtio-ports)

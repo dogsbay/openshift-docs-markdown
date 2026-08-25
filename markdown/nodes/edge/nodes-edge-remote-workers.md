@@ -4,10 +4,10 @@ title: Using remote worker nodes at the network edge
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-edge-remote-workers" %}
-# Using remote worker nodes at the network edge {id="nodes-edge-remote-workers"}
 {% include "./_attributes/common-attributes.md" %}
+# Using remote worker nodes at the network edge {id="nodes-edge-remote-workers"}
 
-You can configure {{ product_title }} clusters with nodes located at your network edge, called _remote worker nodes_. A typical cluster with remote worker nodes combines on-premise control plane and worker nodes with worker nodes in other locations that connect to the cluster. 
+You can configure {{ product_title }} clusters with nodes located at your network edge, called _remote worker nodes_. A typical cluster with remote worker nodes combines on-premise control plane and worker nodes with worker nodes in other locations that connect to the cluster.  {._abstract}
 
 This topic is intended to provide guidance on best practices for using remote worker nodes and does not contain specific configuration details.
 
@@ -36,7 +36,7 @@ Note the following limitations when planning a cluster with remote worker nodes:
 
 {% leveloffset +1 %}{% include "./modules/nodes-edge-remote-workers-strategies.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Establishing communications between subnets](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-establishing-communication-between-subnets_ipi-install-installation-workflow)
 *   [Configuring host network interfaces for subnets](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-configuring-host-network-interfaces-for-subnets_ipi-install-installation-workflow)

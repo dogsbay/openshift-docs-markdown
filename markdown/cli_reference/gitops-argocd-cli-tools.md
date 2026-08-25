@@ -15,6 +15,6 @@ With the {{ gitops_shortname }} CLI, you can make {{ gitops_shortname }} computi
 
 See [Installing the {{ gitops_shortname }} CLI](https://docs.openshift.com/gitops/latest/installing_gitops/installing-argocd-gitops-cli.html).
 
-## Additional resources {id="additional-resources_gitops-argocd-cli-tools"}
+## Additional resources {id="additional-resources_gitops-argocd-cli-tools" ._additional-resources}
 
 *   [What is GitOps?](https://docs.openshift.com/gitops/latest/understanding_openshift_gitops/what-is-gitops.html#what-is-gitops)

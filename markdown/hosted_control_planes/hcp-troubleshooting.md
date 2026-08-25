@@ -7,11 +7,12 @@ title: "Troubleshooting {{ hcp }}"
 # Troubleshooting {{ hcp }} {id="hcp-troubleshooting"}
 {%- set context = "hcp-troubleshooting" %}
 
-If you encounter an issue with {{ hcp }}, you can gather information about the hosted cluster, {{ product_title }}, or other components so that you can determine the root cause and take steps to resolve it.
+If you encounter an issue with {{ hcp }}, you can gather information about the hosted cluster, {{ product_title }}, or other components so that you can determine the root cause and take steps to resolve it. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hosted-control-planes-troubleshooting.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the {{ hcp }} command-line interface](/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli)
 
@@ -24,6 +25,7 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 {% leveloffset +1 %}{% include "./modules/hcp-must-gather-dc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Install on disconnected networks](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#install-on-disconnected-networks)
 
@@ -34,6 +36,7 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 {% leveloffset +2 %}{% include "./modules/hcp-ts-no-nodes-reg.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Identifying the problem: Access the VM console logs](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#identifying-vm-console-logs)
 
@@ -48,6 +51,7 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 {% leveloffset +2 %}{% include "./modules/hcp-ts-vm-nodes.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [How to get serial console logs for VMs part of OpenShift Virtualization Hosted Control Plane clusters (Red&#160;Hat Knowledgebase)](https://access.redhat.com/solutions/7037705)
 
@@ -56,6 +60,7 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 {% leveloffset +2 %}{% include "./modules/hcp-ts-non-bm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Removing a cluster from management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#remove-managed-cluster)
 
@@ -64,6 +69,7 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 {% leveloffset +2 %}{% include "./modules/hcp-ts-bm-nodes-not-added.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Add the pull secret to the namespace](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html-single/clusters/index#on-prem-creating-your-cluster-with-the-cli-pull-secret)
 
@@ -92,5 +98,6 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 {% leveloffset +2 %}{% include "./modules/hcp-ts-connect-data-plane.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Connectivity monitoring for {{ hcp }}](/hosted_control_planes/hcp-observability#hcp-connectivity-metrics_hcp-observability)

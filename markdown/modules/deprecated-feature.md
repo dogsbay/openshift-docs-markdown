@@ -7,4 +7,4 @@ For the most recent list of major functionality that has been deprecated or remo
 
 :::
 
-{%- set FeatureName = false -%}
+{%- set FeatureName = "" -%}

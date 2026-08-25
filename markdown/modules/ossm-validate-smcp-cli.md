@@ -5,12 +5,12 @@ You can validate the creation of the `ServiceMeshControlPlane` from the command 
 1.  Prerequisites
     *   The {{ SMProductName }} Operator must be installed.
     *   Access to the OpenShift CLI (`oc`).
-        {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
     *   You are logged in to {{ product_title }} as`cluster-admin`.
-        {% endif %}
-        {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
     *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -20,7 +20,7 @@ You can validate the creation of the `ServiceMeshControlPlane` from the command 
     ```
 
     The installation has finished successfully when the `STATUS` column is `ComponentsReady`.
-    ```terminal
+    ```terminal {minja}
     NAME    READY   STATUS            PROFILES      VERSION   AGE
     basic   10/10   ComponentsReady   ["default"]   {{ SMProductVersion }}     66m
     ```

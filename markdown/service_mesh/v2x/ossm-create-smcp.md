@@ -3,8 +3,8 @@ title: Creating the ServiceMeshControlPlane
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating the ServiceMeshControlPlane {id="ossm-create-smcp"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating the ServiceMeshControlPlane {id="ossm-create-smcp"}
 {%- set context = "ossm-create-smcp" %}
 
 {% leveloffset +1 %}{% include "./modules/ossm-about-smcp.md" %}{% endleveloffset %}
@@ -41,7 +41,7 @@ title: Creating the ServiceMeshControlPlane
 
 {% leveloffset +1 %}{% include "./modules/ossm-validate-smcp-kiali.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 {{ SMProductName }} supports multiple independent control planes within the cluster. You can create reusable configurations with `ServiceMeshControlPlane` profiles. For more information, see [Creating control plane profiles](/service_mesh/v2x/ossm-profiles-users#ossm-control-plane-profiles_ossm-profiles-users).
 

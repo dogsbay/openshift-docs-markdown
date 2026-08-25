@@ -1,6 +1,7 @@
 ---
 import "./code-rich.css";
-import { codeToHtml, type BundledLanguage, type BundledTheme } from "shiki";
+import { stripMarkersForCopy, stripUnprocessableMarkers } from "./markers";
+import { codeToHtml, bundledLanguages, type BundledLanguage, type BundledTheme } from "shiki";
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -44,6 +45,21 @@ interface Props {
   wordHighlights?: string;
   /** Shiki theme */
   theme?: string;
+  /**
+   * Override the copy-button text. Diff-annotated blocks copy the
+   * post-change code only — the default (all lines minus annotation
+   * comments) would paste removed lines into the reader's editor.
+   */
+  copyText?: string;
+  /**
+   * Diff lines by NUMBER (1-based, e.g. "2,5-6") instead of `[!code]`
+   * comment markers. Markers only work in languages whose grammar has
+   * comments — in `plaintext` (or any unknown language) Shiki cannot
+   * recognize them and they render as literal text. Line numbers are
+   * language-independent, so a generated diff never leaks markers.
+   */
+  diffAdd?: string;
+  diffRemove?: string;
   class?: string;
   [key: string]: unknown;
 }
@@ -58,9 +74,27 @@ const {
   highlights,
   wordHighlights,
   theme = "github-dark-default",
+  copyText: copyTextOverride,
+  diffAdd,
+  diffRemove,
   class: className,
   ...rest
 } = Astro.props;
+
+// "2,5-6" → Set{2,5,6}
+const parseLineSpec = (spec?: string): Set<number> => {
+  const out = new Set<number>();
+  for (const part of (spec ?? "").split(",")) {
+    const range = part.trim().match(/^(\d+)(?:-(\d+))?$/);
+    if (!range) continue;
+    const start = Number(range[1]);
+    const end = range[2] ? Number(range[2]) : start;
+    for (let n = start; n <= end; n++) out.add(n);
+  }
+  return out;
+};
+const addLines = parseLineSpec(diffAdd);
+const removeLines = parseLineSpec(diffRemove);
 
 // Build transformers list
 const transformers: ShikiTransformer[] = [
@@ -70,6 +104,19 @@ const transformers: ShikiTransformer[] = [
   transformerNotationErrorLevel(),
   transformerNotationWordHighlight(),
 ];
+
+// Line-number diffs (language-independent — see the prop docs)
+if (addLines.size || removeLines.size) {
+  transformers.push({
+    name: "line-diff",
+    line(node, line) {
+      const kind = addLines.has(line) ? "add" : removeLines.has(line) ? "remove" : null;
+      if (!kind) return;
+      const cls = node.properties.class;
+      node.properties.class = `${Array.isArray(cls) ? cls.join(" ") : (cls ?? "")} diff ${kind}`.trim();
+    },
+  });
+}
 
 // Meta-based highlights: ```ts {1,3-5}
 if (highlights) {
@@ -136,14 +183,25 @@ let metaStr = "";
 if (highlights) metaStr += `{${highlights}} `;
 if (wordHighlights) metaStr += `/${wordHighlights}/ `;
 
-// Strip annotation comments from the copy text
-const copyText = code
-  .replace(/\s*\/\/\s*\[!code\s[^\]]*\]\s*$/gm, "")
-  .replace(/\s*\/\/\s*![a-z]+.*$/gm, "")
-  .trim();
+// Copy text: explicit override (diff blocks pass the post-change code)
+// or the block's own code — either way every annotation form is
+// stripped (see ./markers.ts).
+const copyText = stripMarkersForCopy(copyTextOverride ?? code);
 
-const html = await codeToHtml(code, {
-  lang: lang.toLowerCase() as BundledLanguage,
+// Unknown languages (package-install, mdx-ish doc tokens) fall back
+// to plaintext instead of throwing — same behavior as CodeBlock's
+// <Code>. The header still shows the declared language label.
+const requestedLang = lang.toLowerCase();
+const isPlainGrammar =
+  !(requestedLang in bundledLanguages) || ["plaintext", "text", "txt", "ansi"].includes(requestedLang);
+const shikiLang = isPlainGrammar ? "plaintext" : requestedLang;
+
+// Markers Shiki cannot process would render as literal text — strip
+// exactly those, leave the rest for the notation transformers.
+const highlightCode = stripUnprocessableMarkers(code, isPlainGrammar);
+
+const html = await codeToHtml(highlightCode, {
+  lang: shikiLang as BundledLanguage,
   themes: {
     light: "github-light-default" as BundledTheme,
     dark: (theme || "github-dark-default") as BundledTheme,

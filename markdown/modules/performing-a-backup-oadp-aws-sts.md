@@ -107,8 +107,8 @@ Either Data Protection Application (DPA) configuration will work.
     ```
 
 
-:::note
+    :::note
 
-For troubleshooting tips, see [troubleshooting documentation](https://access.redhat.com/articles/5456281).
-
-:::
+    For troubleshooting tips, see [troubleshooting documentation](https://access.redhat.com/articles/5456281).
+    
+    :::

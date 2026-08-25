@@ -3,11 +3,11 @@ title: Installing a cluster on OpenStack on your own infrastructure
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on OpenStack on your own infrastructure {id="installing-openstack-user"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on OpenStack on your own infrastructure {id="installing-openstack-user"}
 {%- set context = "installing-openstack-user" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ rh_openstack_first }} that runs on user-provisioned infrastructure.
+In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ rh_openstack_first }} that runs on user-provisioned infrastructure. {._abstract}
 
 By using your own infrastructure, you can integrate your cluster with existing infrastructure and modifications. The process requires more effort on your part than installer-provisioned installations, because you must create all {{ rh_openstack }} resources, like Nova servers, Neutron ports, and security groups. However, Red Hat provides Ansible playbooks to help you in the deployment process.
 
@@ -30,6 +30,7 @@ You can complete the following configurations after you install a cluster on {{ 
 *   If you did not configure {{ rh_openstack }} to accept application traffic over floating IP addresses, configure {{ rh_openstack }} access with floating IP addresses.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -76,6 +77,7 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for OpenStack](/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)
 
@@ -90,12 +92,14 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +2 %}{% include "./modules/installation-osp-provider-networks.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [The {{ rh_openstack }} documentation](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/networking_guide/networking-overview_rhosp-network#tenant-provider-networks_network-overview)
 
 {% leveloffset +3 %}{% include "./modules/installation-osp-provider-network-preparation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [The provider networks documentation](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/networking_guide/networking-overview_rhosp-network#tenant-provider-networks_network-overview)
 *   [role-based access control (RBAC)](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/networking_guide/config-rbac-policies_rhosp-network#proc_create-rbac-policies_config-rbac-policies)
@@ -113,6 +117,7 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +2 %}{% include "./modules/installation-osp-deploying-bare-metal-machines.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Bare Metal service (Ironic)](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html/bare_metal_provisioning/index)
 *   [A {{ rh_openstack }} flavor](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_the_bare_metal_provisioning_service/assembly_configuring-the-bare-metal-provisioning-service-after-deployment#proc_creating-flavors-for-launching-bare-metal-instances_bare-metal-post-deployment)
@@ -134,5 +139,6 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

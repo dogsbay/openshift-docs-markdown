@@ -59,11 +59,11 @@ JSON formatting of logs varies by application. Because creating too many indices
     1.  Annotation names must match container names
 
 
-:::warning
+    :::warning
 
-This configuration might significantly increase the number of shards on the cluster.
-
-:::
+    This configuration might significantly increase the number of shards on the cluster.
+    
+    :::
 
 
 **Additional resources**

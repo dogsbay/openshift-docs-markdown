@@ -7,9 +7,9 @@
 
 *   Logging is installed on {{ hcp }}. 
 *   When logs originate from a Red&#160;Hat-supported product that is installed on the same cluster as the {{ CLO }}. For example:
-    {%- if feature-name == "Syslog receiver input" %}
+{%- if feature-name == "Syslog receiver input" %}
     *   Red Hat OpenStack Services on OpenShift (RHOSO)
-        {%- endif %}
+{%- endif %}
     *   {{ VirtProductName }}
 
 :::

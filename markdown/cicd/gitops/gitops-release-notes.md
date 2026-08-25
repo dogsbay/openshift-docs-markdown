@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # {{ gitops_title }} release notes {id="gitops-release-notes"}
 {%- set context = "gitops-release-notes" %}
-{% include "./_attributes/common-attributes.md" %}
 
 {{ gitops_title }} is a declarative way to implement continuous deployment for cloud native applications. {{ gitops_title }} ensures consistency in applications when you deploy them to different clusters in different environments, such as: development, staging, and production. {{ gitops_title }} helps you automate the following tasks: {._abstract}
 
@@ -17,11 +17,12 @@ For an overview of {{ gitops_title }}, see [Understanding OpenShift GitOps](/cic
 
 {% leveloffset +1 %}{% include "./modules/gitops-release-notes-1-9-0.md" %}{% endleveloffset %}
 {%- if openshift_enterprise %}
+
 **Additional resources**
 {._additional-resources}
 
-*   [Injecting a custom CA certificate](/operators/admin/olm-configuring-proxy-support#olm-inject-custom-ca_olm-configuring-proxy-support)
-{% endif %}
+*   [Injecting a custom CA certificate](/operators/admin/olm-configuring-proxy-support#olm-inject-custom-ca_olm-configuring-proxy-support) {._additional-resources}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/gitops-release-notes-1-8-4.md" %}{% endleveloffset %}
 

@@ -1,5 +1,5 @@
 ---
-title: "IngressClass []"
+title: "IngressClass [networking.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | IngressClassSpec provides information about the class of an Ingress. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -36,6 +37,7 @@ Type
 | --- | --- | --- |
 | `controller` | `string` | controller refers to the name of the controller that should handle this class. This allows for different "flavors" that are controlled by the same controller. For example, you may have different parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable. |
 | `parameters` | `object` | IngressClassParametersReference identifies an API object. This can be used to specify a cluster or namespace-scoped resource. |
+
 ### .spec.parameters {id="_specparameters"}
 
 Description
@@ -68,12 +70,12 @@ The following API endpoints are available:
     *   `POST`: create an IngressClass
 *   `/apis/networking.k8s.io/v1/watch/ingressclasses`
     *   `GET`: watch individual changes to a list of IngressClass. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/networking.k8s.io/v1/ingressclasses/{{ name }}`
+*   `/apis/networking.k8s.io/v1/ingressclasses/{{ name }}`{minja}
     *   `DELETE`: delete an IngressClass
     *   `GET`: read the specified IngressClass
     *   `PATCH`: partially update the specified IngressClass
     *   `PUT`: replace the specified IngressClass
-*   `/apis/networking.k8s.io/v1/watch/ingressclasses/{{ name }}`
+*   `/apis/networking.k8s.io/v1/watch/ingressclasses/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind IngressClass. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/networking.k8s.io/v1/ingressclasses {id="_apisnetworkingk8siov1ingressclasses"}

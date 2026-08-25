@@ -3,11 +3,11 @@ title: Controlling pod placement by using pod topology spread constraints
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Controlling pod placement by using pod topology spread constraints {id="nodes-scheduler-pod-topology-spread-constraints"}
 {% include "./_attributes/common-attributes.md" %}
+# Controlling pod placement by using pod topology spread constraints {id="nodes-scheduler-pod-topology-spread-constraints"}
 {%- set context = "nodes-scheduler-pod-topology-spread-constraints" %}
 
-To achieve high availability and more efficient resource utilization, you can use pod topology spread constraints to control the placement of your pods across nodes, zones, regions, or other user-defined topology domains.
+To achieve high availability and more efficient resource utilization, you can use pod topology spread constraints to control the placement of your pods across nodes, zones, regions, or other user-defined topology domains. {._abstract}
 
 ## Example use cases {id="nodes-scheduler-pod-topology-spread-constraints-example-use-cases"}
 
@@ -26,7 +26,7 @@ To achieve high availability and more efficient resource utilization, you can us
 {% leveloffset +1 %}{% include "./modules/nodes-scheduler-pod-topology-spread-constraints-examples.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Understanding how to update labels on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)
 {% endif %}

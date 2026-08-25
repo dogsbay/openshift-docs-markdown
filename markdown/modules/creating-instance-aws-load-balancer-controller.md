@@ -41,20 +41,20 @@ You can install only a single instance of the `AWSLoadBalancerController` object
     *   `Auto`: The AWS Load Balancer Operator determines the subnets that belong to the cluster and tags them appropriately. The Operator cannot determine the role correctly if the internal subnet tags are not present on internal subnet.
     *   `Manual`: You manually tag the subnets that belong to the cluster with the appropriate role tags. Use this option if you installed your cluster on user-provided infrastructure.
 
-`spec.additionalResourceTags`
-:   Specifies the tags used by the AWS Load Balancer Controller when it provisions AWS resources.
+    `spec.additionalResourceTags`
+    :   Specifies the tags used by the AWS Load Balancer Controller when it provisions AWS resources.
 
-`ingressClass`
-:   Specifies the ingress class name. The default value is `alb`.
+    `ingressClass`
+    :   Specifies the ingress class name. The default value is `alb`.
 
-`config.replicas`
-:   Specifies the number of replicas of the AWS Load Balancer Controller.
+    `config.replicas`
+    :   Specifies the number of replicas of the AWS Load Balancer Controller.
 
-`enabledAddons`
-:   Specifies annotations as an add-on for the AWS Load Balancer Controller.
+    `enabledAddons`
+    :   Specifies annotations as an add-on for the AWS Load Balancer Controller.
 
-`AWSWAFv2`
-:   Specifies that enablement of the `alb.ingress.kubernetes.io/wafv2-acl-arn` annotation.
+    `AWSWAFv2`
+    :   Specifies that enablement of the `alb.ingress.kubernetes.io/wafv2-acl-arn` annotation.
 
 1.  Create the `AWSLoadBalancerController` object by running the following command:
     ```terminal

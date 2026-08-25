@@ -21,13 +21,13 @@ For further information about the `cluster-compare` plugin, see "Understanding t
     $ podman login registry.redhat.io
     ```
 1.  Extract the content from the `ztp-site-generate-rhel8` container image by running the following commands::
-    ```terminal
+    ```terminal {minja}
     $ podman pull registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }}
     ```
     ```terminal
     $ mkdir -p ./out
     ```
-    ```terminal
+    ```terminal {minja}
     $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }} extract /home/ztp --tar | tar x -C ./out
     ```
 1.  Compare the configuration for your cluster to the reference configuration by running the following command:

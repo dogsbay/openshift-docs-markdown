@@ -281,21 +281,21 @@ Interval: 10
     :::
 
 1.  For your {{ product_title }} cluster to use the user-managed load balancer, you must specify the following configuration in your cluster’s `install-config.yaml` file:
-    ```yaml
+    ```yaml {minja}
     # ...
     platform:
-{%- if bare_metal %}
+    {%- if bare_metal %}
       bare-metal:
-{% endif %}
-{% if openstack %}
+    {%- endif %}
+    {%- if openstack %}
       openstack:
-{% endif %}
-{% if nutanix %}
+    {%- endif %}
+    {%- if nutanix %}
       nutanix:
-{% endif %}
-{% if vsphere %}
+    {%- endif %}
+    {%- if vsphere %}
       vsphere:
-{%- endif %}
+    {%- endif %}
         loadBalancer:
           type: <loadBalancer_type>
         apiVIPs:
@@ -391,20 +391,20 @@ Interval: 10
         ```
 
 {% if context == "ipi-install-installation-workflow" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "load-balancing-openstack" %}
-{%- set openstack = false -%}
+{%- set openstack = "" -%}
 {% endif %}
 {% if context == "installing-nutanix-installer-provisioned" %}
-{%- set nutanix = false -%}
+{%- set nutanix = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-installer-provisioned-customizations" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-installer-provisioned-customizations" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-installer-provisioned-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}

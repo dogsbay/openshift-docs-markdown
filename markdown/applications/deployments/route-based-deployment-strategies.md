@@ -3,11 +3,11 @@ title: Using route-based deployment strategies
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using route-based deployment strategies {id="route-based-deployment-strategies"}
 {% include "./_attributes/common-attributes.md" %}
+# Using route-based deployment strategies {id="route-based-deployment-strategies"}
 {%- set context = "route-based-deployment-strategies" %}
 
-To roll out application changes to selected traffic in {{ product_title }}, you can use route-based deployment strategies with the router and `Deployment` objects. 
+To roll out application changes to selected traffic in {{ product_title }}, you can use route-based deployment strategies with the router and `Deployment` objects.  {._abstract}
 
 These advanced strategies, including blue-green, A/B, and canary, affect specific routes rather than every route that resolves to the application.
 
@@ -39,6 +39,6 @@ The route-based deployment strategies do not scale the number of pods in the ser
 
 {% leveloffset +1 %}{% include "./modules/deployments-ab-one-service-multi-dc.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Route-specific annotations](/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-route-specific-annotations)

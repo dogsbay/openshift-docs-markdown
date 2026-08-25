@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 # Supported cloud providers for {{ sno }} {id="supported-cloud-providers-for-single-node-openshift_{{ context }}"}
 
 {% endif %}

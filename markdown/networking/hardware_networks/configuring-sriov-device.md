@@ -3,11 +3,11 @@ title: Configuring an SR-IOV network device
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring an SR-IOV network device {id="configuring-sriov-device"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring an SR-IOV network device {id="configuring-sriov-device"}
 {%- set context = "configuring-sriov-device" %}
 
-You can configure a Single Root I/O Virtualization (SR-IOV) device in your cluster.
+You can configure a Single Root I/O Virtualization (SR-IOV) device in your cluster. {._abstract}
 
 Before you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
 
@@ -30,6 +30,7 @@ Before you perform any tasks in the following documentation, ensure that you [in
 {% leveloffset +1 %}{% include "./modules/nw-sriov-configuring-device.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding how to update labels on nodes](/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)
 
@@ -40,9 +41,11 @@ Before you perform any tasks in the following documentation, ensure that you [in
 {% leveloffset +1 %}{% include "./modules/nw-sriov-troubleshooting.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using CPU Manager](/scalability_and_performance/using-cpu-manager#using-cpu-manager)
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring an SR-IOV network attachment](/networking/hardware_networks/configuring-sriov-net-attach#configuring-sriov-net-attach)

@@ -1,5 +1,5 @@
 ---
-title: "ClusterRole []"
+title: "ClusterRole [rbac.authorization.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -25,6 +25,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. |
 | `rules` | `array` | Rules holds all the PolicyRules for this ClusterRole |
 | `rules[]` | `object` | PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to. |
+
 ### .aggregationRule {id="_aggregationrule"}
 
 Description
@@ -37,6 +38,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `clusterRoleSelectors` | [`array (LabelSelector)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole’s permissions will be added |
+
 ### .rules {id="_rules"}
 
 Description
@@ -77,12 +79,12 @@ The following API endpoints are available:
     *   `POST`: create a ClusterRole
 *   `/apis/rbac.authorization.k8s.io/v1/watch/clusterroles`
     *   `GET`: watch individual changes to a list of ClusterRole. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/rbac.authorization.k8s.io/v1/clusterroles/{{ name }}`
+*   `/apis/rbac.authorization.k8s.io/v1/clusterroles/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterRole
     *   `GET`: read the specified ClusterRole
     *   `PATCH`: partially update the specified ClusterRole
     *   `PUT`: replace the specified ClusterRole
-*   `/apis/rbac.authorization.k8s.io/v1/watch/clusterroles/{{ name }}`
+*   `/apis/rbac.authorization.k8s.io/v1/watch/clusterroles/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind ClusterRole. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/rbac.authorization.k8s.io/v1/clusterroles {id="_apisrbacauthorizationk8siov1clusterroles"}

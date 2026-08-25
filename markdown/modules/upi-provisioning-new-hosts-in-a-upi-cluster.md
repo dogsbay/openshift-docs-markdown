@@ -151,11 +151,11 @@ Provisioning bare-metal hosts to the cluster by using the BMO sets the `spec.ext
         1.  Replace `<protocol>` with the BMC protocol, such as IPMI, Redfish, or others. Replace `<bmc_url>` with the URL of the bare-metal node’s baseboard management controller.
         1.  Optional: Replace `<root_device_hint>` with a device path when specifying a root device hint. See "Root device hints" for additional details.
 
-            :::important
+        :::important
 
-            If the MAC address of an existing bare-metal node matches the MAC address of the bare-metal host that you are attempting to provision, then the installation will fail. If the host enrollment, inspection, cleaning, or other steps fail, the Bare Metal Operator retries the installation continuously. See "Diagnosing a duplicate MAC address when provisioning a new host in the cluster" for additional details.
-            
-            :::
+        If the MAC address of an existing bare-metal node matches the MAC address of the bare-metal host that you are attempting to provision, then the installation will fail. If the host enrollment, inspection, cleaning, or other steps fail, the Bare Metal Operator retries the installation continuously. See "Diagnosing a duplicate MAC address when provisioning a new host in the cluster" for additional details.
+        
+        :::
 
 1.  Create the bare-metal node by running the following command:
     ```terminal

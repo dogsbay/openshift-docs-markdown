@@ -3,11 +3,11 @@ title: Security policies
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Security policies {id="virt-security-policies"}
 {% include "./_attributes/common-attributes.md" %}
+# Security policies {id="virt-security-policies"}
 {%- set context = "virt-security-policies" %}
 
-{{ VirtProductName }} provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster operations across your environment.
+{{ VirtProductName }} provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster operations across your environment. {._abstract}
 
 **Key points**
 
@@ -28,7 +28,7 @@ title: Security policies
 
 {% leveloffset +2 %}{% include "./modules/virt-additional-scc-for-kubevirt-controller.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
 *   [About Security context constraints](/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)
 *   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)

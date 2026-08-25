@@ -13,6 +13,7 @@ You can install the {{ ServerlessOperatorName }} from the software catalog by us
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster or dedicated administrator access.
 {% endif %}
+
 *   You have logged in to the {{ product_title }} cluster.
 
 **Procedure**

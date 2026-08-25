@@ -3,17 +3,17 @@ title: Monitoring overview
 ---
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Monitoring overview {id="virt-monitoring-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Monitoring overview {id="virt-monitoring-overview"}
 {%- set context = "virt-monitoring-overview" %}
 
-Monitor the health of your cluster and virtual machines (VMs) to have a unified operational view of your environment. This ensures high availability and optimal resource performance.
+Monitor the health of your cluster and virtual machines (VMs) to have a unified operational view of your environment. This ensures high availability and optimal resource performance. {._abstract}
 
 You can monitor the health of your cluster and VMs with the following tools:
 
 
 Monitoring {{ VirtProductName }} VM health status
-:   View the overall health of your {{ VirtProductName }} environment in the web console by navigating to the **Home** -> **Overview** page in the {{ product_title }} web console. The **Status** card displays the overall health of {{ VirtProductName }} based on the alerts and conditions.
+:   View the overall health of your {{ VirtProductName }} environment in the web console by navigating to the **Home** → **Overview** page in the {{ product_title }} web console. The **Status** card displays the overall health of {{ VirtProductName }} based on the alerts and conditions.
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 
@@ -36,6 +36,6 @@ Monitoring {{ VirtProductName }} VM health status
 
 [Runbooks](/virt/monitoring/virt-runbooks#virt-runbooks)
 
-{% if not openshift_rosa_hcp %}
+{%- if not openshift_rosa_hcp %}
 :   Diagnose and resolve issues that trigger {{ VirtProductName }} [alerts](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/monitoring_key_concepts/key-concepts#about-managing-alerts_key-concepts) in the {{ product_title }} web console.
 {% endif %}

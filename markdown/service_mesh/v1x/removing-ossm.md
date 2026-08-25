@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Removing Service Mesh {id="removing-ossm-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Removing Service Mesh {id="removing-ossm-v1x"}
 {%- set context = "removing-ossm-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

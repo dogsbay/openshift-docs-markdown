@@ -40,7 +40,7 @@ Configure the Model Context Protocol (MCP) gateway so that it can route client t
     EOF
     ```
 
-    `${{ MCP_SERVER_HOST }}` is the hostname you configured during Helm installation.
+    `${{ MCP_SERVER_HOST }}`{minja} is the hostname you configured during Helm installation.
 
     This HTTPRoute enables the MCP gateway to route traffic to your MCP server instance and is referenced in the MCPServerRegistration resource.
 1.  Create an MCP server Registration Resource by running the following command:

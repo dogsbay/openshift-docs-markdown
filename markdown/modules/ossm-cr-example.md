@@ -51,7 +51,7 @@ The following table lists the specifications for the `ServiceMeshControlPlane` r
 
 This example `ServiceMeshControlPlane` definition contains all of the supported parameters.
 
-```yaml title="Example ServiceMeshControlPlane resource"
+```yaml title="Example ServiceMeshControlPlane resource" {minja}
 apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:

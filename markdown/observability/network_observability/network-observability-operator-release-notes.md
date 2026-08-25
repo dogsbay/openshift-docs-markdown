@@ -3,11 +3,11 @@ title: Network Observability Operator release notes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Network Observability Operator release notes {id="network-observability-operator-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# Network Observability Operator release notes {id="network-observability-operator-release-notes"}
 {%- set context = "network-observability-operator-release-notes" %}
 
-Review new features, enhancements, fixed issues, and known issues for the Network Observability Operator. These release notes provide information to help you understand changes and security advisories in the latest Operator release.
+Review new features, enhancements, fixed issues, and known issues for the Network Observability Operator. These release notes provide information to help you understand changes and security advisories in the latest Operator release. {._abstract}
 
 The Network Observability Operator enables administrators to observe and analyze network traffic flows for {{ product_title }} clusters.
 
@@ -29,5 +29,5 @@ Some referenced tickets are not linked. This means that the ticket is not access
 
 {% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-known-issues.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Grant permissions for custom namespace and secret access](/observability/network_observability/configuring-operator#network-observability-grant-permissions-custom-namespace-and-secret-access_network_observability)

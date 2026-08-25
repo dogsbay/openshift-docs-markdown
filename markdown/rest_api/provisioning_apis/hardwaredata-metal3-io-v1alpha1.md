@@ -1,5 +1,5 @@
 ---
-title: "HardwareData []"
+title: "HardwareData [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | HardwareDataSpec defines the desired state of HardwareData. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -35,6 +36,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `hardware` | `object` | The hardware discovered on the host during its inspection. |
+
 ### .spec.hardware {id="_spechardware"}
 
 Description
@@ -55,6 +57,7 @@ Type
 | `storage` | `array` | List of storage (disk, SSD, etc.) available to the host. |
 | `storage[]` | `object` | Storage describes one storage device (disk, SSD, etc.) on the host. |
 | `systemVendor` | `object` | System vendor information. |
+
 ### .spec.hardware.cpu {id="_spechardwarecpu"}
 
 Description
@@ -71,6 +74,7 @@ Type
 | `count` | `integer` |  |
 | `flags` | `array (string)` |  |
 | `model` | `string` |  |
+
 ### .spec.hardware.firmware {id="_spechardwarefirmware"}
 
 Description
@@ -83,6 +87,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `bios` | `object` | The BIOS for this firmware |
+
 ### .spec.hardware.firmware.bios {id="_spechardwarefirmwarebios"}
 
 Description
@@ -97,6 +102,7 @@ Type
 | `date` | `string` | The release/build date for this BIOS |
 | `vendor` | `string` | The vendor name for this BIOS |
 | `version` | `string` | The version of the BIOS |
+
 ### .spec.hardware.nics {id="_spechardwarenics"}
 
 Description
@@ -128,6 +134,7 @@ Type
 | `vlanId` | `integer` | The untagged VLAN ID |
 | `vlans` | `array` | The VLANs available |
 | `vlans[]` | `object` | VLAN represents the name and ID of a VLAN. |
+
 ### .spec.hardware.nics[].lldp {id="_spechardwarenicslldp"}
 
 Description
@@ -142,6 +149,7 @@ Type
 | `portID` | `string` | The switch port ID from LLDP |
 | `switchID` | `string` | The switch chassis ID from LLDP |
 | `switchSystemName` | `string` | The switch system name from LLDP |
+
 ### .spec.hardware.nics[].vlans {id="_spechardwarenicsvlans"}
 
 Description
@@ -164,6 +172,7 @@ Type
 | --- | --- | --- |
 | `id` | `integer` | VLANID is a 12-bit 802.1Q VLAN identifier |
 | `name` | `string` |  |
+
 ### .spec.hardware.storage {id="_spechardwarestorage"}
 
 Description
@@ -196,6 +205,7 @@ Type
 | `wwn` | `string` | The WWN of the device |
 | `wwnVendorExtension` | `string` | The WWN Vendor extension of the device |
 | `wwnWithExtension` | `string` | The WWN with the extension |
+
 ### .spec.hardware.systemVendor {id="_spechardwaresystemvendor"}
 
 Description
@@ -217,11 +227,11 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/hardwaredata`
     *   `GET`: list objects of kind HardwareData
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hardwaredata`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hardwaredata`{minja}
     *   `DELETE`: delete collection of HardwareData
     *   `GET`: list objects of kind HardwareData
     *   `POST`: create a HardwareData
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hardwaredata/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hardwaredata/{{ name }}`{minja}
     *   `DELETE`: delete a HardwareData
     *   `GET`: read the specified HardwareData
     *   `PATCH`: partially update the specified HardwareData

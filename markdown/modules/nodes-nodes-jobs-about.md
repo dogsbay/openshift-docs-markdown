@@ -29,21 +29,24 @@ Job
         *   When at least one pod has terminated with success and all pods are terminated, the job is successfully completed.
         *   When any pod has exited with success, no other pod should be doing any work for this task or writing any output. Pods should all be in the process of exiting.
 
-    Cron job
+Cron job
 
 :   A job can be scheduled to run multiple times, using a cron job.
-        You can use a cron job to specify how the job runs. Cron jobs are part of the Kubernetes API, which can be managed with `oc` commands like other object types.
-        Cron jobs are useful for creating periodic and recurring tasks, such as running backups or sending emails.
-        Cron jobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period. A cron job creates a `Job` object based on the time zone configured on the control plane node that runs the cronjob controller.
 
-        :::warning
+    You can use a cron job to specify how the job runs. Cron jobs are part of the Kubernetes API, which can be managed with `oc` commands like other object types.
 
-        A cron job creates a `Job` object approximately once per execution time of its
-        schedule, but there are circumstances in which it fails to create a job or
-        two jobs might be created. Therefore, jobs must be idempotent and you must
-        configure history limits.
-        
-        :::
+    Cron jobs are useful for creating periodic and recurring tasks, such as running backups or sending emails.
+    Cron jobs can also schedule individual tasks for a specific time, such as if you want to schedule a job for a low activity period. A cron job creates a `Job` object based on the time zone configured on the control plane node that runs the cronjob controller.
+
+    :::warning
+
+
+    A cron job creates a `Job` object approximately once per execution time of its
+    schedule, but there are circumstances in which it fails to create a job or
+    two jobs might be created. Therefore, jobs must be idempotent and you must
+    configure history limits.
+    
+    :::
 
 
 ## Understanding how to create jobs {id="jobs-create_{{ context }}"}
@@ -53,7 +56,7 @@ Both resource types require a job configuration that consists of the following k
 *   A pod template, which describes the pod that {{ product_title }} creates.
 *   The `parallelism` parameter, which specifies how many pods running in parallel at any point in time should execute a job.
     *   For non-parallel jobs, leave unset. When unset, defaults to `1`.
-        *   The `completions` parameter, specifying how many successful pod completions are needed to finish a job.
+*   The `completions` parameter, specifying how many successful pod completions are needed to finish a job.
     *   For non-parallel jobs, leave unset. When unset, defaults to `1`.
     *   For parallel jobs with a fixed completion count, specify a value.
     *   For parallel jobs with a work queue, leave unset. When unset defaults to the `parallelism` value.

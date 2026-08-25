@@ -11,7 +11,7 @@ You can install the Multiarch Tuning Operator by using the {{ product_title }} w
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Enter **Multiarch Tuning Operator** in the search field.
 1.  Click **Multiarch Tuning Operator**.
 1.  Select the **Multiarch Tuning Operator** version from the **Version** list.
@@ -35,5 +35,5 @@ You can install the Multiarch Tuning Operator by using the {{ product_title }} w
 
 **Verification**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Verify that the **Multiarch Tuning Operator** is listed with the **Status** field as **Succeeded** in the `openshift-multiarch-tuning-operator` namespace.

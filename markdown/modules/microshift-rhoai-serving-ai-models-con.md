@@ -30,7 +30,7 @@ As a single-node Kubernetes distribution, {{ microshift_short }} does not suppor
 Workflow for configuring a model-serving runtime
 
 :   *   Select the model-serving runtime that supports the format of your AI model.
-*   Create the `ServingRuntime` CR in your workload namespace.
-*   If the {{ microshift_short }} node is already running, you can export the required `ServingRuntime` CR to a file and edit it.
-*   If the {{ microshift_short }} node is not running, or if you want to manually prepare a manifest, you can use the original definition on the disk, which is part of the `microshift-ai-model-serving` RPM.
-*   Create the `InferenceService` CR in your workload namespace.
+    *   Create the `ServingRuntime` CR in your workload namespace.
+    *   If the {{ microshift_short }} node is already running, you can export the required `ServingRuntime` CR to a file and edit it.
+    *   If the {{ microshift_short }} node is not running, or if you want to manually prepare a manifest, you can use the original definition on the disk, which is part of the `microshift-ai-model-serving` RPM.
+    *   Create the `InferenceService` CR in your workload namespace.

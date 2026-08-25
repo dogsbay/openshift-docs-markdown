@@ -25,17 +25,17 @@ OVN containers
 
     *   **ovnkube-master**
     Includes the `northd`, `nbdb`, `sbdb` and `ovnkube-master` containers.
-*   **ovnkube-node**
-The ovnkube-node includes the OVN-Controller container.
+    *   **ovnkube-node**
+    The ovnkube-node includes the OVN-Controller container.
 
     After {{ microshift_short }} starts, the OVN-Kubernetes daemon sets are deployed in the `openshift-ovn-kubernetes` namespace.
 
-    Packaging
-    :   OVN-Kubernetes manifests and startup logic are built into {{ microshift_short }}. The systemd services and configurations included in the `microshift-networking` RPM are:
+Packaging
+:   OVN-Kubernetes manifests and startup logic are built into {{ microshift_short }}. The systemd services and configurations included in the `microshift-networking` RPM are:
 
-*   `/etc/NetworkManager/conf.d/microshift-nm.conf` for `NetworkManager.service`
-*   `/etc/systemd/system/ovs-vswitchd.service.d/microshift-cpuaffinity.conf` for `ovs-vswitchd.service`
-*   `/etc/systemd/system/ovsdb-server.service.d/microshift-cpuaffinity.conf` for `ovs-server.service`
-*   `/usr/bin/configure-ovs-microshift.sh` for `microshift-ovs-init.service`
-*   `/usr/bin/configure-ovs.sh` for `microshift-ovs-init.service`
-*   `/etc/crio/crio.conf.d/microshift-ovn.conf` for the CRI-O service
+    *   `/etc/NetworkManager/conf.d/microshift-nm.conf` for `NetworkManager.service`
+    *   `/etc/systemd/system/ovs-vswitchd.service.d/microshift-cpuaffinity.conf` for `ovs-vswitchd.service`
+    *   `/etc/systemd/system/ovsdb-server.service.d/microshift-cpuaffinity.conf` for `ovs-server.service`
+    *   `/usr/bin/configure-ovs-microshift.sh` for `microshift-ovs-init.service`
+    *   `/usr/bin/configure-ovs.sh` for `microshift-ovs-init.service`
+    *   `/etc/crio/crio.conf.d/microshift-ovn.conf` for the CRI-O service

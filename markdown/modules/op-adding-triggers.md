@@ -26,11 +26,11 @@ Triggers enable pipelines to respond to external GitHub events, such as push eve
     ```
 
     Alternatively, you can create the `TriggerBinding` resource directly from the `pipelines-tutorial` Git repository:
-    ```terminal
+    ```terminal {minja}
     $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/03_triggers/01_binding.yaml
     ```
 1.  Copy the content of the following sample `TriggerTemplate` YAML file and save it:
-    ```yaml
+    ```yaml {minja}
     apiVersion: triggers.tekton.dev/v1beta1
     kind: TriggerTemplate
     metadata:
@@ -81,7 +81,7 @@ Triggers enable pipelines to respond to external GitHub events, such as push eve
     ```
 
     Alternatively, you can create the `TriggerTemplate` resource directly from the `pipelines-tutorial` Git repository:
-    ```terminal
+    ```terminal {minja}
     $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/03_triggers/02_template.yaml
     ```
 1.  Copy the contents of the following sample `Trigger` YAML file and save it:
@@ -103,7 +103,7 @@ Triggers enable pipelines to respond to external GitHub events, such as push eve
     ```
 
     Alternatively, you can create the `Trigger` resource directly from the `pipelines-tutorial` Git repository:
-    ```terminal
+    ```terminal {minja}
     $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/03_triggers/03_trigger.yaml
     ```
 1.  Copy the contents of the following sample `EventListener` YAML file and save it:
@@ -146,7 +146,7 @@ spec:
             ```
 
             Alternatively, you can create the `EvenListener` resource directly from the `pipelines-tutorial` Git repository:
-            ```terminal
+            ```terminal {minja}
             $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/03_triggers/04_event_listener.yaml
             ```
         1.  Create a route with the re-encrypt TLS termination:
@@ -176,8 +176,8 @@ spec:
                   -----END CERTIFICATE-----
             ```
             1.  The name of the object, which is limited to 63 characters.
-            1.  The `**termination**` field is set to `reencrypt`. This is the only required `tls` field.
-            1.  Required for re-encryption. `**destinationCACertificate**` specifies a CA certificate to validate the endpoint certificate, securing the connection from the router to the destination pods. If the service is using a service signing certificate, or the administrator has specified a default CA certificate for the router and the service has a certificate signed by that CA, this field can be omitted.
+            1.  The `*termination*` field is set to `reencrypt`. This is the only required `tls` field.
+            1.  Required for re-encryption. `*destinationCACertificate*` specifies a CA certificate to validate the endpoint certificate, securing the connection from the router to the destination pods. If the service is using a service signing certificate, or the administrator has specified a default CA certificate for the router and the service has a certificate signed by that CA, this field can be omitted.
 
                 See `oc create route reencrypt --help` for more options.
     *   To create an `EventListener` resource using an insecure HTTP connection:

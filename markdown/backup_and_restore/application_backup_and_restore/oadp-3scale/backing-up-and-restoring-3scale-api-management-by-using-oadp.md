@@ -3,11 +3,11 @@ title: Backing up and restoring 3scale API Management by using OADP
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Backing up and restoring 3scale API Management by using OADP {id="backing-up-and-restoring-3scale-api-management-by-using-oadp"}
 {% include "./_attributes/common-attributes.md" %}
+# Backing up and restoring 3scale API Management by using OADP {id="backing-up-and-restoring-3scale-api-management-by-using-oadp"}
 {%- set context = "backing-up-and-restoring-3scale-api-management-by-using-oadp" %}
 
-Back up and restore Red&#160;Hat 3scale API Management deployments by using {{ oadp_first }} to protect application resources, persistent volumes, and configurations. This helps you to safeguard your 3scale components for disaster recovery.
+Back up and restore Red&#160;Hat 3scale API Management deployments by using {{ oadp_first }} to protect application resources, persistent volumes, and configurations. This helps you to safeguard your 3scale components for disaster recovery. {._abstract}
 
 You can deploy 3scale components on-premise, in the cloud, as a managed service, or in any combination based on your requirements.
 
@@ -27,6 +27,7 @@ You can configure {{ oadp_short }} to perform the following operations with 3sca
 *   Restore the components to scale up the 3scale operator and deployment. For more details, see _Restoring 3scale API Management_.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Backing up 3scale API Management](/backup_and_restore/application_backup_and_restore/oadp-3scale/backing-up-3scale-api-management-by-using-oadp#backing-up-3scale-api-management-by-using-oadp)
 *   [Restoring 3scale API Management](/backup_and_restore/application_backup_and_restore/oadp-3scale/restoring-3scale-api-management-by-using-oadp#restoring-3scale-api-management-by-using-oadp)

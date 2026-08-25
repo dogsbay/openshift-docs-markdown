@@ -7,7 +7,7 @@ title: "Setting the {{ op_system }} version in a cluster"
 {% include "./_attributes/common-attributes.md" %}
 # Setting the {{ op_system }} version in a cluster {id="mco-image-streams"}
 
-You can create an {{ product_title }} cluster that uses {{ op_system_first }} 10.x or update an existing cluster to {{ op_system }} 10.x, which is available as a Technology Preview feature in {{ product_title }} 4.21.2 and greater. By running {{ op_system_first }} 10.x as a Technology Preview feature, you can test how the operating system works with your cluster and your hardware, anticipate changes, and report bugs to Red&#160;Hat. 
+You can create an {{ product_title }} cluster that uses {{ op_system_first }} 10.x or update an existing cluster to {{ op_system }} 10.x, which is available as a Technology Preview feature in {{ product_title }} 4.21.2 and greater. By running {{ op_system_first }} 10.x as a Technology Preview feature, you can test how the operating system works with your cluster and your hardware, anticipate changes, and report bugs to Red&#160;Hat.  {._abstract}
 
 By default, {{ op_system }} 9.x is installed on {{ product_title }} clusters starting with 4.13.
 
@@ -27,7 +27,7 @@ You can use one of the following methods to run the nodes in a cluster on {{ op_
 
 {% leveloffset +1 %}{% include "./modules/mco-image-streams-updating.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 *   [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)

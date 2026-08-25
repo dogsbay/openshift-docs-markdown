@@ -5,7 +5,7 @@ To control the verbosity of network logs for troubleshooting or monitoring, refe
 
 The following values define the severity of recorded events, so that you can use them to filter output based on operational requirements:
 
-***Log levels***
+**Log levels**
 
 <table>
 <thead>
@@ -25,11 +25,11 @@ The following values define the severity of recorded events, so that you can use
 </tr>
 <tr>
   <td><code>info</code></td>
-  <td></td>
+  <td> Provides information that always should be logged but under normal circumstances does not require user intervention. This is the default logging level.</td>
 </tr>
 <tr>
   <td><code>warn</code></td>
-  <td></td>
+  <td> Anything that can potentially cause inconsistent <code>MetalLB</code> behaviour. Usually <code>MetalLB</code> automatically recovers from this type of error.</td>
 </tr>
 <tr>
   <td><code>error</code></td>

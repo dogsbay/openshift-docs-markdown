@@ -15,7 +15,7 @@ Install applications
 
 :   Cluster administrators can install Marketplace applications from within the software catalog in {{ product_title }}, or from the Marketplace web application.
 
-You can access installed applications from the web console by clicking **Ecosystem** -> **Installed Operators**.
+You can access installed applications from the web console by clicking **Ecosystem** → **Installed Operators**.
 
 
 Deploy applications from different perspectives

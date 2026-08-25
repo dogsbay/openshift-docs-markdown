@@ -77,9 +77,7 @@ You deploy a `Localnet` topology to connect the secondary network to the physica
     `<cudn_name>`
     :   Is the name you created of your cluster-wide user-defined network.
 
-<details>
-<summary>Example output</summary>
-
+:::details{title="Example output"}
 ```yaml
 apiVersion: k8s.ovn.org/v1
 kind: ClusterUserDefinedNetwork
@@ -115,4 +113,4 @@ status:
     status: "True"
     type: NetworkCreated
 ```
-</details>
+:::

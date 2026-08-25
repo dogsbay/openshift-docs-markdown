@@ -35,5 +35,5 @@ For example, run the following command:
     $ oc logs -f linuxptp-daemon-cvgr6 -n openshift-ptp -c cloud-event-proxy
     ```
 1.  To view the PTP event in the {{ product_title }} web console, copy the name of the PTP metric you want to query, for example, `openshift_ptp_offset_ns`.
-1.  In the {{ product_title }} web console, click **Observe** -> **Metrics**.
+1.  In the {{ product_title }} web console, click **Observe** → **Metrics**.
 1.  Paste the PTP metric name into the **Expression** field, and click **Run queries**.

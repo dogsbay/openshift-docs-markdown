@@ -16,16 +16,16 @@ You can enable HTTP/2 on a specific Ingress Controller, or you can enable HTTP/2
     ```
 
 
-:::tip
+    :::tip
 
-Alternatively, you can apply the following YAML code to enable HTTP/2:
-```yaml
-apiVersion: config.openshift.io/v1
-kind: Ingress
-metadata:
-  name: cluster
-  annotations:
-    ingress.operator.openshift.io/default-enable-http2: "true"
-```
-
-:::
+    Alternatively, you can apply the following YAML code to enable HTTP/2:
+    ```yaml
+    apiVersion: config.openshift.io/v1
+    kind: Ingress
+    metadata:
+      name: cluster
+      annotations:
+        ingress.operator.openshift.io/default-enable-http2: "true"
+    ```
+    
+    :::

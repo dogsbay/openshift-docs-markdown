@@ -1,5 +1,5 @@
 ---
-title: "APIRequestCount []"
+title: "APIRequestCount [apiserver.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the characteristics of the resource. |
 | `status` | `object` | status contains the observed state of the resource. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,6 +42,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `numberOfUsersToReport` | `integer` | numberOfUsersToReport is the number of users to include in the report. If unspecified or zero, the default is ten.  This is default is subject to change. |
+
 ### .status {id="_status"}
 
 Description
@@ -59,6 +61,7 @@ Type
 | `last24h[]` | `object` | PerResourceAPIRequestLog logs request for various nodes. |
 | `removedInRelease` | `string` | removedInRelease is when the API will be removed. |
 | `requestCount` | `integer` | requestCount is a sum of all requestCounts across all current hours, nodes, and users. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -95,6 +98,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt) |
+
 ### .status.currentHour {id="_statuscurrenthour"}
 
 Description
@@ -109,6 +113,7 @@ Type
 | `byNode` | `array` | byNode contains logs of requests per node. |
 | `byNode[]` | `object` | PerNodeAPIRequestLog contains logs of requests to a certain node. |
 | `requestCount` | `integer` | requestCount is a sum of all requestCounts across nodes. |
+
 ### .status.currentHour.byNode {id="_statuscurrenthourbynode"}
 
 Description
@@ -133,6 +138,7 @@ Type
 | `byUser[]` | `object` | PerUserAPIRequestCount contains logs of a user’s requests. |
 | `nodeName` | `string` | nodeName where the request are being handled. |
 | `requestCount` | `integer` | requestCount is a sum of all requestCounts across all users, even those outside of the top 10 users. |
+
 ### .status.currentHour.byNode[].byUser {id="_statuscurrenthourbynodebyuser"}
 
 Description
@@ -158,6 +164,7 @@ Type
 | `requestCount` | `integer` | requestCount of requests by the user across all verbs. |
 | `userAgent` | `string` | userAgent that made the request. The same user often has multiple binaries which connect (pods with many containers).  The different binaries will have different userAgents, but the same user.  In addition, we have userAgents with version information embedded and the userName isn’t likely to change. |
 | `username` | `string` | userName that made the request. |
+
 ### .status.currentHour.byNode[].byUser[].byVerb {id="_statuscurrenthourbynodebyuserbyverb"}
 
 Description
@@ -180,6 +187,7 @@ Type
 | --- | --- | --- |
 | `requestCount` | `integer` | requestCount of requests for verb. |
 | `verb` | `string` | verb of API request (get, list, create, etc...) |
+
 ### .status.last24h {id="_statuslast24h"}
 
 Description
@@ -203,6 +211,7 @@ Type
 | `byNode` | `array` | byNode contains logs of requests per node. |
 | `byNode[]` | `object` | PerNodeAPIRequestLog contains logs of requests to a certain node. |
 | `requestCount` | `integer` | requestCount is a sum of all requestCounts across nodes. |
+
 ### .status.last24h[].byNode {id="_statuslast24hbynode"}
 
 Description
@@ -227,6 +236,7 @@ Type
 | `byUser[]` | `object` | PerUserAPIRequestCount contains logs of a user’s requests. |
 | `nodeName` | `string` | nodeName where the request are being handled. |
 | `requestCount` | `integer` | requestCount is a sum of all requestCounts across all users, even those outside of the top 10 users. |
+
 ### .status.last24h[].byNode[].byUser {id="_statuslast24hbynodebyuser"}
 
 Description
@@ -252,6 +262,7 @@ Type
 | `requestCount` | `integer` | requestCount of requests by the user across all verbs. |
 | `userAgent` | `string` | userAgent that made the request. The same user often has multiple binaries which connect (pods with many containers).  The different binaries will have different userAgents, but the same user.  In addition, we have userAgents with version information embedded and the userName isn’t likely to change. |
 | `username` | `string` | userName that made the request. |
+
 ### .status.last24h[].byNode[].byUser[].byVerb {id="_statuslast24hbynodebyuserbyverb"}
 
 Description
@@ -283,12 +294,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of APIRequestCount
     *   `GET`: list objects of kind APIRequestCount
     *   `POST`: create an APIRequestCount
-*   `/apis/apiserver.openshift.io/v1/apirequestcounts/{{ name }}`
+*   `/apis/apiserver.openshift.io/v1/apirequestcounts/{{ name }}`{minja}
     *   `DELETE`: delete an APIRequestCount
     *   `GET`: read the specified APIRequestCount
     *   `PATCH`: partially update the specified APIRequestCount
     *   `PUT`: replace the specified APIRequestCount
-*   `/apis/apiserver.openshift.io/v1/apirequestcounts/{{ name }}/status`
+*   `/apis/apiserver.openshift.io/v1/apirequestcounts/{{ name }}/status`{minja}
     *   `GET`: read status of the specified APIRequestCount
     *   `PATCH`: partially update status of the specified APIRequestCount
     *   `PUT`: replace status of the specified APIRequestCount

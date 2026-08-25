@@ -1,5 +1,5 @@
 ---
-title: "RangeAllocation []"
+title: "RangeAllocation [security.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -43,12 +43,12 @@ The following API endpoints are available:
     *   `POST`: create a RangeAllocation
 *   `/apis/security.openshift.io/v1/watch/rangeallocations`
     *   `GET`: watch individual changes to a list of RangeAllocation. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/security.openshift.io/v1/rangeallocations/{{ name }}`
+*   `/apis/security.openshift.io/v1/rangeallocations/{{ name }}`{minja}
     *   `DELETE`: delete a RangeAllocation
     *   `GET`: read the specified RangeAllocation
     *   `PATCH`: partially update the specified RangeAllocation
     *   `PUT`: replace the specified RangeAllocation
-*   `/apis/security.openshift.io/v1/watch/rangeallocations/{{ name }}`
+*   `/apis/security.openshift.io/v1/watch/rangeallocations/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind RangeAllocation. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/security.openshift.io/v1/rangeallocations {id="_apissecurityopenshiftiov1rangeallocations"}

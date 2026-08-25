@@ -48,11 +48,11 @@ You can install {{ tekton_hub }} on your cluster with custom configuration that 
     1.  GitHub Enterprise URL, if you are authenticating using GitHub Enterprise. Do not provide the URL to the catalog as a value for this field.
     1.  GitLab Enterprise URL, if you are authenticating using GitLab Enterprise. Do not provide the URL to the catalog as a value for this field.
 
-        :::note
+    :::note
 
-        You can delete the unused fields for the Git repository hosting service providers that are irrelevant to your deployment.
-        
-        :::
+    You can delete the unused fields for the Git repository hosting service providers that are irrelevant to your deployment.
+    
+    :::
 
 1.  Create a `TektonHub` CR similar to the following example.
     ```yaml
@@ -106,11 +106,11 @@ You can install {{ tekton_hub }} on your cluster with custom configuration that 
     1.  Optional: Customized default scopes.
     1.  The time interval after which the catalog refreshes automatically. The supported units of time are seconds (`s`), minutes (`m`), hours (`h`), days (`d`), and weeks (`w`). The default interval is 30 minutes.
 
-        :::note
+    :::note
 
-        If you do not provide custom values for the optional fields in the `TektonHub` CR, the default values configured in the {{ tekton_hub }} API config map is used.
-        
-        :::
+    If you do not provide custom values for the optional fields in the `TektonHub` CR, the default values configured in the {{ tekton_hub }} API config map is used.
+    
+    :::
 
 1.  Apply the `TektonHub` CR.
     ```terminal

@@ -11,14 +11,17 @@ const table = tv({
 
 interface Props {
   class?: string;
+  /** Optional table caption, rendered as a `<caption>` (bottom-aligned). */
+  caption?: string;
   [key: string]: unknown;
 }
 
-const { class: className, ...rest } = Astro.props;
+const { class: className, caption, ...rest } = Astro.props;
 ---
 
 <div class={tableContainer()}>
   <table class={table({ class: className })} {...rest}>
+    {caption && <caption class="text-sm text-muted-foreground mt-2">{caption}</caption>}
     <slot />
   </table>
 </div>

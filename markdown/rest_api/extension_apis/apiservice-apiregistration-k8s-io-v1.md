@@ -1,5 +1,5 @@
 ---
-title: "APIService []"
+title: "APIService [apiregistration.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification. |
 | `status` | `object` | APIServiceStatus contains derived information about an API server |
+
 ### .spec {id="_spec"}
 
 Description
@@ -47,6 +48,7 @@ Required
 | `service` | `object` | ServiceReference holds a reference to Service.legacy.k8s.io |
 | `version` | `string` | Version is the API version this server hosts.  For example, "v1" |
 | `versionPriority` | `integer` | VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it’s inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. |
+
 ### .spec.service {id="_specservice"}
 
 Description
@@ -61,6 +63,7 @@ Type
 | `name` | `string` | Name is the name of the service |
 | `namespace` | `string` | Namespace is the namespace of the service |
 | `port` | `integer` | If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive). |
+
 ### .status {id="_status"}
 
 Description
@@ -74,6 +77,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | Current service state of apiService. |
 | `conditions[]` | `object` | APIServiceCondition describes the state of an APIService at a particular point |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -115,14 +119,14 @@ The following API endpoints are available:
     *   `POST`: create an APIService
 *   `/apis/apiregistration.k8s.io/v1/watch/apiservices`
     *   `GET`: watch individual changes to a list of APIService. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apiregistration.k8s.io/v1/apiservices/{{ name }}`
+*   `/apis/apiregistration.k8s.io/v1/apiservices/{{ name }}`{minja}
     *   `DELETE`: delete an APIService
     *   `GET`: read the specified APIService
     *   `PATCH`: partially update the specified APIService
     *   `PUT`: replace the specified APIService
-*   `/apis/apiregistration.k8s.io/v1/watch/apiservices/{{ name }}`
+*   `/apis/apiregistration.k8s.io/v1/watch/apiservices/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind APIService. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/apiregistration.k8s.io/v1/apiservices/{{ name }}/status`
+*   `/apis/apiregistration.k8s.io/v1/apiservices/{{ name }}/status`{minja}
     *   `GET`: read status of the specified APIService
     *   `PATCH`: partially update status of the specified APIService
     *   `PUT`: replace status of the specified APIService

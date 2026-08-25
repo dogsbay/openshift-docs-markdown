@@ -24,35 +24,36 @@ Machine pool update
     For more information on region availabilities, see [Regions and availability zones](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/#rosa-sdpolicy-regions-az_rosa-hcp-service-definition).
 {% endif %}
 
-    ROSA CLI update
-    :   The ROSA CLI (`rosa`) was updated to a new version. For information about what has changed in this release, see the [ROSA CLI release notes](https://github.com/openshift/rosa/releases/tag/v1.2.36). For more information about the ROSA CLI (`rosa`), see
+
+ROSA CLI update
+:   The ROSA CLI (`rosa`) was updated to a new version. For information about what has changed in this release, see the [ROSA CLI release notes](https://github.com/openshift/rosa/releases/tag/v1.2.36). For more information about the ROSA CLI (`rosa`), see
 {%- if openshift_rosa %}
     [About the ROSA CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/#rosa-about_rosa-getting-started-cli).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     [About the ROSA CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli).
-{% endif %}
+{%- endif %}
 
 
 Log linking is enabled by default
-    :   Beginning with {{ product_title }} 4.15, log linking is enabled by default. Log linking gives you access to the container logs for your pods.
+:   Beginning with {{ product_title }} 4.15, log linking is enabled by default. Log linking gives you access to the container logs for your pods.
 
 
 Availability zone update
-    :   You can now optionally select a single availability zone (AZ) for machine pools when you have a multi-AZ cluster. For more information, see
+:   You can now optionally select a single availability zone (AZ) for machine pools when you have a multi-AZ cluster. For more information, see
 {%- if openshift_rosa %}
     [Creating a machine pool using the ROSA CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cluster_administration/#creating_machine_pools_cli_rosa-managing-worker-nodes).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     [Creating a machine pool using the ROSA CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cluster_administration/index#creating_machine_pools_cli_rosa-managing-worker-nodes).
-{% endif %}
+{%- endif %}
 
 
 Delete cluster command enhancement
-    :   With the release of ROSA CLI (`rosa`) version 1.2.31, the `--best-effort` argument was added, which allows you to force-delete clusters when using the `rosa delete cluster` command. For more information, see
+:   With the release of ROSA CLI (`rosa`) version 1.2.31, the `--best-effort` argument was added, which allows you to force-delete clusters when using the `rosa delete cluster` command. For more information, see
 {%- if openshift_rosa %}
     [delete cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-delete-cluster_rosa-managing-objects-cli).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     [delete cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-delete-cluster_rosa-managing-objects-cli).
-{% endif %}
+{%- endif %}

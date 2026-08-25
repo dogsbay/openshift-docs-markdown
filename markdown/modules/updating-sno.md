@@ -13,8 +13,8 @@ However, note the following limitations:
     *   If the update payload does not contain an operating system update or machine configuration changes, a short API outage occurs and resolves quickly.
 
 
-:::important
+    :::important
 
-There are conditions, such as bugs in an updated package, that can cause the single node to not restart after a reboot. In this case, the update does not rollback automatically.
-
-:::
+    There are conditions, such as bugs in an updated package, that can cause the single node to not restart after a reboot. In this case, the update does not rollback automatically.
+    
+    :::

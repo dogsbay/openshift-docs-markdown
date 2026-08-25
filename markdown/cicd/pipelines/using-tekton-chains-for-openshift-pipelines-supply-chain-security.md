@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using Tekton Chains for {{ pipelines_shortname }} supply chain security {id="using-tekton-chains-for-openshift-pipelines-supply-chain-security"}
 {% include "./_attributes/common-attributes.md" %}
+# Using Tekton Chains for {{ pipelines_shortname }} supply chain security {id="using-tekton-chains-for-openshift-pipelines-supply-chain-security"}
 {%- set context = "using-tekton-chains-for-openshift-pipelines-supply-chain-security" %}
 
 {{ tekton_chains }} is a Kubernetes Custom Resource Definition (CRD) controller. You can use it to manage the supply chain security of the tasks and pipelines created using {{ pipelines_title }}. {._abstract}
@@ -28,8 +28,8 @@ To capture information about task runs, {{ tekton_chains }} uses `Result` object
 {% leveloffset +1 %}{% include "./modules/op-creating-and-verifying-task-run-signatures-without-any-additional-authentication.md" %}{% endleveloffset %}
 ### Additional resources {id="_additional_resources"}
 
-*   [#!signing-secrets-in-tekton-chains_{{ context }}](#signing-secrets-in-tekton-chains_{{ context }})
-*   [#!configuring-tekton-chains_{{ context }}](#configuring-tekton-chains_{{ context }})
+*   [signing-secrets-in-tekton-chains_{{ context }}](#signing-secrets-in-tekton-chains_{{ context }})
+*   [configuring-tekton-chains_{{ context }}](#configuring-tekton-chains_{{ context }})
 
 {% leveloffset +1 %}{% include "./modules/op-using-tekton-chains-to-sign-and-verify-image-and-provenance.md" %}{% endleveloffset %}
 

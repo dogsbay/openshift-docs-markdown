@@ -55,7 +55,7 @@ Several command-line interface (CLI) tools are required to deploy and work with 
         ```
 
         For example:
-        ```terminal
+        ```terminal {minja}
         1.2.47
         Your {{ rosa_cli }} is up to date.
         ```
@@ -144,5 +144,5 @@ Several command-line interface (CLI) tools are required to deploy and work with 
 *   [Getting started with the OpenShift CLI](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html)
 
 {% if context == "rosa-hcp-quickstart-guide" %}
-{%- set quickstart = false -%}
+{%- set quickstart = "" -%}
 {% endif %}

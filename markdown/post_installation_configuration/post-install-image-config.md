@@ -8,7 +8,7 @@ title: Configuring image streams and image registries
 # Configuring image streams and image registries {id="post-install-image-config"}
 {%- set context = "post-install-image-config" %}
 
-You can configure image streams, image registries, and pull secrets after installation to control how your cluster accesses, imports, and stores container images.
+You can configure image streams, image registries, and pull secrets after installation to control how your cluster accesses, imports, and stores container images. {._abstract}
 
 You can update the global pull secret for your cluster by either replacing the current pull secret or appending a new pull secret. The procedure is required when users use a separate registry to store images than the registry used during installation. For more information, see "Using image pull secrets".
 
@@ -30,7 +30,7 @@ After installing {{ product_title }} in a disconnected environment, configure th
 
 {% leveloffset +1 %}{% include "./modules/images-cluster-sample-imagestream-import.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Using image pull secrets](/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets)
 *   [Overview of images](/openshift_images/index#overview-of-images)

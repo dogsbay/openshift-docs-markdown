@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring the image registry using {{ policy_gen_cr }} CRs {id="ztp-configuring-pgt-image-registry_{{ context }}"}
 
-Use `{{ policy_gen_cr }}` (PGT) CRs to apply the CRs required to configure the image registry and patch the `imageregistry` configuration. {._abstract}
+Use `{{ policy_gen_cr }}`{minja} (PGT) CRs to apply the CRs required to configure the image registry and patch the `imageregistry` configuration. {._abstract}
 
 **Prerequisites**
 
@@ -12,7 +12,7 @@ Use `{{ policy_gen_cr }}` (PGT) CRs to apply the CRs required to configure the i
 
 **Procedure**
 
-1.  Configure the storage class, persistent volume claim, persistent volume, and image registry configuration in the appropriate `{{ policy_gen_cr }}` CR. For example, to configure an individual site, add the following YAML to the file `{{ policy_prefix }}example-sno-site.yaml`:
+1.  Configure the storage class, persistent volume claim, persistent volume, and image registry configuration in the appropriate `{{ policy_gen_cr }}`{minja} CR. For example, to configure an individual site, add the following YAML to the file `{{ policy_prefix }}example-sno-site.yaml`{minja}:
     ```yaml
     sourceFiles:
       # storage class
@@ -72,7 +72,7 @@ Use `{{ policy_gen_cr }}` (PGT) CRs to apply the CRs required to configure the i
     :::
 
 
-1.  Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository being monitored by the {{ ztp }} ArgoCD application.
+1.  Commit the `{{ policy_gen_cr }}`{minja} change in Git, and then push to the Git repository being monitored by the {{ ztp }} ArgoCD application.
 
 **Verification**
 

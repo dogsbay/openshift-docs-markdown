@@ -31,7 +31,7 @@ Existing control plane `BareMetalHost` objects might have the `externallyProvisi
     ```terminal
     $ oc get clusteroperator bare-metal
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME        VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
     baremetal   {{ product_version }}     True          False      False   3d15h
     ```

@@ -3,11 +3,11 @@ title: Creating a Windows MachineSet object on Nutanix
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating a Windows MachineSet object on Nutanix {id="creating-windows-machineset-nutanix"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating a Windows MachineSet object on Nutanix {id="creating-windows-machineset-nutanix"}
 {%- set context = "creating-windows-machineset-nutanix" %}
 
-You can use a `MachineSet` custom resource (CR) to add a Windows compute node to your Nutanix cluster, where you can run Windows container workloads.
+You can use a `MachineSet` custom resource (CR) to add a Windows compute node to your Nutanix cluster, where you can run Windows container workloads. {._abstract}
 
 For example, you might create infrastructure Windows machine sets and related machines so that you can move supporting Windows workloads to the new Windows machines. For more information about machine sets, see "Overview of machine management".
 
@@ -21,7 +21,7 @@ For example, you might create infrastructure Windows machine sets and related ma
 
 {% leveloffset +1 %}{% include "./modules/machineset-creating.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Overview of machine management](/machine_management/index#overview-of-machine-management)
 *   [Understanding UEFI, Secure Boot, and TPM in the Virtualized Environment (Nutanix documenation)](https://portal.nutanix.com/page/documents/kbs/details?targetId=kA07V000000H3K9SAK)

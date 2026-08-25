@@ -3,15 +3,16 @@ title: Installing a cluster on IBM PowerVC with customizations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on IBM PowerVC with customizations {id="installing-ibm-powervc-installer-custom"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on IBM PowerVC with customizations {id="installing-ibm-powervc-installer-custom"}
 {%- set context = "installing-ibm-powervc-installer-custom" %}
 
-To install a customized {{ product_title }} cluster on {{ ibm_power_vc_name }}, change the parameters in the `install-config.yaml` file before you run the installation program.
+To install a customized {{ product_title }} cluster on {{ ibm_power_vc_name }}, change the parameters in the `install-config.yaml` file before you run the installation program. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-powervc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -31,6 +32,7 @@ To install a customized {{ product_title }} cluster on {{ ibm_power_vc_name }}, 
 {% leveloffset +2 %}{% include "./modules/installation-ibm-powervc-standard-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_power_vc_name }}](/installing/installing_ibm_powervc/installation-config-parameters-ibm-powervc#installation-config-parameters-ibm-powervc)
 
@@ -47,11 +49,13 @@ To install a customized {{ product_title }} cluster on {{ ibm_power_vc_name }}, 
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 <a name="additional-resources_installing-ibm-powervc-customizations-console"></a>**Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 <a name="additional-resources_installing-ibm-powervc-customizations-telemetry"></a>**Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

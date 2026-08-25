@@ -4,7 +4,6 @@
 The networking `CloudFormation` template creates the Route 53 DNS entries and load balancers on {{ aws_first }} that route traffic to your {{ product_title }} control plane and applications. {._abstract}
 
 ```yaml title="CloudFormation template for the network and load balancers"
-```yaml
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Network Elements (Route53 & LBs)
 
@@ -403,7 +402,6 @@ Outputs:
   InternalServiceTargetGroupArn:
     Description: ARN of the internal service target group.
     Value: !Ref InternalServiceTargetGroup
-```
 ```
 
 

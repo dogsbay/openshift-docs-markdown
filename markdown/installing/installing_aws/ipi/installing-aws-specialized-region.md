@@ -3,15 +3,15 @@ title: "Installing a cluster on {{ aws_short }} into a specialized region"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on {{ aws_short }} into a specialized region {id="installing-aws-specialized-region"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on {{ aws_short }} into a specialized region {id="installing-aws-specialized-region"}
 {%- set context = "installing-aws-specialized-region" %}
 
-You can install a cluster on {{ aws_first }} into specialized regions, including secret and top secret regions, government regions, and China regions. To configure the region, modify parameters in the `install-config.yaml` file before you install the cluster.
+You can install a cluster on {{ aws_first }} into specialized regions, including secret and top secret regions, government regions, and China regions. To configure the region, modify parameters in the `install-config.yaml` file before you install the cluster. {._abstract}
 
 The following specialized regions are supported:
 
-***Specialized regions***
+**Specialized regions**
 
 <table>
 <thead>
@@ -41,7 +41,7 @@ The following specialized regions are supported:
 
 In {{ product_title }} {{ product_version }}, the installation program uses Cluster API instead of Terraform to provision cluster infrastructure during installations on AWS. Installing a cluster on {{ aws_short }} into a secret or top-secret region by using the Cluster API implementation has not been tested as of the release of {{ product_title }} {{ product_version }}. This document will be updated when installation into a secret region has been tested.
 
-There is a known issue with Network Load Balancers' support for security groups in secret or top secret regions that causes installations in these regions to fail. For more information, see [OCPBUGS-33311](https://issues.redhat.com/browse/OCPBUGS-33311).
+There is a known issue with Network Load Balancers' support for security groups in secret or top secret regions that causes installations in these regions to fail. For more information, see "OCPBUGS-33311".
 
 The maximum supported MTU in the {{ aws_short }} SC2S and C2S regions is not the same as
 the public regions. For more information about configuring MTU during installation,
@@ -58,6 +58,7 @@ a cluster on {{ aws_short }} with network customizations_
 {% leveloffset +1 %}{% include "./modules/installation-aws-marketplace-government.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
@@ -74,6 +75,7 @@ a cluster on {{ aws_short }} with network customizations_
 {% leveloffset +1 %}{% include "./modules/installation-aws-upload-custom-rhcos-ami.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Import a disk as an EBS snapshot using VM Import/Export ({{ aws_short }} documentation)](https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-import-snapshot.html)
 *   [Create an AMI from a snapshot ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot)
@@ -81,18 +83,21 @@ a cluster on {{ aws_short }} with network customizations_
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
 {% leveloffset +2 %}{% include "./modules/installation-aws-config-yaml-customizations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for AWS](/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -124,8 +129,9 @@ a cluster on {{ aws_short }} with network customizations_
 
 {% leveloffset +1 %}{% include "./modules/logging-in-by-using-the-web-console.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
+*   [OCPBUGS-33311](https://issues.redhat.com/browse/OCPBUGS-33311)
 *   [Accessing the web console](/web_console/web-console#web-console)
 *   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)

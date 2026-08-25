@@ -7,8 +7,8 @@ title: Installing a user-provisioned bare metal cluster on a disconnected enviro
 {% endif %}
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a user-provisioned bare metal cluster on a disconnected environment {id="installing-restricted-networks-bare-metal"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a user-provisioned bare metal cluster on a disconnected environment {id="installing-restricted-networks-bare-metal"}
 {%- set context = "installing-restricted-networks-bare-metal" %}
 
 In {{ product_title }} {{ product_version }}, you can install a cluster on
@@ -64,12 +64,14 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
 {% leveloffset +2 %}{% include "./modules/csr-management.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Configuring a three-node cluster](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-three-node-cluster_installing-restricted-networks-bare-metal) for details about deploying three-node clusters in bare metal environments.
 *   See [Approving the certificate signing requests for your machines](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-approve-csrs_installing-restricted-networks-bare-metal) for more information about approving cluster certificate signing requests after installation.
@@ -77,6 +79,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-network-user-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring chrony time service](/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 
@@ -85,6 +88,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +3 %}{% include "./modules/installation-dns-user-infra-example.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Validating DNS resolution for user-provisioned infrastructure](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-user-provisioned-validating-dns_installing-restricted-networks-bare-metal)
 
@@ -97,6 +101,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/creating-manifest-file-customized-br-ex-bridge.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Converting to a dual-stack cluster network](/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 *   [Expanding the cluster](/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)
@@ -106,6 +111,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/installation-infrastructure-user-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Requirements for a cluster with user-provisioned infrastructure](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-requirements-user-infra_installing-restricted-networks-bare-metal)
 *   [Installing {{ op_system }} and starting the {{ product_title }} bootstrap process](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#creating-machines-bare-metal_installing-restricted-networks-bare-metal)
@@ -119,6 +125,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/installation-user-provisioned-validating-dns.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [User-provisioned DNS requirements](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-dns-user-infra_installing-restricted-networks-bare-metal)
 *   [Load balancing requirements for user-provisioned infrastructure](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-load-balancing-user-infra_installing-restricted-networks-bare-metal)
@@ -126,18 +133,21 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/ssh-agent-using.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Verifying node health](/support/troubleshooting/verifying-node-health#verifying-node-health)
 
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for bare metal](/installing/installing_bare_metal/upi/installation-config-parameters-bare-metal#installation-config-parameters-bare-metal)
 
 {% leveloffset +2 %}{% include "./modules/installation-bare-metal-config-yaml.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Load balancing requirements for user-provisioned infrastructure](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-load-balancing-user-infra_installing-restricted-networks-bare-metal) for more information on the API and application ingress load balancing requirements.
 
@@ -148,6 +158,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/installation-user-infra-generate-k8s-manifest-ignition.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Recovering from expired control plane certificates](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs) for more information about recovering kubelet certificates.
 
@@ -156,6 +167,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/creating-machines-bare-metal.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [coreos-installer image mirror](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/coreos-installer/)
 
@@ -174,6 +186,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +3 %}{% include "./modules/installation-user-infra-machines-advanced-ignition.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Getting started with nmcli](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_networking/index#getting-started-with-nmcli_configuring-and-managing-networking)
 *   [Getting started with nmtui](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_networking/index#getting-started-with-nmtui_configuring-and-managing-networking)
@@ -197,12 +210,14 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +4 %}{% include "./modules/installation-user-infra-machines-advanced-customizing-live-iscsi-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
 {% leveloffset +4 %}{% include "./modules/installation-user-infra-machines-advanced-customizing-live-iscsi-ibft.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -223,6 +238,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-machines-static-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -253,6 +269,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/installation-installing-bare-metal.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Monitoring installation progress](/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations) for more information about monitoring the installation logs and retrieving diagnostic data if installation issues arise.
 
@@ -263,6 +280,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/installation-operators-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Gathering logs from a failed installation](/support/troubleshooting/troubleshooting-installations#installation-bootstrap-gather_troubleshooting-installations) for details about gathering data in the event of a failed {{ product_title }} installation.
 *   See [Troubleshooting Operator issues](/support/troubleshooting/troubleshooting-operator-issues#troubleshooting-operator-issues) for steps to check Operator pod health across the cluster and gather Operator logs for diagnosis.
@@ -284,10 +302,11 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
 
-## Next steps {id="_next_steps"}
+## Next steps {id="_next_steps" ._additional-resources}
 
 *   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation).
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).
@@ -299,5 +318,5 @@ This section describes the requirements for deploying {{ product_title }} on use
 *   If necessary, see [Registering your disconnected cluster](/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)
 
 {% if context == "installing-with-agent-based-installer" %}
-{%- set agent = false -%}
+{%- set agent = "" -%}
 {% endif %}

@@ -99,18 +99,18 @@ For bare-metal installations, if you do not assign node IP addresses from the ra
 **Procedure**
 
 1.  Edit your `install-config.yaml` file and add the proxy settings. For example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     baseDomain: my.domain.com
     proxy:
       httpProxy: http://<username>:<pswd>@<ip>:<port>
       httpsProxy: https://<username>:<pswd>@<ip>:<port>
-{%- if not aws %}
+    {%- if not aws %}
       noProxy: example.com
-{% endif %}
-{% if aws %}
+    {%- endif %}
+    {%- if aws %}
       noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com
-{%- endif %}
+    {%- endif %}
     additionalTrustBundle: |
         -----BEGIN CERTIFICATE-----
         <MY_TRUSTED_CA_CERT>
@@ -131,8 +131,8 @@ For bare-metal installations, if you do not assign node IP addresses from the ra
     :   Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with `.` to match subdomains only. For example, `.y.com` matches `x.y.com`, but not `y.com`. Use `*` to bypass the proxy for all destinations.
 {%- if aws %}
         If you have added the Amazon `EC2`, `Elastic Load Balancing`, and `S3` VPC endpoints to your VPC, you must add these endpoints to the `noProxy` field.
-{% endif %}
-{% if vsphere %}
+{%- endif %}
+{%- if vsphere %}
         You must include vCenter’s IP address and the IP range that you use for its machines.
 {%- endif %}
 
@@ -172,66 +172,66 @@ For bare-metal installations, if you do not assign node IP addresses from the ra
 
 
 {% if context == "installing-aws-china-region" %}
-{%- set aws = false -%}
-{%- set aws_china = false -%}
+{%- set aws = "" -%}
+{%- set aws_china = "" -%}
 {% endif %}
 {% if context == "installing-aws-customizations" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-private" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-vpc" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-specialized-region" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-user-infra" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-government-region" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws-installer-provisioned" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-secret-region" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-bare-metal" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "installing-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra" %}
-{%- set gcp = false -%}
-{%- set three_node_cluster = false -%}
+{%- set gcp = "" -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set gcp = false -%}
-{%- set user_infra_vpc = false -%}
+{%- set gcp = "" -%}
+{%- set user_infra_vpc = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp" %}
-{%- set gcp = false -%}
-{%- set restricted = false -%}
+{%- set gcp = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-network-customizations" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-installer-provisioned-customizations" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-installer-provisioned-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}

@@ -34,7 +34,7 @@ Configuring GitHub authentication allows users to log in to {{ product_title }} 
 **Procedure**
 
 1.  Navigate to {{ cluster_manager_url }} and select your cluster.
-1.  Select **Access control** -> **Identity providers**.
+1.  Select **Access control** → **Identity providers**.
 1.  Select the **GitHub** identity provider type from the **Add identity provider** drop-down menu.
 1.  Enter a unique name for the identity provider. The name cannot be changed later.
 1.  Register an OAuth application in your GitHub organization by following the steps in the [GitHub documentation](https://docs.github.com/en/developers/apps/creating-an-oauth-app).
@@ -86,4 +86,4 @@ Configuring GitHub authentication allows users to log in to {{ product_title }} 
 
 **Verification**
 
-*   After the configuration becomes active, the identity provider is listed under **Access control** -> **Identity providers** on the {{ cluster_manager_url }} page for your cluster.
+*   After the configuration becomes active, the identity provider is listed under **Access control** → **Identity providers** on the {{ cluster_manager_url }} page for your cluster.

@@ -5,7 +5,7 @@ To manage compute machine sets in an {{ product_title }} cluster on vCenter, you
 
 If you cannot use an account with global administrative privileges, you must create roles to grant the minimum required privileges. The following table lists the minimum vCenter roles and privileges that are required to create, scale, and delete compute machine sets and to delete machines in your {{ product_title }} cluster.
 
-***Minimum vCenter roles and privileges required for compute machine set management***
+**Minimum vCenter roles and privileges required for compute machine set management**
 
 <table>
 <thead>
@@ -19,7 +19,7 @@ If you cannot use an account with global administrative privileges, you must cre
 <tr>
   <td>vSphere vCenter</td>
   <td>Always</td>
-  <td><code>InventoryService.Tagging.AttachTag</code><code>InventoryService.Tagging.CreateCategory</code><code>InventoryService.Tagging.CreateTag</code><code>InventoryService.Tagging.DeleteCategory</code><code>InventoryService.Tagging.DeleteTag</code><code>InventoryService.Tagging.EditCategory</code><code>InventoryService.Tagging.EditTag</code><code>Sessions.ValidateSession</code><code>StorageProfile.Update</code>^1^<code>StorageProfile.View</code>^1^</td>
+  <td><code>InventoryService.Tagging.AttachTag</code> <code>InventoryService.Tagging.CreateCategory</code> <code>InventoryService.Tagging.CreateTag</code> <code>InventoryService.Tagging.DeleteCategory</code> <code>InventoryService.Tagging.DeleteTag</code> <code>InventoryService.Tagging.EditCategory</code> <code>InventoryService.Tagging.EditTag</code> <code>Sessions.ValidateSession</code> <code>StorageProfile.Update</code>^1^ <code>StorageProfile.View</code>^1^</td>
 </tr>
 <tr>
   <td>vSphere vCenter Cluster</td>
@@ -29,7 +29,7 @@ If you cannot use an account with global administrative privileges, you must cre
 <tr>
   <td>vSphere datastore</td>
   <td>Always</td>
-  <td><code>Datastore.AllocateSpace</code><code>Datastore.Browse</code></td>
+  <td><code>Datastore.AllocateSpace</code> <code>Datastore.Browse</code></td>
 </tr>
 <tr>
   <td>vSphere Port Group</td>
@@ -39,22 +39,22 @@ If you cannot use an account with global administrative privileges, you must cre
 <tr>
   <td>Virtual Machine Folder</td>
   <td>Always</td>
-  <td><code>VirtualMachine.Config.AddRemoveDevice</code><code>VirtualMachine.Config.AdvancedConfig</code><code>VirtualMachine.Config.Annotation</code><code>VirtualMachine.Config.CPUCount</code><code>VirtualMachine.Config.DiskExtend</code><code>VirtualMachine.Config.Memory</code><code>VirtualMachine.Config.Settings</code><code>VirtualMachine.Interact.PowerOff</code><code>VirtualMachine.Interact.PowerOn</code><code>VirtualMachine.Inventory.CreateFromExisting</code><code>VirtualMachine.Inventory.Delete</code><code>VirtualMachine.Provisioning.Clone</code></td>
+  <td><code>VirtualMachine.Config.AddRemoveDevice</code> <code>VirtualMachine.Config.AdvancedConfig</code> <code>VirtualMachine.Config.Annotation</code> <code>VirtualMachine.Config.CPUCount</code> <code>VirtualMachine.Config.DiskExtend</code> <code>VirtualMachine.Config.Memory</code> <code>VirtualMachine.Config.Settings</code> <code>VirtualMachine.Interact.PowerOff</code> <code>VirtualMachine.Interact.PowerOn</code> <code>VirtualMachine.Inventory.CreateFromExisting</code> <code>VirtualMachine.Inventory.Delete</code> <code>VirtualMachine.Provisioning.Clone</code></td>
 </tr>
 <tr>
   <td>vSphere vCenter data center</td>
   <td>If the installation program creates the virtual machine folder.</td>
-  <td><code>Resource.AssignVMToPool</code><code>VirtualMachine.Provisioning.DeployTemplate</code><br><br>3+a</td>
+  <td><code>Resource.AssignVMToPool</code> <code>VirtualMachine.Provisioning.DeployTemplate</code></td>
 </tr>
 <tr>
-  <td> ^1^ The <code>StorageProfile.Update</code> and <code>StorageProfile.View</code> permissions are required only for storage backends that use the Container Storage Interface (CSI).</td>
+  <td colspan="3">^1^ The <code>StorageProfile.Update</code> and <code>StorageProfile.View</code> permissions are required only for storage backends that use the Container Storage Interface (CSI).</td>
 </tr>
 </tbody>
 </table>
 
 The following table details the permissions and propagation settings that are required for compute machine set management.
 
-***Required permissions and propagation settings***
+**Required permissions and propagation settings**
 
 <table>
 <thead>
@@ -70,10 +70,10 @@ The following table details the permissions and propagation settings that are re
   <td>vSphere vCenter</td>
   <td>Always</td>
   <td>Not required</td>
-  <td>Listed required privileges<br><br>.2+</td>
+  <td>Listed required privileges</td>
 </tr>
 <tr>
-  <td>vSphere vCenter data center</td>
+  <td rowspan="2">vSphere vCenter data center</td>
   <td>Existing folder</td>
   <td>Not required</td>
   <td><code>ReadOnly</code> permission</td>
@@ -82,33 +82,33 @@ The following table details the permissions and propagation settings that are re
   <td>Installation program creates the folder</td>
   <td>Required</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Cluster</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Cluster</td>
   <td>Always</td>
   <td>Required</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter datastore</td>
 </tr>
 <tr>
+  <td>vSphere vCenter datastore</td>
   <td>Always</td>
   <td>Not required</td>
   <td>Listed required privileges</td>
-  <td>vSphere Switch</td>
 </tr>
 <tr>
+  <td>vSphere Switch</td>
   <td>Always</td>
   <td>Not required</td>
   <td><code>ReadOnly</code> permission</td>
-  <td>vSphere Port Group</td>
 </tr>
 <tr>
+  <td>vSphere Port Group</td>
   <td>Always</td>
   <td>Not required</td>
   <td>Listed required privileges</td>
-  <td>vSphere vCenter Virtual Machine Folder</td>
 </tr>
 <tr>
+  <td>vSphere vCenter Virtual Machine Folder</td>
   <td>Existing folder</td>
   <td>Required</td>
   <td>Listed required privileges</td>

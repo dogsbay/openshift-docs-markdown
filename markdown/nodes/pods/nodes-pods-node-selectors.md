@@ -4,10 +4,10 @@ title: Placing pods on specific nodes using node selectors
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-pods-node-selectors" %}
-# Placing pods on specific nodes using node selectors {id="nodes-pods-node-selectors"}
 {% include "./_attributes/common-attributes.md" %}
+# Placing pods on specific nodes using node selectors {id="nodes-pods-node-selectors"}
 
-For a pod to be eligible to run on a specific node, you can include a _node selector_ in the pod spec that has the indicated key-value pairs as the label on that node.
+For a pod to be eligible to run on a specific node, you can include a _node selector_ in the pod spec that has the indicated key-value pairs as the label on that node. {._abstract}
 
 A _node selector_ specifies a map of key-value pairs. The rules are defined using custom labels on nodes and selectors specified in pods.
 

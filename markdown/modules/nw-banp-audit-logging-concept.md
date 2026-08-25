@@ -3,9 +3,7 @@
 
 You can enable audit logging for `BaselineAdminNetworkPolicy` custom resources in {{ product_title }} by annotating each policy with the `k8s.ovn.org/acl-logging` key. {._abstract}
 
-<details>
-<summary>Example of annotation for `BaselineAdminNetworkPolicy` CR</summary>
-
+:::details{title="Example of annotation for `BaselineAdminNetworkPolicy` CR"}
 ```yaml
 apiVersion: policy.networking.k8s.io/v1alpha1
 kind: BaselineAdminNetworkPolicy
@@ -35,7 +33,7 @@ spec:
     to:
     - namespaces: {} # Use the empty selector with caution because it also selects OpenShift namespaces as well.
 ```
-</details>
+:::
 
 In the example, an event in which any of the namespaces with the label `tenant: dns` accesses the namespaces with the label `tenant: workloads`, a log is generated.
 
@@ -51,18 +49,16 @@ The following is a direction index for the examples log entries that follow:
 <tbody>
 <tr>
   <td>Ingress</td>
-  <td>Rule0:: Allow from tenant <code>dns</code> to tenant <code>workloads</code>; Ingress0: <code>Allow</code>Rule1:: Deny to tenant <code>workloads</code> from all pods; Ingress1: <code>Deny</code></td>
+  <td><dl><dt>Rule0</dt><dd>Allow from tenant <code>dns</code> to tenant <code>workloads</code>; Ingress0: <code>Allow</code></dd><dt>Rule1</dt><dd>Deny to tenant <code>workloads</code> from all pods; Ingress1: <code>Deny</code></dd></dl></td>
 </tr>
 <tr>
   <td>Egress</td>
-  <td>Rule0:: Deny to all pods; Egress0: <code>Deny</code></td>
+  <td><dl><dt>Rule0</dt><dd>Deny to all pods; Egress0: <code>Deny</code></dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-<details>
-<summary>Example ACL allow log entry for `Allow` action of `default` BANP with `Ingress:0`</summary>
-
+:::details{title="Example ACL allow log entry for `Allow` action of `default` BANP with `Ingress:0`"}
 ```text
 2024-06-10T18:11:58.263Z|00022|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:57,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.87,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=60510,tp_dst=8080,tcp_flags=syn
 2024-06-10T18:11:58.264Z|00023|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:57,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.87,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=60510,tp_dst=8080,tcp_flags=psh|ack
@@ -71,11 +67,9 @@ The following is a direction index for the examples log entries that follow:
 2024-06-10T18:11:58.264Z|00026|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:57,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.87,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=60510,tp_dst=8080,tcp_flags=fin|ack
 2024-06-10T18:11:58.264Z|00027|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:57,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.87,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=60510,tp_dst=8080,tcp_flags=ack
 ```
-</details>
+:::
 
-<details>
-<summary>Example ACL allow log entry for `Allow` action of `default` BANP with `Egress:0` and `Ingress:1`</summary>
-
+:::details{title="Example ACL allow log entry for `Allow` action of `default` BANP with `Egress:0` and `Ingress:1`"}
 ```text
 2024-06-10T18:09:57.774Z|00016|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Egress:0", verdict=drop, severity=alert, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:56,dl_dst=0a:58:0a:82:02:57,nw_src=10.130.2.86,nw_dst=10.130.2.87,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=45614,tp_dst=8080,tcp_flags=syn
 2024-06-10T18:09:58.809Z|00017|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Egress:0", verdict=drop, severity=alert, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:56,dl_dst=0a:58:0a:82:02:57,nw_src=10.130.2.86,nw_dst=10.130.2.87,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=45614,tp_dst=8080,tcp_flags=syn
@@ -84,11 +78,11 @@ The following is a direction index for the examples log entries that follow:
 2024-06-10T18:10:26.457Z|00020|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:1", verdict=drop, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:58,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.88,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=40630,tp_dst=8080,tcp_flags=syn
 2024-06-10T18:10:28.505Z|00021|acl_log(ovn_pinctrl0)|INFO|name="BANP:default:Ingress:1", verdict=drop, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:82:02:58,dl_dst=0a:58:0a:82:02:56,nw_src=10.130.2.88,nw_dst=10.130.2.86,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=40630,tp_dst=8080,tcp_flags=syn
 ```
-</details>
+:::
 
 The following table describes BANP annotation:
 
-***Audit logging BaselineAdminNetworkPolicy annotation***
+**Audit logging BaselineAdminNetworkPolicy annotation**
 
 <table>
 <thead>
@@ -100,7 +94,7 @@ The following table describes BANP annotation:
 <tbody>
 <tr>
   <td><code>k8s.ovn.org/acl-logging</code></td>
-  <td>You must specify at least one of <code>Allow</code> or <code>Deny</code> to enable audit logging for a namespace.<br><br><code>Deny</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.<code>Allow</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</td>
+  <td>You must specify at least one of <code>Allow</code> or <code>Deny</code> to enable audit logging for a namespace.<br><br><dl><dt><code>Deny</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd><dt><code>Allow</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd></dl></td>
 </tr>
 </tbody>
 </table>

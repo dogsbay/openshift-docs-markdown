@@ -56,16 +56,13 @@ $ oc get routes -n openshift-console console -o jsonpath='{.status.ingress[0].ho
 
 | Metric | Query |
 | --- | --- |
-| `GET` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"kube-apiserver\ |
-| openshift-apiserver", verb="GET"}[60m])))` | `PATCH` |
-| `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ | openshift-apiserver", verb="PATCH"}[60m])))` |
-| `POST` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ |
-| openshift-apiserver", verb="POST"}[60m])))` | `LIST` |
-| `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ | openshift-apiserver", verb="LIST"}[60m])))` |
-| `PUT` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ |
-| openshift-apiserver", verb="PUT"}[60m])))` | `DELETE` |
-| `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ | openshift-apiserver", verb="DELETE"}[60m])))` |
-| Combined | `histogram_quantile(0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"(openshift-apiserver\ |
+| `GET` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"kube-apiserver\|openshift-apiserver", verb="GET"}[60m])))` |
+| `PATCH` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="PATCH"}[60m])))` |
+| `POST` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="POST"}[60m])))` |
+| `LIST` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="LIST"}[60m])))` |
+| `PUT` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="PUT"}[60m])))` |
+| `DELETE` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\|openshift-apiserver", verb="DELETE"}[60m])))` |
+| Combined | `histogram_quantile(0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"(openshift-apiserver\|kube-apiserver)", verb!="WATCH"}[60m])))` |
 
 **`etcd`**
 

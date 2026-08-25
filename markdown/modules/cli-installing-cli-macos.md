@@ -72,5 +72,5 @@ If you are updating a cluster in a disconnected environment, install the `oc` ve
     ```
 
 {% if context == "mirroring-ocp-image-repository" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

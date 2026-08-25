@@ -3,11 +3,11 @@ title: Managing seccomp profiles
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing seccomp profiles {id="spo-seccomp"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing seccomp profiles {id="spo-seccomp"}
 {%- set context = "spo-seccomp" %}
 
-Create and manage seccomp profiles and bind them to workloads.
+Create and manage seccomp profiles and bind them to workloads. {._abstract}
 
 
 :::important
@@ -27,7 +27,7 @@ The Security Profiles Operator supports only Red Hat Enterprise Linux CoreOS (RH
 
 {% leveloffset +2 %}{% include "./modules/spo-container-profile-instances.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_spo-seccomp"}
+## Additional resources {id="additional-resources_spo-seccomp" ._additional-resources}
 
 *   [Managing security context constraints](/authentication/managing-security-context-constraints#managing-pod-security-policies)
 *   [Managing SCCs in OpenShift](https://cloud.redhat.com/blog/managing-sccs-in-openshift)

@@ -89,7 +89,7 @@ Migrate a {{ sno }} cluster from using a `SiteConfig` CR to a `ClusterInstance` 
     :::
 
     1.  Pull the `ztp-site-generate` container image by running the following command:
-        ```bash
+        ```bash {minja}
         podman pull registry.redhat.io/openshift4/ztp-site-generate-rhel8:{{ product_version }}
         ```
     1.  Run the `siteconfig-converter` tool interactively through the container by running the following command:

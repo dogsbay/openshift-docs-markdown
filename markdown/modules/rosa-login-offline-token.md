@@ -26,6 +26,7 @@ Red&#160;Hat recommends using service accounts for automation purposes.
     ```terminal title="Syntax"
     $ rosa login [arguments]
     ```
+
     **Arguments**
 
     | Option | Definition |
@@ -36,6 +37,7 @@ Red&#160;Hat recommends using service accounts for automation purposes.
     | --scope | The OpenID scope (string). If this option is used, it replaces the default scopes. This can be repeated multiple times to specify multiple scopes. Default: `openid` |
     | --token | Accesses or refreshes the token (string). |
     | --token-url | The OpenID token URL (string). Default: `https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token` |
+
     **Optional arguments inherited from parent commands**
 
     | Option | Definition |

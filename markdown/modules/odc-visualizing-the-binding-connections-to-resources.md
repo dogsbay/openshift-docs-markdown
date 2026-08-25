@@ -20,12 +20,11 @@ To view the **Label Selector**, consider the following approaches:
     ![odc-label-selector-sb-details](/_assets/images/odc-label-selector-sb-details.png)
 
 
-:::note
+    :::note
 
-To use **Label Selector** and to create one or more connections at once, you must import the YAML file of the `ServiceBinding` resource.
-
-:::
-
+    To use **Label Selector** and to create one or more connections at once, you must import the YAML file of the `ServiceBinding` resource.
+    
+    :::
 
 *   After the connection is established and when you click the binding connector, the service binding connector **Details** side panel appears. You can view the **Label Selector** associated with the service binding on this panel.
 

@@ -9,7 +9,7 @@ To collect {{ logging }} information with `must-gather`:
 
 1.  Navigate to the directory where you want to store the `must-gather` information.
 1.  Run the `oc adm must-gather` command against the {{ logging }} image:
-    {%- if not openshift_origin %}
+{% if not openshift_origin %}
     ```terminal
     $ oc adm must-gather --image=$(oc -n openshift-logging get deployment.apps/cluster-logging-operator -o jsonpath='{.spec.template.spec.containers[?(@.name == "cluster-logging-operator")].image}')
     ```
@@ -18,7 +18,7 @@ To collect {{ logging }} information with `must-gather`:
     ```terminal
     $ oc adm must-gather --image=quay.io/openshift/origin-cluster-logging-operator
     ```
-{%- endif %}
+{% endif %}
 
     The `must-gather` tool creates a new directory that starts with `must-gather.local` within the current directory. For example:
     `must-gather.local.4157245944708210408`.

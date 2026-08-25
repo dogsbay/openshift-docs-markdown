@@ -28,8 +28,8 @@ To manage and modify the user level access, configure the RBAC section in Argo C
     ```
 
 
-:::note
+    :::note
 
-Currently, RHSSO cannot read the group information of {{ gitops_title }} users. Therefore, configure the RBAC at the user level.
-
-:::
+    Currently, RHSSO cannot read the group information of {{ gitops_title }} users. Therefore, configure the RBAC at the user level.
+    
+    :::

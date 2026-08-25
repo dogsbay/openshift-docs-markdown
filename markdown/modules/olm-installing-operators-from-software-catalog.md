@@ -12,7 +12,7 @@ The software catalog in {{ product_title }} is the interface for discovering Ope
 As a cluster administrator, you can install an Operator from the software catalog by using the {{ product_title }}
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
 web console or CLI. Subscribing an Operator to one or more namespaces makes the Operator available to developers on your cluster.
-{% endif %}
+{%- endif %}
 {% endif %}
 
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
@@ -33,9 +33,7 @@ Installation Mode
 {% endif %}
 {% endif %}
 {% if olm_user %}
-
-Installation Mode
-:   Choose a specific namespace in which to install the Operator.
+Installation Mode:: Choose a specific namespace in which to install the Operator.
 {% endif %}
 
 
@@ -51,8 +49,8 @@ Approval Strategy
     If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
     cluster administrator,
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
     `dedicated-admin`,
 {%- endif %}
     you must then manually approve that update request to have the Operator updated to the new version.

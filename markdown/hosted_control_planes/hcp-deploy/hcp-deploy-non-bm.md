@@ -7,7 +7,7 @@ title: "Deploying {{ hcp }} on non-bare-metal agent machines"
 # Deploying {{ hcp }} on non-bare-metal agent machines {id="hcp-deploy-non-bm"}
 {%- set context = "hcp-deploy-non-bm" %}
 
-To maintain infrastructure flexibility while using existing virtualization layers, you can deploy {{ hcp }} on non-bare-metal Agent machines. You can use the management benefits of the Agent platform when running on virtualized environments or other cloud-based virtual machines.
+To maintain infrastructure flexibility while using existing virtualization layers, you can deploy {{ hcp }} on non-bare-metal Agent machines. You can use the management benefits of the Agent platform when running on virtualized environments or other cloud-based virtual machines. {._abstract}
 
 {%- set FeatureName = "{{ hcp_capital }} on non-bare-metal agent machines" %}
 {% include "./snippets/technology-preview.md" %}
@@ -31,12 +31,14 @@ A _hosted cluster_ is an {{ product_title }} cluster with its API endpoint and c
 The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see "Disabling the automatic import of hosted clusters into {{ mce_short }}".
 
 **Additional resources**
+{._additional-resources}
 
 *   [Disabling the automatic import of hosted clusters into {{ mce_short }}](/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
 
 {% leveloffset +1 %}{% include "./modules/hcp-non-bm-prepare.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Enabling the central infrastructure management service ({{ rh_rhacm_title }} documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#enable-cim)
 *   [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
@@ -45,6 +47,7 @@ The hosted cluster is automatically imported as a managed cluster. If you want t
 {% leveloffset +2 %}{% include "./modules/hcp-non-bm-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Advanced configuration ({{ rh_rhacm_title }} documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 *   [Enabling the central infrastructure management service ({{ rh_rhacm_title }} documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
@@ -54,6 +57,7 @@ The hosted cluster is automatically imported as a managed cluster. If you want t
 {% leveloffset +2 %}{% include "./modules/hcp-non-bm-infra-reqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
 *   [Persistent storage using logical volume manager storage](/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms_logical-volume-manager-storage)
@@ -68,6 +72,7 @@ The hosted cluster is automatically imported as a managed cluster. If you want t
 {% leveloffset +1 %}{% include "./modules/hcp-non-bm-hc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually importing a hosted cluster](/hosted_control_planes/hcp-import#hcp-import-manual_hcp-import)
 *   [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)
@@ -76,6 +81,7 @@ The hosted cluster is automatically imported as a managed cluster. If you want t
 {% leveloffset +1 %}{% include "./modules/hcp-non-bm-hc-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a credential for an on-premises environment ({{ rh_rhacm_title }} documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#creating-a-credential-for-an-on-premises-environment)
 *   [Accessing the web console](/web_console/web-console#web-console-overview)
@@ -84,6 +90,7 @@ The hosted cluster is automatically imported as a managed cluster. If you want t
 {% leveloffset +1 %}{% include "./modules/hcp-non-bm-hc-mirror.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the hosted cluster](/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-access_hcp-manage-bm)
 *   [Configuring a custom API server certificate in a hosted cluster](/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)

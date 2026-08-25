@@ -13,6 +13,6 @@ You can uninstall the {{ external_secrets_operator }} from your cluster using th
 
 1.  Log in to the {{ product_title }} web console.
 1.  Uninstall the {{ external_secrets_operator }} using the following steps:
-    1.  Navigate to **Ecosystem** -> **Installed Operators**.
+    1.  Navigate to **Ecosystem** → **Installed Operators**.
     1.  Click the Options menu {{ kebab }} next to the **{{ external_secrets_operator }}** entry and click **Uninstall Operator**.
     1.  In the confirmation dialog, click **Uninstall**.

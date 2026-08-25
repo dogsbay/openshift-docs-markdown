@@ -11,7 +11,7 @@ title: "Introduction to {{ oadp_full }}"
 {%- set namespace = "openshift-adp" -%}
 {%- set local_product = "OADP" %}
 
-Use {{ oadp_first }} to safeguard applications, application-related cluster resources, persistent volumes, and internal images on {{ product_title }}. {{ oadp_short }} backs up containerized applications and virtual machines (VMs). This helps you ensure disaster recovery.
+Use {{ oadp_first }} to safeguard applications, application-related cluster resources, persistent volumes, and internal images on {{ product_title }}. {{ oadp_short }} backs up containerized applications and virtual machines (VMs). This helps you ensure disaster recovery. {._abstract}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
 However, {{ oadp_short }} does not serve as a disaster recovery solution for `etcd` or {{ OCP_short }} Operators.
@@ -42,6 +42,7 @@ Full cluster `backup` and `restore` are not supported.
 {% leveloffset +2 %}{% include "./modules/oadp-operator-supported.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Backup](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 *   [Restore](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)

@@ -24,7 +24,7 @@ To parse the stream metadata, use one of the following methods:
     ```terminal title="Example output"
     ami-0d3e625f84626bbda
     ```
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
     ```terminal title="For aarch64"
     $ openshift-install coreos print-stream-json | jq -r '.architectures.aarch64.images.aws.regions["us-west-1"].image'
     ```

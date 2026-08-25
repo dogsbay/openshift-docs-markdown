@@ -20,11 +20,12 @@ For Knative Eventing, the `mt-broker-filter` and `mt-broker-ingress` deployments
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster administrator or dedicated administrator access.
 {% endif %}
+
 *   The {{ ServerlessOperatorName }} and Knative Eventing are installed on your cluster.
 
 **Procedure**
 
-1.  In the {{ product_title }} web console **Administrator** perspective, navigate to **OperatorHub** -> **Installed Operators**.
+1.  In the {{ product_title }} web console **Administrator** perspective, navigate to **OperatorHub** → **Installed Operators**.
 1.  Select the `knative-eventing` namespace.
 1.  Click **Knative Eventing** in the list of **Provided APIs** for the {{ ServerlessOperatorName }} to go to the **Knative Eventing** tab.
 1.  Click **knative-eventing**, then go to the **YAML** tab in the **knative-eventing** page.

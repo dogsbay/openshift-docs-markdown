@@ -5,7 +5,7 @@ To configure how application services are announced over a Layer 2 network, defi
 
 The following table details parameters for the `l2Advertisements` CR:
 
-***L2 advertisements configuration***
+**L2 advertisements configuration**
 
 <table>
 <thead>

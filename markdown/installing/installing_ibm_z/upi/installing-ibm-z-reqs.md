@@ -7,7 +7,7 @@ title: "Installation requirements for {{ ibm_z_title }} and {{ ibm_linuxone_titl
 # Installation requirements for {{ ibm_z_title }} and {{ ibm_linuxone_title }} infrastructure {id="installing-ibm-z-reqs"}
 {%- set context = "installing-ibm-z-reqs" %}
 
-Before you begin an installation on {{ ibm_z_name }} infrastructure, be sure that your {{ ibm_z_name }} environment meets the following installation requirements.
+Before you begin an installation on {{ ibm_z_name }} infrastructure, be sure that your {{ ibm_z_name }} environment meets the following installation requirements. {._abstract}
 
 For a cluster that contains user-provisioned infrastructure, you must deploy all of the required machines.
 
@@ -15,7 +15,7 @@ For a cluster that contains user-provisioned infrastructure, you must deploy all
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_resource-requirements_{{ context }}"}
+## Additional resources {id="additional-resources_resource-requirements_{{ context }}" ._additional-resources}
 
 *   [Bridging a HiperSockets LAN with a z/VM Virtual Switch ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/zvm/latest?topic=networks-bridging-hipersockets-lan-zvm-virtual-switch)
 *   [Scaling HyperPAV alias devices on Linux guests on z/VM](https://public.dhe.ibm.com/software/dw/linux390/perf/zvm_hpav00.pdf)
@@ -28,7 +28,7 @@ For a cluster that contains user-provisioned infrastructure, you must deploy all
 
 {% leveloffset +2 %}{% include "./modules/preferred-installation-requirements-ibm-z.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_storage_{{ context }}"}
+## Additional resources {id="additional-resources_storage_{{ context }}" ._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -36,7 +36,7 @@ For a cluster that contains user-provisioned infrastructure, you must deploy all
 
 {% leveloffset +2 %}{% include "./modules/installation-network-user-infra.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_network_{{ context }}"}
+## Additional resources {id="additional-resources_network_{{ context }}" ._additional-resources}
 
 *   [Configuring chrony time service](/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 

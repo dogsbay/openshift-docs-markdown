@@ -1,5 +1,5 @@
 ---
-title: "InsightsDataGather []"
+title: "InsightsDataGather [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -30,6 +30,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
+
 ### .spec {id="_spec"}
 
 Description
@@ -46,6 +47,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `gatherConfig` | `object` | gatherConfig is a required spec attribute that includes all the configuration options related to gathering of the Insights data and its uploading to the ingress. |
+
 ### .spec.gatherConfig {id="_specgatherconfig"}
 
 Description
@@ -64,6 +66,7 @@ Required
 | `dataPolicy` | `array (string)` | dataPolicy is an optional list of DataPolicyOptions that allows user to enable additional obfuscation of the Insights archive data. It may not exceed 2 items and must not contain duplicates. Valid values are ObfuscateNetworking and WorkloadNames. When set to ObfuscateNetworking the IP addresses and the cluster domain name are obfuscated. When set to WorkloadNames, the gathered data about cluster resources will not contain the workload names for your deployments. Resources UIDs will be used instead. When omitted no obfuscation is applied. |
 | `gatherers` | `object` | gatherers is a required field that specifies the configuration of the gatherers. |
 | `storage` | `object` | storage is an optional field that allows user to define persistent storage for gathering jobs to store the Insights data archive. If omitted, the gathering job will use ephemeral storage. |
+
 ### .spec.gatherConfig.gatherers {id="_specgatherconfiggatherers"}
 
 Description
@@ -81,6 +84,7 @@ Required
 | --- | --- | --- |
 | `custom` | `object` | custom provides gathering configuration. It is required when mode is Custom, and forbidden otherwise. Custom configuration allows user to disable only a subset of gatherers. Gatherers that are not explicitly disabled in custom configuration will run. |
 | `mode` | `string` | mode is a required field that specifies the mode for gatherers. Allowed values are All, None, and Custom. When set to All, all gatherers will run and gather data. When set to None, all gatherers will be disabled and no data will be gathered. When set to Custom, the custom configuration from the custom field will be applied. |
+
 ### .spec.gatherConfig.gatherers.custom {id="_specgatherconfiggathererscustom"}
 
 Description
@@ -99,8 +103,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configs` | `array` | configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \ |
-| jq '.status.gatherStatus.gatherers[].name'" | `configs[]` | `object` |
+| `configs` | `array` | configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers[].name'" |
+| `configs[]` | `object` | GathererConfig allows to configure specific gatherers |
+
 ### .spec.gatherConfig.gatherers.custom.configs {id="_specgatherconfiggathererscustomconfigs"}
 
 Description
@@ -131,8 +136,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is the required name of a specific gatherer. It may not exceed 256 characters. The format for a gatherer name is: {{ gatherer }}/{{ function }} where the function is optional. Gatherer consists of a lowercase letters only that may include underscores (_). Function consists of a lowercase letters only that may include underscores (_) and is separated from the gatherer by a forward slash (/). The particular gatherers can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \ |
-| jq '.status.gatherStatus.gatherers[].name'" | `state` | `string` |
+| `name` | `string` | name is the required name of a specific gatherer. It may not exceed 256 characters. The format for a gatherer name is: {{ gatherer }}/{{ function }} where the function is optional. Gatherer consists of a lowercase letters only that may include underscores (_). Function consists of a lowercase letters only that may include underscores (_) and is separated from the gatherer by a forward slash (/). The particular gatherers can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers[].name'" |
+| `state` | `string` | state is a required field that allows you to configure specific gatherer. Valid values are "Enabled" and "Disabled". When set to Enabled the gatherer will run. When set to Disabled the gatherer will not run. |
+
 ### .spec.gatherConfig.storage {id="_specgatherconfigstorage"}
 
 Description
@@ -151,6 +157,7 @@ Required
 | --- | --- | --- |
 | `persistentVolume` | `object` | persistentVolume is an optional field that specifies the PersistentVolume that will be used to store the Insights data archive. The PersistentVolume must be created in the openshift-insights namespace. |
 | `type` | `string` | type is a required field that specifies the type of storage that will be used to store the Insights data archive. Valid values are "PersistentVolume" and "Ephemeral". When set to Ephemeral, the Insights data archive is stored in the ephemeral storage of the gathering job. When set to PersistentVolume, the Insights data archive is stored in the PersistentVolume that is defined by the persistentVolume field. |
+
 ### .spec.gatherConfig.storage.persistentVolume {id="_specgatherconfigstoragepersistentvolume"}
 
 Description
@@ -169,6 +176,7 @@ Required
 | --- | --- | --- |
 | `claim` | `object` | claim is a required field that specifies the configuration of the PersistentVolumeClaim that will be used to store the Insights data archive. The PersistentVolumeClaim must be created in the openshift-insights namespace. |
 | `mountPath` | `string` | mountPath is an optional field specifying the directory where the PVC will be mounted inside the Insights data gathering Pod. When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default mount path is /var/lib/insights-operator The path may not exceed 1024 characters and must not contain a colon. |
+
 ### .spec.gatherConfig.storage.persistentVolume.claim {id="_specgatherconfigstoragepersistentvolumeclaim"}
 
 Description
@@ -195,7 +203,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of InsightsDataGather
     *   `GET`: list objects of kind InsightsDataGather
     *   `POST`: create an InsightsDataGather
-*   `/apis/config.openshift.io/v1/insightsdatagathers/{{ name }}`
+*   `/apis/config.openshift.io/v1/insightsdatagathers/{{ name }}`{minja}
     *   `DELETE`: delete an InsightsDataGather
     *   `GET`: read the specified InsightsDataGather
     *   `PATCH`: partially update the specified InsightsDataGather

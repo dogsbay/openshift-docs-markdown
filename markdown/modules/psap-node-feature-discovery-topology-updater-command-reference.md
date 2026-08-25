@@ -113,7 +113,7 @@ $ podman run gcr.io/k8s-staging-nfd/node-feature-discovery:master nfd-topology-u
 
 
 `-watch-namespace`
-:   Specifies the namespace to ensure that resource hardware topology examination only happens for the pods running in the specified namespace. Pods that are not running in the specified namespace are not considered during resource accounting. This is particularly useful for testing and debugging purposes. A `**` value means that all of the pods across all namespaces are considered during the accounting process. Default: `**`.
+:   Specifies the namespace to ensure that resource hardware topology examination only happens for the pods running in the specified namespace. Pods that are not running in the specified namespace are not considered during resource accounting. This is particularly useful for testing and debugging purposes. A `*` value means that all of the pods across all namespaces are considered during the accounting process. Default: `*`.
     ```terminal title="Example"
     $ nfd-topology-updater -watch-namespace=rte
     ```

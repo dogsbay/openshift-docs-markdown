@@ -61,7 +61,6 @@ After evaluating the results of the earlier steps, you can move to the next upgr
     
     :::
 
-
     *   `extraManifests`: Optional: Applies additional manifests, which are not in the seed image, to the target cluster. Also applies `ConfigMap` objects for custom catalog sources.
     *   `oadpContent`: List of `ConfigMap` resources that contain the {{ oadp_short }} `Backup` and `Restore` CRs.
     *   `plan`: Upgrade plan details.

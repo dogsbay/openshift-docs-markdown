@@ -12,6 +12,7 @@ After you install the {{ ServerlessOperatorName }}, you can install Knative Serv
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster administrator or dedicated administrator access.
 {% endif %}
+
 *   You have installed the {{ ServerlessOperatorName }}.
 *   Install the OpenShift CLI (`oc`).
 

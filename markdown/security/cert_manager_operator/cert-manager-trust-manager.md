@@ -3,11 +3,11 @@ title: Distributing certificates by using trust-manager operand
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Distributing certificates by using trust-manager operand {id="cert-manager-trust-manager"}
 {% include "./_attributes/common-attributes.md" %}
+# Distributing certificates by using trust-manager operand {id="cert-manager-trust-manager"}
 {%- set context = "cert-manager-trust-manager" %}
 
-The trust-manager operand simplifies the distribution of certificate authority (CA) certificates across {{ product_title }} clusters. As an administrator, you can configure the operand according to the cluster requirements and manage trust bundles efficiently.
+The trust-manager operand simplifies the distribution of certificate authority (CA) certificates across {{ product_title }} clusters. As an administrator, you can configure the operand according to the cluster requirements and manage trust bundles efficiently. {._abstract}
 
 {%- set FeatureName = "Distributing certificates by using trust manager" %}
 {% leveloffset +1 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}

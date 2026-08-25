@@ -20,7 +20,7 @@ When executing `podman` commands as a non-root or non-privileged user, mounting 
 **Procedure**
 
 *   To run the latency tests on a {{ sno }} cluster, run the following command:
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -e KUBECONFIG=/kubeconfig/kubeconfig \
     -e LATENCY_TEST_RUNTIME=<time_in_seconds> registry.redhat.io/openshift4/cnf-tests-rhel9:v{{ product_version }} \
     /usr/bin/test-run.sh --ginkgo.v --ginkgo.timeout="24h"

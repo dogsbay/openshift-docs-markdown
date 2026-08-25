@@ -7,11 +7,11 @@ You can troubleshoot common monitoring issues by using the procedures in this as
 
 {%- if not (openshift_dedicated or openshift_rosa) %}
 {% leveloffset +1 %}{% include "./modules/monitoring-investigating-why-user-defined-metrics-are-unavailable.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {%- if openshift_dedicated or openshift_rosa %}
 {% leveloffset +1 %}{% include "./modules/sd-monitoring-troubleshooting-issues.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/monitoring-determining-why-prometheus-is-consuming-disk-space.md" %}{% endleveloffset %}
 
@@ -33,4 +33,4 @@ You can troubleshoot common monitoring issues by using the procedures in this as
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   [Configuring alert notifications for default platform monitoring](/observability/monitoring/configuring-core-platform-monitoring/configuring-alerts-and-notifications#configuring-alert-notifications_configuring-alerts-and-notifications)
 *   [Configuring alert notifications for user workload monitoring](/observability/monitoring/configuring-user-workload-monitoring/configuring-alerts-and-notifications-uwm#configuring-alert-notifications_configuring-alerts-and-notifications-uwm)
-{% endif %}
+{%- endif %}

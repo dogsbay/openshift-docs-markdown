@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # About {{ FunctionsProductName }} {id="serverless-functions-about"}
 {%- set context = "serverless-functions-about" %}
-{% include "./_attributes/common-attributes.md" %}
 
 {{ FunctionsProductName }} enables developers to create and deploy stateless, event-driven functions as a Knative service on {{ product_title }}. The `kn func` CLI is provided as a plugin for the Knative `kn` CLI. You can use the `kn func` CLI to create, build, and deploy the container image as a Knative service on the cluster.
 

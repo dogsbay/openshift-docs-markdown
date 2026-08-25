@@ -14,8 +14,8 @@ You can create an index image based on the SQLite database format by using the `
 1.  Start a new index:
     ```terminal
     $ opm index add \
-        --bundles <registry>/<namespace>/<bundle_image_name>:<tag> \//<1>
-        --tag <registry>/<namespace>/<index_image_name>:<tag> \//<2>
+        --bundles <registry>/<namespace>/<bundle_image_name>:<tag> \ (1)
+        --tag <registry>/<namespace>/<index_image_name>:<tag> \ (2)
         [--binary-image <registry_base_image>] (3)
     ```
     1.  Comma-separated list of bundle images to add to the index.

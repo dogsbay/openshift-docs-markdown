@@ -9,7 +9,7 @@ You can customize the visibility of a perspective in the web console by using th
 
 **Procedure**
 
-1.  In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.
+1.  In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 1.  Select the **Configuration** tab and click the **Console (operator.openshift.io)** resource.
 1.  Click the **YAML** tab and make your customization:
     1.  To enable or disable a perspective, insert the snippet for **Add user perspectives** and edit the YAML code as needed:

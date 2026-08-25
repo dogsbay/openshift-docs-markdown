@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring SSO for Argo CD using Keycloak {id="configuring-sso-for-argo-cd-using-keycloak"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring SSO for Argo CD using Keycloak {id="configuring-sso-for-argo-cd-using-keycloak"}
 {%- set context = "configuring-sso-for-argo-cd-using-keycloak" %}
 
 After the {{ gitops_title }} Operator is installed, Argo CD automatically creates a user with `admin` permissions. To manage multiple users, cluster administrators can use Argo CD to configure Single Sign-On (SSO).

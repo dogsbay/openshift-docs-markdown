@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating subscriptions {id="serverless-subs"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating subscriptions {id="serverless-subs"}
 {%- set context = "serverless-subs" %}
 
 After you have created a channel and an event sink, you can create a subscription to enable event delivery. Subscriptions are created by configuring a `Subscription` object, which specifies the channel and the sink (also known as a _subscriber_) to deliver events to.

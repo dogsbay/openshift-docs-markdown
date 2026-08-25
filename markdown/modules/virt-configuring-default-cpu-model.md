@@ -26,11 +26,11 @@ A CPU model configured at the VM level always takes precedence over the cluster-
 **Procedure**
 
 1.  Open the `HyperConverged` CR by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Add the `defaultCPUModel` field to the CR and set the value to the name of a CPU model that exists in the cluster:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

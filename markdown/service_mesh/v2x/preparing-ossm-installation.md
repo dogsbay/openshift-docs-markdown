@@ -3,8 +3,8 @@ title: Preparing to install Service Mesh
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install Service Mesh {id="preparing-ossm-installation"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install Service Mesh {id="preparing-ossm-installation"}
 {%- set context = "preparing-ossm-installation" %}
 
 Before you can install {{ SMProductName }}, you must subscribe to {{ product_title }} and install {{ product_title }} in a supported configuration.
@@ -24,9 +24,9 @@ Before you can install {{ SMProductName }}, you must subscribe to {{ product_tit
     *   [Install {{ product_title }} {{ product_version }} on {{ ibm_power_name }}](/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power)
 {% endif %}
 *   Install the version of the {{ product_title }} command-line utility (the `oc` client tool) that matches your {{ product_title }} version and add it to your path.
-    {%- if openshift_enterprise %}
+{%- if openshift_enterprise %}
     *   If you are using {{ product_title }} {{ product_version }}, see [About the OpenShift CLI](/cli_reference/openshift_cli/getting-started-cli#cli-about-cli_cli-developer-commands).
-{% endif %}
+{%- endif %}
 
 For additional information about {{ SMProductName }} lifecycle and supported platforms, refer to the [Support Policy](https://access.redhat.com/support/policy/updates/openshift#ossm).
 

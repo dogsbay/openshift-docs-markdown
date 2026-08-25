@@ -3,11 +3,11 @@ title: Installing the File Integrity Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing the File Integrity Operator {id="installing-file-integrity-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing the File Integrity Operator {id="installing-file-integrity-operator"}
 {%- set context = "file-integrity-operator-installation" %}
 
-Install the File Integrity Operator on your cluster by using the {{ product_title }} web console or the {{ oc_first }}.
+Install the File Integrity Operator on your cluster by using the {{ product_title }} web console or the {{ oc_first }}. {._abstract}
 
 
 :::important
@@ -22,6 +22,6 @@ As an example, for nodes running {{ op_system }}, all nodes must have the same {
 
 {% leveloffset +1 %}{% include "./modules/file-integrity-operator-installing-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources-installing-the-file-integrity-operator"}
+## Additional resources {id="additional-resources-installing-the-file-integrity-operator" ._additional-resources}
 
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)

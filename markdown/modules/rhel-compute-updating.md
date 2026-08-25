@@ -49,7 +49,7 @@ You cannot update {{ op_system_base }} 7 compute machines to {{ op_system_base }
 
 1.  Enable the repositories that are required for {{ product_title }} {{ product_version }}:
     1.  On the machine that you run the Ansible playbooks, update the required repositories:
-        ```terminal
+        ```terminal {minja}
         # subscription-manager repos --disable=rhocp-4.17-for-rhel-8-x86_64-rpms \
                                      --enable=rhocp-{{ product_version }}-for-rhel-8-x86_64-rpms
         ```
@@ -69,7 +69,7 @@ You cannot update {{ op_system_base }} 7 compute machines to {{ op_system_base }
         # yum update openshift-ansible openshift-clients
         ```
     1.  On each {{ op_system_base }} compute node, update the required repositories:
-        ```terminal
+        ```terminal {minja}
         # subscription-manager repos --disable=rhocp-4.17-for-rhel-8-x86_64-rpms \
                                      --enable=rhocp-{{ product_version }}-for-rhel-8-x86_64-rpms
         ```
@@ -98,11 +98,11 @@ You cannot update {{ op_system_base }} 7 compute machines to {{ op_system_base }
         ```
         1.  For `<path>`, specify the path to the Ansible inventory file that you created.
 
-            :::note
+        :::note
 
-            The `upgrade` playbook only updates the {{ product_title }} packages. It does not update the operating system packages.
-            
-            :::
+        The `upgrade` playbook only updates the {{ product_title }} packages. It does not update the operating system packages.
+        
+        :::
 
 1.  After you update all of the workers, confirm that all of your cluster nodes have updated to the new version:
     ```terminal

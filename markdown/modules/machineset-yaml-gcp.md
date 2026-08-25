@@ -9,19 +9,19 @@
 The sample YAML defines a compute machine set for {{ gcp_first }}, enabling the automated provisioning of nodes within a specific VPC. When you apply this configuration by using the {{ product_title }} CLI, you can ensure consistent scaling, scheduling, and infrastructure ID labeling for compute resources in your cluster. {._abstract}
 
 The sample YAML defines a compute machine set that runs in {{ gcp_full }} and creates nodes that are labeled with
-{% if not infra %}
+{%- if not infra %}
 `node-role.kubernetes.io/<role>: ""`,
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `node-role.kubernetes.io/infra: ""`,
-{% endif %}
+{%- endif %}
 where
-{% if not infra %}
+{%- if not infra %}
 `<role>`
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `infra`
-{% endif %}
+{%- endif %}
 is the node label to add.
 
 ## Values obtained by using the  OpenShift CLI {id="cpmso-yaml-provider-spec-gcp-oc_{{ context }}"}
@@ -44,7 +44,7 @@ Image path
       get machineset/<infrastructure_id>-worker-a
     ```
 
-```yaml title="Sample {{ gcp_short }} MachineSet values"
+```yaml title="Sample {{ gcp_short }} MachineSet values" {minja}
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
@@ -66,8 +66,8 @@ spec:
 {%- if not infra %}
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
         machine.openshift.io/cluster-api-machine-role: <infra>
         machine.openshift.io/cluster-api-machine-type: <infra>
 {%- endif %}
@@ -77,8 +77,8 @@ spec:
         labels:
 {%- if not infra %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           node-role.kubernetes.io/infra: ""
 {%- endif %}
       providerSpec:
@@ -132,8 +132,8 @@ where:
 
 `<role>`
 :   Specifies the node label to add.
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 
 `<infra>`
 :   Specifies the `<infra>` node label.
@@ -157,7 +157,7 @@ where:
 
 `<taints>`
 :   Specifies a taint to prevent user workloads from being scheduled on infra nodes.
-{% endif %}
+{%- endif %}
 
 {% if infra %}
 
@@ -172,5 +172,5 @@ Machine sets running on {{ gcp_short }} support non-guaranteed preemptible VM in
 {% endif %}
 
 {% if context == "creating-infrastructure-machinesets" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}

@@ -20,12 +20,12 @@ You can define the list of `audit` and `infrastructure` sources to collect the l
         - name: mylogs1
           type: infrastructure
           infrastructure:
-            sources: # (1)
+            sources: (1)
               - node
         - name: mylogs2
           type: audit
           audit:
-            sources: # (2)
+            sources: (2)
               - kubeAPI
               - openshiftAPI
               - ovn

@@ -3,8 +3,8 @@
 
 You can use {{ cluster_manager_first }} to add a cluster-wide proxy configuration to an existing {{ product_title }} cluster in a Virtual Private Cloud (VPC).
 {%- if openshift_dedicated %}
-You can enable a proxy only for clusters that use the Customer Cloud Subscription (CCS) model.
-{% endif %} {._abstract}
+You can enable a proxy only for clusters that use the Customer Cloud Subscription (CCS) model. {._abstract}
+{%- endif %}
 
 You can also use {{ cluster_manager }} to update an existing cluster-wide proxy configuration. For example, you might need to update the network address for the proxy or replace the additional trust bundle if any of the certificate authorities for the proxy expire.
 

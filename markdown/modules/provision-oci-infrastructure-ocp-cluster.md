@@ -27,7 +27,7 @@ A stack is an {{ oci_first_no_rt }} feature that automates the provisioning of a
     
     :::
 
-    1.  In the {{ oci_distributed_no_rt }} console, navigate to **Resource Manager** -> **Stacks** and click **Create Stack**.
+    1.  In the {{ oci_distributed_no_rt }} console, navigate to **Resource Manager** → **Stacks** and click **Create Stack**.
     1.  Upload the `create-resource-attribution-tags-vX.X.X.zip` file and click **Next**.
     1.  Click **Apply** to create the resource attribution tags.
 

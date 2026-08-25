@@ -37,12 +37,13 @@ When planning to update clusters through multiple sequential y-stream releases, 
 1.  Determine the complete update path:
 
     Identify your current version and target version, then map out the required intermediate versions.
+
     **Example update paths**
 
     | Current version | Update path to 4.22 |
     | --- | --- |
-    | 4.20.20 | 4.20.20 -> 4.21.latest -> 4.22.0 |
-    | 4.19.10 | 4.19.10 -> 4.20.latest -> 4.21.latest -> 4.22.0 |
+    | 4.20.20 | 4.20.20 → 4.21.latest → 4.22.0 |
+    | 4.19.10 | 4.19.10 → 4.20.latest → 4.21.latest → 4.22.0 |
 1.  Update to the first intermediate y-stream version:
 
     Follow the procedure in "Updating clusters through y-stream releases" to update to the first intermediate version.

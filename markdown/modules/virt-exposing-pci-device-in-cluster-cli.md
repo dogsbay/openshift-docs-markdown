@@ -10,13 +10,13 @@ To expose PCI host devices in the cluster, add details about the PCI devices to 
 **Procedure**
 
 1.  Edit the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Add the PCI device information to the `spec.permittedHostDevices.pciHostDevices` array.
 
     Example configuration file:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:
@@ -48,7 +48,7 @@ To expose PCI host devices in the cluster, add details about the PCI devices to 
 
 
         Example configuration file for an {{ ibm_name }} Spyre device on `s390x` architecture:
-        ```yaml
+        ```yaml {minja}
         apiVersion: hco.kubevirt.io/v1beta1
         kind: HyperConverged
         metadata:

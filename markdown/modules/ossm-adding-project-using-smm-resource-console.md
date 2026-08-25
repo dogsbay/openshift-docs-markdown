@@ -13,7 +13,7 @@ You can add one or more projects to the mesh using the `ServiceMeshMember` resou
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu and choose the project that you want to add to the mesh from the drop-down list. For example, `istio-system`.
 1.  Click the {{ SMProductName }} Operator.
 1.  Click the **Istio Service Mesh Member** tab.

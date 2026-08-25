@@ -9,7 +9,7 @@ You can add a volume, a volume mount, or both to pod templates by running the fo
 $ oc set volume <object_type>/<name> --add [options]
 ```
 
-***Supported Options for Adding Volumes***
+**Supported Options for Adding Volumes**
 
 <table>
 <thead>
@@ -37,7 +37,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>-t, --type</code></td>
 </tr>
 <tr>
-  <td>Name of the volume source. Supported values: <code>emptyDir</code>, <code>hostPath</code>, <code>secret</code>,<code>configmap</code>, <code>persistentVolumeClaim</code> or <code>projected</code>.</td>
+  <td>Name of the volume source. Supported values: <code>emptyDir</code>, <code>hostPath</code>, <code>secret</code>, <code>configmap</code>, <code>persistentVolumeClaim</code> or <code>projected</code>.</td>
 </tr>
 <tr>
   <td><code>emptyDir</code></td>
@@ -46,7 +46,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>-c, --containers</code></td>
 </tr>
 <tr>
-  <td>Select containers by name. It can also take wildcard <code>'*'</code> that matches anycharacter.</td>
+  <td>Select containers by name. It can also take wildcard <code>'*'</code> that matches any character.</td>
 </tr>
 <tr>
   <td><code>'*'</code></td>
@@ -91,7 +91,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>--claim-name</code></td>
 </tr>
 <tr>
-  <td>Name of the persistent volume claim. Mandatory parameter for<code>--type=persistentVolumeClaim</code>.</td>
+  <td>Name of the persistent volume claim. Mandatory parameter for <code>--type=persistentVolumeClaim</code>.</td>
 </tr>
 <tr>
   <td></td>
@@ -100,7 +100,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>--source</code></td>
 </tr>
 <tr>
-  <td>Details of volume source as a JSON string. Recommended if the desired volumesource is not supported by <code>--type</code>.</td>
+  <td>Details of volume source as a JSON string. Recommended if the desired volume source is not supported by <code>--type</code>.</td>
 </tr>
 <tr>
   <td></td>
@@ -109,7 +109,7 @@ $ oc set volume <object_type>/<name> --add [options]
   <td><code>-o, --output</code></td>
 </tr>
 <tr>
-  <td>Display the modified objects instead of updating them on the server. Supportedvalues: <code>json</code>, <code>yaml</code>.</td>
+  <td>Display the modified objects instead of updating them on the server. Supported values: <code>json</code>, <code>yaml</code>.</td>
 </tr>
 <tr>
   <td></td>
@@ -133,13 +133,11 @@ For example:
     $ oc set volume dc/registry --add
     ```
 
-    :::tip
+    ::::tip
 
     You can alternatively apply the following YAML to add the volume:
 
-    
-    :::
-
+    :::details{title="Sample deployment config with an added volume"}
     ```yaml
     kind: DeploymentConfig
     apiVersion: apps.openshift.io/v1
@@ -166,26 +164,26 @@ For example:
                 - containerPort: 8080
                   protocol: TCP
     ```
-
     where:
+
 
     `spec.template.spec.volumes`
     :   Specifies the volume source **emptyDir**.
+    :::
+    
+    ::::
 
-    *   To add volume **v1** with secret **secret1** for replication controller **r1** and mount
-    inside the containers at **_/data_**:
+*   To add volume **v1** with secret **secret1** for replication controller **r1** and mount
+inside the containers at **_/data_**:
     ```terminal
     $ oc set volume rc/r1 --add --name=v1 --type=secret --secret-name='secret1' --mount-path=/data
     ```
 
-    :::tip
-
+    ::::tip
 
     You can alternatively apply the following YAML to add the volume:
 
-    
-    :::
-
+    :::details{title="Sample replication controller with added volume and secret"}
     ```yaml
     kind: ReplicationController
     apiVersion: v1
@@ -219,31 +217,31 @@ For example:
                 - name: v1
                   mountPath: /data
     ```
-
     where:
 
-`spec.template.spec.volumes`
-:   Specifies the volume and secret.
 
-`spec.template.spec.containers.volumeMounts`
-:   Specifies the container mount path.
+    `spec.template.spec.volumes`
+    :   Specifies the volume and secret.
 
-    *   To add existing persistent volume **v1** with claim name **pvc1** to deployment
-    configuration **_dc.json_** on disk, mount the volume on container **c1** at
-    **_/data_**, and update the `DeploymentConfig` object on the server:
+    `spec.template.spec.containers.volumeMounts`
+    :   Specifies the container mount path.
+    :::
+    
+    ::::
+
+*   To add existing persistent volume **v1** with claim name **pvc1** to deployment
+configuration **_dc.json_** on disk, mount the volume on container **c1** at
+**_/data_**, and update the `DeploymentConfig` object on the server:
     ```terminal
     $ oc set volume -f dc.json --add --name=v1 --type=persistentVolumeClaim \
       --claim-name=pvc1 --mount-path=/data --containers=c1
     ```
 
-    :::tip
-
+    ::::tip
 
     You can alternatively apply the following YAML to add the volume:
 
-    
-    :::
-
+    :::details{title="Sample deployment config with persistent volume added"}
     ```yaml
     kind: DeploymentConfig
     apiVersion: apps.openshift.io/v1
@@ -276,18 +274,21 @@ For example:
                 - name: v1
                   mountPath: /data
     ```
-
     where:
 
-`spec.template.spec.volumes.name.v1`
-:   Specifies the persistent volume claim named `pvc1`.
 
-`spec.template.spec.containers.volumeMounts`
-:   Specifies the container mount path.
+    `spec.template.spec.volumes.name.v1`
+    :   Specifies the persistent volume claim named `pvc1`.
 
-    *   To add a volume **v1** based on Git repository
-    **$$https://github.com/namespace1/project1$$** with revision **5125c45f9f563** for
-    all replication controllers:
+    `spec.template.spec.containers.volumeMounts`
+    :   Specifies the container mount path.
+    :::
+    
+    ::::
+
+*   To add a volume **v1** based on Git repository
+**$$https://github.com/namespace1/project1$$** with revision **5125c45f9f563** for
+all replication controllers:
     ```terminal
     $ oc set volume rc --all --add --name=v1 \
       --source='{"gitRepo": {

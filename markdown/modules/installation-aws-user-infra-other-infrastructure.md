@@ -37,7 +37,7 @@ When configuring the proxy in the `install-config.yaml` file, add these endpoint
 
 You must provide a suitable VPC and subnets that allow communication to your machines.
 
-***Required VPC components***
+**Required VPC components**
 
 <table>
 <thead>
@@ -50,45 +50,52 @@ You must provide a suitable VPC and subnets that allow communication to your mac
 <tbody>
 <tr>
   <td>VPC</td>
-  <td><ul><li><code>AWS::EC2::VPC</code></li><li><code>AWS::EC2::VPCEndpoint</code></li></ul>2+</td>
-  <td>You must provide a public VPC for the cluster to use. The VPC uses an endpoint that references the route tables for each subnet to improve communication with the registry that is hosted in S3.</td>
+  <td><ul><li><code>AWS::EC2::VPC</code></li><li><code>AWS::EC2::VPCEndpoint</code></li></ul></td>
+  <td colspan="2">You must provide a public VPC for the cluster to use. The VPC uses an endpoint that references the route tables for each subnet to improve communication with the registry that is hosted in S3.</td>
+</tr>
+<tr>
   <td>Public subnets</td>
+  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::SubnetNetworkAclAssociation</code></li></ul></td>
+  <td colspan="2">Your VPC must have public subnets for between 1 and 3 availability zones and associate them with appropriate Ingress rules.</td>
 </tr>
 <tr>
-  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::SubnetNetworkAclAssociation</code></li></ul>2+</td>
-  <td>Your VPC must have public subnets for between 1 and 3 availability zones and associate them with appropriate Ingress rules.</td>
   <td>Internet gateway</td>
-  <td><ul><li><code>AWS::EC2::InternetGateway</code></li><li><code>AWS::EC2::VPCGatewayAttachment</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::Route</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li><li><code>AWS::EC2::NatGateway</code></li><li><code>AWS::EC2::EIP</code></li></ul>2+</td>
+  <td><ul><li><code>AWS::EC2::InternetGateway</code></li><li><code>AWS::EC2::VPCGatewayAttachment</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::Route</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li><li><code>AWS::EC2::NatGateway</code></li><li><code>AWS::EC2::EIP</code></li></ul></td>
+  <td colspan="2">You must have a public internet gateway, with public routes, attached to the VPC. In the provided templates, each public subnet has a NAT gateway with an EIP address. These NAT gateways allow cluster resources, such as private subnet instances, to reach the internet and are not required for some restricted network or proxy scenarios.</td>
 </tr>
 <tr>
-  <td>You must have a public internet gateway, with public routes, attached to the VPC. In the provided templates, each public subnet has a NAT gateway with an EIP address. These NAT gateways allow cluster resources, such as private subnet instances, to reach the internet and are not required for some restricted network or proxy scenarios. .7+</td>
-  <td>Network access control .7+</td>
-  <td>* <code>AWS::EC2::NetworkAcl</code> * <code>AWS::EC2::NetworkAclEntry</code></td>
+  <td rowspan="7">Network access control</td>
+  <td rowspan="7"><ul><li><code>AWS::EC2::NetworkAcl</code></li><li><code>AWS::EC2::NetworkAclEntry</code></li></ul></td>
   <td colspan="2">You must allow the VPC to access the following ports:</td>
 </tr>
 <tr>
-  <td>h</td>
-  <td>Port h</td>
-  <td>Reason</td>
-  <td><code>80</code></td>
+  <th>Port</th>
+  <th>Reason</th>
 </tr>
 <tr>
+  <td><code>80</code></td>
   <td>Inbound HTTP traffic</td>
+</tr>
+<tr>
   <td><code>443</code></td>
   <td>Inbound HTTPS traffic</td>
-  <td><code>22</code></td>
 </tr>
 <tr>
+  <td><code>22</code></td>
   <td>Inbound SSH traffic</td>
+</tr>
+<tr>
   <td><code>1024</code> - <code>65535</code></td>
   <td>Inbound ephemeral traffic</td>
-  <td><code>0</code> - <code>65535</code></td>
 </tr>
 <tr>
+  <td><code>0</code> - <code>65535</code></td>
   <td>Outbound ephemeral traffic</td>
+</tr>
+<tr>
   <td>Private subnets</td>
-  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li></ul>2+</td>
-  <td>Your VPC can have private subnets. The provided CloudFormation templates can create private subnets for between 1 and 3 availability zones. If you use private subnets, you must provide appropriate routes and tables for them.</td>
+  <td><ul><li><code>AWS::EC2::Subnet</code></li><li><code>AWS::EC2::RouteTable</code></li><li><code>AWS::EC2::SubnetRouteTableAssociation</code></li></ul></td>
+  <td colspan="2">Your VPC can have private subnets. The provided CloudFormation templates can create private subnets for between 1 and 3 availability zones. If you use private subnets, you must provide appropriate routes and tables for them.</td>
 </tr>
 </tbody>
 </table>
@@ -97,7 +104,7 @@ Your DNS and load balancer configuration must use a public hosted zone and can u
 
 The cluster also requires load balancers and listeners for port 6443, which the Kubernetes API and its extensions require, and port 22623, which the Ignition config files for new machines require. The targets are the control plane nodes. Port 6443 must be accessible to both clients external to the cluster and nodes within the cluster. Port 22623 must be accessible to nodes within the cluster.
 
-***Required DNS and load balancing components***
+**Required DNS and load balancing components**
 
 <table>
 <thead>
@@ -168,7 +175,7 @@ The cluster also requires load balancers and listeners for port 6443, which the 
 
 The control plane and worker machines require access to the following ports:
 
-***Security groups***
+**Security groups**
 
 <table>
 <thead>
@@ -181,38 +188,40 @@ The control plane and worker machines require access to the following ports:
 </thead>
 <tbody>
 <tr>
-  <td>.4+</td>
-  <td><code>MasterSecurityGroup</code> .4+</td>
-  <td><code>AWS::EC2::SecurityGroup</code></td>
+  <td rowspan="4"><code>MasterSecurityGroup</code></td>
+  <td rowspan="4"><code>AWS::EC2::SecurityGroup</code></td>
   <td><code>icmp</code></td>
+  <td><code>0</code></td>
 </tr>
 <tr>
-  <td><code>0</code></td>
   <td><code>tcp</code></td>
   <td><code>22</code></td>
-  <td><code>tcp</code></td>
 </tr>
 <tr>
+  <td><code>tcp</code></td>
   <td><code>6443</code></td>
-  <td><code>tcp</code></td>
-  <td><code>22623</code><br><br>.2+</td>
-  <td><code>WorkerSecurityGroup</code></td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td><code>AWS::EC2::SecurityGroup</code></td>
+  <td><code>tcp</code></td>
+  <td><code>22623</code></td>
+</tr>
+<tr>
+  <td rowspan="2"><code>WorkerSecurityGroup</code></td>
+  <td rowspan="2"><code>AWS::EC2::SecurityGroup</code></td>
   <td><code>icmp</code></td>
   <td><code>0</code></td>
 </tr>
 <tr>
   <td><code>tcp</code></td>
-  <td><code>22</code><br><br><br><br>.2+</td>
-  <td><code>BootstrapSecurityGroup</code> .2+</td>
-  <td><code>AWS::EC2::SecurityGroup</code></td>
+  <td><code>22</code></td>
 </tr>
 <tr>
+  <td rowspan="2"><code>BootstrapSecurityGroup</code></td>
+  <td rowspan="2"><code>AWS::EC2::SecurityGroup</code></td>
   <td><code>tcp</code></td>
   <td><code>22</code></td>
+</tr>
+<tr>
   <td><code>tcp</code></td>
   <td><code>19531</code></td>
 </tr>
@@ -221,7 +230,7 @@ The control plane and worker machines require access to the following ports:
 
 The control plane machines require the following Ingress groups. Each Ingress group is an `AWS::EC2::SecurityGroupIngress` resource.
 
-***Control plane Ingress***
+**Control plane Ingress**
 
 <table>
 <thead>
@@ -364,7 +373,7 @@ The control plane machines require the following Ingress groups. Each Ingress gr
 
 The worker machines require the following Ingress groups. Each Ingress group is an `AWS::EC2::SecurityGroupIngress` resource.
 
-***Worker Ingress***
+**Worker Ingress**
 
 <table>
 <thead>
@@ -501,7 +510,7 @@ The worker machines require the following Ingress groups. Each Ingress group is 
 
 You must grant the machines permissions in {{ aws_short }}. The provided CloudFormation templates grant the machines `Allow` permissions for the following `AWS::IAM::Role` objects and provide an `AWS::IAM::InstanceProfile` for each set of roles. If you do not use the templates, you can grant the machines the following broad permissions or the following individual permissions.
 
-***Roles and instance profiles***
+**Roles and instance profiles**
 
 <table>
 <thead>
@@ -514,13 +523,12 @@ You must grant the machines permissions in {{ aws_short }}. The provided CloudFo
 </thead>
 <tbody>
 <tr>
-  <td>.4+</td>
-  <td>Control plane</td>
+  <td rowspan="4">Control plane</td>
   <td><code>Allow</code></td>
   <td><code>ec2:*</code></td>
+  <td><code>*</code></td>
 </tr>
 <tr>
-  <td><code>*</code></td>
   <td><code>Allow</code></td>
   <td><code>elasticloadbalancing:*</code></td>
   <td><code>*</code></td>
@@ -529,35 +537,32 @@ You must grant the machines permissions in {{ aws_short }}. The provided CloudFo
   <td><code>Allow</code></td>
   <td><code>iam:PassRole</code></td>
   <td><code>*</code></td>
-  <td><code>Allow</code></td>
 </tr>
 <tr>
+  <td><code>Allow</code></td>
   <td><code>s3:GetObject</code></td>
   <td><code>*</code></td>
+</tr>
+<tr>
   <td>Worker</td>
   <td><code>Allow</code></td>
-</tr>
-<tr>
-  <td><code>ec2:Describe*</code></td>
-  <td><code>*</code><br><br><br><br>.3+</td>
-  <td>Bootstrap</td>
-  <td><code>Allow</code></td>
-</tr>
-<tr>
   <td><code>ec2:Describe*</code></td>
   <td><code>*</code></td>
+</tr>
+<tr>
+  <td rowspan="3">Bootstrap</td>
+  <td><code>Allow</code></td>
+  <td><code>ec2:Describe*</code></td>
+  <td><code>*</code></td>
+</tr>
+<tr>
   <td><code>Allow</code></td>
   <td><code>ec2:AttachVolume</code></td>
+  <td><code>*</code></td>
 </tr>
 <tr>
-  <td><code>*</code></td>
   <td><code>Allow</code></td>
   <td><code>ec2:DetachVolume</code></td>
-  <td><code>*</code></td>
-</tr>
-<tr>
-  <td><code>Allow</code></td>
-  <td><code>s3:GetObject</code></td>
   <td><code>*</code></td>
 </tr>
 </tbody>

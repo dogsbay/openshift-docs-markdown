@@ -3,7 +3,7 @@
 
 You can configure common fields in the `spec.controllerConfig`, `spec.webhookConfig`, and `spec.cainjectorConfig` sections in the `CertManager` CR to customize the cert-manager components. {._abstract}
 
-***Common configurable fields in the CertManager CR for the cert-manager components***
+**Common configurable fields in the CertManager CR for the cert-manager components**
 
 <table>
 <thead>

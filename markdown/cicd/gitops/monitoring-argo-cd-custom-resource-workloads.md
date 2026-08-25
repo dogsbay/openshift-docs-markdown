@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Monitoring Argo CD custom resource workloads {id="monitoring-argo-cd-custom-resource-workloads"}
 {% include "./_attributes/common-attributes.md" %}
+# Monitoring Argo CD custom resource workloads {id="monitoring-argo-cd-custom-resource-workloads"}
 {%- set context = "monitoring-argo-cd-custom-resource-workloads" %}
 
 With {{ gitops_title }}, you can monitor the availability of Argo CD custom resource workloads for specific Argo CD instances. By monitoring Argo CD custom resource workloads, you have the latest information about the state of your Argo CD instances by enabling alerts for them. When the component workload pods such as application-controller, repo-server, or server of the corresponding Argo CD instance are unable to come up for certain reasons and there is a drift between the number of ready replicas and the number of desired replicas for a certain period of time, the Operator then triggers the alerts. {._abstract}

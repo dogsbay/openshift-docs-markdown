@@ -1,6 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-[id="virt-nw-overview-connect-vm-to-physical-nw_{{ context }}"]                                
-= Connect to the provider’s physical network
+# Connect to the provider’s physical network {id="virt-nw-overview-connect-vm-to-physical-nw_{{ context }}"}
 
 To give virtual machines (VMs) access to the internet or other physical devices, you configure the node network, define the secondary network, and attach the VM to the secondary network. {._abstract}
 
@@ -34,7 +33,7 @@ Connect a VM to the physical network by using a Linux bridge
 1.  Prepare the node network by creating a Linux bridge node network configuration policy (NNCP).
 1.  Define the secondary Linux bridge network by creating a network attachment definition (NAD).
 1.  Attach the VM to the Linux bridge network.
-{% endif %}
+{%- endif %}
 
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 
@@ -48,7 +47,7 @@ Connect a VM to the physical network by using an SR-IOV device
 1.  Configure an SR-IOV physical network device by creating a `SriovNetworkNodePolicy` CR.
 1.  Define the SR-IOV secondary network by creating an `SriovNetwork` object.
 1.  Connect the VM to the SR-IOV network by including the network details in the VM configuration.
-{% endif %}
+{%- endif %}
 
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 
@@ -58,4 +57,4 @@ Connect a VM to the physical network by using DPDK drivers with SR-IOV hardware
 1.  Configure the node hardware.
 1.  Configure the VM namespace for DPDK.
 1.  Configure the VM and guest OS to run DPDK applications.
-{% endif %}
+{%- endif %}

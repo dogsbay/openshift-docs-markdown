@@ -45,12 +45,12 @@ If you set sample or label limits, no further sample data is ingested for that t
     data:
       config.yaml: |
         prometheus:
-          enforcedSampleLimit: 50000 # (1)
-          enforcedLabelLimit: 500 # (2)
-          enforcedLabelNameLengthLimit: 50 # (3)
-          enforcedLabelValueLengthLimit: 600 # (4)
-          scrapeInterval: 1m30s # (5)
-          evaluationInterval: 1m15s # (6)
+          enforcedSampleLimit: 50000 (1)
+          enforcedLabelLimit: 500 (2)
+          enforcedLabelNameLengthLimit: 50 (3)
+          enforcedLabelValueLengthLimit: 600 (4)
+          scrapeInterval: 1m30s (5)
+          evaluationInterval: 1m15s (6)
     ```
     1.  A value is required if this parameter is specified. This `enforcedSampleLimit` example limits the number of samples that can be accepted per target scrape in user-defined projects to 50,000.
     1.  Specifies the maximum number of labels per scrape.
@@ -64,10 +64,10 @@ If you set sample or label limits, no further sample data is ingested for that t
     1.  Specifies the interval between Prometheus rule evaluations. The interval must be set between 5 seconds and 5 minutes.
     The default value for Prometheus is `30s`.
 
-        :::note
+    :::note
 
-        You can also configure the `evaluationInterval` property for Thanos Ruler through the `data/config.yaml/thanosRuler` field. The default value for Thanos Ruler is `15s`.
-        
-        :::
+    You can also configure the `evaluationInterval` property for Thanos Ruler through the `data/config.yaml/thanosRuler` field. The default value for Thanos Ruler is `15s`.
+    
+    :::
 
 1.  Save the file to apply the changes. The limits are applied automatically.

@@ -18,7 +18,7 @@ Starting with {{ SMProductName }} 2.5, {{ JaegerName }} and {{ es_op }} have bee
 **Procedure from OpenShift console**
 
 1.  Log in to the {{ product_title }} web console as a user with cluster-admin rights. If you use {{ product_dedicated }}, you must have an account with the `dedicated-admin` role.
-1.  Navigate to **Networking** -> **Routes**.
+1.  Navigate to **Networking** → **Routes**.
 1.  On the **Routes** page, select the {{ SMProductShortName }} control plane project, for example `istio-system`, from the **Namespace** menu.
 
     The **Location** column displays the linked address for each route.

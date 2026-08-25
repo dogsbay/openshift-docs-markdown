@@ -25,12 +25,12 @@ When the `prune` filter is configured, the log collector evaluates log streams a
         name: <service_account_name>
       filters:
       - name: <filter_name>
-        type: prune # (1)
-        prune: # (2)
-          in: [.kubernetes.annotations, .kubernetes.namespace_id] # (3)
-          notIn: [.kubernetes,.log_type,.message,."@timestamp"] # (4)
+        type: prune (1)
+        prune: (2)
+          in: [.kubernetes.annotations, .kubernetes.namespace_id] (3)
+          notIn: [.kubernetes,.log_type,.message,."@timestamp"] (4)
       pipelines:
-      - name: <pipeline_name> # (5)
+      - name: <pipeline_name> (5)
         filterRefs: ["<filter_name>"]
     # ...
     ```
@@ -40,11 +40,11 @@ When the `prune` filter is configured, the log collector evaluates log streams a
     1.  Optional: Any fields that are not specified in this array are removed from the log record.
     1.  Specify the pipeline that the `prune` filter is applied to.
 
-        :::note
+    :::note
 
-        The filters exempts the `log_type`, `.log_source`, and `.message` fields.
-        
-        :::
+    The filters exempts the `log_type`, `.log_source`, and `.message` fields.
+    
+    :::
 
 1.  Apply the `ClusterLogForwarder` CR by running the following command:
     ```terminal

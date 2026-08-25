@@ -1,5 +1,5 @@
 ---
-title: "Subscription []"
+title: "Subscription [operators.coreos.com/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | SubscriptionSpec defines an Application that can be installed |
 | `status` | `object` |  |
+
 ### .spec {id="_spec"}
 
 Description
@@ -53,6 +54,7 @@ Required
 | `source` | `string` |  |
 | `sourceNamespace` | `string` |  |
 | `startingCSV` | `string` |  |
+
 ### .spec.config {id="_specconfig"}
 
 Description
@@ -79,6 +81,7 @@ Type
 | `volumeMounts[]` | `object` | VolumeMount describes a mounting of a Volume within a container. |
 | `volumes` | `array` | List of Volumes to set in the podSpec. |
 | `volumes[]` | `object` | Volume represents a named volume in a pod that may be accessed by any container in the pod. |
+
 ### .spec.config.affinity {id="_specconfigaffinity"}
 
 Description
@@ -95,6 +98,7 @@ Type
 | `nodeAffinity` | `object` | Describes node affinity scheduling rules for the pod. |
 | `podAffinity` | `object` | Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). |
 | `podAntiAffinity` | `object` | Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). |
+
 ### .spec.config.affinity.nodeAffinity {id="_specconfigaffinitynodeaffinity"}
 
 Description
@@ -109,6 +113,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution` | `array` | The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. |
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | An empty preferred scheduling term matches all objects with implicit weight 0 (i.e. it’s a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op). |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `object` | If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. |
+
 ### .spec.config.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specconfigaffinitynodeaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -145,6 +150,7 @@ Required
 | --- | --- | --- |
 | `preference` | `object` | A node selector term, associated with the corresponding weight. |
 | `weight` | `integer` | Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100. |
+
 ### .spec.config.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference {id="_specconfigaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreference"}
 
 Description
@@ -160,6 +166,7 @@ Type
 | `matchExpressions[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchFields` | `array` | A list of node selector requirements by node’s fields. |
 | `matchFields[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.config.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference.matchExpressions {id="_specconfigaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreferencematchexpressions"}
 
 Description
@@ -189,6 +196,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference.matchFields {id="_specconfigaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreferencematchfields"}
 
 Description
@@ -218,6 +226,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specconfigaffinitynodeaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -239,6 +248,7 @@ Required
 | --- | --- | --- |
 | `nodeSelectorTerms` | `array` | Required. A list of node selector terms. The terms are ORed. |
 | `nodeSelectorTerms[]` | `object` | A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm. |
+
 ### .spec.config.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms {id="_specconfigaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectorterms"}
 
 Description
@@ -265,6 +275,7 @@ Type
 | `matchExpressions[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchFields` | `array` | A list of node selector requirements by node’s fields. |
 | `matchFields[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.config.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[].matchExpressions {id="_specconfigaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectortermsmatchexpressions"}
 
 Description
@@ -294,6 +305,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[].matchFields {id="_specconfigaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectortermsmatchfields"}
 
 Description
@@ -323,6 +335,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.podAffinity {id="_specconfigaffinitypodaffinity"}
 
 Description
@@ -338,6 +351,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s) |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `array` | If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. |
 | `requiredDuringSchedulingIgnoredDuringExecution[]` | `object` | Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key &lt;topologyKey> matches that of any node on which a pod of the set of pods is running |
+
 ### .spec.config.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specconfigaffinitypodaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -373,6 +387,7 @@ Required
 | --- | --- | --- |
 | `podAffinityTerm` | `object` | Required. A pod affinity term, associated with the corresponding weight. |
 | `weight` | `integer` | weight associated with matching the corresponding podAffinityTerm, in the range 1-100. |
+
 ### .spec.config.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm {id="_specconfigaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinityterm"}
 
 Description
@@ -394,6 +409,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.config.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector {id="_specconfigaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselector"}
 
 Description
@@ -409,6 +425,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector.matchExpressions {id="_specconfigaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselectormatchexpressions"}
 
 Description
@@ -438,6 +455,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector {id="_specconfigaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselector"}
 
 Description
@@ -456,6 +474,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector.matchExpressions {id="_specconfigaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselectormatchexpressions"}
 
 Description
@@ -485,6 +504,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specconfigaffinitypodaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -526,6 +546,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.config.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector {id="_specconfigaffinitypodaffinityrequiredduringschedulingignoredduringexecutionlabelselector"}
 
 Description
@@ -541,6 +562,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector.matchExpressions {id="_specconfigaffinitypodaffinityrequiredduringschedulingignoredduringexecutionlabelselectormatchexpressions"}
 
 Description
@@ -570,6 +592,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector {id="_specconfigaffinitypodaffinityrequiredduringschedulingignoredduringexecutionnamespaceselector"}
 
 Description
@@ -588,6 +611,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector.matchExpressions {id="_specconfigaffinitypodaffinityrequiredduringschedulingignoredduringexecutionnamespaceselectormatchexpressions"}
 
 Description
@@ -617,6 +641,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.podAntiAffinity {id="_specconfigaffinitypodantiaffinity"}
 
 Description
@@ -632,6 +657,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s) |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `array` | If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. |
 | `requiredDuringSchedulingIgnoredDuringExecution[]` | `object` | Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key &lt;topologyKey> matches that of any node on which a pod of the set of pods is running |
+
 ### .spec.config.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specconfigaffinitypodantiaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -667,6 +693,7 @@ Required
 | --- | --- | --- |
 | `podAffinityTerm` | `object` | Required. A pod affinity term, associated with the corresponding weight. |
 | `weight` | `integer` | weight associated with matching the corresponding podAffinityTerm, in the range 1-100. |
+
 ### .spec.config.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm {id="_specconfigaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinityterm"}
 
 Description
@@ -688,6 +715,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.config.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector {id="_specconfigaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselector"}
 
 Description
@@ -703,6 +731,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector.matchExpressions {id="_specconfigaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselectormatchexpressions"}
 
 Description
@@ -732,6 +761,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector {id="_specconfigaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselector"}
 
 Description
@@ -750,6 +780,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector.matchExpressions {id="_specconfigaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselectormatchexpressions"}
 
 Description
@@ -779,6 +810,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specconfigaffinitypodantiaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -820,6 +852,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.config.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector {id="_specconfigaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionlabelselector"}
 
 Description
@@ -835,6 +868,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector.matchExpressions {id="_specconfigaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionlabelselectormatchexpressions"}
 
 Description
@@ -864,6 +898,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector {id="_specconfigaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionnamespaceselector"}
 
 Description
@@ -882,6 +917,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector.matchExpressions {id="_specconfigaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionnamespaceselectormatchexpressions"}
 
 Description
@@ -911,6 +947,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.env {id="_specconfigenv"}
 
 Description
@@ -939,6 +976,7 @@ Required
 | `name` | `string` | Name of the environment variable. May consist of any printable ASCII characters except '='. |
 | `value` | `string` | Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". |
 | `valueFrom` | `object` | Source for the environment variable’s value. Cannot be used if value is not empty. |
+
 ### .spec.config.env[].valueFrom {id="_specconfigenvvaluefrom"}
 
 Description
@@ -955,6 +993,7 @@ Type
 | `fileKeyRef` | `object` | FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled. |
 | `resourceFieldRef` | `object` | Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. |
 | `secretKeyRef` | `object` | Selects a key of a secret in the pod’s namespace |
+
 ### .spec.config.env[].valueFrom.configMapKeyRef {id="_specconfigenvvaluefromconfigmapkeyref"}
 
 Description
@@ -973,6 +1012,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.config.env[].valueFrom.fieldRef {id="_specconfigenvvaluefromfieldref"}
 
 Description
@@ -991,6 +1031,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | Version of the schema the FieldPath is written in terms of, defaults to "v1". |
 | `fieldPath` | `string` | Path of the field to select in the specified API version. |
+
 ### .spec.config.env[].valueFrom.fileKeyRef {id="_specconfigenvvaluefromfilekeyref"}
 
 Description
@@ -1010,9 +1051,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters. |
-| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
+| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers.<br>If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
 | `path` | `string` | The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'. |
 | `volumeName` | `string` | The name of the volume mount containing the env file. |
+
 ### .spec.config.env[].valueFrom.resourceFieldRef {id="_specconfigenvvaluefromresourcefieldref"}
 
 Description
@@ -1032,6 +1074,7 @@ Required
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
 | `divisor` | `integer-or-string` | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
+
 ### .spec.config.env[].valueFrom.secretKeyRef {id="_specconfigenvvaluefromsecretkeyref"}
 
 Description
@@ -1050,6 +1093,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.config.envFrom {id="_specconfigenvfrom"}
 
 Description
@@ -1078,6 +1122,7 @@ Type
 | `configMapRef` | `object` | The ConfigMap to select from |
 | `prefix` | `string` | Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='. |
 | `secretRef` | `object` | The Secret to select from |
+
 ### .spec.config.envFrom[].configMapRef {id="_specconfigenvfromconfigmapref"}
 
 Description
@@ -1091,6 +1136,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap must be defined |
+
 ### .spec.config.envFrom[].secretRef {id="_specconfigenvfromsecretref"}
 
 Description
@@ -1104,6 +1150,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret must be defined |
+
 ### .spec.config.resources {id="_specconfigresources"}
 
 Description
@@ -1117,10 +1164,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.config.resources.claims {id="_specconfigresourcesclaims"}
 
 Description
@@ -1155,6 +1203,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container. |
 | `request` | `string` | Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request. |
+
 ### .spec.config.selector {id="_specconfigselector"}
 
 Description
@@ -1172,6 +1221,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.selector.matchExpressions {id="_specconfigselectormatchexpressions"}
 
 Description
@@ -1201,6 +1251,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.tolerations {id="_specconfigtolerations"}
 
 Description
@@ -1227,6 +1278,7 @@ Type
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists, Equal, Lt, and Gt. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category. Lt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators). |
 | `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. |
+
 ### .spec.config.volumeMounts {id="_specconfigvolumemounts"}
 
 Description
@@ -1256,9 +1308,10 @@ Required
 | `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None). |
 | `name` | `string` | This must match the Name of a Volume. |
 | `readOnly` | `boolean` | Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false. |
-| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled. |
+| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively.<br>If ReadOnly is false, this field has no meaning and must be unspecified.<br>If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.<br>If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).<br>If this field is not specified, it is treated as an equivalent of Disabled. |
 | `subPath` | `string` | Path within the volume from which the container’s volume should be mounted. Defaults to "" (volume’s root). |
 | `subPathExpr` | `string` | Expanded path within the volume from which the container’s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container’s environment. Defaults to "" (volume’s root). SubPathExpr and SubPath are mutually exclusive. |
+
 ### .spec.config.volumes {id="_specconfigvolumes"}
 
 Description
@@ -1292,7 +1345,7 @@ Required
 | `csi` | `object` | csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers. |
 | `downwardAPI` | `object` | downwardAPI represents downward API about the pod that should populate this volume |
 | `emptyDir` | `object` | emptyDir represents a temporary directory that shares a pod’s lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
-| `ephemeral` | `object` | ephemeral represents a volume that is handled by a cluster storage driver. The volume’s lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed. Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim). Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod. Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information. A pod can use both types of ephemeral volumes and persistent volumes at the same time. |
+| `ephemeral` | `object` | ephemeral represents a volume that is handled by a cluster storage driver. The volume’s lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.<br>Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).<br>Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.<br>Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.<br>A pod can use both types of ephemeral volumes and persistent volumes at the same time. |
 | `fc` | `object` | fc represents a Fibre Channel resource that is attached to a kubelet’s host machine and then exposed to the pod. |
 | `flexVolume` | `object` | flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead. |
 | `flocker` | `object` | flocker represents a Flocker volume attached to a kubelet’s host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported. |
@@ -1300,7 +1353,7 @@ Required
 | `gitRepo` | `object` | gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod’s container. |
 | `glusterfs` | `object` | glusterfs represents a Glusterfs mount on the host that shares a pod’s lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. |
 | `hostPath` | `object` | hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
-| `image` | `object` | image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet’s host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn’t present. - IfNotPresent: the kubelet pulls if the reference isn’t already present on disk. Container creation will fail if the reference isn’t present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type. |
+| `image` | `object` | image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet’s host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided:<br>- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn’t present. - IfNotPresent: the kubelet pulls if the reference isn’t already present on disk. Container creation will fail if the reference isn’t present and the pull fails.<br>The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type. |
 | `iscsi` | `object` | iscsi represents an ISCSI Disk resource that is attached to a kubelet’s host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes/#iscsi |
 | `name` | `string` | name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `nfs` | `object` | nfs represents an NFS mount on the host that shares a pod’s lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
@@ -1314,6 +1367,7 @@ Required
 | `secret` | `object` | secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
 | `storageos` | `object` | storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported. |
 | `vsphereVolume` | `object` | vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver. |
+
 ### .spec.config.volumes[].awsElasticBlockStore {id="_specconfigvolumesawselasticblockstore"}
 
 Description
@@ -1337,6 +1391,7 @@ Required
 | `partition` | `integer` | partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). |
 | `readOnly` | `boolean` | readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore |
 | `volumeID` | `string` | volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore |
+
 ### .spec.config.volumes[].azureDisk {id="_specconfigvolumesazuredisk"}
 
 Description
@@ -1361,6 +1416,7 @@ Required
 | `fsType` | `string` | fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. |
 | `kind` | `string` | kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared |
 | `readOnly` | `boolean` | readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
+
 ### .spec.config.volumes[].azureFile {id="_specconfigvolumesazurefile"}
 
 Description
@@ -1382,6 +1438,7 @@ Required
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `secretName` | `string` | secretName is the  name of secret that contains Azure Storage Account Name and Key |
 | `shareName` | `string` | shareName is the azure share Name |
+
 ### .spec.config.volumes[].cephfs {id="_specconfigvolumescephfs"}
 
 Description
@@ -1404,6 +1461,7 @@ Required
 | `secretFile` | `string` | secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it |
 | `secretRef` | `object` | secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it |
 | `user` | `string` | user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it |
+
 ### .spec.config.volumes[].cephfs.secretRef {id="_specconfigvolumescephfssecretref"}
 
 Description
@@ -1417,6 +1475,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.config.volumes[].cinder {id="_specconfigvolumescinder"}
 
 Description
@@ -1439,6 +1498,7 @@ Required
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md |
 | `secretRef` | `object` | secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. |
 | `volumeID` | `string` | volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md |
+
 ### .spec.config.volumes[].cinder.secretRef {id="_specconfigvolumescindersecretref"}
 
 Description
@@ -1452,6 +1512,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.config.volumes[].configMap {id="_specconfigvolumesconfigmap"}
 
 Description
@@ -1468,6 +1529,7 @@ Type
 | `items[]` | `object` | Maps a string key to a path within a volume. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | optional specify whether the ConfigMap or its keys must be defined |
+
 ### .spec.config.volumes[].configMap.items {id="_specconfigvolumesconfigmapitems"}
 
 Description
@@ -1502,6 +1564,7 @@ Required
 | `key` | `string` | key is the key to project. |
 | `mode` | `integer` | mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. |
+
 ### .spec.config.volumes[].csi {id="_specconfigvolumescsi"}
 
 Description
@@ -1522,6 +1585,7 @@ Required
 | `nodePublishSecretRef` | `object` | nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. |
 | `readOnly` | `boolean` | readOnly specifies a read-only configuration for the volume. Defaults to false (read/write). |
 | `volumeAttributes` | `object (string)` | volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver’s documentation for supported values. |
+
 ### .spec.config.volumes[].csi.nodePublishSecretRef {id="_specconfigvolumescsinodepublishsecretref"}
 
 Description
@@ -1538,6 +1602,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.config.volumes[].downwardAPI {id="_specconfigvolumesdownwardapi"}
 
 Description
@@ -1552,6 +1617,7 @@ Type
 | `defaultMode` | `integer` | Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `items` | `array` | Items is a list of downward API volume file |
 | `items[]` | `object` | DownwardAPIVolumeFile represents information to create the file containing the pod field |
+
 ### .spec.config.volumes[].downwardAPI.items {id="_specconfigvolumesdownwardapiitems"}
 
 Description
@@ -1580,6 +1646,7 @@ Required
 | `mode` | `integer` | Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' |
 | `resourceFieldRef` | `object` | Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. |
+
 ### .spec.config.volumes[].downwardAPI.items[].fieldRef {id="_specconfigvolumesdownwardapiitemsfieldref"}
 
 Description
@@ -1597,6 +1664,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | Version of the schema the FieldPath is written in terms of, defaults to "v1". |
 | `fieldPath` | `string` | Path of the field to select in the specified API version. |
+
 ### .spec.config.volumes[].downwardAPI.items[].resourceFieldRef {id="_specconfigvolumesdownwardapiitemsresourcefieldref"}
 
 Description
@@ -1616,6 +1684,7 @@ Required
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
 | `divisor` | `integer-or-string` | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
+
 ### .spec.config.volumes[].emptyDir {id="_specconfigvolumesemptydir"}
 
 Description
@@ -1630,6 +1699,7 @@ Type
 | --- | --- | --- |
 | `medium` | `string` | medium represents what type of storage medium should back this directory. The default is "" which means to use the node’s default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
 | `sizeLimit` | `integer-or-string` | sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
+
 ### .spec.config.volumes[].ephemeral {id="_specconfigvolumesephemeral"}
 
 Description
@@ -1668,7 +1738,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `volumeClaimTemplate` | `object` | Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long). An existing PVC with that name that is not owned by the pod will **not** be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster. This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created. Required, must not be nil. |
+| `volumeClaimTemplate` | `object` | Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).<br>An existing PVC with that name that is not owned by the pod will **not** be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.<br>This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.<br>Required, must not be nil. |
+
 ### .spec.config.volumes[].ephemeral.volumeClaimTemplate {id="_specconfigvolumesephemeralvolumeclaimtemplate"}
 
 Description
@@ -1709,6 +1780,7 @@ Required
 | --- | --- | --- |
 | `metadata` | `object` | May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. |
 | `spec` | `object` | The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. |
+
 ### .spec.config.volumes[].ephemeral.volumeClaimTemplate.metadata {id="_specconfigvolumesephemeralvolumeclaimtemplatemetadata"}
 
 Description
@@ -1743,6 +1815,7 @@ Type
 | `volumeAttributesClassName` | `string` | volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ |
 | `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. |
 | `volumeName` | `string` | volumeName is the binding reference to the PersistentVolume backing this claim. |
+
 ### .spec.config.volumes[].ephemeral.volumeClaimTemplate.spec.dataSource {id="_specconfigvolumesephemeralvolumeclaimtemplatespecdatasource"}
 
 Description
@@ -1769,6 +1842,7 @@ Required
 | `apiGroup` | `string` | APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. |
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
+
 ### .spec.config.volumes[].ephemeral.volumeClaimTemplate.spec.dataSourceRef {id="_specconfigvolumesephemeralvolumeclaimtemplatespecdatasourceref"}
 
 Description
@@ -1811,6 +1885,7 @@ Required
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
 | `namespace` | `string` | Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace’s owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled. |
+
 ### .spec.config.volumes[].ephemeral.volumeClaimTemplate.spec.resources {id="_specconfigvolumesephemeralvolumeclaimtemplatespecresources"}
 
 Description
@@ -1828,6 +1903,7 @@ Type
 | --- | --- | --- |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.config.volumes[].ephemeral.volumeClaimTemplate.spec.selector {id="_specconfigvolumesephemeralvolumeclaimtemplatespecselector"}
 
 Description
@@ -1842,6 +1918,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.volumes[].ephemeral.volumeClaimTemplate.spec.selector.matchExpressions {id="_specconfigvolumesephemeralvolumeclaimtemplatespecselectormatchexpressions"}
 
 Description
@@ -1871,6 +1948,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.volumes[].fc {id="_specconfigvolumesfc"}
 
 Description
@@ -1887,6 +1965,7 @@ Type
 | `readOnly` | `boolean` | readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `targetWWNs` | `array (string)` | targetWWNs is Optional: FC target worldwide names (WWNs) |
 | `wwids` | `array (string)` | wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously. |
+
 ### .spec.config.volumes[].flexVolume {id="_specconfigvolumesflexvolume"}
 
 Description
@@ -1909,6 +1988,7 @@ Required
 | `options` | `object (string)` | options is Optional: this field holds extra command options if any. |
 | `readOnly` | `boolean` | readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `secretRef` | `object` | secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. |
+
 ### .spec.config.volumes[].flexVolume.secretRef {id="_specconfigvolumesflexvolumesecretref"}
 
 Description
@@ -1925,6 +2005,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.config.volumes[].flocker {id="_specconfigvolumesflocker"}
 
 Description
@@ -1937,8 +2018,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `datasetName` | `string` | datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated |
+| `datasetName` | `string` | datasetName is Name of the dataset stored as metadata → name on the dataset for Flocker should be considered as deprecated |
 | `datasetUUID` | `string` | datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset |
+
 ### .spec.config.volumes[].gcePersistentDisk {id="_specconfigvolumesgcepersistentdisk"}
 
 Description
@@ -1962,6 +2044,7 @@ Required
 | `partition` | `integer` | partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
 | `pdName` | `string` | pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
+
 ### .spec.config.volumes[].gitRepo {id="_specconfigvolumesgitrepo"}
 
 Description
@@ -1983,6 +2066,7 @@ Required
 | `directory` | `string` | directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name. |
 | `repository` | `string` | repository is the URL |
 | `revision` | `string` | revision is the commit hash for the specified revision. |
+
 ### .spec.config.volumes[].glusterfs {id="_specconfigvolumesglusterfs"}
 
 Description
@@ -2003,6 +2087,7 @@ Required
 | `endpoints` | `string` | endpoints is the endpoint name that details Glusterfs topology. |
 | `path` | `string` | path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod |
 | `readOnly` | `boolean` | readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod |
+
 ### .spec.config.volumes[].hostPath {id="_specconfigvolumeshostpath"}
 
 Description
@@ -2024,6 +2109,7 @@ Required
 | --- | --- | --- |
 | `path` | `string` | path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
 | `type` | `string` | type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
+
 ### .spec.config.volumes[].image {id="_specconfigvolumesimage"}
 
 Description
@@ -2051,6 +2137,7 @@ Type
 | --- | --- | --- |
 | `pullPolicy` | `string` | Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn’t present. IfNotPresent: the kubelet pulls if the reference isn’t already present on disk. Container creation will fail if the reference isn’t present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. |
 | `reference` | `string` | Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets. |
+
 ### .spec.config.volumes[].iscsi {id="_specconfigvolumesiscsi"}
 
 Description
@@ -2081,6 +2168,7 @@ Required
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. |
 | `secretRef` | `object` | secretRef is the CHAP Secret for iSCSI target and initiator authentication |
 | `targetPortal` | `string` | targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260). |
+
 ### .spec.config.volumes[].iscsi.secretRef {id="_specconfigvolumesiscsisecretref"}
 
 Description
@@ -2093,6 +2181,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.config.volumes[].nfs {id="_specconfigvolumesnfs"}
 
 Description
@@ -2113,6 +2202,7 @@ Required
 | `path` | `string` | path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
 | `readOnly` | `boolean` | readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
 | `server` | `string` | server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
+
 ### .spec.config.volumes[].persistentVolumeClaim {id="_specconfigvolumespersistentvolumeclaim"}
 
 Description
@@ -2132,6 +2222,7 @@ Required
 | --- | --- | --- |
 | `claimName` | `string` | claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims |
 | `readOnly` | `boolean` | readOnly Will force the ReadOnly setting in VolumeMounts. Default false. |
+
 ### .spec.config.volumes[].photonPersistentDisk {id="_specconfigvolumesphotonpersistentdisk"}
 
 Description
@@ -2150,6 +2241,7 @@ Required
 | --- | --- | --- |
 | `fsType` | `string` | fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. |
 | `pdID` | `string` | pdID is the ID that identifies Photon Controller persistent disk |
+
 ### .spec.config.volumes[].portworxVolume {id="_specconfigvolumesportworxvolume"}
 
 Description
@@ -2171,6 +2263,7 @@ Required
 | `fsType` | `string` | fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified. |
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `volumeID` | `string` | volumeID uniquely identifies a Portworx volume |
+
 ### .spec.config.volumes[].projected {id="_specconfigvolumesprojected"}
 
 Description
@@ -2185,6 +2278,7 @@ Type
 | `defaultMode` | `integer` | defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `sources` | `array` | sources is the list of volume projections. Each entry in this list handles one source. |
 | `sources[]` | `object` | Projection that may be projected along with other supported volume types. Exactly one of these fields must be set. |
+
 ### .spec.config.volumes[].projected.sources {id="_specconfigvolumesprojectedsources"}
 
 Description
@@ -2207,12 +2301,13 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `clusterTrustBundle` | `object` | ClusterTrustBundle allows a pod to access the `.spec.trustBundle` field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. |
+| `clusterTrustBundle` | `object` | ClusterTrustBundle allows a pod to access the `.spec.trustBundle` field of ClusterTrustBundle objects in an auto-updating file.<br>Alpha, gated by the ClusterTrustBundleProjection feature gate.<br>ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.<br>Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. |
 | `configMap` | `object` | configMap information about the configMap data to project |
 | `downwardAPI` | `object` | downwardAPI information about the downwardAPI data to project |
-| `podCertificate` | `object` | Projects an auto-rotating credential bundle (private key and certificate chain) that the pod can use either as a TLS client or server. Kubelet generates a private key and uses it to send a PodCertificateRequest to the named signer.  Once the signer approves the request and issues a certificate chain, Kubelet writes the key and certificate chain to the pod filesystem.  The pod does not start until certificates have been issued for each podCertificate projected volume source in its spec. Kubelet will begin trying to rotate the certificate at the time indicated by the signer using the PodCertificateRequest.Status.BeginRefreshAt timestamp. Kubelet can write a single file, indicated by the credentialBundlePath field, or separate files, indicated by the keyPath and certificateChainPath fields. The credential bundle is a single file in PEM format.  The first PEM entry is the private key (in PKCS#8 format), and the remaining PEM entries are the certificate chain issued by the signer (typically, signers will return their certificate chain in leaf-to-root order). Prefer using the credential bundle format, since your application code can read it atomically.  If you use keyPath and certificateChainPath, your application must make two separate file reads. If these coincide with a certificate rotation, it is possible that the private key and leaf certificate you read may not correspond to each other.  Your application will need to check for this condition, and re-read until they are consistent. The named signer controls chooses the format of the certificate it issues; consult the signer implementation’s documentation to learn how to use the certificates it issues. |
+| `podCertificate` | `object` | Projects an auto-rotating credential bundle (private key and certificate chain) that the pod can use either as a TLS client or server.<br>Kubelet generates a private key and uses it to send a PodCertificateRequest to the named signer.  Once the signer approves the request and issues a certificate chain, Kubelet writes the key and certificate chain to the pod filesystem.  The pod does not start until certificates have been issued for each podCertificate projected volume source in its spec.<br>Kubelet will begin trying to rotate the certificate at the time indicated by the signer using the PodCertificateRequest.Status.BeginRefreshAt timestamp.<br>Kubelet can write a single file, indicated by the credentialBundlePath field, or separate files, indicated by the keyPath and certificateChainPath fields.<br>The credential bundle is a single file in PEM format.  The first PEM entry is the private key (in PKCS#8 format), and the remaining PEM entries are the certificate chain issued by the signer (typically, signers will return their certificate chain in leaf-to-root order).<br>Prefer using the credential bundle format, since your application code can read it atomically.  If you use keyPath and certificateChainPath, your application must make two separate file reads. If these coincide with a certificate rotation, it is possible that the private key and leaf certificate you read may not correspond to each other.  Your application will need to check for this condition, and re-read until they are consistent.<br>The named signer controls chooses the format of the certificate it issues; consult the signer implementation’s documentation to learn how to use the certificates it issues. |
 | `secret` | `object` | secret information about the secret data to project |
 | `serviceAccountToken` | `object` | serviceAccountToken is information about the serviceAccountToken data to project |
+
 ### .spec.config.volumes[].projected.sources[].clusterTrustBundle {id="_specconfigvolumesprojectedsourcesclustertrustbundle"}
 
 Description
@@ -2248,6 +2343,7 @@ Required
 | `optional` | `boolean` | If true, don’t block pod startup if the referenced ClusterTrustBundle(s) aren’t available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles. |
 | `path` | `string` | Relative path from the volume root to write the bundle. |
 | `signerName` | `string` | Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated. |
+
 ### .spec.config.volumes[].projected.sources[].clusterTrustBundle.labelSelector {id="_specconfigvolumesprojectedsourcesclustertrustbundlelabelselector"}
 
 Description
@@ -2265,6 +2361,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.config.volumes[].projected.sources[].clusterTrustBundle.labelSelector.matchExpressions {id="_specconfigvolumesprojectedsourcesclustertrustbundlelabelselectormatchexpressions"}
 
 Description
@@ -2294,6 +2391,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.config.volumes[].projected.sources[].configMap {id="_specconfigvolumesprojectedsourcesconfigmap"}
 
 Description
@@ -2309,6 +2407,7 @@ Type
 | `items[]` | `object` | Maps a string key to a path within a volume. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | optional specify whether the ConfigMap or its keys must be defined |
+
 ### .spec.config.volumes[].projected.sources[].configMap.items {id="_specconfigvolumesprojectedsourcesconfigmapitems"}
 
 Description
@@ -2343,6 +2442,7 @@ Required
 | `key` | `string` | key is the key to project. |
 | `mode` | `integer` | mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. |
+
 ### .spec.config.volumes[].projected.sources[].downwardAPI {id="_specconfigvolumesprojectedsourcesdownwardapi"}
 
 Description
@@ -2356,6 +2456,7 @@ Type
 | --- | --- | --- |
 | `items` | `array` | Items is a list of DownwardAPIVolume file |
 | `items[]` | `object` | DownwardAPIVolumeFile represents information to create the file containing the pod field |
+
 ### .spec.config.volumes[].projected.sources[].downwardAPI.items {id="_specconfigvolumesprojectedsourcesdownwardapiitems"}
 
 Description
@@ -2384,6 +2485,7 @@ Required
 | `mode` | `integer` | Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' |
 | `resourceFieldRef` | `object` | Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. |
+
 ### .spec.config.volumes[].projected.sources[].downwardAPI.items[].fieldRef {id="_specconfigvolumesprojectedsourcesdownwardapiitemsfieldref"}
 
 Description
@@ -2401,6 +2503,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | Version of the schema the FieldPath is written in terms of, defaults to "v1". |
 | `fieldPath` | `string` | Path of the field to select in the specified API version. |
+
 ### .spec.config.volumes[].projected.sources[].downwardAPI.items[].resourceFieldRef {id="_specconfigvolumesprojectedsourcesdownwardapiitemsresourcefieldref"}
 
 Description
@@ -2420,6 +2523,7 @@ Required
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
 | `divisor` | `integer-or-string` | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
+
 ### .spec.config.volumes[].projected.sources[].podCertificate {id="_specconfigvolumesprojectedsourcespodcertificate"}
 
 Description
@@ -2475,13 +2579,14 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `certificateChainPath` | `string` | Write the certificate chain at this path in the projected volume. Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
-| `credentialBundlePath` | `string` | Write the credential bundle at this path in the projected volume. The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key. The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates). Using credentialBundlePath lets your Pod’s application code make a single atomic read that retrieves a consistent key and certificate chain.  If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key. |
-| `keyPath` | `string` | Write the key at this path in the projected volume. Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
-| `keyType` | `string` | The type of keypair Kubelet will generate for the pod. Valid values are "RSA3072", "RSA4096", "ECDSAP256", "ECDSAP384", "ECDSAP521", and "ED25519". |
-| `maxExpirationSeconds` | `integer` | maxExpirationSeconds is the maximum lifetime permitted for the certificate. Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection. If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour).  The maximum allowable value is 7862400 (91 days). The signer implementation is then free to issue a certificate with any lifetime **shorter** than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour).  This constraint is enforced by kube-apiserver. `kubernetes.io` signers will never issue certificates with a lifetime longer than 24 hours. |
+| `certificateChainPath` | `string` | Write the certificate chain at this path in the projected volume.<br>Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
+| `credentialBundlePath` | `string` | Write the credential bundle at this path in the projected volume.<br>The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key.<br>The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates).<br>Using credentialBundlePath lets your Pod’s application code make a single atomic read that retrieves a consistent key and certificate chain.  If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key. |
+| `keyPath` | `string` | Write the key at this path in the projected volume.<br>Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
+| `keyType` | `string` | The type of keypair Kubelet will generate for the pod.<br>Valid values are "RSA3072", "RSA4096", "ECDSAP256", "ECDSAP384", "ECDSAP521", and "ED25519". |
+| `maxExpirationSeconds` | `integer` | maxExpirationSeconds is the maximum lifetime permitted for the certificate.<br>Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection.<br>If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour).  The maximum allowable value is 7862400 (91 days).<br>The signer implementation is then free to issue a certificate with any lifetime **shorter** than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour).  This constraint is enforced by kube-apiserver. `kubernetes.io` signers will never issue certificates with a lifetime longer than 24 hours. |
 | `signerName` | `string` | Kubelet’s generated CSRs will be addressed to this signer. |
-| `userAnnotations` | `object (string)` | userAnnotations allow pod authors to pass additional information to the signer implementation.  Kubernetes does not restrict or validate this metadata in any way. These values are copied verbatim into the `spec.unverifiedUserAnnotations` field of the PodCertificateRequest objects that Kubelet creates. Entries are subject to the same validation as object metadata annotations, with the addition that all keys must be domain-prefixed. No restrictions are placed on values, except an overall size limitation on the entire field. Signers should document the keys and values they support. Signers should deny requests that contain keys they do not recognize. |
+| `userAnnotations` | `object (string)` | userAnnotations allow pod authors to pass additional information to the signer implementation.  Kubernetes does not restrict or validate this metadata in any way.<br>These values are copied verbatim into the `spec.unverifiedUserAnnotations` field of the PodCertificateRequest objects that Kubelet creates.<br>Entries are subject to the same validation as object metadata annotations, with the addition that all keys must be domain-prefixed. No restrictions are placed on values, except an overall size limitation on the entire field.<br>Signers should document the keys and values they support. Signers should deny requests that contain keys they do not recognize. |
+
 ### .spec.config.volumes[].projected.sources[].secret {id="_specconfigvolumesprojectedsourcessecret"}
 
 Description
@@ -2497,6 +2602,7 @@ Type
 | `items[]` | `object` | Maps a string key to a path within a volume. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | optional field specify whether the Secret or its key must be defined |
+
 ### .spec.config.volumes[].projected.sources[].secret.items {id="_specconfigvolumesprojectedsourcessecretitems"}
 
 Description
@@ -2531,6 +2637,7 @@ Required
 | `key` | `string` | key is the key to project. |
 | `mode` | `integer` | mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. |
+
 ### .spec.config.volumes[].projected.sources[].serviceAccountToken {id="_specconfigvolumesprojectedsourcesserviceaccounttoken"}
 
 Description
@@ -2549,6 +2656,7 @@ Required
 | `audience` | `string` | audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver. |
 | `expirationSeconds` | `integer` | expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes. |
 | `path` | `string` | path is the path relative to the mount point of the file to project the token into. |
+
 ### .spec.config.volumes[].quobyte {id="_specconfigvolumesquobyte"}
 
 Description
@@ -2572,6 +2680,7 @@ Required
 | `tenant` | `string` | tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin |
 | `user` | `string` | user to map volume access to Defaults to serivceaccount user |
 | `volume` | `string` | volume is a string that references an already created Quobyte volume by name. |
+
 ### .spec.config.volumes[].rbd {id="_specconfigvolumesrbd"}
 
 Description
@@ -2597,6 +2706,7 @@ Required
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it |
 | `secretRef` | `object` | secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it |
 | `user` | `string` | user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it |
+
 ### .spec.config.volumes[].rbd.secretRef {id="_specconfigvolumesrbdsecretref"}
 
 Description
@@ -2612,6 +2722,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.config.volumes[].scaleIO {id="_specconfigvolumesscaleio"}
 
 Description
@@ -2640,6 +2751,7 @@ Required
 | `storagePool` | `string` | storagePool is the ScaleIO Storage Pool associated with the protection domain. |
 | `system` | `string` | system is the name of the storage system as configured in ScaleIO. |
 | `volumeName` | `string` | volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source. |
+
 ### .spec.config.volumes[].scaleIO.secretRef {id="_specconfigvolumesscaleiosecretref"}
 
 Description
@@ -2653,6 +2765,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.config.volumes[].secret {id="_specconfigvolumessecret"}
 
 Description
@@ -2670,6 +2783,7 @@ Type
 | `items[]` | `object` | Maps a string key to a path within a volume. |
 | `optional` | `boolean` | optional field specify whether the Secret or its keys must be defined |
 | `secretName` | `string` | secretName is the name of the secret in the pod’s namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
+
 ### .spec.config.volumes[].secret.items {id="_specconfigvolumessecretitems"}
 
 Description
@@ -2704,6 +2818,7 @@ Required
 | `key` | `string` | key is the key to project. |
 | `mode` | `integer` | mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. |
+
 ### .spec.config.volumes[].storageos {id="_specconfigvolumesstorageos"}
 
 Description
@@ -2721,6 +2836,7 @@ Type
 | `secretRef` | `object` | secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. |
 | `volumeName` | `string` | volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace. |
 | `volumeNamespace` | `string` | volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod’s namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created. |
+
 ### .spec.config.volumes[].storageos.secretRef {id="_specconfigvolumesstorageossecretref"}
 
 Description
@@ -2734,6 +2850,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.config.volumes[].vsphereVolume {id="_specconfigvolumesvspherevolume"}
 
 Description
@@ -2755,6 +2872,7 @@ Required
 | `storagePolicyID` | `string` | storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName. |
 | `storagePolicyName` | `string` | storagePolicyName is the storage Policy Based Management (SPBM) profile name. |
 | `volumePath` | `string` | volumePath is the path that identifies vSphere volume vmdk |
+
 ### .status {id="_status"}
 
 Description
@@ -2781,6 +2899,7 @@ Required
 | `lastUpdated` | `string` | LastUpdated represents the last time that the Subscription status was updated. |
 | `reason` | `string` | Reason is the reason the Subscription was transitioned to its current state. |
 | `state` | `string` | State represents the current state of the Subscription |
+
 ### .status.catalogHealth {id="_statuscataloghealth"}
 
 Description
@@ -2811,6 +2930,7 @@ Required
 | `catalogSourceRef` | `object` | CatalogSourceRef is a reference to a CatalogSource. |
 | `healthy` | `boolean` | Healthy is true if the CatalogSource is healthy; false otherwise. |
 | `lastUpdated` | `string` | LastUpdated represents the last time that the CatalogSourceHealth changed |
+
 ### .status.catalogHealth[].catalogSourceRef {id="_statuscataloghealthcatalogsourceref"}
 
 Description
@@ -2829,6 +2949,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -2860,6 +2981,7 @@ Required
 | `reason` | `string` | Reason is a one-word CamelCase reason for the condition’s last transition. |
 | `status` | `string` | Status is the status of the condition, one of True, False, Unknown. |
 | `type` | `string` | Type is the type of Subscription condition. |
+
 ### .status.installPlanRef {id="_statusinstallplanref"}
 
 Description
@@ -2878,6 +3000,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status.installplan {id="_statusinstallplan"}
 
 Description
@@ -2908,16 +3031,16 @@ The following API endpoints are available:
 
 *   `/apis/operators.coreos.com/v1alpha1/subscriptions`
     *   `GET`: list objects of kind Subscription
-*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/subscriptions`
+*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/subscriptions`{minja}
     *   `DELETE`: delete collection of Subscription
     *   `GET`: list objects of kind Subscription
     *   `POST`: create a Subscription
-*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/subscriptions/{{ name }}`
+*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/subscriptions/{{ name }}`{minja}
     *   `DELETE`: delete a Subscription
     *   `GET`: read the specified Subscription
     *   `PATCH`: partially update the specified Subscription
     *   `PUT`: replace the specified Subscription
-*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/subscriptions/{{ name }}/status`
+*   `/apis/operators.coreos.com/v1alpha1/namespaces/{{ namespace }}/subscriptions/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Subscription
     *   `PATCH`: partially update status of the specified Subscription
     *   `PUT`: replace status of the specified Subscription

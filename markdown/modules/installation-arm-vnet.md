@@ -7,12 +7,9 @@
 
 Use the `01_vnet.json` Azure Resource Manager (ARM) template to deploy the virtual network (VNet) for your {{ product_title }} cluster. {._abstract}
 
-<details>
-<summary>`01_vnet.json` ARM template</summary>
-
-```json
-{%- if not ash %}
-```json
+:::details{title="`01_vnet.json` ARM template"}
+```json {minja}
+{% if not ash %}
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -99,10 +96,8 @@ Use the `01_vnet.json` Azure Resource Manager (ARM) template to deploy the virtu
     }
   ]
 }
-```
 {% endif %}
 {% if ash %}
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -202,11 +197,10 @@ Use the `01_vnet.json` Azure Resource Manager (ARM) template to deploy the virtu
     }
   ]
 }
+{% endif %}
 ```
-{%- endif %}
-```
-</details>
+:::
 
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}

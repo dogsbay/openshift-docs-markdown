@@ -13,7 +13,7 @@ You can perform a Control Plane Only update by using the web console. {._abstrac
 1.  Using the web console, update any Operator Lifecycle Manager (OLM) Operators to the versions that are compatible with your intended updated version. For more information, see "Updating installed Operators".
 1.  Verify that all machine config pools display a status of `Up to date` and that no machine config pool displays a status of `UPDATING`.
 
-    To view the status of all machine config pools, click **Compute** -> **MachineConfigPools** and review the contents of the **Update status** column.
+    To view the status of all machine config pools, click **Compute** → **MachineConfigPools** and review the contents of the **Update status** column.
 
     :::note
 
@@ -23,7 +23,7 @@ You can perform a Control Plane Only update by using the web console. {._abstrac
 
 1.  Set your channel to `eus-<4.y+2>`.
 
-    To set your channel, click **Administration** -> **Cluster Settings** -> **Channel**. You can edit your channel by clicking on the current hyperlinked channel.
+    To set your channel, click **Administration** → **Cluster Settings** → **Channel**. You can edit your channel by clicking on the current hyperlinked channel.
 1.  Pause all worker machine pools except for the master pool. You can perform this action on the **MachineConfigPools** tab under the **Compute** page. Select the vertical ellipses next to the machine config pool you’d like to pause and click **Pause updates**.
 1.  Update to version &lt;4.y+1> and complete up to the **Save** step. For more information, see "Updating a cluster by using the web console".
 1.  Ensure that the &lt;4.y+1> updates are complete by viewing the **Last completed version** of your cluster. You can find this information on the **Cluster Settings** page under the **Details** tab.

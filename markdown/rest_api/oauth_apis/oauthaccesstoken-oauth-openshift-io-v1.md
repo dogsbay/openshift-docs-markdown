@@ -1,5 +1,5 @@
 ---
-title: "OAuthAccessToken []"
+title: "OAuthAccessToken [oauth.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -48,12 +48,12 @@ The following API endpoints are available:
     *   `POST`: create an OAuthAccessToken
 *   `/apis/oauth.openshift.io/v1/watch/oauthaccesstokens`
     *   `GET`: watch individual changes to a list of OAuthAccessToken. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/oauth.openshift.io/v1/oauthaccesstokens/{{ name }}`
+*   `/apis/oauth.openshift.io/v1/oauthaccesstokens/{{ name }}`{minja}
     *   `DELETE`: delete an OAuthAccessToken
     *   `GET`: read the specified OAuthAccessToken
     *   `PATCH`: partially update the specified OAuthAccessToken
     *   `PUT`: replace the specified OAuthAccessToken
-*   `/apis/oauth.openshift.io/v1/watch/oauthaccesstokens/{{ name }}`
+*   `/apis/oauth.openshift.io/v1/watch/oauthaccesstokens/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind OAuthAccessToken. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/oauth.openshift.io/v1/oauthaccesstokens {id="_apisoauthopenshiftiov1oauthaccesstokens"}

@@ -50,12 +50,12 @@ To scale your {{ product_title }} bare metal cluster, you can create more {{ op_
         
         :::
 
-{%- if not ibm_power %}
+{% if not ibm_power %}
     *   For iPXE (`x86_64` + `aarch64`):
-        {% endif %}
-        {% if ibm_power %}
+{% endif %}
+{% if ibm_power %}
     *   For iPXE (`x86_64` + `ppc64le`):
-        {%- endif %}
+{% endif %}
         ```
         kernel http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture> initrd=main coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/worker.ign
         initrd --name main http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img
@@ -89,21 +89,21 @@ To scale your {{ product_title }} bare metal cluster, you can create more {{ op_
 
         :::note
 
-{%- if not ibm_power %}
+{% if not ibm_power %}
         To network boot the CoreOS `kernel` on `aarch64` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. For more information, see "IMAGE_GZIP option in iPXE".
 {% endif %}
 {% if ibm_power %}
         To network boot the CoreOS `kernel` on `ppc64le` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. For more information, see "IMAGE_GZIP option in iPXE".
-{%- endif %}
+{% endif %}
         
         :::
 
-{%- if not ibm_power %}
+{% if not ibm_power %}
     *   For PXE (with UEFI and GRUB as second stage) on `aarch64`:
-        {% endif %}
-        {% if ibm_power %}
+{% endif %}
+{% if ibm_power %}
     *   For PXE (with UEFI and GRUB as second stage) on `ppc64le`:
-        {%- endif %}
+{% endif %}
         ```
         menuentry 'Install CoreOS' {
             linux rhcos-<version>-live-kernel-<architecture>  coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/worker.ign
@@ -135,5 +135,5 @@ To scale your {{ product_title }} bare metal cluster, you can create more {{ op_
 1.  Use the PXE or iPXE infrastructure to create the required compute machines for your cluster.
 
 {% if context == "creating-multi-arch-compute-nodes-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}

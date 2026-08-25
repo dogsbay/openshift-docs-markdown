@@ -73,7 +73,7 @@ If multiple policies meet this criteria, the policies are sorted by alphabetical
 
     `virtualMachineInstanceSelector`
     :   Specifies the VM labels.
-    1.  Create the migration policy by running the following command:
+1.  Create the migration policy by running the following command:
     ```terminal
     $ oc create -f <migration_policy>.yaml
     ```

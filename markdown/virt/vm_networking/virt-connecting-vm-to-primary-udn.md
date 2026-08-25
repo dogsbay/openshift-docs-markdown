@@ -7,7 +7,7 @@ title: Connecting a virtual machine to a primary user-defined network
 # Connecting a virtual machine to a primary user-defined network {id="virt-connecting-vm-to-primary-udn"}
 {%- set context = "virt-connecting-vm-to-primary-udn" %}
 
-You can connect a virtual machine (VM) to a user-defined network (UDN) on the VM’s primary interface. The primary UDN replaces the default pod network in your specified namespace. You can define the primary UDN per project, where each project can use its specific subnet and topology.
+You can connect a virtual machine (VM) to a user-defined network (UDN) on the VM’s primary interface. The primary UDN replaces the default pod network in your specified namespace. You can define the primary UDN per project, where each project can use its specific subnet and topology. {._abstract}
 
 {{ VirtProductName }} supports the namespace-scoped `UserDefinedNetwork` and the cluster-scoped `ClusterUserDefinedNetwork` custom resource definitions (CRD).
 
@@ -64,7 +64,7 @@ You must consider the following limitations before implementing a primary UDN:
 {% leveloffset +2 %}{% include "./modules/virt-attaching-vm-to-primary-udn.md" %}{% endleveloffset %}
 
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [About user-defined networks](/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
 *   [About BGP EVPN for primary cluster user-defined networks](/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks)
-{% endif %}
+{%- endif %}

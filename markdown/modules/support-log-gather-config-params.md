@@ -40,7 +40,7 @@ The following table provides an overview of the parameters that you can configur
 </tr>
 <tr>
   <td><code>spec.imageStreamRef</code></td>
-  <td>Optional: Overrides the default image by defining a specific custom image.<br><br><dl><dt>Note</dt><dd>Each <code>MustGather</code> CR supports only one custom image. To use multiple custom images, you must create a separate <code>MustGather</code> CR for each image.</dd></dl></td>
+  <td>Optional: Overrides the default image by defining a specific custom image.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Each <code>MustGather</code> CR supports only one custom image. To use multiple custom images, you must create a separate <code>MustGather</code> CR for each image.</dd></dl></td>
   <td><code>object</code></td>
 </tr>
 <tr>
@@ -65,7 +65,7 @@ The following table provides an overview of the parameters that you can configur
 </tr>
 <tr>
   <td><code>spec.serviceAccountName</code></td>
-  <td>Optional: Specifies the name of the service account. The default value is <code>default</code>.<br><br><dl><dt>Note</dt><dd>Because the <code>default</code> service account has minimal permissions, you can specify the service account that you created.</dd></dl></td>
+  <td>Optional: Specifies the name of the service account. The default value is <code>default</code>.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Because the <code>default</code> service account has minimal permissions, you can specify the service account that you created.</dd></dl></td>
   <td><code>string</code></td>
 </tr>
 <tr>

@@ -20,7 +20,7 @@ After you have configured the application to export the metrics and the monitori
     ```terminal title="Example output"
     Hello Go Sample v1!
     ```
-1.  In the web console, navigate to the **Observe** -> **Metrics** interface.
+1.  In the web console, navigate to the **Observe** → **Metrics** interface.
 1.  In the input field, enter the query for the metric you want to observe, for example:
     ```
     revision_app_request_count{namespace="ns1", job="helloworld-go-sm"}

@@ -66,8 +66,8 @@ Traffic is controlled using targeted "allow" policies in the following namespace
     *   Ingress is restricted to HTTP/HTTPS traffic and metrics.
 
 
-:::important
+    :::important
 
-Do not run unmanaged or custom pods in these namespaces. Because these namespaces operate on a deny-by-default model, network traffic for any unmanaged containers running in these namespaces will be blocked.
-
-:::
+    Do not run unmanaged or custom pods in these namespaces. Because these namespaces operate on a deny-by-default model, network traffic for any unmanaged containers running in these namespaces will be blocked.
+    
+    :::

@@ -89,7 +89,7 @@ Configure explicit resource quotas in a project request template to apply specif
 1.  If you created a project request template, reference it in the cluster’s project configuration resource:
     1.  Access the project configuration resource for editing:
         *   By using the web console:
-            1.  Navigate to the **Administration** -> **Cluster Settings** page.
+            1.  Navigate to the **Administration** → **Cluster Settings** page.
             1.  Click **Configuration** to view all configuration resources.
             1.  Find the entry for **Project** and click **Edit YAML**.
         *   By using the CLI:

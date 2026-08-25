@@ -9,13 +9,13 @@
 
 **Procedure**
 
-1.  Go to the **Administration** -> **Custom Resource Definitions** page, and click **LokiStack**.
+1.  Go to the **Administration** → **Custom Resource Definitions** page, and click **LokiStack**.
 1.  On the **Custom Resource Definition Details** page, click **Instances**.
 1.  Click the Options menu {{ kebab }} next to the instance, and then click **Delete LokiStack**.
-1.  Go to the **Administration** -> **Custom Resource Definitions** page.
+1.  Go to the **Administration** → **Custom Resource Definitions** page.
 1.  Click the Options menu {{ kebab }} next to **LokiStack**, and select **Delete Custom Resource Definition**.
 1.  Delete the object storage secret.
-1.  Go to the **Ecosystem** -> **Installed Operators** page.
+1.  Go to the **Ecosystem** → **Installed Operators** page.
 1.  Click the Options menu {{ kebab }} next to the {{ loki_op }}, and then click **Uninstall Operator**.
 1.  Optional: Delete the `openshift-operators-redhat` project.
 
@@ -25,6 +25,6 @@
     
     :::
 
-    1.  Go to the **Home** -> **Projects** page.
+    1.  Go to the **Home** → **Projects** page.
     1.  Click the Options menu {{ kebab }} next to the **openshift-operators-redhat** project, and then click **Delete Project**.
     1.  Confirm the deletion by typing `openshift-operators-redhat` in the dialog box, and then click **Delete**.

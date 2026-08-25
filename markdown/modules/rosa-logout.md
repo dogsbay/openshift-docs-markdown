@@ -9,6 +9,7 @@ Log out of `rosa`. Logging out also removes the `rosa` configuration file. {._ab
     ```terminal
     $ rosa logout [arguments]
     ```
+
     **Optional arguments inherited from parent commands**
 
     | Option | Definition |

@@ -5,8 +5,8 @@ You must attach the VirtIO container disk to the Windows VM to install the neces
 
 **Procedure**
 
-1.  Navigate to the existing Windows VM, and click **Actions** -> **Stop**.
-1.  Go to **VM Details** -> **Configuration** -> **Storage**.
+1.  Navigate to the existing Windows VM, and click **Actions** → **Stop**.
+1.  Go to **VM Details** → **Configuration** → **Storage**.
 1.  Select the **Mount Windows drivers disk** checkbox.
 1.  Click **Save**.
 1.  Start the VM, and connect to a graphical console.

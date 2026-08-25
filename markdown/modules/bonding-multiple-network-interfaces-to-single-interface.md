@@ -48,7 +48,7 @@ When you create a bonded interface using the `bond=` command, you must specify h
     ip=bond0:dhcp
     ```
 *   To configure the bonded interface to use a static IP address, edit the `/etc/config/network` file entering the specific IP address you want and related information. For example:
-    {%- if not ibm_z %}
+{% if not ibm_z %}
     ```terminal
     ip=10.10.10.2::10.10.10.254:255.255.255.0:core0.example.com:bond0:none
     ```
@@ -80,27 +80,27 @@ When you create a bonded interface using the `bond=` command, you must specify h
 {% endif %}
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
-{%- set restricted = false -%}
+{%- set ibm_power = "" -%}
+{%- set restricted = "" -%}
 {% endif %}

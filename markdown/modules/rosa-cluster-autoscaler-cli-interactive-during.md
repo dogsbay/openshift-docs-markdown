@@ -11,7 +11,7 @@ Interactive mode provides more information about available configurable paramete
     ```terminal title="Example"
     $ rosa create cluster --cluster-name <cluster_name> --enable-autoscaling --interactive
     ```
-{% include "./snippets/rosa-long-cluster-name.md" %}
+    {% include "./snippets/rosa-long-cluster-name.md" %}
 
 When the following prompt appears, enter **y** to go through all available autoscaling options.
 

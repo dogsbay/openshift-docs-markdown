@@ -3,21 +3,23 @@ title: Updating a cluster using the CLI
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Updating a cluster using the CLI {id="updating-cluster-cli"}
 {% include "./_attributes/common-attributes.md" %}
+# Updating a cluster using the CLI {id="updating-cluster-cli"}
 {%- set context = "updating-cluster-cli" %}
 
-You can perform minor version and patch updates on an {{ product_title }} cluster by using the {{ oc_first }}.
+You can perform minor version and patch updates on an {{ product_title }} cluster by using the {{ oc_first }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/updating-sno.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the Machine Config Operator](/architecture/control-plane#about-machine-config-operator_control-plane)
 
 {% leveloffset +1 %}{% include "./modules/updating-cli-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Support policy for unmanaged Operators](/architecture/architecture-installation#unmanaged-operators_architecture-installation)
 *   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
@@ -33,6 +35,7 @@ You can perform minor version and patch updates on an {{ product_title }} cluste
 {% if not openshift_origin %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Performing a Control Plane Only update](/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
 *   [Understanding update channels and releases](/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)

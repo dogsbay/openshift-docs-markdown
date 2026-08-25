@@ -11,6 +11,6 @@ The GCP PD CSI driver uses the `csi.storage.k8s.io/fstype` parameter key to supp
 
 | Parameter | Values | Default | Description |
 | --- | --- | --- | --- |
-| `type` | `pd-ssd`, `pd-standard`, `pd-balanced`, or `hyperdisk-balanced` | `pd-standard` | Allows you to choose between standard PVs or solid-state-drive PVs. The driver does not validate the value, thus all the possible values are accepted. For `hyperdisk-balanced`, be sure to check the limitations under "C3 and N4 instance type limitations". |
+| `type` | `pd-ssd`, `pd-standard`, `pd-balanced`, or `hyperdisk-balanced` | `pd-standard` | Allows you to choose between standard PVs or solid-state-drive PVs.<br>The driver does not validate the value, thus all the possible values are accepted.<br>For `hyperdisk-balanced`, be sure to check the limitations under "C3 and N4 instance type limitations". |
 | `replication-type` | `none` or `regional-pd` | `none` | Allows you to choose between zonal or regional PVs. |
 | `disk-encryption-kms-key` | Fully qualified resource identifier for the key to use to encrypt new disks. | Empty string | Uses customer-managed encryption keys (CMEK) to encrypt new disks. |

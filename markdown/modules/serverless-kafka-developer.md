@@ -11,7 +11,7 @@ The Knative broker implementation for Apache Kafka is not currently supported fo
 
 :::
 
-{% endif %}
+{%- endif %}
 
 Knative broker for Apache Kafka provides additional options, such as:
 

@@ -5,8 +5,8 @@ The OVN-Kubernetes network plugin has specific IPv6 and dual-stack networking co
 
 {%- if not microshift %}
 *   For clusters configured for dual-stack networking, both IPv4 and IPv6 traffic must use the same network interface as the default gateway.
-{% endif %}
-{% if microshift %}
+{%- endif %}
+{%- if microshift %}
 *   For a cluster configured for dual-stack networking, both IPv4 and IPv6 traffic must use the same network interface as the default gateway.
 {%- endif %}
 
@@ -22,8 +22,8 @@ The OVN-Kubernetes network plugin has specific IPv6 and dual-stack networking co
     The only resolution is to reconfigure the host networking so that both IP families use the same network interface for the default gateway.
 {%- if not microshift %}
 *   For clusters configured for dual-stack networking, both the IPv4 and IPv6 routing tables must contain the default gateway.
-{% endif %}
-{% if microshift %}
+{%- endif %}
+{%- if microshift %}
 *   For a cluster configured for dual-stack networking, both the IPv4 and IPv6 routing tables must contain the default gateway.
 {%- endif %}
 

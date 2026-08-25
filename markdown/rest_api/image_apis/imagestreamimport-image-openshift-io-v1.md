@@ -1,5 +1,5 @@
 ---
-title: "ImageStreamImport []"
+title: "ImageStreamImport [image.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -35,6 +35,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ImageStreamImportSpec defines what images should be imported. |
 | `status` | `object` | ImageStreamImportStatus contains information about the status of an image stream import. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -54,6 +55,7 @@ Required
 | `images[]` | `object` | ImageImportSpec describes a request to import a specific image. |
 | `import` | `boolean` | import indicates whether to perform an import - if so, the specified tags are set on the spec and status of the image stream defined by the type meta. |
 | `repository` | `object` | RepositoryImportSpec describes a request to import images from a container image repository. |
+
 ### .spec.images {id="_specimages"}
 
 Description
@@ -83,6 +85,7 @@ Required
 | `includeManifest` | `boolean` | includeManifest determines if the manifest for each image is returned in the response |
 | `referencePolicy` | `object` | TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed. |
 | `to` | `LocalObjectReference` | To is a tag in the current image stream to assign the imported image to, if name is not specified the default tag from from.name will be used |
+
 ### .spec.images[].importPolicy {id="_specimagesimportpolicy"}
 
 Description
@@ -97,6 +100,7 @@ Type
 | `importMode` | `string` | importMode describes how to import an image manifest. |
 | `insecure` | `boolean` | insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import. |
 | `scheduled` | `boolean` | scheduled indicates to the server that this tag should be periodically checked to ensure it is up to date, and imported |
+
 ### .spec.images[].referencePolicy {id="_specimagesreferencepolicy"}
 
 Description
@@ -113,6 +117,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type determines how the image pull spec should be transformed when the image stream tag is used in deployment config triggers or new builds. The default value is `Source`, indicating the original location of the image should be used (if imported). The user may also specify `Local`, indicating that the pull spec should point to the integrated container image registry and leverage the registry’s ability to proxy the pull to an upstream registry. `Local` allows the credentials used to pull this image to be managed from the image stream’s namespace, so others on the platform can access a remote image but have no access to the remote secret. It also allows the image layers to be mirrored into the local registry which the images can still be pulled even if the upstream registry is unavailable. |
+
 ### .spec.repository {id="_specrepository"}
 
 Description
@@ -132,6 +137,7 @@ Required
 | `importPolicy` | `object` | TagImportPolicy controls how images related to this tag will be imported. |
 | `includeManifest` | `boolean` | includeManifest determines if the manifest for each image is returned in the response |
 | `referencePolicy` | `object` | TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed. |
+
 ### .spec.repository.importPolicy {id="_specrepositoryimportpolicy"}
 
 Description
@@ -146,6 +152,7 @@ Type
 | `importMode` | `string` | importMode describes how to import an image manifest. |
 | `insecure` | `boolean` | insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import. |
 | `scheduled` | `boolean` | scheduled indicates to the server that this tag should be periodically checked to ensure it is up to date, and imported |
+
 ### .spec.repository.referencePolicy {id="_specrepositoryreferencepolicy"}
 
 Description
@@ -162,6 +169,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type determines how the image pull spec should be transformed when the image stream tag is used in deployment config triggers or new builds. The default value is `Source`, indicating the original location of the image should be used (if imported). The user may also specify `Local`, indicating that the pull spec should point to the integrated container image registry and leverage the registry’s ability to proxy the pull to an upstream registry. `Local` allows the credentials used to pull this image to be managed from the image stream’s namespace, so others on the platform can access a remote image but have no access to the remote secret. It also allows the image layers to be mirrored into the local registry which the images can still be pulled even if the upstream registry is unavailable. |
+
 ### .status {id="_status"}
 
 Description
@@ -175,8 +183,9 @@ Type
 | --- | --- | --- |
 | `images` | `array` | images is set with the result of importing spec.images |
 | `images[]` | `object` | ImageImportStatus describes the result of an image import. |
-| `import` | `object` | An ImageStream stores a mapping of tags to images, metadata overrides that are applied when images are tagged in a stream, and an optional reference to a container image repository on a registry. Users typically update the spec.tags field to point to external images which are imported from container registries using credentials in your namespace with the pull secret type, or to existing image stream tags and images which are immediately accessible for tagging or pulling. The history of images applied to a tag is visible in the status.tags field and any user who can view an image stream is allowed to tag that image into their own image streams. Access to pull images from the integrated registry is granted by having the "get imagestreams/layers" permission on a given image stream. Users may remove a tag by deleting the imagestreamtag resource, which causes both spec and status for that tag to be removed. Image stream history is retained until an administrator runs the prune operation, which removes references that are no longer in use. To preserve a historical image, ensure there is a tag in spec pointing to that image by its digest. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `import` | `object` | An ImageStream stores a mapping of tags to images, metadata overrides that are applied when images are tagged in a stream, and an optional reference to a container image repository on a registry. Users typically update the spec.tags field to point to external images which are imported from container registries using credentials in your namespace with the pull secret type, or to existing image stream tags and images which are immediately accessible for tagging or pulling. The history of images applied to a tag is visible in the status.tags field and any user who can view an image stream is allowed to tag that image into their own image streams. Access to pull images from the integrated registry is granted by having the "get imagestreams/layers" permission on a given image stream. Users may remove a tag by deleting the imagestreamtag resource, which causes both spec and status for that tag to be removed. Image stream history is retained until an administrator runs the prune operation, which removes references that are no longer in use. To preserve a historical image, ensure there is a tag in spec pointing to that image by its digest.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 | `repository` | `object` | RepositoryImportStatus describes the result of an image repository import |
+
 ### .status.images {id="_statusimages"}
 
 Description
@@ -201,11 +210,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 | `manifests` | `array` | manifests holds sub-manifests metadata when importing a manifest list |
-| `manifests[]` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `manifests[]` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 | `status` | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) | status is the status of the image import, including errors encountered while retrieving the image |
 | `tag` | `string` | tag is the tag this image was located under, if any |
+
 ### .status.images[].image {id="_statusimagesimage"}
 
 Description
@@ -235,7 +245,8 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signatures` | `array` | signatures holds all signatures of the image. |
-| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+
 ### .status.images[].image.dockerImageLayers {id="_statusimagesimagedockerimagelayers"}
 
 Description
@@ -265,6 +276,7 @@ Required
 | `mediaType` | `string` | mediaType of the referenced object. |
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
+
 ### .status.images[].image.dockerImageManifests {id="_statusimagesimagedockerimagemanifests"}
 
 Description
@@ -299,6 +311,7 @@ Required
 | `mediaType` | `string` | mediaType defines the type of the manifest, possible values are application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json or application/vnd.docker.distribution.manifest.v1+json. |
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
+
 ### .status.images[].image.signatures {id="_statusimagesimagesignatures"}
 
 Description
@@ -339,6 +352,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
+
 ### .status.images[].image.signatures[].conditions {id="_statusimagesimagesignaturesconditions"}
 
 Description
@@ -370,6 +384,7 @@ Required
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
+
 ### .status.images[].image.signatures[].issuedBy {id="_statusimagesimagesignaturesissuedby"}
 
 Description
@@ -383,6 +398,7 @@ Type
 | --- | --- | --- |
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
+
 ### .status.images[].image.signatures[].issuedTo {id="_statusimagesimagesignaturesissuedto"}
 
 Description
@@ -401,6 +417,7 @@ Required
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 | `publicKeyID` | `string` | If present, it is a human readable key id of public key belonging to the subject used to verify image signature. It should contain at least 64 lowest bits of public key’s fingerprint (e.g. 0x685ebe62bf278440). |
+
 ### .status.images[].manifests {id="_statusimagesmanifests"}
 
 Description
@@ -439,7 +456,8 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signatures` | `array` | signatures holds all signatures of the image. |
-| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+
 ### .status.images[].manifests[].dockerImageLayers {id="_statusimagesmanifestsdockerimagelayers"}
 
 Description
@@ -469,6 +487,7 @@ Required
 | `mediaType` | `string` | mediaType of the referenced object. |
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
+
 ### .status.images[].manifests[].dockerImageManifests {id="_statusimagesmanifestsdockerimagemanifests"}
 
 Description
@@ -503,6 +522,7 @@ Required
 | `mediaType` | `string` | mediaType defines the type of the manifest, possible values are application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json or application/vnd.docker.distribution.manifest.v1+json. |
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
+
 ### .status.images[].manifests[].signatures {id="_statusimagesmanifestssignatures"}
 
 Description
@@ -543,6 +563,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
+
 ### .status.images[].manifests[].signatures[].conditions {id="_statusimagesmanifestssignaturesconditions"}
 
 Description
@@ -574,6 +595,7 @@ Required
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
+
 ### .status.images[].manifests[].signatures[].issuedBy {id="_statusimagesmanifestssignaturesissuedby"}
 
 Description
@@ -587,6 +609,7 @@ Type
 | --- | --- | --- |
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
+
 ### .status.images[].manifests[].signatures[].issuedTo {id="_statusimagesmanifestssignaturesissuedto"}
 
 Description
@@ -605,6 +628,7 @@ Required
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 | `publicKeyID` | `string` | If present, it is a human readable key id of public key belonging to the subject used to verify image signature. It should contain at least 64 lowest bits of public key’s fingerprint (e.g. 0x685ebe62bf278440). |
+
 ### .status.import {id="_statusimport"}
 
 Description
@@ -624,6 +648,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ImageStreamSpec represents options for ImageStreams. |
 | `status` | `object` | ImageStreamStatus contains information about the state of this image stream. |
+
 ### .status.import.spec {id="_statusimportspec"}
 
 Description
@@ -639,6 +664,7 @@ Type
 | `lookupPolicy` | `object` | ImageLookupPolicy describes how an image stream can be used to override the image references used by pods, builds, and other resources in a namespace. |
 | `tags` | `array` | tags map arbitrary string values to specific image locators |
 | `tags[]` | `object` | TagReference specifies optional annotations for images using this tag and an optional reference to an ImageStreamTag, ImageStreamImage, or DockerImage this tag should track. |
+
 ### .status.import.spec.lookupPolicy {id="_statusimportspeclookuppolicy"}
 
 Description
@@ -655,6 +681,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `local` | `boolean` | local will change the docker short image references (like "mysql" or "php:latest") on objects in this namespace to the image ID whenever they match this image stream, instead of reaching out to a remote registry. The name will be fully qualified to an image ID if found. The tag’s referencePolicy is taken into account on the replaced value. Only works within the current namespace. |
+
 ### .status.import.spec.tags {id="_statusimportspectags"}
 
 Description
@@ -686,6 +713,7 @@ Required
 | `name` | `string` | name of the tag |
 | `reference` | `boolean` | reference states if the tag will be imported. Default value is false, which means the tag will be imported. |
 | `referencePolicy` | `object` | TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed. |
+
 ### .status.import.spec.tags[].importPolicy {id="_statusimportspectagsimportpolicy"}
 
 Description
@@ -700,6 +728,7 @@ Type
 | `importMode` | `string` | importMode describes how to import an image manifest. |
 | `insecure` | `boolean` | insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import. |
 | `scheduled` | `boolean` | scheduled indicates to the server that this tag should be periodically checked to ensure it is up to date, and imported |
+
 ### .status.import.spec.tags[].referencePolicy {id="_statusimportspectagsreferencepolicy"}
 
 Description
@@ -716,6 +745,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type determines how the image pull spec should be transformed when the image stream tag is used in deployment config triggers or new builds. The default value is `Source`, indicating the original location of the image should be used (if imported). The user may also specify `Local`, indicating that the pull spec should point to the integrated container image registry and leverage the registry’s ability to proxy the pull to an upstream registry. `Local` allows the credentials used to pull this image to be managed from the image stream’s namespace, so others on the platform can access a remote image but have no access to the remote secret. It also allows the image layers to be mirrored into the local registry which the images can still be pulled even if the upstream registry is unavailable. |
+
 ### .status.import.status {id="_statusimportstatus"}
 
 Description
@@ -731,6 +761,7 @@ Type
 | `publicDockerImageRepository` | `string` | publicDockerImageRepository represents the public location from where the image can be pulled outside the cluster. This field may be empty if the administrator has not exposed the integrated registry externally. |
 | `tags` | `array` | tags are a historical record of images associated with each tag. The first entry in the TagEvent array is the currently tagged image. |
 | `tags[]` | `object` | NamedTagEventList relates a tag to its image history. |
+
 ### .status.import.status.tags {id="_statusimportstatustags"}
 
 Description
@@ -761,6 +792,7 @@ Required
 | `items` | `array` | Standard object’s metadata. |
 | `items[]` | `object` | TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag. |
 | `tag` | `string` | tag is the tag for which the history is recorded |
+
 ### .status.import.status.tags[].conditions {id="_statusimportstatustagsconditions"}
 
 Description
@@ -793,6 +825,7 @@ Required
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of tag event condition, currently only ImportSuccess |
+
 ### .status.import.status.tags[].items {id="_statusimportstatustagsitems"}
 
 Description
@@ -824,6 +857,7 @@ Required
 | `dockerImageReference` | `string` | dockerImageReference is the string that can be used to pull this image |
 | `generation` | `integer` | generation is the spec tag generation that resulted in this tag being updated |
 | `image` | `string` | image is the image |
+
 ### .status.repository {id="_statusrepository"}
 
 Description
@@ -839,6 +873,7 @@ Type
 | `images` | `array` | images is a list of images successfully retrieved by the import of the repository. |
 | `images[]` | `object` | ImageImportStatus describes the result of an image import. |
 | `status` | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) | status reflects whether any failure occurred during import |
+
 ### .status.repository.images {id="_statusrepositoryimages"}
 
 Description
@@ -863,11 +898,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 | `manifests` | `array` | manifests holds sub-manifests metadata when importing a manifest list |
-| `manifests[]` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `manifests[]` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 | `status` | [`Status_v2`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) | status is the status of the image import, including errors encountered while retrieving the image |
 | `tag` | `string` | tag is the tag this image was located under, if any |
+
 ### .status.repository.images[].image {id="_statusrepositoryimagesimage"}
 
 Description
@@ -897,7 +933,8 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signatures` | `array` | signatures holds all signatures of the image. |
-| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+
 ### .status.repository.images[].image.dockerImageLayers {id="_statusrepositoryimagesimagedockerimagelayers"}
 
 Description
@@ -927,6 +964,7 @@ Required
 | `mediaType` | `string` | mediaType of the referenced object. |
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
+
 ### .status.repository.images[].image.dockerImageManifests {id="_statusrepositoryimagesimagedockerimagemanifests"}
 
 Description
@@ -961,6 +999,7 @@ Required
 | `mediaType` | `string` | mediaType defines the type of the manifest, possible values are application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json or application/vnd.docker.distribution.manifest.v1+json. |
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
+
 ### .status.repository.images[].image.signatures {id="_statusrepositoryimagesimagesignatures"}
 
 Description
@@ -1001,6 +1040,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
+
 ### .status.repository.images[].image.signatures[].conditions {id="_statusrepositoryimagesimagesignaturesconditions"}
 
 Description
@@ -1032,6 +1072,7 @@ Required
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
+
 ### .status.repository.images[].image.signatures[].issuedBy {id="_statusrepositoryimagesimagesignaturesissuedby"}
 
 Description
@@ -1045,6 +1086,7 @@ Type
 | --- | --- | --- |
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
+
 ### .status.repository.images[].image.signatures[].issuedTo {id="_statusrepositoryimagesimagesignaturesissuedto"}
 
 Description
@@ -1063,6 +1105,7 @@ Required
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 | `publicKeyID` | `string` | If present, it is a human readable key id of public key belonging to the subject used to verify image signature. It should contain at least 64 lowest bits of public key’s fingerprint (e.g. 0x685ebe62bf278440). |
+
 ### .status.repository.images[].manifests {id="_statusrepositoryimagesmanifests"}
 
 Description
@@ -1101,7 +1144,8 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signatures` | `array` | signatures holds all signatures of the image. |
-| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+
 ### .status.repository.images[].manifests[].dockerImageLayers {id="_statusrepositoryimagesmanifestsdockerimagelayers"}
 
 Description
@@ -1131,6 +1175,7 @@ Required
 | `mediaType` | `string` | mediaType of the referenced object. |
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
+
 ### .status.repository.images[].manifests[].dockerImageManifests {id="_statusrepositoryimagesmanifestsdockerimagemanifests"}
 
 Description
@@ -1165,6 +1210,7 @@ Required
 | `mediaType` | `string` | mediaType defines the type of the manifest, possible values are application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json or application/vnd.docker.distribution.manifest.v1+json. |
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
+
 ### .status.repository.images[].manifests[].signatures {id="_statusrepositoryimagesmanifestssignatures"}
 
 Description
@@ -1205,6 +1251,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
+
 ### .status.repository.images[].manifests[].signatures[].conditions {id="_statusrepositoryimagesmanifestssignaturesconditions"}
 
 Description
@@ -1236,6 +1283,7 @@ Required
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
+
 ### .status.repository.images[].manifests[].signatures[].issuedBy {id="_statusrepositoryimagesmanifestssignaturesissuedby"}
 
 Description
@@ -1249,6 +1297,7 @@ Type
 | --- | --- | --- |
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
+
 ### .status.repository.images[].manifests[].signatures[].issuedTo {id="_statusrepositoryimagesmanifestssignaturesissuedto"}
 
 Description
@@ -1272,7 +1321,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamimports`
+*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamimports`{minja}
     *   `POST`: create an ImageStreamImport
 
 ### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamimports {id="_apisimageopenshiftiov1namespaces_namespace_imagestreamimports"}

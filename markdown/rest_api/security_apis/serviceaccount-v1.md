@@ -27,6 +27,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `secrets` | `array` | Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". The "kubernetes.io/enforce-mountable-secrets" annotation is deprecated since v1.32. Prefer separate namespaces to isolate access to mounted secrets. This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret |
 | `secrets[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
+
 ### .imagePullSecrets {id="_imagepullsecrets"}
 
 Description
@@ -48,6 +49,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .secrets {id="_secrets"}
 
 Description
@@ -84,18 +86,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind ServiceAccount
 *   `/api/v1/watch/serviceaccounts`
     *   `GET`: watch individual changes to a list of ServiceAccount. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/serviceaccounts`
+*   `/api/v1/namespaces/{{ namespace }}/serviceaccounts`{minja}
     *   `DELETE`: delete collection of ServiceAccount
     *   `GET`: list or watch objects of kind ServiceAccount
     *   `POST`: create a ServiceAccount
-*   `/api/v1/watch/namespaces/{{ namespace }}/serviceaccounts`
+*   `/api/v1/watch/namespaces/{{ namespace }}/serviceaccounts`{minja}
     *   `GET`: watch individual changes to a list of ServiceAccount. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }}`
+*   `/api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }}`{minja}
     *   `DELETE`: delete a ServiceAccount
     *   `GET`: read the specified ServiceAccount
     *   `PATCH`: partially update the specified ServiceAccount
     *   `PUT`: replace the specified ServiceAccount
-*   `/api/v1/watch/namespaces/{{ namespace }}/serviceaccounts/{{ name }}`
+*   `/api/v1/watch/namespaces/{{ namespace }}/serviceaccounts/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind ServiceAccount. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /api/v1/serviceaccounts {id="_apiv1serviceaccounts"}

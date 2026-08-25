@@ -8,7 +8,7 @@ This paragraph is the procedure module introduction: a short description of the 
 
 **Procedure**
 
-1.  Mount all volumes into the `**/mnt/local-storage/<storage-class-name>/<volume>**` path:
+1.  Mount all volumes into the `*/mnt/local-storage/<storage-class-name>/<volume>*` path:
     ```
     # device name   # mount point                  # FS    # options # extra
     /dev/sdb1       /mnt/local-storage/ssd/disk1 ext4     defaults 1 2

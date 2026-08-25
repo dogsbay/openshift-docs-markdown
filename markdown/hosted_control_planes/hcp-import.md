@@ -7,11 +7,12 @@ title: Manually importing a hosted cluster
 # Manually importing a hosted cluster {id="hcp-import"}
 {%- set context = "hcp-import" %}
 
-Hosted clusters are automatically imported into {{ mce_short }} after the hosted control plane becomes available.
+Hosted clusters are automatically imported into {{ mce_short }} after the hosted control plane becomes available. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hcp-import-limitations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Updating node pools in a hosted cluster](/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating)
 *   [Updating a control plane in a hosted cluster](/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating)

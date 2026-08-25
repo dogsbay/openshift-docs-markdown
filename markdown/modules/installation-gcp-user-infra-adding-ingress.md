@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not shared_vpc %}
+{% if not shared_vpc %}
 # Optional: Adding the ingress DNS records {id="installation-gcp-user-infra-adding-ingress_{{ context }}"}
 
 {% endif %}
@@ -17,11 +17,11 @@
 {% endif %}
 
 {% if not shared_vpc %}
-If you removed the DNS zone configuration when creating Kubernetes manifests and generating Ignition configs, you must manually create DNS records that point at the ingress load balancer. You can create either a wildcard `*.apps.{{ baseDomain }}.` or specific records. You can use A, CNAME, and other records per your requirements.
+If you removed the DNS zone configuration when creating Kubernetes manifests and generating Ignition configs, you must manually create DNS records that point at the ingress load balancer. You can create either a wildcard `*.apps.{{ baseDomain }}.`{minja} or specific records. You can use A, CNAME, and other records per your requirements.
 {% endif %}
 {% if shared_vpc %}
 DNS zone configuration is removed when creating Kubernetes manifests and generating Ignition configs. You must manually create DNS records that point at the ingress load balancer. You can create either a wildcard
-`*.apps.{{ baseDomain }}.` or specific records. You can use A, CNAME, and other records per your requirements.
+`*.apps.{{ baseDomain }}.`{minja} or specific records. You can use A, CNAME, and other records per your requirements.
 {% endif %}
 
 **Prerequisites**
@@ -48,7 +48,7 @@ generating Ignition configs.
             $ export ROUTER_IP=`oc -n openshift-ingress get service router-default --no-headers | awk '{print $4}'`
             ```
         1.  Add the A record to the private zones:
-            {%- if not shared_vpc %}
+{% if not shared_vpc %}
             ```terminal
             $ if [ -f transaction.yaml ]; then rm transaction.yaml; fi
             ```
@@ -61,8 +61,8 @@ generating Ignition configs.
             ```terminal
             $ gcloud dns record-sets transaction execute --zone ${INFRA_ID}-private-zone
             ```
-{%- endif %}
-{%- if shared_vpc %}
+{% endif %}
+{% if shared_vpc %}
             ```terminal
             $ if [ -f transaction.yaml ]; then rm transaction.yaml; fi
             ```
@@ -77,7 +77,7 @@ generating Ignition configs.
             ```
 {%- endif %}
         1.  For an external cluster, also add the A record to the public zones:
-            {%- if not shared_vpc %}
+{% if not shared_vpc %}
             ```terminal
             $ if [ -f transaction.yaml ]; then rm transaction.yaml; fi
             ```
@@ -90,8 +90,8 @@ generating Ignition configs.
             ```terminal
             $ gcloud dns record-sets transaction execute --zone ${BASE_DOMAIN_ZONE_NAME}
             ```
-{%- endif %}
-{%- if shared_vpc %}
+{% endif %}
+{% if shared_vpc %}
             ```terminal
             $ if [ -f transaction.yaml ]; then rm transaction.yaml; fi
             ```
@@ -119,9 +119,9 @@ generating Ignition configs.
         ```
 
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set shared_vpc = false -%}
+{%- set shared_vpc = "" -%}
 {% endif %}
 
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}

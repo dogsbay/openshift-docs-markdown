@@ -10,7 +10,7 @@ Therefore, Red Hat recommends that you verify that all cluster-owned Filestore r
 **Procedure**
 
 1.  Access your Google Cloud account using the GUI or CLI.
-1.  Search for any resources with the `kubernetes-io-cluster-${{ CLUSTER_ID }}=owned` label. 
+1.  Search for any resources with the `kubernetes-io-cluster-${{ CLUSTER_ID }}=owned`{minja} label. 
 
     Since the cluster ID is unique to the deleted cluster, there should not be any remaining resources with that cluster ID.
 1.  In the unlikely case there are some remaining resources, delete them.

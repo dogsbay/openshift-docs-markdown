@@ -38,8 +38,8 @@ Alternatively, you can remove `enableUserWorkload: true` to disable monitoring f
     ```
 
 
-:::note
+    :::note
 
-The `user-workload-monitoring-config` `ConfigMap` object in the `openshift-user-workload-monitoring` project is not automatically deleted when monitoring for user-defined projects is disabled. This is to preserve any custom configurations that you may have created in the `ConfigMap` object.
-
-:::
+    The `user-workload-monitoring-config` `ConfigMap` object in the `openshift-user-workload-monitoring` project is not automatically deleted when monitoring for user-defined projects is disabled. This is to preserve any custom configurations that you may have created in the `ConfigMap` object.
+    
+    :::

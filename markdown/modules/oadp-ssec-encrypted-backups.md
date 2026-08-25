@@ -28,12 +28,11 @@ Be sure to store cryptographic keys in a secure and safe manner. Encrypted data 
         This is a workaround for a known issue: https://issues.redhat.com/browse/OADP-3971.
 
 
-:::note
+        :::note
 
-The following procedure contains an example of a `spec:backupLocations` block that does not specify credentials. This example would trigger an OADP secret mounting.
-
-:::
-
+        The following procedure contains an example of a `spec:backupLocations` block that does not specify credentials. This example would trigger an OADP secret mounting.
+        
+        :::
 
 *   If you need the backup location to have credentials with a different name than `cloud-credentials`, you must add a snapshot location, such as the one in the following example, that does not contain a credential name. Because the following example does not contain a credential name, the snapshot location will use `cloud-credentials` as its secret for taking snapshots.
     ```yaml

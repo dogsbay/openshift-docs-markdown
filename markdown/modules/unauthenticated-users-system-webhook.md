@@ -4,8 +4,8 @@
 As a cluster administrator, you can add unauthenticated users to the `system:webhook` role binding in {{ product_title }} for specific namespaces. The `system:webhook` role binding allows users to trigger builds from external systems that do not use 
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 an {{ product_title }} 
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp) %}
 a {{ product_title }} 
 {%- endif %}
 authentication mechanism. Unauthenticated users do not have access to non-public role bindings by default. This is a change from {{ product_title }} versions before 4.16.

@@ -3,11 +3,11 @@ title: Using templates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using templates {id="using-templates"}
 {% include "./_attributes/common-attributes.md" %}
+# Using templates {id="using-templates"}
 {%- set context = "using-templates" %}
 
-You can use templates to deploy preconfigured applications and create reusable object definitions on your {{ product_title }} cluster. Upload, instantiate, and author templates from the web console or CLI to speed up application creation.
+You can use templates to deploy preconfigured applications and create reusable object definitions on your {{ product_title }} cluster. Upload, instantiate, and author templates from the web console or CLI to speed up application creation. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/templates-overview.md" %}{% endleveloffset %}
 
@@ -29,7 +29,7 @@ You can use templates to deploy preconfigured applications and create reusable o
 {% leveloffset +1 %}{% include "./modules/templates-using-instant-app-quickstart.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/templates-quickstart.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/templates-writing.md" %}{% endleveloffset %}
 

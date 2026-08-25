@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-```yaml
+```yaml {minja}
 apiVersion: ran.openshift.io/v1
 kind: PolicyGenTemplate
 metadata:

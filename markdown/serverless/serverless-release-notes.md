@@ -34,6 +34,7 @@ For details about the latest Knative component releases, see the [Knative blog](
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-27-0.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-26-0.md" %}{% endleveloffset %}
+
 **Additional resources**
 {._additional-resources}
 
@@ -41,27 +42,29 @@ For details about the latest Knative component releases, see the [Knative blog](
 
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-25-0.md" %}{% endleveloffset %}
 {%- if openshift_enterprise %}
+
 **Additional resources**
 {._additional-resources}
 
-*   [Configuring TLS authentication](/serverless/knative-serving/config-applications/serverless-config-tls#serverless-config-tls)
-{% endif %}
+*   [Configuring TLS authentication](/serverless/knative-serving/config-applications/serverless-config-tls#serverless-config-tls) {._additional-resources}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-24-0.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-23-0.md" %}{% endleveloffset %}
 
 {%- if openshift_enterprise %}
+
 **Additional resources**
 {._additional-resources}
 
-*   [Source-to-Image](/openshift_images/using_images/using-s21-images#using-s21-images)
-{% endif %}
+*   [Source-to-Image](/openshift_images/using_images/using-s21-images#using-s21-images) {._additional-resources}
+{%- endif %}
 
 {%- if openshift_enterprise or openshift_dedicated %}
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-22-0.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-21-0.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-20-0.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {% if openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/serverless-rn-1-19-0.md" %}{% endleveloffset %}

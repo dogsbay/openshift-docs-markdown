@@ -4,10 +4,10 @@ title: Restrict resource consumption with limit ranges
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cluster-limit-ranges" %}
-# Restrict resource consumption with limit ranges {id="nodes-cluster-limit-ranges"}
 {% include "./_attributes/common-attributes.md" %}
+# Restrict resource consumption with limit ranges {id="nodes-cluster-limit-ranges"}
 
-You can use limit ranges to restrict resource consumption for specific objects in a project.
+You can use limit ranges to restrict resource consumption for specific objects in a project. {._abstract}
 
 By default, containers run with unbounded compute resources on an {{ product_title }} cluster. 
 

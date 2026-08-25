@@ -19,7 +19,7 @@ Display On Content Scope
 Include to Token Scope
 :   `On`
 
-1.  Click **Save** and navigate to `groups` -> **Mappers**.
+1.  Click **Save** and navigate to `groups` → **Mappers**.
 1.  Add a new token mapper with the following values:
 
 Name
@@ -32,5 +32,5 @@ Token Claim Name
 :   `groups`
     The token mapper adds the `groups` claim to the token when the client requests `groups`. 
 
-1.  Navigate to **Clients** -> **Client Scopes** and configure the client to provide the groups scope. Select `groups` in the **Assigned Default Client Scopes** table and click **Add selected**. The `groups` scope must be in the **Available Client Scopes** table.
-1.  Navigate to **Users** -> **Admin** -> **Groups** and create a group `ArgoCDAdmins`.
+1.  Navigate to **Clients** → **Client Scopes** and configure the client to provide the groups scope. Select `groups` in the **Assigned Default Client Scopes** table and click **Add selected**. The `groups` scope must be in the **Available Client Scopes** table.
+1.  Navigate to **Users** → **Admin** → **Groups** and create a group `ArgoCDAdmins`.

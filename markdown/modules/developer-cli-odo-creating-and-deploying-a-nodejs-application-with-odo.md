@@ -8,7 +8,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a Node.js application with {{ odo_title }} {id="creating-a-nodejs-application-with-odo_{{ context }}"}
 
-To create a Node.js component, download the Node.js application and push the source code to your cluster with `{{ odo_title }}`.
+To create a Node.js component, download the Node.js application and push the source code to your cluster with `{{ odo_title }}`{minja}.
 
 **Procedure**
 
@@ -25,12 +25,14 @@ To create a Node.js component, download the Node.js application and push the sou
 {% endif %}
 
 {% if multi %}
+
 1.  Download the example front-end application:
     ```terminal
     $ git clone https://github.com/openshift-evangelists/Wild-West-Frontend frontend
     ```
 
 {% endif %}
+
 1.  Change the current directory to the directory with your application:
     ```terminal
     $ cd <directory_name>
@@ -70,8 +72,8 @@ To create a Node.js component, download the Node.js application and push the sou
     ```
 
 {% if context == "creating-a-single-component-application-with-odo" %}
-{%- set single = false -%}
+{%- set single = "" -%}
 {% endif %}
 {% if context == "creating-a-multicomponent-application-with-odo" %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}

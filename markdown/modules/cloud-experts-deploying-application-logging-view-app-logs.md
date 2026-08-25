@@ -10,7 +10,7 @@ You can view your application’s logs by using the `oc` command. {._abstract}
     $ oc get pods -o name
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     pod/ostoy-frontend-679cb85695-5cn7x (1)
     pod/ostoy-microservice-86b4c6f559-p594d
@@ -22,7 +22,7 @@ You can view your application’s logs by using the `oc` command. {._abstract}
     $ oc logs <pod-name>
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     $ oc logs ostoy-frontend-679cb85695-5cn7x
     [...]

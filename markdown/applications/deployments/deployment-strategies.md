@@ -3,11 +3,11 @@ title: Using deployment strategies
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using deployment strategies {id="deployment-strategies"}
 {% include "./_attributes/common-attributes.md" %}
+# Using deployment strategies {id="deployment-strategies"}
 {%- set context = "deployment-strategies" %}
 
-To upgrade applications with little or no downtime in {{ product_title }}, you can use a deployment strategy. Choose strategies that use `DeploymentConfig` object features or router features depending on whether you need to affect all routes or only specific ones.
+To upgrade applications with little or no downtime in {{ product_title }}, you can use a deployment strategy. Choose strategies that use `DeploymentConfig` object features or router features depending on whether you need to affect all routes or only specific ones. {._abstract}
 
 Because users generally access applications through a route handled by a router, deployment strategies can focus on `DeploymentConfig` object features or routing features. Strategies that focus on `DeploymentConfig` object features impact all routes that use the application. Strategies that use router features target individual routes.
 
@@ -37,6 +37,7 @@ A deployment strategy uses readiness checks to determine if a new pod is ready f
 {% leveloffset +2 %}{% include "./modules/odc-starting-rolling-deployment.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating and deploying applications on {{ product_title }} using the **Developer** perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
 *   [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)
@@ -49,6 +50,7 @@ A deployment strategy uses readiness checks to determine if a new pod is ready f
 {% leveloffset +2 %}{% include "./modules/odc-starting-recreate-deployment.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating and deploying applications on {{ product_title }} using the **Developer** perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
 *   [Viewing the applications in your project, verifying their deployment status, and interacting with them in the **Topology** view](/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-composition-using-topology-view)

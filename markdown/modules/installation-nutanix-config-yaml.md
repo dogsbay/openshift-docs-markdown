@@ -19,7 +19,7 @@ This sample YAML file is provided for reference only. You must obtain your `inst
 
 
 {% if default %}
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 compute:
@@ -170,7 +170,7 @@ where:
 {% endif %}
 
 {% if restricted %}
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 compute:
@@ -340,8 +340,8 @@ where:
 {% endif %}
 
 {% if context == "installing-nutanix-installer-provisioned" %}
-{%- set default = false -%}
+{%- set default = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-nutanix-installer-provisioned" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

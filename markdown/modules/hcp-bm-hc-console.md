@@ -6,13 +6,13 @@ Instead of using the command-line interface to create a hosted cluster on bare m
 **Procedure**
 
 1.  Open the {{ product_title }} web console and log in by entering your administrator credentials. For instructions to open the console, see "Accessing the web console".
-1.  In the console header, ensure that ***All Clusters*** is selected.
-1.  Click ***Infrastructure -> Clusters***.
-1.  Click ***Create cluster -> Host inventory -> Hosted control plane***.
+1.  In the console header, ensure that **All Clusters** is selected.
+1.  Click **Infrastructure → Clusters**.
+1.  Click **Create cluster → Host inventory → Hosted control plane**.
 
 
-    The ***Create cluster*** page is displayed.
-1.  On the ***Create cluster*** page, follow the prompts to enter details about the cluster, node pools, networking, and automation.
+    The **Create cluster** page is displayed.
+1.  On the **Create cluster** page, follow the prompts to enter details about the cluster, node pools, networking, and automation.
 
 
     :::note
@@ -26,11 +26,11 @@ Instead of using the command-line interface to create a hosted cluster on bare m
     
     :::
 
-1.  Review your entries and click ***Create***.
+1.  Review your entries and click **Create**.
 
 
-    The ***Hosted cluster*** view is displayed.
-1.  Monitor the deployment of the hosted cluster in the ***Hosted cluster*** view.
-1.  If you do not see information about the hosted cluster, ensure that ***All Clusters*** is selected, then click the cluster name.
+    The **Hosted cluster** view is displayed.
+1.  Monitor the deployment of the hosted cluster in the **Hosted cluster** view.
+1.  If you do not see information about the hosted cluster, ensure that **All Clusters** is selected, then click the cluster name.
 1.  Wait until the control plane components are ready. This process can take a few minutes.
-1.  To view the node pool status, scroll to the ***NodePool*** section. The process to install the nodes takes about 10 minutes. You can also click ***Nodes*** to confirm whether the nodes joined the hosted cluster.
+1.  To view the node pool status, scroll to the **NodePool** section. The process to install the nodes takes about 10 minutes. You can also click **Nodes** to confirm whether the nodes joined the hosted cluster.

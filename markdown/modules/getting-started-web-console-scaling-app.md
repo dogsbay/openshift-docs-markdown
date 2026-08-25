@@ -15,9 +15,10 @@ The following procedure scales the `parksmap` deployment to use two instances.
 
 **Procedure**
 
-1.  Navigate to **Workloads** -> **Topology** and click the `parksmap` deployment.
+1.  Navigate to **Workloads** → **Topology** and click the `parksmap` deployment.
 1.  Select the **Details** tab.
 1.  Use the up arrow to scale the pod to two instances.
+
     **Figure 1. Scaling application**
 
     ![Scaling pod to two instances](/_assets/images/getting-started-scaling-pod.png)

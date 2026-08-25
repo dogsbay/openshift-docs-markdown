@@ -18,7 +18,7 @@ After you have installed the {{ secondary_scheduler_operator }}, you can deploy 
 
 1.  Log in to the {{ product_title }} web console.
 1.  Create config map to hold the configuration for the secondary scheduler.
-    1.  Navigate to **Workloads** -> **ConfigMaps**.
+    1.  Navigate to **Workloads** → **ConfigMaps**.
     1.  Click **Create ConfigMap**.
     1.  In the YAML editor, enter the config map definition that contains the necessary `KubeSchedulerConfiguration` configuration. For example:
         ```yaml
@@ -61,7 +61,7 @@ After you have installed the {{ secondary_scheduler_operator }}, you can deploy 
 
     1.  Click **Create**.
 1.  Create the `SecondaryScheduler` CR:
-    1.  Navigate to **Ecosystem** -> **Installed Operators**.
+    1.  Navigate to **Ecosystem** → **Installed Operators**.
     1.  Select **{{ secondary_scheduler_operator_full }}**.
     1.  Select the **Secondary Scheduler** tab and click **Create SecondaryScheduler**.
     1.  The **Name** field defaults to `cluster`; do not change this name.

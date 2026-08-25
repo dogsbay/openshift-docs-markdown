@@ -13,12 +13,14 @@ Day 0
 
 Day 1
 :   Kmods that are not required for a node to become `Ready` in the cluster but cannot be unloaded when the node is `Ready`.
+
     An example of this type of kmod is an out-of-tree (OOT) network driver that replaces an outdated in-tree driver to exploit the full potential of the NIC while `NetworkManager` depends on it. When the node is `Ready`, you cannot unload the driver because of the `NetworkManager` dependency.
 
 
 Day 2
 :   Kmods that can be dynamically loaded to the kernel or removed from it without interfering with the cluster infrastructure, for example, connectivity.
+
     Examples of these types of kmods include:
-    * GPU operators
-    * Secondary network adapters
-    * field-programmable gate arrays (FPGAs)
+    *   GPU operators
+    *   Secondary network adapters
+    *   field-programmable gate arrays (FPGAs)

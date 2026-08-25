@@ -37,7 +37,7 @@ The repository must be accessible from the hub cluster and be defined as a sourc
         compliant:
         noncompliant:
       object-templates-raw: |
-{{- range (lookup "v1" "Node" "" "").items }}
+        {{- range (lookup "v1" "Node" "" "").items }}
         - complianceType: musthave
           objectDefinition:
             kind: NodeNetworkConfigurationPolicy

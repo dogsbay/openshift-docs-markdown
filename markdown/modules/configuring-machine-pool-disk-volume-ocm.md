@@ -3,6 +3,7 @@
 # Configuring machine pool disk volume using OpenShift Cluster Manager {id="configuring-machine-pool-disk-volume-ocm_{{ context }}"}
 
 {%- endif %}
+
 **Prerequisite for cluster creation**
 
 *   You have the option to select the node disk sizing for the default machine pool during cluster installation.

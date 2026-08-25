@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Getting started with functions {id="serverless-functions-getting-started"}
 {%- set context = "serverless-functions-getting-started" %}
-{% include "./_attributes/common-attributes.md" %}
 
 Function lifecycle management includes creating, building, and deploying a function. Optionally, you can also test a deployed function by invoking it. You can do all of these operations on {{ ServerlessProductName }} using the `kn func` tool.
 

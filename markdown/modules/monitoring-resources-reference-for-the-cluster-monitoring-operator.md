@@ -67,7 +67,7 @@ Expose the Alertmanager web server within the cluster on the following ports:
 *   Port 9094 provides access to all the Alertmanager endpoints. Granting access requires binding a user to the `monitoring-alertmanager-view` role (for read-only operations) or the `monitoring-alertmanager-edit` role in the `openshift-monitoring` project.
 
 Example monitoring-alertmanager-view permissions
-    :   The following example exercises permissions granted by the `monitoring-alertmanager-view` role. The binding commands must be run by a user with the necessary privileges.
+:   The following example exercises permissions granted by the `monitoring-alertmanager-view` role. The binding commands must be run by a user with the necessary privileges.
 
 1.  Create a test namespace and a service account.
     ```terminal
@@ -162,7 +162,7 @@ Example monitoring-alertmanager-view permissions
 *   Port 9092 provides access to the Alertmanager endpoints restricted to a given project. Granting access requires binding a user to the `monitoring-rules-edit` cluster role or `monitoring-edit` cluster role in the project.
 
 Example monitoring-rules-edit permissions
-    :   The following example exercises permissions granted by the `monitoring-rules-edit` cluster role. The binding commands must be run by a user with the necessary privileges.
+:   The following example exercises permissions granted by the `monitoring-rules-edit` cluster role. The binding commands must be run by a user with the necessary privileges.
 
 1.  Create a test namespace and a service account.
     ```terminal
@@ -281,7 +281,7 @@ Expose the Prometheus web server within the cluster on the following ports:
 *   Port 9091 provides access to all the Prometheus endpoints. Granting access requires binding a user to the `cluster-monitoring-view` cluster role or `cluster-monitoring-metrics-api` cluster role in the `openshift-monitoring` project.
 
 Example cluster-monitoring-view permissions
-    :   The following example exercises permissions granted by the `cluster-monitoring-view` cluster role. The binding commands must be run by a user with the necessary privileges.
+:   The following example exercises permissions granted by the `cluster-monitoring-view` cluster role. The binding commands must be run by a user with the necessary privileges.
 
 1.  Create a test namespace and a service account.
     ```terminal
@@ -375,7 +375,7 @@ Expose the Thanos Querier web server within the cluster on the following ports:
 *   Port 9091 provides access to all the Thanos Querier endpoints. Granting access requires binding a user to the `cluster-monitoring-view` cluster role or `cluster-monitoring-metrics-api` cluster role in the `openshift-monitoring` project.
 
 Example cluster-monitoring-view permissions
-    :   The following example exercises permissions granted by the `cluster-monitoring-view` cluster role. The binding commands must be run by a user with the necessary privileges.
+:   The following example exercises permissions granted by the `cluster-monitoring-view` cluster role. The binding commands must be run by a user with the necessary privileges.
 
 1.  Create a test namespace and a service account.
     ```terminal
@@ -442,7 +442,7 @@ Example cluster-monitoring-view permissions
 *   Port 9092 provides access to the `/api/v1/query`, `/api/v1/query_range/`, `/api/v1/labels`, `/api/v1/label/*/values`, and `/api/v1/series` endpoints restricted to a given project. Granting access requires binding a user to the `view` cluster role in the project.
 
 Example view permissions
-    :   The following example exercises permissions granted by the `view` cluster role. The binding commands must be run by a user with the necessary privileges.
+:   The following example exercises permissions granted by the `view` cluster role. The binding commands must be run by a user with the necessary privileges.
 
 1.  Create a test namespace and a service account.
     ```terminal
@@ -469,7 +469,7 @@ Example view permissions
 *   Port 9093 provides access to the `/api/v1/alerts`, and `/api/v1/rules` endpoints restricted to a given project. Granting access requires binding a user to the `monitoring-rules-edit`, `monitoring-edit`, or `monitoring-rules-view` cluster role in the project.
 
 Example monitoring-rules-edit permissions
-    :   The following example exercises permissions granted by the `monitoring-rules-edit` cluster role. The binding commands must be run by a user with the necessary privileges.
+:   The following example exercises permissions granted by the `monitoring-rules-edit` cluster role. The binding commands must be run by a user with the necessary privileges.
 
 1.  Create a test namespace and a service account.
     ```terminal

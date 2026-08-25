@@ -3,17 +3,18 @@ title: Troubleshooting OVN-Kubernetes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting OVN-Kubernetes {id="ovn-kubernetes-troubleshooting-sources"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting OVN-Kubernetes {id="ovn-kubernetes-troubleshooting-sources"}
 {%- set context = "ovn-kubernetes-sources-of-troubleshooting-information" %}
 
-To troubleshoot OVN-Kubernetes in {{ product_title }}, you can use built-in health checks, alerting, logs, and connectivity checks. Follow these sections to examine your cluster before opening a support case.
+To troubleshoot OVN-Kubernetes in {{ product_title }}, you can use built-in health checks, alerting, logs, and connectivity checks. Follow these sections to examine your cluster before opening a support case. {._abstract}
 
 OVN-Kubernetes has many sources of built-in health checks and logs. Follow the instructions in these sections to examine your cluster. If a support case is necessary, collect additional information through a `must-gather` as described in "Gathering data about your cluster for Red Hat Support". Only use the `-- gather_network_logs` option when instructed by support.
 
 {% leveloffset +1 %}{% include "./modules/nw-ovn-kubernetes-readiness-probes.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Monitoring application health by using health checks](/applications/application-health#application-health)
 
@@ -33,7 +34,7 @@ OVN-Kubernetes has many sources of built-in health checks and logs. Follow the i
 
 {% leveloffset +2 %}{% include "./modules/observability-ovs-sampling-flags.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_ovn-kubernetes-sources-of-troubleshooting-information"}
+## Additional resources {id="additional-resources_ovn-kubernetes-sources-of-troubleshooting-information" ._additional-resources}
 
 *   [Gathering data about your cluster for Red Hat Support](/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)
 *   [Implementation of connection health checks](/networking/advanced_networking/verifying-connectivity-endpoint#nw-pod-network-connectivity-implementation_verifying-connectivity-endpoint)

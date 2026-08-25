@@ -56,6 +56,7 @@ See "Requirements for installing OpenShift on a single node" for networking requ
     ```
 
     The following table describes the required parameters:
+
     **Required `install-config.yaml` parameters**
 
     | Parameter | Description |

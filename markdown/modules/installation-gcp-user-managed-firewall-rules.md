@@ -25,6 +25,7 @@ If you want to manage your own firewall rules, you must create the following rul
 | ingress-k8s-fw | `tcp:80,443` | `<allowed_external_cidr>` | `<control_plane_node_tags>`, `<compute_node_tags>` |
 | ingress-k8s-http-hc | `tcp:30000-32767` | `35.191.0.0/16`, `130.211.0.0/22`, `209.85.152.0/22`, `209.85.204.0/22` | `<control_plane_node_tags>`, `<compute_node_tags>` |
 | `<sample_rule_name>` | `<service_port>` | `<allowed_external_cidr>` | `<compute_node_tags>` |
+
 where:
 
 

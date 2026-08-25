@@ -1,9 +1,9 @@
 # {{ odo_title }} push workflow {id="odo-push-workflow_{{ context }}"}
-This section describes `{{ odo_title }} push` workflow. {{ odo_title }} push deploys user code on an {{ product_title }} cluster with all the necessary {{ product_title }} resources.
+This section describes `{{ odo_title }} push`{minja} workflow. {{ odo_title }} push deploys user code on an {{ product_title }} cluster with all the necessary {{ product_title }} resources.
 
 1.  Creating resources
 
-    If not already created, `{{ odo_title }}` push creates the following {{ product_title }} resources:
+    If not already created, `{{ odo_title }}`{minja} push creates the following {{ product_title }} resources:
     *   `DeploymentConfig` object:
         *   Two init containers are executed: `copy-supervisord` and `copy-files-to-volume`. The init containers copy files onto the `emptyDir` and the `PersistentVolume` type of volumes respectively.
         *   The application container starts. The first process in the application container is the `go-init` process with PID=1.

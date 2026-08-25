@@ -58,7 +58,7 @@ Network flows coming from VMs that are connected to the default internal pod net
     `mac`
     :   Specifies the MAC address used for the secondary network.
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster** and then select the **YAML** tab.
 1.  Configure `FlowCollector` based on the information you found from the additional network investigation:

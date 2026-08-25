@@ -21,11 +21,11 @@ Each machine requires:
 *   At least 100 GB storage space from the {{ rh_openstack }} quota
 
 {% if context == "installing-openstack-user-sr-iov" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-sr-iov" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-ovs-dpdk" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}

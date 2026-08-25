@@ -3,11 +3,11 @@ title: Planning your environment according to object maximums
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Planning your environment according to object maximums {id="planning-your-environment-according-to-object-maximums"}
 {% include "./_attributes/common-attributes.md" %}
+# Planning your environment according to object maximums {id="planning-your-environment-according-to-object-maximums"}
 {%- set context = "object-limits" %}
 
-To ensure your cluster meets performance and scalability requirements, plan your environment according to tested object maximums. By reviewing these limits, you can design a {{ product_title }} deployment that operates reliably within supported boundaries.
+To ensure your cluster meets performance and scalability requirements, plan your environment according to tested object maximums. By reviewing these limits, you can design a {{ product_title }} deployment that operates reliably within supported boundaries. {._abstract}
 
 The example guidelines are based on the largest possible cluster. For smaller clusters, the maximums are lower. There are many factors that influence the stated thresholds, including the etcd version or storage data format. In most cases, exceeding these numbers results in lower overall performance but might not cause your cluster to fail.
 

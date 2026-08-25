@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# 5.7 Logging API reference {id="logging-5-7-reference"}
 {% include "./_attributes/common-attributes.md" %}
+# 5.7 Logging API reference {id="logging-5-7-reference"}
 {%- set context = "logging-5-7-reference" %}
 
 Many factors, including hosted cluster workload and worker node count, affect how many hosted clusters can fit within a certain number of control-plane nodes. Use this sizing guide to help with hosted cluster capacity planning. This guidance assumes a highly available {{ hcp }} topology. The load-based sizing examples were measured on a bare-metal cluster. Cloud-based instances might have different limiting factors, such as memory size.

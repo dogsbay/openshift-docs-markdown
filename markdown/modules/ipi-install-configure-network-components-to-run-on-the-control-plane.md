@@ -100,8 +100,8 @@ When deploying remote nodes in separate subnets, you must place the `ingressVIP`
 
 
 {% if context == "ipi-install-installation-workflow" %}
-{%- set bare = false -%}
+{%- set bare = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-installer-provisioned-customizations" %}
-{%- set vSphere = false -%}
+{%- set vSphere = "" -%}
 {% endif %}

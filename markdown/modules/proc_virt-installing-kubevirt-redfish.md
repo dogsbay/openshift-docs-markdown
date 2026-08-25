@@ -183,7 +183,7 @@ These CRs create the namespace, permissions, configuration, and deployment requi
     :::
 
 1.  Create the `Deployment` CR by creating a YAML file with content such as the following example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: apps/v1
     kind: Deployment
     metadata:

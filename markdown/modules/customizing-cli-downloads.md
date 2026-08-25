@@ -11,7 +11,7 @@ the packages. {._abstract}
 
 **Procedure**
 
-1.  Navigate to **Administration** -> **Custom Resource Definitions**.
+1.  Navigate to **Administration** → **Custom Resource Definitions**.
 1.  Select **ConsoleCLIDownload** from the list of Custom Resource Definitions (CRDs).
 1.  Click the **YAML** tab, and then make your edits:
     ```yaml

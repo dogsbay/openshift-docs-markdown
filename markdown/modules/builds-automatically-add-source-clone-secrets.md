@@ -20,7 +20,7 @@ In all of the above, a `*` character is interpreted as a wildcard.
 
 URI patterns must match Git source URIs which are conformant to [RFC3986](https://www.ietf.org/rfc/rfc3986.txt). Do not include a username (or password) component in a URI pattern.
 
-For example, if you use `ssh://git@bitbucket.atlassian.com:7999/ATLASSIAN jira.git` for a git repository URL, the source secret must be specified as `ssh://bitbucket.atlassian.com:7999/**` (and not `ssh://git@bitbucket.atlassian.com:7999/**`).
+For example, if you use `ssh://git@bitbucket.atlassian.com:7999/ATLASSIAN jira.git` for a git repository URL, the source secret must be specified as `ssh://bitbucket.atlassian.com:7999/*` (and not `ssh://git@bitbucket.atlassian.com:7999/*`).
 
 ```terminal
 $ oc annotate secret mysecret \

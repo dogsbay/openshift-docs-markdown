@@ -14,7 +14,7 @@ Many of the `opm` subcommands and flags for working with the SQLite database for
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 For more information about working with file-based catalogs, see "Additional resources".
-{%- endif %}
+{% endif %}
 
 :::
 

@@ -1,5 +1,5 @@
 ---
-title: "OperatorGroup []"
+title: "OperatorGroup [operators.coreos.com/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OperatorGroupSpec is the spec for an OperatorGroup resource. |
 | `status` | `object` | OperatorGroupStatus is the status for an OperatorGroupResource. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,7 +45,8 @@ Type
 | `serviceAccountName` | `string` | ServiceAccountName is the admin specified service account which will be used to deploy operator(s) in this operator group. |
 | `staticProvidedAPIs` | `boolean` | Static tells OLM not to update the OperatorGroup’s providedAPIs annotation |
 | `targetNamespaces` | `array (string)` | TargetNamespaces is an explicit set of namespaces to target. If it is set, Selector is ignored. |
-| `upgradeStrategy` | `string` | UpgradeStrategy defines the upgrade strategy for operators in the namespace. There are currently two supported upgrade strategies: Default: OLM will only allow clusterServiceVersions to move to the replacing phase from the succeeded phase. This effectively means that OLM will not allow operators to move to the next version if an installation or upgrade has failed. TechPreviewUnsafeFailForward: OLM will allow clusterServiceVersions to move to the replacing phase from the succeeded phase or from the failed phase. Additionally, OLM will generate new installPlans when a subscription references a failed installPlan and the catalog has been updated with a new upgrade for the existing set of operators. WARNING: The TechPreviewUnsafeFailForward upgrade strategy is unsafe and may result in unexpected behavior or unrecoverable data loss unless you have deep understanding of the set of operators being managed in the namespace. |
+| `upgradeStrategy` | `string` | UpgradeStrategy defines the upgrade strategy for operators in the namespace. There are currently two supported upgrade strategies:<br>Default: OLM will only allow clusterServiceVersions to move to the replacing phase from the succeeded phase. This effectively means that OLM will not allow operators to move to the next version if an installation or upgrade has failed.<br>TechPreviewUnsafeFailForward: OLM will allow clusterServiceVersions to move to the replacing phase from the succeeded phase or from the failed phase. Additionally, OLM will generate new installPlans when a subscription references a failed installPlan and the catalog has been updated with a new upgrade for the existing set of operators.<br>WARNING: The TechPreviewUnsafeFailForward upgrade strategy is unsafe and may result in unexpected behavior or unrecoverable data loss unless you have deep understanding of the set of operators being managed in the namespace. |
+
 ### .spec.selector {id="_specselector"}
 
 Description
@@ -59,6 +61,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.selector.matchExpressions {id="_specselectormatchexpressions"}
 
 Description
@@ -88,6 +91,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status {id="_status"}
 
 Description
@@ -108,6 +112,7 @@ Required
 | `lastUpdated` | `string` | LastUpdated is a timestamp of the last time the OperatorGroup’s status was Updated. |
 | `namespaces` | `array (string)` | Namespaces is the set of target namespaces for the OperatorGroup. |
 | `serviceAccountRef` | `object` | ServiceAccountRef references the service account object specified. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -142,6 +147,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.serviceAccountRef {id="_statusserviceaccountref"}
 
 Description
@@ -167,16 +173,16 @@ The following API endpoints are available:
 
 *   `/apis/operators.coreos.com/v1/operatorgroups`
     *   `GET`: list objects of kind OperatorGroup
-*   `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups`
+*   `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups`{minja}
     *   `DELETE`: delete collection of OperatorGroup
     *   `GET`: list objects of kind OperatorGroup
     *   `POST`: create an OperatorGroup
-*   `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups/{{ name }}`
+*   `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups/{{ name }}`{minja}
     *   `DELETE`: delete an OperatorGroup
     *   `GET`: read the specified OperatorGroup
     *   `PATCH`: partially update the specified OperatorGroup
     *   `PUT`: replace the specified OperatorGroup
-*   `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups/{{ name }}/status`
+*   `/apis/operators.coreos.com/v1/namespaces/{{ namespace }}/operatorgroups/{{ name }}/status`{minja}
     *   `GET`: read status of the specified OperatorGroup
     *   `PATCH`: partially update status of the specified OperatorGroup
     *   `PUT`: replace status of the specified OperatorGroup

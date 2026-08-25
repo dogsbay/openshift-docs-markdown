@@ -38,17 +38,16 @@ To use an existing signing (CA) certificate and key, you must create a chain of 
 
     You should see output similar to the following:
 
-```terminal
-pod "details-v1-6cd699df8c-j54nh" deleted
-pod "productpage-v1-5ddcb4b84f-mtmf2" deleted
-pod "ratings-v1-bdbcc68bc-kmng4" deleted
-pod "reviews-v1-754ddd7b6f-lqhsv" deleted
-pod "reviews-v2-675679877f-q67r2" deleted
-pod "reviews-v3-79d7549c7-c2gjs" deleted
-```
-
+    ```terminal
+    pod "details-v1-6cd699df8c-j54nh" deleted
+    pod "productpage-v1-5ddcb4b84f-mtmf2" deleted
+    pod "ratings-v1-bdbcc68bc-kmng4" deleted
+    pod "reviews-v1-754ddd7b6f-lqhsv" deleted
+    pod "reviews-v2-675679877f-q67r2" deleted
+    pod "reviews-v3-79d7549c7-c2gjs" deleted
+    ```
 1.  Verify that the pods were created and are ready with the following command:
 
-```terminal
-$ oc get pods -n bookinfo
-```
+    ```terminal
+    $ oc get pods -n bookinfo
+    ```

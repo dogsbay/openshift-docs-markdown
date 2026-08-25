@@ -11,9 +11,9 @@ The hot plugged disk remains attached to the VM until you unplug it.
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Select a running VM to view its details.
-1.  On the **VirtualMachine details** page, click **Configuration** -> **Storage**.
+1.  On the **VirtualMachine details** page, click **Configuration** → **Storage**.
 1.  Add a hot plugged disk:
     1.  Click **Add**.
     1.  In the **Add disk (hot plugged)** window, select the disk from the **Source** list and click **Save**.

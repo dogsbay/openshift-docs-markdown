@@ -18,7 +18,7 @@ You can edit a silence, which expires the existing silence and creates a new one
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Observe** -> **Alerting** -> **Silences**.
+1.  In the {{ product_title }} web console, go to **Observe** → **Alerting** → **Silences**.
 1.  For the silence you want to modify, click {{ kebab }} and select **Edit silence**.
 
     Alternatively, you can click **Actions** and select **Edit silence** on the **Silence details** page for a silence.

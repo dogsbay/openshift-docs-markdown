@@ -3,11 +3,11 @@ title: OLM certificates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# OLM certificates {id="cert-types-olm-certificates"}
 {% include "./_attributes/common-attributes.md" %}
+# OLM certificates {id="cert-types-olm-certificates"}
 {%- set context = "cert-types-olm-certificates" %}
 
-Understand how Operator Lifecycle Manager (OLM) manages certificates for OLM components and creates and rotates certificates when installing Operators that include webhooks or API services. In proxy environments, you must manage Operator certificates yourself because OLM does not update them.
+Understand how Operator Lifecycle Manager (OLM) manages certificates for OLM components and creates and rotates certificates when installing Operators that include webhooks or API services. In proxy environments, you must manage Operator certificates yourself because OLM does not update them. {._abstract}
 
 ## Management {id="_management"}
 
@@ -17,7 +17,7 @@ When installing Operators that include webhooks or API services in their `Cluste
 
 OLM does not update the certificates of Operators that it manages in proxy environments. These certificates must be managed by the user using the subscription config.
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring proxy support in Operator Lifecycle Manager](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)
 *   [Proxy certificates](/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)

@@ -41,8 +41,8 @@ spec:
       owner: clusteroperator/etcd
   ...
 ```
-where:
 
+where:
 
 `spec.lifecycleHooks.preDrain.name`
 :   Specifies the name of the `preDrain` lifecycle hook.

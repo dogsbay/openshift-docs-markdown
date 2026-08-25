@@ -41,6 +41,7 @@ Use dynamically-provisioned storage to keep the created etcd backup data in a sa
         | AWS with the `versioned-installer-efc_operator-ci` profile | `- ReadWriteMany` | `efs-sc` |
         | {{ gcp_full }} | `- ReadWriteMany` | `filestore-csi` |
         | Microsoft Azure | `- ReadWriteMany` | `azurefile-csi` |
+
         
         :::
 

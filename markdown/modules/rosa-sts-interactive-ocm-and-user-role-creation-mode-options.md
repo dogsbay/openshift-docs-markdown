@@ -5,7 +5,7 @@ Before you can use {{ cluster_manager_first }} to create {{ product_title }} clu
 
 The following tables describe the interactive OCM role creation mode options:
 
-***`--interactive` OCM role creation mode options***
+**`--interactive` OCM role creation mode options**
 
 <table>
 <thead>
@@ -36,11 +36,11 @@ The following tables describe the interactive OCM role creation mode options:
   <td>Select the role creation mode. You can use <code>auto</code> mode to automatically create the OCM role and link it to your Red&#160;Hat organization account. In <code>manual</code> mode, the ROSA CLI (<code>rosa</code>) generates the <code>aws</code> commands needed to create and link the role. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</td>
 </tr>
 <tr>
-  <td><code>Create the '<ocm_role_name>' role?</code></td>
+  <td><code>Create the '&lt;ocm_role_name&gt;' role?</code></td>
   <td>Confirm if you want to create the OCM role.</td>
 </tr>
 <tr>
-  <td><code>Link the '<ocm_role_arn>' role with organization '<red_hat_organization_id>'?</code></td>
+  <td><code>Link the '&lt;ocm_role_arn&gt;' role with organization '&lt;red_hat_organization_id&gt;'?</code></td>
   <td>Confirm if you want to link the OCM role with your Red&#160;Hat organization.</td>
 </tr>
 </tbody>
@@ -48,7 +48,7 @@ The following tables describe the interactive OCM role creation mode options:
 
 The following tables describe the interactive user role creation mode options:
 
-***`--interactive` user role creation mode options***
+**`--interactive` user role creation mode options**
 
 <table>
 <thead>
@@ -75,11 +75,11 @@ The following tables describe the interactive user role creation mode options:
   <td>Selects the role creation mode. You can use <code>auto</code> mode to automatically create the user role and link it to your {{ cluster_manager }} user account. In <code>manual</code> mode, the ROSA CLI generates the <code>aws</code> commands needed to create and link the role. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</td>
 </tr>
 <tr>
-  <td><code>Create the '<user_role_name>' role?</code></td>
+  <td><code>Create the '&lt;user_role_name&gt;' role?</code></td>
   <td>Confirm if you want to create the user role.</td>
 </tr>
 <tr>
-  <td><code>Link the '<user_role_arn>' role with account '<red_hat_user_account_id>'?</code></td>
+  <td><code>Link the '&lt;user_role_arn&gt;' role with account '&lt;red_hat_user_account_id&gt;'?</code></td>
   <td>Confirm if you want to link the user role with your Red&#160;Hat user account.</td>
 </tr>
 </tbody>

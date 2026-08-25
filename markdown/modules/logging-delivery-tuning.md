@@ -22,11 +22,11 @@ metadata:
 # ...
 spec:
   tuning:
-    delivery: AtLeastOnce # (1)
-    compression: none # (2)
-    maxWrite: <integer> # (3)
-    minRetryDuration: 1s # (4)
-    maxRetryDuration: 1s # (5)
+    delivery: AtLeastOnce (1)
+    compression: none (2)
+    maxWrite: <integer> (3)
+    minRetryDuration: 1s (4)
+    maxRetryDuration: 1s (5)
 # ...
 ```
 1.  Specify the delivery mode for log forwarding.

@@ -8,7 +8,7 @@ title: "Configuring an {{ aws_short }} account"
 
 {%- set context = "installing-aws-account" %}
 
-To ensure {{ product_title }} can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with the correct identity and permissions before you start the installation.
+To ensure {{ product_title }} can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with the correct identity and permissions before you start the installation. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-aws-route53.md" %}{% endleveloffset %}
 
@@ -17,6 +17,7 @@ To ensure {{ product_title }} can successfully install and run the cluster in {{
 {% leveloffset +1 %}{% include "./modules/installation-aws-limits.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Service Limits ({{ aws_short }} documentation)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 *   [Regions and Zones ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
@@ -36,6 +37,7 @@ To ensure {{ product_title }} can successfully install and run the cluster in {{
 {% leveloffset +2 %}{% include "./modules/installation-aws-add-iam-roles.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations)
 
@@ -46,6 +48,7 @@ To ensure {{ product_title }} can successfully install and run the cluster in {{
 {% leveloffset +1 %}{% include "./modules/installation-aws-regions.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Quickly install a cluster](/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)
 *   [Install a cluster with cloud customizations on installer-provisioned infrastructure](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)

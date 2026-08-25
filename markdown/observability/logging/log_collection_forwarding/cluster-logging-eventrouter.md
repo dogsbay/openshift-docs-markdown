@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "cluster-logging-eventrouter" %}
-# Collecting and storing Kubernetes events {id="cluster-logging-eventrouter"}
 {% include "./_attributes/common-attributes.md" %}
+# Collecting and storing Kubernetes events {id="cluster-logging-eventrouter"}
 
 The {{ product_title }} Event Router is a pod that watches Kubernetes events and logs them for collection by the {{ logging }}. You must manually deploy the Event Router.
 

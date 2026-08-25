@@ -7,10 +7,10 @@ You can use environment variables to ensure consistency across the commands with
 
 {%- if not openshift_rosa_hcp %}
 *   You have created a [{{ product_title }} cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/install_rosa_classic_clusters/index#rosa-sts-creating-a-cluster-quickly).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 *   You have created a [{{ product_title }} cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-sts-creating-a-cluster-quickly).
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

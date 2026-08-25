@@ -11,27 +11,27 @@ You can create a `LokiStack` custom resource (CR) by using the {{ product_title 
 
 **Procedure**
 
-1.  Go to the **Ecosystem** -> **Installed Operators** page. Click the **All instances** tab.
+1.  Go to the **Ecosystem** → **Installed Operators** page. Click the **All instances** tab.
 1.  From the **Create new** drop-down list, select **LokiStack**.
 1.  Select **YAML view**, and then use the following template to create a `LokiStack` CR:
     ```yaml
     apiVersion: loki.grafana.com/v1
     kind: LokiStack
     metadata:
-      name: logging-loki # (1)
+      name: logging-loki (1)
       namespace: openshift-logging
     spec:
-      size: 1x.small # (2)
+      size: 1x.small (2)
       storage:
         schemas:
         - version: v12
           effectiveDate: '2022-06-01'
         secret:
-          name: logging-loki-s3 # (3)
-          type: s3 # (4)
-      storageClassName: <storage_class_name> # (5)
+          name: logging-loki-s3 (3)
+          type: s3 (4)
+      storageClassName: <storage_class_name> (5)
       tenants:
-        mode: openshift-logging # (6)
+        mode: openshift-logging (6)
     ```
     1.  Use the name `logging-loki`.
     1.  Specify the deployment size. In the {{ logging }} 5.8 and later versions, the supported size options for production instances of Loki are `1x.extra-small`, `1x.small`, or `1x.medium`.

@@ -13,6 +13,6 @@ Once you transfer cluster ownership, you lose access to the cluster.
 
 **Procedure**
 
-1.  Select ***Initiate transfer***.
+1.  Select **Initiate transfer**.
 1.  Enter the user name, account ID, and organization ID of the user that you are transferring the cluster to.
-1.  Select ***Initiate transfer***.
+1.  Select **Initiate transfer**.

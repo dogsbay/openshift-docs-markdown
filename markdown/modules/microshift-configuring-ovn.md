@@ -17,11 +17,13 @@
     mtu: 1400
     ```
 1.  To customize your configuration, you can change the MTU value. The table that follows provides details:
+
     **Supported optional OVN-Kubernetes configurations for {{ microshift_short }}**
 
     | Field | Type | Default | Description | Example |
     | --- | --- | --- | --- | --- |
     | mtu | uint32 | auto | MTU value used for the pods | 1300 |
+
 
     :::important
 

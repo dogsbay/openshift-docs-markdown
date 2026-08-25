@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Troubleshooting an {{ product_title }} on Google Cloud cluster deployment {id="troubleshooting-osd-gcp-cluster-deployment"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "troubleshooting-osd-gcp-cluster-deployment" %}
 
 {{ product_title }} on {{ gcp_first }} cluster deployment errors can occur for several reasons, including insufficient quota limits and settings, incorrectly inputted data, incompatible configurations, and so on. {._abstract}

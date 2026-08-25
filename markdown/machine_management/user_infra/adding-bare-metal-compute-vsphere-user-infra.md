@@ -3,11 +3,11 @@ title: Adding bare-metal compute machines to a vSphere cluster
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Adding bare-metal compute machines to a vSphere cluster {id="adding-bare-metal-compute-vsphere-user-infra"}
 {% include "./_attributes/common-attributes.md" %}
+# Adding bare-metal compute machines to a vSphere cluster {id="adding-bare-metal-compute-vsphere-user-infra"}
 {%- set context = "adding-bare-metal-compute-vsphere-user-infra" %}
 
-To support workloads requiring direct hardware access, extend your existing {{ vmw_first }} cluster by adding bare-metal compute machines. This creates a hybrid architecture that combines a virtualized control plane with the performance of physical hardware.
+To support workloads requiring direct hardware access, extend your existing {{ vmw_first }} cluster by adding bare-metal compute machines. This creates a hybrid architecture that combines a virtualized control plane with the performance of physical hardware. {._abstract}
 
 This procedure supports clusters installed using installer-provisioned infrastructure, user-provisioned infrastructure, or the Assisted Installer.
 
@@ -40,6 +40,7 @@ To use this feature, you must explicitly disable the native {{ vmw_short }} Cont
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Disabling and enabling storage on vSphere](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-procedure_persistent-storage-csi-vsphere)
 

@@ -3,12 +3,12 @@ title: Troubleshooting node network configuration
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting node network configuration {id="k8s-nmstate-troubleshooting-node-network"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting node network configuration {id="k8s-nmstate-troubleshooting-node-network"}
 {%- set VirtProductName = "OpenShift Container Platform" -%}
 {%- set context = "k8s-nmstate-troubleshooting-node-network" %}
 
-If the node network configuration encounters an issue, the policy is automatically rolled back and the enactments report failure. This includes issues such as:
+If the node network configuration encounters an issue, the policy is automatically rolled back and the enactments report failure. This includes issues such as: {._abstract}
 
 *   The configuration fails to be applied on the host.
 *   The host loses connection to the default gateway.

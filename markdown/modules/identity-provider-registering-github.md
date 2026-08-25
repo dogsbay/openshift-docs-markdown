@@ -6,8 +6,8 @@ Register an OAuth application on GitHub or GitHub Enterprise to obtain the clien
 **Procedure**
 
 1.  Start the registration process by navigating to the appropriate page in GitHub or GitHub Enterprise:
-    *   For GitHub, click your profile picture in the upper right corner and select **Settings** -> **Developer settings** -> **OAuth Apps**.
-    *   For GitHub Enterprise, go to your GitHub Enterprise home page and then select **Settings -> Developer settings -> Register a new application**.
+    *   For GitHub, click your profile picture in the upper right corner and select **Settings** → **Developer settings** → **OAuth Apps**.
+    *   For GitHub Enterprise, go to your GitHub Enterprise home page and then select **Settings → Developer settings → Register a new application**.
 1.  Click **New OAuth app**.
 1.  Enter an application name, for example `My OpenShift Install`.
 1.  Enter a homepage URL, such as `https://oauth-openshift.apps.<cluster-name>.<cluster-domain>`.

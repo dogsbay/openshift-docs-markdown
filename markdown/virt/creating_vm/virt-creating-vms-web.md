@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Create virtual machines by using the web console {id="virt-creating-vms-web"}
 {% include "./_attributes/common-attributes.md" %}
+# Create virtual machines by using the web console {id="virt-creating-vms-web"}
 {%- set context = "virt-creating-vms-web" %}
 
 You can create virtual machines (VMs) by using the {{ product_title }} web console. The web console creation wizard provides workflows for configuring a custom VM, creating a VM from a template, and cloning an existing VM. {._abstract}

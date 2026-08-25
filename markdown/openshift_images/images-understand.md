@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding containers, images, and image streams {id="understanding-images"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding containers, images, and image streams {id="understanding-images"}
 {%- set context = "images-understand" %}
 
 Containers, images, and image streams are core concepts in {{ product_title }} that you must understand when creating and managing containerized software. {._abstract}

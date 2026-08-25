@@ -1,5 +1,5 @@
 ---
-title: "Project []"
+title: "Project [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,6 +45,7 @@ Type
 | --- | --- | --- |
 | `projectRequestMessage` | `string` | projectRequestMessage is the string presented to a user if they are unable to request a project via the projectrequest api endpoint |
 | `projectRequestTemplate` | `object` | projectRequestTemplate is the template to use for creating projects in response to projectrequest. This must point to a template in 'openshift-config' namespace. It is optional. If it is not specified, a default template is used. |
+
 ### .spec.projectRequestTemplate {id="_specprojectrequesttemplate"}
 
 Description
@@ -58,6 +60,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced project request template |
+
 ### .status {id="_status"}
 
 Description
@@ -75,12 +78,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Project
     *   `GET`: list objects of kind Project
     *   `POST`: create a Project
-*   `/apis/config.openshift.io/v1/projects/{{ name }}`
+*   `/apis/config.openshift.io/v1/projects/{{ name }}`{minja}
     *   `DELETE`: delete a Project
     *   `GET`: read the specified Project
     *   `PATCH`: partially update the specified Project
     *   `PUT`: replace the specified Project
-*   `/apis/config.openshift.io/v1/projects/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/projects/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Project
     *   `PATCH`: partially update status of the specified Project
     *   `PUT`: replace status of the specified Project

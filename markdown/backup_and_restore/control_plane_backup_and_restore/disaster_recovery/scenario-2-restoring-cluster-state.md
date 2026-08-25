@@ -3,11 +3,11 @@ title: Restoring to an earlier cluster state
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Restoring to an earlier cluster state {id="dr-restoring-cluster-state"}
 {% include "./_attributes/common-attributes.md" %}
+# Restoring to an earlier cluster state {id="dr-restoring-cluster-state"}
 {%- set context = "dr-restoring-cluster-state" %}
 
-To return your {{ product_title }} cluster to a known good state, restore from a saved etcd snapshot after quorum loss or critical resource deletion. Understanding restore impact helps you decide whether rollback is appropriate before you begin.
+To return your {{ product_title }} cluster to a known good state, restore from a saved etcd snapshot after quorum loss or critical resource deletion. Understanding restore impact helps you decide whether rollback is appropriate before you begin. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/dr-restoring-cluster-state-about.md" %}{% endleveloffset %}
 
@@ -18,6 +18,7 @@ To return your {{ product_title }} cluster to a known good state, restore from a
 {% leveloffset +1 %}{% include "./modules/dr-scenario-cluster-state-issues.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Recovering a degraded etcd Operator](/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)
 *   [Deleting the Local Storage Operator resources](/storage/persistent_storage_local/persistent-storage-local#local-storage-deleting-resources-overview_persistent-storage-local)

@@ -4,8 +4,8 @@
 You can bypass the automatic network verification if you want to deploy
 {%- if openshift_dedicated %}
 an {{ product_title }}
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 a {{ product_title }}
 {%- endif %}
 cluster with known network configuration issues into an existing Virtual Private Cloud (VPC). {._abstract}

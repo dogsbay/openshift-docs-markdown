@@ -27,7 +27,7 @@ The StatefulSet controller automatically attempts to reschedule pods in a failed
     $ oc get pods --field-selector status.phase==Pending -n openshift-logging
     ```
     ```terminal title="Example oc get pods output"
-    NAME                           READY   STATUS    RESTARTS   AGE # (1)
+    NAME                           READY   STATUS    RESTARTS   AGE (1)
     logging-loki-index-gateway-1   0/1     Pending   0          17m
     logging-loki-ingester-1        0/1     Pending   0          16m
     logging-loki-ruler-1           0/1     Pending   0          16m

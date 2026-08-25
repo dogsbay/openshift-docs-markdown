@@ -9,10 +9,10 @@ To confirm that the sample Bookinfo application was successfully deployed, perfo
 *   Complete the steps for installing the Bookinfo sample app.
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You are logged in to {{ product_title }} as`cluster-admin`.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure from CLI**
 
@@ -41,7 +41,7 @@ To confirm that the sample Bookinfo application was successfully deployed, perfo
 
 1.  Obtain the address for the Kiali web console.
     1.  Log in to the {{ product_title }} web console.
-    1.  Navigate to **Networking** -> **Routes**.
+    1.  Navigate to **Networking** → **Routes**.
     1.  On the **Routes** page, select the {{ SMProductShortName }} control plane project, for example `istio-system`, from the **Namespace** menu.
 
         The **Location** column displays the linked address for each route.

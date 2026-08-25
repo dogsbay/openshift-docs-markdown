@@ -15,7 +15,7 @@ CPU and memory usage increases when this feature is enabled.
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster**, and then select the **YAML** tab.
 1.  Configure the `FlowCollector` custom resource for packet drops, for example:

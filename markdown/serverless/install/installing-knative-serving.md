@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing Knative Serving {id="installing-knative-serving"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing Knative Serving {id="installing-knative-serving"}
 {%- set context = "installing-knative-serving" %}
 
 Installing Knative Serving allows you to create Knative services and functions on your cluster. It also allows you to use additional functionality such as autoscaling and networking options for your applications.

@@ -4,8 +4,8 @@ title: Gathering debugging data
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom-debugging" %}
-# Gathering debugging data {id="nodes-cma-autoscaling-custom-debugging"}
 {% include "./_attributes/common-attributes.md" %}
+# Gathering debugging data {id="nodes-cma-autoscaling-custom-debugging"}
 
 {% if not openshift_origin %}
 When opening a support case, it is helpful to provide debugging information about your cluster to Red Hat Support.

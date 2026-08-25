@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Control incoming traffic with gateway listeners {id="controlling-incoming-traffic-gateway-listeners"}
 {% include "./_attributes/common-attributes.md" %}
+# Control incoming traffic with gateway listeners {id="controlling-incoming-traffic-gateway-listeners"}
 {%- set context = "controlling-incoming-traffic-gateway-listeners" %}
 
 To control network traffic flow, you can configure Gateway API listeners to define the designated port, protocol, and hostname for your gateway. By configuring listeners, you can specify secure TLS connections, dictate how traffic is terminated, and restrict which application routes are permitted to attach to the gateway. {._abstract}

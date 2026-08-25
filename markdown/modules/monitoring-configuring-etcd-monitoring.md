@@ -140,6 +140,5 @@ While `etcd` is being monitored, Prometheus is not yet able to authenticate agai
 ```
 $ oc apply -f etcd-cert-secret.yaml
 ```
-
 1.  Visit the "Targets" page of the Web interface again. Verify that `etcd` is now being correctly monitored. It might take several minutes for changes to take effect.
     ![etcd-monitoring-working](/_assets/images/etcd-monitoring-working.png)

@@ -8,7 +8,7 @@ title: "CCO-based workflow for OLM-managed Operators with {{ gcp_wid_short }}"
 
 {%- set context = "osdk-cco-gcp" %}
 
-When an {{ product_title }} cluster running on {{ gcp_first }} is in **{{ gcp_wid_short }} / Federated Identity** mode, it means the cluster is utilizing features of {{ gcp_first }} and {{ product_title }} to apply permissions in {{ gcp_wid_short }} at an application level.
+When an {{ product_title }} cluster running on {{ gcp_first }} is in **{{ gcp_wid_short }} / Federated Identity** mode, it means the cluster is utilizing features of {{ gcp_first }} and {{ product_title }} to apply permissions in {{ gcp_wid_short }} at an application level. {._abstract}
 
 The Cloud Credential Operator (CCO) is a cluster Operator installed by default in {{ product_title }} clusters running on cloud providers. Starting in {{ product_title }} 4.17, the CCO supports workflows for OLM-managed Operators with {{ gcp_wid_short }}.
 
@@ -58,6 +58,7 @@ To authenticate with {{ gcp_short }} using short-lived tokens via {{ gcp_wid_fir
 The **Install Operator** page in the web console allows cluster administrators to provide this information at installation time. This information is then propagated to the `Subscription` object as environment variables on the Operator pod.
 
 **Additional resources**
+{._additional-resources}
 
 *   [OLM-managed Operator support for authentication with {{ gcp_wid_short }}](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp-olm_cco-short-term-creds)
 *   [Installing from OperatorHub using the web console](/operators/admin/olm-adding-operators-to-cluster#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster)

@@ -13,7 +13,7 @@ Note that {{ red_hat_lightspeed }} repeatedly analyzes your cluster and shows th
 
 **Procedure**
 
-1.  Navigate to **Advisor** -> **Recommendations** on {{ cluster_manager_url }}.
+1.  Navigate to **Advisor** → **Recommendations** on {{ cluster_manager_url }}.
 
     Depending on the result, the {{ red_hat_lightspeed }} advisor service displays one of the following:
     *   **No matching recommendations found**, if {{ red_hat_lightspeed }} did not identify any issues.

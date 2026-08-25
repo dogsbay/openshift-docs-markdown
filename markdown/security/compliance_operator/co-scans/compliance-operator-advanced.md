@@ -3,11 +3,11 @@ title: Performing advanced Compliance Operator tasks
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Performing advanced Compliance Operator tasks {id="compliance-operator-advanced"}
 {% include "./_attributes/common-attributes.md" %}
+# Performing advanced Compliance Operator tasks {id="compliance-operator-advanced"}
 {%- set context = "compliance-advanced" %}
 
-As an advanced user, you can use options in the Compliance Operator for the purpose of debugging or integrating with existing tooling.
+As an advanced user, you can use options in the Compliance Operator for the purpose of debugging or integrating with existing tooling. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/compliance-objects.md" %}{% endleveloffset %}
 
@@ -25,7 +25,7 @@ As an advanced user, you can use options in the Compliance Operator for the purp
 
 {% leveloffset +1 %}{% include "./modules/compliance-custom-scc.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring priority and preemption](/nodes/pods/nodes-pods-priority#nodes-pods-priority-configuring_nodes-pods-priority)
 *   [Managing security context constraints](/authentication/managing-security-context-constraints#managing-pod-security-policies)

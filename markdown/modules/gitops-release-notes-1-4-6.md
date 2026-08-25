@@ -11,6 +11,6 @@ The following issue has been resolved in the current release:
 
 :::note
 
-To install the current release of {{ gitops_title }} 1.4 and receive further updates during its product life cycle, switch to the ***GitOps-1.4*** channel.  
+To install the current release of {{ gitops_title }} 1.4 and receive further updates during its product life cycle, switch to the **GitOps-1.4** channel.  
 
 :::

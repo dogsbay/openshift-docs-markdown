@@ -19,7 +19,7 @@ of the Customer Portal.
     ```terminal
     $ oc adm upgrade recommend
     ```
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
     ```terminal title="Example output"
     The following conditions found no cause for concern in updating this cluster to later releases: recommended/CriticalAlerts (AsExpected), recommended/NodeAlerts (AsExpected), recommended/PodDisruptionBudgetAlerts (AsExpected), recommended/PodImagePullAlerts (AsExpected), recommended/UpdatePrecheckAlerts (AsExpected)
 
@@ -52,12 +52,12 @@ of the Customer Portal.
       VERSION            ISSUES
       4.20.0-okd-scos.17 no known issues relevant to this cluster
     ```
-{%- endif %}
+{% endif %}
 
     :::note
 
     *   You can use the `--version` flag to determine whether a specific version is recommended for your update. If there are no recommended updates, updates that have known issues might still be available.
-        {%- if not openshift_origin %}
+{%- if not openshift_origin %}
     *   For details and information on how to perform a _Control Plane Only_ update, see "Performing a Control Plane Only update".
 {%- endif %}
     
@@ -69,13 +69,13 @@ of the Customer Portal.
     ```terminal
     $ oc adm upgrade channel <channel>
     ```
-    ```terminal title="Example command"
+    ```terminal title="Example command" {minja}
     $ oc adm upgrade channel stable-{{ product_version }}
     ```
 
     :::important
 
-    For production clusters, you must subscribe to a `stable-\*`, `eus-**`, or `fast-**` channel.
+    For production clusters, you must subscribe to a `stable-\*`, `eus-*`, or `fast-*` channel.
     
     :::
 
@@ -140,7 +140,7 @@ updated to the new version by running the following command:
     ```terminal
     $ oc adm upgrade
     ```
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
     ```terminal title="Example output"
     Cluster version is <version>
 
@@ -158,7 +158,7 @@ updated to the new version by running the following command:
     Channel: stable-4
     No updates available. You may still upgrade to a specific release image with --to-image or wait for new updates to be available.
     ```
-{%- endif %}
+{% endif %}
 1.  If you are updating your cluster to the next minor version, such as version X.y to X.(y+1), confirm that your nodes are updated before deploying workloads that rely on a new feature. Run the following command:
     ```terminal
     $ oc get nodes

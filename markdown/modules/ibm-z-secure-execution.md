@@ -46,7 +46,7 @@ You can install {{ op_system }} using {{ ibm_name }} Secure Execution to run nod
 
 
     For example:
-    ```terminal
+    ````terminal
     {
       "ignition": { "version": "3.0.0" },
       "storage": {
@@ -69,7 +69,7 @@ You can install {{ op_system }} using {{ ibm_name }} Secure Execution to run nod
       }
     }
     ```
-    ```
+    ````
 
     Replace `<base64_data_uri>` with an Ignition data URI containing the Base64 encoded host key document.
 

@@ -7,7 +7,7 @@ You can connect to a virtual machine by using the web console.
 
 1.  Ensure you are in the correct project. If not, click the **Project**
 list and select the appropriate project.
-1.  Click **Workloads** -> **Virtual Machines** to display the virtual
+1.  Click **Workloads** → **Virtual Machines** to display the virtual
 machines in the project.
 1.  Select a virtual machine.
 1.  In the **Overview** tab, click the `virt-launcher-<vm-name>` pod.

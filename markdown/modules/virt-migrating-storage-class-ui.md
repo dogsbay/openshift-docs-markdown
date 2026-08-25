@@ -12,10 +12,10 @@ You can migrate one or more disks attached to a virtual machine (VM) to a differ
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
-1.  Click the Options menu {{ kebab }} beside the virtual machine and select **Migration** -> **Storage**.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
+1.  Click the Options menu {{ kebab }} beside the virtual machine and select **Migration** → **Storage**.
 
-    You can also access this option from the **VirtualMachine details** page by selecting **Actions** -> **Migration** -> **Storage**.
+    You can also access this option from the **VirtualMachine details** page by selecting **Actions** → **Migration** → **Storage**.
 
     Alternatively, right-click the VM in the tree view and select **Migration** from the menu.
 1.  On the **Migration details** page, choose whether to migrate the entire VM storage or selected volumes only. If you click **Selected volumes**, select any disks that you intend to migrate. Click **Next** to proceed.
@@ -25,5 +25,5 @@ You can migrate one or more disks attached to a virtual machine (VM) to a differ
 
 **Verification**
 
-1.  From the **VirtualMachine details** page, navigate to **Configuration** -> **Storage**.
+1.  From the **VirtualMachine details** page, navigate to **Configuration** → **Storage**.
 1.  Verify that all disks have the expected storage class listed in the **Storage class** column.

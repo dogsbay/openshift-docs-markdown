@@ -10,7 +10,7 @@ You must add the blueprint to an image builder to build the ISO. {._abstract}
     $ sudo composer-cli blueprints push microshift-installer.toml
     ```
 1.  Start the `ostree` ISO build by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ BUILDID=$(sudo composer-cli compose start-ostree --url http://localhost:8085/repo/ --ref "rhel/{{ op_system_version_major }}/$(uname -m)/edge" microshift-installer edge-installer | awk '{print $2}')
     ```
 

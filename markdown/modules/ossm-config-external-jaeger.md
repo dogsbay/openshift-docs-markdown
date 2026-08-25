@@ -17,7 +17,7 @@ Starting with {{ SMProductName }} 2.5, {{ JaegerName }} and {{ es_op }} are depr
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu and select the project where you installed the {{ SMProductShortName }} control plane, for example **istio-system**.
 1.  Click the {{ SMProductName }} Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane` resource, for example `basic`.
 1.  Add the name of your {{ JaegerShortName }} instance to the `ServiceMeshControlPlane`.

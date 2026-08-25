@@ -11,6 +11,6 @@ You can configure the per-pod PID limit on a {{ product_title }} cluster by usin
 
 {% if openshift_dedicated %}
 You cannot configure the per-pod PID limit on any {{ product_title }} cluster.
-{%- endif %}
+{% endif %}
 
 :::

@@ -1,5 +1,5 @@
 ---
-title: "FirmwareSchema []"
+title: "FirmwareSchema [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | FirmwareSchemaSpec defines the desired state of FirmwareSchema. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,6 +43,7 @@ Required
 | `hardwareVendor` | `string` | The hardware vendor associated with this schema |
 | `schema` | `object` | Map of firmware name to schema |
 | `schema{}` | `object` | Additional data describing the firmware setting. |
+
 ### .spec.schema {id="_specschema"}
 
 Description
@@ -77,11 +79,11 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/firmwareschemas`
     *   `GET`: list objects of kind FirmwareSchema
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/firmwareschemas`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/firmwareschemas`{minja}
     *   `DELETE`: delete collection of FirmwareSchema
     *   `GET`: list objects of kind FirmwareSchema
     *   `POST`: create a FirmwareSchema
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/firmwareschemas/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/firmwareschemas/{{ name }}`{minja}
     *   `DELETE`: delete a FirmwareSchema
     *   `GET`: read the specified FirmwareSchema
     *   `PATCH`: partially update the specified FirmwareSchema

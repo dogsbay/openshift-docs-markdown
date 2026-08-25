@@ -25,6 +25,6 @@ The following lists some consequences of disabling remote health reporting on a 
 *   The {{ cluster_manager }} cannot show data about your clusters, which includes health and usage information.
 {%- if not openshift_origin %}
 *   You must manually enter your subscription information in the `console.redhat.com` web console without the benefit of automatic usage reporting.
-{% endif %}
+{%- endif %}
 
 In restricted networks, Telemetry and {{ red_hat_lightspeed }} data still gets gathered through the appropriate configuration of your proxy.

@@ -3,8 +3,8 @@ title: Troubleshooting your service mesh
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting your service mesh {id="ossm-troubleshooting"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting your service mesh {id="ossm-troubleshooting"}
 {%- set context = "troubleshooting-ossm" %}
 
 This section describes how to identify and resolve common problems in {{ SMProductName }}. Use the following sections to help troubleshoot and debug problems when deploying {{ SMProductName }} on {{ product_title }}.

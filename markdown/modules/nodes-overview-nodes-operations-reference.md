@@ -47,4 +47,4 @@ through several tasks:
 *   [Free node resources using garbage collection](/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection). You can ensure that your nodes are running efficiently by removing terminated containers and the images not referenced by any running pods.
 *   [Add kernel arguments to a set of nodes](/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing).
 *   Configure an {{ product_title }} cluster to have worker nodes at the network edge (remote worker nodes). For information on the challenges of having remote worker nodes in an {{ product_title }} cluster and some recommended approaches for managing pods on a remote worker node, see [Using remote worker nodes at the network edge](/nodes/edge/nodes-edge-remote-workers#nodes-edge-remote-workers).
-{% endif %}
+{%- endif %}

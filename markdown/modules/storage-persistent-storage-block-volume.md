@@ -13,7 +13,7 @@ Pods using raw block volumes must be configured to allow privileged containers.
 
 The following table displays which volume plugins support block volumes.
 
-***Block volume support***
+**Block volume support**
 
 <table>
 <thead>
@@ -33,24 +33,35 @@ The following table displays which volume plugins support block volumes.
 </tr>
 <tr>
   <td>Amazon Elastic File Storage (Amazon EFS)</td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>Azure Disk</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>Azure File</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+</tr>
+<tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>Cinder</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
-  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>Fibre Channel</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>GCP</td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
@@ -58,27 +69,39 @@ The following table displays which volume plugins support block volumes.
 </tr>
 <tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>HostPath</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+</tr>
+<tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>IBM Cloud Block Storage volume</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>iSCSI</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
 </tr>
 <tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>Local volume</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
-  <td>LVM Storage</td>
 </tr>
 <tr>
+  <td>LVM Storage</td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
+</tr>
+<tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>NFS</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
 </tr>
 <tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>{{ rh_storage_first }}</td>{% endif %}
@@ -88,11 +111,14 @@ The following table displays which volume plugins support block volumes.
 </tr>
 <tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>CIFS/SMB</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td></td>{% endif %}
+</tr>
+<tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>VMware vSphere</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
-</tr>
-<tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
 </tr>
 </tbody>

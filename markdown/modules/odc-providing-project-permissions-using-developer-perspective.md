@@ -13,6 +13,7 @@ You can use the **Project** view in the **Developer** perspective to grant or re
 1.  Select your project from the **Project** menu.
 1.  Select the **Project Access** tab.
 1.  Click **Add access** to add a new row of permissions to the default ones.
+
     **Figure 1. Project permissions**
 
     ![odc_project_permissions](/_assets/images/odc_project_permissions.png)

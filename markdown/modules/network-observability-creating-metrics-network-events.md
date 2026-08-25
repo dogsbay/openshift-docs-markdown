@@ -22,7 +22,7 @@ The following example shows how to generate metrics from the **Network events** 
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  In the **Provided APIs** heading for the **NetObserv Operator**, select **FlowMetric**.
 1.  In the **Project**  dropdown list, select the project of the Network Observability Operator instance.
 1.  Click **Create FlowMetric**.
@@ -61,7 +61,7 @@ The following example shows how to generate metrics from the **Network events** 
 
 **Verification**
 
-1.  In the web console, navigate to **Observe** -> **Dashboards** and scroll down to see the **Network Policy** tab.
+1.  In the web console, navigate to **Observe** → **Dashboards** and scroll down to see the **Network Policy** tab.
 1.  You should begin seeing metrics filter in based on the metric you created along with the network policy specifications.
 
 

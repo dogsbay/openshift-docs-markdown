@@ -3,11 +3,11 @@ title: Configuring a custom PKI
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring a custom PKI {id="configuring-a-custom-pki"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring a custom PKI {id="configuring-a-custom-pki"}
 {%- set context = "configuring-a-custom-pki" %}
 
-To ensure secure communication between internal components in your {{ product_title }} cluster, you can add your organization’s custom Certificate Authority (CA) certificates to the cluster-wide truststore.
+To ensure secure communication between internal components in your {{ product_title }} cluster, you can add your organization’s custom Certificate Authority (CA) certificates to the cluster-wide truststore. {._abstract}
 
 You can add your custom CA certificates to the cluster-wide truststore in one of two ways:
 

@@ -31,7 +31,7 @@ You can use the following measures when Prometheus consumes a lot of disk:
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Observe** -> **Metrics**.
+1.  In the {{ product_title }} web console, go to **Observe** → **Metrics**.
 1.  Enter a Prometheus Query Language (PromQL) query in the **Expression** field.
 The following example queries help to identify high cardinality metrics that might result in high disk space consumption:
     *   By running the following query, you can identify the ten jobs that have the highest number of scrape samples:
@@ -48,8 +48,8 @@ The following example queries help to identify high cardinality metrics that mig
 1.  Review the TSDB status using the Prometheus HTTP API by following these steps when logged in as a
     {%- if not (openshift_dedicated or openshift_rosa) %}
     cluster administrator:
-    {% endif %}
-    {% if openshift_dedicated or openshift_rosa %}
+    {%- endif %}
+    {%- if openshift_dedicated or openshift_rosa %}
     `dedicated-admin`:
     {%- endif %}
     1.  Get the Prometheus API route URL by running the following command:

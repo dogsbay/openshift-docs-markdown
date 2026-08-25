@@ -6,10 +6,10 @@ title: Ingress Operator in OpenShift Container Platform
 # Ingress Operator in {{ product_title }} {id="configuring-ingress"}
 {%- if openshift_enterprise %}
 {% include "./_attributes/common-attributes.md" %}
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "configuring-ingress" %}
 
 The Ingress Operator implements the `IngressController` API and is the component responsible for enabling external access to {{ product_title }} cluster services.
@@ -57,6 +57,7 @@ TLS security profiles provide a way for servers to regulate which ciphers a conn
 {% leveloffset +2 %}{% include "./modules/nw-autoscaling-ingress-controller.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the custom metrics autoscaler](/nodes/cma/nodes-cma-autoscaling-custom-install#nodes-cma-autoscaling-custom-install_nodes-cma-autoscaling-custom-install)
 *   [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
@@ -69,6 +70,7 @@ TLS security profiles provide a way for servers to regulate which ciphers a conn
 {% leveloffset +2 %}{% include "./modules/nw-configure-ingress-access-logging.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Capturing Original Client IP from the X-Forwarded-For Header in Ingress and Application Logs](https://access.redhat.com/solutions/7096271)
 
@@ -101,6 +103,7 @@ TLS security profiles provide a way for servers to regulate which ciphers a conn
 {% leveloffset +2 %}{% include "./modules/nw-ingress-controller-configuration-proxy-protocol.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring Ingress access logging](/networking/networking_operators/ingress-operator#nw-configure-ingress-access-logging_configuring-ingress)
 
@@ -138,7 +141,7 @@ TLS security profiles provide a way for servers to regulate which ciphers a conn
 {% endif %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 {% if not openshift_dedicated %}
 *   [Configuring a custom PKI](/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)

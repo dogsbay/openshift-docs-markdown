@@ -1,5 +1,5 @@
 ---
-title: "HelmChartRepository []"
+title: "HelmChartRepository [helm.openshift.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | Observed status of the repository within the cluster.. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -46,6 +47,7 @@ Type
 | `description` | `string` | Optional human readable repository description, it can be used by UI for displaying purposes |
 | `disabled` | `boolean` | If set to true, disable the repo usage in the cluster/namespace |
 | `name` | `string` | Optional associated human readable repository name, it can be used by UI for displaying purposes |
+
 ### .spec.connectionConfig {id="_specconnectionconfig"}
 
 Description
@@ -60,6 +62,7 @@ Type
 | `ca` | `object` | ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key "ca-bundle.crt" is used to locate the data. If empty, the default system roots are used. The namespace for this config map is openshift-config. |
 | `tlsClientConfig` | `object` | tlsClientConfig is an optional reference to a secret by name that contains the PEM-encoded TLS client certificate and private key to present when connecting to the server. The key "tls.crt" is used to locate the client certificate. The key "tls.key" is used to locate the private key. The namespace for this secret is openshift-config. |
 | `url` | `string` | Chart repository URL |
+
 ### .spec.connectionConfig.ca {id="_specconnectionconfigca"}
 
 Description
@@ -80,6 +83,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.connectionConfig.tlsClientConfig {id="_specconnectionconfigtlsclientconfig"}
 
 Description
@@ -100,6 +104,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .status {id="_status"}
 
 Description
@@ -113,6 +118,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | conditions is a list of conditions and their statuses |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -156,12 +162,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of HelmChartRepository
     *   `GET`: list objects of kind HelmChartRepository
     *   `POST`: create a HelmChartRepository
-*   `/apis/helm.openshift.io/v1beta1/helmchartrepositories/{{ name }}`
+*   `/apis/helm.openshift.io/v1beta1/helmchartrepositories/{{ name }}`{minja}
     *   `DELETE`: delete a HelmChartRepository
     *   `GET`: read the specified HelmChartRepository
     *   `PATCH`: partially update the specified HelmChartRepository
     *   `PUT`: replace the specified HelmChartRepository
-*   `/apis/helm.openshift.io/v1beta1/helmchartrepositories/{{ name }}/status`
+*   `/apis/helm.openshift.io/v1beta1/helmchartrepositories/{{ name }}/status`{minja}
     *   `GET`: read status of the specified HelmChartRepository
     *   `PATCH`: partially update status of the specified HelmChartRepository
     *   `PUT`: replace status of the specified HelmChartRepository

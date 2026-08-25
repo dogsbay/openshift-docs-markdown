@@ -18,27 +18,27 @@ You can configure the {{ aws_short }} backup storage location (BSL) as shown in 
       name: default
       namespace: openshift-adp
     spec:
-      provider: aws # (1)
+      provider: aws (1)
       objectStorage:
-        bucket: <bucket_name> # (2)
-        prefix: <bucket_prefix> # (3)
-      credential: # (4)
-        key: cloud # (5)
-        name: cloud-credentials # (6)
+        bucket: <bucket_name> (2)
+        prefix: <bucket_prefix> (3)
+      credential: (4)
+        key: cloud (5)
+        name: cloud-credentials (6)
       config:
-        region: <bucket_region> # (7)
-        s3ForcePathStyle: "true" # (8)
-        s3Url: <s3_url> # (9)
-        publicUrl: <public_s3_url> # (10)
-        serverSideEncryption: AES256 # (11)
+        region: <bucket_region> (7)
+        s3ForcePathStyle: "true" (8)
+        s3Url: <s3_url> (9)
+        publicUrl: <public_s3_url> (10)
+        serverSideEncryption: AES256 (11)
         kmsKeyId: "50..c-4da1-419f-a16e-ei...49f" # <12>    
-        customerKeyEncryptionFile: "/credentials/customer-key" # (13)
-        signatureVersion: "1" # (14)
-        profile: "default" # (15)
-        insecureSkipTLSVerify: "true" # (16)
-        enableSharedConfig: "true" # (17)
-        tagging: "" # (18)
-        checksumAlgorithm: "CRC32" # (19)
+        customerKeyEncryptionFile: "/credentials/customer-key" (13)
+        signatureVersion: "1" (14)
+        profile: "default" (15)
+        insecureSkipTLSVerify: "true" (16)
+        enableSharedConfig: "true" (17)
+        tagging: "" (18)
+        checksumAlgorithm: "CRC32" (19)
     ```
     1.  The name of the object store plugin. In this example, the plugin is `aws`. This field is required.
     1.  The name of the bucket in which to store backups. This field is required.

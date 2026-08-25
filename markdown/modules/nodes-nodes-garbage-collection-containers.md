@@ -10,7 +10,7 @@ When eviction thresholds are set for garbage collection, the node tries to keep 
 
 The following table lists the eviction thresholds:
 
-***Variables for configuring container garbage collection***
+**Variables for configuring container garbage collection**
 
 <table>
 <thead>

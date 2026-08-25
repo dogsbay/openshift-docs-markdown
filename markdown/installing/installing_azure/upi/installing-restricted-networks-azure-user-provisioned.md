@@ -3,11 +3,11 @@ title: Installing a cluster on Azure in a disconnected environment with user-pro
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Azure in a disconnected environment with user-provisioned infrastructure {id="installing-restricted-networks-azure-user-provisioned"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Azure in a disconnected environment with user-provisioned infrastructure {id="installing-restricted-networks-azure-user-provisioned"}
 {%- set context = "installing-restricted-networks-azure-user-provisioned" %}
 
-To install {{ product_title }} on {{ azure_first }} in a disconnected environment, you can use user-provisioned infrastructure and complete the installation from a mirror host that holds your installation media.
+To install {{ product_title }} on {{ azure_first }} in a disconnected environment, you can use user-provisioned infrastructure and complete the installation from a mirror host that holds your installation media. {._abstract}
 
 
 :::important
@@ -20,6 +20,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-restricted-networks-azure-user-provisioned-prerequisites.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -36,12 +37,14 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-config-project-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)
 
 {% leveloffset +2 %}{% include "./modules/installation-azure-limits.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 *   [Azure subscription and service limits, quotas, and constraints ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)
@@ -49,6 +52,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-azure-network-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Example for creating DNS zones](/installing/installing_azure/upi/installing-azure-user-infra#installation-azure-create-dns-zones_installing-azure-user-infra)
 
@@ -61,6 +65,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-azure-service-principal.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
@@ -97,6 +102,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-create-resource-group-and-identity.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Azure resource groups (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups)
 
@@ -105,6 +111,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-create-dns-zones.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring a public DNS zone in {{ azure_short }}](/installing/installing_azure/upi/installing-restricted-networks-azure-user-provisioned#installation-azure-network-config_installing-restricted-networks-azure-user-provisioned)
 
@@ -153,9 +160,10 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview#)

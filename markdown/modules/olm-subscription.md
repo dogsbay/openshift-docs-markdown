@@ -12,7 +12,7 @@ A _subscription_, defined by a `Subscription` object, represents an intention to
 
 Subscriptions describe which channel of an Operator package to subscribe to, and whether to perform updates automatically or manually. If set to automatic, the subscription ensures Operator Lifecycle Manager (OLM) manages and upgrades the Operator to ensure that the latest version is always running in the cluster.
 
-```yaml title="Example Subscription object"
+```yaml title="Example Subscription object" {minja}
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
@@ -32,8 +32,8 @@ The names of channels in a subscription can differ between Operators, but the na
 In addition to being easily visible from the {{ product_title }} web console, it is possible to identify when there is a newer version of an Operator available by inspecting the status of the related subscription. The value associated with the `currentCSV` field is the newest version that is known to OLM, and `installedCSV` is the version that is installed on the cluster.
 
 {% if openshift_origin %}
-{%- set global_ns = false -%}
+{%- set global_ns = "" -%}
 {% endif %}
 {% if not openshift_origin %}
-{%- set global_ns = false -%}
+{%- set global_ns = "" -%}
 {% endif %}

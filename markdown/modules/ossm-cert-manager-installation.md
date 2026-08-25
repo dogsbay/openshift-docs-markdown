@@ -163,7 +163,8 @@ You can install the `cert-manager` tool to manage the lifecycle of TLS certifica
           - sleep
         ```
 
-`security.identity.type: ThirdParty` must be set when `security.certificateAuthority.type: cert-manager` is configured.
+
+        `security.identity.type: ThirdParty` must be set when `security.certificateAuthority.type: cert-manager` is configured.
 
 **Verification**
 

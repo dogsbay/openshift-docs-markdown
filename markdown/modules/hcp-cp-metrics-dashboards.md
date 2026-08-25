@@ -34,7 +34,7 @@ You can import a sample Grafana dashboard that visualizes propagated control pla
       console.openshift.io/dashboard=true \
       -n openshift-config-managed
     ```
-1.  Log in to the web console and click **Observe** -> **Dashboards**.
+1.  Log in to the web console and click **Observe** → **Dashboards**.
 1.  Select the **Hosted Cluster Control Plane** dashboard.
 1.  Optional: If you use `METRICS_SET=SRE` on the HyperShift Operator, configure the Operator and create or update the `sre-metric-set` `ConfigMap` object in the hosted control plane namespace with relabel configurations that forward the dashboard metric names.
     1.  Log in to the management cluster and set the metrics set on the HyperShift Operator by entering the following command:
@@ -88,6 +88,6 @@ You can import a sample Grafana dashboard that visualizes propagated control pla
 
 **Verification**
 
-*   The dashboard is displayed under **Observe** -> **Dashboards** in the web console.
+*   The dashboard is displayed under **Observe** → **Dashboards** in the web console.
 *   Panels display data when the configured metrics set includes the required metric names.
 *   The etcd database size panels show current use relative to the 8 GB limit.

@@ -31,6 +31,7 @@ The account-wide IAM roles and policies might be used by other {{ product_title 
         ```terminal
         $ rosa list account-roles
         ```
+
         **Example output**
 
 {%- if sts %}
@@ -42,8 +43,8 @@ The account-wide IAM roles and policies might be used by other {{ product_title 
         ManagedOpenShift-Support-Role       Support        arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-Support-Role       4.22
         ManagedOpenShift-Worker-Role        Worker         arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-Worker-Role        4.22
         ```
-{% endif %}
-{% if hcp %}
+{%- endif %}
+{%- if hcp %}
         ```terminal
         I: Fetching account roles
         ROLE NAME                                 ROLE TYPE      ROLE ARN                                                                 OPENSHIFT VERSION  AWS Managed
@@ -72,7 +73,7 @@ The account-wide IAM roles and policies might be used by other {{ product_title 
             
             :::
 
-{%- if hcp %}
+{% if hcp %}
             ```terminal title="Example output"
             W: There are no classic account roles to be deleted
             I: Deleting hosted CP account roles

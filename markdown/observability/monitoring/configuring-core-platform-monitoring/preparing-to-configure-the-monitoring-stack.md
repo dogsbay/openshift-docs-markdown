@@ -17,7 +17,7 @@ Only the parameters and fields listed in the [Config map reference for the {{ cm
 
 {% if not openshift_rosa_hcp %}
 *   The monitoring stack imposes additional resource requirements. Consult the computing resources recommendations in [Scaling the {{ cmo_full }}](/scalability_and_performance/recommended-performance-scale-practices/recommended-infrastructure-practices#scaling-cluster-monitoring-operator_recommended-infrastructure-practices) and verify that you have sufficient resources.
-{%- endif %}
+{% endif %}
 
 :::
 

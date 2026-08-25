@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 # Additional requirements for installing {{ sno }} on a cloud provider {id="additional-requirements-for-installing-sno-on-a-cloud-provider_{{ context }}"}
 
 Compared to installing a high-availability cluster, there are additional requirements for installing {{ sno }}. {._abstract}

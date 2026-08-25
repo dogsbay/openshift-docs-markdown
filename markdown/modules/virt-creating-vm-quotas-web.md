@@ -11,7 +11,7 @@ You can create Application Aware Quota (AAQ) quotas that limit virtual machine r
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Virtualization** -> **Quotas**.
+1.  In the {{ product_title }} web console, click **Virtualization** → **Quotas**.
 1.  Click **Create quota**.
 1.  In the dropdown menu, select **With form**.
 
@@ -53,7 +53,7 @@ You can create Application Aware Quota (AAQ) quotas that limit virtual machine r
 
 **Verification**
 
-1.  In the {{ product_title }} web console, click **Virtualization** -> **Quotas**.
+1.  In the {{ product_title }} web console, click **Virtualization** → **Quotas**.
 1.  In the quotas list, locate your newly created quota.
 1.  Verify that the quota name is displayed in the list with the correct project and resource limits configured.
 1.  Click the quota name to open its details page and confirm all settings are correct.

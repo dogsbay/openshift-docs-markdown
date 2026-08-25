@@ -10,7 +10,7 @@ During the update process, nodes in the cluster might become temporarily unavail
 
 **Procedure**
 
-1.  On the web console, navigate to **Compute** -> **MachineHealthChecks**.
+1.  On the web console, navigate to **Compute** → **MachineHealthChecks**.
 1.  For each `MachineHealthCheck` resource, pause the machine health checks by adding the `cluster.x-k8s.io/paused=""` annotation to the resource. For example, to add the annotation to the `machine-api-termination-handler` resource, complete the following steps:
     1.  Click the Options menu {{ kebab }} next to the `machine-api-termination-handler` and click **Edit annotations**.
     1.  In the **Edit annotations** dialog, click **Add more**.

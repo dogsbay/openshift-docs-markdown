@@ -8,7 +8,7 @@ title: "Installation configuration parameters for {{ ibm_z_title }} and {{ ibm_l
 {%- set context = "installation-config-parameters-ibm-z" -%}
 {%- set platform = "IBM Z" %}
 
-Before you deploy an {{ product_title }} cluster on {{ ibm_z_name }} or {{ ibm_linuxone_name }}, you provide a customized `install-config.yaml` file. This reference describes the required and optional parameters for that file.
+Before you deploy an {{ product_title }} cluster on {{ ibm_z_name }} or {{ ibm_linuxone_name }}, you provide a customized `install-config.yaml` file. This reference describes the required and optional parameters for that file. {._abstract}
 
 
 :::note

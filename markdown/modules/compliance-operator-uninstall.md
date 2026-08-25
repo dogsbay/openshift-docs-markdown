@@ -10,12 +10,12 @@ To remove the Compliance Operator, you must first delete the objects in the name
 
 **Procedure**
 
-1.  Go to the **Ecosystem** -> **Installed Operators** -> **Compliance Operator** page.
+1.  Go to the **Ecosystem** → **Installed Operators** → **Compliance Operator** page.
     1.  Click **All instances**.
     1.  In **All namespaces**, click the Options menu {{ kebab }} and delete all ScanSettingBinding, ComplainceSuite, ComplianceScan, and ProfileBundle objects.
-1.  Switch to the **Administration** -> **Ecosystem** -> **Installed Operators** page.
+1.  Switch to the **Administration** → **Ecosystem** → **Installed Operators** page.
 1.  Click the Options menu {{ kebab }} on the **Compliance Operator** entry and select **Uninstall Operator**.
-1.  Switch to the **Home** -> **Projects** page.
+1.  Switch to the **Home** → **Projects** page.
 1.  Search for 'compliance'.
 1.  Click the Options menu {{ kebab }} next to the **openshift-compliance** project, and select **Delete Project**.
     1.  Confirm the deletion by typing `openshift-compliance` in the dialog box, and click **Delete**.

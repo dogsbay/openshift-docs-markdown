@@ -11,7 +11,7 @@ The **Recommendations** view, by default, only displays the recommendations that
 
 **Procedure**
 
-1.  Navigate to **Advisor** -> **Recommendations** on {{ cluster_manager_url }}.
+1.  Navigate to **Advisor** → **Recommendations** on {{ cluster_manager_url }}.
 1.  Click the **X** icons next to the **Clusters Impacted** and **Status** filters.
 
     You can now browse through all of the potential recommendations for your cluster.

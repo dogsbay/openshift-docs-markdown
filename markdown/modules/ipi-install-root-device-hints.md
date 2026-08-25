@@ -15,7 +15,7 @@ The `rootDeviceHints` parameter enables the installer to provision the {{ op_sys
 <tbody>
 <tr>
   <td><code>deviceName</code></td>
-  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>.<dl><dt>Note</dt><dd>It is recommended to use the <code>/dev/disk/by-path/<device_path></code> link to the storage location.</dd></dl><br><br>The hint must match the actual value exactly.</td>
+  <td>A string containing a Linux device name such as <code>/dev/vda</code> or <code>/dev/disk/by-path/</code>.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>It is recommended to use the <code>/dev/disk/by-path/&lt;device_path&gt;</code> link to the storage location.</dd></dl><br><br>The hint must match the actual value exactly.</td>
 </tr>
 <tr>
   <td><code>hctl</code></td>

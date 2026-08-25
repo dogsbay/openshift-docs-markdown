@@ -24,7 +24,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
 
 1.  Navigate to {{ cluster_manager_url }} and select **Create cluster**.
 1.  On the **Create an OpenShift cluster** page, select **Create cluster** in the **{{ product_title }} (ROSA)** row.
-1.  If an AWS account is automatically detected, the account ID is listed in the **Associated AWS accounts** drop-down menu. If no AWS accounts are automatically detected, click **Select an account** -> **Associate AWS account** and follow these steps:
+1.  If an AWS account is automatically detected, the account ID is listed in the **Associated AWS accounts** drop-down menu. If no AWS accounts are automatically detected, click **Select an account** → **Associate AWS account** and follow these steps:
     1.  On the **Authenticate** page, click the copy button next to the `rosa login` command. The command includes your {{ cluster_manager }} API login token.
 
         :::note
@@ -149,7 +149,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         ```
         The following example shows sample output:
 
-        ```terminal
+        ```terminal {minja}
         I: Logged in as '<red_hat_username>' on 'https://api.openshift.com'
         I: Validating AWS credentials...
         I: AWS credentials are valid!
@@ -228,7 +228,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         To customize the subdomain, select the **Create custom domain prefix** checkbox, and enter your domain prefix name in the **Domain prefix** field. The domain prefix cannot be longer than 15 characters, must be unique within your organization, and cannot be changed after cluster creation.
     1.  Select a cluster version from the **Version** drop-down menu.
     1.  Select a channel group from the **Channel group** drop-down menu.
-{% include "./snippets/rosa-osd-channel-group-options.md" %}
+        {% include "./snippets/rosa-osd-channel-group-options.md" %}
     1.  Select a cloud provider region from the **Region** drop-down menu.
     1.  Select a **Single zone** or **Multi-zone** configuration.
     1.  Leave **Enable user workload monitoring** selected to monitor your own projects in isolation from Red&#160;Hat Site Reliability Engineer (SRE) platform metrics. This option is enabled by default.
@@ -295,7 +295,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
     *   If you deployed your cluster using a single availability zone, select a **Compute node count** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool for the zone.
     *   If you deployed your cluster using multiple availability zones, select a **Compute node count (per zone)** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool per zone.
 1.  Optional: Select an EC2 Instance Metadata Service (IMDS) configuration - `optional` (default) or `required` - to enforce use of IMDSv2. For more information regarding IMDS, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the AWS documentation.
-{%- if openshift_rosa %}
+{% if openshift_rosa %}
 
     :::important
 

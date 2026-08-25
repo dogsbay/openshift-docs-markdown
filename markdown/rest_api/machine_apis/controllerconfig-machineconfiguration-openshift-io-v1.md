@@ -1,5 +1,5 @@
 ---
-title: "ControllerConfig []"
+title: "ControllerConfig [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec contains the desired controller config configuration. |
 | `status` | `object` | status contains observed information about the controller config. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -79,6 +80,7 @@ Required
 | `pullSecret` | `object` | pullSecret is the default pull secret that needs to be installed on all machines. |
 | `releaseImage` | `string` | releaseImage is the image used when installing the cluster |
 | `rootCAData` | `string` | rootCAData specifies the root CA data |
+
 ### .spec.dns {id="_specdns"}
 
 Description
@@ -99,6 +101,7 @@ Required
 | `apiVersion` | `string` | apiVersion defines the versioned schema of this representation of an object. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | kind is a string value representing the type of this object. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+
 ### .spec.imageRegistryBundleData {id="_specimageregistrybundledata"}
 
 Description
@@ -126,6 +129,7 @@ Required
 | --- | --- | --- |
 | `data` | `string` | data holds the contents of the bundle that will be written to the file location |
 | `file` | `string` | file holds the name of the file where the bundle will be written to disk |
+
 ### .spec.imageRegistryBundleUserData {id="_specimageregistrybundleuserdata"}
 
 Description
@@ -153,6 +157,7 @@ Required
 | --- | --- | --- |
 | `data` | `string` | data holds the contents of the bundle that will be written to the file location |
 | `file` | `string` | file holds the name of the file where the bundle will be written to disk |
+
 ### .spec.infra {id="_specinfra"}
 
 Description
@@ -173,6 +178,7 @@ Required
 | `apiVersion` | `string` | apiVersion defines the versioned schema of this representation of an object. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | kind is a string value representing the type of this object. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+
 ### .spec.pullSecret {id="_specpullsecret"}
 
 Description
@@ -192,6 +198,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status {id="_status"}
 
 Description
@@ -208,6 +215,7 @@ Type
 | `controllerCertificates` | `array` | controllerCertificates represents the latest available observations of the automatically rotating certificates in the MCO. |
 | `controllerCertificates[]` | `object` | ControllerCertificate contains info about a specific cert. |
 | `observedGeneration` | `integer` | observedGeneration represents the generation observed by the controller. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -238,6 +246,7 @@ Required
 | `reason` | `string` | reason is the reason for the condition’s last transition.  Reasons are PascalCase |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type specifies the state of the operator’s reconciliation functionality. |
+
 ### .status.controllerCertificates {id="_statuscontrollercertificates"}
 
 Description
@@ -278,12 +287,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ControllerConfig
     *   `GET`: list objects of kind ControllerConfig
     *   `POST`: create a ControllerConfig
-*   `/apis/machineconfiguration.openshift.io/v1/controllerconfigs/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/controllerconfigs/{{ name }}`{minja}
     *   `DELETE`: delete a ControllerConfig
     *   `GET`: read the specified ControllerConfig
     *   `PATCH`: partially update the specified ControllerConfig
     *   `PUT`: replace the specified ControllerConfig
-*   `/apis/machineconfiguration.openshift.io/v1/controllerconfigs/{{ name }}/status`
+*   `/apis/machineconfiguration.openshift.io/v1/controllerconfigs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ControllerConfig
     *   `PATCH`: partially update status of the specified ControllerConfig
     *   `PUT`: replace status of the specified ControllerConfig

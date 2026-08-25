@@ -7,7 +7,7 @@ Red&#160;Hat Universal Base Images (UBI) were created to encourage anyone buildi
 
 Search the Red Hat Ecosystem Catalog to both find and check the health of different UBI images. As someone creating secure container images, you might be interested in these two general types of UBI images:
 
-*   ***UBI***: There are standard UBI images for RHEL 7, 8, and 9 (`ubi7/ubi`, `ubi8/ubi`, and `ubi9/ubi`), and minimal images based on those systems (`ubi7/ubi-minimal`, `ubi8/ubi-mimimal`, and ubi9/ubi-minimal). All of these images are preconfigured to point to free repositories of {{ op_system_base }} software that you can add to the container images you build, using standard `yum` and `dnf` commands.
+*   **UBI**: There are standard UBI images for RHEL 7, 8, and 9 (`ubi7/ubi`, `ubi8/ubi`, and `ubi9/ubi`), and minimal images based on those systems (`ubi7/ubi-minimal`, `ubi8/ubi-mimimal`, and ubi9/ubi-minimal). All of these images are preconfigured to point to free repositories of {{ op_system_base }} software that you can add to the container images you build, using standard `yum` and `dnf` commands.
 
     :::note
 
@@ -15,6 +15,6 @@ Search the Red Hat Ecosystem Catalog to both find and check the health of differ
     
     :::
 
-*   ***Red&#160;Hat Software Collections****: Search the Red&#160;Hat Ecosystem Catalog for `rhscl/` to find images created to use as base images for specific types of applications. For example, there are Apache httpd (`rhscl/httpd-**`), Python (`rhscl/python-**`), Ruby (`rhscl/ruby-**`), Node.js (`rhscl/nodejs-**`) and Perl (`rhscl/perl-**`) rhscl images.
+*   **Red&#160;Hat Software Collections**: Search the Red&#160;Hat Ecosystem Catalog for `rhscl/` to find images created to use as base images for specific types of applications. For example, there are Apache httpd (`rhscl/httpd-*`), Python (`rhscl/python-*`), Ruby (`rhscl/ruby-*`), Node.js (`rhscl/nodejs-*`) and Perl (`rhscl/perl-*`) rhscl images.
 
 Remember that while UBI images are freely available and redistributable, Red&#160;Hat support for these images is only available through Red&#160;Hat product subscriptions.

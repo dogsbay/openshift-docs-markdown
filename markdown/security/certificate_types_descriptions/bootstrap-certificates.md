@@ -3,11 +3,11 @@ title: Bootstrap certificates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Bootstrap certificates {id="cert-types-bootstrap-certificates"}
 {% include "./_attributes/common-attributes.md" %}
+# Bootstrap certificates {id="cert-types-bootstrap-certificates"}
 {%- set context = "cert-types-bootstrap-certificates" %}
 
-You should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed.
+You should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed. {._abstract}
 
 ## Purpose {id="bootstrap-certificates-purpose_{{ context }}"}
 
@@ -38,6 +38,7 @@ OpenShift Lifecycle Manager (OLM) does not update the bootstrap certificate.
 You cannot customize the bootstrap certificates.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Bootstrap initialization](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#bootstrap-initialization)
 *   [Authorize kubelet to create a CSR](https://kubernetes.io/docs/reference/access-authn-authz/kubelet-tls-bootstrapping/#authorize-kubelet-to-create-csr)

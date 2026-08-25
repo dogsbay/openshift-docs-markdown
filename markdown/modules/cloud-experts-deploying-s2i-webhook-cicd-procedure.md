@@ -10,7 +10,7 @@ This procedure guides you through setting up a GitHub webhook to automatically t
     $ oc get bc/ostoy-microservice -o=jsonpath='{.spec.triggers..github.secret}'
     ```
 
-    ***Example output:***
+    **Example output:**
     ```terminal
     `o_3x9M1qoI2Wj_cz1WiK`
     ```
@@ -26,7 +26,7 @@ This procedure guides you through setting up a GitHub webhook to automatically t
     $ oc describe bc/ostoy-microservice
     ```
 
-    ***Example output:***
+    **Example output:**
     ```terminal
     [...]
     Webhook GitHub:
@@ -35,7 +35,7 @@ This procedure guides you through setting up a GitHub webhook to automatically t
     ```
 1.  In the GitHub webhook URL, replace the `<secret>` text with the secret you retrieved. Your URL will resemble the following example output:
 
-    ***Example output:***
+    **Example output:**
     ```text
     https://api.demo1234.openshift.com:443/apis/build.openshift.io/v1/namespaces/ostoy-s2i/buildconfigs/ostoy-microservice/webhooks/o_3x9M1qoI2Wj_czR1WiK/github
     ```
@@ -54,17 +54,15 @@ This procedure guides you through setting up a GitHub webhook to automatically t
     1.  Comment out line 8 (containing `let randomColor = getRandomColor();`).
     1.  Uncomment line 9 (containing `let randomColor = getRandomGrayScaleColor();`).
 
-```javascript
-7   app.get('/', function(request, response) {
-8   //let randomColor = getRandomColor(); // <-- comment this
-9   let randomColor = getRandomGrayScaleColor(); // <-- uncomment this
-10   
-11  response.writeHead(200, {'Content-Type': 'application/json'});
-```
-
-.. Enter a message for the update, such as "changed box to grayscale colors".
-.. Click **Commit** at the bottom to commit the changes to the main branch.
-
+        ```javascript
+        7   app.get('/', function(request, response) {
+        8   //let randomColor = getRandomColor(); // <-- comment this
+        9   let randomColor = getRandomGrayScaleColor(); // <-- uncomment this
+        10   
+        11  response.writeHead(200, {'Content-Type': 'application/json'});
+        ```
+    1.  Enter a message for the update, such as "changed box to grayscale colors".
+    1.  Click **Commit** at the bottom to commit the changes to the main branch.
 1.  In your cluster’s web UI, click **Builds > Builds** to determine the status of the build. After this build is completed, the deployment begins. You can also check the status by running `oc status` in your terminal. 
     ![Build Run](/_assets/images/ostoy-builddone.png)
 1.  After the deployment has finished, return to the OSToy application in your browser. Access the **Networking** menu item on the left. The box color is now limited to grayscale colors only.

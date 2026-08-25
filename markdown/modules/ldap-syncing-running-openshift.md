@@ -10,10 +10,10 @@ You can sync all groups already in {{ product_title }} that correspond to groups
 *   An LDAP sync configuration file exists. This procedure uses an example file named `config.yaml`.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

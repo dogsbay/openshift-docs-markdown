@@ -33,7 +33,7 @@ If you log in with a user with the `cluster-admin` role, then you can create a n
 {%- endif %}
 *   You installed the {{ oc_first }}.
 {%- if not microshift %}
-*   You logged in to the cluster with a user with `{{ role }}` privileges.
+*   You logged in to the cluster with a user with `{{ role }}`{minja} privileges.
 {%- endif %}
 *   You are working in the namespace that the {{ name }} policy applies to.
 
@@ -50,7 +50,7 @@ Using this label can result in intermittent network connectivity drops, unintend
 **Procedure**
 
 1.  Create a policy that allows traffic from all pods in a particular namespaces with a label `purpose=production`. Save the YAML in the `web-allow-prod.yaml` file:
-    {%- if multi %}
+{% if multi %}
     ```yaml
     apiVersion: k8s.cni.cncf.io/v1beta1
     kind: MultiNetworkPolicy
@@ -91,7 +91,7 @@ Using this label can result in intermittent network connectivity drops, unintend
             matchLabels:
               purpose: production
     ```
-{%- endif %}
+{% endif %}
 
     where:
 
@@ -171,7 +171,7 @@ Using this label can result in intermittent network connectivity drops, unintend
     ```
 
 {% if multi %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
-{%- set name = false -%}
-{%- set role = false -%}
+{%- set name = "" -%}
+{%- set role = "" -%}

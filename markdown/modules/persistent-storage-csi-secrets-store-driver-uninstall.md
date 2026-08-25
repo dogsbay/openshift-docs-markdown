@@ -25,7 +25,7 @@ To remove the {{ secrets_store_operator }} and free cluster resources, uninstall
     
     :::
 
-    1.  Click **Ecosystem** -> **Installed Operators**.
+    1.  Click **Ecosystem** → **Installed Operators**.
     1.  On the **Installed Operators** page, scroll or type "Secrets Store CSI" into the **Search by name** box to find the Operator, and then click it.
     1.  On the upper, right of the **Installed Operators** > **Operator details** page, click **Actions** → **Uninstall Operator**.
     1.  When prompted on the **Uninstall Operator** window, click the **Uninstall** button to remove the Operator from the namespace. Any applications deployed by the Operator on the cluster need to be cleaned up manually.

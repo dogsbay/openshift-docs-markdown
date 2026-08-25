@@ -7,7 +7,7 @@ title: Postinstallation network configuration
 # Postinstallation network configuration {id="post-install-network-configuration"}
 {%- set context = "post-install-network-configuration" %}
 
-You can configure networking after installation to manage cluster traffic, security, connectivity, and default network policies for new projects.
+You can configure networking after installation to manage cluster traffic, security, connectivity, and default network policies for new projects. {._abstract}
 
 After installing {{ product_title }}, you can further expand and customize your network to your requirements.
 
@@ -38,7 +38,7 @@ As a cluster administrator, you can modify the new project template to automatic
 
 {% endif %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Cluster Network Operator in {{ product_title }}](/networking/networking_operators/cluster-network-operator#nw-cluster-network-operator_cluster-network-operator)
 *   [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)

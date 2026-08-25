@@ -3,17 +3,18 @@ title: "Creating a compute machine set on {{ azure_short }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating a compute machine set on {{ azure_short }} {id="creating-machineset-azure"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating a compute machine set on {{ azure_short }} {id="creating-machineset-azure"}
 {%- set context = "creating-machineset-azure" %}
 
-You can create a different compute machine set to serve a specific purpose in your {{ product_title }} cluster on {{ azure_first }}. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines.
+You can create a different compute machine set to serve a specific purpose in your {{ product_title }} cluster on {{ azure_first }}. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines. {._abstract}
 
 {% leveloffset +1 %}{% include "./snippets/machine-user-provisioned-limitations.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/machineset-yaml-azure.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -22,6 +23,7 @@ You can create a different compute machine set to serve a specific purpose in yo
 {% leveloffset +1 %}{% include "./modules/machineset-label-gpu-autoscaler.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster autoscaler resource definition](/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
 
@@ -40,6 +42,7 @@ You can create a different compute machine set to serve a specific purpose in yo
 {% leveloffset +1 %}{% include "./modules/machineset-azure-ultra-disk.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Ultra disks ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)
 *   [Machine sets that deploy machines on ultra disks using CSI PVCs](/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure)
@@ -60,6 +63,7 @@ You can create a different compute machine set to serve a specific purpose in yo
 {% leveloffset +2 %}{% include "./modules/machineset-azure-enabling-accelerated-networking-existing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Enabling Accelerated Networking during installation](/installing/installing_azure/ipi/installing-azure-customizations#machineset-azure-enabling-accelerated-networking-new-install_installing-azure-customizations)
 
@@ -70,5 +74,6 @@ You can create a different compute machine set to serve a specific purpose in yo
 {% leveloffset +1 %}{% include "./modules/nvidia-gpu-aws-deploying-the-node-feature-discovery-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually scaling a compute machine set](/machine_management/manually-scaling-machineset#manually-scaling-machineset)

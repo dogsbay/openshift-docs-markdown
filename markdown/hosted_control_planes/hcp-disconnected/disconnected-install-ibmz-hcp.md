@@ -7,7 +7,7 @@ title: "Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment"
 # Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment {id="disconnected-install-ibmz-hcp"}
 {%- set context = "disconnected-install-ibmz-hcp" %}
 
-{{ hcp_capital }} deployments in disconnected environments function differently than in a standalone {{ product_title }}.
+{{ hcp_capital }} deployments in disconnected environments function differently than in a standalone {{ product_title }}. {._abstract}
 
 {{ hcp_capital }} involves two distinct environments:
 
@@ -23,6 +23,7 @@ To work with disconnected registries in the {{ hcp }}, you must first create the
 {% leveloffset +1 %}{% include "./modules/hcp-ibm-z-dc-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirror registry for Red&#160;Hat OpenShift introduction](/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry)
 *   [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)

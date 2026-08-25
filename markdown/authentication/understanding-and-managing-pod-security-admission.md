@@ -3,12 +3,12 @@ title: Understanding and managing pod security admission
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Understanding and managing pod security admission {id="understanding-and-managing-pod-security-admission"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "understanding-and-managing-pod-security-admission" %}
 
-You can configure pod security admission to enforce the Kubernetes pod security standards. You can apply this enforcement at both the global and namespace levels.
+You can configure pod security admission to enforce the Kubernetes pod security standards. You can apply this enforcement at both the global and namespace levels. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/security-context-constraints-psa-about.md" %}{% endleveloffset %}
 
@@ -21,6 +21,7 @@ You can configure pod security admission to enforce the Kubernetes pod security 
 {% leveloffset +1 %}{% include "./modules/security-context-constraints-psa-opting.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Pod security admission synchronization namespace exclusions](/authentication/understanding-and-managing-pod-security-admission#security-context-constraints-psa-sync-exclusions_understanding-and-managing-pod-security-admission)
 
@@ -33,7 +34,7 @@ You can configure pod security admission to enforce the Kubernetes pod security 
 
 {% endif %}
 
-## Additional resources {id="additional-resources_managing-pod-security-admission"}
+## Additional resources {id="additional-resources_managing-pod-security-admission" ._additional-resources}
 
 *   [Pod Security Admission (Kubernetes documentation)](https://kubernetes.io/docs/concepts/security/pod-security-admission)
 *   [Pod Security Standards (Kubernetes documentation)](https://kubernetes.io/docs/concepts/security/pod-security-standards/)

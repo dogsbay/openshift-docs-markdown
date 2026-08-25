@@ -7,7 +7,7 @@ title: "Installing a three-node cluster on {{ aws_short }}"
 # Installing a three-node cluster on {{ aws_short }} {id="installing-aws-three-node"}
 {%- set context = "installing-aws-three-node" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a three-node cluster on {{ aws_first }}. A three-node cluster consists of three control plane machines, which also act as compute machines.
+In {{ product_title }} version {{ product_version }}, you can install a three-node cluster on {{ aws_first }}. A three-node cluster consists of three control plane machines, which also act as compute machines. {._abstract}
 
 This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.
 

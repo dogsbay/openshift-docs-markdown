@@ -12,6 +12,7 @@ You can use {{ SMProductShortName }} with {{ ServerlessProductName }} even if Ko
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster or dedicated administrator access.
 {% endif %}
+
 *   You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {{ product_title }}.
 *   Install the OpenShift CLI (`oc`).
 *   Install the {{ ServerlessOperatorName }} and Knative Serving on your cluster.
@@ -57,23 +58,23 @@ You can use {{ SMProductShortName }} with {{ ServerlessProductName }} even if Ko
         ```
         1.  Add the namespace that you want to integrate with {{ SMProductShortName }}.
 
-            :::note
+        :::note
 
-            The `knative.openshift.io/part-of: "openshift-serverless"` label was added in {{ ServerlessProductName }} 1.22.0. If you are using {{ ServerlessProductName }} 1.21.1 or earlier, add the `knative.openshift.io/part-of` label to the `knative-serving` and `knative-serving-ingress` namespaces.
+        The `knative.openshift.io/part-of: "openshift-serverless"` label was added in {{ ServerlessProductName }} 1.22.0. If you are using {{ ServerlessProductName }} 1.21.1 or earlier, add the `knative.openshift.io/part-of` label to the `knative-serving` and `knative-serving-ingress` namespaces.
 
-            Add the label to the `knative-serving` namespace:
+        Add the label to the `knative-serving` namespace:
 
-            ```terminal
-            $ oc label namespace knative-serving knative.openshift.io/part-of=openshift-serverless
-            ```
+        ```terminal
+        $ oc label namespace knative-serving knative.openshift.io/part-of=openshift-serverless
+        ```
 
-            Add the label to the `knative-serving-ingress` namespace:
+        Add the label to the `knative-serving-ingress` namespace:
 
-            ```terminal
-            $ oc label namespace knative-serving-ingress knative.openshift.io/part-of=openshift-serverless
-            ```
-            
-            :::
+        ```terminal
+        $ oc label namespace knative-serving-ingress knative.openshift.io/part-of=openshift-serverless
+        ```
+        
+        :::
 
     1.  Apply the `NetworkPolicy` resource:
         ```terminal

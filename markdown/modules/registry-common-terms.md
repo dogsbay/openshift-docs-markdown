@@ -12,10 +12,10 @@ container
 Image Registry Operator
 {%- if openshift_rosa_hcp %}
 :   The Image Registry Operator runs in the `CONTROL_PLANE_NAMESPACE` of the management cluster, and manages the registry instance in the `openshift-image-registry` of the cluster.
-{% endif %}
-{% if openshift_rosa %}
-    The Image Registry Operator runs in the `openshift-image-registry` namespace, and manages the registry instance in that location.
-{% endif %}
+{%- endif %}
+{%- if openshift_rosa %}
+:   The Image Registry Operator runs in the `openshift-image-registry` namespace, and manages the registry instance in that location.
+{%- endif %}
 {% endif %}
 
 

@@ -24,7 +24,7 @@ garbage collection
 
 Horizontal Pod Autoscaler(HPA)
 :   Implemented as a Kubernetes API resource and a controller. You can use the HPA to specify the minimum and maximum number of pods that you want to run. You can also specify the CPU or memory utilization that your pods should target. The HPA scales out and scales in pods when a given CPU or memory threshold is crossed.
-{% endif %}
+{%- endif %}
 
 
 Ingress

@@ -92,7 +92,7 @@ Perform this procedure before you install the AWS EFS CSI Driver Operator (see _
         ```terminal
         $ aws sts get-caller-identity --query Account --output text
         ```
-{%- if openshift_rosa %}
+{% if openshift_rosa %}
 
         Obtain the {{ OCP_short }} OIDC endpoint by running the following command:
         ```terminal

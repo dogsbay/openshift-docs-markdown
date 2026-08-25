@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# NVIDIA GPU architecture overview {id="nvidia-gpu-architecture-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# NVIDIA GPU architecture overview {id="nvidia-gpu-architecture-overview"}
 {%- set context = "nvidia-gpu-architecture-overview" %}
 
 NVIDIA supports the use of graphics processing unit (GPU) resources on {{ product_title }}. 
@@ -63,7 +63,7 @@ The NVIDIA GPU Operator is only supported by NVIDIA. For more information about 
 {._additional-resources}
 
 *   [Red Hat Openshift in the Cloud](https://docs.nvidia.com/ai-enterprise/deployment-guide-cloud/0.1.0/aws-redhat-openshift.html)
-{% endif %}
+{%- endif %}
 
 {%- if openshift_dedicated or openshift_rosa %}
 {% leveloffset +1 %}{% include "./modules/nvidia-gpu-csps.md" %}{% endleveloffset %}
@@ -72,7 +72,7 @@ The NVIDIA GPU Operator is only supported by NVIDIA. For more information about 
 {._additional-resources}
 
 *   [Red Hat Openshift in the Cloud](https://docs.nvidia.com/ai-enterprise/deployment-guide-cloud/0.1.0/aws-redhat-openshift.html)
-{% endif %}
+{%- endif %}
 
 {% if not (openshift_dedicated or openshift_rosa) %}
 {% leveloffset +2 %}{% include "./modules/nvidia-gpu-red-hat-device-edge.md" %}{% endleveloffset %}
@@ -133,5 +133,5 @@ The NVIDIA GPU Operator is only supported by NVIDIA. For more information about 
 *   [Time-slicing NVIDIA GPUs in OpenShift](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/time-slicing-gpus-in-openshift.html)
 *   [Deploy GPU Operators in a disconnected or airgapped environment](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/mirror-gpu-ocp-disconnected.html)
 {%- if not (openshift_dedicated or openshift_rosa) %}
-*   [Node Feature Discovery Operator](#../hardware_enablement/psap-node-feature-discovery-operator.html)
-{% endif %}
+*   [Node Feature Discovery Operator](/hardware_enablement/psap-node-feature-discovery-operator)
+{%- endif %}

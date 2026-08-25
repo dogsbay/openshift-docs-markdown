@@ -13,8 +13,8 @@ Description
     This includes {{ product_title }} images, Day 2 OLM Operator images, and application workload images.
     The use of a disconnected environment provides multiple benefits, including:
 
-*   Security - limiting access to the cluster
-*   Curated content - the registry is populated based on curated and approved updates for clusters
+    *   Security - limiting access to the cluster
+    *   Curated content - the registry is populated based on curated and approved updates for clusters
 
 Limits and requirements
 :   *   A unique name is required for all custom `CatalogSource` resources.

@@ -1,5 +1,5 @@
 ---
-title: "DeploymentConfigRollback []"
+title: "DeploymentConfigRollback [apps.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `name` | `string` | name of the deployment config that will be rolled back. |
 | `spec` | `object` | DeploymentConfigRollbackSpec represents the options for rollback generation. |
 | `updatedAnnotations` | `object (string)` | updatedAnnotations is a set of new annotations that will be added in the deployment config. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -62,7 +63,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/rollback`
+*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/rollback`{minja}
     *   `POST`: create rollback of a DeploymentConfig
 
 ### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/rollback {id="_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_rollback"}

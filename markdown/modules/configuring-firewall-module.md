@@ -52,6 +52,7 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
     | `console.redhat.com` | 443 | Authentication service for cluster tokens. |
     | `sso.redhat.com` | 443 | The `https://console.redhat.com` site uses authentication from `sso.redhat.com` |
 
+
     For egress traffic, Operators require route access to perform health checks to establish a connection for reaching endpoints. The authentication and web console Operators connect to two routes to verify functionality. Cluster administrators who do not want to allow `*.apps.<cluster_name>.<base_domain>`, must allow the following routes:
     *   `oauth-openshift.apps.<cluster_name>.<base_domain>`
     *   `canary-openshift-ingress-canary.apps.<cluster_name>.<base_domain>`
@@ -87,6 +88,7 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
     | `ghcr.io` | port | A GitHub image registry where you can store and manage Open Container Initiative images. Requires an access token to publish, install, and delete private, internal, and public packages. |
     | `storage.googleapis.com` | 443 | A source of release image signatures, although the Cluster Version Operator needs only a single functioning source. |
     | `registry.k8s.io` | port | Replaces the `k8s.gcr.io` image registry because the `k8s.gcr.io` image registry does not support other platforms and vendors. |
+
 {% endif %}
 
 {% if not oci_agent %}
@@ -105,10 +107,10 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
   <td>Alibaba</td>
   <td><code>*.aliyuncs.com</code></td>
   <td>443</td>
-  <td>Required to access Alibaba Cloud services and resources. Review the <a href="https://github.com/aliyun/alibaba-cloud-sdk-go/blob/master/sdk/endpoints/endpoints_config.go?spm=a2c4g.11186623.0.0.47875873ciGnC8&file=endpoints_config.go">Alibaba endpoints_config.go file</a> to find the exact endpoints to allow for the regions that you use.<br><br>.17+</td>
+  <td>Required to access Alibaba Cloud services and resources. Review the <a href="https://github.com/aliyun/alibaba-cloud-sdk-go/blob/master/sdk/endpoints/endpoints_config.go?spm=a2c4g.11186623.0.0.47875873ciGnC8&file=endpoints_config.go">Alibaba endpoints_config.go file</a> to find the exact endpoints to allow for the regions that you use.</td>
 </tr>
 <tr>
-  <td>AWS</td>
+  <td rowspan="17">AWS</td>
   <td><code>aws.amazon.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
@@ -117,16 +119,18 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
   <td><code>*.amazonaws.com</code><br><br>Alternatively, if you choose to not use a wildcard for AWS APIs, you must include the following URLs in your allowlist:</td>
   <td>443</td>
   <td>Required to access AWS services and resources. Review the <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS Service Endpoints</a> in the AWS documentation to find the exact endpoints to allow for the regions that you use.</td>
-  <td><code>ec2.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>ec2.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>events.amazonaws.com</code></td>
   <td>443</td>
+  <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
 <tr>
-  <td>Used to install and manage clusters in an AWS environment.</td>
   <td><code>iam.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
@@ -135,17 +139,19 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
   <td><code>route53.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>*.s3.amazonaws.com</code></td>
-</tr>
-<tr>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>*.s3.<aws_region>.amazonaws.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>*.s3.&lt;aws_region&gt;.amazonaws.com</code></td>
+  <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>*.s3.dualstack.<aws_region>.amazonaws.com</code></td>
+</tr>
+<tr>
+  <td><code>*.s3.dualstack.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
@@ -153,40 +159,44 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
   <td><code>sts.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>sts.<aws_region>.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>sts.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
+</tr>
+<tr>
   <td><code>tagging.us-east-1.amazonaws.com</code></td>
   <td>443</td>
-</tr>
-<tr>
   <td>Used to install and manage clusters in an AWS environment. This endpoint is always <code>us-east-1</code>, regardless of the region the cluster is deployed in.</td>
-  <td><code>ec2.<aws_region>.amazonaws.com</code></td>
+</tr>
+<tr>
+  <td><code>ec2.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
 <tr>
-  <td><code>elasticloadbalancing.<aws_region>.amazonaws.com</code></td>
+  <td><code>elasticloadbalancing.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
-  <td><code>servicequotas.<aws_region>.amazonaws.com</code></td>
 </tr>
 <tr>
+  <td><code>servicequotas.&lt;aws_region&gt;.amazonaws.com</code></td>
   <td>443</td>
   <td>Required. Used to confirm quotas for deploying the service.</td>
-  <td><code>tagging.<aws_region>.amazonaws.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>tagging.&lt;aws_region&gt;.amazonaws.com</code></td>
+  <td>443</td>
   <td>Allows the assignment of metadata about AWS resources in the form of tags.</td>
+</tr>
+<tr>
   <td><code>*.cloudfront.net</code></td>
   <td>443</td>
-  <td>Used to provide access to CloudFront. If you use the AWS Security Token Service (STS) and the private S3 bucket, you must provide access to CloudFront.<br><br>.2+</td>
+  <td>Used to provide access to CloudFront. If you use the AWS Security Token Service (STS) and the private S3 bucket, you must provide access to CloudFront.</td>
 </tr>
 <tr>
-  <td>GCP</td>
+  <td rowspan="2">GCP</td>
   <td><code>*.googleapis.com</code></td>
   <td>443</td>
   <td>Required to access {{ gcp_short }} services and resources. Review <a href="https://cloud.google.com/endpoints/">Cloud Endpoints</a> in the {{ gcp_short }} documentation to find the endpoints to allow for your APIs.</td>
@@ -194,26 +204,27 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
 <tr>
   <td><code>accounts.google.com</code></td>
   <td>443</td>
-  <td>Required to access your {{ gcp_short }} account.<br><br>.3+</td>
-  <td>Microsoft Azure</td>
+  <td>Required to access your {{ gcp_short }} account.</td>
 </tr>
 <tr>
+  <td rowspan="3">Microsoft Azure</td>
   <td><code>management.azure.com</code></td>
   <td>443</td>
   <td>Required to access Microsoft Azure services and resources. Review the <a href="https://docs.microsoft.com/en-us/rest/api/azure/">Microsoft Azure REST API reference</a> in the Microsoft Azure documentation to find the endpoints to allow for your APIs.</td>
-  <td><code>*.blob.core.windows.net</code></td>
 </tr>
 <tr>
+  <td><code>*.blob.core.windows.net</code></td>
   <td>443</td>
   <td>Required to download Ignition files.</td>
-  <td><code>login.microsoftonline.com</code></td>
-  <td>443</td>
 </tr>
 <tr>
+  <td><code>login.microsoftonline.com</code></td>
+  <td>443</td>
   <td>Required to access Microsoft Azure services and resources. Review the <a href="https://docs.microsoft.com/en-us/rest/api/azure/">Azure REST API reference</a> in the Microsoft Azure documentation to find the endpoints to allow for your APIs.</td>
 </tr>
 </tbody>
 </table>
+
 1.  Allowlist the following URL for optional third-party content:
     | URL | Port | Function |
     | --- | --- | --- |
@@ -225,6 +236,7 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
     | `2.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
     | `3.rhel.pool.ntp.org` | 123 | Provides NTP services for time synchronization. |
 
+
     :::note
 
     If you do not use a default Red Hat NTP server, verify the NTP server for your platform and allow it in your firewall.
@@ -234,5 +246,5 @@ If your environment has a dedicated load balancer in front of your {{ product_ti
 {% endif %}
 
 {% if context == "installing-oci-agent-based-installer" %}
-{%- set oci_agent = false -%}
+{%- set oci_agent = "" -%}
 {% endif %}

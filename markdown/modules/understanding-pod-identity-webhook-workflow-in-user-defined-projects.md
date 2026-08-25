@@ -6,8 +6,8 @@ You can use the pod identity webhook to enable a service account in a user-defin
 When you install a {{ product_title }} cluster
 {%- if openshift_rosa %}
 that uses the AWS Security Token Service (STS),
-{% endif %}
-{% if not openshift_rosa %}
+{%- endif %}
+{%- if not openshift_rosa %}
 ,
 {%- endif %}
 pod identity webhook resources are included by default.

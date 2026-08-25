@@ -7,7 +7,7 @@ Create separate `Secret` objects when your backup and snapshot locations require
 
 1.  Create a `credentials-velero` file for the snapshot location in the appropriate format for your cloud provider.
 1.  Create a `Secret` for the snapshot location with the default name:
-    ```terminal
+    ```terminal {minja}
     $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero
     ```
 1.  Create a `credentials-velero` file for the backup location in the appropriate format for your object storage.
@@ -18,7 +18,7 @@ Create separate `Secret` objects when your backup and snapshot locations require
 1.  Add the `Secret` with the custom name to the `DataProtectionApplication` CR, as in the following example:
 
 {% if installing_oadp_azure %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -56,7 +56,7 @@ Create separate `Secret` objects when your backup and snapshot locations require
     :   Specifies the backup location `Secret` with custom name.
 {% endif %}
 {% if installing_oadp_gcp %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -82,11 +82,14 @@ Create separate `Secret` objects when your backup and snapshot locations require
               project: <project>
               snapshotLocation: us-west1
     ```
+
     where:
-    `custom_secret`:: Specifies the backup location `Secret` with custom name.
+
+    `custom_secret`
+    :   Specifies the backup location `Secret` with custom name.
 {% endif %}
 {% if installing_oadp_mcg %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -111,9 +114,14 @@ Create separate `Secret` objects when your backup and snapshot locations require
               bucket: <bucket_name>
               prefix: <prefix>
     ```
+
     where:
-    `region_name`:: Specifies the region, following the naming convention of the documentation of your object storage server.
-    `custom_secret`:: Specifies the backup location `Secret` with custom name.
+
+    `region_name`
+    :   Specifies the region, following the naming convention of the documentation of your object storage server.
+
+    `custom_secret`
+    :   Specifies the backup location `Secret` with custom name.
 {% endif %}
 {% if installing_oadp_ibm_cloud or installing_oadp_ocs %}
     ```yaml
@@ -135,6 +143,9 @@ Create separate `Secret` objects when your backup and snapshot locations require
               bucket: <bucket_name>
               prefix: <prefix>
     ```
+
     where:
-    `custom_secret`:: Specifies the backup location `Secret` with custom name.
+
+    `custom_secret`
+    :   Specifies the backup location `Secret` with custom name.
 {% endif %}

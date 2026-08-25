@@ -17,12 +17,12 @@ Using careful MCP planning, you can control the timing and order of which set of
 
 Before beginning the initial deployment, review the following engineering considerations:
 
-***PerformanceProfile and Tuned profile association:***
+**PerformanceProfile and Tuned profile association:**
 
 When using PerformanceProfiles, remember that each Machine Config Pool (MCP) must be linked to exactly one PerformanceProfile or Tuned profile definition.
 Consequently, even if the desired configuration is identical for multiple MCPs, each MCP still requires its own dedicated PerformanceProfile definition.
 
-***Planning your MCP labeling strategy:***
+**Planning your MCP labeling strategy:**
 
 Plan your MCP labeling with an appropriate strategy to split your worker nodes depending on parameters
 such as:

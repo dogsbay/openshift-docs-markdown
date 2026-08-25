@@ -20,7 +20,7 @@ You must mirror both the platform image and Operator images that you want to upd
            - mirror-ocp-registry.ibmcloud.io.cpak:5000/openshift-release-dev/openshift4
            source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
         ```
-    1.  Save the image signature of the required platform image that was mirrored. You must add the image signature to the `{{ policy_gen_cr }}` CR for platform updates. To get the image signature, perform the following steps:
+    1.  Save the image signature of the required platform image that was mirrored. You must add the image signature to the `{{ policy_gen_cr }}`{minja} CR for platform updates. To get the image signature, perform the following steps:
         1.  Specify the required {{ product_title }} tag by running the following command:
             ```terminal
             $ OCP_RELEASE_NUMBER=<release_version>
@@ -59,7 +59,7 @@ You must mirror both the platform image and Operator images that you want to upd
 
             For more information about how to set up the graph on the hub cluster, see [Deploy the operator for OpenShift Update Service](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.4/html/clusters/managing-your-clusters#deploy-the-operator-for-cincinnati) and [Build the graph data init container](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.4/html/clusters/managing-your-clusters#build-the-graph-data-init-container).
         1.  Make a local copy of the upstream graph. Host the update graph on an `http` or `https` server in the disconnected environment that has access to the managed cluster. To download the update graph, use the following command:
-            ```terminal
+            ```terminal {minja}
             $ curl -s https://api.openshift.com/api/upgrades_info/v1/graph?channel=stable-{{ product_version }} -o ~/upgrade-graph_stable-{{ product_version }}
             ```
 *   For Operator updates, you must perform the following task:

@@ -3,7 +3,7 @@
 # Pod [core/v1] {id="pod-core-v1"}
 {%- if product_title %}
 {% include "./_attributes/common-attributes.md" %}
-{% endif %}
+{%- endif %}
 
 
 Description
@@ -23,7 +23,9 @@ Type
 | `spec` | `object` | PodSpec is a description of a pod. |
 | `status` | `object` | PodStatus represents information about the status of a pod. Status may trail the actual state of a system, especially if the node that hosts the pod cannot contact the control plane. |
 
+
 Description
+
 **.spec**
 
 :   PodSpec is a description of a pod.
@@ -74,7 +76,9 @@ Required
 | `topologySpreadConstraints` | [`array (TopologySpreadConstraint core/v1)`](/rest_api/objects/index#topologyspreadconstraint-core-v1) | TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed. |
 | `volumes` | [`array (Volume core/v1)`](/rest_api/objects/index#volume-core-v1) | List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes |
 
+
 Description
+
 **.status**
 
 :   PodStatus represents information about the status of a pod. Status may trail the actual state of a system, especially if the node that hosts the pod cannot contact the control plane.
@@ -95,14 +99,16 @@ Type
 | `initContainerStatuses[]` | `object` | ContainerStatus contains details for the current status of this container. |
 | `message` | `string` | A human readable message indicating details about why the pod is in this condition. |
 | `nominatedNodeName` | `string` | nominatedNodeName is set only when this pod preempts other pods on the node, but it cannot be scheduled right away as preemption victims receive their graceful termination periods. This field does not guarantee that the pod will be scheduled on this node. Scheduler may decide to place the pod elsewhere if other nodes become available sooner. Scheduler may also decide to give the resources on this node to a higher priority pod that is created after preemption. As a result, this field may be different than PodSpec.nodeName when the pod is scheduled. |
-| `phase` | `string` | The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod’s status. There are five possible phase values: Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase |
+| `phase` | `string` | The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod’s status. There are five possible phase values:<br>Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.<br>More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase |
 | `podIP` | `string` | IP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated. |
 | `podIPs` | [`array (PodIP core/v1)`](/rest_api/objects/index#podip-core-v1) | podIPs holds the IP addresses allocated to the pod. If this field is specified, the 0th entry must match the podIP field. Pods may be allocated at most 1 value for each of IPv4 and IPv6. This list is empty if no IPs have been allocated yet. |
 | `qosClass` | `string` | The Quality of Service (QOS) classification assigned to the pod based on resource requirements See PodQOSClass type for available QOS classes More info: https://git.k8s.io/community/contributors/design-proposals/node/resource-qos.md |
 | `reason` | `string` | A brief CamelCase message indicating details about why the pod is in this state. e.g. 'Evicted' |
 | `startTime` | [`Time meta/v1`](/rest_api/objects/index#time-meta-v1) | RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod. |
 
+
 Description
+
 **.status.containerStatuses**
 
 :   The list has one entry per container in the manifest. Each entry is currently the output of `docker inspect`. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
@@ -113,6 +119,7 @@ Type
 
 
 Description
+
 **.status.containerStatuses[]**
 
 :   ContainerStatus contains details for the current status of this container.
@@ -141,7 +148,9 @@ Required
 | `started` | `boolean` | Specifies whether the container has passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. Is always true when no startupProbe is defined. |
 | `state` | [`ContainerState core/v1`](/rest_api/objects/index#containerstate-core-v1) | Details about the container’s current condition. |
 
+
 Description
+
 **.status.ephemeralContainerStatuses**
 
 :   Status for any ephemeral containers that have run in this pod. This field is alpha-level and is only populated by servers that enable the EphemeralContainers feature.
@@ -152,6 +161,7 @@ Type
 
 
 Description
+
 **.status.ephemeralContainerStatuses[]**
 
 :   ContainerStatus contains details for the current status of this container.
@@ -180,7 +190,9 @@ Required
 | `started` | `boolean` | Specifies whether the container has passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. Is always true when no startupProbe is defined. |
 | `state` | [`ContainerState core/v1`](/rest_api/objects/index#containerstate-core-v1) | Details about the container’s current condition. |
 
+
 Description
+
 **.status.initContainerStatuses**
 
 :   The list has one entry per init container in the manifest. The most recent successful init container will have ready = true, the most recently started container will have startTime set. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
@@ -191,6 +203,7 @@ Type
 
 
 Description
+
 **.status.initContainerStatuses[]**
 
 :   ContainerStatus contains details for the current status of this container.
@@ -225,21 +238,21 @@ The following API endpoints are available:
 
 *   `/api/v1/pods`
     *   `GET`: list or watch objects of kind Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods`
+*   `/api/v1/namespaces/{{ namespace }}/pods`{minja}
     *   `DELETE`: delete collection of Pod
     *   `GET`: list or watch objects of kind Pod
     *   `POST`: create a Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}`{minja}
     *   `DELETE`: delete a Pod
     *   `GET`: read the specified Pod
     *   `PATCH`: partially update the specified Pod
     *   `PUT`: replace the specified Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/log`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/log`{minja}
     *   `GET`: read log of the specified Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/exec`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/exec`{minja}
     *   `GET`: connect GET requests to exec of Pod
     *   `POST`: connect POST requests to exec of Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/proxy`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/proxy`{minja}
     *   `DELETE`: connect DELETE requests to proxy of Pod
     *   `GET`: connect GET requests to proxy of Pod
     *   `HEAD`: connect HEAD requests to proxy of Pod
@@ -247,21 +260,21 @@ The following API endpoints are available:
     *   `PATCH`: connect PATCH requests to proxy of Pod
     *   `POST`: connect POST requests to proxy of Pod
     *   `PUT`: connect PUT requests to proxy of Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/attach`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/attach`{minja}
     *   `GET`: connect GET requests to attach of Pod
     *   `POST`: connect POST requests to attach of Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/status`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Pod
     *   `PATCH`: partially update status of the specified Pod
     *   `PUT`: replace status of the specified Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/binding`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/binding`{minja}
     *   `POST`: create binding of a Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/eviction`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/eviction`{minja}
     *   `POST`: create eviction of a Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/portforward`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/portforward`{minja}
     *   `GET`: connect GET requests to portforward of Pod
     *   `POST`: connect POST requests to portforward of Pod
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/proxy/{{ path }}`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/proxy/{{ path }}`{minja}
     *   `DELETE`: connect DELETE requests to proxy of Pod
     *   `GET`: connect GET requests to proxy of Pod
     *   `HEAD`: connect HEAD requests to proxy of Pod
@@ -277,13 +290,13 @@ The following API endpoints are available:
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `allowWatchBookmarks` | `boolean` | allowWatchBookmarks requests watch events with type &quot;BOOKMARK&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#x27;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. |
-| `continue` | `string` | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the &quot;next key&quot;. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. |
+| `continue` | `string` | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the &quot;next key&quot;.<br>This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. |
 | `fieldSelector` | `string` | A selector to restrict the list of returned objects by their fields. Defaults to everything. |
 | `labelSelector` | `string` | A selector to restrict the list of returned objects by their labels. Defaults to everything. |
-| `limit` | `integer` | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. |
+| `limit` | `integer` | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.<br>The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. |
 | `pretty` | `string` | If &#x27;true&#x27;, then the output is pretty printed. |
-| `resourceVersion` | `string` | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset |
-| `resourceVersionMatch` | `string` | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset |
+| `resourceVersion` | `string` | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.<br>Defaults to unset |
+| `resourceVersionMatch` | `string` | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.<br>Defaults to unset |
 | `timeoutSeconds` | `integer` | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. |
 | `watch` | `boolean` | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. |
 
@@ -327,16 +340,16 @@ Description
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `continue` | `string` | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the &quot;next key&quot;. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. |
+| `continue` | `string` | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the &quot;next key&quot;.<br>This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. |
 | `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
 | `fieldSelector` | `string` | A selector to restrict the list of returned objects by their fields. Defaults to everything. |
 | `gracePeriodSeconds` | `integer` | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. |
 | `labelSelector` | `string` | A selector to restrict the list of returned objects by their labels. Defaults to everything. |
-| `limit` | `integer` | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. |
+| `limit` | `integer` | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.<br>The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. |
 | `orphanDependents` | `boolean` | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the &quot;orphan&quot; finalizer will be added to/removed from the object&#x27;s finalizers list. Either this field or PropagationPolicy may be set, but not both. |
 | `propagationPolicy` | `string` | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#x27;Orphan&#x27; - orphan the dependents; &#x27;Background&#x27; - allow the garbage collector to delete the dependents in the background; &#x27;Foreground&#x27; - a cascading policy that deletes all dependents in the foreground. |
-| `resourceVersion` | `string` | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset |
-| `resourceVersionMatch` | `string` | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset |
+| `resourceVersion` | `string` | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.<br>Defaults to unset |
+| `resourceVersionMatch` | `string` | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.<br>Defaults to unset |
 | `timeoutSeconds` | `integer` | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. |
 
 **Body parameters**
@@ -364,12 +377,12 @@ Description
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `allowWatchBookmarks` | `boolean` | allowWatchBookmarks requests watch events with type &quot;BOOKMARK&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#x27;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. |
-| `continue` | `string` | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the &quot;next key&quot;. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. |
+| `continue` | `string` | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the &quot;next key&quot;.<br>This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. |
 | `fieldSelector` | `string` | A selector to restrict the list of returned objects by their fields. Defaults to everything. |
 | `labelSelector` | `string` | A selector to restrict the list of returned objects by their labels. Defaults to everything. |
-| `limit` | `integer` | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. |
-| `resourceVersion` | `string` | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset |
-| `resourceVersionMatch` | `string` | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset |
+| `limit` | `integer` | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.<br>The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. |
+| `resourceVersion` | `string` | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.<br>Defaults to unset |
+| `resourceVersionMatch` | `string` | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.<br>Defaults to unset |
 | `timeoutSeconds` | `integer` | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. |
 | `watch` | `boolean` | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. |
 

@@ -7,7 +7,7 @@ title: "Installing a cluster in an LPAR on {{ ibm_z_title }} and {{ ibm_linuxone
 # Installing a cluster in an LPAR on {{ ibm_z_title }} and {{ ibm_linuxone_title }} in a disconnected environment {id="installing-restricted-networks-ibm-z-lpar"}
 {%- set context = "installing-restricted-networks-ibm-z-lpar" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster directly in a logical partition (LPAR) on {{ ibm_z_name }} or {{ ibm_linuxone_name }} infrastructure that you provision in a disconnected environment, without using a hypervisor layer.
+In {{ product_title }} version {{ product_version }}, you can install a cluster directly in a logical partition (LPAR) on {{ ibm_z_name }} or {{ ibm_linuxone_name }} infrastructure that you provision in a disconnected environment, without using a hypervisor layer. {._abstract}
 
 
 :::note
@@ -20,6 +20,7 @@ While this document refers to only {{ ibm_z_name }}, all information in it also 
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-z-upi-disconnected.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing to install a cluster on {{ ibm_z_title }} using user-provisioned infrastructure](/installing/installing_ibm_z/upi/upi-ibm-z-preparing-to-install#upi-ibm-z-preparing-to-install)
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
@@ -37,6 +38,7 @@ While this document refers to only {{ ibm_z_name }}, all information in it also 
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_z_name }}](/installing/installing_ibm_z/installation-config-parameters-ibm-z#installation-config-parameters-ibm-z)
 
@@ -57,6 +59,7 @@ While this document refers to only {{ ibm_z_name }}, all information in it also 
 {% leveloffset +2 %}{% include "./modules/ibm-z-configure-nbde-with-static-ip.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 
@@ -65,6 +68,7 @@ While this document refers to only {{ ibm_z_name }}, all information in it also 
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-machines-static-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -100,7 +104,7 @@ While this document refers to only {{ ibm_z_name }}, all information in it also 
 
 {% leveloffset +1 %}{% include "./modules/installation-complete-user-infra.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [How to generate SOSREPORT within {{ product_title }} version 4 nodes without SSH](https://access.redhat.com/solutions/4387261)
 *   [Image configuration resources (Classic)](/openshift_images/image-configuration#images-configuration-cas_image-configuration)

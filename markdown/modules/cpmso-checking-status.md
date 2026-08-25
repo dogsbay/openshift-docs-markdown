@@ -29,5 +29,5 @@ To use the control plane machine set, you must ensure that a `ControlPlaneMachin
 {% endif %}
 
 {% if context == "cpmso-disabling" %}
-{%- set cpmso_disabling = false -%}
+{%- set cpmso_disabling = "" -%}
 {% endif %}

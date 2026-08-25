@@ -4,18 +4,18 @@ title: Running background tasks on nodes automatically with daemon sets
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-pods-daemonsets" %}
-# Running background tasks on nodes automatically with daemon sets {id="nodes-pods-daemonsets"}
 {% include "./_attributes/common-attributes.md" %}
+# Running background tasks on nodes automatically with daemon sets {id="nodes-pods-daemonsets"}
 
-Daemon sets ensure that pods run on all or specific nodes in a cluster, enabling cluster-wide services such as logging agents, monitoring tools, and shared storage that must be present on every node.
+Daemon sets ensure that pods run on all or specific nodes in a cluster, enabling cluster-wide services such as logging agents, monitoring tools, and shared storage that must be present on every node. {._abstract}
 
 As an administrator, you can create and use daemon sets to run replicas of a pod on specific or all nodes in
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 an {{ product_title }} cluster.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 a {{ product_title }} cluster.
-{% endif %}
+{%- endif %}
 
 A daemon set ensures that all (or some) nodes run a copy of a pod. As nodes are added to the cluster, pods are added to the cluster.
 As nodes are removed from the cluster, those pods are removed through garbage collection. Deleting a daemon set cleans up the pods it created.
@@ -39,6 +39,6 @@ This results in frequent pod recreates on the nodes that got unselected by the m
 
 {% leveloffset +1 %}{% include "./modules/nodes-pods-daemonsets-creating.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Kubernetes documentation about daemon sets](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)

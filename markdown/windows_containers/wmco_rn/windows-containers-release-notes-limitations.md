@@ -4,8 +4,8 @@ title: Windows Machine Config Operator known limitations
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "windows-containers-release-notes-limitations" %}
-# Windows Machine Config Operator known limitations {id="windows-containers-release-notes-limitations"}
 {% include "./_attributes/common-attributes.md" %}
+# Windows Machine Config Operator known limitations {id="windows-containers-release-notes-limitations"}
 
 Note the following limitations when working with Windows nodes managed by the WMCO (Windows nodes):
 
@@ -30,7 +30,7 @@ Note the following limitations when working with Windows nodes managed by the WM
     *   Privileged containers are not supported for Windows containers.
 *   Kubernetes has identified several API compatibility issues. For more information, see "API compatibility (Kubernetes documenation)".
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [{{ red_hat_lightspeed }} cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)
 *   [{{ openshift_local_productname }}](https://developers.redhat.com/products/openshift-local/overview)
 *   [Compatibility and limitations (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#limitations)

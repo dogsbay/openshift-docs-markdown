@@ -12,7 +12,7 @@ To enable {{ product_title }} to mount secrets from external secret management s
 
 1.  Install the {{ secrets_store_operator }}:
     1.  Log in to the web console.
-    1.  Click **Ecosystem** -> **Software Catalog**.
+    1.  Click **Ecosystem** → **Software Catalog**.
     1.  Locate the {{ secrets_store_operator }} by typing "Secrets Store CSI" in the filter box.
     1.  Click the **Secrets Store CSI Driver Operator** button.
     1.  On the **Secrets Store CSI Driver Operator** page, click **Install**.
@@ -23,7 +23,7 @@ To enable {{ product_title }} to mount secrets from external secret management s
 
         After the installation finishes, the {{ secrets_store_operator }} is listed in the **Installed Operators** section of the web console.
 1.  Create the `ClusterCSIDriver` instance for the driver (`secrets-store.csi.k8s.io`):
-    1.  Click **Administration** -> **CustomResourceDefinitions** -> **ClusterCSIDriver**.
+    1.  Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
     1.  On the **Instances** tab, click **Create ClusterCSIDriver**.
 
         Use the following YAML file:

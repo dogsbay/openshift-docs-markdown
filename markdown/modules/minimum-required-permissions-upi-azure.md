@@ -12,18 +12,14 @@ The following options are available to you:
 
 The following permissions are required for creating an {{ product_title }} cluster on Microsoft Azure.
 
-<details>
-<summary>Required permissions for creating authorization resources</summary>
-
+:::details{title="Required permissions for creating authorization resources"}
 *   `Microsoft.Authorization/policies/audit/action`
 *   `Microsoft.Authorization/policies/auditIfNotExists/action`
 *   `Microsoft.Authorization/roleAssignments/read`
 *   `Microsoft.Authorization/roleAssignments/write`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating compute resources</summary>
-
+:::details{title="Required permissions for creating compute resources"}
 *   `Microsoft.Compute/images/read`
 *   `Microsoft.Compute/images/write`
 *   `Microsoft.Compute/images/delete`
@@ -46,19 +42,15 @@ The following permissions are required for creating an {{ product_title }} clust
 *   `Microsoft.Compute/virtualMachines/read`
 *   `Microsoft.Compute/virtualMachines/write`
 *   `Microsoft.Compute/virtualMachines/deallocate/action`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating identity management resources</summary>
-
+:::details{title="Required permissions for creating identity management resources"}
 *   `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action`
 *   `Microsoft.ManagedIdentity/userAssignedIdentities/read`
 *   `Microsoft.ManagedIdentity/userAssignedIdentities/write`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating network resources</summary>
-
+:::details{title="Required permissions for creating network resources"}
 *   `Microsoft.Network/dnsZones/A/write`
 *   `Microsoft.Network/dnsZones/CNAME/write`
 *   `Microsoft.Network/dnszones/CNAME/read`
@@ -96,34 +88,26 @@ The following permissions are required for creating an {{ product_title }} clust
 *   `Microsoft.Network/virtualNetworks/subnets/read`
 *   `Microsoft.Network/virtualNetworks/subnets/write`
 *   `Microsoft.Network/virtualNetworks/write`
-</details>
+:::
 
-<details>
-<summary>Required permissions for checking the health of resources</summary>
-
+:::details{title="Required permissions for checking the health of resources"}
 *   `Microsoft.Resourcehealth/healthevent/Activated/action`
 *   `Microsoft.Resourcehealth/healthevent/InProgress/action`
 *   `Microsoft.Resourcehealth/healthevent/Pending/action`
 *   `Microsoft.Resourcehealth/healthevent/Resolved/action`
 *   `Microsoft.Resourcehealth/healthevent/Updated/action`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating a resource group</summary>
-
+:::details{title="Required permissions for creating a resource group"}
 *   `Microsoft.Resources/subscriptions/resourceGroups/read`
 *   `Microsoft.Resources/subscriptions/resourcegroups/write`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating resource tags</summary>
-
+:::details{title="Required permissions for creating resource tags"}
 *   `Microsoft.Resources/tags/write`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating storage resources</summary>
-
+:::details{title="Required permissions for creating storage resources"}
 *   `Microsoft.Storage/storageAccounts/blobServices/read`
 *   `Microsoft.Storage/storageAccounts/blobServices/containers/write`
 *   `Microsoft.Storage/storageAccounts/fileServices/read`
@@ -133,34 +117,26 @@ The following permissions are required for creating an {{ product_title }} clust
 *   `Microsoft.Storage/storageAccounts/listKeys/action`
 *   `Microsoft.Storage/storageAccounts/read`
 *   `Microsoft.Storage/storageAccounts/write`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating deployments</summary>
-
+:::details{title="Required permissions for creating deployments"}
 *   `Microsoft.Resources/deployments/read`
 *   `Microsoft.Resources/deployments/write`
 *   `Microsoft.Resources/deployments/validate/action`
 *   `Microsoft.Resources/deployments/operationstatuses/read`
-</details>
+:::
 
-<details>
-<summary>Optional permissions for creating compute resources</summary>
-
+:::details{title="Optional permissions for creating compute resources"}
 *   `Microsoft.Compute/availabilitySets/delete`
 *   `Microsoft.Compute/availabilitySets/write`
-</details>
+:::
 
-<details>
-<summary>Optional permissions for creating marketplace virtual machine resources</summary>
-
+:::details{title="Optional permissions for creating marketplace virtual machine resources"}
 *   `Microsoft.MarketplaceOrdering/offertypes/publishers/offers/plans/agreements/read`
 *   `Microsoft.MarketplaceOrdering/offertypes/publishers/offers/plans/agreements/write`
-</details>
+:::
 
-<details>
-<summary>Optional permissions for enabling user-managed encryption</summary>
-
+:::details{title="Optional permissions for enabling user-managed encryption"}
 *   `Microsoft.Compute/diskEncryptionSets/read`
 *   `Microsoft.Compute/diskEncryptionSets/write`
 *   `Microsoft.Compute/diskEncryptionSets/delete`
@@ -171,36 +147,28 @@ The following permissions are required for creating an {{ product_title }} clust
 *   `Microsoft.KeyVault/vaults/keys/read`
 *   `Microsoft.KeyVault/vaults/keys/write`
 *   `Microsoft.Features/providers/features/register/action`
-</details>
+:::
 
 The following permissions are required for deleting an {{ product_title }} cluster on Microsoft Azure.
 
-<details>
-<summary>Required permissions for deleting authorization resources</summary>
-
+:::details{title="Required permissions for deleting authorization resources"}
 *   `Microsoft.Authorization/roleAssignments/delete`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting compute resources</summary>
-
+:::details{title="Required permissions for deleting compute resources"}
 *   `Microsoft.Compute/disks/delete`
 *   `Microsoft.Compute/galleries/delete`
 *   `Microsoft.Compute/galleries/images/delete`
 *   `Microsoft.Compute/galleries/images/versions/delete`
 *   `Microsoft.Compute/virtualMachines/delete`
 *   `Microsoft.Compute/images/delete`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting identity management resources</summary>
-
+:::details{title="Required permissions for deleting identity management resources"}
 *   `Microsoft.ManagedIdentity/userAssignedIdentities/delete`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting network resources</summary>
-
+:::details{title="Required permissions for deleting network resources"}
 *   `Microsoft.Network/dnszones/read`
 *   `Microsoft.Network/dnsZones/A/read`
 *   `Microsoft.Network/dnsZones/A/delete`
@@ -215,28 +183,22 @@ The following permissions are required for deleting an {{ product_title }} clust
 *   `Microsoft.Network/privateDnsZones/virtualNetworkLinks/delete`
 *   `Microsoft.Network/publicIPAddresses/delete`
 *   `Microsoft.Network/virtualNetworks/delete`
-</details>
+:::
 
-<details>
-<summary>Required permissions for checking the health of resources</summary>
-
+:::details{title="Required permissions for checking the health of resources"}
 *   `Microsoft.Resourcehealth/healthevent/Activated/action`
 *   `Microsoft.Resourcehealth/healthevent/Resolved/action`
 *   `Microsoft.Resourcehealth/healthevent/Updated/action`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting a resource group</summary>
-
+:::details{title="Required permissions for deleting a resource group"}
 *   `Microsoft.Resources/subscriptions/resourcegroups/delete`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting storage resources</summary>
-
+:::details{title="Required permissions for deleting storage resources"}
 *   `Microsoft.Storage/storageAccounts/delete`
 *   `Microsoft.Storage/storageAccounts/listKeys/action`
-</details>
+:::
 
 
 :::note

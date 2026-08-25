@@ -1,13 +1,13 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ product_title }}-specific guidelines {id="images-create-guide-openshift_{{ context }}"}
 
-Use the integrated image-building capabilities of {{ product_title }} to create, manage, and deploy reproducible container images directly from source code or Dockerfiles.
-{%- if openshift_online %} {._abstract}
+Use the integrated image-building capabilities of {{ product_title }} to create, manage, and deploy reproducible container images directly from source code or Dockerfiles. {._abstract}
+{%- if openshift_online %}
 
 ## Privileges and volume builds {id="privileges-and-volume-builds_{{ context }}"}
 
 Container images cannot be built using the `VOLUME` directive in the `DOCKERFILE`. Images using a read/write file system must use persistent volumes or `emptyDir` volumes instead of local storage. Instead of specifying a volume in the Dockerfile, specify a directory for local storage and mount either a persistent volume or `emptyDir` volume to that directory when deploying the pod.
-{% endif %}
+{%- endif %}
 
 ## Enable images for source-to-image (S2I) {id="enable-images-for-source-to-image_{{ context }}"}
 

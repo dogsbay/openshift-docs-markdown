@@ -4,12 +4,11 @@ title: Accessing the registry
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "accessing-the-registry" %}
-# Accessing the registry {id="accessing-the-registry"}
 {% include "./_attributes/common-attributes.md" %}
+# Accessing the registry {id="accessing-the-registry"}
 
-[role="_abstract"] 
-{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
-You can access a registry to view logs and metrics. You can also secure and expose the registry.
+{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+You can access a registry to view logs and metrics. You can also secure and expose the registry. {._abstract}
 
 After you logged in to the registry by using the `podman login` command, you can push or pull images from the integrated registry directly by using `podman push` or `podman pull` commands. The commands that you can use depend on your user permissions.
 {% endif %}
@@ -47,7 +46,7 @@ In {{ product_title }}, Red Hat Site Reliability Engineering (SRE) manages the r
 
 {% leveloffset +1 %}{% include "./modules/registry-accessing-metrics.md" %}{% endleveloffset %}
 
-## Additional resources {id="accessing-the-registry-additional-resources"}
+## Additional resources {id="accessing-the-registry-additional-resources" ._additional-resources}
 
 *   [Allowing pods to reference images across projects](/openshift_images/managing_images/using-image-pull-secrets#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets)
 *   [Removing the kubeadmin user](/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin)

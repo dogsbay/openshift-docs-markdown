@@ -5,7 +5,7 @@ To uninstall the Container Security Operator, you must uninstall the Operator an
 
 **Procedure**
 
-1.  On the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  On the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 1.  Click the Options menu {{ kebab }} of the Container Security Operator.
 1.  Click **Uninstall Operator**. 
 1.  Confirm your decision by clicking **Uninstall** in the popup window.

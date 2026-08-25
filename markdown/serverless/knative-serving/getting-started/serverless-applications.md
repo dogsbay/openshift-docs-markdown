@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Serverless applications {id="serverless-applications"}
 {% include "./_attributes/common-attributes.md" %}
+# Serverless applications {id="serverless-applications"}
 {%- set context = "serverless-applications" %}
 
 {% include "./snippets/serverless-apps.md" %}
@@ -8,7 +8,7 @@
 You can create a serverless application by using one of the following methods:
 
 *   Create a Knative service from the {{ product_title }} web console.
-{%- if openshift_enterprise %}
+{% if openshift_enterprise %}
 
     See [Creating applications using the Developer perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective) for more information.
 {%- endif %}

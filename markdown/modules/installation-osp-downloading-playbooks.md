@@ -10,7 +10,7 @@ Download Ansible playbooks that you can use to install {{ product_title }} on yo
 **Procedure**
 
 *   To download the playbooks to your working directory, run the following script from a command line:
-    ```terminal
+    ```terminal {minja}
     $ xargs -n 1 curl -O <<< '
             https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/bootstrap.yaml
             https://raw.githubusercontent.com/openshift/installer/release-{{ product_version }}/upi/openstack/common.yaml

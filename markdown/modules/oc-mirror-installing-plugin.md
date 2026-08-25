@@ -62,9 +62,9 @@ You can install the oc-mirror OpenShift CLI plugin to manage image sets in disco
 {% endif %}
 
 {% if context == "about-installing-oc-mirror-v2" %}
-{%- set oc_mirror_v2 = false -%}
+{%- set oc_mirror_v2 = "" -%}
 {% endif %}
 
 {% if context == "installing-mirroring-disconnected" %}
-{%- set oc_mirror = false -%}
+{%- set oc_mirror = "" -%}
 {% endif %}

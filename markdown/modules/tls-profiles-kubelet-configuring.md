@@ -118,5 +118,5 @@ To verify that the profile is set,  perform the following steps after the nodes 
     ```
 
 {% if context == "tls-security-profiles" %}
-{%- set tls = false -%}
+{%- set tls = "" -%}
 {% endif %}

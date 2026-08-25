@@ -7,11 +7,12 @@ title: "Installing a cluster on {{ ibm_cloud_title }} into an existing VPC"
 # Installing a cluster on {{ ibm_cloud_title }} into an existing VPC {id="installing-ibm-cloud-vpc"}
 {%- set context = "installing-ibm-cloud-vpc" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster into an existing Virtual Private Cloud (VPC) on {{ ibm_cloud_name }}. The installation program provisions the rest of the required infrastructure, which you can further customize.
+In {{ product_title }} version {{ product_version }}, you can install a cluster into an existing Virtual Private Cloud (VPC) on {{ ibm_cloud_name }}. The installation program provisions the rest of the required infrastructure, which you can further customize. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-cloud-installer-provisioned.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -32,6 +33,7 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_cloud_name }}](/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-config-parameters-ibm-cloud-vpc)
 
@@ -40,6 +42,7 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +2 %}{% include "./modules/installation-ibm-cloud-tested-machine-types.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -60,11 +63,12 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 <a name="additional-resources_installing-ibm-cloud-vpc-console"></a>**Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_installing-ibm-cloud-vpc"}
+## Additional resources {id="additional-resources_installing-ibm-cloud-vpc" ._additional-resources}
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

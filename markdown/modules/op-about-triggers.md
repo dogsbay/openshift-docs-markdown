@@ -31,7 +31,7 @@ Triggers consist of the following main resources that work together to form a re
 A trigger template receives input from the trigger binding, and then performs a series of actions that results in creation of new pipeline resources, and initiation of a new pipeline run.
 
     The following example shows a code snippet of a `TriggerTemplate` resource, which creates a pipeline run using the Git repository information received from the `TriggerBinding` resource you just created:
-    ```yaml
+    ```yaml {minja}
     apiVersion: triggers.tekton.dev/v1beta1 (1)
     kind: TriggerTemplate (2)
     metadata:

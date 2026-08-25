@@ -14,7 +14,8 @@ A cluster must have at least one machine pool that does not contain any taints.
 
 :::
 
-{%- if not (openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_rosa or openshift_rosa_hcp) %}
+
 **Prerequisites**
 
 *   You created an {{ product_title }} cluster.
@@ -22,6 +23,7 @@ A cluster must have at least one machine pool that does not contain any taints.
 {% endif %}
 
 {% if openshift_dedicated %}
+
 **Procedure**
 
 1.  Navigate to {{ cluster_manager_url }} and select your cluster.

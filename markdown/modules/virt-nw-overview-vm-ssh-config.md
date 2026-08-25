@@ -1,6 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-[id="virt-nw-overview-vm-ssh-config_{{ context }}"]                                
-= Configure VM SSH access
+# Configure VM SSH access {id="virt-nw-overview-vm-ssh-config_{{ context }}"}
 
 You can use SSH to securely access your virtual machines (VMs) from the command line.  {._abstract}
 

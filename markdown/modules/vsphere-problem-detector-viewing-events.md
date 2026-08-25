@@ -19,4 +19,4 @@ After the {{ operator_name }} runs and performs the configuration checks, the Op
     16m     Normal    Created             pod/vsphere-problem-detector-operator-xxxxx         Created container vsphere-problem-detector
     16m     Normal    LeaderElection      configmap/vsphere-problem-detector-lock    vsphere-problem-detector-operator-xxxxx became leader
     ```
-*   To view the events by using the {{ product_title }} web console, navigate to **Home** -> **Events** and select `openshift-cluster-storage-operator` from the **Project** menu.
+*   To view the events by using the {{ product_title }} web console, navigate to **Home** → **Events** and select `openshift-cluster-storage-operator` from the **Project** menu.

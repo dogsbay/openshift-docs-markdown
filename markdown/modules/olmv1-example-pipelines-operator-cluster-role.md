@@ -4,6 +4,6 @@
 
 Review the complete cluster role manifest for the {{ pipelines_shortname }} Operator, including all of the RBAC required to install and manage the extension. {._abstract}
 
-```yaml
+```yaml {minja}
 {% include "./snippets/example-pipelines-installer-clusterrole.yaml" %}
 ```

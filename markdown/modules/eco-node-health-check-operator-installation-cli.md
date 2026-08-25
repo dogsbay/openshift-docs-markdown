@@ -69,16 +69,16 @@ To install the Operator in the `openshift-operators` namespace, skip to step 3 o
     $ oc get csv -n openshift-operators
     ```
 
-```terminal title="Example output"
-NAME                              DISPLAY                     VERSION  REPLACES PHASE
-node-healthcheck-operator.v0.2.0. Node Health Check Operator  0.2.0             Succeeded
-```
+    ```terminal title="Example output"
+    NAME                              DISPLAY                     VERSION  REPLACES PHASE
+    node-healthcheck-operator.v0.2.0. Node Health Check Operator  0.2.0             Succeeded
+    ```
 1.  Verify that the Node Health Check Operator is up and running:
     ```terminal
     $ oc get deploy -n openshift-operators
     ```
 
-```terminal title="Example output"
-NAME                                           READY   UP-TO-DATE   AVAILABLE   AGE
-node-health-check-operator-controller-manager  1/1     1            1           10d
-```
+    ```terminal title="Example output"
+    NAME                                           READY   UP-TO-DATE   AVAILABLE   AGE
+    node-health-check-operator-controller-manager  1/1     1            1           10d
+    ```

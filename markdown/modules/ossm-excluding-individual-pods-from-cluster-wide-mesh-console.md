@@ -14,7 +14,7 @@ If a pod does not have the `sidecar.istio.io/inject` annotation applied, it cann
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Workloads** -> **Deployments**.
+1.  Navigate to **Workloads** → **Deployments**.
 1.  Click the name of the deployment.
 1.  Click **YAML**.
 1.  Modify the YAML file to deploy one application that receives sidecar injection and one that does not, as shown in the following example:

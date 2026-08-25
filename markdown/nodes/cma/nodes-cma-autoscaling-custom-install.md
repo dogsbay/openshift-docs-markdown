@@ -4,8 +4,8 @@ title: Installing the custom metrics autoscaler
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom-install" %}
-# Installing the custom metrics autoscaler {id="nodes-cma-autoscaling-custom-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing the custom metrics autoscaler {id="nodes-cma-autoscaling-custom-install"}
 
 You can use the {{ product_title }} web console to install the Custom Metrics Autoscaler Operator.
 

@@ -12,7 +12,7 @@
 **Procedure**
 
 1.  Create a Butane config with information similar to the following:
-    ```yaml title="Example multipath-config.bu"
+    ```yaml title="Example multipath-config.bu" {minja}
     variant: openshift
     version: {{ product_version }}.0
     systemd:

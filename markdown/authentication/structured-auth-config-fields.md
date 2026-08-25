@@ -3,11 +3,11 @@ title: Configuring advanced direct authentication fields
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring advanced direct authentication fields {id="structured-auth-config-fields"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring advanced direct authentication fields {id="structured-auth-config-fields"}
 {%- set context = "structured-auth-config-fields" %}
 
-You can configure advanced direct authentication fields in the `authentications.config.openshift.io` custom resource definition (CRD) to enable enhanced OIDC configurations, security enforcement, and flexible token validation for standalone and hosted control plane (HCP) clusters.
+You can configure advanced direct authentication fields in the `authentications.config.openshift.io` custom resource definition (CRD) to enable enhanced OIDC configurations, security enforcement, and flexible token validation for standalone and hosted control plane (HCP) clusters. {._abstract}
 
 {%- set FeatureName = "Advanced direct authentication fields" %}
 {% include "./snippets/technology-preview.md" %}
@@ -25,6 +25,7 @@ You can configure advanced direct authentication fields in the `authentications.
 {% leveloffset +1 %}{% include "./modules/structured-auth-config-fields-reference.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Enabling direct authentication with an external OIDC identity provider](/authentication/external-auth#external-auth)
 *   [Common Expression Language (CEL) specification](https://cel.dev/)

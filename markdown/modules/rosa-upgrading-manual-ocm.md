@@ -29,7 +29,7 @@ You can schedule upgrades for a {{ product_title }} cluster manually either one 
         
         :::
 
-{%- if not (hcp_in_rosa or openshift_rosa_hcp) %}
+{% if not (hcp_in_rosa or openshift_rosa_hcp) %}
 1.  Optional: In the **Node draining** pane, select a grace period interval from the list. The grace period enables the nodes to gracefully drain before forcing the pod eviction. The default is **1 hour**.
 
     :::important
@@ -73,9 +73,9 @@ You can schedule upgrades for a {{ product_title }} cluster manually either one 
 *   Sometimes a scheduled upgrade does not trigger. See [Upgrade maintenance cancelled](https://access.redhat.com/solutions/6648291) for more information.
 
 {% if context == "rosa-upgrading-sts" %}
-{%- set sts = false -%}
+{%- set sts = "" -%}
 {% endif %}
 
 {% if context == "rosa-hcp-upgrading" %}
-{%- set hcp_in_rosa = false -%}
+{%- set hcp_in_rosa = "" -%}
 {% endif %}

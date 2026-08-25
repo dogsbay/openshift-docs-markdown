@@ -10,7 +10,7 @@ If you are using a firewall to control egress traffic from {{ product_title }} o
     | --- | --- | --- |
     | `registry.redhat.io` | 443 | Provides core container images. |
     | `quay.io` | 443 | Provides core container images. |
-    | `cdn01.quay.io`  `cdn02.quay.io`  `cdn03.quay.io`  `cdn04.quay.io`  `cdn05.quay.io`  `cdn06.quay.io` | 443 | Provides core container images. |
+    | `cdn01.quay.io`<br> `cdn02.quay.io`<br> `cdn03.quay.io`<br> `cdn04.quay.io`<br> `cdn05.quay.io`<br> `cdn06.quay.io` | 443 | Provides core container images. |
     | `sso.redhat.com` | 443 | Required. The https://console.redhat.com/openshift site uses authentication from sso.redhat.com to download the pull secret and use Red Hat SaaS solutions to facilitate monitoring of your subscriptions, cluster inventory, chargeback reporting, and so on. |
     | `quayio-production-s3.s3.amazonaws.com` | 443 | Provides core container images. |
     | `pull.q1w2.quay.rhcloud.com` | 443 | Provides core container images. |
@@ -29,12 +29,11 @@ If you are using a firewall to control egress traffic from {{ product_title }} o
     | `observatorium.api.openshift.com` | 443 | Required for managed OpenShift-specific telemetry. |
 
 
-:::note
+    :::note
 
-Managed clusters require the enabling of telemetry to allow Red Hat to react more quickly to problems, better support the customers, and better understand how product upgrades impact clusters. For more information about how remote health monitoring data is used by Red Hat, see _About remote health monitoring_ in the _Additional resources_ section.
-
-:::
-
+    Managed clusters require the enabling of telemetry to allow Red Hat to react more quickly to problems, better support the customers, and better understand how product upgrades impact clusters. For more information about how remote health monitoring data is used by Red Hat, see _About remote health monitoring_ in the _Additional resources_ section.
+    
+    :::
 
 1.  Add the following {{ product_title }} URLs to an allowlist:
     | Domain | Port | Function |
@@ -54,7 +53,8 @@ Managed clusters require the enabling of telemetry to allow Red Hat to react mor
     | Domain | Port | Function |
     | --- | --- | --- |
     | `accounts.google.com` | 443 | Used to access your {{ gcp_short }} account. |
-    | `*.googleapis.com` OR  `storage.googleapis.com`  `iam.googleapis.com`  `serviceusage.googleapis.com`  `cloudresourcemanager.googleapis.com`  `compute.googleapis.com`  `oauth2.googleapis.com`  `dns.googleapis.com`  `iamcredentials.googleapis.com` | 443 | Used to access {{ gcp_short }} services and resources. Review [Cloud Endpoints](https://cloud.google.com/endpoints/docs) in the {{ gcp_short }} documentation to determine the endpoints to allow for your APIs. |
+    | `*.googleapis.com`<br>OR<br> `storage.googleapis.com`<br> `iam.googleapis.com`<br> `serviceusage.googleapis.com`<br> `cloudresourcemanager.googleapis.com`<br> `compute.googleapis.com`<br> `oauth2.googleapis.com`<br> `dns.googleapis.com`<br> `iamcredentials.googleapis.com` | 443 | Used to access {{ gcp_short }} services and resources. Review [Cloud Endpoints](https://cloud.google.com/endpoints/docs) in the {{ gcp_short }} documentation to determine the endpoints to allow for your APIs. |
+
 
     :::note
 

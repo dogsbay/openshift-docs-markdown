@@ -7,7 +7,7 @@ To create ephemeral volumes that are automatically provisioned and deleted with 
 
 1.  Create the `pod` object definition and save it to a file.
 1.  Include the generic ephemeral volume information in the file.
-    ```yaml title="my-example-pod-with-generic-vols.yaml"
+    ```yaml title="my-example-pod-with-generic-vols.yaml" {minja}
     kind: Pod
     apiVersion: v1
     metadata:
@@ -29,12 +29,12 @@ To create ephemeral volumes that are automatically provisioned and deleted with 
                   type: my-app-ephvol
               spec:
                 accessModes: [ "ReadWriteOnce" ]
-{%- if not microshift %}
+    {%- if not microshift %}
                 storageClassName: "gp2-csi"
-{% endif %}
-{% if microshift %}
+    {%- endif %}
+    {%- if microshift %}
                 storageClassName: "topolvm-provisioner"
-{%- endif %}
+    {%- endif %}
                 resources:
                   requests:
                     storage: 1Gi

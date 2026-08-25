@@ -3,11 +3,11 @@ title: Configuring ingress cluster traffic using a load balancer
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring ingress cluster traffic using a load balancer {id="configuring-ingress-cluster-traffic-load-balancer"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring ingress cluster traffic using a load balancer {id="configuring-ingress-cluster-traffic-load-balancer"}
 {%- set context = "configuring-ingress-cluster-traffic-load-balancer" %}
 
-{{ product_title }} provides methods for communicating from outside the cluster with services running in the cluster. This method uses a load balancer.
+{{ product_title }} provides methods for communicating from outside the cluster with services running in the cluster. This method uses a load balancer. {._abstract}
 
 Before starting the following procedures, the administrator must complete the following prerequisite tasks:
 

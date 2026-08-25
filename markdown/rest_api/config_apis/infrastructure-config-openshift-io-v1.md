@@ -1,5 +1,5 @@
 ---
-title: "Infrastructure []"
+title: "Infrastructure [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,8 +43,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `cloudConfig` | `object` | cloudConfig is a reference to a ConfigMap containing the cloud provider configuration file. This configuration file is used to configure the Kubernetes cloud provider integration when using the built-in cloud provider integration or the external cloud controller manager. The namespace for this config map is openshift-config. cloudConfig should only be consumed by the kube_cloud_config controller. The controller is responsible for using the user configuration in the spec for various platforms and combining that with the user provided ConfigMap in this field to create a stitched kube cloud config. The controller generates a ConfigMap `kube-cloud-config` in `openshift-config-managed` namespace with the kube cloud config is stored in `cloud.conf` key. All the clients are expected to use the generated ConfigMap only. |
+| `cloudConfig` | `object` | cloudConfig is a reference to a ConfigMap containing the cloud provider configuration file. This configuration file is used to configure the Kubernetes cloud provider integration when using the built-in cloud provider integration or the external cloud controller manager. The namespace for this config map is openshift-config.<br>cloudConfig should only be consumed by the kube_cloud_config controller. The controller is responsible for using the user configuration in the spec for various platforms and combining that with the user provided ConfigMap in this field to create a stitched kube cloud config. The controller generates a ConfigMap `kube-cloud-config` in `openshift-config-managed` namespace with the kube cloud config is stored in `cloud.conf` key. All the clients are expected to use the generated ConfigMap only. |
 | `platformSpec` | `object` | platformSpec holds desired information specific to the underlying infrastructure provider. |
+
 ### .spec.cloudConfig {id="_speccloudconfig"}
 
 Description
@@ -69,6 +71,7 @@ Type
 | --- | --- | --- |
 | `key` | `string` | key allows pointing to a specific key/value inside of the configmap.  This is useful for logical file references. |
 | `name` | `string` |  |
+
 ### .spec.platformSpec {id="_specplatformspec"}
 
 Description
@@ -96,6 +99,7 @@ Type
 | `powervs` | `object` | powervs contains settings specific to the IBM Power Systems Virtual Servers infrastructure provider. |
 | `type` | `string` | type is the underlying infrastructure provider for the cluster. This value controls whether infrastructure automation such as service load balancers, dynamic volume provisioning, machine creation and deletion, and other integrations are enabled. If None, no infrastructure automation is enabled. Allowed values are "AWS", "Azure", "BareMetal", "GCP", "Libvirt", "OpenStack", "VSphere", "oVirt", "IBMCloud", "KubeVirt", "EquinixMetal", "PowerVS", "AlibabaCloud", "Nutanix", "External", and "None". Individual components may not support all platforms, and must handle unrecognized platforms as None if they do not support that platform. |
 | `vsphere` | `object` | vsphere contains settings specific to the VSphere infrastructure provider. |
+
 ### .spec.platformSpec.alibabaCloud {id="_specplatformspecalibabacloud"}
 
 Description
@@ -118,6 +122,7 @@ Type
 | --- | --- | --- |
 | `serviceEndpoints` | `array` | serviceEndpoints list contains custom endpoints which will override default service endpoint of AWS Services. There must be only one ServiceEndpoint for a service. |
 | `serviceEndpoints[]` | `object` | AWSServiceEndpoint store the configuration of a custom url to override existing defaults of AWS Services. |
+
 ### .spec.platformSpec.aws.serviceEndpoints {id="_specplatformspecawsserviceendpoints"}
 
 Description
@@ -143,6 +148,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is the name of the AWS service. The list of all the service names can be found at https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html This must be provided and cannot be empty. |
 | `url` | `string` | url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty. |
+
 ### .spec.platformSpec.azure {id="_specplatformspecazure"}
 
 Description
@@ -166,6 +172,7 @@ Type
 | `apiServerInternalIPs` | `array (string)` | apiServerInternalIPs are the IP addresses to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. These are the IPs for a self-hosted load balancer in front of the API servers. In dual stack clusters this list contains two IP addresses, one from IPv4 family and one from IPv6. In single stack clusters a single IP address is expected. When omitted, values from the status.apiServerInternalIPs will be used. Once set, the list cannot be completely removed (but its second entry can). |
 | `ingressIPs` | `array (string)` | ingressIPs are the external IPs which route to the default ingress controller. The IPs are suitable targets of a wildcard DNS record used to resolve default route host names. In dual stack clusters this list contains two IP addresses, one from IPv4 family and one from IPv6. In single stack clusters a single IP address is expected. When omitted, values from the status.ingressIPs will be used. Once set, the list cannot be completely removed (but its second entry can). |
 | `machineNetworks` | `array (string)` | machineNetworks are IP networks used to connect all the OpenShift cluster nodes. Each network is provided in the CIDR format and should be IPv4 or IPv6, for example "10.0.0.0/8" or "fd00::/8". |
+
 ### .spec.platformSpec.equinixMetal {id="_specplatformspecequinixmetal"}
 
 Description
@@ -188,6 +195,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `platformName` | `string` | platformName holds the arbitrary string representing the infrastructure provider name, expected to be set at the installation time. This field is solely for informational and reporting purposes and is not expected to be used for decision-making. |
+
 ### .spec.platformSpec.gcp {id="_specplatformspecgcp"}
 
 Description
@@ -236,6 +244,7 @@ Required
 | `prismCentral` | `object` | prismCentral holds the endpoint address and port to access the Nutanix Prism Central. When a cluster-wide proxy is installed, by default, this endpoint will be accessed via the proxy. Should you wish for communication with this endpoint not to be proxied, please add the endpoint to the proxy spec.noProxy list. |
 | `prismElements` | `array` | prismElements holds one or more endpoint address and port data to access the Nutanix Prism Elements (clusters) of the Nutanix Prism Central. Currently we only support one Prism Element (cluster) for an OpenShift cluster, where all the Nutanix resources (VMs, subnets, volumes, etc.) used in the OpenShift cluster are located. In the future, we may support Nutanix resources (VMs, etc.) spread over multiple Prism Elements (clusters) of the Prism Central. |
 | `prismElements[]` | `object` | NutanixPrismElementEndpoint holds the name and endpoint data for a Prism Element (cluster) |
+
 ### .spec.platformSpec.nutanix.failureDomains {id="_specplatformspecnutanixfailuredomains"}
 
 Description
@@ -268,6 +277,7 @@ Required
 | `name` | `string` | name defines the unique name of a failure domain. Name is required and must be at most 64 characters in length. It must consist of only lower case alphanumeric characters and hyphens (-). It must start and end with an alphanumeric character. This value is arbitrary and is used to identify the failure domain within the platform. |
 | `subnets` | `array` | subnets holds a list of identifiers (one or more) of the cluster’s network subnets If the feature gate NutanixMultiSubnets is enabled, up to 32 subnets may be configured. for the Machine’s VM to connect to. The subnet identifiers (uuid or name) can be obtained from the Prism Central console or using the prism_central API. |
 | `subnets[]` | `object` | NutanixResourceIdentifier holds the identity of a Nutanix PC resource (cluster, image, subnet, etc.) |
+
 ### .spec.platformSpec.nutanix.failureDomains[].cluster {id="_specplatformspecnutanixfailuredomainscluster"}
 
 Description
@@ -288,6 +298,7 @@ Required
 | `name` | `string` | name is the resource name in the PC. It cannot be empty if the type is Name. |
 | `type` | `string` | type is the identifier type to use for this resource. |
 | `uuid` | `string` | uuid is the UUID of the resource in the PC. It cannot be empty if the type is UUID. |
+
 ### .spec.platformSpec.nutanix.failureDomains[].subnets {id="_specplatformspecnutanixfailuredomainssubnets"}
 
 Description
@@ -318,6 +329,7 @@ Required
 | `name` | `string` | name is the resource name in the PC. It cannot be empty if the type is Name. |
 | `type` | `string` | type is the identifier type to use for this resource. |
 | `uuid` | `string` | uuid is the UUID of the resource in the PC. It cannot be empty if the type is UUID. |
+
 ### .spec.platformSpec.nutanix.prismCentral {id="_specplatformspecnutanixprismcentral"}
 
 Description
@@ -339,6 +351,7 @@ Required
 | --- | --- | --- |
 | `address` | `string` | address is the endpoint address (DNS name or IP address) of the Nutanix Prism Central or Element (cluster) |
 | `port` | `integer` | port is the port number to access the Nutanix Prism Central or Element (cluster) |
+
 ### .spec.platformSpec.nutanix.prismElements {id="_specplatformspecnutanixprismelements"}
 
 Description
@@ -370,6 +383,7 @@ Required
 | --- | --- | --- |
 | `endpoint` | `object` | endpoint holds the endpoint address and port data of the Prism Element (cluster). When a cluster-wide proxy is installed, by default, this endpoint will be accessed via the proxy. Should you wish for communication with this endpoint not to be proxied, please add the endpoint to the proxy spec.noProxy list. |
 | `name` | `string` | name is the name of the Prism Element (cluster). This value will correspond with the cluster field configured on other resources (eg Machines, PVCs, etc). |
+
 ### .spec.platformSpec.nutanix.prismElements[].endpoint {id="_specplatformspecnutanixprismelementsendpoint"}
 
 Description
@@ -391,6 +405,7 @@ Required
 | --- | --- | --- |
 | `address` | `string` | address is the endpoint address (DNS name or IP address) of the Nutanix Prism Central or Element (cluster) |
 | `port` | `integer` | port is the port number to access the Nutanix Prism Central or Element (cluster) |
+
 ### .spec.platformSpec.openstack {id="_specplatformspecopenstack"}
 
 Description
@@ -405,6 +420,7 @@ Type
 | `apiServerInternalIPs` | `array (string)` | apiServerInternalIPs are the IP addresses to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. These are the IPs for a self-hosted load balancer in front of the API servers. In dual stack clusters this list contains two IP addresses, one from IPv4 family and one from IPv6. In single stack clusters a single IP address is expected. When omitted, values from the status.apiServerInternalIPs will be used. Once set, the list cannot be completely removed (but its second entry can). |
 | `ingressIPs` | `array (string)` | ingressIPs are the external IPs which route to the default ingress controller. The IPs are suitable targets of a wildcard DNS record used to resolve default route host names. In dual stack clusters this list contains two IP addresses, one from IPv4 family and one from IPv6. In single stack clusters a single IP address is expected. When omitted, values from the status.ingressIPs will be used. Once set, the list cannot be completely removed (but its second entry can). |
 | `machineNetworks` | `array (string)` | machineNetworks are IP networks used to connect all the OpenShift cluster nodes. Each network is provided in the CIDR format and should be IPv4 or IPv6, for example "10.0.0.0/8" or "fd00::/8". |
+
 ### .spec.platformSpec.ovirt {id="_specplatformspecovirt"}
 
 Description
@@ -427,6 +443,7 @@ Type
 | --- | --- | --- |
 | `serviceEndpoints` | `array` | serviceEndpoints is a list of custom endpoints which will override the default service endpoints of a Power VS service. |
 | `serviceEndpoints[]` | `object` | PowervsServiceEndpoint stores the configuration of a custom url to override existing defaults of PowerVS Services. |
+
 ### .spec.platformSpec.powervs.serviceEndpoints {id="_specplatformspecpowervsserviceendpoints"}
 
 Description
@@ -456,6 +473,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the name of the Power VS service. Few of the services are IAM - https://cloud.ibm.com/apidocs/iam-identity-token-api ResourceController - https://cloud.ibm.com/apidocs/resource-controller/resource-controller Power Cloud - https://cloud.ibm.com/apidocs/power-cloud |
 | `url` | `string` | url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty. |
+
 ### .spec.platformSpec.vsphere {id="_specplatformspecvsphere"}
 
 Description
@@ -475,6 +493,7 @@ Type
 | `nodeNetworking` | `object` | nodeNetworking contains the definition of internal and external network constraints for assigning the node’s networking. If this field is omitted, networking defaults to the legacy address selection behavior which is to only support a single address and return the first one found. |
 | `vcenters` | `array` | vcenters holds the connection details for services to communicate with vCenter. Currently, only a single vCenter is supported, but in tech preview 3 vCenters are supported. Once the cluster has been installed, you are unable to change the current number of defined vCenters except in the case where the cluster has been upgraded from a version of OpenShift where the vsphere platform spec was not present.  You may make modifications to the existing vCenters that are defined in the vcenters list in order to match with any added or modified failure domains. |
 | `vcenters[]` | `object` | VSpherePlatformVCenterSpec stores the vCenter connection fields. This is used by the vSphere CCM. |
+
 ### .spec.platformSpec.vsphere.failureDomains {id="_specplatformspecvspherefailuredomains"}
 
 Description
@@ -511,6 +530,7 @@ Required
 | `topology` | `object` | topology describes a given failure domain using vSphere constructs |
 | `zone` | `string` | zone defines the name of a zone tag that will be attached to a vCenter cluster. The tag category in vCenter must be named openshift-zone. |
 | `zoneAffinity` | `object` | zoneAffinity holds the type of the zone and the hostGroup which vmGroup and the hostGroup names in vCenter corresponds to a vm-host group of type Virtual Machine and Host respectively. Is also contains the vmHostRule which is an affinity vm-host rule in vCenter. |
+
 ### .spec.platformSpec.vsphere.failureDomains[].regionAffinity {id="_specplatformspecvspherefailuredomainsregionaffinity"}
 
 Description
@@ -529,6 +549,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type determines the vSphere object type for a region within this failure domain. Available types are Datacenter and ComputeCluster. When set to Datacenter, this means the vCenter Datacenter defined is the region. When set to ComputeCluster, this means the vCenter cluster defined is the region. |
+
 ### .spec.platformSpec.vsphere.failureDomains[].topology {id="_specplatformspecvspherefailuredomainstopology"}
 
 Description
@@ -553,7 +574,8 @@ Required
 | `folder` | `string` | folder is the absolute path of the folder where virtual machines are located. The absolute path is of the form /&lt;datacenter>/vm/&lt;folder>. The maximum length of the path is 2048 characters. |
 | `networks` | `array (string)` | networks is the list of port group network names within this failure domain. If feature gate VSphereMultiNetworks is enabled, up to 10 network adapters may be defined. 10 is the maximum number of virtual network devices which may be attached to a VM as defined by: https://configmax.esp.vmware.com/guest?vmwareproduct=vSphere&release=vSphere%208.0&categories=1-0 The available networks (port groups) can be listed using `govc ls 'network/*'` Networks should be in the form of an absolute path: /&lt;datacenter>/network/&lt;portgroup>. |
 | `resourcePool` | `string` | resourcePool is the absolute path of the resource pool where virtual machines will be created. The absolute path is of the form /&lt;datacenter>/host/&lt;cluster>/Resources/&lt;resourcepool>. The maximum length of the path is 2048 characters. |
-| `template` | `string` | template is the full inventory path of the virtual machine or template that will be cloned when creating new machines in this failure domain. The maximum length of the path is 2048 characters. When omitted, the template will be calculated by the control plane machineset operator based on the region and zone defined in VSpherePlatformFailureDomainSpec. For example, for zone=zonea, region=region1, and infrastructure name=test, the template path would be calculated as /&lt;datacenter>/vm/test-rhcos-region1-zonea. |
+| `template` | `string` | template is the full inventory path of the virtual machine or template that will be cloned when creating new machines in this failure domain. The maximum length of the path is 2048 characters.<br>When omitted, the template will be calculated by the control plane machineset operator based on the region and zone defined in VSpherePlatformFailureDomainSpec. For example, for zone=zonea, region=region1, and infrastructure name=test, the template path would be calculated as /&lt;datacenter>/vm/test-rhcos-region1-zonea. |
+
 ### .spec.platformSpec.vsphere.failureDomains[].zoneAffinity {id="_specplatformspecvspherefailuredomainszoneaffinity"}
 
 Description
@@ -574,6 +596,7 @@ Required
 | --- | --- | --- |
 | `hostGroup` | `object` | hostGroup holds the vmGroup and the hostGroup names in vCenter corresponds to a vm-host group of type Virtual Machine and Host respectively. Is also contains the vmHostRule which is an affinity vm-host rule in vCenter. |
 | `type` | `string` | type determines the vSphere object type for a zone within this failure domain. Available types are ComputeCluster and HostGroup. When set to ComputeCluster, this means the vCenter cluster defined is the zone. When set to HostGroup, hostGroup must be configured with hostGroup, vmGroup and vmHostRule and this means the zone is defined by the grouping of those fields. |
+
 ### .spec.platformSpec.vsphere.failureDomains[].zoneAffinity.hostGroup {id="_specplatformspecvspherefailuredomainszoneaffinityhostgroup"}
 
 Description
@@ -596,6 +619,7 @@ Required
 | `hostGroup` | `string` | hostGroup is the name of the vm-host group of type host within vCenter for this failure domain. hostGroup is limited to 80 characters. This field is required when the VSphereFailureDomain ZoneType is HostGroup |
 | `vmGroup` | `string` | vmGroup is the name of the vm-host group of type virtual machine within vCenter for this failure domain. vmGroup is limited to 80 characters. This field is required when the VSphereFailureDomain ZoneType is HostGroup |
 | `vmHostRule` | `string` | vmHostRule is the name of the affinity vm-host rule within vCenter for this failure domain. vmHostRule is limited to 80 characters. This field is required when the VSphereFailureDomain ZoneType is HostGroup |
+
 ### .spec.platformSpec.vsphere.nodeNetworking {id="_specplatformspecvspherenodenetworking"}
 
 Description
@@ -613,6 +637,7 @@ Type
 | --- | --- | --- |
 | `external` | `object` | external represents the network configuration of the node that is externally routable. |
 | `internal` | `object` | internal represents the network configuration of the node that is routable only within the cluster. |
+
 ### .spec.platformSpec.vsphere.nodeNetworking.external {id="_specplatformspecvspherenodenetworkingexternal"}
 
 Description
@@ -627,6 +652,7 @@ Type
 | `excludeNetworkSubnetCidr` | `array (string)` | excludeNetworkSubnetCidr IP addresses in subnet ranges will be excluded when selecting the IP address from the VirtualMachine’s VM for use in the status.addresses fields. |
 | `network` | `string` | network VirtualMachine’s VM Network names that will be used to when searching for status.addresses fields. Note that if internal.networkSubnetCIDR and external.networkSubnetCIDR are not set, then the vNIC associated to this network must only have a single IP address assigned to it. The available networks (port groups) can be listed using `govc ls 'network/*'` |
 | `networkSubnetCidr` | `array (string)` | networkSubnetCidr IP address on VirtualMachine’s network interfaces included in the fields' CIDRs that will be used in respective status.addresses fields. |
+
 ### .spec.platformSpec.vsphere.nodeNetworking.internal {id="_specplatformspecvspherenodenetworkinginternal"}
 
 Description
@@ -641,6 +667,7 @@ Type
 | `excludeNetworkSubnetCidr` | `array (string)` | excludeNetworkSubnetCidr IP addresses in subnet ranges will be excluded when selecting the IP address from the VirtualMachine’s VM for use in the status.addresses fields. |
 | `network` | `string` | network VirtualMachine’s VM Network names that will be used to when searching for status.addresses fields. Note that if internal.networkSubnetCIDR and external.networkSubnetCIDR are not set, then the vNIC associated to this network must only have a single IP address assigned to it. The available networks (port groups) can be listed using `govc ls 'network/*'` |
 | `networkSubnetCidr` | `array (string)` | networkSubnetCidr IP address on VirtualMachine’s network interfaces included in the fields' CIDRs that will be used in respective status.addresses fields. |
+
 ### .spec.platformSpec.vsphere.vcenters {id="_specplatformspecvspherevcenters"}
 
 Description
@@ -676,6 +703,7 @@ Required
 | `datacenters` | `array (string)` | The vCenter Datacenters in which the RHCOS vm guests are located. This field will be used by the Cloud Controller Manager. Each datacenter listed here should be used within a topology. |
 | `port` | `integer` | port is the TCP port that will be used to communicate to the vCenter endpoint. When omitted, this means the user has no opinion and it is up to the platform to choose a sensible default, which is subject to change over time. |
 | `server` | `string` | server is the fully-qualified domain name or the IP address of the vCenter server. |
+
 ### .status {id="_status"}
 
 Description
@@ -694,8 +722,9 @@ Type
 | `etcdDiscoveryDomain` | `string` | etcdDiscoveryDomain is the domain used to fetch the SRV records for discovering etcd servers and clients. For more info: https://github.com/etcd-io/etcd/blob/329be66e8b3f9e2e6af83c123ff89297e49ebd15/Documentation/op-guide/clustering.md#dns-discovery deprecated: as of 4.7, this field is no longer set or honored.  It will be removed in a future release. |
 | `infrastructureName` | `string` | infrastructureName uniquely identifies a cluster with a human friendly name. Once set it should not be changed. Must be of max length 27 and must have only alphanumeric or hyphen characters. |
 | `infrastructureTopology` | `string` | infrastructureTopology expresses the expectations for infrastructure services that do not run on control plane nodes, usually indicated by a node selector for a `role` value other than `master`. The default is 'HighlyAvailable', which represents the behavior operators have in a "normal" cluster. The 'SingleReplica' mode will be used in single-node deployments and the operators should not configure the operand for highly-available operation NOTE: External topology mode is not applicable for this field. |
-| `platform` | `string` | platform is the underlying infrastructure provider for the cluster. Deprecated: Use platformStatus.type instead. |
+| `platform` | `string` | platform is the underlying infrastructure provider for the cluster.<br>Deprecated: Use platformStatus.type instead. |
 | `platformStatus` | `object` | platformStatus holds status information specific to the underlying infrastructure provider. |
+
 ### .status.platformStatus {id="_statusplatformstatus"}
 
 Description
@@ -721,8 +750,9 @@ Type
 | `openstack` | `object` | openstack contains settings specific to the OpenStack infrastructure provider. |
 | `ovirt` | `object` | ovirt contains settings specific to the oVirt infrastructure provider. |
 | `powervs` | `object` | powervs contains settings specific to the Power Systems Virtual Servers infrastructure provider. |
-| `type` | `string` | type is the underlying infrastructure provider for the cluster. This value controls whether infrastructure automation such as service load balancers, dynamic volume provisioning, machine creation and deletion, and other integrations are enabled. If None, no infrastructure automation is enabled. Allowed values are "AWS", "Azure", "BareMetal", "GCP", "Libvirt", "OpenStack", "VSphere", "oVirt", "EquinixMetal", "PowerVS", "AlibabaCloud", "Nutanix" and "None". Individual components may not support all platforms, and must handle unrecognized platforms as None if they do not support that platform. This value will be synced with to the `status.platform` and `status.platformStatus.type`. Currently this value cannot be changed once set. |
+| `type` | `string` | type is the underlying infrastructure provider for the cluster. This value controls whether infrastructure automation such as service load balancers, dynamic volume provisioning, machine creation and deletion, and other integrations are enabled. If None, no infrastructure automation is enabled. Allowed values are "AWS", "Azure", "BareMetal", "GCP", "Libvirt", "OpenStack", "VSphere", "oVirt", "EquinixMetal", "PowerVS", "AlibabaCloud", "Nutanix" and "None". Individual components may not support all platforms, and must handle unrecognized platforms as None if they do not support that platform.<br>This value will be synced with to the `status.platform` and `status.platformStatus.type`. Currently this value cannot be changed once set. |
 | `vsphere` | `object` | vsphere contains settings specific to the VSphere infrastructure provider. |
+
 ### .status.platformStatus.alibabaCloud {id="_statusplatformstatusalibabacloud"}
 
 Description
@@ -742,6 +772,7 @@ Required
 | `resourceGroupID` | `string` | resourceGroupID is the ID of the resource group for the cluster. |
 | `resourceTags` | `array` | resourceTags is a list of additional tags to apply to Alibaba Cloud resources created for the cluster. |
 | `resourceTags[]` | `object` | AlibabaCloudResourceTag is the set of tags to add to apply to resources. |
+
 ### .status.platformStatus.alibabaCloud.resourceTags {id="_statusplatformstatusalibabacloudresourcetags"}
 
 Description
@@ -769,6 +800,7 @@ Required
 | --- | --- | --- |
 | `key` | `string` | key is the key of the tag. |
 | `value` | `string` | value is the value of the tag. |
+
 ### .status.platformStatus.aws {id="_statusplatformstatusaws"}
 
 Description
@@ -785,6 +817,7 @@ Type
 | `resourceTags[]` | `object` | AWSResourceTag is a tag to apply to AWS resources created for the cluster. |
 | `serviceEndpoints` | `array` | serviceEndpoints list contains custom endpoints which will override default service endpoint of AWS Services. There must be only one ServiceEndpoint for a service. |
 | `serviceEndpoints[]` | `object` | AWSServiceEndpoint store the configuration of a custom url to override existing defaults of AWS Services. |
+
 ### .status.platformStatus.aws.resourceTags {id="_statusplatformstatusawsresourcetags"}
 
 Description
@@ -815,6 +848,7 @@ Required
 | --- | --- | --- |
 | `key` | `string` | key sets the key of the AWS resource tag key-value pair. Key is required when defining an AWS resource tag. Key should consist of between 1 and 128 characters, and may contain only the set of alphanumeric characters, space (' '), '_', '.', '/', '=', '+', '-', ':', and '@'. |
 | `value` | `string` | value sets the value of the AWS resource tag key-value pair. Value is required when defining an AWS resource tag. Value should consist of between 1 and 256 characters, and may contain only the set of alphanumeric characters, space (' '), '_', '.', '/', '=', '+', '-', ':', and '@'. Some AWS service do not support empty values. Since tags are added to resources in many services, the length of the tag value must meet the requirements of all services. |
+
 ### .status.platformStatus.aws.serviceEndpoints {id="_statusplatformstatusawsserviceendpoints"}
 
 Description
@@ -840,6 +874,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is the name of the AWS service. The list of all the service names can be found at https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html This must be provided and cannot be empty. |
 | `url` | `string` | url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty. |
+
 ### .status.platformStatus.azure {id="_statusplatformstatusazure"}
 
 Description
@@ -858,6 +893,7 @@ Type
 | `resourceGroupName` | `string` | resourceGroupName is the Resource Group for new Azure resources created for the cluster. |
 | `resourceTags` | `array` | resourceTags is a list of additional tags to apply to Azure resources created for the cluster. See https://docs.microsoft.com/en-us/rest/api/resources/tags for information on tagging Azure resources. Due to limitations on Automation, Content Delivery Network, DNS Azure resources, a maximum of 15 tags may be applied. OpenShift reserves 5 tags for internal use, allowing 10 tags for user configuration. |
 | `resourceTags[]` | `object` | AzureResourceTag is a tag to apply to Azure resources created for the cluster. |
+
 ### .status.platformStatus.azure.cloudLoadBalancerConfig {id="_statusplatformstatusazurecloudloadbalancerconfig"}
 
 Description
@@ -876,6 +912,7 @@ Type
 | --- | --- | --- |
 | `clusterHosted` | `object` | clusterHosted holds the IP addresses of API, API-Int and Ingress Load Balancers on Cloud Platforms. The DNS solution hosted within the cluster use these IP addresses to provide resolution for API, API-Int and Ingress services. |
 | `dnsType` | `string` | dnsType indicates the type of DNS solution in use within the cluster. Its default value of `PlatformDefault` indicates that the cluster’s DNS is the default provided by the cloud platform. It can be set to `ClusterHosted` to bypass the configuration of the cloud default DNS. In this mode, the cluster needs to provide a self-hosted DNS solution for the cluster’s installation to succeed. The cluster’s use of the cloud’s Load Balancers is unaffected by this setting. The value is immutable after it has been set at install time. Currently, there is no way for the customer to add additional DNS entries into the cluster hosted DNS. Enabling this functionality allows the user to start their own DNS solution outside the cluster after installation is complete. The customer would be responsible for configuring this custom DNS solution, and it can be run in addition to the in-cluster DNS solution. |
+
 ### .status.platformStatus.azure.cloudLoadBalancerConfig.clusterHosted {id="_statusplatformstatusazurecloudloadbalancerconfigclusterhosted"}
 
 Description
@@ -893,6 +930,7 @@ Type
 | `apiIntLoadBalancerIPs` | `array (string)` | apiIntLoadBalancerIPs holds Load Balancer IPs for the internal API service. These Load Balancer IP addresses can be IPv4 and/or IPv6 addresses. Entries in the apiIntLoadBalancerIPs must be unique. A maximum of 16 IP addresses are permitted. |
 | `apiLoadBalancerIPs` | `array (string)` | apiLoadBalancerIPs holds Load Balancer IPs for the API service. These Load Balancer IP addresses can be IPv4 and/or IPv6 addresses. Could be empty for private clusters. Entries in the apiLoadBalancerIPs must be unique. A maximum of 16 IP addresses are permitted. |
 | `ingressLoadBalancerIPs` | `array (string)` | ingressLoadBalancerIPs holds IPs for Ingress Load Balancers. These Load Balancer IP addresses can be IPv4 and/or IPv6 addresses. Entries in the ingressLoadBalancerIPs must be unique. A maximum of 16 IP addresses are permitted. |
+
 ### .status.platformStatus.azure.resourceTags {id="_statusplatformstatusazureresourcetags"}
 
 Description
@@ -923,6 +961,7 @@ Required
 | --- | --- | --- |
 | `key` | `string` | key is the key part of the tag. A tag key can have a maximum of 128 characters and cannot be empty. Key must begin with a letter, end with a letter, number or underscore, and must contain only alphanumeric characters and the following special characters `_ . -`. |
 | `value` | `string` | value is the value part of the tag. A tag value can have a maximum of 256 characters and cannot be empty. Value must contain only alphanumeric characters and the following special characters `_ + , - . / : ; < = > ? @`. |
+
 ### .status.platformStatus.baremetal {id="_statusplatformstatusbaremetal"}
 
 Description
@@ -934,13 +973,14 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers. Deprecated: Use APIServerInternalIPs instead. |
+| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.<br>Deprecated: Use APIServerInternalIPs instead. |
 | `apiServerInternalIPs` | `array (string)` | apiServerInternalIPs are the IP addresses to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. These are the IPs for a self-hosted load balancer in front of the API servers. In dual stack clusters this list contains two IPs otherwise only one. |
-| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names. Deprecated: Use IngressIPs instead. |
+| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names.<br>Deprecated: Use IngressIPs instead. |
 | `ingressIPs` | `array (string)` | ingressIPs are the external IPs which route to the default ingress controller. The IPs are suitable targets of a wildcard DNS record used to resolve default route host names. In dual stack clusters this list contains two IPs otherwise only one. |
 | `loadBalancer` | `object` | loadBalancer defines how the load balancer used by the cluster is configured. |
 | `machineNetworks` | `array (string)` | machineNetworks are IP networks used to connect all the OpenShift cluster nodes. |
 | `nodeDNSIP` | `string` | nodeDNSIP is the IP address for the internal DNS used by the nodes. Unlike the one managed by the DNS operator, `NodeDNSIP` provides name resolution for the nodes themselves. There is no DNS-as-a-service for BareMetal deployments. In order to minimize necessary changes to the datacenter DNS, a DNS service is hosted as a static pod to serve those hostnames to the nodes in the cluster. |
+
 ### .status.platformStatus.baremetal.loadBalancer {id="_statusplatformstatusbaremetalloadbalancer"}
 
 Description
@@ -953,6 +993,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type defines the type of load balancer used by the cluster on BareMetal platform which can be a user-managed or openshift-managed load balancer that is to be used for the OpenShift API and Ingress endpoints. When set to OpenShiftManagedDefault the static pods in charge of API and Ingress traffic load-balancing defined in the machine config operator will be deployed. When set to UserManaged these static pods will not be deployed and it is expected that the load balancer is configured out of band by the deployer. When omitted, this means no opinion and the platform is left to choose a reasonable default. The default value is OpenShiftManagedDefault. |
+
 ### .status.platformStatus.equinixMetal {id="_statusplatformstatusequinixmetal"}
 
 Description
@@ -966,6 +1007,7 @@ Type
 | --- | --- | --- |
 | `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers. |
 | `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names. |
+
 ### .status.platformStatus.external {id="_statusplatformstatusexternal"}
 
 Description
@@ -978,6 +1020,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `cloudControllerManager` | `object` | cloudControllerManager contains settings specific to the external Cloud Controller Manager (a.k.a. CCM or CPI). When omitted, new nodes will be not tainted and no extra initialization from the cloud controller manager is expected. |
+
 ### .status.platformStatus.external.cloudControllerManager {id="_statusplatformstatusexternalcloudcontrollermanager"}
 
 Description
@@ -991,7 +1034,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `state` | `string` | state determines whether or not an external Cloud Controller Manager is expected to be installed within the cluster. https://kubernetes.io/docs/tasks/administer-cluster/running-cloud-controller/#running-cloud-controller-manager Valid values are "External", "None" and omitted. When set to "External", new nodes will be tainted as uninitialized when created, preventing them from running workloads until they are initialized by the cloud controller manager. When omitted or set to "None", new nodes will be not tainted and no extra initialization from the cloud controller manager is expected. |
+| `state` | `string` | state determines whether or not an external Cloud Controller Manager is expected to be installed within the cluster. https://kubernetes.io/docs/tasks/administer-cluster/running-cloud-controller/#running-cloud-controller-manager<br>Valid values are "External", "None" and omitted. When set to "External", new nodes will be tainted as uninitialized when created, preventing them from running workloads until they are initialized by the cloud controller manager. When omitted or set to "None", new nodes will be not tainted and no extra initialization from the cloud controller manager is expected. |
+
 ### .status.platformStatus.gcp {id="_statusplatformstatusgcp"}
 
 Description
@@ -1010,6 +1054,7 @@ Type
 | `resourceLabels[]` | `object` | GCPResourceLabel is a label to apply to GCP resources created for the cluster. |
 | `resourceTags` | `array` | resourceTags is a list of additional tags to apply to GCP resources created for the cluster. See https://cloud.google.com/resource-manager/docs/tags/tags-overview for information on tagging GCP resources. GCP supports a maximum of 50 tags per resource. |
 | `resourceTags[]` | `object` | GCPResourceTag is a tag to apply to GCP resources created for the cluster. |
+
 ### .status.platformStatus.gcp.resourceLabels {id="_statusplatformstatusgcpresourcelabels"}
 
 Description
@@ -1040,6 +1085,7 @@ Required
 | --- | --- | --- |
 | `key` | `string` | key is the key part of the label. A label key can have a maximum of 63 characters and cannot be empty. Label key must begin with a lowercase letter, and must contain only lowercase letters, numeric characters, and the following special characters `_-`. Label key must not have the reserved prefixes `kubernetes-io` and `openshift-io`. |
 | `value` | `string` | value is the value part of the label. A label value can have a maximum of 63 characters and cannot be empty. Value must contain only lowercase letters, numeric characters, and the following special characters `_-`. |
+
 ### .status.platformStatus.gcp.resourceTags {id="_statusplatformstatusgcpresourcetags"}
 
 Description
@@ -1071,6 +1117,7 @@ Required
 | `key` | `string` | key is the key part of the tag. A tag key can have a maximum of 63 characters and cannot be empty. Tag key must begin and end with an alphanumeric character, and must contain only uppercase, lowercase alphanumeric characters, and the following special characters `._-`. |
 | `parentID` | `string` | parentID is the ID of the hierarchical resource where the tags are defined, e.g. at the Organization or the Project level. To find the Organization or Project ID refer to the following pages: https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id, https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects. An OrganizationID must consist of decimal numbers, and cannot have leading zeroes. A ProjectID must be 6 to 30 characters in length, can only contain lowercase letters, numbers, and hyphens, and must start with a letter, and cannot end with a hyphen. |
 | `value` | `string` | value is the value part of the tag. A tag value can have a maximum of 63 characters and cannot be empty. Tag value must begin and end with an alphanumeric character, and must contain only uppercase, lowercase alphanumeric characters, and the following special characters `_-.@%=+:,*#&(){}[]` and spaces. |
+
 ### .status.platformStatus.ibmcloud {id="_statusplatformstatusibmcloud"}
 
 Description
@@ -1089,6 +1136,7 @@ Type
 | `resourceGroupName` | `string` | resourceGroupName is the Resource Group for new IBMCloud resources created for the cluster. |
 | `serviceEndpoints` | `array` | serviceEndpoints is a list of custom endpoints which will override the default service endpoints of an IBM service. These endpoints are used by components within the cluster when trying to reach the IBM Cloud Services that have been overridden. The CCCMO reads in the IBMCloudPlatformSpec and validates each endpoint is resolvable. Once validated, the cloud config and IBMCloudPlatformStatus are updated to reflect the same custom endpoints. |
 | `serviceEndpoints[]` | `object` | IBMCloudServiceEndpoint stores the configuration of a custom url to override existing defaults of IBM Cloud Services. |
+
 ### .status.platformStatus.ibmcloud.serviceEndpoints {id="_statusplatformstatusibmcloudserviceendpoints"}
 
 Description
@@ -1122,6 +1170,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the name of the IBM Cloud service. Possible values are: CIS, COS, COSConfig, DNSServices, GlobalCatalog, GlobalSearch, GlobalTagging, HyperProtect, IAM, KeyProtect, ResourceController, ResourceManager, or VPC. For example, the IBM Cloud Private IAM service could be configured with the service `name` of `IAM` and `url` of `https://private.iam.cloud.ibm.com` Whereas the IBM Cloud Private VPC service for US South (Dallas) could be configured with the service `name` of `VPC` and `url` of `https://us.south.private.iaas.cloud.ibm.com` |
 | `url` | `string` | url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty. The path must follow the pattern /v[0,9]+ or /api/v[0,9]+ |
+
 ### .status.platformStatus.kubevirt {id="_statusplatformstatuskubevirt"}
 
 Description
@@ -1135,6 +1184,7 @@ Type
 | --- | --- | --- |
 | `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers. |
 | `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names. |
+
 ### .status.platformStatus.nutanix {id="_statusplatformstatusnutanix"}
 
 Description
@@ -1146,11 +1196,12 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers. Deprecated: Use APIServerInternalIPs instead. |
+| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.<br>Deprecated: Use APIServerInternalIPs instead. |
 | `apiServerInternalIPs` | `array (string)` | apiServerInternalIPs are the IP addresses to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. These are the IPs for a self-hosted load balancer in front of the API servers. In dual stack clusters this list contains two IPs otherwise only one. |
-| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names. Deprecated: Use IngressIPs instead. |
+| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names.<br>Deprecated: Use IngressIPs instead. |
 | `ingressIPs` | `array (string)` | ingressIPs are the external IPs which route to the default ingress controller. The IPs are suitable targets of a wildcard DNS record used to resolve default route host names. In dual stack clusters this list contains two IPs otherwise only one. |
 | `loadBalancer` | `object` | loadBalancer defines how the load balancer used by the cluster is configured. |
+
 ### .status.platformStatus.nutanix.loadBalancer {id="_statusplatformstatusnutanixloadbalancer"}
 
 Description
@@ -1163,6 +1214,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type defines the type of load balancer used by the cluster on Nutanix platform which can be a user-managed or openshift-managed load balancer that is to be used for the OpenShift API and Ingress endpoints. When set to OpenShiftManagedDefault the static pods in charge of API and Ingress traffic load-balancing defined in the machine config operator will be deployed. When set to UserManaged these static pods will not be deployed and it is expected that the load balancer is configured out of band by the deployer. When omitted, this means no opinion and the platform is left to choose a reasonable default. The default value is OpenShiftManagedDefault. |
+
 ### .status.platformStatus.openstack {id="_statusplatformstatusopenstack"}
 
 Description
@@ -1174,14 +1226,15 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers. Deprecated: Use APIServerInternalIPs instead. |
+| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.<br>Deprecated: Use APIServerInternalIPs instead. |
 | `apiServerInternalIPs` | `array (string)` | apiServerInternalIPs are the IP addresses to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. These are the IPs for a self-hosted load balancer in front of the API servers. In dual stack clusters this list contains two IPs otherwise only one. |
 | `cloudName` | `string` | cloudName is the name of the desired OpenStack cloud in the client configuration file (`clouds.yaml`). |
-| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names. Deprecated: Use IngressIPs instead. |
+| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names.<br>Deprecated: Use IngressIPs instead. |
 | `ingressIPs` | `array (string)` | ingressIPs are the external IPs which route to the default ingress controller. The IPs are suitable targets of a wildcard DNS record used to resolve default route host names. In dual stack clusters this list contains two IPs otherwise only one. |
 | `loadBalancer` | `object` | loadBalancer defines how the load balancer used by the cluster is configured. |
 | `machineNetworks` | `array (string)` | machineNetworks are IP networks used to connect all the OpenShift cluster nodes. |
 | `nodeDNSIP` | `string` | nodeDNSIP is the IP address for the internal DNS used by the nodes. Unlike the one managed by the DNS operator, `NodeDNSIP` provides name resolution for the nodes themselves. There is no DNS-as-a-service for OpenStack deployments. In order to minimize necessary changes to the datacenter DNS, a DNS service is hosted as a static pod to serve those hostnames to the nodes in the cluster. |
+
 ### .status.platformStatus.openstack.loadBalancer {id="_statusplatformstatusopenstackloadbalancer"}
 
 Description
@@ -1194,6 +1247,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type defines the type of load balancer used by the cluster on OpenStack platform which can be a user-managed or openshift-managed load balancer that is to be used for the OpenShift API and Ingress endpoints. When set to OpenShiftManagedDefault the static pods in charge of API and Ingress traffic load-balancing defined in the machine config operator will be deployed. When set to UserManaged these static pods will not be deployed and it is expected that the load balancer is configured out of band by the deployer. When omitted, this means no opinion and the platform is left to choose a reasonable default. The default value is OpenShiftManagedDefault. |
+
 ### .status.platformStatus.ovirt {id="_statusplatformstatusovirt"}
 
 Description
@@ -1205,12 +1259,13 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers. Deprecated: Use APIServerInternalIPs instead. |
+| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.<br>Deprecated: Use APIServerInternalIPs instead. |
 | `apiServerInternalIPs` | `array (string)` | apiServerInternalIPs are the IP addresses to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. These are the IPs for a self-hosted load balancer in front of the API servers. In dual stack clusters this list contains two IPs otherwise only one. |
-| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names. Deprecated: Use IngressIPs instead. |
+| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names.<br>Deprecated: Use IngressIPs instead. |
 | `ingressIPs` | `array (string)` | ingressIPs are the external IPs which route to the default ingress controller. The IPs are suitable targets of a wildcard DNS record used to resolve default route host names. In dual stack clusters this list contains two IPs otherwise only one. |
 | `loadBalancer` | `object` | loadBalancer defines how the load balancer used by the cluster is configured. |
 | `nodeDNSIP` | `string` | deprecated: as of 4.6, this field is no longer set or honored.  It will be removed in a future release. |
+
 ### .status.platformStatus.ovirt.loadBalancer {id="_statusplatformstatusovirtloadbalancer"}
 
 Description
@@ -1223,6 +1278,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type defines the type of load balancer used by the cluster on Ovirt platform which can be a user-managed or openshift-managed load balancer that is to be used for the OpenShift API and Ingress endpoints. When set to OpenShiftManagedDefault the static pods in charge of API and Ingress traffic load-balancing defined in the machine config operator will be deployed. When set to UserManaged these static pods will not be deployed and it is expected that the load balancer is configured out of band by the deployer. When omitted, this means no opinion and the platform is left to choose a reasonable default. The default value is OpenShiftManagedDefault. |
+
 ### .status.platformStatus.powervs {id="_statusplatformstatuspowervs"}
 
 Description
@@ -1241,6 +1297,7 @@ Type
 | `serviceEndpoints` | `array` | serviceEndpoints is a list of custom endpoints which will override the default service endpoints of a Power VS service. |
 | `serviceEndpoints[]` | `object` | PowervsServiceEndpoint stores the configuration of a custom url to override existing defaults of PowerVS Services. |
 | `zone` | `string` | zone holds the default zone for the new Power VS resources created by the cluster. Note: Currently only single-zone OCP clusters are supported |
+
 ### .status.platformStatus.powervs.serviceEndpoints {id="_statusplatformstatuspowervsserviceendpoints"}
 
 Description
@@ -1270,6 +1327,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the name of the Power VS service. Few of the services are IAM - https://cloud.ibm.com/apidocs/iam-identity-token-api ResourceController - https://cloud.ibm.com/apidocs/resource-controller/resource-controller Power Cloud - https://cloud.ibm.com/apidocs/power-cloud |
 | `url` | `string` | url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty. |
+
 ### .status.platformStatus.vsphere {id="_statusplatformstatusvsphere"}
 
 Description
@@ -1281,13 +1339,14 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers. Deprecated: Use APIServerInternalIPs instead. |
+| `apiServerInternalIP` | `string` | apiServerInternalIP is an IP address to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. It is the IP that the Infrastructure.status.apiServerInternalURI points to. It is the IP for a self-hosted load balancer in front of the API servers.<br>Deprecated: Use APIServerInternalIPs instead. |
 | `apiServerInternalIPs` | `array (string)` | apiServerInternalIPs are the IP addresses to contact the Kubernetes API server that can be used by components inside the cluster, like kubelets using the infrastructure rather than Kubernetes networking. These are the IPs for a self-hosted load balancer in front of the API servers. In dual stack clusters this list contains two IPs otherwise only one. |
-| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names. Deprecated: Use IngressIPs instead. |
+| `ingressIP` | `string` | ingressIP is an external IP which routes to the default ingress controller. The IP is a suitable target of a wildcard DNS record used to resolve default route host names.<br>Deprecated: Use IngressIPs instead. |
 | `ingressIPs` | `array (string)` | ingressIPs are the external IPs which route to the default ingress controller. The IPs are suitable targets of a wildcard DNS record used to resolve default route host names. In dual stack clusters this list contains two IPs otherwise only one. |
 | `loadBalancer` | `object` | loadBalancer defines how the load balancer used by the cluster is configured. |
 | `machineNetworks` | `array (string)` | machineNetworks are IP networks used to connect all the OpenShift cluster nodes. |
 | `nodeDNSIP` | `string` | nodeDNSIP is the IP address for the internal DNS used by the nodes. Unlike the one managed by the DNS operator, `NodeDNSIP` provides name resolution for the nodes themselves. There is no DNS-as-a-service for vSphere deployments. In order to minimize necessary changes to the datacenter DNS, a DNS service is hosted as a static pod to serve those hostnames to the nodes in the cluster. |
+
 ### .status.platformStatus.vsphere.loadBalancer {id="_statusplatformstatusvsphereloadbalancer"}
 
 Description
@@ -1309,12 +1368,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Infrastructure
     *   `GET`: list objects of kind Infrastructure
     *   `POST`: create an Infrastructure
-*   `/apis/config.openshift.io/v1/infrastructures/{{ name }}`
+*   `/apis/config.openshift.io/v1/infrastructures/{{ name }}`{minja}
     *   `DELETE`: delete an Infrastructure
     *   `GET`: read the specified Infrastructure
     *   `PATCH`: partially update the specified Infrastructure
     *   `PUT`: replace the specified Infrastructure
-*   `/apis/config.openshift.io/v1/infrastructures/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/infrastructures/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Infrastructure
     *   `PATCH`: partially update status of the specified Infrastructure
     *   `PUT`: replace status of the specified Infrastructure

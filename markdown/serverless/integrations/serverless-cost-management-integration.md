@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Integrating {{ ServerlessProductShortName }} with the cost management service {id="serverless-cost-management-integration"}
 {% include "./_attributes/common-attributes.md" %}
+# Integrating {{ ServerlessProductShortName }} with the cost management service {id="serverless-cost-management-integration"}
 {%- set context = "serverless-cost-management-integration" %}
 
 [Cost management](https://access.redhat.com/documentation/en-us/cost_management_service/2022/html/getting_started_with_cost_management/assembly-introduction-cost-management#about-cost-management_getting-started) is an {{ product_title }} service that enables you to better understand and track costs for clouds and containers. It is based on the open source [Koku](https://project-koku.github.io/) project.

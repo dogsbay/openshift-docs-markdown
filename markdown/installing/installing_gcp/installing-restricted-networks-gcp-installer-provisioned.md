@@ -7,7 +7,7 @@ title: "Installing a cluster on {{ gcp_short }} in a disconnected environment"
 # Installing a cluster on {{ gcp_short }} in a disconnected environment {id="installing-restricted-networks-gcp-installer-provisioned"}
 {%- set context = "installing-restricted-networks-gcp-installer-provisioned" %}
 
-In {{ product_title }} {{ product_version }}, you can install a cluster on {{ gcp_first }} in a restricted network by creating an internal mirror of the installation release content on an existing Google Virtual Private Cloud (VPC).
+In {{ product_title }} {{ product_version }}, you can install a cluster on {{ gcp_first }} in a restricted network by creating an internal mirror of the installation release content on an existing Google Virtual Private Cloud (VPC). {._abstract}
 
 
 :::important
@@ -45,12 +45,14 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ gcp_short }}](/installing/installing_gcp/installation-config-parameters-gcp#installation-config-parameters-gcp)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -65,18 +67,21 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 {% leveloffset +2 %}{% include "./modules/installation-gcp-enabling-confidential-vms.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Additional {{ gcp_first }} configuration parameters](/installing/installing_gcp/installation-config-parameters-gcp#installation-configuration-parameters-additional-gcp_installation-config-parameters-gcp)
 
 {% leveloffset +2 %}{% include "./modules/installation-gcp-managing-dns-solution.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ gcp_first }}](/installing/installing_gcp/installation-config-parameters-gcp#installation-config-parameters-gcp)
 
 {% leveloffset +2 %}{% include "./modules/installation-gcp-config-yaml-simple.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for GCP](/installing/installing_gcp/installation-config-parameters-gcp#installation-config-parameters-gcp)
 
@@ -90,7 +95,7 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 
 {% leveloffset +1 %}{% include "./modules/cli-installing-cli-macos.md" %}{% endleveloffset %}
 
-## Alternatives to storing administrator-level secrets in the kube-system project {id="installing-gcp-manual-modes_{{ context }}"}
+## Alternatives to storing administrator-level secrets in the kube-system project {id="installing-gcp-manual-modes_{{ context }}" ._additional-resources}
 
 By default, administrator secrets are stored in the `kube-system` project. If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must use one of the following alternatives:
 
@@ -116,6 +121,7 @@ To install a cluster that is configured to use {{ gcp_short }} Workload Identity
 {% leveloffset +1 %}{% include "./modules/installation-gcp-provisioning-dns-records.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Additional {{ gcp_first }} configuration parameters](/installing/installing_gcp/installation-config-parameters-gcp#installation-configuration-parameters-additional-gcp_installation-config-parameters-gcp)
 
@@ -126,10 +132,11 @@ To install a cluster that is configured to use {{ gcp_short }} Workload Identity
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
 
-## Next steps {id="next-steps_installing-restricted-networks-gcp-installer-provisioned"}
+## Next steps {id="next-steps_installing-restricted-networks-gcp-installer-provisioned" ._additional-resources}
 
 *   [Validate an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation).
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).

@@ -14,7 +14,7 @@ You need to include the {{ rh_rhacm }} hub and {{ mce_short }} versions by using
 **Procedure**
 
 *   Pre-cache the Operator images:
-    ```terminal
+    ```terminal {minja}
     # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- factory-precaching-cli download \
        -r {{ product_version }}.0 \
        --acm-version 2.6.3 \
@@ -26,7 +26,7 @@ You need to include the {{ rh_rhacm }} hub and {{ mce_short }} versions by using
 
     Where:
     *   `factory-precaching-cli download` specifies the downloading function of the {{ factory_prestaging_tool }}.
-    *   `-r {{ product_version }}.0` specifies the {{ product_title }} release version.
+    *   `-r {{ product_version }}.0`{minja} specifies the {{ product_title }} release version.
     *   `--acm-version 2.6.3` specifies the {{ rh_rhacm }} version.
     *   `--mce-version 2.1.4` specifies the multicluster engine version.
     *   `-f /mnt` specifies the folder where you want to download the images on the disk.
@@ -34,7 +34,7 @@ You need to include the {{ rh_rhacm }} hub and {{ mce_short }} versions by using
     *   `--du-profile -s` specifies pre-caching the Operators included in the DU configuration.
 
         The following is example output:
-        ```terminal
+        ```terminal {minja}
         Generated /mnt/imageset.yaml
         Generating list of pre-cached artifacts...
         Processing artifact [1/379]: ocp-v4.0-art-dev@sha256_7753a8d9dd5974be8c90649aadd7c914a3d8a1f1e016774c7ac7c9422e9f9958

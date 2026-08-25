@@ -33,7 +33,7 @@ The following issues have been resolved in the current release:
 *   Before this update, the `system:serviceaccount:argocd:gitops-argocd-application-controller` cannot create resource "prometheusrules" in API group `monitoring.coreos.com` in the namespace `webapps-dev`. This update fixes this issue and {{ gitops_title }} is now able to manage all resources from the `monitoring.coreos.com` API group. [GITOPS-1638](https://issues.redhat.com/browse/GITOPS-1638)
 *   Before this update, while reconciling cluster permissions, if a secret belonged to a cluster config instance it was deleted. This update fixes this issue. Now, the `namespaces` field from the secret is deleted instead of the secret. [GITOPS-1777](https://issues.redhat.com/browse/GITOPS-1777)
 *   Before this update, if you installed the HA variant of Argo CD through the Operator, the Operator created the Redis `StatefulSet` object with `podAffinity` rules instead of `podAntiAffinity` rules. This update fixes this issue and now the Operator creates the Redis `StatefulSet` with `podAntiAffinity` rules. [GITOPS-1645](https://issues.redhat.com/browse/GITOPS-1645)
-*   Before this update, Argo CD ***ApplicationSet*** had too many `ssh` Zombie processes. This update fixes this issue: it adds tini, a simple init daemon that spawns processes and reaps zombies, to the ***ApplicationSet*** controller. This ensures that a `SIGTERM` signal is properly passed to the running process, preventing it from being a zombie process. [GITOPS-2108](https://issues.redhat.com/browse/GITOPS-2108)
+*   Before this update, Argo CD **ApplicationSet** had too many `ssh` Zombie processes. This update fixes this issue: it adds tini, a simple init daemon that spawns processes and reaps zombies, to the **ApplicationSet** controller. This ensures that a `SIGTERM` signal is properly passed to the running process, preventing it from being a zombie process. [GITOPS-2108](https://issues.redhat.com/browse/GITOPS-2108)
 
 ## Known issues {id="known-issues-1-6-0_{{ context }}"}
 
@@ -41,9 +41,9 @@ The following issues have been resolved in the current release:
 
     As a workaround, disable TLS validation for the OIDC (Keycloak/RHSSO) endpoint in the ArgoCD specification.
 
-```yaml
-spec:
-  extraConfig:
-    oidc.tls.insecure.skip.verify: "true"
-...
-```
+    ```yaml
+    spec:
+      extraConfig:
+        oidc.tls.insecure.skip.verify: "true"
+    ...
+    ```

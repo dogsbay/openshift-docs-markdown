@@ -3,12 +3,12 @@ title: Understanding node rebooting
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding node rebooting {id="nodes-nodes-rebooting"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding node rebooting {id="nodes-nodes-rebooting"}
 {%- set context = "nodes-nodes-rebooting" %}
 
 Review the following information to learn about rebooting a node without causing an outage for applications running on the
-platform by first evacuating the pods on the node. 
+platform by first evacuating the pods on the node.  {._abstract}
 
 For pods that are made highly available by the routing tier, nothing
 else needs to be done. For other pods needing storage, typically databases, it
@@ -30,7 +30,7 @@ process applies, though it is important to understand certain edge cases.
 
 {% leveloffset +1 %}{% include "./modules/nodes-nodes-rebooting-gracefully.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Placing pods relative to other pods using affinity and anti-affinity rules](/nodes/scheduling/nodes-scheduler-pod-affinity#nodes-scheduler-pod-affinity)
 *   [Backing up etcd data](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)

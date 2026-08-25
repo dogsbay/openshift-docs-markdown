@@ -3,8 +3,8 @@ title: Updating managed clusters in a disconnected environment with PolicyGenTem
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Updating managed clusters in a disconnected environment with PolicyGenTemplate resources and TALM {id="ztp-topology-aware-lifecycle-manager"}
 {% include "./_attributes/common-attributes.md" %}
+# Updating managed clusters in a disconnected environment with PolicyGenTemplate resources and TALM {id="ztp-topology-aware-lifecycle-manager"}
 {%- set context = "ztp-talm" -%}
 {%- set policy_gen_cr = "PolicyGenTemplate" -%}
 {%- set policy_prefix = true -%}
@@ -16,6 +16,7 @@ You can use the {{ cgu_operator_first }} to manage the software lifecycle of man
 {% include "./snippets/pgt-deprecation-notice.md" %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring managed cluster policies by using PolicyGenerator resources](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 *   [Comparing {{ rh_rhacm }} PolicyGenerator and PolicyGenTemplate resource patching](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
@@ -24,6 +25,7 @@ You can use the {{ cgu_operator_first }} to manage the software lifecycle of man
 {% leveloffset +1 %}{% include "./modules/cnf-topology-aware-lifecycle-manager-preparing-for-updates.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Upgrading {{ ztp }}](/edge_computing/ztp-updating-gitops#ztp-updating-gitops)
 *   [Mirroring the {{ product_title }} image repository](/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)
@@ -34,12 +36,14 @@ You can use the {{ cgu_operator_first }} to manage the software lifecycle of man
 {% leveloffset +1 %}{% include "./modules/cnf-topology-aware-lifecycle-manager-platform-update.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing the disconnected environment](/edge_computing/ztp-preparing-the-hub-cluster#ztp-acm-adding-images-to-mirror-registry_ztp-preparing-the-hub-cluster)
 
 {% leveloffset +1 %}{% include "./modules/cnf-topology-aware-lifecycle-manager-operator-update.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Upgrading {{ ztp }}](/edge_computing/ztp-updating-gitops#ztp-updating-gitops)
 
@@ -54,11 +58,12 @@ You can use the {{ cgu_operator_first }} to manage the software lifecycle of man
 {% leveloffset +2 %}{% include "./modules/cnf-topology-aware-lifecycle-manager-creating-custom-resources.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using the container image precache feature](/edge_computing/cnf-talm-for-cluster-upgrades#talo-precache-feature-concept_cnf-topology-aware-lifecycle-manager)
 
 {% leveloffset +1 %}{% include "./modules/cnf-topology-aware-lifecycle-manager-autocreate-cgu-cr-ztp.md" %}{% endleveloffset %}
 
-{%- set policy_gen_cr = false -%}
-{%- set policy_prefix = false -%}
-{%- set rangen_yaml_path = false -%}
+{%- set policy_gen_cr = "" -%}
+{%- set policy_prefix = "" -%}
+{%- set rangen_yaml_path = "" -%}

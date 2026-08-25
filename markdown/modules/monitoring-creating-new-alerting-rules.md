@@ -28,18 +28,18 @@ The following example creates a new alerting rule named `example`, similar to th
     kind: AlertingRule
     metadata:
       name: example
-      namespace: openshift-monitoring # (1)
+      namespace: openshift-monitoring (1)
     spec:
       groups:
       - name: example-rules
         rules:
-        - alert: ExampleAlert # (2)
-          for: 1m # (3)
-          expr: vector(1) # (4)
+        - alert: ExampleAlert (2)
+          for: 1m (3)
+          expr: vector(1) (4)
           labels:
-            severity: warning # (5)
+            severity: warning (5)
           annotations:
-            message: This is an example alert. # (6)
+            message: This is an example alert. (6)
     ```
     1.  Ensure that the namespace is `openshift-monitoring`.
     1.  The name of the alerting rule you want to create.
@@ -48,11 +48,11 @@ The following example creates a new alerting rule named `example`, similar to th
     1.  The severity that alerting rule assigns to the alert.
     1.  The message associated with the alert.
 
-        :::important
+    :::important
 
-        You must create the `AlertingRule` object in the `openshift-monitoring` namespace. Otherwise, the alerting rule is not accepted.
-        
-        :::
+    You must create the `AlertingRule` object in the `openshift-monitoring` namespace. Otherwise, the alerting rule is not accepted.
+    
+    :::
 
 1.  Apply the configuration file to the cluster:
     ```terminal

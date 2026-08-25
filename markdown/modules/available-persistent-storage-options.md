@@ -3,7 +3,7 @@
 
 To optimize your {{ product_title }} environment, review the available persistent storage options. By understanding these choices, you can select the appropriate storage configuration to meet your specific workload requirements. {._abstract}
 
-***Available storage options***
+**Available storage options**
 
 <table>
 <thead>

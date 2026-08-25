@@ -73,5 +73,6 @@ You can set the iSCSI target and initiator values for automatic mounting, bootin
 
     `<target_iqn>`
     :   Specifies the iSCSI target, or server, name in IQN format.
-{%- endif %}
+{% endif %}
+
     For more information about the iSCSI options supported by `dracut`, see the `dracut.cmdline` manual page.

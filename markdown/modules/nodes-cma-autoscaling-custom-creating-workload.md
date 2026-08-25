@@ -129,7 +129,7 @@ You can create a custom metrics autoscaler for a workload that is created by a `
         *   Enter `currentReplicasIfLower` to maintain the current number of replicas, if that number is lower than the `fallback.replicas` parameter. If the current number of replicas is higher than the `fallback.replicas` parameter, use the `fallback.replicas` value.
     1.  Optional: Specifies the interval in seconds to check each trigger on. The default is `30`.
     1.  Optional: Specifies whether to scale back the target resource to the original replica count after the scaled object is deleted. The default is `false`, which keeps the replica count as it is when the scaled object is deleted.
-    1.  Optional: Specifies a name for the horizontal pod autoscaler. The default is `keda-hpa-{{ scaled_object_name }}`.
+    1.  Optional: Specifies a name for the horizontal pod autoscaler. The default is `keda-hpa-{{ scaled_object_name }}`{minja}.
     1.  Optional: Specifies a scaling policy to use to control the rate to scale pods up or down, as described in the "Scaling policies" section.
     1.  Specifies the trigger to use as the basis for scaling, as described in the "Understanding the custom metrics autoscaler triggers" section. This example uses {{ product_title }} monitoring.
     1.  Optional: Specifies a trigger authentication or a cluster trigger authentication. For more information, see "Understanding the custom metrics autoscaler trigger authentication".

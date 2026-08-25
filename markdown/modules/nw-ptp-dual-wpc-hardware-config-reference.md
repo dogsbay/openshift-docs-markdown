@@ -9,7 +9,7 @@ When you configure a dual-NIC T-GM, you need to compensate for the 1PPS signal d
 Various factors such as cable length, ambient temperature, and component and manufacturing tolerances can affect the signal delay.
 To compensate for the delay, you must calculate the specific value that you use to offset the signal delay.
 
-***E810 dual-NIC T-GM PtpConfig CR reference***
+**E810 dual-NIC T-GM PtpConfig CR reference**
 
 <table>
 <thead>
@@ -25,7 +25,7 @@ To compensate for the delay, you must calculate the specific value that you use 
 </tr>
 <tr>
   <td><code>spec.profile.ts2phcConf</code></td>
-  <td>Use the <code>ts2phcConf</code> field to configure parameters for NIC one and NIC two.</td>
+  <td>Use the <code>ts2phcConf</code> field to configure parameters for NIC one and NIC two. Set <code>ts2phc.master 0</code> for NIC two. This configures the timing source for NIC two from the 1PPS input, not GNSS. Configure the <code>ts2phc.extts_correction</code> value for NIC two to compensate for the delay that is incurred for the specific SMA cable and cable length that you use. The value that you configure depends on your specific measurements and SMA1 cable length.</td>
 </tr>
 <tr>
   <td><code>spec.profile.ptp4lConf</code></td>

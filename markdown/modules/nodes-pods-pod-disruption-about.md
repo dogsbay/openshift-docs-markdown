@@ -18,23 +18,23 @@ parts:
     *   `maxUnavailable` is the number of pods can be unavailable during a disruption.
 
 
-:::note
+    :::note
 
-`Available` refers to the number of pods that has condition `Ready=True`.
-`Ready=True` refers to the pod that is able to serve requests and should be added to the load balancing pools of all matching services.
+    `Available` refers to the number of pods that has condition `Ready=True`.
+    `Ready=True` refers to the pod that is able to serve requests and should be added to the load balancing pools of all matching services.
 
-A `maxUnavailable` of `0%` or `0` or a `minAvailable` of `100%` or equal to the number of replicas
-is permitted but can block nodes from being drained.
+    A `maxUnavailable` of `0%` or `0` or a `minAvailable` of `100%` or equal to the number of replicas
+    is permitted but can block nodes from being drained.
+    
+    :::
 
-:::
 
 
+    :::warning
 
-:::warning
-
-The default setting for `maxUnavailable` is `1` for all the machine config pools in {{ product_title }}. It is recommended to not change this value and update one control plane node at a time. Do not change this value to `3` for the control plane pool.
-
-:::
+    The default setting for `maxUnavailable` is `1` for all the machine config pools in {{ product_title }}. It is recommended to not change this value and update one control plane node at a time. Do not change this value to `3` for the control plane pool.
+    
+    :::
 
 
 You can check for pod disruption budgets across all projects with the following:

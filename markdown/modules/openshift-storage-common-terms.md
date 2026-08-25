@@ -97,14 +97,14 @@ Nested mount points
           persistentVolumeClaim:
             claimName: "web"
     ```
-1.  Nested mount point
+    1.  Nested mount point
 
     Do _not_ use nested mount points because {{ product_title }} does not guarantee the order in which mount points are created. Such usage is prone to race conditions and undefined behavior.
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 
-    NFS
-    :   A Network File System (NFS) that allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This enables system administrators to consolidate resources onto centralized servers on the network.
+NFS
+:   A Network File System (NFS) that allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This enables system administrators to consolidate resources onto centralized servers on the network.
 {% endif %}
 
 
@@ -153,10 +153,10 @@ Storage
 :   {{ product_title }} supports many types of storage, both for on-premise and cloud providers. You can manage container storage for persistent and non-persistent data in
 {%- if openshift_rosa or openshift_rosa_hcp %}
     a {{ product_title }} cluster.
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp) %}
     an {{ product_title }} cluster.
-{% endif %}
+{%- endif %}
 
 
 Storage class

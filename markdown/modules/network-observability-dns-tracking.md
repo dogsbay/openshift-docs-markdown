@@ -15,7 +15,7 @@ CPU and memory usage increases are observed in the eBPF agent when this feature 
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for **Network Observability**, select **Flow Collector**.
 1.  Select **cluster** then select the **YAML** tab.
 1.  Configure the `FlowCollector` custom resource. A sample configuration is as follows:

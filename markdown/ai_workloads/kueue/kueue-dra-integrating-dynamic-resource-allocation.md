@@ -7,7 +7,7 @@ title: Integrating Dynamic Resource Allocation
 # Integrating Dynamic Resource Allocation {id="kueue-dra-integrating-dynamic-resource-allocation"}
 {%- set context = "kueue-dra-integrating-dynamic-resource-allocation" %}
 
-You can configure {{ kueue_name }} to manage quota for workloads that use Dynamic Resource Allocation (DRA) to request GPUs. When DRA quota management is configured, {{ kueue_name }} counts DRA device requests toward quota in the same way that it counts traditional resources such as CPU and memory.
+You can configure {{ kueue_name }} to manage quota for workloads that use Dynamic Resource Allocation (DRA) to request GPUs. When DRA quota management is configured, {{ kueue_name }} counts DRA device requests toward quota in the same way that it counts traditional resources such as CPU and memory. {._abstract}
 
 {%- set FeatureName = "Kueue integration with Dynamic Resource Allocation (DRA)" %}
 {% include "./snippets/technology-preview.md" %}
@@ -22,7 +22,7 @@ If DRA device quota is not configured, {{ kueue_name }} does not account for GPU
 
 {% leveloffset +2 %}{% include "./modules/kueue-dra-partitionable-devices.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Allocating GPUs to pods by using DRA](/nodes/pods/nodes-pods-allocate-dra#nodes-pods-allocate-dra)
 *   [Configuring quotas](/ai_workloads/kueue/configuring-quotas#configuring-quotas)

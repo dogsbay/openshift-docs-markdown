@@ -37,7 +37,7 @@
 *   [Logging network policy events](/networking/network_security/logging-network-security#logging-network-security)[Logging for egress firewall and network policy rules]
 {% endif %}
 {% if openshift_rosa or openshift_dedicated %}
-*   [Logging for egress firewall and network policy rules](https://docs.openshift.com/container-platform/latest/networking/ovn_kubernetes_network_provider/logging-network-security.html#logging-network-security)
+* [Logging for egress firewall and network policy rules](https://docs.openshift.com/container-platform/latest/networking/ovn_kubernetes_network_provider/logging-network-security.html#logging-network-security) {._additional-resources}
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/cluster-logging-collector-log-forward-loki.md" %}{% endleveloffset %}
@@ -72,4 +72,4 @@
 *   [AWS STS API Reference](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html)
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   [Cloud Credential Operator (CCO)](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
-{% endif %}
+{%- endif %}

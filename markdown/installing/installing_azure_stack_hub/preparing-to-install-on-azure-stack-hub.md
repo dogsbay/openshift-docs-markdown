@@ -3,11 +3,11 @@ title: Installation methods
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installation methods {id="preparing-to-install-on-azure-stack-hub"}
 {% include "./_attributes/common-attributes.md" %}
+# Installation methods {id="preparing-to-install-on-azure-stack-hub"}
 {%- set context = "preparing-to-install-on-azure-stack-hub" %}
 
-You can install {{ product_title }} on Azure Stack Hub using installer-provisioned or user-provisioned infrastructure.
+You can install {{ product_title }} on Azure Stack Hub using installer-provisioned or user-provisioned infrastructure. {._abstract}
 
 The default installation type uses installer-provisioned infrastructure, where the installation program provisions the underlying infrastructure for the cluster. You can also install {{ product_title }} on infrastructure that you provision. If you do not use infrastructure that the installation program provisions, you must manage and maintain the cluster resources yourself.
 
@@ -25,7 +25,7 @@ You can install a cluster on Azure Stack Hub infrastructure that you provision, 
 
 *   Installing a cluster on Azure Stack Hub using ARM templates: You can install {{ product_title }} on Azure Stack Hub by using infrastructure that you provide. You can use the provided Azure Resource Manager (ARM) templates to assist with an installation. See "Installing a cluster on Azure Stack Hub using ARM templates".
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)
 *   [Installing a cluster](/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#installing-azure-stack-hub-default)

@@ -1,5 +1,5 @@
 ---
-title: "Alertmanager []"
+title: "Alertmanager [monitoring.coreos.com/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -34,6 +34,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the specification of the desired behavior of the Alertmanager cluster. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
 | `status` | `object` | status defines the most recent observed status of the Alertmanager cluster. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
+
 ### .spec {id="_spec"}
 
 Description
@@ -53,7 +54,7 @@ Type
 | `alertmanagerConfigMatcherStrategy` | `object` | alertmanagerConfigMatcherStrategy defines how AlertmanagerConfig objects process incoming alerts. |
 | `alertmanagerConfigNamespaceSelector` | `object` | alertmanagerConfigNamespaceSelector defines the namespaces to be selected for AlertmanagerConfig discovery. If nil, only check own namespace. |
 | `alertmanagerConfigSelector` | `object` | alertmanagerConfigSelector defines the selector to be used for to merge and configure Alertmanager with. |
-| `alertmanagerConfiguration` | `object` | alertmanagerConfiguration defines the configuration of Alertmanager. If defined, it takes precedence over the `configSecret` field. This is an **experimental feature**, it may change in any upcoming release in a breaking way. |
+| `alertmanagerConfiguration` | `object` | alertmanagerConfiguration defines the configuration of Alertmanager.<br>If defined, it takes precedence over the `configSecret` field.<br>This is an **experimental feature**, it may change in any upcoming release in a breaking way. |
 | `automountServiceAccountToken` | `boolean` | automountServiceAccountToken defines whether a service account token should be automatically mounted in the pod. If the service account has `automountServiceAccountToken: true`, set the field to `false` to opt out of automounting API credentials. |
 | `baseImage` | `string` | baseImage that is used to deploy pods, without tag. Deprecated: use 'image' instead. |
 | `clusterAdvertiseAddress` | `string` | clusterAdvertiseAddress defines the explicit address to advertise in cluster. Needs to be provided for non RFC1918 [1] (public) addresses. [1] RFC1918: https://tools.ietf.org/html/rfc1918 |
@@ -61,43 +62,42 @@ Type
 | `clusterLabel` | `string` | clusterLabel defines the identifier that uniquely identifies the Alertmanager cluster. You should only set it when the Alertmanager cluster includes Alertmanager instances which are external to this Alertmanager resource. In practice, the addresses of the external instances are provided via the `.spec.additionalPeers` field. |
 | `clusterPeerTimeout` | `string` | clusterPeerTimeout defines the timeout for cluster peering. |
 | `clusterPushpullInterval` | `string` | clusterPushpullInterval defines the interval between pushpull attempts. |
-| `clusterTLS` | `object` | clusterTLS defines the mutual TLS configuration for the Alertmanager cluster’s gossip protocol. It requires Alertmanager >= 0.24.0. |
+| `clusterTLS` | `object` | clusterTLS defines the mutual TLS configuration for the Alertmanager cluster’s gossip protocol.<br>It requires Alertmanager >= 0.24.0. |
 | `configMaps` | `array (string)` | configMaps defines a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each ConfigMap is added to the StatefulSet definition as a volume named `configmap-<configmap-name>`. The ConfigMaps are mounted into `/etc/alertmanager/configmaps/<configmap-name>` in the 'alertmanager' container. |
-| `configSecret` | `string` | configSecret defines the name of a Kubernetes Secret in the same namespace as the Alertmanager object, which contains the configuration for this Alertmanager instance. If empty, it defaults to `alertmanager-<alertmanager-name>`. The Alertmanager configuration should be available under the `alertmanager.yaml` key. Additional keys from the original secret are copied to the generated secret and mounted into the `/etc/alertmanager/config` directory in the `alertmanager` container. If either the secret or the `alertmanager.yaml` key is missing, the operator provisions a minimal Alertmanager configuration with one empty receiver (effectively dropping alert notifications). |
-| `containers` | `array` | containers allows injecting additional containers or modifying operator generated containers. This can be used to allow adding an authentication proxy to the Pods or to change the behavior of an operator generated container. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch. The names of containers managed by the operator are: * `alertmanager` * `config-reloader` * `thanos-sidecar` Overriding containers which are managed by the operator require careful testing, especially when upgrading to a new version of the operator. |
+| `configSecret` | `string` | configSecret defines the name of a Kubernetes Secret in the same namespace as the Alertmanager object, which contains the configuration for this Alertmanager instance. If empty, it defaults to `alertmanager-<alertmanager-name>`.<br>The Alertmanager configuration should be available under the `alertmanager.yaml` key. Additional keys from the original secret are copied to the generated secret and mounted into the `/etc/alertmanager/config` directory in the `alertmanager` container.<br>If either the secret or the `alertmanager.yaml` key is missing, the operator provisions a minimal Alertmanager configuration with one empty receiver (effectively dropping alert notifications). |
+| `containers` | `array` | containers allows injecting additional containers or modifying operator generated containers. This can be used to allow adding an authentication proxy to the Pods or to change the behavior of an operator generated container. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch.<br>The names of containers managed by the operator are: * `alertmanager` * `config-reloader` * `thanos-sidecar`<br>Overriding containers which are managed by the operator require careful testing, especially when upgrading to a new version of the operator. |
 | `containers[]` | `object` | A single application container that you want to run within a pod. |
 | `dnsConfig` | `object` | dnsConfig defines the DNS configuration for the pods. |
 | `dnsPolicy` | `string` | dnsPolicy defines the DNS policy for the pods. |
-| `enableFeatures` | `array (string)` | enableFeatures defines the Alertmanager’s feature flags. By default, no features are enabled. Enabling features which are disabled by default is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. It requires Alertmanager >= 0.27.0. |
+| `enableFeatures` | `array (string)` | enableFeatures defines the Alertmanager’s feature flags. By default, no features are enabled. Enabling features which are disabled by default is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice.<br>It requires Alertmanager >= 0.27.0. |
 | `enableServiceLinks` | `boolean` | enableServiceLinks defines whether information about services should be injected into pod’s environment variables |
 | `externalUrl` | `string` | externalUrl defines the URL used to access the Alertmanager web service. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name. |
 | `forceEnableClusterMode` | `boolean` | forceEnableClusterMode ensures Alertmanager does not deactivate the cluster mode when running with a single replica. Use case is e.g. spanning an Alertmanager cluster across Kubernetes clusters with a single replica in each. |
 | `hostAliases` | `array` | hostAliases Pods configuration |
 | `hostAliases[]` | `object` | HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod’s hosts file. |
-| `hostNetwork` | `boolean` | hostNetwork controls whether the pod may use the node network namespace. Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/). When hostNetwork is enabled, this will set the DNS policy to `ClusterFirstWithHostNet` automatically (unless `.spec.dnsPolicy` is set to a different value). |
-| `hostUsers` | `boolean` | hostUsers supports the user space in Kubernetes. More info: https://kubernetes.io/docs/tasks/configure-pod-container/user-namespaces/ The feature requires at least Kubernetes 1.28 with the `UserNamespacesSupport` feature gate enabled. Starting Kubernetes 1.33, the feature is enabled by default. |
+| `hostNetwork` | `boolean` | hostNetwork controls whether the pod may use the node network namespace.<br>Make sure to understand the security implications if you want to enable it (https://kubernetes.io/docs/concepts/configuration/overview/).<br>When hostNetwork is enabled, this will set the DNS policy to `ClusterFirstWithHostNet` automatically (unless `.spec.dnsPolicy` is set to a different value). |
+| `hostUsers` | `boolean` | hostUsers supports the user space in Kubernetes.<br>More info: https://kubernetes.io/docs/tasks/configure-pod-container/user-namespaces/<br>The feature requires at least Kubernetes 1.28 with the `UserNamespacesSupport` feature gate enabled. Starting Kubernetes 1.33, the feature is enabled by default. |
 | `image` | `string` | image if specified has precedence over baseImage, tag and sha combinations. Specifying the version is still necessary to ensure the Prometheus Operator knows what version of Alertmanager is being configured. |
 | `imagePullPolicy` | `string` | imagePullPolicy for the 'alertmanager', 'init-config-reloader' and 'config-reloader' containers. See https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy for more details. |
 | `imagePullSecrets` | `array` | imagePullSecrets An optional list of references to secrets in the same namespace to use for pulling prometheus and alertmanager images from registries see https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/ |
 | `imagePullSecrets[]` | `object` | LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace. |
-| `initContainers` | `array` | initContainers allows injecting initContainers to the Pod definition. Those can be used to e.g.  fetch secrets for injection into the Prometheus configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ InitContainers described here modify an operator generated init containers if they share the same name and modifications are done via a strategic merge patch. The names of init container name managed by the operator are: * `init-config-reloader`. Overriding init containers which are managed by the operator require careful testing, especially when upgrading to a new version of the operator. |
+| `initContainers` | `array` | initContainers allows injecting initContainers to the Pod definition. Those can be used to e.g.  fetch secrets for injection into the Prometheus configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ InitContainers described here modify an operator generated init containers if they share the same name and modifications are done via a strategic merge patch.<br>The names of init container name managed by the operator are: * `init-config-reloader`.<br>Overriding init containers which are managed by the operator require careful testing, especially when upgrading to a new version of the operator. |
 | `initContainers[]` | `object` | A single application container that you want to run within a pod. |
 | `limits` | `object` | limits defines the limits command line flags when starting Alertmanager. |
 | `listenLocal` | `boolean` | listenLocal defines the Alertmanager server listen on loopback, so that it does not bind against the Pod IP. Note this is only for the Alertmanager UI, not the gossip communication. |
 | `logFormat` | `string` | logFormat for Alertmanager to be configured with. |
 | `logLevel` | `string` | logLevel for Alertmanager to be configured with. |
-| `minReadySeconds` | `integer` | minReadySeconds defines the minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. If unset, pods will be considered available as soon as they are ready. When the Alertmanager version is greater than or equal to v0.30.0, the duration is also used to delay the first flush of the aggregation groups. This delay helps ensuring that all alerts have been resent by the Prometheus instances to Alertmanager after a roll-out. It is possible to override this behavior passing a custom value via `.spec.additionalArgs`. |
+| `minReadySeconds` | `integer` | minReadySeconds defines the minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available.<br>If unset, pods will be considered available as soon as they are ready.<br>When the Alertmanager version is greater than or equal to v0.30.0, the duration is also used to delay the first flush of the aggregation groups. This delay helps ensuring that all alerts have been resent by the Prometheus instances to Alertmanager after a roll-out. It is possible to override this behavior passing a custom value via `.spec.additionalArgs`. |
 | `nodeSelector` | `object (string)` | nodeSelector defines which Nodes the Pods are scheduled on. |
 | `paused` | `boolean` | paused if set to true all actions on the underlying managed objects are not going to be performed, except for delete actions. |
 | `persistentVolumeClaimRetentionPolicy` | `object` | persistentVolumeClaimRetentionPolicy controls if and how PVCs are deleted during the lifecycle of a StatefulSet. The default behavior is all PVCs are retained. This is an alpha field from kubernetes 1.23 until 1.26 and a beta field from 1.26. It requires enabling the StatefulSetAutoDeletePVC feature gate. |
-| `podManagementPolicy` | `string` | podManagementPolicy defines the policy for creating/deleting pods when scaling up and down. Unlike the default StatefulSet behavior, the default policy is `Parallel` to avoid manual intervention in case a pod gets stuck during a rollout. Note that updating this value implies the recreation of the StatefulSet which incurs a service outage. |
-| `podMetadata` | `object` | podMetadata defines labels and annotations which are propagated to the Alertmanager pods. The following items are reserved and cannot be overridden: * "alertmanager" label, set to the name of the Alertmanager instance. * "app.kubernetes.io/instance" label, set to the name of the Alertmanager instance. * "app.kubernetes.io/managed-by" label, set to "prometheus-operator". * "app.kubernetes.io/name" label, set to "alertmanager". * "app.kubernetes.io/version" label, set to the Alertmanager version. * "kubectl.kubernetes.io/default-container" annotation, set to "alertmanager". |
+| `podManagementPolicy` | `string` | podManagementPolicy defines the policy for creating/deleting pods when scaling up and down.<br>Unlike the default StatefulSet behavior, the default policy is `Parallel` to avoid manual intervention in case a pod gets stuck during a rollout.<br>Note that updating this value implies the recreation of the StatefulSet which incurs a service outage. |
+| `podMetadata` | `object` | podMetadata defines labels and annotations which are propagated to the Alertmanager pods.<br>The following items are reserved and cannot be overridden: * "alertmanager" label, set to the name of the Alertmanager instance. * "app.kubernetes.io/instance" label, set to the name of the Alertmanager instance. * "app.kubernetes.io/managed-by" label, set to "prometheus-operator". * "app.kubernetes.io/name" label, set to "alertmanager". * "app.kubernetes.io/version" label, set to the Alertmanager version. * "kubectl.kubernetes.io/default-container" annotation, set to "alertmanager". |
 | `portName` | `string` | portName defines the port’s name for the pods and governing service. Defaults to `web`. |
 | `priorityClassName` | `string` | priorityClassName assigned to the Pods |
 | `replicas` | `integer` | replicas defines the expected size of the alertmanager cluster. The controller will eventually make the size of the running cluster equal to the expected size. |
 | `resources` | `object` | resources defines the resource requests and limits of the Pods. |
-| `retention` | `string` | retention defines the time duration Alertmanager shall retain data for. Default is '120h', and must match the regular expression `[0-9]+(ms\ |
-| s\ | m\ | h)` (milliseconds seconds minutes hours). |
+| `retention` | `string` | retention defines the time duration Alertmanager shall retain data for. Default is '120h', and must match the regular expression `[0-9]+(ms\|s\|m\|h)` (milliseconds seconds minutes hours). |
 | `routePrefix` | `string` | routePrefix Alertmanager registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true, but the server serves requests under a different route prefix. For example for use with `kubectl proxy`. |
 | `schedulerName` | `string` | schedulerName defines the scheduler to use for Pod scheduling. If not specified, the default scheduler is used. |
 | `secrets` | `array (string)` | secrets is a list of Secrets in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. Each Secret is added to the StatefulSet definition as a volume named `secret-<secret-name>`. The Secrets are mounted into `/etc/alertmanager/secrets/<secret-name>` in the 'alertmanager' container. |
@@ -107,18 +107,19 @@ Type
 | `sha` | `string` | sha of Alertmanager container image to be deployed. Defaults to the value of `version`. Similar to a tag, but the SHA explicitly deploys an immutable container image. Version and Tag are ignored if SHA is set. Deprecated: use 'image' instead. The image digest can be specified as part of the image URL. |
 | `storage` | `object` | storage defines the definition of how storage will be used by the Alertmanager instances. |
 | `tag` | `string` | tag of Alertmanager container image to be deployed. Defaults to the value of `version`. Version is ignored if Tag is set. Deprecated: use 'image' instead. The image tag can be specified as part of the image URL. |
-| `terminationGracePeriodSeconds` | `integer` | terminationGracePeriodSeconds defines the Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down) which may lead to data corruption. Defaults to 120 seconds. |
+| `terminationGracePeriodSeconds` | `integer` | terminationGracePeriodSeconds defines the Optional duration in seconds the pod needs to terminate gracefully. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down) which may lead to data corruption.<br>Defaults to 120 seconds. |
 | `tolerations` | `array` | tolerations defines the pod’s tolerations. |
 | `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
 | `topologySpreadConstraints` | `array` | topologySpreadConstraints defines the Pod’s topology spread constraints. |
 | `topologySpreadConstraints[]` | `object` | TopologySpreadConstraint specifies how to spread matching pods among the given topology. |
-| `updateStrategy` | `object` | updateStrategy indicates the strategy that will be employed to update Pods in the StatefulSet when a revision is made to statefulset’s Pod Template. The default strategy is RollingUpdate. |
+| `updateStrategy` | `object` | updateStrategy indicates the strategy that will be employed to update Pods in the StatefulSet when a revision is made to statefulset’s Pod Template.<br>The default strategy is RollingUpdate. |
 | `version` | `string` | version the cluster should be on. |
 | `volumeMounts` | `array` | volumeMounts allows configuration of additional VolumeMounts on the output StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the alertmanager container, that are generated as a result of StorageSpec objects. |
 | `volumeMounts[]` | `object` | VolumeMount describes a mounting of a Volume within a container. |
 | `volumes` | `array` | volumes allows configuration of additional volumes on the output StatefulSet definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects. |
 | `volumes[]` | `object` | Volume represents a named volume in a pod that may be accessed by any container in the pod. |
 | `web` | `object` | web defines the web command line flags when starting Alertmanager. |
+
 ### .spec.additionalArgs {id="_specadditionalargs"}
 
 Description
@@ -149,6 +150,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name of the argument, e.g. "scrape.discovery-reload-interval". |
 | `value` | `string` | value defines the argument value, e.g. 30s. Can be empty for name-only arguments (e.g. --storage.tsdb.no-lockfile) |
+
 ### .spec.affinity {id="_specaffinity"}
 
 Description
@@ -163,6 +165,7 @@ Type
 | `nodeAffinity` | `object` | Describes node affinity scheduling rules for the pod. |
 | `podAffinity` | `object` | Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). |
 | `podAntiAffinity` | `object` | Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). |
+
 ### .spec.affinity.nodeAffinity {id="_specaffinitynodeaffinity"}
 
 Description
@@ -177,6 +180,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution` | `array` | The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. |
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | An empty preferred scheduling term matches all objects with implicit weight 0 (i.e. it’s a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op). |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `object` | If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. |
+
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -213,6 +217,7 @@ Required
 | --- | --- | --- |
 | `preference` | `object` | A node selector term, associated with the corresponding weight. |
 | `weight` | `integer` | Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100. |
+
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference {id="_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreference"}
 
 Description
@@ -228,6 +233,7 @@ Type
 | `matchExpressions[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchFields` | `array` | A list of node selector requirements by node’s fields. |
 | `matchFields[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference.matchExpressions {id="_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreferencematchexpressions"}
 
 Description
@@ -257,6 +263,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference.matchFields {id="_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreferencematchfields"}
 
 Description
@@ -286,6 +293,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -307,6 +315,7 @@ Required
 | --- | --- | --- |
 | `nodeSelectorTerms` | `array` | Required. A list of node selector terms. The terms are ORed. |
 | `nodeSelectorTerms[]` | `object` | A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm. |
+
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms {id="_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectorterms"}
 
 Description
@@ -333,6 +342,7 @@ Type
 | `matchExpressions[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchFields` | `array` | A list of node selector requirements by node’s fields. |
 | `matchFields[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[].matchExpressions {id="_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectortermsmatchexpressions"}
 
 Description
@@ -362,6 +372,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[].matchFields {id="_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectortermsmatchfields"}
 
 Description
@@ -391,6 +402,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAffinity {id="_specaffinitypodaffinity"}
 
 Description
@@ -406,6 +418,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s) |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `array` | If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. |
 | `requiredDuringSchedulingIgnoredDuringExecution[]` | `object` | Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key &lt;topologyKey> matches that of any node on which a pod of the set of pods is running |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -441,6 +454,7 @@ Required
 | --- | --- | --- |
 | `podAffinityTerm` | `object` | Required. A pod affinity term, associated with the corresponding weight. |
 | `weight` | `integer` | weight associated with matching the corresponding podAffinityTerm, in the range 1-100. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinityterm"}
 
 Description
@@ -462,6 +476,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselector"}
 
 Description
@@ -477,6 +492,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector.matchExpressions {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselectormatchexpressions"}
 
 Description
@@ -506,6 +522,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselector"}
 
 Description
@@ -524,6 +541,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector.matchExpressions {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselectormatchexpressions"}
 
 Description
@@ -553,6 +571,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -594,6 +613,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecutionlabelselector"}
 
 Description
@@ -609,6 +629,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector.matchExpressions {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecutionlabelselectormatchexpressions"}
 
 Description
@@ -638,6 +659,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecutionnamespaceselector"}
 
 Description
@@ -656,6 +678,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector.matchExpressions {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecutionnamespaceselectormatchexpressions"}
 
 Description
@@ -685,6 +708,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAntiAffinity {id="_specaffinitypodantiaffinity"}
 
 Description
@@ -700,6 +724,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s) |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `array` | If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. |
 | `requiredDuringSchedulingIgnoredDuringExecution[]` | `object` | Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key &lt;topologyKey> matches that of any node on which a pod of the set of pods is running |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -735,6 +760,7 @@ Required
 | --- | --- | --- |
 | `podAffinityTerm` | `object` | Required. A pod affinity term, associated with the corresponding weight. |
 | `weight` | `integer` | weight associated with matching the corresponding podAffinityTerm, in the range 1-100. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinityterm"}
 
 Description
@@ -756,6 +782,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselector"}
 
 Description
@@ -771,6 +798,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector.matchExpressions {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselectormatchexpressions"}
 
 Description
@@ -800,6 +828,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselector"}
 
 Description
@@ -818,6 +847,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector.matchExpressions {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselectormatchexpressions"}
 
 Description
@@ -847,6 +877,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -888,6 +919,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionlabelselector"}
 
 Description
@@ -903,6 +935,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector.matchExpressions {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionlabelselectormatchexpressions"}
 
 Description
@@ -932,6 +965,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionnamespaceselector"}
 
 Description
@@ -950,6 +984,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector.matchExpressions {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionnamespaceselectormatchexpressions"}
 
 Description
@@ -979,6 +1014,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.alertmanagerConfigMatcherStrategy {id="_specalertmanagerconfigmatcherstrategy"}
 
 Description
@@ -991,7 +1027,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `type` | `string` | type defines the strategy used by AlertmanagerConfig objects to match alerts in the routes and inhibition rules. The default value is `OnNamespace`. |
+| `type` | `string` | type defines the strategy used by AlertmanagerConfig objects to match alerts in the routes and inhibition rules.<br>The default value is `OnNamespace`. |
+
 ### .spec.alertmanagerConfigNamespaceSelector {id="_specalertmanagerconfignamespaceselector"}
 
 Description
@@ -1007,6 +1044,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.alertmanagerConfigNamespaceSelector.matchExpressions {id="_specalertmanagerconfignamespaceselectormatchexpressions"}
 
 Description
@@ -1036,6 +1074,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.alertmanagerConfigSelector {id="_specalertmanagerconfigselector"}
 
 Description
@@ -1050,6 +1089,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.alertmanagerConfigSelector.matchExpressions {id="_specalertmanagerconfigselectormatchexpressions"}
 
 Description
@@ -1079,6 +1119,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.alertmanagerConfiguration {id="_specalertmanagerconfiguration"}
 
 Description
@@ -1101,6 +1142,7 @@ Type
 | `name` | `string` | name defines the name of the AlertmanagerConfig custom resource which is used to generate the Alertmanager configuration. It must be defined in the same namespace as the Alertmanager object. The operator will not enforce a `namespace` label for routes and inhibition rules. |
 | `templates` | `array` | templates defines the custom notification templates. |
 | `templates[]` | `object` | SecretOrConfigMap allows to specify data as a Secret or ConfigMap. Fields are mutually exclusive. |
+
 ### .spec.alertmanagerConfiguration.global {id="_specalertmanagerconfigurationglobal"}
 
 Description
@@ -1125,6 +1167,7 @@ Type
 | `victorops` | `object` | victorops defines the default configuration for VictorOps. |
 | `webex` | `object` | webex defines the default configuration for Webex. |
 | `wechat` | `object` | wechat defines the default WeChat Config |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig {id="_specalertmanagerconfigurationglobalhttpconfig"}
 
 Description
@@ -1136,19 +1179,20 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `authorization` | `object` | authorization configures the Authorization header credentials used by the client. Cannot be set at the same time as `basicAuth`, `bearerTokenSecret` or `oauth2`. |
-| `basicAuth` | `object` | basicAuth defines the Basic Authentication credentials used by the client. Cannot be set at the same time as `authorization`, `bearerTokenSecret` or `oauth2`. |
-| `bearerTokenSecret` | `object` | bearerTokenSecret defines a key of a Secret containing the bearer token used by the client for authentication. The secret needs to be in the same namespace as the custom resource and readable by the Prometheus Operator. Cannot be set at the same time as `authorization`, `basicAuth` or `oauth2`. Deprecated: use `authorization` instead. |
+| `authorization` | `object` | authorization configures the Authorization header credentials used by the client.<br>Cannot be set at the same time as `basicAuth`, `bearerTokenSecret` or `oauth2`. |
+| `basicAuth` | `object` | basicAuth defines the Basic Authentication credentials used by the client.<br>Cannot be set at the same time as `authorization`, `bearerTokenSecret` or `oauth2`. |
+| `bearerTokenSecret` | `object` | bearerTokenSecret defines a key of a Secret containing the bearer token used by the client for authentication. The secret needs to be in the same namespace as the custom resource and readable by the Prometheus Operator.<br>Cannot be set at the same time as `authorization`, `basicAuth` or `oauth2`.<br>Deprecated: use `authorization` instead. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
 | `followRedirects` | `boolean` | followRedirects defines whether the client should follow HTTP 3xx redirects. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `oauth2` | `object` | oauth2 defines the OAuth2 settings used by the client. It requires Prometheus >= 2.27.0. Cannot be set at the same time as `authorization`, `basicAuth` or `bearerTokenSecret`. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `oauth2` | `object` | oauth2 defines the OAuth2 settings used by the client.<br>It requires Prometheus >= 2.27.0.<br>Cannot be set at the same time as `authorization`, `basicAuth` or `bearerTokenSecret`. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration used by the client. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.authorization {id="_specalertmanagerconfigurationglobalhttpconfigauthorization"}
 
 Description
@@ -1165,7 +1209,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.authorization.credentials {id="_specalertmanagerconfigurationglobalhttpconfigauthorizationcredentials"}
 
 Description
@@ -1184,6 +1229,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.basicAuth {id="_specalertmanagerconfigurationglobalhttpconfigbasicauth"}
 
 Description
@@ -1201,6 +1247,7 @@ Type
 | --- | --- | --- |
 | `password` | `object` | password defines a key of a Secret containing the password for authentication. |
 | `username` | `object` | username defines a key of a Secret containing the username for authentication. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.basicAuth.password {id="_specalertmanagerconfigurationglobalhttpconfigbasicauthpassword"}
 
 Description
@@ -1220,6 +1267,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.basicAuth.username {id="_specalertmanagerconfigurationglobalhttpconfigbasicauthusername"}
 
 Description
@@ -1239,6 +1287,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.bearerTokenSecret {id="_specalertmanagerconfigurationglobalhttpconfigbearertokensecret"}
 
 Description
@@ -1266,6 +1315,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2 {id="_specalertmanagerconfigurationglobalhttpconfigoauth2"}
 
 Description
@@ -1292,15 +1342,16 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
 | `tokenUrl` | `string` | tokenUrl defines the URL to fetch the token from. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.clientId {id="_specalertmanagerconfigurationglobalhttpconfigoauth2clientid"}
 
 Description
@@ -1315,6 +1366,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.clientId.configMap {id="_specalertmanagerconfigurationglobalhttpconfigoauth2clientidconfigmap"}
 
 Description
@@ -1333,6 +1385,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.clientId.secret {id="_specalertmanagerconfigurationglobalhttpconfigoauth2clientidsecret"}
 
 Description
@@ -1351,6 +1404,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.clientSecret {id="_specalertmanagerconfigurationglobalhttpconfigoauth2clientsecret"}
 
 Description
@@ -1370,6 +1424,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.proxyConnectHeader {id="_specalertmanagerconfigurationglobalhttpconfigoauth2proxyconnectheader"}
 
 Description
@@ -1409,6 +1464,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.tlsConfig {id="_specalertmanagerconfigurationglobalhttpconfigoauth2tlsconfig"}
 
 Description
@@ -1425,9 +1481,10 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.tlsConfig.ca {id="_specalertmanagerconfigurationglobalhttpconfigoauth2tlsconfigca"}
 
 Description
@@ -1441,6 +1498,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.tlsConfig.ca.configMap {id="_specalertmanagerconfigurationglobalhttpconfigoauth2tlsconfigcaconfigmap"}
 
 Description
@@ -1459,6 +1517,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.tlsConfig.ca.secret {id="_specalertmanagerconfigurationglobalhttpconfigoauth2tlsconfigcasecret"}
 
 Description
@@ -1477,6 +1536,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.tlsConfig.cert {id="_specalertmanagerconfigurationglobalhttpconfigoauth2tlsconfigcert"}
 
 Description
@@ -1490,6 +1550,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.tlsConfig.cert.configMap {id="_specalertmanagerconfigurationglobalhttpconfigoauth2tlsconfigcertconfigmap"}
 
 Description
@@ -1508,6 +1569,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.tlsConfig.cert.secret {id="_specalertmanagerconfigurationglobalhttpconfigoauth2tlsconfigcertsecret"}
 
 Description
@@ -1526,6 +1588,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.oauth2.tlsConfig.keySecret {id="_specalertmanagerconfigurationglobalhttpconfigoauth2tlsconfigkeysecret"}
 
 Description
@@ -1544,6 +1607,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.proxyConnectHeader {id="_specalertmanagerconfigurationglobalhttpconfigproxyconnectheader"}
 
 Description
@@ -1583,6 +1647,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.tlsConfig {id="_specalertmanagerconfigurationglobalhttpconfigtlsconfig"}
 
 Description
@@ -1598,9 +1663,10 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.tlsConfig.ca {id="_specalertmanagerconfigurationglobalhttpconfigtlsconfigca"}
 
 Description
@@ -1614,6 +1680,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.tlsConfig.ca.configMap {id="_specalertmanagerconfigurationglobalhttpconfigtlsconfigcaconfigmap"}
 
 Description
@@ -1632,6 +1699,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.tlsConfig.ca.secret {id="_specalertmanagerconfigurationglobalhttpconfigtlsconfigcasecret"}
 
 Description
@@ -1650,6 +1718,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.tlsConfig.cert {id="_specalertmanagerconfigurationglobalhttpconfigtlsconfigcert"}
 
 Description
@@ -1663,6 +1732,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.tlsConfig.cert.configMap {id="_specalertmanagerconfigurationglobalhttpconfigtlsconfigcertconfigmap"}
 
 Description
@@ -1681,6 +1751,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.tlsConfig.cert.secret {id="_specalertmanagerconfigurationglobalhttpconfigtlsconfigcertsecret"}
 
 Description
@@ -1699,6 +1770,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.httpConfig.tlsConfig.keySecret {id="_specalertmanagerconfigurationglobalhttpconfigtlsconfigkeysecret"}
 
 Description
@@ -1717,6 +1789,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.jira {id="_specalertmanagerconfigurationglobaljira"}
 
 Description
@@ -1728,7 +1801,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiURL` | `string` | apiURL defines the default Jira API URL. It requires Alertmanager >= v0.28.0. |
+| `apiURL` | `string` | apiURL defines the default Jira API URL.<br>It requires Alertmanager >= v0.28.0. |
+
 ### .spec.alertmanagerConfiguration.global.opsGenieApiKey {id="_specalertmanagerconfigurationglobalopsgenieapikey"}
 
 Description
@@ -1747,6 +1821,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.opsGenieApiUrl {id="_specalertmanagerconfigurationglobalopsgenieapiurl"}
 
 Description
@@ -1765,6 +1840,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.rocketChat {id="_specalertmanagerconfigurationglobalrocketchat"}
 
 Description
@@ -1776,9 +1852,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiURL` | `string` | apiURL defines the default Rocket Chat API URL. It requires Alertmanager >= v0.28.0. |
-| `token` | `object` | token defines the default Rocket Chat token. It requires Alertmanager >= v0.28.0. |
-| `tokenID` | `object` | tokenID defines the default Rocket Chat Token ID. It requires Alertmanager >= v0.28.0. |
+| `apiURL` | `string` | apiURL defines the default Rocket Chat API URL.<br>It requires Alertmanager >= v0.28.0. |
+| `token` | `object` | token defines the default Rocket Chat token.<br>It requires Alertmanager >= v0.28.0. |
+| `tokenID` | `object` | tokenID defines the default Rocket Chat Token ID.<br>It requires Alertmanager >= v0.28.0. |
+
 ### .spec.alertmanagerConfiguration.global.rocketChat.token {id="_specalertmanagerconfigurationglobalrocketchattoken"}
 
 Description
@@ -1800,6 +1877,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.rocketChat.tokenID {id="_specalertmanagerconfigurationglobalrocketchattokenid"}
 
 Description
@@ -1821,6 +1899,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.slackApiUrl {id="_specalertmanagerconfigurationglobalslackapiurl"}
 
 Description
@@ -1839,6 +1918,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.smtp {id="_specalertmanagerconfigurationglobalsmtp"}
 
 Description
@@ -1860,6 +1940,7 @@ Type
 | `requireTLS` | `boolean` | requireTLS defines the default SMTP TLS requirement. Note that Go does not support unencrypted connections to remote SMTP endpoints. |
 | `smartHost` | `object` | smartHost defines the default SMTP smarthost used for sending emails. |
 | `tlsConfig` | `object` | tlsConfig defines the default TLS configuration for SMTP receivers |
+
 ### .spec.alertmanagerConfiguration.global.smtp.authPassword {id="_specalertmanagerconfigurationglobalsmtpauthpassword"}
 
 Description
@@ -1878,6 +1959,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.smtp.authSecret {id="_specalertmanagerconfigurationglobalsmtpauthsecret"}
 
 Description
@@ -1896,6 +1978,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.smtp.smartHost {id="_specalertmanagerconfigurationglobalsmtpsmarthost"}
 
 Description
@@ -1914,6 +1997,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | host defines the host’s address, it can be a DNS name or a literal IP address. |
 | `port` | `string` | port defines the host’s port, it can be a literal port number or a port name. |
+
 ### .spec.alertmanagerConfiguration.global.smtp.tlsConfig {id="_specalertmanagerconfigurationglobalsmtptlsconfig"}
 
 Description
@@ -1929,9 +2013,10 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.smtp.tlsConfig.ca {id="_specalertmanagerconfigurationglobalsmtptlsconfigca"}
 
 Description
@@ -1945,6 +2030,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.smtp.tlsConfig.ca.configMap {id="_specalertmanagerconfigurationglobalsmtptlsconfigcaconfigmap"}
 
 Description
@@ -1963,6 +2049,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.smtp.tlsConfig.ca.secret {id="_specalertmanagerconfigurationglobalsmtptlsconfigcasecret"}
 
 Description
@@ -1981,6 +2068,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.smtp.tlsConfig.cert {id="_specalertmanagerconfigurationglobalsmtptlsconfigcert"}
 
 Description
@@ -1994,6 +2082,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.alertmanagerConfiguration.global.smtp.tlsConfig.cert.configMap {id="_specalertmanagerconfigurationglobalsmtptlsconfigcertconfigmap"}
 
 Description
@@ -2012,6 +2101,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.smtp.tlsConfig.cert.secret {id="_specalertmanagerconfigurationglobalsmtptlsconfigcertsecret"}
 
 Description
@@ -2030,6 +2120,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.smtp.tlsConfig.keySecret {id="_specalertmanagerconfigurationglobalsmtptlsconfigkeysecret"}
 
 Description
@@ -2048,6 +2139,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.telegram {id="_specalertmanagerconfigurationglobaltelegram"}
 
 Description
@@ -2059,7 +2151,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiURL` | `string` | apiURL defines he default Telegram API URL. It requires Alertmanager >= v0.24.0. |
+| `apiURL` | `string` | apiURL defines he default Telegram API URL.<br>It requires Alertmanager >= v0.24.0. |
+
 ### .spec.alertmanagerConfiguration.global.victorops {id="_specalertmanagerconfigurationglobalvictorops"}
 
 Description
@@ -2073,6 +2166,7 @@ Type
 | --- | --- | --- |
 | `apiKey` | `object` | apiKey defines the default VictorOps API Key. |
 | `apiURL` | `string` | apiURL defines the default VictorOps API URL. |
+
 ### .spec.alertmanagerConfiguration.global.victorops.apiKey {id="_specalertmanagerconfigurationglobalvictoropsapikey"}
 
 Description
@@ -2091,6 +2185,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.global.webex {id="_specalertmanagerconfigurationglobalwebex"}
 
 Description
@@ -2102,7 +2197,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiURL` | `string` | apiURL defines the is the default Webex API URL. It requires Alertmanager >= v0.25.0. |
+| `apiURL` | `string` | apiURL defines the is the default Webex API URL.<br>It requires Alertmanager >= v0.25.0. |
+
 ### .spec.alertmanagerConfiguration.global.wechat {id="_specalertmanagerconfigurationglobalwechat"}
 
 Description
@@ -2117,6 +2213,7 @@ Type
 | `apiCorpID` | `string` | apiCorpID defines the default WeChat API Corporate ID. |
 | `apiSecret` | `object` | apiSecret defines the default WeChat API Secret. |
 | `apiURL` | `string` | apiURL defines he default WeChat API URL. The default value is "https://qyapi.weixin.qq.com/cgi-bin/" |
+
 ### .spec.alertmanagerConfiguration.global.wechat.apiSecret {id="_specalertmanagerconfigurationglobalwechatapisecret"}
 
 Description
@@ -2135,6 +2232,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.templates {id="_specalertmanagerconfigurationtemplates"}
 
 Description
@@ -2157,6 +2255,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.alertmanagerConfiguration.templates[].configMap {id="_specalertmanagerconfigurationtemplatesconfigmap"}
 
 Description
@@ -2175,6 +2274,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.alertmanagerConfiguration.templates[].secret {id="_specalertmanagerconfigurationtemplatessecret"}
 
 Description
@@ -2193,6 +2293,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.clusterTLS {id="_specclustertls"}
 
 Description
@@ -2214,6 +2315,7 @@ Required
 | --- | --- | --- |
 | `client` | `object` | client defines the client-side configuration for mutual TLS. |
 | `server` | `object` | server defines the server-side configuration for mutual TLS. |
+
 ### .spec.clusterTLS.client {id="_specclustertlsclient"}
 
 Description
@@ -2229,9 +2331,10 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
+
 ### .spec.clusterTLS.client.ca {id="_specclustertlsclientca"}
 
 Description
@@ -2245,6 +2348,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.clusterTLS.client.ca.configMap {id="_specclustertlsclientcaconfigmap"}
 
 Description
@@ -2263,6 +2367,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.clusterTLS.client.ca.secret {id="_specclustertlsclientcasecret"}
 
 Description
@@ -2281,6 +2386,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.clusterTLS.client.cert {id="_specclustertlsclientcert"}
 
 Description
@@ -2294,6 +2400,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.clusterTLS.client.cert.configMap {id="_specclustertlsclientcertconfigmap"}
 
 Description
@@ -2312,6 +2419,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.clusterTLS.client.cert.secret {id="_specclustertlsclientcertsecret"}
 
 Description
@@ -2330,6 +2438,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.clusterTLS.client.keySecret {id="_specclustertlsclientkeysecret"}
 
 Description
@@ -2348,6 +2457,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.clusterTLS.server {id="_specclustertlsserver"}
 
 Description
@@ -2359,18 +2469,19 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `cert` | `object` | cert defines the Secret or ConfigMap containing the TLS certificate for the web server. Either `keySecret` or `keyFile` must be defined. It is mutually exclusive with `certFile`. |
-| `certFile` | `string` | certFile defines the path to the TLS certificate file in the container for the web server. Either `keySecret` or `keyFile` must be defined. It is mutually exclusive with `cert`. |
-| `cipherSuites` | `array (string)` | cipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2. If not defined, the Go default cipher suites are used. Available cipher suites are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants |
-| `clientAuthType` | `string` | clientAuthType defines the server policy for client TLS authentication. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType |
-| `clientCAFile` | `string` | clientCAFile defines the path to the CA certificate file for client certificate authentication to the server. It is mutually exclusive with `client_ca`. |
-| `client_ca` | `object` | client_ca defines the Secret or ConfigMap containing the CA certificate for client certificate authentication to the server. It is mutually exclusive with `clientCAFile`. |
-| `curvePreferences` | `array (string)` | curvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#CurveID |
-| `keyFile` | `string` | keyFile defines the path to the TLS private key file in the container for the web server. If defined, either `cert` or `certFile` must be defined. It is mutually exclusive with `keySecret`. |
-| `keySecret` | `object` | keySecret defines the secret containing the TLS private key for the web server. Either `cert` or `certFile` must be defined. It is mutually exclusive with `keyFile`. |
+| `cert` | `object` | cert defines the Secret or ConfigMap containing the TLS certificate for the web server.<br>Either `keySecret` or `keyFile` must be defined.<br>It is mutually exclusive with `certFile`. |
+| `certFile` | `string` | certFile defines the path to the TLS certificate file in the container for the web server.<br>Either `keySecret` or `keyFile` must be defined.<br>It is mutually exclusive with `cert`. |
+| `cipherSuites` | `array (string)` | cipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2.<br>If not defined, the Go default cipher suites are used. Available cipher suites are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants |
+| `clientAuthType` | `string` | clientAuthType defines the server policy for client TLS authentication.<br>For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType |
+| `clientCAFile` | `string` | clientCAFile defines the path to the CA certificate file for client certificate authentication to the server.<br>It is mutually exclusive with `client_ca`. |
+| `client_ca` | `object` | client_ca defines the Secret or ConfigMap containing the CA certificate for client certificate authentication to the server.<br>It is mutually exclusive with `clientCAFile`. |
+| `curvePreferences` | `array (string)` | curvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order.<br>Available curves are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#CurveID |
+| `keyFile` | `string` | keyFile defines the path to the TLS private key file in the container for the web server.<br>If defined, either `cert` or `certFile` must be defined.<br>It is mutually exclusive with `keySecret`. |
+| `keySecret` | `object` | keySecret defines the secret containing the TLS private key for the web server.<br>Either `cert` or `certFile` must be defined.<br>It is mutually exclusive with `keyFile`. |
 | `maxVersion` | `string` | maxVersion defines the Maximum TLS version that is acceptable. |
 | `minVersion` | `string` | minVersion defines the minimum TLS version that is acceptable. |
-| `preferServerCipherSuites` | `boolean` | preferServerCipherSuites defines whether the server selects the client’s most preferred cipher suite, or the server’s most preferred cipher suite. If true then the server’s preference, as expressed in the order of elements in cipherSuites, is used. |
+| `preferServerCipherSuites` | `boolean` | preferServerCipherSuites defines whether the server selects the client’s most preferred cipher suite, or the server’s most preferred cipher suite.<br>If true then the server’s preference, as expressed in the order of elements in cipherSuites, is used. |
+
 ### .spec.clusterTLS.server.cert {id="_specclustertlsservercert"}
 
 Description
@@ -2390,6 +2501,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.clusterTLS.server.cert.configMap {id="_specclustertlsservercertconfigmap"}
 
 Description
@@ -2408,6 +2520,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.clusterTLS.server.cert.secret {id="_specclustertlsservercertsecret"}
 
 Description
@@ -2426,6 +2539,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.clusterTLS.server.client_ca {id="_specclustertlsserverclient_ca"}
 
 Description
@@ -2443,6 +2557,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.clusterTLS.server.client_ca.configMap {id="_specclustertlsserverclient_caconfigmap"}
 
 Description
@@ -2461,6 +2576,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.clusterTLS.server.client_ca.secret {id="_specclustertlsserverclient_casecret"}
 
 Description
@@ -2479,6 +2595,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.clusterTLS.server.keySecret {id="_specclustertlsserverkeysecret"}
 
 Description
@@ -2503,6 +2620,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.containers {id="_speccontainers"}
 
 Description
@@ -2574,6 +2692,7 @@ Required
 | `volumeMounts` | `array` | Pod volumes to mount into the container’s filesystem. Cannot be updated. |
 | `volumeMounts[]` | `object` | VolumeMount describes a mounting of a Volume within a container. |
 | `workingDir` | `string` | Container’s working directory. If not specified, the container runtime’s default will be used, which might be configured in the container image. Cannot be updated. |
+
 ### .spec.containers[].env {id="_speccontainersenv"}
 
 Description
@@ -2602,6 +2721,7 @@ Required
 | `name` | `string` | Name of the environment variable. May consist of any printable ASCII characters except '='. |
 | `value` | `string` | Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". |
 | `valueFrom` | `object` | Source for the environment variable’s value. Cannot be used if value is not empty. |
+
 ### .spec.containers[].env[].valueFrom {id="_speccontainersenvvaluefrom"}
 
 Description
@@ -2618,6 +2738,7 @@ Type
 | `fileKeyRef` | `object` | FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled. |
 | `resourceFieldRef` | `object` | Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. |
 | `secretKeyRef` | `object` | Selects a key of a secret in the pod’s namespace |
+
 ### .spec.containers[].env[].valueFrom.configMapKeyRef {id="_speccontainersenvvaluefromconfigmapkeyref"}
 
 Description
@@ -2636,6 +2757,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.containers[].env[].valueFrom.fieldRef {id="_speccontainersenvvaluefromfieldref"}
 
 Description
@@ -2654,6 +2776,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | Version of the schema the FieldPath is written in terms of, defaults to "v1". |
 | `fieldPath` | `string` | Path of the field to select in the specified API version. |
+
 ### .spec.containers[].env[].valueFrom.fileKeyRef {id="_speccontainersenvvaluefromfilekeyref"}
 
 Description
@@ -2673,9 +2796,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters. |
-| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
+| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers.<br>If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
 | `path` | `string` | The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'. |
 | `volumeName` | `string` | The name of the volume mount containing the env file. |
+
 ### .spec.containers[].env[].valueFrom.resourceFieldRef {id="_speccontainersenvvaluefromresourcefieldref"}
 
 Description
@@ -2695,6 +2819,7 @@ Required
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
 | `divisor` | `integer-or-string` | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
+
 ### .spec.containers[].env[].valueFrom.secretKeyRef {id="_speccontainersenvvaluefromsecretkeyref"}
 
 Description
@@ -2713,6 +2838,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.containers[].envFrom {id="_speccontainersenvfrom"}
 
 Description
@@ -2741,6 +2867,7 @@ Type
 | `configMapRef` | `object` | The ConfigMap to select from |
 | `prefix` | `string` | Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='. |
 | `secretRef` | `object` | The Secret to select from |
+
 ### .spec.containers[].envFrom[].configMapRef {id="_speccontainersenvfromconfigmapref"}
 
 Description
@@ -2754,6 +2881,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap must be defined |
+
 ### .spec.containers[].envFrom[].secretRef {id="_speccontainersenvfromsecretref"}
 
 Description
@@ -2767,6 +2895,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret must be defined |
+
 ### .spec.containers[].lifecycle {id="_speccontainerslifecycle"}
 
 Description
@@ -2782,6 +2911,7 @@ Type
 | `postStart` | `object` | PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks |
 | `preStop` | `object` | PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod’s termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod’s termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks |
 | `stopSignal` | `string` | StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name |
+
 ### .spec.containers[].lifecycle.postStart {id="_speccontainerslifecyclepoststart"}
 
 Description
@@ -2800,6 +2930,7 @@ Type
 | `httpGet` | `object` | HTTPGet specifies an HTTP GET request to perform. |
 | `sleep` | `object` | Sleep represents a duration that the container should sleep. |
 | `tcpSocket` | `object` | Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified. |
+
 ### .spec.containers[].lifecycle.postStart.exec {id="_speccontainerslifecyclepoststartexec"}
 
 Description
@@ -2811,7 +2942,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.containers[].lifecycle.postStart.httpGet {id="_speccontainerslifecyclepoststarthttpget"}
 
 Description
@@ -2833,6 +2965,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.containers[].lifecycle.postStart.httpGet.httpHeaders {id="_speccontainerslifecyclepoststarthttpgethttpheaders"}
 
 Description
@@ -2860,6 +2993,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.containers[].lifecycle.postStart.sleep {id="_speccontainerslifecyclepoststartsleep"}
 
 Description
@@ -2876,6 +3010,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `seconds` | `integer` | Seconds is the number of seconds to sleep. |
+
 ### .spec.containers[].lifecycle.postStart.tcpSocket {id="_speccontainerslifecyclepoststarttcpsocket"}
 
 Description
@@ -2895,6 +3030,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.containers[].lifecycle.preStop {id="_speccontainerslifecycleprestop"}
 
 Description
@@ -2918,6 +3054,7 @@ Type
 | `httpGet` | `object` | HTTPGet specifies an HTTP GET request to perform. |
 | `sleep` | `object` | Sleep represents a duration that the container should sleep. |
 | `tcpSocket` | `object` | Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified. |
+
 ### .spec.containers[].lifecycle.preStop.exec {id="_speccontainerslifecycleprestopexec"}
 
 Description
@@ -2929,7 +3066,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.containers[].lifecycle.preStop.httpGet {id="_speccontainerslifecycleprestophttpget"}
 
 Description
@@ -2951,6 +3089,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.containers[].lifecycle.preStop.httpGet.httpHeaders {id="_speccontainerslifecycleprestophttpgethttpheaders"}
 
 Description
@@ -2978,6 +3117,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.containers[].lifecycle.preStop.sleep {id="_speccontainerslifecycleprestopsleep"}
 
 Description
@@ -2994,6 +3134,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `seconds` | `integer` | Seconds is the number of seconds to sleep. |
+
 ### .spec.containers[].lifecycle.preStop.tcpSocket {id="_speccontainerslifecycleprestoptcpsocket"}
 
 Description
@@ -3013,6 +3154,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.containers[].livenessProbe {id="_speccontainerslivenessprobe"}
 
 Description
@@ -3037,6 +3179,7 @@ Type
 | `tcpSocket` | `object` | TCPSocket specifies a connection to a TCP port. |
 | `terminationGracePeriodSeconds` | `integer` | Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod’s terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. |
 | `timeoutSeconds` | `integer` | Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes |
+
 ### .spec.containers[].livenessProbe.exec {id="_speccontainerslivenessprobeexec"}
 
 Description
@@ -3048,7 +3191,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.containers[].livenessProbe.grpc {id="_speccontainerslivenessprobegrpc"}
 
 Description
@@ -3065,7 +3209,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
+
 ### .spec.containers[].livenessProbe.httpGet {id="_speccontainerslivenessprobehttpget"}
 
 Description
@@ -3087,6 +3232,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.containers[].livenessProbe.httpGet.httpHeaders {id="_speccontainerslivenessprobehttpgethttpheaders"}
 
 Description
@@ -3114,6 +3260,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.containers[].livenessProbe.tcpSocket {id="_speccontainerslivenessprobetcpsocket"}
 
 Description
@@ -3131,6 +3278,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.containers[].ports {id="_speccontainersports"}
 
 Description
@@ -3166,6 +3314,7 @@ Required
 | `hostPort` | `integer` | Number of port to expose on the host. If specified, this must be a valid port number, 0 &lt; x &lt; 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. |
 | `name` | `string` | If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services. |
 | `protocol` | `string` | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP". |
+
 ### .spec.containers[].readinessProbe {id="_speccontainersreadinessprobe"}
 
 Description
@@ -3190,6 +3339,7 @@ Type
 | `tcpSocket` | `object` | TCPSocket specifies a connection to a TCP port. |
 | `terminationGracePeriodSeconds` | `integer` | Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod’s terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. |
 | `timeoutSeconds` | `integer` | Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes |
+
 ### .spec.containers[].readinessProbe.exec {id="_speccontainersreadinessprobeexec"}
 
 Description
@@ -3201,7 +3351,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.containers[].readinessProbe.grpc {id="_speccontainersreadinessprobegrpc"}
 
 Description
@@ -3218,7 +3369,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
+
 ### .spec.containers[].readinessProbe.httpGet {id="_speccontainersreadinessprobehttpget"}
 
 Description
@@ -3240,6 +3392,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.containers[].readinessProbe.httpGet.httpHeaders {id="_speccontainersreadinessprobehttpgethttpheaders"}
 
 Description
@@ -3267,6 +3420,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.containers[].readinessProbe.tcpSocket {id="_speccontainersreadinessprobetcpsocket"}
 
 Description
@@ -3284,6 +3438,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.containers[].resizePolicy {id="_speccontainersresizepolicy"}
 
 Description
@@ -3312,6 +3467,7 @@ Required
 | --- | --- | --- |
 | `resourceName` | `string` | Name of the resource to which this resource resize policy applies. Supported values: cpu, memory. |
 | `restartPolicy` | `string` | Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired. |
+
 ### .spec.containers[].resources {id="_speccontainersresources"}
 
 Description
@@ -3325,10 +3481,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.containers[].resources.claims {id="_speccontainersresourcesclaims"}
 
 Description
@@ -3363,6 +3520,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container. |
 | `request` | `string` | Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request. |
+
 ### .spec.containers[].restartPolicyRules {id="_speccontainersrestartpolicyrules"}
 
 Description
@@ -3399,6 +3557,7 @@ Required
 | --- | --- | --- |
 | `action` | `string` | Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is "Restart" to restart the container. |
 | `exitCodes` | `object` | Represents the exit codes to check on container exits. |
+
 ### .spec.containers[].restartPolicyRules[].exitCodes {id="_speccontainersrestartpolicyrulesexitcodes"}
 
 Description
@@ -3416,6 +3575,7 @@ Required
 | --- | --- | --- |
 | `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the   set of specified values. - NotIn: the requirement is satisfied if the container exit code is   not in the set of specified values. |
 | `values` | `array (integer)` | Specifies the set of values to check for container exit codes. At most 255 elements are allowed. |
+
 ### .spec.containers[].securityContext {id="_speccontainerssecuritycontext"}
 
 Description
@@ -3441,6 +3601,7 @@ Type
 | `seLinuxOptions` | `object` | The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
 | `seccompProfile` | `object` | The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. |
 | `windowsOptions` | `object` | The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. |
+
 ### .spec.containers[].securityContext.appArmorProfile {id="_speccontainerssecuritycontextapparmorprofile"}
 
 Description
@@ -3460,6 +3621,7 @@ Required
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost". |
 | `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime’s default profile.   Unconfined - no AppArmor enforcement. |
+
 ### .spec.containers[].securityContext.capabilities {id="_speccontainerssecuritycontextcapabilities"}
 
 Description
@@ -3475,6 +3637,7 @@ Type
 | --- | --- | --- |
 | `add` | `array (string)` | Added capabilities |
 | `drop` | `array (string)` | Removed capabilities |
+
 ### .spec.containers[].securityContext.seLinuxOptions {id="_speccontainerssecuritycontextselinuxoptions"}
 
 Description
@@ -3494,6 +3657,7 @@ Type
 | `role` | `string` | Role is a SELinux role label that applies to the container. |
 | `type` | `string` | Type is a SELinux type label that applies to the container. |
 | `user` | `string` | User is a SELinux user label that applies to the container. |
+
 ### .spec.containers[].securityContext.seccompProfile {id="_speccontainerssecuritycontextseccompprofile"}
 
 Description
@@ -3513,7 +3677,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type. |
-| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. |
+| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are:<br>Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. |
+
 ### .spec.containers[].securityContext.windowsOptions {id="_speccontainerssecuritycontextwindowsoptions"}
 
 Description
@@ -3532,6 +3697,7 @@ Type
 | `gmsaCredentialSpecName` | `string` | GMSACredentialSpecName is the name of the GMSA credential spec to use. |
 | `hostProcess` | `boolean` | HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod’s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true. |
 | `runAsUserName` | `string` | The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
+
 ### .spec.containers[].startupProbe {id="_speccontainersstartupprobe"}
 
 Description
@@ -3559,6 +3725,7 @@ Type
 | `tcpSocket` | `object` | TCPSocket specifies a connection to a TCP port. |
 | `terminationGracePeriodSeconds` | `integer` | Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod’s terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. |
 | `timeoutSeconds` | `integer` | Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes |
+
 ### .spec.containers[].startupProbe.exec {id="_speccontainersstartupprobeexec"}
 
 Description
@@ -3570,7 +3737,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.containers[].startupProbe.grpc {id="_speccontainersstartupprobegrpc"}
 
 Description
@@ -3587,7 +3755,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
+
 ### .spec.containers[].startupProbe.httpGet {id="_speccontainersstartupprobehttpget"}
 
 Description
@@ -3609,6 +3778,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.containers[].startupProbe.httpGet.httpHeaders {id="_speccontainersstartupprobehttpgethttpheaders"}
 
 Description
@@ -3636,6 +3806,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.containers[].startupProbe.tcpSocket {id="_speccontainersstartupprobetcpsocket"}
 
 Description
@@ -3653,6 +3824,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.containers[].volumeDevices {id="_speccontainersvolumedevices"}
 
 Description
@@ -3680,6 +3852,7 @@ Required
 | --- | --- | --- |
 | `devicePath` | `string` | devicePath is the path inside of the container that the device will be mapped to. |
 | `name` | `string` | name must match the name of a persistentVolumeClaim in the pod |
+
 ### .spec.containers[].volumeMounts {id="_speccontainersvolumemounts"}
 
 Description
@@ -3710,9 +3883,10 @@ Required
 | `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None). |
 | `name` | `string` | This must match the Name of a Volume. |
 | `readOnly` | `boolean` | Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false. |
-| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled. |
+| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively.<br>If ReadOnly is false, this field has no meaning and must be unspecified.<br>If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.<br>If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).<br>If this field is not specified, it is treated as an equivalent of Disabled. |
 | `subPath` | `string` | Path within the volume from which the container’s volume should be mounted. Defaults to "" (volume’s root). |
 | `subPathExpr` | `string` | Expanded path within the volume from which the container’s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container’s environment. Defaults to "" (volume’s root). SubPathExpr and SubPath are mutually exclusive. |
+
 ### .spec.dnsConfig {id="_specdnsconfig"}
 
 Description
@@ -3728,6 +3902,7 @@ Type
 | `options` | `array` | options defines the list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Resolution options given in Options will override those that appear in the base DNSPolicy. |
 | `options[]` | `object` | PodDNSConfigOption defines DNS resolver options of a pod. |
 | `searches` | `array (string)` | searches defines the list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. |
+
 ### .spec.dnsConfig.options {id="_specdnsconfigoptions"}
 
 Description
@@ -3757,6 +3932,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is required and must be unique. |
 | `value` | `string` | value is optional. |
+
 ### .spec.hostAliases {id="_spechostaliases"}
 
 Description
@@ -3785,6 +3961,7 @@ Required
 | --- | --- | --- |
 | `hostnames` | `array (string)` | hostnames defines hostnames for the above IP address. |
 | `ip` | `string` | ip defines the IP address of the host file entry. |
+
 ### .spec.imagePullSecrets {id="_specimagepullsecrets"}
 
 Description
@@ -3809,6 +3986,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.initContainers {id="_specinitcontainers"}
 
 Description
@@ -3881,6 +4059,7 @@ Required
 | `volumeMounts` | `array` | Pod volumes to mount into the container’s filesystem. Cannot be updated. |
 | `volumeMounts[]` | `object` | VolumeMount describes a mounting of a Volume within a container. |
 | `workingDir` | `string` | Container’s working directory. If not specified, the container runtime’s default will be used, which might be configured in the container image. Cannot be updated. |
+
 ### .spec.initContainers[].env {id="_specinitcontainersenv"}
 
 Description
@@ -3909,6 +4088,7 @@ Required
 | `name` | `string` | Name of the environment variable. May consist of any printable ASCII characters except '='. |
 | `value` | `string` | Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". |
 | `valueFrom` | `object` | Source for the environment variable’s value. Cannot be used if value is not empty. |
+
 ### .spec.initContainers[].env[].valueFrom {id="_specinitcontainersenvvaluefrom"}
 
 Description
@@ -3925,6 +4105,7 @@ Type
 | `fileKeyRef` | `object` | FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled. |
 | `resourceFieldRef` | `object` | Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. |
 | `secretKeyRef` | `object` | Selects a key of a secret in the pod’s namespace |
+
 ### .spec.initContainers[].env[].valueFrom.configMapKeyRef {id="_specinitcontainersenvvaluefromconfigmapkeyref"}
 
 Description
@@ -3943,6 +4124,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.initContainers[].env[].valueFrom.fieldRef {id="_specinitcontainersenvvaluefromfieldref"}
 
 Description
@@ -3961,6 +4143,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | Version of the schema the FieldPath is written in terms of, defaults to "v1". |
 | `fieldPath` | `string` | Path of the field to select in the specified API version. |
+
 ### .spec.initContainers[].env[].valueFrom.fileKeyRef {id="_specinitcontainersenvvaluefromfilekeyref"}
 
 Description
@@ -3980,9 +4163,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `key` | `string` | The key within the env file. An invalid key will prevent the pod from starting. The keys defined within a source may consist of any printable ASCII characters except '='. During Alpha stage of the EnvFiles feature gate, the key size is limited to 128 characters. |
-| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers. If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
+| `optional` | `boolean` | Specify whether the file or its key must be defined. If the file or key does not exist, then the env var is not published. If optional is set to true and the specified key does not exist, the environment variable will not be set in the Pod’s containers.<br>If optional is set to false and the specified key does not exist, an error will be returned during Pod creation. |
 | `path` | `string` | The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'. |
 | `volumeName` | `string` | The name of the volume mount containing the env file. |
+
 ### .spec.initContainers[].env[].valueFrom.resourceFieldRef {id="_specinitcontainersenvvaluefromresourcefieldref"}
 
 Description
@@ -4002,6 +4186,7 @@ Required
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
 | `divisor` | `integer-or-string` | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
+
 ### .spec.initContainers[].env[].valueFrom.secretKeyRef {id="_specinitcontainersenvvaluefromsecretkeyref"}
 
 Description
@@ -4020,6 +4205,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.initContainers[].envFrom {id="_specinitcontainersenvfrom"}
 
 Description
@@ -4048,6 +4234,7 @@ Type
 | `configMapRef` | `object` | The ConfigMap to select from |
 | `prefix` | `string` | Optional text to prepend to the name of each environment variable. May consist of any printable ASCII characters except '='. |
 | `secretRef` | `object` | The Secret to select from |
+
 ### .spec.initContainers[].envFrom[].configMapRef {id="_specinitcontainersenvfromconfigmapref"}
 
 Description
@@ -4061,6 +4248,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap must be defined |
+
 ### .spec.initContainers[].envFrom[].secretRef {id="_specinitcontainersenvfromsecretref"}
 
 Description
@@ -4074,6 +4262,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret must be defined |
+
 ### .spec.initContainers[].lifecycle {id="_specinitcontainerslifecycle"}
 
 Description
@@ -4089,6 +4278,7 @@ Type
 | `postStart` | `object` | PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks |
 | `preStop` | `object` | PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod’s termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod’s termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks |
 | `stopSignal` | `string` | StopSignal defines which signal will be sent to a container when it is being stopped. If not specified, the default is defined by the container runtime in use. StopSignal can only be set for Pods with a non-empty .spec.os.name |
+
 ### .spec.initContainers[].lifecycle.postStart {id="_specinitcontainerslifecyclepoststart"}
 
 Description
@@ -4107,6 +4297,7 @@ Type
 | `httpGet` | `object` | HTTPGet specifies an HTTP GET request to perform. |
 | `sleep` | `object` | Sleep represents a duration that the container should sleep. |
 | `tcpSocket` | `object` | Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified. |
+
 ### .spec.initContainers[].lifecycle.postStart.exec {id="_specinitcontainerslifecyclepoststartexec"}
 
 Description
@@ -4118,7 +4309,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.initContainers[].lifecycle.postStart.httpGet {id="_specinitcontainerslifecyclepoststarthttpget"}
 
 Description
@@ -4140,6 +4332,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.initContainers[].lifecycle.postStart.httpGet.httpHeaders {id="_specinitcontainerslifecyclepoststarthttpgethttpheaders"}
 
 Description
@@ -4167,6 +4360,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.initContainers[].lifecycle.postStart.sleep {id="_specinitcontainerslifecyclepoststartsleep"}
 
 Description
@@ -4183,6 +4377,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `seconds` | `integer` | Seconds is the number of seconds to sleep. |
+
 ### .spec.initContainers[].lifecycle.postStart.tcpSocket {id="_specinitcontainerslifecyclepoststarttcpsocket"}
 
 Description
@@ -4202,6 +4397,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.initContainers[].lifecycle.preStop {id="_specinitcontainerslifecycleprestop"}
 
 Description
@@ -4225,6 +4421,7 @@ Type
 | `httpGet` | `object` | HTTPGet specifies an HTTP GET request to perform. |
 | `sleep` | `object` | Sleep represents a duration that the container should sleep. |
 | `tcpSocket` | `object` | Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for backward compatibility. There is no validation of this field and lifecycle hooks will fail at runtime when it is specified. |
+
 ### .spec.initContainers[].lifecycle.preStop.exec {id="_specinitcontainerslifecycleprestopexec"}
 
 Description
@@ -4236,7 +4433,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.initContainers[].lifecycle.preStop.httpGet {id="_specinitcontainerslifecycleprestophttpget"}
 
 Description
@@ -4258,6 +4456,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.initContainers[].lifecycle.preStop.httpGet.httpHeaders {id="_specinitcontainerslifecycleprestophttpgethttpheaders"}
 
 Description
@@ -4285,6 +4484,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.initContainers[].lifecycle.preStop.sleep {id="_specinitcontainerslifecycleprestopsleep"}
 
 Description
@@ -4301,6 +4501,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `seconds` | `integer` | Seconds is the number of seconds to sleep. |
+
 ### .spec.initContainers[].lifecycle.preStop.tcpSocket {id="_specinitcontainerslifecycleprestoptcpsocket"}
 
 Description
@@ -4320,6 +4521,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.initContainers[].livenessProbe {id="_specinitcontainerslivenessprobe"}
 
 Description
@@ -4344,6 +4546,7 @@ Type
 | `tcpSocket` | `object` | TCPSocket specifies a connection to a TCP port. |
 | `terminationGracePeriodSeconds` | `integer` | Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod’s terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. |
 | `timeoutSeconds` | `integer` | Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes |
+
 ### .spec.initContainers[].livenessProbe.exec {id="_specinitcontainerslivenessprobeexec"}
 
 Description
@@ -4355,7 +4558,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.initContainers[].livenessProbe.grpc {id="_specinitcontainerslivenessprobegrpc"}
 
 Description
@@ -4372,7 +4576,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
+
 ### .spec.initContainers[].livenessProbe.httpGet {id="_specinitcontainerslivenessprobehttpget"}
 
 Description
@@ -4394,6 +4599,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.initContainers[].livenessProbe.httpGet.httpHeaders {id="_specinitcontainerslivenessprobehttpgethttpheaders"}
 
 Description
@@ -4421,6 +4627,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.initContainers[].livenessProbe.tcpSocket {id="_specinitcontainerslivenessprobetcpsocket"}
 
 Description
@@ -4438,6 +4645,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.initContainers[].ports {id="_specinitcontainersports"}
 
 Description
@@ -4473,6 +4681,7 @@ Required
 | `hostPort` | `integer` | Number of port to expose on the host. If specified, this must be a valid port number, 0 &lt; x &lt; 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. |
 | `name` | `string` | If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services. |
 | `protocol` | `string` | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP". |
+
 ### .spec.initContainers[].readinessProbe {id="_specinitcontainersreadinessprobe"}
 
 Description
@@ -4497,6 +4706,7 @@ Type
 | `tcpSocket` | `object` | TCPSocket specifies a connection to a TCP port. |
 | `terminationGracePeriodSeconds` | `integer` | Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod’s terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. |
 | `timeoutSeconds` | `integer` | Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes |
+
 ### .spec.initContainers[].readinessProbe.exec {id="_specinitcontainersreadinessprobeexec"}
 
 Description
@@ -4508,7 +4718,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.initContainers[].readinessProbe.grpc {id="_specinitcontainersreadinessprobegrpc"}
 
 Description
@@ -4525,7 +4736,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
+
 ### .spec.initContainers[].readinessProbe.httpGet {id="_specinitcontainersreadinessprobehttpget"}
 
 Description
@@ -4547,6 +4759,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.initContainers[].readinessProbe.httpGet.httpHeaders {id="_specinitcontainersreadinessprobehttpgethttpheaders"}
 
 Description
@@ -4574,6 +4787,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.initContainers[].readinessProbe.tcpSocket {id="_specinitcontainersreadinessprobetcpsocket"}
 
 Description
@@ -4591,6 +4805,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.initContainers[].resizePolicy {id="_specinitcontainersresizepolicy"}
 
 Description
@@ -4619,6 +4834,7 @@ Required
 | --- | --- | --- |
 | `resourceName` | `string` | Name of the resource to which this resource resize policy applies. Supported values: cpu, memory. |
 | `restartPolicy` | `string` | Restart policy to apply when specified resource is resized. If not specified, it defaults to NotRequired. |
+
 ### .spec.initContainers[].resources {id="_specinitcontainersresources"}
 
 Description
@@ -4632,10 +4848,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.initContainers[].resources.claims {id="_specinitcontainersresourcesclaims"}
 
 Description
@@ -4670,6 +4887,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container. |
 | `request` | `string` | Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request. |
+
 ### .spec.initContainers[].restartPolicyRules {id="_specinitcontainersrestartpolicyrules"}
 
 Description
@@ -4706,6 +4924,7 @@ Required
 | --- | --- | --- |
 | `action` | `string` | Specifies the action taken on a container exit if the requirements are satisfied. The only possible value is "Restart" to restart the container. |
 | `exitCodes` | `object` | Represents the exit codes to check on container exits. |
+
 ### .spec.initContainers[].restartPolicyRules[].exitCodes {id="_specinitcontainersrestartpolicyrulesexitcodes"}
 
 Description
@@ -4723,6 +4942,7 @@ Required
 | --- | --- | --- |
 | `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Possible values are: - In: the requirement is satisfied if the container exit code is in the   set of specified values. - NotIn: the requirement is satisfied if the container exit code is   not in the set of specified values. |
 | `values` | `array (integer)` | Specifies the set of values to check for container exit codes. At most 255 elements are allowed. |
+
 ### .spec.initContainers[].securityContext {id="_specinitcontainerssecuritycontext"}
 
 Description
@@ -4748,6 +4968,7 @@ Type
 | `seLinuxOptions` | `object` | The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. |
 | `seccompProfile` | `object` | The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. |
 | `windowsOptions` | `object` | The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. |
+
 ### .spec.initContainers[].securityContext.appArmorProfile {id="_specinitcontainerssecuritycontextapparmorprofile"}
 
 Description
@@ -4767,6 +4988,7 @@ Required
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost". |
 | `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime’s default profile.   Unconfined - no AppArmor enforcement. |
+
 ### .spec.initContainers[].securityContext.capabilities {id="_specinitcontainerssecuritycontextcapabilities"}
 
 Description
@@ -4782,6 +5004,7 @@ Type
 | --- | --- | --- |
 | `add` | `array (string)` | Added capabilities |
 | `drop` | `array (string)` | Removed capabilities |
+
 ### .spec.initContainers[].securityContext.seLinuxOptions {id="_specinitcontainerssecuritycontextselinuxoptions"}
 
 Description
@@ -4801,6 +5024,7 @@ Type
 | `role` | `string` | Role is a SELinux role label that applies to the container. |
 | `type` | `string` | Type is a SELinux type label that applies to the container. |
 | `user` | `string` | User is a SELinux user label that applies to the container. |
+
 ### .spec.initContainers[].securityContext.seccompProfile {id="_specinitcontainerssecuritycontextseccompprofile"}
 
 Description
@@ -4820,7 +5044,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type. |
-| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. |
+| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are:<br>Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. |
+
 ### .spec.initContainers[].securityContext.windowsOptions {id="_specinitcontainerssecuritycontextwindowsoptions"}
 
 Description
@@ -4839,6 +5064,7 @@ Type
 | `gmsaCredentialSpecName` | `string` | GMSACredentialSpecName is the name of the GMSA credential spec to use. |
 | `hostProcess` | `boolean` | HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod’s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true. |
 | `runAsUserName` | `string` | The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
+
 ### .spec.initContainers[].startupProbe {id="_specinitcontainersstartupprobe"}
 
 Description
@@ -4866,6 +5092,7 @@ Type
 | `tcpSocket` | `object` | TCPSocket specifies a connection to a TCP port. |
 | `terminationGracePeriodSeconds` | `integer` | Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod’s terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. |
 | `timeoutSeconds` | `integer` | Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes |
+
 ### .spec.initContainers[].startupProbe.exec {id="_specinitcontainersstartupprobeexec"}
 
 Description
@@ -4877,7 +5104,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\ |
+| `command` | `array (string)` | Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container’s filesystem. The command is simply exec’d, it is not run inside a shell, so traditional shell instructions ('\|', etc) won’t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. |
+
 ### .spec.initContainers[].startupProbe.grpc {id="_specinitcontainersstartupprobegrpc"}
 
 Description
@@ -4894,7 +5122,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `port` | `integer` | Port number of the gRPC service. Number must be in the range 1 to 65535. |
-| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. |
+| `service` | `string` | Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md).<br>If this is not specified, the default behavior is defined by gRPC. |
+
 ### .spec.initContainers[].startupProbe.httpGet {id="_specinitcontainersstartupprobehttpget"}
 
 Description
@@ -4916,6 +5145,7 @@ Required
 | `path` | `string` | Path to access on the HTTP server. |
 | `port` | `integer-or-string` | Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
 | `scheme` | `string` | Scheme to use for connecting to the host. Defaults to HTTP. |
+
 ### .spec.initContainers[].startupProbe.httpGet.httpHeaders {id="_specinitcontainersstartupprobehttpgethttpheaders"}
 
 Description
@@ -4943,6 +5173,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | The header field name. This will be canonicalized upon output, so case-variant names will be understood as the same header. |
 | `value` | `string` | The header field value |
+
 ### .spec.initContainers[].startupProbe.tcpSocket {id="_specinitcontainersstartupprobetcpsocket"}
 
 Description
@@ -4960,6 +5191,7 @@ Required
 | --- | --- | --- |
 | `host` | `string` | Optional: Host name to connect to, defaults to the pod IP. |
 | `port` | `integer-or-string` | Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. |
+
 ### .spec.initContainers[].volumeDevices {id="_specinitcontainersvolumedevices"}
 
 Description
@@ -4987,6 +5219,7 @@ Required
 | --- | --- | --- |
 | `devicePath` | `string` | devicePath is the path inside of the container that the device will be mapped to. |
 | `name` | `string` | name must match the name of a persistentVolumeClaim in the pod |
+
 ### .spec.initContainers[].volumeMounts {id="_specinitcontainersvolumemounts"}
 
 Description
@@ -5017,9 +5250,10 @@ Required
 | `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None). |
 | `name` | `string` | This must match the Name of a Volume. |
 | `readOnly` | `boolean` | Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false. |
-| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled. |
+| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively.<br>If ReadOnly is false, this field has no meaning and must be unspecified.<br>If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.<br>If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).<br>If this field is not specified, it is treated as an equivalent of Disabled. |
 | `subPath` | `string` | Path within the volume from which the container’s volume should be mounted. Defaults to "" (volume’s root). |
 | `subPathExpr` | `string` | Expanded path within the volume from which the container’s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container’s environment. Defaults to "" (volume’s root). SubPathExpr and SubPath are mutually exclusive. |
+
 ### .spec.limits {id="_speclimits"}
 
 Description
@@ -5033,6 +5267,7 @@ Type
 | --- | --- | --- |
 | `maxPerSilenceBytes` | `string` | maxPerSilenceBytes defines the maximum size of an individual silence as stored on disk. This corresponds to the Alertmanager’s `--silences.max-per-silence-bytes` flag. It requires Alertmanager >= v0.28.0. |
 | `maxSilences` | `integer` | maxSilences defines the maximum number active and pending silences. This corresponds to the Alertmanager’s `--silences.max-silences` flag. It requires Alertmanager >= v0.28.0. |
+
 ### .spec.persistentVolumeClaimRetentionPolicy {id="_specpersistentvolumeclaimretentionpolicy"}
 
 Description
@@ -5049,6 +5284,7 @@ Type
 | --- | --- | --- |
 | `whenDeleted` | `string` | WhenDeleted specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is deleted. The default policy of `Retain` causes PVCs to not be affected by StatefulSet deletion. The `Delete` policy causes those PVCs to be deleted. |
 | `whenScaled` | `string` | WhenScaled specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is scaled down. The default policy of `Retain` causes PVCs to not be affected by a scaledown. The `Delete` policy causes the associated PVCs for any excess pods above the replica count to be deleted. |
+
 ### .spec.podMetadata {id="_specpodmetadata"}
 
 Description
@@ -5072,6 +5308,7 @@ Type
 | `annotations` | `object (string)` | annotations defines an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ |
 | `labels` | `object (string)` | labels define the map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ |
 | `name` | `string` | name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/ |
+
 ### .spec.resources {id="_specresources"}
 
 Description
@@ -5083,10 +5320,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.resources.claims {id="_specresourcesclaims"}
 
 Description
@@ -5121,6 +5359,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container. |
 | `request` | `string` | Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request. |
+
 ### .spec.securityContext {id="_specsecuritycontext"}
 
 Description
@@ -5134,12 +5373,12 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `appArmorProfile` | `object` | appArmorProfile is the AppArmor options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. |
-| `fsGroup` | `integer` | A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR’d with rw-rw---- If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows. |
+| `fsGroup` | `integer` | A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:<br>1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR’d with rw-rw----<br>If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows. |
 | `fsGroupChangePolicy` | `string` | fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used. Note that this field cannot be set when spec.os.name is windows. |
 | `runAsGroup` | `integer` | The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. |
 | `runAsNonRoot` | `boolean` | Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
 | `runAsUser` | `integer` | The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. |
-| `seLinuxChangePolicy` | `string` | seLinuxChangePolicy defines how the container’s SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are "MountOption" and "Recursive". "Recursive" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node. "MountOption" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. "MountOption" value is allowed only when SELinuxMount feature gate is enabled. If not specified and SELinuxMount feature gate is enabled, "MountOption" is used. If not specified and SELinuxMount feature gate is disabled, "MountOption" is used for ReadWriteOncePod volumes and "Recursive" for all other volumes. This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers. All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows. |
+| `seLinuxChangePolicy` | `string` | seLinuxChangePolicy defines how the container’s SELinux label is applied to all volumes used by the Pod. It has no effect on nodes that do not support SELinux or to volumes does not support SELinux. Valid values are "MountOption" and "Recursive".<br>"Recursive" means relabeling of all files on all Pod volumes by the container runtime. This may be slow for large volumes, but allows mixing privileged and unprivileged Pods sharing the same volume on the same node.<br>"MountOption" mounts all eligible Pod volumes with `-o context` mount option. This requires all Pods that share the same volume to use the same SELinux label. It is not possible to share the same volume among privileged and unprivileged Pods. Eligible volumes are in-tree FibreChannel and iSCSI volumes, and all CSI volumes whose CSI driver announces SELinux support by setting spec.seLinuxMount: true in their CSIDriver instance. Other volumes are always re-labelled recursively. "MountOption" value is allowed only when SELinuxMount feature gate is enabled.<br>If not specified and SELinuxMount feature gate is enabled, "MountOption" is used. If not specified and SELinuxMount feature gate is disabled, "MountOption" is used for ReadWriteOncePod volumes and "Recursive" for all other volumes.<br>This field affects only Pods that have SELinux label set, either in PodSecurityContext or in SecurityContext of all containers.<br>All Pods that use the same volume should use the same seLinuxChangePolicy, otherwise some pods can get stuck in ContainerCreating state. Note that this field cannot be set when spec.os.name is windows. |
 | `seLinuxOptions` | `object` | The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. |
 | `seccompProfile` | `object` | The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. |
 | `supplementalGroups` | `array (integer)` | A list of groups applied to the first process run in each container, in addition to the container’s primary GID and fsGroup (if specified).  If the SupplementalGroupsPolicy feature is enabled, the supplementalGroupsPolicy field determines whether these are in addition to or instead of any group memberships defined in the container image. If unspecified, no additional groups are added, though group memberships defined in the container image may still be used, depending on the supplementalGroupsPolicy field. Note that this field cannot be set when spec.os.name is windows. |
@@ -5147,6 +5386,7 @@ Type
 | `sysctls` | `array` | Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. |
 | `sysctls[]` | `object` | Sysctl defines a kernel parameter to be set |
 | `windowsOptions` | `object` | The Windows specific settings applied to all containers. If unspecified, the options within a container’s SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. |
+
 ### .spec.securityContext.appArmorProfile {id="_specsecuritycontextapparmorprofile"}
 
 Description
@@ -5165,6 +5405,7 @@ Required
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost". |
 | `type` | `string` | type indicates which kind of AppArmor profile will be applied. Valid options are:   Localhost - a profile pre-loaded on the node.   RuntimeDefault - the container runtime’s default profile.   Unconfined - no AppArmor enforcement. |
+
 ### .spec.securityContext.seLinuxOptions {id="_specsecuritycontextselinuxoptions"}
 
 Description
@@ -5185,6 +5426,7 @@ Type
 | `role` | `string` | Role is a SELinux role label that applies to the container. |
 | `type` | `string` | Type is a SELinux type label that applies to the container. |
 | `user` | `string` | User is a SELinux user label that applies to the container. |
+
 ### .spec.securityContext.seccompProfile {id="_specsecuritycontextseccompprofile"}
 
 Description
@@ -5202,7 +5444,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `localhostProfile` | `string` | localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet’s configured seccomp profile location. Must be set if type is "Localhost". Must NOT be set for any other type. |
-| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are: Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. |
+| `type` | `string` | type indicates which kind of seccomp profile will be applied. Valid options are:<br>Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. |
+
 ### .spec.securityContext.sysctls {id="_specsecuritycontextsysctls"}
 
 Description
@@ -5232,6 +5475,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | Name of a property to set |
 | `value` | `string` | Value of a property to set |
+
 ### .spec.securityContext.windowsOptions {id="_specsecuritycontextwindowsoptions"}
 
 Description
@@ -5250,6 +5494,7 @@ Type
 | `gmsaCredentialSpecName` | `string` | GMSACredentialSpecName is the name of the GMSA credential spec to use. |
 | `hostProcess` | `boolean` | HostProcess determines if a container should be run as a 'Host Process' container. All of a Pod’s containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers). In addition, if HostProcess is true then HostNetwork must also be set to true. |
 | `runAsUserName` | `string` | The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. |
+
 ### .spec.storage {id="_specstorage"}
 
 Description
@@ -5266,6 +5511,7 @@ Type
 | `emptyDir` | `object` | emptyDir to be used by the StatefulSet. If specified, it takes precedence over `ephemeral` and `volumeClaimTemplate`. More info: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir |
 | `ephemeral` | `object` | ephemeral to be used by the StatefulSet. This is a beta field in k8s 1.21 and GA in 1.15. For lower versions, starting with k8s 1.19, it requires enabling the GenericEphemeralVolume feature gate. More info: https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes |
 | `volumeClaimTemplate` | `object` | volumeClaimTemplate defines the PVC spec to be used by the Prometheus StatefulSets. The easiest way to use a volume that cannot be automatically provisioned is to use a label selector alongside manually created PersistentVolumes. |
+
 ### .spec.storage.emptyDir {id="_specstorageemptydir"}
 
 Description
@@ -5281,6 +5527,7 @@ Type
 | --- | --- | --- |
 | `medium` | `string` | medium represents what type of storage medium should back this directory. The default is "" which means to use the node’s default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
 | `sizeLimit` | `integer-or-string` | sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
+
 ### .spec.storage.ephemeral {id="_specstorageephemeral"}
 
 Description
@@ -5295,7 +5542,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `volumeClaimTemplate` | `object` | Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long). An existing PVC with that name that is not owned by the pod will **not** be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster. This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created. Required, must not be nil. |
+| `volumeClaimTemplate` | `object` | Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).<br>An existing PVC with that name that is not owned by the pod will **not** be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.<br>This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.<br>Required, must not be nil. |
+
 ### .spec.storage.ephemeral.volumeClaimTemplate {id="_specstorageephemeralvolumeclaimtemplate"}
 
 Description
@@ -5336,6 +5584,7 @@ Required
 | --- | --- | --- |
 | `metadata` | `object` | May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. |
 | `spec` | `object` | The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. |
+
 ### .spec.storage.ephemeral.volumeClaimTemplate.metadata {id="_specstorageephemeralvolumeclaimtemplatemetadata"}
 
 Description
@@ -5370,6 +5619,7 @@ Type
 | `volumeAttributesClassName` | `string` | volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ |
 | `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. |
 | `volumeName` | `string` | volumeName is the binding reference to the PersistentVolume backing this claim. |
+
 ### .spec.storage.ephemeral.volumeClaimTemplate.spec.dataSource {id="_specstorageephemeralvolumeclaimtemplatespecdatasource"}
 
 Description
@@ -5396,6 +5646,7 @@ Required
 | `apiGroup` | `string` | APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. |
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
+
 ### .spec.storage.ephemeral.volumeClaimTemplate.spec.dataSourceRef {id="_specstorageephemeralvolumeclaimtemplatespecdatasourceref"}
 
 Description
@@ -5438,6 +5689,7 @@ Required
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
 | `namespace` | `string` | Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace’s owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled. |
+
 ### .spec.storage.ephemeral.volumeClaimTemplate.spec.resources {id="_specstorageephemeralvolumeclaimtemplatespecresources"}
 
 Description
@@ -5455,6 +5707,7 @@ Type
 | --- | --- | --- |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.storage.ephemeral.volumeClaimTemplate.spec.selector {id="_specstorageephemeralvolumeclaimtemplatespecselector"}
 
 Description
@@ -5469,6 +5722,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.storage.ephemeral.volumeClaimTemplate.spec.selector.matchExpressions {id="_specstorageephemeralvolumeclaimtemplatespecselectormatchexpressions"}
 
 Description
@@ -5498,6 +5752,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.storage.volumeClaimTemplate {id="_specstoragevolumeclaimtemplate"}
 
 Description
@@ -5516,6 +5771,7 @@ Type
 | `metadata` | `object` | metadata defines EmbeddedMetadata contains metadata relevant to an EmbeddedResource. |
 | `spec` | `object` | spec defines the specification of the  characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims |
 | `status` | `object` | status is deprecated: this field is never set. |
+
 ### .spec.storage.volumeClaimTemplate.metadata {id="_specstoragevolumeclaimtemplatemetadata"}
 
 Description
@@ -5530,6 +5786,7 @@ Type
 | `annotations` | `object (string)` | annotations defines an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ |
 | `labels` | `object (string)` | labels define the map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ |
 | `name` | `string` | name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/ |
+
 ### .spec.storage.volumeClaimTemplate.spec {id="_specstoragevolumeclaimtemplatespec"}
 
 Description
@@ -5551,6 +5808,7 @@ Type
 | `volumeAttributesClassName` | `string` | volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ |
 | `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. |
 | `volumeName` | `string` | volumeName is the binding reference to the PersistentVolume backing this claim. |
+
 ### .spec.storage.volumeClaimTemplate.spec.dataSource {id="_specstoragevolumeclaimtemplatespecdatasource"}
 
 Description
@@ -5577,6 +5835,7 @@ Required
 | `apiGroup` | `string` | APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. |
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
+
 ### .spec.storage.volumeClaimTemplate.spec.dataSourceRef {id="_specstoragevolumeclaimtemplatespecdatasourceref"}
 
 Description
@@ -5619,6 +5878,7 @@ Required
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
 | `namespace` | `string` | Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace’s owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled. |
+
 ### .spec.storage.volumeClaimTemplate.spec.resources {id="_specstoragevolumeclaimtemplatespecresources"}
 
 Description
@@ -5636,6 +5896,7 @@ Type
 | --- | --- | --- |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.storage.volumeClaimTemplate.spec.selector {id="_specstoragevolumeclaimtemplatespecselector"}
 
 Description
@@ -5650,6 +5911,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.storage.volumeClaimTemplate.spec.selector.matchExpressions {id="_specstoragevolumeclaimtemplatespecselectormatchexpressions"}
 
 Description
@@ -5679,6 +5941,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.storage.volumeClaimTemplate.status {id="_specstoragevolumeclaimtemplatestatus"}
 
 Description
@@ -5691,14 +5954,15 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `accessModes` | `array (string)` | accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1 |
-| `allocatedResourceStatuses` | `object (string)` | allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: 	* Un-prefixed keys: 		- storage - the capacity of the volume. 	* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. ClaimResourceStatus can be in any of following states: 	- ControllerResizeInProgress: 		State set when resize controller starts resizing the volume in control-plane. 	- ControllerResizeFailed: 		State set when resize has failed in resize controller with a terminal error. 	- NodeResizePending: 		State set when resize controller has finished resizing the volume but further resizing of 		volume is needed on the node. 	- NodeResizeInProgress: 		State set when kubelet starts resizing the volume. 	- NodeResizeFailed: 		State set when resizing has failed in kubelet with a terminal error. Transient errors don’t set 		NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: 	- pvc.status.allocatedResourceStatus['storage'] = "ControllerResizeInProgress"      - pvc.status.allocatedResourceStatus['storage'] = "ControllerResizeFailed"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizePending"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeInProgress"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeFailed" When this field is not set, it means that no resize operation is in progress for the given PVC. A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
-| `allocatedResources` | `integer-or-string` | allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: 	* Un-prefixed keys: 		- storage - the capacity of the volume. 	* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used. Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
+| `allocatedResourceStatuses` | `object (string)` | allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: 	* Un-prefixed keys: 		- storage - the capacity of the volume. 	* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.<br>ClaimResourceStatus can be in any of following states: 	- ControllerResizeInProgress: 		State set when resize controller starts resizing the volume in control-plane. 	- ControllerResizeFailed: 		State set when resize has failed in resize controller with a terminal error. 	- NodeResizePending: 		State set when resize controller has finished resizing the volume but further resizing of 		volume is needed on the node. 	- NodeResizeInProgress: 		State set when kubelet starts resizing the volume. 	- NodeResizeFailed: 		State set when resizing has failed in kubelet with a terminal error. Transient errors don’t set 		NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: 	- pvc.status.allocatedResourceStatus['storage'] = "ControllerResizeInProgress"      - pvc.status.allocatedResourceStatus['storage'] = "ControllerResizeFailed"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizePending"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeInProgress"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeFailed" When this field is not set, it means that no resize operation is in progress for the given PVC.<br>A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
+| `allocatedResources` | `integer-or-string` | allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: 	* Un-prefixed keys: 		- storage - the capacity of the volume. 	* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.<br>Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.<br>A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
 | `capacity` | `integer-or-string` | capacity represents the actual resources of the underlying volume. |
 | `conditions` | `array` | conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'. |
 | `conditions[]` | `object` | PersistentVolumeClaimCondition contains details about state of pvc |
 | `currentVolumeAttributesClassName` | `string` | currentVolumeAttributesClassName is the current name of the VolumeAttributesClass the PVC is using. When unset, there is no VolumeAttributeClass applied to this PersistentVolumeClaim |
 | `modifyVolumeStatus` | `object` | ModifyVolumeStatus represents the status object of ControllerModifyVolume operation. When this is unset, there is no ModifyVolume operation being attempted. |
 | `phase` | `string` | phase represents the current phase of PersistentVolumeClaim. |
+
 ### .spec.storage.volumeClaimTemplate.status.conditions {id="_specstoragevolumeclaimtemplatestatusconditions"}
 
 Description
@@ -5731,6 +5995,7 @@ Required
 | `reason` | `string` | reason is a unique, this should be a short, machine understandable string that gives the reason for condition’s last transition. If it reports "Resizing" that means the underlying persistent volume is being resized. |
 | `status` | `string` | Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=state%20of%20pvc-,conditions.status,-(string)%2C%20required |
 | `type` | `string` | Type is the type of the condition. More info: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/#:~:text=set%20to%20%27ResizeStarted%27.-,PersistentVolumeClaimCondition,-contains%20details%20about |
+
 ### .spec.storage.volumeClaimTemplate.status.modifyVolumeStatus {id="_specstoragevolumeclaimtemplatestatusmodifyvolumestatus"}
 
 Description
@@ -5749,6 +6014,7 @@ Required
 | --- | --- | --- |
 | `status` | `string` | status is the status of the ControllerModifyVolume operation. It can be in any of following states:  - Pending    Pending indicates that the PersistentVolumeClaim cannot be modified due to unmet requirements, such as    the specified VolumeAttributesClass not existing.  - InProgress    InProgress indicates that the volume is being modified.  - Infeasible   Infeasible indicates that the request has been rejected as invalid by the CSI driver. To 	  resolve the error, a valid VolumeAttributesClass needs to be specified. Note: New statuses can be added in the future. Consumers should check for unknown statuses and fail appropriately. |
 | `targetVolumeAttributesClassName` | `string` | targetVolumeAttributesClassName is the name of the VolumeAttributesClass the PVC currently being reconciled |
+
 ### .spec.tolerations {id="_spectolerations"}
 
 Description
@@ -5775,6 +6041,7 @@ Type
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists, Equal, Lt, and Gt. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category. Lt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators). |
 | `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. |
+
 ### .spec.topologySpreadConstraints {id="_spectopologyspreadconstraints"}
 
 Description
@@ -5802,21 +6069,14 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `labelSelector` | `object` | LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. |
-| `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn’t set. Keys that don’t exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector. This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default). |
-| `maxSkew` | `integer` | MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. \ |
-| zone1 \ | zone2 \ | zone3 \ |
-| \ | P P  \ | P P  \ |
-| P   \ | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It’s a required field. Default value is 1 and 0 is not allowed. | `minDomains` |
-| `integer` | MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won’t schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule. For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: \ | zone1 \ |
-| zone2 \ | zone3 \ | \ |
-| P P  \ | P P  \ | P P  \ |
-| The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. | `nodeAffinityPolicy` | `string` |
-| NodeAffinityPolicy indicates how we will treat Pod’s nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations. If this value is nil, the behavior is equivalent to the Honor policy. | `nodeTaintsPolicy` | `string` |
-| NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included. If this value is nil, the behavior is equivalent to the Ignore policy. | `topologyKey` | `string` |
-| TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each &lt;key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It’s a required field. | `whenUnsatisfiable` | `string` |
-| WhenUnsatisfiable indicates how to deal with a pod if it doesn’t satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered "Unsatisfiable" for an incoming pod if and only if every possible node assignment for that pod would violate "MaxSkew" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: \ | zone1 \ | zone2 \ |
-| zone3 \ | \ | P P P \ |
-| P   \ | P   \ | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won’t make it **more** imbalanced. It’s a required field. |
+| `matchLabelKeys` | `array (string)` | MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector. MatchLabelKeys cannot be set when LabelSelector isn’t set. Keys that don’t exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.<br>This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default). |
+| `maxSkew` | `integer` | MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. \| zone1 \| zone2 \| zone3 \| \|  P P  \|  P P  \|   P   \| - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It’s a required field. Default value is 1 and 0 is not allowed. |
+| `minDomains` | `integer` | MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won’t schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.<br>For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: \| zone1 \| zone2 \| zone3 \| \|  P P  \|  P P  \|  P P  \| The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew. |
+| `nodeAffinityPolicy` | `string` | NodeAffinityPolicy indicates how we will treat Pod’s nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.<br>If this value is nil, the behavior is equivalent to the Honor policy. |
+| `nodeTaintsPolicy` | `string` | NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.<br>If this value is nil, the behavior is equivalent to the Ignore policy. |
+| `topologyKey` | `string` | TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each &lt;key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It’s a required field. |
+| `whenUnsatisfiable` | `string` | WhenUnsatisfiable indicates how to deal with a pod if it doesn’t satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered "Unsatisfiable" for an incoming pod if and only if every possible node assignment for that pod would violate "MaxSkew" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: \| zone1 \| zone2 \| zone3 \| \| P P P \|   P   \|   P   \| If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won’t make it **more** imbalanced. It’s a required field. |
+
 ### .spec.topologySpreadConstraints[].labelSelector {id="_spectopologyspreadconstraintslabelselector"}
 
 Description
@@ -5833,6 +6093,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.topologySpreadConstraints[].labelSelector.matchExpressions {id="_spectopologyspreadconstraintslabelselectormatchexpressions"}
 
 Description
@@ -5862,6 +6123,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.updateStrategy {id="_specupdatestrategy"}
 
 Description
@@ -5883,7 +6145,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `rollingUpdate` | `object` | rollingUpdate is used to communicate parameters when type is RollingUpdate. |
-| `type` | `string` | type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate. |
+| `type` | `string` | type indicates the type of the StatefulSetUpdateStrategy.<br>Default is RollingUpdate. |
+
 ### .spec.updateStrategy.rollingUpdate {id="_specupdatestrategyrollingupdate"}
 
 Description
@@ -5896,6 +6159,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `maxUnavailable` | `integer-or-string` | maxUnavailable is the maximum number of pods that can be unavailable during the update. The value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0.  Defaults to 1. This field is alpha-level and is only honored by servers that enable the MaxUnavailableStatefulSet feature. The field applies to all pods in the range 0 to Replicas-1.  That means if there is any unavailable pod in the range 0 to Replicas-1, it will be counted towards MaxUnavailable. |
+
 ### .spec.volumeMounts {id="_specvolumemounts"}
 
 Description
@@ -5927,9 +6191,10 @@ Required
 | `mountPropagation` | `string` | mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10. When RecursiveReadOnly is set to IfPossible or to Enabled, MountPropagation must be None or unspecified (which defaults to None). |
 | `name` | `string` | This must match the Name of a Volume. |
 | `readOnly` | `boolean` | Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false. |
-| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively. If ReadOnly is false, this field has no meaning and must be unspecified. If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason. If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None). If this field is not specified, it is treated as an equivalent of Disabled. |
+| `recursiveReadOnly` | `string` | RecursiveReadOnly specifies whether read-only mounts should be handled recursively.<br>If ReadOnly is false, this field has no meaning and must be unspecified.<br>If ReadOnly is true, and this field is set to Disabled, the mount is not made recursively read-only.  If this field is set to IfPossible, the mount is made recursively read-only, if it is supported by the container runtime.  If this field is set to Enabled, the mount is made recursively read-only if it is supported by the container runtime, otherwise the pod will not be started and an error will be generated to indicate the reason.<br>If this field is set to IfPossible or Enabled, MountPropagation must be set to None (or be unspecified, which defaults to None).<br>If this field is not specified, it is treated as an equivalent of Disabled. |
 | `subPath` | `string` | Path within the volume from which the container’s volume should be mounted. Defaults to "" (volume’s root). |
 | `subPathExpr` | `string` | Expanded path within the volume from which the container’s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container’s environment. Defaults to "" (volume’s root). SubPathExpr and SubPath are mutually exclusive. |
+
 ### .spec.volumes {id="_specvolumes"}
 
 Description
@@ -5965,7 +6230,7 @@ Required
 | `csi` | `object` | csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers. |
 | `downwardAPI` | `object` | downwardAPI represents downward API about the pod that should populate this volume |
 | `emptyDir` | `object` | emptyDir represents a temporary directory that shares a pod’s lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
-| `ephemeral` | `object` | ephemeral represents a volume that is handled by a cluster storage driver. The volume’s lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed. Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim). Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod. Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information. A pod can use both types of ephemeral volumes and persistent volumes at the same time. |
+| `ephemeral` | `object` | ephemeral represents a volume that is handled by a cluster storage driver. The volume’s lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.<br>Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).<br>Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.<br>Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.<br>A pod can use both types of ephemeral volumes and persistent volumes at the same time. |
 | `fc` | `object` | fc represents a Fibre Channel resource that is attached to a kubelet’s host machine and then exposed to the pod. |
 | `flexVolume` | `object` | flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider using a CSIDriver instead. |
 | `flocker` | `object` | flocker represents a Flocker volume attached to a kubelet’s host machine. This depends on the Flocker control service being running. Deprecated: Flocker is deprecated and the in-tree flocker type is no longer supported. |
@@ -5973,7 +6238,7 @@ Required
 | `gitRepo` | `object` | gitRepo represents a git repository at a particular revision. Deprecated: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod’s container. |
 | `glusterfs` | `object` | glusterfs represents a Glusterfs mount on the host that shares a pod’s lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type is no longer supported. |
 | `hostPath` | `object` | hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
-| `image` | `object` | image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet’s host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided: - Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn’t present. - IfNotPresent: the kubelet pulls if the reference isn’t already present on disk. Container creation will fail if the reference isn’t present and the pull fails. The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type. |
+| `image` | `object` | image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet’s host machine. The volume is resolved at pod startup depending on which PullPolicy value is provided:<br>- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. - Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn’t present. - IfNotPresent: the kubelet pulls if the reference isn’t already present on disk. Container creation will fail if the reference isn’t present and the pull fails.<br>The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation. A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message. The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field. The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images. The volume will be mounted read-only (ro) and non-executable files (noexec). Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33. The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type. |
 | `iscsi` | `object` | iscsi represents an ISCSI Disk resource that is attached to a kubelet’s host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes/#iscsi |
 | `name` | `string` | name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `nfs` | `object` | nfs represents an NFS mount on the host that shares a pod’s lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
@@ -5987,6 +6252,7 @@ Required
 | `secret` | `object` | secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
 | `storageos` | `object` | storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is no longer supported. |
 | `vsphereVolume` | `object` | vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine. Deprecated: VsphereVolume is deprecated. All operations for the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com CSI driver. |
+
 ### .spec.volumes[].awsElasticBlockStore {id="_specvolumesawselasticblockstore"}
 
 Description
@@ -6010,6 +6276,7 @@ Required
 | `partition` | `integer` | partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). |
 | `readOnly` | `boolean` | readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore |
 | `volumeID` | `string` | volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore |
+
 ### .spec.volumes[].azureDisk {id="_specvolumesazuredisk"}
 
 Description
@@ -6034,6 +6301,7 @@ Required
 | `fsType` | `string` | fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. |
 | `kind` | `string` | kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared |
 | `readOnly` | `boolean` | readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
+
 ### .spec.volumes[].azureFile {id="_specvolumesazurefile"}
 
 Description
@@ -6055,6 +6323,7 @@ Required
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `secretName` | `string` | secretName is the  name of secret that contains Azure Storage Account Name and Key |
 | `shareName` | `string` | shareName is the azure share Name |
+
 ### .spec.volumes[].cephfs {id="_specvolumescephfs"}
 
 Description
@@ -6077,6 +6346,7 @@ Required
 | `secretFile` | `string` | secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it |
 | `secretRef` | `object` | secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it |
 | `user` | `string` | user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it |
+
 ### .spec.volumes[].cephfs.secretRef {id="_specvolumescephfssecretref"}
 
 Description
@@ -6090,6 +6360,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.volumes[].cinder {id="_specvolumescinder"}
 
 Description
@@ -6112,6 +6383,7 @@ Required
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md |
 | `secretRef` | `object` | secretRef is optional: points to a secret object containing parameters used to connect to OpenStack. |
 | `volumeID` | `string` | volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md |
+
 ### .spec.volumes[].cinder.secretRef {id="_specvolumescindersecretref"}
 
 Description
@@ -6125,6 +6397,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.volumes[].configMap {id="_specvolumesconfigmap"}
 
 Description
@@ -6141,6 +6414,7 @@ Type
 | `items[]` | `object` | Maps a string key to a path within a volume. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | optional specify whether the ConfigMap or its keys must be defined |
+
 ### .spec.volumes[].configMap.items {id="_specvolumesconfigmapitems"}
 
 Description
@@ -6175,6 +6449,7 @@ Required
 | `key` | `string` | key is the key to project. |
 | `mode` | `integer` | mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. |
+
 ### .spec.volumes[].csi {id="_specvolumescsi"}
 
 Description
@@ -6195,6 +6470,7 @@ Required
 | `nodePublishSecretRef` | `object` | nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed. |
 | `readOnly` | `boolean` | readOnly specifies a read-only configuration for the volume. Defaults to false (read/write). |
 | `volumeAttributes` | `object (string)` | volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver’s documentation for supported values. |
+
 ### .spec.volumes[].csi.nodePublishSecretRef {id="_specvolumescsinodepublishsecretref"}
 
 Description
@@ -6211,6 +6487,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.volumes[].downwardAPI {id="_specvolumesdownwardapi"}
 
 Description
@@ -6225,6 +6502,7 @@ Type
 | `defaultMode` | `integer` | Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `items` | `array` | Items is a list of downward API volume file |
 | `items[]` | `object` | DownwardAPIVolumeFile represents information to create the file containing the pod field |
+
 ### .spec.volumes[].downwardAPI.items {id="_specvolumesdownwardapiitems"}
 
 Description
@@ -6253,6 +6531,7 @@ Required
 | `mode` | `integer` | Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' |
 | `resourceFieldRef` | `object` | Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. |
+
 ### .spec.volumes[].downwardAPI.items[].fieldRef {id="_specvolumesdownwardapiitemsfieldref"}
 
 Description
@@ -6270,6 +6549,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | Version of the schema the FieldPath is written in terms of, defaults to "v1". |
 | `fieldPath` | `string` | Path of the field to select in the specified API version. |
+
 ### .spec.volumes[].downwardAPI.items[].resourceFieldRef {id="_specvolumesdownwardapiitemsresourcefieldref"}
 
 Description
@@ -6289,6 +6569,7 @@ Required
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
 | `divisor` | `integer-or-string` | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
+
 ### .spec.volumes[].emptyDir {id="_specvolumesemptydir"}
 
 Description
@@ -6303,6 +6584,7 @@ Type
 | --- | --- | --- |
 | `medium` | `string` | medium represents what type of storage medium should back this directory. The default is "" which means to use the node’s default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
 | `sizeLimit` | `integer-or-string` | sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir |
+
 ### .spec.volumes[].ephemeral {id="_specvolumesephemeral"}
 
 Description
@@ -6341,7 +6623,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `volumeClaimTemplate` | `object` | Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long). An existing PVC with that name that is not owned by the pod will **not** be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster. This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created. Required, must not be nil. |
+| `volumeClaimTemplate` | `object` | Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).<br>An existing PVC with that name that is not owned by the pod will **not** be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.<br>This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.<br>Required, must not be nil. |
+
 ### .spec.volumes[].ephemeral.volumeClaimTemplate {id="_specvolumesephemeralvolumeclaimtemplate"}
 
 Description
@@ -6382,6 +6665,7 @@ Required
 | --- | --- | --- |
 | `metadata` | `object` | May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. |
 | `spec` | `object` | The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. |
+
 ### .spec.volumes[].ephemeral.volumeClaimTemplate.metadata {id="_specvolumesephemeralvolumeclaimtemplatemetadata"}
 
 Description
@@ -6416,6 +6700,7 @@ Type
 | `volumeAttributesClassName` | `string` | volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string or nil value indicates that no VolumeAttributesClass will be applied to the claim. If the claim enters an Infeasible error state, this field can be reset to its previous value (including nil) to cancel the modification. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ |
 | `volumeMode` | `string` | volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. |
 | `volumeName` | `string` | volumeName is the binding reference to the PersistentVolume backing this claim. |
+
 ### .spec.volumes[].ephemeral.volumeClaimTemplate.spec.dataSource {id="_specvolumesephemeralvolumeclaimtemplatespecdatasource"}
 
 Description
@@ -6442,6 +6727,7 @@ Required
 | `apiGroup` | `string` | APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. |
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
+
 ### .spec.volumes[].ephemeral.volumeClaimTemplate.spec.dataSourceRef {id="_specvolumesephemeralvolumeclaimtemplatespecdatasourceref"}
 
 Description
@@ -6484,6 +6770,7 @@ Required
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
 | `namespace` | `string` | Namespace is the namespace of resource being referenced Note that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace’s owner to accept the reference. See the ReferenceGrant documentation for details. (Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled. |
+
 ### .spec.volumes[].ephemeral.volumeClaimTemplate.spec.resources {id="_specvolumesephemeralvolumeclaimtemplatespecresources"}
 
 Description
@@ -6501,6 +6788,7 @@ Type
 | --- | --- | --- |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.volumes[].ephemeral.volumeClaimTemplate.spec.selector {id="_specvolumesephemeralvolumeclaimtemplatespecselector"}
 
 Description
@@ -6515,6 +6803,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.volumes[].ephemeral.volumeClaimTemplate.spec.selector.matchExpressions {id="_specvolumesephemeralvolumeclaimtemplatespecselectormatchexpressions"}
 
 Description
@@ -6544,6 +6833,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.volumes[].fc {id="_specvolumesfc"}
 
 Description
@@ -6560,6 +6850,7 @@ Type
 | `readOnly` | `boolean` | readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `targetWWNs` | `array (string)` | targetWWNs is Optional: FC target worldwide names (WWNs) |
 | `wwids` | `array (string)` | wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously. |
+
 ### .spec.volumes[].flexVolume {id="_specvolumesflexvolume"}
 
 Description
@@ -6582,6 +6873,7 @@ Required
 | `options` | `object (string)` | options is Optional: this field holds extra command options if any. |
 | `readOnly` | `boolean` | readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `secretRef` | `object` | secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. |
+
 ### .spec.volumes[].flexVolume.secretRef {id="_specvolumesflexvolumesecretref"}
 
 Description
@@ -6598,6 +6890,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.volumes[].flocker {id="_specvolumesflocker"}
 
 Description
@@ -6610,8 +6903,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `datasetName` | `string` | datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated |
+| `datasetName` | `string` | datasetName is Name of the dataset stored as metadata → name on the dataset for Flocker should be considered as deprecated |
 | `datasetUUID` | `string` | datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset |
+
 ### .spec.volumes[].gcePersistentDisk {id="_specvolumesgcepersistentdisk"}
 
 Description
@@ -6635,6 +6929,7 @@ Required
 | `partition` | `integer` | partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
 | `pdName` | `string` | pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk |
+
 ### .spec.volumes[].gitRepo {id="_specvolumesgitrepo"}
 
 Description
@@ -6656,6 +6951,7 @@ Required
 | `directory` | `string` | directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name. |
 | `repository` | `string` | repository is the URL |
 | `revision` | `string` | revision is the commit hash for the specified revision. |
+
 ### .spec.volumes[].glusterfs {id="_specvolumesglusterfs"}
 
 Description
@@ -6676,6 +6972,7 @@ Required
 | `endpoints` | `string` | endpoints is the endpoint name that details Glusterfs topology. |
 | `path` | `string` | path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod |
 | `readOnly` | `boolean` | readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod |
+
 ### .spec.volumes[].hostPath {id="_specvolumeshostpath"}
 
 Description
@@ -6697,6 +6994,7 @@ Required
 | --- | --- | --- |
 | `path` | `string` | path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
 | `type` | `string` | type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
+
 ### .spec.volumes[].image {id="_specvolumesimage"}
 
 Description
@@ -6724,6 +7022,7 @@ Type
 | --- | --- | --- |
 | `pullPolicy` | `string` | Policy for pulling OCI objects. Possible values are: Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails. Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn’t present. IfNotPresent: the kubelet pulls if the reference isn’t already present on disk. Container creation will fail if the reference isn’t present and the pull fails. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. |
 | `reference` | `string` | Required: Image or artifact reference to be used. Behaves in the same way as pod.spec.containers[*].image. Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets. |
+
 ### .spec.volumes[].iscsi {id="_specvolumesiscsi"}
 
 Description
@@ -6754,6 +7053,7 @@ Required
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. |
 | `secretRef` | `object` | secretRef is the CHAP Secret for iSCSI target and initiator authentication |
 | `targetPortal` | `string` | targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260). |
+
 ### .spec.volumes[].iscsi.secretRef {id="_specvolumesiscsisecretref"}
 
 Description
@@ -6766,6 +7066,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.volumes[].nfs {id="_specvolumesnfs"}
 
 Description
@@ -6786,6 +7087,7 @@ Required
 | `path` | `string` | path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
 | `readOnly` | `boolean` | readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
 | `server` | `string` | server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
+
 ### .spec.volumes[].persistentVolumeClaim {id="_specvolumespersistentvolumeclaim"}
 
 Description
@@ -6805,6 +7107,7 @@ Required
 | --- | --- | --- |
 | `claimName` | `string` | claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims |
 | `readOnly` | `boolean` | readOnly Will force the ReadOnly setting in VolumeMounts. Default false. |
+
 ### .spec.volumes[].photonPersistentDisk {id="_specvolumesphotonpersistentdisk"}
 
 Description
@@ -6823,6 +7126,7 @@ Required
 | --- | --- | --- |
 | `fsType` | `string` | fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. |
 | `pdID` | `string` | pdID is the ID that identifies Photon Controller persistent disk |
+
 ### .spec.volumes[].portworxVolume {id="_specvolumesportworxvolume"}
 
 Description
@@ -6844,6 +7148,7 @@ Required
 | `fsType` | `string` | fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified. |
 | `readOnly` | `boolean` | readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. |
 | `volumeID` | `string` | volumeID uniquely identifies a Portworx volume |
+
 ### .spec.volumes[].projected {id="_specvolumesprojected"}
 
 Description
@@ -6858,6 +7163,7 @@ Type
 | `defaultMode` | `integer` | defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `sources` | `array` | sources is the list of volume projections. Each entry in this list handles one source. |
 | `sources[]` | `object` | Projection that may be projected along with other supported volume types. Exactly one of these fields must be set. |
+
 ### .spec.volumes[].projected.sources {id="_specvolumesprojectedsources"}
 
 Description
@@ -6880,12 +7186,13 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `clusterTrustBundle` | `object` | ClusterTrustBundle allows a pod to access the `.spec.trustBundle` field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. |
+| `clusterTrustBundle` | `object` | ClusterTrustBundle allows a pod to access the `.spec.trustBundle` field of ClusterTrustBundle objects in an auto-updating file.<br>Alpha, gated by the ClusterTrustBundleProjection feature gate.<br>ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector.<br>Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem.  Esoteric PEM features such as inter-block comments and block headers are stripped.  Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time. |
 | `configMap` | `object` | configMap information about the configMap data to project |
 | `downwardAPI` | `object` | downwardAPI information about the downwardAPI data to project |
-| `podCertificate` | `object` | Projects an auto-rotating credential bundle (private key and certificate chain) that the pod can use either as a TLS client or server. Kubelet generates a private key and uses it to send a PodCertificateRequest to the named signer.  Once the signer approves the request and issues a certificate chain, Kubelet writes the key and certificate chain to the pod filesystem.  The pod does not start until certificates have been issued for each podCertificate projected volume source in its spec. Kubelet will begin trying to rotate the certificate at the time indicated by the signer using the PodCertificateRequest.Status.BeginRefreshAt timestamp. Kubelet can write a single file, indicated by the credentialBundlePath field, or separate files, indicated by the keyPath and certificateChainPath fields. The credential bundle is a single file in PEM format.  The first PEM entry is the private key (in PKCS#8 format), and the remaining PEM entries are the certificate chain issued by the signer (typically, signers will return their certificate chain in leaf-to-root order). Prefer using the credential bundle format, since your application code can read it atomically.  If you use keyPath and certificateChainPath, your application must make two separate file reads. If these coincide with a certificate rotation, it is possible that the private key and leaf certificate you read may not correspond to each other.  Your application will need to check for this condition, and re-read until they are consistent. The named signer controls chooses the format of the certificate it issues; consult the signer implementation’s documentation to learn how to use the certificates it issues. |
+| `podCertificate` | `object` | Projects an auto-rotating credential bundle (private key and certificate chain) that the pod can use either as a TLS client or server.<br>Kubelet generates a private key and uses it to send a PodCertificateRequest to the named signer.  Once the signer approves the request and issues a certificate chain, Kubelet writes the key and certificate chain to the pod filesystem.  The pod does not start until certificates have been issued for each podCertificate projected volume source in its spec.<br>Kubelet will begin trying to rotate the certificate at the time indicated by the signer using the PodCertificateRequest.Status.BeginRefreshAt timestamp.<br>Kubelet can write a single file, indicated by the credentialBundlePath field, or separate files, indicated by the keyPath and certificateChainPath fields.<br>The credential bundle is a single file in PEM format.  The first PEM entry is the private key (in PKCS#8 format), and the remaining PEM entries are the certificate chain issued by the signer (typically, signers will return their certificate chain in leaf-to-root order).<br>Prefer using the credential bundle format, since your application code can read it atomically.  If you use keyPath and certificateChainPath, your application must make two separate file reads. If these coincide with a certificate rotation, it is possible that the private key and leaf certificate you read may not correspond to each other.  Your application will need to check for this condition, and re-read until they are consistent.<br>The named signer controls chooses the format of the certificate it issues; consult the signer implementation’s documentation to learn how to use the certificates it issues. |
 | `secret` | `object` | secret information about the secret data to project |
 | `serviceAccountToken` | `object` | serviceAccountToken is information about the serviceAccountToken data to project |
+
 ### .spec.volumes[].projected.sources[].clusterTrustBundle {id="_specvolumesprojectedsourcesclustertrustbundle"}
 
 Description
@@ -6921,6 +7228,7 @@ Required
 | `optional` | `boolean` | If true, don’t block pod startup if the referenced ClusterTrustBundle(s) aren’t available.  If using name, then the named ClusterTrustBundle is allowed not to exist.  If using signerName, then the combination of signerName and labelSelector is allowed to match zero ClusterTrustBundles. |
 | `path` | `string` | Relative path from the volume root to write the bundle. |
 | `signerName` | `string` | Select all ClusterTrustBundles that match this signer name. Mutually-exclusive with name.  The contents of all selected ClusterTrustBundles will be unified and deduplicated. |
+
 ### .spec.volumes[].projected.sources[].clusterTrustBundle.labelSelector {id="_specvolumesprojectedsourcesclustertrustbundlelabelselector"}
 
 Description
@@ -6938,6 +7246,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.volumes[].projected.sources[].clusterTrustBundle.labelSelector.matchExpressions {id="_specvolumesprojectedsourcesclustertrustbundlelabelselectormatchexpressions"}
 
 Description
@@ -6967,6 +7276,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.volumes[].projected.sources[].configMap {id="_specvolumesprojectedsourcesconfigmap"}
 
 Description
@@ -6982,6 +7292,7 @@ Type
 | `items[]` | `object` | Maps a string key to a path within a volume. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | optional specify whether the ConfigMap or its keys must be defined |
+
 ### .spec.volumes[].projected.sources[].configMap.items {id="_specvolumesprojectedsourcesconfigmapitems"}
 
 Description
@@ -7016,6 +7327,7 @@ Required
 | `key` | `string` | key is the key to project. |
 | `mode` | `integer` | mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. |
+
 ### .spec.volumes[].projected.sources[].downwardAPI {id="_specvolumesprojectedsourcesdownwardapi"}
 
 Description
@@ -7029,6 +7341,7 @@ Type
 | --- | --- | --- |
 | `items` | `array` | Items is a list of DownwardAPIVolume file |
 | `items[]` | `object` | DownwardAPIVolumeFile represents information to create the file containing the pod field |
+
 ### .spec.volumes[].projected.sources[].downwardAPI.items {id="_specvolumesprojectedsourcesdownwardapiitems"}
 
 Description
@@ -7057,6 +7370,7 @@ Required
 | `mode` | `integer` | Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' |
 | `resourceFieldRef` | `object` | Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. |
+
 ### .spec.volumes[].projected.sources[].downwardAPI.items[].fieldRef {id="_specvolumesprojectedsourcesdownwardapiitemsfieldref"}
 
 Description
@@ -7074,6 +7388,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | Version of the schema the FieldPath is written in terms of, defaults to "v1". |
 | `fieldPath` | `string` | Path of the field to select in the specified API version. |
+
 ### .spec.volumes[].projected.sources[].downwardAPI.items[].resourceFieldRef {id="_specvolumesprojectedsourcesdownwardapiitemsresourcefieldref"}
 
 Description
@@ -7093,6 +7408,7 @@ Required
 | `containerName` | `string` | Container name: required for volumes, optional for env vars |
 | `divisor` | `integer-or-string` | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
+
 ### .spec.volumes[].projected.sources[].podCertificate {id="_specvolumesprojectedsourcespodcertificate"}
 
 Description
@@ -7148,13 +7464,14 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `certificateChainPath` | `string` | Write the certificate chain at this path in the projected volume. Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
-| `credentialBundlePath` | `string` | Write the credential bundle at this path in the projected volume. The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key. The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates). Using credentialBundlePath lets your Pod’s application code make a single atomic read that retrieves a consistent key and certificate chain.  If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key. |
-| `keyPath` | `string` | Write the key at this path in the projected volume. Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
-| `keyType` | `string` | The type of keypair Kubelet will generate for the pod. Valid values are "RSA3072", "RSA4096", "ECDSAP256", "ECDSAP384", "ECDSAP521", and "ED25519". |
-| `maxExpirationSeconds` | `integer` | maxExpirationSeconds is the maximum lifetime permitted for the certificate. Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection. If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour).  The maximum allowable value is 7862400 (91 days). The signer implementation is then free to issue a certificate with any lifetime **shorter** than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour).  This constraint is enforced by kube-apiserver. `kubernetes.io` signers will never issue certificates with a lifetime longer than 24 hours. |
+| `certificateChainPath` | `string` | Write the certificate chain at this path in the projected volume.<br>Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
+| `credentialBundlePath` | `string` | Write the credential bundle at this path in the projected volume.<br>The credential bundle is a single file that contains multiple PEM blocks. The first PEM block is a PRIVATE KEY block, containing a PKCS#8 private key.<br>The remaining blocks are CERTIFICATE blocks, containing the issued certificate chain from the signer (leaf and any intermediates).<br>Using credentialBundlePath lets your Pod’s application code make a single atomic read that retrieves a consistent key and certificate chain.  If you project them to separate files, your application code will need to additionally check that the leaf certificate was issued to the key. |
+| `keyPath` | `string` | Write the key at this path in the projected volume.<br>Most applications should use credentialBundlePath.  When using keyPath and certificateChainPath, your application needs to check that the key and leaf certificate are consistent, because it is possible to read the files mid-rotation. |
+| `keyType` | `string` | The type of keypair Kubelet will generate for the pod.<br>Valid values are "RSA3072", "RSA4096", "ECDSAP256", "ECDSAP384", "ECDSAP521", and "ED25519". |
+| `maxExpirationSeconds` | `integer` | maxExpirationSeconds is the maximum lifetime permitted for the certificate.<br>Kubelet copies this value verbatim into the PodCertificateRequests it generates for this projection.<br>If omitted, kube-apiserver will set it to 86400(24 hours). kube-apiserver will reject values shorter than 3600 (1 hour).  The maximum allowable value is 7862400 (91 days).<br>The signer implementation is then free to issue a certificate with any lifetime **shorter** than MaxExpirationSeconds, but no shorter than 3600 seconds (1 hour).  This constraint is enforced by kube-apiserver. `kubernetes.io` signers will never issue certificates with a lifetime longer than 24 hours. |
 | `signerName` | `string` | Kubelet’s generated CSRs will be addressed to this signer. |
-| `userAnnotations` | `object (string)` | userAnnotations allow pod authors to pass additional information to the signer implementation.  Kubernetes does not restrict or validate this metadata in any way. These values are copied verbatim into the `spec.unverifiedUserAnnotations` field of the PodCertificateRequest objects that Kubelet creates. Entries are subject to the same validation as object metadata annotations, with the addition that all keys must be domain-prefixed. No restrictions are placed on values, except an overall size limitation on the entire field. Signers should document the keys and values they support. Signers should deny requests that contain keys they do not recognize. |
+| `userAnnotations` | `object (string)` | userAnnotations allow pod authors to pass additional information to the signer implementation.  Kubernetes does not restrict or validate this metadata in any way.<br>These values are copied verbatim into the `spec.unverifiedUserAnnotations` field of the PodCertificateRequest objects that Kubelet creates.<br>Entries are subject to the same validation as object metadata annotations, with the addition that all keys must be domain-prefixed. No restrictions are placed on values, except an overall size limitation on the entire field.<br>Signers should document the keys and values they support. Signers should deny requests that contain keys they do not recognize. |
+
 ### .spec.volumes[].projected.sources[].secret {id="_specvolumesprojectedsourcessecret"}
 
 Description
@@ -7170,6 +7487,7 @@ Type
 | `items[]` | `object` | Maps a string key to a path within a volume. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | optional field specify whether the Secret or its key must be defined |
+
 ### .spec.volumes[].projected.sources[].secret.items {id="_specvolumesprojectedsourcessecretitems"}
 
 Description
@@ -7204,6 +7522,7 @@ Required
 | `key` | `string` | key is the key to project. |
 | `mode` | `integer` | mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. |
+
 ### .spec.volumes[].projected.sources[].serviceAccountToken {id="_specvolumesprojectedsourcesserviceaccounttoken"}
 
 Description
@@ -7222,6 +7541,7 @@ Required
 | `audience` | `string` | audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver. |
 | `expirationSeconds` | `integer` | expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes. |
 | `path` | `string` | path is the path relative to the mount point of the file to project the token into. |
+
 ### .spec.volumes[].quobyte {id="_specvolumesquobyte"}
 
 Description
@@ -7245,6 +7565,7 @@ Required
 | `tenant` | `string` | tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin |
 | `user` | `string` | user to map volume access to Defaults to serivceaccount user |
 | `volume` | `string` | volume is a string that references an already created Quobyte volume by name. |
+
 ### .spec.volumes[].rbd {id="_specvolumesrbd"}
 
 Description
@@ -7270,6 +7591,7 @@ Required
 | `readOnly` | `boolean` | readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it |
 | `secretRef` | `object` | secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it |
 | `user` | `string` | user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it |
+
 ### .spec.volumes[].rbd.secretRef {id="_specvolumesrbdsecretref"}
 
 Description
@@ -7285,6 +7607,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.volumes[].scaleIO {id="_specvolumesscaleio"}
 
 Description
@@ -7313,6 +7636,7 @@ Required
 | `storagePool` | `string` | storagePool is the ScaleIO Storage Pool associated with the protection domain. |
 | `system` | `string` | system is the name of the storage system as configured in ScaleIO. |
 | `volumeName` | `string` | volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source. |
+
 ### .spec.volumes[].scaleIO.secretRef {id="_specvolumesscaleiosecretref"}
 
 Description
@@ -7326,6 +7650,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.volumes[].secret {id="_specvolumessecret"}
 
 Description
@@ -7343,6 +7668,7 @@ Type
 | `items[]` | `object` | Maps a string key to a path within a volume. |
 | `optional` | `boolean` | optional field specify whether the Secret or its keys must be defined |
 | `secretName` | `string` | secretName is the name of the secret in the pod’s namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
+
 ### .spec.volumes[].secret.items {id="_specvolumessecretitems"}
 
 Description
@@ -7377,6 +7703,7 @@ Required
 | `key` | `string` | key is the key to project. |
 | `mode` | `integer` | mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. |
 | `path` | `string` | path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. |
+
 ### .spec.volumes[].storageos {id="_specvolumesstorageos"}
 
 Description
@@ -7394,6 +7721,7 @@ Type
 | `secretRef` | `object` | secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted. |
 | `volumeName` | `string` | volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace. |
 | `volumeNamespace` | `string` | volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod’s namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created. |
+
 ### .spec.volumes[].storageos.secretRef {id="_specvolumesstorageossecretref"}
 
 Description
@@ -7407,6 +7735,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .spec.volumes[].vsphereVolume {id="_specvolumesvspherevolume"}
 
 Description
@@ -7428,6 +7757,7 @@ Required
 | `storagePolicyID` | `string` | storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName. |
 | `storagePolicyName` | `string` | storagePolicyName is the storage Policy Based Management (SPBM) profile name. |
 | `volumePath` | `string` | volumePath is the path that identifies vSphere volume vmdk |
+
 ### .spec.web {id="_specweb"}
 
 Description
@@ -7443,6 +7773,7 @@ Type
 | `httpConfig` | `object` | httpConfig defines HTTP parameters for web server. |
 | `timeout` | `integer` | timeout for HTTP requests. This corresponds to the Alertmanager’s `--web.timeout` flag. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS parameters for HTTPS. |
+
 ### .spec.web.httpConfig {id="_specwebhttpconfig"}
 
 Description
@@ -7456,6 +7787,7 @@ Type
 | --- | --- | --- |
 | `headers` | `object` | headers defines a list of headers that can be added to HTTP responses. |
 | `http2` | `boolean` | http2 enable HTTP/2 support. Note that HTTP/2 is only supported with TLS. When TLSConfig is not configured, HTTP/2 will be disabled. Whenever the value of the field changes, a rolling update will be triggered. |
+
 ### .spec.web.httpConfig.headers {id="_specwebhttpconfigheaders"}
 
 Description
@@ -7472,6 +7804,7 @@ Type
 | `xContentTypeOptions` | `string` | xContentTypeOptions defines the X-Content-Type-Options header to HTTP responses. Unset if blank. Accepted value is nosniff. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options |
 | `xFrameOptions` | `string` | xFrameOptions defines the X-Frame-Options header to HTTP responses. Unset if blank. Accepted values are deny and sameorigin. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options |
 | `xXSSProtection` | `string` | xXSSProtection defines the X-XSS-Protection header to all responses. Unset if blank. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection |
+
 ### .spec.web.tlsConfig {id="_specwebtlsconfig"}
 
 Description
@@ -7483,18 +7816,19 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `cert` | `object` | cert defines the Secret or ConfigMap containing the TLS certificate for the web server. Either `keySecret` or `keyFile` must be defined. It is mutually exclusive with `certFile`. |
-| `certFile` | `string` | certFile defines the path to the TLS certificate file in the container for the web server. Either `keySecret` or `keyFile` must be defined. It is mutually exclusive with `cert`. |
-| `cipherSuites` | `array (string)` | cipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2. If not defined, the Go default cipher suites are used. Available cipher suites are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants |
-| `clientAuthType` | `string` | clientAuthType defines the server policy for client TLS authentication. For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType |
-| `clientCAFile` | `string` | clientCAFile defines the path to the CA certificate file for client certificate authentication to the server. It is mutually exclusive with `client_ca`. |
-| `client_ca` | `object` | client_ca defines the Secret or ConfigMap containing the CA certificate for client certificate authentication to the server. It is mutually exclusive with `clientCAFile`. |
-| `curvePreferences` | `array (string)` | curvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order. Available curves are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#CurveID |
-| `keyFile` | `string` | keyFile defines the path to the TLS private key file in the container for the web server. If defined, either `cert` or `certFile` must be defined. It is mutually exclusive with `keySecret`. |
-| `keySecret` | `object` | keySecret defines the secret containing the TLS private key for the web server. Either `cert` or `certFile` must be defined. It is mutually exclusive with `keyFile`. |
+| `cert` | `object` | cert defines the Secret or ConfigMap containing the TLS certificate for the web server.<br>Either `keySecret` or `keyFile` must be defined.<br>It is mutually exclusive with `certFile`. |
+| `certFile` | `string` | certFile defines the path to the TLS certificate file in the container for the web server.<br>Either `keySecret` or `keyFile` must be defined.<br>It is mutually exclusive with `cert`. |
+| `cipherSuites` | `array (string)` | cipherSuites defines the list of supported cipher suites for TLS versions up to TLS 1.2.<br>If not defined, the Go default cipher suites are used. Available cipher suites are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#pkg-constants |
+| `clientAuthType` | `string` | clientAuthType defines the server policy for client TLS authentication.<br>For more detail on clientAuth options: https://golang.org/pkg/crypto/tls/#ClientAuthType |
+| `clientCAFile` | `string` | clientCAFile defines the path to the CA certificate file for client certificate authentication to the server.<br>It is mutually exclusive with `client_ca`. |
+| `client_ca` | `object` | client_ca defines the Secret or ConfigMap containing the CA certificate for client certificate authentication to the server.<br>It is mutually exclusive with `clientCAFile`. |
+| `curvePreferences` | `array (string)` | curvePreferences defines elliptic curves that will be used in an ECDHE handshake, in preference order.<br>Available curves are documented in the Go documentation: https://golang.org/pkg/crypto/tls/#CurveID |
+| `keyFile` | `string` | keyFile defines the path to the TLS private key file in the container for the web server.<br>If defined, either `cert` or `certFile` must be defined.<br>It is mutually exclusive with `keySecret`. |
+| `keySecret` | `object` | keySecret defines the secret containing the TLS private key for the web server.<br>Either `cert` or `certFile` must be defined.<br>It is mutually exclusive with `keyFile`. |
 | `maxVersion` | `string` | maxVersion defines the Maximum TLS version that is acceptable. |
 | `minVersion` | `string` | minVersion defines the minimum TLS version that is acceptable. |
-| `preferServerCipherSuites` | `boolean` | preferServerCipherSuites defines whether the server selects the client’s most preferred cipher suite, or the server’s most preferred cipher suite. If true then the server’s preference, as expressed in the order of elements in cipherSuites, is used. |
+| `preferServerCipherSuites` | `boolean` | preferServerCipherSuites defines whether the server selects the client’s most preferred cipher suite, or the server’s most preferred cipher suite.<br>If true then the server’s preference, as expressed in the order of elements in cipherSuites, is used. |
+
 ### .spec.web.tlsConfig.cert {id="_specwebtlsconfigcert"}
 
 Description
@@ -7514,6 +7848,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.web.tlsConfig.cert.configMap {id="_specwebtlsconfigcertconfigmap"}
 
 Description
@@ -7532,6 +7867,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.web.tlsConfig.cert.secret {id="_specwebtlsconfigcertsecret"}
 
 Description
@@ -7550,6 +7886,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.web.tlsConfig.client_ca {id="_specwebtlsconfigclient_ca"}
 
 Description
@@ -7567,6 +7904,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.web.tlsConfig.client_ca.configMap {id="_specwebtlsconfigclient_caconfigmap"}
 
 Description
@@ -7585,6 +7923,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.web.tlsConfig.client_ca.secret {id="_specwebtlsconfigclient_casecret"}
 
 Description
@@ -7603,6 +7942,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.web.tlsConfig.keySecret {id="_specwebtlsconfigkeysecret"}
 
 Description
@@ -7627,6 +7967,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .status {id="_status"}
 
 Description
@@ -7648,6 +7989,7 @@ Type
 | `selector` | `string` | selector used to match the pods targeted by this Alertmanager object. |
 | `unavailableReplicas` | `integer` | unavailableReplicas defines the total number of unavailable pods targeted by this Alertmanager object. |
 | `updatedReplicas` | `integer` | updatedReplicas defines the total number of non-terminated pods targeted by this Alertmanager object that have the desired version spec. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -7688,20 +8030,20 @@ The following API endpoints are available:
 
 *   `/apis/monitoring.coreos.com/v1/alertmanagers`
     *   `GET`: list objects of kind Alertmanager
-*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/alertmanagers`
+*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/alertmanagers`{minja}
     *   `DELETE`: delete collection of Alertmanager
     *   `GET`: list objects of kind Alertmanager
     *   `POST`: create an Alertmanager
-*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/alertmanagers/{{ name }}`
+*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/alertmanagers/{{ name }}`{minja}
     *   `DELETE`: delete an Alertmanager
     *   `GET`: read the specified Alertmanager
     *   `PATCH`: partially update the specified Alertmanager
     *   `PUT`: replace the specified Alertmanager
-*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/alertmanagers/{{ name }}/scale`
+*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/alertmanagers/{{ name }}/scale`{minja}
     *   `GET`: read scale of the specified Alertmanager
     *   `PATCH`: partially update scale of the specified Alertmanager
     *   `PUT`: replace scale of the specified Alertmanager
-*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/alertmanagers/{{ name }}/status`
+*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/alertmanagers/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Alertmanager
     *   `PATCH`: partially update status of the specified Alertmanager
     *   `PUT`: replace status of the specified Alertmanager

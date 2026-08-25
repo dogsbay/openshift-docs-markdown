@@ -7,7 +7,7 @@ title: Postinstallation network configuration
 # Postinstallation network configuration {id="virt-post-install-network-config"}
 {%- set context = "virt-post-install-network-config" %}
 
-By default, {{ VirtProductName }} uses a single internal pod network after installation.
+By default, {{ VirtProductName }} uses a single internal pod network after installation. {._abstract}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 After you install {{ VirtProductName }}, you can install networking Operators and configure additional networks.
@@ -38,7 +38,7 @@ After you install {{ VirtProductName }}, you can install networking Operators an
 {% leveloffset +1 %}{% include "./modules/virt-configuring-cdiuploadproxy-routes.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
 *   [SR-IOV Operator](/networking/hardware_networks/about-sriov#about-sriov)
 *   [About MetalLB and the MetalLB Operator](/networking/networking_operators/metallb-operator/about-metallb#about-metallb)

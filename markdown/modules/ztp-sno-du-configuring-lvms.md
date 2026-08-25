@@ -13,7 +13,7 @@ The recommended storage solution for {{ sno }} is the Local Storage Operator. Al
 
 The following YAML example configures the storage of the node to be available to {{ product_title }} applications.
 
-```yaml title="Recommended LVMCluster configuration (StorageLVMCluster.yaml)"
+```yaml title="Recommended LVMCluster configuration (StorageLVMCluster.yaml)" {minja}
 {% include "./snippets/ztp_StorageLVMCluster.yaml" %}
 ```
 

@@ -12,6 +12,7 @@ Description
     In earlier releases, a {{ ztp }} plugin supported the generation of installation CRs from `SiteConfig` CRs.
     This plugin is now deprecated.
     A separate {{ ztp }} plugin is available to enable automatic wrapping of configuration CRs into policies based on the `PolicyGenerator` or the `PolicyGenTemplate` CRs.
+
     You can deploy and manage multiple versions of {{ product_title }} on managed clusters by using the baseline reference configuration CRs.
     You can use custom CRs alongside the baseline CRs.
     To maintain multiple per-version policies simultaneously, use Git to manage the versions of the source and policy CRs by using the `PolicyGenerator` or the `PolicyGenTemplate` CRs. {._abstract}

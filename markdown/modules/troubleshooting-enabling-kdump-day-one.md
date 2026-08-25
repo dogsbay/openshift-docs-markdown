@@ -27,7 +27,7 @@ For the ppc64le platform:
 
 :::note
 
-See "Customizing nodes" in the _Installing -> Installation configuration_ section for more information and examples on how to use Ignition configs.
+See "Customizing nodes" in the _Installing → Installation configuration_ section for more information and examples on how to use Ignition configs.
 
 :::
 
@@ -38,11 +38,11 @@ See "Customizing nodes" in the _Installing -> Installation configuration_ sectio
 
     :::note
 
-{% include "./snippets/butane-version.md" %}
+    {% include "./snippets/butane-version.md" %}
     
     :::
 
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:
@@ -79,7 +79,7 @@ See "Customizing nodes" in the _Installing -> Installation configuration_ sectio
     ```
 
     where
-:   *   Replace `worker` with `master` in both locations when creating a `MachineConfig` object for control plane nodes.
+    :   *   Replace `worker` with `master` in both locations when creating a `MachineConfig` object for control plane nodes.
     *   Provide kernel arguments to reserve memory for the crash kernel. You can add other kernel arguments if necessary. For the `ppc64le` platform, the recommended value for `crashkernel` is `crashkernel=2G-4G:384M,4G-16G:512M,16G-64G:1G,64G-128G:2G,128G-:4G`.
     *   If you want to change the contents of `/etc/kdump.conf` from the default, include this section and modify the `inline` subsection accordingly.
     *   If you want to change the contents of `/etc/sysconfig/kdump` from the default, include this section and modify the `inline` subsection accordingly.

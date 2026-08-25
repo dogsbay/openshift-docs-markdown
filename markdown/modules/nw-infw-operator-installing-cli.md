@@ -52,7 +52,7 @@ As a cluster administrator, you can install the Ingress Node Firewall Operator t
     ```terminal
     $ oc get ip -n openshift-ingress-node-firewall
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME            CSV                                         APPROVAL    APPROVED
     install-5cvnz   ingress-node-firewall.{{ product_version }}.0-202211122336   Automatic   true
     ```
@@ -61,7 +61,7 @@ As a cluster administrator, you can install the Ingress Node Firewall Operator t
     ```terminal
     $ oc get csv -n openshift-ingress-node-firewall
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME                                        DISPLAY                          VERSION               REPLACES                                    PHASE
     ingress-node-firewall.{{ product_version }}.0-202211122336   Ingress Node Firewall Operator   {{ product_version }}.0-202211122336   ingress-node-firewall.{{ product_version }}.0-202211102047   Succeeded
     ```

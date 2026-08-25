@@ -34,7 +34,7 @@ Use the `LocalVolumeSet` object with caution. When you automatically provision p
 **Procedure**
 
 1.  Enable automatic discovery of local devices from the {{ product_title }} web console:
-    1.  Click **Ecosystem** -> **Installed Operators**.
+    1.  Click **Ecosystem** → **Installed Operators**.
     1.  In the `openshift-local-storage` namespace, click **Local Storage**.
     1.  Click the **Local Volume Discovery** tab.
     1.  Click **Create Local Volume Discovery** and then select either **Form view** or **YAML view**.
@@ -44,14 +44,14 @@ Use the `LocalVolumeSet` object with caution. When you automatically provision p
         The LSO creates a local volume discovery instance named `auto-discover-devices`.
 1.  Display a continuous list of available devices on a node:
     1.  Log in to the {{ product_title }} web console.
-    1.  Click **Compute** -> **Nodes**.
+    1.  Click **Compute** → **Nodes**.
     1.  Click the node name that you want to open. The "Node Details" page is displayed.
     1.  Click the **Disks** tab to display the list of the selected devices.
 
         The device list updates continuously as local disks are added or removed. You can filter the devices by name, status, type, model, capacity, and mode.
 1.  Automatically provision local volumes for the discovered devices from the {{ product_title }} web console:
-    1.  Click **Ecosystem** -> **Installed Operators** and select **Local Storage** from the list of Operators.
-    1.  Click **Local Volume Set** -> **Create Local Volume Set**.
+    1.  Click **Ecosystem** → **Installed Operators** and select **Local Storage** from the list of Operators.
+    1.  Click **Local Volume Set** → **Create Local Volume Set**.
     1.  Enter a volume set name and a storage class name.
     1.  Click **All nodes** or **Select nodes** to apply filters accordingly.
 

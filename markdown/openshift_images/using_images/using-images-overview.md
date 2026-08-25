@@ -3,12 +3,12 @@ title: Using images overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Using images overview {id="using-images-overview"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "using-images-overview" %}
 
-To build and deploy containerized applications in {{ product_title }}, you can use Source-to-Image (S2I), database, and other container images. These images provide the base components you need to run applications on your cluster.
+To build and deploy containerized applications in {{ product_title }}, you can use Source-to-Image (S2I), database, and other container images. These images provide the base components you need to run applications on your cluster. {._abstract}
 
 Red&#160;Hat official container images are provided in the Red&#160;Hat Registry at registry.redhat.io. {{ product_title }}'s supported S2I, database, and Jenkins images are provided in the `openshift4` repository in the {{ quay }} Registry. For example, `quay.io/openshift-release-dev/ocp-v4.0-<address>` is the name of an {{ product_title }} image.
 
@@ -24,7 +24,7 @@ The newer versions of container images are not compatible with earlier versions 
 :::
 
 
-## Additional resources {id="additional-resources_using-images-overview"}
+## Additional resources {id="additional-resources_using-images-overview" ._additional-resources}
 
 *   [Red Hat container registry](https://registry.redhat.io)
 *   [Container images section of the Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/containers/explore)

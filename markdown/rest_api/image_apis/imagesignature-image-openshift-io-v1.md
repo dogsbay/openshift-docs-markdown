@@ -1,5 +1,5 @@
 ---
-title: "ImageSignature []"
+title: "ImageSignature [image.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -39,6 +39,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
+
 ### .conditions {id="_conditions"}
 
 Description
@@ -70,6 +71,7 @@ Required
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
+
 ### .issuedBy {id="_issuedby"}
 
 Description
@@ -83,6 +85,7 @@ Type
 | --- | --- | --- |
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
+
 ### .issuedTo {id="_issuedto"}
 
 Description
@@ -108,7 +111,7 @@ The following API endpoints are available:
 
 *   `/apis/image.openshift.io/v1/imagesignatures`
     *   `POST`: create an ImageSignature
-*   `/apis/image.openshift.io/v1/imagesignatures/{{ name }}`
+*   `/apis/image.openshift.io/v1/imagesignatures/{{ name }}`{minja}
     *   `DELETE`: delete an ImageSignature
 
 ### /apis/image.openshift.io/v1/imagesignatures {id="_apisimageopenshiftiov1imagesignatures"}

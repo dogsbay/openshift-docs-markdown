@@ -27,11 +27,11 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
     apiVersion: v1
     kind: Namespace
     metadata:
-      name: openshift-operators-redhat # (1)
+      name: openshift-operators-redhat (1)
       annotations:
         openshift.io/node-selector: ""
       labels:
-        openshift.io/cluster-monitoring: "true" # (2)
+        openshift.io/cluster-monitoring: "true" (2)
     ```
     1.  You must specify the `openshift-operators-redhat` namespace. The `openshift-operators`
     namespace might contain Community Operators, which are untrusted and could publish
@@ -47,7 +47,7 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
     apiVersion: v1
     kind: Namespace
     metadata:
-      name: openshift-logging # (1)
+      name: openshift-logging (1)
       annotations:
         openshift.io/node-selector: ""
       labels:
@@ -64,7 +64,7 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
     kind: OperatorGroup
     metadata:
       name: openshift-operators-redhat
-      namespace: openshift-operators-redhat # (1)
+      namespace: openshift-operators-redhat (1)
     spec: {}
     ```
     1.  You must specify the `openshift-operators-redhat` namespace.
@@ -73,17 +73,17 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
     $ oc apply -f <filename>.yaml
     ```
 1.  Create a `Subscription` object to subscribe a namespace to the {{ es_op }}:
-{% include "./snippets/logging-stable-updates-snip.md" %}
+    {% include "./snippets/logging-stable-updates-snip.md" %}
     ```yaml title="Example Subscription object"
     apiVersion: operators.coreos.com/v1alpha1
     kind: Subscription
     metadata:
       name: elasticsearch-operator
-      namespace: openshift-operators-redhat # (1)
+      namespace: openshift-operators-redhat (1)
     spec:
-      channel: <channel> # (2)
-      installPlanApproval: Automatic # (3)
-      source: redhat-operators # (4)
+      channel: <channel> (2)
+      installPlanApproval: Automatic (3)
+      source: redhat-operators (4)
       sourceNamespace: openshift-marketplace
       name: elasticsearch-operator
     ```
@@ -119,10 +119,10 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
     kind: OperatorGroup
     metadata:
       name: cluster-logging
-      namespace: openshift-logging # (1)
+      namespace: openshift-logging (1)
     spec:
       targetNamespaces:
-      - openshift-logging # (2)
+      - openshift-logging (2)
     ```
     1.  You must specify `openshift-logging` as the namespace for logging versions 5.7 and earlier. For logging 5.8 and later, you can use any namespace.
     1.  You must specify `openshift-logging` as the namespace for logging versions 5.7 and earlier. For logging 5.8 and later, you can use any namespace.
@@ -136,11 +136,11 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
     kind: Subscription
     metadata:
       name: cluster-logging
-      namespace: openshift-logging # (1)
+      namespace: openshift-logging (1)
     spec:
-      channel: stable # (2)
+      channel: stable (2)
       name: cluster-logging
-      source: redhat-operators # (3)
+      source: redhat-operators (3)
       sourceNamespace: openshift-marketplace
     ```
     1.  You must specify the `openshift-logging` namespace for logging versions 5.7 and older. For logging 5.8 and later versions, you can use any namespace.
@@ -155,13 +155,13 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
     apiVersion: logging.openshift.io/v1
     kind: ClusterLogging
     metadata:
-      name: instance # (1)
+      name: instance (1)
       namespace: openshift-logging
     spec:
-      managementState: Managed # (2)
+      managementState: Managed (2)
       logStore:
-        type: elasticsearch # (3)
-        retentionPolicy: # (4)
+        type: elasticsearch (3)
+        retentionPolicy: (4)
           application:
             maxAge: 1d
           infra:
@@ -169,16 +169,16 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
           audit:
             maxAge: 7d
         elasticsearch:
-          nodeCount: 3 # (5)
+          nodeCount: 3 (5)
           storage:
-            storageClassName: <storage_class_name> # (6)
+            storageClassName: <storage_class_name> (6)
             size: 200G
-          resources: # (7)
+          resources: (7)
               limits:
                 memory: 16Gi
               requests:
                 memory: 16Gi
-          proxy: # (8)
+          proxy: (8)
             resources:
               limits:
                 memory: 256Mi
@@ -186,11 +186,11 @@ Elasticsearch is a memory-intensive application. By default, {{ product_title }}
                 memory: 256Mi
           redundancyPolicy: SingleRedundancy
       visualization:
-        type: kibana # (9)
+        type: kibana (9)
         kibana:
           replicas: 1
       collection:
-        type: fluentd # (10)
+        type: fluentd (10)
         fluentd: {}
     ```
     1.  The name must be `instance`.

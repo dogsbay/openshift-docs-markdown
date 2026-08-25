@@ -7,12 +7,9 @@
 
 Use the `06_workers.json` Azure Resource Manager (ARM) template to deploy worker machines for your {{ product_title }} cluster. {._abstract}
 
-<details>
-<summary>`06_workers.json` ARM template</summary>
-
-```json
-{%- if not ash %}
-```json
+:::details{title="`06_workers.json` ARM template"}
+```json {minja}
+{% if not ash %}
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -187,10 +184,8 @@ Use the `06_workers.json` Azure Resource Manager (ARM) template to deploy worker
     }
   ]
 }
-```
 {% endif %}
 {% if ash %}
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -368,11 +363,10 @@ Use the `06_workers.json` Azure Resource Manager (ARM) template to deploy worker
     }
   ]
 }
+{% endif %}
 ```
-{%- endif %}
-```
-</details>
+:::
 
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}

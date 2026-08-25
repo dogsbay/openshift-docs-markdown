@@ -10,7 +10,7 @@ You can use the {{ oc_first }} tool to create your project for this tutorial. {.
     $ oc new-project ostoy
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     Now using project "ostoy" on server "https://api.myrosacluster.abcd.p1.openshiftapps.com:6443".
     ```

@@ -6,6 +6,7 @@ Features which are Generally Available (GA) are fully supported and are suitable
 The following table provides information about which {{ ServerlessProductName }} features are GA and which are TP:
 
 {%- if openshift_enterprise or openshift_dedicated %}
+
 **Generally Available and Technology Preview features tracker**
 
 | Feature | 1.26 | 1.27 | 1.28 |
@@ -25,9 +26,11 @@ The following table provides information about which {{ ServerlessProductName }}
 | TLS for internal traffic | TP | TP | TP |
 | Namespace-scoped brokers | - | TP | TP |
 | `multi-container support` | - | - | TP |
+
 {% endif %}
 
 {%- if openshift_rosa %}
+
 **Generally Available and Technology Preview features tracker**
 
 | Feature | 1.26 | 1.27 | 1.28 |
@@ -43,4 +46,5 @@ The following table provides information about which {{ ServerlessProductName }}
 | TLS for internal traffic | TP | TP | TP |
 | Namespace-scoped brokers | - | TP | TP |
 | `multi-container support` | - | - | TP |
+
 {% endif %}

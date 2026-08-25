@@ -11,7 +11,7 @@ link. {._abstract}
 
 **Procedure**
 
-1.  From **Administration** -> **Custom Resource Definitions**, click **ConsoleExternalLogLink**.
+1.  From **Administration** → **Custom Resource Definitions**, click **ConsoleExternalLogLink**.
 1.  Select the **Instances** tab.
 1.  Click **Create Console External Log Link** and edit the file:
     ```yaml

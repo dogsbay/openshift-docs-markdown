@@ -124,7 +124,7 @@ where:
 
 `availabilityZone`
 :   This parameter is in the failure domain configuration and has an empty value here.
-{% include "./snippets/cpmso-failure-domain-param-precedence.md" %}
+    {% include "./snippets/cpmso-failure-domain-param-precedence.md" %}
 
 
 `tenancy`
@@ -142,7 +142,7 @@ where:
 
 `spec.template.spec.providerSpec.value.subnet`
 :   This parameter is in the failure domain configuration and has an empty value here.
-{% include "./snippets/cpmso-failure-domain-param-precedence.md" %}
+    {% include "./snippets/cpmso-failure-domain-param-precedence.md" %}
 
     :::note
 

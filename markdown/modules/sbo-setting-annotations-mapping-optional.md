@@ -20,9 +20,9 @@ As a service provider, to indicate whether you require annotations mapping, you 
     ```
 
 
-:::note
+    :::note
 
-*   If you set the `optional` flag value to `false` and the {{ servicebinding_title }} is unable to find the target path, the Operator fails the annotations mapping.
-*   If the `optional` flag has no value set, the {{ servicebinding_title }} considers the value as `false` by default and fails the annotations mapping.
-
-:::
+    *   If you set the `optional` flag value to `false` and the {{ servicebinding_title }} is unable to find the target path, the Operator fails the annotations mapping.
+    *   If the `optional` flag has no value set, the {{ servicebinding_title }} considers the value as `false` by default and fails the annotations mapping.
+    
+    :::

@@ -40,7 +40,7 @@ The local volume provisioner requires administrators to preconfigure the local v
                 mountDir: /mnt/local-storage/hdd
     ```
     1.  Name of the storage class.
-    1.  Path to the directory on the host. It must be a subdirectory of `**/mnt/local-storage**`.
+    1.  Path to the directory on the host. It must be a subdirectory of `*/mnt/local-storage*`.
     1.  Path to the directory in the provisioner Pod. We recommend using the same directory structure as used on the host and `mountDir` can be omitted in this case.
 1.  Create a standalone namespace for the local volume provisioner and its configuration, for example:
     ```
@@ -49,8 +49,8 @@ The local volume provisioner requires administrators to preconfigure the local v
 
 With this configuration, the provisioner creates:
 
-*   One PV with storage class `local-ssd` for every subdirectory mounted in the `**/mnt/local-storage/ssd**` directory
-*   One PV with storage class `local-hdd` for every subdirectory mounted in the `**/mnt/local-storage/hdd**` directory
+*   One PV with storage class `local-ssd` for every subdirectory mounted in the `*/mnt/local-storage/ssd*` directory
+*   One PV with storage class `local-hdd` for every subdirectory mounted in the `*/mnt/local-storage/hdd*` directory
 
 
 :::warning

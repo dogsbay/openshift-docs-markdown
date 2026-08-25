@@ -29,7 +29,7 @@ The PPC uses the `must-gather` data from your cluster to create the performance 
     $ vi run-perf-profile-creator.sh
     ```
 1.  Paste the following code into the file:
-    ```bash
+    ```bash {minja}
     #!/bin/bash
 
     readonly CONTAINER_RUNTIME=${CONTAINER_RUNTIME:-podman}
@@ -168,7 +168,7 @@ The PPC uses the `must-gather` data from your cluster to create the performance 
 
     :::note
 
-    You can optionally set a path for the Node Tuning Operator image using the `-p` option. If you do not set a path, the wrapper script uses the default image: `registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }}`.
+    You can optionally set a path for the Node Tuning Operator image using the `-p` option. If you do not set a path, the wrapper script uses the default image: `registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }}`{minja}.
     
     :::
 

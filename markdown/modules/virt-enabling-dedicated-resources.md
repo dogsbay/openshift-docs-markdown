@@ -17,7 +17,7 @@ You can enable dedicated resources for a {{ object }} in the **Details** tab. Vi
 
 **Procedure**
 
-1.  In the {{ product_title }} console, click **Virtualization** -> **{{ object_gui }}s** from the side menu.
+1.  In the {{ product_title }} console, click **Virtualization** → **{{ object_gui }}s** from the side menu.
 1.  Select a {{ object }} to open the **{{ object_gui }} details** page.
 1.  On the **{{ tab }}** tab, click the edit icon beside **Dedicated Resources**.
 1.  Select **Schedule this workload with dedicated resources (guaranteed policy)**.

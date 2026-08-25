@@ -39,8 +39,8 @@ spec:
       enabled: true
   fallbackArchitecture: amd64
 ```
-where:
 
+where:
 
 `metadata.name`
 :   Specifies the name of the object. You must set this parameter to `cluster`.

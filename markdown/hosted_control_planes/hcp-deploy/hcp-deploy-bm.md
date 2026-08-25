@@ -7,17 +7,19 @@ title: "Deploying {{ hcp }} on bare metal with the Agent platform"
 # Deploying {{ hcp }} on bare metal with the Agent platform {id="hcp-deploy-bm"}
 {%- set context = "hcp-deploy-bm" %}
 
-To maximize hardware performance and maintain control over your physical infrastructure, you can deploy {{ hcp }} on bare metal by using the Agent platform. This deployment method reduces virtualization overhead and offers low-latency networking for performance-intensive workloads.
+To maximize hardware performance and maintain control over your physical infrastructure, you can deploy {{ hcp }} on bare metal by using the Agent platform. This deployment method reduces virtualization overhead and offers low-latency networking for performance-intensive workloads. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hcp-bm-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Disabling the automatic import of hosted clusters into {{ mce_short }}](/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)
 
 {% leveloffset +1 %}{% include "./modules/hcp-bm-prepare.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
 *   [Persistent storage using {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms_persistent-storage-using-lvms)
@@ -25,6 +27,7 @@ To maximize hardware performance and maintain control over your physical infrast
 {% leveloffset +2 %}{% include "./modules/hcp-bm-firewall-port-svc-reqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 
@@ -33,6 +36,7 @@ To maximize hardware performance and maintain control over your physical infrast
 {% leveloffset +1 %}{% include "./modules/hcp-bm-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 *   [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
@@ -49,6 +53,7 @@ To maximize hardware performance and maintain control over your physical infrast
 {% leveloffset +2 %}{% include "./modules/hcp-bm-create-infra-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console-overview)
 
@@ -57,6 +62,7 @@ To maximize hardware performance and maintain control over your physical infrast
 {% leveloffset +2 %}{% include "./modules/hcp-bm-hc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually importing a hosted cluster](/hosted_control_planes/hcp-import#hcp-import)
 *   [Extracting the release image digest](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
@@ -65,6 +71,7 @@ To maximize hardware performance and maintain control over your physical infrast
 {% leveloffset +2 %}{% include "./modules/hcp-bm-hc-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a credential for an on-premises environment](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#creating-a-credential-for-an-on-premises-environment)
 *   [Accessing the web console](/web_console/web-console#web-console-overview)
@@ -73,6 +80,7 @@ To maximize hardware performance and maintain control over your physical infrast
 {% leveloffset +2 %}{% include "./modules/hcp-bm-hc-mirror.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Extracting the release image digest](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
 *   [Accessing the hosted cluster](/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-access_hcp-manage-bm)

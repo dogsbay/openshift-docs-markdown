@@ -44,7 +44,7 @@ You can share subnets within a configured VPC with another AWS user account if t
     ```
 
     You will attach this policy to a role necessary for the shared VPC permissions.
-1.  Create a custom trust policy file that grants permission to assume roles. Replace `<Account-ID>` with the **Cluster Creator’s** AWS account ID. The principal will be scoped down after the **Cluster Creator** creates the necessary cluster roles. On creation, you must create a root user placeholder by using the **Cluster Creator’s** AWS account ID as `arn:aws:iam::{{ Account }}:root`.
+1.  Create a custom trust policy file that grants permission to assume roles. Replace `<Account-ID>` with the **Cluster Creator’s** AWS account ID. The principal will be scoped down after the **Cluster Creator** creates the necessary cluster roles. On creation, you must create a root user placeholder by using the **Cluster Creator’s** AWS account ID as `arn:aws:iam::{{ Account }}:root`{minja}.
     ```terminal
     $ cat <<EOF > /tmp/shared-vpc-role.json
     {

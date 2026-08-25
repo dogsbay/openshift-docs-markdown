@@ -16,4 +16,4 @@ You must have an homogeneous vSphere 8 environment that only contains ESXi 8 hyp
 
 Limitations
 :   *   You must be running VMware vSphere version 8 or later, or VVF 9, or VCF 9.
-*   You can potentially exceed the limit of 2048 virtual disks per host if you increase the maximum number of volumes per node on enough nodes. This can occur because there is no Distributed Resource scheduler (DRS) validation for vSphere to ensure you do not exceed this limit.
+    *   You can potentially exceed the limit of 2048 virtual disks per host if you increase the maximum number of volumes per node on enough nodes. This can occur because there is no Distributed Resource scheduler (DRS) validation for vSphere to ensure you do not exceed this limit.

@@ -7,7 +7,7 @@ title: "Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxon
 # Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxone_title }} environment {id="post-install-configure-additional-devices-ibm-z"}
 {%- set context = "post-install-configure-additional-devices-ibm-z" %}
 
-After installing {{ product_title }}, you can configure additional devices for your cluster in an {{ ibm_z_name }} or {{ ibm_linuxone_name }} environment, which is installed with z/VM. 
+After installing {{ product_title }}, you can configure additional devices for your cluster in an {{ ibm_z_name }} or {{ ibm_linuxone_name }} environment, which is installed with z/VM.  {._abstract}
 
 The following devices can be configured:
 
@@ -27,12 +27,14 @@ The procedures described here apply only to z/VM installations. If you have inst
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Machine configuration overview](/machine_configuration/index#machine-config-overview)
 
 {% leveloffset +1 %}{% include "./modules/ibm-z-configure-devices-mco.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Install and configure the Local Storage Operator](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
 *   [Observing and updating the node network state and configuration](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)
@@ -40,6 +42,7 @@ The procedures described here apply only to z/VM installations. If you have inst
 {% leveloffset +1 %}{% include "./modules/ibm-z-configure-devices-manually.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [chzdev - Configure {{ ibm_z_name }} devices ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=commands-chzdev)
 *   [Persistent device configuration ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=linuxonibm/com.ibm.linux.z.ludd/ludd_c_perscfg.html)
@@ -49,6 +52,7 @@ The procedures described here apply only to z/VM installations. If you have inst
 {% leveloffset +1 %}{% include "./modules/ibm-z-enable-multipathing-fcp-luns.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Install and configure the Local Storage Operator](/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)
 *   [Observing and updating the node network state and configuration](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)

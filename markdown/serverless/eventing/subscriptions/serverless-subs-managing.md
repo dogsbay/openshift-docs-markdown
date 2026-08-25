@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing subscriptions {id="serverless-subs-managing"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing subscriptions {id="serverless-subs-managing"}
 {%- set context = "serverless-subs-managing" %}
 
 {% leveloffset +1 %}{% include "./modules/serverless-describe-subs-kn.md" %}{% endleveloffset %}

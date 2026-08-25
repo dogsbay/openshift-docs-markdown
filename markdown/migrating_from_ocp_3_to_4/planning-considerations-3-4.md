@@ -3,8 +3,8 @@ title: Network considerations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Network considerations {id="planning-considerations-3-4"}
 {% include "./_attributes/common-attributes.md" %}
+# Network considerations {id="planning-considerations-3-4"}
 {%- set context = "planning-considerations-3-4" %}
 
 Review the strategies for redirecting your application network traffic after migration.
@@ -19,6 +19,7 @@ To preserve the source DNS domain of migrated applications, select one of the tw
 {% leveloffset +2 %}{% include "./modules/migration-setting-up-target-cluster-to-accept-source-dns-domain.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Replacing the default ingress certificate](/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress) for more information.
 

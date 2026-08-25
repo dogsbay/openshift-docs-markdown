@@ -42,7 +42,7 @@ You can create the custom domain Ingress Controller by using the {{ oc_first }} 
     $ oc -n openshift-ingress get certificate.cert-manager.io/custom-domain-ingress-cert
     ```
 
-    ***Example output***
+    **Example output**
     ```text
     NAME                         READY   SECRET                           AGE
     custom-domain-ingress-cert   True    custom-domain-ingress-cert-tls   9m53s
@@ -82,7 +82,7 @@ You can create the custom domain Ingress Controller by using the {{ oc_first }} 
     $ oc -n openshift-ingress get service/router-custom-domain-ingress
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     NAME                           TYPE           CLUSTER-IP      EXTERNAL-IP                                                                     PORT(S)                      AGE
     router-custom-domain-ingress   LoadBalancer   172.30.174.34   a309962c3bd6e42c08cadb9202eca683-1f5bbb64a1f1ec65.elb.us-east-1.amazonaws.com   80:31342/TCP,443:31821/TCP   7m28s

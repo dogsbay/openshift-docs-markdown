@@ -3,7 +3,7 @@
 
 The following table lists and defines the ingress controller configuration parameters in the {{ microshift_short }} `config.yaml` file. You use these parameters when you configure access logging, TLS, timeouts, route admission, and other ingress options. {._abstract}
 
-***Ingress controller configuration fields definitions table***
+**Ingress controller configuration fields definitions table**
 
 <table>
 <thead>
@@ -59,7 +59,7 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>httpCaptureCookies</code></td>
-  <td>Specifies HTTP cookies that you want to capture in access logs. If the <code>httpCaptureCookies</code> field is empty, access logs do not capture the cookies. Default value is empty. Configuring <code>ingress.accessLogging.httpCaptureCookies</code> automatically enables ingress access logging. For any cookie that you want to capture, you must also set the <code>matchType</code> and <code>maxLength</code> parameters.<br><br><ul><li>For example:</li></ul>+<pre>  httpCaptureCookies:&#10;  - matchType: Exact&#10;    maxLength: 128&#10;    name: MYCOOKIE</pre></td>
+  <td>Specifies HTTP cookies that you want to capture in access logs. If the <code>httpCaptureCookies</code> field is empty, access logs do not capture the cookies. Default value is empty. Configuring <code>ingress.accessLogging.httpCaptureCookies</code> automatically enables ingress access logging. For any cookie that you want to capture, you must also set the <code>matchType</code> and <code>maxLength</code> parameters.<br><br><ul><li>For example:</li></ul><pre>  httpCaptureCookies:&#10;  - matchType: Exact&#10;    maxLength: 128&#10;    name: MYCOOKIE</pre></td>
 </tr>
 <tr>
   <td><code>httpCaptureCookies.matchType</code></td>
@@ -67,7 +67,7 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>httpCaptureCookies.maxLength</code></td>
-  <td>Specifies the maximum length of the cookie that is logged, which includes the cookie name, cookie value, andone-character delimiter. If the log entry exceeds this length, the value is truncated in the log message. The ingress controller might impose a separate bound on the total length of HTTP headers in a request. The minimum value is <code>1</code> byte, maximum value is <code>1024</code> bytes. The default value is <code>0</code>.</td>
+  <td>Specifies the maximum length of the cookie that is logged, which includes the cookie name, cookie value, and one-character delimiter. If the log entry exceeds this length, the value is truncated in the log message. The ingress controller might impose a separate bound on the total length of HTTP headers in a request. The minimum value is <code>1</code> byte, maximum value is <code>1024</code> bytes. The default value is <code>0</code>.</td>
 </tr>
 <tr>
   <td><code>httpCaptureCookies.name</code></td>
@@ -99,7 +99,7 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>httpCaptureHeaders.response.maxLength</code></td>
-  <td>Specifies a maximum length for the header value. If a header value exceeds this length, the value is truncated in thelog message. The ingress controller might impose a separate bound on the total length of HTTP headers in a request.</td>
+  <td>Specifies a maximum length for the header value. If a header value exceeds this length, the value is truncated in the log message. The ingress controller might impose a separate bound on the total length of HTTP headers in a request.</td>
 </tr>
 <tr>
   <td><code>httpCaptureHeaders.response.name</code></td>
@@ -123,7 +123,7 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>clientTLS.AllowedSubjectPatterns</code></td>
-  <td>Optional subfield that specifies a list of regular expressions that are matched against the distinguished name on a valid client certificate to filter requests. This parameter is useful when you have client authentication. Use this parameter to cause the ingress controller to reject certificates based on the distinguished name. The Perl Compatible Regular Expressions (PCRE) syntax is required. You must set the <code>spec.clientTLS.clientCertificatePolicy</code> and <code>spec.clientTLS.clientCA</code> parameters to use <code>clientTLS.AllowedSubjectPatterns</code>.<br><br><dl><dt>Important</dt><dd>When configured, this field must contain a valid expression or the {{ microshift_short }} service fails. At least one pattern must match a client certificate's distinguished name; otherwise, the ingress controller rejects the certificate and denies the connection.</dd></dl></td>
+  <td>Optional subfield that specifies a list of regular expressions that are matched against the distinguished name on a valid client certificate to filter requests. This parameter is useful when you have client authentication. Use this parameter to cause the ingress controller to reject certificates based on the distinguished name. The Perl Compatible Regular Expressions (PCRE) syntax is required. You must set the <code>spec.clientTLS.clientCertificatePolicy</code> and <code>spec.clientTLS.clientCA</code> parameters to use <code>clientTLS.AllowedSubjectPatterns</code>.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When configured, this field must contain a valid expression or the {{ microshift_short }} service fails. At least one pattern must match a client certificate's distinguished name; otherwise, the ingress controller rejects the certificate and denies the connection.</dd></dl></td>
 </tr>
 <tr>
   <td><code>clientTLS.clientCA</code></td>
@@ -167,7 +167,7 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>httpErrorCodePages.name</code></td>
-  <td>Specifies custom error code pages. You can only customize errors for <code>503</code> and <code>404</code> page codes. To customize error code pages, specify a <code>ConfigMap</code> name. The <code>ConfigMap</code> object must be in the <code>openshift-ingress</code> namespace and contain keys in the <code>error-page-<error code>.http</code> format where <code><error code></code> is an HTTP status code. Each value in the <code>ConfigMap</code> must be the full response, including HTTP headers. The default value of this parameter is null.</td>
+  <td>Specifies custom error code pages. You can only customize errors for <code>503</code> and <code>404</code> page codes. To customize error code pages, specify a <code>ConfigMap</code> name. The <code>ConfigMap</code> object must be in the <code>openshift-ingress</code> namespace and contain keys in the <code>error-page-&lt;error code&gt;.http</code> format where <code>&lt;error code&gt;</code> is an HTTP status code. Each value in the <code>ConfigMap</code> must be the full response, including HTTP headers. The default value of this parameter is null.</td>
 </tr>
 <tr>
   <td><code>ports</code></td>
@@ -191,7 +191,7 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>routeAdmission.wildcardPolicy</code></td>
-  <td>Controls how the ingress controller handles routes with configured wildcard policies. <code>WildcardsAllowed</code> and <code>WildcardsDisallowed</code> are valid values. Default value is <code>WildcardsDisallowed</code>.<br><br><ul><li><code>WildcardPolicyAllowed</code> means that the ingress controller admits routes with any wildcard policy.</li><li><code>WildcardPolicyDisallowed</code> means that the ingress controller admits only routes with a wildcard policy of <code>None</code>.</li></ul><dl><dt>Important</dt><dd>Changing the wildcard policy from <code>WildcardsAllowed</code> to <code>WildcardsDisallowed</code> causes admitted routes with a wildcard policy of <code>subdomain</code> to stop working. The ingress controller only readmits these routes after they are recreated with a wildcard policy of <code>None</code>.</dd></dl></td>
+  <td>Controls how the ingress controller handles routes with configured wildcard policies. <code>WildcardsAllowed</code> and <code>WildcardsDisallowed</code> are valid values. Default value is <code>WildcardsDisallowed</code>.<br><br><ul><li><code>WildcardPolicyAllowed</code> means that the ingress controller admits routes with any wildcard policy.</li><li><code>WildcardPolicyDisallowed</code> means that the ingress controller admits only routes with a wildcard policy of <code>None</code>.</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Changing the wildcard policy from <code>WildcardsAllowed</code> to <code>WildcardsDisallowed</code> causes admitted routes with a wildcard policy of <code>subdomain</code> to stop working. The ingress controller only readmits these routes after they are recreated with a wildcard policy of <code>None</code>.</dd></dl></td>
 </tr>
 <tr>
   <td><code>status</code></td>
@@ -199,7 +199,7 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>tlsSecurityProfile</code></td>
-  <td><code>tlsSecurityProfile</code> specifies settings for TLS connections for ingress controllers. If not set, the default value is based on the <code>apiservers.config.openshift.io/cluster</code> resource. The TLS <code>1.0</code> version of an <code>Old</code> or <code>Custom</code> profile is automatically converted to <code>1.1</code> by the ingress controller. <code>Intermediate</code> is the default setting.<br><br><ul><li>The minimum TLS version for ingress controllers is <code>1.1</code>. The maximum TLS version is <code>1.3</code>.</li></ul><dl><dt>Note</dt><dd>The <code>TLSProfile</code> status shows the ciphers and the minimum TLS version of the configured security profile. Profiles are intent-based and change over time when new ciphers are developed and existing ciphers are found to be insecure. The usable list can be reduced depending on which ciphers are available to a specific process.</dd></dl></td>
+  <td><code>tlsSecurityProfile</code> specifies settings for TLS connections for ingress controllers. If not set, the default value is based on the <code>apiservers.config.openshift.io/cluster</code> resource. The TLS <code>1.0</code> version of an <code>Old</code> or <code>Custom</code> profile is automatically converted to <code>1.1</code> by the ingress controller. <code>Intermediate</code> is the default setting.<br><br><ul><li>The minimum TLS version for ingress controllers is <code>1.1</code>. The maximum TLS version is <code>1.3</code>.</li></ul><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The <code>TLSProfile</code> status shows the ciphers and the minimum TLS version of the configured security profile. Profiles are intent-based and change over time when new ciphers are developed and existing ciphers are found to be insecure. The usable list can be reduced depending on which ciphers are available to a specific process.</dd></dl></td>
 </tr>
 <tr>
   <td><code>tlsSecurityProfile.custom</code></td>
@@ -239,11 +239,11 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>tuningOptions.headerBufferBytes</code></td>
-  <td>Specifies how much memory is reserved, in bytes, for ingress controller connection sessions. This value must be at least <code>16384</code> if HTTP/2 is enabled for the ingress controller. If not set, the default value is <code>32768</code> bytes.<br><br><dl><dt>Important</dt><dd>Setting this field not recommended because <code>headerBufferMaxRewriteBytes</code> parameter values that are too small can break the ingress controller. Conversely, values for <code>headerBufferMaxRewriteBytes</code> that are too large could cause the ingress controller to use significantly more memory than necessary.</dd></dl></td>
+  <td>Specifies how much memory is reserved, in bytes, for ingress controller connection sessions. This value must be at least <code>16384</code> if HTTP/2 is enabled for the ingress controller. If not set, the default value is <code>32768</code> bytes.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Setting this field not recommended because <code>headerBufferMaxRewriteBytes</code> parameter values that are too small can break the ingress controller. Conversely, values for <code>headerBufferMaxRewriteBytes</code> that are too large could cause the ingress controller to use significantly more memory than necessary.</dd></dl></td>
 </tr>
 <tr>
   <td><code>tuningOptions.headerBufferMaxRewriteBytes</code></td>
-  <td>Specifies how much memory should be reserved, in bytes, from <code>headerBufferBytes</code> for HTTP header rewriting and appending for ingress controller connection sessions. The minimum value for <code>headerBufferMaxRewriteBytes</code> is <code>4096</code>. <code>headerBufferBytes</code> must be greater than the <code>headerBufferMaxRewriteBytes</code> value for incoming HTTP requests. If not set, the default value is <code>8192</code> bytes.<br><br><dl><dt>Important</dt><dd>Setting this field is not recommended because <code>headerBufferMaxRewriteBytes</code> values that are too small can break the ingress controller and <code>headerBufferMaxRewriteBytes</code> that are too large could cause the ingress controller to use significantly more memory than necessary.</dd></dl></td>
+  <td>Specifies how much memory should be reserved, in bytes, from <code>headerBufferBytes</code> for HTTP header rewriting and appending for ingress controller connection sessions. The minimum value for <code>headerBufferMaxRewriteBytes</code> is <code>4096</code>. <code>headerBufferBytes</code> must be greater than the <code>headerBufferMaxRewriteBytes</code> value for incoming HTTP requests. If not set, the default value is <code>8192</code> bytes.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Setting this field is not recommended because <code>headerBufferMaxRewriteBytes</code> values that are too small can break the ingress controller and <code>headerBufferMaxRewriteBytes</code> that are too large could cause the ingress controller to use significantly more memory than necessary.</dd></dl></td>
 </tr>
 <tr>
   <td><code>tuningOptions.healthCheckInterval</code></td>
@@ -263,7 +263,7 @@ The following table lists and defines the ingress controller configuration param
 </tr>
 <tr>
   <td><code>tuningOptions.threadCount</code></td>
-  <td>Specifies the number of threads to create per HAProxy process. Creating more threads allows each ingress controller pod to handle more connections, at the cost of using more system resources. The HAProxy load balancer supports up to <code>64</code> threads. If this field is empty, the ingress controller uses the default value of <code>4</code> threads.<br><br><dl><dt>Important</dt><dd>Setting this field is not recommended because increasing the number of <code>HAProxy</code> threads allows ingress controller pods to use more CPU time under load, and prevent other pods from receiving the CPU resources they need to perform. Reducing the number of threads can cause the ingress controller to perform poorly.</dd></dl></td>
+  <td>Specifies the number of threads to create per HAProxy process. Creating more threads allows each ingress controller pod to handle more connections, at the cost of using more system resources. The HAProxy load balancer supports up to <code>64</code> threads. If this field is empty, the ingress controller uses the default value of <code>4</code> threads.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Setting this field is not recommended because increasing the number of <code>HAProxy</code> threads allows ingress controller pods to use more CPU time under load, and prevent other pods from receiving the CPU resources they need to perform. Reducing the number of threads can cause the ingress controller to perform poorly.</dd></dl></td>
 </tr>
 <tr>
   <td><code>tuningOptions.tlsInspectDelay</code></td>

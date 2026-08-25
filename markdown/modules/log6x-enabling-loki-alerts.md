@@ -9,7 +9,7 @@ The `AlertingRule` CR contains a set of specifications and webhook validation de
 *   If an `AlertingRule` CR includes two groups with the same name, it is an invalid alerting rule.
 *   If none of the above applies, an alerting rule is considered valid.
 
-***AlertingRule definitions***
+**AlertingRule definitions**
 
 <table>
 <thead>
@@ -21,7 +21,7 @@ The `AlertingRule` CR contains a set of specifications and webhook validation de
 <tbody>
 <tr>
   <td>application</td>
-  <td><code><your_application_namespace></code></td>
+  <td><code>&lt;your_application_namespace&gt;</code></td>
 </tr>
 <tr>
   <td>audit</td>
@@ -70,29 +70,29 @@ The `AlertingRule` CR contains a set of specifications and webhook validation de
     1.  The value of this mandatory field must be `critical`, `warning`, or `info`.
     1.  This field is mandatory.
     1.  This field is mandatory.
-        ```yaml title="Example application AlertingRule CR"
-          apiVersion: loki.grafana.com/v1
-          kind: AlertingRule
-          metadata:
-            name: app-user-workload
-            namespace: app-ns (1)
-            labels: (2)
-              openshift.io/<label_name>: "true"
-          spec:
-            tenantID: "application"
-            groups:
-              - name: AppUserWorkloadHighError
-                rules:
-                  - alert:
-                    expr: | (3)
-                      sum(rate({kubernetes_namespace_name="app-ns", kubernetes_pod_name=~"podName.*"} |= "error" [1m])) by (job)
-                    for: 10s
-                    labels:
-                      severity: critical (4)
-                    annotations:
-                      summary:  (5)
-                      description:  (6)
-        ```
+    ```yaml title="Example application AlertingRule CR"
+      apiVersion: loki.grafana.com/v1
+      kind: AlertingRule
+      metadata:
+        name: app-user-workload
+        namespace: app-ns (1)
+        labels: (2)
+          openshift.io/<label_name>: "true"
+      spec:
+        tenantID: "application"
+        groups:
+          - name: AppUserWorkloadHighError
+            rules:
+              - alert:
+                expr: | (3)
+                  sum(rate({kubernetes_namespace_name="app-ns", kubernetes_pod_name=~"podName.*"} |= "error" [1m])) by (job)
+                for: 10s
+                labels:
+                  severity: critical (4)
+                annotations:
+                  summary:  (5)
+                  description:  (6)
+    ```
     1.  The namespace where this `AlertingRule` CR is created must have a label matching the LokiStack `spec.rules.namespaceSelector` definition.
     1.  The `labels` block must match the LokiStack `spec.rules.selector` definition.
     1.  Value for `kubernetes_namespace_name:` must match the value for `metadata.namespace`.

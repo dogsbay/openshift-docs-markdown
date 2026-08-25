@@ -7,7 +7,7 @@ title: "Introduction to {{ kueue_name }}"
 # Introduction to {{ kueue_name }} {id="about-kueue"}
 {%- set context = "about-kueue" %}
 
-You can use {{ kueue_name }} to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. {{ kueue_name }} optimizes resource utilization by enforcing quotas and scheduling policies across your workloads.
+You can use {{ kueue_name }} to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. {{ kueue_name }} optimizes resource utilization by enforcing quotas and scheduling policies across your workloads. {._abstract}
 
 {{ kueue_name }} can determine when a job waits, is admitted to start by creating pods, or should be _preempted_, meaning that active pods for that job are deleted.
 
@@ -56,5 +56,5 @@ The {{ kueue_name }} workflow can be described at a high level as follows:
 1.  The Kubernetes scheduler assigns pods to a node in the cluster.
 1.  The Kubernetes cluster autoscaler provisions more nodes as required.
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Kueue (upstream documentation)](https://kueue.sigs.k8s.io/docs/)

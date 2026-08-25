@@ -13,8 +13,8 @@ Add the {{ microshift_short }} repositories to image builder on your build host.
 
 **Procedure**
 
-1.  Create an image builder configuration file for adding the `{{ rpm_repo_version }}` RPM repository source required to pull {{ microshift_short }} RPMs by running the following command:
-    ```text
+1.  Create an image builder configuration file for adding the `{{ rpm_repo_version }}`{minja} RPM repository source required to pull {{ microshift_short }} RPMs by running the following command:
+    ```text {minja}
     cat > {{ rpm_repo_version }}.toml <<EOF
     id = "{{ rpm_repo_version }}"
     name = "Red Hat OpenShift Container Platform {{ ocp_version }} for RHEL {{ op_system_version_major }}"
@@ -40,7 +40,7 @@ Add the {{ microshift_short }} repositories to image builder on your build host.
     EOF
     ```
 1.  Add the sources to the image builder by running the following commands:
-    ```terminal
+    ```terminal {minja}
     $ sudo composer-cli sources add {{ rpm_repo_version }}.toml
     ```
     ```terminal
@@ -53,7 +53,7 @@ Add the {{ microshift_short }} repositories to image builder on your build host.
     ```terminal
     $ sudo composer-cli sources list
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     appstream
     baseos
     fast-datapath

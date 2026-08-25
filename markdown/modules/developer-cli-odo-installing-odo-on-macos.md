@@ -2,7 +2,7 @@
 
 # Installing {{ odo_title }} on macOS {id="installing-odo-on-macos_{{ context }}"}
 
-The `{{ odo_title }}` CLI for macOS is available to download as a binary and as a tarball.
+The `{{ odo_title }}`{minja} CLI for macOS is available to download as a binary and as a tarball.
 
 | Operating System | Binary | Tarball |
 | --- | --- | --- |
@@ -26,13 +26,13 @@ The `{{ odo_title }}` CLI for macOS is available to download as a binary and as 
     ```terminal
     # chmod +x odo
     ```
-1.  Place the `{{ odo_title }}` binary in a directory that is on your `PATH`.
+1.  Place the `{{ odo_title }}`{minja} binary in a directory that is on your `PATH`.
 
     To check your `PATH`, execute the following command:
     ```terminal
     $ echo $PATH
     ```
-1.  Verify that `{{ odo_title }}` is now available on your system:
+1.  Verify that `{{ odo_title }}`{minja} is now available on your system:
     ```terminal
     $ odo version
     ```

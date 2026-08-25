@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Exposing binding data from a service {id="exposing-binding-data-from-a-service"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Exposing binding data from a service {id="exposing-binding-data-from-a-service"}
 {%- set context = "exposing-binding-data-from-a-service" %}
 
 Application developers need access to backing services to build and connect workloads. Connecting workloads to backing services is always a challenge because each service provider requires a different way to access their secrets and consume them in a workload. {._abstract}

@@ -3,11 +3,11 @@ title: Creating backup hooks
 ---
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating backup hooks {id="oadp-creating-backup-hooks-doc"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating backup hooks {id="oadp-creating-backup-hooks-doc"}
 {%- set context = "backing-up-applications" %}
 
-Create backup hooks to run commands in a container in a pod by editing the `Backup` custom resource (CR). This helps you to run pre-backup and post-backup actions such as quiescing a database or flushing data to disk.
+Create backup hooks to run commands in a container in a pod by editing the `Backup` custom resource (CR). This helps you to run pre-backup and post-backup actions such as quiescing a database or flushing data to disk. {._abstract}
 
 The commands can be configured to performed before any custom action processing (_Pre_ hooks), or after all custom actions have been completed and any additional items specified by the custom action have been backed up (_Post_ hooks).
 

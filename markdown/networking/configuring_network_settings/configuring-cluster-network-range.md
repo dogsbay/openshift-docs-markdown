@@ -3,11 +3,11 @@ title: Configuring the cluster network range
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the cluster network range {id="configuring-cluster-network-range"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the cluster network range {id="configuring-cluster-network-range"}
 {%- set context = "configuring-cluster-network-range" %}
 
-To expand the cluster network range in {{ product_title }} to support more nodes and IP addresses, you can modify the cluster network CIDR mask after cluster installation. This procedure requires the OVN-Kubernetes network plugin and provides more IP space for additional nodes.
+To expand the cluster network range in {{ product_title }} to support more nodes and IP addresses, you can modify the cluster network CIDR mask after cluster installation. This procedure requires the OVN-Kubernetes network plugin and provides more IP space for additional nodes. {._abstract}
 
 For example, if you deployed a cluster and specified `10.128.0.0/19` as the cluster network range and a host prefix of `23`, you are limited to 16 nodes. You can expand that to 510 nodes by changing the CIDR mask on a cluster to `/14`.
 
@@ -27,7 +27,7 @@ You cannot expand the service network CIDR range after installing the cluster, e
 
 {% leveloffset +1 %}{% include "./modules/nw-cluster-network-range-edit.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 *   [Red Hat OpenShift Network Calculator](https://access.redhat.com/labs/ocpnc/)

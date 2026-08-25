@@ -12,4 +12,4 @@ When a listener is not routing traffic as expected, you can review its `status` 
     *   `<gateway_cr>`: Specify the name of your gateway.
     *   `<namespace>`: Specify the namespace where the gateway resides.
 
-        For details on how to interpret the output and resolve common errors, see [#!gateway-listener-troubleshooting-reference_{{ context }}](#gateway-listener-troubleshooting-reference_{{ context }}).
+        For details on how to interpret the output and resolve common errors, see [gateway-listener-troubleshooting-reference_{{ context }}](#gateway-listener-troubleshooting-reference_{{ context }}).

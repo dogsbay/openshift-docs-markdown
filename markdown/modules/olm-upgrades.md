@@ -24,7 +24,7 @@ A user indicates a particular package and channel in a particular catalog source
 
 :::note
 
-OLM deliberately avoids version comparisons, so the "latest" or "newest" Operator available from a given _catalog_ -> _channel_ -> _package_ path does not necessarily need to be the highest version number. It should be thought of more as the _head_ reference of a channel, similar to a Git repository.
+OLM deliberately avoids version comparisons, so the "latest" or "newest" Operator available from a given _catalog_ → _channel_ → _package_ path does not necessarily need to be the highest version number. It should be thought of more as the _head_ reference of a channel, similar to a Git repository.
 
 :::
 
@@ -51,7 +51,7 @@ For OLM to successfully query for updates, given a catalog source, package, chan
 
 For an example upgrade scenario, consider an installed Operator corresponding to CSV version `0.1.1`. OLM queries the catalog source and detects an upgrade in the subscribed channel with new CSV version `0.1.3` that replaces an older but not-installed CSV version `0.1.2`, which in turn replaces the older and installed CSV version `0.1.1`.
 
-OLM walks back from the channel head to previous versions via the `replaces` field specified in the CSVs to determine the upgrade path `0.1.3` -> `0.1.2` -> `0.1.1`; the direction of the arrow indicates that the former replaces the latter. OLM upgrades the Operator one version at the time until it reaches the channel head.
+OLM walks back from the channel head to previous versions via the `replaces` field specified in the CSVs to determine the upgrade path `0.1.3` → `0.1.2` → `0.1.1`; the direction of the arrow indicates that the former replaces the latter. OLM upgrades the Operator one version at the time until it reaches the channel head.
 
 For this given scenario, OLM installs Operator version `0.1.2` to replace the existing Operator version `0.1.1`. Then, it installs Operator version `0.1.3` to replace the previously installed Operator version `0.1.2`. At this point, the installed operator version `0.1.3` matches the channel head and the upgrade is completed.
 

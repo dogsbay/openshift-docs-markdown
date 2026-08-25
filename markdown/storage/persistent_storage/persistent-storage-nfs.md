@@ -3,11 +3,11 @@ title: Persistent storage using NFS
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using NFS {id="persistent-storage-using-nfs"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using NFS {id="persistent-storage-using-nfs"}
 {%- set context = "persistent-storage-nfs" %}
 
-You can provision {{ product_title }} clusters with persistent storage using NFS.
+You can provision {{ product_title }} clusters with persistent storage using NFS. {._abstract}
 
 Persistent volumes (PVs) and persistent volume claims (PVCs) provide a convenient method for sharing a volume across a project. While the NFS-specific information contained in a PV definition could also be defined directly in a pod definition, doing so does not create the volume as a distinct cluster resource, making the volume more susceptible to conflicts.
 
@@ -20,6 +20,7 @@ The in-tree NFS provisioner does not support user namespaces.
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mounting NFS shares](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_file_systems/mounting-nfs-shares_managing-file-systems)
 

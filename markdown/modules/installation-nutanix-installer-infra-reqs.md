@@ -19,7 +19,7 @@ Consider the following when managing this user account:
 *   When assigning entities to the role, ensure that the user can access only the Prism Element and subnet that are required to deploy the virtual machines.
 *   Ensure that the user is a member of the project to which it needs to assign virtual machines.
 
-***Required permissions for creating a Custom Cloud Native role***
+**Required permissions for creating a Custom Cloud Native role**
 
 <table>
 <thead>
@@ -133,7 +133,7 @@ If you use your own DNS or DHCP server, you must also create records for each no
 
 A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -146,12 +146,12 @@ A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.
 <tbody>
 <tr>
   <td>API VIP</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME record must point to the load balancer for the control plane machines. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Ingress VIP</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>A wildcard DNS A/AAAA or CNAME record that points to the load balancer that targets the machines that run the Ingress router pods, which are the worker nodes by default. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 </tbody>

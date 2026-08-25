@@ -28,11 +28,12 @@ You can also import a VM template. If you import a VM template, {{ VirtProductNa
     | VMware ESXi hosts | TCP | 443 |
     | VMware ESXi hosts | TCP | 902 |
     | VMware vCenter | TCP | 5840 |
+
 {% endif %}
 
 **Procedure**
 
-1.  In the web console, click **Workloads** -> **Virtual Machines**.
+1.  In the web console, click **Workloads** → **Virtual Machines**.
 1.  Click **Create Virtual Machine** and select **Import with Wizard**.
 {%- if virt_importing_vmware_vm %}
 1.  Select **VMware** from the **Provider** list.
@@ -43,13 +44,13 @@ You can also import a VM template. If you import a VM template, {{ VirtProductNa
 
     :::note
 
-    The connection details are stored in a secret. If you add a provider with an incorrect hostname, user name, or password, click **Workloads** -> **Secrets** and delete the provider secret.
+    The connection details are stored in a secret. If you add a provider with an incorrect hostname, user name, or password, click **Workloads** → **Secrets** and delete the provider secret.
     
     :::
 
 1.  Select a virtual machine or a template.
-{% endif %}
-{% if virt_importing_rhv_vm %}
+{%- endif %}
+{%- if virt_importing_rhv_vm %}
 1.  Select **Red Hat Virtualization (RHV)** from the **Provider** list.
 1.  Select **Connect to New Instance** or a saved RHV instance.
     *   If you select **Connect to New Instance**, fill in the following fields:
@@ -69,7 +70,7 @@ You can also import a VM template. If you import a VM template, {{ VirtProductNa
 
     :::note
 
-    The connection details are stored in a secret. If you add a provider with an incorrect URL, user name, or password, click **Workloads** -> **Secrets** and delete the provider secret.
+    The connection details are stored in a secret. If you add a provider with an incorrect URL, user name, or password, click **Workloads** → **Secrets** and delete the provider secret.
     
     :::
 
@@ -79,20 +80,20 @@ You can also import a VM template. If you import a VM template, {{ VirtProductNa
 1.  In the **Review** screen, review your settings.
 {%- if virt_importing_rhv_vm %}
 1.  Optional: You can select **Start virtual machine on creation**.
-{% endif %}
+{%- endif %}
 1.  Click **Edit** to update the following settings:
 
 {% if virt_importing_rhv_vm %}
-    *   **General** -> **Name**: The VM name is limited to 63 characters.
-    *   **General** -> **Description**: Optional description of the VM.
+    *   **General** → **Name**: The VM name is limited to 63 characters.
+    *   **General** → **Description**: Optional description of the VM.
         *   **Storage Class**: Select **NFS** or **ocs-storagecluster-ceph-rbd**.
 
             If you select **ocs-storagecluster-ceph-rbd**, you must set the **Volume Mode** of the disk to **Block**.
-        *   **Advanced** -> **Volume Mode**: Select **Block**.
-    *   **Advanced** -> **Volume Mode**: Select **Block**.
-    *   **Networking** -> **Network**: You can select a network from a list of available network attachment definition objects.
-        {% endif %}
-        {% if virt_importing_vmware_vm %}
+        *   **Advanced** → **Volume Mode**: Select **Block**.
+    *   **Advanced** → **Volume Mode**: Select **Block**.
+    *   **Networking** → **Network**: You can select a network from a list of available network attachment definition objects.
+{% endif %}
+{% if virt_importing_vmware_vm %}
     *   **General**:
         *   **Description**
         *   **Operating System**
@@ -116,13 +117,13 @@ You can also import a VM template. If you import a VM template, {{ VirtProductNa
             If you select **ocs-storagecluster-ceph-rbd**, you must set the **Volume Mode** of the disk to **Block**.
 
             Other storage classes might work, but they are not officially supported.
-        *   **Advanced** -> **Volume Mode**: Select **Block**.
-        *   **Advanced** -> **Access Mode**
-    *   **Advanced** -> **Cloud-init**:
+        *   **Advanced** → **Volume Mode**: Select **Block**.
+        *   **Advanced** → **Access Mode**
+    *   **Advanced** → **Cloud-init**:
         *   **Form**: Enter the **Hostname** and **Authenticated SSH Keys**.
         *   **Custom script**: Enter the `cloud-init` script in the text field.
-    *   **Advanced** -> **Virtual Hardware**: You can attach a virtual CD-ROM to the imported virtual machine.
+    *   **Advanced** → **Virtual Hardware**: You can attach a virtual CD-ROM to the imported virtual machine.
 {%- endif %}
 1.  Click **Import** or **Review and Import**, if you have edited the import settings.
 
-    A **Successfully created virtual machine** message and a list of resources created for the virtual machine are displayed. The virtual machine appears in **Workloads** -> **Virtual Machines**.
+    A **Successfully created virtual machine** message and a list of resources created for the virtual machine are displayed. The virtual machine appears in **Workloads** → **Virtual Machines**.

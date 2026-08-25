@@ -82,7 +82,7 @@ Do not run the `openshift-install create manifests` command again after creating
 *   You obtained the {{ product_title }} installation program and the pull secret for your cluster.
 *   You generated the Ignition config files for your cluster.
 {%- endif %}
-*   You installed the `jq` package.
+* You installed the `jq` package.
 
 **Procedure**
 
@@ -100,45 +100,45 @@ metadata, run the following command:
     The output of this command is your cluster name and a random string.
 
 {% if context == "installing-aws-user-infra" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set cp_template = false -%}
-{%- set aws = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set cp_template = "" -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set cp_template = false -%}
-{%- set aws = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set cp_template = "" -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-azure-user-infra" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set cp_template_first = false -%}
-{%- set cp_template = false -%}
-{%- set azure = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set cp_template_first = "" -%}
+{%- set cp_template = "" -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set cp_template = false -%}
-{%- set gcp = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set cp_template = "" -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set cp_template = false -%}
-{%- set gcp = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set cp_template = "" -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-network-customizations" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}

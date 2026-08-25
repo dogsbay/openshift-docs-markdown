@@ -36,7 +36,7 @@ List volume supported options:
   <td><code>-c, --containers</code></td>
 </tr>
 <tr>
-  <td>Select containers by name. It can also take wildcard <code>'*'</code> that matches anycharacter.</td>
+  <td>Select containers by name. It can also take wildcard <code>'*'</code> that matches any character.</td>
 </tr>
 <tr>
   <td><code>'*'</code></td>

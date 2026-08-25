@@ -24,8 +24,8 @@ To manage your cluster and deploy applications from the command line on macOS, i
 
 1.  Save the file.
 1.  Unpack and unzip the archive.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 1.  Download the latest version of the `oc` CLI for your operating system from the [**Downloads**](https://console.redhat.com/openshift/downloads) page on {{ cluster_manager }}.
 1.  Extract the `oc` binary file from the downloaded archive.
 {%- endif %}
@@ -44,5 +44,5 @@ To manage your cluster and deploy applications from the command line on macOS, i
     ```
 
 {% if context == "updating-restricted-network-cluster" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

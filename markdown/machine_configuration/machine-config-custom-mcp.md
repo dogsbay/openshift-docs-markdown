@@ -3,11 +3,11 @@ title: Creating custom machine config pools
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating custom machine config pools {id="machine-config-creating-custom-mcp"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating custom machine config pools {id="machine-config-creating-custom-mcp"}
 {%- set context = "machine-config-creating-custom-mcp" %}
 
-You can create custom machine config pools (MCP) to manage compute nodes for custom use cases that extend outside of the default node types. By using a custom machine config pool, you can deploy changes targeted only at nodes in the custom pool.
+You can create custom machine config pools (MCP) to manage compute nodes for custom use cases that extend outside of the default node types. By using a custom machine config pool, you can deploy changes targeted only at nodes in the custom pool. {._abstract}
 
 Custom machine config pools inherit their configurations from the `worker` machine config pool. Changes made to the `worker` machine config pool apply to nodes in the custom pool. However, changes made to the custom machine config pool apply only to the nodes in the custom pool. For more information on custom machine config pools, see "Node configuration management with machine config pools".
 
@@ -26,7 +26,7 @@ After you create the custom machine config pool, you can boot new nodes directly
 {% leveloffset +1 %}{% include "./modules/machine-config-custom-mcp-automatic.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/machine-config-custom-mcp-existing.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Node configuration management with machine config pools](/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)
 *   [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)

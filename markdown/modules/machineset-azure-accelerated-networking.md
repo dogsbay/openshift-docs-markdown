@@ -9,9 +9,9 @@
 # Accelerated Networking for {{ azure_first }} VMs {id="machineset-azure-accelerated-networking_{{ context }}"}
 
 You can enable Accelerated Networking, which uses single root I/O virtualization (SR-IOV) to provide {{ azure_first }} VMs with a more direct path to the switch,
-{% if compute %}
+{%- if compute %}
 during or 
-{% endif %}
+{%- endif %}
 after installation. This enhances network performance.  {._abstract}
 
 ## Limitations {id="machineset-azure-accelerated-networking-limits_{{ context }}"}
@@ -28,11 +28,11 @@ Consider the following limitations when deciding whether to use Accelerated Netw
 
 {%- if compute %}
 *   When this feature is enabled on an existing {{ azure_short }} cluster, only newly provisioned nodes are affected. Currently running nodes are not reconciled. To enable the feature on all nodes, you must replace each existing machine. This can be done for each machine individually, or by scaling the replicas down to zero, and then scaling back up to your desired number of replicas.
-{% endif %}
+{%- endif %}
 
 {% if context == "creating-machineset-azure" %}
-{%- set compute = false -%}
+{%- set compute = "" -%}
 {% endif %}
 {% if context == "cpmso-supported-features-azure" %}
-{%- set cpmso = false -%}
+{%- set cpmso = "" -%}
 {% endif %}

@@ -10,8 +10,8 @@ As an administrator with the `dedicated-admin` role,
 you might want to ignore a supported Operator condition reported by an Operator. When present, Operator conditions in the `Spec.Overrides` array override the conditions in the `Spec.Conditions` array, allowing
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 cluster administrators
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 `dedicated-admin` administrators
 {%- endif %}
 to deal with situations where an Operator is incorrectly reporting a state to Operator Lifecycle Manager (OLM).
@@ -22,8 +22,8 @@ to deal with situations where an Operator is incorrectly reporting a state to Op
 By default, the `Spec.Overrides` array is not present in an `OperatorCondition` object until it is added by
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 a cluster administrator
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 an administrator with the `dedicated-admin` role
 {%- endif %}
 . The `Spec.Conditions` array is also not present until it is either added by a user or as a result of custom Operator logic.
@@ -69,7 +69,7 @@ For example, consider a known version of an Operator that always communicates th
         message: "The operator is performing a migration."
         lastTransitionTime: "2020-08-24T23:15:55Z"
     ```
-{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 
     Setting the 'type' field to `Upgradeable` allows the cluster administrator to change the upgrade readiness to `True`.
 {% endif %}

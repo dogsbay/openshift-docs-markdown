@@ -3,11 +3,11 @@ title: Operators overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Operators overview {id="operators-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Operators overview {id="operators-overview"}
 {%- set context = "operators-overview" %}
 
-Operators are the foundational control plane extensions of {{ product_title }}. Operators are the preferred method to package, deploy, and manage services on the control plane, and to support your applications.
+Operators are the foundational control plane extensions of {{ product_title }}. Operators are the preferred method to package, deploy, and manage services on the control plane, and to support your applications. {._abstract}
 
 Operators integrate with Kubernetes APIs and CLI tools such as `kubectl` and the {{ oc_first }}. They provide the means of monitoring applications, performing health checks, managing over-the-air (OTA) updates, and ensuring that applications remain in your specified state.
 
@@ -25,6 +25,7 @@ Optional add-on Operators
 {% leveloffset +1 %}{% include "./modules/operators-overview-tasks.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manage custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs)
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
@@ -34,8 +35,8 @@ Optional add-on Operators
 *   [Install an Operator from the software catalog](/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
 *   [Cluster Operators reference](/operators/operator-reference#operator-reference)
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   [Install an Operator from the software catalog](/operators/admin/olm-adding-operators-to-cluster#olm-installing-operators-from-software-catalog_olm-adding-operators-to-a-cluster)
 {%- endif %}
 *   [Create an application from an installed Operator through the web console](/operators/user/olm-creating-apps-from-installed-operators#olm-creating-apps-from-installed-operators)

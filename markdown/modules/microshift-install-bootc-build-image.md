@@ -14,7 +14,7 @@ Build your {{ op_system_base_full }} that contains {{ microshift_short }} as a b
 **Procedure**
 
 1.  Create a Containerfile that includes the following instructions:
-    ```text title="Example Containerfile for {{ op_system_base }} image mode"
+    ```text title="Example Containerfile for {{ op_system_base }} image mode" {minja}
     FROM registry.redhat.io/rhel{{ op_system_version_major }}/rhel-bootc:{{ op_system_version }}
 
     ARG USHIFT_VER={{ product_version }}
@@ -72,7 +72,7 @@ Build your {{ op_system_base_full }} that contains {{ microshift_short }} as a b
 
     Replace `_<redhat_user_password>_` with your password.
 1.  Configure the `IMAGE_NAME` environment variable:
-    ```terminal
+    ```terminal {minja}
     $ IMAGE_NAME=microshift-{{ product_version }}-bootc
     ```
 1.  Create a local bootc image by running the following image build command:
@@ -86,7 +86,7 @@ Build your {{ op_system_base_full }} that contains {{ microshift_short }} as a b
 
     How secrets are used during the image build:
 
-    *   The podman `--authfile` argument is required to pull the base `rhel-bootc:{{ op_system_version }}` image from the `registry.redhat.io` registry.
+    *   The podman `--authfile` argument is required to pull the base `rhel-bootc:{{ op_system_version }}`{minja} image from the `registry.redhat.io` registry.
     *   The build `USER_PASSWD` argument is used to set a password for the `redhat` user.
     
     :::
@@ -98,7 +98,7 @@ Build your {{ op_system_base_full }} that contains {{ microshift_short }} as a b
     ```terminal
     $ sudo podman images "${IMAGE_NAME}"
     ```
-    ```text title="Example output"
+    ```text title="Example output" {minja}
     REPOSITORY                       TAG         IMAGE ID      CREATED        SIZE
     localhost/microshift-{{ product_version }}-bootc  latest      193425283c00  2 minutes ago  2.31 GB
     ```

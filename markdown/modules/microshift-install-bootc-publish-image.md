@@ -22,7 +22,7 @@ Publish your bootc image to the remote registry so that the image can be used fo
     $ sudo podman login "${REGISTRY_URL}"
     ```
 1.  Set the `IMAGE_NAME` variable for the image by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ IMAGE_NAME=_<microshift-{{ product_version }}-bootc>_
     ```
 

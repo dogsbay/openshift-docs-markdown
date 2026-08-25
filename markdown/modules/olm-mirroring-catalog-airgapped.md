@@ -32,14 +32,14 @@ If your mirror registry is on a completely disconnected, or airgapped, host, tak
     `file:///local/index`
     :   Specifies the content to mirror to local files in your current directory.
 
-    `-a ${{ REG_CREDS }}`
+    `-a ${{ REG_CREDS }}`{minja}
     :   Specifies the location of your registry credentials file. This is optional.
 
     `--insecure`
     :   Specifies the `--insecure` flag. This flag is optional. If you do not want to configure trust for the target registry, add the `--insecure` flag.
 
     `<platform>/<arch>`
-    :   Specifies which platform and architecture of the index image to select when multiple variants are available. This is optional. Images are specified as ’<platform>/<arch>[/<variant>]'`. This does not apply to images referenced by the index. Valid values are `linux/amd64`, `linux/ppc64le`, `linux/s390x`, `linux/arm64`, and `.*`
+    :   Specifies which platform and architecture of the index image to select when multiple variants are available. This is optional. Images are specified as `'<platform>/<arch>[/<variant>]'`. This does not apply to images referenced by the index. Valid values are `linux/amd64`, `linux/ppc64le`, `linux/s390x`, `linux/arm64`, and `.*`
     ```terminal title="Example output"
     ...
     info: Mirroring completed in 5.93s (5.915MB/s)
@@ -77,14 +77,14 @@ If your mirror registry is on a completely disconnected, or airgapped, host, tak
     `<mirror_registry>:<port>[/<repository>]`
     :   Specifies the fully qualified domain name (FQDN) for the target registry to mirror the Operator contents to. The mirror registry `<repository>` can be any existing repository, or namespace, on the registry, for example `olm-mirror` as outlined in the prerequisites. If there is an existing repository found during mirroring, the repository name is added to the resulting image name. If you do not want the image name to include the repository name, omit the `<repository>` value from this line, for example `<mirror_registry>:<port>`.
 
-    `-a ${{ REG_CREDS }}`
+    `-a ${{ REG_CREDS }}`{minja}
     :   Specifies the location of your registry credentials file. This is optional.
 
     `--insecure`
     :   Specifies the `--insecure` flag. This flag is optional. If you do not want to configure trust for the target registry, add the `--insecure` flag.
 
     `--index-filter-by-os='<platform>/<arch>'`
-    :   Specifies which platform and architecture of the index image to select when multiple variants are available. This is optional. Images are specified as ’<platform>/<arch>[/<variant>]'`. This does not apply to images referenced by the index. Valid values are `linux/amd64`, `linux/ppc64le`, `linux/s390x`, `linux/arm64`, and `.*`
+    :   Specifies which platform and architecture of the index image to select when multiple variants are available. This is optional. Images are specified as `'<platform>/<arch>[/<variant>]'`. This does not apply to images referenced by the index. Valid values are `linux/amd64`, `linux/ppc64le`, `linux/s390x`, `linux/arm64`, and `.*`
 
     :::note
 
@@ -114,4 +114,4 @@ If your mirror registry is on a completely disconnected, or airgapped, host, tak
 
     After you mirror the catalog, you can continue with the remainder of your cluster installation. After your cluster installation has finished successfully, you must specify the manifests directory from this procedure to create the `ImageContentSourcePolicy` and `CatalogSource` objects. These objects are required to enable installation of Operators from the software catalog.
 
-{%- set index_image_pullspec = false -%}
+{%- set index_image_pullspec = "" -%}

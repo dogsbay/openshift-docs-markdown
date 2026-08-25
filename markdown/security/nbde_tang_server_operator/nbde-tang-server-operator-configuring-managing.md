@@ -3,8 +3,8 @@ title: Configuring and managing Tang servers using the NBDE Tang Server Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring and managing Tang servers using the NBDE Tang Server Operator {id="configuring-and-managing-nbde-tang-server-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring and managing Tang servers using the NBDE Tang Server Operator {id="configuring-and-managing-nbde-tang-server-operator"}
 {%- set context = "configuring-and-managing-nbde-tang-server-operator" %}
 
 With the NBDE Tang Server Operator, you can deploy and quickly configure Tang servers. On the deployed Tang servers, you can list existing keys and rotate them.

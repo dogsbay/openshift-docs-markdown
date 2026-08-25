@@ -24,8 +24,8 @@ To remove a resource on RPM-based {{ microshift_short }} systems, move the manif
 
     `_<path_of_delete_directory>_`
     :   Specifies one of the following valid directory paths: `/etc/microshift/manifests.d/delete`, `/etc/microshift/manifests/delete`, `/usr/lib/microshift/manifests.d/delete` or `/usr/lib/microshift/manifests/delete`.
-    1.  Restart {{ microshift_short }} by running the following command:
+1.  Restart {{ microshift_short }} by running the following command:
     ```terminal
     $ sudo systemctl restart microshift
     ```
-    1.  {{ microshift_short }} detects and removes the resource after the manifest file is placed in the `delete` subdirectories.
+1.  {{ microshift_short }} detects and removes the resource after the manifest file is placed in the `delete` subdirectories.

@@ -91,7 +91,7 @@ The `oc` command requires that files containing build sources are available in a
 
 If you use the source build strategy, `new-app` attempts to determine the language builder to use by the presence of certain files in the root or specified context directory of the repository:
 
-***Languages detected by `new-app`***
+**Languages detected by `new-app`**
 
 <table>
 <thead>

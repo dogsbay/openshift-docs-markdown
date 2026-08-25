@@ -1,5 +1,5 @@
 ---
-title: "KubeControllerManager []"
+title: "KubeControllerManager [operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the specification of the desired behavior of the Kubernetes Controller Manager |
 | `status` | `object` | status is the most recently observed status of the Kubernetes Controller Manager |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,13 +45,14 @@ Type
 | --- | --- | --- |
 | `failedRevisionLimit` | `integer` | failedRevisionLimit is the number of failed static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `forceRedeploymentReason` | `string` | forceRedeploymentReason can be used to force the redeployment of the operand by providing a unique string. This provides a mechanism to kick a previously failed deployment and provide a reason why you think it will work this time instead of failing again on the same config. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `succeededRevisionLimit` | `integer` | succeededRevisionLimit is the number of successful static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
 | `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 | `useMoreSecureServiceCA` | `boolean` | useMoreSecureServiceCA indicates that the service-ca.crt provided in SA token volumes should include only enough certificates to validate service serving certificates. Once set to true, it cannot be set to false. Even if someone finds a way to set it back to false, the service-ca.crt files that previously existed will only have the more secure content. |
+
 ### .status {id="_status"}
 
 Description
@@ -73,6 +75,7 @@ Type
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with |
 | `readyReplicas` | `integer` | readyReplicas indicates how many replicas are ready and at the desired state |
 | `version` | `string` | version is the level this availability applies to |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -104,6 +107,7 @@ Required
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.generations {id="_statusgenerations"}
 
 Description
@@ -137,6 +141,7 @@ Required
 | `name` | `string` | name is the name of the thing you’re tracking |
 | `namespace` | `string` | namespace is where the thing you’re tracking is |
 | `resource` | `string` | resource is the resource type of the thing you’re tracking |
+
 ### .status.nodeStatuses {id="_statusnodestatuses"}
 
 Description
@@ -179,12 +184,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of KubeControllerManager
     *   `GET`: list objects of kind KubeControllerManager
     *   `POST`: create a KubeControllerManager
-*   `/apis/operator.openshift.io/v1/kubecontrollermanagers/{{ name }}`
+*   `/apis/operator.openshift.io/v1/kubecontrollermanagers/{{ name }}`{minja}
     *   `DELETE`: delete a KubeControllerManager
     *   `GET`: read the specified KubeControllerManager
     *   `PATCH`: partially update the specified KubeControllerManager
     *   `PUT`: replace the specified KubeControllerManager
-*   `/apis/operator.openshift.io/v1/kubecontrollermanagers/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1/kubecontrollermanagers/{{ name }}/status`{minja}
     *   `GET`: read status of the specified KubeControllerManager
     *   `PATCH`: partially update status of the specified KubeControllerManager
     *   `PUT`: replace status of the specified KubeControllerManager

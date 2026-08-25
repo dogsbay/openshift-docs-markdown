@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring TLS authentication {id="serverless-config-tls"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring TLS authentication {id="serverless-config-tls"}
 {%- set context = "serverless-config-tls" %}
 
 You can use _Transport Layer Security_ (TLS) to encrypt Knative traffic and for authentication.
@@ -27,4 +27,4 @@ If you want to enable internal TLS with a {{ SMProductName }} integration, you m
 *   [Configuring TLS authentication for channels for Apache Kafka](/serverless/eventing/channels/serverless-kafka-admin-security-channels#serverless-kafka-tls-channels_serverless-kafka-admin-security-channels)
 {%- if not openshift_dedicated %}
 *   [Enabling Knative Serving metrics when using Service Mesh with mTLS](/serverless/integrations/serverless-ossm-setup#serverless-ossm-enabling-serving-metrics_serverless-ossm-setup)
-{% endif %}
+{%- endif %}

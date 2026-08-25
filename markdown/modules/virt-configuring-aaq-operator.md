@@ -11,7 +11,7 @@ You can configure the AAQ Operator by specifying the fields of the `spec.applica
 **Procedure**
 
 *   Update the `HyperConverged` CR by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type merge -p '{
       "spec": {
         "applicationAwareConfig": {

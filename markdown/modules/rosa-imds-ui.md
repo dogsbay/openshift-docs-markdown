@@ -14,7 +14,7 @@ You can select your Instance Metadata Service (IMDS) type when creating your clu
 
 1.  Log in to the web console.
 1.  Create a ROSA cluster using your preferences.
-1.  In the **Create a ROSA Cluster*** wizard on the ***Cluster settings** -> **Machine pool** page, under the **Instance Metadata Service (IMDS)** section, select whether your machine pools use both IMDSv1 and IMDSv2, or only IMDSv2.
+1.  In the **Create a ROSA Cluster*** wizard on the ***Cluster settings** → **Machine pool** page, under the **Instance Metadata Service (IMDS)** section, select whether your machine pools use both IMDSv1 and IMDSv2, or only IMDSv2.
 1.  Select **Next** to save this selection.
 
 **Verification**

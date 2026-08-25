@@ -7,8 +7,8 @@
 If you are using an existing Virtual Private Cloud (VPC), you can configure a cluster-wide proxy during
 {%- if openshift_rosa or openshift_rosa_hcp %}
 a {{ product_title }}
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 an {{ product_title }}
 {%- endif %}
 cluster installation or after the cluster is installed. When you enable a proxy, the core cluster components are denied direct access to the internet, but the proxy does not affect user workloads. {._abstract}
@@ -30,6 +30,7 @@ If you use a cluster-wide proxy, you are responsible for maintaining the availab
 {% leveloffset +1 %}{% include "./modules/cluster-wide-proxy-preqs.md" %}{% endleveloffset %}
 
 {% if openshift_dedicated %}
+
 **Additional resources**
 {._additional-resources}
 
@@ -57,11 +58,11 @@ If you use a cluster-wide proxy, you are responsible for maintaining the availab
 {%- if openshift_rosa %}
 *   [Creating a cluster with customizations by using OpenShift Cluster Manager](/rosa_install_access_delete_clusters/rosa-sts-creating-a-cluster-with-customizations#rosa-sts-creating-cluster-customizations-ocm_rosa-sts-creating-a-cluster-with-customizations)
 *   [Creating a cluster with customizations using the CLI](/rosa_install_access_delete_clusters/rosa-sts-creating-a-cluster-with-customizations#rosa-sts-creating-cluster-customizations-cli_rosa-sts-creating-a-cluster-with-customizations)
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 *   [Creating a cluster on AWS](/osd_aws_clusters/creating-an-aws-cluster#osd-create-aws-cluster-ccs_osd-creating-a-cluster-on-aws)
 *   [Creating a cluster on {{ gcp_short }} with Workload Identity Federation authentication](/osd_gcp_clusters/creating-a-gcp-cluster-with-workload-identity-federation#osd-creating-a-cluster-on-gcp-with-workload-identity-federation)
-{% endif %}
+{%- endif %}
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/configuring-proxy-after-install-intro.md" %}{% endleveloffset %}

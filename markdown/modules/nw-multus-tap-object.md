@@ -42,7 +42,7 @@ The following table describes these  configuration parameters:
 <tr>
   <td><code>selinuxcontext</code></td>
   <td><code>string</code></td>
-  <td>Optional: The SELinux context to associate with the tap device.<br><br><dl><dt>Note</dt><dd>The value <code>system_u:system_r:container_t:s0</code> is required for {{ product_title }}.</dd></dl></td>
+  <td>Optional: The SELinux context to associate with the tap device.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The value <code>system_u:system_r:container_t:s0</code> is required for {{ product_title }}.</dd></dl></td>
 </tr>
 <tr>
   <td><code>multiQueue</code></td>

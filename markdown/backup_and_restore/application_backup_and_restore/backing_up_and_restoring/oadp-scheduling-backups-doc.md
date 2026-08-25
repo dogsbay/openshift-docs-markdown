@@ -3,11 +3,11 @@ title: Scheduling backups using Schedule CR
 ---
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scheduling backups using Schedule CR {id="oadp-scheduling-backups-doc"}
 {% include "./_attributes/common-attributes.md" %}
+# Scheduling backups using Schedule CR {id="oadp-scheduling-backups-doc"}
 {%- set context = "backing-up-applications" %}
 
-Schedule backup operations by creating a `Schedule` custom resource (CR) with a Cron expression. This helps you to automate recurring backups of your application data at regular intervals.
+Schedule backup operations by creating a `Schedule` custom resource (CR) with a Cron expression. This helps you to automate recurring backups of your application data at regular intervals. {._abstract}
 
 You schedule backups by creating a `Schedule` custom resource (CR) instead of a `Backup` CR.
 

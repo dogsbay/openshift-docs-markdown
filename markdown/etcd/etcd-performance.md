@@ -7,11 +7,12 @@ title: Ensuring reliable etcd performance and scalability
 # Ensuring reliable etcd performance and scalability {id="etcd-performance"}
 {%- set context = "etcd-performance" %}
 
-Optimize etcd reliability and scalability by understanding hardware, network, and cluster factors that affect control plane performance, from storage latency to API transaction rates.
+Optimize etcd reliability and scalability by understanding hardware, network, and cluster factors that affect control plane performance, from storage latency to API transaction rates. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/etcd-leader-election-log-replication.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [The etcd learner design](https://etcd.io/docs/v3.5/learning/design-learner/)
 *   [Failure modes](https://etcd.io/docs/v3.5/op-guide/failures/)
@@ -19,6 +20,7 @@ Optimize etcd reliability and scalability by understanding hardware, network, an
 {% leveloffset +1 %}{% include "./modules/etcd-node-scaling.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding hosts](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/installing-with-api#adding-hosts_installing-with-api)
 *   [Replacing a control plane node in a healthy cluster](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/expanding-the-cluster#installing-control-plane-node-healthy-cluster_expanding-the-cluster)
@@ -42,6 +44,7 @@ Optimize etcd reliability and scalability by understanding hardware, network, an
 {% leveloffset +1 %}{% include "./modules/etcd-tuning-parameters.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features)
 
@@ -56,17 +59,20 @@ Optimize etcd reliability and scalability by understanding hardware, network, an
 {% leveloffset +1 %}{% include "./modules/etcd-network-latency-jitter.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Setting tuning parameters for etcd](/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)
 
 {% leveloffset +1 %}{% include "./modules/etcd-peer-round-trip.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [How to query from the command line Prometheus statistics (Red&#160;Hat Knowledgebase)](https://access.redhat.com/solutions/5151831)
 
 {% leveloffset +1 %}{% include "./modules/etcd-determine-kube-api-transaction-rate.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [kube-burner-ocp documentation](https://kube-burner.github.io/kube-burner-ocp/latest/)

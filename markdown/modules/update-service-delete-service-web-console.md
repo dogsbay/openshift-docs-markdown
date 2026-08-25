@@ -9,7 +9,7 @@ You can use the {{ product_title }} web console to delete an OpenShift Update Se
 
 **Procedure**
 
-1.  In the web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the web console, click **Ecosystem** → **Installed Operators**.
 1.  Choose **OpenShift Update Service** from the list of installed Operators.
 1.  Click the **Update Service** tab.
 1.  From the list of installed OpenShift Update Service applications, select the application to be deleted and then click **Delete UpdateService**.

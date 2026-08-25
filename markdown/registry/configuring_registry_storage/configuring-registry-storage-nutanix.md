@@ -3,11 +3,11 @@ title: Configuring the registry for Nutanix
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the registry for Nutanix {id="configuring-registry-storage-nutanix"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the registry for Nutanix {id="configuring-registry-storage-nutanix"}
 {%- set context = "configuring-registry-storage-nutanix" %}
 
-Users can optimize container image distribution, security, and access controls, enabling a robust foundation for Nutanix applications on {{ product_title }}
+Users can optimize container image distribution, security, and access controls, enabling a robust foundation for Nutanix applications on {{ product_title }} {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/registry-removed.md" %}{% endleveloffset %}
 
@@ -27,7 +27,7 @@ Users can optimize container image distribution, security, and access controls, 
 
 {% leveloffset +1 %}{% include "./modules/registry-configuring-registry-storage-rhodf-cephfs.md" %}{% endleveloffset %}
 
-## Additional resources {id="configuring-registry-storage-nutanix-addtl-resources"}
+## Additional resources {id="configuring-registry-storage-nutanix-addtl-resources" ._additional-resources}
 
 *   [Recommended configurable storage technology](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 *   [Configuring Image Registry to use {{ rh_storage }}](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/managing_and_allocating_storage_resources/index#configuring-image-registry-to-use-openshift-data-foundation_rhodf)

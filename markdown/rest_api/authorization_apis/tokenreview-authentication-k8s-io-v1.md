@@ -1,5 +1,5 @@
 ---
-title: "TokenReview []"
+title: "TokenReview [authentication.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | TokenReviewSpec is a description of the token authentication request. |
 | `status` | `object` | TokenReviewStatus is the result of the token authentication request. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,6 +42,7 @@ Type
 | --- | --- | --- |
 | `audiences` | `array (string)` | Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver. |
 | `token` | `string` | Token is the opaque bearer token. |
+
 ### .status {id="_status"}
 
 Description
@@ -56,6 +58,7 @@ Type
 | `authenticated` | `boolean` | Authenticated indicates that the token was associated with a known user. |
 | `error` | `string` | Error indicates that the token couldn’t be checked |
 | `user` | `object` | UserInfo holds the information about the user needed to implement the user.Info interface. |
+
 ### .status.user {id="_statususer"}
 
 Description
@@ -72,6 +75,7 @@ Type
 | `groups` | `array (string)` | The names of groups this user is a part of. |
 | `uid` | `string` | A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs. |
 | `username` | `string` | The name that uniquely identifies this user among all active users. |
+
 ### .status.user.extra {id="_statususerextra"}
 
 Description

@@ -23,11 +23,11 @@ You can define the list of `audit` and `infrastructure` sources to collect the l
       inputs:
         - name: mylogs1
           infrastructure:
-            sources: # (1)
+            sources: (1)
               - node
         - name: mylogs2
           audit:
-            sources: # (2)
+            sources: (2)
               - kubeAPI
               - openshiftAPI
               - ovn

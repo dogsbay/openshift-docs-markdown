@@ -5,7 +5,7 @@ To troubleshoot a specific virtual machine (VM) without changing global settings
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines** from the side menu.
+1.  Click **Virtualization** → **VirtualMachines** from the side menu.
 1.  Select a virtual machine to open the **VirtualMachine details** page.
 1.  Click the **Configuration** tab.
 1.  Set **Guest system log access** to on or off.

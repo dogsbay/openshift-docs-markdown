@@ -18,7 +18,7 @@ To ensure stable behavior and avoid unnecessary re-importing, you can specify th
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Add the `dataImportCronTemplate` to the spec section of the `HyperConverged` resource and set the `storageClassName`:

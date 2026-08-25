@@ -14,7 +14,7 @@ To create serverless applications using the **Administrator** perspective, ensur
 
 **Procedure**
 
-1.  Navigate to the **Serverless** -> **Serving** page.
+1.  Navigate to the **Serverless** → **Serving** page.
 1.  In the **Create** list, select **Service**.
 1.  Manually enter YAML or JSON definitions, or by dragging and dropping a file into the editor.
 1.  Click **Create**.

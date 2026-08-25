@@ -3,8 +3,8 @@ title: Service mesh deployment models
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Service mesh deployment models {id="ossm-deployment-models"}
 {% include "./_attributes/common-attributes.md" %}
+# Service mesh deployment models {id="ossm-deployment-models"}
 {%- set context = "ossm-deployment-models" %}
 
 {{ SMProductName }} supports several different deployment models that can be combined in different ways to best suit your business requirements.

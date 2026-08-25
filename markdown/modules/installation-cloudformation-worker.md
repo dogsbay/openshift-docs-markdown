@@ -4,7 +4,6 @@
 The compute machine `CloudFormation` template creates the {{ aws_first }} resources for the worker nodes that run your {{ product_title }} application workloads. {._abstract}
 
 ```yaml title="CloudFormation template for compute machines"
-```yaml
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Node Launch (EC2 worker instance)
 
@@ -111,5 +110,4 @@ Outputs:
   PrivateIP:
     Description: The compute node private IP address.
     Value: !GetAtt Worker0.PrivateIp
-```
 ```

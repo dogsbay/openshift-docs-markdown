@@ -22,8 +22,8 @@ You can view the status of an Operator catalog source by using the CLI. {._abstr
 
 **Procedure**
 
-1.  List the catalog sources in a namespace. For example, you can check the `{{ global_ns }}` namespace, which is used for cluster-wide catalog sources:
-    ```terminal
+1.  List the catalog sources in a namespace. For example, you can check the `{{ global_ns }}`{minja} namespace, which is used for cluster-wide catalog sources:
+    ```terminal {minja}
     $ oc get catalogsources -n {{ global_ns }}
     ```
     ```terminal title="Example output"
@@ -34,10 +34,10 @@ You can view the status of an Operator catalog source by using the CLI. {._abstr
     redhat-operators      Red Hat Operators     grpc   Red Hat     55m
     ```
 1.  Use the `oc describe` command to get more details and status about a catalog source:
-    ```terminal
+    ```terminal {minja}
     $ oc describe catalogsource example-catalog -n {{ global_ns }}
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     Name:         example-catalog
     Namespace:    {{ global_ns }}
     Labels:       <none>
@@ -62,7 +62,7 @@ You can view the status of an Operator catalog source by using the CLI. {._abstr
 
     In the preceding example output, the last observed state is `TRANSIENT_FAILURE`. This state indicates that there is a problem establishing a connection for the catalog source.
 1.  List the pods in the namespace where your catalog source was created:
-    ```terminal
+    ```terminal {minja}
     $ oc get pods -n {{ global_ns }}
     ```
     ```terminal title="Example output"
@@ -76,10 +76,10 @@ You can view the status of an Operator catalog source by using the CLI. {._abstr
 
     When a catalog source is created in a namespace, a pod for the catalog source is created in that namespace. In the preceding example output, the status for the `example-catalog-bwt8z` pod is `ImagePullBackOff`. This status indicates that there is an issue pulling the catalog source’s index image.
 1.  Use the `oc describe` command to inspect a pod for more detailed information:
-    ```terminal
+    ```terminal {minja}
     $ oc describe pod example-catalog-bwt8z -n {{ global_ns }}
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     Name:         example-catalog-bwt8z
     Namespace:    {{ global_ns }}
     Priority:     0
@@ -100,8 +100,8 @@ You can view the status of an Operator catalog source by using the CLI. {._abstr
     In the preceding example output, the error messages indicate that the catalog source’s index image is failing to pull successfully because of an authorization issue. For example, the index image might be stored in a registry that requires login credentials.
 
 {% if openshift_origin %}
-{%- set global_ns = false -%}
+{%- set global_ns = "" -%}
 {% endif %}
 {% if not openshift_origin %}
-{%- set global_ns = false -%}
+{%- set global_ns = "" -%}
 {% endif %}

@@ -58,7 +58,7 @@ Each script is compatible only with certain environment variable combinations.
 
 You can run a script by itself or with one or more compatible environment variables.
 
-```terminal title="must-gather syntax with optional parameters"
+```terminal title="must-gather syntax with optional parameters" {minja}
 $ oc adm must-gather \
   --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \
   -- <environment_variable_1> <environment_variable_2> <script_name>
@@ -69,5 +69,5 @@ $ oc adm must-gather \
 | Script | Compatible environment variable |
 | --- | --- |
 | `/usr/bin/gather` | * `PROS=<number_of_processes>` |
-| `/usr/bin/gather --vms_details` | * For a namespace: `NS=<namespace_name>` * For a VM: `VM=<vm_name> NS=<namespace_name>` * `PROS=<number_of_processes>` |
+| `/usr/bin/gather --vms_details` | * For a namespace: `NS=<namespace_name>`<br>* For a VM: `VM=<vm_name> NS=<namespace_name>`<br>* `PROS=<number_of_processes>` |
 | `/usr/bin/gather --images` | * `PROS=<number_of_processes>` |

@@ -27,7 +27,7 @@ If you have already installed the {{ es_op }} as part of OpenShift Logging, you 
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console as a user with the `cluster-admin` role. If you use {{ product_dedicated }}, you must have an account with the `dedicated-admin` role.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Type **Elasticsearch** into the filter box to locate the {{ es_op }}.
 1.  Click the **{{ es_op }}** provided by Red Hat to display information about the Operator.
 1.  Click **Install**.

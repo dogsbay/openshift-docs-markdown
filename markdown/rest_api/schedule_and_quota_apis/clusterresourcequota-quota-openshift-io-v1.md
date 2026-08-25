@@ -1,5 +1,5 @@
 ---
-title: "ClusterResourceQuota []"
+title: "ClusterResourceQuota [quota.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -33,6 +33,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the desired quota |
 | `status` | `object` | status defines the actual enforced quota and its current usage |
+
 ### .spec {id="_spec"}
 
 Description
@@ -51,6 +52,7 @@ Required
 | --- | --- | --- |
 | `quota` | `object` | quota defines the desired quota |
 | `selector` | `object` | selector is the selector used to match projects. It should only select active projects on the scale of dozens (though it can select many more less active projects).  These projects will contend on object creation through this resource. |
+
 ### .spec.quota {id="_specquota"}
 
 Description
@@ -65,6 +67,7 @@ Type
 | `hard` | `integer-or-string` | hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/ |
 | `scopeSelector` | `object` | scopeSelector is also a collection of filters like scopes that must match each object tracked by a quota but expressed using ScopeSelectorOperator in combination with possible values. For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched. |
 | `scopes` | `array (string)` | A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects. |
+
 ### .spec.quota.scopeSelector {id="_specquotascopeselector"}
 
 Description
@@ -80,6 +83,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | A list of scope selector requirements by scope of the resources. |
 | `matchExpressions[]` | `object` | A scoped-resource selector requirement is a selector that contains values, a scope name, and an operator that relates the scope name and values. |
+
 ### .spec.quota.scopeSelector.matchExpressions {id="_specquotascopeselectormatchexpressions"}
 
 Description
@@ -109,6 +113,7 @@ Required
 | `operator` | `string` | Represents a scope’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. |
 | `scopeName` | `string` | The name of the scope that the selector applies to. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.selector {id="_specselector"}
 
 Description
@@ -125,6 +130,7 @@ Type
 | --- | --- | --- |
 | `annotations` | `undefined (string)` | AnnotationSelector is used to select projects by annotation. |
 | `labels` | `` | LabelSelector is used to select projects by label. |
+
 ### .status {id="_status"}
 
 Description
@@ -142,6 +148,7 @@ Required
 | --- | --- | --- |
 | `namespaces` | `` | namespaces slices the usage by project.  This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects.  This can be used to pull the deltas for a given project. |
 | `total` | `object` | total defines the actual enforced quota and its current usage across all projects |
+
 ### .status.total {id="_statustotal"}
 
 Description
@@ -166,14 +173,14 @@ The following API endpoints are available:
     *   `POST`: create a ClusterResourceQuota
 *   `/apis/quota.openshift.io/v1/watch/clusterresourcequotas`
     *   `GET`: watch individual changes to a list of ClusterResourceQuota. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/quota.openshift.io/v1/clusterresourcequotas/{{ name }}`
+*   `/apis/quota.openshift.io/v1/clusterresourcequotas/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterResourceQuota
     *   `GET`: read the specified ClusterResourceQuota
     *   `PATCH`: partially update the specified ClusterResourceQuota
     *   `PUT`: replace the specified ClusterResourceQuota
-*   `/apis/quota.openshift.io/v1/watch/clusterresourcequotas/{{ name }}`
+*   `/apis/quota.openshift.io/v1/watch/clusterresourcequotas/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind ClusterResourceQuota. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/quota.openshift.io/v1/clusterresourcequotas/{{ name }}/status`
+*   `/apis/quota.openshift.io/v1/clusterresourcequotas/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ClusterResourceQuota
     *   `PATCH`: partially update status of the specified ClusterResourceQuota
     *   `PUT`: replace status of the specified ClusterResourceQuota

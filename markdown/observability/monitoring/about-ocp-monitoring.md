@@ -7,7 +7,7 @@ title: About OpenShift Container Platform monitoring
 # About {{ product_title }} monitoring {id="about-ocp-monitoring"}
 {%- set context = "about-ocp-monitoring" %}
 
-{{ product_title }} includes a preconfigured, preinstalled, and self-updating monitoring stack that provides monitoring for core platform components. After installing {{ product_title }}, cluster administrators can optionally enable monitoring for user-defined projects. By using this feature, cluster administrators, developers, and other users can specify how services and pods are monitored in their own projects.
+{{ product_title }} includes a preconfigured, preinstalled, and self-updating monitoring stack that provides monitoring for core platform components. After installing {{ product_title }}, cluster administrators can optionally enable monitoring for user-defined projects. By using this feature, cluster administrators, developers, and other users can specify how services and pods are monitored in their own projects. {._abstract}
 
 
 :::note

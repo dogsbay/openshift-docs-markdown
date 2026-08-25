@@ -38,7 +38,7 @@ Service
 
     Examples of _services_ include PostgreSQL, MySQL, Redis, and RabbitMQ.
 
-    In `{{ odo_title }}`, services are provisioned from the OpenShift Service Catalog and must be enabled within your cluster.
+    In `{{ odo_title }}`{minja}, services are provisioned from the OpenShift Service Catalog and must be enabled within your cluster.
 
 
 devfile

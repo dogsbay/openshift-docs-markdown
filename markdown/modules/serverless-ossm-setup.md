@@ -12,6 +12,7 @@ You can integrate {{ SMProductShortName }} with {{ ServerlessProductName }} with
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster or dedicated administrator access.
 {% endif %}
+
 *   You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {{ product_title }}.
 *   Install the {{ SMProductName }} Operator and create a `ServiceMeshControlPlane` resource in the `istio-system` namespace. If you want to use mTLS functionality, you must also set the `spec.security.dataPlane.mtls` field for the `ServiceMeshControlPlane` resource to `true`.
 
@@ -40,11 +41,11 @@ You can integrate {{ SMProductShortName }} with {{ ServerlessProductName }} with
     ```
     1.  A list of namespaces to be integrated with {{ SMProductShortName }}.
 
-        :::important
+    :::important
 
-        This list of namespaces must include the `knative-serving` namespace.
-        
-        :::
+    This list of namespaces must include the `knative-serving` namespace.
+    
+    :::
 
 1.  Apply the `ServiceMeshMemberRoll` resource:
     ```terminal
@@ -105,26 +106,26 @@ You can integrate {{ SMProductShortName }} with {{ ServerlessProductName }} with
     ```
     1.  Add the name of the secret that contains the wildcard certificate.
     1.  The `knative-local-gateway` serves HTTP traffic. Using HTTP means that traffic coming from outside of {{ SMProductShortName }}, but using an internal hostname, such as `example.default.svc.cluster.local`, is not encrypted. You can set up encryption for this path by creating another wildcard certificate and an additional gateway that uses a different `protocol` spec.
-        ```yaml title="Example knative-local-gateway object using HTTPS"
-        apiVersion: networking.istio.io/v1alpha3
-        kind: Gateway
-        metadata:
-          name: knative-local-gateway
-          namespace: knative-serving
-        spec:
-          selector:
-            istio: ingressgateway
-          servers:
-            - port:
-                number: 443
-                name: https
-                protocol: HTTPS
-              hosts:
-                - "*"
-              tls:
-                mode: SIMPLE
-                credentialName: <wildcard_certs>
-        ```
+    ```yaml title="Example knative-local-gateway object using HTTPS"
+    apiVersion: networking.istio.io/v1alpha3
+    kind: Gateway
+    metadata:
+      name: knative-local-gateway
+      namespace: knative-serving
+    spec:
+      selector:
+        istio: ingressgateway
+      servers:
+        - port:
+            number: 443
+            name: https
+            protocol: HTTPS
+          hosts:
+            - "*"
+          tls:
+            mode: SIMPLE
+            credentialName: <wildcard_certs>
+    ```
 1.  Apply the `Gateway` resources:
     ```terminal
     $ oc apply -f <filename>

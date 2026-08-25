@@ -6,8 +6,8 @@ Monitor the state of a cluster and any user-defined workloads by using the {{ pr
 As a
 {%- if not (openshift_dedicated or openshift_rosa) %}
 cluster administrator
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 `dedicated-admin`
 {%- endif %}
 or as a user with view permissions for all projects, you can access metrics for all default {{ product_title }} and user-defined projects in the Metrics UI.
@@ -34,12 +34,12 @@ Only dedicated administrators have access to the third-party UIs provided with {
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Observe** -> **Metrics**.
+1.  In the {{ product_title }} web console, click **Observe** → **Metrics**.
 1.  To add one or more queries, perform any of the following actions:
     | Option | Description |
     | --- | --- |
     | Select an existing query. | From the **Select query** drop-down list, select an existing query. |
-    | Create a custom query. | Add your Prometheus Query Language (PromQL) query to the **Expression** field. As you type a PromQL expression, autocomplete suggestions appear in a drop-down list. These suggestions include functions, metrics, labels, and time tokens. Use the keyboard arrows to select one of these suggested items and then press Enter to add the item to your expression. Move your mouse pointer over a suggested item to view a brief description of that item. |
+    | Create a custom query. | Add your Prometheus Query Language (PromQL) query to the **Expression** field.<br>As you type a PromQL expression, autocomplete suggestions appear in a drop-down list. These suggestions include functions, metrics, labels, and time tokens. Use the keyboard arrows to select one of these suggested items and then press Enter to add the item to your expression. Move your mouse pointer over a suggested item to view a brief description of that item. |
     | Add multiple queries. | Click **Add query**. |
     | Duplicate an existing query. | Click the options menu {{ kebab }} next to the query, then choose **Duplicate query**. |
     | Disable a query from being run. | Click the options menu {{ kebab }} next to the query and choose **Disable query**. |

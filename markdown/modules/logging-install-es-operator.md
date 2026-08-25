@@ -22,7 +22,7 @@ requires its own storage volume.
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
 1.  Click **OpenShift Elasticsearch Operator** from the list of available Operators, and click **Install**.
 1.  Ensure that the **All namespaces on the cluster** is selected under **Installation mode**.
 1.  Ensure that **openshift-operators-redhat** is selected under **Installed Namespace**.
@@ -39,5 +39,5 @@ requires its own storage volume.
 
 **Verification**
 
-1.  Verify that the OpenShift Elasticsearch Operator installed by switching to the **Ecosystem** -> **Installed Operators** page.
+1.  Verify that the OpenShift Elasticsearch Operator installed by switching to the **Ecosystem** → **Installed Operators** page.
 1.  Ensure that **OpenShift Elasticsearch Operator** is listed in all projects with a **Status** of **Succeeded**.

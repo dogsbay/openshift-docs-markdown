@@ -44,8 +44,8 @@ You can enable Accelerated Networking on {{ azure_full }} by adding `accelerated
 *   On the {{ azure_full }} portal, review the **Networking** settings page for a machine provisioned by the machine set, and verify that the `Accelerated networking` field is set to `Enabled`.
 
 {% if context == "creating-machineset-azure" %}
-{%- set compute = false -%}
+{%- set compute = "" -%}
 {% endif %}
 {% if context == "cpmso-supported-features-azure" %}
-{%- set cpmso = false -%}
+{%- set cpmso = "" -%}
 {% endif %}

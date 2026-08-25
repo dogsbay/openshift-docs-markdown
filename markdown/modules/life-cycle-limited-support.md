@@ -24,5 +24,5 @@ If you remove or replace any native {{ product_title }} components or any other 
 If you have questions about a specific action that might cause a cluster to transition to a Limited Support status or need further assistance, open a support ticket.
 
 {% if context == "rosa-hcp-life-cycle" %}
-{%- set rosa_with_hcp = false -%}
+{%- set rosa_with_hcp = "" -%}
 {% endif %}

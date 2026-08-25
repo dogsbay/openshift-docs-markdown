@@ -3,11 +3,11 @@ title: Compliance Operator overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Compliance Operator overview {id="co-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Compliance Operator overview {id="co-overview"}
 {%- set context = "co-overview" %}
 
-The {{ product_title }} Compliance Operator assists users by automating the inspection of numerous technical implementations and compares those against certain aspects of industry standards, benchmarks, and baselines.
+The {{ product_title }} Compliance Operator assists users by automating the inspection of numerous technical implementations and compares those against certain aspects of industry standards, benchmarks, and baselines. {._abstract}
 
 The Compliance Operator is not an auditor. To be compliant or certified under these various standards, you need to engage an authorized auditor such as a Qualified Security Assessor (QSA), Joint Authorization Board (JAB), or other industry recognized regulatory authority to assess your environment.
 
@@ -24,7 +24,7 @@ Compliance".
 
 {% leveloffset +1 %}{% include "./modules/co-overview-scan-management.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Compliance Operator release notes](/security/compliance_operator/compliance-operator-release-notes#compliance-operator-release-notes)
 *   [Product Compliance](https://access.redhat.com/compliance)

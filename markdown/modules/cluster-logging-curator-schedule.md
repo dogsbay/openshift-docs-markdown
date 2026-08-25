@@ -30,8 +30,8 @@ To configure the Curator schedule:
     ```
     1.  Specify the schedule for Curator in [cron format](https://en.wikipedia.org/wiki/Cron).
 
-        :::note
+    :::note
 
-        The time zone is set based on the host node where the Curator pod runs.
-        
-        :::
+    The time zone is set based on the host node where the Curator pod runs.
+    
+    :::

@@ -3,11 +3,11 @@ title: Disaster recovery
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Disaster recovery {id="virt-disaster-recovery"}
 {% include "./_attributes/common-attributes.md" %}
+# Disaster recovery {id="virt-disaster-recovery"}
 {%- set context = "virt-disaster-recovery" %}
 
-{{ VirtProductName }} supports using disaster recovery (DR) solutions to ensure that your environment can recover after a site outage. To use these methods, you must plan your {{ VirtProductName }} deployment in advance.
+{{ VirtProductName }} supports using disaster recovery (DR) solutions to ensure that your environment can recover after a site outage. To use these methods, you must plan your {{ VirtProductName }} deployment in advance. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-about-dr-methods.md" %}{% endleveloffset %}
 
@@ -17,7 +17,7 @@ title: Disaster recovery
 
 {% leveloffset +1 %}{% include "./modules/virt-dr-solutions-rh-managed-clusters.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Red&#160;Hat {{ VirtProductName }} disaster recovery guide](https://access.redhat.com/articles/7041594)
 *   [Configuring {{ rh_storage }} Disaster Recovery for OpenShift Workloads](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/latest/html/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index)
 *   [Metro-DR solution for {{ rh_storage }}](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#metro-dr-solution)

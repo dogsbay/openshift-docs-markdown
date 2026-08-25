@@ -37,8 +37,8 @@ Before you can create your {{ product_title }} cluster by using Terraform, you n
     ```
 
 {% if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}
-{%- set tf_classic_defaults = false -%}
+{%- set tf_classic_defaults = "" -%}
 {% endif %}
 {% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_hcp_defaults = false -%}
+{%- set tf_hcp_defaults = "" -%}
 {% endif %}

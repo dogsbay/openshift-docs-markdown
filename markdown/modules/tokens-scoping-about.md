@@ -9,10 +9,10 @@ A scoped token is a token that identifies as a given user but is limited to
 certain actions by its scope.
 {%- if not (openshift_dedicated or openshift_rosa) %}
 Only a user with the `cluster-admin` role can create scoped tokens.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 Only a user with the `dedicated-admin` role can create scoped tokens.
-{% endif %}
+{%- endif %}
 
 Scopes are evaluated by converting the set of scopes for a token into a set of
 `PolicyRules`. Then, the request is matched against those rules. The request

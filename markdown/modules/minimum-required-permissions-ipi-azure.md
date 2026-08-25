@@ -44,7 +44,6 @@ The following permissions are not required if you set `identity.type` to `UserAs
 :::
 
 
-
 Required permissions for creating compute resources
 :   *   `Microsoft.Compute/availabilitySets/read`
     *   `Microsoft.Compute/availabilitySets/write`
@@ -129,7 +128,6 @@ The following permissions are not required to create the private {{ product_titl
 *   `Microsoft.Network/dnszones/read`
 
 :::
-
 
 
 Required permissions for checking the health of resources
@@ -260,7 +258,6 @@ The following permissions are not required to delete a private {{ product_title 
 *   `Microsoft.Network/dnsZones/CNAME/delete`
 
 :::
-
 
 
 Required permissions for checking the health of resources

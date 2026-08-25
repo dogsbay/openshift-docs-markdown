@@ -12,7 +12,7 @@ This update addresses a CVE in an underlying dependency.
 ## New features and enhancements {id="file-integrity-operator-1-3-3-new-features-and-enhancements_{{ context }}"}
 
 *   You can install and use the File Integrity Operator in an {{ product_title }} cluster running in FIPS mode.
-{% include "./snippets/fips-snippet.md" %}
+    {% include "./snippets/fips-snippet.md" %}
 
 ## Bug fixes {id="file-integrity-operator-1-3-3-bug-fixes_{{ context }}"}
 

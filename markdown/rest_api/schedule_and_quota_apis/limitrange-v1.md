@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | LimitRangeSpec defines a min/max usage limit for resources that match on kind. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -40,6 +41,7 @@ Required
 | --- | --- | --- |
 | `limits` | `array` | Limits is the list of LimitRangeItem objects that are enforced. |
 | `limits[]` | `object` | LimitRangeItem defines a min/max usage limit for any resource that matches on kind. |
+
 ### .spec.limits {id="_speclimits"}
 
 Description
@@ -79,18 +81,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind LimitRange
 *   `/api/v1/watch/limitranges`
     *   `GET`: watch individual changes to a list of LimitRange. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/limitranges`
+*   `/api/v1/namespaces/{{ namespace }}/limitranges`{minja}
     *   `DELETE`: delete collection of LimitRange
     *   `GET`: list or watch objects of kind LimitRange
     *   `POST`: create a LimitRange
-*   `/api/v1/watch/namespaces/{{ namespace }}/limitranges`
+*   `/api/v1/watch/namespaces/{{ namespace }}/limitranges`{minja}
     *   `GET`: watch individual changes to a list of LimitRange. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/limitranges/{{ name }}`
+*   `/api/v1/namespaces/{{ namespace }}/limitranges/{{ name }}`{minja}
     *   `DELETE`: delete a LimitRange
     *   `GET`: read the specified LimitRange
     *   `PATCH`: partially update the specified LimitRange
     *   `PUT`: replace the specified LimitRange
-*   `/api/v1/watch/namespaces/{{ namespace }}/limitranges/{{ name }}`
+*   `/api/v1/watch/namespaces/{{ namespace }}/limitranges/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind LimitRange. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /api/v1/limitranges {id="_apiv1limitranges"}

@@ -10,7 +10,7 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
 **Procedure**
 
 1.  Edit the `KedaController` custom resource to add the `auditConfig` stanza:
-    {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
     ```yaml
     kind: KedaController
     apiVersion: keda.sh/v1alpha1
@@ -78,7 +78,7 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
 
 1.  View the audit log file directly:
     1.  Obtain the name of the `keda-metrics-apiserver-*` pod:
-        {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
         ```terminal
         oc get pod -n openshift-keda
         ```
@@ -87,7 +87,7 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
         ```terminal
         oc get pod -n keda
         ```
-{%- endif %}
+{% endif %}
         ```terminal title="Example output"
         NAME                                                  READY   STATUS    RESTARTS   AGE
         custom-metrics-autoscaler-operator-5cb44cd75d-9v4lv   1/1     Running   0          8m20s
@@ -101,17 +101,17 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
         1.  Optional: You can use the `grep` command to specify the log level to display: `Metadata`, `Request`, `RequestResponse`.
 
             For example:
-            ```terminal
-            $ oc logs keda-metrics-apiserver-65c7cc44fd-rrl4r|grep -i metadata
-            ```
-            ```terminal title="Example output"
-             ...
-            {"kind":"Event","apiVersion":"audit.k8s.io/v1","level":"Metadata","auditID":"4c81d41b-3dab-4675-90ce-20b87ce24013","stage":"ResponseComplete","requestURI":"/healthz","verb":"get","user":{"username":"system:anonymous","groups":["system:unauthenticated"]},"sourceIPs":["10.131.0.1"],"userAgent":"kube-probe/1.28","responseStatus":{"metadata":{},"code":200},"requestReceivedTimestamp":"2023-02-16T13:00:03.554567Z","stageTimestamp":"2023-02-16T13:00:03.555032Z","annotations":{"authorization.k8s.io/decision":"allow","authorization.k8s.io/reason":""}}
-             ...
-            ```
+        ```terminal
+        $ oc logs keda-metrics-apiserver-65c7cc44fd-rrl4r|grep -i metadata
+        ```
+        ```terminal title="Example output"
+         ...
+        {"kind":"Event","apiVersion":"audit.k8s.io/v1","level":"Metadata","auditID":"4c81d41b-3dab-4675-90ce-20b87ce24013","stage":"ResponseComplete","requestURI":"/healthz","verb":"get","user":{"username":"system:anonymous","groups":["system:unauthenticated"]},"sourceIPs":["10.131.0.1"],"userAgent":"kube-probe/1.28","responseStatus":{"metadata":{},"code":200},"requestReceivedTimestamp":"2023-02-16T13:00:03.554567Z","stageTimestamp":"2023-02-16T13:00:03.555032Z","annotations":{"authorization.k8s.io/decision":"allow","authorization.k8s.io/reason":""}}
+         ...
+        ```
 1.  Alternatively, you can view a specific log:
     1.  Use a command similar to the following to log into the `keda-metrics-apiserver-*` pod:
-        {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
         ```terminal
         $ oc rsh pod/keda-metrics-apiserver-<hash> -n openshift-keda
         ```
@@ -149,11 +149,11 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
         1.  Optional: You can use the `grep` command to specify the log level to display: `Metadata`, `Request`, `RequestResponse`.
 
             For example:
-            ```terminal
-            sh-4.4$ cat log-2023.02.17-14:50/pvc-audit-log|grep -i Request
-            ```
-            ```text title="Example output"
-             ...
-            {"kind":"Event","apiVersion":"audit.k8s.io/v1","level":"Request","auditID":"63e7f68c-04ec-4f4d-8749-bf1656572a41","stage":"ResponseComplete","requestURI":"/openapi/v2","verb":"get","user":{"username":"system:aggregator","groups":["system:authenticated"]},"sourceIPs":["10.128.0.1"],"responseStatus":{"metadata":{},"code":304},"requestReceivedTimestamp":"2023-02-17T13:12:55.035478Z","stageTimestamp":"2023-02-17T13:12:55.038346Z","annotations":{"authorization.k8s.io/decision":"allow","authorization.k8s.io/reason":"RBAC: allowed by ClusterRoleBinding \"system:discovery\" of ClusterRole \"system:discovery\" to Group \"system:authenticated\""}}
-             ...
-            ```
+        ```terminal
+        sh-4.4$ cat log-2023.02.17-14:50/pvc-audit-log|grep -i Request
+        ```
+        ```text title="Example output"
+         ...
+        {"kind":"Event","apiVersion":"audit.k8s.io/v1","level":"Request","auditID":"63e7f68c-04ec-4f4d-8749-bf1656572a41","stage":"ResponseComplete","requestURI":"/openapi/v2","verb":"get","user":{"username":"system:aggregator","groups":["system:authenticated"]},"sourceIPs":["10.128.0.1"],"responseStatus":{"metadata":{},"code":304},"requestReceivedTimestamp":"2023-02-17T13:12:55.035478Z","stageTimestamp":"2023-02-17T13:12:55.038346Z","annotations":{"authorization.k8s.io/decision":"allow","authorization.k8s.io/reason":"RBAC: allowed by ClusterRoleBinding \"system:discovery\" of ClusterRole \"system:discovery\" to Group \"system:authenticated\""}}
+         ...
+        ```

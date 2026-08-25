@@ -26,4 +26,4 @@ spec:
 ```
 1.  `disableAllDefaultSources` is an override that controls availability of all default catalogs that are configured by default during an {{ product_title }} installation.
 1.  Disable default catalogs individually by changing the `disabled` parameter value per source.
-{% endif %}
+{%- endif %}

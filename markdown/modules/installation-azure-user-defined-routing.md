@@ -78,7 +78,7 @@ With these requirements available, you can use user-defined routing to create pr
 
 {% if restricted %}
 *   [Providing user-defined routing with Azure Firewall](https://learn.microsoft.com/en-us/azure/aks/egress-outboundtype#deploy-a-cluster-with-outbound-type-of-udr-and-azure-firewall)
-*   [Azure Firewall does not work properly with Azure public load balancers](https://learn.microsoft.com/en-us/azure/firewall/integrate-lb)
+*   [Azure Firewall does not work properly with Azure public load balancers](https://learn.microsoft.com/en-us/azure/firewall/integrate-lb) {._additional-resources}
 {% endif %}
 
 {% if private %}
@@ -89,8 +89,8 @@ With these requirements available, you can use user-defined routing to create pr
 {% endif %}
 
 {% if context == "installing-azure-private" %}
-{%- set private = false -%}
+{%- set private = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-installer-provisioned" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

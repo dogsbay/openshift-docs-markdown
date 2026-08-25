@@ -10,7 +10,7 @@ By default, the NUMA Resources Operator automatically enables HA mode by creatin
 
 The following manifest demonstrates the default behavior. To automatically enable replica detection, omit the `replicas` field.
 
-```yaml
+```yaml {minja}
 apiVersion: nodetopology.openshift.io/v1
 kind: NUMAResourcesScheduler
 metadata:

@@ -17,10 +17,11 @@ Application, audit, and infrastructure alerts are sent by default to the {{ prod
 {% leveloffset +1 %}{% include "./modules/loki-rbac-rules-permissions.md" %}{% endleveloffset %}
 
 {% if openshift_enterprise %}
+
 **Additional resources**
 {._additional-resources}
 
-*   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
+*   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac) {._additional-resources}
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/logging-enabling-loki-alerts.md" %}{% endleveloffset %}

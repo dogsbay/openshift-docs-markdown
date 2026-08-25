@@ -6,7 +6,7 @@ As a cluster administrator, you can configure your GitHub App with the {{ produc
 
 **Prerequisites**
 
-You have installed the {{ pipelines_title }} `{{ pipelines_ver }}` operator from the Operator Hub.
+You have installed the {{ pipelines_title }} `{{ pipelines_ver }}`{minja} operator from the Operator Hub.
 
 **Procedure**
 

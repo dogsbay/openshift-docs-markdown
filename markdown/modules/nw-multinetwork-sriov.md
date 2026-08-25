@@ -117,7 +117,7 @@ contents:
     
     :::
 
-    ```yaml
+    ```yaml {minja}
     kind: DaemonSet
     apiVersion: apps/v1
     metadata:
@@ -173,7 +173,7 @@ contents:
     oc create -f sriov-device-plugin.yaml
     ```
 1.  Create a YAML file for the `sriov-cni` DaemonSet with the following contents:
-    ```yaml
+    ```yaml {minja}
     kind: DaemonSet
     apiVersion: apps/v1
     metadata:

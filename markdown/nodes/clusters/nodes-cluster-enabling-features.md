@@ -4,10 +4,10 @@ title: Enabling features using feature gates
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cluster-enabling" %}
-# Enabling features using feature gates {id="nodes-cluster-enabling-features"}
 {% include "./_attributes/common-attributes.md" %}
+# Enabling features using feature gates {id="nodes-cluster-enabling-features"}
 
-As an administrator, you can use feature gates to enable features that are not part of the default set of features so that you can use these non-default features in your cluster.
+As an administrator, you can use feature gates to enable features that are not part of the default set of features so that you can use these non-default features in your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-cluster-enabling-features-about.md" %}{% endleveloffset %}
 
@@ -17,7 +17,7 @@ As an administrator, you can use feature gates to enable features that are not p
 
 {% leveloffset +1 %}{% include "./modules/nodes-cluster-enabling-features-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_nodes-cluster-enabling"}
+## Additional resources {id="additional-resources_nodes-cluster-enabling" ._additional-resources}
 
 *   [Shared Resources CSI Driver and Build CSI Volumes in OpenShift Builds](/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)
 *   [CSI inline ephemeral volumes](/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline)

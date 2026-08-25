@@ -5,7 +5,7 @@ This section lists the `aws` CLI commands that the `rosa` command generates in t
 
 ## Using manual mode for account role creation {id="rosa-sts-account-wide-role-and-policy-aws-cli-manual-mode_{{ context }}"}
 
-The manual role creation mode generates the `aws` commands for you to review and run. The following command starts that process, where `<openshift_version>` refers to your version of {{ product_title }} (ROSA), such as `{{ product_version }}`.
+The manual role creation mode generates the `aws` commands for you to review and run. The following command starts that process, where `<openshift_version>` refers to your version of {{ product_title }} (ROSA), such as `{{ product_version }}`{minja}.
 
 ```terminal
 $ rosa create account-roles --mode manual

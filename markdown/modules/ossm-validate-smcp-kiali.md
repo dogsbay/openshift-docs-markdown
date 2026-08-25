@@ -6,16 +6,16 @@ You can use the Kiali console to validate your {{ SMProductShortName }} installa
 1.  Prerequisites
     *   The {{ SMProductName }} Operator must be installed.
     *   Access to the OpenShift CLI (`oc`).
-        {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
     *   You are logged in to {{ product_title }} as`cluster-admin`.
-        {% endif %}
-        {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
     *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Networking** -> **Routes**.
+1.  In the {{ product_title }} web console, navigate to **Networking** → **Routes**.
 1.  On the **Routes** page, select the {{ SMProductShortName }} control plane project, for example `istio-system`, from the **Namespace** menu.
 
     The **Location** column displays the linked address for each route.
@@ -23,6 +23,7 @@ You can use the Kiali console to validate your {{ SMProductShortName }} installa
 1.  Click **Log In With OpenShift**.
 
     When you first log in to the Kiali Console, you see the **Overview** page which displays all the namespaces in your service mesh that you have permission to view. When there are multiple namespaces shown on the **Overview** page, Kiali shows namespaces with health or validation problems first.
+
     **Figure 1. Kiali Overview page**
 
     ![Kiali Overview page showing istio-system](/_assets/images/ossm-kiali-overview.png)
@@ -33,6 +34,7 @@ You can use the Kiali console to validate your {{ SMProductShortName }} installa
     *   **Istio Control Plane Dashboard**
     *   **Istio Performance Dashboard**
     *   **Istio Wasm Exetension Dashboard**
+
         **Figure 2. Grafana Istio Control Plane Dashboard**
 
         ![Istio Control Plane Dashboard showing data for bookinfo sample project](/_assets/images/ossm-grafana-control-plane-dashboard.png)

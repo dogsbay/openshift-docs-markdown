@@ -16,7 +16,7 @@ To disable multicast between pods in a project, you can remove the `k8s.ovn.org/
 **Procedure**
 
 *   Disable multicast by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc annotate {{ namespace }} <namespace> \
         {{ annotation }}
     ```
@@ -39,13 +39,13 @@ To disable multicast between pods in a project, you can remove the `k8s.ovn.org/
     
     :::
 
-{% endif %}
+{%- endif %}
 
 {% if context == "openshift-sdn-disabling-multicast" %}
-{%- set annotation = false -%}
-{%- set namespace = false -%}
+{%- set annotation = "" -%}
+{%- set namespace = "" -%}
 {% endif %}
 {% if context == "ovn-kubernetes-disabling-multicast" %}
-{%- set annotation = false -%}
-{%- set namespace = false -%}
+{%- set annotation = "" -%}
+{%- set namespace = "" -%}
 {% endif %}

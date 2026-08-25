@@ -3,11 +3,11 @@ title: "Backing up applications with File System Backup: Kopia or Restic"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Backing up applications with File System Backup: Kopia or Restic {id="oadp-backing-up-applications-restic-doc"}
 {% include "./_attributes/common-attributes.md" %}
+# Backing up applications with File System Backup: Kopia or Restic {id="oadp-backing-up-applications-restic-doc"}
 {%- set context = "backing-up-applications" %}
 
-Use {{ oadp_short }} File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This helps you to protect application data on NFS or other non-snapshot storage.
+Use {{ oadp_short }} File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This helps you to protect application data on NFS or other non-snapshot storage. {._abstract}
 
 If your cloud provider does not support snapshots or if your applications are on NFS data volumes, you can create backups by using FSB.
 
@@ -42,5 +42,6 @@ FSB does not support backing up `hostPath` volumes. For more information, see _F
 {% leveloffset +1 %}{% include "./modules/oadp-backingup-using-kopia.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [FSB limitations](https://velero.io/docs/v1.12/file-system-backup/#limitations)

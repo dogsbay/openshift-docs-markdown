@@ -19,8 +19,8 @@ When your infrastructure is prerequired and unmanaged in a hosted cluster {{ aws
     *   One private link endpoint for private hosted clusters
 
 
-:::note
+    :::note
 
-For private link networking to work, the endpoint zone in the hosted cluster {{ aws_short }} account must match the zone of the instance that is resolved by the service endpoint in the management cluster {{ aws_short }} account. In {{ aws_short }}, the zone names are aliases, such as us-east-2b, which do not necessarily map to the same zone in different accounts. As a result, for private link to work, the management cluster must have subnets or workers in all zones of its region.
-
-:::
+    For private link networking to work, the endpoint zone in the hosted cluster {{ aws_short }} account must match the zone of the instance that is resolved by the service endpoint in the management cluster {{ aws_short }} account. In {{ aws_short }}, the zone names are aliases, such as us-east-2b, which do not necessarily map to the same zone in different accounts. As a result, for private link to work, the management cluster must have subnets or workers in all zones of its region.
+    
+    :::

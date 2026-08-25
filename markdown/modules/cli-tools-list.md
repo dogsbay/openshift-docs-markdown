@@ -8,8 +8,8 @@ The following list details these primary CLI tools:
 *   {{ oc_first }}:
 {%- if not openshift_rosa %}
 This is the most commonly used CLI tool by {{ product_title }} users.
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
 This is one of the more commonly used developer CLI tools.
 {%- endif %}
 Cluster administrators and developers can use it to perform end-to-end operations across {{ product_title }} from the terminal, including working directly with project source code using command scripts.

@@ -2,7 +2,7 @@
 
 # Installing {{ odo_title }} on {{ op_system_base_full }} using an RPM {id="installing-odo-on-linux-rpm_{{ context }}"}
 
-For {{ op_system_base_full }}, you can install the `{{ odo_title }}` CLI as an RPM.
+For {{ op_system_base_full }}, you can install the `{{ odo_title }}`{minja} CLI as an RPM.
 
 **Procedure**
 
@@ -22,15 +22,15 @@ For {{ op_system_base_full }}, you can install the `{{ odo_title }}` CLI as an R
     ```terminal
     # subscription-manager attach --pool=<pool_id>
     ```
-1.  Enable the repositories required by `{{ odo_title }}`:
-    ```terminal
+1.  Enable the repositories required by `{{ odo_title }}`{minja}:
+    ```terminal {minja}
     # subscription-manager repos --enable="ocp-tools-{{ product_version }}-for-rhel-8-x86_64-rpms"
     ```
-1.  Install the `{{ odo_title }}` package:
+1.  Install the `{{ odo_title }}`{minja} package:
     ```terminal
     # yum install odo
     ```
-1.  Verify that `{{ odo_title }}` is now available on your system:
+1.  Verify that `{{ odo_title }}`{minja} is now available on your system:
     ```terminal
     $ odo version
     ```

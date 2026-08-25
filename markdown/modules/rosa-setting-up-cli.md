@@ -36,7 +36,7 @@ Put the {{ rosa_cli_first }} on the computer you use to run cluster commands. {.
     ```terminal
     $ rosa version
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     1.2.15
     Your {{ rosa_cli }} is up to date.
     ```

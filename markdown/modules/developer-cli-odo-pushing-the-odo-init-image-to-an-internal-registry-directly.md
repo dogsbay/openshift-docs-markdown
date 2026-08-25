@@ -157,7 +157,7 @@ PS C:\> oc get secret router-certs-default -n openshift-ingress -o yaml
 ```
 apiVersion: v1
 data:
-  tls.crt: ******************************************
+  tls.crt: **************************
   tls.key: <mark>#</mark><mark>#</mark><mark>#</mark><mark>#</mark><mark>#</mark><mark>#</mark>
 kind: Secret
 metadata:

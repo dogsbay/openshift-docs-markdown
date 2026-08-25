@@ -29,12 +29,12 @@ When the `prune` filter is configured, the log collector evaluates log streams a
     spec:
       filters:
       - name: <filter_name>
-        type: prune # (1)
-        prune: # (2)
-          in: [.kubernetes.annotations, .kubernetes.namespace_id] # (3)
-          notIn: [.kubernetes,.log_type,.message,."@timestamp"] # (4)
+        type: prune (1)
+        prune: (2)
+          in: [.kubernetes.annotations, .kubernetes.namespace_id] (3)
+          notIn: [.kubernetes,.log_type,.message,."@timestamp"] (4)
       pipelines:
-      - name: <pipeline_name> # (5)
+      - name: <pipeline_name> (5)
         filterRefs: ["<filter_name>"]
     # ...
     ```

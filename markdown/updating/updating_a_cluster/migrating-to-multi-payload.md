@@ -3,11 +3,11 @@ title: Migrating to a cluster with multi-architecture compute machines
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Migrating to a cluster with multi-architecture compute machines {id="migrating-clusters-to-multi-payload"}
 {% include "./_attributes/common-attributes.md" %}
+# Migrating to a cluster with multi-architecture compute machines {id="migrating-clusters-to-multi-payload"}
 {%- set context = "updating-clusters-overview" %}
 
-You can migrate your current cluster with single-architecture compute machines to a cluster with multi-architecture compute machines by updating to a multi-architecture, manifest-listed payload. This allows you to add mixed architecture compute nodes to your cluster.
+You can migrate your current cluster with single-architecture compute machines to a cluster with multi-architecture compute machines by updating to a multi-architecture, manifest-listed payload. This allows you to add mixed architecture compute nodes to your cluster. {._abstract}
 
 For information about configuring your multi-architecture compute machines, see "Configuring multi-architecture compute machines on an {{ product_title }} cluster".
 
@@ -24,6 +24,7 @@ Migration from a multi-architecture payload to a single-architecture payload is 
 {% leveloffset +1 %}{% include "./modules/migrating-to-multi-arch-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring multi-architecture compute machines on an {{ product_title }} cluster](/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-configuration#multi-architecture-configuration)
 *   [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
@@ -37,6 +38,7 @@ Migration from a multi-architecture payload to a single-architecture payload is 
 {% leveloffset +1 %}{% include "./modules/migrating-from-x86-to-arm-cp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Control plane configuration options for {{ aws_full }}](/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-aws#cpmso-config-options-aws)
 *   [Tested instance types for AWS on 64-bit ARM infrastructures](/installing/installing_aws/upi/upi-aws-installation-reqs#installation-aws-arm-tested-machine-types_upi-aws-installation-reqs)
@@ -45,6 +47,7 @@ Migration from a multi-architecture payload to a single-architecture payload is 
 {% leveloffset +1 %}{% include "./modules/multiarch-migrating-cp-infra-gcp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Tested instance types for {{ gcp_short }} on 64-bit ARM infrastructures](/installing/installing_gcp/installing-gcp-customizations#installation-gcp-tested-machine-types-arm_installing-gcp-customizations)
 *   [Migrating to a cluster with multi-architecture compute machines using the CLI](/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-arch-cli_updating-clusters-overview)

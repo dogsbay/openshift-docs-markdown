@@ -16,5 +16,5 @@ Currently, {{ insights_operator }} sends the following alerts when the condition
 **Procedure**
 
 *   To view these alerts in the Alerting UI in the {{ product_title }} web console, choose one of the following methods:
-    *   In the **Administrator** perspective, click **Observe** -> **Alerting**.
-    *   In the **Developer** perspective, click **Observe** -> &lt;project_name> -> **Alerts** tab.
+    *   In the **Administrator** perspective, click **Observe** → **Alerting**.
+    *   In the **Developer** perspective, click **Observe** → &lt;project_name> → **Alerts** tab.

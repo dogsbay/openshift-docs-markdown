@@ -23,6 +23,7 @@ In the **Topology** view in the **Developer** perspective of the web console, th
     *   **Terminating**(![title="Pod Terminating"](/_assets/images/odc_pod_terminating.png)): When a pod is being deleted, it is shown as **Terminating** by some kubectl commands. **Terminating** status is not one of the pod phases. A pod is granted a graceful termination period, which defaults to 30 seconds.
     *   **Unknown**(![title="Pod Unknown"](/_assets/images/odc_pod_unknown.png)): The state of the pod could not be obtained. This phase typically occurs due to an error in communicating with the node where the pod should be running.
 *   After you create an application and an image is deployed, the status is shown as **Pending**. After the application is built, it is displayed as **Running**.
+
     **Figure 1. Application topology**
 
     ![odc_application_topology](/_assets/images/odc_application_topology.png)

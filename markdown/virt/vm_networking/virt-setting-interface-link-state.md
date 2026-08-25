@@ -3,11 +3,11 @@ title: Managing the link state of a virtual machine interface
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing the link state of a virtual machine interface {id="virt-setting-interface-link-state"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing the link state of a virtual machine interface {id="virt-setting-interface-link-state"}
 {%- set context = "virt-setting-interface-link-state" %}
 
-You can manage the link state of a primary or secondary virtual machine (VM) interface by using the {{ product_title }} web console or the CLI. By specifying the link state, you can logically connect or disconnect the virtual network interface controller (vNIC) from a network.
+You can manage the link state of a primary or secondary virtual machine (VM) interface by using the {{ product_title }} web console or the CLI. By specifying the link state, you can logically connect or disconnect the virtual network interface controller (vNIC) from a network. {._abstract}
 
 
 :::note

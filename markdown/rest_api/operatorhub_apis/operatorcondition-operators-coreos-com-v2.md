@@ -1,5 +1,5 @@
 ---
-title: "OperatorCondition []"
+title: "OperatorCondition [operators.coreos.com/v2]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OperatorConditionSpec allows an operator to report state to OLM and provides cluster admin with the ability to manually override state reported by the operator. |
 | `status` | `object` | OperatorConditionStatus allows OLM to convey which conditions have been observed. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -46,6 +47,7 @@ Type
 | `overrides` | `array` |  |
 | `overrides[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `serviceAccounts` | `array (string)` |  |
+
 ### .spec.conditions {id="_specconditions"}
 
 Description
@@ -79,6 +81,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .spec.overrides {id="_specoverrides"}
 
 Description
@@ -111,6 +114,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status {id="_status"}
 
 Description
@@ -124,6 +128,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` |  |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -164,16 +169,16 @@ The following API endpoints are available:
 
 *   `/apis/operators.coreos.com/v2/operatorconditions`
     *   `GET`: list objects of kind OperatorCondition
-*   `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions`
+*   `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions`{minja}
     *   `DELETE`: delete collection of OperatorCondition
     *   `GET`: list objects of kind OperatorCondition
     *   `POST`: create an OperatorCondition
-*   `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }}`
+*   `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }}`{minja}
     *   `DELETE`: delete an OperatorCondition
     *   `GET`: read the specified OperatorCondition
     *   `PATCH`: partially update the specified OperatorCondition
     *   `PUT`: replace the specified OperatorCondition
-*   `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }}/status`
+*   `/apis/operators.coreos.com/v2/namespaces/{{ namespace }}/operatorconditions/{{ name }}/status`{minja}
     *   `GET`: read status of the specified OperatorCondition
     *   `PATCH`: partially update status of the specified OperatorCondition
     *   `PUT`: replace status of the specified OperatorCondition

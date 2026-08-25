@@ -3,8 +3,8 @@ title: Using build strategies
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using build strategies {id="build-strategies"}
 {% include "./_attributes/common-attributes.md" %}
+# Using build strategies {id="build-strategies"}
 {%- set context = "build-strategies" %}
 
 The following sections define the primary supported build strategies, and how to use them.
@@ -26,6 +26,7 @@ The following sections define the primary supported build strategies, and how to
 {% leveloffset +2 %}{% include "./modules/builds-using-build-volumes.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Build inputs](/cicd/builds/creating-build-inputs#builds-define-build-inputs_creating-build-inputs)
 *   [Input secrets and config maps](/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)
@@ -55,6 +56,7 @@ The following sections define the primary supported build strategies, and how to
 {% leveloffset +2 %}{% include "./modules/builds-using-build-volumes.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Build inputs](/cicd/builds/creating-build-inputs#builds-define-build-inputs_creating-build-inputs)
 *   [Input secrets and config maps](/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)
@@ -69,7 +71,7 @@ The following sections define the primary supported build strategies, and how to
 {% leveloffset +2 %}{% include "./modules/builds-strategy-custom-environment-variables.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/images-custom.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/builds-strategy-pipeline-build.md" %}{% endleveloffset %}
 

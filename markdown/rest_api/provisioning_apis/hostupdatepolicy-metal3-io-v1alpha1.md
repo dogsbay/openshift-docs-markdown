@@ -1,5 +1,5 @@
 ---
-title: "HostUpdatePolicy []"
+title: "HostUpdatePolicy [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | HostUpdatePolicySpec defines the desired state of HostUpdatePolicy. |
 | `status` | `object` | HostUpdatePolicyStatus defines the observed state of HostUpdatePolicy. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -37,6 +38,7 @@ Type
 | --- | --- | --- |
 | `firmwareSettings` | `string` | Defines policy for changing firmware settings |
 | `firmwareUpdates` | `string` | Defines policy for updating firmware |
+
 ### .status {id="_status"}
 
 Description
@@ -52,11 +54,11 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/hostupdatepolicies`
     *   `GET`: list objects of kind HostUpdatePolicy
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies`{minja}
     *   `DELETE`: delete collection of HostUpdatePolicy
     *   `GET`: list objects of kind HostUpdatePolicy
     *   `POST`: create a HostUpdatePolicy
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostupdatepolicies/{{ name }}`{minja}
     *   `DELETE`: delete a HostUpdatePolicy
     *   `GET`: read the specified HostUpdatePolicy
     *   `PATCH`: partially update the specified HostUpdatePolicy

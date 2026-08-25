@@ -29,6 +29,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | A StatefulSetSpec is the specification of a StatefulSet. |
 | `status` | `object` | StatefulSetStatus represents the current state of a StatefulSet. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,7 +49,7 @@ Required
 | `minReadySeconds` | `integer` | Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) |
 | `ordinals` | `object` | StatefulSetOrdinals describes the policy used for replica ordinal assignment in this StatefulSet. |
 | `persistentVolumeClaimRetentionPolicy` | `object` | StatefulSetPersistentVolumeClaimRetentionPolicy describes the policy used for PVCs created from the StatefulSet VolumeClaimTemplates. |
-| `podManagementPolicy` | `string` | podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once. Possible enum values:  - `"OrderedReady"` will create pods in strictly increasing order on scale up and strictly decreasing order on scale down, progressing only when the previous pod is ready or terminated. At most one pod will be changed at any time.  - `"Parallel"` will create and delete pods as soon as the stateful set replica count is changed, and will not wait for pods to be ready or complete termination. |
+| `podManagementPolicy` | `string` | podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once.<br>Possible enum values:  - `"OrderedReady"` will create pods in strictly increasing order on scale up and strictly decreasing order on scale down, progressing only when the previous pod is ready or terminated. At most one pod will be changed at any time.  - `"Parallel"` will create and delete pods as soon as the stateful set replica count is changed, and will not wait for pods to be ready or complete termination. |
 | `replicas` | `integer` | replicas is the desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1. |
 | `revisionHistoryLimit` | `integer` | revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet’s revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10. |
 | `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over pods that should match the replica count. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
@@ -56,6 +57,7 @@ Required
 | `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format &lt;statefulsetname>-&lt;podindex>. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3". The only allowed template.spec.restartPolicy value is "Always". |
 | `updateStrategy` | `object` | StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy. |
 | `volumeClaimTemplates` | [`array (PersistentVolumeClaim)`](/rest_api/storage_apis/persistentvolumeclaim-v1#persistentvolumeclaim-v1) | volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name. |
+
 ### .spec.ordinals {id="_specordinals"}
 
 Description
@@ -68,6 +70,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `start` | `integer` | start is the number representing the first replica’s index. It may be used to number replicas from an alternate index (eg: 1-indexed) over the default 0-indexed names, or to orchestrate progressive movement of replicas from one StatefulSet to another. If set, replica indices will be in the range:   [.spec.ordinals.start, .spec.ordinals.start + .spec.replicas). If unset, defaults to 0. Replica indices will be in the range:   [0, .spec.replicas). |
+
 ### .spec.persistentVolumeClaimRetentionPolicy {id="_specpersistentvolumeclaimretentionpolicy"}
 
 Description
@@ -81,6 +84,7 @@ Type
 | --- | --- | --- |
 | `whenDeleted` | `string` | WhenDeleted specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is deleted. The default policy of `Retain` causes PVCs to not be affected by StatefulSet deletion. The `Delete` policy causes those PVCs to be deleted. |
 | `whenScaled` | `string` | WhenScaled specifies what happens to PVCs created from StatefulSet VolumeClaimTemplates when the StatefulSet is scaled down. The default policy of `Retain` causes PVCs to not be affected by a scaledown. The `Delete` policy causes the associated PVCs for any excess pods above the replica count to be deleted. |
+
 ### .spec.updateStrategy {id="_specupdatestrategy"}
 
 Description
@@ -93,7 +97,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `rollingUpdate` | `object` | RollingUpdateStatefulSetStrategy is used to communicate parameter for RollingUpdateStatefulSetStrategyType. |
-| `type` | `string` | Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate. Possible enum values:  - `"OnDelete"` triggers the legacy behavior. Version tracking and ordered rolling restarts are disabled. Pods are recreated from the StatefulSetSpec when they are manually deleted. When a scale operation is performed with this strategy,specification version indicated by the StatefulSet’s currentRevision.  - `"RollingUpdate"` indicates that update will be applied to all Pods in the StatefulSet with respect to the StatefulSet ordering constraints. When a scale operation is performed with this strategy, new Pods will be created from the specification version indicated by the StatefulSet’s updateRevision. |
+| `type` | `string` | Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate.<br>Possible enum values:  - `"OnDelete"` triggers the legacy behavior. Version tracking and ordered rolling restarts are disabled. Pods are recreated from the StatefulSetSpec when they are manually deleted. When a scale operation is performed with this strategy,specification version indicated by the StatefulSet’s currentRevision.  - `"RollingUpdate"` indicates that update will be applied to all Pods in the StatefulSet with respect to the StatefulSet ordering constraints. When a scale operation is performed with this strategy, new Pods will be created from the specification version indicated by the StatefulSet’s updateRevision. |
+
 ### .spec.updateStrategy.rollingUpdate {id="_specupdatestrategyrollingupdate"}
 
 Description
@@ -107,6 +112,7 @@ Type
 | --- | --- | --- |
 | `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding up. This can not be 0. Defaults to 1. This field is beta-level and is enabled by default. The field applies to all pods in the range 0 to Replicas-1. That means if there is any unavailable pod in the range 0 to Replicas-1, it will be counted towards MaxUnavailable. This setting might not be effective for the OrderedReady podManagementPolicy. That policy ensures pods are created and become ready one at a time. |
 | `partition` | `integer` | Partition indicates the ordinal at which the StatefulSet should be partitioned for updates. During a rolling update, all pods from ordinal Replicas-1 to Partition are updated. All pods from ordinal Partition-1 to 0 remain untouched. This is helpful in being able to do a canary based deployment. The default value is 0. |
+
 ### .status {id="_status"}
 
 Description
@@ -133,6 +139,7 @@ Required
 | `replicas` | `integer` | replicas is the number of Pods created by the StatefulSet controller. |
 | `updateRevision` | `string` | updateRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [replicas-updatedReplicas,replicas) |
 | `updatedReplicas` | `integer` | updatedReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -172,20 +179,20 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind StatefulSet
 *   `/apis/apps/v1/watch/statefulsets`
     *   `GET`: watch individual changes to a list of StatefulSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets`{minja}
     *   `DELETE`: delete collection of StatefulSet
     *   `GET`: list or watch objects of kind StatefulSet
     *   `POST`: create a StatefulSet
-*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets`
+*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets`{minja}
     *   `GET`: watch individual changes to a list of StatefulSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}`{minja}
     *   `DELETE`: delete a StatefulSet
     *   `GET`: read the specified StatefulSet
     *   `PATCH`: partially update the specified StatefulSet
     *   `PUT`: replace the specified StatefulSet
-*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets/{{ name }}`
+*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/statefulsets/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind StatefulSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/status`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/status`{minja}
     *   `GET`: read status of the specified StatefulSet
     *   `PATCH`: partially update status of the specified StatefulSet
     *   `PUT`: replace status of the specified StatefulSet

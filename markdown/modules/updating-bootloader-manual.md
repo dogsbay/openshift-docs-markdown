@@ -14,7 +14,7 @@ You can manually inspect the status of the system and update the boot loader by 
       Installed: grub2-efi-x64-1:2.04-31.el8_4.1.x86_64,shim-x64-15-8.el8_1.x86_64
       Update: At latest version
     ```
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
     ```terminal title="Example output for aarch64"
     Component EFI
       Installed: grub2-efi-aa64-1:2.02-99.el8_4.1.aarch64,shim-aa64-15.4-2.el8_1.aarch64

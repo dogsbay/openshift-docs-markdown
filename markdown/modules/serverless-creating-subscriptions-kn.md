@@ -29,13 +29,13 @@ After you have created a channel and an event sink, you can create a subscriptio
 
     `broker`
     :   An Eventing broker.
-        1.  Optional: `--sink-dead-letter` is an optional flag that can be used to specify a sink which events should be sent to in cases where events fail to be delivered. For more information, see the {{ ServerlessProductName }} _Event delivery_ documentation.
-        ```terminal title="Example command"
-        $ kn subscription create mysubscription --channel mychannel --sink ksvc:event-display
-        ```
-        ```terminal title="Example output"
-        Subscription 'mysubscription' created in namespace 'default'.
-        ```
+    1.  Optional: `--sink-dead-letter` is an optional flag that can be used to specify a sink which events should be sent to in cases where events fail to be delivered. For more information, see the {{ ServerlessProductName }} _Event delivery_ documentation.
+    ```terminal title="Example command"
+    $ kn subscription create mysubscription --channel mychannel --sink ksvc:event-display
+    ```
+    ```terminal title="Example output"
+    Subscription 'mysubscription' created in namespace 'default'.
+    ```
 
 **Verification**
 

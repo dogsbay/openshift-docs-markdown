@@ -3,11 +3,11 @@ title: Understanding Windows container workloads
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding Windows container workloads {id="understanding-windows-container-workloads"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding Windows container workloads {id="understanding-windows-container-workloads"}
 {%- set context = "understanding-windows-container-workloads" %}
 
-You can use the Windows Machine Config Operator (WMCO) to run Microsoft Windows Server containers on {{ product_title }}. 
+You can use the Windows Machine Config Operator (WMCO) to run Microsoft Windows Server containers on {{ product_title }}.  {._abstract}
 
 For those that administer heterogeneous environments with a mix of Linux and Windows workloads, {{ product_title }} allows you to deploy Windows workloads running on Windows Server containers while also providing traditional Linux workloads hosted on {{ op_system_first }} or {{ op_system_base_full }}.
 
@@ -27,7 +27,7 @@ Windows Server Containers provide resource isolation using a shared kernel but a
 
 {% leveloffset +1 %}{% include "./modules/windows-node-services.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Pod Security Policies (Kubernetes Documentation)](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)
 *   [Configuring hybrid networking with OVN-Kubernetes](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes_configuring-hybrid-networking)

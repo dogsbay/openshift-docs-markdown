@@ -25,7 +25,7 @@
 # Machine sets that deploy machines preemptible VM instances {id="_machine_sets_that_deploy_machines_preemptible_vm_instances"}
 {% endif %}
 
-{%- if aws %}
+{% if aws %}
 You can save on costs by creating a compute machine set running on {{ aws_first }} that deploys machines as non-guaranteed Spot Instances. Spot Instances utilize unused {{ aws_short }} EC2 capacity and are less expensive than On-Demand Instances. You can use Spot Instances for workloads that can tolerate interruptions, such as batch or stateless, horizontally scalable workloads.
 {% endif %}
 {% if azure %}
@@ -35,8 +35,8 @@ You can save on costs by creating a compute machine set running on {{ azure_firs
 You can save on costs by creating a compute machine set running on {{ gcp_short }} that deploys machines as non-guaranteed Spot VMs. Spot VMs use excess Compute Engine capacity and are less expensive than normal instances. You can use Spot VMs for workloads that can tolerate interruptions, such as batch or stateless, horizontally scalable workloads.
 {% endif %}
 {% if gcp_legacy_preempt %}
-You can save on costs by creating a compute machine set running on {{ gcp_short }} that deploys machines as non-guaranteed preemptible VM instances. Preemptible VM instances use excess Compute Engine capacity and are less expensive than normal instances. You can use preemptible VM instances for workloads that can tolerate interruptions, such as batch or stateless, horizontally scalable workloads.
-{% endif %} {._abstract}
+You can save on costs by creating a compute machine set running on {{ gcp_short }} that deploys machines as non-guaranteed preemptible VM instances. Preemptible VM instances use excess Compute Engine capacity and are less expensive than normal instances. You can use preemptible VM instances for workloads that can tolerate interruptions, such as batch or stateless, horizontally scalable workloads. {._abstract}
+{% endif %}
 
 {% if aws %}
 {{ aws_short }} EC2 can terminate a Spot Instance at any time. {{ aws_short }} gives a two-minute warning to the user when an interruption occurs. {{ product_title }} begins to remove the workloads from the affected instances when {{ aws_short }} issues the termination warning.
@@ -104,14 +104,14 @@ When {{ gcp_short }} terminates an instance, a termination handler running on th
 {% endif %}
 
 {% if context == "creating-machineset-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "creating-machineset-azure" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "creating-machineset-gcp" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "legacy-preempt" %}
-{%- set gcp_legacy_preempt = false -%}
+{%- set gcp_legacy_preempt = "" -%}
 {% endif %}

@@ -6,7 +6,7 @@ You can create a virtual machine (VM) snapshot for an offline or online VM by cr
 **Prerequisites**
 
 *   Ensure the `Snapshot` feature gate is enabled for the `kubevirt` CR by using the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get kubevirt kubevirt-hyperconverged -n {{ CNVNamespace }} -o yaml
     ```
 

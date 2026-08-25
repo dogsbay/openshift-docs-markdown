@@ -1,5 +1,5 @@
 ---
-title: "NetworkPolicy []"
+title: "NetworkPolicy [networking.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NetworkPolicySpec provides the specification of a NetworkPolicy |
+
 ### .spec {id="_spec"}
 
 Description
@@ -40,6 +41,7 @@ Type
 | `ingress[]` | `object` | NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The traffic must match both ports and from. |
 | `podSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector selects the pods to which this NetworkPolicy object applies. The array of rules is applied to any pods selected by this field. An empty selector matches all pods in the policy’s namespace. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is optional. If it is not specified, it defaults to an empty selector. |
 | `policyTypes` | `array (string)` | policyTypes is a list of rule types that the NetworkPolicy relates to. Valid options are ["Ingress"], ["Egress"], or ["Ingress", "Egress"]. If this field is not specified, it will default based on the existence of ingress or egress rules; policies that contain an egress section are assumed to affect egress, and all policies (whether or not they contain an ingress section) are assumed to affect ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8 |
+
 ### .spec.egress {id="_specegress"}
 
 Description
@@ -64,6 +66,7 @@ Type
 | `ports[]` | `object` | NetworkPolicyPort describes a port to allow traffic on |
 | `to` | `array` | to is a list of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list. |
 | `to[]` | `object` | NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain combinations of fields are allowed |
+
 ### .spec.egress[].ports {id="_specegressports"}
 
 Description
@@ -86,7 +89,8 @@ Type
 | --- | --- | --- |
 | `endPort` | `integer` | endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. |
 | `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched. |
-| `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.<br>Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+
 ### .spec.egress[].to {id="_specegressto"}
 
 Description
@@ -108,8 +112,9 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `ipBlock` | `object` | IPBlock describes a particular CIDR (Ex. "192.168.1.0/24","2001:db8::/64") that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The except entry describes CIDRs that should not be included within this rule. |
-| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
-| `podSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
+| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.<br>If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
+| `podSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.<br>If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
+
 ### .spec.egress[].to[].ipBlock {id="_specegresstoipblock"}
 
 Description
@@ -127,6 +132,7 @@ Required
 | --- | --- | --- |
 | `cidr` | `string` | cidr is a string representing the IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64" |
 | `except` | `array (string)` | except is a slice of CIDRs that should not be included within an IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the cidr range |
+
 ### .spec.ingress {id="_specingress"}
 
 Description
@@ -151,6 +157,7 @@ Type
 | `from[]` | `object` | NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain combinations of fields are allowed |
 | `ports` | `array` | ports is a list of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. |
 | `ports[]` | `object` | NetworkPolicyPort describes a port to allow traffic on |
+
 ### .spec.ingress[].from {id="_specingressfrom"}
 
 Description
@@ -172,8 +179,9 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `ipBlock` | `object` | IPBlock describes a particular CIDR (Ex. "192.168.1.0/24","2001:db8::/64") that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The except entry describes CIDRs that should not be included within this rule. |
-| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces. If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
-| `podSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods. If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
+| `namespaceSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.<br>If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
+| `podSelector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.<br>If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
+
 ### .spec.ingress[].from[].ipBlock {id="_specingressfromipblock"}
 
 Description
@@ -191,6 +199,7 @@ Required
 | --- | --- | --- |
 | `cidr` | `string` | cidr is a string representing the IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64" |
 | `except` | `array (string)` | except is a slice of CIDRs that should not be included within an IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the cidr range |
+
 ### .spec.ingress[].ports {id="_specingressports"}
 
 Description
@@ -213,7 +222,7 @@ Type
 | --- | --- | --- |
 | `endPort` | `integer` | endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. |
 | `port` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched. |
-| `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
+| `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.<br>Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
 
 ## API endpoints {id="_api_endpoints"}
 
@@ -223,18 +232,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind NetworkPolicy
 *   `/apis/networking.k8s.io/v1/watch/networkpolicies`
     *   `GET`: watch individual changes to a list of NetworkPolicy. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/networkpolicies`
+*   `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/networkpolicies`{minja}
     *   `DELETE`: delete collection of NetworkPolicy
     *   `GET`: list or watch objects of kind NetworkPolicy
     *   `POST`: create a NetworkPolicy
-*   `/apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/networkpolicies`
+*   `/apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/networkpolicies`{minja}
     *   `GET`: watch individual changes to a list of NetworkPolicy. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/networkpolicies/{{ name }}`
+*   `/apis/networking.k8s.io/v1/namespaces/{{ namespace }}/networkpolicies/{{ name }}`{minja}
     *   `DELETE`: delete a NetworkPolicy
     *   `GET`: read the specified NetworkPolicy
     *   `PATCH`: partially update the specified NetworkPolicy
     *   `PUT`: replace the specified NetworkPolicy
-*   `/apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/networkpolicies/{{ name }}`
+*   `/apis/networking.k8s.io/v1/watch/namespaces/{{ namespace }}/networkpolicies/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind NetworkPolicy. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/networking.k8s.io/v1/networkpolicies {id="_apisnetworkingk8siov1networkpolicies"}

@@ -52,7 +52,7 @@ role = "assistant"
 content = "I'll retrieve and analyze the logs for you."
 ```
 
-***Configuration reference***
+**Configuration reference**
 
 <table>
 <thead>

@@ -28,7 +28,7 @@ In {{ product_short }}, you can perform administrative tasks using either the `d
 :::
 
 
-***Actions and benefits for account provisioning and access setup***
+**Actions and benefits for account provisioning and access setup**
 
 <table>
 <thead>
@@ -42,7 +42,7 @@ In {{ product_short }}, you can perform administrative tasks using either the `d
 <tr>
   <td>Grant dedicated-admin privileges</td>
   <td>Grant administrative access to users by adding them to the <code>dedicated-admins</code> group. This provides elevated permissions for managing user namespaces, assigning security context constraints, and configuring identity providers, while control plane management remains with Red Hat SRE.</td>
-  <td><code>oc adm groups add-users dedicated-admins <username></code></td>
+  <td><code>oc adm groups add-users dedicated-admins &lt;username&gt;</code></td>
 </tr>
 <tr>
   <td>Verify dedicated-admin membership</td>
@@ -57,17 +57,17 @@ In {{ product_short }}, you can perform administrative tasks using either the `d
 <tr>
   <td>Configure cluster role-based access control</td>
   <td>Implement least privilege access by creating custom cluster roles with specific permissions within the scope allowed by dedicated-admin privileges. Define custom cluster roles for namespace-scoped resource management.</td>
-  <td><code>oc create clusterrole <role_name> --verb=<verbs> --resource=<resources></code></td>
+  <td><code>oc create clusterrole &lt;role_name&gt; --verb=&lt;verbs&gt; --resource=&lt;resources&gt;</code></td>
 </tr>
 <tr>
   <td>Bind custom roles to users</td>
   <td>Ensures your users only have the capabilities that you want them to have.</td>
-  <td><code>oc adm policy add-cluster-role-to-user <role_name> <username></code></td>
+  <td><code>oc adm policy add-cluster-role-to-user &lt;role_name&gt; &lt;username&gt;</code></td>
 </tr>
 <tr>
   <td>Configure service account</td>
   <td>Create service accounts for automated processes and CI/CD pipelines. Service accounts authenticate using tokens rather than user credentials.</td>
-  <td><ul><li>Create service account: <code>oc create serviceaccount <service_account_name> -n <namespace></code></li><li>Grant permissions: <code>oc adm policy add-role-to-user <role> system:serviceaccount:<namespace>:<service_account_name></code></li></ul></td>
+  <td><ul><li>Create service account: <code>oc create serviceaccount &lt;service_account_name&gt; -n &lt;namespace&gt;</code></li><li>Grant permissions: <code>oc adm policy add-role-to-user &lt;role&gt; system:serviceaccount:&lt;namespace&gt;:&lt;service_account_name&gt;</code></li></ul></td>
 </tr>
 <tr>
   <td>View assigned projects</td>
@@ -82,44 +82,44 @@ In {{ product_short }}, you can perform administrative tasks using either the `d
 <tr>
   <td>Grant namespace administrative roles</td>
   <td>Assign administrative roles to users for specific namespaces. This grants permissions to view/edit all namespace resources, manage secrets, bind local roles, and configure network policies within that project scope.</td>
-  <td><code>oc adm policy add-role-to-user admin <username> -n <namespace></code></td>
+  <td><code>oc adm policy add-role-to-user admin &lt;username&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>Grant namespace edit roles</td>
   <td>Assign edit capabilities to user roles for direct deployment and workload modification permissions without exposing local role binding control.</td>
-  <td><code>oc adm policy add-role-to-user edit <username> -n <namespace></code></td>
+  <td><code>oc adm policy add-role-to-user edit &lt;username&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>Grant namespace view roles</td>
   <td>Assign view capabilities for read-only namespace and workload access.</td>
-  <td><code>oc adm policy add-role-to-user view <username> -n <namespace></code></td>
+  <td><code>oc adm policy add-role-to-user view &lt;username&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>Create custom namespace roles</td>
   <td>Define local roles with specific permission sets restricted to particular resources and verbs aligned to narrow organizational requirements.</td>
-  <td><code>oc create role <role_name> --verb=<get,list,watch> --resource=<pods,services> -n <namespace></code></td>
+  <td><code>oc create role &lt;role_name&gt; --verb=&lt;get,list,watch&gt; --resource=&lt;pods,services&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>Bind custom roles to namespace users</td>
   <td>Bind custom localized roles to users to guarantee that namespace-scoped personnel only have targeted privileges inside that specific boundary.</td>
-  <td><code>oc adm policy add-role-to-user <role_name> <username> -n <namespace></code></td>
+  <td><code>oc adm policy add-role-to-user &lt;role_name&gt; &lt;username&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>Grant service account privileges (Namespace)</td>
   <td>Configure service accounts with localized, privileged permissions for automated application workflows, ensuring minimum access needed for operation.</td>
-  <td><ul><li>Create service account: <code>oc create sa <service_account_name> -n <namespace></code></li><li>Or grant role: <code>oc adm policy add-role-to-user <role> -z <service_account_name> -n <namespace></code></li></ul></td>
+  <td><ul><li>Create service account: <code>oc create sa &lt;service_account_name&gt; -n &lt;namespace&gt;</code></li><li>Or grant role: <code>oc adm policy add-role-to-user &lt;role&gt; -z &lt;service_account_name&gt; -n &lt;namespace&gt;</code></li></ul></td>
 </tr>
 <tr>
   <td>Extract service account tokens</td>
   <td>Use localized automated service tokens safely for external system or pipeline authentication actions.</td>
-  <td><code>oc create token <service_account_name> -n <namespace></code></td>
+  <td><code>oc create token &lt;service_account_name&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 </tbody>
 </table>
 
 For guidance on operating your top level administrative accounts, see the following table: 
 
-***Guidance on operating administrative and privileged accounts***
+**Guidance on operating administrative and privileged accounts**
 
 <table>
 <thead>
@@ -133,7 +133,7 @@ For guidance on operating your top level administrative accounts, see the follow
 <tr>
   <td>Manage certificates</td>
   <td>Replace default API server certificates with custom certificates issued by an organizational certificate authority. Create a secret containing the certificate and key. Update the API server configuration to reference the custom certificate secret. Certificate rotation occurs automatically when you update the secret with a new certificate.</td>
-  <td><code>oc create secret tls <secret_name> --cert=<path/to/cert> --key=<path/to/key> -n openshift-config</code></td>
+  <td><code>oc create secret tls &lt;secret_name&gt; --cert=&lt;path/to/cert&gt; --key=&lt;path/to/key&gt; -n openshift-config</code></td>
 </tr>
 <tr>
   <td>Monitor administrative accounts</td>
@@ -148,37 +148,34 @@ For guidance on operating your top level administrative accounts, see the follow
 <tr>
   <td>Manage resource quotas</td>
   <td>Configure hard infrastructure resource quotas limiting localized namespace consumption across CPU, memory, storage requests, and PVC limits.</td>
-  <td><code>oc create quota <quota_name> --hard=cpu=10,memory=20Gi,persistentvolumeclaims=5 -n <namespace></code></td>
+  <td><code>oc create quota &lt;quota_name&gt; --hard=cpu=10,memory=20Gi,persistentvolumeclaims=5 -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>View quota usage</td>
   <td>Audit resource allocation to ensure that project bounds are functioning correctly and limits are not exhausted.</td>
-  <td><code>oc describe quota -n <namespace></code></td>
+  <td><code>oc describe quota -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>Configure network policies</td>
   <td>Create namespace-scoped <code>NetworkPolicy</code> objects to control pod-to-pod traffic within your projects. Implement default-deny policies that block all traffic except explicitly allowed connections. Cluster-wide network security is managed by Red Hat SRE.</td>
-  <td><code>oc create -f <networkpolicy.yaml> -n <namespace></code></td>
+  <td><code>oc create -f &lt;networkpolicy.yaml&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>Assign security context constraints</td>
   <td>Namespace administrators can assign pre-defined security context constraints (SCCs) to service accounts within their projects. Red Hat SRE manages the global SCC definitions (such as <code>restricted-v2</code> and <code>privileged</code>). Users with dedicated-admin privileges can assign allowed SCCs to their service accounts to grant specific pod security capabilities.</td>
-  <td><code>oc adm policy add-scc-to-user <scc_name> -z <service_account_name> -n <namespace></code></td>
+  <td><code>oc adm policy add-scc-to-user &lt;scc_name&gt; -z &lt;service_account_name&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
   <td>View SCC assignments</td>
   <td>Verify that global or namespace SCC privileges match accurately to the correct infrastructure components and local service accounts.</td>
-  <td><ul><li>Global view: <code>oc get scc</code></li><li>Namespace verification: `oc get scc -o yaml \</li></ul></td>
-</tr>
-<tr>
-  <td>grep -A 5 <service_account_name>`</td>
+  <td><ul><li>Global view: <code>oc get scc</code></li><li>Namespace verification: <code>oc get scc -o yaml | grep -A 5 &lt;service_account_name&gt;</code></li></ul></td>
 </tr>
 </tbody>
 </table>
 
 For guidance on decommissioning your top level administrative accounts, see the following table:
 
-***Guidance on decommissioning your administrative and privileged accounts***
+**Guidance on decommissioning your administrative and privileged accounts**
 
 <table>
 <thead>
@@ -192,34 +189,31 @@ For guidance on decommissioning your top level administrative accounts, see the 
 <tr>
   <td>Remove user access</td>
   <td>Remove administrative or namespace role assignments from departing personnel to prevent residual access.</td>
-  <td><ul><li>Remove dedicated-admin privileges: <code>oc adm groups remove-users dedicated-admins <username></code></li><li>Remove namespace roles: <code>oc adm policy remove-role-from-user <role> <username> -n <namespace></code></li></ul></td>
+  <td><ul><li>Remove dedicated-admin privileges: <code>oc adm groups remove-users dedicated-admins &lt;username&gt;</code></li><li>Remove namespace roles: <code>oc adm policy remove-role-from-user &lt;role&gt; &lt;username&gt; -n &lt;namespace&gt;</code></li></ul></td>
 </tr>
 <tr>
   <td>List role bindings</td>
   <td>Run global searches across all cluster and project boundaries to verify the complete, absolute removal of the targeted user's permissions.</td>
-  <td>`oc get rolebindings,clusterrolebindings --all-namespaces -o wide \</td>
+  <td><code>oc get rolebindings,clusterrolebindings --all-namespaces -o wide | grep &lt;username&gt;</code></td>
 </tr>
 <tr>
-  <td>grep <username>`</td>
   <td>Remove identity provider entries</td>
   <td>Clean up the internal cluster user identity mapping registries thoroughly when you skip roles.</td>
+  <td><ul><li>Remove User object: <code>oc delete user &lt;username&gt;</code></li><li>Or remove Identity link: <code>oc delete identity &lt;identity_provider_name&gt;:&lt;username&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><ul><li>Remove User object: <code>oc delete user <username></code></li><li>Or remove Identity link: <code>oc delete identity <identity_provider_name>:<username></code></li></ul></td>
   <td>Remove service account access</td>
   <td>Permanently delete namespace-scoped automated service accounts that are no longer required for active operations.</td>
+  <td><code>oc delete serviceaccount &lt;service_account_name&gt; -n &lt;namespace&gt;</code></td>
 </tr>
 <tr>
-  <td><code>oc delete serviceaccount <service_account_name> -n <namespace></code></td>
   <td>Verify service account deletion</td>
   <td>Auditing step ensures no unlinked automated keys remain active, which effectively blocks associated pods from authenticating unauthorized API calls.</td>
+  <td>Monitored by querying namespace resources post-deletion.</td>
 </tr>
 <tr>
-  <td>Monitored by querying namespace resources post-deletion.</td>
   <td>Transfer resource ownership</td>
   <td>Audit resources created by the departing administrator to transfer ownership. Review projects, security policies, and configurations requiring ownership reassignment to active administrators.</td>
-</tr>
-<tr>
   <td>Managed through resource metadata modification and project reassignment.</td>
 </tr>
 </tbody>

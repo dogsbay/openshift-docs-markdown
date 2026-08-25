@@ -6,7 +6,7 @@ title: Two-Node with Arbiter
 # Two-Node with Arbiter {id="about-two-node-arbiter-installation"}
 {%- set context = "about-two-node-arbiter-installation" %}
 
-An {{ product_title }} cluster with two control plane nodes and one local arbiter node is a compact, cost-effective {{ product_title }} topology.
+An {{ product_title }} cluster with two control plane nodes and one local arbiter node is a compact, cost-effective {{ product_title }} topology. {._abstract}
 
 The arbiter node stores the full etcd data, maintaining an etcd quorum and preventing split brain. The arbiter node does not run the additional control plane components `kube-apiserver` and `kube-controller-manager`, nor does it run workloads.
 
@@ -24,6 +24,7 @@ For a cluster with an arbiter, the same networking requirements as a regular clu
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Network connectivity requirements](/installing/installing_platform_agnostic/installing-platform-agnostic#installation-network-connectivity-user-infra_installing-platform-agnostic)
 *   [Configuring a local arbiter node with installer-provisioned infrastructure](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-config-local-arbiter-node_ipi-install-installation-workflow)

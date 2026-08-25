@@ -1,5 +1,5 @@
 ---
-title: "BMCEventSubscription []"
+title: "BMCEventSubscription [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` |  |
 | `status` | `object` |  |
+
 ### .spec {id="_spec"}
 
 Description
@@ -38,6 +39,7 @@ Type
 | `destination` | `string` | A webhook URL to send events to |
 | `hostName` | `string` | A reference to a BareMetalHost |
 | `httpHeadersRef` | `object` | A secret containing HTTP headers which should be passed along to the Destination when making a request |
+
 ### .spec.httpHeadersRef {id="_spechttpheadersref"}
 
 Description
@@ -52,6 +54,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .status {id="_status"}
 
 Description
@@ -71,16 +74,16 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/bmceventsubscriptions`
     *   `GET`: list objects of kind BMCEventSubscription
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions`{minja}
     *   `DELETE`: delete collection of BMCEventSubscription
     *   `GET`: list objects of kind BMCEventSubscription
     *   `POST`: create a BMCEventSubscription
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions/{{ name }}`{minja}
     *   `DELETE`: delete a BMCEventSubscription
     *   `GET`: read the specified BMCEventSubscription
     *   `PATCH`: partially update the specified BMCEventSubscription
     *   `PUT`: replace the specified BMCEventSubscription
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions/{{ name }}/status`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/bmceventsubscriptions/{{ name }}/status`{minja}
     *   `GET`: read status of the specified BMCEventSubscription
     *   `PATCH`: partially update status of the specified BMCEventSubscription
     *   `PUT`: replace status of the specified BMCEventSubscription

@@ -3,15 +3,16 @@ title: OpenStack Cloud Controller Manager reference guide
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# OpenStack Cloud Controller Manager reference guide {id="installing-openstack-cloud-config-reference"}
 {% include "./_attributes/common-attributes.md" %}
+# OpenStack Cloud Controller Manager reference guide {id="installing-openstack-cloud-config-reference"}
 {%- set context = "installing-openstack-cloud-config-reference" %}
 
-The reference guide provides a comprehensive overview of the {{ rh_openstack_first }} Cloud Controller Manager (CCM) config map parameters, specifically detailing load balancer options and properties automatically managed by the Operator.
+The reference guide provides a comprehensive overview of the {{ rh_openstack_first }} Cloud Controller Manager (CCM) config map parameters, specifically detailing load balancer options and properties automatically managed by the Operator. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-openstack-external-ccm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cloud Controller Manager (Kubernetes documentation)](https://kubernetes.io/docs/concepts/architecture/cloud-controller/)
 

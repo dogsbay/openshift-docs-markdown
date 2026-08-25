@@ -12,7 +12,7 @@ Functions are deployed as Knative services on an {{ product_title }} cluster. Wh
 
 **Procedure**
 
-1.  Create an event source of any type, by navigating to **+Add** -> **Event Source** and selecting the event source type that you want to create.
+1.  Create an event source of any type, by navigating to **+Add** → **Event Source** and selecting the event source type that you want to create.
 1.  In the **Sink** section of the **Create Event Source** form view, select your function in the **Resource** list.
 1.  Click **Create**.
 

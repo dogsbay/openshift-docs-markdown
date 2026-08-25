@@ -6,7 +6,8 @@ When creating the ISO image, configurations are retrieved from the target cluste
 
 YAML file parameters
 :   Configuration parameters that can be specified in the `nodes-config.yaml` file are described in the following table:
-**`nodes-config.yaml` parameters**
+
+    **`nodes-config.yaml` parameters**
 
     | Parameter | Description | Values |
     | --- | --- | --- |
@@ -27,7 +28,8 @@ Command flag options
 :   You can use command flags with the `oc adm node-image create` command to configure the nodes you are creating.
 
     The following table describes command flags that are not limited to the single-node use case:
-**General command flags**
+
+    **General command flags**
 
     | Flag | Description | Values |
     | --- | --- | --- |
@@ -35,19 +37,20 @@ Command flag options
     | `--dir` | The path containing the configuration file, if provided. This path is also used to store the generated artifacts. | String |
     | `--insecure` | Allows push and pull operations to registries to be made over HTTP. | Boolean |
     | `-o`, `--output-name` | The name of the generated output image. | String |
-    | `p`, `--pxe` | Generates Preboot Execution Environment (PXE) assets instead of a bootable ISO file. When this flag is set, you can also use the `bootArtifactsBaseURL` parameter in the `nodes-config.yaml` file to specify URL of the server you will upload PXE assets to. | Boolean |
-    | `-a`, `--registry-config` | The path to your registry credentials. Alternatively, you can specify the `REGISTRY_AUTH_FILE` environment variable. The default paths are `${{ XDG_RUNTIME_DIR }}/containers/auth.json`, `/run/containers/${{ UID }}/auth.json`, `${{ XDG_CONFIG_HOME }}/containers/auth.json`, `${{ DOCKER_CONFIG }}`, `~/.docker/config.json`, `~/.dockercfg.` The order can be changed through the deprecated `REGISTRY_AUTH_PREFERENCE` environment variable to a "docker" value, in order to prioritize Docker credentials over Podman. | String |
+    | `p`, `--pxe` | Generates Preboot Execution Environment (PXE) assets instead of a bootable ISO file.<br>When this flag is set, you can also use the `bootArtifactsBaseURL` parameter in the `nodes-config.yaml` file to specify URL of the server you will upload PXE assets to. | Boolean |
+    | `-a`, `--registry-config` | The path to your registry credentials. Alternatively, you can specify the `REGISTRY_AUTH_FILE` environment variable. The default paths are `${{ XDG_RUNTIME_DIR }}/containers/auth.json`{minja}, `/run/containers/${{ UID }}/auth.json`{minja}, `${{ XDG_CONFIG_HOME }}/containers/auth.json`{minja}, `${{ DOCKER_CONFIG }}`{minja}, `~/.docker/config.json`, `~/.dockercfg.` The order can be changed through the deprecated `REGISTRY_AUTH_PREFERENCE` environment variable to a "docker" value, in order to prioritize Docker credentials over Podman. | String |
     | `-r`, `--report` | Generates a report of the node creation process regardless of whether the process is successful or not. If you do not specify this flag, reports are generated only in cases of failure. | Boolean |
     | `--skip-verification` | An option to skip verifying the integrity of the retrieved content. This is not recommended, but might be necessary when importing images from older image registries. Bypass verification only if the registry is known to be trustworthy. | Boolean |
 
-    The following table describes command flags that can be used only when creating a single node:
-**Single-node only command flags**
 
-    | Flag | Description | Values |
-    | --- | --- | --- |
-    | `-c`, `--cpu-architecture` | The CPU architecture to be used to install the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `--hostname` | The hostname to be set for the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `-m`, `--mac-address` | The MAC address used to identify the host to apply configurations to. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `--network-config-path` | The path to a YAML file containing NMState configurations to be applied to the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `--root-device-hint` | A hint for specifying the storage location for the image root filesystem. The accepted format is `<hint_name>:<value>`. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
-    | `-k`, `--ssh-key-path` | The path to the SSH key used to access the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+The following table describes command flags that can be used only when creating a single node:
+
+.Single-node only command flags
+| Flag | Description | Values |
+| --- | --- | --- |
+| `-c`, `--cpu-architecture` | The CPU architecture to be used to install the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `--hostname` | The hostname to be set for the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `-m`, `--mac-address` | The MAC address used to identify the host to apply configurations to. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `--network-config-path` | The path to a YAML file containing NMState configurations to be applied to the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `--root-device-hint` | A hint for specifying the storage location for the image root filesystem. The accepted format is `<hint_name>:<value>`. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |
+| `-k`, `--ssh-key-path` | The path to the SSH key used to access the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |

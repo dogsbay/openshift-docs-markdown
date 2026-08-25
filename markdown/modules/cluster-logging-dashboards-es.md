@@ -7,7 +7,7 @@ Elasticsearch status
 
 :   The **Logging/Elasticsearch Nodes** dashboard contains the following charts about the status of your Elasticsearch instance.
 
-***Elasticsearch status fields***
+**Elasticsearch status fields**
 
 <table>
 <thead>

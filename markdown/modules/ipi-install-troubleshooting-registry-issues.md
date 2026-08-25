@@ -25,7 +25,7 @@ When creating a disconnected registry, you might encounter a "User Not Authorize
     LOCAL_REPO='ocp4/openshift4'
     ```
 
-    The values of `RELEASE_IMAGE` and `VERSION` were set during the ***Retrieving OpenShift Installer*** step of the ***Setting up the environment for an OpenShift installation*** section.
+    The values of `RELEASE_IMAGE` and `VERSION` were set during the **Retrieving OpenShift Installer** step of the **Setting up the environment for an OpenShift installation** section.
     
     :::
 

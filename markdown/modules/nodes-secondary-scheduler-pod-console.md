@@ -18,7 +18,7 @@ To schedule a pod by using the secondary scheduler, set the `schedulerName` fiel
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Workloads** -> **Pods**.
+1.  Navigate to **Workloads** → **Pods**.
 1.  Click **Create Pod**.
 1.  In the YAML editor, enter the desired pod configuration and add the `schedulerName` field:
     ```yaml

@@ -3,11 +3,11 @@ title: "Understanding image-based installation and deployment for {{ sno }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding image-based installation and deployment for {{ sno }} {id="ibi-understanding-image-based-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding image-based installation and deployment for {{ sno }} {id="ibi-understanding-image-based-install"}
 {%- set context = "ibi-understanding-image-based-install" %}
 
-Image-based installations significantly reduce the deployment time of {{ sno }} clusters by streamlining the installation process.
+Image-based installations significantly reduce the deployment time of {{ sno }} clusters by streamlining the installation process. {._abstract}
 
 This approach enables the preinstallation of configured and validated instances of {{ sno }} on target hosts. These preinstalled hosts can be rapidly reconfigured and deployed at the far edge of the network, including in disconnected environments, with minimal intervention.
 
@@ -28,7 +28,7 @@ An image-based approach to installing and deploying {{ sno }} clusters at the fa
 
 **Figure 1. Overview of an image-based installation and deployment for managed {{ sno }} clusters**
 
-![Overview of an image-based installation and deployment](/_assets/images/../images/711_OpenShift_IBI_Installation_high-level_0624.png)
+![Overview of an image-based installation and deployment](/_assets/images/711_OpenShift_IBI_Installation_high-level_0624.png)
 
 
 Imaged-based installation
@@ -56,18 +56,21 @@ Using the IBI Operator
 {% leveloffset +1 %}{% include "./modules/ibi-installation-deployment-components.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying a {{ sno }} cluster using the `openshift-install` program](/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#create-standalone-config-iso_ibi-edge-image-based-install)
 
 {% leveloffset +1 %}{% include "./modules/ibi-image-based-install-cluster-guide.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring a shared container partition between ostree stateroots](/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)
 
 {% leveloffset +1 %}{% include "./modules/ibi-validated-software-versions.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Multicluster architecture](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.12/html/about/welcome-to-red-hat-advanced-cluster-management-for-kubernetes#multicluster-architecture)
 *   [Understanding the image-based upgrade for {{ sno }} clusters](/edge_computing/image_based_upgrade/cnf-understanding-image-based-upgrade#cnf-understanding-image-based-upgrade)

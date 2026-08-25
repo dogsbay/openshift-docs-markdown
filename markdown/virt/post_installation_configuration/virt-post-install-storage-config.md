@@ -1,5 +1,5 @@
 ---
-title: "Postinstallation storage configuration {id=\"virt-post-install-storage-config\"}{% if not (openshift_rosa or (openshift_dedicated or openshift_rosa_hcp)) %}"
+title: Postinstallation storage configuration
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -7,10 +7,10 @@ title: "Postinstallation storage configuration {id=\"virt-post-install-storage-c
 # Postinstallation storage configuration {id="virt-post-install-storage-config"}
 {%- set context = "virt-post-install-storage-config" %}
 
-{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
+{% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 After you install {{ VirtProductName }}, you must configure a default storage class. Configuring a storage class allows your cluster to receive automated boot source updates.
 {%- endif %}
-If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install {{ VirtProductName }}. Storage profiles provide recommended storage settings based on the associated storage class.
+If your storage provider is not recognized by the Containerized Data Importer (CDI), you must configure storage profiles after you install {{ VirtProductName }}. Storage profiles provide recommended storage settings based on the associated storage class. {._abstract}
 
 Optional: You can configure local storage by using the hostpath provisioner (HPP).
 
@@ -32,7 +32,7 @@ HPP storage pools must not be in the same partition as the operating system. Oth
 
 {% leveloffset +2 %}{% include "./modules/virt-creating-storage-class-csi-driver.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Defining a storage class](/storage/dynamic-provisioning#dynamic-provisioning-defining-storage-class_dynamic-provisioning)
 {%- endif %}

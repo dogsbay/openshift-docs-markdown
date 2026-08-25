@@ -5,4 +5,4 @@ SQLite-based Operator catalogs in {{ product_title }} use index images that you 
 
 {%- set FeatureName = "The SQLite database format for Operator catalogs" %}
 {% include "./snippets/deprecated-feature.md" %}
-{%- set FeatureName = false -%}
+{%- set FeatureName = "" -%}

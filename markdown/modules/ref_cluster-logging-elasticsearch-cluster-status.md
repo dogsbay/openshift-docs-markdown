@@ -4,8 +4,8 @@
 A dashboard in the **Observe** section of the 
 {%- if not (openshift_rosa or openshift_dedicated) %}
 {{ product_title }} web console 
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 {{ cluster_manager_url }} 
 {%- endif %}
 displays the status of the Elasticsearch cluster. {._abstract}
@@ -13,8 +13,8 @@ displays the status of the Elasticsearch cluster. {._abstract}
 To get the status of the OpenShift Elasticsearch cluster, visit the dashboard in the **Observe** section of the  
 {%- if not (openshift_rosa or openshift_dedicated) %}
 {{ product_title }} web console 
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 {{ cluster_manager_url }} 
 {%- endif %}
 at

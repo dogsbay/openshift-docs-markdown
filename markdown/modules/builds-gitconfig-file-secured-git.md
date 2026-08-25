@@ -29,8 +29,8 @@ Add the certificate files to your source build and add references to the certifi
 1.  Create the secret:
     ```terminal
     $ oc create secret generic <secret_name> \
-    --from-literal=username=<user_name> \// (1)
-    --from-literal=password=<password> \// (2)
+    --from-literal=username=<user_name> \ (1)
+    --from-literal=password=<password> \ (2)
     --from-file=.gitconfig=.gitconfig \
     --from-file=client.crt=/var/run/secrets/openshift.io/source/client.crt \
     --from-file=cacert.crt=/var/run/secrets/openshift.io/source/cacert.crt \
@@ -40,11 +40,11 @@ Add the certificate files to your source build and add references to the certifi
     1.  The password for this user.
 
 
-:::important
+    :::important
 
-To avoid having to enter your password again, be sure to specify the source-to-image (S2I) image in your builds. However, if you cannot clone the repository, you must still specify your user name and password to promote the build.
-
-:::
+    To avoid having to enter your password again, be sure to specify the source-to-image (S2I) image in your builds. However, if you cannot clone the repository, you must still specify your user name and password to promote the build.
+    
+    :::
 
 
 **Additional resources**

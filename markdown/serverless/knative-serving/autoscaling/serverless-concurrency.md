@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Concurrency {id="serverless-concurrency"}
 {% include "./_attributes/common-attributes.md" %}
+# Concurrency {id="serverless-concurrency"}
 {%- set context = "serverless-concurrency" %}
 
 Concurrency determines the number of simultaneous requests that can be processed by each replica of an application at any given time. Concurrency can be configured as a _soft limit_ or a _hard limit_:

@@ -3,8 +3,8 @@ title: Securing builds by strategy
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Securing builds by strategy {id="securing-builds-by-strategy"}
 {% include "./_attributes/common-attributes.md" %}
+# Securing builds by strategy {id="securing-builds-by-strategy"}
 {%- set context = "securing-builds-by-strategy" %}
 
 Builds in {{ product_title }} are run in privileged containers. Depending on the build strategy used, if you have privileges, you can run builds to escalate their permissions on the cluster and host nodes. And as a security measure, it limits who can run builds and the strategy that is used for those builds. Custom builds are inherently less safe than source builds, because they can execute any code within a privileged container, and are disabled by default. Grant docker build permissions with caution, because a vulnerability in the Dockerfile processing logic could result in a privileges being granted on the host node.

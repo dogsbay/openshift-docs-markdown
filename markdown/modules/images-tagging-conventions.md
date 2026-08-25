@@ -15,12 +15,12 @@ To ensure proper garbage collection, use broader, more generic tags that are des
 
 | Description | Example |
 | --- | --- |
-| ***Major/Minor Version*** (Ideal for mutable pointers) | `myimage:v2.0` |
-| ***Full Revision*** (Often used for tracking, but requires manual pruning) | `myimage:v2.0.1` |
-| ***Architecture*** | `myimage:v2.0-x86_64` |
-| ***Base image*** | `myimage:v1.2-centos7` |
-| ***Latest*** | `myimage:latest` |
-| ***Latest stable*** | `myimage:stable` |
+| **Major/Minor Version** (Ideal for mutable pointers) | `myimage:v2.0` |
+| **Full Revision** (Often used for tracking, but requires manual pruning) | `myimage:v2.0.1` |
+| **Architecture** | `myimage:v2.0-x86_64` |
+| **Base image** | `myimage:v1.2-centos7` |
+| **Latest** | `myimage:latest` |
+| **Latest stable** | `myimage:stable` |
 
 
 :::note

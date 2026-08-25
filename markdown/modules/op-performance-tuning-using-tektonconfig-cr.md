@@ -35,7 +35,7 @@ If you modify or remove any of the performance fields, the {{ pipelines_shortnam
 | Name | Description | Default value for the {{ pipelines_shortname }} controller |
 | --- | --- | --- |
 | `disable-ha` | Enable or disable the high availability (HA) support. By default, the HA support is enabled. | `false` |
-| `buckets` | The number of buckets used to partition the key space for each reconciler. Each of the replicas uses these buckets. The instance that owns a bucket reconciles the keys partitioned into that bucket. The maximum value is `10` | `1` |
+| `buckets` | The number of buckets used to partition the key space for each reconciler.<br>Each of the replicas uses these buckets. The instance that owns a bucket reconciles the keys partitioned into that bucket. The maximum value is `10` | `1` |
 | `threads-per-controller` | The number of threads (workers) to use when the work queue of the {{ pipelines_shortname }} controller is processed. | `2` |
 | `kube-api-qps` | The maximum queries per second (QPS) to the cluster master from the REST client. | `5.0` |
 | `kube-api-burst` | The maximum burst for a throttle. | `10` |

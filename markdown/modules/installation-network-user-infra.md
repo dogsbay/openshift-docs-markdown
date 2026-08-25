@@ -121,7 +121,7 @@ In a {{ op_system_base }} KVM environment the host must be configured to use bri
 
 {% endif %}
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -135,56 +135,60 @@ In a {{ op_system_base }} KVM environment the host must be configured to use bri
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.4+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="4">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
-</tr>
-<tr>
   <td>The default ports that Kubernetes reserves</td>
-  <td><code>22623</code></td>
-  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines..6+</td>
 </tr>
 <tr>
-  <td>UDP</td>
+  <td><code>22623</code></td>
+  <td>The port handles traffic from the Machine Config Server and directs the traffic to the control plane machines.</td>
+</tr>
+<tr>
+  <td rowspan="5">UDP</td>
   <td><code>6081</code></td>
   <td>Geneve</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
-  <td><code>500</code></td>
 </tr>
 <tr>
+  <td><code>500</code></td>
   <td>IPsec IKE packets</td>
+</tr>
+<tr>
   <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
 </tr>
 <tr>
   <td><code>123</code></td>
   <td>Network Time Protocol (NTP) on UDP port <code>123</code>. If an external NTP time server is configured, you must open UDP port <code>123</code>.</td>
-  <td>TCP/UDP</td>
 </tr>
 <tr>
+  <td>TCP/UDP</td>
   <td><code>30000</code>-<code>32767</code></td>
   <td>Kubernetes node port</td>
-  <td>ESP</td>
 </tr>
 <tr>
+  <td>ESP</td>
   <td>N/A</td>
   <td>IPsec Encapsulating Security Payload (ESP)</td>
 </tr>
 </tbody>
 </table>
 
-***Ports used for all-machine to control plane communications***
+**Ports used for all-machine to control plane communications**
 
 <table>
 <thead>
@@ -203,7 +207,7 @@ In a {{ op_system_base }} KVM environment the host must be configured to use bri
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>
@@ -234,50 +238,50 @@ If a DHCP server provides NTP server information, the chrony time service on the
 {% endif %}
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z_restricted = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z_restricted = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z_restricted = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z_restricted = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp" %}
-{%- set gcp = false -%}
-{%- set restricted = false -%}
+{%- set gcp = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "upi-vsphere-installation-reqs" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}

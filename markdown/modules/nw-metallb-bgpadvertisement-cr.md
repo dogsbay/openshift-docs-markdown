@@ -5,7 +5,7 @@ To configure how the cluster announces IP addresses to external peers, define th
 
 The following table describes the parameters for the `BGPAdvertisements` CR:
 
-***BGPAdvertisements configuration***
+**BGPAdvertisements configuration**
 
 <table>
 <thead>

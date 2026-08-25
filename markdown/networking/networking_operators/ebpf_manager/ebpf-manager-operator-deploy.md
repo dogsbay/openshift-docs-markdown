@@ -3,11 +3,11 @@ title: Deploying an eBPF program
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Deploying an eBPF program {id="bpfman-operator-deploy"}
 {% include "./_attributes/common-attributes.md" %}
+# Deploying an eBPF program {id="bpfman-operator-deploy"}
 {%- set context = "bpfman-operator-deploy" %}
 
-As a cluster administrator, you can deploy containerized eBPF applications by using the eBPF Manager Operator. This process involves loading an eBPF program through a custom resource and deploying a user-space daemon set that accesses eBPF maps without requiring privileged permissions.
+As a cluster administrator, you can deploy containerized eBPF applications by using the eBPF Manager Operator. This process involves loading an eBPF program through a custom resource and deploying a user-space daemon set that accesses eBPF maps without requiring privileged permissions. {._abstract}
 
 As a cluster administrator, you can deploy containerized eBPF applications with the eBPF Manager Operator.
 

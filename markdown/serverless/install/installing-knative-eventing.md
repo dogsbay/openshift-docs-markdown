@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing Knative Eventing {id="installing-knative-eventing"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing Knative Eventing {id="installing-knative-eventing"}
 {%- set context = "installing-knative-eventing" %}
 
 To use event-driven architecture on your cluster, install Knative Eventing. You can create Knative components such as event sources, brokers, and channels and then use them to send events to applications or external systems.

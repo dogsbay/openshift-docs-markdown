@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Support {id="log62-cluster-logging-support"}
 {% include "./_attributes/common-attributes.md" %}
+# Support {id="log62-cluster-logging-support"}
 {%- set context = "log62-cluster-logging-support" %}
 
 {% include "./snippets/logging-supported-config-snip.md" %}

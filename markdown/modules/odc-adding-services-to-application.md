@@ -14,6 +14,7 @@ In addition to the context menu, you can add services by using the sidebar or ho
 **Procedure**
 
 1.  Right-click an application group in the topology **Graph view** to display the context menu.
+
     **Figure 1. Add resource context menu**
 
     ![odc_context_menu](/_assets/images/odc_context_menu.png)

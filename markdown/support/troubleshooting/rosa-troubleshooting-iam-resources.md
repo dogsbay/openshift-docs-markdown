@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # Troubleshooting IAM roles {id="rosa-troubleshooting-iam-resources"}
 
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "rosa-troubleshooting-iam-resources" %}
 
 Troubleshoot IAM role issues that prevent proper access to your {{ product_title }} cluster resources. {._abstract}
@@ -20,4 +20,4 @@ Troubleshoot IAM role issues that prevent proper access to your {{ product_title
 ## Additional resources {id="additional-resources_aws-requirements_{{ context }}" ._additional-resources}
 *   [Methods of account-wide role creation](/rosa_architecture/rosa-sts-about-iam-resources#rosa-sts-account-wide-roles-and-policies-creation-methods_rosa-sts-about-iam-resources)
 *   [Account-wide IAM role and policy reference](/rosa_architecture/rosa-sts-about-iam-resources#rosa-sts-account-wide-roles-and-policies)
-{% endif %}
+{%- endif %}

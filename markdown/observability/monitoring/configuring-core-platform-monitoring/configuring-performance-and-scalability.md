@@ -77,7 +77,7 @@ You can configure these limits and requests for core platform monitoring compone
 *   [Viewing a list of available metrics](/observability/monitoring/accessing-metrics/accessing-metrics-as-an-administrator#viewing-a-list-of-available-metrics_accessing-metrics-as-an-administrator)
 {%- if not openshift_rosa_hcp %}
 *   [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/monitoring-configuring-pod-topology-spread-constraints.md" %}{% endleveloffset %}
 

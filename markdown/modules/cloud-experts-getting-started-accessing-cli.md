@@ -17,7 +17,7 @@ To access the cluster using the CLI, you must have the `oc` CLI installed. If yo
     $ oc login --token=sha256~GBAfS4JQ0t1UTKYHbWAK6OUWGUkdMGz000000000000 --server=https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     Logged into "https://api.my-rosa-cluster.abcd.p1.openshiftapps.com:6443" as "rosa-user" using the token provided.
 
@@ -30,7 +30,7 @@ To access the cluster using the CLI, you must have the `oc` CLI installed. If yo
     $ oc whoami
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     rosa-user
     ```

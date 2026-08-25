@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding Service Binding Operator {id="understanding-service-binding-operator"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Understanding Service Binding Operator {id="understanding-service-binding-operator"}
 {%- set context = "understanding-service-binding-operator" %}
 
 Application developers need access to backing services to build and connect workloads. Connecting workloads to backing services is always a challenge because each service provider suggests a different way to access their secrets and consume them in a workload. In addition, manual configuration and maintenance of this binding together of workloads and backing services make the process tedious, inefficient, and error-prone. {._abstract}

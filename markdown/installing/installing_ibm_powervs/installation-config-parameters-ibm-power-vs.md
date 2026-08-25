@@ -8,7 +8,7 @@ title: "Installation configuration parameters for {{ ibm_power_server_title }}"
 {%- set context = "installation-config-parameters-ibm-power-vs" -%}
 {%- set platform = "{{ ibm_power_server_title }}" %}
 
-Before you deploy an {{ product_title }} cluster on {{ ibm_power_server_name }}, you supply parameters to customize your cluster and the platform that hosts it.
+Before you deploy an {{ product_title }} cluster on {{ ibm_power_server_name }}, you supply parameters to customize your cluster and the platform that hosts it. {._abstract}
 
 When you create the `install-config.yaml` file, you provide values for the required parameters through the command line. You can then modify the `install-config.yaml` file to customize your cluster further.
 

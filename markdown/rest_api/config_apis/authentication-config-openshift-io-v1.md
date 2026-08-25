@@ -1,5 +1,5 @@
 ---
-title: "Authentication []"
+title: "Authentication [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,13 +45,14 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `oauthMetadata` | `object` | oauthMetadata contains the discovery endpoint data for OAuth 2.0 Authorization Server Metadata for an external OAuth server. This discovery document can be viewed from its served location: oc get --raw '/.well-known/oauth-authorization-server' For further details, see the IETF Draft: https://tools.ietf.org/html/draft-ietf-oauth-discovery-04#section-2 If oauthMetadata.name is non-empty, this value has precedence over any metadata reference stored in status. The key "oauthMetadata" is used to locate the data. If specified and the config map or expected key is not found, no metadata is served. If the specified metadata is not valid, no metadata is served. The namespace for this config map is openshift-config. |
-| `oidcProviders` | `array` | oidcProviders are OIDC identity providers that can issue tokens for this cluster Can only be set if "Type" is set to "OIDC". At most one provider can be configured. |
+| `oidcProviders` | `array` | oidcProviders are OIDC identity providers that can issue tokens for this cluster Can only be set if "Type" is set to "OIDC".<br>At most one provider can be configured. |
 | `oidcProviders[]` | `object` |  |
 | `serviceAccountIssuer` | `string` | serviceAccountIssuer is the identifier of the bound service account token issuer. The default is https://kubernetes.default.svc WARNING: Updating this field will not result in immediate invalidation of all bound tokens with the previous issuer value. Instead, the tokens issued by previous service account issuer will continue to be trusted for a time period chosen by the platform (currently set to 24h). This time period is subject to change over time. This allows internal components to transition to use new service account issuer without service distruption. |
 | `type` | `string` | type identifies the cluster managed, user facing authentication mode in use. Specifically, it manages the component that responds to login attempts. The default is IntegratedOAuth. |
-| `webhookTokenAuthenticator` | `object` | webhookTokenAuthenticator configures a remote token reviewer. These remote authentication webhooks can be used to verify bearer tokens via the tokenreviews.authentication.k8s.io REST API. This is required to honor bearer tokens that are provisioned by an external authentication service. Can only be set if "Type" is set to "None". |
+| `webhookTokenAuthenticator` | `object` | webhookTokenAuthenticator configures a remote token reviewer. These remote authentication webhooks can be used to verify bearer tokens via the tokenreviews.authentication.k8s.io REST API. This is required to honor bearer tokens that are provisioned by an external authentication service.<br>Can only be set if "Type" is set to "None". |
 | `webhookTokenAuthenticators` | `array` | webhookTokenAuthenticators is DEPRECATED, setting it has no effect. |
 | `webhookTokenAuthenticators[]` | `object` | deprecatedWebhookTokenAuthenticator holds the necessary configuration options for a remote token authenticator. It’s the same as WebhookTokenAuthenticator but it’s missing the 'required' validation on KubeConfig field. |
+
 ### .spec.oauthMetadata {id="_specoauthmetadata"}
 
 Description
@@ -78,6 +80,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.oidcProviders {id="_specoidcproviders"}
 
 Description
@@ -108,12 +111,13 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `claimMappings` | `object` | claimMappings is a required field that configures the rules to be used by the Kubernetes API server for translating claims in a JWT token, issued by the identity provider, to a cluster identity. |
-| `claimValidationRules` | `array` | claimValidationRules is an optional field that configures the rules to be used by the Kubernetes API server for validating the claims in a JWT token issued by the identity provider. Validation rules are joined via an AND operation. |
+| `claimValidationRules` | `array` | claimValidationRules is an optional field that configures the rules to be used by the Kubernetes API server for validating the claims in a JWT token issued by the identity provider.<br>Validation rules are joined via an AND operation. |
 | `claimValidationRules[]` | `object` | TokenClaimValidationRule represents a validation rule based on token claims. If type is RequiredClaim, requiredClaim must be set. If Type is CEL, CEL must be set and RequiredClaim must be omitted. |
 | `issuer` | `object` | issuer is a required field that configures how the platform interacts with the identity provider and how tokens issued from the identity provider are evaluated by the Kubernetes API server. |
-| `name` | `string` | name is a required field that configures the unique human-readable identifier associated with the identity provider. It is used to distinguish between multiple identity providers and has no impact on token validation or authentication mechanics. name must not be an empty string (""). |
+| `name` | `string` | name is a required field that configures the unique human-readable identifier associated with the identity provider. It is used to distinguish between multiple identity providers and has no impact on token validation or authentication mechanics.<br>name must not be an empty string (""). |
 | `oidcClients` | `array` | oidcClients is an optional field that configures how on-cluster, platform clients should request tokens from the identity provider. oidcClients must not exceed 20 entries and entries must have unique namespace/name pairs. |
 | `oidcClients[]` | `object` | OIDCClientConfig configures how platform clients interact with identity providers as an authentication method. |
+
 ### .spec.oidcProviders[].claimMappings {id="_specoidcprovidersclaimmappings"}
 
 Description
@@ -129,11 +133,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `extra` | `array` | extra is an optional field for configuring the mappings used to construct the extra attribute for the cluster identity. When omitted, no extra attributes will be present on the cluster identity. key values for extra mappings must be unique. A maximum of 32 extra attribute mappings may be provided. |
+| `extra` | `array` | extra is an optional field for configuring the mappings used to construct the extra attribute for the cluster identity. When omitted, no extra attributes will be present on the cluster identity.<br>key values for extra mappings must be unique. A maximum of 32 extra attribute mappings may be provided. |
 | `extra[]` | `object` | ExtraMapping allows specifying a key and CEL expression to evaluate the keys' value. It is used to create additional mappings and attributes added to a cluster identity from a provided authentication token. |
-| `groups` | `object` | groups is an optional field that configures how the groups of a cluster identity should be constructed from the claims in a JWT token issued by the identity provider. When referencing a claim, if the claim is present in the JWT token, its value must be a list of groups separated by a comma (','). For example - '"example"' and '"exampleOne", "exampleTwo", "exampleThree"' are valid claim values. |
-| `uid` | `object` | uid is an optional field for configuring the claim mapping used to construct the uid for the cluster identity. When using uid.claim to specify the claim it must be a single string value. When using uid.expression the expression must result in a single string value. When omitted, this means the user has no opinion and the platform is left to choose a default, which is subject to change over time. The current default is to use the 'sub' claim. |
+| `groups` | `object` | groups is an optional field that configures how the groups of a cluster identity should be constructed from the claims in a JWT token issued by the identity provider.<br>When referencing a claim, if the claim is present in the JWT token, its value must be a list of groups separated by a comma (',').<br>For example - '"example"' and '"exampleOne", "exampleTwo", "exampleThree"' are valid claim values. |
+| `uid` | `object` | uid is an optional field for configuring the claim mapping used to construct the uid for the cluster identity.<br>When using uid.claim to specify the claim it must be a single string value. When using uid.expression the expression must result in a single string value.<br>When omitted, this means the user has no opinion and the platform is left to choose a default, which is subject to change over time.<br>The current default is to use the 'sub' claim. |
 | `username` | `object` | username is a required field that configures how the username of a cluster identity should be constructed from the claims in a JWT token issued by the identity provider. |
+
 ### .spec.oidcProviders[].claimMappings.extra {id="_specoidcprovidersclaimmappingsextra"}
 
 Description
@@ -165,8 +170,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key is a required field that specifies the string to use as the extra attribute key. key must be a domain-prefix path (e.g 'example.org/foo'). key must not exceed 510 characters in length. key must contain the '/' character, separating the domain and path characters. key must not be empty. The domain portion of the key (string of characters prior to the '/') must be a valid RFC1123 subdomain. It must not exceed 253 characters in length. It must start and end with an alphanumeric character. It must only contain lower case alphanumeric characters and '-' or '.'. It must not use the reserved domains, or be subdomains of, "kubernetes.io", "k8s.io", and "openshift.io". The path portion of the key (string of characters after the '/') must not be empty and must consist of at least one alphanumeric character, percent-encoded octets, '-', '.', '_', '~', '!', '$', '&', ''', '(', ')', '*', '+', ',', ';', '=', and ':'. It must not exceed 256 characters in length. |
-| `valueExpression` | `string` | valueExpression is a required field to specify the CEL expression to extract the extra attribute value from a JWT token’s claims. valueExpression must produce a string or string array value. "", [], and null are treated as the extra mapping not being present. Empty string values within an array are filtered out. CEL expressions have access to the token claims through a CEL variable, 'claims'. 'claims' is a map of claim names to claim values. For example, the 'sub' claim value can be accessed as 'claims.sub'. Nested claims can be accessed using dot notation ('claims.foo.bar'). valueExpression must not exceed 1024 characters in length. valueExpression must not be empty. |
+| `key` | `string` | key is a required field that specifies the string to use as the extra attribute key.<br>key must be a domain-prefix path (e.g 'example.org/foo'). key must not exceed 510 characters in length. key must contain the '/' character, separating the domain and path characters. key must not be empty.<br>The domain portion of the key (string of characters prior to the '/') must be a valid RFC1123 subdomain. It must not exceed 253 characters in length. It must start and end with an alphanumeric character. It must only contain lower case alphanumeric characters and '-' or '.'. It must not use the reserved domains, or be subdomains of, "kubernetes.io", "k8s.io", and "openshift.io".<br>The path portion of the key (string of characters after the '/') must not be empty and must consist of at least one alphanumeric character, percent-encoded octets, '-', '.', '_', '~', '!', '$', '&', ''', '(', ')', '*', '+', ',', ';', '=', and ':'. It must not exceed 256 characters in length. |
+| `valueExpression` | `string` | valueExpression is a required field to specify the CEL expression to extract the extra attribute value from a JWT token’s claims. valueExpression must produce a string or string array value. "", [], and null are treated as the extra mapping not being present. Empty string values within an array are filtered out.<br>CEL expressions have access to the token claims through a CEL variable, 'claims'. 'claims' is a map of claim names to claim values. For example, the 'sub' claim value can be accessed as 'claims.sub'. Nested claims can be accessed using dot notation ('claims.foo.bar').<br>valueExpression must not exceed 1024 characters in length. valueExpression must not be empty. |
+
 ### .spec.oidcProviders[].claimMappings.groups {id="_specoidcprovidersclaimmappingsgroups"}
 
 Description
@@ -185,7 +191,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `claim` | `string` | claim is an optional field for specifying the JWT token claim that is used in the mapping. The value of this claim will be assigned to the field in which this mapping is associated. claim must not exceed 256 characters in length. When set to the empty string `""`, this means that no named claim should be used for the group mapping. claim is required when the ExternalOIDCWithUpstreamParity feature gate is not enabled. |
-| `prefix` | `string` | prefix is an optional field that configures the prefix that will be applied to the cluster identity attribute during the process of mapping JWT claims to cluster identity attributes. When omitted or set to an empty string (""), no prefix is applied to the cluster identity attribute. Must not be set to a non-empty value when expression is set. Example: if `prefix` is set to "myoidc:" and the `claim` in JWT contains an array of strings "a", "b" and "c", the mapping will result in an array of string "myoidc:a", "myoidc:b" and "myoidc:c". |
+| `prefix` | `string` | prefix is an optional field that configures the prefix that will be applied to the cluster identity attribute during the process of mapping JWT claims to cluster identity attributes.<br>When omitted or set to an empty string (""), no prefix is applied to the cluster identity attribute. Must not be set to a non-empty value when expression is set.<br>Example: if `prefix` is set to "myoidc:" and the `claim` in JWT contains an array of strings "a", "b" and "c", the mapping will result in an array of string "myoidc:a", "myoidc:b" and "myoidc:c". |
+
 ### .spec.oidcProviders[].claimMappings.uid {id="_specoidcprovidersclaimmappingsuid"}
 
 Description
@@ -207,8 +214,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claim` | `string` | claim is an optional field for specifying the JWT token claim that is used in the mapping. The value of this claim will be assigned to the field in which this mapping is associated. Precisely one of claim or expression must be set. claim must not be specified when expression is set. When specified, claim must be at least 1 character in length and must not exceed 256 characters in length. |
-| `expression` | `string` | expression is an optional field for specifying a CEL expression that produces a string value from JWT token claims. CEL expressions have access to the token claims through a CEL variable, 'claims'. 'claims' is a map of claim names to claim values. For example, the 'sub' claim value can be accessed as 'claims.sub'. Nested claims can be accessed using dot notation ('claims.foo.bar'). Precisely one of claim or expression must be set. expression must not be specified when claim is set. When specified, expression must be at least 1 character in length and must not exceed 1024 characters in length. |
+| `claim` | `string` | claim is an optional field for specifying the JWT token claim that is used in the mapping. The value of this claim will be assigned to the field in which this mapping is associated.<br>Precisely one of claim or expression must be set. claim must not be specified when expression is set. When specified, claim must be at least 1 character in length and must not exceed 256 characters in length. |
+| `expression` | `string` | expression is an optional field for specifying a CEL expression that produces a string value from JWT token claims.<br>CEL expressions have access to the token claims through a CEL variable, 'claims'. 'claims' is a map of claim names to claim values. For example, the 'sub' claim value can be accessed as 'claims.sub'. Nested claims can be accessed using dot notation ('claims.foo.bar').<br>Precisely one of claim or expression must be set. expression must not be specified when claim is set. When specified, expression must be at least 1 character in length and must not exceed 1024 characters in length. |
+
 ### .spec.oidcProviders[].claimMappings.username {id="_specoidcprovidersclaimmappingsusername"}
 
 Description
@@ -220,9 +228,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claim` | `string` | claim is an optional field that configures the JWT token claim whose value is assigned to the cluster identity field associated with this mapping. claim is required when the ExternalOIDCWithUpstreamParity feature gate is not enabled. When the ExternalOIDCWithUpstreamParity feature gate is enabled, claim must not be set when expression is set. claim must not be an empty string ("") and must not exceed 256 characters. |
-| `prefix` | `object` | prefix configures the prefix that should be prepended to the value of the JWT claim. prefix must be set when prefixPolicy is set to 'Prefix' and must be unset otherwise. |
-| `prefixPolicy` | `string` | prefixPolicy is an optional field that configures how a prefix should be applied to the value of the JWT claim specified in the 'claim' field. Allowed values are 'Prefix', 'NoPrefix', and omitted (not provided or an empty string). When set to 'Prefix', the value specified in the prefix field will be prepended to the value of the JWT claim. The prefix field must be set when prefixPolicy is 'Prefix'. Must not be set to 'Prefix' when expression is set. When set to 'NoPrefix', no prefix will be prepended to the value of the JWT claim. When omitted, this means no opinion and the platform is left to choose any prefixes that are applied which is subject to change over time. Currently, the platform prepends `{{ issuerURL }}#` to the value of the JWT claim when the claim is not 'email'. As an example, consider the following scenario:    `prefix` is unset, `issuerURL` is set to `https://myoidc.tld`,    the JWT claims include "username":"userA" and "email":"userA@myoidc.tld",    and `claim` is set to:    - "username": the mapped value will be "https://myoidc.tld#userA"    - "email": the mapped value will be "userA@myoidc.tld" |
+| `claim` | `string` | claim is an optional field that configures the JWT token claim whose value is assigned to the cluster identity field associated with this mapping. claim is required when the ExternalOIDCWithUpstreamParity feature gate is not enabled. When the ExternalOIDCWithUpstreamParity feature gate is enabled, claim must not be set when expression is set.<br>claim must not be an empty string ("") and must not exceed 256 characters. |
+| `prefix` | `object` | prefix configures the prefix that should be prepended to the value of the JWT claim.<br>prefix must be set when prefixPolicy is set to 'Prefix' and must be unset otherwise. |
+| `prefixPolicy` | `string` | prefixPolicy is an optional field that configures how a prefix should be applied to the value of the JWT claim specified in the 'claim' field.<br>Allowed values are 'Prefix', 'NoPrefix', and omitted (not provided or an empty string).<br>When set to 'Prefix', the value specified in the prefix field will be prepended to the value of the JWT claim. The prefix field must be set when prefixPolicy is 'Prefix'. Must not be set to 'Prefix' when expression is set. When set to 'NoPrefix', no prefix will be prepended to the value of the JWT claim. When omitted, this means no opinion and the platform is left to choose any prefixes that are applied which is subject to change over time. Currently, the platform prepends `{{ issuerURL }}#`{minja} to the value of the JWT claim when the claim is not 'email'.<br>As an example, consider the following scenario:<br>   `prefix` is unset, `issuerURL` is set to `https://myoidc.tld`,    the JWT claims include "username":"userA" and "email":"userA@myoidc.tld",    and `claim` is set to:    - "username": the mapped value will be "https://myoidc.tld#userA"    - "email": the mapped value will be "userA@myoidc.tld" |
+
 ### .spec.oidcProviders[].claimMappings.username.prefix {id="_specoidcprovidersclaimmappingsusernameprefix"}
 
 Description
@@ -241,7 +250,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `prefixString` | `string` | prefixString is a required field that configures the prefix that will be applied to cluster identity username attribute during the process of mapping JWT claims to cluster identity attributes. prefixString must not be an empty string (""). |
+| `prefixString` | `string` | prefixString is a required field that configures the prefix that will be applied to cluster identity username attribute during the process of mapping JWT claims to cluster identity attributes.<br>prefixString must not be an empty string (""). |
+
 ### .spec.oidcProviders[].claimValidationRules {id="_specoidcprovidersclaimvalidationrules"}
 
 Description
@@ -272,7 +282,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `requiredClaim` | `object` | requiredClaim allows configuring a required claim name and its expected value. This field is required when `type` is set to RequiredClaim, and must be omitted when `type` is set to any other value. The Kubernetes API server uses this field to validate if an incoming JWT is valid for this identity provider. |
-| `type` | `string` | type is an optional field that configures the type of the validation rule. Allowed values are "RequiredClaim" and "CEL". When set to 'RequiredClaim', the Kubernetes API server will be configured to validate that the incoming JWT contains the required claim and that its value matches the required value. When set to 'CEL', the Kubernetes API server will be configured to validate the incoming JWT against the configured CEL expression. |
+| `type` | `string` | type is an optional field that configures the type of the validation rule.<br>Allowed values are "RequiredClaim" and "CEL".<br>When set to 'RequiredClaim', the Kubernetes API server will be configured to validate that the incoming JWT contains the required claim and that its value matches the required value.<br>When set to 'CEL', the Kubernetes API server will be configured to validate the incoming JWT against the configured CEL expression. |
+
 ### .spec.oidcProviders[].claimValidationRules[].requiredClaim {id="_specoidcprovidersclaimvalidationrulesrequiredclaim"}
 
 Description
@@ -291,8 +302,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claim` | `string` | claim is a required field that configures the name of the required claim. When taken from the JWT claims, claim must be a string value. claim must not be an empty string (""). |
-| `requiredValue` | `string` | requiredValue is a required field that configures the value that 'claim' must have when taken from the incoming JWT claims. If the value in the JWT claims does not match, the token will be rejected for authentication. requiredValue must not be an empty string (""). |
+| `claim` | `string` | claim is a required field that configures the name of the required claim. When taken from the JWT claims, claim must be a string value.<br>claim must not be an empty string (""). |
+| `requiredValue` | `string` | requiredValue is a required field that configures the value that 'claim' must have when taken from the incoming JWT claims. If the value in the JWT claims does not match, the token will be rejected for authentication.<br>requiredValue must not be an empty string (""). |
+
 ### .spec.oidcProviders[].issuer {id="_specoidcprovidersissuer"}
 
 Description
@@ -309,9 +321,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `audiences` | `array (string)` | audiences is a required field that configures the acceptable audiences the JWT token, issued by the identity provider, must be issued to. At least one of the entries must match the 'aud' claim in the JWT token. audiences must contain at least one entry and must not exceed ten entries. |
-| `issuerCertificateAuthority` | `object` | issuerCertificateAuthority is an optional field that configures the certificate authority, used by the Kubernetes API server, to validate the connection to the identity provider when fetching discovery information. When not specified, the system trust is used. When specified, it must reference a ConfigMap in the openshift-config namespace containing the PEM-encoded CA certificates under the 'ca-bundle.crt' key in the data field of the ConfigMap. |
-| `issuerURL` | `string` | issuerURL is a required field that configures the URL used to issue tokens by the identity provider. The Kubernetes API server determines how authentication tokens should be handled by matching the 'iss' claim in the JWT to the issuerURL of configured identity providers. Must be at least 1 character and must not exceed 512 characters in length. Must be a valid URL that uses the 'https' scheme and does not contain a query, fragment or user. |
+| `audiences` | `array (string)` | audiences is a required field that configures the acceptable audiences the JWT token, issued by the identity provider, must be issued to. At least one of the entries must match the 'aud' claim in the JWT token.<br>audiences must contain at least one entry and must not exceed ten entries. |
+| `issuerCertificateAuthority` | `object` | issuerCertificateAuthority is an optional field that configures the certificate authority, used by the Kubernetes API server, to validate the connection to the identity provider when fetching discovery information.<br>When not specified, the system trust is used.<br>When specified, it must reference a ConfigMap in the openshift-config namespace containing the PEM-encoded CA certificates under the 'ca-bundle.crt' key in the data field of the ConfigMap. |
+| `issuerURL` | `string` | issuerURL is a required field that configures the URL used to issue tokens by the identity provider. The Kubernetes API server determines how authentication tokens should be handled by matching the 'iss' claim in the JWT to the issuerURL of configured identity providers.<br>Must be at least 1 character and must not exceed 512 characters in length. Must be a valid URL that uses the 'https' scheme and does not contain a query, fragment or user. |
+
 ### .spec.oidcProviders[].issuer.issuerCertificateAuthority {id="_specoidcprovidersissuerissuercertificateauthority"}
 
 Description
@@ -334,6 +347,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.oidcProviders[].oidcClients {id="_specoidcprovidersoidcclients"}
 
 Description
@@ -361,11 +375,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `clientID` | `string` | clientID is a required field that configures the client identifier, from the identity provider, that the platform component uses for authentication requests made to the identity provider. The identity provider must accept this identifier for platform components to be able to use the identity provider as an authentication mode. clientID must not be an empty string (""). |
-| `clientSecret` | `object` | clientSecret is an optional field that configures the client secret used by the platform component when making authentication requests to the identity provider. When not specified, no client secret will be used when making authentication requests to the identity provider. When specified, clientSecret references a Secret in the 'openshift-config' namespace that contains the client secret in the 'clientSecret' key of the '.data' field. The client secret will be used when making authentication requests to the identity provider. Public clients do not require a client secret but private clients do require a client secret to work with the identity provider. |
-| `componentName` | `string` | componentName is a required field that specifies the name of the platform component being configured to use the identity provider as an authentication mode. It is used in combination with componentNamespace as a unique identifier. componentName must not be an empty string ("") and must not exceed 256 characters in length. |
-| `componentNamespace` | `string` | componentNamespace is a required field that specifies the namespace in which the platform component being configured to use the identity provider as an authentication mode is running. It is used in combination with componentName as a unique identifier. componentNamespace must not be an empty string ("") and must not exceed 63 characters in length. |
-| `extraScopes` | `array (string)` | extraScopes is an optional field that configures the extra scopes that should be requested by the platform component when making authentication requests to the identity provider. This is useful if you have configured claim mappings that requires specific scopes to be requested beyond the standard OIDC scopes. When omitted, no additional scopes are requested. |
+| `clientID` | `string` | clientID is a required field that configures the client identifier, from the identity provider, that the platform component uses for authentication requests made to the identity provider. The identity provider must accept this identifier for platform components to be able to use the identity provider as an authentication mode.<br>clientID must not be an empty string (""). |
+| `clientSecret` | `object` | clientSecret is an optional field that configures the client secret used by the platform component when making authentication requests to the identity provider.<br>When not specified, no client secret will be used when making authentication requests to the identity provider.<br>When specified, clientSecret references a Secret in the 'openshift-config' namespace that contains the client secret in the 'clientSecret' key of the '.data' field.<br>The client secret will be used when making authentication requests to the identity provider.<br>Public clients do not require a client secret but private clients do require a client secret to work with the identity provider. |
+| `componentName` | `string` | componentName is a required field that specifies the name of the platform component being configured to use the identity provider as an authentication mode.<br>It is used in combination with componentNamespace as a unique identifier.<br>componentName must not be an empty string ("") and must not exceed 256 characters in length. |
+| `componentNamespace` | `string` | componentNamespace is a required field that specifies the namespace in which the platform component being configured to use the identity provider as an authentication mode is running.<br>It is used in combination with componentName as a unique identifier.<br>componentNamespace must not be an empty string ("") and must not exceed 63 characters in length. |
+| `extraScopes` | `array (string)` | extraScopes is an optional field that configures the extra scopes that should be requested by the platform component when making authentication requests to the identity provider. This is useful if you have configured claim mappings that requires specific scopes to be requested beyond the standard OIDC scopes.<br>When omitted, no additional scopes are requested. |
+
 ### .spec.oidcProviders[].oidcClients[].clientSecret {id="_specoidcprovidersoidcclientsclientsecret"}
 
 Description
@@ -394,6 +409,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.webhookTokenAuthenticator {id="_specwebhooktokenauthenticator"}
 
 Description
@@ -415,7 +431,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `kubeConfig` | `object` | kubeConfig references a secret that contains kube config file data which describes how to access the remote webhook service. The namespace for the referenced secret is openshift-config. For further details, see: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication The key "kubeConfig" is used to locate the data. If the secret or expected key is not found, the webhook is not honored. If the specified kube config data is not valid, the webhook is not honored. |
+| `kubeConfig` | `object` | kubeConfig references a secret that contains kube config file data which describes how to access the remote webhook service. The namespace for the referenced secret is openshift-config.<br>For further details, see:<br>https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication<br>The key "kubeConfig" is used to locate the data. If the secret or expected key is not found, the webhook is not honored. If the specified kube config data is not valid, the webhook is not honored. |
+
 ### .spec.webhookTokenAuthenticator.kubeConfig {id="_specwebhooktokenauthenticatorkubeconfig"}
 
 Description
@@ -445,6 +462,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .spec.webhookTokenAuthenticators {id="_specwebhooktokenauthenticators"}
 
 Description
@@ -467,6 +485,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `kubeConfig` | `object` | kubeConfig contains kube config file data which describes how to access the remote webhook service. For further details, see: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication The key "kubeConfig" is used to locate the data. If the secret or expected key is not found, the webhook is not honored. If the specified kube config data is not valid, the webhook is not honored. The namespace for this secret is determined by the point of use. |
+
 ### .spec.webhookTokenAuthenticators[].kubeConfig {id="_specwebhooktokenauthenticatorskubeconfig"}
 
 Description
@@ -489,6 +508,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .status {id="_status"}
 
 Description
@@ -503,6 +523,7 @@ Type
 | `integratedOAuthMetadata` | `object` | integratedOAuthMetadata contains the discovery endpoint data for OAuth 2.0 Authorization Server Metadata for the in-cluster integrated OAuth server. This discovery document can be viewed from its served location: oc get --raw '/.well-known/oauth-authorization-server' For further details, see the IETF Draft: https://tools.ietf.org/html/draft-ietf-oauth-discovery-04#section-2 This contains the observed value based on cluster state. An explicitly set value in spec.oauthMetadata has precedence over this field. This field has no meaning if authentication spec.type is not set to IntegratedOAuth. The key "oauthMetadata" is used to locate the data. If the config map or expected key is not found, no metadata is served. If the specified metadata is not valid, no metadata is served. The namespace for this config map is openshift-config-managed. |
 | `oidcClients` | `array` | oidcClients is where participating operators place the current OIDC client status for OIDC clients that can be customized by the cluster-admin. |
 | `oidcClients[]` | `object` | OIDCClientStatus represents the current state of platform components and how they interact with the configured identity providers. |
+
 ### .status.integratedOAuthMetadata {id="_statusintegratedoauthmetadata"}
 
 Description
@@ -531,6 +552,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .status.oidcClients {id="_statusoidcclients"}
 
 Description
@@ -558,13 +580,14 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `componentName` | `string` | componentName is a required field that specifies the name of the platform component using the identity provider as an authentication mode. It is used in combination with componentNamespace as a unique identifier. componentName must not be an empty string ("") and must not exceed 256 characters in length. |
-| `componentNamespace` | `string` | componentNamespace is a required field that specifies the namespace in which the platform component using the identity provider as an authentication mode is running. It is used in combination with componentName as a unique identifier. componentNamespace must not be an empty string ("") and must not exceed 63 characters in length. |
-| `conditions` | `array` | conditions are used to communicate the state of the `oidcClients` entry. Supported conditions include Available, Degraded and Progressing. If Available is true, the component is successfully using the configured client. If Degraded is true, that means something has gone wrong trying to handle the client configuration. If Progressing is true, that means the component is taking some action related to the `oidcClients` entry. |
+| `componentName` | `string` | componentName is a required field that specifies the name of the platform component using the identity provider as an authentication mode. It is used in combination with componentNamespace as a unique identifier.<br>componentName must not be an empty string ("") and must not exceed 256 characters in length. |
+| `componentNamespace` | `string` | componentNamespace is a required field that specifies the namespace in which the platform component using the identity provider as an authentication mode is running.<br>It is used in combination with componentName as a unique identifier.<br>componentNamespace must not be an empty string ("") and must not exceed 63 characters in length. |
+| `conditions` | `array` | conditions are used to communicate the state of the `oidcClients` entry.<br>Supported conditions include Available, Degraded and Progressing.<br>If Available is true, the component is successfully using the configured client. If Degraded is true, that means something has gone wrong trying to handle the client configuration. If Progressing is true, that means the component is taking some action related to the `oidcClients` entry. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
-| `consumingUsers` | `array (string)` | consumingUsers is an optional list of ServiceAccounts requiring read permissions on the `clientSecret` secret. consumingUsers must not exceed 5 entries. |
-| `currentOIDCClients` | `array` | currentOIDCClients is an optional list of clients that the component is currently using. Entries must have unique issuerURL/clientID pairs. |
+| `consumingUsers` | `array (string)` | consumingUsers is an optional list of ServiceAccounts requiring read permissions on the `clientSecret` secret.<br>consumingUsers must not exceed 5 entries. |
+| `currentOIDCClients` | `array` | currentOIDCClients is an optional list of clients that the component is currently using.<br>Entries must have unique issuerURL/clientID pairs. |
 | `currentOIDCClients[]` | `object` | OIDCClientReference is a reference to a platform component client configuration. |
+
 ### .status.oidcClients[].conditions {id="_statusoidcclientsconditions"}
 
 Description
@@ -607,6 +630,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.oidcClients[].currentOIDCClients {id="_statusoidcclientscurrentoidcclients"}
 
 Description
@@ -637,9 +661,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `clientID` | `string` | clientID is a required field that specifies the client identifier, from the identity provider, that the platform component is using for authentication requests made to the identity provider. clientID must not be empty. |
-| `issuerURL` | `string` | issuerURL is a required field that specifies the URL of the identity provider that this client is configured to make requests against. issuerURL must use the 'https' scheme. |
-| `oidcProviderName` | `string` | oidcProviderName is a required reference to the 'name' of the identity provider configured in 'oidcProviders' that this client is associated with. oidcProviderName must not be an empty string (""). |
+| `clientID` | `string` | clientID is a required field that specifies the client identifier, from the identity provider, that the platform component is using for authentication requests made to the identity provider.<br>clientID must not be empty. |
+| `issuerURL` | `string` | issuerURL is a required field that specifies the URL of the identity provider that this client is configured to make requests against.<br>issuerURL must use the 'https' scheme. |
+| `oidcProviderName` | `string` | oidcProviderName is a required reference to the 'name' of the identity provider configured in 'oidcProviders' that this client is associated with.<br>oidcProviderName must not be an empty string (""). |
 
 ## API endpoints {id="_api_endpoints"}
 
@@ -649,12 +673,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Authentication
     *   `GET`: list objects of kind Authentication
     *   `POST`: create an Authentication
-*   `/apis/config.openshift.io/v1/authentications/{{ name }}`
+*   `/apis/config.openshift.io/v1/authentications/{{ name }}`{minja}
     *   `DELETE`: delete an Authentication
     *   `GET`: read the specified Authentication
     *   `PATCH`: partially update the specified Authentication
     *   `PUT`: replace the specified Authentication
-*   `/apis/config.openshift.io/v1/authentications/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/authentications/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Authentication
     *   `PATCH`: partially update status of the specified Authentication
     *   `PUT`: replace status of the specified Authentication

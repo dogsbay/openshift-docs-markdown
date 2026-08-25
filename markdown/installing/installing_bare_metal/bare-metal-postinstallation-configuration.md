@@ -3,15 +3,16 @@ title: Postinstallation configuration
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Postinstallation configuration {id="bare-metal-post-installation-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Postinstallation configuration {id="bare-metal-post-installation-configuration"}
 {%- set context = "bare-metal-postinstallation-configuration" %}
 
-After successfully deploying a bare-metal cluster, you can perform post installation procedures such as configuring NTP, enabling a provisioning network, and configuring a user-managed load balancer. Customizing your cluster can help you prepare the cluster for specific workloads and deployment requirements.
+After successfully deploying a bare-metal cluster, you can perform post installation procedures such as configuring NTP, enabling a provisioning network, and configuring a user-managed load balancer. Customizing your cluster can help you prepare the cluster for specific workloads and deployment requirements. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/bare-metal-about-the-cluster-api.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the Cluster API](/machine_management/cluster_api_machine_management/cluster-api-about#luster-api-about)
 *   [Getting started with the Cluster API](/machine_management/cluster_api_machine_management/cluster-api-getting-started#cluster-api-getting-started)
@@ -25,6 +26,7 @@ After successfully deploying a bare-metal cluster, you can perform post installa
 {% leveloffset +2 %}{% include "./modules/bare-metal-install-new-bmc-ca.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Editing a `BareMetalHost` resource](/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-editing-a-baremetalhost-resource_bare-metal-postinstallation-configuration)
 
@@ -33,6 +35,7 @@ After successfully deploying a bare-metal cluster, you can perform post installa
 {% leveloffset +1 %}{% include "./modules/creating-manifest-file-customized-br-ex-bridge-post.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Converting to IPv4/IPv6 dual-stack networking](/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 *   [Expanding the cluster](/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)
@@ -42,6 +45,7 @@ After successfully deploying a bare-metal cluster, you can perform post installa
 {% leveloffset +1 %}{% include "./modules/migrating-br-ex-bridge-nmstate.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installer-provisioned infrastructure: Creating a manifest object that includes a customized `br-ex` bridge](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)
 *   [User-provisioned infrastructure: Creating a manifest object that includes a customized `br-ex` bridge](/installing/installing_bare_metal/upi/installing-bare-metal#creating-manifest-file-customized-br-ex-bridge_installing-bare-metal)
@@ -55,6 +59,7 @@ After successfully deploying a bare-metal cluster, you can perform post installa
 {% leveloffset +2 %}{% include "./modules/bm-configuring-ipe.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 
@@ -65,6 +70,7 @@ After successfully deploying a bare-metal cluster, you can perform post installa
 {% leveloffset +2 %}{% include "./modules/bmo-about-the-baremetalhost-resource.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [NICs](/rest_api/provisioning_apis/hardwaredata-metal3-io-v1alpha1#spec-hardware-nics-2)
 

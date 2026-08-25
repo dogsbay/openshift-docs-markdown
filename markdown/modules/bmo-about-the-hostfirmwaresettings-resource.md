@@ -44,7 +44,7 @@ Integer parameters listed in the `status` section appear as strings. For example
 
 The `status` represents the current state of the host’s BIOS.
 
-***HostFirmwareSettings***
+**HostFirmwareSettings**
 
 <table>
 <thead>

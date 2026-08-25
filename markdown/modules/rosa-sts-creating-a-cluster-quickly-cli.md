@@ -44,7 +44,7 @@ When using the {{ rosa_cli_first }}, to create a cluster that uses the AWS Secur
     *   Replace `<cluster_name>` with the name of your cluster.
     *   When you specify `--mode auto`, the `rosa create cluster` command creates the cluster-specific Operator IAM roles and the OIDC provider automatically. The Operators use the OIDC provider to authenticate.
 
-{% include "./snippets/rosa-long-cluster-name.md" %}
+    {% include "./snippets/rosa-long-cluster-name.md" %}
 1.  Check the status of your cluster:
     ```terminal
     $ rosa describe cluster --cluster <cluster_name|cluster_id>

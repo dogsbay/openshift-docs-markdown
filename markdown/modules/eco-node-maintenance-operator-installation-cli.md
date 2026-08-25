@@ -42,7 +42,7 @@ To install the Operator in the `openshift-operators` namespace, skip to step 3 o
         ```
 1.  Create a `Subscription` CR:
     1.  Define the `Subscription` CR and save the YAML file, for example, `node-maintenance-subscription.yaml`:
-        ```yaml
+        ```yaml {minja}
         apiVersion: operators.coreos.com/v1alpha1
         kind: Subscription
         metadata:
@@ -58,11 +58,11 @@ To install the Operator in the `openshift-operators` namespace, skip to step 3 o
         ```
         1.  Specify the `Namespace` where you want to install the Node Maintenance Operator.
 
-            :::important
+        :::important
 
-            To install the Node Maintenance Operator in the `openshift-operators` namespace, specify `openshift-operators` in the `Subscription` CR.
-            
-            :::
+        To install the Node Maintenance Operator in the `openshift-operators` namespace, specify `openshift-operators` in the `Subscription` CR.
+        
+        :::
 
     1.  To create the `Subscription` CR, run the following command:
         ```terminal
@@ -76,16 +76,16 @@ To install the Operator in the `openshift-operators` namespace, skip to step 3 o
     $ oc get csv -n openshift-operators
     ```
 
-```terminal title="Example output"
-NAME                               DISPLAY                     VERSION   REPLACES  PHASE
-node-maintenance-operator.v{{ product_version }}    Node Maintenance Operator   {{ product_version }}                Succeeded
-```
+    ```terminal title="Example output" {minja}
+    NAME                               DISPLAY                     VERSION   REPLACES  PHASE
+    node-maintenance-operator.v{{ product_version }}    Node Maintenance Operator   {{ product_version }}                Succeeded
+    ```
 1.  Verify that the Node Maintenance Operator is running:
     ```terminal
     $ oc get deploy -n openshift-operators
     ```
 
-```terminal title="Example output"
-NAME                                           READY   UP-TO-DATE   AVAILABLE   AGE
-node-maintenance-operator-controller-manager   1/1     1            1           10d
-```
+    ```terminal title="Example output"
+    NAME                                           READY   UP-TO-DATE   AVAILABLE   AGE
+    node-maintenance-operator-controller-manager   1/1     1            1           10d
+    ```

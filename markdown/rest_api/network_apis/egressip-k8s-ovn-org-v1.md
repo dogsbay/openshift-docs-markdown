@@ -1,5 +1,5 @@
 ---
-title: "EgressIP []"
+title: "EgressIP [k8s.ovn.org/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of the desired behavior of EgressIP. |
 | `status` | `object` | Observed status of EgressIP. Read-only. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -47,6 +48,7 @@ Required
 | `egressIPs` | `array (string)` | EgressIPs is the list of egress IP addresses requested. Can be IPv4 and/or IPv6. This field is mandatory. |
 | `namespaceSelector` | `object` | NamespaceSelector applies the egress IP only to the namespace(s) whose label matches this definition. This field is mandatory. |
 | `podSelector` | `object` | PodSelector applies the egress IP only to the pods whose label matches this definition. This field is optional, and in case it is not set: results in the egress IP being applied to all pods in the namespace(s) matched by the NamespaceSelector. In case it is set: is intersected with the NamespaceSelector, thus applying the egress IP to the pods (in the namespace(s) already matched by the NamespaceSelector) which match this pod selector. |
+
 ### .spec.namespaceSelector {id="_specnamespaceselector"}
 
 Description
@@ -61,6 +63,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.namespaceSelector.matchExpressions {id="_specnamespaceselectormatchexpressions"}
 
 Description
@@ -89,6 +92,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.podSelector {id="_specpodselector"}
 
 Description
@@ -103,6 +107,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.podSelector.matchExpressions {id="_specpodselectormatchexpressions"}
 
 Description
@@ -131,6 +136,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status {id="_status"}
 
 Description
@@ -148,6 +154,7 @@ Required
 | --- | --- | --- |
 | `items` | `array` | The list of assigned egress IPs and their corresponding node assignment. |
 | `items[]` | `object` | The per node status, for those egress IPs who have been assigned. |
+
 ### .status.items {id="_statusitems"}
 
 Description
@@ -184,7 +191,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of EgressIP
     *   `GET`: list objects of kind EgressIP
     *   `POST`: create an EgressIP
-*   `/apis/k8s.ovn.org/v1/egressips/{{ name }}`
+*   `/apis/k8s.ovn.org/v1/egressips/{{ name }}`{minja}
     *   `DELETE`: delete an EgressIP
     *   `GET`: read the specified EgressIP
     *   `PATCH`: partially update the specified EgressIP

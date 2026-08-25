@@ -1,5 +1,5 @@
 ---
-title: "Console []"
+title: "Console [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -33,6 +33,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -45,6 +46,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `authentication` | `object` | ConsoleAuthentication defines a list of optional configuration for console authentication. |
+
 ### .spec.authentication {id="_specauthentication"}
 
 Description
@@ -57,6 +59,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `logoutRedirect` | `string` | An optional, absolute URL to redirect web browsers to after logging out of the console. If not specified, it will redirect to the default login page. This is required when using an identity provider that supports single sign-on (SSO) such as: - OpenID (Keycloak, Azure) - RequestHeader (GSSAPI, SSPI, SAML) - OAuth (GitHub, GitLab, Google) Logging out of the console will destroy the user’s token. The logoutRedirect provides the user the option to perform single logout (SLO) through the identity provider to destroy their single sign-on session. |
+
 ### .status {id="_status"}
 
 Description
@@ -78,12 +81,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Console
     *   `GET`: list objects of kind Console
     *   `POST`: create a Console
-*   `/apis/config.openshift.io/v1/consoles/{{ name }}`
+*   `/apis/config.openshift.io/v1/consoles/{{ name }}`{minja}
     *   `DELETE`: delete a Console
     *   `GET`: read the specified Console
     *   `PATCH`: partially update the specified Console
     *   `PUT`: replace the specified Console
-*   `/apis/config.openshift.io/v1/consoles/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/consoles/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Console
     *   `PATCH`: partially update status of the specified Console
     *   `PUT`: replace status of the specified Console

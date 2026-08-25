@@ -17,7 +17,7 @@ Create the IAM roles and policies for the ACK controller by using the provided s
     $ oc describe pod ack-s3-controller -n ack-system | grep "^\s*AWS_"
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     AWS_ROLE_ARN:                 arn:aws:iam::000000000000:role/ack-s3-controller
     AWS_WEB_IDENTITY_TOKEN_FILE:  /var/run/secrets/eks.amazonaws.com/serviceaccount/token

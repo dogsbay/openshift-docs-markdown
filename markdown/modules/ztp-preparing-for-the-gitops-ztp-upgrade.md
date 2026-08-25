@@ -10,7 +10,7 @@ Use the following procedure to prepare your site for the {{ ztp_first }} upgrade
     ```terminal
     $ mkdir -p ./update
     ```
-    ```terminal
+    ```terminal {minja}
     $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }} extract /home/ztp --tar | tar x -C ./update
     ```
 

@@ -9,6 +9,6 @@ If you want to disable the capability to run Windows container workloads, you ca
 
 **Procedure**
 
-1.  From the **Ecosystem** -> **Software Catalog** page, use the **Filter by keyword** box to search for `Red Hat Windows Machine Config Operator`.
+1.  From the **Ecosystem** → **Software Catalog** page, use the **Filter by keyword** box to search for `Red Hat Windows Machine Config Operator`.
 1.  Click the **Red Hat Windows Machine Config Operator** tile. The Operator tile indicates it is installed.
 1.  In the **Windows Machine Config Operator** descriptor page, click **Uninstall**.

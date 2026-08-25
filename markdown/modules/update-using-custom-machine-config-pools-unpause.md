@@ -18,7 +18,7 @@ After the {{ product_title }} update is complete, unpause your custom machine co
     machineconfigpool.machineconfiguration.openshift.io/workerpool-canary patched
     ```
 1.  Optional: Check the progress of the update by using one of the following options:
-    1.  Check the progress from the web console by clicking **Administration** -> **Cluster settings**.
+    1.  Check the progress from the web console by clicking **Administration** → **Cluster settings**.
     1.  Check the progress by running the following command:
         ```terminal
         $ oc get machineconfigpools

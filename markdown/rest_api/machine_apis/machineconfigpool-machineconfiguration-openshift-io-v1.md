@@ -1,5 +1,5 @@
 ---
-title: "MachineConfigPool []"
+title: "MachineConfigPool [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec contains the desired machine config pool configuration. |
 | `status` | `object` | status contains observed information about the machine config pool. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,11 +45,12 @@ Type
 | --- | --- | --- |
 | `configuration` | `object` | The targeted MachineConfig object for the machine config pool. |
 | `machineConfigSelector` | `object` | machineConfigSelector specifies a label selector for MachineConfigs. Refer https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/ on how label and selectors work. |
-| `maxUnavailable` | `integer-or-string` | maxUnavailable defines either an integer number or percentage of nodes in the pool that can go Unavailable during an update. This includes nodes Unavailable for any reason, including user initiated cordons, failing nodes, etc. The default value is 1. A value larger than 1 will mean multiple nodes going unavailable during the update, which may affect your workload stress on the remaining nodes. You cannot set this value to 0 to stop updates (it will default back to 1); to stop updates, use the 'paused' property instead. Drain will respect Pod Disruption Budgets (PDBs) such as etcd quorum guards, even if maxUnavailable is greater than one. |
+| `maxUnavailable` | `integer-or-string` | maxUnavailable defines either an integer number or percentage of nodes in the pool that can go Unavailable during an update. This includes nodes Unavailable for any reason, including user initiated cordons, failing nodes, etc. The default value is 1.<br>A value larger than 1 will mean multiple nodes going unavailable during the update, which may affect your workload stress on the remaining nodes. You cannot set this value to 0 to stop updates (it will default back to 1); to stop updates, use the 'paused' property instead. Drain will respect Pod Disruption Budgets (PDBs) such as etcd quorum guards, even if maxUnavailable is greater than one. |
 | `nodeSelector` | `object` | nodeSelector specifies a label selector for Machines |
 | `paused` | `boolean` | paused specifies whether or not changes to this machine config pool should be stopped. This includes generating new desiredMachineConfig and update of machines. |
-| `pinnedImageSets` | `array` | pinnedImageSets specifies a sequence of PinnedImageSetRef objects for the pool. Nodes within this pool will preload and pin images defined in the PinnedImageSet. Before pulling images the MachineConfigDaemon will ensure the total uncompressed size of all the images does not exceed available resources. If the total size of the images exceeds the available resources the controller will report a Degraded status to the MachineConfigPool and not attempt to pull any images. Also to help ensure the kubelet can mitigate storage risk, the pinned_image configuration and subsequent service reload will happen only after all of the images have been pulled for each set. Images from multiple PinnedImageSets are loaded and pinned sequentially as listed. Duplicate and existing images will be skipped. Any failure to prefetch or pin images will result in a Degraded pool. Resolving these failures is the responsibility of the user. The admin should be proactive in ensuring adequate storage and proper image authentication exists in advance. |
+| `pinnedImageSets` | `array` | pinnedImageSets specifies a sequence of PinnedImageSetRef objects for the pool. Nodes within this pool will preload and pin images defined in the PinnedImageSet. Before pulling images the MachineConfigDaemon will ensure the total uncompressed size of all the images does not exceed available resources. If the total size of the images exceeds the available resources the controller will report a Degraded status to the MachineConfigPool and not attempt to pull any images. Also to help ensure the kubelet can mitigate storage risk, the pinned_image configuration and subsequent service reload will happen only after all of the images have been pulled for each set. Images from multiple PinnedImageSets are loaded and pinned sequentially as listed. Duplicate and existing images will be skipped.<br>Any failure to prefetch or pin images will result in a Degraded pool. Resolving these failures is the responsibility of the user. The admin should be proactive in ensuring adequate storage and proper image authentication exists in advance. |
 | `pinnedImageSets[]` | `object` |  |
+
 ### .spec.configuration {id="_specconfiguration"}
 
 Description
@@ -69,6 +71,7 @@ Type
 | `source` | `array` | source is the list of MachineConfig objects that were used to generate the single MachineConfig object specified in `content`. |
 | `source[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .spec.configuration.source {id="_specconfigurationsource"}
 
 Description
@@ -96,6 +99,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .spec.machineConfigSelector {id="_specmachineconfigselector"}
 
 Description
@@ -111,6 +115,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.machineConfigSelector.matchExpressions {id="_specmachineconfigselectormatchexpressions"}
 
 Description
@@ -140,6 +145,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.nodeSelector {id="_specnodeselector"}
 
 Description
@@ -154,6 +160,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.nodeSelector.matchExpressions {id="_specnodeselectormatchexpressions"}
 
 Description
@@ -183,6 +190,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.pinnedImageSets {id="_specpinnedimagesets"}
 
 Description
@@ -224,6 +232,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is a reference to the name of a PinnedImageSet.  Must adhere to RFC-1123 (https://tools.ietf.org/html/rfc1123). Made up of one of more period-separated (.) segments, where each segment consists of alphanumeric characters and hyphens (-), must begin and end with an alphanumeric character, and is at most 63 characters in length. The total length of the name must not exceed 253 characters. |
+
 ### .status {id="_status"}
 
 Description
@@ -248,6 +257,7 @@ Type
 | `readyMachineCount` | `integer` | readyMachineCount represents the total number of ready machines targeted by the pool. |
 | `unavailableMachineCount` | `integer` | unavailableMachineCount represents the total number of unavailable (non-ready) machines targeted by the pool. A node is marked unavailable if it is in updating state or NodeReady condition is false. |
 | `updatedMachineCount` | `integer` | updatedMachineCount represents the total number of machines targeted by the pool that have the CurrentMachineConfig as their config. |
+
 ### .status.certExpirys {id="_statuscertexpirys"}
 
 Description
@@ -276,6 +286,7 @@ Required
 | `bundle` | `string` | bundle is the name of the bundle in which the subject certificate resides |
 | `expiry` | `string` | expiry is the date after which the certificate will no longer be valid |
 | `subject` | `string` | subject is the subject of the certificate |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -301,6 +312,7 @@ Type
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of ('True', 'False', 'Unknown'). |
 | `type` | `string` | type of the condition, currently ('Done', 'Updating', 'Failed'). |
+
 ### .status.configuration {id="_statusconfiguration"}
 
 Description
@@ -321,6 +333,7 @@ Type
 | `source` | `array` | source is the list of MachineConfig objects that were used to generate the single MachineConfig object specified in `content`. |
 | `source[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status.configuration.source {id="_statusconfigurationsource"}
 
 Description
@@ -348,6 +361,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status.poolSynchronizersStatus {id="_statuspoolsynchronizersstatus"}
 
 Description
@@ -392,12 +406,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of MachineConfigPool
     *   `GET`: list objects of kind MachineConfigPool
     *   `POST`: create a MachineConfigPool
-*   `/apis/machineconfiguration.openshift.io/v1/machineconfigpools/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/machineconfigpools/{{ name }}`{minja}
     *   `DELETE`: delete a MachineConfigPool
     *   `GET`: read the specified MachineConfigPool
     *   `PATCH`: partially update the specified MachineConfigPool
     *   `PUT`: replace the specified MachineConfigPool
-*   `/apis/machineconfiguration.openshift.io/v1/machineconfigpools/{{ name }}/status`
+*   `/apis/machineconfiguration.openshift.io/v1/machineconfigpools/{{ name }}/status`{minja}
     *   `GET`: read status of the specified MachineConfigPool
     *   `PATCH`: partially update status of the specified MachineConfigPool
     *   `PUT`: replace status of the specified MachineConfigPool

@@ -5,7 +5,7 @@
 {%- set ibm_z_lpar = true -%}
 {% endif %}
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if ibm_z %}
+{% if ibm_z %}
 # Creating {{ op_system }} machines on {{ ibm_z_title }} with z/VM {id="machine-user-infra-machines-ibm-z_{{ context }}"}
 
 You can create more {{ op_system_first }} compute machines running on {{ ibm_z_name }} with z/VM and attach them to your existing cluster.
@@ -13,8 +13,8 @@ You can create more {{ op_system_first }} compute machines running on {{ ibm_z_n
 {% if ibm_z_lpar %}
 = Creating {{ op_system }} machines on {{ ibm_z_title }} in an LPAR {._abstract}
 
-You can create more {{ op_system_first }} compute machines running on {{ ibm_z_name }} in a logical partition (LPAR) and attach them to your existing cluster.
-{% endif %} {._abstract}
+You can create more {{ op_system_first }} compute machines running on {{ ibm_z_name }} in a logical partition (LPAR) and attach them to your existing cluster. {._abstract}
+{% endif %}
 
 **Prerequisites**
 
@@ -147,8 +147,8 @@ You can create more {{ op_system_first }} compute machines running on {{ ibm_z_n
 {% endif %}
 
 {% if context == "creating-multi-arch-compute-nodes-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "creating-multi-arch-compute-nodes-ibm-z-lpar" %}
-{%- set ibm_z_lpar = false -%}
+{%- set ibm_z_lpar = "" -%}
 {% endif %}

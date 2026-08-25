@@ -53,8 +53,8 @@ showNotApplicable: false
 strictNodeScan: true
 timeout: 30m
 ```
-where:
 
+where:
 
 `autoApplyRemediations`
 :   Set to `true` to enable auto remediations. Set to `false` to disable auto remediations.
@@ -73,11 +73,10 @@ where:
 
     :::note
 
-
     To disable the rotation policy, set the value to `0`.
     
     :::
 
 
-`roles`
-:   Specifies the `node-role.kubernetes.io` label value to schedule the scan for `Node` type. This value must match the name of a `MachineConfigPool`.
+    `roles`
+    :   Specifies the `node-role.kubernetes.io` label value to schedule the scan for `Node` type. This value must match the name of a `MachineConfigPool`.

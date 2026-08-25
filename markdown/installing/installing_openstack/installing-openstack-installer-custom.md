@@ -3,11 +3,11 @@ title: Installing a cluster on OpenStack with customizations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on OpenStack with customizations {id="installing-openstack-installer-custom"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on OpenStack with customizations {id="installing-openstack-installer-custom"}
 {%- set context = "installing-openstack-installer-custom" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a customized cluster on {{ rh_openstack_first }}. To customize the installation, modify parameters in the `install-config.yaml` before you install the cluster.
+In {{ product_title }} version {{ product_version }}, you can install a customized cluster on {{ rh_openstack_first }}. To customize the installation, modify parameters in the `install-config.yaml` before you install the cluster. {._abstract}
 
 Ensure that you meet the following prerequisites:
 
@@ -26,6 +26,7 @@ You can complete the following configurations after you install a cluster on {{ 
 *   If you did not configure {{ rh_openstack }} to accept application traffic over floating IP addresses, configure {{ rh_openstack }} access with floating IP addresses.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -63,6 +64,7 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ rh_openstack }}](/installing/installing_openstack/installation-config-parameters-openstack#installation-config-parameters-openstack)
 
@@ -79,6 +81,7 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +3 %}{% include "./modules/installation-osp-deploying-provider-networks-installer.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding multiple networks](/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)
 
@@ -91,6 +94,7 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +2 %}{% include "./modules/installation-configuring-shiftstack-single-ipv6.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a mirror registry with mirror registry for Red Hat OpenShift](/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry)
 
@@ -111,16 +115,18 @@ You can complete the following configurations after you install a cluster on {{ 
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Postinstallation cluster tasks](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
 *   [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

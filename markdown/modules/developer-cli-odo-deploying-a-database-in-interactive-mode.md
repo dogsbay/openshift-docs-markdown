@@ -28,8 +28,8 @@
     ```
 
 
-:::note
+    :::note
 
-Your password or username will be passed to the front-end application as environment variables.
-
-:::
+    Your password or username will be passed to the front-end application as environment variables.
+    
+    :::

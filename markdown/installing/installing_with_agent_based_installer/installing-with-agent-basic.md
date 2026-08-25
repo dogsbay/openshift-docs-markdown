@@ -3,11 +3,11 @@ title: Installing a cluster
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster {id="installing-with-agent-basic"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster {id="installing-with-agent-basic"}
 {%- set context = "installing-with-agent-basic" %}
 
-You can install a basic {{ product_title }} cluster using the Agent-based Installer.
+You can install a basic {{ product_title }} cluster using the Agent-based Installer. {._abstract}
 
 The following procedures deploy a single-node {{ product_title }} in a disconnected environment. You can use these procedures as a basis and modify according to your requirements.
 
@@ -16,6 +16,7 @@ For procedures that include optional customizations you can make while using the
 {% leveloffset +1 %}{% include "./modules/installing-ocp-agent-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -34,6 +35,6 @@ For procedures that include optional customizations you can make while using the
 
 {% leveloffset +1 %}{% include "./modules/installing-ocp-agent-gather-log.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Installing a cluster with customizations](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)

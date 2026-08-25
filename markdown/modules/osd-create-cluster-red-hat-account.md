@@ -37,7 +37,7 @@ If you want to create an {{ product_title }} cluster on {{ GCP }} with the {{ cl
         To customize the subdomain, select the **Create custom domain prefix** checkbox, and enter your domain prefix name in the **Domain prefix** field. The domain prefix cannot be longer than 15 characters, must be unique within your organization, and cannot be changed after cluster creation.
     1.  Select a cluster version from the **Version** drop-down menu.
     1.  Select a channel from the **Channel** drop-down menu.
-{% include "./snippets/rosa-osd-channel-group-options.md" %}
+        {% include "./snippets/rosa-osd-channel-group-options.md" %}
     1.  Select a cloud provider region from the **Region** drop-down menu.
     1.  Select a **Single zone** or **Multi-zone** configuration.
     1.  Select a **Persistent storage** capacity for the cluster. For more information, see the _Storage_ section in the {{ product_title }} service definition.

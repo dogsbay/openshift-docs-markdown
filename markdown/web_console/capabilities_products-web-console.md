@@ -3,13 +3,13 @@ title: Optional capabilities and products in the web console
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Optional capabilities and products in the web console {id="capabilities-products-web-console"}
-
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Optional capabilities and products in the web console {id="capabilities-products-web-console"}
+
 {%- set context = "capabilities-web-console" %}
 
-You can further customize the {{ product_title }} web console by adding additional capabilities to your existing workflows and integrations through products.
+You can further customize the {{ product_title }} web console by adding additional capabilities to your existing workflows and integrations through products. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/optional-capabilities-operators.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/openshift-lightspeed-web-console.md" %}{% endleveloffset %}
@@ -19,6 +19,7 @@ You can further customize the {{ product_title }} web console by adding addition
 {% leveloffset +2 %}{% include "./modules/rhdh-install-web-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 *   [Installing the web terminal](/web_console/web_terminal/installing-web-terminal#installing-web-terminal)

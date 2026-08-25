@@ -1,5 +1,5 @@
 ---
-title: "HostFirmwareComponents []"
+title: "HostFirmwareComponents [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | HostFirmwareComponentsSpec defines the desired state of HostFirmwareComponents. |
 | `status` | `object` | HostFirmwareComponentsStatus defines the observed state of HostFirmwareComponents. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,6 +42,7 @@ Required
 | --- | --- | --- |
 | `updates` | `array` |  |
 | `updates[]` | `object` | FirmwareUpdate defines a firmware update specification. |
+
 ### .spec.updates {id="_specupdates"}
 
 Description
@@ -67,6 +69,7 @@ Required
 | --- | --- | --- |
 | `component` | `string` |  |
 | `url` | `string` |  |
+
 ### .status {id="_status"}
 
 Description
@@ -85,6 +88,7 @@ Type
 | `lastUpdated` | `string` | Time that the status was last updated |
 | `updates` | `array` | Updates is the list of all firmware components that should be updated they are specified via name and url fields. |
 | `updates[]` | `object` | FirmwareUpdate defines a firmware update specification. |
+
 ### .status.components {id="_statuscomponents"}
 
 Description
@@ -115,6 +119,7 @@ Required
 | `initialVersion` | `string` |  |
 | `lastVersionFlashed` | `string` |  |
 | `updatedAt` | `string` |  |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -149,6 +154,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.updates {id="_statusupdates"}
 
 Description
@@ -184,16 +190,16 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/hostfirmwarecomponents`
     *   `GET`: list objects of kind HostFirmwareComponents
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents`{minja}
     *   `DELETE`: delete collection of HostFirmwareComponents
     *   `GET`: list objects of kind HostFirmwareComponents
     *   `POST`: create HostFirmwareComponents
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents/{{ name }}`{minja}
     *   `DELETE`: delete HostFirmwareComponents
     *   `GET`: read the specified HostFirmwareComponents
     *   `PATCH`: partially update the specified HostFirmwareComponents
     *   `PUT`: replace the specified HostFirmwareComponents
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents/{{ name }}/status`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwarecomponents/{{ name }}/status`{minja}
     *   `GET`: read status of the specified HostFirmwareComponents
     *   `PATCH`: partially update status of the specified HostFirmwareComponents
     *   `PUT`: replace status of the specified HostFirmwareComponents

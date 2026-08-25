@@ -3,7 +3,7 @@
 
 The `FirmwareSchema` resource contains valid types and limits for BIOS settings on each host model, enabling you to identify valid values when configuring the `HostFirmwareSettings` resource. {._abstract}
 
-***FirmwareSchema specification***
+**FirmwareSchema specification**
 
 <table>
 <thead>

@@ -3,17 +3,18 @@ title: Installing the Network Observability Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing the Network Observability Operator {id="installing-network-observability-operators"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing the Network Observability Operator {id="installing-network-observability-operators"}
 {%- set context = "network_observability" %}
 
-Installing the Loki Operator is recommended before using the Network Observability Operator. You can use network observability without Loki, but special considerations apply if you only need metrics or external exporters.
+Installing the Loki Operator is recommended before using the Network Observability Operator. You can use network observability without Loki, but special considerations apply if you only need metrics or external exporters. {._abstract}
 
 The {{ loki_op }} integrates a gateway that implements multi-tenancy and authentication with Loki for data flow storage. The `LokiStack` resource manages Loki, which is a scalable, highly-available, multi-tenant log aggregation system, and a web proxy with {{ product_title }} authentication. The `LokiStack` proxy uses {{ product_title }} authentication to enforce multi-tenancy and facilitate the saving and indexing of data in Loki log stores.
 
 {% leveloffset +1 %}{% include "./modules/network-observability-without-loki.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Export enriched network flow data](/observability/network_observability/configuring-operator#network-observability-enriched-flows_network_observability)
 
@@ -26,12 +27,14 @@ The {{ loki_op }} integrates a gateway that implements multi-tenancy and authent
 {% leveloffset +2 %}{% include "./modules/network-observability-role-based-access-control-for-loki-logs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Fine grained access for Loki logs](https://docs.redhat.com/en/documentation/red_hat_openshift_logging/6.5/html/configuring_logging/configuring-lokistack-storage#logging-loki-log-access_configuring-the-log-store)
 
 {% leveloffset +2 %}{% include "./modules/network-observability-lokistack-ingestion-query.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a LokiStack custom resource](/observability/network_observability/installing-operators#network-observability-lokistack-create_network_observability)
 *   [Loki object storage](https://docs.redhat.com/en/documentation/red_hat_openshift_logging/latest/html/configuring_logging/configuring-lokistack-storage#logging-loki-storage_configuring-the-log-store)
@@ -45,6 +48,7 @@ The {{ loki_op }} integrates a gateway that implements multi-tenancy and authent
 {% leveloffset +2 %}{% include "./modules/network-observability-important-flowcollector-considerations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the Flow Collector resource with Kafka](/observability/network_observability/configuring-operator#network-observability-flowcollector-kafka-config_network_observability)
 *   [Export enriched network flow data to Kafka or IPFIX](/observability/network_observability/configuring-operator#network-observability-enriched-flows_network_observability)
@@ -63,6 +67,7 @@ The {{ loki_op }} integrates a gateway that implements multi-tenancy and authent
 {% leveloffset +1 %}{% include "./modules/network-observability-multitenancy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Kubernetes Storage Version Migrator Operator](/operators/operator-reference#cluster-kube-storage-version-migrator-operator_operator-reference)
 

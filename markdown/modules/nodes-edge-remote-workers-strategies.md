@@ -60,7 +60,7 @@ Static pods
 Kubernetes zones
 :   [Kubernetes zones](https://kubernetes.io/docs/setup/best-practices/multiple-zones/) can slow down the rate or, in some cases, completely stop pod evictions.
 
-<a name="nodes-edge-remote-workers-strategies-zones_{{ context }}"></a>
+    <a name="nodes-edge-remote-workers-strategies-zones_{{ context }}"></a>
 
     When the control plane cannot reach a node, the node controller, by default, applies `node.kubernetes.io/unreachable` taints and evicts pods at a rate of 0.1 nodes per second. However, in a cluster that uses Kubernetes zones, pod eviction behavior is altered.
 
@@ -81,7 +81,7 @@ Kubernetes zones
 Kubelet config objects
 :   You can adjust the amount of time that the kubelet checks the state of each node.
 
-<a name="nodes-edge-remote-workers-strategies-kubeconfig_{{ context }}"></a>
+    <a name="nodes-edge-remote-workers-strategies-kubeconfig_{{ context }}"></a>
 
     To set the interval that affects the timing of when the on-premise node controller marks nodes with the `Unhealthy` or `Unreachable` condition, create a `KubeletConfig` object that contains the `node-status-update-frequency` and `node-status-report-frequency` parameters.
 
@@ -129,7 +129,7 @@ Kubelet config objects
 Tolerations
 :   You can use pod tolerations to mitigate the effects if the on-premise node controller adds a `node.kubernetes.io/unreachable` taint with a `NoExecute` effect to a node it cannot reach.
 
-<a name="nodes-edge-remote-workers-strategies-tolerations_{{ context }}"></a>
+    <a name="nodes-edge-remote-workers-strategies-tolerations_{{ context }}"></a>
 
     A taint with the `NoExecute` effect affects pods that are running on the node in the following ways:
     *   Pods that do not tolerate the taint are queued for eviction.
@@ -172,7 +172,7 @@ Other types of {{ product_title }} objects
     :::
 
 
-<a name="nodes-edge-remote-workers-strategies-statefulset_{{ context }}"></a>
+    <a name="nodes-edge-remote-workers-strategies-statefulset_{{ context }}"></a>
 
     [stateful sets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) do not get restarted when there is an outage. The pods remain in the `terminating` state until the control plane can acknowledge that the pods are terminated.
 

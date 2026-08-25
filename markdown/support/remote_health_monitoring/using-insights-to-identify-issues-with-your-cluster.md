@@ -3,19 +3,20 @@ title: Using Red Hat Lightspeed to identify issues with your cluster
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Using Red&#160;Hat Lightspeed to identify issues with your cluster {id="using-insights-to-identify-issues-with-your-cluster"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- if openshift_dedicated %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "using-insights-to-identify-issues-with-your-cluster" %}
 
-{{ red_hat_lightspeed }} repeatedly analyzes the data {{ insights_operator }} sends, which includes workload recommendations from Deployment Validation Operator (DVO). Users of {{ product_title }} can display the results in the {{ insights_advisor_url }} service on the {{ hybrid_console }}.
+{{ red_hat_lightspeed }} repeatedly analyzes the data {{ insights_operator }} sends, which includes workload recommendations from Deployment Validation Operator (DVO). Users of {{ product_title }} can display the results in the {{ insights_advisor_url }} service on the {{ hybrid_console }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/insights-operator-advisor-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using the Deployment Validation Operator in your {{ red_hat_lightspeed }} workflow](https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html-single/monitoring_your_openshift_cluster_health_with_red_hat_lightspeed_advisor/index#using-the-deployment-validation-operator)
 
@@ -28,6 +29,7 @@ title: Using Red Hat Lightspeed to identify issues with your cluster
 {% leveloffset +1 %}{% include "./modules/insights-advisor-recommendations-filters.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Advisor recommendations ({{ hybrid_console }})](https://console.redhat.com/openshift/insights/advisor/recommendations)
 
@@ -42,6 +44,7 @@ title: Using Red Hat Lightspeed to identify issues with your cluster
 {% leveloffset +1 %}{% include "./modules/about-insights-advisor-workload-recommendations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [OpenShift > Advisor > Workloads ({{ hybrid_console }})](https://console.redhat.com/openshift/insights/advisor/workloads)
 *   [Information about Kubernetes workloads (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/)

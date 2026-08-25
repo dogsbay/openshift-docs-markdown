@@ -14,13 +14,13 @@ To achieve a synchronized restart, you can set the `evictionStrategy` parameter 
     $ oc explain --api-version=hco.kubevirt.io/v1beta1 hyperconverged.spec.evictionStrategy
     ```
 1.  Patch the `hyperconverged` resource by entering the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc patch -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged \
       --type=merge \
       -p '{"spec": {"evictionStrategy": "External"}}'
     ```
 1.  Patch the workload update strategy and the workload update methods by entering the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc patch -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged \
       --type=merge \
       -p '{"spec": {"workloadUpdateStrategy": {"workloadUpdateMethods": ["LiveMigrate","Evict"]}}}'
@@ -31,7 +31,7 @@ To achieve a synchronized restart, you can set the `evictionStrategy` parameter 
 **Verification**
 
 *   Check whether the patch command was applied properly by entering the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged -ojsonpath='{.spec.evictionStrategy}'
     ```
     ```terminal title="Example output"

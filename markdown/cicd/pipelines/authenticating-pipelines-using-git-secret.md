@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Authenticating pipelines using git secret {id="authenticating-pipelines-using-git-secret"}
 {% include "./_attributes/common-attributes.md" %}
+# Authenticating pipelines using git secret {id="authenticating-pipelines-using-git-secret"}
 {%- set context = "authenticating-pipelines-using-git-secret" %}
 
 A Git secret consists of credentials to securely interact with a Git repository, and is often used to automate authentication. In {{ pipelines_title }}, you can use Git secrets to authenticate pipeline runs and task runs that interact with a Git repository during execution.

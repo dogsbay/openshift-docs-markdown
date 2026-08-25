@@ -37,7 +37,7 @@ variable by running the following command:
     $ export RHCOS_VERSION=<version>
     ```
 
-    Replace `<version>` with the {{ op_system }} VMDK version, such as `{{ product_version }}.0`.
+    Replace `<version>` with the {{ op_system }} VMDK version, such as `{{ product_version }}.0`{minja}.
 1.  Export the Amazon S3 bucket name as an environment variable by running the following command:
     ```terminal
     $ export VMIMPORT_BUCKET_NAME=<s3_bucket_name>
@@ -65,7 +65,7 @@ variable by running the following command:
     where:
 
     `--description`
-    :   Specifies the description of your {{ op_system }} disk being imported, like `rhcos-${{ RHCOS_VERSION }}-x86_64-aws.x86_64`.
+    :   Specifies the description of your {{ op_system }} disk being imported, like `rhcos-${{ RHCOS_VERSION }}-x86_64-aws.x86_64`{minja}.
 
     `--disk-container`
     :   Specifies the file path to the JSON file describing your {{ op_system }} disk. The JSON file should contain your Amazon S3 bucket name and key.

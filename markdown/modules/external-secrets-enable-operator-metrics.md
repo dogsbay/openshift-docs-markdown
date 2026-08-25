@@ -148,7 +148,7 @@ The {{ external_secrets_operator }} exposes metrics by default on port `8443` at
 
 **Verification**
 
-1.  In the {{ product_title }} web console, navigate to **Observe** -> **Targets**.
+1.  In the {{ product_title }} web console, navigate to **Observe** → **Targets**.
 1.  In the Label filter field, enter the following labels to filter the metrics targets for each operand:
     ```terminal
     $ service=external-secrets-operator-controller-manager-metrics-service

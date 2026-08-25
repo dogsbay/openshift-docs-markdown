@@ -10,13 +10,13 @@ When provisioning storage by using {{ lvms }}, the following factors limit devic
     *   You can define the size of PE and LE during the physical and logical device creation.
     *   The default PE and LE size is 4 MiB.
     *   If the size of the PE is increased, the maximum size of the LVM is determined by the kernel limits and your disk space.
-        {%- if microshift %}
+{%- if microshift %}
     *   The size limit for {{ op_system_base_full }} 9 by using the default PE and LE size is 8 EB.
     *   The following are the minimum storage sizes that you can request for each file system type:
         *   `block`: 8 MiB
         *   `xfs`: 300 MiB
         *   `ext4`: 32 MiB
-{% endif %}
+{%- endif %}
 
 {% if not microshift %}
 
@@ -43,4 +43,5 @@ The following tables describe the chunk size and volume size limits for static a
 | Chunk size | This value is based on the configuration in the `lvm.conf` file. By default, the configuration sets the value to `128` KiB. |
 | Maximum volume size | Equal to the maximum volume size of the underlying {{ op_system }} system. |
 | Minimum volume size | Equal to the minimum volume size of the underlying {{ op_system }} system. |
+
 {% endif %}

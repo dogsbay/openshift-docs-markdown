@@ -48,7 +48,7 @@ After you define a group of pods that compose your application, you can define
 those pods in `Deployment` and
 {%- if not (openshift_dedicated or openshift_rosa) %}
 `DeploymentConfig` objects.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 `DeploymentConfig` objects.
-{% endif %}
+{%- endif %}

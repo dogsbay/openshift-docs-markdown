@@ -15,7 +15,7 @@ As a requirement of the application, you must assign the `view` role to the `def
 
 **Procedure**
 
-1.  Navigate to **User Management** -> **RoleBindings**.
+1.  Navigate to **User Management** → **RoleBindings**.
 1.  Click **Create binding**.
 1.  In the **Name** field, enter `sa-user-account`.
 1.  In the **Namespace** field, search for and select `user-getting-started`.

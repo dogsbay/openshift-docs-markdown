@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Running {{ gitops_shortname }} control plane workloads on infrastructure nodes {id="run-gitops-control-plane-workload-on-infra-nodes"}
 {%- set context = "run-gitops-control-plane-workload-on-infra-nodes" %}
-{% include "./_attributes/common-attributes.md" %}
 
 You can use infrastructure nodes to prevent additional billing cost against subscription counts.
 

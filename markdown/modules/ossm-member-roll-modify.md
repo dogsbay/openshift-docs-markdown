@@ -18,7 +18,7 @@ You can add or remove projects from an existing {{ SMProductShortName }} `Servic
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu and choose the project where your `ServiceMeshControlPlane` resource is deployed from the list, for example `istio-system`.
 1.  Click the {{ SMProductName }} Operator.
 1.  Click the **Istio Service Mesh Member Roll** tab.
@@ -49,15 +49,15 @@ You can modify an existing {{ SMProductShortName }} member roll using the comman
     ```
 1.  Modify the YAML to add or remove projects as members. You can add any number of projects, but a project can only belong to one `ServiceMeshMemberRoll` resource.
 
-```yaml title="Example servicemeshmemberroll-default.yaml"
-apiVersion: maistra.io/v1
-kind: ServiceMeshMemberRoll
-metadata:
-  name: default
-  namespace: istio-system #control plane project
-spec:
-  members:
-    # a list of projects joined into the service mesh
-    - your-project-name
-    - another-project-name
-```
+    ```yaml title="Example servicemeshmemberroll-default.yaml"
+    apiVersion: maistra.io/v1
+    kind: ServiceMeshMemberRoll
+    metadata:
+      name: default
+      namespace: istio-system #control plane project
+    spec:
+      members:
+        # a list of projects joined into the service mesh
+        - your-project-name
+        - another-project-name
+    ```

@@ -3,11 +3,11 @@ title: Advanced Audit Logging Framework
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Advanced Audit Logging Framework {id="spo-audit-logging"}
 {% include "./_attributes/common-attributes.md" %}
+# Advanced Audit Logging Framework {id="spo-audit-logging"}
 {%- set context = "spo-audit-logging" %}
 
-With the Advanced Audit Logging Framework in the {{ product_title }} Security Profiles Operator (SPO), you can correlate cluster users with actions during `oc exec`, `oc rsh`, and `oc debug` sessions.
+With the Advanced Audit Logging Framework in the {{ product_title }} Security Profiles Operator (SPO), you can correlate cluster users with actions during `oc exec`, `oc rsh`, and `oc debug` sessions. {._abstract}
 
 The Advanced Audit Logging Framework in SPO 0.10.0 logs activity from an {{ op_system_first }} container back to the hosting cluster and produces detailed logs in a JSON Lines format.
 
@@ -98,7 +98,7 @@ This capability is not provided for control nodes since SPO does not operate on 
 
 {% leveloffset +1 %}{% include "./modules/spo-log-disable.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [About security profiles](/security/security_profiles_operator/spo-understanding#spo-about_spo-understanding)
 *   [Installing the Security Profiles Operator](/security/security_profiles_operator/spo-enabling#spo-installing_spo-enabling)

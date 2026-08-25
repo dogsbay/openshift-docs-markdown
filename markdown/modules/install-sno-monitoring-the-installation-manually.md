@@ -12,16 +12,16 @@ Use the `openshift-install` binary to monitor the progress of the single-node cl
 1.  Attach the discovery ISO image to the target host.
 1.  Boot the server from the discovery ISO image. The discovery ISO image writes the system configuration to the target installation disk and automatically triggers a server restart.
 1.  On the administration host, monitor the installation by running the following command:
-    {%- if not openshift_origin %}
+{%- if not openshift_origin %}
     ```terminal
     $ ./openshift-install --dir=ocp wait-for install-complete
     ```
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
     ```terminal
     $ ./openshift-install --dir=sno wait-for install-complete
     ```
-{% endif %}
+{%- endif %}
 1.  Optional: Remove the discovery ISO image.
 
     The server restarts several times while deploying the control plane.
@@ -29,12 +29,12 @@ Use the `openshift-install` binary to monitor the progress of the single-node cl
 **Verification**
 
 *   After the installation is complete, check the environment by running the following command:
-    {%- if not openshift_origin %}
+{%- if not openshift_origin %}
     ```terminal
     $ export KUBECONFIG=ocp/auth/kubeconfig
     ```
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
     ```terminal
     $ export KUBECONFIG=sno/auth/kubeconfig
     ```
@@ -42,6 +42,7 @@ Use the `openshift-install` binary to monitor the progress of the single-node cl
     ```terminal
     $ oc get nodes
     ```
+
     **Example output**
 
 {%- if not openshift_origin %}
@@ -49,10 +50,10 @@ Use the `openshift-install` binary to monitor the progress of the single-node cl
     NAME                         STATUS   ROLES           AGE     VERSION
     control-plane.example.com    Ready    master,worker   10m     v1.35.4
     ```
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
     ```terminal
     NAME                         STATUS   ROLES           AGE     VERSION
     control-plane.example.com    Ready    master,worker   10m     v1.27.9+e36e183
     ```
-{% endif %}
+{%- endif %}

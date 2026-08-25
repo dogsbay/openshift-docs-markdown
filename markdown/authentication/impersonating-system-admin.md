@@ -3,11 +3,11 @@ title: "Impersonating the system:admin user"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Impersonating the system:admin user {id="impersonating-system-admin"}
 {% include "./_attributes/common-attributes.md" %}
+# Impersonating the system:admin user {id="impersonating-system-admin"}
 {%- set context = "impersonating-system-admin" %}
 
-You can configure API requests to impersonate users or groups to test permissions and troubleshoot access issues in {{ product_title }}.
+You can configure API requests to impersonate users or groups to test permissions and troubleshoot access issues in {{ product_title }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/authentication-api-impersonation.md" %}{% endleveloffset %}
 
@@ -23,6 +23,6 @@ You can configure API requests to impersonate users or groups to test permission
 
 {% leveloffset +1 %}{% include "./modules/unauthenticated-users-cluster-role-binding.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)

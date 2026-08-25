@@ -1,5 +1,5 @@
 ---
-title: "SelfSubjectAccessReview []"
+title: "SelfSubjectAccessReview [authorization.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | SelfSubjectAccessReviewSpec is a description of the access request.  Exactly one of ResourceAuthorizationAttributes and NonResourceAuthorizationAttributes must be set |
 | `status` | `object` | SubjectAccessReviewStatus |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,6 +42,7 @@ Type
 | --- | --- | --- |
 | `nonResourceAttributes` | `object` | NonResourceAttributes includes the authorization attributes available for non-resource requests to the Authorizer interface |
 | `resourceAttributes` | `object` | ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface |
+
 ### .spec.nonResourceAttributes {id="_specnonresourceattributes"}
 
 Description
@@ -54,6 +56,7 @@ Type
 | --- | --- | --- |
 | `path` | `string` | Path is the URL path of the request |
 | `verb` | `string` | Verb is the standard HTTP verb |
+
 ### .spec.resourceAttributes {id="_specresourceattributes"}
 
 Description
@@ -74,6 +77,7 @@ Type
 | `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
 | `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
 | `version` | `string` | Version is the API Version of the Resource.  "*" means all. |
+
 ### .spec.resourceAttributes.fieldSelector {id="_specresourceattributesfieldselector"}
 
 Description
@@ -87,6 +91,7 @@ Type
 | --- | --- | --- |
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | [`array (FieldSelectorRequirement)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-FieldSelectorRequirement) | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
+
 ### .spec.resourceAttributes.labelSelector {id="_specresourceattributeslabelselector"}
 
 Description
@@ -100,6 +105,7 @@ Type
 | --- | --- | --- |
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | [`array (LabelSelectorRequirement)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement) | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
+
 ### .status {id="_status"}
 
 Description

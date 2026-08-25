@@ -316,7 +316,7 @@ Add a control plane node to recover from a degraded state, perform deep-level de
     ```terminal
     $ oc get ClusterVersion
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
     version   {{ product_title }}.5    True        False         5h57m   Cluster version is {{ product_title }}.5
     ```

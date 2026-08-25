@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ product_title }} on {{ GCP }} architecture models {id="osd-architecture-models-gcp"}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# {{ product_title }} on {{ GCP }} architecture models {id="osd-architecture-models-gcp"}
 {%- set context = "osd-architecture-models-gcp" %}
 
 Understand the different cluster architecture models available for {{ product_title }} on {{ GCP }} to choose the deployment option that best fits your organization’s networking and security requirements. {._abstract}

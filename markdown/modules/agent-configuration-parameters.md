@@ -17,7 +17,7 @@ These settings are used for installation only, and cannot be modified after inst
 
 Required Agent configuration parameters are described in the following table:
 
-***Required parameters***
+**Required parameters**
 
 <table>
 <thead>
@@ -29,7 +29,7 @@ Required Agent configuration parameters are described in the following table:
 <tbody>
 <tr>
   <td>apiVersion:</td>
-  <td>The API version for the <code>agent-config.yaml</code> content.The current version is <code>v1beta1</code>.The installation program might also support older API versions.<br><br><strong>Value:</strong> String</td>
+  <td>The API version for the <code>agent-config.yaml</code> content. The current version is <code>v1beta1</code>. The installation program might also support older API versions.<br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>metadata:</td>
@@ -37,7 +37,7 @@ Required Agent configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>metadata: name:</td>
-  <td>The name of the cluster.DNS records for the cluster are all subdomains of <code>{{.metadata.name}}.{{.baseDomain}}</code>.The value entered in the <code>agent-config.yaml</code> file is ignored, and instead the value specified in the <code>install-config.yaml</code> file is used.When you do not provide <code>metadata.name</code> through either the <code>install-config.yaml</code> or <code>agent-config.yaml</code> files, for example when you use only ZTP manifests, the cluster name is set to <code>agent-cluster</code>.<br><br><strong>Value:</strong> String of lowercase letters and hyphens (<code>-</code>), such as <code>dev</code>.</td>
+  <td>The name of the cluster. DNS records for the cluster are all subdomains of <code>{{.metadata.name}}.{{.baseDomain}}</code>. The value entered in the <code>agent-config.yaml</code> file is ignored, and instead the value specified in the <code>install-config.yaml</code> file is used. When you do not provide <code>metadata.name</code> through either the <code>install-config.yaml</code> or <code>agent-config.yaml</code> files, for example when you use only ZTP manifests, the cluster name is set to <code>agent-cluster</code>.<br><br><strong>Value:</strong> String of lowercase letters and hyphens (<code>-</code>), such as <code>dev</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -46,7 +46,7 @@ Required Agent configuration parameters are described in the following table:
 
 Optional Agent configuration parameters are described in the following table:
 
-***Optional parameters***
+**Optional parameters**
 
 <table>
 <thead>
@@ -58,11 +58,11 @@ Optional Agent configuration parameters are described in the following table:
 <tbody>
 <tr>
   <td>rendezvousIP:</td>
-  <td>The IP address of the node that performs the bootstrapping process as well as running the <code>assisted-service</code> component.You must provide the rendezvous IP address when you do not specify at least one host's IP address in the <code>networkConfig</code> parameter.If this address is not provided, one IP address is selected from the provided hosts' <code>networkConfig</code>.<br><br><strong>Value:</strong> IPv4 or IPv6 address.</td>
+  <td>The IP address of the node that performs the bootstrapping process as well as running the <code>assisted-service</code> component. You must provide the rendezvous IP address when you do not specify at least one host's IP address in the <code>networkConfig</code> parameter. If this address is not provided, one IP address is selected from the provided hosts' <code>networkConfig</code>.<br><br><strong>Value:</strong> IPv4 or IPv6 address.</td>
 </tr>
 <tr>
   <td>bootArtifactsBaseURL:</td>
-  <td>When you use the Agent-based Installer to generate a minimal ISO image, this parameter specifies a URL where the rootfs image file can be retrieved from during cluster installation. This parameter is optional for booting minimal ISO images in connected environments.<br><br>When you use the Agent-based Installer to generate an iPXE script, this parameter specifies the URL of the server to upload Preboot Execution Environment (PXE) assets to.For more information, see "Preparing PXE assets for {{ product_title }}".<br><br><strong>Value:</strong> String.</td>
+  <td>When you use the Agent-based Installer to generate a minimal ISO image, this parameter specifies a URL where the rootfs image file can be retrieved from during cluster installation. This parameter is optional for booting minimal ISO images in connected environments.<br><br>When you use the Agent-based Installer to generate an iPXE script, this parameter specifies the URL of the server to upload Preboot Execution Environment (PXE) assets to. For more information, see "Preparing PXE assets for {{ product_title }}".<br><br><strong>Value:</strong> String.</td>
 </tr>
 <tr>
   <td>additionalNTPSources:</td>
@@ -70,19 +70,19 @@ Optional Agent configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>hosts:</td>
-  <td>Host configuration.An optional list of hosts.The number of hosts defined must not exceed the total number of hosts defined in the <code>install-config.yaml</code> file, which is the sum of the values of the <code>compute.replicas</code> and <code>controlPlane.replicas</code> parameters.<br><br><strong>Value:</strong> An array of host configuration objects.</td>
+  <td>Host configuration. An optional list of hosts. The number of hosts defined must not exceed the total number of hosts defined in the <code>install-config.yaml</code> file, which is the sum of the values of the <code>compute.replicas</code> and <code>controlPlane.replicas</code> parameters.<br><br><strong>Value:</strong> An array of host configuration objects.</td>
 </tr>
 <tr>
   <td>hosts: hostname:</td>
-  <td>Hostname.Overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup.Each host must have a unique hostname supplied by one of these methods, although configuring a hostname through this parameter is optional.<br><br><strong>Value:</strong> String.</td>
+  <td>Hostname. Overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods, although configuring a hostname through this parameter is optional.<br><br><strong>Value:</strong> String.</td>
 </tr>
 <tr>
   <td>hosts: interfaces:</td>
-  <td>Provides a table of the name and MAC address mappings for the interfaces on the host.If a <code>NetworkConfig</code> section is provided in the <code>agent-config.yaml</code> file, this table must be included and the values must match the mappings provided in the <code>NetworkConfig</code> section.<br><br><strong>Value:</strong> An array of host configuration objects.</td>
+  <td>Provides a table of the name and MAC address mappings for the interfaces on the host. If a <code>NetworkConfig</code> section is provided in the <code>agent-config.yaml</code> file, this table must be included and the values must match the mappings provided in the <code>NetworkConfig</code> section.<br><br><strong>Value:</strong> An array of host configuration objects.</td>
 </tr>
 <tr>
   <td>hosts: interfaces: name:</td>
-  <td>The name of an interface on the host.<dl><dt>Note</dt><dd>This value does not need to match the device name.</dd></dl><br><br><strong>Value:</strong> String.</td>
+  <td>The name of an interface on the host.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This value does not need to match the device name.</dd></dl><br><br><strong>Value:</strong> String.</td>
 </tr>
 <tr>
   <td>hosts: interfaces: macAddress:</td>
@@ -90,11 +90,11 @@ Optional Agent configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>hosts: role:</td>
-  <td>Defines whether the host is a <code>master</code> or <code>worker</code> node.If no role is defined in the <code>agent-config.yaml</code> file, roles will be assigned at random during cluster installation.<br><br><strong>Value:</strong> <code>master</code> or <code>worker</code>.</td>
+  <td>Defines whether the host is a <code>master</code> or <code>worker</code> node. If no role is defined in the <code>agent-config.yaml</code> file, roles will be assigned at random during cluster installation.<br><br><strong>Value:</strong> <code>master</code> or <code>worker</code>.</td>
 </tr>
 <tr>
   <td>hosts: rootDeviceHints:</td>
-  <td>Enables provisioning of the {{ op_system_first }} image to a particular device.The installation program examines the devices in the order it discovers them, and compares the discovered values with the hint values.It uses the first discovered device that matches the hint value.This is the device that the operating system is written on during installation.<br><br><strong>Value:</strong> A dictionary of key-value pairs.For more information, see "Root device hints" in the "Setting up the environment for an OpenShift installation" page.</td>
+  <td>Enables provisioning of the {{ op_system_first }} image to a particular device. The installation program examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value. This is the device that the operating system is written on during installation.<br><br><strong>Value:</strong> A dictionary of key-value pairs. For more information, see "Root device hints" in the "Setting up the environment for an OpenShift installation" page.</td>
 </tr>
 <tr>
   <td>hosts: rootDeviceHints: deviceName:</td>
@@ -102,7 +102,7 @@ Optional Agent configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>hosts: networkConfig:</td>
-  <td>The host network definition.The configuration must match the Host Network Management API defined in the "Declarative Network API (nmstate documentation)".<br><br><strong>Value:</strong> A dictionary of host network configuration objects.</td>
+  <td>The host network definition. The configuration must match the Host Network Management API defined in the "Declarative Network API (nmstate documentation)".<br><br><strong>Value:</strong> A dictionary of host network configuration objects.</td>
 </tr>
 <tr>
   <td>minimalISO:</td>

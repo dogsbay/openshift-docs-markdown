@@ -19,15 +19,15 @@ You can create a `LokiStack` custom resource (CR) by using the {{ oc_first }}.
       name: logging-loki
       namespace: openshift-logging
     spec:
-      size: 1x.small # (1)
+      size: 1x.small (1)
       storage:
         schemas:
         - version: v12
           effectiveDate: "2022-06-01"
         secret:
-          name: logging-loki-s3 # (2)
-          type: s3 # (3)
-      storageClassName: <storage_class_name> # (4)
+          name: logging-loki-s3 (2)
+          type: s3 (3)
+      storageClassName: <storage_class_name> (4)
       tenants:
         mode: openshift-logging 
     ```
@@ -48,19 +48,19 @@ You can create a `LokiStack` custom resource (CR) by using the {{ oc_first }}.
     apiVersion: loki.grafana.com/v1
     kind: LokiStack
     metadata:
-      name: logging-loki # (1)
+      name: logging-loki (1)
       namespace: openshift-logging
     spec:
-      size: 1x.small # (2)
+      size: 1x.small (2)
       storage:
         schemas:
           - effectiveDate: '2023-10-15'
             version: v13
         secret:
-          name: logging-loki-s3 # (3)
-          type: s3 # (4)
-          credentialMode: # (5)
-      storageClassName: <storage_class_name> # (6)
+          name: logging-loki-s3 (3)
+          type: s3 (4)
+          credentialMode: (5)
+      storageClassName: <storage_class_name> (6)
       tenants:
         mode: openshift-logging
     ```

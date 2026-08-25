@@ -54,21 +54,21 @@ configure at least one static route.
     in a plain text format.
 
 
-:::note
+    :::note
 
-After the VPN connection has been established, be sure to set up Route
-Propagation or the VPN may not function as expected.
+    After the VPN connection has been established, be sure to set up Route
+    Propagation or the VPN may not function as expected.
+    
+    :::
 
-:::
 
 
+    :::note
 
-:::note
-
-Note the VPC subnet information, which you must add to your configuration as the
-remote network.
-
-:::
+    Note the VPC subnet information, which you must add to your configuration as the
+    remote network.
+    
+    :::
 
 
 ## Enabling VPN route propagation {id="dedicated-aws-vpn-creating-propagation"}

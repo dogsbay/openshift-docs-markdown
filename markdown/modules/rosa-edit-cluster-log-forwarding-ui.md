@@ -5,7 +5,7 @@ You can verify the status of log forwarding for a cluster and edit the log forwa
 
 **Procedure**
 
-1.  In the {{ hybrid_console }}, go to **Clusters** -> **Cluster List**, then click the name of your cluster.
+1.  In the {{ hybrid_console }}, go to **Clusters** → **Cluster List**, then click the name of your cluster.
 1.  Go to the **Settings** tab then the **Control plane log forwarding** section.
 1.  To add to your log forwarding, click the **Add configuration** dropdown button.
     1.  You can add a `CloudWatch` or `Amazon S3` configuration.
@@ -22,4 +22,4 @@ You can verify the status of log forwarding for a cluster and edit the log forwa
 
 **Verification**
 
-1.  In the **Settings** tab -> **Control plane log forwarding** section, verify that you see the changes you made to your configuration. The changes you made instantly go through and appear in this section.
+1.  In the **Settings** tab → **Control plane log forwarding** section, verify that you see the changes you made to your configuration. The changes you made instantly go through and appear in this section.

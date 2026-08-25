@@ -80,11 +80,11 @@ Create a parallel Argo CD project and application to manage the new `ClusterInst
         1.  The `project` field must match the name of the `AppProject` resource created in the previous step.
         1.  The `path` field must match the root folder in your Git repository that will contain the `ClusterInstance` CRs and associated resources.
 
-            :::note
+        :::note
 
-            By default, `auto-sync` is enabled. However, synchronization only occurs when you push configuration data for the cluster to the new configuration folder, or in this example, the `site-configs-v2/` folder.
-            
-            :::
+        By default, `auto-sync` is enabled. However, synchronization only occurs when you push configuration data for the cluster to the new configuration folder, or in this example, the `site-configs-v2/` folder.
+        
+        :::
 
 1.  Create and commit a root folder in your Git repository that will contain the `ClusterInstance` CRs and associated resources, for example:
     ```bash

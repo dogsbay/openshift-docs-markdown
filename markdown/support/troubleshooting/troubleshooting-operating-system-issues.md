@@ -3,12 +3,12 @@ title: Troubleshooting operating system issues
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Troubleshooting operating system issues {id="troubleshooting-operating-system-issues"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "troubleshooting-operating-system-issues" %}
 
-{{ product_title }} runs on {{ op_system }}. You can follow these procedures to troubleshoot problems related to the operating system.
+{{ product_title }} runs on {{ op_system }}. You can follow these procedures to troubleshoot problems related to the operating system. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/investigating-kernel-crashes.md" %}{% endleveloffset %}
 
@@ -19,6 +19,7 @@ title: Troubleshooting operating system issues
 {% leveloffset +2 %}{% include "./modules/troubleshooting-kdump-testing-analyzing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 {% if openshift_origin %}
 *   [Fedora CoreOS Docs on debugging kernel crashes](https://docs.fedoraproject.org/en-US/fedora-coreos/debugging-kernel-crashes/)

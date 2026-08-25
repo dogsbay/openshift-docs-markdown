@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# OTLP data ingestion in Loki {id="log6x-configuring-lokistack-otlp-6-2"}
 {% include "./_attributes/common-attributes.md" %}
+# OTLP data ingestion in Loki {id="log6x-configuring-lokistack-otlp-6-2"}
 {%- set context = "log6x-configuring-lokistack-otlp-6-2" %}
 
 You can use an API endpoint by using the OpenTelemetry Protocol (OTLP) with Logging. As OTLP is a standardized format not specifically designed for Loki, OTLP requires an additional Loki configuration to map data format of OpenTelemetry to data model of Loki. OTLP lacks concepts such as _stream labels_ or _structured metadata_. Instead, OTLP provides metadata about log entries as **attributes**, grouped into the following three categories:
@@ -42,9 +42,9 @@ Within `LokiStack`, attribute mapping configuration is managed through the `limi
 spec:
   limits:
     global:
-      otlp: {} # (1)
+      otlp: {} (1)
     tenants:
-      application: # (2)
+      application: (2)
         otlp: {}
 ```
 1.  Defines global OTLP attribute configuration.
@@ -122,7 +122,7 @@ spec:
     mode: openshift-logging
     openshift:
       otlp:
-        disableRecommendedAttributes: true # (1)
+        disableRecommendedAttributes: true (1)
 ```
 1.  Set `disableRecommendedAttributes: true` to remove recommended attributes, which limits default attributes to the required attributes or stream labels.
 

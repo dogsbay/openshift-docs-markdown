@@ -1,5 +1,5 @@
 ---
-title: "Provisioning []"
+title: "Provisioning [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ProvisioningSpec defines the desired state of Provisioning |
 | `status` | `object` | ProvisioningStatus defines the observed state of Provisioning |
+
 ### .spec {id="_spec"}
 
 Description
@@ -61,6 +62,7 @@ Type
 | `unsupportedConfigOverrides` | `object` | UnsupportedConfigOverrides are site-specific overrides that are not officially supported in the Metal platform and may cause the deployment to fail. Carefully check the description of each field you modify to understand its implications for stability and upgradability of your cluster. When reporting a bug, please make sure to reproduce it with UnsupportedConfigOverrides set to nil. |
 | `virtualMediaViaExternalNetwork` | `boolean` | VirtualMediaViaExternalNetwork flag when set to "true" allows for workers to boot via Virtual Media and contact metal3 over the External Network. When the flag is set to "false" (which is the default), virtual media deployments can still happen based on the configuration specified in the ProvisioningNetwork i.e when in Disabled mode, over the External Network and over Provisioning Network when in Managed mode. PXE deployments will always use the Provisioning Network and will not be affected by this flag. |
 | `watchAllNamespaces` | `boolean` | WatchAllNamespaces provides a way to explicitly allow use of this Provisioning configuration across all Namespaces. It is an optional configuration which defaults to false and in that state will be used to provision baremetal hosts in only the openshift-machine-api namespace. When set to true, this provisioning configuration would be used for baremetal hosts across all namespaces. |
+
 ### .spec.preProvisioningOSDownloadURLs {id="_specpreprovisioningosdownloadurls"}
 
 Description
@@ -77,6 +79,7 @@ Type
 | `isoURL` | `string` | IsoURL Image URL to be used for Live ISO deployments |
 | `kernelURL` | `string` | KernelURL is an Image URL to be used for PXE deployments |
 | `rootfsURL` | `string` | RootfsURL Image URL to be used for PXE deployments |
+
 ### .spec.prometheusExporter {id="_specprometheusexporter"}
 
 Description
@@ -98,6 +101,7 @@ Required
 | `disableDefaultPrometheusRules` | `boolean` | DisableDefaultPrometheusRules controls whether default hardware health alerting rules should NOT be deployed alongside the prometheus exporter. When false (default), default prometheus rules are deployed. |
 | `enabled` | `boolean` | Enabled controls whether sensor data collection is active. When true, configures Ironic to collect sensor data, deploys the ironic-prometheus-exporter container, and creates supporting resources. |
 | `sensorCollectionInterval` | `integer` | SensorCollectionInterval defines how often (in seconds) sensor data is collected from BMCs using Ironic. Must be at least 60 seconds. |
+
 ### .spec.unsupportedConfigOverrides {id="_specunsupportedconfigoverrides"}
 
 Description
@@ -116,6 +120,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `ironicAgentImage` | `string` | Override for the IPA container image. The image must be based on openshift/ironic-agent-image of the same release as the cluster. After each cluster upgrade, it must be rebased and updated immediately, before any BareMetalHosts are enrolled, provisioned or deprovisioned. |
+
 ### .status {id="_status"}
 
 Description
@@ -135,6 +140,7 @@ Type
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with |
 | `readyReplicas` | `integer` | readyReplicas indicates how many replicas are ready and at the desired state |
 | `version` | `string` | version is the level this availability applies to |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -166,6 +172,7 @@ Required
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.generations {id="_statusgenerations"}
 
 Description
@@ -208,12 +215,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Provisioning
     *   `GET`: list objects of kind Provisioning
     *   `POST`: create a Provisioning
-*   `/apis/metal3.io/v1alpha1/provisionings/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/provisionings/{{ name }}`{minja}
     *   `DELETE`: delete a Provisioning
     *   `GET`: read the specified Provisioning
     *   `PATCH`: partially update the specified Provisioning
     *   `PUT`: replace the specified Provisioning
-*   `/apis/metal3.io/v1alpha1/provisionings/{{ name }}/status`
+*   `/apis/metal3.io/v1alpha1/provisionings/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Provisioning
     *   `PATCH`: partially update status of the specified Provisioning
     *   `PUT`: replace status of the specified Provisioning

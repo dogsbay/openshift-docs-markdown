@@ -1,17 +1,17 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Assume an AWS IAM role for a service account {id="assuming-an-aws-iam-role-for-a-service-account"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "assuming-an-aws-iam-role-for-a-service-account" %}
 
-{%- if openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_rosa or openshift_rosa_hcp %}
 In {{ product_title }} clusters that use the AWS Security Token Service (STS), you can enable the OpenShift API server to project signed service account tokens that can be used to assume an AWS Identity and Access Management (IAM) role in a pod. If the assumed IAM role has the required AWS permissions, the pods can authenticate against the AWS API using temporary STS credentials to perform AWS operations.
-{% endif %} {._abstract}
+{% endif %}
 
-You can use the pod identity webhook to project service account tokens to assume an AWS Identity and Access Management (IAM) role for your own workloads. If the assumed IAM role has the required AWS permissions, the pods can run AWS SDK operations by using temporary STS credentials.
+You can use the pod identity webhook to project service account tokens to assume an AWS Identity and Access Management (IAM) role for your own workloads. If the assumed IAM role has the required AWS permissions, the pods can run AWS SDK operations by using temporary STS credentials. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/how-service-accounts-assume-aws-iam-roles-in-sre-owned-projects.md" %}{% endleveloffset %}
 

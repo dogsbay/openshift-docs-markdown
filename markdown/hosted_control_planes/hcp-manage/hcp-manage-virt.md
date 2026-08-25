@@ -7,7 +7,7 @@ title: "Managing {{ hcp }} on {{ VirtProductName }}"
 # Managing {{ hcp }} on {{ VirtProductName }} {id="hcp-manage-virt"}
 {%- set context = "hcp-manage-virt" %}
 
-After you deploy a hosted cluster on {{ VirtProductName }}, you can manage the cluster.
+After you deploy a hosted cluster on {{ VirtProductName }}, you can manage the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hcp-virt-access.md" %}{% endleveloffset %}
 
@@ -26,6 +26,7 @@ After you deploy a hosted cluster on {{ VirtProductName }}, you can manage the c
 {% leveloffset +2 %}{% include "./modules/hcp-virt-image-caching.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cloning a data volume using smart-cloning](/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#smart-cloning_virt-creating-vms-by-cloning-pvcs)
 
@@ -42,5 +43,6 @@ After you deploy a hosted cluster on {{ VirtProductName }}, you can manage the c
 {% leveloffset +1 %}{% include "./modules/hcp-topology-spread-constraint.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the descheduler](/nodes/scheduling/descheduler/nodes-descheduler-configuring#nodes-descheduler-installing_virt-enabling-descheduler-evictions)

@@ -10,7 +10,7 @@ By default, in multi-node clusters, the following components run in high-availab
 *   Thanos Querier
 *   Metrics Server
 *   Monitoring plugin
-{% endif %}
+{%- endif %}
 
 The component is replicated across two pods, each running on a separate node. This means that the monitoring stack can tolerate the loss of one pod.
 

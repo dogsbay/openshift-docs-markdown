@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Custom domains for applications {id="rosa-config-custom-domains-applications"}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Custom domains for applications {id="rosa-config-custom-domains-applications"}
 {%- set context = "rosa-config-custom-domains-applications" %}
 
 You can configure a custom domain for your applications. Custom domains are specific wildcard domains that can be used with {{ product_title }} applications. {._abstract}

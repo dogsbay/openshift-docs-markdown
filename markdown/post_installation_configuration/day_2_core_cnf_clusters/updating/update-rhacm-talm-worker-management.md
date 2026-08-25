@@ -3,17 +3,17 @@ title: "Manage worker nodes during a cluster update with {{ cgu_operator }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Manage worker nodes during a cluster update with {{ cgu_operator }} {id="core-cluster-upgrades-worker-management"}
 {% include "./_attributes/common-attributes.md" %}
+# Manage worker nodes during a cluster update with {{ cgu_operator }} {id="core-cluster-upgrades-worker-management"}
 {%- set context = "core-cluster-upgrades-worker-management" %}
 
-You can pause and unpause worker nodes during cluster updates to stage control plane and worker node updates separately, minimizing workload disruption.
+You can pause and unpause worker nodes during cluster updates to stage control plane and worker node updates separately, minimizing workload disruption. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/core-cluster-upgrade-worker-node-management.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/core-cluster-upgrade-worker-node-management-manual.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_core-cluster-upgrades-worker-management"}
+## Additional resources {id="additional-resources_core-cluster-upgrades-worker-management" ._additional-resources}
 
 *   [Complete an EUS-to-EUS cluster update with {{ cgu_operator }}](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-eus#core-cluster-upgrades-eus)
 *   [Prepare worker node pools before a cluster update with {{ cgu_operator }}](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-worker-batching#core-cluster-upgrades-worker-batching)

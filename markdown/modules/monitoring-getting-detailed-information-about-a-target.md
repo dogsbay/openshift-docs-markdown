@@ -21,12 +21,12 @@ The **Metrics targets** page shows targets for user-defined projects.
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Observe** -> **Targets**. The **Metrics targets** page opens with a list of all service endpoint targets that are being scraped for metrics.
+1.  In the {{ product_title }} web console, go to **Observe** → **Targets**. The **Metrics targets** page opens with a list of all service endpoint targets that are being scraped for metrics.
 
     This page shows details about targets for default {{ product_title }} and user-defined projects. This page lists the following information for each target:
     *   Service endpoint URL being scraped
     *   The `ServiceMonitor` resource being monitored
-    *   The ***up*** or ***down*** status of the target
+    *   The **up** or **down** status of the target
     *   Namespace
     *   Last scrape time
     *   Duration of the last scrape
@@ -53,7 +53,8 @@ The **Metrics targets** page shows targets for user-defined projects.
 </tr>
 </tbody>
 </table>
-1.  Click the URL in the ***Endpoint*** column for a target to go to its ***Target details*** page. This page provides information about the target, including the following information:
+
+1.  Click the URL in the **Endpoint** column for a target to go to its **Target details** page. This page provides information about the target, including the following information:
     *   The endpoint URL being scraped for metrics
     *   The current **Up** or **Down** status of the target
     *   A link to the namespace

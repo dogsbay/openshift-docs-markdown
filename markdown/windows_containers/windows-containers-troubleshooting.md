@@ -7,7 +7,7 @@ title: Troubleshooting Windows container workloads
 # Troubleshooting Windows container workloads {id="windows-containers-troubleshooting"}
 {%- set context = "windows-containers-troubleshooting" %}
 
-You can troubleshoot Windows container workload issues to ensure that your Windows nodes are running correctly in your cluster.
+You can troubleshoot Windows container workload issues to ensure that your Windows nodes are running correctly in your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/wmco-does-not-install.md" %}{% endleveloffset %}
 
@@ -21,7 +21,7 @@ You can troubleshoot Windows container workload issues to ensure that your Windo
 {% leveloffset +1 %}{% include "./modules/collecting-windows-application-event-logs.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/collecting-containerd-logs-windows.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Configuring hybrid networking](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)
 *   [Containers on Windows troubleshooting (Microsoft documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/troubleshooting)

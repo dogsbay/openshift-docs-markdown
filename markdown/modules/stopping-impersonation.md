@@ -5,5 +5,5 @@ You can stop impersonating a user or group at any time from the {{ product_title
 
 **Procedure**
 
-1.  On any page in the {{ product_title }} console, click ***Stop impersonating*** at the top of the page.
-1.  Alternatively, click your user name and select ***Stop impersonating***.
+1.  On any page in the {{ product_title }} console, click **Stop impersonating** at the top of the page.
+1.  Alternatively, click your user name and select **Stop impersonating**.

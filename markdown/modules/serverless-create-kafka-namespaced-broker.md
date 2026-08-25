@@ -39,21 +39,21 @@ To create a `KafkaNamespaced` broker, you must set the `eventing.knative.dev/bro
     ```
 
 
-:::important
+    :::important
 
-The `ConfigMap` object in `spec.config` must be in the same namespace as the `Broker` object:
+    The `ConfigMap` object in `spec.config` must be in the same namespace as the `Broker` object:
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: my-config
-  namespace: my-namespace
-data:
-  ...
-```
-
-:::
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: my-config
+      namespace: my-namespace
+    data:
+      ...
+    ```
+    
+    :::
 
 
 After the creation of the first `Broker` object with the `KafkaNamespaced` class, the `kafka-broker-receiver` and `kafka-broker-dispatcher` deployments are created in the namespace. Subsequently, all brokers with the `KafkaNamespaced` class in the same namespace will use the same data plane. If no brokers with the `KafkaNamespaced` class exist in the namespace, the data plane in the namespace is deleted.

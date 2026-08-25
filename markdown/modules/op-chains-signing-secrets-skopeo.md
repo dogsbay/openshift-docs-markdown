@@ -12,7 +12,7 @@ You can generate keys using the `skopeo` tool and use them in the `cosign` signi
 
 1.  Generate a public/private key pair by running the following command:
     ```terminal
-    $ skopeo generate-sigstore-key --output-prefix <mykey> # (1)
+    $ skopeo generate-sigstore-key --output-prefix <mykey> (1)
     ```
     1.  Replace `<mykey>` with a key name of your choice.
 
@@ -27,7 +27,7 @@ You can generate keys using the `skopeo` tool and use them in the `cosign` signi
     ```
 1.  Encode the passhprase using the `base64` tool by running the following command:
     ```terminal
-    $ echo -n '<passphrase>' | base64 -w 0 > b64.passphrase # (1)
+    $ echo -n '<passphrase>' | base64 -w 0 > b64.passphrase (1)
     ```
     1.  Replace `<passphrase>` with the passphrase that you used for the key pair.
 1.  Create the `signing-secrets` secret in the `openshift-pipelines` namespace by running the following command:
@@ -43,9 +43,9 @@ You can generate keys using the `skopeo` tool and use them in the `cosign` signi
     ```yaml
     apiVersion: v1
     data:
-      cosign.key: <Encoded <mykey>.private> # (1)
-      cosign.password: <Encoded passphrase> # (2)
-      cosign.pub: <Encoded <mykey>.pub> # (3)
+      cosign.key: <Encoded <mykey>.private> (1)
+      cosign.password: <Encoded passphrase> (2)
+      cosign.pub: <Encoded <mykey>.pub> (3)
     immutable: true
     kind: Secret
     metadata:

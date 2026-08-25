@@ -3,10 +3,10 @@ title: Additional release notes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Additional release notes {id="addtl-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-microshift.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Additional release notes {id="addtl-release-notes"}
 {%- set context = "addtl-release-notes" %}
 
 Release notes for additional related components and products not included in the core [{{ product_title }} {{ product_version }} release notes](/release_notes/ocp-4-22-release-notes#ocp-4-22-release-notes) are available in the following documentation.

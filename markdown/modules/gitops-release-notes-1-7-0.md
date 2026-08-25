@@ -19,6 +19,7 @@ The current release adds the following improvements:
     | resourceIgnoreDifferences | resource.customizations.ignoreDifferences.&lt;group_kind> | resource.customizations.ignoreDifferences |
     | resourceActions | resource.customizations.actions.&lt;group_kind> | resource.customizations.actions |
 
+
     [GITOPS-1561](https://issues.redhat.com/browse/GITOPS-1561)
 
     :::note
@@ -35,7 +36,7 @@ The current release adds the following improvements:
         [GITOPS-2341](https://issues.redhat.com/browse/GITOPS-2341)
 
 {%- set FeatureName = "Argo CD applications in non-control plane namespaces" %}
-{% include "./snippets/technology-preview.md" %}
+        {% include "./snippets/technology-preview.md" %}
 *   With this update, Argo CD supports the Server-Side Apply feature, which helps users to perform the following tasks:
     *   Manage large resources which are too big for the allowed annotation size of 262144 bytes.
     *   Patch an existing resource that is not managed or deployed by Argo CD.

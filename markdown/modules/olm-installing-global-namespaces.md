@@ -35,7 +35,7 @@ When installing Operators with the {{ product_title }} web console, the default 
     ```terminal
     $ oc new-project global-operators
     ```
-{% endif %}
+{%- endif %}
 1.  Create a custom _global Operator group_, which is an Operator group that watches all namespaces:
     1.  Define an `OperatorGroup` resource and save the YAML file, for example, `global-operatorgroup.yaml`. Omit both the `spec.selector` and `spec.targetNamespaces` fields to make it a _global Operator group_, which selects all namespaces:
         ```yaml

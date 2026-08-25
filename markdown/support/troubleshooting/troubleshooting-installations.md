@@ -3,12 +3,12 @@ title: Troubleshooting installations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Troubleshooting installations {id="troubleshooting-installations"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "troubleshooting-installations" %}
 
-Use the following sections to troubleshoot {{ product_title }} installation issues.
+Use the following sections to troubleshoot {{ product_title }} installation issues. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/determining-where-installation-issues-occur.md" %}{% endleveloffset %}
 
@@ -37,7 +37,7 @@ Use the following sections to troubleshoot {{ product_title }} installation issu
 {% leveloffset +1 %}{% include "./modules/installation-bootstrap-gather.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_dedicated) %}
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)
 {% endif %}

@@ -7,11 +7,13 @@ When a cluster is provisioned, each machine in the cluster requires information 
 The temporary bootstrap machine boots by using an Ignition config file that describes how to create the cluster. The bootstrap machine creates the control plane machines that make up the control plane. The control plane machines then create the compute machines, which are also known as worker machines. The following figure illustrates this process:
 
 {% if not openshift_origin %}
+
 **Figure 1. Creating the bootstrap, control plane, and compute machines**
 
 ![Creating bootstrap](/_assets/images/create-nodes.png)
 {% endif %}
 {% if openshift_origin %}
+
 **Figure 2. Creating the bootstrap, control plane, and compute machines**
 
 ![Creating bootstrap](/_assets/images/150_OpenShift_VMware_on_AWS_1021_installer_FCOS.png)

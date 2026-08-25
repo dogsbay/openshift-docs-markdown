@@ -10,4 +10,4 @@ The **Getting started** tour introduces several key aspects of using {{ VirtProd
 **Procedure**
 
 *   If you see the **Welcome to {{ VirtProductName }}** dialog, click **Start Tour**.
-*   Otherwise, go to **Virtualization** -> **Settings** -> **User** -> **Getting started resources** -> **Guided tour**.
+*   Otherwise, go to **Virtualization** → **Settings** → **User** → **Getting started resources** → **Guided tour**.

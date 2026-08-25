@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Installing packages to a `toolbox` container {id="installing-packages-to-a-toolbox-container_{{ context }}"}
 
-{%- if not openshift_origin %}
-By default, running the `toolbox` command starts a container with the `registry.redhat.io/rhel9/support-tools:latest` image. This image contains the most frequently used support tools. If you need to collect node-specific data that requires a support tool that is not part of the image, you can install additional packages.
-{% endif %} {._abstract}
+{% if not openshift_origin %}
+By default, running the `toolbox` command starts a container with the `registry.redhat.io/rhel9/support-tools:latest` image. This image contains the most frequently used support tools. If you need to collect node-specific data that requires a support tool that is not part of the image, you can install additional packages. {._abstract}
+{% endif %}
 
 {% if openshift_origin %}
 By default, running the `toolbox` command starts a container with the `quay.io/fedora/fedora` image. This image contains the most frequently used support tools. If you need to collect node-specific data that requires a support tool that is not part of the image, you can install additional packages.

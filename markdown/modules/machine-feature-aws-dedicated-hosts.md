@@ -6,7 +6,8 @@ You can configure a machine template to place machines on {{ aws_first }} Dedica
 {%- set FeatureName = "{{ aws_short }} Dedicated Host support" %}
 {% include "./snippets/technology-preview.md" %}
 
-{% include "./snippets/apply-machine-configuration-method.md" %}
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file.
+Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 **Procedure**
 

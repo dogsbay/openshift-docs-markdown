@@ -18,7 +18,7 @@ You can configure the monitoring stack by performing any of the following action
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   Set the body size limit for metrics scraping.
 *   Use metrics collection profiles.
-{% endif %}
+{%- endif %}
 
 **Additional resources**
 {._additional-resources}
@@ -48,9 +48,9 @@ You can configure the monitoring stack by performing any of the following action
     *   Avoid getting duplicate notifications and losing silences for alerts when the Alertmanager pods are restarted.
 *   Modify the retention time and size for Prometheus and Thanos Ruler metrics data.
 *   Configure logging to help you troubleshoot issues with your cluster:
-    {%- if not (openshift_dedicated or openshift_rosa) %}
+{%- if not (openshift_dedicated or openshift_rosa) %}
     *   Configure audit logs for Metrics Server.
-        {%- endif %}
+{%- endif %}
     *   Set log levels for monitoring.
     *   Enable the query logging for Prometheus and Thanos Querier.
 

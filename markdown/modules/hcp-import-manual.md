@@ -5,7 +5,7 @@ Typically, hosted clusters are automatically imported to {{ mce_short }} after t
 
 **Procedure**
 
-1.  In the console, click **Infrastructure** -> **Clusters** and select the hosted cluster that you want to import.
+1.  In the console, click **Infrastructure** → **Clusters** and select the hosted cluster that you want to import.
 1.  Click **Import hosted cluster**.
 
     :::note

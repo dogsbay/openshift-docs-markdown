@@ -11,7 +11,7 @@ When you are getting ready to install {{ microshift_short }} RPMs, make sure you
 
 **Procedure**
 
-1.  In the graphical installer under **Installation Destination** in the **Storage Configuration** subsection, select **Custom** -> **Done** to open the dialog for configuring partitions and volumes. The Manual Partitioning window is displayed.
+1.  In the graphical installer under **Installation Destination** in the **Storage Configuration** subsection, select **Custom** → **Done** to open the dialog for configuring partitions and volumes. The Manual Partitioning window is displayed.
 1.  Under **New Red Hat Enterprise Linux {{ op_system_version_major }}.x Installation**, select **Click here to create them automatically**.
 1.  Select the root partition, **/**, reduce **Desired Capacity** so that the VG has sufficient capacity for your PVs, and then click **Update Settings**.
 1.  Complete your installation.

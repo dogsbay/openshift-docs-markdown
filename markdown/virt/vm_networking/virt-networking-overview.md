@@ -3,11 +3,11 @@ title: Networking overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Networking overview {id="virt-networking"}
 {% include "./_attributes/common-attributes.md" %}
+# Networking overview {id="virt-networking"}
 {%- set context = "virt-networking-overview" %}
 
-To connect virtual machines (VMs) to cluster networks, configure default and user-defined networking options in {{ VirtProductName }}.
+To connect virtual machines (VMs) to cluster networks, configure default and user-defined networking options in {{ VirtProductName }}. {._abstract}
 
 {% if not openshift_dedicated %}
 {{ VirtProductName }} supports single-stack IPv6 clusters for VMs that are connected to an OVN-Kubernetes localnet network, Linux bridge Container Network Interface (CNI) plugin, and Single Root I/O Virtualization (SR-IOV) network devices.
@@ -77,7 +77,7 @@ The following features are not supported on {{ product_rosa }}, {{ azure_first }
 
 {% leveloffset +1 %}{% include "./modules/virt-nw-overview-vm-ssh-config.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Connect a virtual machine to the default pod network](/virt/vm_networking/virt-connecting-vm-to-default-pod-network#virt-connecting-vm-to-default-pod-network)
 *   [Connect a virtual machine to a custom primary overlay network](/virt/vm_networking/virt-connecting-vm-to-primary-udn#virt-connecting-vm-to-primary-udn)
 {%- if not openshift_dedicated %}
@@ -101,4 +101,4 @@ The following features are not supported on {{ product_rosa }}, {{ azure_first }
 *   [Configure and view VM IP address](/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)
 *   [Manage MAC address pools for network interfaces](/virt/vm_networking/virt-using-mac-address-pool-for-vms#virt-using-mac-address-pool-for-vms)
 *   [SSH access for virtual machines](/virt/managing_vms/ssh/virt-accessing-vm-ssh#virt-accessing-vm-ssh)
-{% endif %}
+{%- endif %}

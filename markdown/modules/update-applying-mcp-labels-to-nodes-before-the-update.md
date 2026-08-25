@@ -42,20 +42,20 @@ Example cluster with 15 worker nodes
     Split the control plane and data plane worker node roles into at least 2 MCP groups each.
     Having 2 MCP groups per role means that you can have one set of nodes that are not affected by the update.
 
-    Example cluster with 6 worker nodes
-    :   Consider a cluster with 6 worker nodes:
+Example cluster with 6 worker nodes
+:   Consider a cluster with 6 worker nodes:
 
-*   Split the worker nodes into 3 MCP groups of 2 nodes each.
+    *   Split the worker nodes into 3 MCP groups of 2 nodes each.
 
 
     Upgrade one of the MCP groups.
     Allow the updated nodes to sit through a day to allow for verification of application compatibility before completing the update on the other 4 nodes.
 
 
-:::important
+    :::important
 
-The process and pace at which you unpause the MCP groups is determined by your applications and configuration.
+    The process and pace at which you unpause the MCP groups is determined by your applications and configuration.
 
-If your pod can handle being scheduled across nodes in a cluster, you can unpause several MCP groups at a time and set the `MaxUnavailable` field in the MCP custom resource (CR) to as high as 50%. This allows up to half of the nodes in an MCP group to restart and get updated.
-
-:::
+    If your pod can handle being scheduled across nodes in a cluster, you can unpause several MCP groups at a time and set the `MaxUnavailable` field in the MCP custom resource (CR) to as high as 50%. This allows up to half of the nodes in an MCP group to restart and get updated.
+    
+    :::

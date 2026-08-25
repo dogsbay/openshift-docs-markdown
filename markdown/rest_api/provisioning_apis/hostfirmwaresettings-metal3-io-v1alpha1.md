@@ -1,5 +1,5 @@
 ---
-title: "HostFirmwareSettings []"
+title: "HostFirmwareSettings [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | HostFirmwareSettingsSpec defines the desired state of HostFirmwareSettings. |
 | `status` | `object` | HostFirmwareSettingsStatus defines the observed state of HostFirmwareSettings. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -40,6 +41,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `settings` | `integer-or-string` | Settings are the desired firmware settings stored as name/value pairs. |
+
 ### .status {id="_status"}
 
 Description
@@ -60,6 +62,7 @@ Required
 | `lastUpdated` | `string` | Time that the status was last updated |
 | `schema` | `object` | FirmwareSchema is a reference to the Schema used to describe each FirmwareSetting. By default, this will be a Schema in the same Namespace as the settings but it can be overwritten in the Spec |
 | `settings` | `object (string)` | Settings are the firmware settings stored as name/value pairs |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -94,6 +97,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.schema {id="_statusschema"}
 
 Description
@@ -121,16 +125,16 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/hostfirmwaresettings`
     *   `GET`: list objects of kind HostFirmwareSettings
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings`{minja}
     *   `DELETE`: delete collection of HostFirmwareSettings
     *   `GET`: list objects of kind HostFirmwareSettings
     *   `POST`: create HostFirmwareSettings
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings/{{ name }}`{minja}
     *   `DELETE`: delete HostFirmwareSettings
     *   `GET`: read the specified HostFirmwareSettings
     *   `PATCH`: partially update the specified HostFirmwareSettings
     *   `PUT`: replace the specified HostFirmwareSettings
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings/{{ name }}/status`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/hostfirmwaresettings/{{ name }}/status`{minja}
     *   `GET`: read status of the specified HostFirmwareSettings
     *   `PATCH`: partially update status of the specified HostFirmwareSettings
     *   `PUT`: replace status of the specified HostFirmwareSettings

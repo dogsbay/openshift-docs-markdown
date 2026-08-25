@@ -28,7 +28,7 @@ To use your container images at an air-gapped site, upload them to the mirror re
     $ TARGET_REGISTRY=_<registry_host>:<port>_
     ```
     *   Replace `_<registry_host>:<port>_` with the hostname and port of your mirror registry server.
-1.  Run the following script to upload the container images to the `${{ TARGET_REGISTRY }}` mirror registry:
+1.  Run the following script to upload the container images to the `${{ TARGET_REGISTRY }}`{minja} mirror registry:
     ```terminal
     pushd "${IMAGE_LOCAL_DIR}" >/dev/null
     while read -r src_manifest ; do

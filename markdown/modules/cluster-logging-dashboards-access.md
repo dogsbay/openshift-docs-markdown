@@ -4,20 +4,20 @@
 You can view the **Logging/Elasticsearch Nodes** and **OpenShift Logging** dashboards in the
 {%- if not (openshift_rosa or openshift_dedicated) %}
 {{ product_title }} web console.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 {{ cluster_manager_url }}.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
 To launch the dashboards:
 
 {% if not (openshift_rosa or openshift_dedicated) %}
-1.  In the {{ product_title }} web console, click **Observe** -> **Dashboards**.
+1.  In the {{ product_title }} web console, click **Observe** → **Dashboards**.
 {% endif %}
 {% if openshift_rosa or openshift_dedicated %}
-1.  In the {{ product_title }} {{ hybrid_console }}, click **Observe** -> **Dashboards**.
+1.  In the {{ product_title }} {{ hybrid_console }}, click **Observe** → **Dashboards**.
 {% endif %}
 1.  On the **Dashboards** page, select **Logging/Elasticsearch Nodes** or **OpenShift Logging** from the **Dashboard** menu.
 

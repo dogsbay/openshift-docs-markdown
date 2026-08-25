@@ -47,28 +47,30 @@ The following table outlines an example of the relationship among regions, zones
 </thead>
 <tbody>
 <tr>
-  <td>.4+</td>
-  <td>us-east .2+</td>
-  <td>us-east-1</td>
-</tr>
-<tr>
+  <td rowspan="4">us-east</td>
+  <td rowspan="2">us-east-1</td>
   <td>us-east-1a</td>
-  <td>us-east-1b.2+</td>
-  <td>us-east-2</td>
 </tr>
 <tr>
+  <td>us-east-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-east-2</td>
   <td>us-east-2a</td>
-  <td>us-east-2b<br><br>.4+</td>
-  <td>us-west</td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td>us-west-1</td>
+  <td>us-east-2b</td>
+</tr>
+<tr>
+  <td rowspan="4">us-west</td>
+  <td rowspan="2">us-west-1</td>
   <td>us-west-1a</td>
 </tr>
 <tr>
-  <td>us-west-1b .2+</td>
-  <td>us-west-2</td>
+  <td>us-west-1b</td>
+</tr>
+<tr>
+  <td rowspan="2">us-west-2</td>
   <td>us-west-2a</td>
 </tr>
 <tr>

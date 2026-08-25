@@ -5,7 +5,7 @@ You can configure the overridable arguments for the cert-manager components in t
 
 The following table describes the overridable arguments for the cert-manager components:
 
-***Overridable arguments for the cert-manager components***
+**Overridable arguments for the cert-manager components**
 
 <table>
 <thead>
@@ -17,9 +17,9 @@ The following table describes the overridable arguments for the cert-manager com
 </thead>
 <tbody>
 <tr>
-  <td><code>--dns01-recursive-nameservers=<server_address></code></td>
+  <td><code>--dns01-recursive-nameservers=&lt;server_address&gt;</code></td>
   <td>Controller</td>
-  <td>Provide a comma-separated list of nameservers to query for the DNS-01 self check. The nameservers can be specified either as <code><host>:<port></code>, for example, <code>1.1.1.1:53</code>, or use DNS over HTTPS (DoH), for example, <code>\https://1.1.1.1/dns-query</code>.<br><br><dl><dt>Note</dt><dd>DNS over HTTPS (DoH) is supported starting only from {{ cert_manager_operator }} version 1.13.0 and later.</dd></dl></td>
+  <td>Provide a comma-separated list of nameservers to query for the DNS-01 self check. The nameservers can be specified either as <code>&lt;host&gt;:&lt;port&gt;</code>, for example, <code>1.1.1.1:53</code>, or use DNS over HTTPS (DoH), for example, <code>\https://1.1.1.1/dns-query</code>.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>DNS over HTTPS (DoH) is supported starting only from {{ cert_manager_operator }} version 1.13.0 and later.</dd></dl></td>
 </tr>
 <tr>
   <td><code>--dns01-recursive-nameservers-only</code></td>
@@ -27,12 +27,12 @@ The following table describes the overridable arguments for the cert-manager com
   <td>Specify to only use recursive nameservers instead of checking the authoritative nameservers associated with that domain.</td>
 </tr>
 <tr>
-  <td><code>--acme-http01-solver-nameservers=<host>:<port></code></td>
+  <td><code>--acme-http01-solver-nameservers=&lt;host&gt;:&lt;port&gt;</code></td>
   <td>Controller</td>
-  <td>Provide a comma-separated list of <code><host>:<port></code> nameservers to query for the Automated Certificate Management Environment (ACME) HTTP01 self check. For example, <code>--acme-http01-solver-nameservers=1.1.1.1:53</code>.</td>
+  <td>Provide a comma-separated list of <code>&lt;host&gt;:&lt;port&gt;</code> nameservers to query for the Automated Certificate Management Environment (ACME) HTTP01 self check. For example, <code>--acme-http01-solver-nameservers=1.1.1.1:53</code>.</td>
 </tr>
 <tr>
-  <td><code>--metrics-listen-address=<host>:<port></code></td>
+  <td><code>--metrics-listen-address=&lt;host&gt;:&lt;port&gt;</code></td>
   <td>Controller</td>
   <td>Specify the host and port for the metrics endpoint. The default value is <code>--metrics-listen-address=0.0.0.0:9402</code>.</td>
 </tr>
@@ -92,7 +92,7 @@ The following table describes the overridable arguments for the cert-manager com
   <td>The maximum number of ACME challenges that can run concurrently. The default value is <code>60</code>.</td>
 </tr>
 <tr>
-  <td><code>--v=<verbosity_level></code></td>
+  <td><code>--v=&lt;verbosity_level&gt;</code></td>
   <td>Controller, Webhook, CA injector</td>
   <td>Specify the log level verbosity to determine the verbosity of log messages.</td>
 </tr>

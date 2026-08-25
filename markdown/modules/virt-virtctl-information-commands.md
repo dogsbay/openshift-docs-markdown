@@ -6,7 +6,7 @@
 
 You can use the following `virtctl` information commands to view information about the `virtctl` client. {._abstract}
 
-***Information commands***
+**Information commands**
 
 <table>
 <thead>
@@ -25,14 +25,11 @@ You can use the following `virtctl` information commands to view information abo
   <td>View a list of <code>virtctl</code> commands.</td>
 </tr>
 <tr>
-  <td>`virtctl <command> -h\</td>
-  <td>--help`</td>
-</tr>
-<tr>
+  <td><code>virtctl &lt;command&gt; -h|--help</code></td>
   <td>View a list of options for a specific command.</td>
-  <td><code>virtctl options</code></td>
 </tr>
 <tr>
+  <td><code>virtctl options</code></td>
   <td>View a list of global command options for any <code>virtctl</code> command.</td>
 </tr>
 </tbody>

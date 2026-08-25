@@ -1,5 +1,5 @@
 ---
-title: "MachineOSBuild []"
+title: "MachineOSBuild [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec describes the configuration of the machine os build. It is immutable once set. |
 | `status` | `object` | status describes the last observed state of this machine os build. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -50,6 +51,7 @@ Required
 | `machineConfig` | `object` | machineConfig points to the rendered MachineConfig resource to be included in this image build. |
 | `machineOSConfig` | `object` | machineOSConfig references the MachineOSConfig resource that this image build extends. |
 | `renderedImagePushSpec` | `string` | renderedImagePushSpec is set by the Machine Config Operator from the MachineOSConfig object this build is attached to. This field describes the location of the final image, which will be pushed by the build once complete. The format of the image push spec is: host[:port][/namespace]/name:&lt;tag> or svc_name.namespace.svc[:port]/repository/name:&lt;tag>. The length of the push spec must be between 1 to 447 characters. |
+
 ### .spec.machineConfig {id="_specmachineconfig"}
 
 Description
@@ -66,6 +68,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the rendered MachineConfig object. This value should be between 10 and 253 characters, and must contain only lowercase alphanumeric characters, hyphens and periods, and should start and end with an alphanumeric character. |
+
 ### .spec.machineOSConfig {id="_specmachineosconfig"}
 
 Description
@@ -82,6 +85,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name of the MachineOSConfig. The name must contain only lowercase alphanumeric characters, '-' or '.' and start/end with an alphanumeric character. |
+
 ### .status {id="_status"}
 
 Description
@@ -101,6 +105,7 @@ Type
 | `digestedImagePushSpec` | `string` | digestedImagePushSpec describes the fully qualified push spec produced by this build. The format of the push spec is: host[:port][/namespace]/name@sha256:&lt;digest>, where the digest must be 64 characters long, and consist only of lowercase hexadecimal characters, a-f and 0-9. The length of the whole spec must be between 1 to 447 characters. |
 | `relatedObjects` | `array` | relatedObjects is a list of references to ephemeral objects such as ConfigMaps or Secrets that are meant to be consumed while the build process runs. After a successful build or when this MachineOSBuild is deleted, these ephemeral objects will be removed. In the event of a failed build, the objects will remain until the build is removed to allow for inspection. |
 | `relatedObjects[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
+
 ### .status.builder {id="_statusbuilder"}
 
 Description
@@ -118,6 +123,7 @@ Required
 | --- | --- | --- |
 | `imageBuilderType` | `string` | imageBuilderType describes the type of image builder used to build this image. Valid values are Job only. When set to Job, a pod based builder, using buildah, is launched to build the specified image. |
 | `job` | `object` | job is a reference to the job object that is managing the image build. This is required if the imageBuilderType is Job, and forbidden otherwise. |
+
 ### .status.builder.job {id="_statusbuilderjob"}
 
 Description
@@ -140,6 +146,7 @@ Required
 | `name` | `string` | name of the referent. The name must contain only lowercase alphanumeric characters, '-' or '.' and start/end with an alphanumeric character. |
 | `namespace` | `string` | namespace of the referent. This value should consist of at most 63 characters, and of only lowercase alphanumeric characters and hyphens, and should start and end with an alphanumeric character. |
 | `resource` | `string` | resource of the referent. This value should consist of at most 63 characters, and of only lowercase alphanumeric characters and hyphens, and should start with an alphabetic character and end with an alphanumeric character. Example: "deployments", "deploymentconfigs", "pods", etc. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -176,6 +183,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.relatedObjects {id="_statusrelatedobjects"}
 
 Description
@@ -217,12 +225,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of MachineOSBuild
     *   `GET`: list objects of kind MachineOSBuild
     *   `POST`: create a MachineOSBuild
-*   `/apis/machineconfiguration.openshift.io/v1/machineosbuilds/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/machineosbuilds/{{ name }}`{minja}
     *   `DELETE`: delete a MachineOSBuild
     *   `GET`: read the specified MachineOSBuild
     *   `PATCH`: partially update the specified MachineOSBuild
     *   `PUT`: replace the specified MachineOSBuild
-*   `/apis/machineconfiguration.openshift.io/v1/machineosbuilds/{{ name }}/status`
+*   `/apis/machineconfiguration.openshift.io/v1/machineosbuilds/{{ name }}/status`{minja}
     *   `GET`: read status of the specified MachineOSBuild
     *   `PATCH`: partially update status of the specified MachineOSBuild
     *   `PUT`: replace status of the specified MachineOSBuild

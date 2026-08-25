@@ -14,7 +14,7 @@ To change the default number of vCPUs mapped to each physical CPU, set the `vmiC
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Set the `vmiCPUAllocationRatio`:

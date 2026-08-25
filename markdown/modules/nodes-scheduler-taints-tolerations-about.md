@@ -47,7 +47,7 @@ Taints and tolerations consist of a key, value, and effect.
 
 <a name="taint-components-table_{{ context }}"></a>
 
-***Taint and toleration components***
+**Taint and toleration components**
 
 <table>
 <thead>
@@ -67,11 +67,11 @@ Taints and tolerations consist of a key, value, and effect.
 </tr>
 <tr>
   <td><code>effect</code></td>
-  <td>The effect is one of the following:!====!<code>NoSchedule</code> ^[1]^!* New pods that do not match the taint are not scheduled onto that node.<ul><li>Existing pods on the node remain.</li></ul>!<code>PreferNoSchedule</code>!* New pods that do not match the taint might be scheduled onto that node, but the scheduler tries not to.<ul><li>Existing pods on the node remain.</li></ul>!<code>NoExecute</code>!* New pods that do not match the taint cannot be scheduled onto that node.<ul><li>Existing pods on the node that do not have a matching toleration  are removed.</li></ul>!====</td>
+  <td>The effect is one of the following: !==== !<code>NoSchedule</code> <sup>[1]</sup> !* New pods that do not match the taint are not scheduled onto that node.<ul><li>Existing pods on the node remain.</li></ul>!<code>PreferNoSchedule</code> !* New pods that do not match the taint might be scheduled onto that node, but the scheduler tries not to.<ul><li>Existing pods on the node remain.</li></ul>!<code>NoExecute</code> !* New pods that do not match the taint cannot be scheduled onto that node.<ul><li>Existing pods on the node that do not have a matching toleration  are removed.</li></ul>!====</td>
 </tr>
 <tr>
   <td><code>operator</code></td>
-  <td>!====!<code>Equal</code>!The <code>key</code>/<code>value</code>/<code>effect</code> parameters must match. This is the default.!<code>Exists</code>!The <code>key</code>/<code>effect</code> parameters must match. You must leave a blank <code>value</code> parameter, which matches any.!====</td>
+  <td>!==== !<code>Equal</code> !The <code>key</code>/<code>value</code>/<code>effect</code> parameters must match. This is the default. !<code>Exists</code> !The <code>key</code>/<code>effect</code> parameters must match. You must leave a blank <code>value</code> parameter, which matches any. !====</td>
 </tr>
 </tbody>
 </table>
@@ -293,9 +293,9 @@ spec:
 {% endif %}
 
 {% if context == "nodes-scheduler-taints-tolerations" %}
-{%- set nodes_scheduler_taints_tolerations = false -%}
+{%- set nodes_scheduler_taints_tolerations = "" -%}
 {% endif %}
 
 {% if context == "node-tasks" %}
-{%- set node_tasks = false -%}
+{%- set node_tasks = "" -%}
 {% endif %}

@@ -38,13 +38,13 @@ $ oc get deployment -n <namespace> -l olm.operatorframework.io/owner-name=<exten
 
 Configuration locations in the deployment specification:
 
-*   ***Environment variables***: `spec.template.spec.containers[].env` and `spec.template.spec.containers[].envFrom`
-*   ***Resources***: `spec.template.spec.containers[].resources`
-*   ***Node selector***: `spec.template.spec.nodeSelector`
-*   ***Tolerations***: `spec.template.spec.tolerations`
-*   ***Affinity***: `spec.template.spec.affinity`
-*   ***Volumes***: `spec.template.spec.volumes` and `spec.template.spec.containers[].volumeMounts`
-*   ***Annotations***: `metadata.annotations` and `spec.template.metadata.annotations`
+*   **Environment variables**: `spec.template.spec.containers[].env` and `spec.template.spec.containers[].envFrom`
+*   **Resources**: `spec.template.spec.containers[].resources`
+*   **Node selector**: `spec.template.spec.nodeSelector`
+*   **Tolerations**: `spec.template.spec.tolerations`
+*   **Affinity**: `spec.template.spec.affinity`
+*   **Volumes**: `spec.template.spec.volumes` and `spec.template.spec.containers[].volumeMounts`
+*   **Annotations**: `metadata.annotations` and `spec.template.metadata.annotations`
 
 ## Annotation conflicts {id="olmv1-deployment-config-troubleshooting-conflicts_{{ context }}"}
 

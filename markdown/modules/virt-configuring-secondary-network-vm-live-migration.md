@@ -15,7 +15,7 @@ To configure a dedicated secondary network for live migration, you must first cr
 **Procedure**
 
 1.  Create a `NetworkAttachmentDefinition` manifest according to the following example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: "k8s.cni.cncf.io/v1"
     kind: NetworkAttachmentDefinition
     metadata:
@@ -39,13 +39,13 @@ To configure a dedicated secondary network for live migration, you must first cr
     *   `config.type` defines the name of the CNI plugin that provides the network for the NAD.
     *   `config.range` defines an IP address range for the secondary network. This range must not overlap the IP addresses of the main network.
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Add the name of the `NetworkAttachmentDefinition` object to the `spec.liveMigrationConfig` stanza of the `HyperConverged` CR.
 
     Example `HyperConverged` manifest:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

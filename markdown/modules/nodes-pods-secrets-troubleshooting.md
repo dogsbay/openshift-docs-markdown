@@ -30,9 +30,9 @@ secret, and clearing the following annotations on the service
     ```
 
 
-:::note
+    :::note
 
-The command removing annotation has a `-` after the annotation name to be
-removed.
-
-:::
+    The command removing annotation has a `-` after the annotation name to be
+    removed.
+    
+    :::

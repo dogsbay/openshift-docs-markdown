@@ -63,7 +63,7 @@ You can use the OpenShift CLI (`oc`) to install the {{ lcao }} from the 4.15 Ope
     ```terminal
     $ oc get csv -n openshift-lifecycle-agent
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME                              DISPLAY                     VERSION               REPLACES                           PHASE
     lifecycle-agent.v{{ product_version }}.0           Openshift Lifecycle Agent   {{ product_version }}.0                Succeeded
     ```

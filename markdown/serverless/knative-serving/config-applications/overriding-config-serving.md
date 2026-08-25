@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Overriding Knative Serving system deployment configurations {id="overriding-config-serving"}
 {% include "./_attributes/common-attributes.md" %}
+# Overriding Knative Serving system deployment configurations {id="overriding-config-serving"}
 {%- set context = "overriding-config-serving" %}
 
 You can override the default configurations for some specific deployments by modifying the `deployments` spec in the `KnativeServing` custom resources (CRs).

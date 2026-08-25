@@ -1,5 +1,5 @@
 ---
-title: "PodSecurityPolicySubjectReview []"
+title: "PodSecurityPolicySubjectReview [security.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PodSecurityPolicySubjectReviewSpec defines specification for PodSecurityPolicySubjectReview |
 | `status` | `object` | PodSecurityPolicySubjectReviewStatus contains information/status for PodSecurityPolicySubjectReview. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -49,6 +50,7 @@ Required
 | `groups` | `array (string)` | groups is the groups you’re testing for. |
 | `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the PodTemplateSpec to check. If template.spec.serviceAccountName is empty it will not be defaulted. If its non-empty, it will be checked. |
 | `user` | `string` | user is the user you’re testing for. If you specify "user" but not "group", then is it interpreted as "What if user were not a member of any groups. If user and groups are empty, then the check is performed using **only** the serviceAccountName in the template. |
+
 ### .status {id="_status"}
 
 Description
@@ -68,7 +70,7 @@ Type
 
 The following API endpoints are available:
 
-*   `/apis/security.openshift.io/v1/namespaces/{{ namespace }}/podsecuritypolicysubjectreviews`
+*   `/apis/security.openshift.io/v1/namespaces/{{ namespace }}/podsecuritypolicysubjectreviews`{minja}
     *   `POST`: create a PodSecurityPolicySubjectReview
 
 ### /apis/security.openshift.io/v1/namespaces/{{ namespace }}/podsecuritypolicysubjectreviews {id="_apissecurityopenshiftiov1namespaces_namespace_podsecuritypolicysubjectreviews"}

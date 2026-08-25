@@ -45,7 +45,7 @@ SPIRE UpstreamAuthority plugins for external certificate authorities
 
     cert-manager UpstreamAuthority plugin
 
-:   The cert-manager UpstreamAuthority plugin connects SPIRE Server to {{ cert_manager_operator }} for automated intermediate certificate provisioning. SPIRE Server creates a `CertificateRequest` custom resource, then the configured `Issuer` or `ClusterIssuer` signs the request, and then the SPIRE Server uses the signed intermediate certificate to issue workload identities.
+    :   The cert-manager UpstreamAuthority plugin connects SPIRE Server to {{ cert_manager_operator }} for automated intermediate certificate provisioning. SPIRE Server creates a `CertificateRequest` custom resource, then the configured `Issuer` or `ClusterIssuer` signs the request, and then the SPIRE Server uses the signed intermediate certificate to issue workload identities.
 
 
 Vault UpstreamAuthority plugin
@@ -80,7 +80,7 @@ Custom SCC `spire-spiffe-csi-driver`
 
 Action required after upgrade
 
-:   {{ zero_trust_full }} does not remove the legacy custom SCC `spire-spiffe-csi-driver`. After you upgrade {{ zero_trust_full }} to 1.1.0 from the ***OpenShift OperatorHub*** catalog, remove it manually once CSI is healthy on the platform SCC.
+:   {{ zero_trust_full }} does not remove the legacy custom SCC `spire-spiffe-csi-driver`. After you upgrade {{ zero_trust_full }} to 1.1.0 from the **OpenShift OperatorHub** catalog, remove it manually once CSI is healthy on the platform SCC.
 
     For more information, see [Manually delete the custom security context constraints](/security/zero_trust_workload_identity_manager/zero-trust-manager-configuration#zero-trust-manager-manually-delete-scc_zero-trust-manager-configuration).
 

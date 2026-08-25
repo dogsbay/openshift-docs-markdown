@@ -19,7 +19,7 @@ To configure an existing {{ product_title }} cluster to pull images from a mirro
 
 *   You have installed and configured the latest {{ rosa_cli_first }} on your installation host.
 *   You have installed a {{ product_title }} cluster.
-*   The {{ product_title }} cluster must be in a ***Ready*** state to create, edit, list, or delete image mirrors.
+*   The {{ product_title }} cluster must be in a **Ready** state to create, edit, list, or delete image mirrors.
 *   You have access to the mirror registries you want to configure.
 *   You have the required IAM permissions to manage cluster configurations. For more information, see "About IAM resources".
 

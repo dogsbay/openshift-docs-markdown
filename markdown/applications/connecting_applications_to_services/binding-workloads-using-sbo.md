@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Binding workloads using Service Binding Operator {id="binding-workloads-using-sbo"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Binding workloads using Service Binding Operator {id="binding-workloads-using-sbo"}
 {%- set context = "binding-workloads-using-sbo" %}
 
 Application developers must bind a workload to one or more backing services by using a binding secret. This secret is generated for the purpose of storing information to be consumed by the workload.

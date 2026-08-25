@@ -1,5 +1,5 @@
 ---
-title: "ServiceMonitor []"
+title: "ServiceMonitor [monitoring.coreos.com/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -35,7 +35,8 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the specification of desired Service selection for target discovery by Prometheus. |
-| `status` | `object` | status defines the status subresource. It is under active development and is updated only when the "StatusForConfigurationResources" feature gate is enabled. Most recent observed status of the ServiceMonitor. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
+| `status` | `object` | status defines the status subresource. It is under active development and is updated only when the "StatusForConfigurationResources" feature gate is enabled.<br>Most recent observed status of the ServiceMonitor. Read-only. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status |
+
 ### .spec {id="_spec"}
 
 Description
@@ -53,31 +54,32 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `attachMetadata` | `object` | attachMetadata defines additional metadata which is added to the discovered targets. It requires Prometheus >= v2.37.0. |
-| `bodySizeLimit` | `string` | bodySizeLimit when defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus. It requires Prometheus >= v2.28.0. |
+| `attachMetadata` | `object` | attachMetadata defines additional metadata which is added to the discovered targets.<br>It requires Prometheus >= v2.37.0. |
+| `bodySizeLimit` | `string` | bodySizeLimit when defined, bodySizeLimit specifies a job level limit on the size of uncompressed response body that will be accepted by Prometheus.<br>It requires Prometheus >= v2.28.0. |
 | `convertClassicHistogramsToNHCB` | `boolean` | convertClassicHistogramsToNHCB defines whether to convert all scraped classic histograms into a native histogram with custom buckets. It requires Prometheus >= v3.0.0. |
 | `endpoints` | `array` | endpoints defines the list of endpoints part of this ServiceMonitor. Defines how to scrape metrics from Kubernetes [Endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) objects. In most cases, an Endpoints object is backed by a Kubernetes [Service](https://kubernetes.io/docs/concepts/services-networking/service/) object with the same name and labels. |
 | `endpoints[]` | `object` | Endpoint defines an endpoint serving Prometheus metrics to be scraped by Prometheus. |
-| `fallbackScrapeProtocol` | `string` | fallbackScrapeProtocol defines the protocol to use if a scrape returns blank, unparseable, or otherwise invalid Content-Type. It requires Prometheus >= v3.0.0. |
-| `jobLabel` | `string` | jobLabel selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics. For example if `jobLabel` is set to `foo` and the Kubernetes `Service` object is labeled with `foo: bar`, then Prometheus adds the `job="bar"` label to all ingested metrics. If the value of this field is empty or if the label doesn’t exist for the given Service, the `job` label of the metrics defaults to the name of the associated Kubernetes `Service`. |
-| `keepDroppedTargets` | `integer` | keepDroppedTargets defines the per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit. It requires Prometheus >= v2.47.0. |
-| `labelLimit` | `integer` | labelLimit defines the per-scrape limit on number of labels that will be accepted for a sample. It requires Prometheus >= v2.27.0. |
-| `labelNameLengthLimit` | `integer` | labelNameLengthLimit defines the per-scrape limit on length of labels name that will be accepted for a sample. It requires Prometheus >= v2.27.0. |
-| `labelValueLengthLimit` | `integer` | labelValueLengthLimit defines the per-scrape limit on length of labels value that will be accepted for a sample. It requires Prometheus >= v2.27.0. |
+| `fallbackScrapeProtocol` | `string` | fallbackScrapeProtocol defines the protocol to use if a scrape returns blank, unparseable, or otherwise invalid Content-Type.<br>It requires Prometheus >= v3.0.0. |
+| `jobLabel` | `string` | jobLabel selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics.<br>For example if `jobLabel` is set to `foo` and the Kubernetes `Service` object is labeled with `foo: bar`, then Prometheus adds the `job="bar"` label to all ingested metrics.<br>If the value of this field is empty or if the label doesn’t exist for the given Service, the `job` label of the metrics defaults to the name of the associated Kubernetes `Service`. |
+| `keepDroppedTargets` | `integer` | keepDroppedTargets defines the per-scrape limit on the number of targets dropped by relabeling that will be kept in memory. 0 means no limit.<br>It requires Prometheus >= v2.47.0. |
+| `labelLimit` | `integer` | labelLimit defines the per-scrape limit on number of labels that will be accepted for a sample.<br>It requires Prometheus >= v2.27.0. |
+| `labelNameLengthLimit` | `integer` | labelNameLengthLimit defines the per-scrape limit on length of labels name that will be accepted for a sample.<br>It requires Prometheus >= v2.27.0. |
+| `labelValueLengthLimit` | `integer` | labelValueLengthLimit defines the per-scrape limit on length of labels value that will be accepted for a sample.<br>It requires Prometheus >= v2.27.0. |
 | `namespaceSelector` | `object` | namespaceSelector defines in which namespace(s) Prometheus should discover the services. By default, the services are discovered in the same namespace as the `ServiceMonitor` object but it is possible to select pods across different/all namespaces. |
 | `nativeHistogramBucketLimit` | `integer` | nativeHistogramBucketLimit defines ff there are more than this many buckets in a native histogram, buckets will be merged to stay within the limit. It requires Prometheus >= v2.45.0. |
 | `nativeHistogramMinBucketFactor` | `integer-or-string` | nativeHistogramMinBucketFactor defines if the growth factor of one bucket to the next is smaller than this, buckets will be merged to increase the factor sufficiently. It requires Prometheus >= v2.50.0. |
 | `podTargetLabels` | `array (string)` | podTargetLabels defines the labels which are transferred from the associated Kubernetes `Pod` object onto the ingested metrics. |
 | `sampleLimit` | `integer` | sampleLimit defines a per-scrape limit on the number of scraped samples that will be accepted. |
 | `scrapeClass` | `string` | scrapeClass defines the scrape class to apply. |
-| `scrapeClassicHistograms` | `boolean` | scrapeClassicHistograms defines whether to scrape a classic histogram that is also exposed as a native histogram. It requires Prometheus >= v2.45.0. Notice: `scrapeClassicHistograms` corresponds to the `always_scrape_classic_histograms` field in the Prometheus configuration. |
+| `scrapeClassicHistograms` | `boolean` | scrapeClassicHistograms defines whether to scrape a classic histogram that is also exposed as a native histogram. It requires Prometheus >= v2.45.0.<br>Notice: `scrapeClassicHistograms` corresponds to the `always_scrape_classic_histograms` field in the Prometheus configuration. |
 | `scrapeNativeHistograms` | `boolean` | scrapeNativeHistograms defines whether to enable scraping of native histograms. It requires Prometheus >= v3.8.0. |
-| `scrapeProtocols` | `array (string)` | scrapeProtocols defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred). If unset, Prometheus uses its default value. It requires Prometheus >= v2.49.0. |
+| `scrapeProtocols` | `array (string)` | scrapeProtocols defines the protocols to negotiate during a scrape. It tells clients the protocols supported by Prometheus in order of preference (from most to least preferred).<br>If unset, Prometheus uses its default value.<br>It requires Prometheus >= v2.49.0. |
 | `selector` | `object` | selector defines the label selector to select the Kubernetes `Endpoints` objects to scrape metrics from. |
-| `selectorMechanism` | `string` | selectorMechanism defines the mechanism used to select the endpoints to scrape. By default, the selection process relies on relabel configurations to filter the discovered targets. Alternatively, you can opt in for role selectors, which may offer better efficiency in large clusters. Which strategy is best for your use case needs to be carefully evaluated. It requires Prometheus >= v2.17.0. |
-| `serviceDiscoveryRole` | `string` | serviceDiscoveryRole defines the service discovery role used to discover targets. If set, the value should be either "Endpoints" or "EndpointSlice". Otherwise it defaults to the value defined in the Prometheus/PrometheusAgent resource. |
+| `selectorMechanism` | `string` | selectorMechanism defines the mechanism used to select the endpoints to scrape. By default, the selection process relies on relabel configurations to filter the discovered targets. Alternatively, you can opt in for role selectors, which may offer better efficiency in large clusters. Which strategy is best for your use case needs to be carefully evaluated.<br>It requires Prometheus >= v2.17.0. |
+| `serviceDiscoveryRole` | `string` | serviceDiscoveryRole defines the service discovery role used to discover targets.<br>If set, the value should be either "Endpoints" or "EndpointSlice". Otherwise it defaults to the value defined in the Prometheus/PrometheusAgent resource. |
 | `targetLabels` | `array (string)` | targetLabels defines the labels which are transferred from the associated Kubernetes `Service` object onto the ingested metrics. |
 | `targetLimit` | `integer` | targetLimit defines a limit on the number of scraped targets that will be accepted. |
+
 ### .spec.attachMetadata {id="_specattachmetadata"}
 
 Description
@@ -93,7 +95,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `node` | `boolean` | node when set to true, Prometheus attaches node metadata to the discovered targets. The Prometheus service account must have the `list` and `watch` permissions on the `Nodes` objects. |
+| `node` | `boolean` | node when set to true, Prometheus attaches node metadata to the discovered targets.<br>The Prometheus service account must have the `list` and `watch` permissions on the `Nodes` objects. |
+
 ### .spec.endpoints {id="_specendpoints"}
 
 Description
@@ -117,36 +120,37 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `authorization` | `object` | authorization configures the Authorization header credentials used by the client. Cannot be set at the same time as `basicAuth`, `bearerTokenSecret` or `oauth2`. |
-| `basicAuth` | `object` | basicAuth defines the Basic Authentication credentials used by the client. Cannot be set at the same time as `authorization`, `bearerTokenSecret` or `oauth2`. |
-| `bearerTokenFile` | `string` | bearerTokenFile defines the file to read bearer token for scraping the target. Deprecated: use `authorization` instead. |
-| `bearerTokenSecret` | `object` | bearerTokenSecret defines a key of a Secret containing the bearer token used by the client for authentication. The secret needs to be in the same namespace as the custom resource and readable by the Prometheus Operator. Cannot be set at the same time as `authorization`, `basicAuth` or `oauth2`. Deprecated: use `authorization` instead. |
+| `authorization` | `object` | authorization configures the Authorization header credentials used by the client.<br>Cannot be set at the same time as `basicAuth`, `bearerTokenSecret` or `oauth2`. |
+| `basicAuth` | `object` | basicAuth defines the Basic Authentication credentials used by the client.<br>Cannot be set at the same time as `authorization`, `bearerTokenSecret` or `oauth2`. |
+| `bearerTokenFile` | `string` | bearerTokenFile defines the file to read bearer token for scraping the target.<br>Deprecated: use `authorization` instead. |
+| `bearerTokenSecret` | `object` | bearerTokenSecret defines a key of a Secret containing the bearer token used by the client for authentication. The secret needs to be in the same namespace as the custom resource and readable by the Prometheus Operator.<br>Cannot be set at the same time as `authorization`, `basicAuth` or `oauth2`.<br>Deprecated: use `authorization` instead. |
 | `enableHttp2` | `boolean` | enableHttp2 can be used to disable HTTP2. |
-| `filterRunning` | `boolean` | filterRunning when true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery. If unset, the filtering is enabled. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase |
+| `filterRunning` | `boolean` | filterRunning when true, the pods which are not running (e.g. either in Failed or Succeeded state) are dropped during the target discovery.<br>If unset, the filtering is enabled.<br>More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase |
 | `followRedirects` | `boolean` | followRedirects defines whether the client should follow HTTP 3xx redirects. |
 | `honorLabels` | `boolean` | honorLabels defines when true the metric’s labels when they collide with the target’s labels. |
 | `honorTimestamps` | `boolean` | honorTimestamps defines whether Prometheus preserves the timestamps when exposed by the target. |
-| `interval` | `string` | interval at which Prometheus scrapes the metrics from the target. If empty, Prometheus uses the global scrape interval. |
+| `interval` | `string` | interval at which Prometheus scrapes the metrics from the target.<br>If empty, Prometheus uses the global scrape interval. |
 | `metricRelabelings` | `array` | metricRelabelings defines the relabeling rules to apply to the samples before ingestion. |
-| `metricRelabelings[]` | `object` | RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `oauth2` | `object` | oauth2 defines the OAuth2 settings used by the client. It requires Prometheus >= 2.27.0. Cannot be set at the same time as `authorization`, `basicAuth` or `bearerTokenSecret`. |
+| `metricRelabelings[]` | `object` | RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.<br>More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `oauth2` | `object` | oauth2 defines the OAuth2 settings used by the client.<br>It requires Prometheus >= 2.27.0.<br>Cannot be set at the same time as `authorization`, `basicAuth` or `bearerTokenSecret`. |
 | `params` | `object` | params define optional HTTP URL parameters. |
 | `params{}` | `array (string)` |  |
-| `path` | `string` | path defines the HTTP path from which to scrape for metrics. If empty, Prometheus uses the default value (e.g. `/metrics`). |
-| `port` | `string` | port defines the name of the Service port which this endpoint refers to. It takes precedence over `targetPort`. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `path` | `string` | path defines the HTTP path from which to scrape for metrics.<br>If empty, Prometheus uses the default value (e.g. `/metrics`). |
+| `port` | `string` | port defines the name of the Service port which this endpoint refers to.<br>It takes precedence over `targetPort`. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
-| `relabelings` | `array` | relabelings defines the relabeling rules to apply the target’s metadata labels. The Operator automatically adds relabelings for a few standard Kubernetes fields. The original scrape job’s name is available via the `\__tmp_prometheus_job_name` label. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config |
-| `relabelings[]` | `object` | RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples. More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config |
+| `relabelings` | `array` | relabelings defines the relabeling rules to apply the target’s metadata labels.<br>The Operator automatically adds relabelings for a few standard Kubernetes fields.<br>The original scrape job’s name is available via the `\__tmp_prometheus_job_name` label.<br>More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config |
+| `relabelings[]` | `object` | RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.<br>More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config |
 | `scheme` | `string` | scheme defines the HTTP scheme to use when scraping the metrics. |
-| `scrapeTimeout` | `string` | scrapeTimeout defines the timeout after which Prometheus considers the scrape to be failed. If empty, Prometheus uses the global scrape timeout unless it is less than the target’s scrape interval value in which the latter is used. The value cannot be greater than the scrape interval otherwise the operator will reject the resource. |
+| `scrapeTimeout` | `string` | scrapeTimeout defines the timeout after which Prometheus considers the scrape to be failed.<br>If empty, Prometheus uses the global scrape timeout unless it is less than the target’s scrape interval value in which the latter is used. The value cannot be greater than the scrape interval otherwise the operator will reject the resource. |
 | `targetPort` | `integer-or-string` | targetPort defines the name or number of the target port of the `Pod` object behind the Service. The port must be specified with the container’s port property. |
 | `tlsConfig` | `object` | tlsConfig defines TLS configuration used by the client. |
-| `trackTimestampsStaleness` | `boolean` | trackTimestampsStaleness defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if `honorTimestamps` is false. It requires Prometheus >= v2.48.0. |
+| `trackTimestampsStaleness` | `boolean` | trackTimestampsStaleness defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if `honorTimestamps` is false.<br>It requires Prometheus >= v2.48.0. |
+
 ### .spec.endpoints[].authorization {id="_specendpointsauthorization"}
 
 Description
@@ -163,7 +167,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
-| `type` | `string` | type defines the authentication type. The value is case-insensitive. "Basic" is not a supported value. Default: "Bearer" |
+| `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
+
 ### .spec.endpoints[].authorization.credentials {id="_specendpointsauthorizationcredentials"}
 
 Description
@@ -182,6 +187,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].basicAuth {id="_specendpointsbasicauth"}
 
 Description
@@ -199,6 +205,7 @@ Type
 | --- | --- | --- |
 | `password` | `object` | password defines a key of a Secret containing the password for authentication. |
 | `username` | `object` | username defines a key of a Secret containing the username for authentication. |
+
 ### .spec.endpoints[].basicAuth.password {id="_specendpointsbasicauthpassword"}
 
 Description
@@ -218,6 +225,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].basicAuth.username {id="_specendpointsbasicauthusername"}
 
 Description
@@ -237,6 +245,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].bearerTokenSecret {id="_specendpointsbearertokensecret"}
 
 Description
@@ -264,6 +273,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].metricRelabelings {id="_specendpointsmetricrelabelings"}
 
 Description
@@ -289,13 +299,14 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `action` | `string` | action to perform based on the regex matching. `Uppercase` and `Lowercase` actions require Prometheus >= v2.36.0. `DropEqual` and `KeepEqual` actions require Prometheus >= v2.41.0. Default: "Replace" |
-| `modulus` | `integer` | modulus to take of the hash of the source label values. Only applicable when the action is `HashMod`. |
+| `action` | `string` | action to perform based on the regex matching.<br>`Uppercase` and `Lowercase` actions require Prometheus >= v2.36.0. `DropEqual` and `KeepEqual` actions require Prometheus >= v2.41.0.<br>Default: "Replace" |
+| `modulus` | `integer` | modulus to take of the hash of the source label values.<br>Only applicable when the action is `HashMod`. |
 | `regex` | `string` | regex defines the regular expression against which the extracted value is matched. |
-| `replacement` | `string` | replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available. |
+| `replacement` | `string` | replacement value against which a Replace action is performed if the regular expression matches.<br>Regex capture groups are available. |
 | `separator` | `string` | separator defines the string between concatenated SourceLabels. |
 | `sourceLabels` | `array (string)` | sourceLabels defines the source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression. |
-| `targetLabel` | `string` | targetLabel defines the label to which the resulting string is written in a replacement. It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions. Regex capture groups are available. |
+| `targetLabel` | `string` | targetLabel defines the label to which the resulting string is written in a replacement.<br>It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions.<br>Regex capture groups are available. |
+
 ### .spec.endpoints[].oauth2 {id="_specendpointsoauth2"}
 
 Description
@@ -322,15 +333,16 @@ Required
 | `clientId` | `object` | clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID. |
 | `clientSecret` | `object` | clientSecret defines a key of a Secret containing the OAuth2 client’s secret. |
 | `endpointParams` | `object (string)` | endpointParams configures the HTTP parameters to append to the token URL. |
-| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
-| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests. It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `noProxy` | `string` | noProxy defines a comma-separated string that can contain IPs, CIDR notation, domain names that should be excluded from proxying. IP and domain names can contain port numbers.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
-| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY). It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
+| `proxyFromEnvironment` | `boolean` | proxyFromEnvironment defines whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyUrl` | `string` | proxyUrl defines the HTTP proxy server to use. |
 | `scopes` | `array (string)` | scopes defines the OAuth2 scopes used for the token request. |
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
 | `tokenUrl` | `string` | tokenUrl defines the URL to fetch the token from. |
+
 ### .spec.endpoints[].oauth2.clientId {id="_specendpointsoauth2clientid"}
 
 Description
@@ -345,6 +357,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.endpoints[].oauth2.clientId.configMap {id="_specendpointsoauth2clientidconfigmap"}
 
 Description
@@ -363,6 +376,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.endpoints[].oauth2.clientId.secret {id="_specendpointsoauth2clientidsecret"}
 
 Description
@@ -381,6 +395,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].oauth2.clientSecret {id="_specendpointsoauth2clientsecret"}
 
 Description
@@ -400,6 +415,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].oauth2.proxyConnectHeader {id="_specendpointsoauth2proxyconnectheader"}
 
 Description
@@ -439,6 +455,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].oauth2.tlsConfig {id="_specendpointsoauth2tlsconfig"}
 
 Description
@@ -455,9 +472,10 @@ Type
 | `cert` | `object` | cert defines the Client certificate to present when doing client-authentication. |
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
+
 ### .spec.endpoints[].oauth2.tlsConfig.ca {id="_specendpointsoauth2tlsconfigca"}
 
 Description
@@ -471,6 +489,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.endpoints[].oauth2.tlsConfig.ca.configMap {id="_specendpointsoauth2tlsconfigcaconfigmap"}
 
 Description
@@ -489,6 +508,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.endpoints[].oauth2.tlsConfig.ca.secret {id="_specendpointsoauth2tlsconfigcasecret"}
 
 Description
@@ -507,6 +527,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].oauth2.tlsConfig.cert {id="_specendpointsoauth2tlsconfigcert"}
 
 Description
@@ -520,6 +541,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.endpoints[].oauth2.tlsConfig.cert.configMap {id="_specendpointsoauth2tlsconfigcertconfigmap"}
 
 Description
@@ -538,6 +560,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.endpoints[].oauth2.tlsConfig.cert.secret {id="_specendpointsoauth2tlsconfigcertsecret"}
 
 Description
@@ -556,6 +579,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].oauth2.tlsConfig.keySecret {id="_specendpointsoauth2tlsconfigkeysecret"}
 
 Description
@@ -574,6 +598,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].params {id="_specendpointsparams"}
 
 Description
@@ -622,6 +647,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].relabelings {id="_specendpointsrelabelings"}
 
 Description
@@ -656,13 +682,14 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `action` | `string` | action to perform based on the regex matching. `Uppercase` and `Lowercase` actions require Prometheus >= v2.36.0. `DropEqual` and `KeepEqual` actions require Prometheus >= v2.41.0. Default: "Replace" |
-| `modulus` | `integer` | modulus to take of the hash of the source label values. Only applicable when the action is `HashMod`. |
+| `action` | `string` | action to perform based on the regex matching.<br>`Uppercase` and `Lowercase` actions require Prometheus >= v2.36.0. `DropEqual` and `KeepEqual` actions require Prometheus >= v2.41.0.<br>Default: "Replace" |
+| `modulus` | `integer` | modulus to take of the hash of the source label values.<br>Only applicable when the action is `HashMod`. |
 | `regex` | `string` | regex defines the regular expression against which the extracted value is matched. |
-| `replacement` | `string` | replacement value against which a Replace action is performed if the regular expression matches. Regex capture groups are available. |
+| `replacement` | `string` | replacement value against which a Replace action is performed if the regular expression matches.<br>Regex capture groups are available. |
 | `separator` | `string` | separator defines the string between concatenated SourceLabels. |
 | `sourceLabels` | `array (string)` | sourceLabels defines the source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression. |
-| `targetLabel` | `string` | targetLabel defines the label to which the resulting string is written in a replacement. It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions. Regex capture groups are available. |
+| `targetLabel` | `string` | targetLabel defines the label to which the resulting string is written in a replacement.<br>It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions.<br>Regex capture groups are available. |
+
 ### .spec.endpoints[].tlsConfig {id="_specendpointstlsconfig"}
 
 Description
@@ -681,9 +708,10 @@ Type
 | `insecureSkipVerify` | `boolean` | insecureSkipVerify defines how to disable target certificate validation. |
 | `keyFile` | `string` | keyFile defines the path to the client key file in the Prometheus container for the targets. |
 | `keySecret` | `object` | keySecret defines the Secret containing the client key file for the targets. |
-| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version. It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
-| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version. It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
+| `maxVersion` | `string` | maxVersion defines the maximum acceptable TLS version.<br>It requires Prometheus >= v2.41.0 or Thanos >= v0.31.0. |
+| `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
+
 ### .spec.endpoints[].tlsConfig.ca {id="_specendpointstlsconfigca"}
 
 Description
@@ -697,6 +725,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.endpoints[].tlsConfig.ca.configMap {id="_specendpointstlsconfigcaconfigmap"}
 
 Description
@@ -715,6 +744,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.endpoints[].tlsConfig.ca.secret {id="_specendpointstlsconfigcasecret"}
 
 Description
@@ -733,6 +763,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].tlsConfig.cert {id="_specendpointstlsconfigcert"}
 
 Description
@@ -746,6 +777,7 @@ Type
 | --- | --- | --- |
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
+
 ### .spec.endpoints[].tlsConfig.cert.configMap {id="_specendpointstlsconfigcertconfigmap"}
 
 Description
@@ -764,6 +796,7 @@ Required
 | `key` | `string` | The key to select. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
+
 ### .spec.endpoints[].tlsConfig.cert.secret {id="_specendpointstlsconfigcertsecret"}
 
 Description
@@ -782,6 +815,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.endpoints[].tlsConfig.keySecret {id="_specendpointstlsconfigkeysecret"}
 
 Description
@@ -800,6 +834,7 @@ Required
 | `key` | `string` | The key of the secret to select from.  Must be a valid secret key. |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
+
 ### .spec.namespaceSelector {id="_specnamespaceselector"}
 
 Description
@@ -814,6 +849,7 @@ Type
 | --- | --- | --- |
 | `any` | `boolean` | any defines the boolean describing whether all namespaces are selected in contrast to a list restricting them. |
 | `matchNames` | `array (string)` | matchNames defines the list of namespace names to select from. |
+
 ### .spec.selector {id="_specselector"}
 
 Description
@@ -828,6 +864,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.selector.matchExpressions {id="_specselectormatchexpressions"}
 
 Description
@@ -857,6 +894,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status {id="_status"}
 
 Description
@@ -876,6 +914,7 @@ Type
 | --- | --- | --- |
 | `bindings` | `array` | bindings defines the list of workload resources (Prometheus, PrometheusAgent, ThanosRuler or Alertmanager) which select the configuration resource. |
 | `bindings[]` | `object` | WorkloadBinding is a link between a configuration resource and a workload resource. |
+
 ### .status.bindings {id="_statusbindings"}
 
 Description
@@ -909,6 +948,7 @@ Required
 | `name` | `string` | name defines the name of the referenced object. |
 | `namespace` | `string` | namespace defines the namespace of the referenced object. |
 | `resource` | `string` | resource defines the type of resource being referenced (e.g. Prometheus, PrometheusAgent, ThanosRuler or Alertmanager). |
+
 ### .status.bindings[].conditions {id="_statusbindingsconditions"}
 
 Description
@@ -948,16 +988,16 @@ The following API endpoints are available:
 
 *   `/apis/monitoring.coreos.com/v1/servicemonitors`
     *   `GET`: list objects of kind ServiceMonitor
-*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/servicemonitors`
+*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/servicemonitors`{minja}
     *   `DELETE`: delete collection of ServiceMonitor
     *   `GET`: list objects of kind ServiceMonitor
     *   `POST`: create a ServiceMonitor
-*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/servicemonitors/{{ name }}`
+*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/servicemonitors/{{ name }}`{minja}
     *   `DELETE`: delete a ServiceMonitor
     *   `GET`: read the specified ServiceMonitor
     *   `PATCH`: partially update the specified ServiceMonitor
     *   `PUT`: replace the specified ServiceMonitor
-*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/servicemonitors/{{ name }}/status`
+*   `/apis/monitoring.coreos.com/v1/namespaces/{{ namespace }}/servicemonitors/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ServiceMonitor
     *   `PATCH`: partially update status of the specified ServiceMonitor
     *   `PUT`: replace status of the specified ServiceMonitor

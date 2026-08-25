@@ -10,7 +10,7 @@ You can configure an eviction strategy for a cluster by using the command line. 
 **Procedure**
 
 1.  Edit the `hyperconverged` resource by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Set the cluster eviction strategy as shown in the following example:

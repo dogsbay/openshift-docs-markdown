@@ -53,7 +53,7 @@ If nothing is listed in the `spec.listeners[].allowedRoutes[]` field, the gatewa
               matchLabels:
                 env: "dev"
     ```
-   \
+    +
     With this configuration, only `HTTPRoute` resources in namespaces that have the `env: "dev"` label can attach to these listeners.
 1.  Apply the `Gateway` CR by running the following command:
     ```terminal

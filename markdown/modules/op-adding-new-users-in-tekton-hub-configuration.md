@@ -24,11 +24,11 @@ Cluster administrators can add new users to {{ tekton_hub }} with different scop
     ```
     1.  The usernames registered with the Git repository hosting service provider.
 
-        :::note
+    :::note
 
-        A new user signing in to {{ tekton_hub }} for the first time will have only the default scope. To activate additional scopes, ensure the user’s username is added in the `scopes` field of the `TektonHub` CR.
-        
-        :::
+    A new user signing in to {{ tekton_hub }} for the first time will have only the default scope. To activate additional scopes, ensure the user’s username is added in the `scopes` field of the `TektonHub` CR.
+    
+    :::
 
 1.  Apply the updated `TektonHub` CR.
     ```terminal

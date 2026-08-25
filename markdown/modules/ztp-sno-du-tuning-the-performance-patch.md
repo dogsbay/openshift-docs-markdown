@@ -3,11 +3,11 @@
 
 {{ sno_caps }} clusters that run DU workloads require additional performance tuning configurations necessary for high-performance workloads. The following example `Tuned` CR extends the `Tuned` profile: {._abstract}
 
-```yaml title="Recommended extended Tuned profile configuration (TunedPerformancePatch.yaml)"
+```yaml title="Recommended extended Tuned profile configuration (TunedPerformancePatch.yaml)" {minja}
 {% include "./snippets/ztp_TunedPerformancePatch.yaml" %}
 ```
 
-***`Tuned` CR options for {{ sno }} clusters***
+**`Tuned` CR options for {{ sno }} clusters**
 
 <table>
 <thead>

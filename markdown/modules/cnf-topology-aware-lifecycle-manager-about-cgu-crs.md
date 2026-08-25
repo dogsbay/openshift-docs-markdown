@@ -215,90 +215,90 @@ Enforcing the policies for subsequent batches starts immediately after all the c
     *   The `ClusterGroupUpgrade` CR is not enabled.
 
 
-:::note
+    :::note
 
-The managed policies apply in the order that they are listed in the `managedPolicies` field in the `ClusterGroupUpgrade` CR. One managed policy is applied to the specified clusters at a time. When a cluster complies with the current policy, the next managed policy is applied to it.
+    The managed policies apply in the order that they are listed in the `managedPolicies` field in the `ClusterGroupUpgrade` CR. One managed policy is applied to the specified clusters at a time. When a cluster complies with the current policy, the next managed policy is applied to it.
+    
+    :::
 
-:::
 
-
-```yaml title="Sample ClusterGroupUpgrade CR in the Progressing state"
-apiVersion: ran.openshift.io/v1alpha1
-kind: ClusterGroupUpgrade
-metadata:
-  creationTimestamp: '2022-11-18T16:27:15Z'
-  finalizers:
-    - ran.openshift.io/cleanup-finalizer
-  generation: 1
-  name: talm-cgu
-  namespace: talm-namespace
-  resourceVersion: '40451823'
-  uid: cca245a5-4bca-45fa-89c0-aa6af81a596c
-Spec:
-  actions:
-    afterCompletion:
-      deleteObjects: true
-    beforeEnable: {}
-  clusters:
-    - spoke1
-  enable: true
-  managedPolicies:
-    - talm-policy
-  preCaching: true
-  remediationStrategy:
-    canaries:
+    ```yaml title="Sample ClusterGroupUpgrade CR in the Progressing state"
+    apiVersion: ran.openshift.io/v1alpha1
+    kind: ClusterGroupUpgrade
+    metadata:
+      creationTimestamp: '2022-11-18T16:27:15Z'
+      finalizers:
+        - ran.openshift.io/cleanup-finalizer
+      generation: 1
+      name: talm-cgu
+      namespace: talm-namespace
+      resourceVersion: '40451823'
+      uid: cca245a5-4bca-45fa-89c0-aa6af81a596c
+    Spec:
+      actions:
+        afterCompletion:
+          deleteObjects: true
+        beforeEnable: {}
+      clusters:
         - spoke1
-    maxConcurrency: 2
-    timeout: 240
-  clusterLabelSelectors:
-    - matchExpressions:
-      - key: label1
-      operator: In
-      values:
-        - value1a
-        - value1b
-  batchTimeoutAction:
-status:
-    clusters:
-      - name: spoke1
-        state: complete
-    computedMaxConcurrency: 2
-    conditions:
-      - lastTransitionTime: '2022-11-18T16:27:15Z'
-        message: All selected clusters are valid
-        reason: ClusterSelectionCompleted
-        status: 'True'
-        type: ClustersSelected
-      - lastTransitionTime: '2022-11-18T16:27:15Z'
-        message: Completed validation
-        reason: ValidationCompleted
-        status: 'True'
-        type: Validated
-      - lastTransitionTime: '2022-11-18T16:37:16Z'
-        message: Remediating non-compliant policies
-        reason: InProgress
-        status: 'True'
-        type: Progressing
-    managedPoliciesForUpgrade:
-      - name: talm-policy
-        namespace: talm-namespace
-    managedPoliciesNs:
-      talm-policy: talm-namespace
-    remediationPlan:
-      - - spoke1
-      - - spoke2
-        - spoke3
+      enable: true
+      managedPolicies:
+        - talm-policy
+      preCaching: true
+      remediationStrategy:
+        canaries:
+            - spoke1
+        maxConcurrency: 2
+        timeout: 240
+      clusterLabelSelectors:
+        - matchExpressions:
+          - key: label1
+          operator: In
+          values:
+            - value1a
+            - value1b
+      batchTimeoutAction:
     status:
-      currentBatch: 2
-      currentBatchRemediationProgress:
-        spoke2:
-          state: Completed
-        spoke3:
-          policyIndex: 0
-          state: InProgress
-      currentBatchStartedAt: '2022-11-18T16:27:16Z'
-      startedAt: '2022-11-18T16:27:15Z'
-```
+        clusters:
+          - name: spoke1
+            state: complete
+        computedMaxConcurrency: 2
+        conditions:
+          - lastTransitionTime: '2022-11-18T16:27:15Z'
+            message: All selected clusters are valid
+            reason: ClusterSelectionCompleted
+            status: 'True'
+            type: ClustersSelected
+          - lastTransitionTime: '2022-11-18T16:27:15Z'
+            message: Completed validation
+            reason: ValidationCompleted
+            status: 'True'
+            type: Validated
+          - lastTransitionTime: '2022-11-18T16:37:16Z'
+            message: Remediating non-compliant policies
+            reason: InProgress
+            status: 'True'
+            type: Progressing
+        managedPoliciesForUpgrade:
+          - name: talm-policy
+            namespace: talm-namespace
+        managedPoliciesNs:
+          talm-policy: talm-namespace
+        remediationPlan:
+          - - spoke1
+          - - spoke2
+            - spoke3
+        status:
+          currentBatch: 2
+          currentBatchRemediationProgress:
+            spoke2:
+              state: Completed
+            spoke3:
+              policyIndex: 0
+              state: InProgress
+          currentBatchStartedAt: '2022-11-18T16:27:16Z'
+          startedAt: '2022-11-18T16:27:15Z'
+    ```
 
 The `Progressing` fields show that {{ cgu_operator }} is in the process of remediating policies.
 
@@ -315,134 +315,132 @@ The `Progressing` fields show that {{ cgu_operator }} is in the process of remed
     *   The current batch contains canary updates and the cluster in the batch does not comply with all the managed policies within the batch timeout.
     *   Clusters did not comply with the managed policies within the `timeout` value specified in the `remediationStrategy` field.
 
-```yaml title="Sample ClusterGroupUpgrade CR in the Succeeded state"
-    apiVersion: ran.openshift.io/v1alpha1
-    kind: ClusterGroupUpgrade
-    metadata:
-      name: cgu-upgrade-complete
-      namespace: default
-    spec:
-      clusters:
-      - spoke1
-      - spoke4
-      enable: true
-      managedPolicies:
-      - policy1-common-cluster-version-policy
-      - policy2-common-pao-sub-policy
-      remediationStrategy:
-        maxConcurrency: 1
-        timeout: 240
-    status:
-      clusters:
-        - name: spoke1
-          state: complete
-        - name: spoke4
-          state: complete
-      conditions:
-      - message: All selected clusters are valid
-        reason: ClusterSelectionCompleted
-        status: "True"
-        type: ClustersSelected
-      - message: Completed validation
-        reason: ValidationCompleted
-        status: "True"
-        type: Validated
-      - message: All clusters are compliant with all the managed policies
-        reason: Completed
-        status: "False"
-        type: Progressing
-      - message: All clusters are compliant with all the managed policies
-        reason: Completed
-        status: "True"
-        type: Succeeded
-      managedPoliciesForUpgrade:
-      - name: policy1-common-cluster-version-policy
-        namespace: default
-      - name: policy2-common-pao-sub-policy
-        namespace: default
-      remediationPlan:
-      - - spoke1
-      - - spoke4
-      status:
-        completedAt: '2022-11-18T16:27:16Z'
-        startedAt: '2022-11-18T16:27:15Z'
+    ```yaml title="Sample ClusterGroupUpgrade CR in the Succeeded state"
+        apiVersion: ran.openshift.io/v1alpha1
+        kind: ClusterGroupUpgrade
+        metadata:
+          name: cgu-upgrade-complete
+          namespace: default
+        spec:
+          clusters:
+          - spoke1
+          - spoke4
+          enable: true
+          managedPolicies:
+          - policy1-common-cluster-version-policy
+          - policy2-common-pao-sub-policy
+          remediationStrategy:
+            maxConcurrency: 1
+            timeout: 240
+        status:
+          clusters:
+            - name: spoke1
+              state: complete
+            - name: spoke4
+              state: complete
+          conditions:
+          - message: All selected clusters are valid
+            reason: ClusterSelectionCompleted
+            status: "True"
+            type: ClustersSelected
+          - message: Completed validation
+            reason: ValidationCompleted
+            status: "True"
+            type: Validated
+          - message: All clusters are compliant with all the managed policies
+            reason: Completed
+            status: "False"
+            type: Progressing
+          - message: All clusters are compliant with all the managed policies
+            reason: Completed
+            status: "True"
+            type: Succeeded
+          managedPoliciesForUpgrade:
+          - name: policy1-common-cluster-version-policy
+            namespace: default
+          - name: policy2-common-pao-sub-policy
+            namespace: default
+          remediationPlan:
+          - - spoke1
+          - - spoke4
+          status:
+            completedAt: '2022-11-18T16:27:16Z'
+            startedAt: '2022-11-18T16:27:15Z'
 
-```
+    ```
+        *   `spec.conditions.type` in the `Progressing` fields, the status is `false` as the update has completed; clusters are compliant with all the managed policies.
+        *   `spec.conditions.type` the `Succeeded` fields show that the validations completed successfully.
+        *   `status` the `status` field includes a list of clusters and their respective statuses. The status of a cluster can be `complete` or `timedout`.
 
-*   `spec.conditions.type` in the `Progressing` fields, the status is `false` as the update has completed; clusters are compliant with all the managed policies.
-*   `spec.conditions.type` the `Succeeded` fields show that the validations completed successfully.
-*   `status` the `status` field includes a list of clusters and their respective statuses. The status of a cluster can be `complete` or `timedout`.
-
-```yaml title="Sample ClusterGroupUpgrade CR in the timedout state"
-apiVersion: ran.openshift.io/v1alpha1
-kind: ClusterGroupUpgrade
-metadata:
-  creationTimestamp: '2022-11-18T16:27:15Z'
-  finalizers:
-    - ran.openshift.io/cleanup-finalizer
-  generation: 1
-  name: talm-cgu
-  namespace: talm-namespace
-  resourceVersion: '40451823'
-  uid: cca245a5-4bca-45fa-89c0-aa6af81a596c
-spec:
-  actions:
-    afterCompletion:
-      deleteObjects: true
-    beforeEnable: {}
-  clusters:
-    - spoke1
-    - spoke2
-  enable: true
-  managedPolicies:
-    - talm-policy
-  preCaching: false
-  remediationStrategy:
-    maxConcurrency: 2
-    timeout: 240
-status:
-  clusters:
-    - name: spoke1
-      state: complete
-    - currentPolicy:
-        name: talm-policy
-        status: NonCompliant
-      name: spoke2
-      state: timedout
-  computedMaxConcurrency: 2
-  conditions:
-    - lastTransitionTime: '2022-11-18T16:27:15Z'
-      message: All selected clusters are valid
-      reason: ClusterSelectionCompleted
-      status: 'True'
-      type: ClustersSelected
-    - lastTransitionTime: '2022-11-18T16:27:15Z'
-      message: Completed validation
-      reason: ValidationCompleted
-      status: 'True'
-      type: Validated
-    - lastTransitionTime: '2022-11-18T16:37:16Z'
-      message: Policy remediation took too long
-      reason: TimedOut
-      status: 'False'
-      type: Progressing
-    - lastTransitionTime: '2022-11-18T16:37:16Z'
-      message: Policy remediation took too long
-      reason: TimedOut
-      status: 'False'
-      type: Succeeded
-  managedPoliciesForUpgrade:
-    - name: talm-policy
-      namespace: talm-namespace
-  managedPoliciesNs:
-    talm-policy: talm-namespace
-  remediationPlan:
-    - - spoke1
-      - spoke2
-  status:
-        startedAt: '2022-11-18T16:27:15Z'
-        completedAt: '2022-11-18T20:27:15Z'
-```
-
-*   `status.clusters.currentPolicy` if a cluster’s state is `timedout`, the `currentPolicy` field shows the name of the policy and the policy status.
-*   `status.conditions.type` the status for `succeeded` is `false` and the message indicates that policy remediation took too long.
+        ```yaml title="Sample ClusterGroupUpgrade CR in the timedout state"
+        apiVersion: ran.openshift.io/v1alpha1
+        kind: ClusterGroupUpgrade
+        metadata:
+          creationTimestamp: '2022-11-18T16:27:15Z'
+          finalizers:
+            - ran.openshift.io/cleanup-finalizer
+          generation: 1
+          name: talm-cgu
+          namespace: talm-namespace
+          resourceVersion: '40451823'
+          uid: cca245a5-4bca-45fa-89c0-aa6af81a596c
+        spec:
+          actions:
+            afterCompletion:
+              deleteObjects: true
+            beforeEnable: {}
+          clusters:
+            - spoke1
+            - spoke2
+          enable: true
+          managedPolicies:
+            - talm-policy
+          preCaching: false
+          remediationStrategy:
+            maxConcurrency: 2
+            timeout: 240
+        status:
+          clusters:
+            - name: spoke1
+              state: complete
+            - currentPolicy:
+                name: talm-policy
+                status: NonCompliant
+              name: spoke2
+              state: timedout
+          computedMaxConcurrency: 2
+          conditions:
+            - lastTransitionTime: '2022-11-18T16:27:15Z'
+              message: All selected clusters are valid
+              reason: ClusterSelectionCompleted
+              status: 'True'
+              type: ClustersSelected
+            - lastTransitionTime: '2022-11-18T16:27:15Z'
+              message: Completed validation
+              reason: ValidationCompleted
+              status: 'True'
+              type: Validated
+            - lastTransitionTime: '2022-11-18T16:37:16Z'
+              message: Policy remediation took too long
+              reason: TimedOut
+              status: 'False'
+              type: Progressing
+            - lastTransitionTime: '2022-11-18T16:37:16Z'
+              message: Policy remediation took too long
+              reason: TimedOut
+              status: 'False'
+              type: Succeeded
+          managedPoliciesForUpgrade:
+            - name: talm-policy
+              namespace: talm-namespace
+          managedPoliciesNs:
+            talm-policy: talm-namespace
+          remediationPlan:
+            - - spoke1
+              - spoke2
+          status:
+                startedAt: '2022-11-18T16:27:15Z'
+                completedAt: '2022-11-18T20:27:15Z'
+        ```
+        *   `status.clusters.currentPolicy` if a cluster’s state is `timedout`, the `currentPolicy` field shows the name of the policy and the policy status.
+        *   `status.conditions.type` the status for `succeeded` is `false` and the message indicates that policy remediation took too long.

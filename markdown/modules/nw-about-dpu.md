@@ -19,6 +19,7 @@ The following table describes the currently supported DPU devices.
 | Senao | SX904 | 35.23.47.0008 or later | A SmartNIC designed to offload compute and network services from the host CPUs in data centers and edge computing environments, improving efficiency and isolation of workloads. |
 | Marvell | Marvell Octeon 10 CN106 | SDK12.25.01 or later | A DPU designed to offload workloads that require high speed data processing from host CPUs in data centers and edge computing environments, improving performance and energy efficiency |
 
+
 :::note
 
 The NVIDIA BlueField-3 is not supported.

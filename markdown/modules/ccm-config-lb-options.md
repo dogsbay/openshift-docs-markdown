@@ -37,11 +37,11 @@ Neutron-LBaaS support is deprecated.
 </tr>
 <tr>
   <td><code>floating-subnet-tags</code></td>
-  <td>Optional. Tags for the external network subnet used to create floating IP addresses for the load balancer VIP. Can be overridden by the service annotation <code>loadbalancer.openstack.org/floating-subnet-tags</code>. If multiple subnets match these tags, the first one with available IP addresses is used.</td>
+  <td>Optional. Tags for the external network subnet used to create floating IP addresses for the load balancer VIP. Can be overridden by the service annotation <code>loadbalancer.openstack.org/floating-subnet-tags</code>. If multiple subnets match these tags, the first one with available IP addresses is used.<br><br>If the {{ rh_openstack }} network is configured with sharing disabled, for example, with the <code>--no-share</code> flag used during creation, this option is unsupported. Set the network to share to use this option.</td>
 </tr>
 <tr>
   <td><code>lb-method</code></td>
-  <td>The load balancing algorithm used to create the load balancer pool.</td>
+  <td>The load balancing algorithm used to create the load balancer pool. For the Amphora provider the value can be <code>ROUND_ROBIN</code>, <code>LEAST_CONNECTIONS</code>, or <code>SOURCE_IP</code>. The default value is <code>ROUND_ROBIN</code>.<br><br>For the OVN provider, only the <code>SOURCE_IP_PORT</code> algorithm is supported.<br><br>For the Amphora provider, if using the <code>LEAST_CONNECTIONS</code> or <code>SOURCE_IP</code> methods, configure the <code>create-monitor</code> option as <code>true</code> in the <code>cloud-provider-config</code> config map on the <code>openshift-config</code> namespace and <code>ETP:Local</code> on the load-balancer type service to allow balancing algorithm enforcement in the client to service endpoint connections.</td>
 </tr>
 <tr>
   <td><code>lb-provider</code></td>
@@ -61,7 +61,7 @@ Neutron-LBaaS support is deprecated.
 </tr>
 <tr>
   <td><code>create-monitor</code></td>
-  <td>Creates a health monitor for the service load balancer. A health monitor is required for services that declare <code>externalTrafficPolicy: Local</code>. The default value is <code>false</code>.</td>
+  <td>Creates a health monitor for the service load balancer. A health monitor is required for services that declare <code>externalTrafficPolicy: Local</code>. The default value is <code>false</code>.<br><br>This option is unsupported if you use {{ rh_openstack }} earlier than version 17 with the <code>ovn</code> provider.</td>
 </tr>
 <tr>
   <td><code>monitor-delay</code></td>

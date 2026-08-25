@@ -36,6 +36,7 @@ API groups that end with the suffix `*.openshift.io` are governed by the {{ prod
 | `security.openshift.io/v1` | Tier 1 except for `RangeAllocation` (tier 4) and `*Reviews` (tier 2) |
 | `template.openshift.io/v1` | Tier 1 |
 | `console.openshift.io/v1` | Tier 2 |
+
 {% endif %}
 
 {% if microshift %}
@@ -46,6 +47,7 @@ API groups that end with the suffix `*.openshift.io` are governed by the {{ prod
 | --- | --- |
 | `route.openshift.io/v1` | Tier 1 |
 | `security.openshift.io/v1` | Tier 1 except for `RangeAllocation` (tier 4) and `*Reviews` (tier 2) |
+
 {% endif %}
 
 {% if not microshift %}
@@ -58,6 +60,7 @@ API groups that end with the suffix `monitoring.coreos.com` have the following m
 | `v1` | Tier 1 |
 | `v1alpha1` | Tier 1 |
 | `v1beta1` | Tier 1 |
+
 {% endif %}
 
 {% if not microshift %}
@@ -70,4 +73,5 @@ Operator Lifecycle Manager (OLM) provides APIs that include API groups with the 
 | `v2` | Tier 1 |
 | `v1` | Tier 1 |
 | `v1alpha1` | Tier 1 |
+
 {% endif %}

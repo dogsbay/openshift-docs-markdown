@@ -28,4 +28,5 @@ The reference configurations in this document are deployed using a centrally man
 | --- | --- | --- |
 | x86_64 | Yes | Yes |
 | aarch64 | No | Yes |
+
 *   For `aarch64` architecture CPUs, the non-real-time configuration uses the standard kernel with a 64k page size.

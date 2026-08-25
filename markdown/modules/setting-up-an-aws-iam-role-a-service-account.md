@@ -56,7 +56,7 @@ You can create an AWS Identity and Access Management (IAM) role to be assumed by
         :::note
 
 
-        Alternatively, you can limit the role to any service account within the specified project by using `"<oidc_provider_name>:sub": "system:serviceaccount:<project_name>:**"`. If you supply the `**` wildcard, you must replace `StringEquals` with `StringLike` in the preceding line.
+        Alternatively, you can limit the role to any service account within the specified project by using `"<oidc_provider_name>:sub": "system:serviceaccount:<project_name>:*"`. If you supply the `*` wildcard, you must replace `StringEquals` with `StringLike` in the preceding line.
         
         :::
 

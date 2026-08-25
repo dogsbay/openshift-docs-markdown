@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Knative Serving {id="about-knative-serving"}
 {%- set context = "about-knative-serving" %}
-{% include "./_attributes/common-attributes.md" %}
 
 Knative Serving supports developers who want to create, deploy, and manage [cloud-native applications](https://www.redhat.com/en/topics/cloud-native-apps). It provides a set of objects as Kubernetes custom resource definitions (CRDs) that define and control the behavior of serverless workloads on an {{ product_title }} cluster.
 

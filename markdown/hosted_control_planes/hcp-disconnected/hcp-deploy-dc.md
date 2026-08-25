@@ -3,11 +3,11 @@ title: "Introduction to {{ hcp }} in a disconnected environment"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Introduction to {{ hcp }} in a disconnected environment {id="hcp-deploy-dc"}
 {% include "./_attributes/common-attributes.md" %}
+# Introduction to {{ hcp }} in a disconnected environment {id="hcp-deploy-dc"}
 {%- set context = "hcp-deploy-dc" %}
 
-In the context of {{ hcp }}, a disconnected environment is an {{ product_title }} deployment that is not connected to the internet and that uses {{ hcp }} as a base. You can deploy {{ hcp }} in a disconnected environment on bare metal or {{ VirtProductName }}.
+In the context of {{ hcp }}, a disconnected environment is an {{ product_title }} deployment that is not connected to the internet and that uses {{ hcp }} as a base. You can deploy {{ hcp }} in a disconnected environment on bare metal or {{ VirtProductName }}. {._abstract}
 
 {{ hcp_capital }} in disconnected environments function differently than in standalone {{ product_title }}:
 

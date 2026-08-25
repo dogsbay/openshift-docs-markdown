@@ -3,11 +3,11 @@ title: Expanding persistent volumes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Expanding persistent volumes {id="expanding-persistent-volumes"}
 {% include "./_attributes/common-attributes.md" %}
+# Expanding persistent volumes {id="expanding-persistent-volumes"}
 {%- set context = "expanding-persistent-volumes" %}
 
-Expand persistent volumes to increase storage capacity as your application data grows. You can resize volumes without recreating volumes or disrupting running workloads.
+Expand persistent volumes to increase storage capacity as your application data grows. You can resize volumes without recreating volumes or disrupting running workloads. {._abstract}
 
 {% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 {% leveloffset +1 %}{% include "./modules/storage-expanding-add-volume-expansion.md" %}{% endleveloffset %}
@@ -31,6 +31,6 @@ Expand persistent volumes to increase storage capacity as your application data 
 
 {% endif %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [CSI drivers supported by {{ product_title }}](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/storage/using-container-storage-interface-csi#csi-drivers-supported_persistent-storage-csi)

@@ -16,7 +16,7 @@ By default, the Operator is installed in the `openshift-operators` project.
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console as a user with the `cluster-admin` role. If you use {{ product_dedicated }}, you must have an account with the `dedicated-admin` role.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Search for the {{ JaegerOperator }} Operator by entering **distributed tracing platform** in the search field.
 1.  Select the **{{ JaegerOperator }}** Operator, which is **provided by Red Hat**, to display information about the Operator.
 1.  Click **Install**.
@@ -33,5 +33,5 @@ By default, the Operator is installed in the `openshift-operators` project.
     :::
 
 1.  Click **Install**.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  On the **Installed Operators** page, select the `openshift-operators` project. Wait for the **Succeeded** status of the {{ JaegerOperator }} Operator before continuing.

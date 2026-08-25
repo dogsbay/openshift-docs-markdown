@@ -3,11 +3,11 @@ title: "Tutorial: Deploying an application by using the CLI"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Tutorial: Deploying an application by using the CLI {id="dev-app-cli"}
 {% include "./_attributes/common-attributes.md" %}
+# Tutorial: Deploying an application by using the CLI {id="dev-app-cli"}
 {%- set context = "dev-app-cli" %}
 
-To learn how to stand up an application on {{ product_title }} by using the {{ oc_first }}, follow the provided tutorial. In this tutorial, you will deploy the services that are required for an application that displays a map of national parks across the world.
+To learn how to stand up an application on {{ product_title }} by using the {{ oc_first }}, follow the provided tutorial. In this tutorial, you will deploy the services that are required for an application that displays a map of national parks across the world. {._abstract}
 
 To complete this tutorial, you will perform the following steps:
 
@@ -47,12 +47,14 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +1 %}{% include "./modules/getting-started-cli-creating-new-project.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [oc new-project](/cli_reference/openshift_cli/developer-cli-commands#oc-new-project)
 
 {% leveloffset +1 %}{% include "./modules/getting-started-cli-granting-permissions.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [RBAC overview](/authentication/using-rbac#authorization-overview_using-rbac)
 *   [oc adm policy add-role-to-user](/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-policy-add-role-to-user)
@@ -60,12 +62,14 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +1 %}{% include "./modules/getting-started-cli-deploying-first-image.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [oc new-app](/cli_reference/openshift_cli/developer-cli-commands#oc-new-app)
 
 {% leveloffset +2 %}{% include "./modules/getting-started-cli-creating-route.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [oc create route edge](/cli_reference/openshift_cli/developer-cli-commands#oc-create-route-edge)
 *   [oc get](/cli_reference/openshift_cli/developer-cli-commands#oc-get)
@@ -73,6 +77,7 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +2 %}{% include "./modules/getting-started-cli-examining-pod.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [oc describe](/cli_reference/openshift_cli/developer-cli-commands#oc-describe)
 *   [oc get](/cli_reference/openshift_cli/developer-cli-commands#oc-get)
@@ -82,6 +87,7 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +2 %}{% include "./modules/getting-started-cli-scaling-app.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [oc scale](/cli_reference/openshift_cli/developer-cli-commands#oc-scale)
 
@@ -90,6 +96,7 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +2 %}{% include "./modules/getting-started-cli-creating-route-backend.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [oc label](/cli_reference/openshift_cli/developer-cli-commands#oc-label)
 
@@ -98,6 +105,7 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +2 %}{% include "./modules/getting-started-cli-creating-secret.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding secrets](/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)
 *   [oc create secret generic](/cli_reference/openshift_cli/developer-cli-commands#oc-create-secret-generic)
@@ -107,6 +115,7 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +2 %}{% include "./modules/getting-started-cli-load-data-output.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [oc exec](/cli_reference/openshift_cli/developer-cli-commands#oc-exec)
 

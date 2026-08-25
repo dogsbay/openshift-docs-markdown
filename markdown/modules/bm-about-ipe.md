@@ -14,7 +14,7 @@ This method of collecting hardware metrics works only on Redfish-compatible BMCs
 :::
 
 
-You can then view these hardware metrics alongside other metrics in the ***Observe*** tab of the web console.
+You can then view these hardware metrics alongside other metrics in the **Observe** tab of the web console.
 
 {%- set FeatureName = "Monitoring bare metal hardware metrics" %}
 {% include "./snippets/technology-preview.md" %}

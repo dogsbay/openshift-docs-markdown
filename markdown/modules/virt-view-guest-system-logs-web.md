@@ -11,7 +11,7 @@ To diagnose and troubleshoot issues with a virtual machine (VM) guest operating 
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines** from the side menu.
+1.  Click **Virtualization** → **VirtualMachines** from the side menu.
 1.  Select a virtual machine to open the **VirtualMachine details** page.
 1.  Click the **Diagnostics** tab.
 1.  Click **Guest system logs** to load the serial console.

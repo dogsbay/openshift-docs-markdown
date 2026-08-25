@@ -7,7 +7,7 @@
 
 Hook that provides the currently active perspective and a callback for setting the active perspective. It returns a tuple containing the current active perspective and setter callback. {._abstract}
 
-***Example***
+**Example**
 ```tsx
 const Component: React.FC = (props) => {
    const [activePerspective, setActivePerspective] = useActivePerspective();
@@ -26,7 +26,7 @@ const Component: React.FC = (props) => {
 
 Component for displaying a checkmark circle icon.
 
-***Example***
+**Example**
 ```tsx
 <GreenCheckCircleIcon title="Healthy" />
 ```
@@ -42,7 +42,7 @@ Component for displaying a checkmark circle icon.
 
 Component for displaying an exclamation mark circle icon.
 
-***Example***
+**Example**
 ```tsx
 <RedExclamationCircleIcon title="Failed" />
 ```
@@ -58,7 +58,7 @@ Component for displaying an exclamation mark circle icon.
 
 Component for displaying a triangle exclamation icon.
 
-***Example***
+**Example**
 ```tsx
 <YellowExclamationTriangleIcon title="Warning" />
 ```
@@ -74,7 +74,7 @@ Component for displaying a triangle exclamation icon.
 
 Component for displaying a blue info circle icon.
 
-***Example***
+**Example**
 ```tsx
 <BlueInfoCircleIcon title="Info" />
 ```
@@ -90,7 +90,7 @@ Component for displaying a blue info circle icon.
 
 Component for displaying an error status popover.
 
-***Example***
+**Example**
 ```tsx
 <ErrorStatus title={errorMsg} />
 ```
@@ -108,7 +108,7 @@ Component for displaying an error status popover.
 
 Component for displaying an information status popover.
 
-***Example***
+**Example**
 ```tsx
 <InfoStatus title={infoMsg} />
 ```
@@ -126,7 +126,7 @@ Component for displaying an information status popover.
 
 Component for displaying a progressing status popover.
 
-***Example***
+**Example**
 ```tsx
 <ProgressStatus title={progressMsg} />
 ```
@@ -144,7 +144,7 @@ Component for displaying a progressing status popover.
 
 Component for displaying a success status popover.
 
-***Example***
+**Example**
 ```tsx
 <SuccessStatus title={successMsg} />
 ```
@@ -186,7 +186,7 @@ Initially, the hook returns an empty array. After the resolution is complete, th
 
 The hook’s result elements are guaranteed to be referentially stable across re-renders. It returns a tuple containing a list of adapted extension instances with resolved code references, a boolean flag indicating whether the resolution is complete, and a list of errors detected during the resolution.
 
-***Example***
+**Example**
 ```ts
 const [navItemExtensions, navItemsResolved] = useResolvedExtensions<NavItem>(isNavItem);
 // process adapted extensions and render your component
@@ -201,7 +201,7 @@ const [navItemExtensions, navItemsResolved] = useResolvedExtensions<NavItem>(isN
 
 A component that creates a Navigation bar for a page. Routing is handled as part of the component. `console.tab/horizontalNav` can be used to add additional content to any horizontal navigation.
 
-***Example***
+**Example**
 
 ```jsx
 const HomePage: React.FC = (props) => {
@@ -225,7 +225,7 @@ const HomePage: React.FC = (props) => {
 
 Component for displaying table data within a table row.
 
-***Example***
+**Example**
 
 ```jsx
 const PodRow: React.FC<RowProps<K8sResourceCommon>> = ({ obj, activeColumnIDs }) => {
@@ -253,7 +253,7 @@ const PodRow: React.FC<RowProps<K8sResourceCommon>> = ({ obj, activeColumnIDs })
 
 A hook that provides a list of user-selected active TableColumns.
 
-***Example***
+**Example**
 ```text
 // See implementation for more details on TableColumn type
   const [activeColumns, userSettingsLoaded] = useActiveColumns({
@@ -278,7 +278,7 @@ A tuple containing the current user selected active columns (a subset of options
 
 Component for generating a page header.
 
-***Example***
+**Example**
 ```jsx
 const exampleList: React.FC = () => {
   return (
@@ -300,7 +300,7 @@ const exampleList: React.FC = () => {
 
 Component for adding a create button for a specific resource kind that automatically generates a link to the create YAML for this resource.
 
-***Example***
+**Example**
 ```jsx
 const exampleList: React.FC<MyProps> = () => {
   return (
@@ -322,7 +322,7 @@ const exampleList: React.FC<MyProps> = () => {
 
 Component for creating a stylized link.
 
-***Example***
+**Example**
 ```jsx
 const exampleList: React.FC<MyProps> = () => {
  return (
@@ -346,7 +346,7 @@ const exampleList: React.FC<MyProps> = () => {
 
 Component for creating button.
 
-***Example***
+**Example**
 ```jsx
 const exampleList: React.FC<MyProps> = () => {
   return (
@@ -369,7 +369,7 @@ const exampleList: React.FC<MyProps> = () => {
 
 Component for creating a dropdown wrapped with permissions check.
 
-***Example***
+**Example**
 ```jsx
 const exampleList: React.FC<MyProps> = () => {
   const items = {
@@ -398,7 +398,7 @@ const exampleList: React.FC<MyProps> = () => {
 
 Component that creates a link to a specific resource type with an icon badge.
 
-***Example***
+**Example**
 ```tsx
   <ResourceLink
       kind="Pod"
@@ -428,7 +428,7 @@ Component that creates a link to a specific resource type with an icon badge.
 
 Component that creates an icon badge for a specific resource type.
 
-***Example***
+**Example**
 ```tsx
 <ResourceIcon kind="Pod"/>
 ```
@@ -444,7 +444,7 @@ Component that creates an icon badge for a specific resource type.
 
 Hook that retrieves the k8s model for provided K8sGroupVersionKind from redux. It returns an array with the first item as k8s model and second item as `inFlight` status.
 
-***Example***
+**Example**
 ```ts
 const Component: React.FC = () => {
   const [model, inFlight] = useK8sModel({ group: 'app'; version: 'v1'; kind: 'Deployment' });
@@ -461,7 +461,7 @@ const Component: React.FC = () => {
 
 Hook that retrieves all current k8s models from redux. It returns an array with the first item as the list of k8s model and second item as `inFlight` status.
 
-***Example***
+**Example**
 ```ts
 const Component: React.FC = () => {
   const [models, inFlight] = UseK8sModels();
@@ -473,7 +473,7 @@ const Component: React.FC = () => {
 
 Hook that retrieves the k8s resource along with status for loaded and error. It returns an array with first item as resource(s), second item as loaded status and third item as error state if any.
 
-***Example***
+**Example**
 ```ts
 const Component: React.FC = () => {
   const watchRes = {
@@ -493,7 +493,7 @@ const Component: React.FC = () => {
 
 Hook that retrieves the k8s resources along with their respective status for loaded and error. It returns a map where keys are as provided in initResources and value has three properties data, loaded and error.
 
-***Example***
+**Example**
 ```tsx
 const Component: React.FC = () => {
   const watchResources = {
@@ -619,7 +619,7 @@ k8sPatch. Alternatively can use k8sUpdate to replace an existing resource entire
 
 It deletes resources from the cluster, based on the provided model, resource. The garbage collection works based on `Foreground`|`Background` can be configured with propagationPolicy property in provided model or passed in json. It returns a promise that resolves to the response of kind Status. In case of failure promise gets rejected with HTTP error response.
 
-***Example***
+**Example**
 `kind: 'DeleteOptions', apiVersion: 'v1', propagationPolicy`
 
 |     |     |
@@ -680,7 +680,7 @@ Provides a group, version, and kind for a k8s model. This returns the group, ver
 
 Component that shows the status in a popup window. Helpful component for building `console.dashboards/overview/health/resource` extensions.
 
-***Example***
+**Example**
 ```tsx
   <StatusPopupSection
     firstColumn={
@@ -706,7 +706,7 @@ Component that shows the status in a popup window. Helpful component for buildin
 
 Status element used in status popup; used in `StatusPopupSection`.
 
-***Example***
+**Example**
 ```text
 <StatusPopupSection
    firstColumn='Example'
@@ -1122,7 +1122,7 @@ const PodAnnotationsButton = ({ pod }) => {
 | Parameter Name | Description |
 | `resource` | The resource to edit annotations for an object of K8sResourceCommon type. |
 
-***Returns***
+**Returns**
 A function which launches a modal for editing a resource’s annotations.
 
 ## `useDeleteModal` {id="_usedeletemodal"}
@@ -1146,7 +1146,7 @@ const DeletePodButton = ({ pod }) => {
 | `btnText` | 	(optional) The text to display on the delete button. |
 | `deleteAllResources` | (optional) A function to delete all resources of the same kind. |
 
-***Returns***
+**Returns**
 A function which launches a modal for deleting a resource.
 
 ## `useLabelsModel` {id="_uselabelsmodel"}
@@ -1166,7 +1166,7 @@ const PodLabelsButton = ({ pod }) => {
 | Parameter Name | Description |
 | `resource` | The resource to edit labels for, an object of K8sResourceCommon type. |
 
-***Returns***
+**Returns**
 A function which launches a modal for editing a resource’s labels.
 
 ## `useActiveNamespace` {id="_useactivenamespace"}
@@ -1187,7 +1187,7 @@ const Component: React.FC = (props) => {
 }
 ```
 
-***Returns***
+**Returns**
 A tuple containing the current active namespace and setter callback.
 
 ## `useUserSettings` {id="_useusersettings"}
@@ -1207,7 +1207,7 @@ const Component: React.FC = (props) => {
 };
 ```
 
-***Returns***
+**Returns**
 A tuple containing the user setting value, a setter callback, and a loaded boolean.
 
 ## `useQuickStartContext` {id="_usequickstartcontext"}
@@ -1224,7 +1224,7 @@ const OpenQuickStartButton = ({ quickStartId }) => {
 };
 ```
 
-***Returns***
+**Returns**
 Quick start context values object.
 
 ## `PerspectiveContext` {id="_perspectivecontext"}
@@ -1255,7 +1255,7 @@ Deprecated: This hook is not related to console functionality. Hook that ensures
 | Parameter Name | Description |
 | `initialState` | initial state value |
 
-{%- set power_bi_url = false %}
+{%- set power_bi_url = "" %}
 
 ## `VirtualizedTable` {id="_virtualizedtable"}
 

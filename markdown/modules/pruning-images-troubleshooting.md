@@ -39,18 +39,18 @@ Images not being pruned
     
     :::
 
-*   Delete all the `istags` where the position is below the revision threshold,
-which means `myapp:v2.1` and `myapp:v2.1-may-2016`.
-*   Move the image further in the history, either by running new builds pushing to
-the same `istag`, or by tagging other image. This is not always
-desirable for old release tags.
+    *   Delete all the `istags` where the position is below the revision threshold,
+    which means `myapp:v2.1` and `myapp:v2.1-may-2016`.
+    *   Move the image further in the history, either by running new builds pushing to
+    the same `istag`, or by tagging other image. This is not always
+    desirable for old release tags.
 
     Tags having a date or time of a particular image’s build in their names should
     be avoided, unless the image must be preserved for an undefined amount of time.
     Such tags tend to have just one image in their history, which prevents
     them from ever being pruned.
 
-    Secure connection to an insecure registry
+Secure connection to an insecure registry
 
 :   If you see a message similar to the following in the output of the `oc adm prune images`
     command, then your registry is not secured and the `oc adm prune images`
@@ -58,9 +58,9 @@ desirable for old release tags.
     ```terminal
     error: error communicating with registry: Get https://172.30.30.30:5000/healthz: http: server gave HTTP response to HTTPS client
     ```
-*   The recommended solution is to secure the registry. Otherwise, you can force the
-client to use an insecure connection by appending `--force-insecure`  to the
-command; however, this is not recommended.
+    *   The recommended solution is to secure the registry. Otherwise, you can force the
+    client to use an insecure connection by appending `--force-insecure`  to the
+    command; however, this is not recommended.
 
 Insecure connection to a secured registry
 
@@ -72,7 +72,9 @@ Insecure connection to a secured registry
     error: error communicating with registry: Get http://172.30.30.30:5000/healthz: malformed HTTP response "\x15\x03\x01\x00\x02\x02"
     error: error communicating with registry: [Get https://172.30.30.30:5000/healthz: x509: certificate signed by unknown authority, Get http://172.30.30.30:5000/healthz: malformed HTTP response "\x15\x03\x01\x00\x02\x02"]
     ```
+
     By default, the certificate authority data stored in the user’s configuration files is used; the same is true for communication with the control plane API.
+
     Use the `--certificate-authority` option to provide the right certificate authority for the container image registry server.
 
 
@@ -82,5 +84,7 @@ Wrong certificate authority
     ```terminal
     error: error communicating with registry: Get https://172.30.30.30:5000/: x509: certificate signed by unknown authority
     ```
+
     Make sure to provide the right one with the flag `--certificate-authority`.
+
     As a workaround, the `--force-insecure` flag can be added instead. However, this is not recommended.

@@ -13,11 +13,11 @@ By default, a notification contact receives an email for every notification sent
 **Procedure**
 
 1.  Log in to the {{ hybrid_console_second }}.
-1.  Click ***Settings*** -> ***Notifications*** to open the Notifications overview.
-1.  Click ***Notification Preferences***.
-1.  On the My Notifications page, under OpenShift, click ***Cluster Manager***.
+1.  Click **Settings** → **Notifications** to open the Notifications overview.
+1.  Click **Notification Preferences**.
+1.  On the My Notifications page, under OpenShift, click **Cluster Manager**.
 1.  Specify the notification types that you want to receive by selecting or clearing the relevant checkbox.
-1.  Click ***Save***.
+1.  Click **Save**.
 
 **Verification steps**
 

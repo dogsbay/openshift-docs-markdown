@@ -45,7 +45,7 @@ section of this topic and save it as `03_infra.json` in your cluster’s install
 template describes the networking and load balancing objects that your cluster
 requires.
 1.  Create the deployment by using the `az` CLI:
-    {%- if azure %}
+{% if azure %}
     ```terminal
     $ az deployment group create -g ${RESOURCE_GROUP} \
       --template-file "<installation_directory>/03_infra.json" \
@@ -62,28 +62,29 @@ requires.
     :   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
 {% endif %}
 {% if ash %}
-        ```terminal
-        $ az deployment group create -g ${RESOURCE_GROUP} \
-          --template-file "<installation_directory>/03_infra.json" \
-          --parameters baseName="${INFRA_ID}"
-        ```
+    ```terminal
+    $ az deployment group create -g ${RESOURCE_GROUP} \
+      --template-file "<installation_directory>/03_infra.json" \
+      --parameters baseName="${INFRA_ID}"
+    ```
+
     The `baseName` specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
 {% endif %}
 
 {% if azure %}
 1.  Create an `api` DNS record in the public zone for the API public load
-balancer. The `${{ BASE_DOMAIN_RESOURCE_GROUP }}` variable must point to the
+balancer. The `${{ BASE_DOMAIN_RESOURCE_GROUP }}`{minja} variable must point to the
 resource group where the public DNS zone exists.
 {% endif %}
 
 {% if ash %}
-1.  Create an `api` DNS record and an `api-int` DNS record. When creating the API DNS records, the `${{ BASE_DOMAIN_RESOURCE_GROUP }}` variable must point to the resource group where the DNS zone exists.
-    {% endif %}
+1.  Create an `api` DNS record and an `api-int` DNS record. When creating the API DNS records, the `${{ BASE_DOMAIN_RESOURCE_GROUP }}`{minja} variable must point to the resource group where the DNS zone exists.
+{% endif %}
     1.  Export the following variable:
         ```terminal
         $ export PUBLIC_IP=`az network public-ip list -g ${RESOURCE_GROUP} --query "[?name=='${INFRA_ID}-master-pip'] | [0].ipAddress" -o tsv`
         ```
-{%- if ash %}
+{% if ash %}
     1.  Export the following variable:
         ```terminal
         $ export PRIVATE_IP=`az network lb frontend-ip show -g "$RESOURCE_GROUP" --lb-name "${INFRA_ID}-internal" -n internal-lb-ip --query "privateIpAddress" -o tsv`
@@ -92,20 +93,20 @@ resource group where the public DNS zone exists.
 
 {% if azure %}
     1.  Create the `api` DNS record in a new public zone:
-        {% endif %}
-        {% if ash %}
+{% endif %}
+{% if ash %}
     1.  Create the `api` DNS record in a new DNS zone:
-        {%- endif %}
+{% endif %}
         ```terminal
         $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${CLUSTER_NAME}.${BASE_DOMAIN} -n api -a ${PUBLIC_IP} --ttl 60
         ```
-{%- if azure %}
+{% if azure %}
 
         If you are adding the cluster to an existing public zone, you can create the `api` DNS record in it instead:
 {% endif %}
 {% if ash %}
         If you are adding the cluster to an existing DNS zone, you can create the `api` DNS record in it instead:
-{%- endif %}
+{% endif %}
         ```terminal
         $ az network dns record-set a add-record -g ${BASE_DOMAIN_RESOURCE_GROUP} -z ${BASE_DOMAIN} -n api.${CLUSTER_NAME} -a ${PUBLIC_IP} --ttl 60
         ```
@@ -124,11 +125,11 @@ resource group where the public DNS zone exists.
 {% endif %}
 
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}

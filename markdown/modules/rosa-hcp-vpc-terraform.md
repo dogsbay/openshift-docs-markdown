@@ -29,16 +29,16 @@ The Terraform instructions are for testing and demonstration purposes. Your own 
     $ git clone https://github.com/openshift-cs/terraform-vpc-example
     ```
 1.  Navigate to the created directory by running the following command:
-    {%- if not rosa_egress_lockdown %}
+{%- if not rosa_egress_lockdown %}
     ```terminal
     $ cd terraform-vpc-example
     ```
-{% endif %}
-{% if rosa_egress_lockdown %}
+{%- endif %}
+{%- if rosa_egress_lockdown %}
     ```terminal
     $ cd terraform-vpc-example/zero-egress
     ```
-{% endif %}
+{%- endif %}
 1.  Initiate the Terraform file by running the following command:
     ```terminal
     $ terraform init
@@ -76,12 +76,12 @@ The Terraform instructions are for testing and demonstration purposes. Your own 
     ```
 {% endif %}
 1.  Apply this plan file to build your VPC by running the following command:
-    {%- if rosa_egress_lockdown %}
+{%- if rosa_egress_lockdown %}
     ```terminal
     $ terraform apply rosa-zero-egress.tfplan
     ```
-{% endif %}
-{% if not rosa_egress_lockdown %}
+{%- endif %}
+{%- if not rosa_egress_lockdown %}
     ```terminal
     $ terraform apply rosa.tfplan
     ```
@@ -96,8 +96,8 @@ The Terraform instructions are for testing and demonstration purposes. Your own 
         ```terminal title="Example output"
         $ subnet-0a6a57e0f784171aa,subnet-078e84e5b10ecf5b0
         ```
-{% endif %}
+{%- endif %}
 
 {% if context == "rosa-hcp-egress-zero-install" %}
-{%- set rosa_egress_lockdown = false -%}
+{%- set rosa_egress_lockdown = "" -%}
 {% endif %}

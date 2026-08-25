@@ -11,11 +11,11 @@ You can use the `oc adm must-gather` CLI command to collect information about yo
 **Procedure**
 
 1.  To collect {{ SMProductName }} data with `must-gather`, you must specify the {{ SMProductName }} image.
-    ```terminal
+    ```terminal {minja}
     $ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:{{ MaistraVersion }}
     ```
 1.  To collect {{ SMProductName }} data for a specific {{ SMProductShortName }} control plane namespace with `must-gather`, you must specify the {{ SMProductName }} image and namespace. In this example, after `gather,` replace `<namespace>` with your {{ SMProductShortName }} control plane namespace, such as `istio-system`.
-    ```terminal
+    ```terminal {minja}
     $ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:{{ MaistraVersion }} gather <namespace>
     ```
 

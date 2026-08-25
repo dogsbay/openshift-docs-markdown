@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "cluster-logging-deploying" %}
-# Installing Logging {id="cluster-logging-deploying"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Installing Logging {id="cluster-logging-deploying"}
 
 {{ Product_title }} Operators use custom resources (CR) to manage applications and their components. High-level configuration and settings are provided by the user within a CR. The Operator translates high-level directives into low-level actions, based on best practices embedded within the Operator’s logic. A custom resource definition (CRD) defines a CR and lists all the configurations available to users of the Operator. Installing an Operator creates the CRDs, which are then used to generate CRs.
 
@@ -50,5 +50,5 @@ You can alternatively apply all example objects.
 *   [About OVN-Kubernetes network policy](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#ovn-k-network-policy)
 {% endif %}
 {% if openshift_rosa or openshift_dedicated %}
-*   [About the OVN-Kubernetes default Container Network Interface (CNI) network provider](https://docs.openshift.com/container-platform/latest/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes.html)
+* [About the OVN-Kubernetes default Container Network Interface (CNI) network provider](https://docs.openshift.com/container-platform/latest/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes.html)
 {% endif %}

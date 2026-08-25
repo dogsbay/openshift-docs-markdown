@@ -34,11 +34,11 @@ Consider using SSH-based authentication rather than basic authentication.
     1.  The content of the SSH private key file.
     1.  The content of the known hosts file.
 
-        :::caution
+    :::caution
 
-        If you omit the private key, {{ pipelines_shortname }} accepts the public key of any server.
-        
-        :::
+    If you omit the private key, {{ pipelines_shortname }} accepts the public key of any server.
+    
+    :::
 
 1.  Optional: To specify a custom SSH port, add `:<port number>` to the end of the `annotation` value. For example, `tekton.dev/git-0: github.com:2222`.
 1.  In the `serviceaccount.yaml` file, associate the `ssh-key` secret with the `build-bot` service account.

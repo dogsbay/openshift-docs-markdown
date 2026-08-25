@@ -1,5 +1,5 @@
 ---
-title: "DataImage []"
+title: "DataImage [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | DataImageSpec defines the desired state of DataImage. |
 | `status` | `object` | DataImageStatus defines the observed state of DataImage. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -40,6 +41,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `url` | `string` | Url is the address of the dataImage that we want to attach to a BareMetalHost |
+
 ### .status {id="_status"}
 
 Description
@@ -54,6 +56,7 @@ Type
 | `attachedImage` | `object` | Currently attached DataImage |
 | `error` | `object` | Error count and message when attaching/detaching |
 | `lastReconciled` | `string` | Time of last reconciliation |
+
 ### .status.attachedImage {id="_statusattachedimage"}
 
 Description
@@ -70,6 +73,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `url` | `string` |  |
+
 ### .status.error {id="_statuserror"}
 
 Description
@@ -95,16 +99,16 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/dataimages`
     *   `GET`: list objects of kind DataImage
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages`{minja}
     *   `DELETE`: delete collection of DataImage
     *   `GET`: list objects of kind DataImage
     *   `POST`: create a DataImage
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages/{{ name }}`{minja}
     *   `DELETE`: delete a DataImage
     *   `GET`: read the specified DataImage
     *   `PATCH`: partially update the specified DataImage
     *   `PUT`: replace the specified DataImage
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages/{{ name }}/status`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/dataimages/{{ name }}/status`{minja}
     *   `GET`: read status of the specified DataImage
     *   `PATCH`: partially update status of the specified DataImage
     *   `PUT`: replace status of the specified DataImage

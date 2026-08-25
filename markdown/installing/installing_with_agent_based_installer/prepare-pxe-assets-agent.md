@@ -3,11 +3,11 @@ title: Preparing PXE assets for OpenShift Container Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing PXE assets for {{ product_title }} {id="prepare-pxe-assets-agent"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing PXE assets for {{ product_title }} {id="prepare-pxe-assets-agent"}
 {%- set context = "prepare-pxe-assets-agent" %}
 
-You can create the assets needed to PXE boot an {{ product_title }} cluster by using the Agent-based Installer.
+You can create the assets needed to PXE boot an {{ product_title }} cluster by using the Agent-based Installer. {._abstract}
 
 The assets you create in these procedures will deploy a single-node {{ product_title }} installation. You can use these procedures as a basis and modify configurations according to your requirements.
 
@@ -16,6 +16,7 @@ See "Installing an {{ product_title }} cluster with the Agent-based Installer" t
 {% leveloffset +1 %}{% include "./modules/installing-ocp-agent-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation and update](/architecture/architecture-installation#architecture-installation)
 
@@ -24,6 +25,7 @@ See "Installing an {{ product_title }} cluster with the Agent-based Installer" t
 {% leveloffset +1 %}{% include "./modules/installing-ocp-agent-inputs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying with dual-stack networking](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#modifying-install-config-for-dual-stack-network_ipi-install-installation-workflow)
 *   [Configuring the install-config yaml file](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-the-install-config-file_ipi-install-installation-workflow)
@@ -41,21 +43,24 @@ See "Installing an {{ product_title }} cluster with the Agent-based Installer" t
 {% leveloffset +2 %}{% include "./modules/installing-ocp-agent-ibm-z-zvm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing a cluster with z/VM on {{ ibm_z_title }} and {{ ibm_linuxone_title }}](/installing/installing_ibm_z/upi/installing-ibm-z#installing-ibm-z)
 
 {% leveloffset +2 %}{% include "./modules/installing-ocp-agent-ibm-z-kvm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing a cluster with {{ op_system_base }} KVM on {{ ibm_z_title }} and {{ ibm_linuxone_title }}](/installing/installing_ibm_z/upi/installing-ibm-z-kvm#installing-ibm-z-kvm)
 
 {% leveloffset +2 %}{% include "./modules/adding-ibm-z-lpar-agent.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing a cluster in an LPAR on {{ ibm_z_title }} and {{ ibm_linuxone_title }}](/installing/installing_ibm_z/upi/installing-ibm-z-lpar#installing-ibm-z-lpar)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Installing an {{ product_title }} cluster with the Agent-based Installer](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)

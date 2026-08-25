@@ -54,6 +54,7 @@ You can create the public DNS hosted zone to use as the external DNS domain filt
     You can configure service-level DNS indirection for public services only. You cannot set `hostname` for private services because they use the `hypershift.local` private zone.
 
     The following table shows when it is valid to set `hostname` for a service and endpoint combinations:
+
     **Service and endpoint combinations to set `hostname`**
 
     | Service | Public | PublicAndPrivate | Private |

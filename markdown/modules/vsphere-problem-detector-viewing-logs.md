@@ -25,7 +25,7 @@ The ideal output for a log line indicates `passed` or `0 problems`. If a log lin
     I0108 08:32:28.480685       1 operator.go:271] CheckNodeProviderID:<host_name> passed
     ```
 *   To view the Operator logs with the {{ product_title }} web console, perform the following steps:
-    1.  Navigate to **Workloads** -> **Pods**.
+    1.  Navigate to **Workloads** → **Pods**.
     1.  Select `openshift-cluster-storage-operator` from the **Projects** menu.
     1.  Click the link for the `vsphere-problem-detector-operator` pod.
     1.  Click the **Logs** tab on the **Pod details** page to view the logs.

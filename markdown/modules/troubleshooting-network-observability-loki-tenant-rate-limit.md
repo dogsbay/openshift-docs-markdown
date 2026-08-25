@@ -9,7 +9,7 @@ You can update the LokiStack CRD with the `perStreamRateLimit` and `perStreamRat
 
 **Procedure**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**, viewing **All projects** from the **Project** dropdown.
+1.  Navigate to **Ecosystem** → **Installed Operators**, viewing **All projects** from the **Project** dropdown.
 1.  Look for **{{ loki_op }}**, and select the **LokiStack** tab.
 1.  Create or edit an existing **LokiStack** instance using the **YAML view** to add the `perStreamRateLimit` and `perStreamRateLimitBurst` specifications:
     ```yaml

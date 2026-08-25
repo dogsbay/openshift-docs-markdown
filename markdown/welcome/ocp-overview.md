@@ -3,11 +3,11 @@ title: Introduction to OpenShift Container Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Introduction to {{ product_title }} {id="ocp-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Introduction to {{ product_title }} {id="ocp-overview"}
 {%- set context = "ocp-overview" %}
 
-With {{ product_title }}, you can expand your application environment from just a few machines and applications to thousands of machines that serve millions of clients.
+With {{ product_title }}, you can expand your application environment from just a few machines and applications to thousands of machines that serve millions of clients. {._abstract}
 
 {{ product_title }} is a cloud-based Kubernetes container platform. The foundation of {{ product_title }} is based on Kubernetes and therefore shares the same technology. 
 
@@ -26,7 +26,7 @@ With its foundation in Kubernetes, {{ product_title }} incorporates the same tec
 
 {% leveloffset +1 %}{% include "./modules/openshift-use-cases.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Preparing to install on a single node](/installing/installing_sno/install-sno-preparing-to-install-sno#preparing-to-install-sno)
 *   [OpenShift Virtualization - Reference Implementation Guide (Red&#160;Hat Knowledgebase)](https://access.redhat.com/articles/7067871)

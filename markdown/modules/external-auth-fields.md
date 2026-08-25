@@ -5,7 +5,7 @@ Configure OIDC providers for external authentication by using these parameters t
 
 The following table lists all available OIDC provider parameters for direct authentication:
 
-***`oidcProviders` configuration***
+**`oidcProviders` configuration**
 
 <table>
 <thead>
@@ -25,7 +25,7 @@ The following table lists all available OIDC provider parameters for direct auth
 </tr>
 <tr>
   <td><code>claimMappings.extra.key</code></td>
-  <td>A required field that specifies the string to use as the extra attribute key. The following restrictions apply:<br><br><ul><li>Key must be a domain-prefix path (e.g <code>example.org/foo</code>).</li><li>Key must not exceed 510 characters in length.</li><li>Key must contain the <code>/</code> character, separating the domain and path characters.</li><li>Key must not be empty.</li><li>The domain portion of the key (string of characters before the <code>/</code>) must be a valid RFC1123 subdomain.</li><li>It must not exceed 253 characters in length.</li><li>It must start and end with an alphanumeric character.</li><li>It must only contain lower case alphanumeric characters and <code>-</code> or <code>.</code>.</li><li>It must not use the reserved domains, or be subdomains of, <code>kubernetes.io</code>, <code>k8s.io</code>, and <code>openshift.io</code>.</li><li>The path portion of the key (string of characters after the <code>/</code>) must not be empty and must consist of at least one alphanumeric character, percent-encoded octets, <code>-</code>, <code>.</code>, <code>_</code>, <code>~</code>, <code>!</code>, <code>$</code>, <code>&</code>, <code>'</code>, <code>(</code>, <code>)</code>, <code>*</code>, <code>+</code>, <code>,</code>, <code>;</code>, <code>=</code>, and <code>:</code>.</li><li>Domain portion of the key must not exceed 256 characters in length.</li></ul></td>
+  <td>A required field that specifies the string to use as the extra attribute key. The following restrictions apply:<br><br><ul><li>Key must be a domain-prefix path (e.g <code>example.org/foo</code>).</li><li>Key must not exceed 510 characters in length.</li><li>Key must contain the <code>/</code> character, separating the domain and path characters.</li><li>Key must not be empty.</li><li>The domain portion of the key (string of characters before the <code>/</code>) must be a valid RFC1123 subdomain.</li><li>It must not exceed 253 characters in length.</li><li>It must start and end with an alphanumeric character.</li><li>It must only contain lower case alphanumeric characters and <code>-</code> or <code>.</code>.</li><li>It must not use the reserved domains, or be subdomains of, <code>kubernetes.io</code>, <code>k8s.io</code>, and <code>openshift.io</code>.</li><li>The path portion of the key (string of characters after the <code>/</code>) must not be empty and must consist of at least one alphanumeric character, percent-encoded octets, <code>-</code>, <code>.</code>, <code>_</code>, <code>~</code>, <code>!</code>, <code>$</code>, <code>&amp;</code>, <code>'</code>, <code>(</code>, <code>)</code>, <code>*</code>, <code>+</code>, <code>,</code>, <code>;</code>, <code>=</code>, and <code>:</code>.</li><li>Domain portion of the key must not exceed 256 characters in length.</li></ul></td>
 </tr>
 <tr>
   <td><code>claimMappings.extra.valueExpression</code></td>
@@ -53,11 +53,11 @@ The following table lists all available OIDC provider parameters for direct auth
 </tr>
 <tr>
   <td><code>claimMappings.uid.claim</code></td>
-  <td>An optional field for specifying the JWT token claim that is used in the mapping. The value of this claim will be assigned to the field in which this mapping is associated. To specify the claim, use a single string value for <code>uid.claim</code>.</td>
+  <td>An optional field for specifying the JWT token claim that is used in the mapping. The value of this claim will be assigned to the field in which this mapping is associated. To specify the claim, use a single string value for <code>uid.claim</code>.<br><br>You must set either <code>claim</code> or <code>expression</code>. Do not specify <code>claim</code> when <code>expression</code> is set. The value of <code>claim</code> must be at least 1 character and must not exceed 256 characters in length.</td>
 </tr>
 <tr>
   <td><code>claimMappings.uid.expression</code></td>
-  <td>An optional field for specifying a CEL expression that produces a string value from JWT token claims. When using <code>uid.expression</code> the expression must result in a single string value.</td>
+  <td>An optional field for specifying a CEL expression that produces a string value from JWT token claims. When using <code>uid.expression</code> the expression must result in a single string value.<br><br>CEL expressions have access to the token claims through a CEL variable, <code>claims</code>. The <code>claims</code> variable is a map of claim names to claim values. For example, you can access the <code>sub</code> claim value as <code>claims.sub</code>. Nested claims can be accessed using dot notation for example, <code>claims.foo.bar</code>.<br><br>You must set either <code>claim</code> or <code>expression</code>. Do not specify <code>expression</code> when <code>claim</code> is set. The value of <code>expression</code> must be at least 1 character and must not exceed 1024 characters in length.</td>
 </tr>
 <tr>
   <td><code>claimMappings.username</code></td>
@@ -81,7 +81,7 @@ The following table lists all available OIDC provider parameters for direct auth
 </tr>
 <tr>
   <td><code>claimMappings.username.prefixPolicy</code></td>
-  <td>Configures how a prefix should be applied to the value of the JWT claim specified in the <code>claim</code> field. Allowed values are <code>Prefix</code>, <code>NoPrefix</code>, and omitted (not provided or an empty string).</td>
+  <td>Configures how a prefix should be applied to the value of the JWT claim specified in the <code>claim</code> field. Allowed values are <code>Prefix</code>, <code>NoPrefix</code>, and omitted (not provided or an empty string).<br><br>When set to <code>Prefix</code>, the value specified in the prefix field is prepended to the value of the JWT claim. The prefix field must be set when <code>prefixPolicy</code> is <code>Prefix</code>.<br><br>When set to <code>NoPrefix</code>, no prefix is prepended to the value of the JWT claim.<br><br>When omitted, this means no opinion and the platform is left to choose any prefixes that are applied which is subject to change over time.<br><br>Currently, the platform prepends <code>{{ issuerURL }}#</code> to the value of the JWT claim when the claim is not <code>email</code>.</td>
 </tr>
 <tr>
   <td><code>claimValidationRules</code></td>
@@ -153,7 +153,7 @@ The following table lists all available OIDC provider parameters for direct auth
 </tr>
 <tr>
   <td><code>oidcClients.clientSecret</code></td>
-  <td>Configures the client secret used by the platform component when making authentication requests to the identity provider.</td>
+  <td>Configures the client secret used by the platform component when making authentication requests to the identity provider.<br><br>When not specified, no client secret is used when making authentication requests to the identity provider.<br><br>When specified, it references a secret in the <code>openshift-config</code> namespace that contains the client secret in the <code>clientSecret</code> key of the <code>.data</code> field. The client secret is used when making authentication requests to the identity provider.<br><br>Public clients do not require a client secret, but private clients do require a client secret to work with the identity provider.</td>
 </tr>
 <tr>
   <td><code>oidcClients.clientSecret.name</code></td>

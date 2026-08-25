@@ -62,7 +62,7 @@ For detailed system requirements, see [Linux on {{ ibm_z_name }}/{{ ibm_linuxone
 | --- | --- | --- | --- |
 | Network Interface Card (NIC) | One single z/VM virtual NIC in layer 2 mode | - | - |
 | Virtual switch (vSwitch) | z/VM VSWITCH in layer 2 Ethernet mode | - | - |
-| Network adapter | Direct-attached OSA, RoCE, or HiperSockets | Direct-attached OSA, RoCE, or HiperSockets | A {{ op_system_base }} KVM host configured with OSA, RoCE, or HiperSockets Either a {{ op_system_base }} KVM host that is configured to use bridged networking in libvirt or MacVTap to connect the network to the guests. See [Types of virtual network connections](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index#types-of-virtual-machine-network-connections_configuring-virtual-machine-network-connections). |
+| Network adapter | Direct-attached OSA, RoCE, or HiperSockets | Direct-attached OSA, RoCE, or HiperSockets | A {{ op_system_base }} KVM host configured with OSA, RoCE, or HiperSockets<br>Either a {{ op_system_base }} KVM host that is configured to use bridged networking in libvirt or MacVTap to connect the network to the guests.<br>See [Types of virtual network connections](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index#types-of-virtual-machine-network-connections_configuring-virtual-machine-network-connections). |
 
 ## Disk storage {id="ibm-z-disk-storage_{{ context }}"}
 

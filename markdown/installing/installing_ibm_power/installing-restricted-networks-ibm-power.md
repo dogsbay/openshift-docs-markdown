@@ -7,7 +7,7 @@ title: "Installing a cluster on {{ ibm_power_title }} in a disconnected environm
 # Installing a cluster on {{ ibm_power_title }} in a disconnected environment {id="installing-restricted-networks-ibm-power"}
 {%- set context = "installing-restricted-networks-ibm-power" %}
 
-You can install {{ product_title }} on {{ ibm_power_name }} infrastructure that you provision in a disconnected environment by mirroring the required release images to an internal registry and then running the installation program.
+You can install {{ product_title }} on {{ ibm_power_name }} infrastructure that you provision in a disconnected environment by mirroring the required release images to an internal registry and then running the installation program. {._abstract}
 
 
 :::important
@@ -20,6 +20,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-power-upi-disconnected.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -38,6 +39,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -50,6 +52,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +2 %}{% include "./modules/installation-network-user-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring chrony time service](/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 
@@ -70,6 +73,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_power_name }}](/installing/installing_ibm_power/installation-config-parameters-ibm-power#installation-config-parameters-ibm-power)
 
@@ -90,6 +94,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-machines-static-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -131,7 +136,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 
 {% leveloffset +1 %}{% include "./modules/installation-complete-user-infra.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Guidelines for deploying {{ product_title }} on non-tested platforms](https://access.redhat.com/articles/4207611)
 *   [Enabling multipathing with kernel arguments on {{ op_system }}](/machine_configuration/machine-configs-configure#rhcos-enabling-multipath-day-2_machine-configs-configure)

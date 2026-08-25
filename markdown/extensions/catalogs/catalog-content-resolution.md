@@ -7,7 +7,7 @@ title: Catalog content resolution
 # Catalog content resolution {id="catalog-content-resolution"}
 {%- set context = "catalog-content-resolution" %}
 
-When you specify the cluster extension you want to install in a custom resource (CR), {{ olmv1_first }} uses catalog selection to resolve what content is installed.
+When you specify the cluster extension you want to install in a custom resource (CR), {{ olmv1_first }} uses catalog selection to resolve what content is installed. {._abstract}
 
 You can perform the following actions to control the selection of catalog content:
 

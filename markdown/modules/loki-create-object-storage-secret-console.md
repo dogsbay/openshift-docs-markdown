@@ -11,7 +11,7 @@ To configure Loki object storage, you must create a secret. You can create a sec
 
 **Procedure**
 
-1.  Go to **Workloads** -> **Secrets** in the **Administrator** perspective of the {{ product_title }} web console.
+1.  Go to **Workloads** → **Secrets** in the **Administrator** perspective of the {{ product_title }} web console.
 1.  From the **Create** drop-down list, select **From YAML**.
 1.  Create a secret that uses the `access_key_id` and `access_key_secret` fields to specify your credentials and the `bucketnames`, `endpoint`, and `region` fields to define the object storage location. AWS is used in the following example:
     ```yaml title="Example Secret object"

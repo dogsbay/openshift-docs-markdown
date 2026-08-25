@@ -8,6 +8,6 @@
 
 The key features of {{ support_log_gather }} include the following:
 
-*   ***No administrator privileges required***: Enables you to collect and upload logs without needing elevated permissions, making it easier for non-administrators to gather data securely.
-*   ***Simplified log collection***: Collects debugging data from the cluster, such as resource definitions and service logs.
-*   ***Configurable data upload***: Provides configuration options to either automatically upload the `.tar` file to a support case, or store it locally for manual upload.
+*   **No administrator privileges required**: Enables you to collect and upload logs without needing elevated permissions, making it easier for non-administrators to gather data securely.
+*   **Simplified log collection**: Collects debugging data from the cluster, such as resource definitions and service logs.
+*   **Configurable data upload**: Provides configuration options to either automatically upload the `.tar` file to a support case, or store it locally for manual upload.

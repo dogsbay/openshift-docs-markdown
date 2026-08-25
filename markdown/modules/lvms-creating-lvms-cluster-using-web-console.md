@@ -21,7 +21,7 @@ You can only create a single instance of the `LVMCluster` custom resource (CR) o
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Click **Ecosystem** -> **Installed Operators**.
+1.  Click **Ecosystem** → **Installed Operators**.
 1.  In the `openshift-lvm-storage` namespace, click **{{ lvms }}**.
 1.  Click **Create LVMCluster** and select either **Form view** or **YAML view**.
 1.  Configure the required `LVMCluster` CR parameters.
@@ -35,5 +35,5 @@ You can only create a single instance of the `LVMCluster` custom resource (CR) o
 **Verification**
 
 1.  On the **LVMCLuster** page, check that the `LVMCluster` CR is in the `Ready` state. 
-1.  Optional: To view the available storage classes created by {{ lvms }} for each device class, click **Storage** -> **StorageClasses**. 
-1.  Optional: To view the available volume snapshot classes created by {{ lvms }} for each device class, click **Storage** -> **VolumeSnapshotClasses**.
+1.  Optional: To view the available storage classes created by {{ lvms }} for each device class, click **Storage** → **StorageClasses**. 
+1.  Optional: To view the available volume snapshot classes created by {{ lvms }} for each device class, click **Storage** → **VolumeSnapshotClasses**.

@@ -9,7 +9,7 @@ To view OVN-Kubernetes pod logs in the {{ product_title }} web console, you can 
 
 **Procedure**
 
-1.  In the {{ product_title }} console, navigate to **Workloads** -> **Pods** or navigate to the pod through the resource you want to investigate.
+1.  In the {{ product_title }} console, navigate to **Workloads** → **Pods** or navigate to the pod through the resource you want to investigate.
 1.  Select the `openshift-ovn-kubernetes` project from the drop-down menu.
 1.  Click the name of the pod you want to investigate.
 1.  Click **Logs**. By default for the `ovnkube-master` the logs associated with the `northd` container are displayed.

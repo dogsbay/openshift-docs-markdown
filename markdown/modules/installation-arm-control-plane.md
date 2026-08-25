@@ -7,12 +7,9 @@
 
 Use the `05_masters.json` Azure Resource Manager (ARM) template to deploy the control plane machines for your {{ product_title }} cluster. {._abstract}
 
-<details>
-<summary>`05_masters.json` ARM template</summary>
-
-```json
-{%- if not ash %}
-```json
+:::details{title="`05_masters.json` ARM template"}
+```json {minja}
+{% if not ash %}
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -199,10 +196,8 @@ Use the `05_masters.json` Azure Resource Manager (ARM) template to deploy the co
     }
   ]
 }
-```
 {% endif %}
 {% if ash %}
-```json
 {
   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion" : "1.0.0.0",
@@ -387,11 +382,10 @@ Use the `05_masters.json` Azure Resource Manager (ARM) template to deploy the co
     }
   ]
 }
+{% endif %}
 ```
-{%- endif %}
-```
-</details>
+:::
 
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}

@@ -5,7 +5,7 @@ If you do not provide any advanced storage configuration, the default storage cl
 
 The following table lists the capabilities that the infrastructure must provide to support persistent storage in a hosted cluster:
 
-***Persistent storage modes in a hosted cluster***
+**Persistent storage modes in a hosted cluster**
 
 <table>
 <thead>
@@ -19,7 +19,7 @@ The following table lists the capabilities that the infrastructure must provide 
 <tr>
   <td>Any RWX <code>Block</code> CSI provider</td>
   <td><code>kubevirt-csi</code></td>
-  <td>--<ul><li>Basic RWO <code>Block</code> and <code>File</code></li><li>Basic RWX <code>Block</code> and <code>Snapshot</code></li><li>CSI volume cloning</li></ul>--</td>
+  <td><ul><li>Basic RWO <code>Block</code> and <code>File</code></li><li>Basic RWX <code>Block</code> and <code>Snapshot</code></li><li>CSI volume cloning</li></ul></td>
 </tr>
 <tr>
   <td>Any RWX <code>Block</code> CSI provider</td>

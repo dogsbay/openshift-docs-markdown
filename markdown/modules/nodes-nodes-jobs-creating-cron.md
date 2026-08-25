@@ -22,7 +22,7 @@ With `oc create cronjob`, the `--schedule` option accepts schedules in [cron for
 **Procedure**
 
 1.  Create a YAML file similar to the following:
-    {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
     ```yaml
     apiVersion: batch/v1
     kind: CronJob

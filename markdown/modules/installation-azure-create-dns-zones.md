@@ -42,21 +42,22 @@ cluster deployment and might already exist in your organization for the desired 
 
 {% if not ash %}
 1.  Create the new public DNS zone in the resource group exported in the
-    `BASE_DOMAIN_RESOURCE_GROUP` environment variable:
-    {% endif %}
-    {% if ash %}
-    *   Create the new DNS zone in the resource group exported in the
-    `BASE_DOMAIN_RESOURCE_GROUP` environment variable:
-{%- endif %}
-        ```terminal
-        $ az network dns zone create -g ${BASE_DOMAIN_RESOURCE_GROUP} -n ${CLUSTER_NAME}.${BASE_DOMAIN}
-        ```
-{% if not ash %}
-
-        You can skip this step if you are using a public DNS zone that already exists.
+`BASE_DOMAIN_RESOURCE_GROUP` environment variable:
 {% endif %}
 {% if ash %}
-        You can skip this step if you are using a DNS zone that already exists.
+* Create the new DNS zone in the resource group exported in the
+`BASE_DOMAIN_RESOURCE_GROUP` environment variable:
+{% endif %}
+
+```terminal
+$ az network dns zone create -g ${BASE_DOMAIN_RESOURCE_GROUP} -n ${CLUSTER_NAME}.${BASE_DOMAIN}
+```
+
+{% if not ash %}
+You can skip this step if you are using a public DNS zone that already exists.
+{% endif %}
+{% if ash %}
+You can skip this step if you are using a DNS zone that already exists.
 {% endif %}
 
 {% if not ash %}
@@ -68,5 +69,5 @@ deployment:
 {% endif %}
 
 {% if context == "installing-azure-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}

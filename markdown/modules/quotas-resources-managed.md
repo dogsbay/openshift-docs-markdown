@@ -11,7 +11,7 @@ A pod is in a terminal state if `status.phase in (Failed, Succeeded)` is true.
 :::
 
 
-***Compute resources managed by quota***
+**Compute resources managed by quota**
 
 <table>
 <thead>
@@ -48,7 +48,7 @@ A pod is in a terminal state if `status.phase in (Failed, Succeeded)` is true.
 </tbody>
 </table>
 
-***Storage resources managed by quota***
+**Storage resources managed by quota**
 
 <table>
 <thead>
@@ -67,11 +67,11 @@ A pod is in a terminal state if `status.phase in (Failed, Succeeded)` is true.
   <td>The total number of persistent volume claims that can exist in the project.</td>
 </tr>
 <tr>
-  <td><code><storage-class-name>.storageclass.storage.k8s.io/requests.storage</code></td>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/requests.storage</code></td>
   <td>The sum of storage requests across all persistent volume claims in any state that have a matching storage class, cannot exceed this value.</td>
 </tr>
 <tr>
-  <td><code><storage-class-name>.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
   <td>The total number of persistent volume claims with a matching storage class that can exist in the project.</td>
 </tr>
 <tr>
@@ -91,7 +91,7 @@ A pod is in a terminal state if `status.phase in (Failed, Succeeded)` is true.
 
 <a name="quotas-object-counts-managed_{{ context }}"></a>
 
-***Object counts managed by quota***
+**Object counts managed by quota**
 
 <table>
 <thead>

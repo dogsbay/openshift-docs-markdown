@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if local_zone %}
+{% if local_zone %}
 # Modifying an installation configuration file to use {{ aws_first }} Local Zones {id="install-creating-install-config-aws-edge-zones_{{ context }}"}
 
 {% endif %}
@@ -28,7 +28,7 @@ Modify an `install-config.yaml` file to include {{ aws_short }} {{ zone_type }}.
 **Procedure**
 
 1.  Modify the `install-config.yaml` file by specifying {{ zone_type }} names in the `platform.aws.zones` property of the edge compute pool.
-    {%- if local_zone %}
+{%- if local_zone %}
     ```yaml
     # ...
     platform:
@@ -42,8 +42,8 @@ Modify an `install-config.yaml` file to include {{ aws_short }} {{ zone_type }}.
           - <local_zone_name>
     #...
     ```
-{% endif %}
-{% if wavelength_zone %}
+{%- endif %}
+{%- if wavelength_zone %}
     ```yaml
     # ...
     platform:
@@ -67,7 +67,7 @@ Modify an `install-config.yaml` file to include {{ aws_short }} {{ zone_type }}.
     `compute.platform.aws.zones`
     :   Specifies the list of {{ zone_type }} names to use. The zones must exist in the same {{ aws_short }} Region specified in the `platform.aws.region` field.
     The following example shows a configuration for installing a cluster in the `us-west-2` {{ aws_short }} Region that extends edge nodes to {{ zone_type }} in `Los Angeles` and `Las Vegas` locations:
-{%- if local_zone %}
+{% if local_zone %}
     ```yaml
     apiVersion: v1
     baseDomain: example.com
@@ -114,8 +114,8 @@ Modify an `install-config.yaml` file to include {{ aws_short }} {{ zone_type }}.
 1.  Deploy your cluster.
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}

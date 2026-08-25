@@ -58,53 +58,53 @@ The default `install-config.yaml` file configuration from the previous release o
     ```
 1.  Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
 
-```yaml title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"
-# ...
-compute:
----
-  vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-controlPlane:
-# ...
-vsphere:
-      zones:
-        - "<machine_pool_zone_1>"
-        - "<machine_pool_zone_2>"
-# ...
-platform:
-  vsphere:
-    vcenters:
-# ...
-    datacenters:
-      - <data_center_1_name>
-      - <data_center_2_name>
-    failureDomains:
-    - name: <machine_pool_zone_1>
-      region: <region_tag_1>
-      zone: <zone_tag_1>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster1>"
-        networks:
-        - <VM_Network1_name>
-        datastore: "/<data_center_1>/datastore/<datastore1>"
-        resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
-        folder: "/<data_center_1>/vm/<folder1>"
-    - name: <machine_pool_zone_2>
-      region: <region_tag_2>
-      zone: <zone_tag_2>
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_2>
-        computeCluster: "/<data_center_2>/host/<cluster2>"
-        networks:
-        - <VM_Network2_name>
-        datastore: "/<data_center_2>/datastore/<datastore2>"
-        resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
-        folder: "/<data_center_2>/vm/<folder2>"
-# ...
-```
+    ```yaml title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"
+    # ...
+    compute:
+    ---
+      vsphere:
+          zones:
+            - "<machine_pool_zone_1>"
+            - "<machine_pool_zone_2>"
+    # ...
+    controlPlane:
+    # ...
+    vsphere:
+          zones:
+            - "<machine_pool_zone_1>"
+            - "<machine_pool_zone_2>"
+    # ...
+    platform:
+      vsphere:
+        vcenters:
+    # ...
+        datacenters:
+          - <data_center_1_name>
+          - <data_center_2_name>
+        failureDomains:
+        - name: <machine_pool_zone_1>
+          region: <region_tag_1>
+          zone: <zone_tag_1>
+          server: <fully_qualified_domain_name>
+          topology:
+            datacenter: <data_center_1>
+            computeCluster: "/<data_center_1>/host/<cluster1>"
+            networks:
+            - <VM_Network1_name>
+            datastore: "/<data_center_1>/datastore/<datastore1>"
+            resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
+            folder: "/<data_center_1>/vm/<folder1>"
+        - name: <machine_pool_zone_2>
+          region: <region_tag_2>
+          zone: <zone_tag_2>
+          server: <fully_qualified_domain_name>
+          topology:
+            datacenter: <data_center_2>
+            computeCluster: "/<data_center_2>/host/<cluster2>"
+            networks:
+            - <VM_Network2_name>
+            datastore: "/<data_center_2>/datastore/<datastore2>"
+            resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
+            folder: "/<data_center_2>/vm/<folder2>"
+    # ...
+    ```

@@ -46,14 +46,13 @@ To manage the consumption of extended resources, such as `nvidia.com/gpu`, defin
     $ oc describe quota gpu-quota -n nvidia
     ```
 
-```terminal title="Example output"
-Name:                    gpu-quota
-Namespace:               nvidia
-Resource                 Used  Hard
---------                 ----  ----
-requests.nvidia.com/gpu  0     1
-```
-
+    ```terminal title="Example output"
+    Name:                    gpu-quota
+    Namespace:               nvidia
+    Resource                 Used  Hard
+    --------                 ----  ----
+    requests.nvidia.com/gpu  0     1
+    ```
 1.  Run a pod that asks for a single GPU with the following command:
     ```terminal
     $ oc create pod gpu-pod.yaml

@@ -4,9 +4,9 @@ title: Configuring the Cluster Samples Operator
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Configuring the Cluster Samples Operator {id="configuring-samples-operator"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "configuring-samples-operator" -%}
 
 {% endif %}
@@ -21,11 +21,11 @@ title: Configuring the Cluster Samples Operator
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
-You can configure the Cluster Samples Operator to manage the installation and updates of {{ op_system_base_full }}-based {{ product_title }} image streams and templates in the `openshift` namespace.
+You can configure the Cluster Samples Operator to manage the installation and updates of {{ op_system_base_full }}-based {{ product_title }} image streams and templates in the `openshift` namespace. {._abstract}
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 
-The Cluster Samples Operator manages {{ product_title }} image streams and templates in the `openshift` namespace, providing you with ready-to-use application components.
+The Cluster Samples Operator manages {{ product_title }} image streams and templates in the `openshift` namespace, providing you with ready-to-use application components. {._abstract}
 {% endif %}
 
 {% leveloffset +1 %}{% include "./snippets/cluster-sampler-operator-deprecation.md" %}{% endleveloffset %}

@@ -15,7 +15,7 @@ Increasing the `cacheMaxFlows` might increase the memory usage of the eBPF agent
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **Network Observability Operator**, select **Flow Collector**.
 1.  Select **cluster**, and then select the **YAML** tab.
 1.  Increase the `spec.agent.ebpf.cacheMaxFlows` value, as shown in the following YAML sample:

@@ -6,7 +6,7 @@ You can run the latency tests by using a custom test image and image registry us
 **Procedure**
 
 *   To configure the latency tests to use a custom test image and image registry, run a command similar to the following example:
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -e KUBECONFIG=/kubeconfig/kubeconfig \
     -e IMAGE_REGISTRY="<custom_image_registry>" \
     -e CNF_TESTS_IMAGE="<custom_cnf-tests_image>" \

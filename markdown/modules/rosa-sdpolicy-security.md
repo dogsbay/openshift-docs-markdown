@@ -8,8 +8,8 @@
 This section provides information about the service definition for
 {%- if openshift_rosa_hcp %}
 {{ hcp_title_first }}
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}
 {%- endif %}
 security.
@@ -31,15 +31,15 @@ Privileged containers are available for users with the `cluster-admin` role. Usa
 In addition to normal users,
 {%- if openshift_rosa_hcp %}
 {{ hcp_title_first }}
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}
 {%- endif %}
 provides access to a
 {%- if openshift_rosa_hcp %}
 {{ hcp_title }}-specific
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 ROSA-specific
 {%- endif %}
 group called `dedicated-admin`. Any users on the cluster that are members of the `dedicated-admin` group:
@@ -55,8 +55,8 @@ group called `dedicated-admin`. Any users on the cluster that are members of the
 The administrator of
 {%- if openshift_rosa_hcp %}
 {{ hcp_title_first }}
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}
 {%- endif %}
 has default access to the `cluster-admin` role for your organization’s cluster. While logged into an account with the `cluster-admin` role, users have increased permissions to run privileged security contexts.
@@ -110,5 +110,5 @@ By enabling etcd encryption for the key values in etcd, you will incur a perform
 {% endif %}
 
 {% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = false -%}
+{%- set rosa_with_hcp = "" -%}
 {% endif %}

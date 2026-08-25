@@ -7,10 +7,10 @@ Resolve the most common SPIRE Vault upstream authority failures on {{ product_ti
 
 | Symptom or error | Likely cause | Section |
 | --- | --- | --- |
-| Connection refused, timeout, or unreachable Vault | Wrong `vaultAddr` or network path from the SPIRE Server pod | [#!spire-vault-troubleshooting-connection-tls_{{ context }}](#spire-vault-troubleshooting-connection-tls_{{ context }}) |
-| `x509: certificate signed by unknown authority` | Missing or invalid `caCertSecretRef` Secret | [#!spire-vault-troubleshooting-connection-tls_{{ context }}](#spire-vault-troubleshooting-connection-tls_{{ context }}) |
-| Vault `403` or Kubernetes auth failure | Vault role, ServiceAccount binding, or signing policy misconfiguration | [#!spire-vault-troubleshooting-authentication_{{ context }}](#spire-vault-troubleshooting-authentication_{{ context }}) |
-| `requested TTL ... exceeds max_lease_ttl` | `caValidity` exceeds the Vault PKI limit | [#!spire-vault-troubleshooting-ttl_{{ context }}](#spire-vault-troubleshooting-ttl_{{ context }}) |
+| Connection refused, timeout, or unreachable Vault | Wrong `vaultAddr` or network path from the SPIRE Server pod | [spire-vault-troubleshooting-connection-tls_{{ context }}](#spire-vault-troubleshooting-connection-tls_{{ context }}) |
+| `x509: certificate signed by unknown authority` | Missing or invalid `caCertSecretRef` Secret | [spire-vault-troubleshooting-connection-tls_{{ context }}](#spire-vault-troubleshooting-connection-tls_{{ context }}) |
+| Vault `403` or Kubernetes auth failure | Vault role, ServiceAccount binding, or signing policy misconfiguration | [spire-vault-troubleshooting-authentication_{{ context }}](#spire-vault-troubleshooting-authentication_{{ context }}) |
+| `requested TTL ... exceeds max_lease_ttl` | `caValidity` exceeds the Vault PKI limit | [spire-vault-troubleshooting-ttl_{{ context }}](#spire-vault-troubleshooting-ttl_{{ context }}) |
 
 ## Connection and TLS errors {id="spire-vault-troubleshooting-connection-tls_{{ context }}"}
 

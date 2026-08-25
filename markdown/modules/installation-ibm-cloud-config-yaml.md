@@ -28,7 +28,7 @@ This sample YAML file is for reference only. You must obtain your `install-confi
 
 
 {% if with_networking or without_networking %}
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 controlPlane:
@@ -47,8 +47,8 @@ metadata:
   name: test-cluster
 {%- if without_networking %}
 networking:
-{% endif %}
-{% if with_networking %}
+{%- endif %}
+{%- if with_networking %}
 networking:
 {%- endif %}
   clusterNetwork:
@@ -68,8 +68,8 @@ pullSecret: '{"auths": ...}'
 {%- if not openshift_origin %}
 fips: false
 sshKey: ssh-ed25519 AAAA...
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 sshKey: ssh-ed25519 AAAA...
 {%- endif %}
 ```
@@ -108,7 +108,7 @@ where:
     
     :::
 
-{%- if with_networking %}
+{% if with_networking %}
 
 `networking`
 :   Specifies the cluster networking configuration. If you do not supply these parameters and values, the installation program uses the default value.
@@ -134,8 +134,8 @@ where:
 
 `sshKey`
 :   Specifies the SSH key to use to access the machines in your cluster. This value is optional.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 
 `sshKey`
 :   Specifies the SSH key to use to access the machines in your cluster. This value is optional.
@@ -151,7 +151,7 @@ where:
 {% endif %}
 
 {% if vpc %}
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 controlPlane:
@@ -197,8 +197,8 @@ pullSecret: '{"auths": ...}'
 {%- if not openshift_origin %}
 fips: false
 sshKey: ssh-ed25519 AAAA...
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 sshKey: ssh-ed25519 AAAA...
 {%- endif %}
 ```
@@ -273,8 +273,8 @@ where:
 
 `sshKey`
 :   Specifies the SSH key to use to access the machines in your cluster. This value is optional.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 
 `sshKey`
 :   Specifies the SSH key to use to access the machines in your cluster. This value is optional.
@@ -290,7 +290,7 @@ where:
 {% endif %}
 
 {% if private %}
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 controlPlane:
@@ -336,8 +336,8 @@ pullSecret: '{"auths": ...}'
 {%- if not openshift_origin %}
 fips: false
 sshKey: ssh-ed25519 AAAA...
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 sshKey: ssh-ed25519 AAAA...
 {%- endif %}
 ```
@@ -418,8 +418,8 @@ where:
 
 `sshKey`
 :   Specifies the SSH key to use to access the machines in your cluster. This value is optional.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 
 `sshKey`
 :   Specifies the SSH key to use to access the machines in your cluster. This value is optional.
@@ -435,7 +435,7 @@ where:
 {% endif %}
 
 {% if restricted %}
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 controlPlane:
@@ -497,11 +497,11 @@ platform:
         {%- if not openshift_origin %}
         fips: false
         sshKey: ssh-ed25519 AAAA...
-        {% endif %}
-        {% if openshift_origin %}
+        {%- endif %}
+        {%- if openshift_origin %}
         sshKey: ssh-ed25519 AAAA...
-        {% endif %}
-        {% if not openshift_origin %}
+        {%- endif %}
+        {%- if not openshift_origin %}
         additionalTrustBundle: |
     -----BEGIN CERTIFICATE-----
     <MY_TRUSTED_CA_CERT>
@@ -513,8 +513,8 @@ imageContentSources:
 - mirrors:
   - <local_registry>/<local_repository_name>/release
   source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 additionalTrustBundle: |
   -----BEGIN CERTIFICATE-----
   <MY_TRUSTED_CA_CERT>
@@ -611,8 +611,8 @@ where:
 
 `imageContentSources`
 :   Specifies the values from the `metadata.name: release-0` section of the `imageContentSourcePolicy.yaml` file that was created when you mirrored the registry.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 
 `sshKey`
 :   Specifies the SSH key to use to access the machines in your cluster. This value is optional.
@@ -634,17 +634,17 @@ where:
 {% endif %}
 
 {% if context == "installing-ibm-cloud-customizations" %}
-{%- set with_networking = false -%}
+{%- set with_networking = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-customizations" %}
-{%- set without_networking = false -%}
+{%- set without_networking = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-vpc" %}
-{%- set vpc = false -%}
+{%- set vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-private" %}
-{%- set private = false -%}
+{%- set private = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-restricted" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

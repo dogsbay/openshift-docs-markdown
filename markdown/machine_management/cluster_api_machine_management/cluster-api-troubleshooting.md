@@ -3,12 +3,12 @@ title: Troubleshooting clusters that use the Cluster API
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting clusters that use the Cluster API {id="cluster-api-troubleshooting"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting clusters that use the Cluster API {id="cluster-api-troubleshooting"}
 {%- set context = "cluster-api-troubleshooting" %}
 
 To help avoid or recover from issues in a cluster that supports migrating resources to use a different authoritative API, you can learn how to recognize these issues.
-Generally, troubleshooting steps for problems with the Cluster API are similar to those steps for problems with the Machine API.
+Generally, troubleshooting steps for problems with the Cluster API are similar to those steps for problems with the Machine API. {._abstract}
 
 {%- set FeatureName = "Managing machines with the Cluster API" %}
 {% include "./snippets/technology-preview.md" %}

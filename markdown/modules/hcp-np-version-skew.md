@@ -10,12 +10,12 @@ In {{ hcp }}, ensure that you use a node pool version that is supported with you
 
     This includes patch versions within the same minor version. For example, a 4.20.3 node pool version is _not_ supported on a 4.20.2 hosted cluster.
 
-**Example supported node pool versions for your hosted cluster**
+    **Example supported node pool versions for your hosted cluster**
 
-| Hosted cluster version | Supported node pool versions | Example unsupported node pool versions |
-| --- | --- | --- |
-| 4.21.0 | 4.21.0, 4.20.z, 4.19.z, 4.18.z | 4.21.1+, 4.17.z, 4.16.z |
-| 4.20.2 | 4.20.0, 4.20.1, 4.20.2, 4.19.z, 4.18.z, 4.17.z | 4.21.z, 4.20.3+, 4.16.z |
+    | Hosted cluster version | Supported node pool versions | Example unsupported node pool versions |
+    | --- | --- | --- |
+    | 4.21.0 | 4.21.0, 4.20.z, 4.19.z, 4.18.z | 4.21.1+, 4.17.z, 4.16.z |
+    | 4.20.2 | 4.20.0, 4.20.1, 4.20.2, 4.19.z, 4.18.z, 4.17.z | 4.21.z, 4.20.3+, 4.16.z |
 
 ## Version compatibility reporting {id="hcp-np-version-skew-compatibility-reporting_{{ context }}"}
 

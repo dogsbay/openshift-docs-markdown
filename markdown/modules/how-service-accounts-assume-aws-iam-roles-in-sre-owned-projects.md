@@ -4,8 +4,8 @@
 When you install a {{ product_title }}
 {%- if openshift_rosa_hcp %}
 cluster,
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 that uses the AWS Security Token Service (STS),
 {%- endif %}
 cluster-specific Operator AWS Identity and Access Management (IAM) roles are created. These IAM roles permit the ROSA cluster Operators, managed by Red&#160;Hat Site Reliability Engineering (SRE), to run core OpenShift functionality. {._abstract}

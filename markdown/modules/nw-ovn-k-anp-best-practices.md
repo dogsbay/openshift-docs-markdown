@@ -15,7 +15,6 @@ Applying ANP and `BaselineAdminNetworkPolicy` (BANP) to system namespaces (`defa
 
 :::
 
-
 *   Because `0-100` is the supported priority range, you might design your ANP to use a middle range like `30-70`. This leaves some placeholder
 for priorities before and after. Even in the middle range, you might want to leave gaps so that as your infrastructure requirements evolve over time, you are able to insert new ANPs when needed at the right priority level. If you pack your ANPs, then you might need to recreate all of them to accommodate any changes in the future.
 *   When using `0.0.0.0/0` or `::/0` to create a strong `Deny` policy, ensure that you have higher priority `Allow` or `Pass` rules for essential traffic.
@@ -43,7 +42,6 @@ for priorities before and after. Even in the middle range, you might want to lea
 An empty namespace selector applied to a infrastructure namespace can make your cluster unresponsive and in a non-functional state.
 
 :::
-
 
 *   In API semantics for ANP, you have to explicitly define allow or deny rules when you create the policy, unlike `NetworkPolicy` objects which have an implicit deny.
 *   Unlike `NetworkPolicy` objects, `AdminNetworkPolicy` objects ingress rules are limited to in-cluster pods and namespaces so you cannot, and do not need to, set rules for ingress from the host network.

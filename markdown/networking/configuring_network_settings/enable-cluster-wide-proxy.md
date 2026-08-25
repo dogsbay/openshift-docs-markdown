@@ -3,11 +3,11 @@ title: Configuring the cluster-wide proxy
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the cluster-wide proxy {id="enable-cluster-wide-proxy"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the cluster-wide proxy {id="enable-cluster-wide-proxy"}
 {%- set context = "config-cluster-wide-proxy" %}
 
-To enable your {{ product_title }} cluster to use an HTTP or HTTPS proxy when direct internet access is denied, you can configure cluster-wide proxy settings by modifying the `Proxy` object for existing clusters or by configuring proxy settings in the `install-config.yaml` file for new clusters.
+To enable your {{ product_title }} cluster to use an HTTP or HTTPS proxy when direct internet access is denied, you can configure cluster-wide proxy settings by modifying the `Proxy` object for existing clusters or by configuring proxy settings in the `install-config.yaml` file for new clusters. {._abstract}
 
 After you enable a cluster-wide egress proxy for your cluster on a supported platform, {{ op_system_first }} populates the `status.noProxy` parameter with the values of the `networking.machineNetwork[].cidr`, `networking.clusterNetwork[].cidr`, and `networking.serviceNetwork[]` fields from your `install-config.yaml` file that exists on the supported platform.
 
@@ -80,7 +80,7 @@ Review the [sites that your cluster requires access to](/installing/install_conf
 
 {% leveloffset +1 %}{% include "./modules/nw-verify-proxy-configuration.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Configuring the cluster network range](/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
 *   [Understanding the CA Bundle certificate](/security/certificates/updating-ca-bundle#ca-bundle-understanding_updating-ca-bundle)

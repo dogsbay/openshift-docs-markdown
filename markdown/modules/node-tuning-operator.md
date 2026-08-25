@@ -9,7 +9,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if operators %}
+{% if operators %}
 # Node Tuning Operator {id="about-node-tuning-operator_{{ context }}"}
 
 {% endif %}
@@ -20,9 +20,9 @@
 {% if cluster_caps %}
 # Node Tuning capability {id="_node_tuning_capability"}
 {% endif %}
-{%- if cluster_caps %}
-The Node Tuning Operator provides features for the `NodeTuning` capability.
-{% endif %} {._abstract}
+{% if cluster_caps %}
+The Node Tuning Operator provides features for the `NodeTuning` capability. {._abstract}
+{% endif %}
 
 The Node Tuning Operator helps you manage node-level tuning by orchestrating the TuneD daemon and achieves low latency performance by using the Performance Profile controller. The majority of high-performance applications require some level of kernel tuning. The Node Tuning Operator provides a unified management interface to users of node-level sysctls and more flexibility to add custom tuning specified by user needs.
 

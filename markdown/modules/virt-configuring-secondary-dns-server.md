@@ -12,11 +12,11 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
 **Procedure**
 
 1.  Edit the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Enable the DNS server and monitoring components according to the following example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:
@@ -31,12 +31,12 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
     Setting `deployKubeSecondaryDNS` to `true` enables the DNS server.
 1.  Save the file and exit the editor.
 1.  Create a load balancer service to expose the DNS server outside the cluster by running the `oc expose` command according to the following example:
-    ```terminal
+    ```terminal {minja}
     $ oc expose -n {{ CNVNamespace }} deployment/secondary-dns --name=dns-lb \
       --type=LoadBalancer --port=53 --target-port=5353 --protocol='UDP'
     ```
 1.  Retrieve the external IP address by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get service -n {{ CNVNamespace }}
     ```
 
@@ -46,11 +46,11 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
     dns-lb     LoadBalancer     172.30.27.5    10.46.41.94      53:31829/TCP     5s
     ```
 1.  Edit the `HyperConverged` CR again:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Add the external IP address that you previously retrieved to the `kubeSecondaryDNSNameServerIP` field in the enterprise DNS server records. For example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ sandboxed_containers_first }} {{ sandboxed_containers_version }} release notes {id="sandboxed-containers-1-3-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ sandboxed_containers_first }} {{ sandboxed_containers_version }} release notes {id="sandboxed-containers-1-3-release-notes"}
 {%- set context = "sandboxed-containers-release-notes" %}
 
 ## About this release {id="sandboxed-containers-1-3-about-this-release"}

@@ -10,7 +10,7 @@ For more information about supported instance types, see the following pages in 
 *   NVIDIA GPU Operator Community support matrix
 *   NVIDIA AI Enterprise support matrix
 
-{% include "./snippets/apply-machine-configuration-method.md" %}
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file and a machine set YAML file that references the machine template when it deploys machines.
 
 ```yaml title="Sample GPU-enabled machine template configuration"
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta2

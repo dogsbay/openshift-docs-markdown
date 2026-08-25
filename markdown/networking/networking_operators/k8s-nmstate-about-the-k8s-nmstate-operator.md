@@ -3,13 +3,13 @@ title: Kubernetes NMState Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Kubernetes NMState Operator {id="k8s-nmstate-about-the-k8s-nmstate-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Kubernetes NMState Operator {id="k8s-nmstate-about-the-k8s-nmstate-operator"}
 {%- set context = "k8s-nmstate-about-the-k8s-nmstate-operator" %}
 
 {%- set FeatureName = "Kubernetes NMState Operator" %}
 
-The Kubernetes NMState Operator provides a Kubernetes API for performing state-driven network configuration across the {{ product_title }} cluster nodes with NMState.
+The Kubernetes NMState Operator provides a Kubernetes API for performing state-driven network configuration across the {{ product_title }} cluster nodes with NMState. {._abstract}
 
 The Kubernetes NMState Operator provides users with functionality to configure various network interface types, DNS, and routing on cluster nodes. Additionally, the daemons on the cluster nodes periodically report on the state of each node’s network interfaces to the API server.
 
@@ -72,7 +72,7 @@ You can install the Kubernetes NMState Operator by using the web console or the 
 
 {% leveloffset +1 %}{% include "./modules/k8s-nmstate-uninstall-operator.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_k8s-nmstate-view-stats_{{ context }}"}
+## Additional resources {id="additional-resources_k8s-nmstate-view-stats_{{ context }}" ._additional-resources}
 
 *   [`nmstate`](https://nmstate.github.io/)
 *   [Creating an interface on nodes](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-creating-interface-on-nodes_k8s-nmstate-updating-node-network-config)

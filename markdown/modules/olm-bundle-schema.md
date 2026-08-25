@@ -3,9 +3,7 @@
 
 The `olm.bundle` schema defines the structure of bundle entries stored in an Operator catalog index. It specifies required fields such as package name, bundle name, image reference, and optional properties and related images. {._abstract}
 
-<details>
-<summary>`olm.bundle` schema</summary>
-
+:::details{title="`olm.bundle` schema"}
 ```go
 #Bundle: {
   schema: "olm.bundle"
@@ -33,4 +31,4 @@ The `olm.bundle` schema defines the structure of bundle entries stored in an Ope
   name?: string & !=""
 }
 ```
-</details>
+:::

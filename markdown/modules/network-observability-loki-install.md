@@ -13,13 +13,13 @@ The [{{ loki_op }} versions 6.0+](https://catalog.redhat.com/software/containers
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
 1.  Choose  **{{ loki_op }}** from the list of available Operators, and click **Install**.
 1.  Under **Installation Mode**, select **All namespaces on the cluster**.
 
 **Verification**
 
-1.  Verify that you installed the {{ loki_op }}. Visit the **Ecosystem** -> **Installed Operators** page and look for **{{ loki_op }}**.
+1.  Verify that you installed the {{ loki_op }}. Visit the **Ecosystem** → **Installed Operators** page and look for **{{ loki_op }}**.
 1.  Verify that **{{ loki_op }}** is listed with **Status** as **Succeeded** in all the projects.
 
 

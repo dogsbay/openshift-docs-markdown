@@ -9,7 +9,7 @@ Role-based access control (RBAC) allows you to provide relevant permissions to u
 *   The user you want to give permissions to has logged in to Argo CD.
  
 .Procedure
-    1.  In the Keycloak dashboard navigate to **Users** -> **Groups**. Add the user to the Keycloak group `ArgoCDAdmins`. 
+    1.  In the Keycloak dashboard navigate to **Users** → **Groups**. Add the user to the Keycloak group `ArgoCDAdmins`. 
     1.  Ensure that `ArgoCDAdmins` group has the required permissions in the `argocd-rbac` config map. 
         *   Edit the config map:  
             ```terminal

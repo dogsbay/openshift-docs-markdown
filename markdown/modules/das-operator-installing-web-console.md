@@ -15,7 +15,7 @@ As a cluster administrator, you can install the Dynamic Accelerator Slicer (DAS)
 **Procedure**
 
 1.  Configure the NVIDIA GPU Operator for MIG support:
-    1.  In the {{ product_title }} web console, navigate to **Ecosystem** -> **Installed Operators**.
+    1.  In the {{ product_title }} web console, navigate to **Ecosystem** → **Installed Operators**.
     1.  Select the **NVIDIA GPU Operator** from the list of installed operators.
     1.  Click the **ClusterPolicy** tab and then click **Create ClusterPolicy**.
     1.  In the YAML editor, replace the default content with the following cluster policy configuration to disable the default NVIDIA device plugin and enable MIG support:
@@ -124,15 +124,15 @@ As a cluster administrator, you can install the Dynamic Accelerator Slicer (DAS)
             enabled: false
         ```
     1.  Click **Create** to apply the cluster policy.
-    1.  Navigate to **Workloads** -> **Pods** and select the `nvidia-gpu-operator` namespace to monitor the cluster policy deployment.
+    1.  Navigate to **Workloads** → **Pods** and select the `nvidia-gpu-operator` namespace to monitor the cluster policy deployment.
     1.  Wait for the NVIDIA GPU Operator cluster policy to reach the `Ready` state. You can monitor this by:
-        1.  Navigating to **Ecosystem** -> **Installed Operators** -> **NVIDIA GPU Operator**.
+        1.  Navigating to **Ecosystem** → **Installed Operators** → **NVIDIA GPU Operator**.
         1.  Clicking the **ClusterPolicy** tab and checking that the status shows `ready`.
-    1.  Verify that all pods in the NVIDIA GPU Operator namespace are running by selecting the `nvidia-gpu-operator` namespace and navigating to **Workloads** -> **Pods**.
+    1.  Verify that all pods in the NVIDIA GPU Operator namespace are running by selecting the `nvidia-gpu-operator` namespace and navigating to **Workloads** → **Pods**.
     1.  Label nodes with MIG-capable GPUs to enable MIG mode:
-        1.  Navigate to **Compute** -> **Nodes**.
+        1.  Navigate to **Compute** → **Nodes**.
         1.  Select a node that has MIG-capable GPUs.
-        1.  Click **Actions** -> **Edit Labels**.
+        1.  Click **Actions** → **Edit Labels**.
         1.  Add the label `nvidia.com/mig.config=all-enabled`.
         1.  Click **Save**.
         1.  Repeat for each node with MIG-capable GPUs.
@@ -144,17 +144,17 @@ As a cluster administrator, you can install the Dynamic Accelerator Slicer (DAS)
             :::
 
     1.  Verify that MIG mode is successfully enabled on the GPU nodes by checking that the `nvidia.com/mig.config=all-enabled` label appears in the **Labels** section. To locate the label, navigate to **Compute → Nodes**, select the GPU node, and click the **Details** tab.
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
 1.  Search for **Dynamic Accelerator Slicer** or **DAS** in the filter box to locate the DAS Operator.
 1.  Select the **Dynamic Accelerator Slicer** and click **Install**.
 1.  On the **Install Operator** page:
     1.  Select **All namespaces on the cluster (default)** for the installation mode.
-    1.  Select **Installed Namespace** -> **Operator recommended Namespace: Project  das-operator**.
+    1.  Select **Installed Namespace** → **Operator recommended Namespace: Project  das-operator**.
     1.  If creating a new namespace, enter `das-operator` as the namespace name.
     1.  Select an update channel.
     1.  Select **Automatic** or **Manual** for the approval strategy.
 1.  Click **Install**.
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 1.  Select **DAS Operator** from the list.
 1.  In the **Provided APIs** table column, click **DASOperator**. This takes you to the **DASOperator** tab of the **Operator details** page. 
 1.  Click **Create DASOperator**. This takes you to the **Create DASOperator** YAML view. 
@@ -177,7 +177,7 @@ As a cluster administrator, you can install the Dynamic Accelerator Slicer (DAS)
 
 To verify that the DAS Operator installed successfully:
 
-1.  Navigate to the **Ecosystem** -> **Installed Operators** page.
+1.  Navigate to the **Ecosystem** → **Installed Operators** page.
 1.  Ensure that **Dynamic Accelerator Slicer** is listed in the `das-operator` namespace with a **Status** of **Succeeded**.
 
 To verify that the `DASOperator` CR installed successfully:
@@ -193,16 +193,16 @@ To verify that the `DASOperator` CR installed successfully:
     ```
 
 
-:::note
+    :::note
 
-During installation an Operator might display a **Failed** status. If the installation later succeeds with an **Succeeded** message, you can ignore the **Failed** message.
-
-:::
+    During installation an Operator might display a **Failed** status. If the installation later succeeds with an **Succeeded** message, you can ignore the **Failed** message.
+    
+    :::
 
 
 You can also verify the installation by checking the pods:
 
-1.  Navigate to the **Workloads** -> **Pods** page and select the `das-operator` namespace.
+1.  Navigate to the **Workloads** → **Pods** page and select the `das-operator` namespace.
 1.  Verify that all DAS Operator component pods are running:
     *   `das-operator` pods (main operator controllers)
     *   `das-operator-webhook` pods (webhook servers)
@@ -210,16 +210,16 @@ You can also verify the installation by checking the pods:
     *   `das-daemonset` pods (only on nodes with MIG-compatible GPUs)
 
 
-:::note
+    :::note
 
-The `das-daemonset` pods will only appear on nodes that have MIG-compatible GPU hardware. If you do not see any daemonset pods, verify that your cluster has nodes with supported GPU hardware and that the NVIDIA GPU Operator is properly configured.
-
-:::
+    The `das-daemonset` pods will only appear on nodes that have MIG-compatible GPU hardware. If you do not see any daemonset pods, verify that your cluster has nodes with supported GPU hardware and that the NVIDIA GPU Operator is properly configured.
+    
+    :::
 
 
 **Troubleshooting**
 
 Use the following procedure if the Operator does not appear to be installed:
 
-1.  Navigate to the **Ecosystem** -> **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-1.  Navigate to the **Workloads** -> **Pods** page and check the logs for pods in the `das-operator` namespace.
+1.  Navigate to the **Ecosystem** → **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+1.  Navigate to the **Workloads** → **Pods** page and check the logs for pods in the `das-operator` namespace.

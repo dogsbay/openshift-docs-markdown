@@ -24,14 +24,14 @@ You can add annotations to a function. Similar to a label, an annotation is defi
     1.  Substitute `<annotation_name>: "<annotation_value>"` with your annotation.
 
         For example, to indicate that a function was authored by Alice, you might include the following annotation:
-        ```yaml
-        name: test
-        namespace: ""
-        runtime: go
-        ...
-        annotations:
-          author: "alice@example.com"
-        ```
+    ```yaml
+    name: test
+    namespace: ""
+    runtime: go
+    ...
+    annotations:
+      author: "alice@example.com"
+    ```
 1.  Save the configuration.
 
 The next time you deploy your function to the cluster, the annotations are added to the corresponding Knative service.

@@ -13,11 +13,11 @@ Configure additional users as notification contacts to ensure that all appropria
 
 1.  Navigate to the Clusters page of the {{ hybrid_console_second }}.
 1.  Click the name of your cluster to go to the cluster details page.
-1.  Click the ***Support*** tab.
-1.  On the ***Support*** tab, find the ***Notification contacts*** section.
-1.  Click ***Add notification contact***.
-1.  In the ***Red&#160;Hat username or email*** field, enter the email address or the user name of the new recipient.
-1.  Click ***Add contact***.
+1.  Click the **Support** tab.
+1.  On the **Support** tab, find the **Notification contacts** section.
+1.  Click **Add notification contact**.
+1.  In the **Red&#160;Hat username or email** field, enter the email address or the user name of the new recipient.
+1.  Click **Add contact**.
 
 **Verification**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-```yaml title="Example ImageSetConfiguration CR for {{ lvms }}"
+```yaml title="Example ImageSetConfiguration CR for {{ lvms }}" {minja}
 kind: ImageSetConfiguration
 apiVersion: mirror.openshift.io/v1alpha2
 archiveSize: 4

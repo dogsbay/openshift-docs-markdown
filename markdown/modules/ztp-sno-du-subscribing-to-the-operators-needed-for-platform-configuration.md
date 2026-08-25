@@ -23,18 +23,18 @@ Use `Manual` mode for subscriptions. This allows you to control the timing of Op
 :::
 
 
-```yaml title="Recommended Local Storage Operator subscription (StorageSubscription.yaml)"
+```yaml title="Recommended Local Storage Operator subscription (StorageSubscription.yaml)" {minja}
 {% include "./snippets/ztp_StorageSubscription.yaml" %}
 ```
 
-```yaml title="Recommended SR-IOV Operator subscription (SriovSubscription.yaml)"
+```yaml title="Recommended SR-IOV Operator subscription (SriovSubscription.yaml)" {minja}
 {% include "./snippets/ztp_SriovSubscription.yaml" %}
 ```
 
-```yaml title="Recommended PTP Operator subscription (PtpSubscription.yaml)"
+```yaml title="Recommended PTP Operator subscription (PtpSubscription.yaml)" {minja}
 {% include "./snippets/ztp_PtpSubscription.yaml" %}
 ```
 
-```yaml title="Recommended Cluster Logging Operator subscription (ClusterLogSubscription.yaml)"
+```yaml title="Recommended Cluster Logging Operator subscription (ClusterLogSubscription.yaml)" {minja}
 {% include "./snippets/ztp_ClusterLogSubscription.yaml" %}
 ```

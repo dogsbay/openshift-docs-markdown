@@ -31,7 +31,7 @@ func getEvent(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-```go title="Example PTP events createSubscription function in Go"
+```go title="Example PTP events createSubscription function in Go" {minja}
 import (
 "github.com/redhat-cne/sdk-go/pkg/pubsub"
 "github.com/redhat-cne/sdk-go/pkg/types"
@@ -75,7 +75,7 @@ func createSubscription(resourceAddress string) (sub pubsub.PubSub, err error) {
 ```
 1.  Replace `<node_name>` with the FQDN of the node that is generating the PTP events. For example, `compute-1.example.com`.
 
-```go title="Example PTP events consumer getCurrentState function in Go"
+```go title="Example PTP events consumer getCurrentState function in Go" {minja}
 //Get PTP event state for the resource
 func getCurrentState(resource string) {
   //Create publisher

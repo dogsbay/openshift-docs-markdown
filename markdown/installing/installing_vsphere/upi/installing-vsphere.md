@@ -3,13 +3,13 @@ title: Installing a cluster on vSphere with user-provisioned infrastructure
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on vSphere with user-provisioned infrastructure {id="installing-vsphere"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on vSphere with user-provisioned infrastructure {id="installing-vsphere"}
 {%- set context = "installing-vsphere" -%}
 {%- set platform = "vSphere" %}
 
 In {{ product_title }} version {{ product_version }}, you can install a cluster on
-VMware vSphere infrastructure that you provision.
+VMware vSphere infrastructure that you provision. {._abstract}
 
 
 :::important
@@ -42,6 +42,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-vsphere-regions-zones.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Additional VMware vSphere configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
 *   [Deprecated VMware vSphere configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
@@ -51,6 +52,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for vSphere](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -89,12 +91,14 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +3 %}{% include "./modules/installation-registry-storage-block-recreate-rollout.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring registry storage for VMware vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
 {% leveloffset +1 %}{% include "./modules/installation-complete-user-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding compute machines to vSphere manually](/machine_management/user_infra/adding-vsphere-compute-user-infra#adding-vsphere-compute-user-infra)
 
@@ -103,6 +107,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing to install a cluster using user-provisioned infrastructure](/installing/installing_vsphere/upi/upi-vsphere-preparing-to-install#upi-vsphere-preparing-to-install)
 *   [Installation and update](/architecture/architecture-installation#architecture-installation)

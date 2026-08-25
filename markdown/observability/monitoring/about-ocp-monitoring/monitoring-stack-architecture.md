@@ -43,6 +43,7 @@ You can learn about the monitoring stack architecture, which includes default mo
 {% leveloffset +1 %}{% include "./modules/monitoring-tls-security-and-rotation.md" %}{% endleveloffset %}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+
 **Additional resources**
 {._additional-resources}
 
@@ -55,7 +56,7 @@ You can learn about the monitoring stack architecture, which includes default mo
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   [Granting users permissions for monitoring for user-defined projects](/observability/monitoring/configuring-user-workload-monitoring/preparing-to-configure-the-monitoring-stack-uwm#granting-users-permission-to-monitor-user-defined-projects_preparing-to-configure-the-monitoring-stack-uwm)
-{% endif %}
-{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   [Configuring TLS security profiles](/security/tls-security-profiles#tls-security-profiles)
-{% endif %}
+{%- endif %}

@@ -11,7 +11,7 @@
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Edit the `HyperConverged` CR, adding the appropriate template and boot source in the `dataImportCronTemplates` section. For example:

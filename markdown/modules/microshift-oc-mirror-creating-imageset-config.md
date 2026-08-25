@@ -19,7 +19,7 @@ You must create an `ImageSetConfiguration` YAML file to specify both the Operato
 **Procedure**
 
 1.  Create and edit the `ImageSetConfiguration` YAML for {{ microshift_short }} by using the following example as a guide:
-    ```yaml title="Example edited {{ microshift_short }} image set configuration file"
+    ```yaml title="Example edited {{ microshift_short }} image set configuration file" {minja}
     kind: ImageSetConfiguration
     apiVersion: mirror.openshift.io/v2alpha1
     mirror:

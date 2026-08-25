@@ -7,7 +7,7 @@ title: "{{ cli_manager }} release notes"
 # {{ cli_manager }} release notes {id="cli-manager-release-notes"}
 {%- set context = "cli-manager-release-notes" %}
 
-Track the development of the {{ cli_manager }} for {{ product_title }}, which enables you to install CLI plugins in both connected and disconnected environments.
+Track the development of the {{ cli_manager }} for {{ product_title }}, which enables you to install CLI plugins in both connected and disconnected environments. {._abstract}
 
 {%- set FeatureName = "Using the {{ cli_manager }} to install and manage plugins for the OpenShift CLI" %}
 {% include "./snippets/technology-preview.md" %}

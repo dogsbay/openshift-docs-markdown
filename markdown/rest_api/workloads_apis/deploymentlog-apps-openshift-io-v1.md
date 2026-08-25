@@ -1,5 +1,5 @@
 ---
-title: "DeploymentLog []"
+title: "DeploymentLog [apps.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,7 +29,7 @@ Type
 
 The following API endpoints are available:
 
-*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/log`
+*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/log`{minja}
     *   `GET`: read log of the specified DeploymentConfig
 
 ### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/log {id="_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_log"}

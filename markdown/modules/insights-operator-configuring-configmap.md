@@ -39,7 +39,7 @@ The `insights-config` `ConfigMap` object follows standard YAML formatting, where
 :::
 
 
-***{{ insights_operator }} configurable attributes***
+**{{ insights_operator }} configurable attributes**
 
 <table>
 <thead>

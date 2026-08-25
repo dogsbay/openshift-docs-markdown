@@ -15,6 +15,7 @@ Description
 
     :::note
 
+
     Create the `ClusterInstance` CR based on the provided reference `example-sno.yaml` CR.
     
     :::

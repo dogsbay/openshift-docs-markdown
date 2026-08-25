@@ -8,14 +8,14 @@ Cluster administrators can delete installed Operators from a selected namespace 
 *   You have access to the {{ product_title }} cluster web console using an account with
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
 `cluster-admin` permissions.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 `dedicated-admin` permissions.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
-1.  Navigate to the **Ecosystem** -> **Installed Operators** page.
+1.  Navigate to the **Ecosystem** → **Installed Operators** page.
 1.  Scroll or enter a keyword into the **Filter by name** field to find the Operator that you want to remove. Then, click on it.
 1.  On the right side of the **Operator Details** page, select **Uninstall Operator** from the **Actions** list.
 

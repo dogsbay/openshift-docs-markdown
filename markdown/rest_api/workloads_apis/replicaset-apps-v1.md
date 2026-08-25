@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ReplicaSetSpec is the specification of a ReplicaSet. |
 | `status` | `object` | ReplicaSetStatus represents the current status of a ReplicaSet. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -43,6 +44,7 @@ Required
 | `replicas` | `integer` | Replicas is the number of desired pods. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset |
 | `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Selector is a label query over pods that should match the replica count. Label keys and values that must match in order to be controlled by this replica set. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
 | `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#pod-template |
+
 ### .status {id="_status"}
 
 Description
@@ -65,7 +67,8 @@ Required
 | `observedGeneration` | `integer` | ObservedGeneration reflects the generation of the most recently observed ReplicaSet. |
 | `readyReplicas` | `integer` | The number of non-terminating pods targeted by this ReplicaSet with a Ready Condition. |
 | `replicas` | `integer` | Replicas is the most recently observed number of non-terminating pods. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset |
-| `terminatingReplicas` | `integer` | The number of terminating pods for this replica set. Terminating pods have a non-null .metadata.deletionTimestamp and have not yet reached the Failed or Succeeded .status.phase. This is a beta field and requires enabling DeploymentReplicaSetTerminatingReplicas feature (enabled by default). |
+| `terminatingReplicas` | `integer` | The number of terminating pods for this replica set. Terminating pods have a non-null .metadata.deletionTimestamp and have not yet reached the Failed or Succeeded .status.phase.<br>This is a beta field and requires enabling DeploymentReplicaSetTerminatingReplicas feature (enabled by default). |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -105,20 +108,20 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind ReplicaSet
 *   `/apis/apps/v1/watch/replicasets`
     *   `GET`: watch individual changes to a list of ReplicaSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/replicasets`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/replicasets`{minja}
     *   `DELETE`: delete collection of ReplicaSet
     *   `GET`: list or watch objects of kind ReplicaSet
     *   `POST`: create a ReplicaSet
-*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets`
+*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets`{minja}
     *   `GET`: watch individual changes to a list of ReplicaSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}`{minja}
     *   `DELETE`: delete a ReplicaSet
     *   `GET`: read the specified ReplicaSet
     *   `PATCH`: partially update the specified ReplicaSet
     *   `PUT`: replace the specified ReplicaSet
-*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets/{{ name }}`
+*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/replicasets/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind ReplicaSet. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/status`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ReplicaSet
     *   `PATCH`: partially update status of the specified ReplicaSet
     *   `PUT`: replace status of the specified ReplicaSet

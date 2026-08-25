@@ -11,7 +11,7 @@ If you have a heterogeneous cluster but do not want to enable multiple architect
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Edit the `HyperConverged` CR, to modify the workloads node placement to include only nodes with a specific architecture. For example:
@@ -46,7 +46,7 @@ If you have a heterogeneous cluster but do not want to enable multiple architect
 **Verification**
 
 *   Verify that the node affinity is applied by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
       -o jsonpath='{.spec.deployment.nodePlacements.workload}'
     ```

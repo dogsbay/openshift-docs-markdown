@@ -5,7 +5,7 @@ You can run a storage checkup to validate that storage is working correctly for 
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **Checkups** in the web console.
+1.  Navigate to **Virtualization** → **Checkups** in the web console.
 1.  Click the **Storage** tab.
 1.  Click **Install permissions**.
 1.  Click **Run checkup**.

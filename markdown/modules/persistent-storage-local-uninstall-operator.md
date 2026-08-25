@@ -29,7 +29,7 @@ Uninstalling the LSO while local storage PVs are still in use is not recommended
     ```
 1.  Uninstall the LSO from the {{ product_title }} web console.
     1.  Log in to the {{ product_title }} web console.
-    1.  Go to **Ecosystem** -> **Installed Operators**.
+    1.  Go to **Ecosystem** → **Installed Operators**.
     1.  Type **Local Storage** into the filter box to locate the LSO.
     1.  Click the **Options** menu {{ kebab }} at the end of the LSO.
     1.  Click **Uninstall Operator**.

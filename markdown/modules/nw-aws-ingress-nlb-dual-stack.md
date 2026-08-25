@@ -5,7 +5,7 @@ On {{ aws_full }}, an Ingress Controller must use a publishing `Service` type Ne
 
 {%- set FeatureName = "Dual-stack networking for {{ product_title }} on {{ aws_full }}" %}
 {% include "./snippets/technology-preview.md" %}
-{%- set FeatureName = false %}
+{%- set FeatureName = "" %}
 
 If your Ingress Controller uses an NLB and the cluster-scoped `Infrastructure` resource named `cluster` contains `DualStackIPv4Primary` or `DualStackIPv6Primary` in the `status.platformStatus.aws.ipFamily` field, the Ingress Operator sets the Ingress Controller load balancer `Service` to dual-stack IP families.
 

@@ -84,6 +84,7 @@ This configuration is necessary to run both Linux and Windows nodes in the same 
 {% endif %}
 
 {% if post_install %}
+
 1.  To configure the OVN-Kubernetes hybrid network overlay, enter the following command:
     ```terminal
     $ oc patch networks.operator.openshift.io cluster --type=merge \
@@ -133,5 +134,5 @@ This configuration is necessary to run both Linux and Windows nodes in the same 
     ```
 {% endif %}
 {% if post_install %}
-{%- set post_install = false -%}
+{%- set post_install = "" -%}
 {% endif %}

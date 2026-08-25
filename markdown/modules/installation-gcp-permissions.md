@@ -33,6 +33,7 @@ When you attach the `Owner` role to the service account that you create, you gra
 *   Tag User
 
 {% if template %}
+
 **Required roles for user-provisioned {{ gcp_short }} infrastructure**
 
 *   Cloud Infrastructure Manager Admin
@@ -40,7 +41,7 @@ When you attach the `Owner` role to the service account that you create, you gra
 
 The following roles are applied to the service accounts that the control plane and compute machines use:
 
-***{{ gcp_short }} service account roles***
+**{{ gcp_short }} service account roles**
 
 <table>
 <thead>
@@ -51,23 +52,26 @@ The following roles are applied to the service accounts that the control plane a
 </thead>
 <tbody>
 <tr>
-  <td>.5+</td>
-  <td>Control Plane</td>
+  <td rowspan="5">Control Plane</td>
+  <td><code>roles/compute.instanceAdmin</code></td>
 </tr>
 <tr>
-  <td><code>roles/compute.instanceAdmin</code></td>
   <td><code>roles/compute.networkAdmin</code></td>
 </tr>
 <tr>
   <td><code>roles/compute.securityAdmin</code></td>
+</tr>
+<tr>
   <td><code>roles/storage.admin</code></td>
 </tr>
 <tr>
-  <td><code>roles/iam.serviceAccountUser</code>.3+</td>
-  <td>Compute</td>
+  <td><code>roles/iam.serviceAccountUser</code></td>
 </tr>
 <tr>
+  <td rowspan="3">Compute</td>
   <td><code>roles/compute.viewer</code></td>
+</tr>
+<tr>
   <td><code>roles/storage.admin</code></td>
 </tr>
 <tr>
@@ -77,11 +81,11 @@ The following roles are applied to the service accounts that the control plane a
 </table>
 
 {% if context == "installing-gcp-user-infra" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}

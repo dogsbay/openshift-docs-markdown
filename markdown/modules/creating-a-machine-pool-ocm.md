@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not (openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_rosa or openshift_rosa_hcp) %}
 # Creating a machine pool {id="creating_machine_pools_ocm_{{ context }}"}
 
 {% endif %}
@@ -8,12 +8,12 @@
 
 {% endif %}
 
-{%- if not (openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_rosa or openshift_rosa_hcp) %}
 A machine pool is created when you install an {{ product_title }} cluster. After installation, you can create additional machine pools for your cluster by using {{ cluster_manager }}.
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp %}
-You can create additional machine pools for your {{ product_title }} cluster by using {{ cluster_manager }}.
-{% endif %} {._abstract}
+You can create additional machine pools for your {{ product_title }} cluster by using {{ cluster_manager }}. {._abstract}
+{% endif %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
 
@@ -22,8 +22,8 @@ You can create additional machine pools for your {{ product_title }} cluster by 
 The compute, also known as worker, node instance types, autoscaling options, and node counts that are available depend on your
 {%- if openshift_rosa or openshift_rosa_hcp %}
 {{ product_title }}
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp) %}
 {{ product_title }}
 {%- endif %}
 subscriptions, resource quotas and deployment scenario. For more information, contact your sales representative or Red&#160;Hat support.
@@ -54,7 +54,7 @@ subscriptions, resource quotas and deployment scenario. For more information, co
     
     :::
 
-{%- if openshift_rosa_hcp %}
+{% if openshift_rosa_hcp %}
 1.  Optional: If you are using {{ VirtProductName }} on a {{ product_title }} cluster, you might want to run Windows VMs. In order to be license-compliant with Microsoft Windows in AWS, the hosts (x86-64 bare metal EC2 instances) running these VMs must be enabled with AWS EC2 Windows License Included. To enable the machine pool for AWS Windows License Included, select the **Enable machine pool for AWS Windows License Included** checkbox.
 
     You can only select this option when the host cluster is a {{ product_title }} cluster version 4.19 and later and the instance type is x86-64 bare metal EC2.
@@ -76,46 +76,46 @@ subscriptions, resource quotas and deployment scenario. For more information, co
     
     :::
 
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
         *   If you deployed your cluster using a single availability zone, set the **Minimum and maximum node count**. This defines the minimum and maximum compute node limits in the availability zone.
         *   If you deployed your cluster using multiple availability zones, set the **Minimum nodes per zone** and **Maximum nodes per zone**. This defines the minimum and maximum compute node limits per zone.
-            {% endif %}
-            {% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
     *   **Manual node count**: If you do not enable autoscaling, select a compute node count:
         *   If you deployed your cluster using a single availability zone, select a **Compute node count** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool for the zone.
         *   If you deployed your cluster using multiple availability zones, select a **Compute node count (per zone)** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool per zone.
-            {% endif %}
-            {% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     *   **Manual node count**: If you do not enable autoscaling, select a **Compute node count** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool for the availability zone.
-{% endif %}
+{%- endif %}
 1.  Optional: Configure advanced machine pool settings by expanding the appropriate sections and providing values:
-    {%- if openshift_rosa or openshift_rosa_hcp %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
     *   **Root disk size**: Specify a custom root disk size.
-        {% endif %}
-        {% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     *   **Reserved capacity**: Add reserved capacity to your machine pool:
         *   Select a **Reservation Preference** from the list. Valid preferences include:
             *   **None**: The instance does not use a Capacity Reservation even if one is available. The instance runs as an EC2 On-Demand instance. Choose this option when you want to avoid consuming purchased reserved capacity and use it for other workloads.
             *   **Open**: The instance can run in any `open` Capacity Reservation that has matching attributes such as the instance type, platform, AZ, or tenancy. Choose this option for flexibility; if a reservation is not available, the instance can use regular unreserved EC2 capacity.
             *   **CR only** (capacity reservation only): The instance can only run in a Capacity Reservation. If capacity is not available, the instance fails to launch.
         *   Add a **Reservation ID**. You get an ID in the `cr-<capacity_reservation_id>` format when you purchase a Capacity Reservation from AWS. The ID can be for both On-Demand Capacity Reservations or Capacity Blocks for ML.
-            {%- endif %}
-            1.  For **Node labels and taints**, expand the **Edit node labels and taints** menu.
-            1.  Under **Node labels**, add **Key** and **Value** entries for your node labels.
-            1.  Under **Taints**, add **Key** and **Value** entries for your taints. For each taint, select an **Effect** from the drop-down menu. Available options include `NoSchedule`, `PreferNoSchedule`, and `NoExecute`.
+{%- endif %}
+    1.  For **Node labels and taints**, expand the **Edit node labels and taints** menu.
+    1.  Under **Node labels**, add **Key** and **Value** entries for your node labels.
+    1.  Under **Taints**, add **Key** and **Value** entries for your taints. For each taint, select an **Effect** from the drop-down menu. Available options include `NoSchedule`, `PreferNoSchedule`, and `NoExecute`.
 
-                :::note
+        :::note
 
-                Creating a machine pool with taints is only possible if the cluster already has at least one machine pool without a taint. Alternatively, you can add node labels and taints after you create the machine pool.
-                
-                :::
+        Creating a machine pool with taints is only possible if the cluster already has at least one machine pool without a taint. Alternatively, you can add node labels and taints after you create the machine pool.
+        
+        :::
 
-{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-    *   **Custom security groups**: Select additional custom security groups to use for nodes in this machine pool. You must have already created the security groups and associated them with the VPC that you selected for this cluster. You cannot add or edit security groups after you create the machine pool.
-        {%- if not openshift_rosa_hcp %}
-    For more information, see the requirements for security groups in the "Additional resources" section.
-{% endif %}
+{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+        *   **Custom security groups**: Select additional custom security groups to use for nodes in this machine pool. You must have already created the security groups and associated them with the VPC that you selected for this cluster. You cannot add or edit security groups after you create the machine pool.
+{%- if not openshift_rosa_hcp %}
+        For more information, see the requirements for security groups in the "Additional resources" section.
+{%- endif %}
 {% endif %}
 {% if openshift_rosa_hcp %}
 
@@ -127,33 +127,33 @@ subscriptions, resource quotas and deployment scenario. For more information, co
 
 {% endif %}
 {% if openshift_dedicated %}
-    *   **Amazon EC2 Spot Instances**: If you deployed {{ product_title }} on AWS using the Customer Cloud Subscription (CCS) model and want to configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance. For more information about Amazon EC2 Spot Instances, see the [AWS documentation](https://aws.amazon.com/ec2/spot/).
-        {% endif %}
-        {% if openshift_rosa %}
-    *   **Amazon EC2 Spot Instances**: To configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance. For more information about Amazon EC2 Spot Instances, see the [AWS documentation](https://aws.amazon.com/ec2/spot/).
+        *   **Amazon EC2 Spot Instances**: If you deployed {{ product_title }} on AWS using the Customer Cloud Subscription (CCS) model and want to configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance. For more information about Amazon EC2 Spot Instances, see the [AWS documentation](https://aws.amazon.com/ec2/spot/).
+{% endif %}
+{% if openshift_rosa %}
+        *   **Amazon EC2 Spot Instances**: To configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance. For more information about Amazon EC2 Spot Instances, see the [AWS documentation](https://aws.amazon.com/ec2/spot/).
 {%- if not openshift_rosa_hcp %}
 
-        :::important
+            :::important
 
-        Your Amazon EC2 Spot Instances might be interrupted at any time. Use Amazon EC2 Spot Instances only for workloads that can tolerate interruptions.
-        
-        :::
+            Your Amazon EC2 Spot Instances might be interrupted at any time. Use Amazon EC2 Spot Instances only for workloads that can tolerate interruptions.
+            
+            :::
 
 
-        :::note
+            :::note
 
-        If you select **Use Amazon EC2 Spot Instances** for a machine pool, you cannot disable the option after the machine pool is created.
-        
-        :::
+            If you select **Use Amazon EC2 Spot Instances** for a machine pool, you cannot disable the option after the machine pool is created.
+            
+            :::
 
 {%- endif %}
-    *   **Shielded VMs** ({{ GCP }} only): By default, {{ product_title }} on {{ GCP }} instances in the machine pools inherit the Shielded VM settings at the cluster level. You can override the cluster level Shielded VM settings at the machine pool level by selecting or clearing the **Enable Secure Boot support for Shielded VMs** checkbox.
+        *   **Shielded VMs** ({{ GCP }} only): By default, {{ product_title }} on {{ GCP }} instances in the machine pools inherit the Shielded VM settings at the cluster level. You can override the cluster level Shielded VM settings at the machine pool level by selecting or clearing the **Enable Secure Boot support for Shielded VMs** checkbox.
 
-        :::important
+            :::important
 
-        Once a machine pool is created, the **Enable Secure Boot support for Shielded VMs** setting cannot be changed. This setting is not supported for {{ product_title }} on {{ GCP }} clusters created using bare-metal instance types. For more information, see [Limitations](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#limitations) in the {{ GCP }} documentation.
-        
-        :::
+            Once a machine pool is created, the **Enable Secure Boot support for Shielded VMs** setting cannot be changed. This setting is not supported for {{ product_title }} on {{ GCP }} clusters created using bare-metal instance types. For more information, see [Limitations](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#limitations) in the {{ GCP }} documentation.
+            
+            :::
 
 {% endif %}
 {% if openshift_dedicated %}

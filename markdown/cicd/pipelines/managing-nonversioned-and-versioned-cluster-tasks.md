@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing non-versioned and versioned cluster tasks {id="managing-nonversioned-and-versioned-cluster-tasks"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing non-versioned and versioned cluster tasks {id="managing-nonversioned-and-versioned-cluster-tasks"}
 {%- set context = "managing-nonversioned-and-versioned-cluster-tasks" %}
 
 As a cluster administrator, installing the {{ pipelines_title }} Operator creates variants of each default cluster task known as _versioned cluster tasks_ (VCT) and _non-versioned cluster tasks_ (NVCT). For example, installing the {{ pipelines_title }} Operator v1.7 creates a `buildah-1-7-0` VCT and a `buildah` NVCT.

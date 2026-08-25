@@ -36,7 +36,7 @@ Node selectors on specific pods and nodes
 
 
     For example, the following `Node` object has the `region: east` label:
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
     ```yaml title="Sample Node object with a label"
     kind: Node
     apiVersion: v1
@@ -90,7 +90,7 @@ Node selectors on specific pods and nodes
     ```
 
     In this example, the `region: east` and `type: user-node` labels must match the pod node selector.
-{%- endif %}
+{% endif %}
 
     A pod has the `type: user-node,region: east` node selector:
     ```yaml title="Sample Pod object with node selectors"

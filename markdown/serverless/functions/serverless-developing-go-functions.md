@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Developing Go functions {id="serverless-developing-go-functions"}
 {%- set context = "serverless-developing-go-functions" %}
-{% include "./_attributes/common-attributes.md" %}
 
 {%- set FeatureName = "{{ FunctionsProductName }} with Go" %}
 {% leveloffset +2 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}

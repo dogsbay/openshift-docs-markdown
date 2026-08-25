@@ -41,8 +41,8 @@ If you have resized your disk size to host a larger file system, consider creati
 {% if agent %}
 # Creating disk partitions {id="installation-user-infra-machines-advanced-disk_{{ context }}"}
 
-In general, you must use the default disk partitioning that is created during the {{ op_system }} installation. However, there are cases where you might want to create a separate partition for a directory that you expect to grow.
-{% endif %} {._abstract}
+In general, you must use the default disk partitioning that is created during the {{ op_system }} installation. However, there are cases where you might want to create a separate partition for a directory that you expect to grow. {._abstract}
+{% endif %}
 
 {{ product_title }} supports the addition of a single partition to attach storage to either the `/var` directory or a subdirectory of `/var`. For example:
 
@@ -65,6 +65,7 @@ The use of a separate partition for the `/var` directory or a subdirectory of `/
 The following procedure sets up a separate `/var` partition by adding a machine config manifest that is wrapped into the Ignition config file for a node type during the preparation phase of an installation.
 
 {% if agent %}
+
 **Prerequisites**
 
 *   You have created an `openshift` subdirectory within your installation directory.
@@ -78,8 +79,9 @@ The following procedure sets up a separate `/var` partition by adding a machine 
     $ openshift-install create manifests --dir <installation_directory>
     ```
 {% endif %}
+
 1.  Create a Butane config that configures the additional partition. For example, name the file `$HOME/clusterconfig/98-var-partition.bu`, change the disk device name to the name of the storage device on the `worker` systems, and set the storage size as appropriate. This example places the `/var` directory on a separate partition:
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:
@@ -155,8 +157,8 @@ The following procedure sets up a separate `/var` partition by adding a machine 
 {% endif %}
 
 {% if context == "installing-with-agent-based-installer" %}
-{%- set agent = false -%}
+{%- set agent = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

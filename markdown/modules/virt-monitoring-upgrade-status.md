@@ -19,7 +19,7 @@ The `PHASE` and conditions values are approximations that are based on available
 **Procedure**
 
 1.  Run the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get csv -n {{ CNVNamespace }}
     ```
 1.  Review the output, checking the `PHASE` field. For example:
@@ -30,7 +30,7 @@ The `PHASE` and conditions values are approximations that are based on available
     ```
 1.  Optional: Monitor the aggregated status of all {{ VirtProductName }} component
 conditions by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
       -o=jsonpath='{range .status.conditions[*]}{.type}{"\t"}{.status}{"\t"}{.message}{"\n"}{{ end }}'
     ```

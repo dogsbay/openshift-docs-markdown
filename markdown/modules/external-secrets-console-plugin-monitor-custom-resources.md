@@ -11,7 +11,7 @@ You can inspect custom resources for installed secrets management Operators in t
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Plugins** -> **Secrets Management**.
+1.  Navigate to **Plugins** → **Secrets Management**.
 1.  Click {{ kebab }} for the custom resource that you want to monitor, and then click **Inspect**.
 
 **Verification**

@@ -16,20 +16,20 @@ Create your {{ oadp_short }} resources that are used to back up and restore your
 
 1.  Create the {{ oadp_short }} `Backup` and `Restore` CRs for platform artifacts in the same namespace where the {{ oadp_short }} Operator is installed, which is `openshift-adp`.
     1.  If the target cluster is managed by {{ rh_rhacm }}, add the following `PlatformBackupRestore.yaml` file for backing up and restoring {{ rh_rhacm }} artifacts:
-{% include "./snippets/ibu-PlatformBackupRestore.md" %}
+        {% include "./snippets/ibu-PlatformBackupRestore.md" %}
     1.  If you created persistent volumes on your cluster through {{ lvms }}, add the following `PlatformBackupRestoreLvms.yaml` file for {{ lvms }} artifacts:
-{% include "./snippets/ibu-PlatformBackupRestoreLvms.md" %}
+        {% include "./snippets/ibu-PlatformBackupRestoreLvms.md" %}
 1.  If you need to restore applications after the upgrade, create the {{ oadp_short }} `Backup` and `Restore` CRs for your application in the `openshift-adp` namespace.
     1.  Create the {{ oadp_short }} CRs for cluster-scoped application artifacts in the `openshift-adp` namespace, for example:
-{% include "./snippets/ibu-ApplicationClusterScopedBackupRestore.md" %}
+        {% include "./snippets/ibu-ApplicationClusterScopedBackupRestore.md" %}
     1.  Create the {{ oadp_short }} CRs for your namespace-scoped application artifacts.
         When using LSO, see the following example {{ oadp_short }} CRs:
 
-{% include "./snippets/ibu-ApplicationBackupRestoreLso.md" %}
+        {% include "./snippets/ibu-ApplicationBackupRestoreLso.md" %}
 
         When using {{ lvms }}, see the following example {{ oadp_short }} CRs:
 
-{% include "./snippets/ibu-ApplicationBackupRestoreLvms.md" %}
+        {% include "./snippets/ibu-ApplicationBackupRestoreLvms.md" %}
 
 
         :::important

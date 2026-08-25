@@ -66,6 +66,7 @@ where:
 | Viewer, Operator, Editor, Reader, Writer, Manager, Administrator | Internet Services service in &lt;resource_group> resource group: CIS functional scope string equals reliability |
 | Viewer, Operator, Editor | Transit Gateway service |
 | Viewer, Operator, Editor, Administrator, Reader, Writer, Manager, Console Administrator | VPC Infrastructure Services service &lt;resource_group> resource group |
+
 {% endif %}
 
 ## Access policy assignment {id="access-policy-assignment-ibm-cloud_{{ context }}"}
@@ -92,8 +93,8 @@ For more information, see "Access groups" and "Users and service IDs".
 
 
 {% if context == "installing-ibm-cloud-account" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-account-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}

@@ -54,7 +54,7 @@ To ensure that only verified users can access MCP server for Red Hat OpenShift t
     EOF
     ```
 
-    `${{ MCP_GATEWAY_HOST }}` is the fully qualified domain name for your MCP gateway (for example, `mcp.127-0-0-1.sslip.io`).
+    `${{ MCP_GATEWAY_HOST }}`{minja} is the fully qualified domain name for your MCP gateway (for example, `mcp.127-0-0-1.sslip.io`).
 
     This route enables clients to discover OAuth metadata, which is required for the authentication flow. Without this route, clients receive a 404 error when attempting OAuth discovery.
 1.  Configure the Identity Provider (Entra ID) App Registration:

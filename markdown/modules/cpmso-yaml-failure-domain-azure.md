@@ -35,14 +35,13 @@ spec:
         platform: Azure
 # ...
 ```
-where:
 
+where:
 
 `spec.template.machines_v1beta1_machine_openshift_io.failureDomains.azure.zone`
 :   Each instance of `zone` specifies an {{ azure_short }} availability zone for a failure domain.
 
     :::note
-
 
     If the cluster uses a single zone for all failure domains, the `zone` parameter is in the provider specification instead of in the failure domain configuration.
     

@@ -3,7 +3,7 @@
 # TokenReview [oauth.openshift.io/v1] {id="tokenreview-oauth-openshift-io-v1"}
 {%- if product_title %}
 {% include "./_attributes/common-attributes.md" %}
-{% endif %}
+{%- endif %}
 
 ## API endpoints {id="_api_endpoints"}
 

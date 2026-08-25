@@ -14,9 +14,9 @@ with one that is issued by a public or organizational CA.
 1.  Create a secret that contains the certificate and key in the
 `openshift-config` namespace.
     ```
-    $ oc create secret tls <certificate> \//<1>
-         --cert=</path/to/cert.crt> \//<2>
-         --key=</path/to/cert.key> \//<3>
+    $ oc create secret tls <certificate> \ (1)
+         --cert=</path/to/cert.crt> \ (2)
+         --key=</path/to/cert.key> \ (3)
          -n openshift-config
     ```
     1.  `<certificate>` is the name of the secret that will contain

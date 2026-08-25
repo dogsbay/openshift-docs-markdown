@@ -73,6 +73,7 @@ It is not recommended to manually modify the default cluster roles. Modification
 | `edit` | A user that can modify most objects in a project but does not have the power to view or modify roles or bindings. |
 | `self-provisioner` | A user that can create their own projects. |
 | `view` | A user who cannot make any modifications, but can see most objects in a project. They cannot view or modify roles or bindings. |
+
 {% endif %}
 
 Be mindful of the difference between local and cluster bindings. For example,

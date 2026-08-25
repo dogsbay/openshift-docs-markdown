@@ -45,25 +45,25 @@ If you do not use the provided CloudFormation template to create your {{ aws_fir
     `<template>`
     :   Specifies the relative path and the name of the CloudFormation template YAML file that you saved.
 
-    `${{ VPC_ID }}`
+    `${{ VPC_ID }}`{minja}
     :   Specifies the VPC ID, which is the value `VpcID` in the output of the CloudFormation template for the VPC.
 
-    `${{ CLUSTER_NAME }}`
+    `${{ CLUSTER_NAME }}`{minja}
     :   Specifies the value of `ClusterName` to be used as a prefix of the new {{ aws_short }} resource names.
 
-    `${{ ZONE_NAME }}`
+    `${{ ZONE_NAME }}`{minja}
     :   Specifies the value of the {{ zone_type }} name to create the subnets.
 
-    `${{ ROUTE_TABLE_PUB }}`
+    `${{ ROUTE_TABLE_PUB }}`{minja}
     :   Specifies the `PublicRouteTableId` extracted from the output of the VPC’s carrier gateway CloudFormation stack.
 
-    `${{ SUBNET_CIDR_PUB }}`
+    `${{ SUBNET_CIDR_PUB }}`{minja}
     :   Specifies a valid CIDR block that is used to create the public subnet. This block must be part of the VPC CIDR block `VpcCidr`.
 
-    `${{ ROUTE_TABLE_PVT }}`
+    `${{ ROUTE_TABLE_PVT }}`{minja}
     :   Specifies the `PrivateRouteTableId` extracted from the output of the VPC’s CloudFormation stack.
 
-    `${{ SUBNET_CIDR_PVT }}`
+    `${{ SUBNET_CIDR_PVT }}`{minja}
     :   Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
 
 ```terminal title="Example output"

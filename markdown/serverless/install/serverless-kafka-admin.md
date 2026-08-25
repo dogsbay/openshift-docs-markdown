@@ -7,11 +7,11 @@ The Knative broker implementation for Apache Kafka provides integration options 
 
 {%- if openshift_enterprise %}
 In addition to the Knative Eventing components that are provided as part of a core {{ ServerlessProductName }} installation, cluster administrators can install the `KnativeKafka` custom resource (CR).
-{% endif %}
+{%- endif %}
 
 {%- if openshift_dedicated or openshift_rosa %}
 In addition to the Knative Eventing components that are provided as part of a core {{ ServerlessProductName }} installation, cluster or dedicated administrators can install the `KnativeKafka` custom resource (CR).
-{% endif %}
+{%- endif %}
 
 The `KnativeKafka` CR provides users with additional options, such as:
 

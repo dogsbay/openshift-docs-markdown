@@ -3,15 +3,16 @@ title: OpenShift Container Platform installation overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ product_title }} installation overview {id="ocp-installation-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ product_title }} installation overview {id="ocp-installation-overview"}
 {%- set context = "ocp-installation-overview" %}
 
-Learn about the installation methods, requirements, and process for deploying an {{ product_title }} cluster.
+Learn about the installation methods, requirements, and process for deploying an {{ product_title }} cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing a cluster without an external registry](/installing/installing_with_agent_based_installer/installing-ove#installing-ove)
 
@@ -20,6 +21,7 @@ Learn about the installation methods, requirements, and process for deploying an
 {% leveloffset +2 %}{% include "./modules/installation-process.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
 *   [Control plane node sizing](/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#master-node-sizing_recommended-control-plane-practices)
@@ -28,6 +30,7 @@ Learn about the installation methods, requirements, and process for deploying an
 {% leveloffset +2 %}{% include "./modules/ipi-verifying-nodes-after-installation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Getting the BareMetalHost resource](/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-getting-the-baremetalhost-resource_bare-metal-postinstallation-configuration)
 *   [Following the progress of the installation](/installing/installing_bare_metal/ipi/ipi-install-installing-a-cluster#ipi-install-following-the-progress-of-the-installation_ipi-install-installing-a-cluster)
@@ -42,6 +45,7 @@ Learn about the installation methods, requirements, and process for deploying an
 {% leveloffset +1 %}{% include "./modules/supported-platforms-for-openshift-clusters.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Supported installation methods for different platforms](/installing/overview/installing-preparing#installing-preparing-supported-installation-methods-reference_installing-preparing)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)

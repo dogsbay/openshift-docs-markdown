@@ -12,7 +12,7 @@ You can gather debugging information about specific features by using the `oc ad
 
 {% if not openshift_origin %}
 
-***Supported must-gather images***
+**Supported must-gather images**
 
 <table>
 <thead>
@@ -31,7 +31,7 @@ You can gather debugging information about specific features by using the `oc ad
   <td>Data collection for OpenShift Serverless.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:<installed_version_service_mesh></code></td>
+  <td><code>registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:&lt;installed_version_service_mesh&gt;</code></td>
   <td>Data collection for Red Hat OpenShift Service Mesh.</td>
 </tr>
 <tr>
@@ -39,11 +39,11 @@ You can gather debugging information about specific features by using the `oc ad
   <td>Data collection for {{ hcp }}.</td>
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/odf4/odf-must-gather-rhel9:v<installed_version_ODF></code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/odf4/odf-must-gather-rhel9:v&lt;installed_version_ODF&gt;</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for {{ rh_storage_first }}.</td>{% endif %}
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift-logging/cluster-logging-rhel9-operator:v<installed_version_logging></code></td>
+  <td><code>registry.redhat.io/openshift-logging/cluster-logging-rhel9-operator:v&lt;installed_version_logging&gt;</code></td>
   <td>Data collection for {{ logging }}.</td>
 </tr>
 <tr>
@@ -51,43 +51,43 @@ You can gather debugging information about specific features by using the `oc ad
   <td>Data collection for the Network Observability Operator.</td>
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/openshift4/ose-local-storage-mustgather-rhel9:v<installed_version_LSO></code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/openshift4/ose-local-storage-mustgather-rhel9:v&lt;installed_version_LSO&gt;</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for Local Storage Operator.</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/openshift-sandboxed-containers/osc-must-gather-rhel8:v<installed_version_sandboxed_containers></code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/openshift-sandboxed-containers/osc-must-gather-rhel8:v&lt;installed_version_sandboxed_containers&gt;</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for {{ osc }}.</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/workload-availability/node-healthcheck-must-gather-rhel8:v<installed_version_NHC></code></td>{% endif %}
-  {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for the Red&#160;Hat Workload Availability Operators, including the Self Node Remediation (SNR) Operator, the Fence Agents Remediation (FAR) Operator, the Machine Deletion Remediation (MDR) Operator, the Node Health Check (NHC) Operator, and the Node Maintenance Operator (NMO).</td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/workload-availability/node-healthcheck-must-gather-rhel8:v&lt;installed_version_NHC&gt;</code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for the Red&#160;Hat Workload Availability Operators, including the Self Node Remediation (SNR) Operator, the Fence Agents Remediation (FAR) Operator, the Machine Deletion Remediation (MDR) Operator, the Node Health Check (NHC) Operator, and the Node Maintenance Operator (NMO).<br><br>{% if not (openshift_rosa or openshift_dedicated) %}Use this image if your NHC Operator version is <strong>earlier than 0.9.0</strong>.{% endif %}<br><br>{% if not (openshift_rosa or openshift_dedicated) %}For more information, see the "Gathering data" section for the specific Operator in <a href="https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/latest/html/remediation_fencing_and_maintenance/index">Remediation, fencing, and maintenance</a> (Workload Availability for Red Hat OpenShift documentation).{% endif %}</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/workload-availability/node-healthcheck-must-gather-rhel9:v<installed_version_NHC></code></td>{% endif %}
-  {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for the Red&#160;Hat Workload Availability Operators, including the Self Node Remediation (SNR) Operator, the Fence Agents Remediation (FAR) Operator, the Machine Deletion Remediation (MDR) Operator, the Node Health Check (NHC) Operator, and the Node Maintenance Operator (NMO).</td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/workload-availability/node-healthcheck-must-gather-rhel9:v&lt;installed_version_NHC&gt;</code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for the Red&#160;Hat Workload Availability Operators, including the Self Node Remediation (SNR) Operator, the Fence Agents Remediation (FAR) Operator, the Machine Deletion Remediation (MDR) Operator, the Node Health Check (NHC) Operator, and the Node Maintenance Operator (NMO).<br><br>{% if not (openshift_rosa or openshift_dedicated) %}Use this image if your NHC Operator version is <strong>0.9.0. or later</strong>.{% endif %}<br><br>{% if not (openshift_rosa or openshift_dedicated) %}For more information, see the "Gathering data" section for the specific Operator in <a href="https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/latest/html/remediation_fencing_and_maintenance/index">Remediation, fencing, and maintenance</a> (Workload Availability for Red Hat OpenShift documentation).{% endif %}</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/openshift4/numaresources-must-gather-rhel9:v<installed-version-nro></code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/openshift4/numaresources-must-gather-rhel9:v&lt;installed-version-nro&gt;</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for the NUMA Resources Operator (NRO).</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/openshift4/ptp-must-gather-rhel8:v<installed-version-ptp></code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/openshift4/ptp-must-gather-rhel8:v&lt;installed-version-ptp&gt;</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for the PTP Operator.</td>{% endif %}
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift-gitops-1/must-gather-rhel8:v<installed_version_GitOps></code></td>
+  <td><code>registry.redhat.io/openshift-gitops-1/must-gather-rhel8:v&lt;installed_version_GitOps&gt;</code></td>
   <td>Data collection for {{ gitops_title }}.</td>
 </tr>
 <tr>
-  <td><code>registry.redhat.io/openshift4/ose-secrets-store-csi-mustgather-rhel9:v<installed_version_secret_store></code></td>
+  <td><code>registry.redhat.io/openshift4/ose-secrets-store-csi-mustgather-rhel9:v&lt;installed_version_secret_store&gt;</code></td>
   <td>Data collection for the {{ secrets_store_operator }}.</td>
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/lvms4/lvms-must-gather-rhel9:v<installed_version_LVMS></code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/lvms4/lvms-must-gather-rhel9:v&lt;installed_version_LVMS&gt;</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for the LVM Operator.</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/compliance/openshift-compliance-must-gather-rhel8:<digest-version></code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_dedicated) %}<td><code>registry.redhat.io/compliance/openshift-compliance-must-gather-rhel8:&lt;digest-version&gt;</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_dedicated) %}<td>Data collection for the Compliance Operator.</td>{% endif %}
 </tr>
 </tbody>
@@ -105,7 +105,7 @@ To determine the latest version for an {{ product_title }} component’s image, 
 
 {% if openshift_origin %}
 
-***Available must-gather images***
+**Available must-gather images**
 
 <table>
 <thead>
@@ -159,10 +159,10 @@ To determine the latest version for an {{ product_title }} component’s image, 
 *   You have access to the cluster as a user with the `cluster-admin` role.
 {%- if not (openshift_rosa or openshift_dedicated) %}
 *   The {{ product_title }} CLI (`oc`) is installed.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 *   The OpenShift CLI (`oc`) is installed.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -174,7 +174,7 @@ To determine the latest version for an {{ product_title }} component’s image, 
     :::note
 
     *   To collect the default `must-gather` data in addition to specific feature data, add the `--image-stream=openshift/must-gather` argument.
-        {%- if not (openshift_rosa or openshift_dedicated) %}
+{%- if not (openshift_rosa or openshift_dedicated) %}
     *   For information on gathering data about the Custom Metrics Autoscaler, see the Additional resources section that follows.
 {%- endif %}
     
@@ -182,7 +182,7 @@ To determine the latest version for an {{ product_title }} component’s image, 
 
 
     For example, the following command gathers both the default cluster data and information specific to {{ VirtProductName }}:
-    ```terminal
+    ```terminal {minja}
     $ oc adm must-gather \
       --image-stream=openshift/must-gather \
       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }}
@@ -191,8 +191,8 @@ To determine the latest version for an {{ product_title }} component’s image, 
     You can use the `must-gather` tool with additional arguments to gather data that is specifically related to OpenShift Logging and the
 {%- if not openshift_dedicated %}
     Red Hat OpenShift
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
     Cluster
 {%- endif %}
     Logging Operator in your cluster. For OpenShift Logging, run the following command:
@@ -200,7 +200,7 @@ To determine the latest version for an {{ product_title }} component’s image, 
     $ oc adm must-gather --image=$(oc -n openshift-logging get deployment.apps/cluster-logging-operator \
       -o jsonpath='{.spec.template.spec.containers[?(@.name == "cluster-logging-operator")].image}')
     ```
-    ```terminal title="Example must-gather output for OpenShift Logging"
+    ```terminal title="Example must-gather output for OpenShift Logging" {minja}
     ├── cluster-logging
     │  ├── clo
     │  │  ├── cluster-logging-operator-74dd5994f-6ttgt
@@ -211,10 +211,10 @@ To determine the latest version for an {{ product_title }} component’s image, 
     │  │  └── logforwarding_cr
     │  ├── collector
     │  │  ├── fluentd-2tr64
-{%- if openshift_dedicated %}
+    {%- if openshift_dedicated %}
     │  ├── curator
     │  │  └── curator-1596028500-zkz4s
-{%- endif %}
+    {%- endif %}
     │  ├── eo
     │  │  ├── csv
     │  │  ├── deployment
@@ -262,15 +262,15 @@ To determine the latest version for an {{ product_title }} component’s image, 
        │  │  ├── configmaps.yaml
        │  │  ├── endpoints.yaml
        │  │  ├── events
-{%- if not openshift_dedicated %}
+    {%- if not openshift_dedicated %}
        │  │  │  ├── elasticsearch-im-app-1596020400-gm6nl.1626341a296c16a1.yaml
        │  │  │  ├── elasticsearch-im-audit-1596020400-9l9n4.1626341a2af81bbd.yaml
        │  │  │  ├── elasticsearch-im-infra-1596020400-v98tk.1626341a2d821069.yaml
        │  │  │  ├── elasticsearch-im-app-1596020400-cc5vc.1626341a3019b238.yaml
        │  │  │  ├── elasticsearch-im-audit-1596020400-s8d5s.1626341a31f7b315.yaml
        │  │  │  ├── elasticsearch-im-infra-1596020400-7mgv8.1626341a35ea59ed.yaml
-{% endif %}
-{% if openshift_dedicated %}
+    {%- endif %}
+    {%- if openshift_dedicated %}
        │  │  │  ├── curator-1596021300-wn2ks.162634ebf0055a94.yaml
        │  │  │  ├── curator.162638330681bee2.yaml
        │  │  │  ├── elasticsearch-delete-app-1596020400-gm6nl.1626341a296c16a1.yaml
@@ -279,7 +279,7 @@ To determine the latest version for an {{ product_title }} component’s image, 
        │  │  │  ├── elasticsearch-rollover-app-1596020400-cc5vc.1626341a3019b238.yaml
        │  │  │  ├── elasticsearch-rollover-audit-1596020400-s8d5s.1626341a31f7b315.yaml
        │  │  │  ├── elasticsearch-rollover-infra-1596020400-7mgv8.1626341a35ea59ed.yaml
-{%- endif %}
+    {%- endif %}
        │  │  ├── events.yaml
        │  │  ├── persistentvolumeclaims.yaml
        │  │  ├── pods.yaml
@@ -310,18 +310,18 @@ To determine the latest version for an {{ product_title }} component’s image, 
        │  │  │           ├── current.log
        │  │  │           ├── previous.insecure.log
        │  │  │           └── previous.log
-{%- if openshift_dedicated %}
+    {%- if openshift_dedicated %}
        │  │  ├── curator-1596028500-zkz4s
-{%- endif %}
+    {%- endif %}
        │  │  ├── elasticsearch-cdm-lp8l38m0-1-794d6dd989-4jxms
-{%- if not openshift_dedicated %}
+    {%- if not openshift_dedicated %}
        │  │  ├── elasticsearch-im-app-1596030300-bpgcx
        │  │  │  ├── elasticsearch-im-app-1596030300-bpgcx.yaml
-{% endif %}
-{% if openshift_dedicated %}
+    {%- endif %}
+    {%- if openshift_dedicated %}
        │  │  ├── elasticsearch-delete-app-1596030300-bpgcx
        │  │  │  ├── elasticsearch-delete-app-1596030300-bpgcx.yaml
-{%- endif %}
+    {%- endif %}
        │  │  │  └── indexmanagement
        │  │  │     └── indexmanagement
        │  │  │        └── logs
@@ -384,6 +384,6 @@ To determine the latest version for an {{ product_title }} component’s image, 
 {% endif %}
 
 {% if context == "gathering-cluster-data" %}
-{%- set from_main_support_section = false -%}
-{%- set VirtProductName = false -%}
+{%- set from_main_support_section = "" -%}
+{%- set VirtProductName = "" -%}
 {% endif %}

@@ -7,7 +7,7 @@ so that image and application authors can create an image for specific environme
 **Procedure**
 
 1.  Create a config map with the values to inject:
-    1.  Create a `**_configmap.yaml_**` file similar to the following:
+    1.  Create a `*_configmap.yaml_*` file similar to the following:
         ```yaml
         apiVersion: v1
         kind: ConfigMap

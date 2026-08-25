@@ -11,11 +11,11 @@ For RHEL8 nodes, the registries are already defined in `/etc/containers/registri
 
     :::note
 
-{% include "./snippets/butane-version.md" %}
+    {% include "./snippets/butane-version.md" %}
     
     :::
 
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

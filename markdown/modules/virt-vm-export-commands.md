@@ -6,7 +6,7 @@
 
 Use `virtctl vmexport` commands to create, download, or delete a volume exported from a VM, VM snapshot, or persistent volume claim (PVC). Certain manifests also contain a header secret, which grants access to the endpoint to import a disk image in a format that {{ VirtProductName }} can use. {._abstract}
 
-***VM export commands***
+**VM export commands**
 
 <table>
 <thead>
@@ -17,27 +17,19 @@ Use `virtctl vmexport` commands to create, download, or delete a volume exported
 </thead>
 <tbody>
 <tr>
-  <td>`virtctl vmexport create <vmexport_name> --vm\</td>
-  <td>snapshot\</td>
-</tr>
-<tr>
-  <td>pvc=<object_name>`</td>
+  <td><code>virtctl vmexport create &lt;vmexport_name&gt; --vm|snapshot|pvc=&lt;object_name&gt;</code></td>
   <td>Create a <code>VirtualMachineExport</code> custom resource (CR) to export a volume from a VM, VM snapshot, or PVC.<br><br><ul><li><code>--vm</code>: Exports the PVCs of a VM.</li><li><code>--snapshot</code>: Exports the PVCs contained in a <code>VirtualMachineSnapshot</code> CR.</li><li><code>--pvc</code>: Exports a PVC.</li><li>Optional: <code>--ttl=1h</code> specifies the time to live. The default duration is 2 hours.</li></ul></td>
 </tr>
 <tr>
-  <td><code>virtctl vmexport delete <vmexport_name></code></td>
+  <td><code>virtctl vmexport delete &lt;vmexport_name&gt;</code></td>
   <td>Delete a <code>VirtualMachineExport</code> CR manually.</td>
 </tr>
 <tr>
-  <td><code>virtctl vmexport download <vmexport_name> --output=<output_file> --volume=<volume_name></code></td>
+  <td><code>virtctl vmexport download &lt;vmexport_name&gt; --output=&lt;output_file&gt; --volume=&lt;volume_name&gt;</code></td>
   <td>Download the volume defined in a <code>VirtualMachineExport</code> CR.<br><br><ul><li><code>--output</code> specifies the file format. Example: <code>disk.img.gz</code>.</li><li><code>--volume</code> specifies the volume to download. This flag is optional if only one volume is available.</li></ul>Optional:<br><br><ul><li><code>--keep-vme</code> retains the <code>VirtualMachineExport</code> CR after download. The default behavior is to delete the <code>VirtualMachineExport</code> CR after download.</li><li><code>--insecure</code> enables an insecure HTTP connection.</li></ul></td>
 </tr>
 <tr>
-  <td>`virtctl vmexport download <vmexport_name> --vm\</td>
-  <td>snapshot\</td>
-</tr>
-<tr>
-  <td>pvc=<object_name> --output=<output_file> --volume=<volume_name>`</td>
+  <td><code>virtctl vmexport download &lt;vmexport_name&gt; --vm|snapshot|pvc=&lt;object_name&gt; --output=&lt;output_file&gt; --volume=&lt;volume_name&gt;</code></td>
   <td>Create a <code>VirtualMachineExport</code> CR and then download the volume defined in the CR.</td>
 </tr>
 <tr>

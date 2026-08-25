@@ -62,6 +62,7 @@ To implement short-term security credentials managed outside the cluster for ind
     *   dns.resourceRecordSets.delete
     *   dns.resourceRecordSets.list
 {% endif %}
+
 1.  If you did not set the `credentialsMode` parameter in the `install-config.yaml` configuration file to `Manual`, modify the value as shown:
     ```yaml title="Sample configuration file snippet"
     apiVersion: v1
@@ -100,36 +101,36 @@ To implement short-term security credentials managed outside the cluster for ind
     ```
 
 {%- if context == "installing-azure-customizations" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-government-region" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-private" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-vnet" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-installer-provisioned" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 
 {%- if context == "installing-gcp-customizations" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-network-customizations" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp-installer-provisioned" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-vpc" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-shared-vpc" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}

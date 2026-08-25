@@ -5,7 +5,7 @@ The oc-mirror plugin requires an image set configuration file that defines what 
 
 The following table lists the available parameters for the `ImageSetConfiguration` resource.
 
-***`ImageSetConfiguration` parameters***
+**`ImageSetConfiguration` parameters**
 
 <table>
 <thead>

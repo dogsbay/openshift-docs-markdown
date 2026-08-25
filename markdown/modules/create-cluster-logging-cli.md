@@ -66,14 +66,14 @@ This default {{ logging }} configuration supports a wide array of environments. 
     1.  Settings for configuring Kibana. Using the CR, you can scale Kibana for redundancy and configure the CPU and memory for your Kibana nodes. For more information, see **Configuring the log visualizer**.
     1.  Settings for configuring Fluentd. Using the CR, you can configure Fluentd CPU and memory limits. For more information, see "Configuring Fluentd".
 
-        :::note
+    :::note
 
-        +
-        
-        :::
+    +
+    
+    :::
 
 
-        The maximum number of Elasticsearch control plane nodes is three. If you specify a `nodeCount` greater than `3`, {{ product_title }} creates three Elasticsearch nodes that are Master-eligible nodes, with the master, client, and data roles. The additional Elasticsearch nodes are created as data-only nodes, using client and data roles. Control plane nodes perform cluster-wide actions such as creating or deleting an index, shard allocation, and tracking nodes. Data nodes hold the shards and perform data-related operations such as CRUD, search, and aggregations. Data-related operations are I/O-, memory-, and CPU-intensive. It is important to monitor these resources and to add more Data nodes if the current nodes are overloaded.
+    The maximum number of Elasticsearch control plane nodes is three. If you specify a `nodeCount` greater than `3`, {{ product_title }} creates three Elasticsearch nodes that are Master-eligible nodes, with the master, client, and data roles. The additional Elasticsearch nodes are created as data-only nodes, using client and data roles. Control plane nodes perform cluster-wide actions such as creating or deleting an index, shard allocation, and tracking nodes. Data nodes hold the shards and perform data-related operations such as CRUD, search, and aggregations. Data-related operations are I/O-, memory-, and CPU-intensive. It is important to monitor these resources and to add more Data nodes if the current nodes are overloaded.
 
 For example, if `nodeCount=4`, the following nodes are created:
 

@@ -3,11 +3,11 @@ title: Configuring the registry for vSphere
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the registry for vSphere {id="configuring-registry-storage-vsphere"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the registry for vSphere {id="configuring-registry-storage-vsphere"}
 {%- set context = "configuring-registry-storage-vsphere" %}
 
-Configure image registry storage for vSphere clusters after installation. Because vSphere installations do not automatically provision storage, you must change the registry management state from `Removed` to `Managed` and configure persistent storage or use {{ rh_storage_first }} before the registry can store container images.
+Configure image registry storage for vSphere clusters after installation. Because vSphere installations do not automatically provision storage, you must change the registry management state from `Removed` to `Managed` and configure persistent storage or use {{ rh_storage_first }} before the registry can store container images. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/registry-removed.md" %}{% endleveloffset %}
 
@@ -27,7 +27,7 @@ Configure image registry storage for vSphere clusters after installation. Becaus
 
 {% leveloffset +1 %}{% include "./modules/registry-configuring-registry-storage-rhodf-cephfs.md" %}{% endleveloffset %}
 
-## Additional resources {id="configuring-registry-storage-vsphere-addtl-resources"}
+## Additional resources {id="configuring-registry-storage-vsphere-addtl-resources" ._additional-resources}
 
 *   [Configuring the registry for vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 *   [Recommended configurable storage technology](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)

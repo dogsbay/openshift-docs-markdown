@@ -7,7 +7,7 @@ title: Gang scheduling
 # Gang scheduling {id="gangscheduling"}
 {%- set context = "gangscheduling" %}
 
-You can use gang scheduling to ensure that a group, or gang, of related jobs starts only when all required resources are available.
+You can use gang scheduling to ensure that a group, or gang, of related jobs starts only when all required resources are available. {._abstract}
 
 {{ kueue_name }} enables gang scheduling by suspending jobs until the {{ product_title }} cluster can guarantee the capacity to start and execute all of the related jobs in the _gang_ together. This is also known as _all-or-nothing_ scheduling.
 
@@ -15,5 +15,5 @@ Gang scheduling is important if you are working with expensive, limited resource
 
 {% leveloffset +1 %}{% include "./modules/kueue-configuring-gangscheduling.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Creating a Kueue custom resource](/ai_workloads/kueue/install-kueue#create-kueue-cr_install-kueue)

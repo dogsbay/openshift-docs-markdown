@@ -43,7 +43,7 @@ For more information, see "Enabling features using feature gates".
 
 **Verification**
 
-1.  From the web console, click **Observe** -> **Metrics** and enter "baremetal" into the ***Expression*** field.
+1.  From the web console, click **Observe** → **Metrics** and enter "baremetal" into the **Expression** field.
 Several autocomplete suggestions should appear, such as the following examples:
 
     `baremetal_power_status`
@@ -53,7 +53,7 @@ Several autocomplete suggestions should appear, such as the following examples:
     `baremetal_drive_status`
 
     `baremetal_fan_status`
-1.  Select one of the autocomplete suggestions and click ***Run Queries***.
+1.  Select one of the autocomplete suggestions and click **Run Queries**.
 1.  Verify that the queried hardware metrics appear in the UI.
 1.  If you did not disable default alerting rules, view them by running the following command:
     ```terminal

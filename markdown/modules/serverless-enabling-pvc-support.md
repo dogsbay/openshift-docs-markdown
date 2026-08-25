@@ -64,8 +64,8 @@
     1.  Persistent volume claim specification.
     1.  Flag that enables read-only access.
 
-        :::note
+    :::note
 
-        To successfully use persistent storage in Knative services, you need additional configuration, such as the user permissions for the Knative container user.
-        
-        :::
+    To successfully use persistent storage in Knative services, you need additional configuration, such as the user permissions for the Knative container user.
+    
+    :::

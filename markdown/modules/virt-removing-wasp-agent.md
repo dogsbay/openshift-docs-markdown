@@ -11,7 +11,7 @@ If you no longer need memory overcommitment, you can remove the `wasp-agent` com
 **Procedure**
 
 1.  Revert the memory overcommitment configuration by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc patch -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged \
       --type='json' \
       -p='[{"op": "remove", "path": "/spec/higherWorkloadDensity"}]'

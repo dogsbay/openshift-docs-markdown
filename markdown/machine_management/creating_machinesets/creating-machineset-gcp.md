@@ -7,13 +7,14 @@ title: "Creating a compute machine set on {{ gcp_short }}"
 # Creating a compute machine set on {{ gcp_short }} {id="creating-machineset-gcp"}
 {%- set context = "creating-machineset-gcp" %}
 
-You can create a different compute machine set to serve a specific purpose in your {{ product_title }} cluster on {{ gcp_first }}. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines.
+You can create a different compute machine set to serve a specific purpose in your {{ product_title }} cluster on {{ gcp_first }}. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines. {._abstract}
 
 {% leveloffset +1 %}{% include "./snippets/machine-user-provisioned-limitations.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/machineset-yaml-gcp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
@@ -22,6 +23,7 @@ You can create a different compute machine set to serve a specific purpose in yo
 {% leveloffset +1 %}{% include "./modules/machineset-label-gpu-autoscaler.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster autoscaler resource definition](/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)
 
@@ -42,6 +44,7 @@ You can create a different compute machine set to serve a specific purpose in yo
 {% leveloffset +1 %}{% include "./modules/machineset-gcp-shielded-vms.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [What is Shielded VM?](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm)
 *   [Secure Boot](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#secure-boot)

@@ -15,7 +15,7 @@ It is not possible to change the number `1x` for the deployment size.
 :::
 
 
-***Loki sizing***
+**Loki sizing**
 
 <table>
 <thead>
@@ -95,5 +95,5 @@ It is not possible to change the number `1x` for the deployment size.
 </table>
 
 {% if context == "installing-log-storage" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

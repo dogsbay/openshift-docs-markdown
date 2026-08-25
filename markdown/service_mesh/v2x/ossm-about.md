@@ -3,8 +3,8 @@ title: About OpenShift Service Mesh
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About OpenShift Service Mesh {id="ossm-about"}
 {% include "./_attributes/common-attributes.md" %}
+# About OpenShift Service Mesh {id="ossm-about"}
 {%- set context = "ossm-about" %}
 
 

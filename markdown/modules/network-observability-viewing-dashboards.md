@@ -5,7 +5,7 @@ View network observability metrics dashboards using the **Overview** tab in the 
 
 **Procedure**
 
-1.  In the web console **Observe** -> **Dashboards**, select the **Netobserv** dashboard.
+1.  In the web console **Observe** → **Dashboards**, select the **Netobserv** dashboard.
 1.  View network traffic metrics in the following categories, with each having the subset per node, namespace, source, and destination:
     *   **Byte rates**
     *   **Packet drops**

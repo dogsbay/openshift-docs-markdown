@@ -8,7 +8,7 @@ To access the Kiali console you must have {{ SMProductName }} installed and proj
 **Procedure**
 
 1.  Use the perspective switcher to switch to the **Administrator** perspective.
-1.  Click **Home** -> **Projects**.
+1.  Click **Home** → **Projects**.
 1.  Click the name of your project. For example, click `bookinfo`.
 1.  In the **Launcher** section, click **Kiali**.
 1.  Log in to the Kiali console with the same user name and password that you use to access the {{ product_title }} console.

@@ -17,7 +17,7 @@ The samples resource offers the following configuration fields: {._abstract}
 </tr>
 <tr>
   <td><code>samplesRegistry</code></td>
-  <td>Allows you to specify which registry is accessed by image streams for their image content. <code>samplesRegistry</code> defaults to <code>registry.redhat.io</code> for {{ product_title }}.<br><br><dl><dt>Note</dt><dd>Creation or update of RHEL content does not commence if the secret for pull access is not in place when either <code>Samples Registry</code> is not explicitly set, leaving an empty string, or when it is set to registry.redhat.io. In both cases, image imports work off of registry.redhat.io, which requires credentials.<br><br>Creation or update of RHEL content is not gated by the existence of the pull secret if the <code>Samples Registry</code> is overridden to a value other than the empty string or registry.redhat.io.</dd></dl></td>
+  <td>Allows you to specify which registry is accessed by image streams for their image content. <code>samplesRegistry</code> defaults to <code>registry.redhat.io</code> for {{ product_title }}.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Creation or update of RHEL content does not commence if the secret for pull access is not in place when either <code>Samples Registry</code> is not explicitly set, leaving an empty string, or when it is set to registry.redhat.io. In both cases, image imports work off of registry.redhat.io, which requires credentials.<br><br>Creation or update of RHEL content is not gated by the existence of the pull secret if the <code>Samples Registry</code> is overridden to a value other than the empty string or registry.redhat.io.</dd></dl></td>
 </tr>
 <tr>
   <td><code>architectures</code></td>

@@ -17,9 +17,9 @@ Add an engineering margin, for example +20%, to the results to account for poten
 
 | Persistent volume resource | Size (GB) |
 | --- | --- |
-| `imageStorage`^[1]^ | 30 |
-| `filesystemStorage`^[2]^ | 709 |
-| `dataBaseStorage`^[3]^ | 0.7 |
+| `imageStorage`<sup>[1]</sup> | 30 |
+| `filesystemStorage`<sup>[2]</sup> | 709 |
+| `dataBaseStorage`<sup>[3]</sup> | 0.7 |
 
 [1][2] For more information, refer to the multicluster engine Operator documentation [About enabling central infrastructure management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#enable-cim).
 

@@ -3,11 +3,11 @@ title: About the Cloud Credential Operator in mint mode
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About the Cloud Credential Operator in mint mode {id="cco-mode-mint"}
 {% include "./_attributes/common-attributes.md" %}
+# About the Cloud Credential Operator in mint mode {id="cco-mode-mint"}
 {%- set context = "cco-mode-mint" %}
 
-You can use the Cloud Credential Operator (CCO) in mint mode to create and reconcile credentials for components in the cluster. 
+You can use the Cloud Credential Operator (CCO) in mint mode to create and reconcile credentials for components in the cluster.  {._abstract}
 
 Mint mode is the default CCO credentials mode for {{ product_title }} on platforms that support it. Mint mode supports {{ aws_first }} and {{ gcp_first }} clusters.
 
@@ -19,6 +19,6 @@ Mint mode is the default CCO credentials mode for {{ product_title }} on platfor
 
 {% leveloffset +1 %}{% include "./modules/manually-rotating-cloud-creds.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Removing cloud provider credentials](/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

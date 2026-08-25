@@ -63,7 +63,7 @@ To ensure high-availability, configure three failure domains.
     :   Specifies one or more UUID for the Prism Element subnet object. 
         The CIDR IP address prefix for one of the specified subnets must contain the virtual IP addresses that the {{ product_title }} cluster uses.
 {%- set FeatureName = "Configuring multiple subnets" %}
-{% include "./snippets/technology-preview.md" %}
+    {% include "./snippets/technology-preview.md" %}
     To configure multiple subnets in the Infrastructure CR, you must enable the `NutanixMultiSubnets` feature gate.
     A maximum of 32 subnets for each failure domain (Prism Element) in an {{ product_title }} cluster is supported.
     All subnet UUID values must be unique.

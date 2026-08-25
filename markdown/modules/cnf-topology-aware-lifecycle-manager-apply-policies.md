@@ -275,7 +275,7 @@ You can update your managed clusters by applying your policies. {._abstract}
     ```terminal
     $ oc get clusterversion
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
     version   4.{{ product_version }}.5     True        True          43s     Working towards 4.{{ product_version }}.7: 71 of 735 done (9% complete)
     ```

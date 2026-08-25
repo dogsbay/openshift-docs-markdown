@@ -1,5 +1,5 @@
 ---
-title: "AlertingRule []"
+title: "AlertingRule [monitoring.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -53,6 +53,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec describes the desired state of this AlertingRule object. |
 | `status` | `object` | status describes the current state of this AlertOverrides object. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -68,8 +69,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `groups` | `array` | groups is a list of grouped alerting rules.  Rule groups are the unit at which Prometheus parallelizes rule processing.  All rules in a single group share a configured evaluation interval.  All rules in the group will be processed together on this interval, sequentially, and all rules will be processed. It’s common to group related alerting rules into a single AlertingRule resources, and within that resource, closely related alerts, or simply alerts with the same interval, into individual groups.  You are also free to create AlertingRule resources with only a single rule group, but be aware that this can have a performance impact on Prometheus if the group is extremely large or has very complex query expressions to evaluate. Spreading very complex rules across multiple groups to allow them to be processed in parallel is also a common use-case. |
+| `groups` | `array` | groups is a list of grouped alerting rules.  Rule groups are the unit at which Prometheus parallelizes rule processing.  All rules in a single group share a configured evaluation interval.  All rules in the group will be processed together on this interval, sequentially, and all rules will be processed.<br>It’s common to group related alerting rules into a single AlertingRule resources, and within that resource, closely related alerts, or simply alerts with the same interval, into individual groups.  You are also free to create AlertingRule resources with only a single rule group, but be aware that this can have a performance impact on Prometheus if the group is extremely large or has very complex query expressions to evaluate. Spreading very complex rules across multiple groups to allow them to be processed in parallel is also a common use-case. |
 | `groups[]` | `object` | RuleGroup is a list of sequentially evaluated alerting rules. |
+
 ### .spec.groups {id="_specgroups"}
 
 Description
@@ -113,6 +115,7 @@ Required
 | `name` | `string` | name is the name of the group. |
 | `rules` | `array` | rules is a list of sequentially evaluated alerting rules.  Prometheus may process rule groups in parallel, but rules within a single group are always processed sequentially, and all rules are processed. |
 | `rules[]` | `object` | Rule describes an alerting rule. See Prometheus documentation: - https://www.prometheus.io/docs/prometheus/latest/configuration/alerting_rules |
+
 ### .spec.groups[].rules {id="_specgroupsrules"}
 
 Description
@@ -147,6 +150,7 @@ Required
 | `expr` | `integer-or-string` | expr is the PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending or firing alerts.  This is most often a string representing a PromQL expression, e.g.: mapi_current_pending_csr > mapi_max_pending_csr In rare cases this could be a simple integer, e.g. a simple "1" if the intent is to create an alert that is always firing.  This is sometimes used to create an always-firing "Watchdog" alert in order to ensure the alerting pipeline is functional. |
 | `for` | `string` | for is the time period after which alerts are considered firing after first returning results.  Alerts which have not yet fired for long enough are considered pending. |
 | `labels` | `object (string)` | labels to add or overwrite for each alert.  The results of the PromQL expression for the alert will result in an existing set of labels for the alert, after evaluating the expression, for any label specified here with the same name as a label in that set, the label here wins and overwrites the previous value.  These should typically be short identifying values that may be useful to query against.  A common example is the alert severity, where one sets `severity: warning` under the `labels` key: |
+
 ### .status {id="_status"}
 
 Description
@@ -160,6 +164,7 @@ Type
 | --- | --- | --- |
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with. |
 | `prometheusRule` | `object` | prometheusRule is the generated PrometheusRule for this AlertingRule.  Each AlertingRule instance results in a generated PrometheusRule object in the same namespace, which is always the openshift-monitoring namespace. |
+
 ### .status.prometheusRule {id="_statusprometheusrule"}
 
 Description
@@ -185,16 +190,16 @@ The following API endpoints are available:
 
 *   `/apis/monitoring.openshift.io/v1/alertingrules`
     *   `GET`: list objects of kind AlertingRule
-*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertingrules`
+*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertingrules`{minja}
     *   `DELETE`: delete collection of AlertingRule
     *   `GET`: list objects of kind AlertingRule
     *   `POST`: create an AlertingRule
-*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertingrules/{{ name }}`
+*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertingrules/{{ name }}`{minja}
     *   `DELETE`: delete an AlertingRule
     *   `GET`: read the specified AlertingRule
     *   `PATCH`: partially update the specified AlertingRule
     *   `PUT`: replace the specified AlertingRule
-*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertingrules/{{ name }}/status`
+*   `/apis/monitoring.openshift.io/v1/namespaces/{{ namespace }}/alertingrules/{{ name }}/status`{minja}
     *   `GET`: read status of the specified AlertingRule
     *   `PATCH`: partially update status of the specified AlertingRule
     *   `PUT`: replace status of the specified AlertingRule

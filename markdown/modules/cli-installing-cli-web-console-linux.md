@@ -17,12 +17,12 @@ To manage your cluster and deploy applications from the command line on Linux, i
 1.  Select appropriate `oc` binary for your Linux platform, and then click **Download oc for Linux**.
 1.  Save the file.
 1.  Unpack the archive.
-{% endif %}
+{%- endif %}
 
 {% if openshift_rosa or openshift_dedicated %}
 1.  Download the latest version of the `oc` CLI for your operating system from the [**Downloads**](https://console.redhat.com/openshift/downloads) page on {{ cluster_manager }}.
 1.  Extract the `oc` binary file from the downloaded archive.
-    {%- endif %}
+{% endif %}
     ```terminal
     $ tar xvf <file>
     ```
@@ -41,5 +41,5 @@ To manage your cluster and deploy applications from the command line on Linux, i
     ```
 
 {% if context == "updating-restricted-network-cluster" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

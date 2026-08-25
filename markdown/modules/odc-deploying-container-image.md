@@ -19,7 +19,7 @@ You can use an external image registry or an image stream tag from an internal r
 1.  In the **Resource type** section, select the resource type to generate:
     1.  Select **Deployment** to enable declarative updates for `Pod` and `ReplicaSet` objects.
     1.  Select **DeploymentConfig** to define the template for a `Pod` object, and manage deploying new images and configuration sources.
-        {%- if not (openshift_rosa or openshift_dedicated) %}
+{%- if not (openshift_rosa or openshift_dedicated) %}
     1.  Select **Serverless Deployment** to enable scaling to zero when idle.
 {%- endif %}
 1.  Click **Create**. You can view the build status of the application in the **Topology** view.

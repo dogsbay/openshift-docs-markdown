@@ -8,8 +8,8 @@
 This section provides information about the service definition for
 {%- if openshift_rosa_hcp %}
 {{ hcp_title_first }}
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}
 {%- endif %}
 storage.
@@ -39,12 +39,12 @@ Each cloud provider has its own limits for how many PVs can be attached to a sin
 The AWS CSI Driver can be used to provide RWX support for
 {%- if openshift_rosa_hcp %}
 {{ hcp_title_first }}.
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}.
 {%- endif %}
 A community Operator is provided to simplify setup. See [Amazon Elastic File Storage Setup for Red Hat OpenShift Service on AWS](https://access.redhat.com/articles/5025181) for details.
 
 {% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = false -%}
+{%- set rosa_with_hcp = "" -%}
 {% endif %}

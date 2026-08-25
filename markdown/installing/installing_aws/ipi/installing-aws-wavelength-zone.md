@@ -3,18 +3,19 @@ title: Installing a cluster with compute nodes on AWS Wavelength Zones
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster with compute nodes on AWS Wavelength Zones {id="installing-aws-wavelength-zone"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster with compute nodes on AWS Wavelength Zones {id="installing-aws-wavelength-zone"}
 {%- set context = "installing-aws-wavelength-zone" -%}
 {%- set zone_type = "Wavelength Zones" %}
 
-You can quickly install an {{ product_title }} cluster on Amazon Web Services (AWS) {{ zone_type }} by setting the zone names in the edge compute pool of the `install-config.yaml` file, or install a cluster in an existing Amazon Virtual Private Cloud (VPC) with Wavelength Zone subnets.
+You can quickly install an {{ product_title }} cluster on Amazon Web Services (AWS) {{ zone_type }} by setting the zone names in the edge compute pool of the `install-config.yaml` file, or install a cluster in an existing Amazon Virtual Private Cloud (VPC) with Wavelength Zone subnets. {._abstract}
 
 AWS {{ zone_type }} is an infrastructure that AWS configured for mobile edge computing (MEC) applications.
 
 A Wavelength Zone embeds AWS compute and storage services within the 5G network of a communication service provider (CSP). By placing application servers in a Wavelength Zone, the application traffic from your 5G devices can stay in the 5G network. The application traffic of the device reaches the target server directly, making latency a non-issue.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Wavelength Zones({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-wavelength-zones)
 
@@ -25,6 +26,7 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 {% leveloffset +1 %}{% include "./modules/edge-machine-pools-aws-local-zones.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [MTU value selection](/networking/advanced_networking/changing-cluster-network-mtu#mtu-value-selection_changing-cluster-network-mtu)
 *   [Changing the MTU for the cluster network](/networking/advanced_networking/changing-cluster-network-mtu#nw-ovn-ipsec-enable_configuring-ipsec-ovn)
@@ -42,6 +44,7 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 {% leveloffset +1 %}{% include "./modules/installation-aws-tested-machine-types.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [AWS Wavelength features({{ aws_short }} documentation)](https://aws.amazon.com/wavelength/features/)
 
@@ -56,6 +59,7 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 {% leveloffset +2 %}{% include "./modules/install-creating-install-config-aws-edge-zones.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating the installation configuration file](/installing/installing_aws/ipi/installing-aws-wavelength-zone#installation-generate-aws-user-infra-install-config_installing-aws-wavelength-zone)
 *   [Cluster limitations in AWS {{ zone_type }}](/installing/installing_aws/ipi/installing-aws-wavelength-zone#cluster-limitations-aws-zone_installing-aws-wavelength-zone)
@@ -70,6 +74,7 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 {% leveloffset +2 %}{% include "./modules/installation-creating-aws-vpc-carrier-gw.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Amazon S3 ({{ aws_short }} documentation)](https://aws.amazon.com/s3/)
 
@@ -82,6 +87,7 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 {% leveloffset +2 %}{% include "./modules/installing-aws-edge-zones-custom-vpc-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ aws_short }} CloudFormation console](https://console.aws.amazon.com/cloudformation)
 *   [Configuration and credential file settings in the {{ aws_short }} CLI ({{ aws_short }} documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
@@ -96,12 +102,13 @@ A Wavelength Zone embeds AWS compute and storage services within the 5G network 
 {% leveloffset +1 %}{% include "./modules/logging-in-by-using-the-web-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
 {% leveloffset +1 %}{% include "./modules/machine-edge-pool-review-nodes.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
-*   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation).
-*   If necessary, you can [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).
+*   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
+*   [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

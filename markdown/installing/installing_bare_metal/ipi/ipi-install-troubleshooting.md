@@ -3,11 +3,11 @@ title: Troubleshooting the installation
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting the installation {id="ipi-install-troubleshooting"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting the installation {id="ipi-install-troubleshooting"}
 {%- set context = "ipi-install-troubleshooting" %}
 
-Troubleshoot the {{ product_title }} installation process to identify and resolve deployment failures.
+Troubleshoot the {{ product_title }} installation process to identify and resolve deployment failures. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-install-program-workflow.md" %}{% endleveloffset %}
 

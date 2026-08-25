@@ -21,7 +21,7 @@ After removing the VPA, it is recommended that you remove the other components a
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 1.  Switch to the **openshift-vertical-pod-autoscaler** project.
 1.  For the **VerticalPodAutoscaler**  Operator, click the Options menu {{ kebab }} and select **Uninstall Operator**.
 1.  Optional: To remove all operands associated with the Operator, in the dialog box, select **Delete all operand instances for this operator** checkbox.

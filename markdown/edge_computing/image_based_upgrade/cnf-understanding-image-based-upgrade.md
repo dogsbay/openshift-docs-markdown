@@ -8,7 +8,7 @@ title: "Understanding the image-based upgrade for {{ sno }} clusters"
 {%- set context = "understanding-image-based-upgrade" %}
 
 From {{ product_title }} 4.14.13, the {{ lcao }} provides you with an alternative way to upgrade the platform version of a {{ sno }} cluster.
-The image-based upgrade is faster than the standard upgrade method and allows you to directly upgrade from {{ product_title }} &lt;4.y> to &lt;4.y+2>, and &lt;4.y.z> to &lt;4.y.z+n>.
+The image-based upgrade is faster than the standard upgrade method and allows you to directly upgrade from {{ product_title }} &lt;4.y> to &lt;4.y+2>, and &lt;4.y.z> to &lt;4.y.z+n>. {._abstract}
 
 This upgrade method utilizes a generated OCI image from a dedicated seed cluster that is installed on the target {{ sno }} cluster as a new `ostree` stateroot.
 A seed cluster is a {{ sno }} cluster deployed with the target {{ product_title }} version, Day 2 Operators, and configurations that are common to all target clusters.
@@ -85,6 +85,7 @@ where
 {% leveloffset +1 %}{% include "./modules/cnf-image-based-upgrade.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the automatic image cleanup of the container storage disk](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup#cnf-image-based-upgrade-configure-auto-image-cleanup)
 *   [Performing an image-based upgrade for {{ sno }} clusters with {{ lcao }}](/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade)
@@ -93,6 +94,7 @@ where
 {% leveloffset +1 %}{% include "./modules/cnf-image-based-upgrade-guidelines.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
 
@@ -103,6 +105,7 @@ where
 {% leveloffset +2 %}{% include "./modules/cnf-image-based-upgrade-seed-image-guide.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring a shared container partition between ostree stateroots](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#cnf-image-based-upgrade-shared-container-partition_shared-container-partition)
 *   [Configuring a shared container partition between ostree stateroots when using {{ ztp }}](/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-shared-container-partition#ztp-image-based-upgrade-shared-container-partition_shared-container-partition)
@@ -113,6 +116,7 @@ where
 {% leveloffset +2 %}{% include "./modules/cnf-image-based-upgrade-extra-manifests-guide.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Performing an image-based upgrade for {{ sno }} clusters with {{ lcao }}](/edge_computing/image_based_upgrade/cnf-image-based-upgrade-base#cnf-image-based-upgrade)
 *   [Preparing the hub cluster for ZTP](/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-hub-cluster)

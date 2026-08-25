@@ -13,7 +13,7 @@ The LSO is not installed in {{ product_title }} by default. Use the following pr
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Type **Local Storage** into the filter box to locate the LSO.
 1.  Click **Install**.
 1.  On the **Install Operator** page, select **A specific namespace on the cluster**. Select **openshift-local-storage** from the drop-down menu.

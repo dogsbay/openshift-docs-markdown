@@ -19,11 +19,11 @@ You can include or exclude the application logs based on the namespace and conta
         - name: mylogs
           application:
             includes:
-              - namespace: "my-project" # (1)
-                container: "my-container" # (2)
+              - namespace: "my-project" (1)
+                container: "my-container" (2)
             excludes:
-              - container: "other-container*" # (3)
-                namespace: "other-namespace" # (4)
+              - container: "other-container*" (3)
+                namespace: "other-namespace" (4)
           type: application
     # ...
     ```
@@ -32,11 +32,11 @@ You can include or exclude the application logs based on the namespace and conta
     1.  Specifies the pattern of namespaces to ignore when collecting the logs.
     1.  Specifies the set of containers to ignore when collecting the logs.
 
-        :::note
+    :::note
 
-        The `excludes` field takes precedence over the `includes` field.
-        
-        :::
+    The `excludes` field takes precedence over the `includes` field.
+    
+    :::
 
 1.  Apply the `ClusterLogForwarder` CR by running the following command:
     ```terminal

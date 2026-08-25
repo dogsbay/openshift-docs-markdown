@@ -75,7 +75,7 @@ can use the following measures to control the impact of unbound metrics attribut
 *   Configure the intervals between consecutive scrapes and between Prometheus rule evaluations
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   Create alerts that fire when a scrape sample threshold is reached or when the target cannot be scraped
-{% endif %}
+{%- endif %}
 
 
 :::note

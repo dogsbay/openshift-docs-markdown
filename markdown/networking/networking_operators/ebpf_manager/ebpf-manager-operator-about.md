@@ -3,11 +3,11 @@ title: About the eBPF Manager Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About the eBPF Manager Operator {id="bpfman-operator-about"}
 {% include "./_attributes/common-attributes.md" %}
+# About the eBPF Manager Operator {id="bpfman-operator-about"}
 {%- set context = "bpfman-operator-about" %}
 
-You can use the eBPF Manager Operator to centralize and secure the deployment of eBPF programs in a Kubernetes cluster. The eBPF Manager Operator streamlines lifecycle management and provides system-wide visibility so that you can focus on program interaction rather than manual configuration.
+You can use the eBPF Manager Operator to centralize and secure the deployment of eBPF programs in a Kubernetes cluster. The eBPF Manager Operator streamlines lifecycle management and provides system-wide visibility so that you can focus on program interaction rather than manual configuration. {._abstract}
 
 {%- set FeatureName = "eBPF Manager Operator" %}
 {% include "./snippets/technology-preview.md" %}
@@ -42,7 +42,7 @@ The eBPF Manager Operator offers the following features:
 *   Facilitates the coexistence of multiple eBPF programs from different sources using protocols like libxdp for XDP and TC programs, enhancing interoperability.
 *   Streamlines the deployment and lifecycle management of eBPF programs in Kubernetes. Developers can focus on program interaction rather than lifecycle management, with support for existing eBPF libraries like Cilium, libbpf, and Aya.
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [eBPF Documentation](https://ebpf.io/what-is-ebpf/)
 *   [bpfman](https://bpfman.io/latest)

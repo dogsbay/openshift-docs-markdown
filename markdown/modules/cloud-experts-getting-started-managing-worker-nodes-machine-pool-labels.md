@@ -10,7 +10,7 @@ You can add labels to your worker nodes by using the {{ rosa_cli_first }} tool. 
     rosa edit machinepool --cluster=<cluster-name> --replicas=<number-nodes> --labels='key=value' <machinepool-name>
     ```
 
-    ***Example input***
+    **Example input**
     ```terminal
     rosa edit machinepool --cluster=my-rosa-cluster --replicas=2 --labels 'foo=bar','baz=one' new-mp
     ```

@@ -9,7 +9,7 @@ When you forward log groups, you must specify a group or application. When you s
 
 The following table lists available log groups:
 
-***Log groups***
+**Log groups**
 
 <table>
 <thead>

@@ -13,6 +13,7 @@ $ oc netobserv [<command>] [<feature_option>] [<command_options>] (1)
 1.  Feature options can only be used with the `oc netobserv flows` command. They cannot be used with the `oc netobserv packets` command.
 
 ## Basic commands {id="cli-basic-commands_{{ context }}"}
+
 **Basic commands**
 
 | Command | Description |

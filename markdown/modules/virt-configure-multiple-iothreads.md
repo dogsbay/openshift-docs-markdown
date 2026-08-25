@@ -13,7 +13,7 @@ Multiple I/O threads are supported only when `blockMultiQueue` is enabled and th
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines** from the side menu.
+1.  Click **Virtualization** → **VirtualMachines** from the side menu.
 1.  Select a virtual machine to open the **VirtualMachine details** page.
 1.  Click the **YAML** tab to open the VM manifest.
 1.  In the YAML editor, locate the `spec.template.spec.domain` section and add or modify the following fields:

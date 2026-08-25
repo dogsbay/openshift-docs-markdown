@@ -44,7 +44,7 @@ Image registry requirements for kernel module management
 
 Filesystem creation button stays disabled until daemons are ready
 
-:   The {{ IBMFusionFirst }} Operator was updated to check the readiness of filesystem daemons before allowing a filesystem to be created. The ***Create file system*** button in the web console now stays disabled with a tooltip explaining the condition until the environment is ready. This change prevents filesystems from appearing stuck during creation.
+:   The {{ IBMFusionFirst }} Operator was updated to check the readiness of filesystem daemons before allowing a filesystem to be created. The **Create file system** button in the web console now stays disabled with a tooltip explaining the condition until the environment is ready. This change prevents filesystems from appearing stuck during creation.
 
     [OCPNAS-184](https://issues.redhat.com/browse/OCPNAS-184)
 

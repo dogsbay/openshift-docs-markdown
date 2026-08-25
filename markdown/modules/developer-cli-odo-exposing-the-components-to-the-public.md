@@ -43,7 +43,7 @@
 
 If an application requires permissions to the active service account to access the {{ product_title }} namespace and delete active pods, the following error may occur when looking at `odo log` from the back-end component:
 
-`Message: Forbidden!Configured service account doesn’t have access. Service account may have been revoked`
+`Message: Forbidden!Configured service account doesn't have access. Service account may have been revoked`
 
 To resolve this error, add permissions for the service account role:
 

@@ -11,9 +11,14 @@ These guidelines and conventions should be read along with the:
 *   [OpenShift Contribution Guide](https://github.com/openshift/openshift-docs/blob/master/contributing_to_docs/contributing.adoc)
 *   [OpenShift Documentation Guidelines](https://github.com/openshift/openshift-docs/blob/master/contributing_to_docs/doc_guidelines.adoc)
 
-**❗ IMPORTANT**\
+
+:::important
+
 If some convention is duplicated, the convention in this guide
 supersedes all others.
+
+:::
+
 
 ## OpenShift CCS conventions {id="ocp-ccs-conventions_{{ context }}"}
 
@@ -23,7 +28,7 @@ supersedes all others.
 
     Example:
     ```
-{%- set context = "assembly-gsg" %}
+    {%- set context = "assembly-gsg" %}
     ```
 *   All assemblies must include the `_attributes/common-attributes.adoc` file near the
 context statement. This file contains the standard attributes for the collection.
@@ -98,8 +103,13 @@ use the relative path starting like so:
 
     `include::modules/creating-your-first-content.adoc[leveloffset=+1]`
 
-**📌 NOTE**\
-There is no `..` at the starting of the path.
+
+    :::note
+
+    There is no `..` at the starting of the path.
+    
+    :::
+
 
 *   Do not use 3rd level folders even though AsciiBinder permits it. If you need
 to, work out a better way to organize your content.

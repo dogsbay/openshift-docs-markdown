@@ -114,7 +114,7 @@ The following procedure demonstrates how to perform a graceful restart of a node
     ```terminal
     $ oc adm uncordon <node1>
     ```
-{%- if nodes %}
+{% if nodes %}
 
     :::note
 

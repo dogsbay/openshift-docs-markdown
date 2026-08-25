@@ -10,7 +10,7 @@ Enable the Application Aware Quota (AAQ) operator to manage resource quotas to e
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Virtualization** -> **Settings**.
+1.  In the {{ product_title }} web console, click **Virtualization** → **Settings**.
 1.  Under **Resource Management**, toggle the **Application Aware Quotas (AAQ)** to On.
 
     The operator deployment begins automatically. The status changes from **Disabled** to **Enabled** after the operator pods are running.

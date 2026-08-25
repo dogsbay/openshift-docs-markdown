@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Developing Python functions {id="serverless-developing-python-functions"}
 {%- set context = "serverless-developing-python-functions" %}
-{% include "./_attributes/common-attributes.md" %}
 
 {%- set FeatureName = "{{ FunctionsProductName }} with Python" %}
 {% leveloffset +2 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}

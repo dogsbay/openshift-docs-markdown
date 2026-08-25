@@ -39,7 +39,7 @@ Store and record your metrics and alerting data, configure logs to specify which
 *   [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
 {%- if not openshift_rosa_hcp %}
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/monitoring-configuring-audit-logs-for-metrics-server.md" %}{% endleveloffset %}
 

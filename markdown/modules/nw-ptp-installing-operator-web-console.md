@@ -15,13 +15,13 @@ If you are installing by using the web console, the Operator Lifecycle Manager (
 **Procedure**
 
 1.  Install the PTP Operator using the {{ product_title }} web console:
-    1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+    1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
     1.  Type `ptp` in the **Filter by keyword** box to find the PTP Operator.
     1.  Click the **PTP Operator** tile, and then click **Install**.
     1.  On the **Install Operator** page, ensure that **A specific namespace on the cluster** is selected and the **Operator recommended Namespace** `openshift-ptp` is shown. Click **Install**.
     1.  Wait for the installation to complete and then click **View installed Operators**.
 1.  Optional: Verify that the PTP Operator installed successfully:
-    1.  Navigate to **Ecosystem** -> **Installed Operators**.
+    1.  Navigate to **Ecosystem** → **Installed Operators**.
     1.  Ensure that **PTP Operator** is listed in the **openshift-ptp** project with a **Status** of **Succeeded**.
 
         :::note
@@ -34,5 +34,5 @@ If you are installing by using the web console, the Operator Lifecycle Manager (
 
 
         If the Operator does not appear as installed, to troubleshoot further:
-        *   Go to the **Ecosystem** -> **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-        *   Go to the **Workloads** -> **Pods** page and check the logs for pods in the `openshift-ptp` project.
+        *   Go to the **Ecosystem** → **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+        *   Go to the **Workloads** → **Pods** page and check the logs for pods in the `openshift-ptp` project.

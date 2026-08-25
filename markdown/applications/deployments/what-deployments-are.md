@@ -3,11 +3,11 @@ title: Understanding deployments
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding deployments {id="what-deployments-are"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding deployments {id="what-deployments-are"}
 {%- set context = "what-deployments-are" %}
 
-You can use `Deployment` and `DeploymentConfig` objects in {{ product_title }} to describe the desired state of an application and to manage pods through replica sets or replication controllers. Use `Deployment` objects unless you need a feature that only `DeploymentConfig` objects provide.
+You can use `Deployment` and `DeploymentConfig` objects in {{ product_title }} to describe the desired state of an application and to manage pods through replica sets or replication controllers. Use `Deployment` objects unless you need a feature that only `DeploymentConfig` objects provide. {._abstract}
 
 The `Deployment` and `DeploymentConfig` API objects provide two similar but different methods for fine-grained management over common user applications. They are composed of the following separate API objects:
 

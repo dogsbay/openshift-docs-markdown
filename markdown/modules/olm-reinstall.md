@@ -3,7 +3,7 @@
 
 You must successfully and completely uninstall an Operator prior to attempting to reinstall the same Operator. Failure to fully uninstall the Operator properly can leave resources, such as a project or namespace, stuck in a "Terminating" state and cause "error resolving resource" messages. For example: {._abstract}
 
-***Example `Project` resource description***
+**Example `Project` resource description**
 
 ```
 ...

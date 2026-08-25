@@ -3,12 +3,12 @@ title: Configuring the web terminal
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the web terminal {id="configuring-web-terminal"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Configuring the web terminal {id="configuring-web-terminal"}
 {%- set context = "configuring-web-terminal" %}
 
-You can configure timeout and image settings for the web terminal, either for your current session or for all user sessions if you are a cluster administrator.
+You can configure timeout and image settings for the web terminal, either for your current session or for all user sessions if you are a cluster administrator. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/odc-configure-web-terminal-timeout-session.md" %}{% endleveloffset %}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Converting an S2I component into a devfile component {id="converting-an-s2i-component-into-a-devfile-component_{{ context }}"}
 
-With `{{ odo_title }}`, you can create both Source-to-Image (S2I) and devfile components. If you have an existing S2I component, you can convert it into a devfile component using the `odo utils` command.
+With `{{ odo_title }}`{minja}, you can create both Source-to-Image (S2I) and devfile components. If you have an existing S2I component, you can convert it into a devfile component using the `odo utils` command.
 
 **Procedure**
 

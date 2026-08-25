@@ -20,13 +20,13 @@ Before you can use the {{ ztp_first }} pipeline, you need to prepare the Git rep
     :::
 
 1.  Export the `argocd` directory from the `ztp-site-generate` container image using the following commands:
-    ```terminal
+    ```terminal {minja}
     $ podman pull registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }}
     ```
     ```terminal
     $ mkdir -p ./out
     ```
-    ```terminal
+    ```terminal {minja}
     $ podman run --log-driver=none --rm registry.redhat.io/openshift4/ztp-site-generate-rhel8:v{{ product_version }} extract /home/ztp --tar | tar x -C ./out
     ```
 1.  Check that the `out` directory contains the following subdirectories:

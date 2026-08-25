@@ -10,6 +10,6 @@ Alerts provide notifications when a set of defined conditions are true in an {{ 
 
 **Procedure**
 
-1.  In the **Administrator** perspective, navigate to the **Observe** -> **Alerting** -> **Alerts** page.
+1.  In the **Administrator** perspective, navigate to the **Observe** → **Alerting** → **Alerts** page.
 1.  Review the alerts that are firing, including their **Severity**, **State**, and **Source**. Use this information to identify which alerts require immediate attention.
 1.  Select an alert to view more detailed information in the **Alert Details** page.

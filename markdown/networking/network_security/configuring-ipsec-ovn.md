@@ -3,11 +3,11 @@ title: Configuring IPsec encryption
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring IPsec encryption {id="configuring-ipsec-ovn"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring IPsec encryption {id="configuring-ipsec-ovn"}
 {%- set context = "configuring-ipsec-ovn" %}
 
-By enabling IPsec, you can encrypt both internal pod-to-pod cluster traffic between nodes and external traffic between pods and IPsec endpoints external to your cluster. All pod-to-pod network traffic between nodes on the OVN-Kubernetes cluster network is encrypted with IPsec in _Transport mode_.
+By enabling IPsec, you can encrypt both internal pod-to-pod cluster traffic between nodes and external traffic between pods and IPsec endpoints external to your cluster. All pod-to-pod network traffic between nodes on the OVN-Kubernetes cluster network is encrypted with IPsec in _Transport mode_. {._abstract}
 
 IPsec is disabled by default. You can enable IPsec either during or after installing the cluster. For information about cluster installation, see [{{ product_title }} installation overview](/installing/overview/index#ocp-installation-overview).
 
@@ -43,7 +43,7 @@ The following list outlines key tasks in the IPsec documentation:
 
 {% leveloffset +1 %}{% include "./modules/nw-ovn-ipsec-prerequisites.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_k8s-nmstate-about-the-k8s-nmstate-operator_{{ context }}"}
+## Additional resources {id="additional-resources_k8s-nmstate-about-the-k8s-nmstate-operator_{{ context }}" ._additional-resources}
 
 *   [Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
 
@@ -63,7 +63,7 @@ The following list outlines key tasks in the IPsec documentation:
 
 {% leveloffset +1 %}{% include "./modules/nw-ovn-ipsec-north-south-enable.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_nw-ovn-ipsec_{{ context }}"}
+## Additional resources {id="additional-resources_nw-ovn-ipsec_{{ context }}" ._additional-resources}
 
 *   [IPsec Encryption](https://nmstate.io/devel/yaml_api.html#ipsec-encryption)
 *   [Installing Butane](/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)
@@ -72,7 +72,7 @@ The following list outlines key tasks in the IPsec documentation:
 
 {% leveloffset +1 %}{% include "./modules/nw-ovn-ipsec-disable.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Configuring a VPN with IPsec](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/configuring_and_managing_networking/setting-up-an-ipsec-vpn)
 *   [Installing Butane](/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)

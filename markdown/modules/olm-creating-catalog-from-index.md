@@ -32,42 +32,42 @@ can create a `CatalogSource` object that references an index image. The software
 
 :::tip
 
-Alternatively, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+Alternatively, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
 
 :::
 
-{% endif %}
+{%- endif %}
 
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 
 :::tip
 
-Alternatively, you can use the web console to manage catalog sources. From the **Home** -> **Search** page, select a project, click the **Resources** drop-down and search for `CatalogSource`. You can create, update, delete, disable, and enable individual sources.
+Alternatively, you can use the web console to manage catalog sources. From the **Home** → **Search** page, select a project, click the **Resources** drop-down and search for `CatalogSource`. You can create, update, delete, disable, and enable individual sources.
 
 :::
 
-{% endif %}
+{%- endif %}
 
 **Prerequisites**
 
 *   You built and pushed an index image to a registry.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
 1.  Create a `CatalogSource` object that references your index image.
 {%- if olm_restricted_networks %}
 If you used the `oc adm catalog mirror` command to mirror your catalog to a target registry, you can use the generated `catalogSource.yaml` file in your manifests directory as a starting point.
-{% endif %}
+{%- endif %}
 
 {% if olm_restricted_networks %}
     1.  Modify the following to your specifications and save it as a `catalogSource.yaml` file:
-        ```yaml
+        ```yaml {minja}
         apiVersion: operators.coreos.com/v1alpha1
         kind: CatalogSource
         metadata:
@@ -91,7 +91,7 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
         :   Specifies the value for the `metadata.name` parameter. If you mirrored content to local files before uploading to a registry, remove any backslash (`/`) characters from the `metadata.name` field to avoid an "invalid resource name" error when you create the object.
 
         `metadata.namespace`
-        :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `{{ namespace }}` namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
+        :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `{{ namespace }}`{minja} namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
 
         `spec.grpcPodConfig.securityContextConfig`
         :   Specifies the value of `legacy` or `restricted`. If the field is not set, the default value is `legacy`. In a future {{ product_title }} release, it is planned that the default value will be `restricted`. 
@@ -105,7 +105,7 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
 
 
         `spec.image`
-        :   Specifies your index image. If you specify a tag after the image name, for example `:{{ tag }}`, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
+        :   Specifies your index image. If you specify a tag after the image name, for example `:{{ tag }}`{minja}, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
 
         `spec.publisher`
         :   Specifies your name or an organization name publishing the catalog.
@@ -115,7 +115,7 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
 {% endif %}
 {% if not olm_restricted_networks %}
     1.  Modify the following to your specifications and save it as a `catalogSource.yaml` file:
-        ```yaml
+        ```yaml {minja}
         apiVersion: operators.coreos.com/v1alpha1
         kind: CatalogSource
         metadata:
@@ -139,7 +139,7 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
 
 
         `metadata.namespace`
-        :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `{{ namespace }}` namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
+        :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `{{ namespace }}`{minja} namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
 
         `metadata.annotations`
         :   Specifies the value for the `metadata.annotations` parameter. This is optional to set the `olm.catalogImageTemplate` annotation to your index image name and use one or more of the Kubernetes cluster version variables as shown when constructing the template for the image tag.
@@ -156,7 +156,7 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
 
 
         `spec.image`
-        :   Specifies your index image. If you specify a tag after the image name, for example `:{{ tag }}`, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
+        :   Specifies your index image. If you specify a tag after the image name, for example `:{{ tag }}`{minja}, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
 
         `spec.publisher`
         :   Specifies your name or an organization name publishing the catalog.
@@ -170,7 +170,7 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
         ```
 1.  Verify the following resources are created successfully.
     1.  Check the pods:
-        ```terminal
+        ```terminal {minja}
         $ oc get pods -n {{ namespace }}
         ```
 
@@ -181,7 +181,7 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
         marketplace-operator-d9f549946-96sgr    1/1     Running   0         26h
         ```
     1.  Check the catalog source:
-        ```terminal
+        ```terminal {minja}
         $ oc get catalogsource -n {{ namespace }}
         ```
 
@@ -191,7 +191,7 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
         my-operator-catalog   My Operator Catalog   grpc            5s
         ```
     1.  Check the package manifest:
-        ```terminal
+        ```terminal {minja}
         $ oc get packagemanifest -n {{ namespace }}
         ```
 
@@ -203,12 +203,12 @@ If you used the `oc adm catalog mirror` command to mirror your catalog to a targ
 
         You can now install the Operators from the **Software Catalog** page on your {{ product_title }} web console.
 
-{%- set index_image = false -%}
-{%- set tag = false -%}
-{%- set namespace = false -%}
+{%- set index_image = "" -%}
+{%- set tag = "" -%}
+{%- set namespace = "" -%}
 {% if context == "post-install-preparing-for-users" %}
-{%- set olm_restricted_networks = false -%}
+{%- set olm_restricted_networks = "" -%}
 {% endif %}
 {% if context == "olm-restricted-networks" %}
-{%- set olm_restricted_networks = false -%}
+{%- set olm_restricted_networks = "" -%}
 {% endif %}

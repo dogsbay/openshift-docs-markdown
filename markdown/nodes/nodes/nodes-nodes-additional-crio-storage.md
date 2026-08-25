@@ -3,11 +3,11 @@ title: Additional CRI-O storage locations for faster container startup
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Additional CRI-O storage locations for faster container startup {id="nodes-nodes-additional-crio-storage"}
 {% include "./_attributes/common-attributes.md" %}
+# Additional CRI-O storage locations for faster container startup {id="nodes-nodes-additional-crio-storage"}
 {%- set context = "nodes-nodes-additional-crio-storage" %}
 
-To reduce application startup time, make your applications run more efficiently, and configure lazy pulling, you can configure additional storage locations for the CRI-O container engine. 
+To reduce application startup time, make your applications run more efficiently, and configure lazy pulling, you can configure additional storage locations for the CRI-O container engine.  {._abstract}
 
 Fields in the `ContainerRuntimeConfig` custom resource (CR) let you specify where CRI-O stores and resolves container image layers, complete container images, and OCI artifacts.
 

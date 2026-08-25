@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Building of container images using Buildah as a non-root user {id="unprivileged-building-of-container-images-using-buildah"}
 {% include "./_attributes/common-attributes.md" %}
+# Building of container images using Buildah as a non-root user {id="unprivileged-building-of-container-images-using-buildah"}
 {%- set context = "unprivileged-building-of-container-images-using-buildah" %}
 
 Running {{ pipelines_shortname }} as the root user on a container can expose the container processes and the host to other potentially malicious resources. You can reduce this type of exposure by running the workload as a specific non-root user in the container. To run builds of container images using Buildah as a non-root user, you can perform the following steps:

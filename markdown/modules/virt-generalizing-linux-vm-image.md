@@ -56,7 +56,7 @@ You can generalize a {{ op_system_base }} VM by using the `virtctl`, `guestfs`, 
     ```terminal
     $ virt-sysprep -a disk.img
     ```
-1.  In the {{ product_title }} console, click **Virtualization** -> **Catalog**.
+1.  In the {{ product_title }} console, click **Virtualization** → **Catalog**.
 1.  Click **Add volume**.
 1.  In the **Add volume** window:
     1.  From the **Source type** list, select **Use existing Volume**.

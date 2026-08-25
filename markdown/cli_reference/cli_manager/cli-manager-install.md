@@ -3,11 +3,11 @@ title: "Installing the {{ cli_manager }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing the {{ cli_manager }} {id="cli-manager-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing the {{ cli_manager }} {id="cli-manager-install"}
 {%- set context = "cli-manager-install" %}
 
-You can simplify the installation and management of CLI plugins in connected and disconnected environments with the {{ cli_manager }}. The {{ cli_manager }} makes Krew compatible with the `oc` CLI, allowing cluster administrators to manage custom CLI plugin resources.
+You can simplify the installation and management of CLI plugins in connected and disconnected environments with the {{ cli_manager }}. The {{ cli_manager }} makes Krew compatible with the `oc` CLI, allowing cluster administrators to manage custom CLI plugin resources. {._abstract}
 
 {%- set FeatureName = "Using the {{ cli_manager }} to install and manage plugins for the OpenShift CLI" %}
 {% include "./snippets/technology-preview.md" %}

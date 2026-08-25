@@ -5,7 +5,7 @@ You can install {{ op_system }} by running `coreos-installer install <options> <
 
 The following table shows the subcommands, options, and arguments you can pass to the `coreos-installer` command.
 
-***`coreos-installer` subcommands, command-line options, and arguments***
+**`coreos-installer` subcommands, command-line options, and arguments**
 
 <table>
 <thead>
@@ -19,175 +19,179 @@ The following table shows the subcommands, options, and arguments you can pass t
   <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><code>$ coreos-installer install <options> <device></code></td>
-  <td>Embed an Ignition config in an ISO image.<br><br>2+</td>
+  <td><code>$ coreos-installer install &lt;options&gt; &lt;device&gt;</code></td>
+  <td>Embed an Ignition config in an ISO image.</td>
 </tr>
 <tr>
-  <td><strong>coreos-installer install subcommand options</strong></td>
+  <td colspan="2"><strong>coreos-installer install subcommand options</strong></td>
+</tr>
+<tr>
   <td><strong><em>Option</em></strong></td>
-</tr>
-<tr>
   <td><strong><em>Description</em></strong></td>
-  <td><code>-u</code>, <code>--image-url <url></code></td>
 </tr>
 <tr>
+  <td><code>-u</code>, <code>--image-url &lt;url&gt;</code></td>
   <td>Specify the image URL manually.</td>
-  <td><code>-f</code>, <code>--image-file <path></code></td>
 </tr>
 <tr>
+  <td><code>-f</code>, <code>--image-file &lt;path&gt;</code></td>
   <td>Specify a local image file manually. Used for debugging.</td>
-  <td><code>-i,</code> <code>--ignition-file <path></code></td>
 </tr>
 <tr>
+  <td><code>-i,</code> <code>--ignition-file &lt;path&gt;</code></td>
   <td>Embed an Ignition config from a file.</td>
-  <td><code>-I</code>, <code>--ignition-url <URL></code></td>
 </tr>
 <tr>
+  <td><code>-I</code>, <code>--ignition-url &lt;URL&gt;</code></td>
   <td>Embed an Ignition config from a URL.</td>
-  <td><code>--ignition-hash <digest></code></td>
 </tr>
 <tr>
+  <td><code>--ignition-hash &lt;digest&gt;</code></td>
   <td>Digest <code>type-value</code> of the Ignition config.</td>
-  <td><code>-p</code>, <code>--platform <name></code></td>
 </tr>
 <tr>
+  <td><code>-p</code>, <code>--platform &lt;name&gt;</code></td>
   <td>Override the Ignition platform ID for the installed system.</td>
-  <td><code>--console <spec></code></td>
 </tr>
 <tr>
-  <td>Set the kernel and boot loader console for the installed system. For more information about the format of <code><spec></code>, see the <a href="https://www.kernel.org/doc/html/latest/admin-guide/serial-console.html">Linux kernel serial console</a> documentation.</td>
-  <td><code>--append-karg <arg>...</code></td>
+  <td><code>--console &lt;spec&gt;</code></td>
+  <td>Set the kernel and boot loader console for the installed system. For more information about the format of <code>&lt;spec&gt;</code>, see the <a href="https://www.kernel.org/doc/html/latest/admin-guide/serial-console.html">Linux kernel serial console</a> documentation.</td>
 </tr>
 <tr>
+  <td><code>--append-karg &lt;arg&gt;...</code></td>
   <td>Append a default kernel argument to the installed system.</td>
-  <td><code>--delete-karg <arg>...</code></td>
 </tr>
 <tr>
+  <td><code>--delete-karg &lt;arg&gt;...</code></td>
   <td>Delete a default kernel argument from the installed system.</td>
+</tr>
+<tr>
   <td><code>-n</code>, <code>--copy-network</code></td>
+  <td>Copy the network configuration from the install environment.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The <code>--copy-network</code> option only copies networking configuration found under <code>/etc/NetworkManager/system-connections</code>. In particular, it does not copy the system hostname.</dd></dl></td>
 </tr>
 <tr>
-  <td>Copy the network configuration from the install environment.<br><br><dl><dt>Important</dt><dd>The <code>--copy-network</code> option only copies networking configuration found under <code>/etc/NetworkManager/system-connections</code>. In particular, it does not copy the system hostname.</dd></dl></td>
-  <td><code>--network-dir <path></code></td>
-</tr>
-<tr>
+  <td><code>--network-dir &lt;path&gt;</code></td>
   <td>For use with <code>-n</code>. Default is <code>/etc/NetworkManager/system-connections/</code>.</td>
-  <td><code>--save-partlabel <lx>..</code></td>
 </tr>
 <tr>
+  <td><code>--save-partlabel &lt;lx&gt;..</code></td>
   <td>Save partitions with this label glob.</td>
-  <td><code>--save-partindex <id>...</code></td>
 </tr>
 <tr>
+  <td><code>--save-partindex &lt;id&gt;...</code></td>
   <td>Save partitions with this number or range.</td>
+</tr>
+<tr>
   <td><code>--insecure</code></td>
-</tr>
-<tr>
   <td>Skip {{ op_system }} image signature verification.</td>
+</tr>
+<tr>
   <td><code>--insecure-ignition</code></td>
-</tr>
-<tr>
   <td>Allow Ignition URL without HTTPS or hash.</td>
-  <td><code>--architecture <name></code></td>
 </tr>
 <tr>
+  <td><code>--architecture &lt;name&gt;</code></td>
   <td>Target CPU architecture. Valid values are <code>x86_64</code> and <code>aarch64</code>.</td>
+</tr>
+<tr>
   <td><code>--preserve-on-error</code></td>
-</tr>
-<tr>
   <td>Do not clear partition table on error.</td>
-  <td><code>-h</code>, <code>--help</code></td>
 </tr>
 <tr>
-  <td>Print help information.<br><br>2+</td>
-  <td><strong>coreos-installer install subcommand argument</strong></td>
+  <td><code>-h</code>, <code>--help</code></td>
+  <td>Print help information.</td>
+</tr>
+<tr>
+  <td colspan="2"><strong>coreos-installer install subcommand argument</strong></td>
 </tr>
 <tr>
   <td><strong><em>Argument</em></strong></td>
   <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><code><device></code></td>
-  <td>The destination device.<br><br>2+</td>
+  <td><code>&lt;device&gt;</code></td>
+  <td>The destination device.</td>
 </tr>
 <tr>
-  <td><strong>coreos-installer ISO subcommands</strong></td>
+  <td colspan="2"><strong>coreos-installer ISO subcommands</strong></td>
+</tr>
+<tr>
   <td><strong><em>Subcommand</em></strong></td>
-</tr>
-<tr>
   <td><strong><em>Description</em></strong></td>
-  <td><code>$ coreos-installer iso customize <options> <ISO_image></code></td>
 </tr>
 <tr>
+  <td><code>$ coreos-installer iso customize &lt;options&gt; &lt;ISO_image&gt;</code></td>
   <td>Customize a {{ op_system }} live ISO image.</td>
-  <td><code>coreos-installer iso reset <options> <ISO_image></code></td>
 </tr>
 <tr>
+  <td><code>coreos-installer iso reset &lt;options&gt; &lt;ISO_image&gt;</code></td>
   <td>Restore a {{ op_system }} live ISO image to default settings.</td>
-  <td><code>coreos-installer iso ignition remove <options> <ISO_image></code></td>
 </tr>
 <tr>
-  <td>Remove the embedded Ignition config from an ISO image.<br><br>2+</td>
-  <td><strong>coreos-installer ISO customize subcommand options</strong></td>
+  <td><code>coreos-installer iso ignition remove &lt;options&gt; &lt;ISO_image&gt;</code></td>
+  <td>Remove the embedded Ignition config from an ISO image.</td>
+</tr>
+<tr>
+  <td colspan="2"><strong>coreos-installer ISO customize subcommand options</strong></td>
 </tr>
 <tr>
   <td><strong><em>Option</em></strong></td>
   <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><code>--dest-ignition <path></code></td>
+  <td><code>--dest-ignition &lt;path&gt;</code></td>
   <td>Merge the specified Ignition config file into a new configuration fragment for the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-console <spec></code></td>
+  <td><code>--dest-console &lt;spec&gt;</code></td>
   <td>Specify the kernel and boot loader console for the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-device <path></code></td>
+  <td><code>--dest-device &lt;path&gt;</code></td>
   <td>Install and overwrite the specified destination device.</td>
 </tr>
 <tr>
-  <td><code>--dest-karg-append <arg></code></td>
+  <td><code>--dest-karg-append &lt;arg&gt;</code></td>
   <td>Add a kernel argument to each boot of the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-karg-delete <arg></code></td>
+  <td><code>--dest-karg-delete &lt;arg&gt;</code></td>
   <td>Delete a kernel argument from each boot of the destination system.</td>
 </tr>
 <tr>
-  <td><code>--network-keyfile <path></code></td>
+  <td><code>--network-keyfile &lt;path&gt;</code></td>
   <td>Configure networking by using the specified NetworkManager keyfile for live and destination systems.</td>
 </tr>
 <tr>
-  <td><code>--ignition-ca <path></code></td>
+  <td><code>--ignition-ca &lt;path&gt;</code></td>
   <td>Specify an additional TLS certificate authority to be trusted by Ignition.</td>
 </tr>
 <tr>
-  <td><code>--pre-install <path></code></td>
+  <td><code>--pre-install &lt;path&gt;</code></td>
   <td>Run the specified script before installation.</td>
 </tr>
 <tr>
-  <td><code>--post-install <path></code></td>
+  <td><code>--post-install &lt;path&gt;</code></td>
   <td>Run the specified script after installation.</td>
 </tr>
 <tr>
-  <td><code>--installer-config <path></code></td>
+  <td><code>--installer-config &lt;path&gt;</code></td>
   <td>Apply the specified installer configuration file.</td>
 </tr>
 <tr>
-  <td><code>--live-ignition <path></code></td>
+  <td><code>--live-ignition &lt;path&gt;</code></td>
   <td>Merge the specified Ignition config file into a new configuration fragment for the live environment.</td>
 </tr>
 <tr>
-  <td><code>--live-karg-append <arg></code></td>
+  <td><code>--live-karg-append &lt;arg&gt;</code></td>
   <td>Add a kernel argument to each boot of the live environment.</td>
 </tr>
 <tr>
-  <td><code>--live-karg-delete <arg></code></td>
+  <td><code>--live-karg-delete &lt;arg&gt;</code></td>
   <td>Delete a kernel argument from each boot of the live environment.</td>
 </tr>
 <tr>
-  <td><code>--live-karg-replace <k=o=n></code></td>
+  <td><code>--live-karg-replace &lt;k=o=n&gt;</code></td>
   <td>Replace a kernel argument in each boot of the live environment, in the form <code>key=old=new</code>.</td>
 </tr>
 <tr>
@@ -195,80 +199,84 @@ The following table shows the subcommands, options, and arguments you can pass t
   <td>Overwrite an existing Ignition config.</td>
 </tr>
 <tr>
-  <td><code>-o</code>, <code>--output <path></code></td>
+  <td><code>-o</code>, <code>--output &lt;path&gt;</code></td>
   <td>Write the ISO to a new output file.</td>
 </tr>
 <tr>
   <td><code>-h</code>, <code>--help</code></td>
-  <td>Print help information.<br><br>2+</td>
+  <td>Print help information.</td>
 </tr>
 <tr>
-  <td><strong>coreos-installer PXE subcommands</strong></td>
+  <td colspan="2"><strong>coreos-installer PXE subcommands</strong></td>
+</tr>
+<tr>
   <td><strong><em>Subcommand</em></strong></td>
+  <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><strong><em>Description</em></strong></td>
   <td colspan="2">Note that not all of these options are accepted by all subcommands.</td>
 </tr>
 <tr>
-  <td><code>coreos-installer pxe customize <options> <path></code></td>
+  <td><code>coreos-installer pxe customize &lt;options&gt; &lt;path&gt;</code></td>
   <td>Customize a {{ op_system }} live PXE boot config.</td>
 </tr>
 <tr>
-  <td><code>coreos-installer pxe ignition wrap <options></code></td>
+  <td><code>coreos-installer pxe ignition wrap &lt;options&gt;</code></td>
   <td>Wrap an Ignition config in an image.</td>
 </tr>
 <tr>
-  <td><code>coreos-installer pxe ignition unwrap <options> <image_name></code></td>
-  <td>Show the wrapped Ignition config in an image.<br><br>2+</td>
+  <td><code>coreos-installer pxe ignition unwrap &lt;options&gt; &lt;image_name&gt;</code></td>
+  <td>Show the wrapped Ignition config in an image.</td>
 </tr>
 <tr>
-  <td><strong>coreos-installer PXE customize subcommand options</strong></td>
+  <td colspan="2"><strong>coreos-installer PXE customize subcommand options</strong></td>
+</tr>
+<tr>
   <td><strong><em>Option</em></strong></td>
+  <td><strong><em>Description</em></strong></td>
 </tr>
 <tr>
-  <td><strong><em>Description</em></strong></td>
   <td colspan="2">Note that not all of these options are accepted by all subcommands.</td>
 </tr>
 <tr>
-  <td><code>--dest-ignition <path></code></td>
+  <td><code>--dest-ignition &lt;path&gt;</code></td>
   <td>Merge the specified Ignition config file into a new configuration fragment for the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-console <spec></code></td>
+  <td><code>--dest-console &lt;spec&gt;</code></td>
   <td>Specify the kernel and boot loader console for the destination system.</td>
 </tr>
 <tr>
-  <td><code>--dest-device <path></code></td>
+  <td><code>--dest-device &lt;path&gt;</code></td>
   <td>Install and overwrite the specified destination device.</td>
 </tr>
 <tr>
-  <td><code>--network-keyfile <path></code></td>
+  <td><code>--network-keyfile &lt;path&gt;</code></td>
   <td>Configure networking by using the specified NetworkManager keyfile for live and destination systems.</td>
 </tr>
 <tr>
-  <td><code>--ignition-ca <path></code></td>
+  <td><code>--ignition-ca &lt;path&gt;</code></td>
   <td>Specify an additional TLS certificate authority to be trusted by Ignition.</td>
 </tr>
 <tr>
-  <td><code>--pre-install <path></code></td>
+  <td><code>--pre-install &lt;path&gt;</code></td>
   <td>Run the specified script before installation.</td>
 </tr>
 <tr>
-  <td><code>post-install <path></code></td>
+  <td><code>post-install &lt;path&gt;</code></td>
   <td>Run the specified script after installation.</td>
 </tr>
 <tr>
-  <td><code>--installer-config <path></code></td>
+  <td><code>--installer-config &lt;path&gt;</code></td>
   <td>Apply the specified installer configuration file.</td>
 </tr>
 <tr>
-  <td><code>--live-ignition <path></code></td>
+  <td><code>--live-ignition &lt;path&gt;</code></td>
   <td>Merge the specified Ignition config file into a new configuration fragment for the live environment.</td>
 </tr>
 <tr>
-  <td><code>-o,</code> <code>--output <path></code></td>
-  <td>Write the initramfs to a new output file.<br><br><dl><dt>Note</dt><dd>This option is required for PXE environments.</dd></dl></td>
+  <td><code>-o,</code> <code>--output &lt;path&gt;</code></td>
+  <td>Write the initramfs to a new output file.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This option is required for PXE environments.</dd></dl></td>
 </tr>
 <tr>
   <td><code>-h</code>, <code>--help</code></td>
@@ -284,7 +292,7 @@ You can automatically start `coreos-installer` options at boot time by passing `
 
 The following table shows the {{ op_system }} live installer `coreos.inst` boot options for ISO and PXE installations.
 
-***`coreos.inst` boot options***
+**`coreos.inst` boot options**
 
 <table>
 <thead>
@@ -296,7 +304,7 @@ The following table shows the {{ op_system }} live installer `coreos.inst` boot 
 <tbody>
 <tr>
   <td><code>coreos.inst.install_dev</code></td>
-  <td>Required. The block device on the system to install to.<br><br><dl><dt>Note</dt><dd>It is recommended to use the full path, such as <code>/dev/sda</code>, although <code>sda</code> is allowed.</dd></dl></td>
+  <td>Required. The block device on the system to install to.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>It is recommended to use the full path, such as <code>/dev/sda</code>, although <code>sda</code> is allowed.</dd></dl></td>
 </tr>
 <tr>
   <td><code>coreos.inst.ignition_url</code></td>

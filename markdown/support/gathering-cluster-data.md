@@ -3,16 +3,16 @@ title: Gathering data about your cluster
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Gathering data about your cluster {id="gathering-cluster-data"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- if openshift_rosa or openshift_dedicated %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "gathering-cluster-data" %}
 
 {% if not openshift_origin %}
-You can gather debugging information about your {{ product_title }} cluster to provide to Red&#160;Hat Support when opening a support case.
+You can gather debugging information about your {{ product_title }} cluster to provide to Red&#160;Hat Support when opening a support case. {._abstract}
 {% endif %}
 
 {% if openshift_origin %}
@@ -44,6 +44,7 @@ You can use the following tools to get debugging information about your {{ produ
 {% leveloffset +2 %}{% include "./modules/gathering-data-specific-features.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   [Gathering debugging data for the Custom Metrics Autoscaler](/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom-gather)
@@ -51,15 +52,15 @@ You can use the following tools to get debugging information about your {{ produ
 {% endif %}
 
 {% if openshift_rosa %}
-*   [{{ product_title }} update life cycle](#../rosa_architecture/rosa_policy_service_definition/rosa-life-cycle.html)
+*   [{{ product_title }} update life cycle](/rosa_architecture/rosa_policy_service_definition/rosa-life-cycle)
 {% endif %}
 
 {% if openshift_rosa_hcp %}
-*   [{{ product_title }} update life cycle](#../rosa_architecture/rosa_policy_service_definition/rosa-hcp-life-cycle.html)
+*   [{{ product_title }} update life cycle](/rosa_architecture/rosa_policy_service_definition/rosa-hcp-life-cycle)
 {% endif %}
 
 {% if openshift_dedicated %}
-*   [{{ product_title }} update life cycle](#../osd_architecture/osd_policy/osd-life-cycle.html)
+*   [{{ product_title }} update life cycle](/osd_architecture/osd_policy/osd-life-cycle)
 {% endif %}
 
 {% leveloffset +2 %}{% include "./modules/gathering-data-network-logs.md" %}{% endleveloffset %}
@@ -81,6 +82,7 @@ You can use the following tools to get debugging information about your {{ produ
 {% leveloffset +2 %}{% include "./modules/support-log-gather-reduce-size.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding and creating service accounts](/authentication/understanding-and-creating-service-accounts#understanding-and-creating-service-accounts)
 

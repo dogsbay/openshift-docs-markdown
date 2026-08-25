@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if context == "olm-understanding-olm" %}
+{% if context == "olm-understanding-olm" %}
 # Operator conditions {id="olm-about-operatorconditions_{{ context }}"}
 
 {% endif %}

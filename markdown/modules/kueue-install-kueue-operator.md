@@ -11,7 +11,7 @@ You can install the {{ kueue_op }} on a {{ product_title }} cluster by using the
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Operators** -> **OperatorHub**.
+1.  In the {{ product_title }} web console, click **Operators** → **OperatorHub**.
 1.  Choose **{{ kueue_op }}** from the list of available Operators, and click **Install**.
 1.  Select **Enable Operator recommended cluster monitoring on this Namespace**.
 
@@ -37,4 +37,4 @@ You can install the {{ kueue_op }} on a {{ product_title }} cluster by using the
 
 **Verification**
 
-*   Go to **Operators** -> **Installed Operators** and confirm that the **{{ kueue_op }}** is listed with **Status** as **Succeeded**.
+*   Go to **Operators** → **Installed Operators** and confirm that the **{{ kueue_op }}** is listed with **Status** as **Succeeded**.

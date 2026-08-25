@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Removing the AWS Load Balancer Operator {id="aws-load-balancer-operator-deleting_{{ context }}"}
 
-[role="_abstract"] 
-If you no longer need to use the AWS Load Balancer Operator, you can remove the Operator and delete any related roles and policies.
+If you no longer need to use the AWS Load Balancer Operator, you can remove the Operator and delete any related roles and policies. {._abstract}
 
 **Procedure**
 

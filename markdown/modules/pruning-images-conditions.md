@@ -31,7 +31,7 @@ Image pruning by age and tag
 
         Image pruning by size limit
 
-:   Pruning an image by size limit uses the `--prune-over-size-limit` flag. This method is used to bring a project back under its defined image storage limit.
+        :   Pruning an image by size limit uses the `--prune-over-size-limit` flag. This method is used to bring a project back under its defined image storage limit.
 
         :::note
 

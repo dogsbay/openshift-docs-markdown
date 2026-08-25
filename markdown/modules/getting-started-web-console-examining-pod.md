@@ -14,8 +14,9 @@ The **Overview** panel enables you to access many features of the `parksmap` dep
 
 **Procedure**
 
-1.  Navigate to **Workloads** -> **Topology**.
+1.  Navigate to **Workloads** → **Topology**.
 1.  Click the `parksmap` deployment in the `national-parks-app` application.
+
     **Figure 1. Parksmap deployment**
 
     ![Topology view of parksmap deployment](/_assets/images/getting-started-examine-pod.png)

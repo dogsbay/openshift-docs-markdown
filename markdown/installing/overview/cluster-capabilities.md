@@ -3,11 +3,11 @@ title: Cluster capabilities
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Cluster capabilities {id="cluster-capabilities"}
 {% include "./_attributes/common-attributes.md" %}
+# Cluster capabilities {id="cluster-capabilities"}
 {%- set context = "cluster-capabilities" %}
 
-As a cluster administrator, you can use cluster capabilities to enable or disable optional components before installation. Additionally, you can enable cluster capabilities at anytime after installation.
+As a cluster administrator, you can use cluster capabilities to enable or disable optional components before installation. Additionally, you can enable cluster capabilities at anytime after installation. {._abstract}
 
 
 :::note
@@ -22,6 +22,7 @@ You cannot disable a cluster capability after it is enabled.
 {% include "./snippets/capabilities-table.md" %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing a cluster on AWS with customizations](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
 *   [Installing a cluster on {{ gcp_short }} with customizations](/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)
@@ -29,12 +30,14 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +1 %}{% include "./modules/explanation-of-capabilities.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster Operators reference](/operators/operator-reference#cluster-operator-reference)
 
 {% leveloffset +2 %}{% include "./modules/cluster-bare-metal-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying installer-provisioned clusters on bare metal](/installing/installing_bare_metal/ipi/ipi-install-overview#ipi-install-overview)
 *   [Preparing for bare metal cluster installation](/installing/installing_bare_metal/preparing-to-install-on-bare-metal#preparing-to-install-on-bare-metal)
@@ -45,6 +48,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/cluster-cloud-controller-manager-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Technology Preview](https://access.redhat.com/support/offerings/techpreview)
 *   [`cluster-cloud-controller-manager-operator`](https://github.com/openshift/cluster-cloud-controller-manager-operator)
@@ -52,6 +56,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/cloud-credential-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 *   [`openshift-cloud-credential-operator`](https://github.com/openshift/cloud-credential-operator)
@@ -59,6 +64,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/cluster-image-registry-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Image Registry Operator in {{ product_title }}](/registry/configuring-registry-operator#configuring-registry-operator)
 *   [Automatically generated secrets](/nodes/pods/nodes-pods-secrets#auto-generated-sa-token-secrets_nodes-pods-secrets)
@@ -67,12 +73,14 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/cluster-storage-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [cluster-storage-operator](https://github.com/openshift/cluster-storage-operator)
 
 {% leveloffset +2 %}{% include "./modules/console-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Web console overview](/web_console/web-console-overview#web-console-overview)
 *   [console-operator](https://github.com/openshift/console-operator)
@@ -80,6 +88,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/cluster-csi-snapshot-controller-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [CSI volume snapshots](/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)
 *   [cluster-csi-snapshot-controller-operator](https://github.com/openshift/cluster-csi-snapshot-controller-operator)
@@ -89,12 +98,14 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/ingress-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [openshift-ingress-operator](https://github.com/openshift/cluster-ingress-operator)
 
 {% leveloffset +2 %}{% include "./modules/insights-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using {{ insights_operator }}](/support/remote_health_monitoring/using-insights-operator#using-insights-operator)
 *   [{{ hybrid_console }}](https://console.redhat.com/)
@@ -103,6 +114,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/machine-api-capability.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Overview of machine management](/machine_management/index#index)
 *   [Machine API Operator](/operators/operator-reference#machine-api-operator_operator-reference)
@@ -112,6 +124,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/operator-marketplace.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Red Hat-provided Operator catalogs](/operators/understanding/olm-rh-catalogs#olm-rh-catalogs)
 *   [operator-marketplace](https://github.com/operator-framework/operator-marketplace)
@@ -119,6 +132,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/node-tuning-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using the Node Tuning Operator](/scalability_and_performance/using-node-tuning-operator#using-node-tuning-operator)
 *   [cluster-node-tuning-operator](https://github.com/openshift/cluster-node-tuning-operator)
@@ -126,6 +140,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/cluster-samples-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the Cluster Samples Operator](/openshift_images/configuring-samples-operator#configuring-samples-operator)
 *   [cluster-samples-operator](https://github.com/openshift/cluster-samples-operator)
@@ -133,6 +148,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/olm-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Operator Lifecycle Manager concepts and resources](/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)
 *   [Operator Framework](https://operatorframework.io/)
@@ -140,6 +156,7 @@ You cannot disable a cluster capability after it is enabled.
 {% leveloffset +2 %}{% include "./modules/olmv1-clusteroperator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Extensions overview](/extensions/index#olmv1-about)
 *   [operator-framework/operator-controller](https://github.com/operator-framework/operator-controller)

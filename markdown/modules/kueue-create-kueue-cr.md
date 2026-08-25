@@ -9,7 +9,7 @@ After you have installed the {{ kueue_op }}, you must create a `Kueue` custom re
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Operators** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Operators** → **Installed Operators**.
 1.  In the **Provided APIs** table column, click **Kueue**. This takes you to the **Kueue** tab of the **Operator details** page.
 1.  Click **Create Kueue**. This takes you to the **Create Kueue** YAML view.
 1.  Enter the details for your `Kueue` CR.

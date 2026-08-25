@@ -3,11 +3,11 @@ title: Updating the Compliance Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Updating the Compliance Operator {id="compliance-operator-updating"}
 {% include "./_attributes/common-attributes.md" %}
+# Updating the Compliance Operator {id="compliance-operator-updating"}
 {%- set context = "compliance-operator-updating" %}
 
-As a cluster administrator, you can update the Compliance Operator on your {{ product_title }} cluster.
+As a cluster administrator, you can update the Compliance Operator on your {{ product_title }} cluster. {._abstract}
 
 
 :::important

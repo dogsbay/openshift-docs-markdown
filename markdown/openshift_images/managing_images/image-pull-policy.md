@@ -3,12 +3,12 @@ title: Image pull policy
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Image pull policy {id="image-pull-policy"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "image-pull-policy" %}
 
-To manage image updates and optimize pod startup performance in {{ product_title }}, you can configure the `imagePullPolicy` parameter in your container specifications. This setting controls when container images are pulled from registries.
+To manage image updates and optimize pod startup performance in {{ product_title }}, you can configure the `imagePullPolicy` parameter in your container specifications. This setting controls when container images are pulled from registries. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/images-image-pull-policy-overview.md" %}{% endleveloffset %}
 

@@ -3,11 +3,11 @@ title: Installing a cluster on Azure Stack Hub with customizations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Azure Stack Hub with customizations {id="installing-azure-stack-hub-default"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Azure Stack Hub with customizations {id="installing-azure-stack-hub-default"}
 {%- set context = "installing-azure-stack-hub-default" %}
 
-You can install a cluster on Microsoft Azure Stack Hub with installer-provisioned infrastructure. You must manually configure the `install-config.yaml` file to specify values that are specific to Azure Stack Hub.
+You can install a cluster on Microsoft Azure Stack Hub with installer-provisioned infrastructure. You must manually configure the `install-config.yaml` file to specify values that are specific to Azure Stack Hub. {._abstract}
 
 
 :::note
@@ -24,6 +24,7 @@ While you can select `azure` when using the installation program to deploy a clu
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure Stack Hub](/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
 
@@ -32,6 +33,7 @@ While you can select `azure` when using the installation program to deploy a clu
 {% leveloffset +1 %}{% include "./modules/manually-create-identity-access-management.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Updating cloud provider resources with manually maintained credentials](/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update)
 
@@ -44,10 +46,11 @@ While you can select `azure` when using the installation program to deploy a clu
 {% leveloffset +1 %}{% include "./modules/logging-in-by-using-the-web-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)

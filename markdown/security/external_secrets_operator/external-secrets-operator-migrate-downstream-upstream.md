@@ -3,11 +3,11 @@ title: Migrating from the community External Secrets Operator to the External Se
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Migrating from the community External Secrets Operator to the External Secrets Operator for Red Hat OpenShift {id="external-secrets-operator-migrate-downstream-upstream"}
 {% include "./_attributes/common-attributes.md" %}
+# Migrating from the community External Secrets Operator to the External Secrets Operator for Red Hat OpenShift {id="external-secrets-operator-migrate-downstream-upstream"}
 {%- set context = "external-secrets-operator-migrate-downstream-upstream" %}
 
-You can migrate from the community version of the {{ external_secrets_operator_short }}. Migrating to {{ external_secrets_operator }} provides you with an officially supported product giving you access to enterprise-grade support. It also provides you with seamless integration from installation to upgrades.
+You can migrate from the community version of the {{ external_secrets_operator_short }}. Migrating to {{ external_secrets_operator }} provides you with an officially supported product giving you access to enterprise-grade support. It also provides you with seamless integration from installation to upgrades. {._abstract}
 
 The following migration versions have been fully tested.
 

@@ -57,7 +57,7 @@ Without virtual services, {{ SMProductName }} distributes traffic using least re
 </tr>
 <tr>
   <td>spec: http: - match:</td>
-  <td>The <code>http</code> section contains the virtual service's routing rules which describe match conditions and actions for routing HTTP/1.1, HTTP2, and gRPC traffic sent to the destination as specified in the hosts field. A routing rule consists of the destination where you want the traffic to go and any specified match conditions.The first routing rule in the example has a condition that begins with the match field. In this example, this routing applies to all requests from the user <code>jason</code>. Add the <code>headers</code>, <code>end-user</code>, and <code>exact</code> fields to select the appropriate requests.</td>
+  <td>The <code>http</code> section contains the virtual service's routing rules which describe match conditions and actions for routing HTTP/1.1, HTTP2, and gRPC traffic sent to the destination as specified in the hosts field. A routing rule consists of the destination where you want the traffic to go and any specified match conditions. The first routing rule in the example has a condition that begins with the match field. In this example, this routing applies to all requests from the user <code>jason</code>. Add the <code>headers</code>, <code>end-user</code>, and <code>exact</code> fields to select the appropriate requests.</td>
 </tr>
 <tr>
   <td>spec: http: - match: - destination:</td>

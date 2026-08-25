@@ -3,7 +3,7 @@
 
 The following custom resource definitions (CRDs) are defined and managed by Operator Lifecycle Manager (OLM) in {{ product_title }}. Use these resources to configure catalog sources, subscriptions, install plans, cluster service versions (CSVs), and Operator groups. {._abstract}
 
-***CRDs managed by OLM and Catalog Operators***
+**CRDs managed by OLM and Catalog Operators**
 
 <table>
 <thead>

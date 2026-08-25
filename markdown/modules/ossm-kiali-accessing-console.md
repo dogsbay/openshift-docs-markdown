@@ -12,7 +12,7 @@ If you know the URL for the Kiali console, you can access it directly.  If you d
 **Procedure for administrators**
 
 1.  Log in to the {{ product_title }} web console with an administrator role.
-1.  Click **Home** -> **Projects**.
+1.  Click **Home** → **Projects**.
 1.  On the **Projects** page, if necessary, use the filter to find the name of your project.
 1.  Click the name of your project, for example, `bookinfo`.
 1.  On the **Project details** page, in the **Launcher** section, click the **Kiali** link.

@@ -32,10 +32,10 @@ Before creating your application, you need to gain access to your {{ product_tit
     See
 {%- if not openshift_rosa_hcp %}
     [Red&#160;Hat documentation on creating an STS cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/install_rosa_classic_clusters/index#rosa-sts-creating-a-cluster-quickly) before continuing this process.
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     [Red&#160;Hat documentation on creating an STS cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-sts-creating-a-cluster-quickly) before continuing this process.
-{% endif %}
+{%- endif %}
 1.  Set the `SecurityContextConstraints` permission to allow the Container Storage Interface (CSI) driver to run by running the following command:
     ```terminal
     $ oc new-project csi-secrets-store

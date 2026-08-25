@@ -3,20 +3,20 @@ title: Use cases for a secondary network
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Use cases for a secondary network {id="use-cases-secondary-network"}
 {% include "./_attributes/common-attributes.md" %}
+# Use cases for a secondary network {id="use-cases-secondary-network"}
 {%- set context = "use-cases-secondary-network" %}
 
-You can use a secondary network in situations where you require network isolation, including data plane and control plane separation.
+You can use a secondary network in situations where you require network isolation, including data plane and control plane separation. {._abstract}
 
 Isolating network traffic is useful for the following performance and security reasons:
 
 *   Performance
 
-    ***Traffic management***: You can send traffic on two different planes to manage how much traffic is along each plane.
+    **Traffic management**: You can send traffic on two different planes to manage how much traffic is along each plane.
 *   Security
 
-    ***Network isolation***: You can send sensitive traffic onto a network plane that is managed specifically for security considerations, and you can separate private data that must not be shared between tenants or customers.
+    **Network isolation**: You can send sensitive traffic onto a network plane that is managed specifically for security considerations, and you can separate private data that must not be shared between tenants or customers.
 
 All of the pods in the cluster still use the cluster-wide default network to maintain connectivity across the cluster. Every pod has an `eth0` interface that is attached to the cluster-wide pod network. You can view the interfaces for a pod by using the `oc exec -it <pod_name> \-- ip a` command. If you add secondary network interfaces that use the Multus Container Network Interface (CNI). These secondary networks are named `net1`, `net2`, and so on.
 
@@ -47,6 +47,6 @@ To attach secondary network interfaces to a pod, you must create configurations 
 
 {% leveloffset +1 %}{% include "./modules/support-matrix-for-udn-nad.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_use-cases-secondary-network"}
+## Additional resources {id="additional-resources_use-cases-secondary-network" ._additional-resources}
 
 *   [Enabling multicast for a project](/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)

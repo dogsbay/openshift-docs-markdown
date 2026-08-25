@@ -16,13 +16,13 @@ To ensure cluster stability and performance, use one of the tested {{ aws_first 
 The following {{ aws_short }} instance types have been tested with
 {%- if not (local_zone or wavelength_zone) %}
 {{ product_title }}.
-{% endif %}
-{% if local_zone %}
+{%- endif %}
+{%- if local_zone %}
 {{ product_title }} for use with {{ aws_short }} Local Zones.
-{% endif %}
-{% if wavelength_zone %}
+{%- endif %}
+{%- if wavelength_zone %}
 {{ product_title }} for use with {{ aws_short }} Wavelength Zones.
-{% endif %}
+{%- endif %}
 
 
 :::note
@@ -35,7 +35,6 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 {% if not (local_zone or wavelength_zone or secretregion) %}
 **Machine types based on 64-bit x86 architecture**
 
-```
 * `c4.*`
 * `c5.*`
 * `c5a.*`
@@ -54,7 +53,6 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 * `r6i.*`
 * `t3.*`
 * `t3a.*`
-```
 {% endif %}
 {% if local_zone %}
 **Machine types based on 64-bit x86 architecture for {{ aws_short }} Local Zones**
@@ -68,11 +66,13 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 {% endif %}
 {% if wavelength_zone %}
 **Machine types based on 64-bit x86 architecture for {{ aws_short }} Wavelength Zones**
+
 *   `r5.*`
 *   `t3.*`
 {% endif %}
 {% if secretregion %}
 **Machine types based on 64-bit x86 architecture for secret regions**
+
 *   `c4.*`
 *   `c5.*`
 *   `i3.*`
@@ -84,11 +84,11 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 {% endif %}
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-secret-region" %}
-{%- set secretregion = false -%}
+{%- set secretregion = "" -%}
 {% endif %}

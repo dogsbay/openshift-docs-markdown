@@ -5,11 +5,11 @@ apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
   name: otel
-  namespace: <permitted_project_of_opentelemetry_collector_instance> # (1)
+  namespace: <permitted_project_of_opentelemetry_collector_instance> (1)
 spec:
-  mode: <deployment_mode> # (2)
+  mode: <deployment_mode> (2)
   config:
-    receivers: # (3)
+    receivers: (3)
       otlp:
         protocols:
           grpc:
@@ -21,13 +21,13 @@ spec:
           thrift_compact: {}
           thrift_http: {}
       zipkin: {}
-    processors: # (4)
+    processors: (4)
       batch: {}
       memory_limiter:
         check_interval: 1s
         limit_percentage: 50
         spike_limit_percentage: 30
-    exporters: # (5)
+    exporters: (5)
       debug: {}
     service:
       pipelines:

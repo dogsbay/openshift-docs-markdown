@@ -13,11 +13,11 @@ contents of a credentials file provided by {{ gcp_short }}:
     *   `REGISTRY_STORAGE_GCS_KEYFILE`
 
 
-:::warning
+    :::warning
 
-You can secure your registry images that use a {{ gcp_full }} Storage bucket by setting [public access prevention](https://cloud.google.com/storage/docs/using-public-access-prevention).
-
-:::
+    You can secure your registry images that use a {{ gcp_full }} Storage bucket by setting [public access prevention](https://cloud.google.com/storage/docs/using-public-access-prevention).
+    
+    :::
 
 
 **Procedure**

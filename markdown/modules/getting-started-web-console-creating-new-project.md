@@ -23,7 +23,7 @@ If you are using Developer Sandbox to complete this tutorial, skip this procedur
 
 **Procedure**
 
-1.  Navigate to **Home** -> **Projects**.
+1.  Navigate to **Home** → **Projects**.
 1.  Click **Create Project**.
 1.  In the **Name** field, enter `user-getting-started`.
 1.  Click **Create**.

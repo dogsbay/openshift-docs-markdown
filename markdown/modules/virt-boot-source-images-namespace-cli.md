@@ -11,13 +11,13 @@ You can configure a custom namespace for boot source images in your cluster by s
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Configure the custom namespace by updating the value of the `spec.commonBootImageNamespace` field.
 
     Example configuration file:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

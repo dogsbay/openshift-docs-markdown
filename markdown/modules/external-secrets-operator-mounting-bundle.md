@@ -61,22 +61,21 @@ The {{ external_secrets_operator }} applies the following rules to the CA bundle
       -o jsonpath='{.spec.template.spec.volumes}' | jq '.[] | select(.name=="user-ca-bundle")'
     ```
 
-```json title="Example output"
-{
-  "configMap": {
-    "defaultMode": 420,
-    "items": [
-      {
-        "key": "ca-bundle.crt",
-        "path": "ca-bundle.crt"
-      }
-    ],
-    "name": "trusted-ca-bundle-for-es"
-  },
-  "name": "user-ca-bundle"
-}
-```
-
+    ```json title="Example output"
+    {
+      "configMap": {
+        "defaultMode": 420,
+        "items": [
+          {
+            "key": "ca-bundle.crt",
+            "path": "ca-bundle.crt"
+          }
+        ],
+        "name": "trusted-ca-bundle-for-es"
+      },
+      "name": "user-ca-bundle"
+    }
+    ```
 1.  Verify that the `SSL_CERT_DIR` is set on the core controller container by running the following command:
     ```terminal
     $ oc set env deployment/external-secrets \
@@ -84,25 +83,24 @@ The {{ external_secrets_operator }} applies the following rules to the CA bundle
       --list | grep SSL_CERT_DIR
     ```
 
-```terminal title="Example output"
-SSL_CERT_DIR=/etc/pki/tls/user-certs:/etc/pki/tls/certs:/etc/ssl/certs
-```
-
+    ```terminal title="Example output"
+    SSL_CERT_DIR=/etc/pki/tls/user-certs:/etc/pki/tls/certs:/etc/ssl/certs
+    ```
 1.  Verify that the `ExternalSecretsConfig` CR is not in a `Degraded` state by running the following command:
     ```terminal
     $ oc get externalsecretsconfigs.operator.openshift.io cluster \
       -o jsonpath='{.status.conditions[?(@.type=="Degraded")]}' | jq .
     ```
 
-```json title="Example output"
-{
-  "lastTransitionTime": "2026-06-22T10:29:11Z",
-  "message": "",
-  "observedGeneration": 5,
-  "reason": "Ready",
-  "status": "False",
-  "type": "Degraded"
-}
-```
+    ```json title="Example output"
+    {
+      "lastTransitionTime": "2026-06-22T10:29:11Z",
+      "message": "",
+      "observedGeneration": 5,
+      "reason": "Ready",
+      "status": "False",
+      "type": "Degraded"
+    }
+    ```
 
-The `Degraded` condition should show `"status": "False"`. If the condition is `True,` review the message field for the specific validation error and correct the referenced `ConfigMap`.
+    The `Degraded` condition should show `"status": "False"`. If the condition is `True,` review the message field for the specific validation error and correct the referenced `ConfigMap`.

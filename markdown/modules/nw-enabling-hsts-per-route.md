@@ -7,8 +7,8 @@ To enforce secure HTTPS connections for specific applications, enable HTTP Stric
 
 {%- if not microshift %}
 *   You are logged in to the cluster with a user with administrator privileges for the project.
-{% endif %}
-{% if microshift %}
+{%- endif %}
+{%- if microshift %}
 *   You have root access to the cluster.
 {%- endif %}
 *   You installed the {{ oc_first }}.

@@ -33,11 +33,11 @@ Audit log profiles define how to log requests that come to the OpenShift API ser
 </tr>
 <tr>
   <td><code>WriteRequestBodies</code></td>
-  <td>In addition to logging metadata for all requests, logs request bodies for every write request to the API servers (<code>create</code>, <code>update</code>, <code>patch</code>, <code>delete</code>, <code>deletecollection</code>). This profile has more resource overhead than the <code>Default</code> profile. ^[1]^</td>
+  <td>In addition to logging metadata for all requests, logs request bodies for every write request to the API servers (<code>create</code>, <code>update</code>, <code>patch</code>, <code>delete</code>, <code>deletecollection</code>). This profile has more resource overhead than the <code>Default</code> profile. <sup>[1]</sup></td>
 </tr>
 <tr>
   <td><code>AllRequestBodies</code></td>
-  <td>In addition to logging metadata for all requests, logs request bodies for  every read and write request to the API servers (<code>get</code>, <code>list</code>, <code>create</code>, <code>update</code>, <code>patch</code>). This profile has the most resource overhead. ^[1]^</td>
+  <td>In addition to logging metadata for all requests, logs request bodies for  every read and write request to the API servers (<code>get</code>, <code>list</code>, <code>create</code>, <code>update</code>, <code>patch</code>). This profile has the most resource overhead. <sup>[1]</sup></td>
 </tr>
 <tr>
   {% if not microshift %}<td><code>None</code></td>{% endif %}
@@ -45,7 +45,7 @@ Audit log profiles define how to log requests that come to the OpenShift API ser
 </tr>
 <tr>
   {% if microshift %}<td><code>None</code></td>{% endif %}
-  {% if microshift %}<td>No requests are logged, including OAuth access token requests and OAuth authorize token requests.<br><br><dl><dt>Warning</dt><dd>Do not disable audit logging by using the <code>None</code> profile unless you are fully aware of the risks of not logging data that can be beneficial when troubleshooting issues. If you disable audit logging and a support situation arises, you might need to enable audit logging and reproduce the issue to troubleshoot properly.</dd></dl></td>{% endif %}
+  {% if microshift %}<td>No requests are logged, including OAuth access token requests and OAuth authorize token requests.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>Do not disable audit logging by using the <code>None</code> profile unless you are fully aware of the risks of not logging data that can be beneficial when troubleshooting issues. If you disable audit logging and a support situation arises, you might need to enable audit logging and reproduce the issue to troubleshoot properly.</dd></dl></td>{% endif %}
 </tr>
 </tbody>
 </table>
@@ -54,7 +54,7 @@ Audit log profiles define how to log requests that come to the OpenShift API ser
 {%- if not microshift %}
 OpenShift OAuth server events are only logged at the metadata level.
 {%- endif %}
-{%- if not microshift %}
+{% if not microshift %}
 By default, {{ product_title }} uses the `Default` audit log profile. You can use another audit policy profile that also logs request bodies, but be aware of the increased resource usage such as CPU, memory, and I/O.
 {% endif %}
 

@@ -22,7 +22,7 @@ For more information about the oc-mirror plugin and this use case, see the "Keep
 
 :::
 
-{% endif %}
+{%- endif %}
 
 **Prerequisites**
 
@@ -135,8 +135,8 @@ For more information about the oc-mirror plugin and this use case, see the "Keep
 
 **Verification**
 
-1.  In the web console, navigate to the OperatorHub configuration resource in the **Administration** -> **Cluster Settings** -> **Configuration** page.
+1.  In the web console, navigate to the OperatorHub configuration resource in the **Administration** → **Cluster Settings** → **Configuration** page.
 1.  Add the catalog source or update the existing catalog source to use the pull spec for your updated catalog image.
 
     For more information, see "Adding a catalog source to a cluster".
-1.  After the catalog source is in a **READY** state, navigate to the **Ecosystem** -> **Software Catalog** page. Select **Operators** under the **Type** heading and check that the changes you made are reflected in the list of Operators.
+1.  After the catalog source is in a **READY** state, navigate to the **Ecosystem** → **Software Catalog** page. Select **Operators** under the **Type** heading and check that the changes you made are reflected in the list of Operators.

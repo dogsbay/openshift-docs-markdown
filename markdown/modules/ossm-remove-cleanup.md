@@ -86,4 +86,4 @@ You can manually remove resources left behind after removing the {{ SMProductNam
     ```terminal
     $ oc delete sa -n openshift-operators istio-cni
     ```
-{% endif %}
+{%- endif %}

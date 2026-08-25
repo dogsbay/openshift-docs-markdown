@@ -36,11 +36,11 @@ After Knative Eventing is installed on your cluster, you can create an API serve
     ![ApiServerSource Topology view](/_assets/images/toplogy-odc-apiserver.png)
 
 
-:::note
+    :::note
 
-If a URI sink is used, modify the URI by right-clicking on **URI sink** -> **Edit URI**.
-
-:::
+    If a URI sink is used, modify the URI by right-clicking on **URI sink** → **Edit URI**.
+    
+    :::
 
 
 **Deleting the API server source**

@@ -32,6 +32,7 @@ The following table shows the possible CLI flags you can use when creating your 
     ```terminal
     $ rosa create external-auth-provider -c <cluster_name>
     ```
+
     **Example output**
 
     ```terminal

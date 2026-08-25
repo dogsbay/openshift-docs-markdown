@@ -173,9 +173,9 @@ Do an etcd backup before proceeding to ensure that you can restore the cluster i
               userData:
                 name: master-user-data-managed
         ```
-        *   `metadata.annotations.metal3.io/BareMetalHost`: Replace `{{ bmh_name }}` with the name of the BMH object that is associated with the host that you are replacing.
-        *   `labels.machine.openshift.io/cluster-api-cluster`: Replace `{{ machine_hash_label }}` with the label that you fetched from the machine you deleted.
-        *   `metadata.name`: Replace `{{ machine_name }}` with the name of the machine you deleted.
+        *   `metadata.annotations.metal3.io/BareMetalHost`: Replace `{{ bmh_name }}`{minja} with the name of the BMH object that is associated with the host that you are replacing.
+        *   `labels.machine.openshift.io/cluster-api-cluster`: Replace `{{ machine_hash_label }}`{minja} with the label that you fetched from the machine you deleted.
+        *   `metadata.name`: Replace `{{ machine_name }}`{minja} with the name of the machine you deleted.
     1.  Create the new BMH object and the secret to store the BMC credentials by running the following command:
         ```terminal
         cat <<EOF | oc apply -f -
@@ -212,8 +212,8 @@ Do an etcd backup before proceeding to ensure that you can restore the cluster i
         EOF
         ```
         *   `metadata.name`: Specify the name of the secret.
-        *   `metadata.name`: Replace `{{ bmh_name }}` with the name of the BMH object that you deleted.
-        *   `bmc.address`: Replace `{{ uuid }}` with the UUID of the node that you created.
+        *   `metadata.name`: Replace `{{ bmh_name }}`{minja} with the name of the BMH object that you deleted.
+        *   `bmc.address`: Replace `{{ uuid }}`{minja} with the UUID of the node that you created.
         *   `bmc.credentialsName`: Replace `name` with the name of the secret that you created.
         *   `bootMACAddress`: Specify the MAC address of the provisioning network interface. This is the MAC address the node uses to identify itself when communicating with Ironic during provisioning.
 1.  Verify that the new node has reached the `Provisioned` state by running the following command:

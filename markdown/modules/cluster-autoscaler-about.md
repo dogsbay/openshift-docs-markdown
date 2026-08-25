@@ -3,8 +3,8 @@
 
 The cluster autoscaler adjusts the size of an {{ product_title }} cluster to meet its current deployment needs. It uses declarative, Kubernetes-style arguments to provide infrastructure management that does not rely on objects of a specific cloud provider.
 {%- if openshift_rosa_hcp %}
-In {{ product_title }}, the Cluster Autoscaler is fully managed, which means it is hosted along with the control plane.
-{% endif %} {._abstract}
+In {{ product_title }}, the Cluster Autoscaler is fully managed, which means it is hosted along with the control plane. {._abstract}
+{%- endif %}
 
 The cluster autoscaler increases the size of the cluster when there are pods that fail to schedule on any of the current worker nodes due to insufficient resources or when another node is necessary to meet deployment needs. The cluster autoscaler does not increase the cluster resources beyond the limits that you specify.
 
@@ -16,8 +16,8 @@ The cluster autoscaler computes the total memory, CPU, and GPU only on the nodes
 The cluster autoscaler computes the total
 {%- if not (openshift_dedicated or openshift_rosa) %}
 memory, CPU, and GPU
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 memory and CPU
 {%- endif %}
 on all nodes the cluster, even though it does not manage the control plane nodes. These values are not single-machine oriented. They are an aggregation of all the resources in the entire cluster. For example, if you set the maximum memory resource limit, the cluster autoscaler includes all the nodes in the cluster when calculating the current memory usage. That calculation is then used to determine if the cluster autoscaler has the capacity to add more worker resources.

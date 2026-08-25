@@ -65,7 +65,7 @@ As a cluster administrator, you can install the NFD Operator by using the {{ pro
         $ oc project openshift-nfd
         ```
 *   **Method 2:** Install the NFD Operator by using the web console:
-    1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+    1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
     1.  Choose **Node Feature Discovery** from the list of available Operators, and then click **Install**.
     1.  On the **Install Operator** page, select **A specific namespace on the cluster**, and then click **Install**. You do not need to create a namespace because it is created for you.
 
@@ -79,7 +79,7 @@ As a cluster administrator, you can install the NFD Operator by using the {{ pro
     NAME                                      READY   STATUS    RESTARTS   AGE
     nfd-controller-manager-7f86ccfb58-vgr4x   2/2     Running   0          10m
     ```
-*   To verify a web console installation, navigate to the **Ecosystem** -> **Installed Operators** page and ensure that **Node Feature Discovery** is listed in the **openshift-nfd** project with a **Status** of `InstallSucceeded`.
+*   To verify a web console installation, navigate to the **Ecosystem** → **Installed Operators** page and ensure that **Node Feature Discovery** is listed in the **openshift-nfd** project with a **Status** of `InstallSucceeded`.
 
     :::note
 
@@ -92,5 +92,5 @@ As a cluster administrator, you can install the NFD Operator by using the {{ pro
 
 If the Operator does not appear as installed, troubleshoot further:
 
-1.  Navigate to the **Ecosystem** -> **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
-1.  Navigate to the **Workloads** -> **Pods** page and check the logs for pods in the `openshift-nfd` project.
+1.  Navigate to the **Ecosystem** → **Installed Operators** page and inspect the **Operator Subscriptions** and **Install Plans** tabs for any failure or errors under **Status**.
+1.  Navigate to the **Workloads** → **Pods** page and check the logs for pods in the `openshift-nfd` project.

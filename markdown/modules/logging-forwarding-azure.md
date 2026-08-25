@@ -23,7 +23,7 @@ metadata:
   namespace: openshift-logging
 type: Opaque
 data:
-  shared_key: <your_shared_key> # (1)
+  shared_key: <your_shared_key> (1)
 ```
 1.  Must contain a primary or secondary key for the [Log Analytics workspace](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview) making the request.
 
@@ -46,8 +46,8 @@ spec:
   - name: azure-monitor
     type: azureMonitor
     azureMonitor:
-      customerId: my-customer-id # (1)
-      logType: my_log_type # (2)
+      customerId: my-customer-id (1)
+      logType: my_log_type (2)
     secret:
        name: my-secret
   pipelines:
@@ -72,7 +72,7 @@ spec:
     type: azureMonitor
     azureMonitor:
       customerId: my-customer-id
-      logType: application_log # (1)
+      logType: application_log (1)
     secret:
       name: my-secret
   - name: azure-monitor-infra
@@ -109,8 +109,8 @@ spec:
     azureMonitor:
       customerId: my-customer-id
       logType: my_log_type
-      azureResourceId: "/subscriptions/111111111" # (1)
-      host: "ods.opinsights.azure.com" # (2)
+      azureResourceId: "/subscriptions/111111111" (1)
+      host: "ods.opinsights.azure.com" (2)
     secret:
        name: my-secret
   pipelines:

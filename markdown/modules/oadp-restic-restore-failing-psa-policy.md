@@ -59,11 +59,11 @@ restore=openshift-adp/todolist-backup-0780518c-08ed-11ee-805c-0a580a80e92c\n]",
 1.  Ensure that the security standards for the application pods are aligned, as provided in [Fixing PodSecurity Admission warnings for deployments](https://access.redhat.com/solutions/7002730), to prevent deployment warnings. If the application is not aligned with security standards, an error can occur regardless of the SCC. 
 
 
-:::note
+    :::note
 
-This solution is temporary, and ongoing discussions are in progress to address it.
-
-:::
+    This solution is temporary, and ongoing discussions are in progress to address it.
+    
+    :::
 
 
 **Additional resources**

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Understanding alert routing for user-defined projects {id="understanding-alert-routing-for-user-defined-projects_{{ context }}"}
 
-{%- if not (openshift_dedicated or openshift_rosa) %}
+{% if not (openshift_dedicated or openshift_rosa) %}
 As a cluster administrator, you can enable alert routing for user-defined projects.
 {% endif %}
 {% if openshift_dedicated or openshift_rosa %}
@@ -10,10 +10,10 @@ As a `dedicated-admin`, you can enable alert routing for user-defined projects.
 With this feature, you can allow users with the `alert-routing-edit` cluster role to configure alert notification routing and receivers for user-defined projects.
 {%- if not (openshift_dedicated or openshift_rosa) %}
 These notifications are routed by the default Alertmanager instance or, if enabled, an optional Alertmanager instance dedicated to user-defined monitoring.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
-These notifications are routed by an Alertmanager instance dedicated to user-defined monitoring.
-{% endif %} {._abstract}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
+These notifications are routed by an Alertmanager instance dedicated to user-defined monitoring. {._abstract}
+{%- endif %}
 
 Users can then create and configure user-defined alert routing by creating or editing the `AlertmanagerConfig` objects for their user-defined projects without the help of an administrator.
 

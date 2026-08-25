@@ -3,12 +3,12 @@ title: About BGP routing
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # About BGP routing {id="about-bgp-routing"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "about-bgp-routing" %}
 
-To integrate BGP with MetalLB and FRR-K8s in {{ product_title }}, you can review how FRR-K8s resources model cluster routing. Migrate `FRRConfiguration` custom resources from `metallb-system` to `openshift-frr-k8s` when admins or third parties created them outside the MetalLB Operator.
+To integrate BGP with MetalLB and FRR-K8s in {{ product_title }}, you can review how FRR-K8s resources model cluster routing. Migrate `FRRConfiguration` custom resources from `metallb-system` to `openshift-frr-k8s` when admins or third parties created them outside the MetalLB Operator. {._abstract}
 
 
 :::important
@@ -24,7 +24,7 @@ If you are using the MetalLB Operator and there are existing `FRRConfiguration` 
 
 {% leveloffset +1 %}{% include "./modules/nw-no-overlay-overview.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_about-bgp-routing"}
+## Additional resources {id="additional-resources_about-bgp-routing" ._additional-resources}
 
 *   [FRRouting User Guide: BGP](https://docs.frrouting.org/en/latest/bgp.html)
 *   [Migrating FRR-K8s resources](/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources#migrating-frr-k8s-resources)

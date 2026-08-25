@@ -15,19 +15,19 @@ The image registry `spec.storage.s3` configuration parameter holds the informati
 <tbody>
 <tr>
   <td><code>bucket</code></td>
-  <td>Bucket is the bucket name in which you want to store the registry's data.It is optional and is generated if not provided.</td>
+  <td>Bucket is the bucket name in which you want to store the registry's data. It is optional and is generated if not provided.</td>
 </tr>
 <tr>
   <td><code>chunkSizeMiB</code></td>
-  <td>ChunkSizeMiB is the size of the multipart upload chunks of the S3 API.The default is <code>10</code> MiB with a minimum of <code>5</code> MiB.</td>
+  <td>ChunkSizeMiB is the size of the multipart upload chunks of the S3 API. The default is <code>10</code> MiB with a minimum of <code>5</code> MiB.</td>
 </tr>
 <tr>
   <td><code>region</code></td>
-  <td>Region is the AWS region in which your bucket exists. It is optional and isset based on the installed AWS Region.</td>
+  <td>Region is the AWS region in which your bucket exists. It is optional and is set based on the installed AWS Region.</td>
 </tr>
 <tr>
   <td><code>regionEndpoint</code></td>
-  <td>RegionEndpoint is the endpoint for S3 compatible storage services.It is optional and defaults based on the Region that is provided.</td>
+  <td>RegionEndpoint is the endpoint for S3 compatible storage services. It is optional and defaults based on the Region that is provided.</td>
 </tr>
 <tr>
   <td><code>virtualHostedStyle</code></td>
@@ -35,15 +35,15 @@ The image registry `spec.storage.s3` configuration parameter holds the informati
 </tr>
 <tr>
   <td><code>encrypt</code></td>
-  <td>Encrypt specifies whether or not the registry stores the image in encrypted format.It is optional and defaults to false.</td>
+  <td>Encrypt specifies whether or not the registry stores the image in encrypted format. It is optional and defaults to false.</td>
 </tr>
 <tr>
   <td><code>keyID</code></td>
-  <td>KeyID is the KMS key ID to use for encryption. It is optional. Encrypt must betrue, or this parameter is ignored.</td>
+  <td>KeyID is the KMS key ID to use for encryption. It is optional. Encrypt must be true, or this parameter is ignored.</td>
 </tr>
 <tr>
   <td><code>cloudFront</code></td>
-  <td>CloudFront configures Amazon Cloudfront as the storage middleware in a registry.It is optional.</td>
+  <td>CloudFront configures Amazon Cloudfront as the storage middleware in a registry. It is optional.</td>
 </tr>
 <tr>
   <td><code>trustedCA</code></td>

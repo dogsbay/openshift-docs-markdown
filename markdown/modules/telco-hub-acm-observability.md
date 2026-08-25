@@ -38,32 +38,26 @@ The sizing values in this specification use the default size.
 
 With these input values, the sizing calculator as described in the Red Hat Knowledgebase article [Calculating storage need for MultiClusterHub Observability on telco environments](https://access.redhat.com/articles/7103886) indicates the following storage needs:
 
-***Storage requirements***
+**Storage requirements**
 
 <table>
 <thead>
 <tr>
   <th colspan="2"><code>alertmanager</code> PV 2+</th>
+  <th><code>thanos receive</code> PV 2+</th>
+  <th><code>thanos compact</code> PV</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td><code>thanos receive</code> PV 2+</td>
-  <td><code>thanos compact</code> PV</td>
-</tr>
-<tr>
   <td><strong>Per replica</strong></td>
   <td><strong>Total</strong></td>
-</tr>
-<tr>
   <td><strong>Per replica</strong></td>
   <td><strong>Total</strong> 2+</td>
 </tr>
 <tr>
   <td><strong>Total</strong></td>
   <td>10 GiB</td>
-</tr>
-<tr>
   <td>30 GiB</td>
   <td>10 GiB</td>
 </tr>
@@ -76,7 +70,7 @@ With these input values, the sizing calculator as described in the Red Hat Knowl
 
 **Storage requirements**
 
-| `thanos rule` PV 2+ | `thanos store` PV 2+ | Object bucket^[1]^ |
+| `thanos rule` PV 2+ | `thanos store` PV 2+ | Object bucket<sup>[1]</sup> |
 | --- | --- | --- |
 | **Per replica** | **Total** | **Per replica** |
 | **Total** | **Total** | 30 GiB |

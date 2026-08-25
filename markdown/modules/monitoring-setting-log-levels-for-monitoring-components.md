@@ -18,7 +18,7 @@ You can configure the log level for Alertmanager, Prometheus Operator, Prometheu
 You can configure the log level for Alertmanager, Prometheus Operator, Prometheus, and {{ component_name }}.
 You can use these settings for troubleshooting and to gain better insight into how the components are functioning.
 
-The following log levels can be applied to the relevant component in the `{{ configmap_name }}` `ConfigMap` object:
+The following log levels can be applied to the relevant component in the `{{ configmap_name }}`{minja} `ConfigMap` object:
 
 *   `debug`. Log debug, informational, warning, and error messages.
 *   `info` (default). Log informational, warning, and error messages.
@@ -32,7 +32,7 @@ The following log levels can be applied to the relevant component in the `{{ con
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   You have access to the cluster as a user with the `cluster-admin` cluster role or as a user with the `user-workload-monitoring-config-edit` role in the `openshift-user-workload-monitoring` project.
 *   A cluster administrator has enabled monitoring for user-defined projects.
-{% endif %}
+{%- endif %}
 
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
@@ -42,12 +42,12 @@ The following log levels can be applied to the relevant component in the `{{ con
 
 **Procedure**
 
-1.  Edit the `{{ configmap_name }}` config map in the `{{ namespace_name }}` project:
-    ```terminal
+1.  Edit the `{{ configmap_name }}`{minja} config map in the `{{ namespace_name }}`{minja} project:
+    ```terminal {minja}
     $ oc -n {{ namespace_name }} edit configmap {{ configmap_name }}
     ```
 1.  Add log configuration for a component under `data/config.yaml`:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     kind: ConfigMap
     metadata:
@@ -55,16 +55,16 @@ The following log levels can be applied to the relevant component in the `{{ con
       namespace: {{ namespace_name }}
     data:
       config.yaml: |
-        <component>: # (1)
-          logLevel: <log_level> # (2)
+        <component>: (1)
+          logLevel: <log_level> (2)
     # tag::CPM[]
         metricsServer:
-          verbosity: <value> # (3)
+          verbosity: <value> (3)
     # end::CPM[]
         # ...
     ```
     1.  Specify the monitoring stack component for which you are setting a log level.
-    Available component values are `{{ prometheus }}`, `{{ alertmanager }}`, `prometheusOperator`, and `{{ thanos }}`.
+    Available component values are `{{ prometheus }}`{minja}, `{{ alertmanager }}`{minja}, `prometheusOperator`, and `{{ thanos }}`{minja}.
     1.  Specify the log level for the component.
     The available values are `error`, `warn`, `info`, and `debug`.
     The default value is `info`.
@@ -75,7 +75,7 @@ The following log levels can be applied to the relevant component in the `{{ con
 1.  Save the file to apply the changes. The pods affected by the new configuration are automatically redeployed.
 1.  Verify that the log configuration is applied by reviewing the deployment or pod configuration in the related project. 
     *   The following example checks the log level for the `prometheus-operator` deployment:
-        ```terminal
+        ```terminal {minja}
         $ oc -n {{ namespace_name }} get deploy prometheus-operator -o yaml | grep "log-level"
         ```
         ```terminal title="Example output"
@@ -90,7 +90,7 @@ The following log levels can be applied to the relevant component in the `{{ con
             - --v=3
     ```
     1.  Verify that the pods for the component are running:
-        ```terminal
+        ```terminal {minja}
         $ oc -n {{ namespace_name }} get pods
         ```
 
@@ -101,9 +101,9 @@ The following log levels can be applied to the relevant component in the `{{ con
         :::
 
 
-{%- set configmap_name = false -%}
-{%- set namespace_name = false -%}
-{%- set prometheus = false -%}
-{%- set alertmanager = false -%}
-{%- set thanos = false -%}
-{%- set component_name = false -%}
+{%- set configmap_name = "" -%}
+{%- set namespace_name = "" -%}
+{%- set prometheus = "" -%}
+{%- set alertmanager = "" -%}
+{%- set thanos = "" -%}
+{%- set component_name = "" -%}

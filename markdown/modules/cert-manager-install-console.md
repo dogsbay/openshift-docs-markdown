@@ -11,7 +11,7 @@ You can use the web console to install the {{ cert_manager_operator }}. {._abstr
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Enter **{{ cert_manager_operator }}** into the filter box.
 1.  Select the **{{ cert_manager_operator }}**
 1.  Select the {{ cert_manager_operator }} version from **Version** drop-down list, and click **Install**.
@@ -41,7 +41,7 @@ You can use the web console to install the {{ cert_manager_operator }}. {._abstr
 
 **Verification**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Verify that **{{ cert_manager_operator }}** is listed with a **Status** of **Succeeded** in the `cert-manager-operator` namespace.
 1.  Verify that cert-manager pods are up and running by entering the following command:
     ```terminal

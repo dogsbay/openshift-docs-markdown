@@ -7,7 +7,7 @@
 {%- endif %}
 includes an optional enhancement to the monitoring stack that helps you monitor services and pods in user-defined projects. This feature includes the following components:
 
-***Components for monitoring user-defined projects***
+**Components for monitoring user-defined projects**
 
 <table>
 <thead>
@@ -27,7 +27,7 @@ includes an optional enhancement to the monitoring stack that helps you monitor 
 </tr>
 <tr>
   <td>Thanos Ruler</td>
-  <td>The Thanos Ruler is a rule evaluation engine for Prometheus that is deployed as a separate process. In {{ product_title }}</td>
+  <td>The Thanos Ruler is a rule evaluation engine for Prometheus that is deployed as a separate process. In {{ product_title }} {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}{{ product_version }}{% endif %} , Thanos Ruler provides rule and alerting evaluation for the monitoring of user-defined projects.</td>
 </tr>
 <tr>
   <td>Alertmanager</td>

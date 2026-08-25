@@ -59,8 +59,8 @@ To configure Keycloak, follow these steps:
         ```
 
 
-:::note
+        :::note
 
-The Keycloak instance takes 2-3 minutes to install and run.
-
-:::
+        The Keycloak instance takes 2-3 minutes to install and run.
+        
+        :::

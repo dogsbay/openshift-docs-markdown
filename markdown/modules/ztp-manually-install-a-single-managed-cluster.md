@@ -13,8 +13,8 @@ You can manually deploy a single managed cluster using the assisted service and 
 
 **Procedure**
 
-1.  Create a `ClusterImageSet` for each specific cluster version to be deployed, for example `clusterImageSet-{{ product_version }}.yaml`. A `ClusterImageSet` has the following format:
-    ```yaml
+1.  Create a `ClusterImageSet` for each specific cluster version to be deployed, for example `clusterImageSet-{{ product_version }}.yaml`{minja}. A `ClusterImageSet` has the following format:
+    ```yaml {minja}
     apiVersion: hive.openshift.io/v1
     kind: ClusterImageSet
     metadata:
@@ -31,7 +31,7 @@ You can manually deploy a single managed cluster using the assisted service and 
     `releaseImage`
     :   Specifies the `releaseImage` to deploy and determines the operating system image version. The discovery ISO is based on the image version as set by `releaseImage`, or the latest version if the exact version is unavailable.
 1.  Apply the `clusterImageSet` CR:
-    ```terminal
+    ```terminal {minja}
     $ oc apply -f clusterImageSet-{{ product_version }}.yaml
     ```
 1.  Create the `Namespace` CR in the `cluster-namespace.yaml` file:

@@ -70,20 +70,20 @@ To configure the log retention time:
     1.  The index age for {{ product_title }} to consider when rolling over the indices. This value is determined from the `maxAge` you set in the `ClusterLogging` CR.
     1.  When {{ product_title }} checks if the indices should be rolled over. This setting is the default and cannot be changed.
 
-        :::note
+    :::note
 
-        Modifying the `Elasticsearch` CR is not supported. All changes to the retention policies must be made in the `ClusterLogging` CR.
-        
-        :::
+    Modifying the `Elasticsearch` CR is not supported. All changes to the retention policies must be made in the `ClusterLogging` CR.
+    
+    :::
 
 
-        The OpenShift Elasticsearch Operator deploys a cron job to roll over indices for each mapping using the defined policy, scheduled using the `pollInterval`.
-        ```terminal
-        $ oc get cronjob
-        ```
-        ```terminal title="Example output"
-        NAME                     SCHEDULE       SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-        elasticsearch-im-app     */15 * * * *   False     0        <none>          4s
-        elasticsearch-im-audit   */15 * * * *   False     0        <none>          4s
-        elasticsearch-im-infra   */15 * * * *   False     0        <none>          4s
-        ```
+    The OpenShift Elasticsearch Operator deploys a cron job to roll over indices for each mapping using the defined policy, scheduled using the `pollInterval`.
+    ```terminal
+    $ oc get cronjob
+    ```
+    ```terminal title="Example output"
+    NAME                     SCHEDULE       SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+    elasticsearch-im-app     */15 * * * *   False     0        <none>          4s
+    elasticsearch-im-audit   */15 * * * *   False     0        <none>          4s
+    elasticsearch-im-infra   */15 * * * *   False     0        <none>          4s
+    ```

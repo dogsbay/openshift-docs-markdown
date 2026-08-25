@@ -18,7 +18,7 @@ After you have installed {{ lvms }}, you must create an `LVMCluster` custom reso
 
 The `LVMCluster` CR fields are described in the following table:
 
-***`LVMCluster` CR fields***
+**`LVMCluster` CR fields**
 
 <table>
 <thead>
@@ -77,7 +77,7 @@ The `LVMCluster` CR fields are described in the following table:
 <tr>
   <td>`deviceSelector. forceWipeDevicesAndDestroyAllData`</td>
   <td><code>boolean</code></td>
-  <td>{{ lvms }} uses only those disks that are empty and do not contain file system signatures. To ensure that the disks are empty and do not contain file system signatures, wipe the disks before using them.<br><br>To force wipe the selected devices, set this field to <code>true</code>. By default, this field is set to <code>false</code>.<br><br><dl><dt>Warning</dt><dd>If this field is set to <code>true</code>, {{ lvms }} wipes all previous data on the devices. Use this feature with caution.</dd></dl><br><br>Wiping the device can lead to inconsistencies in data integrity if any of the following conditions are met:<br><br><ul><li>The device is being used as swap space.</li><li>The device is part of a RAID array.</li><li>The device is mounted.</li></ul>If any of these conditions are true, do not force wipe the disk. Instead, you must manually wipe the disk.</td>
+  <td>{{ lvms }} uses only those disks that are empty and do not contain file system signatures. To ensure that the disks are empty and do not contain file system signatures, wipe the disks before using them.<br><br>To force wipe the selected devices, set this field to <code>true</code>. By default, this field is set to <code>false</code>.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>If this field is set to <code>true</code>, {{ lvms }} wipes all previous data on the devices. Use this feature with caution.</dd></dl><br><br>Wiping the device can lead to inconsistencies in data integrity if any of the following conditions are met:<br><br><ul><li>The device is being used as swap space.</li><li>The device is part of a RAID array.</li><li>The device is mounted.</li></ul>If any of these conditions are true, do not force wipe the disk. Instead, you must manually wipe the disk.</td>
 </tr>
 <tr>
   <td>deviceClasses.storageClassOptions</td>
@@ -102,7 +102,7 @@ The `LVMCluster` CR fields are described in the following table:
 <tr>
   <td><code>thinPoolConfig.overprovisionRatio</code></td>
   <td><code>integer</code></td>
-  <td>Specify a factor by which you can provision additional storage based on the available storage in the thin pool.<br><br>For example, if this field is set to 10, you can provision up to 10 times the amount of available storage in the thin pool.You can modify this field after the LVM cluster has been created.<br><br>To update the parameter, do any of the following tasks:<br><br><ul><li>To edit the LVM Cluster, run the following command:</li></ul><pre>$ oc edit lvmcluster &lt;lvmcluster_name&gt;</pre><ul><li>To apply a patch, run the following command:</li></ul><pre>$ oc patch lvmcluster &lt;lvmcluster_name&gt; -p &lt;patch_file.yaml&gt;</pre>To disable over-provisioning, set this field to 1.</td>
+  <td>Specify a factor by which you can provision additional storage based on the available storage in the thin pool.<br><br>For example, if this field is set to 10, you can provision up to 10 times the amount of available storage in the thin pool. You can modify this field after the LVM cluster has been created.<br><br>To update the parameter, do any of the following tasks:<br><br><ul><li>To edit the LVM Cluster, run the following command:</li></ul><pre>$ oc edit lvmcluster &lt;lvmcluster_name&gt;</pre><ul><li>To apply a patch, run the following command:</li></ul><pre>$ oc patch lvmcluster &lt;lvmcluster_name&gt; -p &lt;patch_file.yaml&gt;</pre>To disable over-provisioning, set this field to 1.</td>
 </tr>
 <tr>
   <td><code>thinPoolConfig.chunkSize</code></td>

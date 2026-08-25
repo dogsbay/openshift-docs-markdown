@@ -9,7 +9,7 @@ You can use the {{ product_title }} web console to configure disk sharing by usi
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines** in the web console.
+1.  Click **Virtualization** → **VirtualMachines** in the web console.
 1.  Select a VM to open the **VirtualMachine details** page.
 1.  Expand **Storage**.
 1.  On the **Disks** tab, click **Add disk**.

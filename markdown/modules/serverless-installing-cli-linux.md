@@ -22,7 +22,7 @@ If you are using a Linux distribution that does not have RPM or another package 
 
 1.  Download the relevant Knative (`kn`) CLI `tar.gz` archive:
     *   [Linux (x86_64, amd64)](https://mirror.openshift.com/pub/openshift-v4/clients/serverless/latest/kn-linux-amd64.tar.gz)
-        {%- if not openshift_rosa %}
+{%- if not openshift_rosa %}
     *   [Linux on {{ ibm_z_name }} and {{ ibm_linuxone_name }} (s390x)](https://mirror.openshift.com/pub/openshift-v4/clients/serverless/latest/kn-linux-s390x.tar.gz)
     *   [Linux on {{ ibm_power_name }} (ppc64le)](https://mirror.openshift.com/pub/openshift-v4/clients/serverless/latest/kn-linux-ppc64le.tar.gz)
 {%- endif %}

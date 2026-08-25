@@ -25,12 +25,12 @@ The cluster queue is not ready for use until a `ResourceFlavor` object has also 
     metadata:
       name: cluster-queue
     spec:
-      namespaceSelector: {} # (1)
+      namespaceSelector: {} (1)
       resourceGroups:
-      - coveredResources: ["cpu", "memory", "pods", "foo.com/gpu"] # (2)
+      - coveredResources: ["cpu", "memory", "pods", "foo.com/gpu"] (2)
         flavors:
-        - name: "default-flavor" # (3)
-          resources: # (4)
+        - name: "default-flavor" (3)
+          resources: (4)
           - name: "cpu"
             nominalQuota: 9
           - name: "memory"

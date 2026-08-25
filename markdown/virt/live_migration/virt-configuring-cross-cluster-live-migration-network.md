@@ -8,7 +8,7 @@ title: Configuring a cross-cluster live migration network
 # Configuring a cross-cluster live migration network {id="virt-configuring-cross-cluster-live-migration-network"}
 {%- set context = "virt-configuring-cross-cluster-live-migration-network" %}
 
-Cross-cluster live migration requires that the clusters be connected in the same network. Specifically, `virt-handler` pods must be able to communicate.
+Cross-cluster live migration requires that the clusters be connected in the same network. Specifically, `virt-handler` pods must be able to communicate. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-multus-bridge-object.md" %}{% endleveloffset %}
 

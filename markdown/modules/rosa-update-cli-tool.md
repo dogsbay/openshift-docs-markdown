@@ -16,7 +16,7 @@ To use the latest version of the {{ product_title }} (ROSA) CLI, `rosa`, downloa
     $ rosa version
     ```
 
-```terminal title="Example output"
-<version>
-Your ROSA CLI is up to date.
-```
+    ```terminal title="Example output"
+    <version>
+    Your ROSA CLI is up to date.
+    ```

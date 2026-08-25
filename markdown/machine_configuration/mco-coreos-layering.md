@@ -7,7 +7,7 @@ title: Image mode for OpenShift
 # Image mode for OpenShift {id="mco-coreos-layering"}
 {%- set context = "mco-coreos-layering" %}
 
-You can extend the functionality of your base {{ op_system }} image by layering additional images onto the base image without modifying the base {{ op_system }} image. 
+You can extend the functionality of your base {{ op_system }} image by layering additional images onto the base image without modifying the base {{ op_system }} image.  {._abstract}
 
 This layering creates a _custom layered image_ that includes all {{ op_system }} functionality and adds additional functionality to specific nodes in the cluster.
 
@@ -118,7 +118,7 @@ For these methods, use the same base {{ op_system }} image installed on the rest
         dnf clean all && \
         bootc container lint
     ```
-    ```yaml title="Example out-of-cluster Containerfile to apply a third-party package from EPEL"
+    ```yaml title="Example out-of-cluster Containerfile to apply a third-party package from EPEL" {minja}
     # Get {{ op_system }} base image of target cluster `oc adm release info --image-for rhel-coreos`
     FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256...
 
@@ -139,7 +139,7 @@ For these methods, use the same base {{ op_system }} image installed on the rest
         dnf clean all && \
         bootc container lint
     ```
-    ```yaml title="Example out-of-cluster Containerfile to apply a third-party package that has {{ op_system_base }} dependencies"
+    ```yaml title="Example out-of-cluster Containerfile to apply a third-party package that has {{ op_system_base }} dependencies" {minja}
     # Get {{ op_system }} base image of target cluster `oc adm release info --image-for rhel-coreos`
     FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256...
 
@@ -186,7 +186,7 @@ It is strongly recommended that you test your images outside of your production 
 
 {% leveloffset +1 %}{% include "./modules/coreos-layering-updating.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Using the {{ image_mode_os_on_lower }} to apply a custom layered image](/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-proc_mco-coreos-layering)
 *   [Removing an on-cluster custom layered image](/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-remove_mco-coreos-layering)

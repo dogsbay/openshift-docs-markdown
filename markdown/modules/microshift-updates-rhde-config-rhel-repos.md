@@ -12,11 +12,11 @@ When using RPM updates, avoid creating an unsupported configuration or breaking 
 **Procedure**
 
 1.  Avoid unintended updates by locking your operating system version by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager release --set={{ op_system_version }}
     ```
 1.  If you are using an EUS {{ microshift_short }} release, disable the {{ op_system_base }} standard-support-scope repositories by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager repos \
         --disable=rhel-{{ op_system_version_major }}-for-$(uname -m)-appstream-rpms \
         --disable=rhel-{{ op_system_version_major }}-for-$(uname -m)-baseos-rpms
@@ -24,7 +24,7 @@ When using RPM updates, avoid creating an unsupported configuration or breaking 
 
     You can replace _{{ op_system_version_major }}_ with the major version of your compatible {{ op_system_base }} system if it is not same version given in this example.
 1.  After you disable the standard-support repositories, enable the {{ op_system_base }} EUS repos by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager repos \
         --enable rhel-{{ op_system_version_major }}-for-$(uname -m)-appstream-eus-rpms \
         --enable rhel-{{ op_system_version_major }}-for-$(uname -m)-baseos-eus-rpms

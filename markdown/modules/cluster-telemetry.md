@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 # Telemetry access for {{ product_title }} {id="cluster-telemetry_{{ context }}"}
 
 To provide metrics about cluster health and the success of updates, the Telemetry service requires internet access. When connected, this service runs automatically by default and registers your cluster to {{ cluster_manager_url }}. {._abstract}

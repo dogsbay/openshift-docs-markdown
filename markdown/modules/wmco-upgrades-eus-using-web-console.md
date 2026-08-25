@@ -21,7 +21,7 @@ You can use the {{ product_title }} web console to perform a Control Plane Only 
     :::
 
     1.  Log in to the {{ product_title }} web console.
-    1.  Navigate to **Ecosystem** -> **Software Catalog**.
+    1.  Navigate to **Ecosystem** → **Software Catalog**.
     1.  Use the **Filter by keyword** box to search for `Red Hat Windows Machine Config Operator`.
     1.  Click the **Red Hat Windows Machine Config Operator** tile. The Operator tile indicates it is installed.
     1.  In the **Windows Machine Config Operator** descriptor page, click **Uninstall**.

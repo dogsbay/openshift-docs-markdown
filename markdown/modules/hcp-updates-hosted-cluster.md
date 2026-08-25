@@ -12,6 +12,6 @@ In {{ hcp }}, the `NodeHealthCheck` resource cannot detect the status of the CVO
 
 To pause the remediation, enter the array of strings, for example, `pause-test-cluster`, as a value of the `pauseRequests` field in the `NodeHealthCheck` resource. For more information, see "About the Node Health Check Operator".
 
-After the cluster update is complete, you can edit or delete the remediation. Go to the **Compute** -> **NodeHealthCheck** page, click your node health check, and then click **Actions**, which shows a drop-down list.
+After the cluster update is complete, you can edit or delete the remediation. Go to the **Compute** → **NodeHealthCheck** page, click your node health check, and then click **Actions**, which shows a drop-down list.
 
 :::

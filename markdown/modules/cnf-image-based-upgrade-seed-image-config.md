@@ -9,11 +9,11 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Seed image configuration {id="cnf-image-based-upgrade-seed-image-config_{{ context }}"}
 
-{%- if ibu %}
+{% if ibu %}
 The seed image targets a set of {{ sno }} clusters with the same hardware and similar configuration.
 This means that the seed image must have all of the components and configuration that the seed cluster shares with the target clusters.
-Therefore, the seed image generated from the seed cluster cannot contain any cluster-specific configuration.
-{% endif %} {._abstract}
+Therefore, the seed image generated from the seed cluster cannot contain any cluster-specific configuration. {._abstract}
+{% endif %}
 
 {% if ibi %}
 You can create a seed image from a {{ sno }} cluster with the same hardware as your bare-metal host, and with a similar target cluster configuration. However, the seed image generated from the seed cluster cannot contain any cluster-specific configuration.
@@ -21,7 +21,7 @@ You can create a seed image from a {{ sno }} cluster with the same hardware as y
 
 The following table lists the components, resources, and configurations that you must and must not include in your seed image:
 
-***Seed image configuration***
+**Seed image configuration**
 
 <table>
 <thead>
@@ -48,11 +48,11 @@ The following table lists the components, resources, and configurations that you
   <td>Yes</td>
 </tr>
 <tr>
-  <td>Disconnected registry configuration ^[2]^</td>
+  <td>Disconnected registry configuration <sup>[2]</sup></td>
   <td>Yes</td>
 </tr>
 <tr>
-  <td>Valid proxy configuration ^[3]^</td>
+  <td>Valid proxy configuration <sup>[3]</sup></td>
   <td>Yes</td>
 </tr>
 <tr>
@@ -99,7 +99,7 @@ The following table lists the components, resources, and configurations that you
 | `SriovVrbClusterConfig.yaml` | No |
 
 {% if ibu %}
-***Seed image configuration with RAN DU profile for extra manifests***
+**Seed image configuration with RAN DU profile for extra manifests**
 
 <table>
 <thead>
@@ -111,7 +111,7 @@ The following table lists the components, resources, and configurations that you
 <tbody>
 <tr>
   <td><code>ClusterLogForwarder.yaml</code></td>
-  <td>Yes<br><br><dl><dt>Note</dt><dd>The DU profile includes the Cluster Logging Operator, but the profile does not configure or apply any Cluster Logging Operator CRs. To enable log forwarding, include the <code>ClusterLogForwarder.yaml</code> CR as an extra manifest. The extra manifest is applied to the target {{ sno }} cluster during the image-based upgrade process.</dd></dl></td>
+  <td>Yes<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The DU profile includes the Cluster Logging Operator, but the profile does not configure or apply any Cluster Logging Operator CRs. To enable log forwarding, include the <code>ClusterLogForwarder.yaml</code> CR as an extra manifest. The extra manifest is applied to the target {{ sno }} cluster during the image-based upgrade process.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ReduceMonitoringFootprint.yaml</code></td>
@@ -130,7 +130,7 @@ The following table lists the components, resources, and configurations that you
   <td>If the interfaces of the target cluster are common with the seed cluster, you can include them in the seed image. Otherwise, apply it as extra manifests.</td>
 </tr>
 <tr>
-  <td><code>SriovNetwork.yaml</code><code>SriovNetworkNodePolicy.yaml</code></td>
+  <td><code>SriovNetwork.yaml</code> <code>SriovNetworkNodePolicy.yaml</code></td>
   <td>If the configuration, including namespaces, is exactly the same on both the seed and target cluster, you can include them in the seed image. Otherwise, apply them as extra manifests.</td>
 </tr>
 </tbody>
@@ -158,9 +158,9 @@ If you are using {{ ztp }}, enable these resources by using {{ rh_rhacm }} polic
 {% endif %}
 
 {% if context == "ibi-preparing-image-based-install" %}
-{%- set ibi = false -%}
+{%- set ibi = "" -%}
 {% endif %}
 
 {% if context == "generate-seed" %}
-{%- set ibu = false -%}
+{%- set ibu = "" -%}
 {% endif %}

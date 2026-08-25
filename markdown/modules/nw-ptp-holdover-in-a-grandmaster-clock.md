@@ -40,11 +40,11 @@ The T-GM clock uses the slope value to predict and compensate for time drift, so
     The T-GM clock reaches the maximum offset in 60 seconds.
 
 
-:::note
+    :::note
 
-The phase offset is converted from picoseconds to nanoseconds. As a result, the calculated phase offset during holdover is expressed in nanoseconds, and the resulting slope is expressed in nanoseconds per second.
-
-:::
+    The phase offset is converted from picoseconds to nanoseconds. As a result, the calculated phase offset during holdover is expressed in nanoseconds, and the resulting slope is expressed in nanoseconds per second.
+    
+    :::
 
 
 The following figure illustrates the holdover behavior in a T-GM clock with GNSS as the source:

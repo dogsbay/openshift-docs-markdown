@@ -15,5 +15,5 @@ Follow this procedure to remove the Operators that make up {{ SMProductName }}. 
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  From the **Ecosystem** -> **Installed Operators** page, scroll or type a keyword into the **Filter by name** to find each Operator. Then, click the Operator name.
+1.  From the **Ecosystem** → **Installed Operators** page, scroll or type a keyword into the **Filter by name** to find each Operator. Then, click the Operator name.
 1.  On the **Operator Details** page, select **Uninstall Operator** from the **Actions** menu. Follow the prompts to uninstall each Operator.

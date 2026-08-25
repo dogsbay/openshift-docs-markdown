@@ -1,5 +1,5 @@
 ---
-title: "ImageStreamLayers []"
+title: "ImageStreamLayers [image.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -34,6 +34,7 @@ Required
 | `images{}` | `object` | ImageBlobReferences describes the blob references within an image. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+
 ### .blobs {id="_blobs"}
 
 Description
@@ -61,6 +62,7 @@ Required
 | --- | --- | --- |
 | `mediaType` | `string` | mediaType of the referenced object. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. This field is optional if the necessary information about size is not available. |
+
 ### .images {id="_images"}
 
 Description
@@ -90,7 +92,7 @@ Type
 
 The following API endpoints are available:
 
-*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/layers`
+*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/layers`{minja}
     *   `GET`: read layers of the specified ImageStream
 
 ### /apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/layers {id="_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_layers"}

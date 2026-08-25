@@ -40,7 +40,7 @@ It might take several minutes for a configuration change to apply.
 **Procedure**
 
 1.  Create an `SriovNetworkNodePolicy` object, and then save the YAML in the `<name>-sriov-node-network.yaml` file. Replace `<name>` with the name for this configuration.
-    {%- if virt_sriov %}
+{%- if virt_sriov %}
     ```yaml
     apiVersion: sriovnetwork.openshift.io/v1
     kind: SriovNetworkNodePolicy
@@ -109,9 +109,9 @@ It might take several minutes for a configuration change to apply.
     ```
 
 {% if virt_sriov %}
-{%- set virt_sriov = false -%}
+{%- set virt_sriov = "" -%}
 {% endif %}
 
 {% if ocp_sriov %}
-{%- set ocp_sriov = false -%}
+{%- set ocp_sriov = "" -%}
 {% endif %}

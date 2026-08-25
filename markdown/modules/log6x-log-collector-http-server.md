@@ -23,13 +23,13 @@ You can configure your log collector to listen for HTTP connections to only rece
     # ...
     spec:
       inputs:
-      - name: http-receiver # (1)
+      - name: http-receiver (1)
         type: receiver
         receiver:
-          type: http # (2)
-          port: 8443 # (3)
+          type: http (2)
+          port: 8443 (3)
           http:
-            format: kubeAPIAudit # (4)
+            format: kubeAPIAudit (4)
       outputs:
       - name: default-lokistack
         lokiStack:
@@ -45,7 +45,7 @@ You can configure your log collector to listen for HTTP connections to only rece
             configMapName: openshift-service-ca.crt
         type: lokiStack
     # ...
-      pipelines: # (5)
+      pipelines: (5)
         - name: http-pipeline
           inputRefs:
             - http-receiver

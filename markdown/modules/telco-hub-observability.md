@@ -26,7 +26,7 @@ Observability installation
 
 
 Alertmananger configuration
-    :   *   The hub cluster provides an Observability Alertmanager that can be configured to push alerts to external systems, for example, email.
+:   *   The hub cluster provides an Observability Alertmanager that can be configured to push alerts to external systems, for example, email.
     The Alertmanager is enabled by default.
     *   You must configure alert forwarding.
     *   When the Alertmanager is enabled but not configured, the hub Alertmanager does not forward alerts externally.

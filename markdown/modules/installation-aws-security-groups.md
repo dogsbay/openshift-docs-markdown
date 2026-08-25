@@ -33,5 +33,5 @@ You must increase the quota of security groups per network interface to a number
 
 
 {% if context == "installing-aws-localzone" %}
-{%- set localzone = false -%}
+{%- set localzone = "" -%}
 {% endif %}

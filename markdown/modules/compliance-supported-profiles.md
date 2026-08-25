@@ -17,10 +17,11 @@ The following tables reflect the latest available profiles in the Compliance Ope
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-cis ^[1]^ | CIS Red&#160;Hat {{ product_title }} Benchmark v1.9.0 | Platform | [CIS Benchmarks &#8482;](https://www.cisecurity.org/cis-benchmarks/) ^[4]^ | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| ocp4-cis-1-9^[3]^ | CIS Red&#160;Hat {{ product_title }} Benchmark v1.9.0 | Platform | [CIS Benchmarks &#8482;](https://www.cisecurity.org/cis-benchmarks/) ^[4]^ | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| ocp4-cis-node ^[1]^ | CIS Red&#160;Hat {{ product_title }} Benchmark v1.9.0 | Node ^[2]^ | [CIS Benchmarks &#8482;](https://www.cisecurity.org/cis-benchmarks/) ^[4]^ | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
-| ocp4-cis-node-1-9^[3]^ | CIS Red&#160;Hat {{ product_title }} Benchmark v1.9.0 | Node ^[2]^ | [CIS Benchmarks &#8482;](https://www.cisecurity.org/cis-benchmarks/) ^[4]^ | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-cis <sup>[1]</sup> | CIS Red&#160;Hat {{ product_title }} Benchmark v1.9.0 | Platform | [CIS Benchmarks &#8482;](https://www.cisecurity.org/cis-benchmarks/) <sup>[4]</sup> | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
+| ocp4-cis-1-9<sup>[3]</sup> | CIS Red&#160;Hat {{ product_title }} Benchmark v1.9.0 | Platform | [CIS Benchmarks &#8482;](https://www.cisecurity.org/cis-benchmarks/) <sup>[4]</sup> | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
+| ocp4-cis-node <sup>[1]</sup> | CIS Red&#160;Hat {{ product_title }} Benchmark v1.9.0 | Node <sup>[2]</sup> | [CIS Benchmarks &#8482;](https://www.cisecurity.org/cis-benchmarks/) <sup>[4]</sup> | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-cis-node-1-9<sup>[3]</sup> | CIS Red&#160;Hat {{ product_title }} Benchmark v1.9.0 | Node <sup>[2]</sup> | [CIS Benchmarks &#8482;](https://www.cisecurity.org/cis-benchmarks/) <sup>[4]</sup> | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+
 1.  The  `ocp4-cis` and `ocp4-cis-node` profiles maintain the most up-to-date version of the CIS benchmark as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as CIS v1.9.0, use the `ocp4-cis-1-9` and `ocp4-cis-node-1-9` profiles.
 1.  Node profiles must be used with the relevant Platform profile. For more information, see _Compliance Operator profile types_.
 1.  All earlier CIS profiles are superceded by CIS v1.9.0. It is recommended to apply the latest profile to your environment.
@@ -32,12 +33,13 @@ The following tables reflect the latest available profiles in the Compliance Ope
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-bsi ^[1]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Platform | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| ocp4-bsi-node ^[1]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node ^[2]^ | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| rhcos4-bsi ^[1]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node ^[2]^ | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| ocp4-bsi-2022 ^[3]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Platform | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| ocp4-bsi-node-2022 ^[3]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node ^[2]^ | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
-| rhcos4-bsi-2022 ^[3]^ | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node ^[2]^ | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| ocp4-bsi <sup>[1]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Platform | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| ocp4-bsi-node <sup>[1]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node <sup>[2]</sup> | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| rhcos4-bsi <sup>[1]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node <sup>[2]</sup> | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| ocp4-bsi-2022 <sup>[3]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Platform | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| ocp4-bsi-node-2022 <sup>[3]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node <sup>[2]</sup> | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+| rhcos4-bsi-2022 <sup>[3]</sup> | BSI IT-Grundschutz (Basic Protection) Building Block SYS.1.6 and APP.4.4 | Node <sup>[2]</sup> | [BSI Basic Protection Compendium](https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Grundschutz/International/bsi_it_gs_comp_2022.pdf) | `x86_64` |  |
+
 1.  The  `ocp4-bsi`, `ocp4-bsi-node`, and `rhcos4-bsi` profiles maintain the most up-to-date version of the BSI Basic Protection Profile as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as BSI 2022, use the `ocp4-bsi-2022`, `ocp4-bsi-node-2022` or `rhcos4-bsi-2022` profiles.
 1.  Node profiles must be used with the relevant Platform profile. For more information, see _Compliance Operator profile types_.
 1.  Edition 2022 is the latest available English edition of the BSI IT-Grundschutz (Basic Protection) compendium. There were no changes for Building Blocks SYS.1.6 and APP.4.4, SYS.1.1, and SYS.1.3 in the latest published German compendium (edition 2023).
@@ -67,12 +69,13 @@ Applying automatic remediations to any profile, such as `rhcos4-stig`, that uses
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-high ^[1]^ | NIST 800-53 High-Impact Baseline for Red&#160;Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` |  |
-| ocp4-high-node ^[1]^ | NIST 800-53 High-Impact Baseline for Red&#160;Hat OpenShift - Node level | Node ^[2]^ | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
-| ocp4-high-node-rev-4 | NIST 800-53 High-Impact Baseline for Red&#160;Hat OpenShift - Node level | Node ^[2]^ | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-high <sup>[1]</sup> | NIST 800-53 High-Impact Baseline for Red&#160;Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` |  |
+| ocp4-high-node <sup>[1]</sup> | NIST 800-53 High-Impact Baseline for Red&#160;Hat OpenShift - Node level | Node <sup>[2]</sup> | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-high-node-rev-4 | NIST 800-53 High-Impact Baseline for Red&#160;Hat OpenShift - Node level | Node <sup>[2]</sup> | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
 | ocp4-high-rev-4 | NIST 800-53 High-Impact Baseline for Red&#160;Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` |  |
-| rhcos4-high ^[1]^ | NIST 800-53 High-Impact Baseline for Red&#160;Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| rhcos4-high <sup>[1]</sup> | NIST 800-53 High-Impact Baseline for Red&#160;Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
 | rhcos4-high-rev-4 | NIST 800-53 High-Impact Baseline for Red&#160;Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#!/800-53) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+
 1.  The  `ocp4-high`, `ocp4-high-node` and `rhcos4-high` profiles maintain the most up-to-date version of the FedRAMP High standard as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as FedRAMP high R4, use the `ocp4-high-rev-4` and `ocp4-high-node-rev-4` profiles.
 1.  Node profiles must be used with the relevant Platform profile. For more information, see _Compliance Operator profile types_.
 
@@ -82,12 +85,13 @@ Applying automatic remediations to any profile, such as `rhcos4-stig`, that uses
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-moderate ^[1]^ | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| ocp4-moderate-node ^[1]^ | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat OpenShift - Node level | Node ^[2]^ | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
-| ocp4-moderate-node-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat OpenShift - Node level | Node ^[2]^ | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-moderate <sup>[1]</sup> | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
+| ocp4-moderate-node <sup>[1]</sup> | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat OpenShift - Node level | Node <sup>[2]</sup> | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-moderate-node-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat OpenShift - Node level | Node <sup>[2]</sup> | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
 | ocp4-moderate-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat OpenShift - Platform level | Platform | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
-| rhcos4-moderate ^[1]^ | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| rhcos4-moderate <sup>[1]</sup> | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
 | rhcos4-moderate-rev-4 | NIST 800-53 Moderate-Impact Baseline for Red&#160;Hat Enterprise Linux CoreOS | Node | [NIST SP-800-53 Release Search](https://nvd.nist.gov/800-53/Rev4/impact/moderate) | `x86_64`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+
 1.  The  `ocp4-moderate`, `ocp4-moderate-node` and `rhcos4-moderate` profiles maintain the most up-to-date version of the FedRAMP Moderate standard as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as FedRAMP Moderate R4, use the `ocp4-moderate-rev-4` and `ocp4-moderate-node-rev-4` profiles.
 1.  Node profiles must be used with the relevant Platform profile. For more information, see _Compliance Operator profile types_.
 
@@ -98,8 +102,9 @@ Applying automatic remediations to any profile, such as `rhcos4-stig`, that uses
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
 | ocp4-nerc-cip | North American Electric Reliability Corporation (NERC) Critical Infrastructure Protection (CIP) cybersecurity standards profile for the {{ product_title }} - Platform level | Platform | [NERC CIP Standards](https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx) | `x86_64` |  |
-| ocp4-nerc-cip-node | North American Electric Reliability Corporation (NERC) Critical Infrastructure Protection (CIP) cybersecurity standards profile for the {{ product_title }} - Node level | Node ^[1]^ | [NERC CIP Standards](https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-nerc-cip-node | North American Electric Reliability Corporation (NERC) Critical Infrastructure Protection (CIP) cybersecurity standards profile for the {{ product_title }} - Node level | Node <sup>[1]</sup> | [NERC CIP Standards](https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
 | rhcos4-nerc-cip | North American Electric Reliability Corporation (NERC) Critical Infrastructure Protection (CIP) cybersecurity standards profile for Red&#160;Hat Enterprise Linux CoreOS | Node | [NERC CIP Standards](https://www.nerc.com/pa/Stand/Pages/USRelStand.aspx) | `x86_64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+
 1.  Node profiles must be used with the relevant Platform profile. For more information, see _Compliance Operator profile types_.
 
 ## PCI-DSS compliance profiles {id="pci-dss-profiles_{{ context }}" .small}
@@ -108,12 +113,12 @@ Applying automatic remediations to any profile, such as `rhcos4-stig`, that uses
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-pci-dss ^[1]^ | PCI-DSS v4 Control Baseline for {{ product_title }} 4 | Platform | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` |  |
-| ocp4-pci-dss-3-2 ^[3]^ | PCI-DSS v3.2.1 Control Baseline for {{ product_title }} 4 | Platform | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
+| ocp4-pci-dss <sup>[1]</sup> | PCI-DSS v4 Control Baseline for {{ product_title }} 4 | Platform | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` |  |
+| ocp4-pci-dss-3-2 <sup>[3]</sup> | PCI-DSS v3.2.1 Control Baseline for {{ product_title }} 4 | Platform | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `s390x`  `aarch64` |  |
 | ocp4-pci-dss-4-0 | PCI-DSS v4 Control Baseline for {{ product_title }} 4 | Platform | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` |  |
-| ocp4-pci-dss-node ^[1]^ | PCI-DSS v4 Control Baseline for {{ product_title }} 4 | Node ^[2]^ | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
-| ocp4-pci-dss-node-3-2 ^[3]^ | PCI-DSS v3.2.1 Control Baseline for {{ product_title }} 4 | Node ^[2]^ | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
-| ocp4-pci-dss-node-4-0 | PCI-DSS v4 Control Baseline for {{ product_title }} 4 | Node ^[2]^ | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-pci-dss-node <sup>[1]</sup> | PCI-DSS v4 Control Baseline for {{ product_title }} 4 | Node <sup>[2]</sup> | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-pci-dss-node-3-2 <sup>[3]</sup> | PCI-DSS v3.2.1 Control Baseline for {{ product_title }} 4 | Node <sup>[2]</sup> | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `s390x`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-pci-dss-node-4-0 | PCI-DSS v4 Control Baseline for {{ product_title }} 4 | Node <sup>[2]</sup> | [PCI Security Standards &#174; Council Document Library](https://www.pcisecuritystandards.org/document_library?document=pci_dss) | `x86_64`  `ppc64le`  `aarch64` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
 
 1.  The  `ocp4-pci-dss` and `ocp4-pci-dss-node` profiles maintain the most up-to-date version of the PCI-DSS standard as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as PCI-DSS v3.2.1, use the `ocp4-pci-dss-3-2` and `ocp4-pci-dss-node-3-2` profiles.
 1.  Node profiles must be used with the relevant Platform profile. For more information, see _Compliance Operator profile types_.
@@ -133,12 +138,13 @@ Applying automatic remediations to any profile, such as `rhcos4-stig`, that uses
 
 | Profile | Profile title | Application | Industry compliance benchmark | Supported architectures | Supported platforms |
 | --- | --- | --- | --- | --- | --- |
-| ocp4-stig ^[1]^ | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift^[3]^ | Platform | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` |  |
-| ocp4-stig-node ^[1]^ | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift^[3]^ | Node ^[2]^ | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-stig <sup>[1]</sup> | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift<sup>[3]</sup> | Platform | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` |  |
+| ocp4-stig-node <sup>[1]</sup> | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift<sup>[3]</sup> | Node <sup>[2]</sup> | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
 | ocp4-stig-v2r3 | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift V2R3 | Platform | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` |  |
-| ocp4-stig-node-v2r3 ^[1]^ | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift V2R3 | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` |  |
-| rhcos4-stig^[1]^ | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift^[3]^ | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+| ocp4-stig-node-v2r3 <sup>[1]</sup> | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift V2R3 | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` |  |
+| rhcos4-stig<sup>[1]</sup> | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift<sup>[3]</sup> | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
 | rhcos4-stig-v2r3 | Defense Information Systems Agency Security Technical Implementation Guide (DISA STIG) for Red&#160;Hat OpenShift V2R3 | Node | [DISA-STIG](https://public.cyber.mil/stigs/downloads/) | `x86_64`  `ppc64le` | {{ product_rosa }} with {{ hcp }} (ROSA HCP) |
+
 1.  The  `ocp4-stig`, `ocp4-stig-node` and `rhcos4-stig` profiles maintain the most up-to-date version of the DISA-STIG benchmark as it becomes available in the Compliance Operator. If you want to adhere to a specific version, such as DISA-STIG V2R3, use the `ocp4-stig-v2r3` and `ocp4-stig-node-v2r3` profiles.
 1.  Node profiles must be used with the relevant Platform profile. For more information, see _Compliance Operator profile types_.
 1.  DISA-STIG V1R2 is superceded by DISA-STIG V2R3. It is recommended to apply the latest profile to your environment.

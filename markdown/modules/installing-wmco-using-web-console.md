@@ -13,7 +13,7 @@ Dual NIC is not supported on WMCO-managed Windows instances.
 
 **Procedure**
 
-1.  From the **Administrator** perspective in the {{ product_title }} web console, navigate to the **Ecosystem** -> **Software Catalog** page.
+1.  From the **Administrator** perspective in the {{ product_title }} web console, navigate to the **Ecosystem** → **Software Catalog** page.
 1.  Use the **Filter by keyword** box to search for `Windows Machine Config Operator` in the catalog. Click the **Windows Machine Config Operator** tile.
 1.  Review the information about the Operator and click **Install**.
 1.  On the **Install Operator** page:

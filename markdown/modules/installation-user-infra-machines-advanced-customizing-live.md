@@ -4,8 +4,8 @@
 You can customize a live {{ op_system }} {{ boot_media }} directly with the
 {%- if boot-media == "ISO image" %}
 `coreos-installer iso customize`
-{% endif %}
-{% if boot-media == "PXE environment" %}
+{%- endif %}
+{%- if boot-media == "PXE environment" %}
 `coreos-installer pxe customize`
 {%- endif %}
 subcommand. When you boot the {{ boot_media }}, the customizations are applied automatically. You can use this feature to configure the {{ boot_media }} to automatically install {{ op_system }}. {._abstract}
@@ -57,5 +57,6 @@ subcommand. When you boot the {{ boot_media }}, the customizations are applied a
 
     `<version>`
     :   Use the customized `initramfs` file in your PXE configuration. Add the `ignition.firstboot` and `ignition.platform.id=metal` kernel arguments if they are not already present.
-{%- endif %}
+{% endif %}
+
     Applying your customizations affects every subsequent boot of {{ op_system }}.

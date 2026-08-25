@@ -108,8 +108,8 @@ spec:
 </tr>
 <tr>
   <td>spec: security: certificateChain: kind: ConfigMap name:</td>
-  <td>The kind (for example, ConfigMap) and name of a resource containing the root certificate used to validate the client and server certificate(s) presented to this mesh by the peer mesh.The key of the config map entry containing the certificate should be <code>root-cert.pem</code>.</td>
-  <td>kind: ConfigMapname: <peerMesh>-ca-root-cert</td>
+  <td>The kind (for example, ConfigMap) and name of a resource containing the root certificate used to validate the client and server certificate(s) presented to this mesh by the peer mesh. The key of the config map entry containing the certificate should be <code>root-cert.pem</code>.</td>
+  <td>kind: ConfigMap name: <peerMesh>-ca-root-cert</td>
 </tr>
 </tbody>
 </table>

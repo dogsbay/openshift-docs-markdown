@@ -1,5 +1,5 @@
 ---
-title: "MachineOSConfig []"
+title: "MachineOSConfig [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec describes the configuration of the machineosconfig |
 | `status` | `object` | status describes the status of the machineosconfig |
+
 ### .spec {id="_spec"}
 
 Description
@@ -54,6 +55,7 @@ Required
 | `machineConfigPool` | `object` | machineConfigPool is the pool which the build is for. The Machine Config Operator will perform the build and roll out the built image to the specified pool. |
 | `renderedImagePushSecret` | `object` | renderedImagePushSecret is the secret used to connect to a user registry. The final image push and pull secrets should be separate and assume the principal of least privilege. The push secret with write privilege is only required to be present on the node hosting the MachineConfigController pod. The pull secret with read only privileges is required on all nodes. By separating the two secrets, the risk of write credentials becoming compromised is reduced. |
 | `renderedImagePushSpec` | `string` | renderedImagePushSpec describes the location of the final image. The MachineOSConfig object will use the in cluster image registry configuration. If you wish to use a mirror or any other settings specific to registries.conf, please specify those in the cluster wide registries.conf via the cluster image.config, ImageContentSourcePolicies, ImageDigestMirrorSet, or ImageTagMirrorSet objects. The format of the image push spec is: host[:port][/namespace]/name:&lt;tag> or svc_name.namespace.svc[:port]/repository/name:&lt;tag>. The length of the push spec must be between 1 to 447 characters. |
+
 ### .spec.baseImagePullSecret {id="_specbaseimagepullsecret"}
 
 Description
@@ -72,6 +74,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the secret used to push or pull this MachineOSConfig object. Must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character. This secret must be in the openshift-machine-config-operator namespace. |
+
 ### .spec.containerFile {id="_speccontainerfile"}
 
 Description
@@ -100,7 +103,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerfileArch` | `string` | containerfileArch describes the architecture this containerfile is to be built for. This arch is optional. If the user does not specify an architecture, it is assumed that the content can be applied to all architectures, or in a single arch cluster: the only architecture. |
-| `content` | `string` | content is an embedded Containerfile/Dockerfile that defines the contents to be built into your image. See https://github.com/containers/common/blob/main/docs/Containerfile.5.md for the spec reference. for example, this would add the tree package to your hosts:   FROM configs AS final   RUN rpm-ostree install tree && \     ostree container commit This is a required field and can have a maximum length of ***4096*** characters. |
+| `content` | `string` | content is an embedded Containerfile/Dockerfile that defines the contents to be built into your image. See https://github.com/containers/common/blob/main/docs/Containerfile.5.md for the spec reference. for example, this would add the tree package to your hosts:   FROM configs AS final   RUN rpm-ostree install tree && \     ostree container commit This is a required field and can have a maximum length of **4096** characters. |
+
 ### .spec.imageBuilder {id="_specimagebuilder"}
 
 Description
@@ -118,6 +122,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `imageBuilderType` | `string` | imageBuilderType specifies the backend to be used to build the image. Valid options are: Job |
+
 ### .spec.machineConfigPool {id="_specmachineconfigpool"}
 
 Description
@@ -135,6 +140,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name of the MachineConfigPool object. This value should be at most 253 characters, and must contain only lowercase alphanumeric characters, hyphens and periods, and should start and end with an alphanumeric character. |
+
 ### .spec.renderedImagePushSecret {id="_specrenderedimagepushsecret"}
 
 Description
@@ -155,6 +161,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the secret used to push or pull this MachineOSConfig object. Must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character. This secret must be in the openshift-machine-config-operator namespace. |
+
 ### .status {id="_status"}
 
 Description
@@ -171,6 +178,7 @@ Type
 | `currentImagePullSpec` | `string` | currentImagePullSpec is the fully qualified image pull spec used by the MCO to pull down the new OSImage. This includes the sha256 image digest. This is generated when the Machine Config Operator’s build controller successfully completes the build, and is populated from the corresponding MachineOSBuild object’s FinalImagePushSpec. This may change after completion in reaction to spec changes that would cause a new image build, but will not be removed. The format of the image pull spec is: host[:port][/namespace]/name@sha256:&lt;digest>, where the digest must be 64 characters long, and consist only of lowercase hexadecimal characters, a-f and 0-9. The length of the whole spec must be between 1 to 447 characters. |
 | `machineOSBuild` | `object` | machineOSBuild is a reference to the MachineOSBuild object for this MachineOSConfig, which contains the status for the image build. |
 | `observedGeneration` | `integer` | observedGeneration represents the generation of the MachineOSConfig object observed by the Machine Config Operator’s build controller. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -205,6 +213,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.machineOSBuild {id="_statusmachineosbuild"}
 
 Description
@@ -235,12 +244,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of MachineOSConfig
     *   `GET`: list objects of kind MachineOSConfig
     *   `POST`: create a MachineOSConfig
-*   `/apis/machineconfiguration.openshift.io/v1/machineosconfigs/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/machineosconfigs/{{ name }}`{minja}
     *   `DELETE`: delete a MachineOSConfig
     *   `GET`: read the specified MachineOSConfig
     *   `PATCH`: partially update the specified MachineOSConfig
     *   `PUT`: replace the specified MachineOSConfig
-*   `/apis/machineconfiguration.openshift.io/v1/machineosconfigs/{{ name }}/status`
+*   `/apis/machineconfiguration.openshift.io/v1/machineosconfigs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified MachineOSConfig
     *   `PATCH`: partially update status of the specified MachineOSConfig
     *   `PUT`: replace status of the specified MachineOSConfig

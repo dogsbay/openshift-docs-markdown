@@ -4,13 +4,13 @@ Generated. Do not edit by hand; the next sync overwrites everything.
 
 | | |
 |---|---|
-| Upstream | [openshift/openshift-docs@`da7dfc3`](https://github.com/openshift/openshift-docs/commit/da7dfc31e19c21ecd3d3c5a841a57e991400f9ba) |
+| Upstream | [openshift/openshift-docs@`99cc637`](https://github.com/openshift/openshift-docs/commit/99cc6370b787d95e006821fe745c35c33bca9087) |
 | Upstream branch | `enterprise-4.22` |
-| Upstream commit date | 2026-08-25T12:17:40-04:00 |
+| Upstream commit date | 2026-08-25T12:45:25-04:00 |
 | Distro filter | `openshift-enterprise` |
 | Product version | 4.22 |
 | Pages | 11884 |
-| Converted by | dogsbay 0.2.0-beta.93 |
+| Converted by | dogsbay 0.2.0-beta.101 |
 
 `MIGRATION.md` reports what survived conversion and what did not.
 

@@ -3,11 +3,11 @@ title: "Manage virtual machines with {{ pipelines_shortname }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Manage virtual machines with {{ pipelines_shortname }} {id="virt-managing-vms-openshift-pipelines"}
 {% include "./_attributes/common-attributes.md" %}
+# Manage virtual machines with {{ pipelines_shortname }} {id="virt-managing-vms-openshift-pipelines"}
 {%- set context = "virt-managing-vms-openshift-pipelines" %}
 
-{{ pipelines_title }} is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own container.
+{{ pipelines_title }} is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own container. {._abstract}
 
 By using {{ pipelines_shortname }} tasks and the example pipeline, you can do the following:
 
@@ -35,7 +35,7 @@ The example Windows pipeline is located in the pipeline catalog (ArtifactHub).
 
 {% leveloffset +1 %}{% include "./modules/virt-deprecated-tasks-web.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Understanding {{ pipelines_shortname }}](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html)
 *   [Task catalog (ArtifactHub)](https://artifacthub.io/packages/search?repo=redhat-tekton-tasks&sort=relevance&page=1)
 *   [Windows EFI installer pipeline (ArtifactHub)](https://artifacthub.io/packages/tekton-pipeline/redhat-pipelines/windows-efi-installer)

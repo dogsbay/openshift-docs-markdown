@@ -8,7 +8,7 @@ The `mapping_rule` object fields specify the following information:
 *   A pattern to match the path against.
 *   The 3scale methods to report along with the amount to report. The order in which you specify the fields determines the evaluation order.
 
-***`mapping_rule` object fields***
+**`mapping_rule` object fields**
 
 <table>
 <thead>

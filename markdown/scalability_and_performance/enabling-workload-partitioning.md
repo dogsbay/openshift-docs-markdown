@@ -3,11 +3,11 @@ title: Workload partitioning
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Workload partitioning {id="enabling-workload-partitioning"}
 {% include "./_attributes/common-attributes.md" %}
+# Workload partitioning {id="enabling-workload-partitioning"}
 {%- set context = "enabling-workload-partitioning" %}
 
-Workload partitioning separates compute node CPU resources into distinct CPU sets. Ensure that you keep platform pods on the specified cores to avoid interrupting the CPUs the customer workloads are running on. 
+Workload partitioning separates compute node CPU resources into distinct CPU sets. Ensure that you keep platform pods on the specified cores to avoid interrupting the CPUs the customer workloads are running on.  {._abstract}
 
 The minimum number of reserved CPUs required for the cluster management is four CPU Hyper-Threads (HTs).
 
@@ -31,12 +31,13 @@ Extended resources cannot be overcommitted, so request and limit must be equal i
 
 {% leveloffset +1 %}{% include "./modules/create-perf-profile-workload-partitioning.md" %}{% endleveloffset %}
 
-```yaml title="Sample performance profile configuration"
+```yaml title="Sample performance profile configuration" {minja}
 {% include "./snippets/ztp_PerformanceProfile.yaml" %}
 ```
 
 {% include "./snippets/performance-profile-workload-partitioning.md" %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the Performance Profile Creator](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)

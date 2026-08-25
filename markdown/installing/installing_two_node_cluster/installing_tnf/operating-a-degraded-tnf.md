@@ -6,7 +6,7 @@ title: Operating a degraded two-node OpenShift cluster with fencing
 # Operating a degraded two-node OpenShift cluster with fencing {id="operating-a-degraded-tnf"}
 {%- set context = "operating-a-degraded-tnf" %}
 
-A two-node OpenShift cluster with fencing (TNF) enters a `degraded` state when one of its two control plane nodes becomes unavailable. The remaining node continues to host the active control plane; however, the cluster loses its high-availability (HA) redundancy until the failed node recovers.
+A two-node OpenShift cluster with fencing (TNF) enters a `degraded` state when one of its two control plane nodes becomes unavailable. The remaining node continues to host the active control plane; however, the cluster loses its high-availability (HA) redundancy until the failed node recovers. {._abstract}
 
 Degraded operation is an intentional design state rather than a system failure. In this state, the cluster remains functional and core services continue to operate. Only specific capabilities that strictly require two-node redundancy are temporarily unavailable.
 

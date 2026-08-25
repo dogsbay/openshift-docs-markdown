@@ -43,5 +43,5 @@ As a cluster administrator, to gather event listener metrics for the `Triggers` 
     ```terminal
     $ git commit -m "empty-commit" --allow-empty && git push origin main
     ```
-1.  On the {{ product_title }} web console, navigate to ***Administrator*** -> ***Observe*** -> ***Metrics***.
+1.  On the {{ product_title }} web console, navigate to **Administrator** → **Observe** → **Metrics**.
 1.  To view a metric, search by its name. For example, to view the details of the `eventlistener_http_resources` metric for the `github-listener` event listener, search using the `eventlistener_http_resources` keyword.

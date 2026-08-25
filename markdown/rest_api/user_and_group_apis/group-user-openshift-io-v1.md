@@ -1,5 +1,5 @@
 ---
-title: "Group []"
+title: "Group [user.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -41,12 +41,12 @@ The following API endpoints are available:
     *   `POST`: create a Group
 *   `/apis/user.openshift.io/v1/watch/groups`
     *   `GET`: watch individual changes to a list of Group. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/user.openshift.io/v1/groups/{{ name }}`
+*   `/apis/user.openshift.io/v1/groups/{{ name }}`{minja}
     *   `DELETE`: delete a Group
     *   `GET`: read the specified Group
     *   `PATCH`: partially update the specified Group
     *   `PUT`: replace the specified Group
-*   `/apis/user.openshift.io/v1/watch/groups/{{ name }}`
+*   `/apis/user.openshift.io/v1/watch/groups/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Group. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/user.openshift.io/v1/groups {id="_apisuseropenshiftiov1groups"}

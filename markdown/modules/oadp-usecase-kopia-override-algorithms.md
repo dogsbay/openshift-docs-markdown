@@ -93,19 +93,19 @@ Back up an application by using Kopia environment variables for hashing, encrypt
     ```
 1.  Create a backup CR as shown in the following example: 
 
-```yaml
-apiVersion: velero.io/v1
-kind: Backup
-metadata:
-  name: test-backup
-  namespace: openshift-adp
-spec:
-  includedNamespaces:
-  - <application_namespace>
-  defaultVolumesToFsBackup: true
-```
-Replace `<application_namespace>` with the namespace for the application installed in the cluster.
+    ```yaml
+    apiVersion: velero.io/v1
+    kind: Backup
+    metadata:
+      name: test-backup
+      namespace: openshift-adp
+    spec:
+      includedNamespaces:
+      - <application_namespace>
+      defaultVolumesToFsBackup: true
+    ```
 
+    Replace `<application_namespace>` with the namespace for the application installed in the cluster.
 1.  Create a backup by running the following command:
     ```terminal
     $ oc apply -f <backup_file_name>

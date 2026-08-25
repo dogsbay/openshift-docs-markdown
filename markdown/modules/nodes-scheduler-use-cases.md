@@ -14,7 +14,7 @@ Infrastructure topological levels
     administrators are free to name their infrastructure levels anything, such as
     city/building/room. Also, administrators can define any number of levels
     for their infrastructure topology, with three levels usually being adequate
-    (such as: `regions` -> `zones` -> `racks`).  Administrators can specify affinity
+    (such as: `regions` → `zones` → `racks`).  Administrators can specify affinity
     and anti-affinity rules at each of these levels in any combination.
 {% endif %}
 

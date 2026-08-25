@@ -49,7 +49,7 @@ You can use the OpenShift CLI (`oc`) to create an OpenShift Update Service appli
         ```
 
         You might need to poll until the command succeeds.
-    1.  Retrieve a graph from the policy engine. Be sure to specify a valid version for `channel`. For example, if running in {{ product_title }} {{ product_version }}, use `stable-{{ product_version }}`:
+    1.  Retrieve a graph from the policy engine. Be sure to specify a valid version for `channel`. For example, if running in {{ product_title }} {{ product_version }}, use `stable-{{ product_version }}`{minja}:
         ```terminal
         $ while sleep 10; do HTTP_CODE="$(curl --header Accept:application/json --output /dev/stderr --write-out "%{http_code}" "${POLICY_ENGINE_GRAPH_URI}?channel=stable-4.6")"; if test "${HTTP_CODE}" -eq 200; then break; fi; echo "${HTTP_CODE}"; done
         ```

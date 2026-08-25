@@ -23,9 +23,10 @@ See "Configuring the PTP fast event notifications publisher" for more informatio
 **Procedure**
 
 1.  Create the following `PtpConfig` CR, and then save the YAML in the `boundary-clock-ptp-config.yaml` file.
-    ```yaml title="Example PTP boundary clock configuration"
-{% include "./snippets/ptp_PtpConfigBoundary.yaml" %}
+    ```yaml title="Example PTP boundary clock configuration" {minja}
+    {% include "./snippets/ptp_PtpConfigBoundary.yaml" %}
     ```
+
     **PTP boundary clock CR configuration options**
 
     |     |     |

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Service Mesh Release Notes {id="service-mesh-release-notes-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Service Mesh Release Notes {id="service-mesh-release-notes-v1x"}
 {%- set context = "ossm-release-notes-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

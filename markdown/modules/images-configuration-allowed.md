@@ -153,7 +153,7 @@ When pulling or pushing images, the container runtime searches the registries li
        }
     }
     ```
-{%- endif %}
+{% endif %}
 
     :::note
 

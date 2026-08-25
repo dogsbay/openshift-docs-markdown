@@ -4,10 +4,10 @@ title: Configuring cluster memory to meet container memory and risk requirements
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cluster-resource-configure" %}
-# Configuring cluster memory to meet container memory and risk requirements {id="nodes-cluster-resource-configure"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring cluster memory to meet container memory and risk requirements {id="nodes-cluster-resource-configure"}
 
-As a cluster administrator, you can manage application memory usage to help your clusters operate more efficiently. 
+As a cluster administrator, you can manage application memory usage to help your clusters operate more efficiently.  {._abstract}
 
 You can perform any of the following tasks to manage application memory:
 
@@ -26,7 +26,9 @@ You can perform any of the following tasks to manage application memory:
 {% leveloffset +1 %}{% include "./modules/nodes-cluster-resource-configure-evicted.md" %}{% endleveloffset %}
 
 {% if openshift_origin or openshift_online or openshift_webscale or openshift_enterprise %}
+
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding compute resources and containers](/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-reserving-memory_nodes-cluster-overcommit)
 {% endif %}

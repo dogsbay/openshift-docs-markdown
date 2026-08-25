@@ -19,10 +19,10 @@ The following diagram shows the components of a DPDK test environment:
 
 ![DPDK test environment](/_assets/images/261_OpenShift_DPDK_0722.png)
 
-*   ***Traffic generator***: An application that can generate high-volume packet traffic.
-*   ***SR-IOV-supporting NIC***: A network interface controller (NIC) compatible with SR-IOV. The card runs several virtual functions on a physical interface.
-*   ***Physical Function (PF)***: A PCI Express (PCIe) function of a network adapter that supports the SR-IOV interface.
-*   ***Virtual Function (VF)***:  A lightweight PCIe function on a network adapter that supports SR-IOV. The VF is associated with the PCIe PF on the network adapter. The VF represents a virtualized instance of the network adapter.
-*   ***Switch***: A network switch. Nodes can also be connected back-to-back.
-*   ***`testpmd`***: An example application included with DPDK. The `testpmd` application can be used to test the DPDK in a packet-forwarding mode. The `testpmd` application is also an example of how to build a fully-fledged application using the DPDK Software Development Kit (SDK).
-*   ***worker 0*** and ***worker 1***: {{ product_title }} nodes.
+*   **Traffic generator**: An application that can generate high-volume packet traffic.
+*   **SR-IOV-supporting NIC**: A network interface controller (NIC) compatible with SR-IOV. The card runs several virtual functions on a physical interface.
+*   **Physical Function (PF)**: A PCI Express (PCIe) function of a network adapter that supports the SR-IOV interface.
+*   **Virtual Function (VF)**:  A lightweight PCIe function on a network adapter that supports SR-IOV. The VF is associated with the PCIe PF on the network adapter. The VF represents a virtualized instance of the network adapter.
+*   **Switch**: A network switch. Nodes can also be connected back-to-back.
+*   **`testpmd`**: An example application included with DPDK. The `testpmd` application can be used to test the DPDK in a packet-forwarding mode. The `testpmd` application is also an example of how to build a fully-fledged application using the DPDK Software Development Kit (SDK).
+*   **worker 0** and **worker 1**: {{ product_title }} nodes.

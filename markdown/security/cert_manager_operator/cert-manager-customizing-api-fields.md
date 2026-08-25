@@ -3,11 +3,11 @@ title: Customizing the cert-manager Operator by using the CertManager custom res
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Customizing the cert-manager Operator by using the CertManager custom resource {id="cert-manager-customizing-api-fields"}
 {% include "./_attributes/common-attributes.md" %}
+# Customizing the cert-manager Operator by using the CertManager custom resource {id="cert-manager-customizing-api-fields"}
 {%- set context = "cert-manager-customizing-api-fields" %}
 
-You can customize the {{ cert_manager_operator }} after installation to suit your cluster requirements.
+You can customize the {{ cert_manager_operator }} after installation to suit your cluster requirements. {._abstract}
 
 *   Configure the `CertManager` custom resource (CR) to modify the behavior of cert-manager components, such as the cert-manager controller, CA injector, and webhook.
 *   Set environment variables for the controller pod.
@@ -77,12 +77,14 @@ To override unsupported arguments, you can add `spec.unsupportedConfigOverrides`
 {% leveloffset +1 %}{% include "./modules/cert-manager-explanation-of-certmanager-cr-fields.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deleting a TLS secret automatically upon Certificate removal](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-override-flag-controller_cert-manager-customizing-api-fields)
 
 {% leveloffset +2 %}{% include "./modules/cert-manager-common-configuration-fields.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [High Availability](https://cert-manager.io/docs/installation/best-practice/#high-availability)
 
@@ -97,12 +99,14 @@ To override unsupported arguments, you can add `spec.unsupportedConfigOverrides`
 {% leveloffset +1 %}{% include "./modules/cert-manager-override-environment-variables.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Explanation of fields in the CertManager custom resource](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
 {% leveloffset +1 %}{% include "./modules/cert-manager-override-arguments.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Explanation of fields in the CertManager custom resource](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
@@ -111,12 +115,14 @@ To override unsupported arguments, you can add `spec.unsupportedConfigOverrides`
 {% leveloffset +1 %}{% include "./modules/cert-manager-configure-cpu-memory.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Explanation of fields in the CertManager custom resource](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
 {% leveloffset +1 %}{% include "./modules/cert-manager-override-scheduling.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Explanation of fields in the CertManager custom resource](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-explanation-of-certmanager-cr-fields_cert-manager-customizing-api-fields)
 
@@ -125,6 +131,7 @@ To override unsupported arguments, you can add `spec.unsupportedConfigOverrides`
 {% leveloffset +1 %}{% include "./modules/cert-manager-verify-tls-adherence.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling)
 *   [Understanding TLS security profiles](/security/tls-security-profiles#tls-profiles-understanding_tls-security-profiles)

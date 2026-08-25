@@ -11,6 +11,6 @@ The phase of the CRs only progress forward. Once a phase transitions to the next
 | --- | --- |
 | **Value** | **Description** |
 | `New` | A creation request of the NAB or NAR CR is accepted by the NAC, but it has not yet been validated by the NAC. |
-| `BackingOff` | NAB or NAR CR is invalidated by the NAC CR because of an invalid `spec` of the NAB or NAR  CR. The namespace admin user can update the NAB or NAR `spec` to comply with the policies set by the administrator. After the namespace admin user edits the CRs, the NAC reconciles the CR again. |
+| `BackingOff` | NAB or NAR CR is invalidated by the NAC CR because of an invalid `spec` of the NAB or NAR  CR.<br>The namespace admin user can update the NAB or NAR `spec` to comply with the policies set by the administrator. After the namespace admin user edits the CRs, the NAC reconciles the CR again. |
 | `Created` | NAB or NAR CR is validated by the NAC, and the `Velero` backup or restore object is created. |
 | `Deletion` | NAB or NAR CR is marked for deletion. The NAC deletes the corresponding `Velero` backup or restore object. When the `Velero` object is deleted, the NAB or NAR CR is also deleted. |

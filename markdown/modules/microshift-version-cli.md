@@ -9,7 +9,7 @@ To begin troubleshooting, you must know your {{ microshift_short }} version. One
     ```terminal
     $ microshift version
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     {{ microshift_short }} Version: {{ product_version }}-0.microshift-e6980e25
     Base OCP Version: {{ product_version }}
     ```

@@ -33,4 +33,4 @@ Installing a cluster in a shared VPC is supported only for OpenShift 4.12.34 and
       --shared-vpc-role-arn <vpc-role-arn> \
       --base-domain <dns-domain>
     ```
-{% include "./snippets/rosa-long-cluster-name.md" %}
+    {% include "./snippets/rosa-long-cluster-name.md" %}

@@ -23,7 +23,7 @@ If the `clientCA` value specifies an X509v3 certificate revocation list (CRL) di
     ```terminal
     $ oc create configmap \
        router-ca-certs-default \
-       --from-file=ca-bundle.pem=client-ca.crt \// (1)
+       --from-file=ca-bundle.pem=client-ca.crt \ (1)
        -n openshift-config
     ```
     1.  The config map data key must be `ca-bundle.pem`, and the data value must be a CA certificate in PEM format.

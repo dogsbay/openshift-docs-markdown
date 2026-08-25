@@ -1,5 +1,5 @@
 ---
-title: "ResourceAccessReview []"
+title: "ResourceAccessReview [authorization.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}

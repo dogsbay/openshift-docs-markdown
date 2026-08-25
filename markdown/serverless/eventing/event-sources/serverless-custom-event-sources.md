@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Custom event sources {id="serverless-custom-event-sources"}
 {% include "./_attributes/common-attributes.md" %}
+# Custom event sources {id="serverless-custom-event-sources"}
 {%- set context = "serverless-custom-event-sources" %}
 
 If you need to ingress events from an event producer that is not included in Knative, or from a producer that emits events which are not in the `CloudEvent` format, you can do this by creating a custom event source. You can create a custom event source by using one of the following methods:

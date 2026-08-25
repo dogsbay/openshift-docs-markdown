@@ -9,10 +9,10 @@
 Use the CloudFormation template to deploy the private and public subnets in a zone on {{ zone_type }} infrastructure. The template provisions an `AWS::EC2::Subnet` and associates it with a specific {{ zone_type }} and VPC route table to reduce latency.
 {% endif %}
 {% if outposts %}
-Use the CloudFormation template to deploy the private and public subnets in a zone on {{ zone_type }} infrastructure. The template provisions an `AWS::EC2::Subnet` and associates it with a specific {{ zone_type }} and VPC route table to reduce latency.
-{% endif %} {._abstract}
+Use the CloudFormation template to deploy the private and public subnets in a zone on {{ zone_type }} infrastructure. The template provisions an `AWS::EC2::Subnet` and associates it with a specific {{ zone_type }} and VPC route table to reduce latency. {._abstract}
+{% endif %}
 
-```yaml title="CloudFormation template for VPC subnets"
+```yaml title="CloudFormation template for VPC subnets" {minja}
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for Best Practice Subnets (Public and Private)
 
@@ -70,7 +70,7 @@ Parameters:
 
 Conditions:
   OutpostEnabled: !Not [!Equals [!Ref "OutpostArn", ""]]
-{% endif %}
+{%- endif %}
 
 Resources:
   PublicSubnet:
@@ -84,14 +84,14 @@ Resources:
 {%- endif %}
       Tags:
       - Key: Name
-        {%- if not outposts %}
+{%- if not outposts %}
         Value: !Join ['-', [!Ref ClusterName, "public", !Ref ZoneName]]
-{% endif %}
-{% if outposts %}
+{%- endif %}
+{%- if outposts %}
         Value: !Join ['-', [ !Ref ClusterName, !Ref PublicSubnetLabel, !Ref ZoneName]]
       - Key: kubernetes.io/cluster/unmanaged
         Value: true
-{% endif %}
+{%- endif %}
 
   PublicSubnetRouteTableAssociation:
     Type: "AWS::EC2::SubnetRouteTableAssociation"
@@ -110,14 +110,14 @@ Resources:
 {%- endif %}
       Tags:
       - Key: Name
-        {%- if not outposts %}
+{%- if not outposts %}
         Value: !Join ['-', [!Ref ClusterName, "private", !Ref ZoneName]]
-{% endif %}
-{% if outposts %}
+{%- endif %}
+{%- if outposts %}
         Value: !Join ['-', [!Ref ClusterName, !Ref PrivateSubnetLabel, !Ref ZoneName]]
       - Key: kubernetes.io/cluster/unmanaged
         Value: true
-{% endif %}
+{%- endif %}
 
   PrivateSubnetRouteTableAssociation:
     Type: "AWS::EC2::SubnetRouteTableAssociation"
@@ -150,5 +150,5 @@ where:
 {% endif %}
 
 {% if context == "installing-aws-outposts" %}
-{%- set outposts = false -%}
+{%- set outposts = "" -%}
 {% endif %}

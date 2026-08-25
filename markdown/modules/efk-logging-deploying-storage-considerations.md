@@ -26,9 +26,9 @@ Assumptions:
 1.  Which application: Apache
 1.  Bytes per line: 256
 1.  Lines per second load on application: 1
-1.  Raw text data -> JSON
+1.  Raw text data → JSON
 
-Baseline (256 characters per minute -> 15KB/min)
+Baseline (256 characters per minute → 15KB/min)
 
 | Logging Pods | Storage Throughput |
 | --- | --- |

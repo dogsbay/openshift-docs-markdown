@@ -1,5 +1,5 @@
 ---
-title: "PodSecurityPolicyReview []"
+title: "PodSecurityPolicyReview [security.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PodSecurityPolicyReviewSpec defines specification for PodSecurityPolicyReview |
 | `status` | `object` | PodSecurityPolicyReviewStatus represents the status of PodSecurityPolicyReview. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,6 +49,7 @@ Required
 | --- | --- | --- |
 | `serviceAccountNames` | `array (string)` | serviceAccountNames is an optional set of ServiceAccounts to run the check with. If serviceAccountNames is empty, the template.spec.serviceAccountName is used, unless it’s empty, in which case "default" is used instead. If serviceAccountNames is specified, template.spec.serviceAccountName is ignored. |
 | `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | template is the PodTemplateSpec to check. The template.spec.serviceAccountName field is used if serviceAccountNames is empty, unless the template.spec.serviceAccountName is empty, in which case "default" is used. If serviceAccountNames is specified, template.spec.serviceAccountName is ignored. |
+
 ### .status {id="_status"}
 
 Description
@@ -61,6 +63,7 @@ Type
 | --- | --- | --- |
 | `allowedServiceAccounts` | `array` | allowedServiceAccounts returns the list of service accounts in **this** namespace that have the power to create the PodTemplateSpec. |
 | `allowedServiceAccounts[]` | `object` | ServiceAccountPodSecurityPolicyReviewStatus represents ServiceAccount name and related review status |
+
 ### .status.allowedServiceAccounts {id="_statusallowedserviceaccounts"}
 
 Description
@@ -94,7 +97,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/security.openshift.io/v1/namespaces/{{ namespace }}/podsecuritypolicyreviews`
+*   `/apis/security.openshift.io/v1/namespaces/{{ namespace }}/podsecuritypolicyreviews`{minja}
     *   `POST`: create a PodSecurityPolicyReview
 
 ### /apis/security.openshift.io/v1/namespaces/{{ namespace }}/podsecuritypolicyreviews {id="_apissecurityopenshiftiov1namespaces_namespace_podsecuritypolicyreviews"}

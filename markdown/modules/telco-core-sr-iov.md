@@ -15,11 +15,11 @@ Description
 
 Limits and requirements
 :   *   Only certain network interfaces are supported. See "Supported devices" for more information.
-*   Enabling SR-IOV and IOMMU: the SR-IOV Network Operator automatically enables IOMMU on the kernel command line.
-*   SR-IOV VFs do not receive link state updates from the PF.
-If a link down detection is required, it must be done at the protocol level.
-*   `MultiNetworkPolicy` CRs can be applied to `netdevice` networks only.
-This is because the implementation uses iptables, which cannot manage vfio interfaces.
+    *   Enabling SR-IOV and IOMMU: the SR-IOV Network Operator automatically enables IOMMU on the kernel command line.
+    *   SR-IOV VFs do not receive link state updates from the PF.
+    If a link down detection is required, it must be done at the protocol level.
+    *   `MultiNetworkPolicy` CRs can be applied to `netdevice` networks only.
+    This is because the implementation uses iptables, which cannot manage vfio interfaces.
 
 Engineering considerations
 :   *   SR-IOV interfaces in `vfio` mode are typically used to enable additional secondary networks for applications that require high throughput or low latency.

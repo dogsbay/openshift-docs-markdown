@@ -1,5 +1,5 @@
 ---
-title: "Metal3RemediationTemplate []"
+title: "Metal3RemediationTemplate [infrastructure.cluster.x-k8s.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Metal3RemediationTemplateSpec defines the desired state of Metal3RemediationTemplate. |
 | `status` | `object` | Metal3RemediationTemplateStatus defines the observed state of Metal3RemediationTemplate. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -40,6 +41,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `template` | `object` | Metal3RemediationTemplateResource describes the data needed to create a Metal3Remediation from a template. |
+
 ### .spec.template {id="_spectemplate"}
 
 Description
@@ -56,6 +58,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `spec` | `object` | Spec is the specification of the desired behavior of the Metal3Remediation. |
+
 ### .spec.template.spec {id="_spectemplatespec"}
 
 Description
@@ -68,6 +71,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `strategy` | `object` | Strategy field defines remediation strategy. |
+
 ### .spec.template.spec.strategy {id="_spectemplatespecstrategy"}
 
 Description
@@ -82,6 +86,7 @@ Type
 | `retryLimit` | `integer` | Sets maximum number of remediation retries. |
 | `timeout` | `string` | Sets the timeout between remediation retries. |
 | `type` | `string` | Type of remediation. |
+
 ### .status {id="_status"}
 
 Description
@@ -98,6 +103,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `status` | `object` | Metal3RemediationStatus defines the observed state of Metal3Remediation |
+
 ### .status.status {id="_statusstatus"}
 
 Description
@@ -119,16 +125,16 @@ The following API endpoints are available:
 
 *   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/metal3remediationtemplates`
     *   `GET`: list objects of kind Metal3RemediationTemplate
-*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates`
+*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates`{minja}
     *   `DELETE`: delete collection of Metal3RemediationTemplate
     *   `GET`: list objects of kind Metal3RemediationTemplate
     *   `POST`: create a Metal3RemediationTemplate
-*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }}`
+*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }}`{minja}
     *   `DELETE`: delete a Metal3RemediationTemplate
     *   `GET`: read the specified Metal3RemediationTemplate
     *   `PATCH`: partially update the specified Metal3RemediationTemplate
     *   `PUT`: replace the specified Metal3RemediationTemplate
-*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }}/status`
+*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediationtemplates/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Metal3RemediationTemplate
     *   `PATCH`: partially update status of the specified Metal3RemediationTemplate
     *   `PUT`: replace status of the specified Metal3RemediationTemplate

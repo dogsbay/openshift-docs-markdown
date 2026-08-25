@@ -29,7 +29,7 @@ You can remove certificate authorities (CA) from your cluster with the ROSA CLI,
     ```
 
     Before removal, the Additional trust bundle section is displayed, redacting its value for security purposes:
-    ```yaml
+    ```yaml {minja}
     Name:                       <cluster_name>
     ID:                         <cluster_internal_id>
     External ID:                <cluster_external_id>
@@ -57,7 +57,7 @@ You can remove certificate authorities (CA) from your cluster with the ROSA CLI,
     ```
 
     After you remove the proxy, the Additional trust bundle section no longer displays:
-    ```yaml
+    ```yaml {minja}
     Name:                       <cluster_name>
     ID:                         <cluster_internal_id>
     External ID:                <cluster_external_id>

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Default admission plugins {id="admission-plug-ins-default_{{ context }}"}
 
-{%- if not (openshift_rosa or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_dedicated) %}
 {%- endif %}
 Default validating and mutating admission plugins are enabled in {{ product_title }}.
 These default plugins contribute to fundamental control plane functionality, such as ingress policy, cluster resource limit override, and quota policy. {._abstract}

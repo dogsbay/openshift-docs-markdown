@@ -5,11 +5,12 @@ Review metrics in the {{ product_title }} web console from the **Administrator**
 
 **Procedure**
 
-*   Navigate to the **Observe** -> **Metrics** page:
+*   Navigate to the **Observe** → **Metrics** page:
     *   If you are using the **Developer** perspective, follow these steps:
         1.  Select **Custom query**, or click the **Show PromQL** link.
         1.  Type the query and click **Enter**.
     *   If you are using the **Administrator** perspective, type the expression in the text field and select **Run Queries**.
+
         **Figure 1. OADP metrics query**
 
         ![OADP metrics query](/_assets/images/oadp-metrics-query.png)

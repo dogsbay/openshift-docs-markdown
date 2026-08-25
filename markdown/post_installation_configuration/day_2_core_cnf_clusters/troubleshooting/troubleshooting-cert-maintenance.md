@@ -3,8 +3,8 @@ title: Certificate maintenance
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Certificate maintenance {id="troubleshooting-cert-maintenance"}
 {% include "./_attributes/common-attributes.md" %}
+# Certificate maintenance {id="troubleshooting-cert-maintenance"}
 {%- set context = "troubleshooting-cert-maintenance" %}
 
 Certificate maintenance is required for continuous cluster authentication.
@@ -19,18 +19,21 @@ Learn about certificates in {{ product_title }} and how to maintain them by usin
 {% leveloffset +2 %}{% include "./modules/troubleshooting-certs-manual-proxy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Proxy certificates](/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)
 
 {% leveloffset +2 %}{% include "./modules/troubleshooting-certs-manual-user-provisioned.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [User-provisioned certificates for the API server](/security/certificate_types_descriptions/user-provided-certificates-for-api-server#cert-types-user-provided-certificates-for-the-api-server)
 
 {% leveloffset +1 %}{% include "./modules/troubleshooting-certs-auto.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Service CA certificates](/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates_cert-types-service-ca-certificates)
 *   [Node certificates](/security/certificate_types_descriptions/node-certificates#cert-types-node-certificates_cert-types-node-certificates)
@@ -45,17 +48,20 @@ Learn about certificates in {{ product_title }} and how to maintain them by usin
 {% leveloffset +2 %}{% include "./modules/troubleshooting-certs-auto-etcd.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [etcd certificates](/security/certificate_types_descriptions/etcd-certificates#cert-types-etcd-certificates_cert-types-etcd-certificates)
 
 {% leveloffset +2 %}{% include "./modules/troubleshooting-certs-auto-node.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Node certificates](/security/certificate_types_descriptions/node-certificates#cert-types-node-certificates_cert-types-node-certificates)
 
 {% leveloffset +2 %}{% include "./modules/troubleshooting-certs-auto-service-ca.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Service CA certificates](/security/certificate_types_descriptions/service-ca-certificates#cert-types-service-ca-certificates_cert-types-service-ca-certificates)

@@ -38,7 +38,7 @@ Phase 2: Set up the management cluster
 
 Phase 3: Create hosted clusters
 :   In this phase, you create and configure hosted clusters. This phase involves the following steps:
-1.  Setting up infrastructure
-1.  Creating a hosted cluster
-1.  Integrating workload identity
-1.  Configuring private endpoint access (optional)
+    1.  Setting up infrastructure
+    1.  Creating a hosted cluster
+    1.  Integrating workload identity
+    1.  Configuring private endpoint access (optional)

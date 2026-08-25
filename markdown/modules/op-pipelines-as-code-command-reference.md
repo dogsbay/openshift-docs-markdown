@@ -40,7 +40,7 @@ $ tkn pac --help
 | --- | --- |
 | `tkn pac bootstrap` | Installs and configures {{ pac }} for Git repository hosting service providers, such as GitHub and GitHub Enterprise. |
 | `tkn pac bootstrap --nightly` | Installs the nightly build of {{ pac }}. |
-| `tkn pac bootstrap --route-url <public_url_to_ingress_spec>` | Overrides the OpenShift route URL. By default, `tkn pac bootstrap` detects the OpenShift route, which is automatically associated with the {{ pac }} controller service. If you do not have an {{ product_title }} cluster, it asks you for the public URL that points to the ingress endpoint. |
+| `tkn pac bootstrap --route-url <public_url_to_ingress_spec>` | Overrides the OpenShift route URL.<br>By default, `tkn pac bootstrap` detects the OpenShift route, which is automatically associated with the {{ pac }} controller service.<br>If you do not have an {{ product_title }} cluster, it asks you for the public URL that points to the ingress endpoint. |
 | `tkn pac bootstrap github-app` | Create a GitHub application and secrets in the `openshift-pipelines` namespace. |
 
 ### repository {id="_repository"}
@@ -59,7 +59,7 @@ $ tkn pac --help
 
 | Command | Description |
 | --- | --- |
-| `tkn pac generate` | Generates a simple pipeline run. When executed from the directory containing the source code, it automatically detects current Git information. In addition, it uses basic language detection capability and adds extra tasks depending on the language. For example, if it detects a `setup.py` file at the repository root, the [pylint task](https://hub.tekton.dev/tekton/task/pylint) is automatically added to the generated pipeline run. |
+| `tkn pac generate` | Generates a simple pipeline run.<br>When executed from the directory containing the source code, it automatically detects current Git information.<br>In addition, it uses basic language detection capability and adds extra tasks depending on the language.<br>For example, if it detects a `setup.py` file at the repository root, the [pylint task](https://hub.tekton.dev/tekton/task/pylint) is automatically added to the generated pipeline run. |
 
 ### resolve {id="_resolve"}
 
@@ -68,5 +68,5 @@ $ tkn pac --help
 | Command | Description |
 | --- | --- |
 | `tkn pac resolve` | Executes a pipeline run as if it is owned by the {{ pac }} on service. |
-| `tkn pac resolve -f .tekton/pull-request.yaml \ | oc apply -f -` |
-| Displays the status of a live pipeline run that uses the template in `.tekton/pull-request.yaml`. Combined with a Kubernetes installation running on your local machine, you can observe the pipeline run without generating a new commit. If you run the command from a source code repository, it attempts to detect the current Git information and automatically resolve parameters such as current revision or branch. | `tkn pac resolve -f .tekton/pr.yaml -p revision=main -p repo_name=<repository_name>` |
+| `tkn pac resolve -f .tekton/pull-request.yaml \| oc apply -f -` | Displays the status of a live pipeline run that uses the template in `.tekton/pull-request.yaml`.<br>Combined with a Kubernetes installation running on your local machine, you can observe the pipeline run without generating a new commit.<br>If you run the command from a source code repository, it attempts to detect the current Git information and automatically resolve parameters such as current revision or branch. |
+| `tkn pac resolve -f .tekton/pr.yaml -p revision=main -p repo_name=<repository_name>` | Executes a pipeline run by overriding default parameter values derived from the Git repository.<br>The `-f` option can also accept a directory path and apply the `tkn pac resolve` command on all `.yaml` or `.yml` files in that directory. You can also use the `-f` flag multiple times in the same command.<br>You can override the default information gathered from the Git repository by specifying parameter values using the `-p` option. For example, you can use a Git branch as a revision and a different repository name. |

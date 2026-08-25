@@ -36,7 +36,6 @@ This example procedure is applicable for an installer role and policy with the m
 
 The following example shows `sts_installer_core_permission_boundary_policy.json`:
 ```json
-```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -227,7 +226,6 @@ The following example shows `sts_installer_core_permission_boundary_policy.json`
     ]
 }
 ```
-```
 
 
 :::important
@@ -296,7 +294,6 @@ To use the permission boundaries, you will need to prepare the permission bounda
 
     The following example shows `sts_installer_privatelink_permission_boundary_policy.json`:
     ```json
-```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -315,12 +312,10 @@ To use the permission boundaries, you will need to prepare the permission bounda
     }
   ]
 }
-```
     ```
 
     The following example shows `sts_installer_vpc_permission_boundary_policy.json`:
     ```json
-```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -352,5 +347,4 @@ To use the permission boundaries, you will need to prepare the permission bounda
         }
     ]
 }
-```
     ```

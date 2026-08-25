@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Updating clusters overview {id="updating-clusters-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Updating clusters overview {id="updating-clusters-overview"}
 {%- set context = "updating-clusters-overview" %}
 
 You can update an {{ product_title }} 4 cluster with a single operation by using the web console or the OpenShift CLI (`oc`). {._abstract}

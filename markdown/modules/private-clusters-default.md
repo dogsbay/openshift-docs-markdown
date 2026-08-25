@@ -35,15 +35,15 @@ To deploy a private cluster, you must:
 *   Use existing networking that meets your requirements. Your cluster resources might be shared between other clusters on the network.
 {% endif %}
 {% if ibm_power_vs_private %}
-*   Use existing networking that meets your requirements.
+* Use existing networking that meets your requirements.
 {% endif %}
 {% if ibm_cloud_private or ibm_power_vs_private %}
-*   Create a DNS zone using {{ ibm_cloud_name }} DNS Services and specify it as the base domain of the cluster. For more information, see "Using {{ ibm_cloud_name }} DNS Services to configure DNS resolution".
+* Create a DNS zone using {{ ibm_cloud_name }} DNS Services and specify it as the base domain of the cluster. For more information, see "Using {{ ibm_cloud_name }} DNS Services to configure DNS resolution".
 {%- endif %}
-*   Deploy from a machine that has access to:
-    *   The API services for the cloud to which you provision.
-    *   The hosts on the network that you provision.
-    *   The internet to obtain installation media.
+* Deploy from a machine that has access to:
+** The API services for the cloud to which you provision.
+** The hosts on the network that you provision.
+** The internet to obtain installation media.
 
 {% if aws_specialized %}
 You can use any machine that meets these access requirements and follows your company’s guidelines. For example, this machine can be a bastion host on your cloud network.
@@ -58,17 +58,17 @@ AWS China does not support a VPN connection between the VPC and your network. Fo
 
 **Additional resources**
 
-*   [Amazon Virtual Private Cloud](https://docs.amazonaws.cn/en_us/aws/latest/userguide/vpc.html)
+*   [Amazon Virtual Private Cloud](https://docs.amazonaws.cn/en_us/aws/latest/userguide/vpc.html) {._additional-resource}
 {% endif %}
 
 {% if context == "installing-aws-specialized-region" %}
-{%- set aws_specialized = false -%}
+{%- set aws_specialized = "" -%}
 {% endif %}
 
 {% if context == "installing-ibm-cloud-private" %}
-{%- set ibm_cloud_private = false -%}
+{%- set ibm_cloud_private = "" -%}
 {% endif %}
 
 {% if context == "installing-ibm-power-vs-private-cluster" %}
-{%- set ibm_power_vs_private = false -%}
+{%- set ibm_power_vs_private = "" -%}
 {% endif %}

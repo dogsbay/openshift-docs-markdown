@@ -3,11 +3,11 @@ title: Manage secure signatures with sigstore
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Manage secure signatures with sigstore {id="nodes-sigstore-using"}
 {% include "./_attributes/common-attributes.md" %}
+# Manage secure signatures with sigstore {id="nodes-sigstore-using"}
 {%- set context = "nodes-sigstore-using" %}
 
-To improve supply chain security, cluster administrators or application developers can use the sigstore framework with {{ product_title }}.
+To improve supply chain security, cluster administrators or application developers can use the sigstore framework with {{ product_title }}. {._abstract}
 
 Sigstore is a collection of open source tools that you can use individually or together to improve your software supply chain security by securely signing and verifying software artifacts.
 
@@ -19,7 +19,7 @@ Sigstore is a collection of open source tools that you can use individually or t
 
 {% leveloffset +1 %}{% include "./modules/nodes-sigstore-configure-image-policy.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Sigstore](https://www.sigstore.dev/)
 *   [Fulcio certificate (Sigstore documentation)](https://docs.sigstore.dev/certificate_authority/overview/)
 *   [Rekor verification in the Sigstore documentation](https://docs.sigstore.dev/logging/overview/)

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-***PerformanceProfile CR options for {{ sno }} clusters***
+**PerformanceProfile CR options for {{ sno }} clusters**
 
 <table>
 <thead>
@@ -19,7 +19,7 @@
 </tr>
 <tr>
   <td><code>spec.cpu.isolated</code></td>
-  <td>Set the isolated CPUs. Ensure all of the Hyper-Threading pairs match.<br><br><dl><dt>Important</dt><dd>The reserved and isolated CPU pools must not overlap and together must span all available cores. CPU cores that are not accounted for cause an undefined behaviour in the system.</dd></dl></td>
+  <td>Set the isolated CPUs. Ensure all of the Hyper-Threading pairs match.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The reserved and isolated CPU pools must not overlap and together must span all available cores. CPU cores that are not accounted for cause an undefined behaviour in the system.</dd></dl></td>
 </tr>
 <tr>
   <td><code>spec.cpu.reserved</code></td>
@@ -35,7 +35,7 @@
 </tr>
 <tr>
   <td><code>spec.workloadHints</code></td>
-  <td>Use <code>workloadHints</code> to define the set of top level flags for different type of workloads.</td>
+  <td>Use <code>workloadHints</code> to define the set of top level flags for different type of workloads. The example configuration configures the cluster for low latency and high performance.</td>
 </tr>
 </tbody>
 </table>

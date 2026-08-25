@@ -3,8 +3,8 @@ title: Configuring seccomp profiles
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring seccomp profiles {id="seccomp-profiles"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring seccomp profiles {id="seccomp-profiles"}
 {%- set context = "configuring-seccomp-profiles" %}
 
 An {{ product_title }} container or a pod runs a single application that performs one or more well-defined tasks. The application usually requires only a small subset of the underlying operating system kernel APIs.
@@ -58,6 +58,6 @@ The custom SCC must have the appropriate priority to be automatically assigned t
 :::
 
 
-## Additional resources {id="additional-resources_configuring-seccomp-profiles"}
+## Additional resources {id="additional-resources_configuring-seccomp-profiles" ._additional-resources}
 *   [Managing security context constraints](/authentication/managing-security-context-constraints)
 *   [Machine Config Overview](/machine_configuration/index#machine-config-overview)

@@ -7,7 +7,7 @@ title: "Managing {{ hcp }} on {{ aws_short }}"
 # Managing {{ hcp }} on {{ aws_short }} {id="hcp-manage-aws"}
 {%- set context = "hcp-managing-aws" %}
 
-After you deploy a hosted cluster on {{ aws_first }}, you can manage the cluster.
+After you deploy a hosted cluster on {{ aws_first }}, you can manage the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hcp-manage-aws-prereq.md" %}{% endleveloffset %}
 
@@ -46,6 +46,7 @@ After you deploy a hosted cluster on {{ aws_first }}, you can manage the cluster
 {% leveloffset +2 %}{% include "./modules/hcp-aws-config-sqs-eventbridge.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Getting started with Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html)
 *   [Getting started: Create an Amazon EventBridge event bus rule](https://docs.aws.amazon.com/eventbridge/latest/userguide/event-bus-rule-get-started.html)

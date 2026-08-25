@@ -13,7 +13,7 @@ With one rollout strategy, you can reduce the upgrade time but you can only trou
 **Procedure**
 
 1.  Create a YAML file on the hub cluster that has the `ImageBasedGroupUpgrade` CR:
-{% include "./snippets/ibu-ImageBasedGroupUpgrade.md" %}
+    {% include "./snippets/ibu-ImageBasedGroupUpgrade.md" %}
 1.  Apply the created file by running the following command on the hub cluster:
     ```terminal
     $ oc apply -f <filename>.yaml

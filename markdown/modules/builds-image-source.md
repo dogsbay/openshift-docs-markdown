@@ -36,7 +36,7 @@ source:
 1.  The directory relative to the build root where the build process can access the file.
 1.  The location of the file to be copied out of the referenced image.
 1.  An optional secret provided if credentials are needed to access the input image.
-{% include "./snippets/idms-global-pull-secret.md" %}
+    {% include "./snippets/idms-global-pull-secret.md" %}
 
 **Images that require pull secrets**
 

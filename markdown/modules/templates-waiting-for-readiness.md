@@ -55,7 +55,7 @@ Before starting the procedure, read the following considerations:
 </tr>
 <tr>
   <td><code>StatefulSet</code></td>
-  <td>Object reports all replicas ready. This honors readiness probes defined onthe object.</td>
+  <td>Object reports all replicas ready. This honors readiness probes defined on the object.</td>
   <td>Not applicable.</td>
 </tr>
 </tbody>

@@ -33,7 +33,7 @@ After you back up the hosted cluster, you must back up workloads in the data clu
           -o jsonpath='{ .spec.template.spec.containers[0].image }')
         ```
     1.  Create a pod that allows access to etcd data:
-        ```yaml
+        ```yaml {minja}
         $ cat << EOF | oc apply -n ${{ CONTROL_PLANE_NAMESPACE }} -f -
         apiVersion: apps/v1
         kind: Deployment

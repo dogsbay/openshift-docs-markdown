@@ -9,8 +9,8 @@
 After creating your cluster with Terraform, you can permit users access to your cluster by using an htpasswd identity provider (IDP) with the Terraform tool.
 {% endif %}
 {% if not tf_config %}
-You can create an htpasswd identity provider (IDP) with Terraform.
-{% endif %} {._abstract}
+You can create an htpasswd identity provider (IDP) with Terraform. {._abstract}
+{% endif %}
 
 **Prerequisites**
 
@@ -32,7 +32,8 @@ You can create an htpasswd identity provider (IDP) with Terraform.
     
     :::
 
-{% endif %}
+{%- endif %}
+
 1.  Create the `htpasswd_idp.tf` file by running one of the following commands:
     *   **Option 1**: To create a user with a generated, randomized password, run:
         ```terminal
@@ -133,5 +134,5 @@ You can create an htpasswd identity provider (IDP) with Terraform.
 
 
 {% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_config = false -%}
+{%- set tf_config = "" -%}
 {% endif %}

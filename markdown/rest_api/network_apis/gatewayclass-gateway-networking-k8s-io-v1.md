@@ -1,5 +1,5 @@
 ---
-title: "GatewayClass []"
+title: "GatewayClass [gateway.networking.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -46,7 +46,8 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Spec defines the desired state of GatewayClass. |
-| `status` | `object` | Status defines the current state of GatewayClass. Implementations MUST populate status on all GatewayClass resources which specify their controller name. |
+| `status` | `object` | Status defines the current state of GatewayClass.<br>Implementations MUST populate status on all GatewayClass resources which specify their controller name. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -62,9 +63,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `controllerName` | `string` | ControllerName is the name of the controller that is managing Gateways of this class. The value of this field MUST be a domain prefixed path. Example: "example.net/gateway-controller". This field is not mutable and cannot be empty. Support: Core |
+| `controllerName` | `string` | ControllerName is the name of the controller that is managing Gateways of this class. The value of this field MUST be a domain prefixed path.<br>Example: "example.net/gateway-controller".<br>This field is not mutable and cannot be empty.<br>Support: Core |
 | `description` | `string` | Description helps describe a GatewayClass with more details. |
-| `parametersRef` | `object` | ParametersRef is a reference to a resource that contains the configuration parameters corresponding to the GatewayClass. This is optional if the controller does not require any additional configuration. ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap, or an implementation-specific custom resource. The resource can be cluster-scoped or namespace-scoped. If the referent cannot be found, refers to an unsupported kind, or when the data within that resource is malformed, the GatewayClass SHOULD be rejected with the "Accepted" status condition set to "False" and an "InvalidParameters" reason. A Gateway for this GatewayClass may provide its own `parametersRef`. When both are specified, the merging behavior is implementation specific. It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway. Support: Implementation-specific |
+| `parametersRef` | `object` | ParametersRef is a reference to a resource that contains the configuration parameters corresponding to the GatewayClass. This is optional if the controller does not require any additional configuration.<br>ParametersRef can reference a standard Kubernetes resource, i.e. ConfigMap, or an implementation-specific custom resource. The resource can be cluster-scoped or namespace-scoped.<br>If the referent cannot be found, refers to an unsupported kind, or when the data within that resource is malformed, the GatewayClass SHOULD be rejected with the "Accepted" status condition set to "False" and an "InvalidParameters" reason.<br>A Gateway for this GatewayClass may provide its own `parametersRef`. When both are specified, the merging behavior is implementation specific. It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway.<br>Support: Implementation-specific |
+
 ### .spec.parametersRef {id="_specparametersref"}
 
 Description
@@ -107,6 +109,7 @@ Required
 | `kind` | `string` | Kind is kind of the referent. |
 | `name` | `string` | Name is the name of the referent. |
 | `namespace` | `string` | Namespace is the namespace of the referent. This field is required when referring to a Namespace-scoped resource and MUST be unset when referring to a Cluster-scoped resource. |
+
 ### .status {id="_status"}
 
 Description
@@ -122,10 +125,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | `array` | Conditions is the current status from the controller for this GatewayClass. Controllers should prefer to publish conditions using values of GatewayClassConditionType for the type of each Condition. |
+| `conditions` | `array` | Conditions is the current status from the controller for this GatewayClass.<br>Controllers should prefer to publish conditions using values of GatewayClassConditionType for the type of each Condition. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `supportedFeatures` | `array` | SupportedFeatures is the set of features the GatewayClass support. It MUST be sorted in ascending alphabetical order by the Name key. |
 | `supportedFeatures[]` | `object` |  |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -165,6 +169,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.supportedFeatures {id="_statussupportedfeatures"}
 
 Description
@@ -199,12 +204,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of GatewayClass
     *   `GET`: list objects of kind GatewayClass
     *   `POST`: create a GatewayClass
-*   `/apis/gateway.networking.k8s.io/v1/gatewayclasses/{{ name }}`
+*   `/apis/gateway.networking.k8s.io/v1/gatewayclasses/{{ name }}`{minja}
     *   `DELETE`: delete a GatewayClass
     *   `GET`: read the specified GatewayClass
     *   `PATCH`: partially update the specified GatewayClass
     *   `PUT`: replace the specified GatewayClass
-*   `/apis/gateway.networking.k8s.io/v1/gatewayclasses/{{ name }}/status`
+*   `/apis/gateway.networking.k8s.io/v1/gatewayclasses/{{ name }}/status`{minja}
     *   `GET`: read status of the specified GatewayClass
     *   `PATCH`: partially update status of the specified GatewayClass
     *   `PUT`: replace status of the specified GatewayClass

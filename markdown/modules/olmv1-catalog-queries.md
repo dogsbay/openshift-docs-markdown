@@ -16,15 +16,13 @@ where:
 :   Specifies the URL of the catalog registry, such as `registry.redhat.io/redhat/redhat-operator-index`.
 
 `tag`
-:   Specifies the tag or version of the catalog, such as `v{{ product_version }}` or `latest`.
+:   Specifies the tag or version of the catalog, such as `v{{ product_version }}`{minja} or `latest`.
 
 `jq_request`
 :   Specifies the query you want to run on the catalog.
 
-<details>
-<summary>Example command</summary>
-
-```terminal
+:::details{title="Example command"}
+```terminal {minja}
 $ opm render \
   registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
   | jq -cs '[.[] | select(.schema == "olm.bundle" and (.properties[] \
@@ -33,9 +31,9 @@ $ opm render \
   and .spec.webhookdefinitions == null) \
   | .package] | unique[]'
 ```
-</details>
+:::
 
-***Common package queries***
+**Common package queries**
 
 <table>
 <thead>
@@ -47,51 +45,24 @@ $ opm render \
 <tbody>
 <tr>
   <td>Available packages in a catalog</td>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.package")'</pre></td>
 </tr>
 <tr>
-  <td>select( .schema == "olm.package")' ----</td>
   <td>Packages that support <code>AllNamespaces</code> install mode and do not use webhooks</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -cs '[.[] | select(.schema == "olm.bundle" and (.properties[] \&#10;  | select(.type == "olm.csv.metadata").value.installModes[] \&#10;  | select(.type == "AllNamespaces" and .supported == true)) \&#10;  and .spec.webhookdefinitions == null) \&#10;  | .package] | unique[]'</pre></td>
 </tr>
 <tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -cs '[.[] \</pre></td>
-  <td>select(.schema == "olm.bundle" and (.properties[] \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select(.type == "olm.csv.metadata").value.installModes[] \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select(.type == "AllNamespaces" and .supported == true)) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>.package] \</td>
-</tr>
-<tr>
-  <td>unique[]' ----</td>
   <td>Package metadata</td>
-</tr>
-<tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-  <td>select( .schema == "olm.package") \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .name == "<package_name>")'</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.package") \&#10;  | select( .name == "&lt;package_name&gt;")'</pre></td>
 </tr>
 <tr>
   <td>Catalog blobs in a package</td>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-</tr>
-<tr>
-  <td>select( .package == "<package_name>")' ----</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .package == "&lt;package_name&gt;")'</pre></td>
 </tr>
 </tbody>
 </table>
 
-***Common channel queries***
+**Common channel queries**
 
 <table>
 <thead>
@@ -103,52 +74,20 @@ $ opm render \
 <tbody>
 <tr>
   <td>Channels in a package</td>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.channel" ) \&#10;  | select( .package == "&lt;package_name&gt;") | .name'</pre></td>
 </tr>
 <tr>
-  <td>select( .schema == "olm.channel" ) \ \</td>
-  <td>select( .package == "<package_name>") \</td>
-</tr>
-<tr>
-  <td>.name' ----</td>
   <td>Versions in a channel</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .package == "&lt;package_name&gt;" ) \&#10;  | select( .schema == "olm.channel" ) \&#10;  | select( .name == "&lt;channel_name&gt;" ) .entries \&#10;  | .[] | .name'</pre></td>
 </tr>
 <tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-  <td>select( .package == "<package_name>" ) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .schema == "olm.channel" ) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .name == "<channel_name>" ) .entries \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>.[] \</td>
-</tr>
-<tr>
-  <td>.name' ----</td>
   <td><ul><li>Latest version in a channel</li><li>Upgrade path</li></ul></td>
-</tr>
-<tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-  <td>select( .schema == "olm.channel" ) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select ( .name == "<channel_name>") \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .package == "<package_name>")'</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.channel" ) \&#10;  | select ( .name == "&lt;channel_name&gt;") \&#10;  | select( .package == "&lt;package_name&gt;")'</pre></td>
 </tr>
 </tbody>
 </table>
 
-***Common bundle queries***
+**Common bundle queries**
 
 <table>
 <thead>
@@ -160,27 +99,11 @@ $ opm render \
 <tbody>
 <tr>
   <td>Bundles in a package</td>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.bundle" ) \&#10;  | select( .package == "&lt;package_name&gt;") | .name'</pre></td>
 </tr>
 <tr>
-  <td>select( .schema == "olm.bundle" ) \ \</td>
-  <td>select( .package == "<package_name>") \</td>
-</tr>
-<tr>
-  <td>.name' ----</td>
   <td><ul><li>Bundle dependencies</li><li>Available APIs</li></ul></td>
-</tr>
-<tr>
-  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;\| jq -s '.[] \</pre></td>
-  <td>select( .schema == "olm.bundle" ) \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select ( .name == "<bundle_name>") \</td>
-</tr>
-<tr>
-  <td>\</td>
-  <td>select( .package == "<package_name>")'</td>
+  <td><pre>$ opm render &lt;catalog_registry_url&gt;:&lt;tag&gt; \&#10;  | jq -s '.[] | select( .schema == "olm.bundle" ) \&#10;  | select ( .name == "&lt;bundle_name&gt;") \&#10;  | select( .package == "&lt;package_name&gt;")'</pre></td>
 </tr>
 </tbody>
 </table>

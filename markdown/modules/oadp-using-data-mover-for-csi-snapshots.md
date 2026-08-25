@@ -39,7 +39,7 @@ Red Hat recommends that customers who use OADP 1.2 Data Mover in order to back u
     :::
 
 *   You have verified that only one `storageClass` CR has the annotation `storageclass.kubernetes.io/is-default-class: true`.
-*   You have included the label `{{ velero_domain }}/csi-volumesnapshot-class: 'true'` in your `VolumeSnapshotClass` CR.
+*   You have included the label `{{ velero_domain }}/csi-volumesnapshot-class: 'true'`{minja} in your `VolumeSnapshotClass` CR.
 *   You have verified that the `OADP namespace` has the annotation `oc annotate --overwrite namespace/openshift-adp volsync.backube/privileged-movers='true'`.
 *   You have installed the VolSync Operator by using Operator Lifecycle Manager (OLM).
 
@@ -122,37 +122,37 @@ Red Hat recommends that customers who use OADP 1.2 Data Mover in order to back u
     1.  Optional: Specify VolumeSync volume options for backup and restore.
 
         The OADP Operator installs two custom resource definitions (CRDs), `VolumeSnapshotBackup` and `VolumeSnapshotRestore`.
-        ```yaml title="Example VolumeSnapshotBackup CRD"
-        apiVersion: datamover.oadp.openshift.io/v1alpha1
-        kind: VolumeSnapshotBackup
-        metadata:
-          name: <vsb_name>
-          namespace: <namespace_name> (1)
-        spec:
-          volumeSnapshotContent:
-            name: <snapcontent_name>
-          protectedNamespace: <adp_namespace>
-          resticSecretRef:
-            name: <restic_secret_name>
-        ```
+    ```yaml title="Example VolumeSnapshotBackup CRD"
+    apiVersion: datamover.oadp.openshift.io/v1alpha1
+    kind: VolumeSnapshotBackup
+    metadata:
+      name: <vsb_name>
+      namespace: <namespace_name> (1)
+    spec:
+      volumeSnapshotContent:
+        name: <snapcontent_name>
+      protectedNamespace: <adp_namespace>
+      resticSecretRef:
+        name: <restic_secret_name>
+    ```
     1.  Specify the namespace where the volume snapshot exists.
-        ```yaml title="Example VolumeSnapshotRestore CRD"
-        apiVersion: datamover.oadp.openshift.io/v1alpha1
-        kind: VolumeSnapshotRestore
-        metadata:
-          name: <vsr_name>
-          namespace: <namespace_name> (1)
-        spec:
-          protectedNamespace: <protected_ns> (2)
-          resticSecretRef:
-            name: <restic_secret_name>
-          volumeSnapshotMoverBackupRef:
-            sourcePVCData:
-              name: <source_pvc_name>
-              size: <source_pvc_size>
-            resticrepository: <your_restic_repo>
-            volumeSnapshotClassName: <vsclass_name>
-        ```
+    ```yaml title="Example VolumeSnapshotRestore CRD"
+    apiVersion: datamover.oadp.openshift.io/v1alpha1
+    kind: VolumeSnapshotRestore
+    metadata:
+      name: <vsr_name>
+      namespace: <namespace_name> (1)
+    spec:
+      protectedNamespace: <protected_ns> (2)
+      resticSecretRef:
+        name: <restic_secret_name>
+      volumeSnapshotMoverBackupRef:
+        sourcePVCData:
+          name: <source_pvc_name>
+          size: <source_pvc_size>
+        resticrepository: <your_restic_repo>
+        volumeSnapshotClassName: <vsclass_name>
+    ```
     1.  Specify the namespace where the volume snapshot exists.
     1.  Specify the namespace where the Operator is installed. The default is `openshift-adp`.
 1.  Back up a volume snapshot by performing the following steps:

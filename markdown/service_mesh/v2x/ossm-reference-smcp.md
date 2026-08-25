@@ -3,8 +3,8 @@ title: Service Mesh control plane configuration reference
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Service Mesh control plane configuration reference {id="ossm-reference"}
 {% include "./_attributes/common-attributes.md" %}
+# Service Mesh control plane configuration reference {id="ossm-reference"}
 {%- set context = "ossm-reference" %}
 
 You can customize your {{ SMProductName }} by modifying the default `ServiceMeshControlPlane` (SMCP) resource or by creating a completely custom SMCP resource. This reference section documents the configuration options available for the SMCP resource.
@@ -23,7 +23,7 @@ For more detailed examples of security configuration, see [Mutual Transport Laye
 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 {% leveloffset +2 %}{% include "./modules/ossm-cr-techPreview.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {% leveloffset +2 %}{% include "./modules/ossm-cr-tracing.md" %}{% endleveloffset %}
 
@@ -33,7 +33,7 @@ For more detailed examples of security configuration, see [Mutual Transport Laye
 
 {% leveloffset +1 %}{% include "./modules/ossm-cr-status.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_ossm-reference"}
+## Additional resources {id="additional-resources_ossm-reference" ._additional-resources}
 
 *   For more information about how to configure the features in the `ServiceMeshControlPlane` resource, see the following links:
     *   [Security](/service_mesh/v2x/ossm-security#ossm-security-mtls_ossm-security)

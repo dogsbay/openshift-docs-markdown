@@ -16,7 +16,7 @@ AWS is responsible for protecting the hardware infrastructure that runs all of t
 <tr>
   <td>Application networking</td>
   <td><strong>Red&#160;Hat</strong> - Monitor native OpenShift router service, and respond to alerts.</td>
-  <td>- Monitor health of application routes, and the endpoints behind them.</td>
+  <td>- Monitor health of application routes, and the endpoints behind them. - Report outages to Red&#160;Hat and AWS.</td>
 </tr>
 <tr>
   <td>Cluster networking</td>
@@ -26,17 +26,17 @@ AWS is responsible for protecting the hardware infrastructure that runs all of t
 <tr>
   <td>Virtual networking management</td>
   <td><strong>Red&#160;Hat</strong> - Monitor AWS load balancers, Amazon Virtual Private Cloud (VPC) subnets, and AWS service components necessary for default platform networking. Respond to alerts.</td>
-  <td>- Monitor health of AWS load balancer endpoints.</td>
+  <td>- Monitor health of AWS load balancer endpoints. - Monitor network traffic that is optionally configured through Amazon VPC-to-VPC connection, AWS VPN connection, or AWS Direct Connect for potential issues or security threats.</td>
 </tr>
 <tr>
   <td>Virtual storage management</td>
   <td><strong>Red&#160;Hat</strong> - Monitor Amazon Elastic Block Store (EBS) volumes attached to cluster nodes and Amazon S3 buckets used for the {{ product_title }} service's built-in container image registry. Respond to alerts.</td>
-  <td>- Monitor health of application data.</td>
+  <td>- Monitor health of application data. - If customer managed AWS Key Management Service (KMS) keys are used, create and control the key lifecycle and key policies for Amazon EBS encryption.</td>
 </tr>
 <tr>
   <td>Platform monitoring</td>
   <td><strong>Red&#160;Hat</strong> - Maintain a centralized monitoring and alerting system for all {{ product_title }} cluster components, site reliability engineer (SRE) services, and underlying AWS accounts.</td>
-  <td></td>
+  <td> {% if openshift_rosa_hcp %}- Monitor capacity of worker nodes.{% endif %} {% if openshift_rosa_hcp %}- Configure cluster monitoring stack components for monitoring and alerts.{% endif %}</td>
 </tr>
 <tr>
   <td>Incident management</td>
@@ -46,7 +46,7 @@ AWS is responsible for protecting the hardware infrastructure that runs all of t
 <tr>
   <td>Infrastructure and data resiliency</td>
   <td><strong>Red&#160;Hat</strong> - There is no Red&#160;Hat-provided backup method available for {{ product_title }} clusters with the Security Token Service (STS).</td>
-  <td>- Take regular backups of data and deploy multi-AZ clusters with workloads that follow Kubernetes best practices to ensure high availability within a region.</td>
+  <td>- Take regular backups of data and deploy multi-AZ clusters with workloads that follow Kubernetes best practices to ensure high availability within a region. - If an entire cloud region is unavailable, install a new cluster in a different region and restore apps using backup data.</td>
 </tr>
 <tr>
   <td>Cluster capacity</td>
@@ -56,7 +56,7 @@ AWS is responsible for protecting the hardware infrastructure that runs all of t
 <tr>
   <td>AWS software (public AWS services)</td>
   <td><strong>AWS</strong> - For information regarding AWS incident and operations management, see "How AWS maintains operational resilience and continuity of service" in the AWS whitepaper linked in <em>Additional resources</em>.</td>
-  <td>- Monitor health of AWS resources in the customer account.</td>
+  <td>- Monitor health of AWS resources in the customer account. - Use IAM tools to apply the appropriate permissions to AWS resources in the customer account.</td>
 </tr>
 <tr>
   <td>Hardware/AWS global infrastructure</td>

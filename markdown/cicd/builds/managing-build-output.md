@@ -3,8 +3,8 @@ title: Managing build output
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing build output {id="managing-build-output"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing build output {id="managing-build-output"}
 {%- set context = "managing-build-output" %}
 
 Use the following sections for an overview of and instructions for managing

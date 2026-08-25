@@ -24,7 +24,7 @@ The mount points of build volumes, from which the running build reads data, are 
 
 *   In the `dockerStrategy` definition of the `BuildConfig` object, add any build volumes to the `volumes` array. For example:
 
-    ```yaml
+    ```yaml {minja}
     spec:
       dockerStrategy:
         volumes:
@@ -42,7 +42,7 @@ The mount points of build volumes, from which the running build reads data, are 
               type: ConfigMap
               configMap:
                 name: my-config
-{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+    {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
           - name: my-csi-volume
             mounts:
             - destinationPath: /opt/app-root/src/some_path
@@ -53,7 +53,7 @@ The mount points of build volumes, from which the running build reads data, are 
                 readOnly: true
                 volumeAttributes:
                   attribute: value
-{%- endif %}
+    {%- endif %}
     ```
 
     where:
@@ -87,8 +87,9 @@ The mount points of build volumes, from which the running build reads data, are 
 {% endif %}
 
 {% if sourcestrategy %}
+
 *   In the `sourceStrategy` definition of the `BuildConfig` object, add any build volumes to the `volumes` array. For example:
-    ```yaml
+    ```yaml {minja}
     spec:
       sourceStrategy:
         volumes:
@@ -106,7 +107,7 @@ The mount points of build volumes, from which the running build reads data, are 
               type: ConfigMap
               configMap:
                 name: my-config
-{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+    {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
           - name: my-csi-volume
             mounts:
             - destinationPath: /opt/app-root/src/some_path
@@ -117,7 +118,7 @@ The mount points of build volumes, from which the running build reads data, are 
                 readOnly: true
                 volumeAttributes:
                   attribute: value
-{%- endif %}
+    {%- endif %}
     ```
 
     where:
@@ -144,13 +145,13 @@ The mount points of build volumes, from which the running build reads data, are 
     `volumeAttributes`
     :   (Optional) Specifies the volume attributes of the ephemeral CSI volume.
         Consult the CSI driver’s documentation for supported attribute keys and values.
-{% endif %}
+{%- endif %}
 
 {% endif %}
 
 {% if context == "build-strategies-docker" %}
-{%- set dockerstrategy = false -%}
+{%- set dockerstrategy = "" -%}
 {% endif %}
 {% if context == "build-strategies-s2i" %}
-{%- set sourcestrategy = false -%}
+{%- set sourcestrategy = "" -%}
 {% endif %}

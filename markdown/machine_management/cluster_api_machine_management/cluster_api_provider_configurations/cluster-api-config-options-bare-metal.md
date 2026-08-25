@@ -3,11 +3,11 @@ title: Cluster API configuration options for bare metal
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Cluster API configuration options for bare metal {id="cluster-api-config-options-bare-metal"}
 {% include "./_attributes/common-attributes.md" %}
+# Cluster API configuration options for bare metal {id="cluster-api-config-options-bare-metal"}
 {%- set context = "cluster-api-config-options-bare-metal" %}
 
-You can change the configuration of your bare metal Cluster API machines by updating values in the Cluster API custom resource manifests.
+You can change the configuration of your bare metal Cluster API machines by updating values in the Cluster API custom resource manifests. {._abstract}
 
 {%- set FeatureName = "Managing machines with the Cluster API" %}
 {% include "./snippets/technology-preview.md" %}

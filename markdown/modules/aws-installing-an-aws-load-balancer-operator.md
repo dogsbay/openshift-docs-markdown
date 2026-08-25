@@ -11,7 +11,7 @@ You can install an AWS Load Balancer Operator and an AWS Load Balancer Controlle
 *   You have installed the Amazon Web Services (AWS) CLI.
 {%- if not openshift_rosa_hcp %}
 *   You are using {{ product_title }} 4.13 or later.
-{% endif %}
+{%- endif %}
 
 
 :::important
@@ -40,9 +40,9 @@ When installing an AWS Load Balancer Operator for use with a ROSA cluster in an 
         1.  An OIDC DNS example is `oidc.op1.openshiftapps.com/28q7fsn54m2jjts3kd556aij4mu9omah`.
 
             or
-            ```terminal
-            $ oc get authentication.config cluster -o=jsonpath="{.spec.serviceAccountIssuer}"
-            ```
+        ```terminal
+        $ oc get authentication.config cluster -o=jsonpath="{.spec.serviceAccountIssuer}"
+        ```
     1.  Locate the OIDC Amazon Resource Name (ARN) information on the AWS Web Console by navigating to **IAM**  **Access management**  **Identity providers**. An OIDC ARN example is `arn:aws:iam::777777777777:oidc-provider/<oidc_dns_url>`. 
     1.  Save the output from the commands. You will use this information in future steps within this procedure.
 1.  Create the AWS IAM policy required for the AWS Load Balancer Operator by using the AWS CLI.
@@ -57,7 +57,7 @@ When installing an AWS Load Balancer Operator for use with a ROSA cluster in an 
         ```terminal
         $ IDP_ARN="arn:aws:iam::{AWS_AccountNo}:oidc-provider/${IDP}" (1)
         ```
-        1.  Replace `{{ AWS_AccountNo }}` with your AWS account number and `{{ Cluster_OIDC_Endpoint }}` with the OIDC DNS identified earlier in this procedure.
+        1.  Replace `{{ AWS_AccountNo }}`{minja} with your AWS account number and `{{ Cluster_OIDC_Endpoint }}`{minja} with the OIDC DNS identified earlier in this procedure.
     1.  Verify that the trust policy was assigned to the AWS IAM role.
         ```terminal title="Example output"
         $ cat <<EOF > albo-operator-trusted-policy.json
@@ -83,7 +83,7 @@ When installing an AWS Load Balancer Operator for use with a ROSA cluster in an 
 
         :::important
 
-        Do not include the `https` portion of the OIDC DNS URL when replacing `{{ Cluster_OIDC_Endpoint }}` with the OIDC DNS you identified earlier. Only the alphanumeric information that follows the `/` within the URL is needed.
+        Do not include the `https` portion of the OIDC DNS URL when replacing `{{ Cluster_OIDC_Endpoint }}`{minja} with the OIDC DNS you identified earlier. Only the alphanumeric information that follows the `/` within the URL is needed.
         
         :::
 

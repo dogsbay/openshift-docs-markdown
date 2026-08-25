@@ -38,7 +38,7 @@ You can configure the user workload monitoring components with the `user-workloa
         ```terminal
         $ oc apply -f user-workload-monitoring-config.yaml
         ```
-{%- if not (openshift_dedicated or openshift_rosa) %}
+{% if not (openshift_dedicated or openshift_rosa) %}
 
         :::note
 

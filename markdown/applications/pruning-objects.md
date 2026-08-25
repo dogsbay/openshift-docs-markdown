@@ -3,11 +3,11 @@ title: Pruning objects to reclaim resources
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Pruning objects to reclaim resources {id="pruning-objects"}
 {% include "./_attributes/common-attributes.md" %}
+# Pruning objects to reclaim resources {id="pruning-objects"}
 {%- set context = "pruning-objects" %}
 
-Reclaim cluster storage and optimize API server performance by pruning stale resources. You can run manual CLI commands or configure automated cron jobs to clean up obsolete deployment, build, image, and group records.
+Reclaim cluster storage and optimize API server performance by pruning stale resources. You can run manual CLI commands or configure automated cron jobs to clean up obsolete deployment, build, image, and group records. {._abstract}
 
 Over time, API objects created in {{ product_title }} can accumulate in the
 cluster’s etcd data store through normal user operations, such as when building
@@ -35,9 +35,11 @@ space.
 {% leveloffset +1 %}{% include "./modules/pruning-builds.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-**Additional resources**
 
-*   [Performing advanced builds -> Pruning builds](/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations)
+**Additional resources**
+{._additional-resources}
+
+*   [Performing advanced builds → Pruning builds](/cicd/builds/advanced-build-operations#builds-build-pruning_advanced-build-operations)
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/pruning-images.md" %}{% endleveloffset %}
@@ -60,6 +62,7 @@ space.
 {% leveloffset +2 %}{% include "./modules/pruning-images-troubleshooting.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the registry](/registry/accessing-the-registry#accessing-the-registry)
 *   [Exposing the registry](/registry/securing-exposing-registry#securing-exposing-registry)
@@ -74,6 +77,7 @@ space.
 {% leveloffset +1 %}{% include "./modules/pruning-cronjobs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   [Running tasks in pods using jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)
@@ -81,4 +85,4 @@ space.
 *   [Resource quotas across multiple projects](/applications/quotas/quotas-setting-across-multiple-projects#setting-quotas-across-multiple-projects)
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
-{% endif %}
+{%- endif %}

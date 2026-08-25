@@ -7,7 +7,7 @@ title: Collecting data for Red Hat Support
 # Collecting data for Red&#160;Hat Support {id="virt-collecting-virt-data"}
 {%- set context = "virt-collecting-virt-data" %}
 
-When you submit a support case to Red&#160;Hat Support, it is helpful to provide debugging information for {{ product_title }} and {{ VirtProductName }}.
+When you submit a support case to Red&#160;Hat Support, it is helpful to provide debugging information for {{ product_title }} and {{ VirtProductName }}. {._abstract}
 
 You can use the following tools to collect debugging information:
 
@@ -15,7 +15,7 @@ You can use the following tools to collect debugging information:
 
 must-gather tool
 :   The `must-gather` tool collects diagnostic information, including resource definitions and service logs.
-{% endif %}
+{%- endif %}
 
 
 Prometheus
@@ -42,13 +42,13 @@ Alertmanager
 {% leveloffset +1 %}{% include "./modules/about-self-service-tsr.md" %}{% endleveloffset %}
 {% endif %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [VM support overview](/virt/support/virt-support-overview#virt-support-overview)
 *   [How to provide log files to Red Hat Support (Red Hat Knowledgebase)](https://access.redhat.com/solutions/2112)
 {%- if not (openshift_dedicated or openshift_rosa_hcp or openshift_rosa) %}
 *   [About {{ product_title }} monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 *   [About {{ product_title }} monitoring](/observability/monitoring/about-ocp-monitoring/about-ocp-monitoring#about-ocp-monitoring)
 {%- endif %}
 *   [Installing the QEMU guest agent on a Linux VM](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent)

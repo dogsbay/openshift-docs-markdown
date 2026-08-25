@@ -3,11 +3,11 @@ title: CCO-based workflow for OLM-managed Operators with Microsoft Entra Workloa
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# CCO-based workflow for OLM-managed Operators with Microsoft Entra Workload ID {id="osdk-cco-azure"}
 {% include "./_attributes/common-attributes.md" %}
+# CCO-based workflow for OLM-managed Operators with Microsoft Entra Workload ID {id="osdk-cco-azure"}
 {%- set context = "osdk-cco-azure" %}
 
-When an {{ product_title }} cluster running on Azure is in **Workload Identity / Federated Identity** mode, it means the cluster is utilizing features of Azure and {{ product_title }} to apply _user-assigned managed identities_ or _app registrations_ in {{ entra_first }} at an application level.
+When an {{ product_title }} cluster running on Azure is in **Workload Identity / Federated Identity** mode, it means the cluster is utilizing features of Azure and {{ product_title }} to apply _user-assigned managed identities_ or _app registrations_ in {{ entra_first }} at an application level. {._abstract}
 
 The Cloud Credential Operator (CCO) is a cluster Operator installed by default in {{ product_title }} clusters running on cloud providers. Starting in {{ product_title }} 4.14.8, the CCO supports workflows for OLM-managed Operators with {{ entra_short }}.
 
@@ -49,6 +49,7 @@ Authentication with {{ entra_short }} requires the following information:
 The **Install Operator** page in the web console allows cluster administrators to provide this information at installation time. This information is then propagated to the `Subscription` object as environment variables on the Operator pod.
 
 **Additional resources**
+{._additional-resources}
 
 *   [OLM-managed Operator support for authentication with {{ entra_first }}](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-azure-olm_cco-short-term-creds)
 *   [Installing from OperatorHub using the web console](/operators/admin/olm-adding-operators-to-cluster#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster)

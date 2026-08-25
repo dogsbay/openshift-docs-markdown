@@ -26,6 +26,7 @@ Developers have access to workflows specific to their use cases, such as the abi
 You can use the **Topology** view to display applications, components, and workloads of your project. If you have no workloads in the project, the **Topology** view will show some links to create or import them. You can also use the **Quick Search** to import components directly.
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
+
 **Additional resources**
 
 *   [Viewing application composition using the Topology](https://docs.openshift.com/container-platform/latest/applications/odc-viewing-application-composition-using-topology-view.html)

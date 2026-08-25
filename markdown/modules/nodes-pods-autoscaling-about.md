@@ -15,7 +15,7 @@ To use horizontal pod autoscalers, your cluster administrator must have properly
 
 The following metrics are supported by horizontal pod autoscalers:
 
-***Supported metrics***
+**Supported metrics**
 
 <table>
 <thead>

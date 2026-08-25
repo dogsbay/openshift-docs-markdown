@@ -47,22 +47,22 @@ For more information about setting up the monitoring stack, see [Configuring use
     $ oc get pods -n openshift-user-workload-monitoring
     ```
 
-```terminal
-NAME                                   READY   STATUS    RESTARTS   AGE
-prometheus-operator-6844b4b99c-b57j9   2/2     Running   0          43s
-prometheus-user-workload-0             5/5     Running   0          32s
-prometheus-user-workload-1             5/5     Running   0          32s
-thanos-ruler-user-workload-0           3/3     Running   0          32s
-thanos-ruler-user-workload-1           3/3     Running   0          32s
-```
+    ```terminal
+    NAME                                   READY   STATUS    RESTARTS   AGE
+    prometheus-operator-6844b4b99c-b57j9   2/2     Running   0          43s
+    prometheus-user-workload-0             5/5     Running   0          32s
+    prometheus-user-workload-1             5/5     Running   0          32s
+    thanos-ruler-user-workload-0           3/3     Running   0          32s
+    thanos-ruler-user-workload-1           3/3     Running   0          32s
+    ```
 1.  Verify the existence of the `user-workload-monitoring-config` ConfigMap in the `openshift-user-workload-monitoring`. If it exists, skip the remaining steps in this procedure.
     ```terminal
     $ oc get configmap user-workload-monitoring-config -n openshift-user-workload-monitoring
     ```
 
-```terminal
-Error from server (NotFound): configmaps "user-workload-monitoring-config" not found
-```
+    ```terminal
+    Error from server (NotFound): configmaps "user-workload-monitoring-config" not found
+    ```
 1.  Create a `user-workload-monitoring-config` `ConfigMap` object for the User Workload Monitoring, and save it under the `2_configure_user_workload_monitoring.yaml` file name:
     ```yaml
     apiVersion: v1

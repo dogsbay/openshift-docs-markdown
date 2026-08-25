@@ -9,7 +9,7 @@
 
 # Deploying the front-end component {id="deploying-the-front-end-component_{{ context }}"}
 
-To create and deploy a front-end component, download the Node.js application and push the source code to your cluster with `{{ odo_title }}`.
+To create and deploy a front-end component, download the Node.js application and push the source code to your cluster with `{{ odo_title }}`{minja}.
 
 **Procedure**
 
@@ -100,8 +100,8 @@ To create and deploy a front-end component, download the Node.js application and
 {% endif %}
 
 {% if context == "creating-a-multicomponent-application-with-odo" %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
 {% if context == "creating-an-application-with-a-database" %}
-{%- set database = false -%}
+{%- set database = "" -%}
 {% endif %}

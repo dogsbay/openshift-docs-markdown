@@ -8,7 +8,7 @@ violated if there are no other suitable locations to deploy a pod. Pod
 anti-affinity can be set to either required or preferred.
 
 With this in place, if only two infrastructure nodes are available and one is rebooted, the container image registry
-pod is prevented from running on the other node. `**oc get pods**` reports the pod as unready until a suitable node is available.
+pod is prevented from running on the other node. `*oc get pods*` reports the pod as unready until a suitable node is available.
 Once a node is available and all pods are back in ready state, the next node can be restarted.
 
 The following procedure demonstrates how to reboot a node by using pod anti-affinity.

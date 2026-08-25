@@ -14,22 +14,22 @@ You can perform a platform update with the {{ cgu_operator }}. {._abstract}
 
 **Procedure**
 
-1.  Create a `{{ policy_gen_cr }}` CR for the platform update:
-    1.  Save the following `{{ policy_gen_cr }}` CR in the `du-upgrade.yaml` file:
-        The following example shows the `{{ policy_gen_cr }}` CR for platform update:
+1.  Create a `{{ policy_gen_cr }}`{minja} CR for the platform update:
+    1.  Save the following `{{ policy_gen_cr }}`{minja} CR in the `du-upgrade.yaml` file:
+        The following example shows the `{{ policy_gen_cr }}`{minja} CR for platform update:
 
 {% if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/pgt-cnf-topology-aware-lifecycle-manager-platform-update.md" %}
+        {% include "./snippets/pgt-cnf-topology-aware-lifecycle-manager-platform-update.md" %}
 {% endif %}
 {% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/pg-cnf-topology-aware-lifecycle-manager-platform-update.md" %}
+        {% include "./snippets/pg-cnf-topology-aware-lifecycle-manager-platform-update.md" %}
 {% endif %}
 
-        The `{{ policy_gen_cr }}` CR generates two policies:
+        The `{{ policy_gen_cr }}`{minja} CR generates two policies:
 
         *   The `du-upgrade-platform-upgrade-prep` policy does the preparation work for the platform update. It creates the `ConfigMap` CR for the required release image signature, creates the image content source of the mirrored release image repository, and updates the cluster version with the required update channel and the update graph reachable by the managed cluster in the disconnected environment.
         *   The `du-upgrade-platform-upgrade` policy is used to perform platform upgrade.
-    1.  Add the `du-upgrade.yaml` file contents to the `kustomization.yaml` file located in the {{ ztp }} Git repository for the `{{ policy_gen_cr }}` CRs and push the changes to the Git repository.
+    1.  Add the `du-upgrade.yaml` file contents to the `kustomization.yaml` file located in the {{ ztp }} Git repository for the `{{ policy_gen_cr }}`{minja} CRs and push the changes to the Git repository.
 
         ArgoCD pulls the changes from the Git repository and generates the policies on the hub cluster.
     1.  Check the created policies by running the following command:

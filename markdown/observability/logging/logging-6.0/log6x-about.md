@@ -47,7 +47,7 @@ Logging includes extensive validation rules and default values to ensure a smoot
 
 **Procedure**
 
-1.  Install the `{{ clo }}`, `{{ loki_op }}`, and `{{ coo_first }}` from the software catalog.
+1.  Install the `{{ clo }}`{minja}, `{{ loki_op }}`{minja}, and `{{ coo_first }}`{minja} from the software catalog.
 1.  Create a secret to access an existing object storage bucket: 
     ```terminal title="Example command for AWS"
     $ oc create secret generic logging-loki-s3 \

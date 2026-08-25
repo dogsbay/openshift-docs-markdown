@@ -12,7 +12,7 @@ As an administrator, you can group network flows that are part of the same conve
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster** then select the **YAML** tab.
 1.  Configure the `FlowCollector` custom resource so that `spec.processor.logTypes`, `conversationEndTimeout`, and `conversationHeartbeatInterval` parameters are set according to your observation needs. A sample configuration is as follows:

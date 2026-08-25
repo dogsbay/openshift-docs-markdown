@@ -19,7 +19,7 @@ The default namespace for the {{ lvms }} Operator is `openshift-lvm-storage`.
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Click **Ecosystem** -> **Software Catalog**.
+1.  Click **Ecosystem** → **Software Catalog**.
 1.  Click **LVM Storage** on the software catalog page.
 1.  Set the following options on the **Operator Installation** page:
     1.  **Update Channel** as **stable-{{ product_version }}**.

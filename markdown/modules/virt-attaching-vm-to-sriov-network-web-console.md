@@ -9,7 +9,7 @@ You can connect a VM to the SR-IOV network by including the network details in t
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines**.
+1.  Navigate to **Virtualization** → **VirtualMachines**.
 1.  Click a VM to view the **VirtualMachine details** page.
 1.  On the **Configuration** tab, click the **Network interfaces** tab.
 1.  Click **Add network interface**.

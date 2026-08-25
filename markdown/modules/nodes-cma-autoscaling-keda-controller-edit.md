@@ -5,7 +5,7 @@ You can use the following procedure to modify the `KedaController` custom resour
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 1.  Click **Custom Metrics Autoscaler**.
 1.  On the **Operator Details** page, click the **KedaController** tab.
 1.  On the **KedaController** tab, click **Create KedaController** and edit the file.

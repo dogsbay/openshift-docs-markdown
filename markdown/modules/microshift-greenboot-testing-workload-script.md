@@ -183,7 +183,7 @@ You can look at the output of the greenboot workload health check script to see 
     Running Wanted Health Check Scripts...
     Finished greenboot Health Checks Runner.
     ```
-    ```terminal title="Example partial output for a {{ op_system_ostree }} system"
+    ```terminal title="Example partial output for a {{ op_system_ostree }} system" {minja}
     #...
     GRUB boot variables:
     boot_success=0

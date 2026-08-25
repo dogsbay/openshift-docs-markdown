@@ -7,6 +7,6 @@ title: Red Hat-provided catalogs
 # Red Hat-provided catalogs {id="rh-catalogs"}
 {%- set context = "rh-catalogs" %}
 
-Red&#160;Hat provides several Operator catalogs that are included with {{ product_title }} by default.
+Red&#160;Hat provides several Operator catalogs that are included with {{ product_title }} by default. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/olm-rh-catalogs.md" %}{% endleveloffset %}

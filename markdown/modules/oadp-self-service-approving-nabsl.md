@@ -37,7 +37,7 @@ Approve `NonAdminBackupStorageLocation` (NABSL) custom resource requests from na
     $ oc get velero.io.backupstoragelocation
     ```
 
-```terminal title="Example output"
-NAME                         PHASE       LAST VALIDATED   AGE   DEFAULT
-test-nac-test-bsl-cd...930   Available   62s              62s   
-```
+    ```terminal title="Example output"
+    NAME                         PHASE       LAST VALIDATED   AGE   DEFAULT
+    test-nac-test-bsl-cd...930   Available   62s              62s   
+    ```

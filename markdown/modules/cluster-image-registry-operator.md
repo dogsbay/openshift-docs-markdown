@@ -14,9 +14,9 @@
 # Cluster Image Registry capability {id="_cluster_image_registry_capability"}
 {% endif %}
 
-{%- if cluster_caps %}
-The Cluster Image Registry Operator provides features for the `ImageRegistry` capability.
-{% endif %} {._abstract}
+{% if cluster_caps %}
+The Cluster Image Registry Operator provides features for the `ImageRegistry` capability. {._abstract}
+{% endif %}
 
 The Cluster Image Registry Operator manages a singleton instance of the {{ product_registry }}. It manages all configuration of the registry, including creating storage.
 
@@ -45,8 +45,8 @@ Project
 :   See "cluster-image-registry-operator".
 
 {% if context == "operator-reference" %}
-{%- set operator_ref = false -%}
+{%- set operator_ref = "" -%}
 {% endif %}
 {% if context == "cluster-capabilities" %}
-{%- set cluster_caps = false -%}
+{%- set cluster_caps = "" -%}
 {% endif %}

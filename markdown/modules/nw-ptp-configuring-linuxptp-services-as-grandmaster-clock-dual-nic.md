@@ -37,8 +37,8 @@ See "Configuring the PTP fast event notifications publisher" for more informatio
 
 1.  Create the `PtpConfig` CR. For example:
     1.  Save the following YAML in the `grandmaster-clock-ptp-config-dual-nics.yaml` file:
-        ```yaml
-{% include "./snippets/ptp_PtpConfigDualCardGmWpc.yaml" %}
+        ```yaml {minja}
+        {% include "./snippets/ptp_PtpConfigDualCardGmWpc.yaml" %}
         ```
 
         :::note

@@ -5,10 +5,10 @@ After an uncontrolled host shutdown or cluster reboot, CRI-O automatically delet
 This can result in unacceptably slow recovery times or recovery failures.
 To prevent this from happening in {{ sno }} clusters that you install with {{ ztp }}, disable the CRI-O delete cache feature during cluster installation. {._abstract}
 
-```yaml title="Recommended MachineConfig CR to disable CRI-O cache wipe on control plane nodes (99-crio-disable-wipe-master.yaml)"
+```yaml title="Recommended MachineConfig CR to disable CRI-O cache wipe on control plane nodes (99-crio-disable-wipe-master.yaml)" {minja}
 {% include "./snippets/ztp_99-crio-disable-wipe-master.yaml" %}
 ```
 
-```yaml title="Recommended MachineConfig CR to disable CRI-O cache wipe on worker nodes (99-crio-disable-wipe-worker.yaml)"
+```yaml title="Recommended MachineConfig CR to disable CRI-O cache wipe on worker nodes (99-crio-disable-wipe-worker.yaml)" {minja}
 {% include "./snippets/ztp_99-crio-disable-wipe-worker.yaml" %}
 ```

@@ -3,12 +3,12 @@ title: Upgrading the MetalLB Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Upgrading the MetalLB Operator {id="metallb-upgrading-operator"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "metallb-upgrading-operator" %}
 
-The `Subscription` custom resource (CR) for the MetalLB Operator is used to manage whether the Operator is upgraded automatically or manually.
+The `Subscription` custom resource (CR) for the MetalLB Operator is used to manage whether the Operator is upgraded automatically or manually. {._abstract}
 
 By default, the `Subscription` CR assigns the namespace to `metallb-system` and automatically sets the `installPlanApproval` parameter to `Automatic`. This means that when Red&#160;Hat-provided Operator catalogs include a newer version of the MetalLB Operator, the MetalLB Operator is automatically upgraded.
 

@@ -28,7 +28,7 @@ This sample YAML file is provided for reference only. You must obtain your `inst
 :::
 
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com (1)
 credentialsMode: Mint (2)
@@ -86,8 +86,8 @@ metadata:
   name: test-cluster (1)
 {%- if without_networking %}
 networking:
-{% endif %}
-{% if with_networking %}
+{%- endif %}
+{%- if with_networking %}
 networking: (3)
 {%- endif %}
   clusterNetwork:
@@ -113,14 +113,14 @@ platform:
     network: existing_vpc (10)
     controlPlaneSubnet: control_plane_subnet (11)
     computeSubnet: compute_subnet (12)
-{% endif %}
-{% if not restricted %}
+{%- endif %}
+{%- if not restricted %}
 pullSecret: '{"auths": ...}' (1)
-{% endif %}
-{% if restricted %}
+{%- endif %}
+{%- if restricted %}
 pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}' (13)
-{% endif %}
-{% if not (vpc or restricted) %}
+{%- endif %}
+{%- if not (vpc or restricted) %}
 {% if not openshift_origin %}
 fips: false (10)
 sshKey: ssh-ed25519 AAAA... (11)
@@ -182,7 +182,7 @@ imageContentSources: (16)
   - <local_registry>/<local_repository_name>/release
   source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
 {% endif %}
-{%- endif %}
+{% endif %}
 ```
 1.  Required. The installation program prompts you for this value.
 1.  Optional: Add this parameter to force the Cloud Credential Operator (CCO) to use the specified mode. By default, the CCO uses the root credentials in the `kube-system` namespace to dynamically try to determine the capabilities of the credentials. For details about CCO modes, see the "About the Cloud Credential Operator" section in the _Authentication and authorization_ guide.
@@ -196,7 +196,7 @@ imageContentSources: (16)
     
     :::
 
-1.  Optional: The custom encryption key section to encrypt both virtual machines and persistent volumes. Your default compute service account must have the permissions granted to use your KMS key and have the correct IAM role assigned. The default service account name follows the `service-<project_number>@compute-system.iam.gserviceaccount.com` pattern. For more information about granting the correct permissions for your service account, see "Machine management" -> "Creating compute machine sets" -> "Creating a compute machine set on {{ gcp_short }}".
+1.  Optional: The custom encryption key section to encrypt both virtual machines and persistent volumes. Your default compute service account must have the permissions granted to use your KMS key and have the correct IAM role assigned. The default service account name follows the `service-<project_number>@compute-system.iam.gserviceaccount.com` pattern. For more information about granting the correct permissions for your service account, see "Machine management" → "Creating compute machine sets" → "Creating a compute machine set on {{ gcp_short }}".
 1.  Optional: A set of network tags to apply to the control plane or compute machine sets. The `platform.gcp.defaultMachinePlatform.tags` parameter will apply to both control plane and compute machines. If the `compute.platform.gcp.tags` or `controlPlane.platform.gcp.tags` parameters are set, they override the `platform.gcp.defaultMachinePlatform.tags` parameter.
 1.  Optional: A custom {{ op_system_first }} that should be used to boot control plane and compute machines. The `project` and `name` parameters under `platform.gcp.defaultMachinePlatform.osImage` apply to both control plane and compute machines. If the `project` and `name` parameters under `controlPlane.platform.gcp.osImage` or `compute.platform.gcp.osImage` are set, they override the `platform.gcp.defaultMachinePlatform.osImage` parameters.
 1.  The cluster network plugin to install. The default value `OVNKubernetes` is the only supported value.
@@ -204,11 +204,11 @@ imageContentSources: (16)
 1.  Specify the name of an existing VPC.
 1.  Specify the name of the existing subnet to deploy the control plane machines to. The subnet must belong to the VPC that you specified.
 1.  Specify the name of the existing subnet to deploy the compute machines to. The subnet must belong to the VPC that you specified.
-{% endif %}
-{% if restricted %}
+{%- endif %}
+{%- if restricted %}
 1.  For `<local_registry>`, specify the registry domain name, and optionally the port, that your mirror registry uses to serve content. For example, `registry.example.com` or `registry.example.com:5000`. For `<credentials>`, specify the base64-encoded user name and password for your mirror registry.
-{% endif %}
-{% if vpc %}
+{%- endif %}
+{%- if vpc %}
 {% if not openshift_origin %}
 1.  Whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
 
@@ -257,7 +257,7 @@ imageContentSources: (16)
 {% if openshift_origin %}
 1.  You can optionally provide the `sshKey` value that you use to access the machines in your cluster.
 {% endif %}
-{%- endif %}
+{% endif %}
 
     :::note
 
@@ -265,7 +265,7 @@ imageContentSources: (16)
     
     :::
 
-{%- if private %}
+{% if private %}
 {% if not openshift_origin %}
 1.  How to publish the user-facing endpoints of your cluster. Set `publish` to `Internal` to deploy a private cluster, which cannot be accessed from the internet. The default value is `External`.
 {% endif %}
@@ -285,18 +285,18 @@ imageContentSources: (16)
 {% endif %}
 
 {% if context == "installing-gcp-network-customizations" %}
-{%- set with_networking = false -%}
+{%- set with_networking = "" -%}
 {% endif %}
 {% if context != "installing-gcp-network-customizations" %}
-{%- set without_networking = false -%}
+{%- set without_networking = "" -%}
 {% endif %}
 {% if context == "installing-gcp-vpc" %}
-{%- set vpc = false -%}
+{%- set vpc = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
-{%- set private = false -%}
-{%- set vpc = false -%}
+{%- set private = "" -%}
+{%- set vpc = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp-installer-provisioned" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

@@ -15,7 +15,7 @@ You can configure an Ethernet network device by defining an `SriovNetwork` objec
 
 The following YAML describes an `SriovNetwork` object:
 
-```yaml
+```yaml {minja}
 apiVersion: sriovnetwork.openshift.io/v1
 kind: SriovNetwork
 metadata:
@@ -64,7 +64,7 @@ spec:
     
     :::
 
-{%- if ocp_sriov_net %}
+{% if ocp_sriov_net %}
 
 `spec.ipam`
 :   Specifies a configuration object for the IPAM CNI plugin as a YAML block scalar. The plugin manages IP address assignment for the attachment definition.
@@ -101,8 +101,8 @@ spec:
 
 
 `spec.capabilities`
-:   Optional: Specifies the capabilities to configure for this additional network. You can specify ’{ "ips": true }'` to enable IP address support or ’{ "mac": true }'` to enable MAC address support.
-{%- endif %}
+:   Optional: Specifies the capabilities to configure for this additional network. You can specify `'{ "ips": true }'` to enable IP address support or `'{ "mac": true }'` to enable MAC address support.
+{% endif %}
 
 {% if object %}
 {% endif %}

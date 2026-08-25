@@ -121,6 +121,6 @@ spec:
 {% endif %}
 
 {% if ovn %}
-{%- set ovn = false -%}
-{%- set egress_pod_image_name = false -%}
+{%- set ovn = "" -%}
+{%- set egress_pod_image_name = "" -%}
 {% endif %}

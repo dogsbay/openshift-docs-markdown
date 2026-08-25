@@ -3,7 +3,7 @@
 
 {%- set FeatureName = "RDMA over Converged Ethernet (RoCE)" %}
 {% leveloffset +0 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}
-{%- set FeatureName = false %}
+{%- set FeatureName = "" %}
 
 RDMA over Converged Ethernet (RoCE) is the only supported mode when using RDMA on {{ product_title }}. {._abstract}
 

@@ -54,17 +54,15 @@ Configure a GitHub webhook to set up automated deployments for your OSToy applic
     1.  Comment out line 8 (containing `let randomColor = getRandomColor();`).
     1.  Uncomment line 9 (containing `let randomColor = getRandomGrayScaleColor();`).
 
-```javascript
-7   app.get('/', function(request, response) {
-8   //let randomColor = getRandomColor(); // <-- comment this
-9   let randomColor = getRandomGrayScaleColor(); // <-- uncomment this
-10   
-11  response.writeHead(200, {'Content-Type': 'application/json'});
-```
-
-.. Enter a message for the update, such as "changed box to grayscale colors".
-.. Click **Commit** at the bottom to commit the changes to the main branch.
-
+        ```javascript
+        7   app.get('/', function(request, response) {
+        8   //let randomColor = getRandomColor(); // <-- comment this
+        9   let randomColor = getRandomGrayScaleColor(); // <-- uncomment this
+        10   
+        11  response.writeHead(200, {'Content-Type': 'application/json'});
+        ```
+    1.  Enter a message for the update, such as "changed box to grayscale colors".
+    1.  Click **Commit** at the bottom to commit the changes to the main branch.
 1.  In your cluster’s web UI, click **Builds > Builds** to determine the status of the build. After this build is completed, the deployment begins. You can also check the status by running `oc status` in your terminal. 
     ![Build Run](/_assets/images/ostoy-builddone.png)
 1.  After the deployment has finished, return to the OSToy application in your browser. Access the **Networking** menu item on the left. The box color is now limited to grayscale colors only.

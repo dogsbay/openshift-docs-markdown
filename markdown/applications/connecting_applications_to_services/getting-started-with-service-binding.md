@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Getting started with service binding {id="getting-started-with-service-binding"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Getting started with service binding {id="getting-started-with-service-binding"}
 {%- set context = "getting-started-with-service-binding" %}
 
 The {{ servicebinding_title }} manages the data plane for workloads and backing services. This guide provides instructions with examples to help you create a database instance, deploy an application, and use the {{ servicebinding_title }} to create a binding connection between the application and the database service. {._abstract}
@@ -25,8 +25,8 @@ The {{ servicebinding_title }} manages the data plane for workloads and backing 
     
     :::
 
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You have installed the 5.1.2 version of the Crunchy Postgres for Kubernetes Operator from the software catalog using the **v5** Update channel. The installed Operator is available in an appropriate project, such as the `my-petclinic` project.
 
     :::note
@@ -35,7 +35,7 @@ The {{ servicebinding_title }} manages the data plane for workloads and backing 
     
     :::
 
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/sbo-creating-a-postgresql-database-instance.md" %}{% endleveloffset %}
 

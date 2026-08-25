@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{%- if context != "operator-reference" %}
+{% if context != "operator-reference" %}
 # Component responsibilities {id="olm-architecture_{{ context }}"}
 
 {% endif %}
@@ -10,7 +10,7 @@
 
 Operator Lifecycle Manager (OLM) and the Catalog Operator manage the following custom resource definitions (CRDs) that form the basis of the Operator Framework. {._abstract}
 
-***CRDs managed by OLM and Catalog Operators***
+**CRDs managed by OLM and Catalog Operators**
 
 <table>
 <thead>
@@ -59,9 +59,33 @@ Each of these Operators is also responsible for creating the following resources
 
 **Resources created by OLM and Catalog Operators**
 
-| Resource | Owner |
-| --- | --- |
-| `Deployments` .4+.^ | OLM |
-| `ServiceAccounts` | `(Cluster)Roles` |
-| `(Cluster)RoleBindings` | `CustomResourceDefinitions` (CRDs) .2+.^ |
-| Catalog | `ClusterServiceVersions` |
+<table>
+<thead>
+<tr>
+  <th>Resource</th>
+  <th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>Deployments</code></td>
+  <td rowspan="4">OLM</td>
+</tr>
+<tr>
+  <td><code>ServiceAccounts</code></td>
+</tr>
+<tr>
+  <td><code>(Cluster)Roles</code></td>
+</tr>
+<tr>
+  <td><code>(Cluster)RoleBindings</code></td>
+</tr>
+<tr>
+  <td><code>CustomResourceDefinitions</code> (CRDs)</td>
+  <td rowspan="2">Catalog</td>
+</tr>
+<tr>
+  <td><code>ClusterServiceVersions</code></td>
+</tr>
+</tbody>
+</table>

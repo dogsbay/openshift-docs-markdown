@@ -26,7 +26,7 @@ You can update the virtual hardware for templates on vSphere. {._abstract}
     
     :::
 
-1.  Convert the VM in the {{ vmw_short }} client to a template by right-clicking on the VM and then selecting ***Template -> Convert to Template***.
+1.  Convert the VM in the {{ vmw_short }} client to a template by right-clicking on the VM and then selecting **Template → Convert to Template**.
 
     :::important
 

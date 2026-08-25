@@ -99,11 +99,11 @@ If a node loses power during the rekeying, it is possible that it might become u
     a second policy to check that all the daemon set pods are READY, and a placement rule to apply it to the appropriate set of clusters.
 
 
-:::note
+    :::note
 
-After validating that the daemon set has successfully rekeyed all servers, delete the daemon set. If you do not delete the daemon set, it must be deleted before the next rekeying operation.
-
-:::
+    After validating that the daemon set has successfully rekeyed all servers, delete the daemon set. If you do not delete the daemon set, it must be deleted before the next rekeying operation.
+    
+    :::
 
 
 **Verification**

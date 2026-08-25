@@ -20,7 +20,7 @@ After you have created a channel and an event sink, also known as a _subscriber_
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** -> **Eventing**.
+1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** → **Eventing**.
 1.  In the **Channel** tab, select the Options menu {{ kebab }} for the channel that you want to add a subscription to.
 1.  Click **Add Subscription** in the list.
 1.  In the **Add Subscription** dialogue box, select a **Subscriber** for the subscription. The subscriber is the Knative service that receives events from the channel.

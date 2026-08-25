@@ -10,4 +10,4 @@ You can view the ClusterVersion history and status information in the {{ product
 
 **Procedure**
 
-*   From the web console, click **Administration** -> **Cluster Settings** and review the contents of the **Details** tab.
+*   From the web console, click **Administration** → **Cluster Settings** and review the contents of the **Details** tab.

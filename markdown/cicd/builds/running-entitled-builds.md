@@ -3,11 +3,11 @@ title: Using Red Hat subscriptions in builds
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using Red Hat subscriptions in builds {id="running-entitled-builds"}
 {% include "./_attributes/common-attributes.md" %}
+# Using Red Hat subscriptions in builds {id="running-entitled-builds"}
 {%- set context = "running-entitled-builds" %}
 
-Use the following sections to install Red Hat subscription content within {{ product_title }} builds.
+Use the following sections to install Red Hat subscription content within {{ product_title }} builds. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/builds-create-imagestreamtag.md" %}{% endleveloffset %}
 
@@ -24,6 +24,7 @@ Use the following sections to install Red Hat subscription content within {{ pro
 {% leveloffset +2 %}{% include "./modules/builds-strategy-docker-entitled-satellite.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [How to use builds with Red Hat Satellite subscriptions and which certificate to use](https://access.redhat.com/solutions/5847331)
 
@@ -33,7 +34,7 @@ Use the following sections to install Red Hat subscription content within {{ pro
 
 {% endif %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   [Importing simple content access certificates with {{ insights_operator }}](/support/remote_health_monitoring/insights-operator-simple-access#insights-operator-simple-access)

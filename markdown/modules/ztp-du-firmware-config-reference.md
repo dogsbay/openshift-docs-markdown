@@ -21,8 +21,8 @@ The following table is a general recommendation for vDU cluster host firmware co
 | Uncore Frequency Scaling | Disabled | Disable Uncore Frequency Scaling to prevent the voltage and frequency of non-core parts of the CPU from being set independently. |
 | Uncore Frequency | Maximum | Sets the non-core parts of the CPU such as cache and memory controller to their maximum possible frequency of operation. |
 | Performance P-limit | Disabled | Disable Performance P-limit to prevent the Uncore frequency coordination of processors. |
-| Enhanced Intel(R) SpeedStep Tech | Enabled | Enable Enhanced Intel SpeedStep to allow the system to dynamically adjust processor voltage and core frequency that decreases power consumption and heat production in the host. |
-| Intel(R) Turbo Boost Technology | Enabled | Enable Turbo Boost Technology for Intel-based CPUs to automatically allow processor cores to run faster than the rated operating frequency if they are operating below power, current, and temperature specification limits. |
+| Enhanced Intel® SpeedStep Tech | Enabled | Enable Enhanced Intel SpeedStep to allow the system to dynamically adjust processor voltage and core frequency that decreases power consumption and heat production in the host. |
+| Intel® Turbo Boost Technology | Enabled | Enable Turbo Boost Technology for Intel-based CPUs to automatically allow processor cores to run faster than the rated operating frequency if they are operating below power, current, and temperature specification limits. |
 | Intel Configurable TDP | Enabled | Enables Thermal Design Power (TDP) for the CPU. |
 | Configurable TDP Level | Level 2 | TDP level sets the CPU power consumption required for a particular performance rating. TDP level 2 sets the CPU to the most stable performance level at the cost of power consumption. |
 | Energy Efficient Turbo | Disabled | Disable Energy Efficient Turbo to prevent the processor from using an energy-efficiency based policy. |

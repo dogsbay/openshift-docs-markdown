@@ -120,5 +120,5 @@ The `nmstateconfig` parameter must be configured for the KVM boot.
 
 
 {% if context == "prepare-pxe-assets-agent" %}
-{%- set pxe_boot = false -%}
+{%- set pxe_boot = "" -%}
 {% endif %}

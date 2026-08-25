@@ -11,7 +11,7 @@ To ensure traffic is routed to the correct application when multiple services sh
 **Procedure**
 
 1.  Create or edit an `HTTPRoute` YAML file to include your desired match conditions under the `spec.rules.matches` field. 
-    The following example demonstrates a complete `HTTPRoute` custom resource (CR) configured with path-based matching to route requests for `/<example_app>` to a backend service. For details on configuring other match types, see [#!supported-httproute-match-types_{{ context }}](#supported-httproute-match-types_{{ context }}).
+    The following example demonstrates a complete `HTTPRoute` custom resource (CR) configured with path-based matching to route requests for `/<example_app>` to a backend service. For details on configuring other match types, see [supported-httproute-match-types_{{ context }}](#supported-httproute-match-types_{{ context }}).
 
     ```yaml
     apiVersion: gateway.networking.k8s.io/v1

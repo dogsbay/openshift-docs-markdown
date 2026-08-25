@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-```yaml
+```yaml {minja}
 - fileName: StorageLVMOSubscriptionNS.yaml
   policyName: subscription-policies
 - fileName: StorageLVMOSubscriptionOperGroup.yaml

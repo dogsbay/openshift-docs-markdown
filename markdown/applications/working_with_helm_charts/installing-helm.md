@@ -3,8 +3,8 @@ title: Installing Helm
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing Helm {id="installing-helm"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing Helm {id="installing-helm"}
 {%- set context = "installing-helm" %}
 
 Install the Helm CLI to manage software packages on your {{ product_title }} cluster from a local workstation.

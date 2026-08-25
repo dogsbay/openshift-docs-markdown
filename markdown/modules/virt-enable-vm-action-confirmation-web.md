@@ -5,6 +5,6 @@ The **Stop**, **Restart**, and **Pause** actions can display confirmation dialog
 
 **Procedure**
 
-1.  Click **Virtualization** -> **Settings** -> **Cluster** -> **General settings**.
+1.  Click **Virtualization** → **Settings** → **Cluster** → **General settings**.
 1.  Click **VirtualMachine actions confirmation**.
 1.  Toggle the **VirtualMachine actions confirmation** setting to **On**.

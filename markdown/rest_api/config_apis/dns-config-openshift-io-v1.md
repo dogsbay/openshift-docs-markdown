@@ -1,5 +1,5 @@
 ---
-title: "DNS []"
+title: "DNS [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,10 +43,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `baseDomain` | `string` | baseDomain is the base domain of the cluster. All managed DNS records will be sub-domains of this base. For example, given the base domain `openshift.example.com`, an API server DNS record may be created for `cluster-api.openshift.example.com`. Once set, this field cannot be changed. |
+| `baseDomain` | `string` | baseDomain is the base domain of the cluster. All managed DNS records will be sub-domains of this base.<br>For example, given the base domain `openshift.example.com`, an API server DNS record may be created for `cluster-api.openshift.example.com`.<br>Once set, this field cannot be changed. |
 | `platform` | `object` | platform holds configuration specific to the underlying infrastructure provider for DNS. When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. |
-| `privateZone` | `object` | privateZone is the location where all the DNS records that are only available internally to the cluster exist. If this field is nil, no private records should be created. Once set, this field cannot be changed. |
-| `publicZone` | `object` | publicZone is the location where all the DNS records that are publicly accessible to the internet exist. If this field is nil, no public records should be created. Once set, this field cannot be changed. |
+| `privateZone` | `object` | privateZone is the location where all the DNS records that are only available internally to the cluster exist.<br>If this field is nil, no private records should be created.<br>Once set, this field cannot be changed. |
+| `publicZone` | `object` | publicZone is the location where all the DNS records that are publicly accessible to the internet exist.<br>If this field is nil, no public records should be created.<br>Once set, this field cannot be changed. |
+
 ### .spec.platform {id="_specplatform"}
 
 Description
@@ -65,7 +67,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `aws` | `object` | aws contains DNS configuration specific to the Amazon Web Services cloud provider. |
-| `type` | `string` | type is the underlying infrastructure provider for the cluster. Allowed values: "", "AWS". Individual components may not support all platforms, and must handle unrecognized platforms with best-effort defaults. |
+| `type` | `string` | type is the underlying infrastructure provider for the cluster. Allowed values: "", "AWS".<br>Individual components may not support all platforms, and must handle unrecognized platforms with best-effort defaults. |
+
 ### .spec.platform.aws {id="_specplatformaws"}
 
 Description
@@ -77,7 +80,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `privateZoneIAMRole` | `string` | privateZoneIAMRole contains the ARN of an IAM role that should be assumed when performing operations on the cluster’s private hosted zone specified in the cluster DNS config. When left empty, no role should be assumed. The ARN must follow the format: arn:&lt;partition>:iam::&lt;account-id>:role/&lt;role-name>, where: &lt;partition> is the AWS partition (aws, aws-cn, aws-us-gov, or aws-eusc), &lt;account-id> is a 12-digit numeric identifier for the AWS account, &lt;role-name> is the IAM role name. |
+| `privateZoneIAMRole` | `string` | privateZoneIAMRole contains the ARN of an IAM role that should be assumed when performing operations on the cluster’s private hosted zone specified in the cluster DNS config. When left empty, no role should be assumed.<br>The ARN must follow the format: arn:&lt;partition>:iam::&lt;account-id>:role/&lt;role-name>, where: &lt;partition> is the AWS partition (aws, aws-cn, aws-us-gov, or aws-eusc), &lt;account-id> is a 12-digit numeric identifier for the AWS account, &lt;role-name> is the IAM role name. |
+
 ### .spec.privateZone {id="_specprivatezone"}
 
 Description
@@ -96,8 +100,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone. on AWS zone can be fetched using `ID` as id in [1] on Azure zone can be fetched using `ID` as a pre-determined name in [2], on GCP zone can be fetched using `ID` as a pre-determined name in [3]. [1]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options [2]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show [3]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
-| `tags` | `object (string)` | tags can be used to query the DNS hosted zone. on AWS, resourcegroupstaggingapi [1] can be used to fetch a zone using `Tags` as tag-filters, [1]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
+| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone.<br>on AWS zone can be fetched using `ID` as id in [1] on Azure zone can be fetched using `ID` as a pre-determined name in [2], on GCP zone can be fetched using `ID` as a pre-determined name in [3].<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options [2]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show [3]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
+| `tags` | `object (string)` | tags can be used to query the DNS hosted zone.<br>on AWS, resourcegroupstaggingapi [1] can be used to fetch a zone using `Tags` as tag-filters,<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
+
 ### .spec.publicZone {id="_specpubliczone"}
 
 Description
@@ -116,8 +121,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone. on AWS zone can be fetched using `ID` as id in [1] on Azure zone can be fetched using `ID` as a pre-determined name in [2], on GCP zone can be fetched using `ID` as a pre-determined name in [3]. [1]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options [2]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show [3]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
-| `tags` | `object (string)` | tags can be used to query the DNS hosted zone. on AWS, resourcegroupstaggingapi [1] can be used to fetch a zone using `Tags` as tag-filters, [1]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
+| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone.<br>on AWS zone can be fetched using `ID` as id in [1] on Azure zone can be fetched using `ID` as a pre-determined name in [2], on GCP zone can be fetched using `ID` as a pre-determined name in [3].<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options [2]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show [3]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
+| `tags` | `object (string)` | tags can be used to query the DNS hosted zone.<br>on AWS, resourcegroupstaggingapi [1] can be used to fetch a zone using `Tags` as tag-filters,<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
+
 ### .status {id="_status"}
 
 Description
@@ -135,12 +141,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of DNS
     *   `GET`: list objects of kind DNS
     *   `POST`: create a DNS
-*   `/apis/config.openshift.io/v1/dnses/{{ name }}`
+*   `/apis/config.openshift.io/v1/dnses/{{ name }}`{minja}
     *   `DELETE`: delete a DNS
     *   `GET`: read the specified DNS
     *   `PATCH`: partially update the specified DNS
     *   `PUT`: replace the specified DNS
-*   `/apis/config.openshift.io/v1/dnses/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/dnses/{{ name }}/status`{minja}
     *   `GET`: read status of the specified DNS
     *   `PATCH`: partially update status of the specified DNS
     *   `PUT`: replace status of the specified DNS

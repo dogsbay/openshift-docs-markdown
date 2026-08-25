@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NodeSpec describes the attributes that a node is created with. |
 | `status` | `object` | NodeStatus is information about the current status of a node. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -43,6 +44,7 @@ Type
 | `taints` | `array` | If specified, the node’s taints. |
 | `taints[]` | `object` | The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint. |
 | `unschedulable` | `boolean` | Unschedulable controls node schedulability of new pods. By default, node is schedulable. More info: https://kubernetes.io/docs/concepts/nodes/node/#manual-node-administration |
+
 ### .spec.configSource {id="_specconfigsource"}
 
 Description
@@ -55,6 +57,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `configMap` | `object` | ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. This API is deprecated since 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration |
+
 ### .spec.configSource.configMap {id="_specconfigsourceconfigmap"}
 
 Description
@@ -77,6 +80,7 @@ Required
 | `namespace` | `string` | Namespace is the metadata.namespace of the referenced ConfigMap. This field is required in all cases. |
 | `resourceVersion` | `string` | ResourceVersion is the metadata.ResourceVersion of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. |
 | `uid` | `string` | UID is the metadata.UID of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. |
+
 ### .spec.taints {id="_spectaints"}
 
 Description
@@ -102,10 +106,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `effect` | `string` | Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute. Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.  - `"NoSchedule"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.  - `"PreferNoSchedule"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler. |
+| `effect` | `string` | Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.<br>Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the taint. Currently enforced by NodeController.  - `"NoSchedule"` Do not allow new pods to schedule onto the node unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running. Enforced by the scheduler.  - `"PreferNoSchedule"` Like TaintEffectNoSchedule, but the scheduler tries not to schedule new pods onto the node, rather than prohibiting new pods from scheduling onto the node entirely. Enforced by the scheduler. |
 | `key` | `string` | Required. The taint key to be applied to a node. |
 | `timeAdded` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | TimeAdded represents the time at which the taint was added. |
 | `value` | `string` | The taint value corresponding to the taint key. |
+
 ### .status {id="_status"}
 
 Description
@@ -130,12 +135,13 @@ Type
 | `images` | `array` | List of container images on this node |
 | `images[]` | `object` | Describe a container image |
 | `nodeInfo` | `object` | NodeSystemInfo is a set of ids/uuids to uniquely identify the node. |
-| `phase` | `string` | NodePhase is the recently observed lifecycle phase of the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#phase The field is never populated, and now is deprecated. Possible enum values:  - `"Pending"` means the node has been created/added by the system, but not configured.  - `"Running"` means the node has been configured and has Kubernetes components running.  - `"Terminated"` means the node has been removed from the cluster. |
+| `phase` | `string` | NodePhase is the recently observed lifecycle phase of the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#phase The field is never populated, and now is deprecated.<br>Possible enum values:  - `"Pending"` means the node has been created/added by the system, but not configured.  - `"Running"` means the node has been configured and has Kubernetes components running.  - `"Terminated"` means the node has been removed from the cluster. |
 | `runtimeHandlers` | `array` | The available runtime handlers. |
 | `runtimeHandlers[]` | `object` | NodeRuntimeHandler is a set of runtime handler information. |
 | `volumesAttached` | `array` | List of volumes that are attached to the node. |
 | `volumesAttached[]` | `object` | AttachedVolume describes a volume attached to a node |
 | `volumesInUse` | `array (string)` | List of attachable volumes in use (mounted) by the node. |
+
 ### .status.addresses {id="_statusaddresses"}
 
 Description
@@ -163,6 +169,7 @@ Required
 | --- | --- | --- |
 | `address` | `string` | The node address. |
 | `type` | `string` | Node address type, one of Hostname, ExternalIP or InternalIP. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -194,6 +201,7 @@ Required
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | Status of the condition, one of True, False, Unknown. |
 | `type` | `string` | Type of node condition. |
+
 ### .status.config {id="_statusconfig"}
 
 Description
@@ -209,6 +217,7 @@ Type
 | `assigned` | `object` | NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. This API is deprecated since 1.22 |
 | `error` | `string` | Error describes any problems reconciling the Spec.ConfigSource to the Active config. Errors may occur, for example, attempting to checkpoint Spec.ConfigSource to the local Assigned record, attempting to checkpoint the payload associated with Spec.ConfigSource, attempting to load or validate the Assigned config, etc. Errors may occur at different points while syncing config. Earlier errors (e.g. download or checkpointing errors) will not result in a rollback to LastKnownGood, and may resolve across Kubelet retries. Later errors (e.g. loading or validating a checkpointed config) will result in a rollback to LastKnownGood. In the latter case, it is usually possible to resolve the error by fixing the config assigned in Spec.ConfigSource. You can find additional information for debugging by searching the error message in the Kubelet log. Error is a human-readable description of the error state; machines can check whether or not Error is empty, but should not rely on the stability of the Error text across Kubelet versions. |
 | `lastKnownGood` | `object` | NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. This API is deprecated since 1.22 |
+
 ### .status.config.active {id="_statusconfigactive"}
 
 Description
@@ -221,6 +230,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `configMap` | `object` | ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. This API is deprecated since 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration |
+
 ### .status.config.active.configMap {id="_statusconfigactiveconfigmap"}
 
 Description
@@ -243,6 +253,7 @@ Required
 | `namespace` | `string` | Namespace is the metadata.namespace of the referenced ConfigMap. This field is required in all cases. |
 | `resourceVersion` | `string` | ResourceVersion is the metadata.ResourceVersion of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. |
 | `uid` | `string` | UID is the metadata.UID of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. |
+
 ### .status.config.assigned {id="_statusconfigassigned"}
 
 Description
@@ -255,6 +266,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `configMap` | `object` | ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. This API is deprecated since 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration |
+
 ### .status.config.assigned.configMap {id="_statusconfigassignedconfigmap"}
 
 Description
@@ -277,6 +289,7 @@ Required
 | `namespace` | `string` | Namespace is the metadata.namespace of the referenced ConfigMap. This field is required in all cases. |
 | `resourceVersion` | `string` | ResourceVersion is the metadata.ResourceVersion of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. |
 | `uid` | `string` | UID is the metadata.UID of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. |
+
 ### .status.config.lastKnownGood {id="_statusconfiglastknowngood"}
 
 Description
@@ -289,6 +302,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `configMap` | `object` | ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. This API is deprecated since 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration |
+
 ### .status.config.lastKnownGood.configMap {id="_statusconfiglastknowngoodconfigmap"}
 
 Description
@@ -311,6 +325,7 @@ Required
 | `namespace` | `string` | Namespace is the metadata.namespace of the referenced ConfigMap. This field is required in all cases. |
 | `resourceVersion` | `string` | ResourceVersion is the metadata.ResourceVersion of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. |
 | `uid` | `string` | UID is the metadata.UID of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. |
+
 ### .status.daemonEndpoints {id="_statusdaemonendpoints"}
 
 Description
@@ -323,6 +338,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `kubeletEndpoint` | `object` | DaemonEndpoint contains information about a single Daemon endpoint. |
+
 ### .status.daemonEndpoints.kubeletEndpoint {id="_statusdaemonendpointskubeletendpoint"}
 
 Description
@@ -339,6 +355,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `Port` | `integer` | Port number of the given endpoint. |
+
 ### .status.features {id="_statusfeatures"}
 
 Description
@@ -351,6 +368,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `supplementalGroupsPolicy` | `boolean` | SupplementalGroupsPolicy is set to true if the runtime supports SupplementalGroupsPolicy and ContainerUser. |
+
 ### .status.images {id="_statusimages"}
 
 Description
@@ -373,6 +391,7 @@ Type
 | --- | --- | --- |
 | `names` | `array (string)` | Names by which this image is known. e.g. ["kubernetes.example/hyperkube:v1.0.7", "cloud-vendor.registry.example/cloud-vendor/hyperkube:v1.0.7"] |
 | `sizeBytes` | `integer` | The size of the image in bytes. |
+
 ### .status.nodeInfo {id="_statusnodeinfo"}
 
 Description
@@ -408,6 +427,7 @@ Required
 | `osImage` | `string` | OS Image reported by the node from /etc/os-release (e.g. Debian GNU/Linux 7 (wheezy)). |
 | `swap` | `object` | NodeSwapStatus represents swap memory information. |
 | `systemUUID` | `string` | SystemUUID reported by the node. For unique machine identification MachineID is preferred. This field is specific to Red Hat hosts https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html/rhsm/uuid |
+
 ### .status.nodeInfo.swap {id="_statusnodeinfoswap"}
 
 Description
@@ -420,6 +440,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `capacity` | `integer` | Total amount of swap memory in bytes. |
+
 ### .status.runtimeHandlers {id="_statusruntimehandlers"}
 
 Description
@@ -442,6 +463,7 @@ Type
 | --- | --- | --- |
 | `features` | `object` | NodeRuntimeHandlerFeatures is a set of features implemented by the runtime handler. |
 | `name` | `string` | Runtime handler name. Empty for the default runtime handler. |
+
 ### .status.runtimeHandlers[].features {id="_statusruntimehandlersfeatures"}
 
 Description
@@ -455,6 +477,7 @@ Type
 | --- | --- | --- |
 | `recursiveReadOnlyMounts` | `boolean` | RecursiveReadOnlyMounts is set to true if the runtime handler supports RecursiveReadOnlyMounts. |
 | `userNamespaces` | `boolean` | UserNamespaces is set to true if the runtime handler supports UserNamespaces, including for volumes. |
+
 ### .status.volumesAttached {id="_statusvolumesattached"}
 
 Description
@@ -493,14 +516,14 @@ The following API endpoints are available:
     *   `POST`: create a Node
 *   `/api/v1/watch/nodes`
     *   `GET`: watch individual changes to a list of Node. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/nodes/{{ name }}`
+*   `/api/v1/nodes/{{ name }}`{minja}
     *   `DELETE`: delete a Node
     *   `GET`: read the specified Node
     *   `PATCH`: partially update the specified Node
     *   `PUT`: replace the specified Node
-*   `/api/v1/watch/nodes/{{ name }}`
+*   `/api/v1/watch/nodes/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Node. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/api/v1/nodes/{{ name }}/status`
+*   `/api/v1/nodes/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Node
     *   `PATCH`: partially update status of the specified Node
     *   `PUT`: replace status of the specified Node

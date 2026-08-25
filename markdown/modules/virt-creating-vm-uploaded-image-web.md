@@ -9,7 +9,7 @@ You can create a virtual machine (VM) from an uploaded operating system image by
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **Catalog** in the web console.
+1.  Navigate to **Virtualization** → **Catalog** in the web console.
 1.  Click a template tile without an available boot source.
 1.  Click **Customize VirtualMachine**.
 1.  On the **Customize template parameters** page, expand **Storage** and select **Upload (Upload a new file to a PVC)** from the **Disk source** list.

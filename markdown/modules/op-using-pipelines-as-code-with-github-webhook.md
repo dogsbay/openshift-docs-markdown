@@ -20,6 +20,7 @@ $ git --amend -a --no-edit && git push --force-with-lease <origin> <branchname>
 *   Ensure that {{ pac }} is installed on the cluster.
 *   For authorization, create a personal access token on GitHub.
     *   To generate a secure and fine-grained token, restrict its scope to a specific repository and grant the following permissions:
+
         **Permissions for fine-grained tokens**
 
         | Name | Access |

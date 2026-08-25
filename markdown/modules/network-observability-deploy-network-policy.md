@@ -14,7 +14,7 @@ If you have installed Loki, Kafka or any exporter in a different namespace that 
 
 **Procedure**
 
-1.  In the web console, go to **Ecosystem** -> **Installed Operators** page.
+1.  In the web console, go to **Ecosystem** → **Installed Operators** page.
 1.  Under the **Provided APIs** heading for **Network Observability**, select **Flow Collector**.
 1.  Select **cluster** then select the **YAML** tab.
 1.  Configure the `FlowCollector` CR. A sample configuration is as follows:

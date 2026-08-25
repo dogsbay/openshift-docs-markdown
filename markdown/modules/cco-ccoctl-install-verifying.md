@@ -34,6 +34,7 @@ You can verify that a cluster uses short-term security credentials for individua
     | {{ azure_first }} | `azure-credentials` |
     | {{ gcp_first }} | `gcp-credentials` |
 
+
     An error confirms that the root secret is not present on the cluster.
     ```text title="Example output for an {{ aws_short }} cluster"
     Error from server (NotFound): secrets "aws-creds" not found

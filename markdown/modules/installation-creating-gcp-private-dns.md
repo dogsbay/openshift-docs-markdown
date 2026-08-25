@@ -36,7 +36,7 @@ If your cluster does not initialize correctly, you might have to contact Red Hat
     `<dns_zone_deployment_name>` specifies the name of the DNS zone deployment you create.
 1.  The templates do not create DNS entries due to limitations of Infrastructure Manager, so you must create them manually:
     1.  Add the internal DNS entries by running the following commands:
-        {%- if shared_vpc %}
+{% if shared_vpc %}
         ```terminal
         $ if [ -f transaction.yaml ]; then rm transaction.yaml; fi
         ```
@@ -69,9 +69,9 @@ If your cluster does not initialize correctly, you might have to contact Red Hat
         ```terminal
         $ gcloud dns record-sets transaction execute --zone ${INFRA_ID}-private-zone
         ```
-{%- endif %}
+{% endif %}
     1.  For an external cluster, also add the external DNS entries by running the following commands:
-        {%- if shared_vpc %}
+{% if shared_vpc %}
         ```terminal
         $ if [ -f transaction.yaml ]; then rm transaction.yaml; fi
         ```
@@ -105,5 +105,5 @@ If your cluster does not initialize correctly, you might have to contact Red Hat
 {% include "./snippets/gcp-infra-manager-deployment-verify.md" %}
 
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set shared_vpc = false -%}
+{%- set shared_vpc = "" -%}
 {% endif %}

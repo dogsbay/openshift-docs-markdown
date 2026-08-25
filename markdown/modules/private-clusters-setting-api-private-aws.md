@@ -53,7 +53,7 @@ $ oc get infrastructure cluster -o jsonpath='{.status.platform}'
 
 {% if post_install %}
     *   If your cluster uses a control plane machine set, remove the external load balancers by editing the `ControlPlaneMachineSet` custom resource (CR).
-        {%- endif %}
+{%- endif %}
         1.  Edit the `ControlPlaneMachineSet` CR by running the following command:
             ```terminal
             $ oc edit controlplanemachineset.machine.openshift.io cluster \
@@ -133,11 +133,11 @@ $ oc get infrastructure cluster -o jsonpath='{.status.platform}'
                 ```
             1.  Save your changes and exit the object specification.
             1.  Repeat this process for each control plane machine.
-{% endif %}
+{%- endif %}
 
 {% if context == "configuring-private-cluster" %}
-{%- set post_install = false -%}
+{%- set post_install = "" -%}
 {% endif %}
 {% if context == "cpmso-using-aws" %}
-{%- set cpmso_using_aws = false -%}
+{%- set cpmso_using_aws = "" -%}
 {% endif %}

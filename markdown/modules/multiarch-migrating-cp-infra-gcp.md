@@ -36,7 +36,7 @@ You can migrate the control plane or infra machine sets in your {{ gcp_short }} 
 
     If the cluster is not using the multi payload, migrate the cluster to a multi-architecture cluster. For more information, see "Migrating to a cluster with multi-architecture compute machines".
 1.  If you use any custom image streams, update them from single-architecture to multi-architecture by running the following command for each image stream:
-{% include "./snippets/update-image-stream-to-multi-arch.md" %}
+    {% include "./snippets/update-image-stream-to-multi-arch.md" %}
 1.  Select an instance type that matches the target architecture from [General-purpose machine family for Compute engine](https://cloud.google.com/compute/docs/general-purpose-machines) (Google documentation). Check the [Available regions and zones](https://cloud.google.com/compute/docs/regions-zones#available) table (Google documentation) to verify that the instance type is supported in your zone.
 1.  Select a supported disk type for the instance type that you selected from the "Supported disk types" section of [General-purpose machine family for Compute engine](https://cloud.google.com/compute/docs/general-purpose-machines) (Google documentation).
 1.  Determine the {{ gcp_short }} image that the machine set uses after migration by running the following command:

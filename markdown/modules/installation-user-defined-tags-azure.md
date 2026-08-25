@@ -12,5 +12,5 @@ User-defined tags
 :   User-defined tags are manually created in `install-config.yaml` file during installation. When creating the user-defined tags, you must consider the following points:
 
     *   User-defined tags on {{ azure_short }} resources can only be defined during {{ product_title }} cluster creation, and cannot be modified after the cluster is created.
-*   Support for user-defined tags is available only for the resources created in the {{ azure_short }} Public Cloud.
-*   User-defined tags are not supported for the {{ product_title }} clusters upgraded to {{ product_title }} {{ product_version }}.
+    *   Support for user-defined tags is available only for the resources created in the {{ azure_short }} Public Cloud.
+    *   User-defined tags are not supported for the {{ product_title }} clusters upgraded to {{ product_title }} {{ product_version }}.

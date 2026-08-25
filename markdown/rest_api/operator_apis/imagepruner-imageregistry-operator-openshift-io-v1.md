@@ -1,5 +1,5 @@
 ---
-title: "ImagePruner []"
+title: "ImagePruner [imageregistry.operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -33,6 +33,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ImagePrunerSpec defines the specs for the running image pruner. |
 | `status` | `object` | ImagePrunerStatus reports image pruner operational status. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -50,7 +51,7 @@ Type
 | `keepTagRevisions` | `integer` | keepTagRevisions specifies the number of image revisions for a tag in an image stream that will be preserved. Defaults to 3. |
 | `keepYoungerThan` | `integer` | keepYoungerThan specifies the minimum age in nanoseconds of an image and its referrers for it to be considered a candidate for pruning. DEPRECATED: This field is deprecated in favor of keepYoungerThanDuration. If both are set, this field is ignored and keepYoungerThanDuration takes precedence. |
 | `keepYoungerThanDuration` | `string` | keepYoungerThanDuration specifies the minimum age of an image and its referrers for it to be considered a candidate for pruning. Defaults to 60m (60 minutes). |
-| `logLevel` | `string` | logLevel sets the level of log output for the pruner job. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel sets the level of log output for the pruner job.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `nodeSelector` | `object (string)` | nodeSelector defines the node selection constraints for the image pruner pod. |
 | `resources` | `object` | resources defines the resource requests and limits for the image pruner pod. |
 | `schedule` | `string` | schedule specifies when to execute the job using standard cronjob syntax: https://wikipedia.org/wiki/Cron. Defaults to `0 0 * * *`. |
@@ -58,6 +59,7 @@ Type
 | `suspend` | `boolean` | suspend specifies whether or not to suspend subsequent executions of this cronjob. Defaults to false. |
 | `tolerations` | `array` | tolerations defines the node tolerations for the image pruner pod. |
 | `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
+
 ### .spec.affinity {id="_specaffinity"}
 
 Description
@@ -72,6 +74,7 @@ Type
 | `nodeAffinity` | `object` | Describes node affinity scheduling rules for the pod. |
 | `podAffinity` | `object` | Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). |
 | `podAntiAffinity` | `object` | Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). |
+
 ### .spec.affinity.nodeAffinity {id="_specaffinitynodeaffinity"}
 
 Description
@@ -86,6 +89,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution` | `array` | The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. |
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | An empty preferred scheduling term matches all objects with implicit weight 0 (i.e. it’s a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op). |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `object` | If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. |
+
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -122,6 +126,7 @@ Required
 | --- | --- | --- |
 | `preference` | `object` | A node selector term, associated with the corresponding weight. |
 | `weight` | `integer` | Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100. |
+
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference {id="_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreference"}
 
 Description
@@ -137,6 +142,7 @@ Type
 | `matchExpressions[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchFields` | `array` | A list of node selector requirements by node’s fields. |
 | `matchFields[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference.matchExpressions {id="_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreferencematchexpressions"}
 
 Description
@@ -166,6 +172,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution[].preference.matchFields {id="_specaffinitynodeaffinitypreferredduringschedulingignoredduringexecutionpreferencematchfields"}
 
 Description
@@ -195,6 +202,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -216,6 +224,7 @@ Required
 | --- | --- | --- |
 | `nodeSelectorTerms` | `array` | Required. A list of node selector terms. The terms are ORed. |
 | `nodeSelectorTerms[]` | `object` | A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm. |
+
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms {id="_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectorterms"}
 
 Description
@@ -242,6 +251,7 @@ Type
 | `matchExpressions[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchFields` | `array` | A list of node selector requirements by node’s fields. |
 | `matchFields[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[].matchExpressions {id="_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectortermsmatchexpressions"}
 
 Description
@@ -271,6 +281,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[].matchFields {id="_specaffinitynodeaffinityrequiredduringschedulingignoredduringexecutionnodeselectortermsmatchfields"}
 
 Description
@@ -300,6 +311,7 @@ Required
 | `key` | `string` | The label key that the selector applies to. |
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAffinity {id="_specaffinitypodaffinity"}
 
 Description
@@ -315,6 +327,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s) |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `array` | If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. |
 | `requiredDuringSchedulingIgnoredDuringExecution[]` | `object` | Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key &lt;topologyKey> matches that of any node on which a pod of the set of pods is running |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -350,6 +363,7 @@ Required
 | --- | --- | --- |
 | `podAffinityTerm` | `object` | Required. A pod affinity term, associated with the corresponding weight. |
 | `weight` | `integer` | weight associated with matching the corresponding podAffinityTerm, in the range 1-100. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinityterm"}
 
 Description
@@ -371,6 +385,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselector"}
 
 Description
@@ -386,6 +401,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector.matchExpressions {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselectormatchexpressions"}
 
 Description
@@ -415,6 +431,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselector"}
 
 Description
@@ -433,6 +450,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector.matchExpressions {id="_specaffinitypodaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselectormatchexpressions"}
 
 Description
@@ -462,6 +480,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -503,6 +522,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecutionlabelselector"}
 
 Description
@@ -518,6 +538,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector.matchExpressions {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecutionlabelselectormatchexpressions"}
 
 Description
@@ -547,6 +568,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecutionnamespaceselector"}
 
 Description
@@ -565,6 +587,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector.matchExpressions {id="_specaffinitypodaffinityrequiredduringschedulingignoredduringexecutionnamespaceselectormatchexpressions"}
 
 Description
@@ -594,6 +617,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAntiAffinity {id="_specaffinitypodantiaffinity"}
 
 Description
@@ -609,6 +633,7 @@ Type
 | `preferredDuringSchedulingIgnoredDuringExecution[]` | `object` | The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s) |
 | `requiredDuringSchedulingIgnoredDuringExecution` | `array` | If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. |
 | `requiredDuringSchedulingIgnoredDuringExecution[]` | `object` | Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key &lt;topologyKey> matches that of any node on which a pod of the set of pods is running |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecution"}
 
 Description
@@ -644,6 +669,7 @@ Required
 | --- | --- | --- |
 | `podAffinityTerm` | `object` | Required. A pod affinity term, associated with the corresponding weight. |
 | `weight` | `integer` | weight associated with matching the corresponding podAffinityTerm, in the range 1-100. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinityterm"}
 
 Description
@@ -665,6 +691,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselector"}
 
 Description
@@ -680,6 +707,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.labelSelector.matchExpressions {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermlabelselectormatchexpressions"}
 
 Description
@@ -709,6 +737,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselector"}
 
 Description
@@ -727,6 +756,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution[].podAffinityTerm.namespaceSelector.matchExpressions {id="_specaffinitypodantiaffinitypreferredduringschedulingignoredduringexecutionpodaffinitytermnamespaceselectormatchexpressions"}
 
 Description
@@ -756,6 +786,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecution"}
 
 Description
@@ -797,6 +828,7 @@ Required
 | `namespaceSelector` | `object` | A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod’s namespace". An empty selector ({}) matches all namespaces. |
 | `namespaces` | `array (string)` | namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod’s namespace". |
 | `topologyKey` | `string` | This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionlabelselector"}
 
 Description
@@ -812,6 +844,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].labelSelector.matchExpressions {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionlabelselectormatchexpressions"}
 
 Description
@@ -841,6 +874,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionnamespaceselector"}
 
 Description
@@ -859,6 +893,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[].namespaceSelector.matchExpressions {id="_specaffinitypodantiaffinityrequiredduringschedulingignoredduringexecutionnamespaceselectormatchexpressions"}
 
 Description
@@ -888,6 +923,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.resources {id="_specresources"}
 
 Description
@@ -899,10 +935,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container. This field depends on the DynamicResourceAllocation feature gate. This field is immutable. It can only be set for containers. |
+| `claims` | `array` | Claims lists the names of resources, defined in spec.resourceClaims, that are used by this container.<br>This field depends on the DynamicResourceAllocation feature gate.<br>This field is immutable. It can only be set for containers. |
 | `claims[]` | `object` | ResourceClaim references one entry in PodSpec.ResourceClaims. |
 | `limits` | `integer-or-string` | Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
 | `requests` | `integer-or-string` | Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ |
+
 ### .spec.resources.claims {id="_specresourcesclaims"}
 
 Description
@@ -937,6 +974,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container. |
 | `request` | `string` | Request is the name chosen for a request in the referenced claim. If empty, everything from the claim is made available, otherwise only the result of this request. |
+
 ### .spec.tolerations {id="_spectolerations"}
 
 Description
@@ -963,6 +1001,7 @@ Type
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists, Equal, Lt, and Gt. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category. Lt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators). |
 | `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. |
+
 ### .status {id="_status"}
 
 Description
@@ -977,6 +1016,7 @@ Type
 | `conditions` | `array` | conditions is a list of conditions and their status. |
 | `conditions[]` | `object` | OperatorCondition is just the standard condition fields. |
 | `observedGeneration` | `integer` | observedGeneration is the last generation change that has been applied. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -1017,12 +1057,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ImagePruner
     *   `GET`: list objects of kind ImagePruner
     *   `POST`: create an ImagePruner
-*   `/apis/imageregistry.operator.openshift.io/v1/imagepruners/{{ name }}`
+*   `/apis/imageregistry.operator.openshift.io/v1/imagepruners/{{ name }}`{minja}
     *   `DELETE`: delete an ImagePruner
     *   `GET`: read the specified ImagePruner
     *   `PATCH`: partially update the specified ImagePruner
     *   `PUT`: replace the specified ImagePruner
-*   `/apis/imageregistry.operator.openshift.io/v1/imagepruners/{{ name }}/status`
+*   `/apis/imageregistry.operator.openshift.io/v1/imagepruners/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ImagePruner
     *   `PATCH`: partially update status of the specified ImagePruner
     *   `PUT`: replace status of the specified ImagePruner

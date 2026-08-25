@@ -15,11 +15,12 @@ Description
     The ABI can be run on any system for example, from a laptop to generate an ISO installation image.
     The ISO is used as the installation media for the cluster control plane nodes.
     You can monitor the progress by using the ABI from any system with network connectivity to the control plane node’s API interfaces.
+
     ABI supports the following:
 
-*   Installation from declarative CRs
-*   Installation in disconnected environments
-*   No additional servers required to support installation, for example, the bastion node is no longer needed
+    *   Installation from declarative CRs
+    *   Installation in disconnected environments
+    *   No additional servers required to support installation, for example, the bastion node is no longer needed
 
 Limits and requirements
 :   *   Disconnected installation requires a registry with all required content mirrored and reachable from the installed host.

@@ -16,13 +16,13 @@ You can create an etcd cluster using the etcd Operator in the {{ product_title }
 **Procedure**
 
 1.  Create a new project in the {{ product_title }} web console for this procedure. This example uses a project called `my-etcd`.
-1.  Navigate to the **Ecosystem** -> **Installed Operators** page.
+1.  Navigate to the **Ecosystem** → **Installed Operators** page.
 
     The Operators installed on the cluster by the
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
     cluster administrator
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
     dedicated-admin
 {%- endif %}
     and available for use are shown here as a list of cluster service versions (CSVs). Each CSV launches and manages the software provided by the Operator.
@@ -63,8 +63,8 @@ You can create an etcd cluster using the etcd Operator in the {{ product_title }
 You have an etcd cluster that reacts to failures and rebalances data as pods become unhealthy or migrate between nodes in the cluster.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 Cluster administrators
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 dedicated-admins
 {%- endif %}
 or developers with proper access can use the database with their applications.

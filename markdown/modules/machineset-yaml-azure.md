@@ -8,21 +8,21 @@
 You can define a machine set YAML to provision nodes by specifying parameters such as `vmSize` and `image`. You can use this to automate and scale infrastructure consistently, to ensure compute nodes meet specific workload requirements within the cluster. {._abstract}
 
 The sample YAML defines a compute machine set that runs in the `1` {{ azure_first }} zone in a region and creates nodes that are labeled with
-{% if not infra %}
+{%- if not infra %}
 `node-role.kubernetes.io/<role>: ""`.
-{% endif %}
+{%- endif %}
 {% if infra %}`node-role.kubernetes.io/infra: ""`. The YAML specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or link:https://access.redhat.com/solutions/6592171[add toleration on `misscheduled` DNS pods{% endif %}.
 
 In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-{% if not infra %}
+{%- if not infra %}
 `<role>`
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `infra`
-{% endif %}
+{%- endif %}
 is the node label to add.
 
-```yaml
+```yaml {minja}
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
@@ -32,8 +32,8 @@ metadata:
     machine.openshift.io/cluster-api-machine-role: <role>
     machine.openshift.io/cluster-api-machine-type: <role>
   name: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
     machine.openshift.io/cluster-api-machine-role: infra
     machine.openshift.io/cluster-api-machine-type: infra
   name: <infrastructure_id>-infra-<region>
@@ -46,8 +46,8 @@ spec:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
 {%- if not infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
 {%- endif %}
   template:
@@ -59,8 +59,8 @@ spec:
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
         machine.openshift.io/cluster-api-machine-role: infra
         machine.openshift.io/cluster-api-machine-type: infra
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
@@ -72,8 +72,8 @@ spec:
           machine.openshift.io/cluster-api-machineset: <machineset_name>
 {%- if not infra %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           node-role.kubernetes.io/infra: ""
 {%- endif %}
       providerSpec:
@@ -144,7 +144,7 @@ where:
         -o jsonpath='{.spec.template.spec.providerSpec.value.vnet}{"\n"}' \
         get machineset/<infrastructure_id>-worker-centralus1
     ```
-{%- if not infra %}
+{% if not infra %}
 
 `<role>`
 :   Specifies the node label to add.
@@ -191,8 +191,8 @@ The value of the `spec.template.spec.providerSpec.value.zone` parameter specifie
 
 
 {% if context == "creating-infrastructure-machinesets" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}
 {% if context == "cluster-tasks" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}

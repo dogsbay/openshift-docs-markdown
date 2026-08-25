@@ -7,7 +7,7 @@ title: "Configuring an {{ ibm_cloud_title }} account"
 # Configuring an {{ ibm_cloud_title }} account {id="installing-ibm-cloud-account"}
 {%- set context = "installing-ibm-cloud-account" %}
 
-Before you can install {{ product_title }} on {{ ibm_cloud_name }}, you must configure your account by setting up DNS, IAM policies, and an API key. 
+Before you can install {{ product_title }} on {{ ibm_cloud_name }}, you must configure your account by setting up DNS, IAM policies, and an API key.  {._abstract}
 
 You must have a subscription account; free or trial accounts are not supported.
 
@@ -18,6 +18,7 @@ You must have a subscription account; free or trial accounts are not supported.
 {% leveloffset +2 %}{% include "./modules/installation-cis-ibm-cloud.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ ibm_cloud_name }} CLI ({{ ibm_cloud_name }} documentation)](https://www.ibm.com/cloud/cli)
 *   [{{ ibm_name }} DNS documentation](https://cloud.ibm.com/docs/dns?topic=dns-getting-started)
@@ -27,6 +28,7 @@ You must have a subscription account; free or trial accounts are not supported.
 {% leveloffset +2 %}{% include "./modules/installation-dns-ibm-cloud.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ ibm_cloud_name }} CLI ({{ ibm_cloud_name }} documentation)](https://www.ibm.com/cloud/cli)
 *   [{{ ibm_name }} DNS documentation](https://cloud.ibm.com/docs/dns?topic=dns-getting-started)
@@ -37,6 +39,6 @@ You must have a subscription account; free or trial accounts are not supported.
 
 {% leveloffset +1 %}{% include "./modules/installation-ibm-cloud-regions.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring IAM for {{ ibm_cloud_name }}](/installing/installing_ibm_cloud/configuring-iam-ibm-cloud#configuring-iam-ibm-cloud)

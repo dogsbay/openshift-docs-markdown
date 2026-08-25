@@ -26,7 +26,7 @@ You can use the `kn subscription update` command as well as the appropriate flag
 
     `broker`
     :   An Eventing broker.
-        1.  Optional: `--sink-dead-letter` is an optional flag that can be used to specify a sink which events should be sent to in cases where events fail to be delivered. For more information, see the {{ ServerlessProductName }} _Event delivery_ documentation.
-        ```terminal title="Example command"
-        $ kn subscription update mysubscription --sink ksvc:event-display
-        ```
+    1.  Optional: `--sink-dead-letter` is an optional flag that can be used to specify a sink which events should be sent to in cases where events fail to be delivered. For more information, see the {{ ServerlessProductName }} _Event delivery_ documentation.
+    ```terminal title="Example command"
+    $ kn subscription update mysubscription --sink ksvc:event-display
+    ```

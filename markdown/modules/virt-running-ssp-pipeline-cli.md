@@ -10,7 +10,7 @@ Use a `PipelineRun` resource to run the example pipelines. A `PipelineRun` objec
 **Procedure**
 
 1.  To run the Microsoft Windows 11 installer pipeline, create the following `PipelineRun` manifest:
-    ```yaml
+    ```yaml {minja}
     apiVersion: tekton.dev/v1
     kind: PipelineRun
     metadata:

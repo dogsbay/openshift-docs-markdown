@@ -17,7 +17,7 @@ metadata:
   name: example-bearer-auth
   namespace: ns1
 stringData:
-  token: <authentication_token> #<1>
+  token: <authentication_token> (1)
 ```
 1.  Specify an authentication token.
 
@@ -34,8 +34,8 @@ spec:
   endpoints: 
   - authorization:
       credentials:
-        key: token #<1>
-        name: example-bearer-auth #<2>
+        key: token (1)
+        name: example-bearer-auth (2)
     port: web
   selector: 
     matchLabels:
@@ -63,8 +63,8 @@ metadata:
   name: example-basic-auth
   namespace: ns1
 stringData:
-  user: <basic_username> #<1>
-  password: <basic_password>  #<2>
+  user: <basic_username> (1)
+  password: <basic_password>  (2)
 ```
 1.  Specify a username for authentication.
 1.  Specify a password for authentication.
@@ -81,11 +81,11 @@ spec:
   endpoints: 
   - basicAuth:
       username:
-        key: user #<1>
-        name: example-basic-auth #<2>
+        key: user (1)
+        name: example-basic-auth (2)
       password:
-        key: password #<3>
-        name: example-basic-auth #<2>
+        key: password (3)
+        name: example-basic-auth (2)
     port: web
   selector: 
     matchLabels:
@@ -106,8 +106,8 @@ metadata:
   name: example-oauth2
   namespace: ns1
 stringData:
-  id: <oauth2_id> #<1>
-  secret: <oauth2_secret> #<2>
+  id: <oauth2_id> (1)
+  secret: <oauth2_secret> (2)
 ```
 1.  Specify an Oauth 2.0 ID.
 1.  Specify an Oauth 2.0 secret.
@@ -125,12 +125,12 @@ spec:
   - oauth2:
       clientId: 
         secret:
-          key: id #<1>
-          name: example-oauth2 #<2>
+          key: id (1)
+          name: example-oauth2 (2)
       clientSecret:
-        key: secret #<3>
-        name: example-oauth2 #<2>
-      tokenUrl: https://example.com/oauth2/token #<4>
+        key: secret (3)
+        name: example-oauth2 (2)
+      tokenUrl: https://example.com/oauth2/token (4)
     port: web
   selector: 
     matchLabels:

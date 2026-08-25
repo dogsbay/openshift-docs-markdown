@@ -22,8 +22,8 @@
 
 1.  Scale up the cluster by executing the following command:
     ```terminal
-    $ rosa create machinepool --cluster=<cluster_id> \// (1)
-                              --disk-size=<disk_size> // (2)
+    $ rosa create machinepool --cluster=<cluster_id> \ (1)
+                              --disk-size=<disk_size> (2)
     ```
     1.  Specifies the ID or name of your existing OpenShift cluster.
     1.  Specifies the worker node disk size. The value can be in GB, GiB, TB, or TiB. Replace `<disk_size>` with a numeric value and unit, for example `--disk-size=200GiB`. You cannot separate the digit and the unit. No spaces are allowed.

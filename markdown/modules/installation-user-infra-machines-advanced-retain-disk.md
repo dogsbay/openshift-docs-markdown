@@ -94,5 +94,5 @@ coreos.inst.save_partindex=6
 ```
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

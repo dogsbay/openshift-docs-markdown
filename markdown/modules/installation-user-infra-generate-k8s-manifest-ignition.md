@@ -170,12 +170,12 @@ For a restricted network installation, these files are on your mirror host.
 {% endif %}
 {% if aws or azure or ash or user_infra_vpc %}
 1.  Remove the Kubernetes manifest files that define the worker machines:
-    {% endif %}
-    {% if aws or azure or ash or gcp %}
+{% endif %}
+{% if aws or azure or ash or gcp %}
     ```terminal
     $ rm -f <installation_directory>/openshift/99_openshift-cluster-api_worker-machineset-*.yaml
     ```
-{%- if not user_infra_vpc %}
+{% if not user_infra_vpc %}
 
     :::important
 
@@ -183,7 +183,7 @@ For a restricted network installation, these files are on your mirror host.
     
     :::
 
-{%- endif %}
+{% endif %}
 
     Because you create and manage the worker machines yourself, you do not need to initialize these machines.
 {% endif %}
@@ -223,8 +223,8 @@ For a restricted network installation, these files are on your mirror host.
 {% endif %}
 {% if user_infra_vpc %}
 1.  Remove the `privateZone` sections from the `<installation_directory>/manifests/cluster-dns-02-config.yml` DNS configuration file:
-    {%- endif %}
-    ```yaml
+{% endif %}
+    ```yaml {minja}
     apiVersion: config.openshift.io/v1
     kind: DNS
     metadata:
@@ -234,15 +234,15 @@ For a restricted network installation, these files are on your mirror host.
       baseDomain: example.openshift.com
       privateZone:
         id: mycluster-100419-private-zone
-{%- if not user_infra_vpc %}
+    {%- if not user_infra_vpc %}
       publicZone:
         id: example.openshift.com
-{%- endif %}
+    {%- endif %}
     status: {}
     ```
 
     `spec.privateZone`: Remove this section completely.
-{%- if not user_infra_vpc %}
+{% if not user_infra_vpc %}
 
     If you do so, you must add ingress DNS records manually in a later step.
 {% endif %}
@@ -436,98 +436,98 @@ For a restricted network installation, these files are on your mirror host.
     :::tip
 
     Extract the `infraID` key from `metadata.json` and use it as a prefix for all of the {{ rh_openstack }} resources that you create. By doing so, you avoid name conflicts when making multiple deployments in the same project.
-{%- endif %}
     
     :::
 
+{% endif %}
 
 {% if context == "installing-restricted-networks-aws" %}
-{%- set aws = false -%}
-{%- set restricted = false -%}
+{%- set aws = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-aws-user-infra" %}
-{%- set aws = false -%}
-{%- set three_node_cluster = false -%}
+{%- set aws = "" -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
-{%- set azure_user_infra = false -%}
-{%- set three_node_cluster = false -%}
+{%- set azure = "" -%}
+{%- set azure_user_infra = "" -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
-{%- set azure_user_infra = false -%}
+{%- set ash = "" -%}
+{%- set azure_user_infra = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra" %}
-{%- set gcp = false -%}
-{%- set three_node_cluster = false -%}
+{%- set gcp = "" -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set gcp = false -%}
-{%- set user_infra_vpc = false -%}
+{%- set gcp = "" -%}
+{%- set user_infra_vpc = "" -%}
 {% endif %}
 {% if context == "installing-bare-metal" %}
-{%- set baremetal = false -%}
+{%- set baremetal = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set baremetal_restricted = false -%}
+{%- set baremetal_restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp" %}
-{%- set gcp = false -%}
-{%- set restricted = false -%}
+{%- set gcp = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-osp-user" %}
-{%- set osp = false -%}
+{%- set osp = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user" %}
-{%- set osp = false -%}
+{%- set osp = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user-sr-iov" %}
-{%- set osp = false -%}
+{%- set osp = "" -%}
 {% endif %}
 {% if context == "installing-vsphere" %}
-{%- set vsphere = false -%}
-{%- set three_node_cluster = false -%}
+{%- set vsphere = "" -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-installer-provisioned-customizations" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set vsphere = false -%}
-{%- set restricted = false -%}
+{%- set vsphere = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-platform-agnostic" %}
-{%- set baremetal = false -%}
+{%- set baremetal = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
-{%- set restricted = false -%}
+{%- set ibm_power = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
-{%- set azure_user_infra = false -%}
+{%- set azure = "" -%}
+{%- set azure_user_infra = "" -%}
 {% endif %}

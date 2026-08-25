@@ -7,7 +7,7 @@ title: "Backing up and restoring a hosted cluster on {{ VirtProductName }}"
 # Backing up and restoring a hosted cluster on {{ VirtProductName }} {id="hcp-backup-restore-virt"}
 {%- set context = "hcp-backup-restore-virt" %}
 
-You can back up and restore a hosted cluster on {{ VirtProductName }} to fix failures.
+You can back up and restore a hosted cluster on {{ VirtProductName }} to fix failures. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/backup-hosted-cluster-virt.md" %}{% endleveloffset %}
 

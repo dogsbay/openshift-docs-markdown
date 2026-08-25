@@ -151,7 +151,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
     ```terminal
     $ oc get clusteroperator baremetal
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME        VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
     baremetal   {{ product_version }}.0    True        False         False      3d15h
     ```

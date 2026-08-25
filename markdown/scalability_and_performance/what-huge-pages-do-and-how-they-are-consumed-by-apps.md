@@ -3,11 +3,11 @@ title: Optimizing memory management for workloads by using huge pages
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Optimizing memory management for workloads by using huge pages {id="what-huge-pages-do-and-how-they-are-consumed"}
 {% include "./_attributes/common-attributes.md" %}
+# Optimizing memory management for workloads by using huge pages {id="what-huge-pages-do-and-how-they-are-consumed"}
 {%- set context = "huge-pages" %}
 
-To optimize memory management for specific workloads, configure huge pages.
+To optimize memory management for specific workloads, configure huge pages. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/what-huge-pages-do.md" %}{% endleveloffset %}
 
@@ -16,6 +16,7 @@ To optimize memory management for specific workloads, configure huge pages.
 {% leveloffset +1 %}{% include "./modules/consuming-huge-pages-resource-using-the-downward-api.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Allowing containers to consume Downward API objects](/nodes/containers/nodes-containers-downward-api#nodes-containers-downward-api)
 

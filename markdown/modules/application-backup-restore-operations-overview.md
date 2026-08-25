@@ -18,7 +18,7 @@ OADP has the following requirements:
     *   S3-compatible object storage
     *   {{ ibm_cloud_name }} Object Storage S3
 
-{% include "./snippets/oadp-ocp-compat.md" %}
+    {% include "./snippets/oadp-ocp-compat.md" %}
 *   To back up PVs with snapshots, you must have cloud storage that has a native snapshot API or supports Container Storage Interface (CSI) snapshots, such as the following providers:
     *   Amazon Web Services
     *   Microsoft Azure
@@ -26,11 +26,11 @@ OADP has the following requirements:
     *   CSI snapshot-enabled cloud storage, such as Ceph RBD or Ceph FS
 
 
-:::note
+    :::note
 
-If you do not want to back up PVs by using snapshots, you can use [Restic](https://restic.net/), which is installed by the OADP Operator by default.
-
-:::
+    If you do not want to back up PVs by using snapshots, you can use [Restic](https://restic.net/), which is installed by the OADP Operator by default.
+    
+    :::
 
 
 ## Backing up and restoring applications {id="backing-up-and-restoring-applications_{{ context }}"}

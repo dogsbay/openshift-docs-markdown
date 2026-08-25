@@ -20,7 +20,7 @@ To schedule a workload on specific nodes, use label selectors in the `Pod` custo
 **Procedure**
 
 1.  Create a `Pod` CR for the low latency workload and apply it in the cluster, for example:
-    ```yaml title="Example Pod spec configured to use real-time processing"
+    ```yaml title="Example Pod spec configured to use real-time processing" {minja}
     apiVersion: v1
     kind: Pod
     metadata:

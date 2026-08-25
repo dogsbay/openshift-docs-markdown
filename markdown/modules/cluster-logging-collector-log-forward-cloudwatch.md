@@ -76,8 +76,8 @@ Here, you see an example `ClusterLogForwarder` custom resource (CR) and the log 
 Suppose that you are running
 {%- if not openshift_rosa %}
 an {{ product_title }} cluster
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
 a ROSA cluster
 {%- endif %}
 named `mycluster`. The following command returns the cluster’s `infrastructureName`, which you will use to compose `aws` commands later on:

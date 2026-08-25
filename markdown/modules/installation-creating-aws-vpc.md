@@ -68,9 +68,9 @@ describes the VPC that your cluster requires.
     YAML file that you saved.
     1.  `<parameters>` is the relative path to and name of the CloudFormation
     parameters JSON file.
-        ```terminal title="Example output"
-        arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-vpc/dbedae40-2fd3-11eb-820e-12a48460849f
-        ```
+    ```terminal title="Example output"
+    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-vpc/dbedae40-2fd3-11eb-820e-12a48460849f
+    ```
 1.  Confirm that the template components exist:
     ```terminal
     $ aws cloudformation describe-stacks --stack-name <name>

@@ -40,18 +40,18 @@ Clusters that are installed with user-provisioned infrastructure have a differen
 {%- if vsphere %}
 *   Have the necessary permissions to deploy VMs in your vCenter instance and have the required access to the datastore specified.
 *   If your cluster uses user-provisioned infrastructure, you have satisfied the specific Machine API requirements for that configuration.
-{% endif %}
-{% if ash %}
+{%- endif %}
+{%- if ash %}
 *   Create an availability set in which to deploy Azure Stack Hub compute machines.
-{% endif %}
-{% if win %}
+{%- endif %}
+{%- if win %}
 *   In disconnected environments, the image specified in the `MachineSet` custom resource (CR) must have the [OpenSSH server v0.0.1.0 installed](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell#install-openssh-for-windows).
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
 1.  Create a new YAML file that contains the compute machine set custom resource (CR) sample and is named `<file_name>.yaml`.
-{%- if not ash %}
+{% if not ash %}
 
     Ensure that you set the `<clusterID>` and `<role>` parameter values.
 {% endif %}
@@ -125,7 +125,7 @@ Clusters that are installed with user-provisioned infrastructure have a differen
         `spec.template.metadata.spec.providerSpec`
         :   Specifies the values of the compute machine set CR. The values are platform-specific. For more information about `<providerSpec>` parameters in the CR, see the sample compute machine set CR configuration for your provider.
 {%- if vsphere %}
-        1.  If you are creating a compute machine set for a cluster that has user-provisioned infrastructure, note the following important values:
+    1.  If you are creating a compute machine set for a cluster that has user-provisioned infrastructure, note the following important values:
         ```yaml title="Example vSphere providerSpec values"
         apiVersion: machine.openshift.io/v1beta1
         kind: MachineSet
@@ -164,20 +164,20 @@ Clusters that are installed with user-provisioned infrastructure have a differen
 
         where:
 
-    `vsphere-cloud-credentials`
-    :   Specifies the name of the secret in the `openshift-machine-api` namespace that contains the required vCenter credentials.
+        `vsphere-cloud-credentials`
+        :   Specifies the name of the secret in the `openshift-machine-api` namespace that contains the required vCenter credentials.
 
-    `<disk_name>`
-    :   Specifies the collection of data disk definitions. For more information, see "Configuring data disks by using machine sets".
+        `<disk_name>`
+        :   Specifies the collection of data disk definitions. For more information, see "Configuring data disks by using machine sets".
 
-    `<vm_template_name>`
-    :   Specifies the name of the {{ op_system }} VM template for your cluster that was created during installation.
+        `<vm_template_name>`
+        :   Specifies the name of the {{ op_system }} VM template for your cluster that was created during installation.
 
-    `worker-user-data`
-    :   Specifies the name of the secret in the `openshift-machine-api` namespace that contains the required Ignition configuration credentials.
+        `worker-user-data`
+        :   Specifies the name of the secret in the `openshift-machine-api` namespace that contains the required Ignition configuration credentials.
 
-    `<vcenter_server_address>`
-    :   Specifies the IP address or fully qualified domain name (FQDN) of the vCenter server.
+        `<vcenter_server_address>`
+        :   Specifies the IP address or fully qualified domain name (FQDN) of the vCenter server.
 
 {% endif %}
 
@@ -198,23 +198,23 @@ Clusters that are installed with user-provisioned infrastructure have a differen
     ```
 
     The following is example output:
-    ```terminal
-{%- if win or post_aws_zones %}
+    ```terminal {minja}
+    {% if win or post_aws_zones %}
     NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE
-{%- if win %}
+    {%- if win %}
     agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m
-{% endif %}
-{% if post_aws_zones %}
+    {%- endif %}
+    {%- if post_aws_zones %}
     agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m
-{%- endif %}
+    {%- endif %}
     agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m
     agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m
     agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m
     agl030519-vplxk-worker-us-east-1d          0         0                             55m
     agl030519-vplxk-worker-us-east-1e          0         0                             55m
     agl030519-vplxk-worker-us-east-1f          0         0                             55m
-{% endif %}
-{% if not (win or post_aws_zones) %}
+    {% endif %}
+    {% if not (win or post_aws_zones) %}
     NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE
     agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m
     agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m
@@ -223,7 +223,7 @@ Clusters that are installed with user-provisioned infrastructure have a differen
     agl030519-vplxk-worker-us-east-1d   0         0                             55m
     agl030519-vplxk-worker-us-east-1e   0         0                             55m
     agl030519-vplxk-worker-us-east-1f   0         0                             55m
-{%- endif %}
+    {% endif %}
     ```
 
     When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
@@ -240,20 +240,20 @@ Clusters that are installed with user-provisioned infrastructure have a differen
 {% endif %}
 
 {% if context == "creating-machineset-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "creating-windows-machineset-aws" %}
-{%- set win = false -%}
+{%- set win = "" -%}
 {% endif %}
 {% if context == "creating-machineset-azure-stack-hub" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "creating-windows-machineset-azure" %}
-{%- set win = false -%}
+{%- set win = "" -%}
 {% endif %}
 {% if context == "creating-windows-machineset-vsphere" %}
-{%- set win = false -%}
+{%- set win = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set post_aws_zones = false -%}
+{%- set post_aws_zones = "" -%}
 {% endif %}

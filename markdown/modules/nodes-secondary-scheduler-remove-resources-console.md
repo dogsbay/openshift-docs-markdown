@@ -17,10 +17,10 @@ Optionally, remove the custom resource definition (CRD) and associated namespace
 
 1.  Log in to the {{ product_title }} web console.
 1.  Remove the CRD that was installed by the {{ secondary_scheduler_operator }}:
-    1.  Navigate to **Administration** -> **CustomResourceDefinitions**.
+    1.  Navigate to **Administration** → **CustomResourceDefinitions**.
     1.  Enter `SecondaryScheduler` in the **Name** field to filter the CRDs.
     1.  Click the Options menu {{ kebab }} next to the **SecondaryScheduler** CRD and select **Delete Custom Resource Definition**:
 1.  Remove the `openshift-secondary-scheduler-operator` namespace.
-    1.  Navigate to **Administration** -> **Namespaces**.
+    1.  Navigate to **Administration** → **Namespaces**.
     1.  Click the Options menu {{ kebab }} next to the **openshift-secondary-scheduler-operator** and select **Delete Namespace**.
     1.  In the confirmation dialog, enter `openshift-secondary-scheduler-operator` in the field and click **Delete**.

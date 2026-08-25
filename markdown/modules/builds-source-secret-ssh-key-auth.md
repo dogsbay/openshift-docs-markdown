@@ -25,20 +25,20 @@ The repository keys are usually located in the `$HOME/.ssh/` directory, and are 
     ```terminal
     $ oc create secret generic <secret_name> \
         --from-file=ssh-privatekey=<path/to/ssh/private/key> \
-        --from-file=<path/to/known_hosts> \// (1)
+        --from-file=<path/to/known_hosts> \ (1)
         --type=kubernetes.io/ssh-auth
     ```
     1.  Optional: Adding this field enables strict server host key check.
 
-        :::warning
+    :::warning
 
-        Skipping the `known_hosts` file while creating the secret makes the build vulnerable to a potential man-in-the-middle (MITM) attack.
-        
-        :::
+    Skipping the `known_hosts` file while creating the secret makes the build vulnerable to a potential man-in-the-middle (MITM) attack.
+    
+    :::
 
 
-        :::note
+    :::note
 
-        Ensure that the `known_hosts` file includes an entry for the host of your source code.
-        
-        :::
+    Ensure that the `known_hosts` file includes an entry for the host of your source code.
+    
+    :::

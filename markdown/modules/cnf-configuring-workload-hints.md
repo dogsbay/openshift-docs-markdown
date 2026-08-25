@@ -5,7 +5,7 @@ You can create a performance profile appropriate for the hardware and topology o
 
 The following table describes the possible values set for the `power-consumption-mode` flag associated with the PPC tool and the workload hint that is applied. 
 
-***Impact of combinations of power consumption and real-time settings on latency***
+**Impact of combinations of power consumption and real-time settings on latency**
 
 <table>
 <thead>

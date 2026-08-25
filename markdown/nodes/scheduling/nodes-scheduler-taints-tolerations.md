@@ -4,10 +4,10 @@ title: Controlling pod placement using node taints
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-scheduler-taints-tolerations" %}
-# Controlling pod placement using node taints {id="nodes-scheduler-taints-tolerations"}
 {% include "./_attributes/common-attributes.md" %}
+# Controlling pod placement using node taints {id="nodes-scheduler-taints-tolerations"}
 
-You can use taints and tolerations to allow the scheduler to control which pods should or should not be scheduled on a node.
+You can use taints and tolerations to allow the scheduler to control which pods should or should not be scheduled on a node. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-scheduler-taints-tolerations-about.md" %}{% endleveloffset %}
 
@@ -23,7 +23,7 @@ You can use taints and tolerations to allow the scheduler to control which pods 
 
 {% leveloffset +1 %}{% include "./modules/nodes-scheduler-taints-tolerations-removing.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Adding taints and tolerations](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-adding_nodes-scheduler-taints-tolerations)
 *   [Adding taints and tolerations using a compute machine set](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-adding-machineset_nodes-scheduler-taints-tolerations)

@@ -5,13 +5,87 @@ To create a cluster with multi-architecture compute machines with different inst
 
 **Cluster with multi-architecture compute machine installation options**
 
-| Documentation section | Platform | User-provisioned installation | Installer-provisioned installation | Control Plane | Compute node |
-| --- | --- | --- | --- | --- | --- |
-| "Creating a cluster with multi-architecture compute machines on Azure" | Microsoft Azure | &#10003; | &#10003; | `aarch64` or `x86_64` | `aarch64`, `x86_64` |
-| "Creating a cluster with multi-architecture compute machines on AWS" | Amazon Web Services (AWS) | &#10003; | &#10003; | `aarch64` or `x86_64` | `aarch64`, `x86_64` |
-| "Creating a cluster with multi-architecture compute machines on {{ gcp_short }}" | {{ gcp_first }} |  | &#10003; | `aarch64` or `x86_64` | `aarch64`, `x86_64` .3+ |
-| "Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}" | Bare metal | &#10003; | &#10003; | `aarch64` or `x86_64` | `aarch64`, `x86_64` |
-| {{ ibm_power_title }} | &#10003; |  | `x86_64` or `ppc64le` | `x86_64`, `ppc64le` | {{ ibm_z_title }} |
-| &#10003; |  | `x86_64` or `s390x` | `x86_64`, `s390x` | "Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with z/VM" | {{ ibm_z_name }} and {{ ibm_linuxone_name }} |
-| &#10003; |  | `x86_64`, `s390x` | `x86_64`, `s390x` | "Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with {{ op_system_base }} KVM" | {{ ibm_z_name }} and {{ ibm_linuxone_name }} |
-| &#10003; |  | `x86_64`, `s390x` | `x86_64`, `s390x` | "Creating a cluster with multi-architecture compute machines on {{ ibm_power_name }}" | {{ ibm_power_name }} |
+<table>
+<thead>
+<tr>
+  <th>Documentation section</th>
+  <th>Platform</th>
+  <th>User-provisioned installation</th>
+  <th>Installer-provisioned installation</th>
+  <th>Control Plane</th>
+  <th>Compute node</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on Azure"</td>
+  <td>Microsoft Azure</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
+  <td><code>aarch64</code> or <code>x86_64</code></td>
+  <td><code>aarch64</code>, <code>x86_64</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on AWS"</td>
+  <td>Amazon Web Services (AWS)</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
+  <td><code>aarch64</code> or <code>x86_64</code></td>
+  <td><code>aarch64</code>, <code>x86_64</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on {{ gcp_short }}"</td>
+  <td>{{ gcp_first }}</td>
+  <td></td>
+  <td>&#10003;</td>
+  <td><code>aarch64</code> or <code>x86_64</code></td>
+  <td><code>aarch64</code>, <code>x86_64</code></td>
+</tr>
+<tr>
+  <td rowspan="3">"Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}"</td>
+  <td>Bare metal</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
+  <td><code>aarch64</code> or <code>x86_64</code></td>
+  <td><code>aarch64</code>, <code>x86_64</code></td>
+</tr>
+<tr>
+  <td>{{ ibm_power_title }}</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code> or <code>ppc64le</code></td>
+  <td><code>x86_64</code>, <code>ppc64le</code></td>
+</tr>
+<tr>
+  <td>{{ ibm_z_title }}</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code> or <code>s390x</code></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with z/VM"</td>
+  <td>{{ ibm_z_name }} and {{ ibm_linuxone_name }}</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with {{ op_system_base }} KVM"</td>
+  <td>{{ ibm_z_name }} and {{ ibm_linuxone_name }}</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+  <td><code>x86_64</code>, <code>s390x</code></td>
+</tr>
+<tr>
+  <td>"Creating a cluster with multi-architecture compute machines on {{ ibm_power_name }}"</td>
+  <td>{{ ibm_power_name }}</td>
+  <td>&#10003;</td>
+  <td></td>
+  <td><code>x86_64</code></td>
+  <td><code>x86_64</code>, <code>ppc64le</code></td>
+</tr>
+</tbody>
+</table>

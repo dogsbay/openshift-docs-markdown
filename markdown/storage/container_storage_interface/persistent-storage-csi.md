@@ -3,16 +3,16 @@ title: Configuring CSI volumes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring CSI volumes {id="persistent-storage-csi"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring CSI volumes {id="persistent-storage-csi"}
 {%- set context = "persistent-storage-csi" %}
 
-[role="_abstract"] 
-Container Storage Interface (CSI) is a standard specification enabling storage vendors to develop plugins that work across container orchestration systems. {{ product_title }} uses CSI drivers to provision and manage persistent storage, replacing in-tree storage plugins.
+Container Storage Interface (CSI) is a standard specification enabling storage vendors to develop plugins that work across container orchestration systems. {{ product_title }} uses CSI drivers to provision and manage persistent storage, replacing in-tree storage plugins. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-architecture.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [CSI spec](https://github.com/container-storage-interface/spec)
 
@@ -23,6 +23,7 @@ Container Storage Interface (CSI) is a standard specification enabling storage v
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-drivers-supported.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Setting up the AWS EFS CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-efs-csi-driver-operator-setup_persistent-storage-csi-aws-efs)
 *   [Red Hat ecosystem portal](https://catalog.redhat.com/)

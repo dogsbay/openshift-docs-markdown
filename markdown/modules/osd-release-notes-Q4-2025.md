@@ -19,10 +19,11 @@ Required API services table updated
 
     For more information, see the _Required API services_ table in the [Required customer procedure](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/planning_your_environment/gcp-ccs#ccs-gcp-customer-procedure_gcp-ccs).
 
-    New version of {{ product_title }} available
-    :   {{ product_title }} on {{ gcp }} and {{ product_title }} on {{ aws }} versions 4.20 are available for new clusters.
+New version of {{ product_title }} available
+:   {{ product_title }} on {{ gcp }} and {{ product_title }} on {{ aws }} versions 4.20 are available for new clusters.
 
 
 The EUS channel group is available
-    :   You can select the Extended Update Support (EUS) channel group when creating or editing your {{ product_title }} cluster. The EUS channel group allows you to extend the life cycle of your even-numbered version {{ product_title }} cluster, giving you additional time to plan and budget for future upgrades. This channel group also provides continued security patches and critical bug fixes.
+:   You can select the Extended Update Support (EUS) channel group when creating or editing your {{ product_title }} cluster. The EUS channel group allows you to extend the life cycle of your even-numbered version {{ product_title }} cluster, giving you additional time to plan and budget for future upgrades. This channel group also provides continued security patches and critical bug fixes.
+
     For additional information, see [Life cycle dates](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#sd-life-cycle-dates_osd-life-cycle).

@@ -7,7 +7,7 @@ title: "Automated disaster recovery for a hosted cluster by using {{ oadp_short 
 # Automated disaster recovery for a hosted cluster by using {{ oadp_short }} {id="hcp-disaster-recovery-oadp-auto"}
 {%- set context = "hcp-disaster-recovery-oadp-auto" %}
 
-In hosted clusters on bare-metal or {{ aws_first }} platforms, you can automate some backup and restore steps by using the {{ oadp_first }} Operator.
+In hosted clusters on bare-metal or {{ aws_first }} platforms, you can automate some backup and restore steps by using the {{ oadp_first }} Operator. {._abstract}
 
 The process involves the following steps:
 
@@ -20,6 +20,7 @@ The process involves the following steps:
 {% leveloffset +1 %}{% include "./modules/hcp-dr-oadp-auto-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 *   [{{ odf_full }}](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/)
@@ -29,6 +30,7 @@ The process involves the following steps:
 {% leveloffset +1 %}{% include "./modules/hcp-dr-prep-oadp-auto.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the {{ oadp_full }} with AWS S3 compatible storage](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)
 *   [Configuring the {{ oadp_full }} with Multicloud Object Gateway](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
@@ -42,6 +44,7 @@ The process involves the following steps:
 {% leveloffset +1 %}{% include "./modules/hcp-dp-backup-oadp-auto.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Backing up applications](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 

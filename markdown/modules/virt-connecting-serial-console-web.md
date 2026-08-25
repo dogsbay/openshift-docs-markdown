@@ -13,7 +13,7 @@ Running concurrent VNC connections to a single virtual machine is not currently 
 
 **Procedure**
 
-1.  On the **Virtualization** -> **VirtualMachines** page, click a VM to open the **VirtualMachine details** page.
+1.  On the **Virtualization** → **VirtualMachines** page, click a VM to open the **VirtualMachine details** page.
 1.  In the navigation panel, right-click the virtual machine and select **Open Console**.
 1.  Click the **Console** tab. The VNC console session starts automatically.
 

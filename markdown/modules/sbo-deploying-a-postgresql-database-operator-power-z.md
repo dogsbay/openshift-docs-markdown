@@ -61,9 +61,9 @@ rules:
       - list
 EOD
 ```
-1.  The Operator image.
-    *   For {{ ibm_power_name }}: `quay.io/ibm/operator-registry-ppc64le:release-4.9`
-    *   For {{ ibm_z_name }} and {{ ibm_linuxone_name }}: `quay.io/ibm/operator-registry-s390x:release-4.8`
+    1.  The Operator image.
+        *   For {{ ibm_power_name }}: `quay.io/ibm/operator-registry-ppc64le:release-4.9`
+        *   For {{ ibm_z_name }} and {{ ibm_linuxone_name }}: `quay.io/ibm/operator-registry-s390x:release-4.8`
 
 **Verification**
 

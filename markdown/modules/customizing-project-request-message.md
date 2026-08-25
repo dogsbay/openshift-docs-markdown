@@ -20,7 +20,7 @@ The following examples show a customized message:
 
 1.  Edit the project configuration resource using the web console or CLI.
     *   By using the web console, complete the following steps:
-        1.  Navigate to the **Administration** -> **Cluster Settings** page.
+        1.  Navigate to the **Administration** → **Cluster Settings** page.
         1.  Click **Configuration** to view all configuration resources.
         1.  Find the entry for **Project** and click **Edit YAML**.
     *   By using the CLI, complete the following steps:

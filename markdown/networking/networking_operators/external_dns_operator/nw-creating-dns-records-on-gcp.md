@@ -3,11 +3,11 @@ title: Creating DNS records on Google Cloud Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating DNS records on Google Cloud Platform {id="creating-dns-records-on-gcp"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating DNS records on Google Cloud Platform {id="creating-dns-records-on-gcp"}
 {%- set context = "creating-dns-records-on-gcp" %}
 
-To create DNS records on {{ gcp_first }}, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services.
+To create DNS records on {{ gcp_first }}, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services. {._abstract}
 
 
 :::important

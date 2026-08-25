@@ -3,7 +3,7 @@
 
 The following table explains {{ microshift_short }} configuration YAML parameters and valid values for each: {._abstract}
 
-***{{ microshift_short }} `config.yaml` parameters***
+**{{ microshift_short }} `config.yaml` parameters**
 
 <table>
 <thead>
@@ -321,120 +321,106 @@ The following table explains {{ microshift_short }} configuration YAML parameter
 </tr>
 <tr>
   <td><code>ingress.tuningOptions.healthCheckInterval: ""</code></td>
-  <td><code>string</code> with pattern: `^(0\</td>
-  <td>([0-9]+(\\.[0-9]+)?(ns\</td>
+  <td><code>string</code> with pattern: <code>^(0|([0-9]+(\\.[0-9]+)?(ns|us|µs|μs|ms|s|m|h))+)$</code></td>
+  <td>The default <code>healthCheckInterval</code> value is <code>5s</code>, which is 5 seconds. This parameter value defines how long the router waits between two consecutive health checks on the router's configured backends. The minimum allowed value is <code>1s</code> and the maximum allowed value is <code>2147483647ms</code>, which is 24.85 days.<br><br><ul><li>This value is applied globally as a default for all routes, but can be overridden per-route by the route annotation <code>router.openshift.io/haproxy.health.check.interval</code>.</li><li>Requires an unsigned duration string of decimal numbers, each with an optional fraction and unit suffix, such as <code>300ms</code>, <code>1.5h</code> or <code>2h45m</code>. Valid time units are <code>ns</code>, <code>us</code> (or <code>µs</code> U+00B5 or <code>μs</code> U+03BC), <code>ms</code>, <code>s</code>, <code>m</code>, <code>h</code>.</li><li>Setting this parameter value to less than <code>5s</code> can cause excess traffic due to too frequent TCP health checks and accompanying SYN packet storms.</li><li>Setting this parameter value too high can result in increased latency because of backend servers that are no longer available, but have not yet been detected as such.</li><li>An empty or <code>0</code> value means "no opinion" and the ingress controller chooses a default. Note that the default value might change in future releases.</li></ul></td>
 </tr>
 <tr>
-  <td>us\</td>
-  <td>µs\</td>
-  <td>μs\</td>
-</tr>
-<tr>
-  <td>ms\</td>
-  <td>s\</td>
-  <td>m\</td>
-</tr>
-<tr>
-  <td>h))+)$`</td>
-  <td>The default <code>healthCheckInterval</code> value is <code>5s</code>, which is 5 seconds. This parameter value defines how long the router waits between two consecutive health checks on the router's configured backends. The minimum allowed value is <code>1s</code> and the maximum allowed value is <code>2147483647ms</code>, which is 24.85 days. * This value is applied globally as a default for all routes, but can be overridden per-route by the route annotation <code>router.openshift.io/haproxy.health.check.interval</code>. * Requires an unsigned duration string of decimal numbers, each with an optional fraction and unit suffix, such as <code>300ms</code>, <code>1.5h</code> or <code>2h45m</code>. Valid time units are <code>ns</code>, <code>us</code> (or <code>µs</code> U+00B5 or <code>μs</code> U+03BC), <code>ms</code>, <code>s</code>, <code>m</code>, <code>h</code>. * Setting this parameter value to less than <code>5s</code> can cause excess traffic due to too frequent TCP health checks and accompanying SYN packet storms. * Setting this parameter value too high can result in increased latency because of backend servers that are no longer available, but have not yet been detected as such. * An empty or <code>0</code> value means "no opinion" and the ingress controller chooses a default. Note that the default value might change in future releases.</td>
   <td><code>ingress.tuningOptions.maxConnections</code></td>
-</tr>
-<tr>
   <td><code>integer</code>, valid values are: <code>empty</code>, <code>0</code>, <code>-1</code>, and the range <code>2000-2000000</code></td>
-  <td>The default value is <code>0</code>. defines the maximum number of simultaneous connections that can be established per <code>HAProxy</code> process. Increasing this value allows each ingress controller pod to handle more connections at the cost of additional system resources being consumed. * If this field is empty or <code>0</code>, the <code>IngressController</code> uses the default value of <code>50000</code>, but the default is subject to change in future releases. * If the value is <code>-1</code>, then <code>HAProxy</code> dynamically computes a maximum value based on the available resources set with <code>ulimit</code> values in the running container. Selecting <code>-1</code>, which means <code>auto</code>, results in a large value being computed, and therefore each <code>HAProxy</code> process incurs significant memory usage compared with the current default of <code>50000</code>. * Setting a value that is greater than the current operating system limit prevents the <code>HAProxy</code> process from starting. * You can monitor memory usage for router containers with the following metric: + [source,terminal] ---- container_memory_working_set_bytes{container=<code>router</code>,namespace=<code>openshift-ingress</code>}` ---- + * You can monitor memory usage of individual <code>HAProxy</code>processes in router containers with the following metric: + [source,terminal] ---- container_memory_working_set_bytes{container=<code>router</code>,namespace=<code>openshift-ingress</code>}/container_processes{container=<code>router</code>,namespace=<code>openshift-ingress</code>} ----</td>
-  <td><code>ingress.tuningOptions.serverFinTimeout</code></td>
+  <td>The default value is <code>0</code>. defines the maximum number of simultaneous connections that can be established per <code>HAProxy</code> process. Increasing this value allows each ingress controller pod to handle more connections at the cost of additional system resources being consumed.<br><br><ul><li>If this field is empty or <code>0</code>, the <code>IngressController</code> uses the default value of <code>50000</code>, but the default is subject to change in future releases.</li><li>If the value is <code>-1</code>, then <code>HAProxy</code> dynamically computes a maximum value based on the available resources set with <code>ulimit</code> values in the running container. Selecting <code>-1</code>, which means <code>auto</code>, results in a large value being computed, and therefore each <code>HAProxy</code> process incurs significant memory usage compared with the current default of <code>50000</code>.</li><li>Setting a value that is greater than the current operating system limit prevents the <code>HAProxy</code> process from starting.</li><li>You can monitor memory usage for router containers with the following metric:</li></ul><pre>container_memory_working_set_bytes{container=`router`,namespace=`openshift-ingress`}`</pre><br><br><ul><li>You can monitor memory usage of individual <code>HAProxy</code>processes in router containers with the following metric:</li></ul><pre>container_memory_working_set_bytes{container=`router`,namespace=`openshift-ingress`}/container_processes{container=`router`,namespace=`openshift-ingress`}</pre></td>
 </tr>
 <tr>
+  <td><code>ingress.tuningOptions.serverFinTimeout</code></td>
   <td><code>string</code> in the format <code>duration</code></td>
   <td>Defines how long a connection is held open while waiting for a server or backend response to the client before closing the connection. The default timeout is <code>1s</code>.</td>
-  <td><code>ingress.tuningOptions.serverTimeout</code></td>
 </tr>
 <tr>
+  <td><code>ingress.tuningOptions.serverTimeout</code></td>
   <td><code>string</code> in the format <code>duration</code></td>
   <td>Defines how long a connection is held open while waiting for a server or backend response. The default timeout is <code>30s</code>.</td>
+</tr>
+<tr>
   <td><code>ingress.tuningOptions.threadCount</code></td>
-</tr>
-<tr>
   <td><code>integer</code> in the form <code>int32</code>; minimum value is <code>1</code>, maximum is <code>64</code></td>
-  <td>Defines the number of threads created per <code>HAProxy</code> process. The default value is <code>4</code>. If this field is empty, the default value is used. * Setting this field is generally not recommended. Creating more threads allows each ingress controller pod to handle more connections at the cost of more system resources being used. Increasing the number of HAProxy threads allows the ingress controller pods to use more CPU time under load, potentially starving other pods if set too high. Conversely, reducing the number of threads may cause the ingress controller to perform poorly.</td>
+  <td>Defines the number of threads created per <code>HAProxy</code> process. The default value is <code>4</code>. If this field is empty, the default value is used.<br><br><ul><li>Setting this field is generally not recommended. Creating more threads allows each ingress controller pod to handle more connections at the cost of more system resources being used. Increasing the number of HAProxy threads allows the ingress controller pods to use more CPU time under load, potentially starving other pods if set too high. Conversely, reducing the number of threads may cause the ingress controller to perform poorly.</li></ul></td>
+</tr>
+<tr>
   <td><code>ingress.tuningOptions.tlsInspectDelay</code></td>
-</tr>
-<tr>
   <td><code>string</code> in the format <code>duration</code></td>
-  <td>Defines how long the router can hold data to find a matching route. Setting this interval with too short a value can cause the router to revert to the default certificate for edge-terminated clients or re-encrypt routes, even when a better-matching certificate could be used. * The default inspect delay is <code>5s</code> which is 5 seconds, which is expected to be sufficient for most cases. Increasing the value of this configuration specifically for high-latency networks can cause a delay in finishing the SSL handshake. Any configured value must be transparent to your application.</td>
-  <td><code>ingress.tuningOptions.tunnelTimeout</code></td>
+  <td>Defines how long the router can hold data to find a matching route. Setting this interval with too short a value can cause the router to revert to the default certificate for edge-terminated clients or re-encrypt routes, even when a better-matching certificate could be used.<br><br><ul><li>The default inspect delay is <code>5s</code> which is 5 seconds, which is expected to be sufficient for most cases. Increasing the value of this configuration specifically for high-latency networks can cause a delay in finishing the SSL handshake. Any configured value must be transparent to your application.</li></ul></td>
 </tr>
 <tr>
+  <td><code>ingress.tuningOptions.tunnelTimeout</code></td>
   <td><code>string</code> in the format <code>duration</code></td>
   <td>Defines how long a tunnel connection, including websockets, are held open while the tunnel is idle. The default timeout is <code>1h</code>, which is 1 hour.</td>
-  <td><code>kubelet</code></td>
 </tr>
 <tr>
+  <td><code>kubelet</code></td>
   <td>See the {{ microshift_short }} low-latency instructions</td>
   <td>Parameter for passthrough configuration of the kubelet node agent. Used for low-latency configuration. The default value is null.</td>
-  <td><code>manifests</code></td>
 </tr>
 <tr>
+  <td><code>manifests</code></td>
   <td><code>list of paths</code></td>
   <td>The locations on the file system to scan for <code>kustomization</code> files to use to load manifests. Set to a list of paths to scan only those paths. Set to an empty list to disable loading manifests. The entries in the list can be glob patterns to match multiple subdirectories. The default values are <code>/usr/lib/microshift/manifests</code>, <code>/usr/lib/microshift/manifests.d/</code>, <code>/etc/microshift/manifests</code>, and <code>/etc/microshift/manifests.d/</code>.</td>
-  <td><code>network.clusterNetwork</code></td>
 </tr>
 <tr>
+  <td><code>network.clusterNetwork</code></td>
   <td>IP address block</td>
   <td>A block of IP addresses from which pod IP addresses are allocated. IPv4 is the default network. Dual-stack entries are supported. The first entry in this field is immutable after {{ microshift_short }} starts. The default range is <code>10.42.0.0/16</code>.</td>
-  <td><code>network.cniPlugin</code></td>
 </tr>
 <tr>
+  <td><code>network.cniPlugin</code></td>
   <td>String</td>
   <td>Deploys the Open Virtual Networking - Kubernetes (OVN-K) network plugin as the default container network interface (CNI) when empty or set to <code>"ovnk"</code>. Supported values are empty, <code>""</code> or <code>"ovnk"</code>. Setting to <code>"none"</code> removes the CNI and is not recommended. Only OVN-K is managed by {{ microshift_short }}.</td>
-  <td><code>network.multus.status</code></td>
 </tr>
 <tr>
+  <td><code>network.multus.status</code></td>
   <td><code>string</code></td>
   <td>Controls the deployment of the Multus Container Network Interface (CNI). The default status is <code>Disabled</code>. If you set the value to <code>Enabled</code>, the Multus CNI cannot be deleted.</td>
-  <td><code>network.serviceNetwork</code></td>
 </tr>
 <tr>
+  <td><code>network.serviceNetwork</code></td>
   <td>IP address block</td>
   <td>A block of virtual IP addresses for Kubernetes services. IP address pool for services. IPv4 is the default. Dual-stack entries are supported. The first entry in this field is immutable after {{ microshift_short }} starts. The default range is <code>10.43.0.0/16</code>.</td>
-  <td><code>network.serviceNodePortRange</code></td>
 </tr>
 <tr>
+  <td><code>network.serviceNodePortRange</code></td>
   <td><code>range</code></td>
   <td>The port range allowed for Kubernetes services of type <code>NodePort</code>. If you do not specify the range, the default range of <code>30000-32767</code> is used. Services without a <code>NodePort</code> specified are automatically allocated one from this range. This parameter can be updated after {{ microshift_short }} starts.</td>
-  <td><code>node.hostnameOverride</code></td>
 </tr>
 <tr>
+  <td><code>node.hostnameOverride</code></td>
   <td><code>string</code></td>
   <td>The name of the node. The default value is the hostname. If non-empty, this string is used to identify the node instead of the hostname. This value is immutable after {{ microshift_short }} starts.</td>
-  <td><code>node.nodeIP</code></td>
 </tr>
 <tr>
+  <td><code>node.nodeIP</code></td>
   <td>IPv4 address</td>
   <td>The IPv4 address of the node. The default value is the IP address of the default route.</td>
-  <td><code>nodeIPv6</code></td>
 </tr>
 <tr>
+  <td><code>nodeIPv6</code></td>
   <td>IPv6 address</td>
   <td>The IPv6 address for the node for dual-stack configurations. Cannot be configured in single stack for either IPv4 or IPv6. The default is an empty value or null.</td>
-  <td><code>storage.driver</code></td>
 </tr>
 <tr>
+  <td><code>storage.driver</code></td>
   <td><code>none</code> or <code>lvms</code></td>
   <td>The default value is empty. An empty value or null field defaults to LVMS deployment.</td>
-  <td><code>storage.optionalCsiComponents</code></td>
 </tr>
 <tr>
+  <td><code>storage.optionalCsiComponents</code></td>
   <td><code>array</code></td>
   <td>The default value is null or an empty array. A null or empty array defaults to deploying <code>snapshot-controller</code>. Expected values are <code>csi-snapshot-controller</code> or <code>none</code>. A value of <code>none</code> is mutually exclusive with all other values.</td>
-  <td><code>telemetry.endpoint</code></td>
 </tr>
 <tr>
+  <td><code>telemetry.endpoint</code></td>
   <td><code>https://infogw.api.openshift.com</code></td>
   <td>The endpoint where telemetry data is sent. No user or private data is included in the metrics reported. The default value is <code>https://infogw.api.openshift.com</code>.</td>
-  <td><code>telemetry.status</code></td>
 </tr>
 <tr>
+  <td><code>telemetry.status</code></td>
   <td><code>Enabled</code></td>
   <td>Telemetry status, which can be <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Enabled</code>.</td>
 </tr>

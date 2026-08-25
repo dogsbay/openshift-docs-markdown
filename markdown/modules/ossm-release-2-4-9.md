@@ -10,4 +10,5 @@ This release of {{ SMProductName }} is included with the {{ SMProductName }} Ope
 | Istio | 1.16.7 |
 | Envoy Proxy | 1.24.12 |
 | Kiali | 1.65.11 |
+
 ---

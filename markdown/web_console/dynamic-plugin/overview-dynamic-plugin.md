@@ -8,7 +8,7 @@ title: Overview of dynamic plugins
 # Overview of dynamic plugins {id="overview-dynamic-plugin"}
 {%- set context = "overview-dynamic-plugin" %}
 
-Dynamic plugins are loaded and interpreted from remote sources at runtime. One way to deliver and expose dynamic plugins to the console is through OLM Operators. The Operator creates a deployment on the platform with an HTTP server to host the plugin and exposes it using a Kubernetes service.
+Dynamic plugins are loaded and interpreted from remote sources at runtime. One way to deliver and expose dynamic plugins to the console is through OLM Operators. The Operator creates a deployment on the platform with an HTTP server to host the plugin and exposes it using a Kubernetes service. {._abstract}
 
 Dynamic plugins allow you to add custom pages and other extensions to your console user interface at runtime. The `ConsolePlugin` custom resource registers plugins with the console, and a cluster administrator enables plugins in the console Operator configuration.
 
@@ -42,7 +42,7 @@ When creating your plugin, follow these general guidelines:
 When creating your plugin, follow these guidelines for using PatternFly:
 
 *   Use PatternFly components and PatternFly CSS variables. Core PatternFly components are available through the SDK. Using PatternFly components and variables helps your plugin look consistent in future console versions. For a list of available components, see Additional resources.
-    {%- if not openshift_rosa_hcp %}
+{%- if not openshift_rosa_hcp %}
     *   Use PatternFly 4.x if you are using {{ product_title }} versions 4.14 and earlier.
     *   Use PatternFly 5.x if you are using {{ product_title }} versions 4.15 through 4.18.
     *   Use PatternFly 6.x if you are using {{ product_title }} versions 4.19 and later.
@@ -52,12 +52,13 @@ When creating your plugin, follow these guidelines for using PatternFly:
     *   Use PatternFly 5.x.
 {%- endif %}
 *   Make your plugin accessible by following PatternFly’s accessibility fundamentals, linked in Additional resources.
-*   Avoid using other CSS libraries such as Bootstrap or Tailwind. They might conflict with PatternFly and not match the rest of the console. Plugins should only include styles that are specific to their user interfaces to be evaluated on top of base PatternFly styles. Do not import styles directly from `@patternfly/react-styles/***/**.css` or `@patternfly/patternfly`. Instead, use components and CSS variables provided by the console SDK.
+*   Avoid using other CSS libraries such as Bootstrap or Tailwind. They might conflict with PatternFly and not match the rest of the console. Plugins should only include styles that are specific to their user interfaces to be evaluated on top of base PatternFly styles. Do not import styles directly from `@patternfly/react-styles/**/*.css` or `@patternfly/patternfly`. Instead, use components and CSS variables provided by the console SDK.
 *   The console application is responsible for loading base styles for all supported PatternFly versions.
 
 {% leveloffset +2 %}{% include "./modules/dynamic-plugin-localization.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Node.js](https://nodejs.org/en/)
 *   [yarn](https://yarnpkg.com/)

@@ -18,6 +18,7 @@ Since the Google Compute Platform ({{ gcp_short }}) Filestore Container Storage 
 {% endif %}
 
 {% if not openshift_dedicated %}
+
 1.  Log in to the web console.
 
 {% endif %}
@@ -30,7 +31,7 @@ Since the Google Compute Platform ({{ gcp_short }}) Filestore Container Storage 
 
     You can also do this using Google Cloud web console.
 1.  Install the {{ gcp_short }} Filestore CSI Operator:
-    1.  Click **Ecosystem** -> **Software Catalog**.
+    1.  Click **Ecosystem** → **Software Catalog**.
     1.  Locate the {{ gcp_short }} Filestore CSI Operator by typing **{{ gcp_short }} Filestore** in the filter box.
     1.  Click the **{{ gcp_short }} Filestore CSI Driver Operator** button.
     1.  On the **{{ gcp_short }} Filestore CSI Driver Operator** page, click **Install**.

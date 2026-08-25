@@ -4,10 +4,10 @@ title: Postinstallation cluster tasks
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "post-install-cluster-tasks" %}
-# Postinstallation cluster tasks {id="post-install-cluster-tasks"}
 {% include "./_attributes/common-attributes.md" %}
+# Postinstallation cluster tasks {id="post-install-cluster-tasks"}
 
-After installing {{ product_title }}, you can configure, scale, and maintain your cluster to meet operational requirements, including managing nodes and infrastructure workloads, enabling features, applying autoscaling, and maintaining etcd.
+After installing {{ product_title }}, you can configure, scale, and maintain your cluster to meet operational requirements, including managing nodes and infrastructure workloads, enabling features, applying autoscaling, and maintaining etcd. {._abstract}
 
 After installing {{ product_title }}, you can further expand and customize your cluster to your requirements.
 
@@ -40,12 +40,14 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +2 %}{% include "./modules/post-install-adding-nodes-on-prem.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding worker nodes to an on-premise cluster](/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso)
 
 {% leveloffset +2 %}{% include "./modules/post-install-adding-nodes-ipi.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding worker nodes using the web console](/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-web-console_managing-bare-metal-hosts)
 *   [Adding worker nodes using YAML in the web console](/scalability_and_performance/managing-bare-metal-hosts#adding-bare-metal-host-to-cluster-using-yaml_managing-bare-metal-hosts)
@@ -54,12 +56,14 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +2 %}{% include "./modules/post-install-adding-nodes-upi.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding RHCOS worker nodes to a user-provisioned infrastructure cluster](/post_installation_configuration/node-tasks#post-install-config-adding-fcos-compute)
 
 {% leveloffset +2 %}{% include "./modules/post-install-adding-nodes-assisted.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding worker nodes using {{ cluster_manager }}](/nodes/nodes/nodes-sno-worker-nodes#sno-adding-worker-nodes-to-sno-clusters_add-workers)
 *   [Adding worker nodes using the Assisted Installer REST API](/nodes/nodes/nodes-sno-worker-nodes#adding-worker-nodes-using-the-assisted-installer-api)
@@ -68,6 +72,7 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +2 %}{% include "./modules/post-install-adding-nodes-mce.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating your cluster with the console](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.9/html/clusters/cluster_mce_overview#on-prem-creating-your-cluster-with-the-console)
 
@@ -92,6 +97,7 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +1 %}{% include "./modules/post-install-cpms-setup.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Control plane machine sets](/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)
 *   [Getting started with control plane machine sets](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-getting-started)
@@ -101,6 +107,7 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +1 %}{% include "./modules/post-install-creating-infrastructure-machinesets-production.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)
 *   [Use a machine set to create an infrastructure node](/post_installation_configuration/cluster-tasks#machineset-creating_post-install-cluster-tasks)
@@ -114,12 +121,14 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +2 %}{% include "./modules/creating-an-infra-node.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Project node selectors](/nodes/scheduling/nodes-scheduler-node-selectors#project-node-selectors_nodes-scheduler-node-selectors)
 
 {% leveloffset +2 %}{% include "./modules/creating-infra-machines.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Node configuration management with machine config pools](/architecture/control-plane#architecture-machine-config-pools_control-plane)
 
@@ -128,6 +137,7 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +2 %}{% include "./modules/binding-infra-node-workloads-using-taints-tolerations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Controlling pod placement using the scheduler](/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)
 
@@ -150,6 +160,7 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +1 %}{% include "./modules/post-install-applying-autoscaling.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Applying autoscaling to an {{ product_title }} cluster](/machine_management/applying-autoscaling#applying-autoscaling)
 
@@ -164,6 +175,7 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +1 %}{% include "./modules/post-install-etcd-tasks.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Node scaling for etcd](/etcd/etcd-performance#etcd-node-scaling_etcd-performance)
 
@@ -186,6 +198,7 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +2 %}{% include "./modules/dr-restoring-cluster-state.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
 *   [Installing a user-provisioned cluster on bare metal](/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
@@ -202,6 +215,7 @@ For current documentation of the settings that you control by using these resour
 {% leveloffset +2 %}{% include "./modules/pod-disruption-eviction-policy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 *   [Unhealthy Pod Eviction Policy in the Kubernetes documentation](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)

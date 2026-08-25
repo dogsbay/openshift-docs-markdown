@@ -5,4 +5,4 @@ The `secretReference` field refers to a secret with the given name in the same n
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `name` | _string_ | `name` specifies the name of the secret resource being referred to. |  | The maximum length is 253. The minimum length is 1. |
+| `name` | _string_ | `name` specifies the name of the secret resource being referred to. |  | The maximum length is 253.<br>The minimum length is 1. |

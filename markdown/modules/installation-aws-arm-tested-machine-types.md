@@ -15,7 +15,6 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 
 **Machine types based on 64-bit ARM architecture**
 
-```
 * `c6g.*`
 * `c7g.*`
 * `c8g.*`
@@ -23,4 +22,3 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 * `m7g.*`
 * `m7gd.*`
 * `r8g.*`
-```

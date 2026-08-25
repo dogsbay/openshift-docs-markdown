@@ -23,7 +23,7 @@ The following are examples of targets monitored by Red&#160;Hat Site Reliability
 *   OpenShift API server
 *   OpenShift Controller Manager
 *   Operator Lifecycle Manager (OLM)
-{% endif %}
+{%- endif %}
 
 {% if openshift_dedicated or openshift_rosa %}
 

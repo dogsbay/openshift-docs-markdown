@@ -5,6 +5,6 @@ You can use the {{ mce_short }} web console to destroy a hosted cluster on bare 
 
 **Procedure**
 
-1.  In the console, click **Infrastructure** -> **Clusters**.
+1.  In the console, click **Infrastructure** → **Clusters**.
 1.  On the **Clusters** page, select the cluster that you want to destroy.
 1.  In the **Actions** menu, select **Destroy clusters** to remove the cluster.

@@ -3,17 +3,17 @@ title: Overview of images
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Overview of images {id="overview-of-images"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "overview-of-images" %}
 
-To understand how containerized applications work in {{ product_title }}, you need to know about containers, images, and image streams. This overview explains these core concepts and how they work together in your cluster.
+To understand how containerized applications work in {{ product_title }}, you need to know about containers, images, and image streams. This overview explains these core concepts and how they work together in your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/images-about.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-## Additional resources {id="additional-resources-about-images_{{ context }}"}
+## Additional resources {id="additional-resources-about-images_{{ context }}" ._additional-resources}
 
 *   [podman](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/managing_containers/#using_podman_to_work_with_containers)
 *   [Creating images](/openshift_images/create-images#creating-images)
@@ -22,7 +22,7 @@ To understand how containerized applications work in {{ product_title }}, you ne
 {% endif %}
 
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-## Additional resources {id="additional-resources-about-images-managed_{{ context }}"}
+## Additional resources {id="additional-resources-about-images-managed_{{ context }}" ._additional-resources}
 
 *   [podman](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/managing_containers/#using_podman_to_work_with_containers)
 *   [Creating images](/openshift_images/create-images#creating-images)
@@ -42,7 +42,7 @@ To understand how containerized applications work in {{ product_title }}, you ne
 
 {% leveloffset +1 %}{% include "./modules/images-imagestream-use.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources-imagestream-use_{{ context }}"}
+## Additional resources {id="additional-resources-imagestream-use_{{ context }}" ._additional-resources}
 
 *   [Open Container Initiative](https://github.com/opencontainers/)
 *   [Podman](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/managing_containers/#using_podman_to_work_with_containers)
@@ -58,7 +58,7 @@ To understand how containerized applications work in {{ product_title }}, you ne
 
 {% leveloffset +1 %}{% include "./modules/how-you-can-use-the-cluster-samples-operator.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   [Configuring the Cluster Samples Operator](/openshift_images/configuring-samples-operator#configuring-samples-operator)

@@ -3,11 +3,11 @@ title: Getting started with control plane machine sets
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Getting started with control plane machine sets {id="cpmso-getting-started"}
 {% include "./_attributes/common-attributes.md" %}
+# Getting started with control plane machine sets {id="cpmso-getting-started"}
 {%- set context = "cpmso-getting-started" %}
 
-Set up the control plane machine set to enable automated management, recovery, and configuration updates for control plane machines in your cluster.
+Set up the control plane machine set to enable automated management, recovery, and configuration updates for control plane machines in your cluster. {._abstract}
 
 The process for getting started with control plane machine sets depends on the state of the `ControlPlaneMachineSet` custom resource (CR) in your cluster.
 
@@ -35,12 +35,13 @@ The status of the control plane machine set after installation depends on your c
 
 | Cloud provider | Active by default | Generated CR | Manual CR required |
 | :-- | :-: | :-: | :-: |
-| {{ aws_first }} | X ^[1]^ | X |  |
-| {{ gcp_first }} | X ^[2]^ | X |  |
-| {{ azure_first }} | X ^[2]^ | X |  |
-| Nutanix | X ^[3]^ | X |  |
-| {{ rh_openstack_first }} | X ^[3]^ | X |  |
-| {{ vmw_full }} | X ^[4]^ | X |  |
+| {{ aws_first }} | X <sup>[1]</sup> | X |  |
+| {{ gcp_first }} | X <sup>[2]</sup> | X |  |
+| {{ azure_first }} | X <sup>[2]</sup> | X |  |
+| Nutanix | X <sup>[3]</sup> | X |  |
+| {{ rh_openstack_first }} | X <sup>[3]</sup> | X |  |
+| {{ vmw_full }} | X <sup>[4]</sup> | X |  |
+
 1.  {{ aws_short }} clusters that are upgraded from version 4.11 or earlier require [CR activation](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started).
 1.  {{ gcp_short }} and {{ azure_short }} clusters that are upgraded from version 4.12 or earlier require [CR activation](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started).
 1.  Nutanix and {{ rh_openstack }} clusters that are upgraded from version 4.13 or earlier require [CR activation](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started).
@@ -51,12 +52,14 @@ The status of the control plane machine set after installation depends on your c
 {% leveloffset +1 %}{% include "./modules/cpmso-activating.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Control plane machine set configuration](/machine_management/control_plane_machine_management/cpmso-configuration#cpmso-configuration)
 
 {% leveloffset +1 %}{% include "./modules/cpmso-creating-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Updating the control plane configuration](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 *   [Control plane machine set configuration](/machine_management/control_plane_machine_management/cpmso-configuration#cpmso-configuration)

@@ -23,42 +23,40 @@ Restore the Red&#160;Hat 3scale API Management operator resources, including the
     ```
 1.  Create a YAML file with the following configuration to restore the 3scale operator:
 
-```yaml
-apiVersion: velero.io/v1
-kind: Restore
-metadata:
-  name: operator-installation-restore
-  namespace: openshift-adp
-spec:
-  backupName: operator-install-backup
-  excludedResources:
-  - nodes
-  - events
-  - events.events.k8s.io
-  - backups.velero.io
-  - restores.velero.io
-  - resticrepositories.velero.io
-  - csinodes.storage.k8s.io
-  - volumeattachments.storage.k8s.io
-  - backuprepositories.velero.io
-  itemOperationTimeout: 4h0m0s
-```
+    ```yaml
+    apiVersion: velero.io/v1
+    kind: Restore
+    metadata:
+      name: operator-installation-restore
+      namespace: openshift-adp
+    spec:
+      backupName: operator-install-backup
+      excludedResources:
+      - nodes
+      - events
+      - events.events.k8s.io
+      - backups.velero.io
+      - restores.velero.io
+      - resticrepositories.velero.io
+      - csinodes.storage.k8s.io
+      - volumeattachments.storage.k8s.io
+      - backuprepositories.velero.io
+      itemOperationTimeout: 4h0m0s
+    ```
 
-where:
+    where:
 
-
-`operator-install-backup`
-:   Specifies the name of the backup to restore the 3scale operator.
+    `operator-install-backup`
+    :   Specifies the name of the backup to restore the 3scale operator.
 
 1.  Restore the 3scale operator by running the following command:
     ```terminal
     $ oc create -f restore.yaml
     ```
 
-```terminal
-restore.velerio.io/operator-installation-restore created
-```
-
+    ```terminal
+    restore.velerio.io/operator-installation-restore created
+    ```
 1.  Manually create the `s3-credentials` `Secret` object by running the following command:
     ```terminal
     $ oc apply -f - <<EOF

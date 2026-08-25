@@ -11,7 +11,7 @@ To analyze test failures and troubleshoot performance issues, generate a JUnit l
 **Procedure**
 
 *   Create a test failure report with information about the cluster state and resources for troubleshooting by passing the `--report` parameter with the path to where the report is dumped:
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -v $(pwd)/reportdest:<report_folder_path> \
     -e KUBECONFIG=/kubeconfig/kubeconfig registry.redhat.io/openshift4/cnf-tests-rhel9:v{{ product_version }} \
     /usr/bin/test-run.sh --report <report_folder_path> --ginkgo.v

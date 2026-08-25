@@ -5,7 +5,7 @@ You can create a virtual machine template by editing a YAML file example in the 
 
 **Procedure**
 
-1.  In the web console, click **Virtualization** -> **Templates** in the side menu.
+1.  In the web console, click **Virtualization** → **Templates** in the side menu.
 1.  Optional: Use the **Project** drop-down menu to change the project associated with the new template. All templates are saved to the `openshift` project by default.
 1.  Click **Create Template**.
 1.  Specify the template parameters by editing the YAML file.

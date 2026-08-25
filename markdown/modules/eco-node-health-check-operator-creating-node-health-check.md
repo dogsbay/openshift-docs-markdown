@@ -4,7 +4,7 @@ Using the web console, you can create a node health check to identify unhealthy 
 
 **Procedure**
 
-1.  From the **Administrator** perspective of the {{ product_title }} web console, click **Compute** -> **NodeHealthChecks** -> **CreateNodeHealthCheck**.
+1.  From the **Administrator** perspective of the {{ product_title }} web console, click **Compute** → **NodeHealthChecks** → **CreateNodeHealthCheck**.
 1.  Specify whether to configure the node health check using the **Form view**  or the **YAML view**.
 1.  Enter a **Name** for the node health check. The name must consist of lower case, alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character.
 1.  Specify the **Remediator** type, and **Self node remediation** or **Other**. The Self node remediation option is part of the Self Node Remediation Operator that is installed with the Node Health Check Operator. Selecting **Other** requires an **API version**, **Kind**, **Name**, and **Namespace** to be entered, which then points to the remediation template resource of a remediator.
@@ -22,4 +22,4 @@ Using the web console, you can create a node health check to identify unhealthy 
 
 **Verification**
 
-*   Navigate to the **Compute** -> **NodeHealthCheck** page and verify that the corresponding node health check is listed, and their status displayed. Once created, node health checks can be paused, modified, and deleted.
+*   Navigate to the **Compute** → **NodeHealthCheck** page and verify that the corresponding node health check is listed, and their status displayed. Once created, node health checks can be paused, modified, and deleted.

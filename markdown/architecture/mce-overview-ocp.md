@@ -3,11 +3,11 @@ title: "About the {{ mce }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About the {{ mce }} {id="mce-overview-ocp"}
 {% include "./_attributes/common-attributes.md" %}
+# About the {{ mce }} {id="mce-overview-ocp"}
 {%- set context = "mce-overview-ocp" %}
 
-Manage the lifecycle of a growing Kubernetes fleet with the {{ mce_short }}. Scale operations efficiently with full lifecycle capabilities for managed {{ product_title }} clusters and support for other Kubernetes distributions.
+Manage the lifecycle of a growing Kubernetes fleet with the {{ mce_short }}. Scale operations efficiently with full lifecycle capabilities for managed {{ product_title }} clusters and support for other Kubernetes distributions. {._abstract}
 
 You can access the Operator in the following ways:
 
@@ -28,7 +28,7 @@ If you need cluster management capabilities beyond what {{ product_title }} with
 
 For the complete documentation for multicluster engine, see "Cluster lifecycle with multicluster engine Operator", which is part of the product documentation for Red Hat Advanced Cluster Management.
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Red Hat Advanced Cluster Management for Kubernetes](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes)
 *   [{{ hcp_capital }} overview](/hosted_control_planes/index#hcp-overview)

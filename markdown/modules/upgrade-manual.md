@@ -35,8 +35,8 @@ You can use {{ cluster_manager }} to manually upgrade your {{ product_title }} c
     *   The same upgrade details are available on the **Upgrade settings** tab under the **Upgrade status** box. If you need to cancel the scheduled upgrade, you can click **Cancel this upgrade** from the **Upgrade status** box.
 
 
-:::warning
+    :::warning
 
-If a Common Vulnerabilities and Exposures (CVE) or other critical issue to {{ product_title }} is found, all clusters are upgraded within 48 hours of the fix being released. You are notified when the fix is available and informed that the cluster will be automatically upgraded at your latest preferred start time before the 48 hour window closes. You can also upgrade manually at any time before the recurring upgrade starts.
-
-:::
+    If a Common Vulnerabilities and Exposures (CVE) or other critical issue to {{ product_title }} is found, all clusters are upgraded within 48 hours of the fix being released. You are notified when the fix is available and informed that the cluster will be automatically upgraded at your latest preferred start time before the 48 hour window closes. You can also upgrade manually at any time before the recurring upgrade starts.
+    
+    :::

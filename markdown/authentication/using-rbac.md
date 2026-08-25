@@ -3,13 +3,14 @@ title: Using RBAC to define and apply permissions
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using RBAC to define and apply permissions {id="using-rbac"}
 {% include "./_attributes/common-attributes.md" %}
+# Using RBAC to define and apply permissions {id="using-rbac"}
 {%- set context = "using-rbac" %}
 
 {% leveloffset +1 %}{% include "./modules/rbac-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [RBAC rules allow execution privileges](https://access.redhat.com/solutions/6989997)
 *   [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)
@@ -17,12 +18,14 @@ title: Using RBAC to define and apply permissions
 {% leveloffset +1 %}{% include "./modules/rbac-projects-namespaces.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Kubernetes documentation on namespaces](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/)
 
 {% leveloffset +1 %}{% include "./modules/rbac-default-projects.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Guaranteed Scheduling For Critical Add-On Pods (Kubernetes documentation)](https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/#rescheduler-guaranteed-scheduling-of-critical-add-ons)
 

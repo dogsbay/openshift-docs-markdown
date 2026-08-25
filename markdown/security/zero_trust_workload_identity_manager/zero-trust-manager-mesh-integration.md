@@ -3,11 +3,11 @@ title: Integrating Red Hat OpenShift Service Mesh with Zero Trust Workload Ident
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Integrating Red Hat OpenShift Service Mesh with Zero Trust Workload Identity Manager in a single-cluster {id="zero-trust-manager-mesh-integration_{{ context }}"}
 {% include "./_attributes/common-attributes.md" %}
+# Integrating Red Hat OpenShift Service Mesh with Zero Trust Workload Identity Manager in a single-cluster {id="zero-trust-manager-mesh-integration_{{ context }}"}
 {%- set context = "zero-trust-manager-mesh-integration" %}
 
-Deploy and configure {{ spire_full }} as the certificate authority (CA) for {{ SMProductName }} workloads, replacing the Istio built-in CA with SPIFFE-compliant identities and automatically rotated short-lived certificates.
+Deploy and configure {{ spire_full }} as the certificate authority (CA) for {{ SMProductName }} workloads, replacing the Istio built-in CA with SPIFFE-compliant identities and automatically rotated short-lived certificates. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/zero-trust-manager-about-spire-integration.md" %}{% endleveloffset %}
 

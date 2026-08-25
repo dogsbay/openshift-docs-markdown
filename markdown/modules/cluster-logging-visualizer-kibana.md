@@ -38,9 +38,7 @@ To view logs in Kibana:
     The log data displays as  time-stamped documents.
 1.  Expand one of the time-stamped documents.
 1.  Click the **JSON** tab to display the log entry for that document.
-    <details>
-    <summary>Sample infrastructure log entry in Kibana</summary>
-
+    :::details{title="Sample infrastructure log entry in Kibana"}
     ```terminal
     {
       "_index": "infra-000001",
@@ -102,4 +100,4 @@ To view logs in Kibana:
       ]
     }
     ```
-    </details>
+    :::

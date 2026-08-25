@@ -7,13 +7,14 @@ title: "Networking for {{ hcp }}"
 # Networking for {{ hcp }} {id="hcp-networking"}
 {%- set context = "hcp-networking" %}
 
-Ensure optimal performance with {{ hcp }} by configuring network settings. Those settings include internal subnets and proxy support for control-plane workloads, compute nodes, management clusters, and hosted clusters.
+Ensure optimal performance with {{ hcp }} by configuring network settings. Those settings include internal subnets and proxy support for control-plane workloads, compute nodes, management clusters, and hosted clusters. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hcp-networking-overview.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/hcp-isolation-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Control plane isolation](/hosted_control_planes/hcp-networking#hcp-isolation_hcp-networking)
 *   [Distributing hosted cluster workloads](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)
@@ -41,6 +42,7 @@ Ensure optimal performance with {{ hcp }} by configuring network settings. Those
 {% leveloffset +1 %}{% include "./modules/hcp-custom-ovn-subnets.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Troubleshooting internal subnets for hosted clusters](/hosted_control_planes/hcp-troubleshooting#hcp-ts-internal-subnets_hcp-troubleshooting)
 *   [Creating a hosted cluster by using the CLI](/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc_hcp-deploy-bm)
@@ -58,6 +60,7 @@ Ensure optimal performance with {{ hcp }} by configuring network settings. Those
 {% leveloffset +2 %}{% include "./modules/hcp-proxy-addl-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Troubleshooting internal subnets for hosted clusters](/hosted_control_planes/hcp-troubleshooting#hcp-ts-internal-subnets_hcp-troubleshooting)
 *   [Creating a hosted cluster by using the CLI](/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-hc_hcp-deploy-bm)

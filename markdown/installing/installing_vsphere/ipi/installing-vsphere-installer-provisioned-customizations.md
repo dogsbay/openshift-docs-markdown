@@ -3,13 +3,13 @@ title: Installing a cluster on vSphere with customizations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on vSphere with customizations {id="installing-vsphere-installer-provisioned-customizations"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on vSphere with customizations {id="installing-vsphere-installer-provisioned-customizations"}
 {%- set context = "installing-vsphere-installer-provisioned-customizations" -%}
 {%- set platform = "vSphere" %}
 
 In {{ product_title }} version {{ product_version }}, you can install a cluster on your
-{{ vmw_first }} instance by using installer-provisioned infrastructure with customizations, including network configuration options. In each, you modify parameters in the `install-config.yaml` file before you install the cluster.
+{{ vmw_first }} instance by using installer-provisioned infrastructure with customizations, including network configuration options. In each, you modify parameters in the `install-config.yaml` file before you install the cluster. {._abstract}
 
 By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.
 
@@ -40,6 +40,7 @@ You must set most of the network configuration parameters during installation, a
 {% leveloffset +1 %}{% include "./modules/installation-vsphere-regions-zones-host-groups.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Additional {{ vmw_full }} configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
 *   [Deprecated {{ vmw_full }} configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
@@ -49,6 +50,7 @@ You must set most of the network configuration parameters during installation, a
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -65,6 +67,7 @@ You must set most of the network configuration parameters during installation, a
 {% leveloffset +2 %}{% include "./modules/installation-vsphere-multiple-nics.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Network configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-network_installation-config-parameters-vsphere)
 
@@ -75,6 +78,7 @@ You must set most of the network configuration parameters during installation, a
 {% leveloffset +2 %}{% include "./modules/nw-operator-vsphere-multiple-subnets.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`.spec.platformSpec.vsphere.nodeNetworking`](/rest_api/config_apis/infrastructure-config-openshift-io-v1#spec-platformspec-vsphere-nodenetworking)
 
@@ -97,18 +101,21 @@ You must set most of the network configuration parameters during installation, a
 {% leveloffset +2 %}{% include "./modules/installation-registry-storage-block-recreate-rollout.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the registry for vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-configure-network-components-to-run-on-the-control-plane.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing to install a cluster using installer-provisioned infrastructure](/installing/installing_vsphere/ipi/ipi-vsphere-preparing-to-install#ipi-vsphere-preparing-to-install)
 *   [{{ product_title }} installation and update processes](/architecture/architecture-installation#architecture-installation)

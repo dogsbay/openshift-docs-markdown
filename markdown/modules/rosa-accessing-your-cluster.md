@@ -83,8 +83,8 @@ Alternatively, as the user who created the cluster, you can use the quick access
         Created:     May 27, 2020
         ```
     1.  Navigate to the `Console URL`, and log in using your Github credentials.
-    1.  In the top right of the OpenShift console, click your name and click ***Copy Login Command***.
-    1.  Select the name of the IDP you added (in our case ***github-1****), and click **Display Token***.
+    1.  In the top right of the OpenShift console, click your name and click **Copy Login Command**.
+    1.  Select the name of the IDP you added (in our case **github-1**), and click **Display Token**.
     1.  Copy and paste the `oc` login command into your terminal.
         ```terminal
         $ oc login --token=z3sgOGVDk0k4vbqo_wFqBQQTnT-nA-nQLb8XEmWnw4X --server=https://api.rh-rosa-test-cluster1.j9n4.s1.devshift.org:6443

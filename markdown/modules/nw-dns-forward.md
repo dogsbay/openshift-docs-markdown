@@ -6,7 +6,7 @@ Configure DNS forwarding servers and upstream resolvers for the cluster. {._abst
 You can use DNS forwarding to override the default forwarding configuration in the `/etc/resolv.conf` file in the following ways:
 
 *   Specify name servers (`spec.servers`) for every zone. If the forwarded zone is the ingress domain managed by {{ product_title }}, then the upstream name server must be authorized for the domain.
-{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 
     :::important
 
@@ -14,7 +14,7 @@ You can use DNS forwarding to override the default forwarding configuration in t
     
     :::
 
-{%- endif %}
+{% endif %}
 *   Provide a list of upstream DNS servers (`spec.upstreamResolvers`).
 *   Change the default forwarding policy.
 
@@ -45,7 +45,6 @@ During pod creation, Kubernetes uses the `/etc/resolv.conf` file that exists on 
     :::
 
 {%- endif %}
-
     If none of the servers have a zone that matches the query, then name resolution falls back to the upstream DNS servers.
     ```yaml title="Configuring DNS forwarding"
     apiVersion: operator.openshift.io/v1

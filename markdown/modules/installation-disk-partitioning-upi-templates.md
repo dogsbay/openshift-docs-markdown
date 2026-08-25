@@ -34,28 +34,26 @@ If you follow the steps to create a separate `/var` partition in this procedure,
     $ openshift-install create manifests --dir $HOME/clusterconfig
     ```
 
-```terminal title="Example output"
-? SSH Public Key ...
-INFO Credentials loaded from the "myprofile" profile in file "/home/myuser/.aws/credentials"
-INFO Consuming Install Config from target directory
-INFO Manifests created in: $HOME/clusterconfig/manifests and $HOME/clusterconfig/openshift
-```
-
+    ```terminal title="Example output"
+    ? SSH Public Key ...
+    INFO Credentials loaded from the "myprofile" profile in file "/home/myuser/.aws/credentials"
+    INFO Consuming Install Config from target directory
+    INFO Manifests created in: $HOME/clusterconfig/manifests and $HOME/clusterconfig/openshift
+    ```
 1.  Optional: Confirm that the installation program created manifests in the `clusterconfig/openshift` directory:
     ```terminal
     $ ls $HOME/clusterconfig/openshift/
     ```
 
-```terminal title="Example output"
-99_kubeadmin-password-secret.yaml
-99_openshift-cluster-api_master-machines-0.yaml
-99_openshift-cluster-api_master-machines-1.yaml
-99_openshift-cluster-api_master-machines-2.yaml
-...
-```
-
+    ```terminal title="Example output"
+    99_kubeadmin-password-secret.yaml
+    99_openshift-cluster-api_master-machines-0.yaml
+    99_openshift-cluster-api_master-machines-1.yaml
+    99_openshift-cluster-api_master-machines-2.yaml
+    ...
+    ```
 1.  Create a Butane config that configures the additional partition. For example, name the file `$HOME/clusterconfig/98-var-partition.bu`, change the disk device name to the name of the storage device on the `worker` systems, and set the storage size as appropriate. This example places the `/var` directory on a separate partition:
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

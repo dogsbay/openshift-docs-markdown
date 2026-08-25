@@ -24,5 +24,5 @@ Optional add-on Operators
 :   Managed by Operator Lifecycle Manager (OLM) and can be made accessible for users to run in their applications. Also known as _OLM-based Operators_.
 
 {% if context == "operators-overview" %}
-{%- set index = false -%}
+{%- set index = "" -%}
 {% endif %}

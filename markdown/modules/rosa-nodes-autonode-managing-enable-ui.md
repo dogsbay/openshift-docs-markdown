@@ -23,7 +23,7 @@ Enable the {{ autonode }} on your cluster by using {{ cluster_manager }} after i
     $ export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
     ```
 1.  Log in to the [AWS console](https://console.aws.amazon.com/). 
-1.  In the AWS console, navigate to ***IAM > Roles***.
+1.  In the AWS console, navigate to **IAM > Roles**.
 1.  On your {{ autonode }} Amazon Resource Name (ARN), update the trust policy to include the following policy specifications:
 
     :::note
@@ -65,10 +65,10 @@ Enable the {{ autonode }} on your cluster by using {{ cluster_manager }} after i
     :   Specifies the OIDC endpoint URL that you acquired.
 
 1.  In {{ cluster_manager_url }}, select your cluster from the cluster list.
-1.  On the cluster details screen, select the ***Edit*** button next to the status for the {{ autonode }}. 
-1.  On the ***Edit Autonode settings*** dialog box, toggle ***Enable Autonode***.
+1.  On the cluster details screen, select the **Edit** button next to the status for the {{ autonode }}. 
+1.  On the **Edit Autonode settings** dialog box, toggle **Enable Autonode**.
 1.  Add your {{ autonode }} IAM role ARN to the field in this dialog box.
-1.  Select ***Save*** to save your configurations and close the ***Edit Autonode settings*** box.
+1.  Select **Save** to save your configurations and close the **Edit Autonode settings** box.
 
 **Verification**
 

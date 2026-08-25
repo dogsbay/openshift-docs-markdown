@@ -81,8 +81,8 @@ Based upon your use case, create your request by using either the `cluster-layer
     *   The subnets field accepts one or two items. For two items, they must be of a different family. For example, subnets values of `10.100.0.0/16` and `2001:db8::/64`.
     *   `Layer2` subnets can be omitted. If omitted, users must configure static IP addresses for the pods. As a consequence, port security only prevents MAC spoofing. For more information, see "Configuring pods with a static IP address".
 
-`spec.network.transport`
-:   Specifies how pod traffic is carried on the cluster infrastructure for the `ClusterUserDefinedNetwork` CR. Accepted value is `EVPN`. Additional configuration is required when setting the `spec.network.transport` field. This field is optional. For more information, see "About BGP EVPN for primary cluster user-defined networks".
+        `spec.network.transport`
+        :   Specifies how pod traffic is carried on the cluster infrastructure for the `ClusterUserDefinedNetwork` CR. Accepted value is `EVPN`. Additional configuration is required when setting the `spec.network.transport` field. This field is optional. For more information, see "About BGP EVPN for primary cluster user-defined networks".
 
     1.  Create a YAML file, such as `cluster-layer-three-udn.yaml`, to define your request for a `Layer3` topology as in the following example:
         ```yaml
@@ -134,8 +134,8 @@ Based upon your use case, create your request by using either the `cluster-layer
         *   `hostSubnet` specifies the nodes subnet prefix that the cluster subnet is split to.
         *   For IPv6, only a `/64` length is supported for `hostSubnet`.
 
-    `spec.network.transport`
-    :   Specifies how pod traffic is carried on the cluster infrastructure for the `ClusterUserDefinedNetwork` CR. Accepted value is `EVPN`. Additional configuration is required when setting the `spec.network.transport` field. This field is optional. For more information, see "About BGP EVPN for primary cluster user-defined networks".
+        `spec.network.transport`
+        :   Specifies how pod traffic is carried on the cluster infrastructure for the `ClusterUserDefinedNetwork` CR. Accepted value is `EVPN`. Additional configuration is required when setting the `spec.network.transport` field. This field is optional. For more information, see "About BGP EVPN for primary cluster user-defined networks".
 
 1.  Apply your request by running the following command:
     ```terminal

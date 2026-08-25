@@ -11,12 +11,12 @@ To expose downward metrics for a host virtual machine, you can enable the `downw
 **Procedure**
 
 1.  Open the HyperConverged custom resource (CR) in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Choose to enable or disable the downwardMetrics feature gate as follows:
     *   To enable the `downwardMetrics` feature gate, add and then set `spec.featureGates.downwardMetrics` to `true`. For example:
-        ```yaml
+        ```yaml {minja}
         apiVersion: hco.kubevirt.io/v1beta1
         kind: HyperConverged
         metadata:
@@ -28,7 +28,7 @@ To expose downward metrics for a host virtual machine, you can enable the `downw
         # ...
         ```
     *   To disable the `downwardMetrics` feature gate, set `spec.featureGates.downwardMetrics` to `false`. For example:
-        ```yaml
+        ```yaml {minja}
         apiVersion: hco.kubevirt.io/v1beta1
         kind: HyperConverged
         metadata:

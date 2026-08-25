@@ -5,7 +5,7 @@ To customize the SR-IOV Network Operator, configure the `sriovoperatorconfig` cu
 
 The following table describes the `sriovoperatorconfig` CR fields:
 
-***SR-IOV Network Operator config custom resource***
+**SR-IOV Network Operator config custom resource**
 
 <table>
 <thead>

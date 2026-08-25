@@ -91,6 +91,7 @@ The same resolution process applies for both subnets and security groups.
 
 If adding tags fails with authorization errors
 :   You need to update IAM permissions for the control plane operator.
+
 **Troubleshooting**
 
     See "Resolve IAM permissions for AWS resource tagging".

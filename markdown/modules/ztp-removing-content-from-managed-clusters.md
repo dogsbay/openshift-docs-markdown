@@ -3,7 +3,7 @@
 
 You can remove content from a custom resource (CR) that is deployed in a managed cluster through a policy. {._abstract}
 
-By default, all `Policy` CRs created from a `{{ policy_gen_cr }}` CR have the `complianceType` field set to `musthave`.
+By default, all `Policy` CRs created from a `{{ policy_gen_cr }}`{minja} CR have the `complianceType` field set to `musthave`.
 A `musthave` policy without the removed content is still compliant because the CR on the managed cluster has all the specified content.
 With this configuration, when you remove content from a CR, {{ cgu_operator }} removes the content from the policy but the content is not removed from the CR on the managed cluster.
 
@@ -20,28 +20,27 @@ With the `complianceType` field to `mustonlyhave`, the policy ensures that the C
 
 1.  Remove the content that you no longer need from the affected CRs. In this example, the `disableDrain: false` line was removed from the `SriovOperatorConfig` CR.
 
-```yaml title="Example CR"
-apiVersion: sriovnetwork.openshift.io/v1
-kind: SriovOperatorConfig
-metadata:
-  name: default
-  namespace: openshift-sriov-network-operator
-spec:
-  configDaemonNodeSelector:
-    "node-role.kubernetes.io/$mcp": ""
-  disableDrain: true
-  enableInjector: true
-  enableOperatorWebhook: true
-```
-
-1.  Change the `complianceType` of the affected policies to `mustonlyhave` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml` file.
-    ```yaml title="Example YAML"
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
+    ```yaml title="Example CR"
+    apiVersion: sriovnetwork.openshift.io/v1
+    kind: SriovOperatorConfig
+    metadata:
+      name: default
+      namespace: openshift-sriov-network-operator
+    spec:
+      configDaemonNodeSelector:
+        "node-role.kubernetes.io/$mcp": ""
+      disableDrain: true
+      enableInjector: true
+      enableOperatorWebhook: true
+    ```
+1.  Change the `complianceType` of the affected policies to `mustonlyhave` in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`{minja} file.
+    ```yaml title="Example YAML" {minja}
+    {% if policy-gen-cr == "PolicyGenTemplate" %}
     - fileName: SriovOperatorConfig.yaml
       policyName: "config-policy"
       complianceType: mustonlyhave
-{% endif %}
-{% if policy-gen-cr == "PolicyGenerator" %}
+    {% endif %}
+    {% if policy-gen-cr == "PolicyGenerator" %}
     # ...
     policyDefaults:
       complianceType: "mustonlyhave"
@@ -52,7 +51,7 @@ spec:
           ran.openshift.io/ztp-deploy-wave: ""
         manifests:
           - path: source-crs/SriovOperatorConfig.yaml
-            {%- endif %}
+    {% endif %}
     ```
 1.  Create a `ClusterGroupUpdates` CR and specify the clusters that must receive the CR changes::
     ```yaml title="Example ClusterGroupUpdates CR"

@@ -5,6 +5,6 @@ You can create your project using {{ cluster_manager }}. {._abstract}
 
 **Procedure**
 
-1.  From the web console, click **Home -> Projects**. 
+1.  From the web console, click **Home → Projects**. 
 1.  On the **Projects** page, click create **Create Project**.
     ![The project creation screen](/_assets/images/4-createnewproj.png)

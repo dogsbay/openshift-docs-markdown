@@ -3,11 +3,11 @@ title: "Tutorial: Deploying an application by using the web console"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Tutorial: Deploying an application by using the web console {id="dev-app-web-console"}
 {% include "./_attributes/common-attributes.md" %}
+# Tutorial: Deploying an application by using the web console {id="dev-app-web-console"}
 {%- set context = "dev-app-web-console" %}
 
-To learn how to stand up an application on {{ product_title }} by using the web console, follow the provided tutorial. In this tutorial, you will deploy the services that are required for an application that displays a map of national parks across the world.
+To learn how to stand up an application on {{ product_title }} by using the web console, follow the provided tutorial. In this tutorial, you will deploy the services that are required for an application that displays a map of national parks across the world. {._abstract}
 
 To complete this tutorial, you will perform the following steps:
 
@@ -46,24 +46,28 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +1 %}{% include "./modules/getting-started-web-console-creating-new-project.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Viewing a project by using the web console](/applications/projects/working-with-projects#viewing-a-project-using-the-web-console_projects)
 
 {% leveloffset +1 %}{% include "./modules/getting-started-web-console-granting-permissions.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [RBAC overview](/authentication/using-rbac#authorization-overview_using-rbac)
 
 {% leveloffset +1 %}{% include "./modules/getting-started-web-console-deploying-first-image.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Viewing the topology of your application](/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-topology_viewing-application-composition-using-topology-view)
 
 {% leveloffset +2 %}{% include "./modules/getting-started-web-console-examining-pod.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Interacting with applications and components](/applications/odc-viewing-application-composition-using-topology-view#odc-interacting-with-applications-and-components_viewing-application-composition-using-topology-view)
 *   [Scaling application pods and checking builds and routes](/applications/odc-viewing-application-composition-using-topology-view#odc-scaling-application-pods-and-checking-builds-and-routes_viewing-application-composition-using-topology-view)
@@ -72,12 +76,14 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +2 %}{% include "./modules/getting-started-web-console-scaling-app.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Recommended practices for scaling the cluster](/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_recommended-control-plane-practices)
 
 {% leveloffset +1 %}{% include "./modules/getting-started-web-console-deploying-python-app.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding services to your application](/applications/odc-viewing-application-composition-using-topology-view#odc-adding-services-to-your-application_viewing-application-composition-using-topology-view)
 *   [Importing a codebase from Git to create an application](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-importing-codebase-from-git-to-create-application_odc-creating-applications-using-developer-perspective)
@@ -87,6 +93,7 @@ Before you start this tutorial, ensure that you have the following required prer
 {% leveloffset +2 %}{% include "./modules/getting-started-web-console-creating-secret.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding secrets](/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)
 

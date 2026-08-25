@@ -3,11 +3,11 @@ title: About Kopia
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About Kopia {id="oadp-about-kopia"}
 {% include "./_attributes/common-attributes.md" %}
+# About Kopia {id="oadp-about-kopia"}
 {%- set context = "oadp-about-kopia" %}
 
-Kopia is an open-source backup and restore tool, which creates encrypted snapshots of your data and saves them to remote or cloud storage.
+Kopia is an open-source backup and restore tool, which creates encrypted snapshots of your data and saves them to remote or cloud storage. {._abstract}
 
 Kopia supports network and local storage locations, and many cloud or remote storage locations, including:
 

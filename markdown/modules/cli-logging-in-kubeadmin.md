@@ -23,10 +23,10 @@ The `kubeconfig` file is specific to a cluster and {{ product_title }} generates
 {%- if not gcp %}
 *   You deployed an {{ product_title }} cluster.
 {%- endif %}
-*   You installed the {{ oc_first }}.
+* You installed the {{ oc_first }}.
 {%- if gcp %}
-*   Ensure the bootstrap process completed successfully.
-{% endif %}
+* Ensure the bootstrap process completed successfully.
+{%- endif %}
 
 **Procedure**
 
@@ -54,14 +54,14 @@ The `kubeconfig` file is specific to a cluster and {{ product_title }} generates
 *   "Remote health reporting"
 
 {% if context == "installing-gcp-user-infra" %}
-{%- set gcp = false -%}
-{%- set three_node_cluster = false -%}
+{%- set gcp = "" -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set gcp = false -%}
-{%- set user_infra_vpc = false -%}
+{%- set gcp = "" -%}
+{%- set user_infra_vpc = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp" %}
-{%- set gcp = false -%}
-{%- set restricted = false -%}
+{%- set gcp = "" -%}
+{%- set restricted = "" -%}
 {% endif %}

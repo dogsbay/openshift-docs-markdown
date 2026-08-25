@@ -3,12 +3,12 @@ title: Persistent storage using GCE Persistent Disk
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using GCE Persistent Disk {id="persistent-storage-using-gce"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using GCE Persistent Disk {id="persistent-storage-using-gce"}
 {%- set context = "persistent-storage-gce" %}
 
 {{ product_title }} supports GCE Persistent Disk volumes (gcePD). You can provision your {{ product_title }} cluster with persistent storage
-using GCE. Some familiarity with Kubernetes and GCE is assumed.
+using GCE. Some familiarity with Kubernetes and GCE is assumed. {._abstract}
 
 The Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure.
 
@@ -42,11 +42,12 @@ High availability of storage in the infrastructure is left to the underlying sto
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [GCE Persistent Disk](https://cloud.google.com/compute/docs/disks/)
 {%- if not openshift_dedicated %}
 *   [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
-{% endif %}
+{%- endif %}
 
 {%- set StorageClass = "GCE" -%}
 {%- set Provisioner = "kubernetes.io/gce-pd" %}

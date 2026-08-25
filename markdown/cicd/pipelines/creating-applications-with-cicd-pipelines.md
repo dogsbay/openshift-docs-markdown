@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating CI/CD solutions for applications using {{ pipelines_shortname }} {id="creating-applications-with-cicd-pipelines"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating CI/CD solutions for applications using {{ pipelines_shortname }} {id="creating-applications-with-cicd-pipelines"}
 {%- set context = "creating-applications-with-cicd-pipelines" %}
 
 With {{ pipelines_title }}, you can create a customized CI/CD solution to build, test, and deploy your application.

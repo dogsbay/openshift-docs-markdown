@@ -5,10 +5,10 @@ To customize a template when you process it, define parameters with default or g
 
 Parameters allow a value to be supplied by you or generated when you process the template. Then, that value is substituted wherever the parameter is referenced. References can be defined in any field in the objects list field. This is useful for generating random passwords or allowing you to supply a hostname or other user-specific value that is required to customize the template. Parameters can be referenced in two ways:
 
-*   As a string value by placing values in the form `${{ PARAMETER_NAME }}` in any string field in the template.
+*   As a string value by placing values in the form `${{ PARAMETER_NAME }}`{minja} in any string field in the template.
 *   As a JSON or YAML value by placing values in the form `${{{ PARAMETER_NAME }}}` in place of any field in the template.
 
-When using the `${{ PARAMETER_NAME }}` syntax, multiple parameter references can be combined in a single field and the reference can be embedded within fixed data, such as `"http://${{ PARAMETER_1 }}${{ PARAMETER_2 }}"`. Both parameter values are substituted and the resulting value is a quoted string.
+When using the `${{ PARAMETER_NAME }}`{minja} syntax, multiple parameter references can be combined in a single field and the reference can be embedded within fixed data, such as `"http://${{ PARAMETER_1 }}${{ PARAMETER_2 }}"`{minja}. Both parameter values are substituted and the resulting value is a quoted string.
 
 When using the `${{{ PARAMETER_NAME }}}` syntax, only a single parameter reference is allowed and leading and trailing characters are not permitted. The resulting value is unquoted unless, after substitution is performed, the result is not a valid JSON object. If the result is not a valid JSON value, the resulting value is quoted and treated as a standard string.
 
@@ -38,12 +38,12 @@ In the previous example, processing generates a random password 12 characters lo
 
 The syntax available is not a full regular expression syntax. However, you can use `\w`, `\d`, `\a`, and `\A` modifiers:
 
-*   `[\w]{{ 10 }}` produces 10 alphabet characters, numbers, and underscores. This
-follows the PCRE standard and is equal to `[a-zA-Z0-9_]{{ 10 }}`.
-*   `[\d]{{ 10 }}` produces 10 numbers. This is equal to `[0-9]{{ 10 }}`.
-*   `[\a]{{ 10 }}` produces 10 alphabetical characters. This is equal to
-`[a-zA-Z]{{ 10 }}`.
-*   `[\A]{{ 10 }}` produces 10 punctuation or symbol characters. This is equal to ``[~!@#$%\^&*()\-_+={}\[\]\\|<,>.?/"';:`]{{ 10 }}``.
+*   `[\w]{{ 10 }}`{minja} produces 10 alphabet characters, numbers, and underscores. This
+follows the PCRE standard and is equal to `[a-zA-Z0-9_]{{ 10 }}`{minja}.
+*   `[\d]{{ 10 }}`{minja} produces 10 numbers. This is equal to `[0-9]{{ 10 }}`{minja}.
+*   `[\a]{{ 10 }}`{minja} produces 10 alphabetical characters. This is equal to
+`[a-zA-Z]{{ 10 }}`{minja}.
+*   `[\A]{{ 10 }}`{minja} produces 10 punctuation or symbol characters. This is equal to ``[~!@#$%\^&*()\-_+={}\[\]\\|<,>.?/"';:`]{{ 10 }}``.
 
 
 :::note

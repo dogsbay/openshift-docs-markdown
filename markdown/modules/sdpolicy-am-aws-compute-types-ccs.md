@@ -3,9 +3,7 @@
 
 {{ product_title }} offers the following worker node instance types and sizes on AWS: {._abstract}
 
-<details>
-<summary>General purpose</summary>
-
+:::details{title="General purpose"}
 *   m5.metal (96&#8224;  vCPU, 384 GiB)
 *   m5.xlarge (4 vCPU, 16 GiB)
 *   m5.2xlarge (8 vCPU, 32 GiB)
@@ -158,20 +156,16 @@
 *   m8azn.metal-24xl (96 vCPU, 384 GiB)
 
 &#8224; These instance types provide 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.
-</details>
+:::
 
-<details>
-<summary>Burstable general purpose</summary>
-
+:::details{title="Burstable general purpose"}
 *   t3.xlarge (4 vCPU, 16 GiB)
 *   t3.2xlarge (8 vCPU, 32 GiB)
 *   t3a.xlarge (4 vCPU, 16 GiB)
 *   t3a.2xlarge (8 vCPU, 32 GiB)
-</details>
+:::
 
-<details>
-<summary>Memory intensive</summary>
-
+:::details{title="Memory intensive"}
 *   u7i-6tb.112xlarge (448 vCPU, 6,144 GiB)
 *   u7i-8tb.112xlarge (448 vCPU, 6,144 GiB)
 *   u7i-12tb.224xlarge (896 vCPU, 12,288 GiB)
@@ -225,11 +219,9 @@
 *   x8i.96xlarge (384 vCPU, 6,144 GiB)
 *   x8i.metal-48xl (192 vCPU, 3,072 GiB)
 *   x8i.metal-96xl (384 vCPU, 6,144 GiB)
-</details>
+:::
 
-<details>
-<summary>Memory optimized</summary>
-
+:::details{title="Memory optimized"}
 *   r4.xlarge (4 vCPU, 30.5 GiB)
 *   r4.2xlarge (8 vCPU, 61 GiB)
 *   r4.4xlarge (16 vCPU, 122 GiB)
@@ -375,10 +367,8 @@
 &#8224; These instance types provide 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.
 
 &#135; This instance type provides 48 logical processors on 24 physical cores.
-</details>
-<details>
-<summary>Accelerated computing</summary>
-
+:::
+:::details{title="Accelerated computing"}
 *   p3.2xlarge (8 vCPU, 61 GiB)
 *   p3.8xlarge (32 vCPU, 244 GiB)
 *   p3.16xlarge (64 vCPU, 488 GiB)
@@ -439,10 +429,8 @@
 &#8224; Intel specific; not covered by Nvidia
 
 Support for the GPU instance type software stack is provided by AWS. Ensure that your AWS service quotas can accommodate the desired GPU instance types.
-</details>
-<details>
-<summary>Compute optimized</summary>
-
+:::
+:::details{title="Compute optimized"}
 *   c5.metal (96 vCPU, 192 GiB)
 *   c5.xlarge (4 vCPU, 8 GiB)
 *   c5.2xlarge (8 vCPU, 16 GiB)
@@ -577,11 +565,9 @@ Support for the GPU instance type software stack is provided by AWS. Ensure that
 *   hpc7a.48xlarge (96 vCPU, 768 GiB)
 *   hpc7a.96xlarge (192 vCPU, 768 GiB)
 *   p6-b300.48xlarge (192 vCPU, 4,096 GiB)
-</details>
+:::
 
-<details>
-<summary>Storage optimized</summary>
-
+:::details{title="Storage optimized"}
 *   i3.metal (72&#8224; vCPU, 512 GiB)
 *   i3.xlarge	(4 vCPU, 30.5 GiB)
 *   i3.2xlarge (8 vCPU, 61 GiB)
@@ -606,7 +592,7 @@ Support for the GPU instance type software stack is provided by AWS. Ensure that
 *   i4i.metal (128 vCPU, 1024 GiB)
 
 &#8224; This instance type provides 72 logical processors on 36 physical cores.
-</details>
+:::
 
 
 :::note
@@ -616,9 +602,7 @@ Virtual instance types initialize faster than ".metal" instance types.
 :::
 
 
-<details>
-<summary>High memory</summary>
-
+:::details{title="High memory"}
 *   u-3tb1.56xlarge (224 vCPU, 3,072 GiB)
 *   u-6tb1.56xlarge (224 vCPU, 6,144 GiB)
 *   u-6tb1.112xlarge (448 vCPU, 6,144 GiB)
@@ -629,10 +613,8 @@ Virtual instance types initialize faster than ".metal" instance types.
 *   u-12tb1.metal (448 vCPU, 12,288 GiB)
 *   u-18tb1.metal (448 vCPU, 18,432 GiB)
 *   u-24tb1.metal (448 vCPU, 24,576 GiB)
-</details>
+:::
 
-<details>
-<summary>High performance compute	</summary>
-
+:::details{title="High performance compute	"}
 *   hpc6a.48xlarge (96 vCPU, 384 GiB)
-</details>
+:::

@@ -7,8 +7,8 @@
 The **Logging/Elasticsearch Nodes** and **Openshift Logging** dashboards in the
 {%- if not (openshift_rosa or openshift_dedicated) %}
 {{ product_title }} web console
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 {{ cluster_manager_url }}
 {%- endif %}
 contain in-depth details about your Elasticsearch instance and the individual Elasticsearch nodes that you can use to prevent and diagnose problems.

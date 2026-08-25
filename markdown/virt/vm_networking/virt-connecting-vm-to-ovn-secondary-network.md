@@ -3,11 +3,11 @@ title: Connecting a virtual machine to an OVN-Kubernetes layer 2 secondary netwo
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Connecting a virtual machine to an OVN-Kubernetes layer 2 secondary network {id="virt-connecting-vm-to-ovn-secondary-network"}
 {% include "./_attributes/common-attributes.md" %}
+# Connecting a virtual machine to an OVN-Kubernetes layer 2 secondary network {id="virt-connecting-vm-to-ovn-secondary-network"}
 {%- set context = "virt-connecting-vm-to-ovn-secondary-network" %}
 
-You can connect a virtual machine (VM) to an OVN-Kubernetes custom secondary overlay network. You can use this overlay network to connect VMs on different nodes, without configuring any additional physical networking infrastructure.
+You can connect a virtual machine (VM) to an OVN-Kubernetes custom secondary overlay network. You can use this overlay network to connect VMs on different nodes, without configuring any additional physical networking infrastructure. {._abstract}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 
@@ -41,7 +41,7 @@ Configuring IP address management (IPAM) by specifying the `spec.config.ipam.sub
 {% leveloffset +1 %}{% include "./modules/virt-attaching-vm-to-ovn-secondary-nw-cli.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Creating secondary networks on OVN-Kubernetes](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-ovnk#configuration-ovnk-additional-networks_configuring-additional-network-ovnk)
 *   [About the Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
 *   [Multi-network policy API](/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)

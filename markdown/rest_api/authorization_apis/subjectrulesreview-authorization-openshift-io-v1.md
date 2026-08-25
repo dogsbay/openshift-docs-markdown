@@ -1,5 +1,5 @@
 ---
-title: "SubjectRulesReview []"
+title: "SubjectRulesReview [authorization.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | SubjectRulesReviewSpec adds information about how to conduct the check |
 | `status` | `object` | SubjectRulesReviewStatus is contains the result of a rules check |
+
 ### .spec {id="_spec"}
 
 Description
@@ -51,6 +52,7 @@ Required
 | `groups` | `array (string)` | groups is optional.  Groups is the list of groups to which the User belongs.  At least one of User and Groups must be specified. |
 | `scopes` | `array (string)` | scopes to use for the evaluation.  Empty means "use the unscoped (full) permissions of the user/groups". |
 | `user` | `string` | user is optional.  At least one of User and Groups must be specified. |
+
 ### .status {id="_status"}
 
 Description
@@ -65,6 +67,7 @@ Type
 | `evaluationError` | `string` | evaluationError can appear in combination with Rules.  It means some error happened during evaluation that may have prevented additional rules from being populated. |
 | `rules` | `array` | rules is the list of rules (no particular sort) that are allowed for the subject |
 | `rules[]` | `object` | PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to. |
+
 ### .status.rules {id="_statusrules"}
 
 Description
@@ -101,7 +104,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/subjectrulesreviews`
+*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/subjectrulesreviews`{minja}
     *   `POST`: create a SubjectRulesReview
 
 ### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/subjectrulesreviews {id="_apisauthorizationopenshiftiov1namespaces_namespace_subjectrulesreviews"}

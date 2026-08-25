@@ -14,13 +14,13 @@ You can use the web console to uninstall the {{ run_once_operator }}. Uninstalli
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Select `openshift-run-once-duration-override-operator` from the **Project** dropdown list.
 1.  Delete the `RunOnceDurationOverride` instance.
     1.  Click **{{ run_once_operator }}** and select the **Run Once Duration Override** tab.
     1.  Click the Options menu {{ kebab }} next to the **cluster** entry and select **Delete RunOnceDurationOverride**.
     1.  In the confirmation dialog, click **Delete**.
 1.  Uninstall the {{ run_once_operator }}.
-    1.  Navigate to **Ecosystem** -> **Installed Operators**.
+    1.  Navigate to **Ecosystem** → **Installed Operators**.
     1.  Click the Options menu {{ kebab }} next to the **{{ run_once_operator }}** entry and click **Uninstall Operator**.
     1.  In the confirmation dialog, click **Uninstall**.

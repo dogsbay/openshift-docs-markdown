@@ -11,17 +11,17 @@ As a cluster administrator, you can create pipeline templates that developers ca
 **Procedure**
 
 1.  Navigate to the **Pipelines** page to view existing pipeline templates.
-1.  Click the ![title="Import"](/_assets/images/../images/import-icon.png) icon to go to the **Import YAML** page.
+1.  Click the ![title="Import"](/_assets/images/import-icon.png) icon to go to the **Import YAML** page.
 1.  Add the YAML for your pipeline template. The template must include the following information:
     ```yaml
     apiVersion: tekton.dev/v1beta1
     kind: Pipeline
     metadata:
     # ...
-      namespace: openshift # (1)
+      namespace: openshift (1)
       labels:
-        pipeline.openshift.io/runtime: <runtime> # (2)
-        pipeline.openshift.io/type: <pipeline-type> # (3)
+        pipeline.openshift.io/runtime: <runtime> (2)
+        pipeline.openshift.io/type: <pipeline-type> (3)
     # ...
     ```
     1.  The template must be created in the `openshift` namespace.

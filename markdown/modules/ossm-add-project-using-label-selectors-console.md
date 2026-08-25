@@ -9,14 +9,14 @@ You can use labels selectors to add a project to the {{ SMProductShortName }} wi
 *   The deployment has an existing `ServiceMeshMemberRoll` resource.
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You are logged in to the {{ product_title }} web console as `cluster-admin`.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You are logged in to the {{ product_title }} web console as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu, and from the drop-down list, select the project where your `ServiceMeshMemberRoll` resource is deployed. For example, **istio-system**.
 1.  Click the {{ SMProductName }} Operator.
 1.  Click the **Istio Service Mesh Member Roll** tab.

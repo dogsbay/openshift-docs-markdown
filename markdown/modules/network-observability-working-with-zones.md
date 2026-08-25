@@ -7,7 +7,7 @@ You can configure the `FlowCollector` to collect information about the cluster a
 
 **Procedure**
 
-1.  In the web console, go to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, go to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster** then select the **YAML** tab.
 1.  Configure the `FlowCollector` custom resource so that the `spec.processor.addZone` parameter is set to `true`. A sample configuration is as follows:
@@ -28,5 +28,5 @@ You can configure the `FlowCollector` to collect information about the cluster a
 When you refresh the **Network Traffic** page, the **Overview**, **Traffic Flow**, and **Topology** views display new information about availability zones:
 
 1.  In the **Overview** tab, you can see **Zones** as an available **Scope**.
-1.  In **Network Traffic** -> **Traffic flows**, **Zones** are viewable under the SrcK8S_Zone and DstK8S_Zone fields.
+1.  In **Network Traffic** → **Traffic flows**, **Zones** are viewable under the SrcK8S_Zone and DstK8S_Zone fields.
 1.  In the **Topology** view, you can set **Zones** as **Scope** or **Group**.

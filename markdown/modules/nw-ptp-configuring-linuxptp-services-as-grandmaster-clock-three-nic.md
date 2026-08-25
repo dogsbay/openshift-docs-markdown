@@ -26,8 +26,8 @@ Use the following example `PtpConfig` CRs as the basis to configure `linuxptp` s
 
 1.  Create the `PtpConfig` CR. For example:
     1.  Save the following YAML in the `three-nic-grandmaster-clock-ptp-config.yaml` file:
-        ```yaml
-{% include "./snippets/ptp_PtpConfigThreeCardGmWpc.yaml" %}
+        ```yaml {minja}
+        {% include "./snippets/ptp_PtpConfigThreeCardGmWpc.yaml" %}
         ```
 
         :::note

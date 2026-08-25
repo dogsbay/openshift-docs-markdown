@@ -64,7 +64,7 @@ the current condition:
     ```terminal
     $ oc describe node node1.example.com
     ```
-{% include "./snippets/osd-aws-example-only.md" %}
+    {% include "./snippets/osd-aws-example-only.md" %}
     ```text title="Example output"
     Name:               node1.example.com
     Roles:              worker
@@ -193,7 +193,7 @@ the current condition:
 
     `Events`
     :   Specifies the events reported by the node.
-{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
     :::note
 
@@ -207,7 +207,7 @@ Among the information shown for nodes, the following node conditions appear in t
 
 <a name="machine-health-checks-resource-conditions"></a>
 
-***Node Conditions***
+**Node Conditions**
 
 <table>
 <thead>

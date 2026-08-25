@@ -1,5 +1,5 @@
 ---
-title: "DeploymentRequest []"
+title: "DeploymentRequest [apps.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -39,7 +39,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/instantiate`
+*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/instantiate`{minja}
     *   `POST`: create instantiate of a DeploymentConfig
 
 ### /apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/instantiate {id="_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_instantiate"}

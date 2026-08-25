@@ -18,7 +18,7 @@ At a minimum, the following EC2 instances are deployed:
 *   Three `m5.2xlarge` control plane nodes
 *   Two `r5.xlarge` infrastructure nodes
 *   Two `m5.xlarge` worker nodes
-{% endif %}
+{%- endif %}
 
 {% if openshift_rosa_hcp %}
 At a minimum, two `m5.xlarge` EC2 instances are deployed for use as worker nodes.
@@ -46,11 +46,11 @@ Amazon Elastic Block Store (Amazon EBS) block storage is used for both local nod
     *   Input/Output Operations Per Second: 900
 
 
-:::note
+    :::note
 
-Clusters deployed before the release of {{ OCP }} 4.11 use gp2 type storage by default.
-
-:::
+    Clusters deployed before the release of {{ OCP }} 4.11 use gp2 type storage by default.
+    
+    :::
 
 {% endif %}
 {% if openshift_rosa_hcp %}
@@ -114,6 +114,7 @@ Configure your VPC according to the following requirements:
 *   **NAT gateways**: One NAT Gateway per public subnet.
 
 {% if not openshift_rosa_hcp %}
+
 **Figure 1. Sample VPC Architecture**
 
 ![VPC Reference Architecture](/_assets/images/VPC-Diagram.png)
@@ -127,7 +128,7 @@ Ensure that the ports required for cluster installation and operation are open o
 
 <a name="required-secgroup-ports_{{ context }}"></a>
 
-***Required ports for default security groups***
+**Required ports for default security groups**
 
 <table>
 <thead>
@@ -140,38 +141,40 @@ Ensure that the ports required for cluster installation and operation are open o
 </thead>
 <tbody>
 <tr>
-  {% if not openshift_rosa_hcp %}<td>.4+</td>{% endif %}
-  {% if not openshift_rosa_hcp %}<td>MasterSecurityGroup .4+</td>{% endif %}
-  {% if not openshift_rosa_hcp %}<td><code>AWS::EC2::SecurityGroup</code></td>{% endif %}
+  {% if not openshift_rosa_hcp %}<td rowspan="4">MasterSecurityGroup</td>{% endif %}
+  {% if not openshift_rosa_hcp %}<td rowspan="4"><code>AWS::EC2::SecurityGroup</code></td>{% endif %}
   {% if not openshift_rosa_hcp %}<td><code>icmp</code></td>{% endif %}
+  {% if not openshift_rosa_hcp %}<td><code>0</code></td>{% endif %}
 </tr>
 <tr>
-  {% if not openshift_rosa_hcp %}<td><code>0</code></td>{% endif %}
   {% if not openshift_rosa_hcp %}<td><code>tcp</code></td>{% endif %}
   {% if not openshift_rosa_hcp %}<td><code>22</code></td>{% endif %}
-  {% if not openshift_rosa_hcp %}<td><code>tcp</code></td>{% endif %}
 </tr>
 <tr>
+  {% if not openshift_rosa_hcp %}<td><code>tcp</code></td>{% endif %}
   {% if not openshift_rosa_hcp %}<td><code>6443</code></td>{% endif %}
-  {% if not openshift_rosa_hcp %}<td><code>tcp</code></td>{% endif %}
-  {% if not openshift_rosa_hcp %}<td><code>22623</code><br><br>.2+</td>{% endif %}
-  <td>WorkerSecurityGroup</td>
 </tr>
 <tr>
-  <td>.2+</td>
-  <td><code>AWS::EC2::SecurityGroup</code></td>
+  {% if not openshift_rosa_hcp %}<td><code>tcp</code></td>{% endif %}
+  {% if not openshift_rosa_hcp %}<td><code>22623</code></td>{% endif %}
+</tr>
+<tr>
+  <td rowspan="2">WorkerSecurityGroup</td>
+  <td rowspan="2"><code>AWS::EC2::SecurityGroup</code></td>
   <td><code>icmp</code></td>
   <td><code>0</code></td>
 </tr>
 <tr>
   <td><code>tcp</code></td>
-  <td><code>22</code><br><br>.2+</td>
-  {% if not openshift_rosa_hcp %}<td>BootstrapSecurityGroup .2+</td>{% endif %}
-  {% if not openshift_rosa_hcp %}<td><code>AWS::EC2::SecurityGroup</code></td>{% endif %}
+  <td><code>22</code></td>
 </tr>
 <tr>
+  {% if not openshift_rosa_hcp %}<td rowspan="2">BootstrapSecurityGroup</td>{% endif %}
+  {% if not openshift_rosa_hcp %}<td rowspan="2"><code>AWS::EC2::SecurityGroup</code></td>{% endif %}
   {% if not openshift_rosa_hcp %}<td><code>tcp</code></td>{% endif %}
   {% if not openshift_rosa_hcp %}<td><code>22</code></td>{% endif %}
+</tr>
+<tr>
   {% if not openshift_rosa_hcp %}<td><code>tcp</code></td>{% endif %}
   {% if not openshift_rosa_hcp %}<td><code>19531</code></td>{% endif %}
 </tr>

@@ -6,5 +6,5 @@ With the devfile, you can define a portable developmental environment without th
 
 With the devfile, you can describe your development environment, such as the source code, IDE tools, application runtimes, and predefined commands. To learn more about the devfile, see [the devfile documentation](https://redhat-developer.github.io/devfile/).
 
-With `{{ odo_title }}`, you can create components from the devfiles. When creating a component by using a devfile, `{{ odo_title }}` transforms the devfile into a workspace consisting of multiple containers that run on {{ product_title }}, Kubernetes, or Docker.
-`{{ odo_title }}` automatically uses the default devfile registry but users can add their own registries.
+With `{{ odo_title }}`{minja}, you can create components from the devfiles. When creating a component by using a devfile, `{{ odo_title }}`{minja} transforms the devfile into a workspace consisting of multiple containers that run on {{ product_title }}, Kubernetes, or Docker.
+`{{ odo_title }}`{minja} automatically uses the default devfile registry but users can add their own registries.

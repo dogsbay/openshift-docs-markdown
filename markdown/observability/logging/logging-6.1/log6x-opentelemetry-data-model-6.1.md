@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# OpenTelemetry data model {id="log6x-opentelemetry-data-model-6-1"}
 {% include "./_attributes/common-attributes.md" %}
+# OpenTelemetry data model {id="log6x-opentelemetry-data-model-6-1"}
 {%- set context = "log6x-opentelemetry-data-model-6-1" %}
 
 This document outlines the protocol and semantic conventions {{ for }} Logging’s OpenTelemetry support with {{ logging_uc }} 6.1.

@@ -18,12 +18,12 @@ The impersonated user can belong to zero or more groups.
 
 **Procedure**
 
-1.  From the ***Overview*** page in the {{ product_title }} console, click your user name and select ***Impersonate User***.
-1.  In the ***Username*** field in the ***Impersonate*** dialog, enter the name of the user you want to impersonate.
-1.  Optional: In the ***Groups*** field, choose one or more groups that are associated with the user.
+1.  From the **Overview** page in the {{ product_title }} console, click your user name and select **Impersonate User**.
+1.  In the **Username** field in the **Impersonate** dialog, enter the name of the user you want to impersonate.
+1.  Optional: In the **Groups** field, choose one or more groups that are associated with the user.
 
     The dialog displays a warning message explaining that impersonation applies the effective permissions of the specified user and any selected groups.
-1.  Click ***Impersonate*** to impersonate your selected user, groups, or both.
+1.  Click **Impersonate** to impersonate your selected user, groups, or both.
 
 
 :::note

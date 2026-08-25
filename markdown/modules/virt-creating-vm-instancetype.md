@@ -39,7 +39,7 @@ The key is added to the VM by the QEMU guest agent, which is installed with {{ o
 
 **Procedure**
 
-1.  In the web console, navigate to **Virtualization** -> **Catalog**.
+1.  In the web console, navigate to **Virtualization** → **Catalog**.
 
     The **InstanceTypes** tab opens by default.
 {%- if not openshift_dedicated %}
@@ -78,30 +78,30 @@ The key is added to the VM by the QEMU guest agent, which is installed with {{ o
 {% endif %}
 {% if virt_create_vms %}
 1.  Optional: Choose the virtual machine details, including the VM’s name, that apply to the volume you are booting from:
-    {% endif %}
-    {% if virt_create_vms %}
+{% endif %}
+{% if virt_create_vms %}
     *   For a Linux-based volume, follow these steps to configure SSH:
-        {% endif %}
-        1.  If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.
-        1.  Select one of the following options:
-            *   **Use existing**: Select a secret from the secrets list.
-            *   **Add new**: Follow these steps:
-                1.  Browse to the public SSH key file or paste the file in the key field.
-                1.  Enter the secret name.
-                1.  Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.
-        1.  Click **Save**.
+{% endif %}
+    1.  If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.
+    1.  Select one of the following options:
+        *   **Use existing**: Select a secret from the secrets list.
+        *   **Add new**: Follow these steps:
+            1.  Browse to the public SSH key file or paste the file in the key field.
+            1.  Enter the secret name.
+            1.  Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.
+    1.  Click **Save**.
 
 {% if virt_create_vms %}
-    *   For a Windows volume, follow either of these set of steps to configure sysprep options:
-        *   If you have not already added sysprep options for the Windows volume, follow these steps:
-            1.  Click the edit icon beside **Sysprep** in the **VirtualMachine details** section.
-            1.  Add the **Autoattend.xml** answer file.
-            1.  Add the **Unattend.xml** answer file.
-            1.  Click **Save**.
-        *   If you want to use existing sysprep options for the Windows volume, follow these steps:
-            1.  Click **Attach existing sysprep**.
-            1.  Enter the name of the existing sysprep **Unattend.xml** answer file.
-            1.  Click **Save**.
+        *   For a Windows volume, follow either of these set of steps to configure sysprep options:
+            *   If you have not already added sysprep options for the Windows volume, follow these steps:
+                1.  Click the edit icon beside **Sysprep** in the **VirtualMachine details** section.
+                1.  Add the **Autoattend.xml** answer file.
+                1.  Add the **Unattend.xml** answer file.
+                1.  Click **Save**.
+            *   If you want to use existing sysprep options for the Windows volume, follow these steps:
+                1.  Click **Attach existing sysprep**.
+                1.  Enter the name of the existing sysprep **Unattend.xml** answer file.
+                1.  Click **Save**.
 {% endif %}
 {% if dynamic_key %}
 1.  Set **Dynamic SSH key injection** in the **VirtualMachine details** section to on.
@@ -118,11 +118,11 @@ The key is added to the VM by the QEMU guest agent, which is installed with {{ o
 After the VM is created, you can monitor the status on the **VirtualMachine details** page.
 
 {% if context == "virt-creating-vms" %}
-{%- set virt_create_vms = false -%}
+{%- set virt_create_vms = "" -%}
 {% endif %}
 {% if context == "static-key" %}
-{%- set static_key = false -%}
+{%- set static_key = "" -%}
 {% endif %}
 {% if context == "dynamic-key" %}
-{%- set dynamic_key = false -%}
+{%- set dynamic_key = "" -%}
 {% endif %}

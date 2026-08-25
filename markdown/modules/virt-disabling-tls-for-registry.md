@@ -10,13 +10,13 @@ You can disable TLS (transport layer security) for one or more container registr
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Add a list of insecure registries to the `spec.storageImport.insecureRegistries` field.
 
     Example `HyperConverged` custom resource:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

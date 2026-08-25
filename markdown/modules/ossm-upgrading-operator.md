@@ -22,16 +22,17 @@ Whether or not you have to take action to upgrade your Operators depends on the 
 <table>
 <tbody>
 <tr>
+  <td></td>
   <td>Versioned channel</td>
   <td>"Stable" or "Preview" Channel</td>
-  <td><strong>Automatic</strong></td>
 </tr>
 <tr>
+  <td><strong>Automatic</strong></td>
   <td>Automatically updates the Operator for minor and patch releases for that version only. Will not automatically update to the next major version (that is, from version 2.0 to 3.0). Manual change to Operator subscription required to update to the next major version.</td>
   <td>Automatically updates Operator for all major, minor, and patch releases.</td>
-  <td><strong>Manual</strong></td>
 </tr>
 <tr>
+  <td><strong>Manual</strong></td>
   <td>Manual updates required for minor and patch releases for the specified version. Manual change to Operator subscription required to update to the next major version.</td>
   <td>Manual updates required for all major, minor, and patch releases.</td>
 </tr>

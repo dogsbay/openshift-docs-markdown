@@ -11,8 +11,8 @@
 After configuring the software catalog to use a catalog source that references a custom index image,
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 cluster administrators
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 administrators with the `dedicated-admin` role
 {%- endif %}
 can keep the available Operators on their cluster up-to-date by adding bundle images to the index image. {._abstract}
@@ -31,10 +31,10 @@ You can update an existing index image using the `opm index add` command.
 1.  Update the existing index by adding bundle images:
     ```terminal
     $ opm index add \
-        --bundles <registry>/<namespace>/<new_bundle_image>@sha256:<digest> \//<1>
-        --from-index <registry>/<namespace>/<existing_index_image>:<existing_tag> \//<2>
-        --tag <registry>/<namespace>/<existing_index_image>:<updated_tag> \//<3>
-        --pull-tool podman //<4>
+        --bundles <registry>/<namespace>/<new_bundle_image>@sha256:<digest> \ (1)
+        --from-index <registry>/<namespace>/<existing_index_image>:<existing_tag> \ (2)
+        --tag <registry>/<namespace>/<existing_index_image>:<updated_tag> \ (3)
+        --pull-tool podman (4)
     ```
     1.  The `--bundles` flag specifies a comma-separated list of additional bundle images to add to the index.
     1.  The `--from-index` flag specifies the previously pushed index.
@@ -59,17 +59,17 @@ You can update an existing index image using the `opm index add` command.
         :   Specifies the previously pushed image, such as `abc-redhat-operator-index`.
 
         `<existing_tag>`
-        :   Specifies a previously pushed image tag, such as `{{ product_version }}`.
+        :   Specifies a previously pushed image tag, such as `{{ product_version }}`{minja}.
 
         `<updated_tag>`
-        :   Specifies the image tag to apply to the updated index image, such as `{{ product_version }}.1`.
-        ```terminal title="Example command"
-        $ opm index add \
-            --bundles quay.io/ocs-dev/ocs-operator@sha256:c7f11097a628f092d8bad148406aa0e0951094a03445fd4bc0775431ef683a41 \
-            --from-index mirror.example.com/abc/abc-redhat-operator-index:{{ product_version }} \
-            --tag mirror.example.com/abc/abc-redhat-operator-index:{{ product_version }}.1 \
-            --pull-tool podman
-        ```
+        :   Specifies the image tag to apply to the updated index image, such as `{{ product_version }}.1`{minja}.
+    ```terminal title="Example command" {minja}
+    $ opm index add \
+        --bundles quay.io/ocs-dev/ocs-operator@sha256:c7f11097a628f092d8bad148406aa0e0951094a03445fd4bc0775431ef683a41 \
+        --from-index mirror.example.com/abc/abc-redhat-operator-index:{{ product_version }} \
+        --tag mirror.example.com/abc/abc-redhat-operator-index:{{ product_version }}.1 \
+        --pull-tool podman
+    ```
 1.  Push the updated index image:
     ```terminal
     $ podman push <registry>/<namespace>/<existing_index_image>:<updated_tag>
@@ -79,4 +79,4 @@ You can update an existing index image using the `opm index add` command.
     $ oc get packagemanifests -n openshift-marketplace
     ```
 
-{%- set index_image = false -%}
+{%- set index_image = "" -%}

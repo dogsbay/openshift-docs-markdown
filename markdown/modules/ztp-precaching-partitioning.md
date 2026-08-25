@@ -49,7 +49,7 @@ Single-disk servers can also be enabled with this procedure.
 
 
 
-<a name="ztp-create-partition_{{ context }}"></a>
+    <a name="ztp-create-partition_{{ context }}"></a>
 
     Create a single partition and a GPT partition table.
     The partition is automatically labelled as `data` and created at the end of the device.
@@ -90,7 +90,7 @@ Single-disk servers can also be enabled with this procedure.
     ```
 
 
-<a name="ztp-mount-partition_{{ context }}"></a>
+    <a name="ztp-mount-partition_{{ context }}"></a>
 
     After verifying that the disk is partitioned correctly, mount the device into `/mnt`.
 

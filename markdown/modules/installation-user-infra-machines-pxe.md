@@ -8,19 +8,19 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not only_pxe %}
+{% if not only_pxe %}
 # Installing {{ op_system }} by using PXE or iPXE booting {id="installation-user-infra-machines-pxe_{{ context }}"}
 {% endif %}
 {% if only_pxe %}
 # Installing {{ op_system }} by using PXE booting {id="_installing_op_system_by_using_pxe_booting"}
 {% endif %}
 
-{%- if not only_pxe %}
+{% if not only_pxe %}
 You can use PXE or iPXE booting to install {{ op_system }} on the machines.
 {% endif %}
 {% if only_pxe %}
-You can use PXE booting to install {{ op_system }} on the machines.
-{% endif %} {._abstract}
+You can use PXE booting to install {{ op_system }} on the machines. {._abstract}
+{% endif %}
 
 **Prerequisites**
 
@@ -28,8 +28,8 @@ You can use PXE booting to install {{ op_system }} on the machines.
 *   You have configured a suitable network, DNS and load balancing infrastructure.
 {%- if not only_pxe %}
 *   You have configured suitable PXE or iPXE infrastructure.
-{% endif %}
-{% if only_pxe %}
+{%- endif %}
+{%- if only_pxe %}
 *   You have configured suitable PXE infrastructure.
 {%- endif %}
 *   You have an HTTP server that can be accessed from your computer, and from the machines that you create.
@@ -77,9 +77,10 @@ installation program created to your HTTP server. Note the URLs of these files.
     ```terminal
     $ openshift-install coreos print-stream-json | grep -Eo '"https.*(kernel-|initramfs.|rootfs.)\w+(\.img)?"'
     ```
+
     **Example output**
 
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
     ```terminal
     "<url>/art/storage/releases/rhcos-4.22-aarch64/<release>/aarch64/rhcos-<release>-live-kernel-aarch64"
     "<url>/art/storage/releases/rhcos-4.22-aarch64/<release>/aarch64/rhcos-<release>-live-initramfs.aarch64.img"
@@ -101,7 +102,7 @@ installation program created to your HTTP server. Note the URLs of these files.
     "<url>/prod/streams/stable/builds/<release>/x86_64/fedora-coreos-<release>-live-initramfs.x86_64.img"
     "<url>/prod/streams/stable/builds/<release>/x86_64/fedora-coreos-<release>-live-rootfs.x86_64.img"
     ```
-{%- endif %}
+{% endif %}
 
     :::important
 
@@ -116,12 +117,12 @@ installation program created to your HTTP server. Note the URLs of these files.
 
 
     The file names contain the {{ product_title }} version number. They resemble the following examples:
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
     *   `kernel`: `rhcos-<version>-live-kernel-<architecture>`
     *   `initramfs`: `rhcos-<version>-live-initramfs.<architecture>.img`
     *   `rootfs`: `rhcos-<version>-live-rootfs.<architecture>.img`
-        {% endif %}
-        {% if openshift_origin %}
+{% endif %}
+{% if openshift_origin %}
     *   `kernel`: `fedora-coreos-<version>-live-kernel-<architecture>`
     *   `initramfs`: `fedora-coreos-<version>-live-initramfs.<architecture>.img`
     *   `rootfs`: `fedora-coreos-<version>-live-rootfs.<architecture>.img`
@@ -144,16 +145,16 @@ local disks after {{ op_system }} is installed on them.
 {% endif %}
 {% if only_pxe %}
 1.  Configure PXE installation for the {{ op_system }} images and begin the installation.
-{%- endif %}
-{%- if not only_pxe %}
+{% endif %}
+{% if not only_pxe %}
 1.  Modify one of the following example menu entries for your environment and verify that the image and Ignition files are properly accessible:
 {% endif %}
 {% if only_pxe %}
 1.  Modify the following example menu entry for your environment and verify that the image and Ignition files are properly accessible:
-    {% endif %}
-    {% if not only_pxe %}
+{% endif %}
+{% if not only_pxe %}
     *   For PXE (`x86_64`):
-        {%- endif %}
+{% endif %}
     ```
     DEFAULT pxeboot
     TIMEOUT 20
@@ -163,76 +164,76 @@ local disks after {{ op_system }} is installed on them.
         APPEND initrd=http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
     ```
 
-        where:
+    where:
 
-        `kernel`
-        :   Specify the location of the live `kernel` file that you uploaded to your HTTP server. The URL must be HTTP, TFTP, or FTP; HTTPS and NFS are not supported.
+    `kernel`
+    :   Specify the location of the live `kernel` file that you uploaded to your HTTP server. The URL must be HTTP, TFTP, or FTP; HTTPS and NFS are not supported.
 
-        `initrd=main`
-        :   If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`. Specify the locations of the {{ op_system }} files that you uploaded to your HTTP server. The `initrd` parameter value is the location of the `initramfs` file, the `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file. You can also add more kernel arguments to the `APPEND` line to configure networking or other boot options.
+    `initrd=main`
+    :   If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`. Specify the locations of the {{ op_system }} files that you uploaded to your HTTP server. The `initrd` parameter value is the location of the `initramfs` file, the `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file. You can also add more kernel arguments to the `APPEND` line to configure networking or other boot options.
 
-        :::note
+    :::note
 
-        This configuration does not enable serial console access on machines with a graphical console. To configure a different console, add one or more `console=` arguments to the `APPEND` line. For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console. For more information, see [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?](https://access.redhat.com/articles/7212) and "Enabling the serial console for PXE and ISO installation" in the "Advanced {{ op_system }} installation configuration" section.
-        
-        :::
+    This configuration does not enable serial console access on machines with a graphical console. To configure a different console, add one or more `console=` arguments to the `APPEND` line. For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console. For more information, see [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?](https://access.redhat.com/articles/7212) and "Enabling the serial console for PXE and ISO installation" in the "Advanced {{ op_system }} installation configuration" section.
+    
+    :::
 
 
 {% if not only_pxe %}
-    *   For iPXE (`x86_64`
-        {%- if not openshift_origin %}
+*   For iPXE (`x86_64`
+    {%- if not openshift_origin %}
     + `aarch64`
-{%- endif %}
+    {%- endif %}
     ):
-        ```
-        kernel http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture> initrd=main coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
-        initrd --name main http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img
-        boot
-        ```
+    ```
+    kernel http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture> initrd=main coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
+    initrd --name main http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img
+    boot
+    ```
 
-        `kernel`
-        :   Specify the locations of the {{ op_system }} files that you uploaded to your HTTP server. The `kernel` parameter value is the location of the `kernel` file, the `initrd=main` argument is needed for booting on UEFI systems, the `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file. If you use multiple NICs, specify a single interface in the `ip` option.
-            For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`.
+    `kernel`
+    :   Specify the locations of the {{ op_system }} files that you uploaded to your HTTP server. The `kernel` parameter value is the location of the `kernel` file, the `initrd=main` argument is needed for booting on UEFI systems, the `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file. If you use multiple NICs, specify a single interface in the `ip` option.
+        For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`.
 
-        `initrd`
-        :   Specify the location of the `initramfs` file that you uploaded to your HTTP server.
+    `initrd`
+    :   Specify the location of the `initramfs` file that you uploaded to your HTTP server.
 
-        :::note
+    :::note
 
-        This configuration does not enable serial console access on machines with a graphical console.  To configure a different console, add one or more `console=` arguments to the `kernel` line.  For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console.  For more information, see [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?](https://access.redhat.com/articles/7212) and "Enabling the serial console for PXE and ISO installation" in the "Advanced {{ op_system }} installation configuration" section.
-        
-        :::
+    This configuration does not enable serial console access on machines with a graphical console.  To configure a different console, add one or more `console=` arguments to the `kernel` line.  For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console.  For more information, see [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?](https://access.redhat.com/articles/7212) and "Enabling the serial console for PXE and ISO installation" in the "Advanced {{ op_system }} installation configuration" section.
+    
+    :::
 
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 
-        :::note
+    :::note
 
-        To network boot the CoreOS `kernel` on `aarch64` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. See [`IMAGE_GZIP` option in iPXE](https://ipxe.org/buildcfg/image_gzip).
-        
-        :::
+    To network boot the CoreOS `kernel` on `aarch64` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. See [`IMAGE_GZIP` option in iPXE](https://ipxe.org/buildcfg/image_gzip).
+    
+    :::
 
 {% endif %}
 {% endif %}
 {% if not (only_pxe or openshift_origin) %}
-    *   For PXE (with UEFI and Grub as second stage) on `aarch64`:
-        ```
-        menuentry 'Install CoreOS' {
-            linux rhcos-<version>-live-kernel-<architecture>  coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
-            initrd rhcos-<version>-live-initramfs.<architecture>.img
-        }
-        ```
+*   For PXE (with UEFI and Grub as second stage) on `aarch64`:
+    ```
+    menuentry 'Install CoreOS' {
+        linux rhcos-<version>-live-kernel-<architecture>  coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/bootstrap.ign
+        initrd rhcos-<version>-live-initramfs.<architecture>.img
+    }
+    ```
 
-        where:
+    where:
 
-        `coreos.live.rootfs_url`
-        :   Specify the locations of the {{ op_system }} files that you uploaded to your HTTP/TFTP server.
+    `coreos.live.rootfs_url`
+    :   Specify the locations of the {{ op_system }} files that you uploaded to your HTTP/TFTP server.
 
-        `kernel`
-        :   The `kernel` parameter value is the location of the `kernel` file on your TFTP server. The `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file on your HTTP Server. If you use multiple NICs, specify a single interface in the `ip` option.
-            For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`.
+    `kernel`
+    :   The `kernel` parameter value is the location of the `kernel` file on your TFTP server. The `coreos.live.rootfs_url` parameter value is the location of the `rootfs` file, and the `coreos.inst.ignition_url` parameter value is the location of the bootstrap Ignition config file on your HTTP Server. If you use multiple NICs, specify a single interface in the `ip` option.
+        For example, to use DHCP on a NIC that is named `eno1`, set `ip=eno1:dhcp`.
 
-        `initrd rhcos`
-        :   Specify the location of the `initramfs` file that you uploaded to your TFTP server.
+    `initrd rhcos`
+    :   Specify the location of the `initramfs` file that you uploaded to your TFTP server.
 
 {% endif %}
 
@@ -271,10 +272,10 @@ local disks after {{ op_system }} is installed on them.
 
 
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
-{%- set only_pxe = false -%}
+{%- set ibm_power = "" -%}
+{%- set only_pxe = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
-{%- set only_pxe = false -%}
+{%- set ibm_power = "" -%}
+{%- set only_pxe = "" -%}
 {% endif %}

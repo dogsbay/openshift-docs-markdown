@@ -31,28 +31,28 @@ To run a pod (resulting from pipeline run or task run) with the `privileged` sec
         1.  Substitute with an appropriate service account name.
         1.  Substitute with an appropriate cluster role based on the role binding you use.
 
-            ```yaml title="Example ClusterRole object"
-            apiVersion: rbac.authorization.k8s.io/v1
-            kind: ClusterRole
-            metadata:
-              name: pipelines-scc-clusterrole (1)
-            rules:
-            - apiGroups:
-              - security.openshift.io
-              resourceNames:
-              - nonroot
-              resources:
-              - securitycontextconstraints
-              verbs:
-              - use
-            ```
+        ```yaml title="Example ClusterRole object"
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRole
+        metadata:
+          name: pipelines-scc-clusterrole (1)
+        rules:
+        - apiGroups:
+          - security.openshift.io
+          resourceNames:
+          - nonroot
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - use
+        ```
         1.  Substitute with an appropriate cluster role based on the role binding you use.
 
 
-            :::note
+        :::note
 
-            As a best practice, create a copy of the default YAML files and make changes in the duplicate file.
-            
-            :::
+        As a best practice, create a copy of the default YAML files and make changes in the duplicate file.
+        
+        :::
 
 *   If you do not use the `vfs` storage driver, configure the service account associated with the task run or the pipeline run to have a privileged SCC, and set the security context as `privileged: true`.

@@ -3,8 +3,8 @@ title: Understanding API tiers
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding API tiers {id="understanding-api-support-tiers"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding API tiers {id="understanding-api-support-tiers"}
 {%- set context = "understanding-api-tiers" %}
 
 

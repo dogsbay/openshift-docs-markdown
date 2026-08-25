@@ -1,5 +1,5 @@
 ---
-title: "VolumeSnapshotContent []"
+title: "VolumeSnapshotContent [snapshot.storage.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines properties of a VolumeSnapshotContent created by the underlying storage system. Required. |
 | `status` | `object` | status represents the current information of a snapshot. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -54,6 +55,7 @@ Required
 | `sourceVolumeMode` | `string` | SourceVolumeMode is the mode of the volume whose snapshot is taken. Can be either “Filesystem” or “Block”. If not specified, it indicates the source volume’s mode is unknown. This field is immutable. This field is an alpha field. |
 | `volumeSnapshotClassName` | `string` | name of the VolumeSnapshotClass from which this snapshot was (or will be) created. Note that after provisioning, the VolumeSnapshotClass may be deleted or recreated with different set of values, and as such, should not be referenced post-snapshot creation. |
 | `volumeSnapshotRef` | `object` | volumeSnapshotRef specifies the VolumeSnapshot object to which this VolumeSnapshotContent object is bound. VolumeSnapshot.Spec.VolumeSnapshotContentName field must reference to this VolumeSnapshotContent’s name for the bidirectional binding to be valid. For a pre-existing VolumeSnapshotContent object, name and namespace of the VolumeSnapshot object MUST be provided for binding to happen. This field is immutable after creation. Required. |
+
 ### .spec.source {id="_specsource"}
 
 Description
@@ -70,6 +72,7 @@ Type
 | --- | --- | --- |
 | `snapshotHandle` | `string` | snapshotHandle specifies the CSI "snapshot_id" of a pre-existing snapshot on the underlying storage system for which a Kubernetes object representation was (or should be) created. This field is immutable. |
 | `volumeHandle` | `string` | volumeHandle specifies the CSI "volume_id" of the volume from which a snapshot should be dynamically taken from. This field is immutable. |
+
 ### .spec.volumeSnapshotRef {id="_specvolumesnapshotref"}
 
 Description
@@ -95,6 +98,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status {id="_status"}
 
 Description
@@ -112,6 +116,7 @@ Type
 | `restoreSize` | `integer` | restoreSize represents the complete size of the snapshot in bytes. In dynamic snapshot creation case, this field will be filled in by the CSI snapshotter sidecar with the "size_bytes" value returned from CSI "CreateSnapshot" gRPC call. For a pre-existing snapshot, this field will be filled with the "size_bytes" value returned from the CSI "ListSnapshots" gRPC call if the driver supports it. When restoring a volume from this snapshot, the size of the volume MUST NOT be smaller than the restoreSize if it is specified, otherwise the restoration will fail. If not specified, it indicates that the size is unknown. |
 | `snapshotHandle` | `string` | snapshotHandle is the CSI "snapshot_id" of a snapshot on the underlying storage system. If not specified, it indicates that dynamic snapshot creation has either failed or it is still in progress. |
 | `volumeGroupSnapshotHandle` | `string` | VolumeGroupSnapshotHandle is the CSI "group_snapshot_id" of a group snapshot on the underlying storage system. |
+
 ### .status.error {id="_statuserror"}
 
 Description
@@ -135,12 +140,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of VolumeSnapshotContent
     *   `GET`: list objects of kind VolumeSnapshotContent
     *   `POST`: create a VolumeSnapshotContent
-*   `/apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{{ name }}`
+*   `/apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{{ name }}`{minja}
     *   `DELETE`: delete a VolumeSnapshotContent
     *   `GET`: read the specified VolumeSnapshotContent
     *   `PATCH`: partially update the specified VolumeSnapshotContent
     *   `PUT`: replace the specified VolumeSnapshotContent
-*   `/apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{{ name }}/status`
+*   `/apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{{ name }}/status`{minja}
     *   `GET`: read status of the specified VolumeSnapshotContent
     *   `PATCH`: partially update status of the specified VolumeSnapshotContent
     *   `PUT`: replace status of the specified VolumeSnapshotContent

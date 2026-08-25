@@ -59,8 +59,8 @@ Baseboard Management Controller (BMC) details
         *   `example-3node.yaml`
         *   `example-standard.yaml`
     1.  Change the cluster and host details in the example file to match the type of cluster you want. For example:
-        ```yaml title="Example {{ sno }} ClusterInstance CR"
-{% include "./snippets/ztp_example-sno.yaml" %}
+        ```yaml title="Example {{ sno }} ClusterInstance CR" {minja}
+        {% include "./snippets/ztp_example-sno.yaml" %}
         ```
 
         :::note

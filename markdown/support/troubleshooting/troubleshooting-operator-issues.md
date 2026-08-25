@@ -3,12 +3,12 @@ title: Troubleshooting Operator issues
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Troubleshooting Operator issues {id="troubleshooting-operator-issues"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "troubleshooting-operator-issues" %}
 
-A cluster administrator can do the following to resolve Operator issues: verify Operator subscription status, check Operator pod health, and gather Operator logs.
+A cluster administrator can do the following to resolve Operator issues: verify Operator subscription status, check Operator pod health, and gather Operator logs. {._abstract}
 
 Operators are a method of packaging, deploying, and managing an {{ product_title }} application. They act like an extension of the software vendor’s engineering team, watching over an {{ product_title }} environment and using its current state to make decisions in real time. Operators are designed to handle upgrades seamlessly, react to failures automatically, and not take shortcuts, such as skipping a software backup process to save time.
 
@@ -21,24 +21,24 @@ If you experience Operator issues, verify Operator subscription status. Check Op
 {% leveloffset +1 %}{% include "./modules/olm-status-conditions.md" %}{% endleveloffset %}
 
 {%- if not openshift_rosa_hcp %}
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Catalog health requirements](/operators/understanding/olm/olm-understanding-olm#olm-cs-health_olm-understanding-olm)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/olm-status-viewing-cli.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/olm-cs-status-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 {%- if not openshift_rosa_hcp %}
-*   [Operator Lifecycle Manager concepts and resources -> Catalog source](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
+*   [Operator Lifecycle Manager concepts and resources → Catalog source](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource_olm-understanding-olm)
 {%- endif %}
 *   [States of Connectivity (gRPC documentation)](https://grpc.github.io/grpc/core/md_doc_connectivity-semantics-and-api.html)
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   [Accessing images for Operators from private registries](/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/querying-operator-pod-status.md" %}{% endleveloffset %}
 
@@ -64,8 +64,8 @@ If you experience Operator issues, verify Operator subscription status. Check Op
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 {% leveloffset +1 %}{% include "./modules/olm-reinstall.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
 *   [Adding Operators to a cluster](/operators/admin/olm-adding-operators-to-cluster#olm-adding-operators-to-a-cluster)
-{% endif %}
+{%- endif %}

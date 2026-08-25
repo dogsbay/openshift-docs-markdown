@@ -15,7 +15,7 @@ Both the `io.openshift.s2i.scripts-url` label specified in the image and the scr
 *   `$$file:///path_to_scripts_dir$$`: relative or absolute path to a directory on the host where the S2I scripts are located.
 *   `http(s)://path_to_scripts_dir`: URL to a directory where the S2I scripts are located.
 
-***S2I scripts***
+**S2I scripts**
 
 <table>
 <thead>
@@ -43,7 +43,7 @@ Both the `io.openshift.s2i.scripts-url` label specified in the image and the scr
 </tr>
 <tr>
   <td><code>test/run</code></td>
-  <td>The <code>test/run</code> script allows you to create a process to check if the image is working correctly. This script is optional. The proposed flow of that process is:<br><br><ol><li>Build the image.</li><li>Run the image to verify the <code>usage</code> script.</li><li>Run <code>s2i build</code> to verify the <code>assemble</code> script.</li><li>Optional: Run <code>s2i build</code> again to verify the <code>save-artifacts</code> and <code>assemble</code> scripts save and restore artifacts functionality.</li><li>Run the image to verify the test application is working.</li></ol><dl><dt>Note</dt><dd>The suggested location to put the test application built by your <code>test/run</code> script is the <code>test/test-app</code> directory in your image repository.</dd></dl></td>
+  <td>The <code>test/run</code> script allows you to create a process to check if the image is working correctly. This script is optional. The proposed flow of that process is:<br><br><ol><li>Build the image.</li><li>Run the image to verify the <code>usage</code> script.</li><li>Run <code>s2i build</code> to verify the <code>assemble</code> script.</li><li>Optional: Run <code>s2i build</code> again to verify the <code>save-artifacts</code> and <code>assemble</code> scripts save and restore artifacts functionality.</li><li>Run the image to verify the test application is working.</li></ol><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The suggested location to put the test application built by your <code>test/run</code> script is the <code>test/test-app</code> directory in your image repository.</dd></dl></td>
 </tr>
 </tbody>
 </table>

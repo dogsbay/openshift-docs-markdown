@@ -36,15 +36,15 @@ Do not use this image registry credentials file as the pull secret when you inst
 
 {%- if not (openshift_rosa or openshift_dedicated) %}
 *   You configured a mirror registry to use in your disconnected environment.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 *   You configured a mirror registry to use.
-{% endif %}
-{% if restricted %}
+{%- endif %}
+{%- if restricted %}
 *   You identified an image repository location on your mirror registry to mirror images into.
 *   You provisioned a mirror registry account that allows images to be uploaded to that image repository.
 *   You have write access to the mirror registry.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -78,7 +78,7 @@ Do not use this image registry credentials file as the pull secret when you inst
       }
     }
     ```
-{%- if oc_mirror %}
+{% if oc_mirror %}
 1.  Save the file as either `~/.docker/config.json` or `$XDG_RUNTIME_DIR/containers/auth.json`:
     1.  If the `.docker` or `$XDG_RUNTIME_DIR/containers` directories do not exist, create one by entering the following command:
         ```terminal
@@ -187,20 +187,20 @@ Do not use this image registry credentials file as the pull secret when you inst
 {% endif %}
 
 {% if context == "installing-mirroring-installation-images" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 
 {% if context == "mirroring-ocp-image-repository" %}
-{%- set restricted = false -%}
-{%- set update_oc_mirror = false -%}
+{%- set restricted = "" -%}
+{%- set update_oc_mirror = "" -%}
 {% endif %}
 
 {% if context == "installing-mirroring-disconnected" %}
-{%- set restricted = false -%}
-{%- set oc_mirror = false -%}
+{%- set restricted = "" -%}
+{%- set oc_mirror = "" -%}
 {% endif %}
 
 {% if context == "about-installing-oc-mirror-v2" %}
-{%- set oc_mirror_v2 = false -%}
-{%- set restricted = false -%}
+{%- set oc_mirror_v2 = "" -%}
+{%- set restricted = "" -%}
 {% endif %}

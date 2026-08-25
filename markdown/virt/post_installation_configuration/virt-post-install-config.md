@@ -7,11 +7,11 @@ title: Postinstallation configuration
 # Postinstallation configuration {id="virt-post-install-config"}
 {%- set context = "virt-post-install-config" %}
 
-After you have installed {{ VirtProductName }}, there are procedures that you can complete to ensure that your environment is properly set up. You can configure the components that are relevant for your environment.
+After you have installed {{ VirtProductName }}, there are procedures that you can complete to ensure that your environment is properly set up. You can configure the components that are relevant for your environment. {._abstract}
 
 {%- if openshift_enterprise %}
 *   As a cluster administrator, you can run a self validation checkup to verify that the environment is fully functional and self-sustained before you deploy production workloads.
-{% endif %}
+{%- endif %}
 *   The hostpath provisioner is a local storage provisioner designed for {{ VirtProductName }}. If you want to configure local storage for virtual machines, you must enable the hostpath provisioner first.
 *   Node placement rules for {{ VirtProductName }} Operators, workloads, and controllers.
 *   Network configuration:
@@ -22,8 +22,8 @@ After you have installed {{ VirtProductName }}, there are procedures that you ca
     *   Configuring a dedicated secondary network for live migration
     *   Configuring an SR-IOV network
     *   Enabling the creation of load balancer services by using the {{ product_title }} web console
-        {% endif %}
-        {% if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
+{% endif %}
+{% if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
     *   Enabling the creation of load balancer services by using the {{ product_title }} web console
 {% endif %}
 *   Storage configuration:
@@ -34,7 +34,7 @@ After you have installed {{ VirtProductName }}, there are procedures that you ca
 {% leveloffset +1 %}{% include "./modules/about-self-service-tsr.md" %}{% endleveloffset %}
 {% endif %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Specifying nodes for {{ VirtProductName }} components](/virt/post_installation_configuration/virt-node-placement-virt-components#virt-node-placement-virt-components)
 *   [Postinstallation network configuration](/virt/post_installation_configuration/virt-post-install-network-config#virt-post-install-network-config)
 *   [Postinstallation storage configuration](/virt/post_installation_configuration/virt-post-install-storage-config#virt-post-install-storage-config)

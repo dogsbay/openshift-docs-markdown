@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a service account in {{ gcp_short }} {id="installation-gcp-service-account_{{ context }}"}
 
-[role="_abstract"] 
-{{ product_title }} requires a {{ gcp_first }} service account that provides authentication and authorization to access data in the Google APIs. If you do not have an existing IAM service account that contains the required roles in your project, you must create one.
+{{ product_title }} requires a {{ gcp_first }} service account that provides authentication and authorization to access data in the Google APIs. If you do not have an existing IAM service account that contains the required roles in your project, you must create one. {._abstract}
 
 
 :::note

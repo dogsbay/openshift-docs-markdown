@@ -4,10 +4,10 @@
 You create a default `Secret` if your backup and snapshot locations use the same credentials or if you do not require a snapshot location. {._abstract}
 
 {% if installing_oadp_aws or installing_oadp_azure or installing_oadp_gcp or installing_oadp_mcg %}
-The default name of the `Secret` is `{{ credentials }}`.
+The default name of the `Secret` is `{{ credentials }}`{minja}.
 {% endif %}
 {% if installing_oadp_ocs %}
-The default name of the `Secret` is `{{ credentials }}`, unless your backup storage provider has a default plugin, such as `aws`, `azure`, or `gcp`. In that case, the default name is specified in the provider-specific OADP installation procedure.
+The default name of the `Secret` is `{{ credentials }}`{minja}, unless your backup storage provider has a default plugin, such as `aws`, `azure`, or `gcp`. In that case, the default name is specified in the provider-specific OADP installation procedure.
 {% endif %}
 
 
@@ -59,7 +59,7 @@ If you do not want to use the backup location credentials during the installatio
         ```
 {% endif %}
 1.  Create a `Secret` custom resource (CR) with the default name:
-    ```terminal
+    ```terminal {minja}
     $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero
     ```
 

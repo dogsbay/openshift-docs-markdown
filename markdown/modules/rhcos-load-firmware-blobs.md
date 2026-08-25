@@ -11,11 +11,11 @@ By default, the location for firmware blobs in `/usr/lib` is read-only.
 
     :::note
 
-{% include "./snippets/butane-version.md" %}
+    {% include "./snippets/butane-version.md" %}
     
     :::
 
-    ```yaml title="Butane config file for custom firmware blob"
+    ```yaml title="Butane config file for custom firmware blob" {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

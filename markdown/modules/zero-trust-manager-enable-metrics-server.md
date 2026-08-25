@@ -47,7 +47,7 @@ The SPIRE Server operand exposes metrics by default on port `9402` at the `/metr
 
 **Verification**
 
-1.  In the {{ product_title }} web console, navigate to **Observe** -> **Targets**.
+1.  In the {{ product_title }} web console, navigate to **Observe** → **Targets**.
 1.  In the **Label** filter field, enter the following label to filter the metrics targets:
     ```terminal
     $ service=zero-trust-workload-identity-manager-metrics-service

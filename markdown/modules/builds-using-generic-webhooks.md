@@ -8,7 +8,7 @@ type: "Generic"
 generic:
   secretReference:
     name: "mysecret"
-  allowEnv: true # (1)
+  allowEnv: true (1)
 ```
 1.  Set to `true` to allow a generic webhook to pass in environment variables.
 
@@ -54,8 +54,8 @@ webhook endpoint for your build.
     The arguments are the same as the previous example with the addition of a header and a payload. The `-H` argument sets the `Content-Type` header to `application/yaml` or `application/json` depending on your payload format. The `--data-binary` argument is used to send a binary payload with newlines intact with the `POST` request.
 
 
-:::note
+    :::note
 
-{{ product_title }} permits builds to be triggered by the generic webhook even if an invalid request payload is presented, for example, invalid content type, unparsable or invalid content, and so on. This behavior is maintained for backwards compatibility. If an invalid request payload is presented, {{ product_title }} returns a warning in JSON format as part of its `HTTP 200 OK` response.
-
-:::
+    {{ product_title }} permits builds to be triggered by the generic webhook even if an invalid request payload is presented, for example, invalid content type, unparsable or invalid content, and so on. This behavior is maintained for backwards compatibility. If an invalid request payload is presented, {{ product_title }} returns a warning in JSON format as part of its `HTTP 200 OK` response.
+    
+    :::

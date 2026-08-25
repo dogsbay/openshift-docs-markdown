@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # Red&#160;Hat managed resources {id="sd-redhat-managed-resources_{{ context }}"}
 
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "sd-managed-resources" %}
 
 ## Overview {id="sd-managed-resources-overview_{{ context }}"}
@@ -15,10 +15,7 @@ The following list displays the {{ product_title }} resources managed by OpenShi
 **List of Red&#160;Hat managed resources**
 
 (Note that the following may not be visible in your ROSA cluster)
-<details>
-<summary>Details</summary>
-
-```yaml
+:::details{title="Details"}
 ```yaml
 Resources:
   ConfigMap:
@@ -192,8 +189,6 @@ Resources:
   - namespace: openshift-monitoring
     name: configure-alertmanager-operator
   - namespace: openshift-monitoring
-    name: osd-cluster-ready
-  - namespace: openshift-monitoring
     name: osd-rebalance-infra-nodes
   - namespace: openshift-monitoring
     name: sre-dns-latency-exporter
@@ -281,7 +276,6 @@ Resources:
   - name: logger-clusterrolebinding
   - name: openshift-backplane-managed-scripts-reader
   - name: osd-cluster-admin
-  - name: osd-cluster-ready
   - name: osd-delete-backplane-script-resources
   - name: osd-delete-ownerrefs-serviceaccounts
   - name: osd-patch-subscription-source
@@ -311,7 +305,6 @@ Resources:
   - name: logger-clusterrole
   - name: openshift-backplane-managed-scripts-reader
   - name: openshift-splunk-forwarder-operator
-  - name: osd-cluster-ready
   - name: osd-custom-domains-dedicated-admin-cluster
   - name: osd-delete-backplane-script-resources
   - name: osd-delete-backplane-serviceaccounts
@@ -352,8 +345,6 @@ Resources:
     name: muo-pullsecret-reader
   - namespace: openshift-config
     name: oao-openshiftconfig-reader
-  - namespace: openshift-config
-    name: osd-cluster-ready
   - namespace: openshift-custom-domains-operator
     name: osd-rebalance-infra-nodes-openshift-pod-rebalance
   - namespace: openshift-customer-monitoring
@@ -383,8 +374,6 @@ Resources:
   - namespace: openshift-logging
     name: openshift-logging:serviceaccounts:dedicated-admin
   - namespace: openshift-machine-api
-    name: osd-cluster-ready
-  - namespace: openshift-machine-api
     name: sre-ebs-iops-reporter-read-machine-info
   - namespace: openshift-machine-api
     name: sre-stuck-ebs-vols-read-machine-info
@@ -400,8 +389,6 @@ Resources:
     name: muo-monitoring-reader
   - namespace: openshift-monitoring
     name: oao-monitoring-manager
-  - namespace: openshift-monitoring
-    name: osd-cluster-ready
   - namespace: openshift-monitoring
     name: osd-rebalance-infra-nodes-openshift-monitoring
   - namespace: openshift-monitoring
@@ -489,8 +476,6 @@ Resources:
     name: muo-pullsecret-reader
   - namespace: openshift-config
     name: oao-openshiftconfig-reader
-  - namespace: openshift-config
-    name: osd-cluster-ready
   - namespace: openshift-customer-monitoring
     name: dedicated-admins-openshift-customer-monitoring
   - namespace: openshift-customer-monitoring
@@ -510,8 +495,6 @@ Resources:
   - namespace: openshift-logging
     name: dedicated-admins-openshift-logging
   - namespace: openshift-machine-api
-    name: osd-cluster-ready
-  - namespace: openshift-machine-api
     name: osd-disable-cpms
   - namespace: openshift-marketplace
     name: dedicated-admins-openshift-marketplace
@@ -521,8 +504,6 @@ Resources:
     name: muo-monitoring-reader
   - namespace: openshift-monitoring
     name: oao-monitoring-manager
-  - namespace: openshift-monitoring
-    name: osd-cluster-ready
   - namespace: openshift-monitoring
     name: osd-rebalance-infra-nodes-openshift-monitoring
   - namespace: openshift-must-gather-operator
@@ -574,9 +555,6 @@ Resources:
     name: bz1980755
   - namespace: openshift-sre-pruning
     name: deployments-pruner
-  Job:
-  - namespace: openshift-monitoring
-    name: osd-cluster-ready
   CredentialsRequest:
   - namespace: openshift-cloud-ingress-operator
     name: cloud-ingress-operator-credentials-aws
@@ -1049,8 +1027,7 @@ Resources:
   - namespace: openshift-velero
     name: weekly-full-backup
 ```
-```
-</details>
+:::
 
 ## {{ product_title }} core namespaces {id="sd-core-namespaces_{{ context }}"}
 
@@ -1060,10 +1037,7 @@ Resources:
 
 (Note that the following may not be visible in your ROSA cluster)
 
-<details>
-<summary>Details</summary>
-
-```yaml
+:::details{title="Details"}
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -1139,17 +1113,13 @@ data:
       - name: openshift-vsphere-infra
 
 ```
-```
-</details>
+:::
 
 ## {{ product_title }} add-on namespaces {id="sd-add-on-managed-namespaces_{{ context }}"}
 
 {{ product_title }} add-ons are services available for installation after cluster installation. These additional services include {{ openshift_dev_spaces_productname }}, Red&#160;Hat OpenShift API Management, and Cluster Logging Operator. Any changes to resources within the following namespaces can be overridden by the add-on during upgrades, which can lead to unsupported configurations for the add-on functionality.
 
-<details>
-<summary>List of add-on managed namespaces</summary>
-
-```yaml
+:::details{title="List of add-on managed namespaces"}
 ```yaml
 addon-namespaces:
   ocs-converged-dev: openshift-storage
@@ -1171,17 +1141,13 @@ addon-namespaces:
   reference-addon: redhat-reference-addon
   ocm-addon-test-operator: redhat-ocm-addon-test-operator
 ```
-```
-</details>
+:::
 
 ## {{ product_title }} validating webhooks {id="sd-validating-webhooks_{{ context }}"}
 
 {{ product_title }} validating webhooks are a set of dynamic admission controls maintained by the OpenShift SRE team. These HTTP callbacks, also known as webhooks, are called for various types of requests to ensure cluster stability. The following list describes the various webhooks with rules containing the registered operations and resources that are controlled. Any attempt to circumvent these validating webhooks could affect the stability and supportability of the cluster.
 
-<details>
-<summary>List of validating webhooks</summary>
-
-```json
+:::details{title="List of validating webhooks"}
 ```json
 [
   {
@@ -1795,5 +1761,4 @@ addon-namespaces:
   }
 ]
 ```
-```
-</details>
+:::

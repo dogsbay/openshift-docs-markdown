@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Compatibility with multi-network policy {id="compatibility-with-multi-network-policy_{{ context }}"}
 
-[role="_abstract"] 
-When defining a network policy, the network policy rules that can be used depend on whether the OVN-Kubernetes secondary network defines the `subnets` field. 
+When defining a network policy, the network policy rules that can be used depend on whether the OVN-Kubernetes secondary network defines the `subnets` field.  {._abstract}
 
 The multi-network policy API, which is provided by the `MultiNetworkPolicy` custom resource definition (CRD) in the `k8s.cni.cncf.io` API group, is compatible with an OVN-Kubernetes secondary network. 
 

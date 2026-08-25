@@ -7,7 +7,7 @@ title: "Uninstalling a cluster on {{ gcp_short }}"
 # Uninstalling a cluster on {{ gcp_short }} {id="uninstalling-cluster-gcp"}
 {%- set context = "uninstalling-cluster-gcp" %}
 
-You can remove a cluster that you deployed to {{ gcp_first }} and delete the associated cloud provider resources when you no longer need the cluster, to free up cloud resources and stop incurring costs.
+You can remove a cluster that you deployed to {{ gcp_first }} and delete the associated cloud provider resources when you no longer need the cluster, to free up cloud resources and stop incurring costs. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-uninstall-clouds.md" %}{% endleveloffset %}
 

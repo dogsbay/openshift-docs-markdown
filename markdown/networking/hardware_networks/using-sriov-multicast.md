@@ -3,11 +3,11 @@ title: Using high performance multicast
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using high performance multicast {id="using-sriov-multicast"}
 {% include "./_attributes/common-attributes.md" %}
+# Using high performance multicast {id="using-sriov-multicast"}
 {%- set context = "using-sriov-multicast" %}
 
-You can use multicast on your Single Root I/O Virtualization (SR-IOV) hardware network.
+You can use multicast on your Single Root I/O Virtualization (SR-IOV) hardware network. {._abstract}
 
 Before you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
 

@@ -34,7 +34,7 @@ SPIRE federation support
 
     *   Key capabilities:
     *   Configuration of bundle endpoints using `https_spiffe` (TLS) or `https_web` (Web PKI) profiles.
-    *   Automatic certificate management via the ACME protocol. For example, `Let’s Encrypt`.
+    *   Automatic certificate management via the ACME protocol. For example, `Let's Encrypt`.
     *   Automatic {{ product_title }} route creation for federation endpoints.
     *   Ability to configure relationships with multiple federated trust domains.
 *   Customer action required:
@@ -43,7 +43,7 @@ SPIRE federation support
 
     PostgreSQL database support
 
-:   SPIRE Server now supports PostgreSQL as an external database backend, accommodating production deployments that necessitate enterprise-grade data persistence and high availability.
+    :   SPIRE Server now supports PostgreSQL as an external database backend, accommodating production deployments that necessitate enterprise-grade data persistence and high availability.
 
 *   Supported Types: `sqlite3` (default), `postgres`, `mysql`.
 *   Customer action required:
@@ -52,7 +52,7 @@ SPIRE federation support
 
     Configurable agent socket path and Container Storage Interface (CSI) plugin name
 
-:   The SPIRE Agent socket path and the SPIFFE CSI Driver plugin name are now configurable, providing operational flexibility for environments with specific directory requirements or co-existence with multiple SPIFFE deployments.
+    :   The SPIRE Agent socket path and the SPIFFE CSI Driver plugin name are now configurable, providing operational flexibility for environments with specific directory requirements or co-existence with multiple SPIFFE deployments.
 
 *   Key configuration points:
     *   `SpireAgent.spec.socketPath`
@@ -63,7 +63,7 @@ SPIRE federation support
 
     Workload attestors verification API
 
-:   A new API has been introduced to configure kubelet certificate verification for workload attestation, enhancing security and supporting various {{ product_title }} configurations.
+    :   A new API has been introduced to configure kubelet certificate verification for workload attestation, enhancing security and supporting various {{ product_title }} configurations.
 
 *   Verification types:
     *   `auto` (default): Verification utilizes {{ product_title }} defaults (`/etc/kubernetes/kubelet-ca.crt`).
@@ -72,7 +72,7 @@ SPIRE federation support
 
     Configurable Certificate Authority and JSON Web Token key types
 
-:   Administrators can now configure the cryptographic key types used for the SPIRE Server Certificate Authority (CA) and JSON Web Token (JWT) signing, ensuring compliance with organizational security policies.
+    :   Administrators can now configure the cryptographic key types used for the SPIRE Server Certificate Authority (CA) and JSON Web Token (JWT) signing, ensuring compliance with organizational security policies.
 
 *   Supported Key Types: `rsa-2048` (default), `rsa-4096`, `ec-p256`, `ec-p384`.
 *   Customer action required:
@@ -80,7 +80,7 @@ SPIRE federation support
 
     Custom namespace deployment
 
-:   *   The Operator and all associated operands can now be deployed within a custom namespace, providing flexibility for organizations with specific namespace governance requirements.
+    :   *   The Operator and all associated operands can now be deployed within a custom namespace, providing flexibility for organizations with specific namespace governance requirements.
 
 Proxy-aware Operator and operands
 
@@ -89,13 +89,13 @@ Proxy-aware Operator and operands
 Enhanced Security Context Constraints
 
 :   *   SPIRE Agent and SPIFFE CSI Driver now run with Security Context Constraints (SCC) that prevent root user execution, though privileged container mode remains enabled for necessary host-level operations.
-*   The Operator and all operand containers are configured with the `ReadOnlyRootFilesystem` set to `true`.
+    *   The Operator and all operand containers are configured with the `ReadOnlyRootFilesystem` set to `true`.
 
 Enhanced API validation
 
 :   Comprehensive Common Expression Language (CEL) validation has been integrated into all Custom Resource Definitions (CRDs) to prevent configuration errors during admission control.
 
-*   Key validations:
+    *   Key validations:
     *   All Operator CRDs are enforced as singletons (must be named `cluster`).
     *   Immutable Fields: Fields including `trustDomain`, `clusterName`, `bundleConfigMap`, `federation`, `bundleEndpoint` profile, and all `Persistence` settings (`size`, `accessMode`, and `storageClass`) are now immutable after initial creation.
 *   Customer action required:
@@ -103,14 +103,14 @@ Enhanced API validation
 
     Common configuration consolidation
 
-:   *   Standard configuration options (`labels`, `resources`, `affinity`, `tolerations`, `nodeSelector`) are now standardized across all operand CRs via a shared `CommonConfig` structure.
+    :   *   Standard configuration options (`labels`, `resources`, `affinity`, `tolerations`, `nodeSelector`) are now standardized across all operand CRs via a shared `CommonConfig` structure.
 
 Configuring log level and log format for the operands
 
 :   This release introduces flexible logging controls to improve observability and debugging across the platform:
 
-*   SPIRE Components: Users can now configure the `logLevel` (debug, info, warn, error) and `logFormat` (text, JSON) independently for `SpireServer`, `SpireAgent`, and `SpireOIDCDiscoveryProvider` directly within their CR specifications. The defaults are set to "info" for the `logLevel` and "text" for the `logFormat`.
-*   Operator: The Operator’s log verbosity is now configurable via the `OPERATOR_LOG_LEVEL` environment variable using klog’s `textlogger`.
+    *   SPIRE Components: Users can now configure the `logLevel` (debug, info, warn, error) and `logFormat` (text, JSON) independently for `SpireServer`, `SpireAgent`, and `SpireOIDCDiscoveryProvider` directly within their CR specifications. The defaults are set to "info" for the `logLevel` and "text" for the `logFormat`.
+    *   Operator: The Operator’s log verbosity is now configurable via the `OPERATOR_LOG_LEVEL` environment variable using klog’s `textlogger`.
 
 Refactor for create-only mode
 
@@ -122,12 +122,12 @@ Refactor for create-only mode
 Enhanced status reporting
 
 :   *   The main CR now aggregates status information from all operand CRs.
-*   New status conditions include Upgradeable (indicating a safe upgrade path) and Progressing (detailing deployment progress).
+    *   New status conditions include Upgradeable (indicating a safe upgrade path) and Progressing (detailing deployment progress).
 
 Operator metrics
 
 :   *   Operator metrics are now exposed and secured with appropriate RBAC configuration.
-*   Integration is supported with the {{ product_title }} monitoring stack.
+    *   Integration is supported with the {{ product_title }} monitoring stack.
 
 ## Fixed issues {id="zero-trust-manager-1-0-0-bug-fixes_{{ context }}"}
 
@@ -161,6 +161,6 @@ Corrected update rollback for DaemonSets, Deployments, and StatefulSets
 :   *   Before this update, `daemonset`, `deployment`, and `statefulsets` were not properly reverted to their original form in all valid scenarios due to an oversight in the update logic. As a consequence, user data loss or inconsistency occurred in valid scenarios. With this release, the update logic has been corrected, ensuring all valid scenarios revert to their original form.
 
     ([SPIRE-248](https://issues.redhat.com/browse/SPIRE-248))
-*   Other bug fixes included:
+    *   Other bug fixes included:
     *   Fixed issues related to continuous reconciliation and unnecessary updates.
     *   Eliminated requeue logic for user input validation errors.

@@ -3,8 +3,8 @@ title: NVIDIA GPUDirect Remote Direct Memory Access (RDMA)
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# NVIDIA GPUDirect Remote Direct Memory Access (RDMA) {id="rdma-remote-direct-memory-access"}
 {% include "./_attributes/common-attributes.md" %}
+# NVIDIA GPUDirect Remote Direct Memory Access (RDMA) {id="rdma-remote-direct-memory-access"}
 {%- set context = "rdma-remote-direct-memory-access" %}
 
 

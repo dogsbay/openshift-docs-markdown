@@ -29,7 +29,7 @@ Specific AWS-managed policies for {{ product_title }} must be attached to each r
 **Procedure**
 
 1.  If they do not exist in your AWS account, create the required account-wide STS roles and attach the policies by running the following command:
-    {%- if not fips %}
+{% if not fips %}
     ```terminal
     $ rosa create account-roles --hosted-cp
     ```
@@ -69,11 +69,11 @@ Specific AWS-managed policies for {{ product_title }} must be attached to each r
 {% endif %}
 
 
-:::note
+        :::note
 
-As an additional safeguard, after role creation, you can manually update the trust policies of the Support and Installer account-wide roles to include an external ID. For more information, see _About external ID_.
-
-:::
+        As an additional safeguard, after role creation, you can manually update the trust policies of the Support and Installer account-wide roles to include an external ID. For more information, see _About external ID_.
+        
+        :::
 
 
 **Additional resources**
@@ -82,8 +82,8 @@ As an additional safeguard, after role creation, you can manually update the tru
 *   [AWS managed IAM policies for {{ product_title }}](https://docs.aws.amazon.com/ROSA/latest/userguide/security-iam-awsmanpol.html)
 
 {% if context == "rosa-hcp-creating-cluster-with-fips-encryption" %}
-{%- set fips = false -%}
+{%- set fips = "" -%}
 {% endif %}
 {% if context == "rosa-hcp-egress-zero-install" %}
-{%- set egress_lockdown = false -%}
+{%- set egress_lockdown = "" -%}
 {% endif %}

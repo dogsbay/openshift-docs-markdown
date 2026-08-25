@@ -3,11 +3,11 @@ title: Troubleshooting Compliance Operator scans
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting Compliance Operator scans {id="compliance-operator-troubleshooting"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting Compliance Operator scans {id="compliance-operator-troubleshooting"}
 {%- set context = "compliance-troubleshooting" %}
 
-You can use the information on how to troubleshoot the Compliance Operator to learn how to diagnose a problem or provide information in a bug report. 
+You can use the information on how to troubleshoot the Compliance Operator to learn how to diagnose a problem or provide information in a bug report.  {._abstract}
 
 When troubleshooting, review the following general tips:
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # View cluster notifications using the {{ hybrid_console }} {id="managed-cluster-notification-view-hcc_{{ context }}"}
 
-Cluster notifications give important information about the health of your cluster. You can view notifications sent to your cluster in the ***Cluster history*** tab on the {{ hybrid_console }}. {._abstract}
+Cluster notifications give important information about the health of your cluster. You can view notifications sent to your cluster in the **Cluster history** tab on the {{ hybrid_console }}. {._abstract}
 
 **Prerequisites**
 
@@ -11,7 +11,7 @@ Cluster notifications give important information about the health of your cluste
 
 1.  Navigate to the [Clusters](https://console.redhat.com/openshift) page of the {{ hybrid_console_second }}.
 1.  Click the name of your cluster to go to the cluster details page.
-1.  Click the ***Cluster history*** tab.
+1.  Click the **Cluster history** tab.
 
     Cluster notifications appear under the Cluster history heading.
 1.  Optional: Filter for relevant cluster notifications.

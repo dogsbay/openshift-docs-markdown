@@ -1,5 +1,5 @@
 ---
-title: "PinnedImageSet []"
+title: "PinnedImageSet [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec describes the configuration of this pinned image set. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -46,8 +47,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `pinnedImages` | `array` | pinnedImages is a list of OCI Image referenced by digest that should be pinned and pre-loaded by the nodes of a MachineConfigPool. Translates into a new file inside the /etc/crio/crio.conf.d directory with content similar to this:      pinned_images = [              "quay.io/openshift-release-dev/ocp-release@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              ...      ] Image references must be by digest. A maximum of 500 images may be specified. |
+| `pinnedImages` | `array` | pinnedImages is a list of OCI Image referenced by digest that should be pinned and pre-loaded by the nodes of a MachineConfigPool. Translates into a new file inside the /etc/crio/crio.conf.d directory with content similar to this:<br>     pinned_images = [              "quay.io/openshift-release-dev/ocp-release@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              ...      ]<br>Image references must be by digest. A maximum of 500 images may be specified. |
 | `pinnedImages[]` | `object` | PinnedImageRef represents a reference to an OCI image |
+
 ### .spec.pinnedImages {id="_specpinnedimages"}
 
 Description
@@ -96,7 +98,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of PinnedImageSet
     *   `GET`: list objects of kind PinnedImageSet
     *   `POST`: create a PinnedImageSet
-*   `/apis/machineconfiguration.openshift.io/v1/pinnedimagesets/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/pinnedimagesets/{{ name }}`{minja}
     *   `DELETE`: delete a PinnedImageSet
     *   `GET`: read the specified PinnedImageSet
     *   `PATCH`: partially update the specified PinnedImageSet

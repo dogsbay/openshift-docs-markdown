@@ -10,7 +10,7 @@ You can identify the URLs of Tang servers deployed with the NBDE Tang Server Ope
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Ecosystem** -> **Installed Operators** -> **Tang Server**.
+1.  In the {{ product_title }} web console, navigate to **Ecosystem** → **Installed Operators** → **Tang Server**.
 1.  On the NBDE Tang Server Operator details page, select **Tang Server**.
     ![NBDE Tang Server Operator details](/_assets/images/nbde-tang-server-operator-19-tangserver-details.png)
 1.  The list of Tang servers deployed and available for your cluster appears. Click the name of the Tang server you want to bind with a Clevis client.

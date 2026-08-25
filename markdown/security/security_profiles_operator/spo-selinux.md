@@ -3,11 +3,11 @@ title: Managing SELinux profiles
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing SELinux profiles {id="spo-selinux"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing SELinux profiles {id="spo-selinux"}
 {%- set context = "spo-selinux" %}
 
-To control what namespaced workloads can access on {{ op_system }} nodes, use the Security Profiles Operator to create SELinux profiles, bind them to pods, and record policies from running applications.
+To control what namespaced workloads can access on {{ op_system }} nodes, use the Security Profiles Operator to create SELinux profiles, bind them to pods, and record policies from running applications. {._abstract}
 
 
 :::important
@@ -33,7 +33,7 @@ The Security Profiles Operator supports only Red Hat Enterprise Linux CoreOS (RH
 
 {% leveloffset +2 %}{% include "./modules/spo-selinux-runasany.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_spo-selinux"}
+## Additional resources {id="additional-resources_spo-selinux" ._additional-resources}
 
 *   [Managing security context constraints](/authentication/managing-security-context-constraints#managing-pod-security-policies)
 *   [Managing SCCs in OpenShift](https://cloud.redhat.com/blog/managing-sccs-in-openshift)

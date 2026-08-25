@@ -11,7 +11,7 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
 
 **Procedure**
 
-1.  In the {{ product_title }} web console **Administrator** perspective, go to **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console **Administrator** perspective, go to **Ecosystem** → **Software Catalog**.
 1.  Type {{ loki_op }} in the **Filter by keyword** field. Click **{{ loki_op }}** in the list of available Operators, and then click **Install**.
 
     :::important
@@ -21,7 +21,7 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
     :::
 
 1.  Select **stable** or **stable-x.y** as the **Update channel**.
-{% include "./snippets/logging-stable-updates-snip.md" %}
+    {% include "./snippets/logging-stable-updates-snip.md" %}
 
     The {{ loki_op }} must be deployed to the global operator group namespace `openshift-operators-redhat`, so the **Installation mode** and **Installed Namespace** are already selected. If this namespace does not already exist, it is created for you.
 1.  Select **Enable Operator-recommended cluster monitoring on this namespace.**
@@ -31,7 +31,7 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
 
     If the approval strategy in the subscription is set to **Automatic**, the update process initiates as soon as a new Operator version is available in the selected channel. If the approval strategy is set to **Manual**, you must manually approve pending updates.
 1.  Install the Red&#160;Hat OpenShift Logging Operator:
-    1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+    1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
     1.  Choose  **Red&#160;Hat OpenShift Logging** from the list of available Operators, and click **Install**.
     1.  Ensure that the **A specific namespace on the cluster** is selected under **Installation Mode**.
     1.  Ensure that **Operator recommended namespace** is **openshift-logging** under **Installed Namespace**.
@@ -45,28 +45,28 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
         *   The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.
         *   The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.
     1.  Click **Install**.
-1.  Go to the **Ecosystem** -> **Installed Operators** page. Click the **All instances** tab.
+1.  Go to the **Ecosystem** → **Installed Operators** page. Click the **All instances** tab.
 1.  From the **Create new** drop-down list, select **LokiStack**.
 1.  Select **YAML view**, and then use the following template to create a `LokiStack` CR:
     ```yaml title="Example LokiStack CR"
     apiVersion: loki.grafana.com/v1
     kind: LokiStack
     metadata:
-      name: logging-loki # (1)
-      namespace: openshift-logging # (2)
+      name: logging-loki (1)
+      namespace: openshift-logging (2)
     spec:
-      size: 1x.small # (3)
+      size: 1x.small (3)
       storage:
         schemas:
         - version: v13
           effectiveDate: "<yyyy>-<mm>-<dd>"
         secret:
-          name: logging-loki-s3 # (4)
-          type: s3 # (5)
-          credentialMode: # (6)
-      storageClassName: <storage_class_name> # (7)
+          name: logging-loki-s3 (4)
+          type: s3 (5)
+          credentialMode: (6)
+      storageClassName: <storage_class_name> (7)
       tenants:
-        mode: openshift-logging # (8)
+        mode: openshift-logging (8)
     ```
     1.  Use the name `logging-loki`.
     1.  You must specify the `openshift-logging` namespace.
@@ -85,7 +85,7 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
 
 1.  Click **Create**.
 1.  Create an OpenShift Logging instance:
-    1.  Switch to the **Administration** -> **Custom Resource Definitions** page.
+    1.  Switch to the **Administration** → **Custom Resource Definitions** page.
     1.  On the **Custom Resource Definitions** page, click **ClusterLogging**.
     1.  On the **Custom Resource Definition details** page, select **View Instances** from the **Actions** menu.
     1.  On the **ClusterLoggings** page, click **Create ClusterLogging**.
@@ -96,8 +96,8 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
         apiVersion: logging.openshift.io/v1
         kind: ClusterLogging
         metadata:
-          name: instance # (1)
-          namespace: openshift-logging # (2)
+          name: instance (1)
+          namespace: openshift-logging (2)
         spec:
           collection:
             type: vector
@@ -124,7 +124,7 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
 
 **Verification**
 
-1.  Go to **Ecosystem** -> **Installed Operators**.
+1.  Go to **Ecosystem** → **Installed Operators**.
 1.  Make sure the **openshift-logging** project is selected.
 1.  In the **Status** column, verify that you see green checkmarks with **InstallSucceeded** and the text **Up to date**.
 

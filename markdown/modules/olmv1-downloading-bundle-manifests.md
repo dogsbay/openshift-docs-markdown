@@ -19,7 +19,7 @@ Use the `opm` CLI tool to download the bundle manifests of the extension that yo
       select( .package == "<extension_name>") | \
       {"name":.name, "image":.image}'
     ```
-    ```terminal title="Example command"
+    ```terminal title="Example command" {minja}
     $ opm render registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} | \
       jq -cs '.[] | select( .schema == "olm.bundle" ) | \
       select( .package == "openshift-pipelines-operator-rh") | \

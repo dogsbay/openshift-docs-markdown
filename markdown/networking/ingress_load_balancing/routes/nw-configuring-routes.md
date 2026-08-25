@@ -3,11 +3,11 @@ title: Configuring routes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring routes {id="nw-configuring-routes"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring routes {id="nw-configuring-routes"}
 {%- set context = "configuring-routes" %}
 
-To customise route configuration for specific traffic behaviors, apply annotations, headers, and cookies. By using these mechanisms, you can define granular routing rules, extending standard capabilities to meet complex application requirements.
+To customise route configuration for specific traffic behaviors, apply annotations, headers, and cookies. By using these mechanisms, you can define granular routing rules, extending standard capabilities to meet complex application requirements. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-configuring-route-timeouts.md" %}{% endleveloffset %}
 

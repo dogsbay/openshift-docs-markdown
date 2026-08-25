@@ -7,7 +7,7 @@ title: "Sizing guidance for {{ hcp }}"
 # Sizing guidance for {{ hcp }} {id="hcp-sizing-guidance"}
 {%- set context = "hcp-sizing-guidance" %}
 
-Many factors, including hosted cluster workload and worker node count, affect how many hosted control planes can fit within a certain number of worker nodes. 
+Many factors, including hosted cluster workload and worker node count, affect how many hosted control planes can fit within a certain number of worker nodes.  {._abstract}
 
 Use this sizing guide to help with hosted cluster capacity planning. 
 
@@ -23,6 +23,7 @@ See the following highly available {{ hcp }} requirements, which were tested wit
 *   Minimum memory: approximately 19 GiB
 
 **Additional resources**
+{._additional-resources}
 
 *   [Overriding resource utilization measurements](/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util)
 *   [Distributing hosted cluster workloads](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)
@@ -30,6 +31,7 @@ See the following highly available {{ hcp }} requirements, which were tested wit
 {% leveloffset +1 %}{% include "./modules/hcp-pod-limits.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the maximum number of pods per node](/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods)
 
@@ -42,5 +44,6 @@ See the following highly available {{ hcp }} requirements, which were tested wit
 {% leveloffset +1 %}{% include "./modules/hcp-shared-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Sizing guidance for {{ hcp }}](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance)

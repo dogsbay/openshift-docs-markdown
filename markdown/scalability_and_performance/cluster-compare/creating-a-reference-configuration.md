@@ -3,8 +3,8 @@ title: Creating a reference configuration
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating a reference configuration {id="creating-a-reference-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating a reference configuration {id="creating-a-reference-configuration"}
 {%- set context = "creating-a-reference-configuration" %}
 
 Configure a reference configuration to validate configuration resources from a cluster.
@@ -18,6 +18,7 @@ Configure a reference configuration to validate configuration resources from a c
 {% leveloffset +2 %}{% include "./modules/cluster-compare-templating-reference.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Sprig Function Documentation](https://masterminds.github.io/sprig/)
 

@@ -3,11 +3,11 @@ title: Aggregated API client certificates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Aggregated API client certificates {id="cert-types-aggregated-api-client-certificates"}
 {% include "./_attributes/common-attributes.md" %}
+# Aggregated API client certificates {id="cert-types-aggregated-api-client-certificates"}
 {%- set context = "cert-types-aggregated-api-client-certificates" %}
 
-Review aggregated API client certificate validity and automatic rotation in {{ product_title }} to plan maintenance for extension API server authentication.
+Review aggregated API client certificate validity and automatic rotation in {{ product_title }} to plan maintenance for extension API server authentication. {._abstract}
 
 ## Purpose {id="aggregated-api-client-certificates-purpose_{{ context }}"}
 

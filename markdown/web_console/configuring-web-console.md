@@ -3,12 +3,12 @@ title: Configuring the web console in OpenShift Container Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the web console in {{ product_title }} {id="configuring-web-console"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Configuring the web console in {{ product_title }} {id="configuring-web-console"}
 {%- set context = "configuring-web-console" %}
 
-You can change the {{ product_title }} web console to set a logout redirect URL or disable the quick start tutorials.
+You can change the {{ product_title }} web console to set a logout redirect URL or disable the quick start tutorials. {._abstract}
 
 ## Prerequisites {id="_prerequisites"}
 

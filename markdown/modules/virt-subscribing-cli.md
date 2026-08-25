@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Subscribing to the {{ VirtProductName }} catalog by using the CLI {id="virt-subscribing-cli_{{ context }}"}
 
-Before you install {{ VirtProductName }}, you must subscribe to the {{ VirtProductName }} catalog. Subscribing gives the `{{ CNVNamespace }}` namespace access to the {{ VirtProductName }} Operators. {._abstract}
+Before you install {{ VirtProductName }}, you must subscribe to the {{ VirtProductName }} catalog. Subscribing gives the `{{ CNVNamespace }}`{minja} namespace access to the {{ VirtProductName }} Operators. {._abstract}
 
 To subscribe, configure `Namespace`, `OperatorGroup`, and `Subscription` objects by applying a single manifest to your cluster.
 
@@ -16,7 +16,7 @@ To subscribe, configure `Namespace`, `OperatorGroup`, and `Subscription` objects
 {% if openshift_enterprise or openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
 
 1.  Create a YAML file that contains the following manifest:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     kind: Namespace
     metadata:
@@ -52,8 +52,9 @@ To subscribe, configure `Namespace`, `OperatorGroup`, and `Subscription` objects
 {% endif %}
 
 {% if openshift_origin %}
+
 1.  Create a YAML file that contains the following manifest:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     kind: Namespace
     metadata:
@@ -83,6 +84,7 @@ To subscribe, configure `Namespace`, `OperatorGroup`, and `Subscription` objects
     {{ VirtProductName }} that is compatible with your {{ product_title }} version.
 
 {% endif %}
+
 1.  Create the required `Namespace`, `OperatorGroup`, and `Subscription` objects
 for {{ VirtProductName }} by running the following command:
     ```terminal
@@ -94,31 +96,31 @@ for {{ VirtProductName }} by running the following command:
 You must verify that the subscription creation was successful before you can proceed with installing {{ VirtProductName }}.
 
 1.  Check that the `ClusterServiceVersion` (CSV) object was created successfully. Run the following command and verify the output:
-    ```terminal
+    ```terminal {minja}
     $ oc get csv -n {{ CNVNamespace }}
     ```
 
-    If the CSV was created successfully, the output shows an entry that contains a `NAME` value of `kubevirt-hyperconverged-operator-*`, a `DISPLAY` value of `{{ VirtProductName }}`, and a `PHASE` value of `Succeeded`, as shown in the following example output:
+    If the CSV was created successfully, the output shows an entry that contains a `NAME` value of `kubevirt-hyperconverged-operator-*`, a `DISPLAY` value of `{{ VirtProductName }}`{minja}, and a `PHASE` value of `Succeeded`, as shown in the following example output:
 
     Example output:
-    ```terminal
+    ```terminal {minja}
     NAME                                       DISPLAY                    VERSION   REPLACES                                   PHASE
     kubevirt-hyperconverged-operator.v{{ HCOVersion }}   {{ VirtProductName }}   {{ HCOVersion }}    kubevirt-hyperconverged-operator.v{{ HCOVersionPrev }}   Succeeded
     ```
 1.  Check that the `HyperConverged` custom resource (CR) has the correct version. Run the following command and verify the output:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} -n {{ CNVNamespace }} kubevirt-hyperconverged -o json | jq .status.versions
     ```
 
     Example output:
-    ```terminal
+    ```terminal {minja}
     {
     "name": "operator",
     "version": "{{ HCOVersion }}"
     }
     ```
 1.  Verify the `HyperConverged` CR conditions. Run the following command and check the output:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o json | jq -r '.status.conditions[] | {type,status}'
     ```
 

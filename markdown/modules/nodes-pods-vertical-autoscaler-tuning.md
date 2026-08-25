@@ -25,12 +25,71 @@ These recommended values derive from internal Red&#160;Hat testing on clusters t
 
 **Requests by containers in the cluster**
 
-|     |     |     |     |     |     |     |     |     |     |     |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Component 2+ | 1-500 containers 2+ | 500-1,000 containers 2+ | 1,000-2,000 containers 2+ | 2,000-4,000 containers 2+ | 4,000+ containers |  | **CPU** | **Memory** | **CPU** | **Memory** |
-| **CPU** | **Memory** | **CPU** | **Memory** | **CPU** | **Memory** | Admission | 25m | 50Mi | 25m | 75Mi |
-| 40m | 150Mi | 75m | 260Mi | (0.03c)/2 + 10 ^[1]^ | (0.1c)/2 + 50 ^[1]^ | Recommender | 25m | 100Mi | 50m | 160Mi |
-| 75m | 275Mi | 120m | 420Mi | (0.05c)/2 + 50 ^[1]^ | (0.15c)/2 + 120 ^[1]^ | Updater | 25m | 100Mi | 50m | 220Mi |
+<table>
+<tbody>
+<tr>
+  <td>Component 2+</td>
+  <td>1-500 containers 2+</td>
+  <td>500-1,000 containers 2+</td>
+  <td>1,000-2,000 containers 2+</td>
+  <td>2,000-4,000 containers 2+</td>
+  <td>4,000+ containers</td>
+  <td></td>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+</tr>
+<tr>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+  <td><strong>CPU</strong></td>
+  <td><strong>Memory</strong></td>
+  <td><strong>Admission</strong></td>
+  <td>25m</td>
+  <td>50Mi</td>
+  <td>25m</td>
+  <td>75Mi</td>
+</tr>
+<tr>
+  <td>40m</td>
+  <td>150Mi</td>
+  <td>75m</td>
+  <td>260Mi</td>
+  <td>(0.03c)/2 + 10 <sup>[1]</sup></td>
+  <td>(0.1c)/2 + 50 <sup>[1]</sup></td>
+  <td><strong>Recommender</strong></td>
+  <td>25m</td>
+  <td>100Mi</td>
+  <td>50m</td>
+  <td>160Mi</td>
+</tr>
+<tr>
+  <td>75m</td>
+  <td>275Mi</td>
+  <td>120m</td>
+  <td>420Mi</td>
+  <td>(0.05c)/2 + 50 <sup>[1]</sup></td>
+  <td>(0.15c)/2 + 120 <sup>[1]</sup></td>
+  <td><strong>Updater</strong></td>
+  <td>25m</td>
+  <td>100Mi</td>
+  <td>50m</td>
+  <td>220Mi</td>
+</tr>
+<tr>
+  <td>80m</td>
+  <td>350Mi</td>
+  <td>150m</td>
+  <td>500Mi</td>
+  <td>(0.07c)/2 + 20 <sup>[1]</sup></td>
+  <td>(0.15c)/2 + 200 <sup>[1]</sup></td>
+</tr>
+</tbody>
+</table>
+
 1.  `c` is the number of containers in the cluster.
 
 
@@ -43,11 +102,51 @@ It is recommended that you set the memory limit on your containers to at least d
 
 **Rate limits by VPAs in the cluster**
 
-|     |     |     |     |     |     |     |     |     |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Component 2+ | 1-150 VPAs 2+ | 151-500 VPAs 2+ | 501-2,000 VPAs 2+ | 2,001-4,000 VPAs |  | **QPS Limit** ^[1]^ | **Burst** ^[2]^ | **QPS Limit** |
-| **Burst** | **QPS Limit** | **Burst** | **QPS Limit** | **Burst** | Recommender | 5 | 10 | 30 |
-| 60 | 60 | 120 | 120 | 240 | Updater | 5 | 10 | 30 |
+<table>
+<tbody>
+<tr>
+  <td>Component 2+</td>
+  <td>1-150 VPAs 2+</td>
+  <td>151-500 VPAs 2+</td>
+  <td>501-2,000 VPAs 2+</td>
+  <td>2,001-4,000 VPAs</td>
+  <td></td>
+  <td><strong>QPS Limit</strong> <sup>[1]</sup></td>
+  <td><strong>Burst</strong> <sup>[2]</sup></td>
+  <td><strong>QPS Limit</strong></td>
+</tr>
+<tr>
+  <td><strong>Burst</strong></td>
+  <td><strong>QPS Limit</strong></td>
+  <td><strong>Burst</strong></td>
+  <td><strong>QPS Limit</strong></td>
+  <td><strong>Burst</strong></td>
+  <td><strong>Recommender</strong></td>
+  <td>5</td>
+  <td>10</td>
+  <td>30</td>
+</tr>
+<tr>
+  <td>60</td>
+  <td>60</td>
+  <td>120</td>
+  <td>120</td>
+  <td>240</td>
+  <td><strong>Updater</strong></td>
+  <td>5</td>
+  <td>10</td>
+  <td>30</td>
+</tr>
+<tr>
+  <td>60</td>
+  <td>60</td>
+  <td>120</td>
+  <td>120</td>
+  <td>240</td>
+</tr>
+</tbody>
+</table>
+
 1.  QPS specifies the queries per second (QPS) limit when making requests to Kubernetes API server. The default for the updater and recommender pods is `5.0`.
 1.  Burst specifies the burst limit when making requests to Kubernetes API server. The default for the updater and recommender pods is `10.0`.
 
@@ -114,8 +213,8 @@ spec:
   recommendationOnly: false
   safetyMarginFraction: 0.15
 ```
-where:
 
+where:
 
 `spec.deploymentOverrides.admission`
 :   Specifies the tuning parameters for the VPA admission controller.
@@ -125,17 +224,17 @@ where:
     *   `kube-api-qps`: Specifies the queries per second (QPS) limit when making requests to Kubernetes API server. The default is `5.0`.
     *   `kube-api-burst`: Specifies the burst limit when making requests to Kubernetes API server. The default is `10.0`.
 
-`spec.deploymentOverrides.admission.container.resources.requests`
-:   Specifies the resource requests and limits for the VPA admission controller pod.
+    `spec.deploymentOverrides.admission.container.resources.requests`
+    :   Specifies the resource requests and limits for the VPA admission controller pod.
 
-`spec.deploymentOverrides.recommender`
-:   Specifies the tuning parameters for the VPA recommender.
+    `spec.deploymentOverrides.recommender`
+    :   Specifies the tuning parameters for the VPA recommender.
 
-`spec.deploymentOverrides.recommender.container.args.memory-saver`
-:   When `true`, specifies that the VPA Operator monitors only workloads with a VPA CR. The default is `false`.
+    `spec.deploymentOverrides.recommender.container.args.memory-saver`
+    :   When `true`, specifies that the VPA Operator monitors only workloads with a VPA CR. The default is `false`.
 
-`spec.deploymentOverrides.updater`
-:   Specifies the tuning parameters for the VPA updater.
+    `spec.deploymentOverrides.updater`
+    :   Specifies the tuning parameters for the VPA updater.
 
 You can verify that the settings were applied to each VPA component pod.
 

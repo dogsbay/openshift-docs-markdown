@@ -39,7 +39,7 @@ Before you add a Red Hat Enterprise Linux (RHEL) machine to your {{ product_titl
 
         Note that this might take a few minutes if you have a large number of available repositories
 1.  Enable only the repositories required by {{ product_title }} {{ product_version }}:
-    ```terminal
+    ```terminal {minja}
     # subscription-manager repos \
         --enable="rhel-8-for-x86_64-baseos-rpms" \
         --enable="rhel-8-for-x86_64-appstream-rpms" \

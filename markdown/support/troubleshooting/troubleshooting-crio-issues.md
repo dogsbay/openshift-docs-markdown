@@ -3,12 +3,12 @@ title: Troubleshooting CRI-O container runtime issues
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Troubleshooting CRI-O container runtime issues {id="troubleshooting-crio-issues"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "troubleshooting-crio-issues" %}
 
-Use the following sections to troubleshoot CRI-O container runtime issues.
+Use the following sections to troubleshoot CRI-O container runtime issues. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/about-crio.md" %}{% endleveloffset %}
 

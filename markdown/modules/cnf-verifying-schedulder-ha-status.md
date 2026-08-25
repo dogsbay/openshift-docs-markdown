@@ -16,7 +16,7 @@ You can verify the status of the NUMA-aware scheduler to ensure the scheduler is
     secondary-scheduler-5b8c9d479d-q8c7b   1/1     Running   0          5m
     ```
 
-    Using the default HA mode, the number of pods equals the number of control-plane nodes. A standard HA {{ product_title }} cluster typically has three control-plane nodes, and therefore displays three pods. If you ***customized the replicas****, the number of pods matches the value you set. If you **disabled the scheduler***, there are no running pods with this label.
+    Using the default HA mode, the number of pods equals the number of control-plane nodes. A standard HA {{ product_title }} cluster typically has three control-plane nodes, and therefore displays three pods. If you **customized the replicas**, the number of pods matches the value you set. If you **disabled the scheduler**, there are no running pods with this label.
 
     :::note
 

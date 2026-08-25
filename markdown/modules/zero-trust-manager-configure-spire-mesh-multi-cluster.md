@@ -62,7 +62,7 @@ Configure {{ SMProductName }} on each cluster with federation settings, east-wes
       spire-server bundle list -socketPath /tmp/spire-server/private/api.sock -format spiffe 2>&1 | head -5
     ```
 
-    The output must show public keys for `${{ CLUSTER_B_TRUST_DOMAIN }}`.
+    The output must show public keys for `${{ CLUSTER_B_TRUST_DOMAIN }}`{minja}.
     ```text title="Example output"
     {
       "trust_domains": {
@@ -75,7 +75,7 @@ Configure {{ SMProductName }} on each cluster with federation settings, east-wes
       spire-server bundle list -socketPath /tmp/spire-server/private/api.sock -format spiffe 2>&1 | head -5
     ```
 
-    The output must show public keys for `${{ CLUSTER_A_TRUST_DOMAIN }}`.
+    The output must show public keys for `${{ CLUSTER_A_TRUST_DOMAIN }}`{minja}.
     ```text title="Example output"
     {
       "trust_domains": {

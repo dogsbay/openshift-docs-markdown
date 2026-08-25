@@ -3,11 +3,11 @@ title: About the Cloud Credential Operator in manual mode with long-term credent
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About the Cloud Credential Operator in manual mode with long-term credentials for components {id="cco-mode-manual"}
 {% include "./_attributes/common-attributes.md" %}
+# About the Cloud Credential Operator in manual mode with long-term credentials for components {id="cco-mode-manual"}
 {%- set context = "cco-mode-manual" %}
 
-You can manage your cloud credentials instead of the Cloud Credential Operator (CCO) by setting the Operator to manual mode.
+You can manage your cloud credentials instead of the Cloud Credential Operator (CCO) by setting the Operator to manual mode. {._abstract}
 
 You can use manual mode with your {{ aws_first }}, global {{ azure_first }}, {{ azure_first }} Stack Hub, {{ gcp_first }}, {{ ibm_cloud_name }}, or Nutanix cluster.
 
@@ -25,7 +25,7 @@ An {{ aws_short }}, global {{ azure_short }}, or {{ gcp_short }} cluster that us
 :::
 
 
-## Additional resources {id="additional-resources_cco-mode-manual"}
+## Additional resources {id="additional-resources_cco-mode-manual" ._additional-resources}
 
 *   [Manually creating long-term credentials for AWS](/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)
 *   [Manually creating long-term credentials for Azure](/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)

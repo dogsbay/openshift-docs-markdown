@@ -5,7 +5,7 @@ To set traffic weights when you create a new route for A/B testing in {{ product
 
 **Procedure**
 
-1.  Navigate to the **Networking** -> **Routes** page.
+1.  Navigate to the **Networking** → **Routes** page.
 1.  Click **Create Route**.
 1.  Enter the route **Name**.
 1.  Select the **Service**.

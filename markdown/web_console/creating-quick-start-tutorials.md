@@ -4,10 +4,10 @@ title: Creating quick start tutorials in the web console
 
 {% if not (openshift_rosa or openshift_dedicated) %}
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating quick start tutorials in the web console {id="creating-quick-start-tutorials"}
-
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Creating quick start tutorials in the web console {id="creating-quick-start-tutorials"}
+
 {%- set context = "creating-quick-start-tutorials" -%}
 {% endif %}
 {% if openshift_rosa or openshift_dedicated %}
@@ -19,11 +19,11 @@ title: Creating quick start tutorials in the web console
 {%- set context = "creating-quick-start-tutorials" -%}
 {% endif %}
 
-{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 If you are creating quick start tutorials for the {{ product_title }} web console, follow these guidelines to keep a consistent user experience across all quick starts.
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-Quick start tutorials guide you through completing tasks in the {{ product_title }} web console.
+Quick start tutorials guide you through completing tasks in the {{ product_title }} web console. {._abstract}
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/understanding-quick-starts.md" %}{% endleveloffset %}
@@ -53,8 +53,8 @@ Quick start tutorials guide you through completing tasks in the {{ product_title
 
 {% leveloffset +1 %}{% include "./modules/quick-start-content-guidelines.md" %}{% endleveloffset %}
 
-## Additional resources {id="quick-start-tutorials-additional-resources"}
+## Additional resources {id="quick-start-tutorials-additional-resources" ._additional-resources}
 
 *   [PatternFly’s brand voice and tone guidelines](https://www.patternfly.org/ux-writing/brand-voice-and-tone)
 *   [PatternFly’s UX writing style guide](https://www.patternfly.org/ux-writing/about)
-{% endif %}
+{%- endif %}

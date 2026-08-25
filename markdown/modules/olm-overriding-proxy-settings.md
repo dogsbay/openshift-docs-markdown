@@ -4,8 +4,8 @@
 If a cluster-wide egress proxy is configured, Operators running with Operator Lifecycle Manager (OLM) inherit the cluster-wide proxy settings on their deployments.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 Cluster administrators
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 Administrators with the `dedicated-admin` role
 {%- endif %}
 can also override these proxy settings by configuring the subscription of an Operator. {._abstract}
@@ -24,7 +24,7 @@ Operators must handle setting environment variables for proxy settings in the po
 *   Access to an {{ product_title }} cluster using an account with
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
 `cluster-admin` permissions.
-{% endif %}
+{%- endif %}
 {% endif %}
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   Access to a {{ product_title }} cluster as a user with the `dedicated-admin` role.

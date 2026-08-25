@@ -16,9 +16,9 @@ Only {{ product_title }} clusters deployed with PrivateLink can use a firewall t
 # Firewall AllowList requirements {id="osd-aws-privatelink-firewall-prerequisites_{{ context }}"}
 
 If you are using a firewall to control egress traffic from {{ product_title }}, you must configure your firewall to grant access to the certain domain and port combinations below. {{ product_title }} requires this access to provide a fully managed OpenShift service.
-{% endif %} {._abstract}
+{% endif %}
 
-***Domains for installation packages and tools***
+**Domains for installation packages and tools** {._abstract}
 
 <table>
 <thead>
@@ -147,7 +147,7 @@ If you are using a firewall to control egress traffic from {{ product_title }}, 
 </tbody>
 </table>
 
-***Domains for telemetry***
+**Domains for telemetry**
 
 <table>
 <thead>

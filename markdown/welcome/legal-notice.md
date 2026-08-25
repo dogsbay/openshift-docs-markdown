@@ -3,11 +3,11 @@ title: Legal notice
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Legal notice {id="legal-notice"}
 {% include "./_attributes/common-attributes.md" %}
+# Legal notice {id="legal-notice"}
 {%- set context = "legal-notice" %}
 
-Copyright © 2024 Red Hat, Inc.
+Copyright © 2024 Red Hat, Inc. {.lead}
 
 OpenShift documentation is licensed under the Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0).
 

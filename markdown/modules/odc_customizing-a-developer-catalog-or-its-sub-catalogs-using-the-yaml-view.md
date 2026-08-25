@@ -10,7 +10,7 @@ You can customize a developer catalog by editing the YAML content in the YAML vi
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Administration** -> **Cluster Settings**.
+1.  In the **Administrator** perspective of the web console, navigate to **Administration** → **Cluster Settings**.
 1.  Select the **Configuration** tab, click the **Console (operator.openshift.io)** resource and view the **Details** page.
 1.  Click the **YAML** tab to open the editor and edit the YAML content as needed.
 

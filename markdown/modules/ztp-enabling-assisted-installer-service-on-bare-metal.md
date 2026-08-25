@@ -17,7 +17,7 @@
     $ oc edit AgentServiceConfig
     ```
 1.  Update the `spec.osImages` field in the `AgentServiceConfig` CR:
-    ```yaml
+    ```yaml {minja}
     apiVersion: agent-install.openshift.io/v1beta1
     kind: AgentServiceConfig
     metadata:

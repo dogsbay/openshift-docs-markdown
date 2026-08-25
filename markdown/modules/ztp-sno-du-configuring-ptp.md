@@ -5,29 +5,29 @@
 The following example `PtpConfig` custom resources (CRs) illustrate configurations for ordinary clocks, boundary clocks, and Telecom Grandmaster clocks on supported Intel Ethernet hardware.
 You must select the profile that matches your qualified GNR-D hardware layout and complete interface renaming prerequisites before you apply Granite Rapids-D Telecom Grandmaster YAML on Intel Granite Rapids-D servers. {._abstract}
 
-```yaml title="Recommended PTP ordinary clock configuration (PtpConfigSlave.yaml)"
+```yaml title="Recommended PTP ordinary clock configuration (PtpConfigSlave.yaml)" {minja}
 {% include "./snippets/ztp_PtpConfigSlave.yaml" %}
 ```
 
-```yaml title="Recommended boundary clock configuration (PtpConfigBoundary.yaml)"
+```yaml title="Recommended boundary clock configuration (PtpConfigBoundary.yaml)" {minja}
 {% include "./snippets/ztp_PtpConfigBoundary.yaml" %}
 ```
 
-```yaml title="Recommended PTP Westport Channel e810 grandmaster clock configuration (PtpConfigGmWpc.yaml)"
+```yaml title="Recommended PTP Westport Channel e810 grandmaster clock configuration (PtpConfigGmWpc.yaml)" {minja}
 {% include "./snippets/ztp_PtpConfigGmWpc.yaml" %}
 ```
 
 {%- set FeatureName = "Telecom Grandmaster clock configuration on Intel Granite Rapids-D (GNR-D) hardware" %}
 {% include "./snippets/technology-preview.md" %}
-{%- set FeatureName = false %}
+{%- set FeatureName = "" %}
 
-```yaml title="Recommended PTP Granite Rapids-D Telecom Grandmaster clock configuration (PtpConfigGnrdTGM.yaml)"
+```yaml title="Recommended PTP Granite Rapids-D Telecom Grandmaster clock configuration (PtpConfigGnrdTGM.yaml)" {minja}
 {% include "./snippets/ptp_PtpConfigGnrdTGM.yaml" %}
 ```
 
 The following optional `PtpOperatorConfig` CR configures PTP events reporting for the node.
 
-```yaml title="Recommended PTP events configuration (PtpOperatorConfigForEvent.yaml)"
+```yaml title="Recommended PTP events configuration (PtpOperatorConfigForEvent.yaml)" {minja}
 {% include "./snippets/ztp_PtpOperatorConfigForEvent.yaml" %}
 ```
 

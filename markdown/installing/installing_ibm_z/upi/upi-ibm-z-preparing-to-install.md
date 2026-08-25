@@ -3,11 +3,11 @@ title: "Preparing to install a cluster on {{ ibm_z_title }} and {{ ibm_linuxone_
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster on {{ ibm_z_title }} and {{ ibm_linuxone_title }} using user-provisioned infrastructure {id="upi-ibm-z-preparing-to-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster on {{ ibm_z_title }} and {{ ibm_linuxone_title }} using user-provisioned infrastructure {id="upi-ibm-z-preparing-to-install"}
 {%- set context = "upi-ibm-z-preparing-to-install" %}
 
-Before installing {{ product_title }} on {{ ibm_z_name }} or {{ ibm_linuxone_name }} with user-provisioned infrastructure, you must verify connectivity, download the installation program, and prepare your pull secret and SSH key.
+Before installing {{ product_title }} on {{ ibm_z_name }} or {{ ibm_linuxone_name }} with user-provisioned infrastructure, you must verify connectivity, download the installation program, and prepare your pull secret and SSH key. {._abstract}
 
 *   Verifying internet connectivity for your cluster.
 *   Downloading the installation program.
@@ -44,7 +44,7 @@ Before installing {{ product_title }} on {{ ibm_z_name }} or {{ ibm_linuxone_nam
 
 {% leveloffset +1 %}{% include "./modules/installation-user-provisioned-validating-dns.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

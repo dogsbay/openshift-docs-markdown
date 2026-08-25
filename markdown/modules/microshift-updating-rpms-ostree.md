@@ -21,8 +21,8 @@ You cannot downgrade {{ microshift_short }} with this process. Downgrades other 
 
 **Procedure**
 
-1.  Create an image builder configuration file for adding the `{{ rpm_repo_version }}` RPM repository source required to pull {{ microshift_short }} RPMs by running the following command:
-    ```terminal
+1.  Create an image builder configuration file for adding the `{{ rpm_repo_version }}`{minja} RPM repository source required to pull {{ microshift_short }} RPMs by running the following command:
+    ```terminal {minja}
     $ cat > {{ rpm_repo_version }}.toml <<EOF
     id = "{{ rpm_repo_version }}"
     name = "Red Hat OpenShift Container Platform {{ ocp_version }} for RHEL {{ op_system_version_major }}"
@@ -35,7 +35,7 @@ You cannot downgrade {{ microshift_short }} with this process. Downgrades other 
     EOF
     ```
 1.  Add the update RPM source to the image builder by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo composer-cli sources add {{ rpm_repo_version }}.toml
     ```
 1.  Build a new image of {{ op_system_ostree }} that contains the new version of {{ microshift_short }}. To determine the steps required, use the following documentation:

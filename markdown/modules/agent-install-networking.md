@@ -21,7 +21,7 @@ Do not set the `network.machineNetwork.cidr` parameter to include this address r
 
 During the discovery and bootstrap phases of an installation, all the hosts connect to the Assisted Service that runs on the rendezvous host. Configure your firewall to allow the following traffic from each host to the rendezvous host:
 
-***Ports required to reach the Assisted Service on the rendezvous host***
+**Ports required to reach the Assisted Service on the rendezvous host**
 
 <table>
 <thead>

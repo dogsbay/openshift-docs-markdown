@@ -3,12 +3,12 @@ title: Installing a cluster on vSphere
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on vSphere {id="installing-vsphere-installer-provisioned"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on vSphere {id="installing-vsphere-installer-provisioned"}
 {%- set context = "installing-vsphere-installer-provisioned" %}
 
 In {{ product_title }} version {{ product_version }}, you can install a cluster on your
-VMware vSphere instance by using installer-provisioned infrastructure.
+VMware vSphere instance by using installer-provisioned infrastructure. {._abstract}
 
 ## Prerequisites {id="prerequisites_installing-vsphere-installer-provisioned_{{ context }}"}
 
@@ -44,12 +44,14 @@ VMware vSphere instance by using installer-provisioned infrastructure.
 {% leveloffset +2 %}{% include "./modules/installation-registry-storage-block-recreate-rollout.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the registry for vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing to install a cluster using installer-provisioned infrastructure](/installing/installing_vsphere/ipi/ipi-vsphere-preparing-to-install#ipi-vsphere-preparing-to-install)
 *   [{{ product_title }} installation and update processes](/architecture/architecture-installation#architecture-installation)

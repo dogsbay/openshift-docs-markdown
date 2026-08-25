@@ -10,7 +10,7 @@ Specializing a Windows virtual machine (VM) configures the computer-specific inf
 
 **Procedure**
 
-1.  In the {{ product_title }} console, click **Virtualization** -> **Catalog**.
+1.  In the {{ product_title }} console, click **Virtualization** → **Catalog**.
 1.  Select a Windows template and click **Customize VirtualMachine**.
 1.  Select **PVC (clone PVC)** from the **Disk source** list.
 1.  Select the PVC project and PVC name of the generalized Windows image.

@@ -9,8 +9,8 @@ You can use environment variables to ensure consistency across the commands with
 *   You have access to the AWS CLI (`aws`).
 {%- if openshift_rosa %}
 *   You have manually created an AWS Virtual Private Cloud (VPC).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 *   You have manually created [an AWS Virtual Private Cloud (VPC)](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-creating-vpc_rosa-hcp-sts-creating-a-cluster-quickly).
 {%- endif %}
 *   You have configured a DHCP option set to point to a custom DNS server and set as the default for your VPC.

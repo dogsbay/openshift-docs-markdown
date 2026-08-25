@@ -47,7 +47,7 @@ The `controllerConfig` specifies the configurations used by the controller when 
   <td><em>ComponentConfig array</em></td>
   <td><code>componentConfigs</code> allows specifying deployment-level configuration overrides for individual <code>external-secrets</code> components. This field enables fine-grained control over deployment settings for each component independently. Each component can have only one configuration entry.</td>
   <td></td>
-  <td>The maximum number of items is 4.</td>
+  <td>The maximum number of items is 4.<br><br>The minimum number of items is 0.</td>
 </tr>
 <tr>
   <td><code>trustedCABundle</code> <strong>ConfigMapKeyReference</strong></td>

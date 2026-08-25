@@ -10,7 +10,7 @@ You can use Butane to produce a `MachineConfig` object so that you can configure
 **Procedure**
 
 1.  Create a Butane config file. The following example creates a file named `99-worker-custom.bu` that configures kernel debug messages and specifies custom settings for the chrony time service:
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

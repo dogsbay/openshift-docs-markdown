@@ -34,102 +34,102 @@ the bootstrap process and are removed after the cluster deploys.
 </thead>
 <tbody>
 <tr>
-  <td>Service account</td>
-  <td>IAM</td>
-  <td>Global</td>
-  <td>6</td>
-  <td>1</td>
+  {% if context == "installing-gcp-account" %}<td>Service account</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>IAM</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>6</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>1</td>{% endif %}
 </tr>
 <tr>
-  <td>Firewall rules</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>11</td>
-  <td>1</td>
+  {% if context == "installing-gcp-account" %}<td>Firewall rules</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>11</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>1</td>{% endif %}
 </tr>
 <tr>
-  <td>Forwarding rules</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>2</td>
-  <td>0</td>
+  {% if context == "installing-gcp-account" %}<td>Forwarding rules</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>2</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>0</td>{% endif %}
 </tr>
 <tr>
-  <td>In-use global IP addresses</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>4</td>
-  <td>1</td>
+  {% if context == "installing-gcp-account" %}<td>In-use global IP addresses</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>4</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>1</td>{% endif %}
 </tr>
 <tr>
-  <td>Health checks</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>3</td>
-  <td>0</td>
+  {% if context == "installing-gcp-account" %}<td>Health checks</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>3</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>0</td>{% endif %}
 </tr>
 <tr>
-  <td>Images</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>1</td>
-  <td>0</td>
+  {% if context == "installing-gcp-account" %}<td>Images</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>1</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>0</td>{% endif %}
 </tr>
 <tr>
-  <td>Networks</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>2</td>
-  <td>0</td>
+  {% if context == "installing-gcp-account" %}<td>Networks</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>2</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>0</td>{% endif %}
 </tr>
 <tr>
-  <td>Static IP addresses</td>
-  <td>Compute</td>
-  <td>Region</td>
-  <td>4</td>
-  <td>1</td>
+  {% if context == "installing-gcp-account" %}<td>Static IP addresses</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Region</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>4</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>1</td>{% endif %}
 </tr>
 <tr>
-  <td>Routers</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>1</td>
-  <td>0</td>
+  {% if context == "installing-gcp-account" %}<td>Routers</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>1</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>0</td>{% endif %}
 </tr>
 <tr>
-  <td>Routes</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>2</td>
-  <td>0</td>
+  {% if context == "installing-gcp-account" %}<td>Routes</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>2</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>0</td>{% endif %}
 </tr>
 <tr>
-  <td>Subnetworks</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>2</td>
-  <td>0</td>
+  {% if context == "installing-gcp-account" %}<td>Subnetworks</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>2</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>0</td>{% endif %}
 </tr>
 <tr>
-  <td>Target pools</td>
-  <td>Compute</td>
-  <td>Global</td>
-  <td>3</td>
-  <td>0</td>
+  {% if context == "installing-gcp-account" %}<td>Target pools</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Global</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>3</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>0</td>{% endif %}
 </tr>
 <tr>
-  <td>CPUs</td>
-  <td>Compute</td>
-  <td>Region</td>
-  <td>28</td>
-  <td>4</td>
+  {% if context == "installing-gcp-account" %}<td>CPUs</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Region</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>28</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>4</td>{% endif %}
 </tr>
 <tr>
-  <td>Persistent disk SSD (GB)</td>
-  <td>Compute</td>
-  <td>Region</td>
-  <td>896</td>
-  <td>128</td>
+  {% if context == "installing-gcp-account" %}<td>Persistent disk SSD (GB)</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Compute</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>Region</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>896</td>{% endif %}
+  {% if context == "installing-gcp-account" %}<td>128</td>{% endif %}
 </tr>
 <tr>
   {% if template %}<td>Service account</td>{% endif %}
@@ -231,11 +231,11 @@ If you plan to deploy your cluster in one of the following regions, you will exc
 You can increase resource quotas from the [{{ gcp_short }} console](https://console.cloud.google.com/iam-admin/quotas), but you might need to file a support ticket. Be sure to plan your cluster size early so that you can allow time to resolve the support ticket before you install your {{ product_title }} cluster.
 
 {% if context == "installing-gcp-user-infra" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}

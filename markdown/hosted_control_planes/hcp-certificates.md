@@ -7,7 +7,7 @@ title: "Configuring certificates for {{ hcp }}"
 # Configuring certificates for {{ hcp }} {id="hcp-certificates"}
 {%- set context = "hcp-certificates" %}
 
-To establish secure and encrypted communication between your clients and the hosted control plane, you must configure a server certificate for your hosted cluster. 
+To establish secure and encrypted communication between your clients and the hosted control plane, you must configure a server certificate for your hosted cluster.  {._abstract}
 
 With {{ hcp }}, the steps to configure certificates differ from those of standalone {{ product_title }}.
 

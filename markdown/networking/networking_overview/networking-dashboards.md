@@ -3,11 +3,11 @@ title: Networking dashboards
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Networking dashboards {id="networking-dashboards_{{ context }}"}
 {% include "./_attributes/common-attributes.md" %}
+# Networking dashboards {id="networking-dashboards_{{ context }}"}
 {%- set context = "networking-dashboards" %}
 
-To monitor and analyze network performance within your cluster, view networking metrics in the {{ product_title }} web console.
+To monitor and analyze network performance within your cluster, view networking metrics in the {{ product_title }} web console. {._abstract}
 
 
 Network Observability Operator

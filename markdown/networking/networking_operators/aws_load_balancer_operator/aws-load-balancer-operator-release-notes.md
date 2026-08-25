@@ -3,11 +3,11 @@ title: AWS Load Balancer Operator release notes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# AWS Load Balancer Operator release notes {id="aws-load-balancer-operator-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# AWS Load Balancer Operator release notes {id="aws-load-balancer-operator-release-notes"}
 {%- set context = "aws-load-balancer-operator-release-notes" %}
 
-The release notes for the AWS Load Balancer (ALB) Operator summarize all new features and enhancements, notable technical changes, major corrections from the previous version, and any known bugs upon general availability. 
+The release notes for the AWS Load Balancer (ALB) Operator summarize all new features and enhancements, notable technical changes, major corrections from the previous version, and any known bugs upon general availability.  {._abstract}
 
 
 :::important

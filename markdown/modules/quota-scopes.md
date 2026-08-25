@@ -13,7 +13,7 @@ To restrict the set of resources that a quota applies to, add associated scopes.
 <tbody>
 <tr>
   <td><code>Terminating</code></td>
-  <td>Match pods where <code>spec.activeDeadlineSeconds >= 0</code>.</td>
+  <td>Match pods where <code>spec.activeDeadlineSeconds &gt;= 0</code>.</td>
 </tr>
 <tr>
   <td><code>NotTerminating</code></td>

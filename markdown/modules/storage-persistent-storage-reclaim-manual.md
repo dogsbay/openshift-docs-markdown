@@ -17,7 +17,7 @@ When a persistent volume claim (PVC) is deleted, the underlying logical volume i
     ```terminal
     $ oc delete pv <pv_name>
     ```
-{%- if not (openshift_dedicated or openshift_rosa) %}
+{% if not (openshift_dedicated or openshift_rosa) %}
 
     The associated storage asset in the external infrastructure, such as an AWS EBS, GCE PD, Azure Disk, or Cinder volume, still exists after the PV is deleted.
 {% endif %}

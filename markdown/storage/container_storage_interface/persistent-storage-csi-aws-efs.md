@@ -3,16 +3,17 @@ title: AWS Elastic File Service CSI Driver Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# AWS Elastic File Service CSI Driver Operator {id="persistent-storage-csi-aws-efs"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# AWS Elastic File Service CSI Driver Operator {id="persistent-storage-csi-aws-efs"}
 {%- set context = "persistent-storage-csi-aws-efs" %}
 
-You can provision and manage AWS Elastic File System (EFS) storage in {{ product_title }} by using the AWS EFS Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning and eliminate the need to pre-provision storage.
+You can provision and manage AWS Elastic File System (EFS) storage in {{ product_title }} by using the AWS EFS Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning and eliminate the need to pre-provision storage. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-efs-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
 *   [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -33,6 +34,7 @@ You can provision and manage AWS Elastic File System (EFS) storage in {{ product
 {% endif %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the AWS EFS CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-aws-efs#persistent-storage-csi-olm-operator-install_persistent-storage-csi-aws-efs)
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
@@ -53,12 +55,14 @@ You can provision and manage AWS Elastic File System (EFS) storage in {{ product
 {% leveloffset +2 %}{% include "./modules/storage-create-storage-class-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [AWS EFS CSI Driver Operator](https://github.com/openshift/aws-efs-csi-driver-operator)
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-efs-cross-account.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Setting the output format in the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-output-format.html)
 
@@ -71,17 +75,19 @@ You can provision and manage AWS Elastic File System (EFS) storage in {{ product
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-dynamic-provisioning-aws-efs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [AWS EFS CSI driver](https://github.com/openshift/aws-efs-csi-driver)
 *   [Creating the AWS EFS storage class](/storage/container_storage_interface/persistent-storage-csi-aws-efs#storage-create-storage-class_persistent-storage-csi-aws-efs)
 
-{%- set StorageClass = false %}
+{%- set StorageClass = "" %}
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-efs-static-pv.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-efs-security.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Working with access points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)
 *   [Encrypting data in transit](https://docs.aws.amazon.com/efs/latest/ug/encryption-in-transit.html)
@@ -97,5 +103,5 @@ You can provision and manage AWS Elastic File System (EFS) storage in {{ product
 {%- set FeatureName = "AWS EFS" %}
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-olm-operator-uninstall.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

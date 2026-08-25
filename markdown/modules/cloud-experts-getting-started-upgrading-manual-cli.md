@@ -10,7 +10,7 @@ You can upgrade your cluster by using the {{ rosa_cli_first }}. {._abstract}
     $ rosa list upgrade -c <cluster-name>
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     $ rosa list upgrade -c <cluster-name>
     VERSION  NOTES

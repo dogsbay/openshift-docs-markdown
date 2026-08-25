@@ -21,7 +21,7 @@ Fixed `--help` flag processing in netobserv-cli
 
 
 Improved visibility of DNS names warning messages
-:   Before this update, the ***DNS names*** graph repeatedly displayed a warning message on every refresh when running in a Prometheus-only configuration. As a consequence, the persistent warning message covered other dashboard elements.
+:   Before this update, the **DNS names** graph repeatedly displayed a warning message on every refresh when running in a Prometheus-only configuration. As a consequence, the persistent warning message covered other dashboard elements.
 
     With this release, the warning message is only displayed during the initial data load and does not overlay other content. As a result, interface clarity is improved when navigating the dashboard.
 

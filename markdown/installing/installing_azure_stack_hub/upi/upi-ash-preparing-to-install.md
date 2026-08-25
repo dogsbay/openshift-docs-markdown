@@ -3,11 +3,11 @@ title: Preparing to install a cluster on Azure Stack Hub
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster on Azure Stack Hub {id="upi-ash-preparing-to-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster on Azure Stack Hub {id="upi-ash-preparing-to-install"}
 {%- set context = "upi-ash-preparing-to-install" %}
 
-Prepare to install an {{ product_title }} cluster on Azure Stack Hub by verifying connectivity, configuring your account, generating SSH keys, downloading the installation program, and installing the CLI.
+Prepare to install an {{ product_title }} cluster on Azure Stack Hub by verifying connectivity, configuring your account, generating SSH keys, downloading the installation program, and installing the CLI. {._abstract}
 
 *   Verifying internet connectivity for your cluster.
 *   Configuring an Azure Stack Hub account. See the "Configuring an Azure Stack Hub account".
@@ -27,6 +27,6 @@ Prepare to install an {{ product_title }} cluster on Azure Stack Hub by verifyin
 
 {% leveloffset +1 %}{% include "./modules/cli-installing-cli-macos.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring an Azure Stack Hub account](/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)

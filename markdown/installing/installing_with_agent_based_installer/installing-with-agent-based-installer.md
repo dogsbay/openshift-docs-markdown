@@ -3,17 +3,18 @@ title: Installing a cluster with customizations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster with customizations {id="installing-with-agent-based-installer"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster with customizations {id="installing-with-agent-based-installer"}
 {%- set context = "installing-with-agent-based-installer" %}
 
-You can install an {{ product_title }} cluster using the Agent-based Installer, with customizations to meet your deployment needs.
+You can install an {{ product_title }} cluster using the Agent-based Installer, with customizations to meet your deployment needs. {._abstract}
 
 The following procedures deploy a single-node {{ product_title }} cluster in a disconnected environment. You can use these procedures as a basis and modify according to your requirements.
 
 {% leveloffset +1 %}{% include "./modules/installing-ocp-agent-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -27,6 +28,7 @@ The following procedures deploy a single-node {{ product_title }} cluster in a d
 {% leveloffset +1 %}{% include "./modules/installing-ocp-agent-inputs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying with dual-stack networking](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#modifying-install-config-for-dual-stack-network_ipi-install-installation-workflow)
 *   [Configuring the install-config yaml file](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#configuring-the-install-config-file_ipi-install-installation-workflow)
@@ -42,6 +44,7 @@ The following procedures deploy a single-node {{ product_title }} cluster in a d
 {% leveloffset +2 %}{% include "./modules/installing-ocp-agent-manifest-folder.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using MachineConfig objects to configure nodes](/machine_configuration/machine-configs-configure#machine-configs-configure)
 
@@ -52,6 +55,7 @@ The following procedures deploy a single-node {{ product_title }} cluster in a d
 {% leveloffset +2 %}{% include "./modules/installing-ocp-agent-ZTP.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Sample {{ ztp }} custom resources](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#sample-ztp-custom-resources_installing-with-agent-based-installer)
 *   [Challenges of the network far edge](/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-deploying-far-edge-clusters-at-scale)
@@ -59,6 +63,7 @@ The following procedures deploy a single-node {{ product_title }} cluster in a d
 {% leveloffset +2 %}{% include "./modules/installing-ocp-agent-encrypt.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About disk encryption](/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
 
@@ -75,6 +80,7 @@ The following procedures deploy a single-node {{ product_title }} cluster in a d
 {% leveloffset +1 %}{% include "./modules/sample-ztp-custom-resources.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Challenges of the network far edge](/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-deploying-far-edge-clusters-at-scale)
 

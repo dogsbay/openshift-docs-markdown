@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Developing Quarkus functions {id="serverless-developing-quarkus-functions"}
 {%- set context = "serverless-developing-quarkus-functions" %}
-{% include "./_attributes/common-attributes.md" %}
 
 After you have [created a Quarkus function project](/serverless/functions/serverless-functions-getting-started#serverless-create-func-kn_serverless-functions-getting-started), you can modify the template files provided to add business logic to your function. This includes configuring function invocation and the returned headers and status codes.
 

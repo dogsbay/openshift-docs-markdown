@@ -183,17 +183,17 @@ This procedure uses the default {{ ibm_cloud_title }} Cloud Object Storage (COS)
         `<machineset_name>`
         :   Specifies the name of the machine set to scale.
 
-        1.  Optional: View the status of the machine set as it provisions by running the following command:
+    1.  Optional: View the status of the machine set as it provisions by running the following command:
         ```terminal
         $ oc get machines.machine.openshift.io -n openshift-machine-api -w
         ```
 
         It can take several minutes for the machine set to achieve the `Running` state.
-        1.  Verify that the new node has been created and is in the `Ready` state by running the following command.
+    1.  Verify that the new node has been created and is in the `Ready` state by running the following command.
         ```terminal
         $ oc get nodes
         ```
-        1.  Verify that the new node is using the new boot image by running the following command:
+    1.  Verify that the new node is using the new boot image by running the following command:
         ```terminal
         $ oc debug node/<new_node> -- chroot /host cat /sysroot/.coreos-aleph-version.json
         ```
@@ -209,7 +209,7 @@ This procedure uses the default {{ ibm_cloud_title }} Cloud Object Storage (COS)
 
         where:
 
-    `<version>`
-    :   Specifies the boot image version.
+        `<version>`
+        :   Specifies the boot image version.
 
     After you migrate all machine sets to the new boot image, the old boot image is no longer needed. You can remove the old boot image from your COS bucket.

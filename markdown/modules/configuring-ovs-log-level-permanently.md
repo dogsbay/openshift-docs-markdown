@@ -42,5 +42,5 @@ For long-term changes to the Open vSwitch (OVS) log level, you can change the lo
     ```
 
 {% if ign_config_version %}
-{%- set ign_config_version = false -%}
+{%- set ign_config_version = "" -%}
 {% endif %}

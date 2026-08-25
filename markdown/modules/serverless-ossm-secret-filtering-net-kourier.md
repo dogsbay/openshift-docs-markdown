@@ -20,6 +20,7 @@ If you enable secret filtering, all of your secrets need to be labeled with  `ne
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster or dedicated administrator access.
 {% endif %}
+
 *   A project that you created or that you have roles and permissions for to create applications and other workloads in {{ product_title }}.
 *   Install the {{ ServerlessOperatorName }} and Knative Serving.
 *   Install the OpenShift CLI (`oc`).

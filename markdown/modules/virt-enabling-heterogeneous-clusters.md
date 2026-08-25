@@ -11,7 +11,7 @@ You can enable boot source image support for heterogeneous clusters by setting t
 **Procedure**
 
 *   Enable the `enableMultiArchBootImageImport` feature gate by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
       --type json -p '[{"op":"replace","path":"/spec/featureGates/enableMultiArchBootImageImport", "value": true}]'
     ```
@@ -19,7 +19,7 @@ You can enable boot source image support for heterogeneous clusters by setting t
 **Verification**
 
 *   Verify that the feature gate is enabled by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
       -o jsonpath='{.spec.featureGates[*].name}'
     ```

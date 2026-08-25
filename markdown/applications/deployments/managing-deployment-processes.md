@@ -3,8 +3,8 @@ title: Managing deployment processes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing deployment processes {id="deployment-operations"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing deployment processes {id="deployment-operations"}
 {%- set context = "deployment-operations" %}
 
 ## Managing DeploymentConfig objects {id="deploymentconfig-operations"}
@@ -34,9 +34,10 @@ title: Managing deployment processes
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
 **Additional resources**
+{._additional-resources}
 
 *   For more information about resource limits and requests, see [Understanding managing application memory](/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).
-{% endif %}
+{%- endif %}
 
 {% leveloffset +2 %}{% include "./modules/deployments-scaling-manually.md" %}{% endleveloffset %}
 

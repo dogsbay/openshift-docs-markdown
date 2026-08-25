@@ -11,7 +11,7 @@ View the health status of your cluster and potential issues identified by the {{
 
 **Procedure**
 
-1.  Navigate to **Home** -> **Overview** in the {{ product_title }} web console.
+1.  Navigate to **Home** → **Overview** in the {{ product_title }} web console.
 1.  Click **Insights** on the **Status** card.
 
     A list of potential issues that are grouped by risk is displayed.

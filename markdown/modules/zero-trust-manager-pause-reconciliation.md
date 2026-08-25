@@ -52,8 +52,8 @@ When `create-only` mode is disabled, the Operator overwrites the resources if an
     ```
 
 
-:::important
+    :::important
 
-The Operator updates the upgradeable condition to `false` in the `operatorCondition` resource. You might not be able to upgrade the Operator when in `create-only` mode.
-
-:::
+    The Operator updates the upgradeable condition to `false` in the `operatorCondition` resource. You might not be able to upgrade the Operator when in `create-only` mode.
+    
+    :::

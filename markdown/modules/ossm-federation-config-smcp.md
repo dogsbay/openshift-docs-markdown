@@ -6,7 +6,7 @@ Before a mesh can be federated, you must configure the `ServiceMeshControlPlane`
 In the following example, the administrator for the `red-mesh` is configuring the SMCP for federation with both the `green-mesh` and the `blue-mesh`.
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-```yaml title="Sample SMCP for red-mesh"
+```yaml title="Sample SMCP for red-mesh" {minja}
 apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:
@@ -77,7 +77,7 @@ spec:
 ```
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-```yaml title="Sample SMCP for red-mesh"
+```yaml title="Sample SMCP for red-mesh" {minja}
 apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:
@@ -328,7 +328,7 @@ spec:
 <tr>
   <td>spec: security: trust: domain:</td>
   <td>Used to specify a unique name for the trust domain for the mesh. Domains must be unique for every mesh in the federation.</td>
-  <td><code><mesh-name>.local</code></td>
+  <td><code>&lt;mesh-name&gt;.local</code></td>
   <td>N/A</td>
 </tr>
 </tbody>
@@ -339,7 +339,7 @@ spec:
 Follow this procedure to edit the `ServiceMeshControlPlane` with the {{ product_title }} web console. This example uses the `red-mesh` as an example.
 
 1.  Log in to the {{ product_title }} web console as a user with the cluster-admin role.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu and select the project where you installed the {{ SMProductShortName }} control plane. For example, `red-mesh-system`.
 1.  Click the {{ SMProductName }} Operator.
 1.  On the **Istio Service Mesh Control Plane** tab, click the name of your `ServiceMeshControlPlane`, for example `red-mesh`.

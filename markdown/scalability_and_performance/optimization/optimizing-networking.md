@@ -3,11 +3,11 @@ title: Optimizing networking
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Optimizing networking {id="optimizing-networking"}
 {% include "./_attributes/common-attributes.md" %}
+# Optimizing networking {id="optimizing-networking"}
 {%- set context = "optimizing-networking" %}
 
-To tunnel traffic between nodes, use Generic Network Virtualization Encapsulation (Geneve). You can tune the network by using network interface controller (NIC) offloads.
+To tunnel traffic between nodes, use Generic Network Virtualization Encapsulation (Geneve). You can tune the network by using network interface controller (NIC) offloads. {._abstract}
 
 Geneve provides benefits over VLANs, such as an increase in networks from 4096 to over 16 million, and layer 2 connectivity across physical networks. This allows for all pods behind a service to communicate with each other, even if they are running on different systems.
 
@@ -21,13 +21,14 @@ For environments where maximum throughput and CPU efficiency are critical, you c
 *   Evaluate OVN-Kubernetes User Defined Networking (UDN) routing techniques, such as border gateway protocol (BGP).
 *   Use Geneve-offload capable network adapters. Geneve-offload moves the packet checksum calculation and associated CPU overhead off of the system CPU and onto dedicated hardware on the network adapter. This frees up CPU cycles for use by pods and applications, so that users can use the full bandwidth of their network infrastructure.
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [OVN-Kubernetes](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 
 {% leveloffset +1 %}{% include "./modules/optimizing-mtu-networking.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Changing cluster network MTU](/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
 
@@ -35,7 +36,7 @@ For environments where maximum throughput and CPU efficiency are critical, you c
 
 {% leveloffset +1 %}{% include "./modules/ipsec-impact-networking.md" %}{% endleveloffset %}
 
-## Additional resources {id="optimizing-networking-additional-resources"}
+## Additional resources {id="optimizing-networking-additional-resources" ._additional-resources}
 
 *   [Specifying advanced network configuration](/installing/installing_aws/ipi/installing-aws-customizations#modifying-nwoperator-config-startup_installing-aws-customizations)
 *   [Cluster Network Operator configuration](/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)

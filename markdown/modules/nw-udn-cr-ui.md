@@ -19,7 +19,7 @@ Currently, creation of a `UserDefinedNetwork` CR with a `Layer3` topology or a `
 
 **Procedure**
 
-1.  From the **Administrator** perspective, click **Networking** -> **UserDefinedNetworks**.
+1.  From the **Administrator** perspective, click **Networking** → **UserDefinedNetworks**.
 1.  Click **Create UserDefinedNetwork**.
 1.  From the **Project name** list, select the namespace that you previously created.
 1.  Specify a value in the **Subnet** field.

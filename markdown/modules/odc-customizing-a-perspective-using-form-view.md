@@ -9,9 +9,9 @@ You can customize the visibility of a perspective in the web console by using th
 
 **Procedure**
 
-1.  In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.
+1.  In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 1.  Select the **Configuration** tab and click the **Console (operator.openshift.io)** resource.
-1.  Click **Actions** -> **Customize** on the right side of the page.
+1.  Click **Actions** → **Customize** on the right side of the page.
 1.  In the **General** settings, customize the perspective by selecting one of the following options from the dropdown list:
     *   **Enabled**: Enables the perspective for all users
     *   **Only visible for privileged users**: Enables the perspective for users who can list all namespaces

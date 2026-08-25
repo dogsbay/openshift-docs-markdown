@@ -1,5 +1,5 @@
 ---
-title: "DNS []"
+title: "DNS [operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -35,6 +35,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the specification of the desired behavior of the DNS. |
 | `status` | `object` | status is the most recently observed status of the DNS. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -49,11 +50,12 @@ Type
 | `cache` | `object` | cache describes the caching configuration that applies to all server blocks listed in the Corefile. This field allows a cluster admin to optionally configure: * positiveTTL which is a duration for which positive responses should be cached. * negativeTTL which is a duration for which negative responses should be cached. If this is not configured, OpenShift will configure positive and negative caching with a default value that is subject to change. At the time of writing, the default positiveTTL is 900 seconds and the default negativeTTL is 30 seconds or as noted in the respective Corefile for your version of OpenShift. |
 | `logLevel` | `string` | logLevel describes the desired logging verbosity for CoreDNS. Any one of the following values may be specified: * Normal logs errors from upstream resolvers. * Debug logs errors, NXDOMAIN responses, and NODATA responses. * Trace logs errors and all responses.  Setting logLevel: Trace will produce extremely verbose logs. Valid values are: "Normal", "Debug", "Trace". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether the DNS operator should manage cluster DNS |
-| `nodePlacement` | `object` | nodePlacement provides explicit control over the scheduling of DNS pods. Generally, it is useful to run a DNS pod on every node so that DNS queries are always handled by a local DNS pod instead of going over the network to a DNS pod on another node.  However, security policies may require restricting the placement of DNS pods to specific nodes. For example, if a security policy prohibits pods on arbitrary nodes from communicating with the API, a node selector can be specified to restrict DNS pods to nodes that are permitted to communicate with the API.  Conversely, if running DNS pods on nodes with a particular taint is desired, a toleration can be specified for that taint. If unset, defaults are used. See nodePlacement for more details. |
+| `nodePlacement` | `object` | nodePlacement provides explicit control over the scheduling of DNS pods.<br>Generally, it is useful to run a DNS pod on every node so that DNS queries are always handled by a local DNS pod instead of going over the network to a DNS pod on another node.  However, security policies may require restricting the placement of DNS pods to specific nodes. For example, if a security policy prohibits pods on arbitrary nodes from communicating with the API, a node selector can be specified to restrict DNS pods to nodes that are permitted to communicate with the API.  Conversely, if running DNS pods on nodes with a particular taint is desired, a toleration can be specified for that taint.<br>If unset, defaults are used. See nodePlacement for more details. |
 | `operatorLogLevel` | `string` | operatorLogLevel controls the logging level of the DNS Operator. Valid values are: "Normal", "Debug", "Trace". Defaults to "Normal". setting operatorLogLevel: Trace will produce extremely verbose logs. |
-| `servers` | `array` | servers is a list of DNS resolvers that provide name query delegation for one or more subdomains outside the scope of the cluster domain. If servers consists of more than one Server, longest suffix match will be used to determine the Server. For example, if there are two Servers, one for "foo.com" and another for "a.foo.com", and the name query is for "www.a.foo.com", it will be routed to the Server with Zone "a.foo.com". If this field is nil, no servers are created. |
+| `servers` | `array` | servers is a list of DNS resolvers that provide name query delegation for one or more subdomains outside the scope of the cluster domain. If servers consists of more than one Server, longest suffix match will be used to determine the Server.<br>For example, if there are two Servers, one for "foo.com" and another for "a.foo.com", and the name query is for "www.a.foo.com", it will be routed to the Server with Zone "a.foo.com".<br>If this field is nil, no servers are created. |
 | `servers[]` | `object` | Server defines the schema for a server that runs per instance of CoreDNS. |
-| `upstreamResolvers` | `object` | upstreamResolvers defines a schema for configuring CoreDNS to proxy DNS messages to upstream resolvers for the case of the default (".") server If this field is not specified, the upstream used will default to /etc/resolv.conf, with policy "sequential" |
+| `upstreamResolvers` | `object` | upstreamResolvers defines a schema for configuring CoreDNS to proxy DNS messages to upstream resolvers for the case of the default (".") server<br>If this field is not specified, the upstream used will default to /etc/resolv.conf, with policy "sequential" |
+
 ### .spec.cache {id="_speccache"}
 
 Description
@@ -71,8 +73,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `negativeTTL` | `string` | negativeTTL is optional and specifies the amount of time that a negative response should be cached. If configured, it must be a value of 1s (1 second) or greater up to a theoretical maximum of several years. This field expects an unsigned duration string of decimal numbers, each with optional fraction and a unit suffix, e.g. "100s", "1m30s", "12h30m10s". Values that are fractions of a second are rounded down to the nearest second. If the configured value is less than 1s, the default value will be used. If not configured, the value will be 0s and OpenShift will use a default value of 30 seconds unless noted otherwise in the respective Corefile for your version of OpenShift. The default value of 30 seconds is subject to change. |
-| `positiveTTL` | `string` | positiveTTL is optional and specifies the amount of time that a positive response should be cached. If configured, it must be a value of 1s (1 second) or greater up to a theoretical maximum of several years. This field expects an unsigned duration string of decimal numbers, each with optional fraction and a unit suffix, e.g. "100s", "1m30s", "12h30m10s". Values that are fractions of a second are rounded down to the nearest second. If the configured value is less than 1s, the default value will be used. If not configured, the value will be 0s and OpenShift will use a default value of 900 seconds unless noted otherwise in the respective Corefile for your version of OpenShift. The default value of 900 seconds is subject to change. |
+| `negativeTTL` | `string` | negativeTTL is optional and specifies the amount of time that a negative response should be cached.<br>If configured, it must be a value of 1s (1 second) or greater up to a theoretical maximum of several years. This field expects an unsigned duration string of decimal numbers, each with optional fraction and a unit suffix, e.g. "100s", "1m30s", "12h30m10s". Values that are fractions of a second are rounded down to the nearest second. If the configured value is less than 1s, the default value will be used. If not configured, the value will be 0s and OpenShift will use a default value of 30 seconds unless noted otherwise in the respective Corefile for your version of OpenShift. The default value of 30 seconds is subject to change. |
+| `positiveTTL` | `string` | positiveTTL is optional and specifies the amount of time that a positive response should be cached.<br>If configured, it must be a value of 1s (1 second) or greater up to a theoretical maximum of several years. This field expects an unsigned duration string of decimal numbers, each with optional fraction and a unit suffix, e.g. "100s", "1m30s", "12h30m10s". Values that are fractions of a second are rounded down to the nearest second. If the configured value is less than 1s, the default value will be used. If not configured, the value will be 0s and OpenShift will use a default value of 900 seconds unless noted otherwise in the respective Corefile for your version of OpenShift. The default value of 900 seconds is subject to change. |
+
 ### .spec.nodePlacement {id="_specnodeplacement"}
 
 Description
@@ -99,9 +102,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to DNS pods. If empty, the default is used, which is currently the following:   kubernetes.io/os: linux This default is subject to change. If set, the specified selector is used and replaces the default. |
-| `tolerations` | `array` | tolerations is a list of tolerations applied to DNS pods. If empty, the DNS operator sets a toleration for the "node-role.kubernetes.io/master" taint.  This default is subject to change.  Specifying tolerations without including a toleration for the "node-role.kubernetes.io/master" taint may be risky as it could lead to an outage if all worker nodes become unavailable. Note that the daemon controller adds some tolerations as well.  See https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/ |
+| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to DNS pods.<br>If empty, the default is used, which is currently the following:<br>  kubernetes.io/os: linux<br>This default is subject to change.<br>If set, the specified selector is used and replaces the default. |
+| `tolerations` | `array` | tolerations is a list of tolerations applied to DNS pods.<br>If empty, the DNS operator sets a toleration for the "node-role.kubernetes.io/master" taint.  This default is subject to change.  Specifying tolerations without including a toleration for the "node-role.kubernetes.io/master" taint may be risky as it could lead to an outage if all worker nodes become unavailable.<br>Note that the daemon controller adds some tolerations as well.  See https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/ |
 | `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
+
 ### .spec.nodePlacement.tolerations {id="_specnodeplacementtolerations"}
 
 Description
@@ -139,6 +143,7 @@ Type
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category. |
 | `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. |
+
 ### .spec.servers {id="_specservers"}
 
 Description
@@ -172,6 +177,7 @@ Type
 | `forwardPlugin` | `object` | forwardPlugin defines a schema for configuring CoreDNS to proxy DNS messages to upstream resolvers. |
 | `name` | `string` | name is required and specifies a unique name for the server. Name must comply with the Service Name Syntax of rfc6335. |
 | `zones` | `array (string)` | zones is required and specifies the subdomains that Server is authoritative for. Zones must conform to the rfc1123 definition of a subdomain. Specifying the cluster domain (i.e., "cluster.local") is invalid. |
+
 ### .spec.servers[].forwardPlugin {id="_specserversforwardplugin"}
 
 Description
@@ -184,10 +190,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `policy` | `string` | policy is used to determine the order in which upstream servers are selected for querying. Any one of the following values may be specified: * "Random" picks a random upstream server for each query. * "RoundRobin" picks upstream servers in a round-robin order, moving to the next server for each new query. * "Sequential" tries querying upstream servers in a sequential order until one responds, starting with the first server for each new query. The default value is "Random" |
+| `policy` | `string` | policy is used to determine the order in which upstream servers are selected for querying. Any one of the following values may be specified:<br>* "Random" picks a random upstream server for each query. * "RoundRobin" picks upstream servers in a round-robin order, moving to the next server for each new query. * "Sequential" tries querying upstream servers in a sequential order until one responds, starting with the first server for each new query.<br>The default value is "Random" |
 | `protocolStrategy` | `string` | protocolStrategy specifies the protocol to use for upstream DNS requests. Valid values for protocolStrategy are "TCP" and omitted. When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is to use the protocol of the original client request. "TCP" specifies that the platform should use TCP for all upstream DNS requests, even if the client request uses UDP. "TCP" is useful for UDP-specific issues such as those created by non-compliant upstream resolvers, but may consume more bandwidth or increase DNS response time. Note that protocolStrategy only affects the protocol of DNS requests that CoreDNS makes to upstream resolvers. It does not affect the protocol of DNS requests between clients and CoreDNS. |
-| `transportConfig` | `object` | transportConfig is used to configure the transport type, server name, and optional custom CA or CA bundle to use when forwarding DNS requests to an upstream resolver. The default value is "" (empty) which results in a standard cleartext connection being used when forwarding DNS requests to an upstream resolver. |
-| `upstreams` | `array (string)` | upstreams is a list of resolvers to forward name queries for subdomains of Zones. Each instance of CoreDNS performs health checking of Upstreams. When a healthy upstream returns an error during the exchange, another resolver is tried from Upstreams. The Upstreams are selected in the order specified in Policy. Each upstream is represented by an IP address or IP:port if the upstream listens on a port other than 53. A maximum of 15 upstreams is allowed per ForwardPlugin. |
+| `transportConfig` | `object` | transportConfig is used to configure the transport type, server name, and optional custom CA or CA bundle to use when forwarding DNS requests to an upstream resolver.<br>The default value is "" (empty) which results in a standard cleartext connection being used when forwarding DNS requests to an upstream resolver. |
+| `upstreams` | `array (string)` | upstreams is a list of resolvers to forward name queries for subdomains of Zones. Each instance of CoreDNS performs health checking of Upstreams. When a healthy upstream returns an error during the exchange, another resolver is tried from Upstreams. The Upstreams are selected in the order specified in Policy. Each upstream is represented by an IP address or IP:port if the upstream listens on a port other than 53.<br>A maximum of 15 upstreams is allowed per ForwardPlugin. |
+
 ### .spec.servers[].forwardPlugin.transportConfig {id="_specserversforwardplugintransportconfig"}
 
 Description
@@ -205,7 +212,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `tls` | `object` | tls contains the additional configuration options to use when Transport is set to "TLS". |
-| `transport` | `string` | transport allows cluster administrators to opt-in to using a DNS-over-TLS connection between cluster DNS and an upstream resolver(s). Configuring TLS as the transport at this level without configuring a CABundle will result in the system certificates being used to verify the serving certificate of the upstream resolver(s). Possible values: "" (empty) - This means no explicit choice has been made and the platform chooses the default which is subject to change over time. The current default is "Cleartext". "Cleartext" - Cluster admin specified cleartext option. This results in the same functionality as an empty value but may be useful when a cluster admin wants to be more explicit about the transport, or wants to switch from "TLS" to "Cleartext" explicitly. "TLS" - This indicates that DNS queries should be sent over a TLS connection. If Transport is set to TLS, you MUST also set ServerName. If a port is not included with the upstream IP, port 853 will be tried by default per RFC 7858 section 3.1; https://datatracker.ietf.org/doc/html/rfc7858#section-3.1. |
+| `transport` | `string` | transport allows cluster administrators to opt-in to using a DNS-over-TLS connection between cluster DNS and an upstream resolver(s). Configuring TLS as the transport at this level without configuring a CABundle will result in the system certificates being used to verify the serving certificate of the upstream resolver(s).<br>Possible values: "" (empty) - This means no explicit choice has been made and the platform chooses the default which is subject to change over time. The current default is "Cleartext". "Cleartext" - Cluster admin specified cleartext option. This results in the same functionality as an empty value but may be useful when a cluster admin wants to be more explicit about the transport, or wants to switch from "TLS" to "Cleartext" explicitly. "TLS" - This indicates that DNS queries should be sent over a TLS connection. If Transport is set to TLS, you MUST also set ServerName. If a port is not included with the upstream IP, port 853 will be tried by default per RFC 7858 section 3.1; https://datatracker.ietf.org/doc/html/rfc7858#section-3.1. |
+
 ### .spec.servers[].forwardPlugin.transportConfig.tls {id="_specserversforwardplugintransportconfigtls"}
 
 Description
@@ -221,8 +229,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `caBundle` | `object` | caBundle references a ConfigMap that must contain either a single CA Certificate or a CA Bundle. This allows cluster administrators to provide their own CA or CA bundle for validating the certificate of upstream resolvers. 1. The configmap must contain a `ca-bundle.crt` key. 2. The value must be a PEM encoded CA certificate or CA bundle. 3. The administrator must create this configmap in the openshift-config namespace. 4. The upstream server certificate must contain a Subject Alternative Name (SAN) that matches ServerName. |
+| `caBundle` | `object` | caBundle references a ConfigMap that must contain either a single CA Certificate or a CA Bundle. This allows cluster administrators to provide their own CA or CA bundle for validating the certificate of upstream resolvers.<br>1. The configmap must contain a `ca-bundle.crt` key. 2. The value must be a PEM encoded CA certificate or CA bundle. 3. The administrator must create this configmap in the openshift-config namespace. 4. The upstream server certificate must contain a Subject Alternative Name (SAN) that matches ServerName. |
 | `serverName` | `string` | serverName is the upstream server to connect to when forwarding DNS queries. This is required when Transport is set to "TLS". ServerName will be validated against the DNS naming conventions in RFC 1123 and should match the TLS certificate installed in the upstream resolver(s). |
+
 ### .spec.servers[].forwardPlugin.transportConfig.tls.caBundle {id="_specserversforwardplugintransportconfigtlscabundle"}
 
 Description
@@ -246,6 +255,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.upstreamResolvers {id="_specupstreamresolvers"}
 
 Description
@@ -263,11 +273,12 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `policy` | `string` | policy is used to determine the order in which upstream servers are selected for querying. Any one of the following values may be specified: * "Random" picks a random upstream server for each query. * "RoundRobin" picks upstream servers in a round-robin order, moving to the next server for each new query. * "Sequential" tries querying upstream servers in a sequential order until one responds, starting with the first server for each new query. The default value is "Sequential" |
+| `policy` | `string` | policy is used to determine the order in which upstream servers are selected for querying. Any one of the following values may be specified:<br>* "Random" picks a random upstream server for each query. * "RoundRobin" picks upstream servers in a round-robin order, moving to the next server for each new query. * "Sequential" tries querying upstream servers in a sequential order until one responds, starting with the first server for each new query.<br>The default value is "Sequential" |
 | `protocolStrategy` | `string` | protocolStrategy specifies the protocol to use for upstream DNS requests. Valid values for protocolStrategy are "TCP" and omitted. When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is to use the protocol of the original client request. "TCP" specifies that the platform should use TCP for all upstream DNS requests, even if the client request uses UDP. "TCP" is useful for UDP-specific issues such as those created by non-compliant upstream resolvers, but may consume more bandwidth or increase DNS response time. Note that protocolStrategy only affects the protocol of DNS requests that CoreDNS makes to upstream resolvers. It does not affect the protocol of DNS requests between clients and CoreDNS. |
-| `transportConfig` | `object` | transportConfig is used to configure the transport type, server name, and optional custom CA or CA bundle to use when forwarding DNS requests to an upstream resolver. The default value is "" (empty) which results in a standard cleartext connection being used when forwarding DNS requests to an upstream resolver. |
-| `upstreams` | `array` | upstreams is a list of resolvers to forward name queries for the "." domain. Each instance of CoreDNS performs health checking of Upstreams. When a healthy upstream returns an error during the exchange, another resolver is tried from Upstreams. The Upstreams are selected in the order specified in Policy. A maximum of 15 upstreams is allowed per ForwardPlugin. If no Upstreams are specified, /etc/resolv.conf is used by default |
-| `upstreams[]` | `object` | Upstream can either be of type SystemResolvConf, or of type Network.   - For an Upstream of type SystemResolvConf, no further fields are necessary:     The upstream will be configured to use /etc/resolv.conf.   - For an Upstream of type Network, a NetworkResolver field needs to be defined     with an IP address or IP:port if the upstream listens on a port other than 53. |
+| `transportConfig` | `object` | transportConfig is used to configure the transport type, server name, and optional custom CA or CA bundle to use when forwarding DNS requests to an upstream resolver.<br>The default value is "" (empty) which results in a standard cleartext connection being used when forwarding DNS requests to an upstream resolver. |
+| `upstreams` | `array` | upstreams is a list of resolvers to forward name queries for the "." domain. Each instance of CoreDNS performs health checking of Upstreams. When a healthy upstream returns an error during the exchange, another resolver is tried from Upstreams. The Upstreams are selected in the order specified in Policy.<br>A maximum of 15 upstreams is allowed per ForwardPlugin. If no Upstreams are specified, /etc/resolv.conf is used by default |
+| `upstreams[]` | `object` | Upstream can either be of type SystemResolvConf, or of type Network.<br>  - For an Upstream of type SystemResolvConf, no further fields are necessary:     The upstream will be configured to use /etc/resolv.conf.   - For an Upstream of type Network, a NetworkResolver field needs to be defined     with an IP address or IP:port if the upstream listens on a port other than 53. |
+
 ### .spec.upstreamResolvers.transportConfig {id="_specupstreamresolverstransportconfig"}
 
 Description
@@ -285,7 +296,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `tls` | `object` | tls contains the additional configuration options to use when Transport is set to "TLS". |
-| `transport` | `string` | transport allows cluster administrators to opt-in to using a DNS-over-TLS connection between cluster DNS and an upstream resolver(s). Configuring TLS as the transport at this level without configuring a CABundle will result in the system certificates being used to verify the serving certificate of the upstream resolver(s). Possible values: "" (empty) - This means no explicit choice has been made and the platform chooses the default which is subject to change over time. The current default is "Cleartext". "Cleartext" - Cluster admin specified cleartext option. This results in the same functionality as an empty value but may be useful when a cluster admin wants to be more explicit about the transport, or wants to switch from "TLS" to "Cleartext" explicitly. "TLS" - This indicates that DNS queries should be sent over a TLS connection. If Transport is set to TLS, you MUST also set ServerName. If a port is not included with the upstream IP, port 853 will be tried by default per RFC 7858 section 3.1; https://datatracker.ietf.org/doc/html/rfc7858#section-3.1. |
+| `transport` | `string` | transport allows cluster administrators to opt-in to using a DNS-over-TLS connection between cluster DNS and an upstream resolver(s). Configuring TLS as the transport at this level without configuring a CABundle will result in the system certificates being used to verify the serving certificate of the upstream resolver(s).<br>Possible values: "" (empty) - This means no explicit choice has been made and the platform chooses the default which is subject to change over time. The current default is "Cleartext". "Cleartext" - Cluster admin specified cleartext option. This results in the same functionality as an empty value but may be useful when a cluster admin wants to be more explicit about the transport, or wants to switch from "TLS" to "Cleartext" explicitly. "TLS" - This indicates that DNS queries should be sent over a TLS connection. If Transport is set to TLS, you MUST also set ServerName. If a port is not included with the upstream IP, port 853 will be tried by default per RFC 7858 section 3.1; https://datatracker.ietf.org/doc/html/rfc7858#section-3.1. |
+
 ### .spec.upstreamResolvers.transportConfig.tls {id="_specupstreamresolverstransportconfigtls"}
 
 Description
@@ -301,8 +313,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `caBundle` | `object` | caBundle references a ConfigMap that must contain either a single CA Certificate or a CA Bundle. This allows cluster administrators to provide their own CA or CA bundle for validating the certificate of upstream resolvers. 1. The configmap must contain a `ca-bundle.crt` key. 2. The value must be a PEM encoded CA certificate or CA bundle. 3. The administrator must create this configmap in the openshift-config namespace. 4. The upstream server certificate must contain a Subject Alternative Name (SAN) that matches ServerName. |
+| `caBundle` | `object` | caBundle references a ConfigMap that must contain either a single CA Certificate or a CA Bundle. This allows cluster administrators to provide their own CA or CA bundle for validating the certificate of upstream resolvers.<br>1. The configmap must contain a `ca-bundle.crt` key. 2. The value must be a PEM encoded CA certificate or CA bundle. 3. The administrator must create this configmap in the openshift-config namespace. 4. The upstream server certificate must contain a Subject Alternative Name (SAN) that matches ServerName. |
 | `serverName` | `string` | serverName is the upstream server to connect to when forwarding DNS queries. This is required when Transport is set to "TLS". ServerName will be validated against the DNS naming conventions in RFC 1123 and should match the TLS certificate installed in the upstream resolver(s). |
+
 ### .spec.upstreamResolvers.transportConfig.tls.caBundle {id="_specupstreamresolverstransportconfigtlscabundle"}
 
 Description
@@ -326,6 +339,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.upstreamResolvers.upstreams {id="_specupstreamresolversupstreams"}
 
 Description
@@ -364,7 +378,8 @@ Required
 | --- | --- | --- |
 | `address` | `string` | address must be defined when Type is set to Network. It will be ignored otherwise. It must be a valid ipv4 or ipv6 address. |
 | `port` | `integer` | port may be defined when Type is set to Network. It will be ignored otherwise. Port must be between 65535 |
-| `type` | `string` | type defines whether this upstream contains an IP/IP:port resolver or the local /etc/resolv.conf. Type accepts 2 possible values: SystemResolvConf or Network. * When SystemResolvConf is used, the Upstream structure does not require any further fields to be defined:   /etc/resolv.conf will be used * When Network is used, the Upstream structure must contain at least an Address |
+| `type` | `string` | type defines whether this upstream contains an IP/IP:port resolver or the local /etc/resolv.conf. Type accepts 2 possible values: SystemResolvConf or Network.<br>* When SystemResolvConf is used, the Upstream structure does not require any further fields to be defined:   /etc/resolv.conf will be used * When Network is used, the Upstream structure must contain at least an Address |
+
 ### .status {id="_status"}
 
 Description
@@ -381,10 +396,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `clusterDomain` | `string` | clusterDomain is the local cluster DNS domain suffix for DNS services. This will be a subdomain as defined in RFC 1034, section 3.5: https://tools.ietf.org/html/rfc1034#section-3.5 Example: "cluster.local" More info: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service |
-| `clusterIP` | `string` | clusterIP is the service IP through which this DNS is made available. In the case of the default DNS, this will be a well known IP that is used as the default nameserver for pods that are using the default ClusterFirst DNS policy. In general, this IP can be specified in a pod’s spec.dnsConfig.nameservers list or used explicitly when performing name resolution from within the cluster. Example: dig foo.com @&lt;service IP> More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies |
-| `conditions` | `array` | conditions provide information about the state of the DNS on the cluster. These are the supported DNS conditions:   * Available   - True if the following conditions are met:     * DNS controller daemonset is available.   - False if any of those conditions are unsatisfied. |
+| `clusterDomain` | `string` | clusterDomain is the local cluster DNS domain suffix for DNS services. This will be a subdomain as defined in RFC 1034, section 3.5: https://tools.ietf.org/html/rfc1034#section-3.5 Example: "cluster.local"<br>More info: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service |
+| `clusterIP` | `string` | clusterIP is the service IP through which this DNS is made available.<br>In the case of the default DNS, this will be a well known IP that is used as the default nameserver for pods that are using the default ClusterFirst DNS policy.<br>In general, this IP can be specified in a pod’s spec.dnsConfig.nameservers list or used explicitly when performing name resolution from within the cluster. Example: dig foo.com @&lt;service IP><br>More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies |
+| `conditions` | `array` | conditions provide information about the state of the DNS on the cluster.<br>These are the supported DNS conditions:<br>  * Available   - True if the following conditions are met:     * DNS controller daemonset is available.   - False if any of those conditions are unsatisfied. |
 | `conditions[]` | `object` | OperatorCondition is just the standard condition fields. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -433,12 +449,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of DNS
     *   `GET`: list objects of kind DNS
     *   `POST`: create a DNS
-*   `/apis/operator.openshift.io/v1/dnses/{{ name }}`
+*   `/apis/operator.openshift.io/v1/dnses/{{ name }}`{minja}
     *   `DELETE`: delete a DNS
     *   `GET`: read the specified DNS
     *   `PATCH`: partially update the specified DNS
     *   `PUT`: replace the specified DNS
-*   `/apis/operator.openshift.io/v1/dnses/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1/dnses/{{ name }}/status`{minja}
     *   `GET`: read status of the specified DNS
     *   `PATCH`: partially update status of the specified DNS
     *   `PUT`: replace status of the specified DNS

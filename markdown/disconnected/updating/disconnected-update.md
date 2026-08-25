@@ -4,8 +4,8 @@ title: Updating a cluster in a disconnected environment without the OpenShift Up
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {% if not openshift_origin %}
-# Updating a cluster in a disconnected environment without the OpenShift Update Service {id="updating-disconnected-cluster"}
 {% include "./_attributes/common-attributes.md" %}
+# Updating a cluster in a disconnected environment without the OpenShift Update Service {id="updating-disconnected-cluster"}
 {%- set context = "updating-disconnected-cluster" -%}
 {% endif %}
 
@@ -16,18 +16,19 @@ title: Updating a cluster in a disconnected environment without the OpenShift Up
 {% endif %}
 
 {% if not openshift_origin %}
-You can update a cluster in a disconnected environment without using the OpenShift Update Service.
+You can update a cluster in a disconnected environment without using the OpenShift Update Service. {._abstract}
 {% endif %}
 
 {% if openshift_origin %}
 You can update a cluster in a disconnected environment by using the CLI.
 {% endif %}
 
-Use the following procedures to update a cluster in a disconnected environment without access to the OpenShift Update Service.
+Use the following procedures to update a cluster in a disconnected environment without access to the OpenShift Update Service. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/updating-without-osus-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring {{ product_title }} images](/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
 *   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
@@ -43,6 +44,7 @@ Use the following procedures to update a cluster in a disconnected environment w
 {% leveloffset +1 %}{% include "./modules/update-restricted.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring {{ product_title }} images](/disconnected/updating/mirroring-image-repository#mirroring-ocp-image-repository)
 
@@ -54,7 +56,7 @@ Use the following procedures to update a cluster in a disconnected environment w
 
 {% leveloffset +1 %}{% include "./modules/generating-icsp-object-scoped-to-a-registry.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
 *   [Machine Config Overview](/machine_configuration/index#machine-config-overview)

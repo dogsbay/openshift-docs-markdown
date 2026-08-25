@@ -26,12 +26,12 @@ Create an Ingress Controller with global access on a new {{ gcp_short }} cluster
 
         After creating the file, several network configuration files are in the
         `manifests/` directory, as shown:
-        ```terminal
-        $ ls <installation_directory>/manifests/cluster-ingress-default-ingresscontroller.yaml
-        ```
-        ```terminal title="Example output"
-        cluster-ingress-default-ingresscontroller.yaml
-        ```
+    ```terminal
+    $ ls <installation_directory>/manifests/cluster-ingress-default-ingresscontroller.yaml
+    ```
+    ```terminal title="Example output"
+    cluster-ingress-default-ingresscontroller.yaml
+    ```
 1.  Open the `cluster-ingress-default-ingresscontroller.yaml` file in an editor and enter a custom resource (CR) that describes the Operator configuration you want:
     ```yaml title="Sample clientAccess configuration to Global"
       apiVersion: operator.openshift.io/v1

@@ -4,7 +4,7 @@
 
 Reference the required and optional parameters for configuring flow filter rules in the `FlowCollector` resource, including CIDR ranges, filter actions, protocols, and specific port configurations. {._abstract}
 
-***Required configuration parameters***
+**Required configuration parameters**
 
 <table>
 <thead>
@@ -29,7 +29,7 @@ Reference the required and optional parameters for configuring flow filter rules
 </tbody>
 </table>
 
-***Optional configuration parameters***
+**Optional configuration parameters**
 
 <table>
 <thead>

@@ -41,18 +41,18 @@ Follow these instructions if your environment has an external load balancer.
     ```
 
 
-:::note
+    :::note
 
-In some environments, the load balancer may be exposed using a hostname instead of an IP address. For that case, the ingress gateway’s `EXTERNAL-IP` value is not an IP address. Instead, it is a hostname, and the previous command fails to set the `INGRESS_HOST` environment variable.
+    In some environments, the load balancer may be exposed using a hostname instead of an IP address. For that case, the ingress gateway’s `EXTERNAL-IP` value is not an IP address. Instead, it is a hostname, and the previous command fails to set the `INGRESS_HOST` environment variable.
 
-In that case, use the following command to correct the `INGRESS_HOST` value:
+    In that case, use the following command to correct the `INGRESS_HOST` value:
+    
+    :::
 
-:::
 
-
-```terminal
-$ export INGRESS_HOST=$(oc -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-```
+    ```terminal
+    $ export INGRESS_HOST=$(oc -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+    ```
 
 ### Determining ingress ports without a load balancer {id="ossm-routing-config-ig-no-lb_{{ context }}"}
 

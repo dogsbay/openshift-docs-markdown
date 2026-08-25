@@ -1,5 +1,5 @@
 ---
-title: "VolumeAttributesClass []"
+title: "VolumeAttributesClass [storage.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -27,7 +27,7 @@ Required
 | `driverName` | `string` | Name of the CSI driver This field is immutable. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `parameters` | `object (string)` | parameters hold volume attributes defined by the CSI driver. These values are opaque to the Kubernetes and are passed directly to the CSI driver. The underlying storage provider supports changing these attributes on an existing volume, however the parameters field itself is immutable. To invoke a volume update, a new VolumeAttributesClass should be created with new parameters, and the PersistentVolumeClaim should be updated to reference the new VolumeAttributesClass. This field is required and must contain at least one key/value pair. The keys cannot be empty, and the maximum number of parameters is 512, with a cumulative max size of 256K. If the CSI driver rejects invalid parameters, the target PersistentVolumeClaim will be set to an "Infeasible" state in the modifyVolumeStatus field. |
+| `parameters` | `object (string)` | parameters hold volume attributes defined by the CSI driver. These values are opaque to the Kubernetes and are passed directly to the CSI driver. The underlying storage provider supports changing these attributes on an existing volume, however the parameters field itself is immutable. To invoke a volume update, a new VolumeAttributesClass should be created with new parameters, and the PersistentVolumeClaim should be updated to reference the new VolumeAttributesClass.<br>This field is required and must contain at least one key/value pair. The keys cannot be empty, and the maximum number of parameters is 512, with a cumulative max size of 256K. If the CSI driver rejects invalid parameters, the target PersistentVolumeClaim will be set to an "Infeasible" state in the modifyVolumeStatus field. |
 
 ## API endpoints {id="_api_endpoints"}
 
@@ -39,12 +39,12 @@ The following API endpoints are available:
     *   `POST`: create a VolumeAttributesClass
 *   `/apis/storage.k8s.io/v1/watch/volumeattributesclasses`
     *   `GET`: watch individual changes to a list of VolumeAttributesClass. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/storage.k8s.io/v1/volumeattributesclasses/{{ name }}`
+*   `/apis/storage.k8s.io/v1/volumeattributesclasses/{{ name }}`{minja}
     *   `DELETE`: delete a VolumeAttributesClass
     *   `GET`: read the specified VolumeAttributesClass
     *   `PATCH`: partially update the specified VolumeAttributesClass
     *   `PUT`: replace the specified VolumeAttributesClass
-*   `/apis/storage.k8s.io/v1/watch/volumeattributesclasses/{{ name }}`
+*   `/apis/storage.k8s.io/v1/watch/volumeattributesclasses/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind VolumeAttributesClass. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/storage.k8s.io/v1/volumeattributesclasses {id="_apisstoragek8siov1volumeattributesclasses"}

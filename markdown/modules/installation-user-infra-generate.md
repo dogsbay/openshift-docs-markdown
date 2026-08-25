@@ -80,54 +80,54 @@ To install {{ product_title }} on {{ cp_first }} by using user-provisioned infra
 You generate and customize the `install-config.yaml` file, Kubernetes manifests, and Ignition config files. You also have the option to first set up a separate `var` partition during the preparation phases of installation.
 {% endif %}
 {% if gcp_shared %}
-To install {{ product_title }} on {{ cp_first }} into a shared VPC, you must generate the `install-config.yaml` file and modify it so that the cluster uses the correct VPC networks, DNS zones, and project names.
-{% endif %} {._abstract}
+To install {{ product_title }} on {{ cp_first }} into a shared VPC, you must generate the `install-config.yaml` file and modify it so that the cluster uses the correct VPC networks, DNS zones, and project names. {._abstract}
+{% endif %}
 
 {% if context == "installing-restricted-networks-aws" %}
-{%- set restricted = false -%}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set aws = false -%}
+{%- set restricted = "" -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-user-infra" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set aws = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-localzone" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installing-azure-user-infra" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set azure = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set gcp = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-gcp-shared-vpc" %}
-{%- set gcp_shared = false -%}
+{%- set gcp_shared = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp" %}
-{%- set cp_first = false -%}
-{%- set cp = false -%}
-{%- set gcp = false -%}
+{%- set cp_first = "" -%}
+{%- set cp = "" -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user" %}
 {% endif %}
 {% if context == "installing-openstack-user-sr-iov" %}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}

@@ -50,7 +50,7 @@ You cannot add a priority class directly to an existing scheduled pod.
         ```
 1.  Create a pod spec to include the name of a priority class:
     1.  Create a YAML file similar to the following:
-        {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
         ```yaml
         apiVersion: v1
         kind: Pod
@@ -130,6 +130,6 @@ You cannot add a priority class directly to an existing scheduled pod.
     ```terminal
     $ oc create -f <file-name>.yaml
     ```
-{%- endif %}
+{% endif %}
 
-    You can add the priority name directly to the pod configuration or to a pod template.
+        You can add the priority name directly to the pod configuration or to a pod template.

@@ -5,7 +5,7 @@ oc-mirror plugin v2 selects the list of bundles for mirroring by processing the 
 
 When oc-mirror plugin v2 selects bundles for mirroring, it does not infer Group Version Kind (GVK) or bundle dependencies, omitting them from the mirroring set. Instead, it strictly adheres to the user instructions. You must explicitly specify any required dependent packages and their versions.
 
-***Use the following table to see what bundle versions are included in different scenarios***
+**Use the following table to see what bundle versions are included in different scenarios**
 
 <table>
 <thead>
@@ -49,7 +49,7 @@ When oc-mirror plugin v2 selects bundles for mirroring, it does not infer Group 
 </tr>
 <tr>
   <td>Scenario 9<br><br><pre>mirror:&#10;  operators:&#10;    - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.10&#10;      full: true&#10;      - packages:&#10;          - name: elasticsearch-operator&#10;            channels:&#10;               - name: 'stable-v0'</pre></td>
-  <td>All bundles for the packages and channels specified.</td>
+  <td>All bundles for the packages and channels specified. The <code>defaultChannel</code> should be used in case the filtered channels are not the default.</td>
 </tr>
 <tr>
   <td>Scenario 10<br><br><pre>mirror:&#10;  operators:&#10;  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.15&#10;    packages:&#10;    - name: compliance-operator&#10;        channels&#10;          - name: stable&#10;          - name: stable-5.5</pre></td>
@@ -61,11 +61,11 @@ When oc-mirror plugin v2 selects bundles for mirroring, it does not infer Group 
 </tr>
 <tr>
   <td>Scenario 12<br><br><pre>mirror:&#10;  operators:&#10;  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.15&#10;    packages:&#10;    - name: compliance-operator&#10;        channels&#10;          - name: stable&#10;            maxVersion: 6.0.0</pre></td>
-  <td>Within the selected channel of that package, all versions up to <code>maxVersion</code>.</td>
+  <td>Within the selected channel of that package, all versions up to <code>maxVersion</code>. Head of channel is not included, even if multiple channels are included in the filtering. You might see errors if this filtering leads to a channel with multiple heads. You must use the <code>defaultChannel</code> field in case the filtered channels are not the default.</td>
 </tr>
 <tr>
   <td>Scenario 13<br><br><pre>mirror:&#10;  operators:&#10;  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.15&#10;    packages:&#10;    - name: compliance-operator&#10;       channels&#10;          - name: stable&#10;            minVersion: 5.6.0&#10;            maxVersion: 6.0.0</pre></td>
-  <td>Within the selected channel of that package, all versions between the <code>minVersion</code> and <code>maxVersion</code>. The head of channel is not included, even if multiple channels are included in the filtering.</td>
+  <td>Within the selected channel of that package, all versions between the <code>minVersion</code> and <code>maxVersion</code>. The head of channel is not included, even if multiple channels are included in the filtering. You might see errors if this filtering leads to a channel with multiple heads. You must use the <code>defaultChannel</code> field in case the filtered channels are not the default.</td>
 </tr>
 <tr>
   <td>Scenario 14<br><br><pre>mirror:&#10;  operators:&#10;  - catalog: registry.redhat.io/redhat/redhat-operator-index:v4.15&#10;    packages:&#10;    - name: compliance-operator&#10;        channels&#10;          - name: stable&#10;        minVersion: 5.6.0&#10;        maxVersion: 6.0.0</pre></td>

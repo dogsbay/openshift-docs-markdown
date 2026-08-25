@@ -11,7 +11,7 @@ To use the default ViaQ data model, follow these steps:
 
 **Procedure**
 
-1.  Install the `{{ clo }}`, `{{ loki_op }}`, and `{{ coo_first }}` from the software catalog.
+1.  Install the `{{ clo }}`{minja}, `{{ loki_op }}`{minja}, and `{{ coo_first }}`{minja} from the software catalog.
 1.  Create a `LokiStack` custom resource (CR) in the `openshift-logging` namespace:
     ```yaml
     apiVersion: loki.grafana.com/v1

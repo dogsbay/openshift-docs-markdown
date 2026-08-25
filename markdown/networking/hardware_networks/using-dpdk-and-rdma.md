@@ -3,11 +3,11 @@ title: Using DPDK and RDMA
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using DPDK and RDMA {id="using-dpdk-and-rdma"}
 {% include "./_attributes/common-attributes.md" %}
+# Using DPDK and RDMA {id="using-dpdk-and-rdma"}
 {%- set context = "using-dpdk-and-rdma" %}
 
-The containerized Data Plane Development Kit (DPDK) application is supported on {{ product_title }}. You can use Single Root I/O Virtualization (SR-IOV) network hardware with the Data Plane Development Kit (DPDK) and with remote direct memory access (RDMA).
+The containerized Data Plane Development Kit (DPDK) application is supported on {{ product_title }}. You can use Single Root I/O Virtualization (SR-IOV) network hardware with the Data Plane Development Kit (DPDK) and with remote direct memory access (RDMA). {._abstract}
 
 Before you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
 
@@ -20,6 +20,7 @@ Before you perform any tasks in the following documentation, ensure that you [in
 {% leveloffset +1 %}{% include "./modules/nw-running-dpdk-rootless-tap.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a performance profile](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
 *   [Configuring an SR-IOV network device](/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
@@ -42,7 +43,7 @@ Before you perform any tasks in the following documentation, ensure that you [in
 
 {% leveloffset +1 %}{% include "./modules/nw-openstack-ovs-dpdk-testpmd-pod.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_using-dpdk-and-rdma"}
+## Additional resources {id="additional-resources_using-dpdk-and-rdma" ._additional-resources}
 
 *   [Red Hat certified hardware (Red Hat Ecosystem Catalog)](https://catalog.redhat.com/en/hardware)
 *   [Configuring a cluster for RDMA in {{ rhoai_full }}](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/latest/html/managing_openshift_ai/managing-distributed-workloads_managing-rhoai#configuring-a-cluster-for-rdma_managing-rhoai)

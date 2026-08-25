@@ -10,4 +10,4 @@ To control the architecture of your imported images and ensure proper deployment
     $ oc import-image <multiarch-image-stream-tag> --from=<registry>/<project_name>/<image-name>
     ```
 *   Run the following command to update your image stream from single-architecture to multi-architecture:
-{% include "./snippets/update-image-stream-to-multi-arch.md" %}
+    {% include "./snippets/update-image-stream-to-multi-arch.md" %}

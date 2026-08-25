@@ -17,7 +17,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Using the {{ azure_short }} Marketplace offering {id="installation-azure-marketplace-subscribe_{{ context }}"}
 
-{%- if not mapi %}
+{% if not mapi %}
 You can use the {{ azure_short }} Marketplace offering to deploy an {{ product_title }} cluster, which is billed on pay-per-use basis (hourly, per core) through {{ azure_short }}, while still being supported directly by Red&#160;Hat. {._abstract}
 
 To deploy an {{ product_title }} cluster using the {{ azure_short }} Marketplace offering, you must first obtain the {{ azure_short }} Marketplace image. The installation program uses this image to deploy worker or control plane nodes. When obtaining your image, consider the following:
@@ -104,7 +104,7 @@ Installing images with the {{ azure_short }} marketplace is not supported on clu
         ```terminal
         $ az vm image terms accept --urn redhat-limited:rh-ocp-worker:rh-ocp-worker:<version>
         ```
-{%- if ipi %}
+{% if ipi %}
 1.  Record the image details of your offer. You must update the `compute` section in the `install-config.yaml` file with values for `publisher`, `offer`, `sku`, and `version` before deploying the cluster. You may also update the `controlPlane` section to deploy control plane machines with the specified image details, or the `defaultMachinePlatform` section to deploy both control plane and compute machines with the specified image details. Use the latest available image for control plane and compute nodes.
     ```yaml title="Sample install-config.yaml file with the {{ azure_short }} Marketplace compute nodes"
     apiVersion: v1
@@ -170,17 +170,17 @@ Installing images with the {{ azure_short }} marketplace is not supported on clu
 {% endif %}
 
 {% if context == "installing-azure-customizations" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-azure-user-infra" %}
-{%- set upi = false -%}
+{%- set upi = "" -%}
 {% endif %}
 {% if context == "creating-machineset-azure" %}
-{%- set mapi = false -%}
+{%- set mapi = "" -%}
 {% endif %}
 {% if context == "cpmso-supported-features-azure" %}
-{%- set mapi = false -%}
+{%- set mapi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set upi = false -%}
+{%- set upi = "" -%}
 {% endif %}

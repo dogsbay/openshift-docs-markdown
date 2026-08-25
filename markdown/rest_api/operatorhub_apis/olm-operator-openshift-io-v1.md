@@ -1,5 +1,5 @@
 ---
-title: "OLM []"
+title: "OLM [operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,11 +43,12 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+
 ### .status {id="_status"}
 
 Description
@@ -66,6 +68,7 @@ Type
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with |
 | `readyReplicas` | `integer` | readyReplicas indicates how many replicas are ready and at the desired state |
 | `version` | `string` | version is the level this availability applies to |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -97,6 +100,7 @@ Required
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.generations {id="_statusgenerations"}
 
 Description
@@ -139,12 +143,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of OLM
     *   `GET`: list objects of kind OLM
     *   `POST`: create an OLM
-*   `/apis/operator.openshift.io/v1/olms/{{ name }}`
+*   `/apis/operator.openshift.io/v1/olms/{{ name }}`{minja}
     *   `DELETE`: delete an OLM
     *   `GET`: read the specified OLM
     *   `PATCH`: partially update the specified OLM
     *   `PUT`: replace the specified OLM
-*   `/apis/operator.openshift.io/v1/olms/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1/olms/{{ name }}/status`{minja}
     *   `GET`: read status of the specified OLM
     *   `PATCH`: partially update status of the specified OLM
     *   `PUT`: replace status of the specified OLM

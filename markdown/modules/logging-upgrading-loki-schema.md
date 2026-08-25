@@ -15,25 +15,25 @@ If you are using the {{ clo }} with the {{ loki_op }}, the {{ clo }} 5.9 or late
       storage:
         schemas:
         # ...
-          version: v12 # (1)
-        - effectiveDate: "<yyyy>-<mm>-<future_dd>" # (2)
+          version: v12 (1)
+        - effectiveDate: "<yyyy>-<mm>-<future_dd>" (2)
           version: v13
     # ...
     ```
     1.  Do not delete. Data persists in its original schema version. Keep the previous schema versions to avoid data loss.
     1.  Set a future date that has not yet started in the Coordinated Universal Time (UTC) time zone.
 
-        :::tip
+    :::tip
 
-        To edit the `LokiStack` custom resource, you can run the `oc edit` command:
+    To edit the `LokiStack` custom resource, you can run the `oc edit` command:
 
-        ```terminal
-        $ oc edit lokistack <name> -n openshift-logging
-        ```
-        
-        :::
+    ```terminal
+    $ oc edit lokistack <name> -n openshift-logging
+    ```
+    
+    :::
 
 
 **Verification**
 
-*   On or after the specified `effectiveDate` date, check that there is no **LokistackSchemaUpgradesRequired** alert in the web console in **Administrator** -> **Observe** -> **Alerting**.
+*   On or after the specified `effectiveDate` date, check that there is no **LokistackSchemaUpgradesRequired** alert in the web console in **Administrator** → **Observe** → **Alerting**.

@@ -3,11 +3,11 @@ title: Dynamic provisioning
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Dynamic provisioning {id="dynamic-provisioning"}
 {% include "./_attributes/common-attributes.md" %}
+# Dynamic provisioning {id="dynamic-provisioning"}
 {%- set context = "dynamic-provisioning" %}
 
-In dynamic provisioning, instead of a manually creating a pool of persistent volumes (PVs), an administrator creates a storage class. Using the storage class, {{ product_title }} automatically triggers the storage backend to create a brand-new volume of the exact size and type requested, creates the PV object, and then the PV binds to the persistent volume claim (PVC).
+In dynamic provisioning, instead of a manually creating a pool of persistent volumes (PVs), an administrator creates a storage class. Using the storage class, {{ product_title }} automatically triggers the storage backend to create a brand-new volume of the exact size and type requested, creates the PV object, and then the PV binds to the persistent volume claim (PVC). {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/dynamic-provisioning-about.md" %}{% endleveloffset %}
 
@@ -27,6 +27,7 @@ In dynamic provisioning, instead of a manually creating a pool of persistent vol
 {% leveloffset +2 %}{% include "./modules/dynamic-provisioning-aws-definition.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [AWS documentation](http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 

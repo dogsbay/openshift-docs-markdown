@@ -1,5 +1,5 @@
 ---
-title: "Role []"
+title: "Role [rbac.authorization.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. |
 | `rules` | `array` | Rules holds all the PolicyRules for this Role |
 | `rules[]` | `object` | PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to. |
+
 ### .rules {id="_rules"}
 
 Description
@@ -62,18 +63,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind Role
 *   `/apis/rbac.authorization.k8s.io/v1/watch/roles`
     *   `GET`: watch individual changes to a list of Role. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/roles`
+*   `/apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/roles`{minja}
     *   `DELETE`: delete collection of Role
     *   `GET`: list or watch objects of kind Role
     *   `POST`: create a Role
-*   `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/roles`
+*   `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/roles`{minja}
     *   `GET`: watch individual changes to a list of Role. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/roles/{{ name }}`
+*   `/apis/rbac.authorization.k8s.io/v1/namespaces/{{ namespace }}/roles/{{ name }}`{minja}
     *   `DELETE`: delete a Role
     *   `GET`: read the specified Role
     *   `PATCH`: partially update the specified Role
     *   `PUT`: replace the specified Role
-*   `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/roles/{{ name }}`
+*   `/apis/rbac.authorization.k8s.io/v1/watch/namespaces/{{ namespace }}/roles/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Role. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/rbac.authorization.k8s.io/v1/roles {id="_apisrbacauthorizationk8siov1roles"}

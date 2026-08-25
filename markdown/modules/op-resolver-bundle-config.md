@@ -18,8 +18,8 @@ You can change the default service account name and the default kind for pulling
     spec:
       pipeline:
         bundles-resolver-config:
-          default-service-account: pipelines # (1)
-          default-kind: task # (2)
+          default-service-account: pipelines (1)
+          default-kind: task (2)
     ```
     1.  The default service account name to use for bundle requests.
     1.  The default layer kind in the bundle image.

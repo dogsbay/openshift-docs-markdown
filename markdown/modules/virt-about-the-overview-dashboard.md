@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About the {{ product_title }} dashboards page {id="virt-about-the-overview-dashboard_{{ context }}"}
 
-Access the {{ product_title }} dashboard, which captures high-level information about the cluster, by navigating to **Home** -> **Overview** from the {{ product_title }} web console. {._abstract}
+Access the {{ product_title }} dashboard, which captures high-level information about the cluster, by navigating to **Home** → **Overview** from the {{ product_title }} web console. {._abstract}
 
 The {{ product_title }} dashboard provides various cluster information, captured in individual dashboard cards.
 

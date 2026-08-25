@@ -1,5 +1,5 @@
 ---
-title: "PodMetrics []"
+title: "PodMetrics [metrics.k8s.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `timestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval [Timestamp-Window, Timestamp]. |
 | `window` | [`Duration`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Duration) |  |
+
 ### .containers {id="_containers"}
 
 Description
@@ -66,9 +67,9 @@ The following API endpoints are available:
 
 *   `/apis/metrics.k8s.io/v1beta1/pods`
     *   `GET`: list objects of kind PodMetrics
-*   `/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods`
+*   `/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods`{minja}
     *   `GET`: list objects of kind PodMetrics
-*   `/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods/{{ name }}`
+*   `/apis/metrics.k8s.io/v1beta1/namespaces/{{ namespace }}/pods/{{ name }}`{minja}
     *   `GET`: read the specified PodMetrics
 
 ### /apis/metrics.k8s.io/v1beta1/pods {id="_apismetricsk8siov1beta1pods"}

@@ -37,11 +37,11 @@ Each time an active member CSV synchronizes, OLM queries the cluster for the set
         *   Replace the Operator group’s `olm.providedAPIs` annotation with the difference between itself and the CSV’s provided APIs.
 
 
-:::note
+        :::note
 
-Failure states caused by Operator groups are non-terminal.
-
-:::
+        Failure states caused by Operator groups are non-terminal.
+        
+        :::
 
 
 The following actions are performed each time an Operator group synchronizes:

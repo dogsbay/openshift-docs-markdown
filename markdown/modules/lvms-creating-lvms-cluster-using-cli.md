@@ -88,7 +88,7 @@ You can only create a single instance of the `LVMCluster` custom resource (CR) o
         :::note
 
         If the `LVMCluster` CR is in the `Failed` state, you can view the reason for failure in the `status` field.
-       \
+        +
         Example of `status` field with the reason for failure:
         ```yaml
         status:

@@ -30,7 +30,7 @@ If you experience Operator issues, you can gather detailed diagnostic informatio
     ```terminal
     $ oc logs pod/<operator_pod_name> -c <container_name> -n <operator_namespace>
     ```
-{%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
 1.  If the API is not functional, review Operator pod and container logs on each control plane node by using SSH instead. Replace `<master-node>.<cluster_name>.<base_domain>` with appropriate values.
     1.  List pods on each control plane node:
         ```terminal

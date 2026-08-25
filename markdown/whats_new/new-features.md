@@ -3,8 +3,8 @@ title: New features and enhancements
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# New features and enhancements {id="new-features"}
 {% include "./_attributes/common-attributes.md" %}
+# New features and enhancements {id="new-features"}
 {%- set context = "new-features" %}
 
 This release adds improvements related to the following components and concepts.

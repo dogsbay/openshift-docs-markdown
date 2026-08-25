@@ -19,14 +19,14 @@ After defining the custom Buildah cluster task, you can create a `TaskRun` objec
         CMD git
     kind: ConfigMap
     metadata:
-      name: dockerfile # (1)
+      name: dockerfile (1)
     ---
     apiVersion: tekton.dev/v1beta1
     kind: TaskRun
     metadata:
       name: buildah-as-user-1000
     spec:
-      serviceAccountName: pipelines-sa-userid-1000 # (2)
+      serviceAccountName: pipelines-sa-userid-1000 (2)
       params:
       - name: IMAGE
         value: image-registry.openshift-image-registry.svc:5000/test/buildahuser
@@ -35,7 +35,7 @@ After defining the custom Buildah cluster task, you can create a `TaskRun` objec
         name: buildah-as-user
       workspaces:
       - configMap:
-          name: dockerfile # (3)
+          name: dockerfile (3)
         name: source
     ```
     1.  Use a config map because the focus is on the task run, without any prior task that fetches some sources with a Dockerfile.
@@ -56,7 +56,7 @@ After defining the custom Buildah cluster task, you can create a `TaskRun` objec
       - name: sslcertdir
         optional: true
       tasks:
-      - name: fetch-repository # (1)
+      - name: fetch-repository (1)
         taskRef:
           name: git-clone
           kind: ClusterTask
@@ -72,7 +72,7 @@ After defining the custom Buildah cluster task, you can create a `TaskRun` objec
           value: "true"
       - name: buildah
         taskRef:
-          name: buildah-as-user # (2)
+          name: buildah-as-user (2)
         runAfter:
         - fetch-repository
         workspaces:
@@ -91,7 +91,7 @@ After defining the custom Buildah cluster task, you can create a `TaskRun` objec
     spec:
       taskRunSpecs:
         - pipelineTaskName: buildah
-          taskServiceAccountName: pipelines-sa-userid-1000 # (3)
+          taskServiceAccountName: pipelines-sa-userid-1000 (3)
       params:
       - name: URL
         value: https://github.com/openshift/pipelines-vote-api
@@ -100,7 +100,7 @@ After defining the custom Buildah cluster task, you can create a `TaskRun` objec
       pipelineRef:
         name: pipeline-buildah-as-user-1000
       workspaces:
-      - name: shared-workspace # (4)
+      - name: shared-workspace (4)
         volumeClaimTemplate:
           spec:
             accessModes:

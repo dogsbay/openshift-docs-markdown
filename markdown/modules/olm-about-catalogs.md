@@ -8,8 +8,8 @@ An index image, based on the Operator bundle format, is a containerized snapshot
 As catalogs are updated, the latest versions of Operators change, and older versions may be removed or altered. In addition, when OLM runs on 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 a {{ product_title }} 
 {%- endif %}
 cluster in a restricted network environment, it is unable to access the catalogs directly from the internet to pull the latest content.

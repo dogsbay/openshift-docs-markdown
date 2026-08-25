@@ -73,7 +73,6 @@ The `Recycle` reclaim policy is deprecated in {{ product_title }} 4. Dynamic pro
 
 :::
 
-
 *   `Delete` reclaim policy deletes  both the `PersistentVolume` object from {{ product_title }} and the associated storage asset in external infrastructure, such as Amazon Elastic Block Store (Amazon EBS) or VMware vSphere.
 
 

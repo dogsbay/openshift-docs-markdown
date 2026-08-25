@@ -4,7 +4,6 @@
 The security `CloudFormation` template creates the IAM roles and security groups on {{ aws_first }} that control access to your {{ product_title }} cluster resources. {._abstract}
 
 ```yaml title="CloudFormation template for security objects"
-```yaml
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Security Elements (Security Groups & IAM)
 
@@ -603,5 +602,4 @@ Outputs:
   WorkerInstanceProfile:
     Description: Worker IAM Instance Profile
     Value: !Ref WorkerInstanceProfile
-```
 ```

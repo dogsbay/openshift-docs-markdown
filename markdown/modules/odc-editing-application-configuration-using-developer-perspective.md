@@ -18,6 +18,7 @@ Ensure that you have created an application using  the **From Git**, **Container
 **Procedure**
 
 1.  After you have created an application and it is displayed in the **Topology** view, right-click the application to see the edit options available.
+
     **Figure 1. Edit application**
 
     ![odc_edit_app](/_assets/images/odc_edit_app.png)
@@ -31,6 +32,7 @@ Ensure that you have created an application using  the **From Git**, **Container
     :::
 
 1.  Click **Save** to restart the build and deploy a new image.
+
     **Figure 2. Edit and redeploy application**
 
     ![odc_edit_redeploy](/_assets/images/odc_edit_redeploy.png)

@@ -14,7 +14,7 @@ You can install the Vertical Pod Autoscaler Operator (VPA) by using the {{ produ
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
 1.  Choose  **VerticalPodAutoscaler** from the list of available Operators, and click **Install**.
 1.  On the **Install Operator** page, ensure that the **Operator recommended namespace** option
 is selected. This installs the Operator in the mandatory `openshift-vertical-pod-autoscaler` namespace, which
@@ -24,9 +24,9 @@ is automatically created if it does not exist.
 **Verification**
 
 1.  Verify the installation by listing the VPA components:
-    1.  Navigate to **Workloads** -> **Pods**.
+    1.  Navigate to **Workloads** → **Pods**.
     1.  Select the `openshift-vertical-pod-autoscaler` project from the drop-down menu and verify that there are four pods running.
-    1.  Navigate to **Workloads** -> **Deployments** to verify that there are four deployments running.
+    1.  Navigate to **Workloads** → **Deployments** to verify that there are four deployments running.
 1.  Optional: Verify the installation in the {{ product_title }} CLI using the following command:
     ```terminal
     $ oc get all -n openshift-vertical-pod-autoscaler

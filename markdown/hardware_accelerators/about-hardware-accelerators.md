@@ -3,8 +3,8 @@ title: About hardware accelerators
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About hardware accelerators {id="about-hardware-accelerators"}
 {% include "./_attributes/common-attributes.md" %}
+# About hardware accelerators {id="about-hardware-accelerators"}
 {%- set context = "about-hardware-accelerators" %}
 
 Specialized hardware accelerators play a key role in the emerging generative artificial intelligence and machine learning (AI/ML) industry. Specifically, hardware accelerators are essential to the training and serving of large language and other foundational models that power this new technology. Data scientists, data engineers, ML engineers, and developers can take advantage of the specialized hardware acceleration for data-intensive transformations and model development and serving. Much of that ecosystem is open source, with several contributing partners and open source foundations.
@@ -42,6 +42,7 @@ Certain specialized hardware accelerators are designed to work within disconnect
 {% leveloffset +1 %}{% include "./modules/hardware-accelerators.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Introduction to Red Hat OpenShift AI](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2-latest/html/introduction_to_red_hat_openshift_ai/index)
 *   [ NVIDIA GPU Operator on Red Hat {{ product_title }}](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/index.html)

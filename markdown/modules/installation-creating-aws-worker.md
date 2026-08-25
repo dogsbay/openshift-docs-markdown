@@ -135,15 +135,15 @@ describes the networking objects and load balancers that your cluster requires.
     YAML file that you saved.
     1.  `<parameters>` is the relative path to and name of the CloudFormation
     parameters JSON file.
-        ```terminal title="Example output"
-        arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
-        ```
+    ```terminal title="Example output"
+    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
+    ```
 
-        :::note
+    :::note
 
-        The CloudFormation template creates a stack that represents one worker node.
-        
-        :::
+    The CloudFormation template creates a stack that represents one worker node.
+    
+    :::
 
 1.  Confirm that the template components exist:
     ```terminal
@@ -160,5 +160,5 @@ describes the networking objects and load balancers that your cluster requires.
 
 
 {% if context == "installing-aws-user-infra" %}
-{%- set three_node_cluster = false -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}

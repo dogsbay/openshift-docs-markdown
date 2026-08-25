@@ -25,12 +25,11 @@ As of {{ product_title }} 4.19, the use of the `Localnet` topology by `ClusterUs
 
 The following section highlights the supported features of the `UserDefinedNetwork` and `NetworkAttachmentDefinition` CRs when used as either the primary or secondary network. A separate table for the `ClusterUserDefinedNetwork` CR is also included.
 
-***Primary network support matrix for `UserDefinedNetwork` and `NetworkAttachmentDefinition` CRs***
+**Primary network support matrix for `UserDefinedNetwork` and `NetworkAttachmentDefinition` CRs**
 
 <table>
 <thead>
 <tr>
-  <th>^</th>
   <th>Network feature ^</th>
   <th>Layer2 topology ^</th>
   <th>Layer3 topology</th>
@@ -38,57 +37,48 @@ The following section highlights the supported features of the `UserDefinedNetwo
 </thead>
 <tbody>
 <tr>
-  <td>^</td>
-  <td>east-west traffic ^</td>
-  <td>&#10003; ^</td>
+  <td>east-west traffic</td>
+  <td>&#10003;</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>north-south traffic ^</td>
-  <td>&#10003; ^</td>
+  <td>north-south traffic</td>
+  <td>&#10003;</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Persistent IPs ^</td>
-  <td>&#10003; ^</td>
+  <td>Persistent IPs</td>
+  <td>&#10003;</td>
   <td>X</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Services ^</td>
-  <td>&#10003; ^</td>
+  <td>Services</td>
+  <td>&#10003;</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Routes ^</td>
-  <td>X ^</td>
+  <td>Routes</td>
+  <td>X</td>
   <td>X</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>EgressIP</code> resource ^</td>
-  <td>&#10003; ^</td>
+  <td><code>EgressIP</code> resource</td>
+  <td>&#10003;</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Multicast ^</td>
-  <td>X ^</td>
+  <td>Multicast</td>
+  <td>X</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>NetworkPolicy</code> resource ^</td>
-  <td>&#10003; ^</td>
+  <td><code>NetworkPolicy</code> resource</td>
+  <td>&#10003;</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>MultinetworkPolicy</code> resource ^</td>
-  <td>X ^</td>
+  <td><code>MultinetworkPolicy</code> resource</td>
+  <td>X</td>
   <td>X</td>
 </tr>
 </tbody>
@@ -103,12 +93,11 @@ Multicast
 `NetworkPolicy` resource
 :   When creating a `ClusterUserDefinedNetwork` CR with a primary network type, network policies must be created _after_ the `UserDefinedNetwork` CR.
 
-***Secondary network support matrix for `UserDefinedNetwork` and `NetworkAttachmentDefinition` CRs***
+**Secondary network support matrix for `UserDefinedNetwork` and `NetworkAttachmentDefinition` CRs**
 
 <table>
 <thead>
 <tr>
-  <th>^</th>
   <th>Network feature ^</th>
   <th>Layer2 topology ^</th>
   <th>Layer3 topology ^</th>
@@ -117,66 +106,57 @@ Multicast
 </thead>
 <tbody>
 <tr>
-  <td>^</td>
-  <td>east-west traffic ^</td>
-  <td>&#10003; ^</td>
-  <td>&#10003; ^</td>
+  <td>east-west traffic</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
   <td>&#10003; (<code>NetworkAttachmentDefinition</code> CR only)</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>north-south traffic ^</td>
-  <td>X ^</td>
-  <td>X ^</td>
+  <td>north-south traffic</td>
+  <td>X</td>
+  <td>X</td>
   <td>&#10003; (<code>NetworkAttachmentDefinition</code> CR only)</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Persistent IPs ^</td>
-  <td>&#10003; ^</td>
-  <td>X ^</td>
+  <td>Persistent IPs</td>
+  <td>&#10003;</td>
+  <td>X</td>
   <td>&#10003; (<code>NetworkAttachmentDefinition</code> CR only)</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Services ^</td>
-  <td>X ^</td>
-  <td>X ^</td>
+  <td>Services</td>
+  <td>X</td>
+  <td>X</td>
   <td>X</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Routes ^</td>
-  <td>X ^</td>
-  <td>X ^</td>
+  <td>Routes</td>
+  <td>X</td>
+  <td>X</td>
   <td>X</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>EgressIP</code> resource ^</td>
-  <td>X ^</td>
-  <td>X ^</td>
+  <td><code>EgressIP</code> resource</td>
+  <td>X</td>
+  <td>X</td>
   <td>X</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Multicast ^</td>
-  <td>X ^</td>
-  <td>X ^</td>
+  <td>Multicast</td>
+  <td>X</td>
+  <td>X</td>
   <td>X</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>NetworkPolicy</code> resource ^</td>
-  <td>X ^</td>
-  <td>X ^</td>
+  <td><code>NetworkPolicy</code> resource</td>
+  <td>X</td>
+  <td>X</td>
   <td>X</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>MultinetworkPolicy</code> resource ^</td>
-  <td>&#10003; ^</td>
-  <td>&#10003; ^</td>
+  <td><code>MultinetworkPolicy</code> resource</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
   <td>&#10003; (<code>NetworkAttachmentDefinition</code> CR only)</td>
 </tr>
 </tbody>
@@ -184,12 +164,11 @@ Multicast
 
 The Localnet topology is unavailable for use with the `UserDefinedNetwork` CR. It is only supported on secondary networks for `NetworkAttachmentDefinition` CRs.
 
-***Support matrix for `ClusterUserDefinedNetwork` CRs***
+**Support matrix for `ClusterUserDefinedNetwork` CRs**
 
 <table>
 <thead>
 <tr>
-  <th>^</th>
   <th>Network feature ^</th>
   <th>Layer2 topology ^</th>
   <th>Layer3 topology ^</th>
@@ -198,66 +177,57 @@ The Localnet topology is unavailable for use with the `UserDefinedNetwork` CR. I
 </thead>
 <tbody>
 <tr>
-  <td>^</td>
-  <td>east-west traffic ^</td>
-  <td>&#10003; ^</td>
-  <td>&#10003; ^</td>
+  <td>east-west traffic</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>north-south traffic ^</td>
-  <td>&#10003; ^</td>
-  <td>&#10003; ^</td>
+  <td>north-south traffic</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Persistent IPs ^</td>
-  <td>&#10003; ^</td>
-  <td>X ^</td>
+  <td>Persistent IPs</td>
+  <td>&#10003;</td>
+  <td>X</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Services ^</td>
-  <td>&#10003; ^</td>
-  <td>&#10003; ^</td>
+  <td>Services</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
   <td></td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Routes ^</td>
-  <td>X ^</td>
-  <td>X ^</td>
+  <td>Routes</td>
+  <td>X</td>
+  <td>X</td>
   <td></td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>EgressIP</code> resource ^</td>
-  <td>&#10003; ^</td>
-  <td>&#10003; ^</td>
+  <td><code>EgressIP</code> resource</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
   <td></td>
 </tr>
 <tr>
-  <td>^</td>
-  <td>Multicast ^</td>
-  <td>X ^</td>
-  <td>&#10003; ^</td>
+  <td>Multicast</td>
+  <td>X</td>
+  <td>&#10003;</td>
   <td></td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>MultinetworkPolicy</code> resource ^</td>
-  <td>X ^</td>
-  <td>X ^</td>
+  <td><code>MultinetworkPolicy</code> resource</td>
+  <td>X</td>
+  <td>X</td>
   <td>&#10003;</td>
 </tr>
 <tr>
-  <td>^</td>
-  <td><code>NetworkPolicy</code> resource ^</td>
-  <td>&#10003; ^</td>
-  <td>&#10003; ^</td>
+  <td><code>NetworkPolicy</code> resource</td>
+  <td>&#10003;</td>
+  <td>&#10003;</td>
   <td></td>
 </tr>
 </tbody>

@@ -36,7 +36,7 @@ The default Argo CD instance and the accompanying controllers, installed by the 
           key: infra
           value: reserved
     ```
-1.  Verify that the workloads in the `openshift-gitops` namespace are now scheduled on the infrastructure nodes by viewing **Pods** -> **Pod details** for any pod in the console UI.
+1.  Verify that the workloads in the `openshift-gitops` namespace are now scheduled on the infrastructure nodes by viewing **Pods** → **Pod details** for any pod in the console UI.
 
 
 :::note

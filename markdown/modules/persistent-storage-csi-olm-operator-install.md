@@ -23,7 +23,7 @@ Install and configure the {{ FeatureName }} Container Storage Interface (CSI) Dr
 
 1.  Log in to the web console.
 1.  Install the {{ FeatureName }} CSI Operator:
-    1.  Click **Ecosystem** -> **Software Catalog**.
+    1.  Click **Ecosystem** → **Software Catalog**.
     1.  Locate the {{ FeatureName }} CSI Operator by typing **{{ FeatureName }} CSI** in the filter box.
     1.  Click the **{{ FeatureName }} CSI Driver Operator** button.
 
@@ -38,11 +38,11 @@ Install and configure the {{ FeatureName }} Container Storage Interface (CSI) Dr
 {% endif %}
     1.  On the **{{ FeatureName }} CSI Driver Operator** page, click **Install**.
     1.  On the **Install Operator** page, ensure that:
-        {%- if restricted %}
-        {% if openshift_enterprise or openshift_dedicated or openshift_rosa %}
+{% if restricted %}
+{% if openshift_enterprise or openshift_dedicated or openshift_rosa %}
         *   If you are using {{ FeatureName }} with AWS Secure Token Service (STS), in the **role ARN** field, enter the ARN role copied from the last step of the _Obtaining a role Amazon Resource Name for Security Token Service_ procedure.
-            {% endif %}
-            {%- endif %}
+{% endif %}
+{%- endif %}
         *   **All namespaces on the cluster (default)** is selected.
         *   **Installed Namespace** is set to **openshift-cluster-csi-drivers**.
     1.  Click **Install**.
@@ -50,15 +50,15 @@ Install and configure the {{ FeatureName }} Container Storage Interface (CSI) Dr
         After the installation finishes, the {{ FeatureName }} CSI Operator is listed in the **Installed Operators** section of the web console.
 
 {% if context == "persistent-storage-csi-aws-efs" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 
 {% if context == "osd-persistent-storage-aws-efs-csi" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 
 {% if context == "rosa-persistent-storage-aws-efs-csi" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 
 **Next steps**

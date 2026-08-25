@@ -9,7 +9,7 @@ You can dynamically add YAML examples to any Kubernetes resources at any time. {
 
 **Procedure**
 
-1.  From **Administration** -> **Custom Resource Definitions**, click **ConsoleYAMLSample**.
+1.  From **Administration** → **Custom Resource Definitions**, click **ConsoleYAMLSample**.
 1.  Click **YAML** and edit the file:
     ```yaml
     apiVersion: console.openshift.io/v1

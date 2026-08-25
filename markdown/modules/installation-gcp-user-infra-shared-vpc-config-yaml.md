@@ -11,7 +11,7 @@ This sample YAML file is provided for reference only. You must obtain your `inst
 :::
 
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com (1)
 controlPlane: (2)
@@ -64,8 +64,8 @@ pullSecret: '{"auths": ...}'
 fips: false (9)
 sshKey: ssh-ed25519 AAAA... (10)
 publish: Internal (11)
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 sshKey: ssh-ed25519 AAAA... (9)
 publish: Internal (10)
 {%- endif %}
@@ -87,10 +87,10 @@ publish: Internal (10)
 1.  Specify the region that your VPC network is in.
 {%- if not openshift_origin %}
 1.  Whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
-{% include "./snippets/fips-snippet.md" %}
+    {% include "./snippets/fips-snippet.md" %}
 1.  You can optionally provide the `sshKey` value that you use to access the machines in your cluster.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 1.  You can optionally provide the `sshKey` value that you use to access the machines in your cluster.
 {%- endif %}
 
@@ -100,7 +100,7 @@ publish: Internal (10)
     
     :::
 
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 1.  How to publish the user-facing endpoints of your cluster. Set `publish` to `Internal` to deploy a private cluster, which cannot be accessed from the internet. The default value is `External`.
 To use a shared VPC in a cluster that uses infrastructure that you provision, you must set `publish` to `Internal`. The installation program will no longer be able to access the public DNS zone for the base domain in the host project.
 {% endif %}

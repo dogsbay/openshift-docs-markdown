@@ -7,7 +7,7 @@ title: "{{ VirtProductName }} Architecture"
 # {{ VirtProductName }} Architecture {id="virt-architecture"}
 {%- set context = "virt-architecture" %}
 
-{{ VirtProductName }} architecture consists of several Operators and components that manage the lifecycle, storage, networking, and scheduling of virtual machine workloads within the cluster.
+{{ VirtProductName }} architecture consists of several Operators and components that manage the lifecycle, storage, networking, and scheduling of virtual machine workloads within the cluster. {._abstract}
 
 The Operator Lifecycle Manager (OLM) deploys operator pods for each component of {{ VirtProductName }}:
 
@@ -40,6 +40,6 @@ The OLM deploys the Hostpath Provisioner (HPP) Operator, but it is not functiona
 
 {% leveloffset +1 %}{% include "./modules/virt-about-virt-operator.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [virtctl client commands](/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)

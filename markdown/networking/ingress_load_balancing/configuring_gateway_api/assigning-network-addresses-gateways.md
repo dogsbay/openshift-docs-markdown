@@ -3,11 +3,11 @@ title: Assign network addresses to gateways
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Assign network addresses to gateways {id="assigning-network-addresses-gateways"}
 {% include "./_attributes/common-attributes.md" %}
+# Assign network addresses to gateways {id="assigning-network-addresses-gateways"}
 {%- set context = "assigning-network-addresses-gateways" %}
 
-You can configure network addresses for your gateway to provide a predictable entry point for external and internal traffic. This ensures that clients can reliably resolve and route requests to your load balancers.
+You can configure network addresses for your gateway to provide a predictable entry point for external and internal traffic. This ensures that clients can reliably resolve and route requests to your load balancers. {._abstract}
 
 Gateway API uses addresses to define the specific network locations that are assigned to your `Gateway` resource. In {{ product_title }}, you rely on the gateway controller to automatically provision and bind the necessary network addresses, such as an external or internal load balancer IP, to your gateway. On on-premise environments, this automatic provisioning requires a configured load balancer controller.
 

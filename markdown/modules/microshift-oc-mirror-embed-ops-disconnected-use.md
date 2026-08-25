@@ -22,11 +22,11 @@ For catalogs made for proprietary Operators, you can format image references for
 
 1.  Parse the catalog `index.json` file to get the image references that you need to include in the image builder blueprint. You can use either the unfiltered catalog or you can filter out images that cannot be mirrored:
     1.  Parse the unfiltered catalog `index.json` file to get the image references by running the following command:
-        ```terminal
+        ```terminal {minja}
         jq -r --slurp '.[] | select(.relatedImages != null) | "[[containers]]\nsource = \"" + .relatedImages[].image + "\"\n"'   ./oc-mirror-workspace/src/catalogs/registry.redhat.io/redhat/redhat-operator-index/v{{ product_version }}/index/index.json
         ```
     1.  If you want to filter out images that cannot be mirrored, filter and parse the catalog `index.json` file by running the following command:
-        ```terminal
+        ```terminal {minja}
         $ jq -r --slurp '.[] | select(.relatedImages != null) | .relatedImages[] | select(.name |  contains("ppc") or contains("s390x") | not) | "[[containers]]\\nsource = \\"" + .image + "\\"\\n"' ./oc-mirror-workspace/src/catalogs/registry.redhat.io/redhat/redhat-operator-index/v{{ product_version }}/index/index.json
         ```
 
@@ -64,7 +64,7 @@ For catalogs made for proprietary Operators, you can format image references for
     ```terminal
     $ cat imageset-config.yaml
     ```
-    ```yaml title="Example output"
+    ```yaml title="Example output" {minja}
     kind: ImageSetConfiguration
     apiVersion: mirror.openshift.io/v2alpha1
     mirror:
@@ -92,7 +92,7 @@ For catalogs made for proprietary Operators, you can format image references for
     source = "registry.redhat.io/redhat/redhat-operator-index@sha256:7a76c0880a839035eb6e896d54ebd63668bb37b82040692141ba39ab4c539bc6"
     ```
 1.  Add the image references from all of the previous steps to the image builder blueprint.
-    ```text title="Generated image builder blueprint example snippet"
+    ```text title="Generated image builder blueprint example snippet" {minja}
     name = "microshift_blueprint"
     description = "MicroShift {{ product_version }}.1 on x86_64 platform"
     version = "0.0.1"

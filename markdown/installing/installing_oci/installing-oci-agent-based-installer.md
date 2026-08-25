@@ -7,7 +7,7 @@ title: "Installing a cluster on {{ oci_distributed_no_rt }} by using the Agent-b
 # Installing a cluster on {{ oci_distributed_no_rt }} by using the Agent-based Installer {id="installing-oci-agent-based-installer"}
 {%- set context = "installing-oci-agent-based-installer" %}
 
-You can use the Agent-based Installer to install a cluster on {{ oci_distributed }}, so that you can run cluster workloads on infrastructure that supports dedicated, hybrid, public, and multiple cloud environments.
+You can use the Agent-based Installer to install a cluster on {{ oci_distributed }}, so that you can run cluster workloads on infrastructure that supports dedicated, hybrid, public, and multiple cloud environments. {._abstract}
 
 Installing a cluster on {{ oci_distributed_no_rt }} is supported for virtual machines (VMs) and bare-metal machines.
 
@@ -16,6 +16,7 @@ Installing a cluster on {{ oci_distributed_no_rt }} is supported for virtual mac
 {% leveloffset +1 %}{% include "./modules/installing-oci-about-agent-based-installer.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)
 *   [Internet access for {{ product_title }}](/installing/installing_platform_agnostic/installing-platform-agnostic#cluster-entitlements_installing-platform-agnostic)
@@ -29,12 +30,14 @@ Installing a cluster on {{ oci_distributed_no_rt }} is supported for virtual mac
 {% leveloffset +1 %}{% include "./modules/abi-oci-resources-services.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Learn About Oracle Cloud Basics (Oracle documentation)](https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/concepts.htm)
 
 {% leveloffset +1 %}{% include "./modules/creating-config-files-cluster-install-oci.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About {{ product_title }} installation](/architecture/architecture-installation#installation-overview_architecture-installation)
 *   [Selecting a cluster installation type](/installing/overview/installing-preparing#installing-preparing-selecting-cluster-type_installing-preparing)
@@ -49,13 +52,14 @@ Installing a cluster on {{ oci_distributed_no_rt }} is supported for virtual mac
 {% leveloffset +1 %}{% include "./modules/running-cluster-oci-agent-based.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Instance Sizing Recommendations for {{ product_title }} Nodes (Oracle documentation)](https://docs.oracle.com/iaas/Content/openshift-on-oci/installing-agent-about-instance-configurations.htm)
 *   [Troubleshooting {{ product_title }} on {{ oci }} (Oracle documentation)](https://docs.oracle.com/iaas/Content/openshift-on-oci/openshift-troubleshooting.htm)
 
 {% leveloffset +1 %}{% include "./modules/verifying-cluster-install-oci-agent-based.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Gathering log data from a failed Agent-based installation](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-ocp-agent-gather-log_installing-with-agent-based-installer)
 *   [Adding worker nodes to an on-premise cluster](/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso)

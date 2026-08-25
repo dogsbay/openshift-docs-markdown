@@ -18,10 +18,11 @@ The following procedure creates the `nationalparks-mongodb-parameters` secret an
 
 **Procedure**
 
-1.  Navigate to **Workloads** -> **Secrets**.
-1.  Click **Create** -> **Key/value secret**.
+1.  Navigate to **Workloads** → **Secrets**.
+1.  Click **Create** → **Key/value secret**.
 1.  In the **Secret name** field, enter `nationalparks-mongodb-parameters`.
 1.  Enter the following values for **Key** and **Value**:
+
     **Secret keys and values**
 
     | Key | Value |
@@ -31,6 +32,7 @@ The following procedure creates the `nationalparks-mongodb-parameters` secret an
     | `MONGODB_PASSWORD` | `mongodb` |
     | `MONGODB_DATABASE` | `mongodb` |
     | `MONGODB_ADMIN_PASSWORD` | `mongodb` |
+
 
     :::tip
 

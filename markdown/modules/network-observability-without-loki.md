@@ -11,13 +11,14 @@ If you only want to export flows to a Kafka consumer or IPFIX collector, or you 
 | --- | --- | --- |
 | **Exporters** | X | X |
 | **Multi-tenancy** | X | X |
-| **Complete filtering and aggregations capabilities** ^[1]^ | X |  |
-| **Partial filtering and aggregations capabilities** ^[2]^ | X | X |
+| **Complete filtering and aggregations capabilities** <sup>[1]</sup> | X |  |
+| **Partial filtering and aggregations capabilities** <sup>[2]</sup> | X | X |
 | **Flow-based metrics and dashboards** | X | X |
-| **Traffic flows view overview** ^[3]^ | X | X |
+| **Traffic flows view overview** <sup>[3]</sup> | X | X |
 | **Traffic flows view table** | X |  |
 | **Topology view** | X | X |
 | **{{ product_title }} console Network Traffic tab integration** | X | X |
+
 1.  Such as per pod.
 1.  Such as per workload or namespace.
 1.  Statistics on packet drops are only available with Loki.

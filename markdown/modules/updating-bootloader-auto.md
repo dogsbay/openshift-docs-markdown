@@ -20,12 +20,12 @@ The boot loader update operation generally completes quickly thus the risk is lo
 
     :::note
 
-{% include "./snippets/butane-version.md" %}
+    {% include "./snippets/butane-version.md" %}
 
     
     :::
 
-    ```yaml title="Example output"
+    ```yaml title="Example output" {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

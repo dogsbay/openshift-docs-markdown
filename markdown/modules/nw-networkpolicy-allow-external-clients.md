@@ -39,14 +39,14 @@ Follow this procedure to configure a policy that allows external service from th
 {%- endif %}
 *   You installed the {{ oc_first }}.
 {%- if not microshift %}
-*   You logged in to the cluster with a user with `{{ role }}` privileges.
+*   You logged in to the cluster with a user with `{{ role }}`{minja} privileges.
 {%- endif %}
 *   You are working in the namespace that the {{ name }} policy applies to.
 
 **Procedure**
 
 1.  Create a policy that allows traffic from the public Internet directly or by using a load balancer to access the pod. Save the YAML in the `web-allow-external.yaml` file:
-    {%- if not multi %}
+{% if not multi %}
     ```yaml
     kind: NetworkPolicy
     apiVersion: networking.k8s.io/v1
@@ -83,14 +83,14 @@ Follow this procedure to configure a policy that allows external service from th
     ```terminal
     $ oc apply -f web-allow-external.yaml
     ```
-{%- if not microshift %}
+{% if not microshift %}
 
     This policy allows traffic from all resources, including external traffic as illustrated in the following diagram:
     ![Allow traffic from external clients](/_assets/images/292_OpenShift_Configuring_multi-network_policy_1122.png)
 {% endif %}
 
 {% if multi %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
-{%- set name = false -%}
-{%- set role = false -%}
+{%- set name = "" -%}
+{%- set role = "" -%}

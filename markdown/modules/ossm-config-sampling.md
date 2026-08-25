@@ -24,7 +24,7 @@ The Jaeger remote sampling rate applies to applications that are external to the
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu and select the project where you installed the control plane, for example **istio-system**.
 1.  Click the {{ SMProductName }} Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane` resource, for example `basic`.
 1.  To adjust the sampling rate, set a different value for `spec.tracing.sampling`.

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Monitoring {{ sandboxed_containers_first }} {id="monitoring-sandboxed-containers"}
 {% include "./_attributes/common-attributes.md" %}
+# Monitoring {{ sandboxed_containers_first }} {id="monitoring-sandboxed-containers"}
 {%- set context = "monitoring-sandboxed-containers" %}
 
 You can use the {{ product_title }} web console to monitor metrics related to the health status of your sandboxed workloads and nodes. {._abstract}

@@ -1,5 +1,5 @@
 ---
-title: "AppliedClusterResourceQuota []"
+title: "AppliedClusterResourceQuota [quota.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ClusterResourceQuotaSpec defines the desired quota restrictions |
 | `status` | `object` | ClusterResourceQuotaStatus defines the actual enforced quota and its current usage |
+
 ### .spec {id="_spec"}
 
 Description
@@ -50,6 +51,7 @@ Required
 | --- | --- | --- |
 | `quota` | [`ResourceQuotaSpec`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaSpec) | quota defines the desired quota |
 | `selector` | `object` | ClusterResourceQuotaSelector is used to select projects.  At least one of LabelSelector or AnnotationSelector must present.  If only one is present, it is the only selection criteria.  If both are specified, the project must match both restrictions. |
+
 ### .spec.selector {id="_specselector"}
 
 Description
@@ -63,6 +65,7 @@ Type
 | --- | --- | --- |
 | `annotations` | `object (string)` | AnnotationSelector is used to select projects by annotation. |
 | `labels` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | LabelSelector is used to select projects by label. |
+
 ### .status {id="_status"}
 
 Description
@@ -81,6 +84,7 @@ Required
 | `namespaces` | `array` | namespaces slices the usage by project.  This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects.  This can be used to pull the deltas for a given project. |
 | `namespaces[]` | `object` | ResourceQuotaStatusByNamespace gives status for a particular project |
 | `total` | [`ResourceQuotaStatus`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceQuotaStatus) | total defines the actual enforced quota and its current usage across all projects |
+
 ### .status.namespaces {id="_statusnamespaces"}
 
 Description
@@ -115,9 +119,9 @@ The following API endpoints are available:
 
 *   `/apis/quota.openshift.io/v1/appliedclusterresourcequotas`
     *   `GET`: list objects of kind AppliedClusterResourceQuota
-*   `/apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas`
+*   `/apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas`{minja}
     *   `GET`: list objects of kind AppliedClusterResourceQuota
-*   `/apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas/{{ name }}`
+*   `/apis/quota.openshift.io/v1/namespaces/{{ namespace }}/appliedclusterresourcequotas/{{ name }}`{minja}
     *   `GET`: read the specified AppliedClusterResourceQuota
 
 ### /apis/quota.openshift.io/v1/appliedclusterresourcequotas {id="_apisquotaopenshiftiov1appliedclusterresourcequotas"}

@@ -17,7 +17,7 @@ Install the logging add-on service to forward the logs to AWS CloudWatch. {._abs
     :::
 
 
-    ***Example output***
+    **Example output**
     ```terminal
     Varaibles are set...ok.
     Policy already exists...ok.
@@ -39,7 +39,7 @@ Install the logging add-on service to forward the logs to AWS CloudWatch. {._abs
     $ aws logs describe-log-groups --log-group-name-prefix rosa-mycluster
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     {
         "logGroups": [

@@ -14,7 +14,7 @@ The `Subscription` object does not support the `affinity` node placement rule.
 
 Example `Subscription` object with `nodeSelector` rule:
 
-```yaml
+```yaml {minja}
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
@@ -35,7 +35,7 @@ OLM deploys the {{ VirtProductName }} Operators on nodes labeled `example.io/exa
 
 Example `Subscription` object with `tolerations` rule:
 
-```yaml
+```yaml {minja}
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
@@ -64,7 +64,7 @@ To specify the nodes where {{ VirtProductName }} deploys its components, you can
 
 Example `HyperConverged` object with `nodeSelector` rule:
 
-```yaml
+```yaml {minja}
 apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:
@@ -86,7 +86,7 @@ spec:
 
 Example `HyperConverged` object with `affinity` rule:
 
-```yaml
+```yaml {minja}
 apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:
@@ -131,7 +131,7 @@ spec:
 
 Example `HyperConverged` object with `tolerations` rule:
 
-```yaml
+```yaml {minja}
 apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:

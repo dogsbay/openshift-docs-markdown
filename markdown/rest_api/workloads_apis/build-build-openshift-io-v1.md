@@ -1,5 +1,5 @@
 ---
-title: "Build []"
+title: "Build [build.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -27,6 +27,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | BuildSpec has the information to represent a build and also additional information about a build |
 | `status` | `object` | BuildStatus contains the status of a build |
+
 ### .spec {id="_spec"}
 
 Description
@@ -43,10 +44,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `completionDeadlineSeconds` | `integer` | completionDeadlineSeconds is an optional duration in seconds, counted from the time when a build pod gets scheduled in the system, that the build may be active on a node before the system actively tries to terminate the build; value must be positive integer |
-| `mountTrustedCA` | `boolean` | mountTrustedCA bind mounts the cluster’s trusted certificate authorities, as defined in the cluster’s proxy configuration, into the build. This lets processes within a build trust components signed by custom PKI certificate authorities, such as private artifact repositories and HTTPS proxies. When this field is set to true, the contents of `/etc/pki/ca-trust` within the build are managed by the build container, and any changes to this directory or its subdirectories (for example - within a Dockerfile `RUN` instruction) are not persisted in the build’s output image. |
+| `mountTrustedCA` | `boolean` | mountTrustedCA bind mounts the cluster’s trusted certificate authorities, as defined in the cluster’s proxy configuration, into the build. This lets processes within a build trust components signed by custom PKI certificate authorities, such as private artifact repositories and HTTPS proxies.<br>When this field is set to true, the contents of `/etc/pki/ca-trust` within the build are managed by the build container, and any changes to this directory or its subdirectories (for example - within a Dockerfile `RUN` instruction) are not persisted in the build’s output image. |
 | `nodeSelector` | `object (string)` | nodeSelector is a selector which must be true for the build pod to fit on a node If nil, it can be overridden by default build nodeselector values for the cluster. If set to an empty map or a map with any values, default build nodeselector values are ignored. |
 | `output` | `object` | BuildOutput is input to a build strategy and describes the container image that the strategy should produce. |
-| `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR. The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container. There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`. 1. Shell script: 	   "postCommit": { 	     "script": "rake test --verbose", 	   } 	The above is a convenient form which is equivalent to: 	   "postCommit": { 	     "command": ["/bin/sh", "-ic"], 	     "args":    ["rake test --verbose"] 	   } 2. A command as the image entrypoint: 	   "postCommit": { 	     "commit": ["rake", "test", "--verbose"] 	   } 	Command overrides the image entrypoint in the exec form, as documented in 	Docker: https://docs.docker.com/engine/reference/builder/#entrypoint. 3. Pass arguments to the default entrypoint: 	       "postCommit": { 			      "args": ["rake", "test", "--verbose"] 		      } 	    This form is only useful if the image entrypoint can handle arguments. 4. Shell script with arguments: 	   "postCommit": { 	     "script": "rake test $1", 	     "args":   ["--verbose"] 	   } 	This form is useful if you need to pass arguments that would otherwise be 	hard to quote properly in the shell script. In the script, $0 will be 	"/bin/sh" and $1, $2, etc, are the positional arguments from Args. 5. Command with arguments: 	   "postCommit": { 	     "command": ["rake", "test"], 	     "args":    ["--verbose"] 	   } 	This form is equivalent to appending the arguments to the Command slice. It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
+| `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR.<br>The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container.<br>There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`.<br>1. Shell script:<br>	   "postCommit": { 	     "script": "rake test --verbose", 	   }<br>	The above is a convenient form which is equivalent to:<br>	   "postCommit": { 	     "command": ["/bin/sh", "-ic"], 	     "args":    ["rake test --verbose"] 	   }<br>2. A command as the image entrypoint:<br>	   "postCommit": { 	     "commit": ["rake", "test", "--verbose"] 	   }<br>	Command overrides the image entrypoint in the exec form, as documented in 	Docker: https://docs.docker.com/engine/reference/builder/#entrypoint.<br>3. Pass arguments to the default entrypoint:<br>	       "postCommit": { 			      "args": ["rake", "test", "--verbose"] 		      }<br>	    This form is only useful if the image entrypoint can handle arguments.<br>4. Shell script with arguments:<br>	   "postCommit": { 	     "script": "rake test $1", 	     "args":   ["--verbose"] 	   }<br>	This form is useful if you need to pass arguments that would otherwise be 	hard to quote properly in the shell script. In the script, $0 will be 	"/bin/sh" and $1, $2, etc, are the positional arguments from Args.<br>5. Command with arguments:<br>	   "postCommit": { 	     "command": ["rake", "test"], 	     "args":    ["--verbose"] 	   }<br>	This form is equivalent to appending the arguments to the Command slice.<br>It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
 | `resources` | [`ResourceRequirements`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceRequirements) | resources computes resource requirements to execute the build. |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `serviceAccount` | `string` | serviceAccount is the name of the ServiceAccount to use to run the pod created by this build. The pod will be allowed to use secrets referenced by the ServiceAccount |
@@ -54,6 +55,7 @@ Required
 | `strategy` | `object` | BuildStrategy contains the details of how to perform a build. |
 | `triggeredBy` | `array` | triggeredBy describes which triggers started the most recent update to the build configuration and contains information about those triggers. |
 | `triggeredBy[]` | `object` | BuildTriggerCause holds information about a triggered build. It is used for displaying build trigger data for each build and build configuration in oc describe. It is also used to describe which triggers led to the most recent update in the build configuration. |
+
 ### .spec.output {id="_specoutput"}
 
 Description
@@ -69,6 +71,7 @@ Type
 | `imageLabels[]` | `object` | ImageLabel represents a label applied to the resulting image. |
 | `pushSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pushSecret is the name of a Secret that would be used for setting up the authentication for executing the Docker push to authentication enabled Docker Registry (or Docker Hub). |
 | `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to defines an optional location to push the output of this build to. Kind must be one of 'ImageStreamTag' or 'DockerImage'. This value will be used to look up a container image repository to push to. In the case of an ImageStreamTag, the ImageStreamTag will be looked for in the namespace of the build unless Namespace is specified. |
+
 ### .spec.output.imageLabels {id="_specoutputimagelabels"}
 
 Description
@@ -95,6 +98,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name defines the name of the label. It must have non-zero length. |
 | `value` | `string` | value defines the literal value of the label. |
+
 ### .spec.postCommit {id="_specpostcommit"}
 
 Description
@@ -179,6 +183,7 @@ Type
 | `args` | `array (string)` | args is a list of arguments that are provided to either Command, Script or the container image’s default entrypoint. The arguments are placed immediately after the command to be run. |
 | `command` | `array (string)` | command is the command to run. It may not be specified with Script. This might be needed if the image doesn’t have `/bin/sh`, or if you do not want to use a shell. In all other cases, using Script might be more convenient. |
 | `script` | `string` | script is a shell script to be run with `/bin/sh -ic`. It may not be specified with Command. Use Script when a shell script is appropriate to execute the post build hook, for example for running unit tests with `rake test`. If you need control over the image entrypoint, or if the image does not have `/bin/sh`, use Command and/or Args. The `-i` flag is needed to support CentOS and RHEL images that use Software Collections (SCL), in order to have the appropriate collections enabled in the shell. E.g., in the Ruby image, this is necessary to make `ruby`, `bundle` and other binaries available in the PATH. |
+
 ### .spec.revision {id="_specrevision"}
 
 Description
@@ -196,6 +201,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .spec.revision.git {id="_specrevisiongit"}
 
 Description
@@ -211,6 +217,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .spec.revision.git.author {id="_specrevisiongitauthor"}
 
 Description
@@ -224,6 +231,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.revision.git.committer {id="_specrevisiongitcommitter"}
 
 Description
@@ -237,6 +245,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.source {id="_specsource"}
 
 Description
@@ -260,6 +269,7 @@ Type
 | `secrets[]` | `object` | SecretBuildSource describes a secret and its destination directory that will be used only at the build time. The content of the secret referenced here will be copied into the destination directory instead of mounting. |
 | `sourceSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | sourceSecret is the name of a Secret that would be used for setting up the authentication for cloning private repository. The secret contains valid credentials for remote repository, where the data’s key represent the authentication method to be used and value is the base64 encoded credentials. Supported auth methods are: ssh-privatekey. |
 | `type` | `string` | type of build input to accept |
+
 ### .spec.source.binary {id="_specsourcebinary"}
 
 Description
@@ -272,6 +282,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `asFile` | `string` | asFile indicates that the provided binary input should be considered a single file within the build input. For example, specifying "webapp.war" would place the provided binary as `/webapp.war` for the builder. If left empty, the Docker and Source build strategies assume this file is a zip, tar, or tar.gz file and extract it as the source. The custom strategy receives this binary as standard input. This filename may not contain slashes or be '..' or '.'. |
+
 ### .spec.source.configMaps {id="_specsourceconfigmaps"}
 
 Description
@@ -298,6 +309,7 @@ Required
 | --- | --- | --- |
 | `configMap` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | configMap is a reference to an existing configmap that you want to use in your build. |
 | `destinationDir` | `string` | destinationDir is the directory where the files from the configmap should be available for the build time. For the Source build strategy, these will be injected into a container where the assemble script runs. For the container image build strategy, these will be copied into the build directory, where the Dockerfile is located, so users can ADD or COPY them during container image build. |
+
 ### .spec.source.git {id="_specsourcegit"}
 
 Description
@@ -318,6 +330,7 @@ Required
 | `noProxy` | `string` | noProxy is the list of domains for which the proxy should not be used |
 | `ref` | `string` | ref is the branch/tag/ref to build. |
 | `uri` | `string` | uri points to the source that will be built. The structure of the source will depend on the type of build to run |
+
 ### .spec.source.images {id="_specsourceimages"}
 
 Description
@@ -347,6 +360,7 @@ Required
 | `paths` | `array` | paths is a list of source and destination paths to copy from the image. This content will be copied into the build context prior to starting the build. If no paths are set, the build context will not be altered. |
 | `paths[]` | `object` | ImageSourcePath describes a path to be copied from a source image and its destination within the build directory. |
 | `pullSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is a reference to a secret to be used to pull the image from a registry If the image is pulled from the OpenShift registry, this field does not need to be set. |
+
 ### .spec.source.images[].paths {id="_specsourceimagespaths"}
 
 Description
@@ -374,6 +388,7 @@ Required
 | --- | --- | --- |
 | `destinationDir` | `string` | destinationDir is the relative directory within the build directory where files copied from the image are placed. |
 | `sourcePath` | `string` | sourcePath is the absolute path of the file or directory inside the image to copy to the build directory.  If the source path ends in /. then the content of the directory will be copied, but the directory itself will not be created at the destination. |
+
 ### .spec.source.secrets {id="_specsourcesecrets"}
 
 Description
@@ -400,6 +415,7 @@ Required
 | --- | --- | --- |
 | `destinationDir` | `string` | destinationDir is the directory where the files from the secret should be available for the build time. For the Source build strategy, these will be injected into a container where the assemble script runs. Later, when the script finishes, all files injected will be truncated to zero length. For the container image build strategy, these will be copied into the build directory, where the Dockerfile is located, so users can ADD or COPY them during container image build. |
 | `secret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | secret is a reference to an existing secret that you want to use in your build. |
+
 ### .spec.strategy {id="_specstrategy"}
 
 Description
@@ -416,6 +432,7 @@ Type
 | `jenkinsPipelineStrategy` | `object` | JenkinsPipelineBuildStrategy holds parameters specific to a Jenkins Pipeline build. Deprecated: use OpenShift Pipelines |
 | `sourceStrategy` | `object` | SourceBuildStrategy defines input parameters specific to an Source build. |
 | `type` | `string` | type is the kind of build strategy. |
+
 ### .spec.strategy.customStrategy {id="_specstrategycustomstrategy"}
 
 Description
@@ -439,6 +456,7 @@ Required
 | `pullSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is the name of a Secret that would be used for setting up the authentication for pulling the container images from the private Docker registries |
 | `secrets` | `array` | secrets is a list of additional secrets that will be included in the build pod |
 | `secrets[]` | `object` | SecretSpec specifies a secret to be included in a build pod and its corresponding mount point |
+
 ### .spec.strategy.customStrategy.secrets {id="_specstrategycustomstrategysecrets"}
 
 Description
@@ -466,6 +484,7 @@ Required
 | --- | --- | --- |
 | `mountPath` | `string` | mountPath is the path at which to mount the secret |
 | `secretSource` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | secretSource is a reference to the secret |
+
 ### .spec.strategy.dockerStrategy {id="_specstrategydockerstrategy"}
 
 Description
@@ -487,6 +506,7 @@ Type
 | `pullSecret` | [`LocalObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is the name of a Secret that would be used for setting up the authentication for pulling the container images from the private Docker registries |
 | `volumes` | `array` | volumes is a list of input volumes that can be mounted into the builds runtime environment. Only a subset of Kubernetes Volume sources are supported by builds. More info: https://kubernetes.io/docs/concepts/storage/volumes |
 | `volumes[]` | `object` | BuildVolume describes a volume that is made available to build pods, such that it can be mounted into buildah’s runtime environment. Only a subset of Kubernetes Volume sources are supported. |
+
 ### .spec.strategy.dockerStrategy.volumes {id="_specstrategydockerstrategyvolumes"}
 
 Description
@@ -517,6 +537,7 @@ Required
 | `mounts[]` | `object` | BuildVolumeMount describes the mounting of a Volume within buildah’s runtime environment. |
 | `name` | `string` | name is a unique identifier for this BuildVolume. It must conform to the Kubernetes DNS label standard and be unique within the pod. Names that collide with those added by the build controller will result in a failed build with an error message detailing which name caused the error. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `source` | `object` | BuildVolumeSource represents the source of a volume to mount Only one of its supported types may be specified at any given time. |
+
 ### .spec.strategy.dockerStrategy.volumes[].mounts {id="_specstrategydockerstrategyvolumesmounts"}
 
 Description
@@ -542,6 +563,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `destinationPath` | `string` | destinationPath is the path within the buildah runtime environment at which the volume should be mounted. The transient mount within the build image and the backing volume will both be mounted read only. Must be an absolute path, must not contain '..' or ':', and must not collide with a destination path generated by the builder process Paths that collide with those added by the build controller will result in a failed build with an error message detailing which path caused the error. |
+
 ### .spec.strategy.dockerStrategy.volumes[].source {id="_specstrategydockerstrategyvolumessource"}
 
 Description
@@ -561,6 +583,7 @@ Required
 | `csi` | [`CSIVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-CSIVolumeSource) | csi represents ephemeral storage provided by external CSI drivers which support this capability |
 | `secret` | [`SecretVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-SecretVolumeSource) | secret represents a Secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
 | `type` | `string` | type is the BuildVolumeSourceType for the volume source. Type must match the populated volume source. Valid types are: Secret, ConfigMap |
+
 ### .spec.strategy.jenkinsPipelineStrategy {id="_specstrategyjenkinspipelinestrategy"}
 
 Description
@@ -575,6 +598,7 @@ Type
 | `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env contains additional environment variables you want to pass into a build pipeline. |
 | `jenkinsfile` | `string` | jenkinsfile defines the optional raw contents of a Jenkinsfile which defines a Jenkins pipeline build. |
 | `jenkinsfilePath` | `string` | jenkinsfilePath is the optional path of the Jenkinsfile that will be used to configure the pipeline relative to the root of the context (contextDir). If both JenkinsfilePath & Jenkinsfile are both not specified, this defaults to Jenkinsfile in the root of the specified contextDir. |
+
 ### .spec.strategy.sourceStrategy {id="_specstrategysourcestrategy"}
 
 Description
@@ -598,6 +622,7 @@ Required
 | `scripts` | `string` | scripts is the location of Source scripts |
 | `volumes` | `array` | volumes is a list of input volumes that can be mounted into the builds runtime environment. Only a subset of Kubernetes Volume sources are supported by builds. More info: https://kubernetes.io/docs/concepts/storage/volumes |
 | `volumes[]` | `object` | BuildVolume describes a volume that is made available to build pods, such that it can be mounted into buildah’s runtime environment. Only a subset of Kubernetes Volume sources are supported. |
+
 ### .spec.strategy.sourceStrategy.volumes {id="_specstrategysourcestrategyvolumes"}
 
 Description
@@ -628,6 +653,7 @@ Required
 | `mounts[]` | `object` | BuildVolumeMount describes the mounting of a Volume within buildah’s runtime environment. |
 | `name` | `string` | name is a unique identifier for this BuildVolume. It must conform to the Kubernetes DNS label standard and be unique within the pod. Names that collide with those added by the build controller will result in a failed build with an error message detailing which name caused the error. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `source` | `object` | BuildVolumeSource represents the source of a volume to mount Only one of its supported types may be specified at any given time. |
+
 ### .spec.strategy.sourceStrategy.volumes[].mounts {id="_specstrategysourcestrategyvolumesmounts"}
 
 Description
@@ -653,6 +679,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `destinationPath` | `string` | destinationPath is the path within the buildah runtime environment at which the volume should be mounted. The transient mount within the build image and the backing volume will both be mounted read only. Must be an absolute path, must not contain '..' or ':', and must not collide with a destination path generated by the builder process Paths that collide with those added by the build controller will result in a failed build with an error message detailing which path caused the error. |
+
 ### .spec.strategy.sourceStrategy.volumes[].source {id="_specstrategysourcestrategyvolumessource"}
 
 Description
@@ -672,6 +699,7 @@ Required
 | `csi` | [`CSIVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-CSIVolumeSource) | csi represents ephemeral storage provided by external CSI drivers which support this capability |
 | `secret` | [`SecretVolumeSource`](/rest_api/objects/index#io-k8s-api-core-v1-SecretVolumeSource) | secret represents a Secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret |
 | `type` | `string` | type is the BuildVolumeSourceType for the volume source. Type must match the populated volume source. Valid types are: Secret, ConfigMap |
+
 ### .spec.triggeredBy {id="_spectriggeredby"}
 
 Description
@@ -698,6 +726,7 @@ Type
 | `gitlabWebHook` | `object` | GitLabWebHookCause has information about a GitLab webhook that triggered a build. |
 | `imageChangeBuild` | `object` | ImageChangeCause contains information about the image that triggered a build |
 | `message` | `string` | message is used to store a human readable message for why the build was triggered. E.g.: "Manually triggered by user", "Configuration change",etc. |
+
 ### .spec.triggeredBy[].bitbucketWebHook {id="_spectriggeredbybitbucketwebhook"}
 
 Description
@@ -711,6 +740,7 @@ Type
 | --- | --- | --- |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
+
 ### .spec.triggeredBy[].bitbucketWebHook.revision {id="_spectriggeredbybitbucketwebhookrevision"}
 
 Description
@@ -728,6 +758,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .spec.triggeredBy[].bitbucketWebHook.revision.git {id="_spectriggeredbybitbucketwebhookrevisiongit"}
 
 Description
@@ -743,6 +774,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .spec.triggeredBy[].bitbucketWebHook.revision.git.author {id="_spectriggeredbybitbucketwebhookrevisiongitauthor"}
 
 Description
@@ -756,6 +788,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.triggeredBy[].bitbucketWebHook.revision.git.committer {id="_spectriggeredbybitbucketwebhookrevisiongitcommitter"}
 
 Description
@@ -769,6 +802,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.triggeredBy[].genericWebHook {id="_spectriggeredbygenericwebhook"}
 
 Description
@@ -782,6 +816,7 @@ Type
 | --- | --- | --- |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
+
 ### .spec.triggeredBy[].genericWebHook.revision {id="_spectriggeredbygenericwebhookrevision"}
 
 Description
@@ -799,6 +834,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .spec.triggeredBy[].genericWebHook.revision.git {id="_spectriggeredbygenericwebhookrevisiongit"}
 
 Description
@@ -814,6 +850,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .spec.triggeredBy[].genericWebHook.revision.git.author {id="_spectriggeredbygenericwebhookrevisiongitauthor"}
 
 Description
@@ -827,6 +864,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.triggeredBy[].genericWebHook.revision.git.committer {id="_spectriggeredbygenericwebhookrevisiongitcommitter"}
 
 Description
@@ -840,6 +878,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.triggeredBy[].githubWebHook {id="_spectriggeredbygithubwebhook"}
 
 Description
@@ -853,6 +892,7 @@ Type
 | --- | --- | --- |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
+
 ### .spec.triggeredBy[].githubWebHook.revision {id="_spectriggeredbygithubwebhookrevision"}
 
 Description
@@ -870,6 +910,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .spec.triggeredBy[].githubWebHook.revision.git {id="_spectriggeredbygithubwebhookrevisiongit"}
 
 Description
@@ -885,6 +926,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .spec.triggeredBy[].githubWebHook.revision.git.author {id="_spectriggeredbygithubwebhookrevisiongitauthor"}
 
 Description
@@ -898,6 +940,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.triggeredBy[].githubWebHook.revision.git.committer {id="_spectriggeredbygithubwebhookrevisiongitcommitter"}
 
 Description
@@ -911,6 +954,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.triggeredBy[].gitlabWebHook {id="_spectriggeredbygitlabwebhook"}
 
 Description
@@ -924,6 +968,7 @@ Type
 | --- | --- | --- |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
+
 ### .spec.triggeredBy[].gitlabWebHook.revision {id="_spectriggeredbygitlabwebhookrevision"}
 
 Description
@@ -941,6 +986,7 @@ Required
 | --- | --- | --- |
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
+
 ### .spec.triggeredBy[].gitlabWebHook.revision.git {id="_spectriggeredbygitlabwebhookrevisiongit"}
 
 Description
@@ -956,6 +1002,7 @@ Type
 | `commit` | `string` | commit is the commit hash identifying a specific commit |
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
+
 ### .spec.triggeredBy[].gitlabWebHook.revision.git.author {id="_spectriggeredbygitlabwebhookrevisiongitauthor"}
 
 Description
@@ -969,6 +1016,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.triggeredBy[].gitlabWebHook.revision.git.committer {id="_spectriggeredbygitlabwebhookrevisiongitcommitter"}
 
 Description
@@ -982,6 +1030,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
+
 ### .spec.triggeredBy[].imageChangeBuild {id="_spectriggeredbyimagechangebuild"}
 
 Description
@@ -995,6 +1044,7 @@ Type
 | --- | --- | --- |
 | `fromRef` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | fromRef contains detailed information about an image that triggered a build. |
 | `imageID` | `string` | imageID is the ID of the image that triggered a new build. |
+
 ### .status {id="_status"}
 
 Description
@@ -1021,6 +1071,7 @@ Type
 | `stages` | `array` | stages contains details about each stage that occurs during the build including start time, duration (in milliseconds), and the steps that occured within each stage. |
 | `stages[]` | `object` | StageInfo contains details about a build stage. |
 | `startTimestamp` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | startTimestamp is a timestamp representing the server time when this Build started running in a Pod. It is represented in RFC3339 form and is in UTC. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -1052,6 +1103,7 @@ Required
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of build condition. |
+
 ### .status.output {id="_statusoutput"}
 
 Description
@@ -1064,6 +1116,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `to` | `object` | BuildStatusOutputTo describes the status of the built image with regards to image registry to which it was supposed to be pushed. |
+
 ### .status.output.to {id="_statusoutputto"}
 
 Description
@@ -1075,7 +1128,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `imageDigest` | `string` | imageDigest is the digest of the built container image. The digest uniquely identifies the image in the registry to which it was pushed. Please note that this field may not always be set even if the push completes successfully - e.g. when the registry returns no digest or returns it in a format that the builder doesn’t understand. |
+| `imageDigest` | `string` | imageDigest is the digest of the built container image. The digest uniquely identifies the image in the registry to which it was pushed.<br>Please note that this field may not always be set even if the push completes successfully - e.g. when the registry returns no digest or returns it in a format that the builder doesn’t understand. |
+
 ### .status.stages {id="_statusstages"}
 
 Description
@@ -1101,6 +1155,7 @@ Type
 | `startTime` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | startTime is a timestamp representing the server time when this Stage started. It is represented in RFC3339 form and is in UTC. |
 | `steps` | `array` | steps contains details about each step that occurs during a build stage including start time and duration in milliseconds. |
 | `steps[]` | `object` | StepInfo contains details about a build step. |
+
 ### .status.stages[].steps {id="_statusstagessteps"}
 
 Description
@@ -1133,24 +1188,24 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind Build
 *   `/apis/build.openshift.io/v1/watch/builds`
     *   `GET`: watch individual changes to a list of Build. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds`
+*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds`{minja}
     *   `DELETE`: delete collection of Build
     *   `GET`: list or watch objects of kind Build
     *   `POST`: create a Build
-*   `/apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds`
+*   `/apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds`{minja}
     *   `GET`: watch individual changes to a list of Build. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}`
+*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}`{minja}
     *   `DELETE`: delete a Build
     *   `GET`: read the specified Build
     *   `PATCH`: partially update the specified Build
     *   `PUT`: replace the specified Build
-*   `/apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds/{{ name }}`
+*   `/apis/build.openshift.io/v1/watch/namespaces/{{ namespace }}/builds/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Build. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/details`
+*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/builds/{{ name }}/details`{minja}
     *   `PUT`: replace details of the specified Build
-*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks`
+*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks`{minja}
     *   `POST`: connect POST requests to webhooks of BuildConfig
-*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks/{{ path }}`
+*   `/apis/build.openshift.io/v1/namespaces/{{ namespace }}/buildconfigs/{{ name }}/webhooks/{{ path }}`{minja}
     *   `POST`: connect POST requests to webhooks of BuildConfig
 
 ### /apis/build.openshift.io/v1/builds {id="_apisbuildopenshiftiov1builds"}

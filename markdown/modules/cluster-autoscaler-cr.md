@@ -44,7 +44,7 @@ spec:
   expanders: ["Random"]
 ```
 
-***Cluster autoscaler parameters***
+**Cluster autoscaler parameters**
 
 <table>
 <thead>
@@ -80,7 +80,7 @@ spec:
 </tr>
 <tr>
   <td><code>gpus.type</code></td>
-  <td>Optional: To configure the cluster autoscaler to deploy GPU-enabled nodes, specify a <code>type</code> value.</td>
+  <td>Optional: To configure the cluster autoscaler to deploy GPU-enabled nodes, specify a <code>type</code> value. This value must match the value of the <code>spec.template.spec.metadata.labels[cluster-api/accelerator]</code> label in the machine set that manages the GPU-enabled nodes of that type. For example, this value might be <code>nvidia-t4</code> to represent Nvidia T4 GPUs, or <code>nvidia-a10g</code> for A10G GPUs. For more information, see "Labeling GPU machine sets for the cluster autoscaler".</td>
 </tr>
 <tr>
   <td><code>gpus.min</code></td>
@@ -136,7 +136,7 @@ spec:
 </tr>
 <tr>
   <td><code>expanders</code></td>
-  <td>Optional: Specify any expanders that you want the cluster autoscaler to use.The following values are valid:<br><br><ul><li><code>LeastWaste</code>: Selects the machine set that minimizes the idle CPU after scaling.</li></ul>If multiple machine sets would yield the same amount of idle CPU, the selection minimizes unused memory.<ul><li><code>Priority</code>: Selects the machine set with the highest user-assigned priority.</li></ul>To use this expander, you must create a config map that defines the priority of your machine sets.For more information, see "Configuring a priority expander for the cluster autoscaler."<ul><li><code>Random</code>: (Default) Selects the machine set randomly.</li></ul>If you do not specify a value, the default value of <code>Random</code> is used.<br><br>You can specify multiple expanders by using the <code>[LeastWaste, Priority]</code> format.The cluster autoscaler applies each expander according to the specified order.<br><br>In the <code>[LeastWaste, Priority]</code> example, the cluster autoscaler first evaluates according to the <code>LeastWaste</code> criteria.If more than one machine set satisfies the <code>LeastWaste</code> criteria equally well, the cluster autoscaler then evaluates according to the <code>Priority</code> criteria.If more than one machine set satisfies all of the specified expanders equally well, the cluster autoscaler selects one to use at random.</td>
+  <td>Optional: Specify any expanders that you want the cluster autoscaler to use. The following values are valid:<br><br><ul><li><code>LeastWaste</code>: Selects the machine set that minimizes the idle CPU after scaling.</li></ul>If multiple machine sets would yield the same amount of idle CPU, the selection minimizes unused memory.<ul><li><code>Priority</code>: Selects the machine set with the highest user-assigned priority.</li></ul>To use this expander, you must create a config map that defines the priority of your machine sets. For more information, see "Configuring a priority expander for the cluster autoscaler."<ul><li><code>Random</code>: (Default) Selects the machine set randomly.</li></ul>If you do not specify a value, the default value of <code>Random</code> is used.<br><br>You can specify multiple expanders by using the <code>[LeastWaste, Priority]</code> format. The cluster autoscaler applies each expander according to the specified order.<br><br>In the <code>[LeastWaste, Priority]</code> example, the cluster autoscaler first evaluates according to the <code>LeastWaste</code> criteria. If more than one machine set satisfies the <code>LeastWaste</code> criteria equally well, the cluster autoscaler then evaluates according to the <code>Priority</code> criteria. If more than one machine set satisfies all of the specified expanders equally well, the cluster autoscaler selects one to use at random.</td>
 </tr>
 </tbody>
 </table>

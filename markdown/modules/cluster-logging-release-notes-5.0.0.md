@@ -71,7 +71,6 @@ In OpenShift Logging 5.0 and later, the Cluster Logging Operator is called Red H
 
 :::
 
-
 *   Previously, the Fluentd collector pod went into a crash loop when the `ClusterLogForwarder` had an incorrectly-configured secret. The current release fixes this issue. Now, the `ClusterLogForwarder` validates the secrets and reports any errors in its status field. As a result, it does not cause the Fluentd collector pod to crash. ([**BZ#1888943**](https://bugzilla.redhat.com/show_bug.cgi?id=1888943))
 *   Previously, if you updated the Kibana resource configuration in the `clusterlogging` instance to `resource{}`, the resulting nil map caused a panic and changed the status of the OpenShift Elasticsearch Operator to `CrashLoopBackOff`. The current release fixes this issue by initializing the map. ([**BZ#1889573**](https://bugzilla.redhat.com/show_bug.cgi?id=1889573))
 *   Previously, the fluentd collector pod went into a crash loop when the ClusterLogForwarder had multiple outputs using the same secret. The current release fixes this issue. Now, multiple outputs can share a secret. ([**1890072**](https://bugzilla.redhat.com/show_bug.cgi?id=1890072))

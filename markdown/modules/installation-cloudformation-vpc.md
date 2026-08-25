@@ -4,7 +4,6 @@
 The VPC `CloudFormation` template creates the {{ aws_first }} networking infrastructure, including the public and private subnets, that your {{ product_title }} cluster requires. {._abstract}
 
 ```yaml title="CloudFormation template for the VPC"
-```yaml
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for Best Practice VPC with 1-3 AZs
 
@@ -316,5 +315,4 @@ Outputs:
           ]
         ]
       ]
-```
 ```

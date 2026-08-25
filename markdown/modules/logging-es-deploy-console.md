@@ -34,7 +34,7 @@ requires its own storage volume.
 To install the OpenShift Elasticsearch Operator and Red Hat OpenShift Logging Operator using the {{ product_title }} web console:
 
 1.  Install the OpenShift Elasticsearch Operator:
-    1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+    1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
     1.  Choose  **OpenShift Elasticsearch Operator** from the list of available Operators, and click **Install**.
     1.  Ensure that the **All namespaces on the cluster** is selected under **Installation Mode**.
     1.  Ensure that **openshift-operators-redhat** is selected under **Installed Namespace**.
@@ -47,15 +47,15 @@ To install the OpenShift Elasticsearch Operator and Red Hat OpenShift Logging Op
 
         This option sets the `openshift.io/cluster-monitoring: "true"` label in the Namespace object. You must select this option to ensure that cluster monitoring scrapes the `openshift-operators-redhat` namespace.
     1.  Select **stable-5.y** as the **Update Channel**.
-{% include "./snippets/logging-stable-updates-snip.md" %}
+        {% include "./snippets/logging-stable-updates-snip.md" %}
     1.  Select an **Approval Strategy**.
         *   The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.
         *   The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.
     1.  Click **Install**.
-    1.  Verify that the OpenShift Elasticsearch Operator installed by switching to the **Ecosystem** -> **Installed Operators** page.
+    1.  Verify that the OpenShift Elasticsearch Operator installed by switching to the **Ecosystem** → **Installed Operators** page.
     1.  Ensure that **OpenShift Elasticsearch Operator** is listed in all projects with a **Status** of **Succeeded**.
 1.  Install the Red Hat OpenShift Logging Operator:
-    1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+    1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
     1.  Choose  **Red Hat OpenShift Logging** from the list of available Operators, and click **Install**.
     1.  Ensure that the **A specific namespace on the cluster** is selected under **Installation Mode**.
     1.  Ensure that **Operator recommended namespace** is **openshift-logging** under **Installed Namespace**.
@@ -69,16 +69,16 @@ To install the OpenShift Elasticsearch Operator and Red Hat OpenShift Logging Op
         *   The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.
         *   The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.
     1.  Click **Install**.
-    1.  Verify that the Red Hat OpenShift Logging Operator installed by switching to the **Ecosystem** -> **Installed Operators** page.
+    1.  Verify that the Red Hat OpenShift Logging Operator installed by switching to the **Ecosystem** → **Installed Operators** page.
     1.  Ensure that **Red Hat OpenShift Logging** is listed in the **openshift-logging** project with a **Status** of **Succeeded**.
 
         If the Operator does not appear as installed, to troubleshoot further:
-        *   Switch to the **Ecosystem** -> **Installed Operators** page and inspect
+        *   Switch to the **Ecosystem** → **Installed Operators** page and inspect
         the **Status** column for any errors or failures.
         *   Switch to the **Workloads** → **Pods** page and check the logs in any pods in the
         `openshift-logging` project that are reporting issues.
 1.  Create an OpenShift Logging instance:
-    1.  Switch to the **Administration** -> **Custom Resource Definitions** page.
+    1.  Switch to the **Administration** → **Custom Resource Definitions** page.
     1.  On the **Custom Resource Definitions** page, click **ClusterLogging**.
     1.  On the **Custom Resource Definition details** page, select **View Instances** from the **Actions** menu.
     1.  On the **ClusterLoggings** page, click **Create ClusterLogging**.
@@ -147,14 +147,14 @@ To install the OpenShift Elasticsearch Operator and Red Hat OpenShift Logging Op
         1.  Settings for configuring Kibana. Using the CR, you can scale Kibana for redundancy and configure the CPU and memory for your Kibana nodes. For more information, see **Configuring the log visualizer**.
         1.  Settings for configuring Fluentd. Using the CR, you can configure Fluentd CPU and memory limits. For more information, see "Configuring Fluentd".
 
-            :::note
+        :::note
 
-            +
-            
-            :::
+        +
+        
+        :::
 
 
-            The maximum number of master nodes is three. If you specify a `nodeCount` greater than `3`, {{ product_title }} creates three Elasticsearch nodes that are Master-eligible nodes, with the master, client, and data roles. The additional Elasticsearch nodes are created as Data-only nodes, using client and data roles. Master nodes perform cluster-wide actions such as creating or deleting an index, shard allocation, and tracking nodes. Data nodes hold the shards and perform data-related operations such as CRUD, search, and aggregations. Data-related operations are I/O-, memory-, and CPU-intensive. It is important to monitor these resources and to add more Data nodes if the current nodes are overloaded.
+        The maximum number of master nodes is three. If you specify a `nodeCount` greater than `3`, {{ product_title }} creates three Elasticsearch nodes that are Master-eligible nodes, with the master, client, and data roles. The additional Elasticsearch nodes are created as Data-only nodes, using client and data roles. Master nodes perform cluster-wide actions such as creating or deleting an index, shard allocation, and tracking nodes. Data nodes hold the shards and perform data-related operations such as CRUD, search, and aggregations. Data-related operations are I/O-, memory-, and CPU-intensive. It is important to monitor these resources and to add more Data nodes if the current nodes are overloaded.
 
 For example, if `nodeCount=4`, the following nodes are created:
 
@@ -172,7 +172,7 @@ elasticsearch-cdm-ftuhduuw-3-84b5ff7ff8-gqnm2   2/2    Running 0 2m4s
 
 1.  Click **Create**. This creates the {{ logging }} components, the `Elasticsearch` custom resource and components, and the Kibana interface.
     1.  Verify the install:
-1.  Switch to the **Workloads** -> **Pods** page.
+1.  Switch to the **Workloads** → **Pods** page.
 1.  Select the **openshift-logging** project.
 
     You should see several pods for OpenShift Logging, Elasticsearch, your collector, and Kibana similar to the following list:

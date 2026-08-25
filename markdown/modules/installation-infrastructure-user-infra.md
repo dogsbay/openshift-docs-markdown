@@ -43,6 +43,7 @@ After preparation, your cluster infrastructure must meet the requirements outlin
 
 {% endif %}
 {% if not ibm_z %}
+
 1.  If you are using DHCP to provide the IP networking configuration to your cluster nodes, configure your DHCP service.
     1.  Add persistent IP addresses for the nodes to your DHCP server configuration. In your configuration, match the MAC address of the relevant network interface to the intended IP address for each node.
     1.  When you use DHCP to configure IP addressing for the cluster machines, the machines also obtain the DNS server information through DHCP. Define the persistent DNS server address that is used by the cluster nodes through your DHCP server configuration.
@@ -65,6 +66,7 @@ After preparation, your cluster infrastructure must meet the requirements outlin
 {% if ibm_z_kvm %}
 1.  Choose to perform either a fast track installation of {{ op_system_first }} or a full installation of {{ op_system_first }}. For the full installation, you must set up an HTTP or HTTPS server to provide Ignition files and install images to the cluster nodes. For the fast track installation an HTTP or HTTPS server is not required, however, a DHCP server is required. See sections “Fast-track installation: Creating {{ op_system_first }} machines" and “Full installation: Creating {{ op_system_first }} machines".
 {% endif %}
+
 1.  Ensure that your network infrastructure provides the required network connectivity between the cluster components. See the _Networking requirements for user-provisioned infrastructure_ section for details about the requirements.
 1.  Configure your firewall to enable the ports required for the {{ product_title }} cluster components to communicate. See _Networking requirements for user-provisioned infrastructure_ section for details about the ports that are required.
 
@@ -98,20 +100,20 @@ After preparation, your cluster infrastructure must meet the requirements outlin
 
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}

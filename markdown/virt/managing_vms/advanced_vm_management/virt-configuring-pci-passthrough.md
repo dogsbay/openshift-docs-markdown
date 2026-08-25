@@ -3,11 +3,11 @@ title: Configuring PCI passthrough
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring PCI passthrough {id="virt-configuring-pci-passthrough"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring PCI passthrough {id="virt-configuring-pci-passthrough"}
 {%- set context = "virt-configuring-pci-passthrough" %}
 
-The Peripheral Component Interconnect (PCI) passthrough feature enables you to access and manage hardware devices from a virtual machine (VM). When PCI passthrough is configured, the PCI devices function as if they were physically attached to the guest operating system.
+The Peripheral Component Interconnect (PCI) passthrough feature enables you to access and manage hardware devices from a virtual machine (VM). When PCI passthrough is configured, the PCI devices function as if they were physically attached to the guest operating system. {._abstract}
 
 Cluster administrators can expose and manage host devices that are permitted to be used in the cluster by using the `oc` command-line interface (CLI).
 
@@ -69,7 +69,7 @@ After the PCI devices have been added to the cluster, you can assign them to vir
 
 {% leveloffset +2 %}{% include "./modules/virt-assigning-pci-device-virtual-machine.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_configuring-pci-passthrough"}
+## Additional resources {id="additional-resources_configuring-pci-passthrough" ._additional-resources}
 *   [Enabling Intel VT-X and AMD-V Virtualization Hardware Extensions in BIOS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-troubleshooting-enabling_intel_vt_x_and_amd_v_virtualization_hardware_extensions_in_bios)
 *   [Managing file permissions](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_managing-file-permissions_configuring-basic-system-settings)
 *   [Machine Config Overview](/machine_configuration/index#machine-config-overview)

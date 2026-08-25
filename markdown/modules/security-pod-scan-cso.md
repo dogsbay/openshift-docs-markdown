@@ -12,7 +12,7 @@ You can install the {{ rhq_cso }} from the {{ product_title }} web console Opera
 **Procedure**
 
 1.  You can install the {{ rhq_cso }} by using the {{ product_title }} web console:
-    1.  On the web console, navigate to **Ecosystem** -> **Software Catalog** and select **Security**.
+    1.  On the web console, navigate to **Ecosystem** → **Software Catalog** and select **Security**.
     1.  Select the **{{ rhq_cso }}** Operator, and then select **Install**.
     1.  On the **{{ rhq_cso }}** page, select **Install**. **Update channel**, **Installation mode**, and **Update approval** are selected automatically. The **Installed Namespace** field defaults to `openshift-operators`. You can adjust these settings as needed.
     1.  Select **Install**. The **{{ rhq_cso }}** is displayed after a few moments on the **Installed Operators** page.

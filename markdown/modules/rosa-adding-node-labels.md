@@ -25,7 +25,7 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
     ```
 
     **Example output**
-{%- if openshift_rosa %}
+{% if openshift_rosa %}
     ```terminal
     ID           AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS    TAINTS    AVAILABILITY ZONES    SPOT INSTANCES
     Default      No           2         m7i.xlarge                          us-east-1a            N/A
@@ -64,7 +64,7 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
     ```
 
     **Example output**
-{%- if openshift_rosa %}
+{% if openshift_rosa %}
     ```terminal
     ID:                         db-nodes-mp
     Cluster ID:                 <ID_of_cluster>
@@ -107,10 +107,10 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
      - Max unavailable:            0
     Message:
     ```
-{%- endif %}
-1.  Verify that the labels are included for your machine pool in the output.
 {% endif %}
-{% if openshift_dedicated %}
+1.  Verify that the labels are included for your machine pool in the output.
+{%- endif %}
+{%- if openshift_dedicated %}
 1.  Navigate to {{ cluster_manager_url }} and select your cluster.
 1.  Under the **Machine pools** tab, click the Options menu {{ kebab }} for the machine pool that you want to add a label to.
 1.  Select **Edit labels**.
@@ -123,4 +123,4 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
 
 1.  Under the **Machine pools** tab, select **>** next to your machine pool to expand the view.
 1.  Verify that your labels are listed under **Labels** in the expanded view.
-{% endif %}
+{%- endif %}

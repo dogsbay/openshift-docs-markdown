@@ -7,11 +7,11 @@ Resolve the most common {{ cert_manager_operator }} upstream authority failures 
 
 | Symptom or error | Likely cause | Section |
 | --- | --- | --- |
-| `certificaterequests... is forbidden` | Missing permissions or wrong `namespace` | [#!cert-manager-plugin-permission-issuer_{{ context }}](#cert-manager-plugin-permission-issuer_{{ context }}) |
-| `issuer ... not found` | Wrong `issuerName`, `issuerKind`, or issuer namespace | [#!cert-manager-plugin-permission-issuer_{{ context }}](#cert-manager-plugin-permission-issuer_{{ context }}) |
-| Issuer not `READY` | Issuer misconfiguration | [#!cert-manager-plugin-permission-issuer_{{ context }}](#cert-manager-plugin-permission-issuer_{{ context }}) |
-| `CertificateRequest` not approved or denied | Approval policy or approver configuration | [#!cert-manager-plugin-certificaterequest_{{ context }}](#cert-manager-plugin-certificaterequest_{{ context }}) |
-| UpstreamAuthority fails to load in SPIRE Server logs | Invalid or incomplete `spec.upstreamAuthority.certManager` | [#!cert-manager-plugin-certificaterequest_{{ context }}](#cert-manager-plugin-certificaterequest_{{ context }}) |
+| `certificaterequests... is forbidden` | Missing permissions or wrong `namespace` | [cert-manager-plugin-permission-issuer_{{ context }}](#cert-manager-plugin-permission-issuer_{{ context }}) |
+| `issuer ... not found` | Wrong `issuerName`, `issuerKind`, or issuer namespace | [cert-manager-plugin-permission-issuer_{{ context }}](#cert-manager-plugin-permission-issuer_{{ context }}) |
+| Issuer not `READY` | Issuer misconfiguration | [cert-manager-plugin-permission-issuer_{{ context }}](#cert-manager-plugin-permission-issuer_{{ context }}) |
+| `CertificateRequest` not approved or denied | Approval policy or approver configuration | [cert-manager-plugin-certificaterequest_{{ context }}](#cert-manager-plugin-certificaterequest_{{ context }}) |
+| UpstreamAuthority fails to load in SPIRE Server logs | Invalid or incomplete `spec.upstreamAuthority.certManager` | [cert-manager-plugin-certificaterequest_{{ context }}](#cert-manager-plugin-certificaterequest_{{ context }}) |
 
 ## Permission and issuer errors {id="cert-manager-plugin-permission-issuer_{{ context }}"}
 

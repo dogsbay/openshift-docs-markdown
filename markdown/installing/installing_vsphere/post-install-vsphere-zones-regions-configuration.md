@@ -4,10 +4,10 @@ title: Multiple regions and zones configuration for a cluster on VMware vSphere
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "post-install-vsphere-zones-regions-configuration" %}
-# Multiple regions and zones configuration for a cluster on VMware vSphere {id="post-install-vsphere-zones-regions-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Multiple regions and zones configuration for a cluster on VMware vSphere {id="post-install-vsphere-zones-regions-configuration"}
 
-As an administrator, you can specify multiple regions and zones for your {{ product_title }} cluster that runs on a VMware vSphere instance. This configuration reduces the risk of a hardware failure or network outage causing your cluster to fail.
+As an administrator, you can specify multiple regions and zones for your {{ product_title }} cluster that runs on a VMware vSphere instance. This configuration reduces the risk of a hardware failure or network outage causing your cluster to fail. {._abstract}
 
 A failure domain configuration lists parameters that create a topology. The following list states some of these parameters:
 
@@ -32,12 +32,14 @@ The cloud provider adds `topology.kubernetes.io/zone` and `topology.kubernetes.i
 {% leveloffset +1 %}{% include "./modules/specifying-regions-zones-infrastructure-vsphere.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Parameters for the cluster-wide infrastructure CRD](/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#references-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
 
 {% leveloffset +1 %}{% include "./modules/vsphere-enabling-multiple-layer2-networks.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing a cluster on vSphere with network customizations](/installing/installing_vsphere/upi/installing-vsphere-network-customizations#installing-vsphere-network-customizations)
 *   [Creating a compute machine set](/machine_management/creating_machinesets/creating-machineset-vsphere#machineset-creating_creating-machineset-vsphere)
@@ -45,6 +47,7 @@ The cloud provider adds `topology.kubernetes.io/zone` and `topology.kubernetes.i
 {% leveloffset +1 %}{% include "./modules/references-regions-zones-infrastructure-vsphere.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Specifying multiple regions and zones for your cluster on vSphere](/installing/installing_vsphere/post-install-vsphere-zones-regions-configuration#specifying-regions-zones-infrastructure-vsphere_post-install-vsphere-zones-regions-configuration)
 

@@ -3,11 +3,11 @@ title: Installing a cluster with the support for configuring multi-architecture 
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster with the support for configuring multi-architecture compute machines {id="installing-gcp-multiarch-support"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster with the support for configuring multi-architecture compute machines {id="installing-gcp-multiarch-support"}
 {%- set context = "installing-gcp-multiarch-support" %}
 
-You can install an {{ product_title }} cluster on {{ gcp_first }} with multi-architecture support to run workloads on compute machines with different CPU architectures.
+You can install an {{ product_title }} cluster on {{ gcp_first }} with multi-architecture support to run workloads on compute machines with different CPU architectures. {._abstract}
 
 
 :::note
@@ -26,7 +26,7 @@ You can install a {{ gcp_first }} cluster with the support for configuring multi
 
 {% leveloffset +1 %}{% include "./modules/installing-a-cluster-with-multiarch-support.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Deploying the cluster](/installing/installing_gcp/installing-gcp-customizations#installation-launching-installer_installing-gcp-customizations)
 *   [Scheduling workloads on clusters with multi-architecture compute machines](/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines)

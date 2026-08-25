@@ -19,11 +19,11 @@ Triggers can be added to and removed from build configurations with `oc set trig
     ```
 
 
-:::note
+    :::note
 
-When a webhook trigger already exists, adding it again regenerates the webhook secret.
-
-:::
+    When a webhook trigger already exists, adding it again regenerates the webhook secret.
+    
+    :::
 
 
 For more information, consult the help documentation by entering the following command:

@@ -10,14 +10,14 @@ You can add bare-metal hosts to the cluster by using the web console. {._abstrac
 
 **Procedure**
 
-1.  In the web console, navigate to **Compute** -> **Bare Metal Hosts**.
-1.  Select **Add Host** -> **New with Dialog**.
+1.  In the web console, navigate to **Compute** → **Bare Metal Hosts**.
+1.  Select **Add Host** → **New with Dialog**.
 1.  Specify a unique name for the new bare-metal host.
 1.  Set the **Boot MAC address**.
 1.  Set the **Baseboard Management Console (BMC) Address**.
 1.  Enter the user credentials for the baseboard management controller (BMC) of the host.
 1.  Select to power on the host after creation, and select **Create**.
-1.  Scale up the number of replicas to match the number of available bare metal hosts. Navigate to **Compute** -> **MachineSets**, and increase the number of machine replicas in the cluster by selecting **Edit Machine count** from the **Actions** drop-down menu.
+1.  Scale up the number of replicas to match the number of available bare metal hosts. Navigate to **Compute** → **MachineSets**, and increase the number of machine replicas in the cluster by selecting **Edit Machine count** from the **Actions** drop-down menu.
 
     :::note
 

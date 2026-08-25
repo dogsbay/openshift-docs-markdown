@@ -18,7 +18,7 @@ You can configure how virtual machine workloads are updated during cluster upgra
 **Procedure**
 
 1.  To open the `HyperConverged` CR in your default editor, run the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Edit the `workloadUpdateStrategy` stanza of the `HyperConverged` CR. For example:

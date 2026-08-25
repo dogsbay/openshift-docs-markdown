@@ -19,7 +19,7 @@ The **Migrate** action is visible to all users but only cluster administrators c
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Take either of the following steps:
     *   Click the Options menu {{ kebab }} beside the VM you want to migrate, hover over the **Migrate** option, and select **Compute**.
     *   Open the **VM details** page of the VM you want to migrate, click the **Actions** menu, hover over the **Migrate** option, and select **Compute**.

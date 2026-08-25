@@ -4,10 +4,10 @@ title: Managing workloads on multi-architecture clusters by using the Multiarch 
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "multiarch-tuning-operator" %}
-# Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator {id="multiarch-tuning-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator {id="multiarch-tuning-operator"}
 
-The Multiarch Tuning Operator optimizes workload management within multi-architecture clusters and in single-architecture clusters transitioning to multi-architecture environments.
+The Multiarch Tuning Operator optimizes workload management within multi-architecture clusters and in single-architecture clusters transitioning to multi-architecture environments. {._abstract}
 
 Architecture-aware workload scheduling allows the scheduler to place pods onto nodes that match the architecture of the pod images.
 
@@ -41,6 +41,7 @@ Note the following operand behaviors:
 {% leveloffset +1 %}{% include "./modules/multi-arch-installing-using-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing from the software catalog by using the CLI](/operators/user/olm-installing-operators-in-namespace#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace)
 

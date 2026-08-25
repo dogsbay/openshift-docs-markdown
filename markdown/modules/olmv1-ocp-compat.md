@@ -17,7 +17,7 @@ metadata:
     "olm.properties": '[{"type": "olm.maxOpenShiftVersion", "value": "<cluster_version>"}]'
 ```
 
-Replace `<cluster_version>` with the latest minor version of {{ product_title }} (4.y) that an Operator is compatible with. For example, setting `value` to `{{ product_version }}` prevents cluster updates to minor versions later than {{ product_version }} when this bundle is installed on a cluster.
+Replace `<cluster_version>` with the latest minor version of {{ product_title }} (4.y) that an Operator is compatible with. For example, setting `value` to `{{ product_version }}`{minja} prevents cluster updates to minor versions later than {{ product_version }} when this bundle is installed on a cluster.
 
 If the `olm.maxOpenShiftVersion` field is omitted, cluster updates are not blocked by this Operator.
 
@@ -26,6 +26,6 @@ If the `olm.maxOpenShiftVersion` field is omitted, cluster updates are not block
 
 When determining a cluster’s next minor version (4.y+1), {{ olmv1 }} only considers major and minor versions (x and y) for comparisons. It ignores any _z-stream_ versions (4.y.z), also known as patch releases, or pre-release versions.
 
-For example, if the cluster’s current version is `{{ product_version }}.0`, the next minor version is `{{ ocp_nplus1 }}`. If the current version is `{{ product_version }}.0-rc1`, the next minor version is still `{{ ocp_nplus1 }}`.
+For example, if the cluster’s current version is `{{ product_version }}.0`{minja}, the next minor version is `{{ ocp_nplus1 }}`{minja}. If the current version is `{{ product_version }}.0-rc1`{minja}, the next minor version is still `{{ ocp_nplus1 }}`{minja}.
 
 :::

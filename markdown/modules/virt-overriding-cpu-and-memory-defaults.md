@@ -10,7 +10,7 @@ Modify the default settings for CPU and memory requests and limits for your use 
 **Procedure**
 
 1.  Edit the `HyperConverged` CR by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Add the `spec.resourceRequirements.storageWorkloads` stanza to the CR, setting the values based on your use case. For example:

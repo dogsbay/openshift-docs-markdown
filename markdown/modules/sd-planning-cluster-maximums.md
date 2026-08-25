@@ -4,8 +4,8 @@
 Review the tested object maximums when planning
 {%- if openshift_rosa %}
 a {{ product_title }}
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 an {{ product_title }}
 {%- endif %}
 cluster installation. Adhering to these supported limits helps you successfully architect and deploy a scalable, reliable environment. {._abstract}
@@ -16,15 +16,16 @@ These guidelines are based on a cluster of 249 compute (also known as worker) no
 
 | Maximum type | 4.x tested maximum |
 | --- | --- |
-| Number of pods ^[1]^ | 25,000 |
+| Number of pods <sup>[1]</sup> | 25,000 |
 | Number of pods per node | 250 |
 | Number of pods per core | There is no default value |
-| Number of namespaces ^[2]^ | 5,000 |
-| Number of pods per namespace ^[3]^ | 25,000 |
-| Number of services ^[4]^ | 10,000 |
+| Number of namespaces <sup>[2]</sup> | 5,000 |
+| Number of pods per namespace <sup>[3]</sup> | 25,000 |
+| Number of services <sup>[4]</sup> | 10,000 |
 | Number of services per namespace | 5,000 |
 | Number of back ends per service | 5,000 |
-| Number of deployments per namespace ^[3]^ | 2,000 |
+| Number of deployments per namespace <sup>[3]</sup> | 2,000 |
+
 1.  The pod count displayed here is the number of test pods. The actual number of pods depends on the memory, CPU, and storage requirements of the application.
 1.  When there are a large number of active projects, etcd can suffer from poor performance if the keyspace grows excessively large and exceeds the space quota. Periodic maintenance of etcd, including defragmentation, is highly recommended to make etcd storage available.
 1.  There are several control loops in the system that must iterate over all objects in a given namespace as a reaction to some changes in state. Having a large number of objects of a type, in a single namespace, can make those loops expensive and slow down processing the state changes. The limit assumes that the system has enough CPU, memory, and disk to satisfy the application requirements.

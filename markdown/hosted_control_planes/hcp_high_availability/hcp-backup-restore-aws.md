@@ -7,7 +7,7 @@ title: Backing up and restoring etcd on the management cluster
 # Backing up and restoring etcd on the management cluster {id="hcp-backup-restore-aws"}
 {%- set context = "hcp-backup-restore-aws" %}
 
-You can back up and restore etcd on the management cluster to fix failures.
+You can back up and restore etcd on the management cluster to fix failures. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/backup-etcd-hosted-cluster.md" %}{% endleveloffset %}
 

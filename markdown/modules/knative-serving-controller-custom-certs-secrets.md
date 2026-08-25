@@ -12,6 +12,7 @@ If the `controller-custom-certs` spec uses the `Secret` type, the secret is moun
 {% if openshift_dedicated or openshift_rosa %}
 *   You have cluster or dedicated administrator permissions on {{ product_title }}.
 {% endif %}
+
 *   You have installed the {{ ServerlessOperatorName }} and Knative Serving on your cluster.
 
 **Procedure**

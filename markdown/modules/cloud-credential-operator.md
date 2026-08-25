@@ -13,7 +13,7 @@
 # Cloud credential capability {id="_cloud_credential_capability"}
 {% endif %}
 
-{%- if cluster_caps %}
+{% if cluster_caps %}
 The Cloud Credential Operator provides features for the `CloudCredential` capability. {._abstract}
 
 
@@ -43,14 +43,14 @@ CRDs
         *   CR: `CredentialsRequest`
         *   Validation: Yes
 
-    Configuration objects
+Configuration objects
 
 :   No configuration required.
 {% endif %}
 
 {% if context == "operator-reference" %}
-{%- set operators = false -%}
+{%- set operators = "" -%}
 {% endif %}
 {% if context == "cluster-capabilities" %}
-{%- set cluster_caps = false -%}
+{%- set cluster_caps = "" -%}
 {% endif %}

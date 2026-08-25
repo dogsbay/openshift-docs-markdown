@@ -37,11 +37,11 @@ to keep a remote shell open persistently.
     ```
 
 
-:::note
+    :::note
 
-For help with usage, options, and to see examples:
-```
-$ oc rsh -h
-```
-
-:::
+    For help with usage, options, and to see examples:
+    ```
+    $ oc rsh -h
+    ```
+    
+    :::

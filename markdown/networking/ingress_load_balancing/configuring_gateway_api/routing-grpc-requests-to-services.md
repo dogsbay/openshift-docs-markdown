@@ -3,11 +3,11 @@ title: Route gRPC requests to services
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Route gRPC requests to services {id="routing-grpc-requests-to-services"}
 {% include "./_attributes/common-attributes.md" %}
+# Route gRPC requests to services {id="routing-grpc-requests-to-services"}
 {%- set context = "routing-grpc-requests-to-services" %}
 
-When you expose your gRPC APIs through a gateway, you must configure a `GRPCRoute` resource to accurately direct incoming gRPC requests from a Gateway listener to an API object. A `GRPCRoute` specifies the exact routing behavior for these requests by evaluating a set of defined rules.
+When you expose your gRPC APIs through a gateway, you must configure a `GRPCRoute` resource to accurately direct incoming gRPC requests from a Gateway listener to an API object. A `GRPCRoute` specifies the exact routing behavior for these requests by evaluating a set of defined rules. {._abstract}
 
 Within each `GRPCRoute` rule, you can establish the following routing behaviors:
 

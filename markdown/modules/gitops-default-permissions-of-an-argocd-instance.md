@@ -23,16 +23,16 @@ By default Argo CD instance has the following permissions:
     ```
 
 
-:::note
+    :::note
 
-*   You can edit the cluster roles used by the `argocd-server` and `argocd-application-controller` components where Argo CD is running such that the `write` privileges are limited to only the namespaces and resources that you wish Argo CD to manage.
+    *   You can edit the cluster roles used by the `argocd-server` and `argocd-application-controller` components where Argo CD is running such that the `write` privileges are limited to only the namespaces and resources that you wish Argo CD to manage.
 
-```terminal
-$ oc edit clusterrole argocd-server
-```
+    ```terminal
+    $ oc edit clusterrole argocd-server
+    ```
 
-```terminal
-$ oc edit clusterrole argocd-application-controller
-```
-
-:::
+    ```terminal
+    $ oc edit clusterrole argocd-application-controller
+    ```
+    
+    :::

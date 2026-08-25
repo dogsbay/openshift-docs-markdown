@@ -18,7 +18,7 @@ Projects starting with `openshift-` and `kube-` are considered critical by {{ pr
 **Procedure**
 
 *   If you are using the **Administrator** perspective:
-    1.  Navigate to **Home** -> **Projects**.
+    1.  Navigate to **Home** → **Projects**.
     1.  Click **Create Project**:
         1.  In the **Create Project** dialog box, enter a unique name, such as `myproject`, in the **Name** field.
         1.  Optional: Add the **Display name** and **Description** details for the project.
@@ -29,6 +29,7 @@ Projects starting with `openshift-` and `kube-` are considered critical by {{ pr
     1.  Optional: If you have adequate permissions for a project, you can use the **Project Access** tab to provide or revoke `admin`, `edit`, and `view` privileges for the project.
 *   If you are using the **Developer** perspective:
     1.  Click the **Project** menu and select **Create Project**:
+
         **Figure 1. Create project**
 
         ![Web console image showing the Create project option](/_assets/images/odc_create_project.png)

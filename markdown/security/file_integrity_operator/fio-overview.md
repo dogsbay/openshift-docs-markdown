@@ -3,11 +3,11 @@ title: File Integrity Operator overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# File Integrity Operator overview {id="fio-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# File Integrity Operator overview {id="fio-overview"}
 {%- set context = "fio-overview" %}
 
-The File Integrity Operator continually runs file integrity checks on the cluster nodes. It deploys a DaemonSet that initializes and runs privileged Advanced Intrusion Detection Environment (AIDE) containers on each node, providing a log of files that have been modified since the initial run of the DaemonSet pods.
+The File Integrity Operator continually runs file integrity checks on the cluster nodes. It deploys a DaemonSet that initializes and runs privileged Advanced Intrusion Detection Environment (AIDE) containers on each node, providing a log of files that have been modified since the initial run of the DaemonSet pods. {._abstract}
 
 
 :::note
@@ -17,7 +17,7 @@ File Integrity Operator is not supported on HCP clusters.
 :::
 
 
-## Additional resources {id="fio-overview_additional-resources"}
+## Additional resources {id="fio-overview_additional-resources" ._additional-resources}
 
 *   [File Integrity Operator release notes](/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes)
 *   [File Integrity Operator support](/security/file_integrity_operator/fio-support#fio-support)

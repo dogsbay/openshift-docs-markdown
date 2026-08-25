@@ -9,7 +9,7 @@ You can configure different alert receivers for default platform alerts and user
 You can achieve this by using the `openshift_io_alert_source="platform"` label that is added by the {{ cmo_full }} to all platform alerts:
 
 *   Use the `openshift_io_alert_source="platform"` matcher to match default platform alerts.
-*   Use the `openshift_io_alert_source!="platform"` or ’openshift_io_alert_source=""'` matcher to match user-defined alerts.
+*   Use the `openshift_io_alert_source!="platform"` or `'openshift_io_alert_source=""'` matcher to match user-defined alerts.
 
 
 :::note

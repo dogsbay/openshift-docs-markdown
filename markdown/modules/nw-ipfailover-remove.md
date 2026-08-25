@@ -49,7 +49,7 @@ When IP failover is initially configured, the worker nodes in the cluster are mo
     ```
 1.  Run a job that removes the IP tables rule that was added when IP failover was initially configured:
     1.  Create a file such as `remove-ipfailover-job.yaml` with contents that are similar to the following example:
-        ```yaml
+        ```yaml {minja}
         apiVersion: batch/v1
         kind: Job
         metadata:

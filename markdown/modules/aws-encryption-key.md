@@ -41,7 +41,7 @@ Using your AWS account and the `aws` CLI tool, you can create an AWS KMS encrypt
 
     :::note
 
-    If you use the default prefix, you need to modify the following code sample where you see `{{ PREFIX }}-` to `ManagedOpenShift-`.
+    If you use the default prefix, you need to modify the following code sample where you see `{{ PREFIX }}-`{minja} to `ManagedOpenShift-`.
     
     :::
 

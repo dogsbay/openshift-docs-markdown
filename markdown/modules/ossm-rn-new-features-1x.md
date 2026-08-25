@@ -172,7 +172,7 @@ Istio supports the following normalization schemes on the request paths before e
 </tr>
 <tr>
   <td><code>BASE</code></td>
-  <td>This is currently the option used in the <strong>default</strong> installation of Istio. This applies the https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-normalize-path[<code>normalize_path</code>] option on Envoy proxies, which follows https://tools.ietf.org/html/rfc3986[RFC 3986] with extra normalization to convert backslashes to forward slashes.</td>
+  <td>This is currently the option used in the <strong>default</strong> installation of Istio. This applies the <a href="https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-field-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-normalize-path"><code>normalize_path</code></a> option on Envoy proxies, which follows <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> with extra normalization to convert backslashes to forward slashes.</td>
   <td><code>/a/../b</code> is normalized to <code>/b</code>. <code>\da</code> is normalized to <code>/da</code>.</td>
   <td>This setting is vulnerable to CVE-2021-31920.</td>
 </tr>
@@ -184,7 +184,7 @@ Istio supports the following normalization schemes on the request paths before e
 </tr>
 <tr>
   <td><code>DECODE_AND_MERGE_SLASHES</code></td>
-  <td>The strictest setting when you allow all traffic by default. This setting is recommended, with the caveat that you must thoroughly test your authorization policies routes. https://tools.ietf.org/html/rfc3986#section-2.1[Percent-encoded] slash and backslash characters (<code>%2F</code>, <code>%2f</code>, <code>%5C</code> and <code>%5c</code>) are decoded to <code>/</code> or <code>\</code>, before the <code>MERGE_SLASHES</code> normalization.</td>
+  <td>The strictest setting when you allow all traffic by default. This setting is recommended, with the caveat that you must thoroughly test your authorization policies routes. <a href="https://tools.ietf.org/html/rfc3986#section-2.1">Percent-encoded</a> slash and backslash characters (<code>%2F</code>, <code>%2f</code>, <code>%5C</code> and <code>%5c</code>) are decoded to <code>/</code> or <code>\</code>, before the <code>MERGE_SLASHES</code> normalization.</td>
   <td><code>/a%2fb</code> is normalized to <code>/a/b</code>.</td>
   <td>Update to this setting to mitigate CVE-2021-31920.  This setting is more secure, but also has the potential to break applications.  Test your applications before deploying to production.</td>
 </tr>
@@ -227,19 +227,19 @@ The normalized URL paths, or the original URL paths if `NONE` is selected, will 
   <td><code>BASE</code>, <code>MERGE_SLASHES</code> or <code>DECODE_AND_MERGE_SLASHES</code></td>
 </tr>
 <tr>
-  <td>Normalizes request paths based on https://tools.ietf.org/html/rfc3986[RFC 3986] and does not merge slashes.</td>
+  <td>Normalizes request paths based on <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> and does not merge slashes.</td>
   <td><code>BASE</code></td>
 </tr>
 <tr>
-  <td>Normalizes request paths based on https://tools.ietf.org/html/rfc3986[RFC 3986] and merges slashes, but does not decode https://tools.ietf.org/html/rfc3986#section-2.1[percent-encoded] slashes.</td>
+  <td>Normalizes request paths based on <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a> and merges slashes, but does not decode <a href="https://tools.ietf.org/html/rfc3986#section-2.1">percent-encoded</a> slashes.</td>
   <td><code>MERGE_SLASHES</code></td>
 </tr>
 <tr>
-  <td>Normalizes request paths based on https://tools.ietf.org/html/rfc3986[RFC 3986], decodes https://tools.ietf.org/html/rfc3986#section-2.1[percent-encoded] slashes, and merges slashes.</td>
+  <td>Normalizes request paths based on <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a>, decodes <a href="https://tools.ietf.org/html/rfc3986#section-2.1">percent-encoded</a> slashes, and merges slashes.</td>
   <td><code>DECODE_AND_MERGE_SLASHES</code></td>
 </tr>
 <tr>
-  <td>Processes request paths in a way that is incompatible with https://tools.ietf.org/html/rfc3986[RFC 3986].</td>
+  <td>Processes request paths in a way that is incompatible with <a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a>.</td>
   <td><code>NONE</code></td>
 </tr>
 </tbody>

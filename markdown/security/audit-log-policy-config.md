@@ -3,11 +3,11 @@ title: Configuring the audit log policy
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the audit log policy {id="audit-log-policy-config"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the audit log policy {id="audit-log-policy-config"}
 {%- set context = "audit-log-policy-config" %}
 
-You can control the amount of information that is logged to the API server audit logs by choosing the audit log policy profile to use.
+You can control the amount of information that is logged to the API server audit logs by choosing the audit log policy profile to use. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-nodes-audit-config-about.md" %}{% endleveloffset %}
 

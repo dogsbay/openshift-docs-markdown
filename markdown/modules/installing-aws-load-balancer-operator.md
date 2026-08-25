@@ -11,7 +11,7 @@ To deploy the AWS Load Balancer Operator, install the Operator by using the web 
 
 **Procedure**
 
-1.  Navigate to **Ecosystem** -> **Software Catalog** in the {{ product_title }} web console.
+1.  Navigate to **Ecosystem** → **Software Catalog** in the {{ product_title }} web console.
 1.  Select the **AWS Load Balancer Operator**. You can use the **Filter by keyword** text box or the filter list to search for the AWS Load Balancer Operator from the list of Operators.
 1.  Select the `aws-load-balancer-operator` namespace.
 1.  On the **Install Operator** page, select the following options:

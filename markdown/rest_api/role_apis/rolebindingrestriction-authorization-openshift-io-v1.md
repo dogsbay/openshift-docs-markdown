@@ -1,5 +1,5 @@
 ---
-title: "RoleBindingRestriction []"
+title: "RoleBindingRestriction [authorization.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -30,6 +30,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the matcher. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -51,11 +52,11 @@ The following API endpoints are available:
 
 *   `/apis/authorization.openshift.io/v1/rolebindingrestrictions`
     *   `GET`: list objects of kind RoleBindingRestriction
-*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindingrestrictions`
+*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindingrestrictions`{minja}
     *   `DELETE`: delete collection of RoleBindingRestriction
     *   `GET`: list objects of kind RoleBindingRestriction
     *   `POST`: create a RoleBindingRestriction
-*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindingrestrictions/{{ name }}`
+*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/rolebindingrestrictions/{{ name }}`{minja}
     *   `DELETE`: delete a RoleBindingRestriction
     *   `GET`: read the specified RoleBindingRestriction
     *   `PATCH`: partially update the specified RoleBindingRestriction

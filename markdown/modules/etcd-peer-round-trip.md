@@ -5,7 +5,7 @@ The etcd peer round-trip time (RTT) metric shows replication latency across memb
 
 The etcd peer RTT is an end-to-end test metric on how quickly something can be replicated among members. It shows the latency of etcd to finish replicating a client request among all the etcd members. The etcd peer RTT is not the same thing as the network RTT.
 
-You can monitor various etcd metrics on dashboards in the {{ product_title }} console. In the console, click **Observe** -> **Dashboards** and from the dropdown list, select **etcd**.
+You can monitor various etcd metrics on dashboards in the {{ product_title }} console. In the console, click **Observe** → **Dashboards** and from the dropdown list, select **etcd**.
 
 Near the end of the **etcd** dashboard, you can find a plot that summarizes the etcd peer RTT.
 

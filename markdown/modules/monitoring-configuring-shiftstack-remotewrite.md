@@ -49,7 +49,7 @@ Use remote write with both {{ rhoso_first }} and {{ product_title }} to push the
                   prometheusConfig:
                     scrapeInterval: 30s
                     remoteWrite:
-                    - url: https://external-prometheus.example.com/api/v1/write # (1)
+                    - url: https://external-prometheus.example.com/api/v1/write (1)
                       tlsConfig:
                         ca:
                           secret:
@@ -73,7 +73,7 @@ Use remote write with both {{ rhoso_first }} and {{ product_title }} to push the
                     requests:
                       cpu: 100m
                       memory: 256Mi
-                  retention: 1d # (2)
+                  retention: 1d (2)
                 dashboardsEnabled: false
                 dataplaneNetwork: ctlplane
                 enabled: true
@@ -92,7 +92,7 @@ Use remote write with both {{ rhoso_first }} and {{ product_title }} to push the
         data:
           config.yaml: |
             prometheusK8s:
-              retention: 1d # (1)
+              retention: 1d (1)
               remoteWrite:
               - url: "https://external-prometheus.example.com/api/v1/write"
                 writeRelabelConfigs:

@@ -9,7 +9,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating the preferred configuration inputs {id="installing-ocp-agent-inputs_{{ context }}"}
 
-{%- if not pxe_boot %}
+{% if not pxe_boot %}
 Create the preferred configuration inputs used to create the agent image. {._abstract}
 
 
@@ -166,7 +166,7 @@ Configuring the `install-config.yaml` and `agent-config.yaml` files is the prefe
         :::
 
 1.  Create the `agent-config.yaml` file by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ cat > agent-config.yaml << EOF
     apiVersion: v1beta1
     kind: AgentConfig
@@ -202,9 +202,9 @@ Configuring the `install-config.yaml` and `agent-config.yaml` files is the prefe
                 next-hop-address: 192.168.111.2
                 next-hop-interface: eno1
                 table-id: 254
-{% if iscsi_boot %}
+    {%- if iscsi_boot %}
     minimalISO: true
-{% endif %}
+    {%- endif %}
     EOF
     ```
 
@@ -260,9 +260,9 @@ Configuring the `install-config.yaml` and `agent-config.yaml` files is the prefe
 {% endif %}
 
 {% if context == "prepare-pxe-assets-agent" %}
-{%- set pxe_boot = false -%}
+{%- set pxe_boot = "" -%}
 {% endif %}
 
 {% if context == "installing-using-iscsi" %}
-{%- set iscsi_boot = false -%}
+{%- set iscsi_boot = "" -%}
 {% endif %}

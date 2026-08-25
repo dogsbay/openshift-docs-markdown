@@ -85,11 +85,11 @@ If your organization or project uses GitLab as the preferred platform, you can u
             1.  Currently, {{ pac }} does not automatically detects private instances for GitLab. In such cases, specify the API URL under the `git_provider.url` spec. In general, you can use the `git_provider.url` spec to manually override the API URL.
 
 
-                :::note
+            :::note
 
-                *   {{ pac }} assumes that the OpenShift `Secret` object and the `Repository` CR are in the same namespace.
-                
-                :::
+            *   {{ pac }} assumes that the OpenShift `Secret` object and the `Repository` CR are in the same namespace.
+            
+            :::
 
 1.  Optional: For an existing `Repository` CR, add multiple GitLab Webhook secrets or provide a substitute for a deleted secret.
     1.  Add a webhook using the `tkn pac` CLI tool.

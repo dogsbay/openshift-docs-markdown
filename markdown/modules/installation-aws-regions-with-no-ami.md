@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{%- if not specialized %}
+{% if not specialized %}
 # AWS regions without a published {{ op_system }} AMI {id="installation-aws-regions-with-no-ami_{{ context }}"}
 
 {% endif %}
@@ -13,7 +13,7 @@
 
 {% endif %}
 
-{%- if not specialized %}
+{% if not specialized %}
 You can deploy an {{ product_title }} cluster to {{ aws_first }} regions without native support for a {{ op_system_first }} Amazon Machine Image (AMI) or the {{ aws_short }} software development kit (SDK). {._abstract}
 
 If a published AMI is not available for an {{ aws_short }} region, you can upload a custom AMI before installing the cluster.
@@ -45,5 +45,5 @@ If you install a cluster into a Secret or Top Secret region, you must also defin
 {% endif %}
 
 {% if context == "installing-aws-specialized-region" %}
-{%- set specialized = false -%}
+{%- set specialized = "" -%}
 {% endif %}

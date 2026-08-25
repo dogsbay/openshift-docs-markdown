@@ -12,21 +12,21 @@ Use the following procedure to customize the policies that get applied to the ma
 
 **Procedure**
 
-1.  Create a `{{ policy_gen_cr }}` CR for site-specific configuration CRs.
-    1.  Choose the appropriate example for your CR from the `{{ argocd_folder }}` folder, for example, `{{ policy_prefix }}example-sno-site.yaml` or `{{ policy_prefix }}example-multinode-site.yaml`.
-    1.  Change the `{{ binding_field }}` field in the example file to match the site-specific label included in the `ClusterInstance` CR. In the example `ClusterInstance` file, the site-specific label is `sites: example-sno`.
+1.  Create a `{{ policy_gen_cr }}`{minja} CR for site-specific configuration CRs.
+    1.  Choose the appropriate example for your CR from the `{{ argocd_folder }}`{minja} folder, for example, `{{ policy_prefix }}example-sno-site.yaml`{minja} or `{{ policy_prefix }}example-multinode-site.yaml`{minja}.
+    1.  Change the `{{ binding_field }}`{minja} field in the example file to match the site-specific label included in the `ClusterInstance` CR. In the example `ClusterInstance` file, the site-specific label is `sites: example-sno`.
 
         :::note
 
-        Ensure that the labels defined in your `{{ policy_gen_cr }}` `{{ binding_field }}` field correspond to the labels that are defined in the related managed clusters `ClusterInstance` CR.
+        Ensure that the labels defined in your `{{ policy_gen_cr }}`{minja} `{{ binding_field }}`{minja} field correspond to the labels that are defined in the related managed clusters `ClusterInstance` CR.
         
         :::
 
     1.  Change the content in the example file to match the desired configuration.
-1.  Optional: Create a `{{ policy_gen_cr }}` CR for any common configuration CRs that apply to the entire fleet of clusters.
-    1.  Select the appropriate example for your CR from the `{{ argocd_folder }}` folder, for example, `{{ policy_prefix }}common-ranGen.yaml`.
+1.  Optional: Create a `{{ policy_gen_cr }}`{minja} CR for any common configuration CRs that apply to the entire fleet of clusters.
+    1.  Select the appropriate example for your CR from the `{{ argocd_folder }}`{minja} folder, for example, `{{ policy_prefix }}common-ranGen.yaml`{minja}.
     1.  Change the content in the example file to match the required configuration.
-1.  Optional: Create a `{{ policy_gen_cr }}` CR for any group configuration CRs that apply to the certain groups of clusters in the fleet.
+1.  Optional: Create a `{{ policy_gen_cr }}`{minja} CR for any group configuration CRs that apply to the certain groups of clusters in the fleet.
 
     Ensure that the content of the overlaid spec files matches your required end state. As a reference, the `out/source-crs` directory contains the full list of source-crs available to be included and overlaid by your {{ policy_gen_cr }} templates.
 
@@ -36,18 +36,18 @@ Use the following procedure to customize the policies that get applied to the ma
     
     :::
 
-    1.  Select the appropriate example for your CR from the `{{ argocd_folder }}` folder, for example, `{{ policy_prefix }}group-du-sno-ranGen.yaml`.
+    1.  Select the appropriate example for your CR from the `{{ argocd_folder }}`{minja} folder, for example, `{{ policy_prefix }}group-du-sno-ranGen.yaml`{minja}.
     1.  Change the content in the example file to match the required configuration.
-1.  Optional. Create a validator inform policy `{{ policy_gen_cr }}` CR to signal when the {{ ztp }} installation and configuration of the deployed cluster is complete. For more information, see "Creating a validator inform policy".
-1.  Define all the policy namespaces in a YAML file similar to the example `{{ argocd_folder }}/ns.yaml` file.
+1.  Optional. Create a validator inform policy `{{ policy_gen_cr }}`{minja} CR to signal when the {{ ztp }} installation and configuration of the deployed cluster is complete. For more information, see "Creating a validator inform policy".
+1.  Define all the policy namespaces in a YAML file similar to the example `{{ argocd_folder }}/ns.yaml`{minja} file.
 
     :::important
 
-    Do not include the `Namespace` CR in the same file with the `{{ policy_gen_cr }}` CR.
+    Do not include the `Namespace` CR in the same file with the `{{ policy_gen_cr }}`{minja} CR.
     
     :::
 
-1.  Add the `{{ policy_gen_cr }}` CRs and `Namespace` CR to the `kustomization.yaml` file in the generators section, similar to the example shown in `{{ argocd_folder }}kustomization.yaml`.
-1.  Commit the `{{ policy_gen_cr }}` CRs, `Namespace` CR, and associated `kustomization.yaml` file in your Git repository and push the changes.
+1.  Add the `{{ policy_gen_cr }}`{minja} CRs and `Namespace` CR to the `kustomization.yaml` file in the generators section, similar to the example shown in `{{ argocd_folder }}kustomization.yaml`{minja}.
+1.  Commit the `{{ policy_gen_cr }}`{minja} CRs, `Namespace` CR, and associated `kustomization.yaml` file in your Git repository and push the changes.
 
-    The ArgoCD pipeline detects the changes and begins the managed cluster deployment. You can push the changes to the `ClusterInstance` CR and the `{{ policy_gen_cr }}` CR simultaneously.
+    The ArgoCD pipeline detects the changes and begins the managed cluster deployment. You can push the changes to the `ClusterInstance` CR and the `{{ policy_gen_cr }}`{minja} CR simultaneously.

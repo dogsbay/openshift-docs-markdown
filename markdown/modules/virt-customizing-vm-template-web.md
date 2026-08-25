@@ -13,7 +13,7 @@ If you customize a template by copying it and including all of its labels and an
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **Templates** in the web console.
+1.  Navigate to **Virtualization** → **Templates** in the web console.
 1.  From the list of VM templates, click the template marked as deprecated.
 1.  Click **Edit** next to the pencil icon beside **Labels**.
 1.  Remove the following two labels:

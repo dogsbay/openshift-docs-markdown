@@ -28,7 +28,7 @@ You can configure the node drain grace period for machine pools in your cluster.
     ID:                                    workers
     Cluster ID:                            2a90jdl0i4p9r9k9956v5ocv40se1kqs
     ...
-    Node drain grace period:               // (1)
+    Node drain grace period:               (1)
     ...
     ```
     1.  If this value is empty, the machine pool drains without any time limitation until complete.

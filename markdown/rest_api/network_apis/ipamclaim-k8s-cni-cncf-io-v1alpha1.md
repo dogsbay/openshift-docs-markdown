@@ -1,5 +1,5 @@
 ---
-title: "IPAMClaim []"
+title: "IPAMClaim [k8s.cni.cncf.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` |  |
 | `status` | `object` | IPAMClaimStatus contains the observed status of the IPAMClaim. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,6 +42,7 @@ Required
 | --- | --- | --- |
 | `interface` | `string` | The pod interface name for which this allocation was created |
 | `network` | `string` | The network name for which this persistent allocation was created |
+
 ### .status {id="_status"}
 
 Description
@@ -60,6 +62,7 @@ Required
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `ips` | `array (string)` | The list of IP addresses (v4, v6) that were allocated for the pod interface |
 | `ownerPod` | `object` | The name of the pod holding the IPAMClaim |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -94,6 +97,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.ownerPod {id="_statusownerpod"}
 
 Description
@@ -113,16 +117,16 @@ The following API endpoints are available:
 
 *   `/apis/k8s.cni.cncf.io/v1alpha1/ipamclaims`
     *   `GET`: list objects of kind IPAMClaim
-*   `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims`
+*   `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims`{minja}
     *   `DELETE`: delete collection of IPAMClaim
     *   `GET`: list objects of kind IPAMClaim
     *   `POST`: create an IPAMClaim
-*   `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }}`
+*   `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }}`{minja}
     *   `DELETE`: delete an IPAMClaim
     *   `GET`: read the specified IPAMClaim
     *   `PATCH`: partially update the specified IPAMClaim
     *   `PUT`: replace the specified IPAMClaim
-*   `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }}/status`
+*   `/apis/k8s.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ipamclaims/{{ name }}/status`{minja}
     *   `GET`: read status of the specified IPAMClaim
     *   `PATCH`: partially update status of the specified IPAMClaim
     *   `PUT`: replace status of the specified IPAMClaim

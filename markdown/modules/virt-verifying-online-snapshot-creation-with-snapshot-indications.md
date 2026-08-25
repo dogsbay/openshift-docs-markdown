@@ -11,7 +11,7 @@ Snapshot indications are contextual information about online virtual machine (VM
 
 1.  Display the output from the snapshot indications by performing one of the following actions:
     *   Use the command line to view indicator output in the `status` stanza of the `VirtualMachineSnapshot` object YAML.
-    *   In the web console, click **VirtualMachineSnapshot** -> **Status** in the **Snapshot details** screen.
+    *   In the web console, click **VirtualMachineSnapshot** → **Status** in the **Snapshot details** screen.
 1.  Verify the status of your online VM snapshot by viewing the values of the `status.indications` parameter:
     *   `Online` indicates that the VM was running during online snapshot creation.
     *   `GuestAgent` indicates that the QEMU guest agent was active and successfully quiesced the guest file system for the online snapshot. This results in an application-consistent snapshot, preserving data integrity as if the applications had been gracefully shut down.

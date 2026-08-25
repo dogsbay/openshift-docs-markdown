@@ -14,7 +14,7 @@ You can edit any specific parameters of the cluster autoscaler after creating th
         ```terminal title="Example"
         $ rosa edit autoscaler -h --cluster=<mycluster> <parameter>=<value>
         ```
-{% endif %}
+{%- endif %}
 
 {%- if openshift_rosa %}
 *   To edit the cluster autoscaler, run the following command:
@@ -25,4 +25,4 @@ You can edit any specific parameters of the cluster autoscaler after creating th
         ```terminal title="Example"
         $ rosa edit autoscaler --cluster=<mycluster> <parameter>
         ```
-{% endif %}
+{%- endif %}

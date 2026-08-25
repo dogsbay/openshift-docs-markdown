@@ -10,7 +10,7 @@ To set a node to maintenance mode, you can create a `NodeMaintenance` custom res
 
 **Procedure**
 
-1.  From the **Administrator** perspective in the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  From the **Administrator** perspective in the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Select the Node Maintenance Operator from the list of Operators.
 1.  In the **Node Maintenance** tab, click **Create NodeMaintenance**.
 1.  In the **Create NodeMaintenance** page, select the **Form view** or the **YAML view** to configure the `NodeMaintenance` CR.

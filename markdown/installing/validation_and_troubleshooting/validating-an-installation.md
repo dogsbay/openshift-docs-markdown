@@ -3,11 +3,11 @@ title: Validating an installation
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Validating an installation {id="validating-an-installation"}
 {% include "./_attributes/common-attributes.md" %}
+# Validating an installation {id="validating-an-installation"}
 {%- set context = "validating-an-installation" %}
 
-You can check the status of an {{ product_title }} cluster after an installation or validate boot artifacts before an installation.
+You can check the status of an {{ product_title }} cluster after an installation or validate boot artifacts before an installation. {._abstract}
 
 After you complete the procedures, you can move onto postinstallation cluster tasks. If you experience installation issues, see "Troubleshooting installations" in the _Additional resources_" section.
 
@@ -20,6 +20,7 @@ After you complete the procedures, you can move onto postinstallation cluster ta
 {% leveloffset +1 %}{% include "./modules/getting-cluster-version-status-and-update-details.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Querying Operator status after installation](/support/troubleshooting/troubleshooting-installations#querying-operator-status-after-installation_troubleshooting-installations)
 *   [Troubleshooting Operator issues](/support/troubleshooting/troubleshooting-operator-issues#troubleshooting-operator-issues)
@@ -31,6 +32,7 @@ After you complete the procedures, you can move onto postinstallation cluster ta
 {% leveloffset +1 %}{% include "./modules/querying-the-status-of-cluster-nodes-using-the-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Verifying node health](/support/troubleshooting/verifying-node-health#verifying-node-health)
 
@@ -39,18 +41,21 @@ After you complete the procedures, you can move onto postinstallation cluster ta
 {% leveloffset +1 %}{% include "./modules/reviewing-cluster-status-from-the-openshift-cluster-manager.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)
 
 {% leveloffset +1 %}{% include "./modules/checking-cluster-resource-availability-and-utilization.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About {{ product_title }} monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 
 {% leveloffset +1 %}{% include "./modules/listing-alerts-that-are-firing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Managing alerts as an Administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-an-administrator)
 *   [Troubleshooting installations](/support/troubleshooting/troubleshooting-installations#troubleshooting-installations)

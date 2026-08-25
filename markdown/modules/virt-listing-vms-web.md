@@ -5,7 +5,7 @@ You can list all of the virtual machines (VMs) in your cluster by using the web 
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines** from the side menu to access the tree view of all projects and VMs in your cluster.
+1.  Click **Virtualization** → **VirtualMachines** from the side menu to access the tree view of all projects and VMs in your cluster.
 1.  Optional: Enable the **Show only projects with VirtualMachines** option above the tree view to limit the displayed projects.
 1.  Click the **Virtual machines** tab.
 1.  Optional: Click the **Search virtual machines** text box and begin to type the name of a virtual machine. A list of filtered virtual machine names will appear and change as you type.
@@ -81,6 +81,7 @@ You can list all of the virtual machines (VMs) in your cluster by using the web 
 </tr>
 </tbody>
 </table>
+
     1.  Click **Search**.
     1.  Optional: Click **Clear all** to clear all search criteria.
 1.  Optional: Click **Save search** to save the current for reuse later.

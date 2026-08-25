@@ -18,7 +18,7 @@ The source registry cannot be modified after creation. You must delete and re-cr
     $ rosa create image-mirror [arguments]
     ```
 
-    ***Arguments***
+    **Arguments**
 
 <table>
 <tbody>

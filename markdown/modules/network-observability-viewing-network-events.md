@@ -22,7 +22,7 @@ You can edit the `FlowCollector` to view information about network traffic event
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  In the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster**, and then select the **YAML** tab.
 1.  Configure the `FlowCollector` CR to enable viewing `NetworkEvents`, for example:

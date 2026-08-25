@@ -26,9 +26,9 @@ Description and limits
 
 
 
-    :::note
+        :::note
 
 
-    A test workload that conforms to the dimensions of the reference DU application workload described in this specification can be found at [openshift-kni/du-test-workloads](https://github.com/openshift-kni/du-test-workloads/tree/v1.0).
-    
-    :::
+        A test workload that conforms to the dimensions of the reference DU application workload described in this specification can be found at [openshift-kni/du-test-workloads](https://github.com/openshift-kni/du-test-workloads/tree/v1.0).
+        
+        :::

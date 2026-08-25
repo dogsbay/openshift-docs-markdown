@@ -11,7 +11,7 @@ The key is added to the VM by the QEMU guest agent, which is installed with {{ o
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Select a VM to open the **VirtualMachine details** page.
 1.  On the **Configuration** tab, click **Scripts**.
 1.  If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** and select one of the following options:

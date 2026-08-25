@@ -6,13 +6,13 @@
 
 Storage requirements for {{ VirtProductName }}
 
-{% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
+{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 :   *   Storage must be supported by {{ product_title }}. For more information, see "Optimizing storage" in the Additional resources section.
 {% endif %}
-{% if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
-    *   Storage must be supported by {{ product_title }}.
-        {% endif %}
-        {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
+{%- if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
+:   *   Storage must be supported by {{ product_title }}.
+{% endif %}
+{% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
     *   You must create a default {{ VirtProductName }} or {{ product_title }} storage class. The purpose of this is to address the unique storage needs of VM workloads and offer optimized performance, reliability, and user experience. If both {{ VirtProductName }} and {{ product_title }} default storage classes exist, the {{ VirtProductName }} class takes precedence when creating VM disks.
 
     :::note
@@ -23,4 +23,4 @@ Storage requirements for {{ VirtProductName }}
     :::
 
 {% endif %}
-*   If the storage provisioner supports snapshots, you must associate a `VolumeSnapshotClass` object with the default storage class.
+    *   If the storage provisioner supports snapshots, you must associate a `VolumeSnapshotClass` object with the default storage class.

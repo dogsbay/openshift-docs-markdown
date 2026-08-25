@@ -11,7 +11,7 @@ View and filter Transport Layer Security (TLS) metadata to identify deprecated c
 
 **Procedure**
 
-1.  Navigate to **Observe** -> **Network Traffic** in the {{ product_title }} web console and click the **Traffic flows** tab.
+1.  Navigate to **Observe** → **Network Traffic** in the {{ product_title }} web console and click the **Traffic flows** tab.
 
     :::note
 
@@ -51,7 +51,7 @@ View and filter Transport Layer Security (TLS) metadata to identify deprecated c
 
             Select a connection node to view its specific TLS version and cipher suite details.
 1.  View TLS metrics in the Network Observability dashboard:
-    1.  Navigate to **Observe** -> **Dashboards**.
+    1.  Navigate to **Observe** → **Dashboards**.
     1.  Search for **NetObserv** and review the available metrics:
         *   **TLS Traffic**: Displays overall TLS traffic metrics.
         *   **Flows rate per TLS version**: Displays traffic trends by TLS version over time.

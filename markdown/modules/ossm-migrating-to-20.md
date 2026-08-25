@@ -61,7 +61,7 @@ To upgrade {{ SMProductName }}, you must create an instance of {{ SMProductName 
     ```
 
     Alternatively, you can use the console to create the {{ SMProductShortName }} control plane. In the {{ product_title }} web console, click **Project**. Then, select the project name you just entered.
-    1.  Click **Ecosystem** -> **Installed Operators**.
+    1.  Click **Ecosystem** → **Installed Operators**.
     1.  Click **Create ServiceMeshControlPlane**.
     1.  Select **YAML view** and paste text of the YAML file you retrieved into the field. Check that the `apiVersion` field is set to `maistra.io/v2` and modify the `metadata.namespace` field to use the new namespace, for example `istio-system-upgrade`.
     1.  Click **Create**.

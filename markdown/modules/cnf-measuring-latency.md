@@ -19,7 +19,7 @@ oslat
 
 The tests introduce the following environment variables:
 
-***Latency test environment variables***
+**Latency test environment variables**
 
 <table>
 <thead>
@@ -43,7 +43,7 @@ The tests introduce the following environment variables:
 </tr>
 <tr>
   <td><code>LATENCY_TEST_RUNTIME</code></td>
-  <td>Specifies the amount of time in seconds that the latency test must run. The default value is 300 seconds.<br><br><dl><dt>Note</dt><dd>To prevent the Ginkgo 2.0 test suite from timing out before the latency tests complete, set the <code>-ginkgo.timeout</code> flag to a value greater than <code>LATENCY_TEST_RUNTIME</code> + 2 minutes. If you also set a <code>LATENCY_TEST_DELAY</code> value then you must set <code>-ginkgo.timeout</code> to a value greater than <code>LATENCY_TEST_RUNTIME</code> + <code>LATENCY_TEST_DELAY</code> + 2 minutes. The default timeout value for the Ginkgo 2.0 test suite is 1 hour.</dd></dl></td>
+  <td>Specifies the amount of time in seconds that the latency test must run. The default value is 300 seconds.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>To prevent the Ginkgo 2.0 test suite from timing out before the latency tests complete, set the <code>-ginkgo.timeout</code> flag to a value greater than <code>LATENCY_TEST_RUNTIME</code> + 2 minutes. If you also set a <code>LATENCY_TEST_DELAY</code> value then you must set <code>-ginkgo.timeout</code> to a value greater than <code>LATENCY_TEST_RUNTIME</code> + <code>LATENCY_TEST_DELAY</code> + 2 minutes. The default timeout value for the Ginkgo 2.0 test suite is 1 hour.</dd></dl></td>
 </tr>
 <tr>
   <td><code>HWLATDETECT_MAXIMUM_LATENCY</code></td>

@@ -19,4 +19,4 @@ Taints and tolerations allow the node to control which pods should (or should no
 ## Additional resources {id="additional-resources_cluster-logging-tolerations" ._additional-resources}
 {%- if openshift_enterprise or openshift_origin %}
 *   [Controlling pod placement using node taints](/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations)
-{% endif %}
+{%- endif %}

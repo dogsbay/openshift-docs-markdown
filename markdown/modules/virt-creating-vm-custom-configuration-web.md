@@ -16,7 +16,7 @@ Use this workflow when:
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Virtualization** -> **VirtualMachines**.
+1.  In the {{ product_title }} web console, navigate to **Virtualization** → **VirtualMachines**.
 1.  Click **Create**.
 1.  On the **Deployment details** page, configure the following settings:
     1.  Select **Custom configuration**.
@@ -51,4 +51,4 @@ Use this workflow when:
 
 **Verification**
 
-*   Navigate to **Virtualization** -> **VirtualMachines** and verify that the VM is displayed in the list.
+*   Navigate to **Virtualization** → **VirtualMachines** and verify that the VM is displayed in the list.

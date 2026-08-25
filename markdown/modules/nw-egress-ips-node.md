@@ -16,7 +16,7 @@ You can apply the `k8s.ovn.org/egress-assignable=""` label to a node in your clu
 **Procedure**
 
 *   To label a node so that it can host one or more egress IP addresses, enter the following command:
-    {%- if not openshift_rosa %}
+{% if not openshift_rosa %}
     ```terminal
     $ oc label nodes <node_name> k8s.ovn.org/egress-assignable=""
     ```

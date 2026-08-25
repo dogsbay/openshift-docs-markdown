@@ -31,9 +31,9 @@ platform:
     - name: tagging
       url: https://tagging.us-gov-west-1.amazonaws.com
 ```
-++
+
 where:
-++
+
 
 
 `https://route53.us-gov.amazonaws.com`

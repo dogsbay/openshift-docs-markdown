@@ -52,7 +52,7 @@ To finalize the installation on user-provisioned infrastructure, complete the cl
     ```terminal
     $ watch -n5 oc get clusteroperators
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
     authentication                             {{ product_version }}.0    True        False         False      19m
     baremetal                                  {{ product_version }}.0    True        False         False      37m
@@ -140,7 +140,7 @@ To finalize the installation on user-provisioned infrastructure, complete the cl
 {% endif %}
 {% if ibm_power %}
 1.  Additional steps are required to enable multipathing. Do not enable multipathing during installation.
-{%- endif %}
+{% endif %}
 
     See "Enabling multipathing with kernel arguments on {{ op_system }}" in the _Postinstallation machine configuration tasks_ documentation for more information.
 
@@ -199,39 +199,39 @@ If you have enabled secure boot during the {{ product_title }} bootstrap process
 {% endif %}
 
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if openshift_origin %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
-{%- set restricted = false -%}
+{%- set ibm_power = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z_kvm = "" -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z_lpar = false -%}
+{%- set ibm_z_lpar = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z_lpar = false -%}
-{%- set restricted = false -%}
+{%- set ibm_z_lpar = "" -%}
+{%- set restricted = "" -%}
 {% endif %}

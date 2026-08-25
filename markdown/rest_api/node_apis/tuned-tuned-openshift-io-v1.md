@@ -1,5 +1,5 @@
 ---
-title: "Tuned []"
+title: "Tuned [tuned.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -30,6 +30,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the specification of the desired behavior of Tuned. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status |
 | `status` | `object` | TunedStatus is the status for a Tuned resource. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -47,6 +48,7 @@ Type
 | `profile[]` | `object` | A Tuned profile. |
 | `recommend` | `array` | Selection logic for all Tuned profiles. |
 | `recommend[]` | `object` | Selection logic for a single Tuned profile. |
+
 ### .spec.profile {id="_specprofile"}
 
 Description
@@ -74,6 +76,7 @@ Required
 | --- | --- | --- |
 | `data` | `string` | Specification of the Tuned profile to be consumed by the Tuned daemon. |
 | `name` | `string` | Name of the Tuned profile to be used in the recommend section. |
+
 ### .spec.recommend {id="_specrecommend"}
 
 Description
@@ -105,6 +108,7 @@ Required
 | `operand` | `object` | Optional operand configuration. |
 | `priority` | `integer` | Tuned profile priority. Highest priority is 0. |
 | `profile` | `string` | Name of the Tuned profile to recommend. |
+
 ### .spec.recommend[].match {id="_specrecommendmatch"}
 
 Description
@@ -133,6 +137,7 @@ Required
 | `match` | `array (undefined)` | Additional rules governing application of the tuned profile connected by logical AND operator. |
 | `type` | `string` | Match type: [node/pod]. If omitted, "node" is assumed. |
 | `value` | `string` | Node or Pod label value. If omitted, the presence of label name is enough to match. |
+
 ### .spec.recommend[].operand {id="_specrecommendoperand"}
 
 Description
@@ -147,6 +152,7 @@ Type
 | `debug` | `boolean` | turn debugging on/off for the TuneD daemon: true/false (default is false) |
 | `tunedConfig` | `object` | Global configuration for the TuneD daemon as defined in tuned-main.conf |
 | `verbosity` | `integer` | klog logging verbosity |
+
 ### .spec.recommend[].operand.tunedConfig {id="_specrecommendoperandtunedconfig"}
 
 Description
@@ -159,6 +165,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `reapply_sysctl` | `boolean` | turn reapply_sysctl functionality on/off for the TuneD daemon: true/false |
+
 ### .status {id="_status"}
 
 Description
@@ -172,6 +179,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | conditions represents the state of the Tuned profile |
 | `conditions[]` | `object` | StatusCondition represents a partial state of the per-node Profile application. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -210,16 +218,16 @@ The following API endpoints are available:
 
 *   `/apis/tuned.openshift.io/v1/tuneds`
     *   `GET`: list objects of kind Tuned
-*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds`
+*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds`{minja}
     *   `DELETE`: delete collection of Tuned
     *   `GET`: list objects of kind Tuned
     *   `POST`: create a Tuned
-*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds/{{ name }}`
+*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds/{{ name }}`{minja}
     *   `DELETE`: delete a Tuned
     *   `GET`: read the specified Tuned
     *   `PATCH`: partially update the specified Tuned
     *   `PUT`: replace the specified Tuned
-*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds/{{ name }}/status`
+*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/tuneds/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Tuned
     *   `PATCH`: partially update status of the specified Tuned
     *   `PUT`: replace status of the specified Tuned

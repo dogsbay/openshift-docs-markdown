@@ -8,7 +8,7 @@ To automate the checking and acceptance of these terms and agreements during Ope
 
 The following table lists the permissions that are included in the `Consumer Procurement Entitlement Viewer` role.
 
-***Required permissions in the Consumer Procurement Entitlement Viewer role***
+**Required permissions in the Consumer Procurement Entitlement Viewer role**
 
 <table>
 <thead>
@@ -22,7 +22,7 @@ The following table lists the permissions that are included in the `Consumer Pro
 <tr>
   <td><a href="https://docs.cloud.google.com/iam/docs/roles-permissions/consumerprocurement">Consumer Procurement Entitlement Viewer</a><br><br>Allows for the inspecting of entitlements and service states for a consumer project.</td>
   <td><code>consumerprocurement.entitlementViewer</code></td>
-  <td>commerceoffercatalog.offers.getconsumerprocurement.consents.checkconsumerprocurement.consents.listconsumerprocurement.entitlements.getconsumerprocurement.entitlements.listconsumerprocurement.freeTrials.getconsumerprocurement.freeTrials.listorgpolicy.policy.getresourcemanager.projects.getresourcemanager.projects.listserviceusage.consumerpolicy.analyzeserviceusage.consumerpolicy.getserviceusage.effectivepolicy.getserviceusage.groups.listserviceusage.groups.listExpandedMembersserviceusage.groups.listMembersserviceusage.services.getserviceusage.services.listserviceusage.values.test</td>
+  <td>commerceoffercatalog.offers.get consumerprocurement.consents.check consumerprocurement.consents.list consumerprocurement.entitlements.get consumerprocurement.entitlements.list consumerprocurement.freeTrials.get consumerprocurement.freeTrials.list orgpolicy.policy.get resourcemanager.projects.get resourcemanager.projects.list serviceusage.consumerpolicy.analyze serviceusage.consumerpolicy.get serviceusage.effectivepolicy.get serviceusage.groups.list serviceusage.groups.listExpandedMembers serviceusage.groups.listMembers serviceusage.services.get serviceusage.services.list serviceusage.values.test</td>
 </tr>
 </tbody>
 </table>

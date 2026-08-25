@@ -160,16 +160,16 @@ pipeline what to do by using an inline `jenkinsfile`:
     1.  Create a new application from the `templatePath`.
     1.  Wait up to five minutes for the build to complete.
     1.  Wait up to five minutes for the deployment to complete.
-    1.  If everything else succeeded, tag the `$ {{ templateName }}:latest` image as
-    `$ {{ templateName }}-staging:latest`. A pipeline build configuration for the staging
-    environment can watch for the `$ {{ templateName }}-staging:latest` image to change
+    1.  If everything else succeeded, tag the `$ {{ templateName }}:latest`{minja} image as
+    `$ {{ templateName }}-staging:latest`{minja}. A pipeline build configuration for the staging
+    environment can watch for the `$ {{ templateName }}-staging:latest`{minja} image to change
     and then deploy it to the staging environment.
 
-        :::note
+    :::note
 
-        The previous example was written using the declarative pipeline style, but the older scripted pipeline style is also supported.
-        
-        :::
+    The previous example was written using the declarative pipeline style, but the older scripted pipeline style is also supported.
+    
+    :::
 
 1.  Create the Pipeline `BuildConfig` in your {{ product_title }} cluster:
     ```terminal
@@ -186,7 +186,7 @@ pipeline what to do by using an inline `jenkinsfile`:
 
     :::note
 
-    Alternatively, you can start your pipeline with the {{ product_title }} web console by navigating to the Builds -> Pipeline section and clicking **Start Pipeline**, or by visiting the Jenkins Console, navigating to the Pipeline that you created, and clicking **Build Now**.
+    Alternatively, you can start your pipeline with the {{ product_title }} web console by navigating to the Builds → Pipeline section and clicking **Start Pipeline**, or by visiting the Jenkins Console, navigating to the Pipeline that you created, and clicking **Build Now**.
     
     :::
 
@@ -206,6 +206,6 @@ pipeline what to do by using an inline `jenkinsfile`:
 
         :::note
 
-        The best way to visualize the pipeline execution is by viewing it in the {{ product_title }} web console. You can view your pipelines by logging in to the web console and navigating to Builds -> Pipelines.
+        The best way to visualize the pipeline execution is by viewing it in the {{ product_title }} web console. You can view your pipelines by logging in to the web console and navigating to Builds → Pipelines.
         
         :::

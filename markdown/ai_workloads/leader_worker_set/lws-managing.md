@@ -8,12 +8,12 @@ title: "Managing distributed workloads with the {{ lws_operator }}"
 
 {%- set context = "lws-managing" %}
 
-You can use the {{ lws_operator }} to manage distributed inference workloads and process large-scale inference requests efficiently.
+You can use the {{ lws_operator }} to manage distributed inference workloads and process large-scale inference requests efficiently. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/lws-install-operator.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/lws-config.md" %}{% endleveloffset %}
 
-## Additional resources {id="lws-managing_additional-resources"}
+## Additional resources {id="lws-managing_additional-resources" ._additional-resources}
 
 *   [LeaderWorkerSet API (Kubernetes)](https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/)

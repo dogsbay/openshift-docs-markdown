@@ -19,18 +19,18 @@ At this time, enabling the `allowPrivilegeEscalation` setting is required for Bu
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: pipelines-sa-userid-1000 # (1)
+      name: pipelines-sa-userid-1000 (1)
     ---
     kind: SecurityContextConstraints
     metadata:
       annotations:
-      name: pipelines-scc-userid-1000 # (2)
+      name: pipelines-scc-userid-1000 (2)
     allowHostDirVolumePlugin: false
     allowHostIPC: false
     allowHostNetwork: false
     allowHostPID: false
     allowHostPorts: false
-    allowPrivilegeEscalation: true # (3)
+    allowPrivilegeEscalation: true (3)
     allowPrivilegedContainer: false
     allowedCapabilities: null
     apiVersion: security.openshift.io/v1
@@ -44,7 +44,7 @@ At this time, enabling the `allowPrivilegeEscalation` setting is required for Bu
     requiredDropCapabilities:
     - MKNOD
     - KILL
-    runAsUser: # (4)
+    runAsUser: (4)
       type: MustRunAs
       uid: 1000
     seLinuxContext:
@@ -63,7 +63,7 @@ At this time, enabling the `allowPrivilegeEscalation` setting is required for Bu
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRole
     metadata:
-      name: pipelines-scc-userid-1000-clusterrole # (5)
+      name: pipelines-scc-userid-1000-clusterrole (5)
     rules:
     - apiGroups:
       - security.openshift.io
@@ -77,7 +77,7 @@ At this time, enabling the `allowPrivilegeEscalation` setting is required for Bu
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
     metadata:
-      name: pipelines-scc-userid-1000-rolebinding # (6)
+      name: pipelines-scc-userid-1000-rolebinding (6)
     roleRef:
       apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole

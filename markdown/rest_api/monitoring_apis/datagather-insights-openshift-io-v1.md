@@ -1,5 +1,5 @@
 ---
-title: "DataGather []"
+title: "DataGather [insights.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -49,6 +50,7 @@ Required
 | `dataPolicy` | `array (string)` | dataPolicy is an optional list of DataPolicyOptions that allows user to enable additional obfuscation of the Insights archive data. It may not exceed 2 items and must not contain duplicates. Valid values are ObfuscateNetworking and WorkloadNames. When set to ObfuscateNetworking the IP addresses and the cluster domain name are obfuscated. When set to WorkloadNames, the gathered data about cluster resources will not contain the workload names for your deployments. Resources UIDs will be used instead. When omitted no obfuscation is applied. |
 | `gatherers` | `object` | gatherers is a required field that specifies the configuration of the gatherers. |
 | `storage` | `object` | storage is an optional field that allows user to define persistent storage for gathering jobs to store the Insights data archive. If omitted, the gathering job will use ephemeral storage. |
+
 ### .spec.gatherers {id="_specgatherers"}
 
 Description
@@ -66,6 +68,7 @@ Required
 | --- | --- | --- |
 | `custom` | `object` | custom provides gathering configuration. It is required when mode is Custom, and forbidden otherwise. Custom configuration allows user to disable only a subset of gatherers. Gatherers that are not explicitly disabled in custom configuration will run. |
 | `mode` | `string` | mode is a required field that specifies the mode for gatherers. Allowed values are All and Custom. When set to All, all gatherers will run and gather data. When set to Custom, the custom configuration from the custom field will be applied. |
+
 ### .spec.gatherers.custom {id="_specgathererscustom"}
 
 Description
@@ -84,8 +87,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configs` | `array` | configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \ |
-| jq '.status.gatherStatus.gatherers[].name'" | `configs[]` | `object` |
+| `configs` | `array` | configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers[].name'" |
+| `configs[]` | `object` | GathererConfig allows to configure specific gatherers |
+
 ### .spec.gatherers.custom.configs {id="_specgathererscustomconfigs"}
 
 Description
@@ -116,8 +120,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is the required name of a specific gatherer. It may not exceed 256 characters. The format for a gatherer name is: {{ gatherer }}/{{ function }} where the function is optional. Gatherer consists of a lowercase letters only that may include underscores (_). Function consists of a lowercase letters only that may include underscores (_) and is separated from the gatherer by a forward slash (/). The particular gatherers can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \ |
-| jq '.status.gatherStatus.gatherers[].name'" | `state` | `string` |
+| `name` | `string` | name is the required name of a specific gatherer. It may not exceed 256 characters. The format for a gatherer name is: {{ gatherer }}/{{ function }} where the function is optional. Gatherer consists of a lowercase letters only that may include underscores (_). Function consists of a lowercase letters only that may include underscores (_) and is separated from the gatherer by a forward slash (/). The particular gatherers can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers[].name'" |
+| `state` | `string` | state is a required field that allows you to configure specific gatherer. Valid values are "Enabled" and "Disabled". When set to Enabled the gatherer will run. When set to Disabled the gatherer will not run. |
+
 ### .spec.storage {id="_specstorage"}
 
 Description
@@ -136,6 +141,7 @@ Required
 | --- | --- | --- |
 | `persistentVolume` | `object` | persistentVolume is an optional field that specifies the PersistentVolume that will be used to store the Insights data archive. The PersistentVolume must be created in the openshift-insights namespace. |
 | `type` | `string` | type is a required field that specifies the type of storage that will be used to store the Insights data archive. Valid values are "PersistentVolume" and "Ephemeral". When set to Ephemeral, the Insights data archive is stored in the ephemeral storage of the gathering job. When set to PersistentVolume, the Insights data archive is stored in the PersistentVolume that is defined by the PersistentVolume field. |
+
 ### .spec.storage.persistentVolume {id="_specstoragepersistentvolume"}
 
 Description
@@ -154,6 +160,7 @@ Required
 | --- | --- | --- |
 | `claim` | `object` | claim is a required field that specifies the configuration of the PersistentVolumeClaim that will be used to store the Insights data archive. The PersistentVolumeClaim must be created in the openshift-insights namespace. |
 | `mountPath` | `string` | mountPath is an optional field specifying the directory where the PVC will be mounted inside the Insights data gathering Pod. When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default mount path is /var/lib/insights-operator The path may not exceed 1024 characters and must not contain a colon. |
+
 ### .spec.storage.persistentVolume.claim {id="_specstoragepersistentvolumeclaim"}
 
 Description
@@ -171,6 +178,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the PersistentVolumeClaim that will be used to store the Insights data archive. It is a string that follows the DNS1123 subdomain format. It must be at most 253 characters in length, and must consist only of lower case alphanumeric characters, '-' and '.', and must start and end with an alphanumeric character. |
+
 ### .status {id="_status"}
 
 Description
@@ -182,7 +190,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | `array` | conditions is an optional field that provides details on the status of the gatherer job. It may not exceed 100 items and must not contain duplicates. The current condition types are DataUploaded, DataRecorded, DataProcessed, RemoteConfigurationNotAvailable, RemoteConfigurationInvalid The DataUploaded condition is used to represent whether or not the archive was successfully uploaded for further processing. When it has a status of True and a reason of Succeeded, the archive was successfully uploaded. When it has a status of Unknown and a reason of NoUploadYet, the upload has not occurred, or there was no data to upload. When it has a status of False and a reason Failed, the upload failed. The accompanying message will include the specific error encountered. The DataRecorded condition is used to represent whether or not the archive was successfully recorded. When it has a status of True and a reason of Succeeded, the archive was recorded successfully. When it has a status of Unknown and a reason of NoDataGatheringYet, the data gathering process has not started yet. When it has a status of False and a reason of RecordingFailed, the recording failed and a message will include the specific error encountered. The DataProcessed condition is used to represent whether or not the archive was processed by the processing service. When it has a status of True and a reason of Processed, the data was processed successfully. When it has a status of Unknown and a reason of NothingToProcessYet, there is no data to process at the moment. When it has a status of False and a reason of Failure, processing failed and a message will include the specific error encountered. The RemoteConfigurationAvailable condition is used to represent whether the remote configuration is available. When it has a status of Unknown and a reason of Unknown or RemoteConfigNotRequestedYet, the state of the remote configuration is unknown—typically at startup. When it has a status of True and a reason of Succeeded, the configuration is available. When it has a status of False and a reason of NoToken, the configuration was disabled by removing the cloud.openshift.com field from the pull secret. When it has a status of False and a reason of DisabledByConfiguration, the configuration was disabled in insightsdatagather.config.openshift.io. The RemoteConfigurationValid condition is used to represent whether the remote configuration is valid. When it has a status of Unknown and a reason of Unknown or NoValidationYet, the validity of the remote configuration is unknown—typically at startup. When it has a status of True and a reason of Succeeded, the configuration is valid. When it has a status of False and a reason of Invalid, the configuration is invalid. The Progressing condition is used to represent the phase of gathering When it has a status of False and the reason is DataGatherPending, the gathering has not started yet. When it has a status of True and reason is Gathering, the gathering is running. When it has a status of False and reason is GatheringSucceeded, the gathering successfully finished. When it has a status of False and reason is GatheringFailed, the gathering failed. |
+| `conditions` | `array` | conditions is an optional field that provides details on the status of the gatherer job. It may not exceed 100 items and must not contain duplicates.<br>The current condition types are DataUploaded, DataRecorded, DataProcessed, RemoteConfigurationNotAvailable, RemoteConfigurationInvalid<br>The DataUploaded condition is used to represent whether or not the archive was successfully uploaded for further processing. When it has a status of True and a reason of Succeeded, the archive was successfully uploaded. When it has a status of Unknown and a reason of NoUploadYet, the upload has not occurred, or there was no data to upload. When it has a status of False and a reason Failed, the upload failed. The accompanying message will include the specific error encountered.<br>The DataRecorded condition is used to represent whether or not the archive was successfully recorded. When it has a status of True and a reason of Succeeded, the archive was recorded successfully. When it has a status of Unknown and a reason of NoDataGatheringYet, the data gathering process has not started yet. When it has a status of False and a reason of RecordingFailed, the recording failed and a message will include the specific error encountered.<br>The DataProcessed condition is used to represent whether or not the archive was processed by the processing service. When it has a status of True and a reason of Processed, the data was processed successfully. When it has a status of Unknown and a reason of NothingToProcessYet, there is no data to process at the moment. When it has a status of False and a reason of Failure, processing failed and a message will include the specific error encountered.<br>The RemoteConfigurationAvailable condition is used to represent whether the remote configuration is available. When it has a status of Unknown and a reason of Unknown or RemoteConfigNotRequestedYet, the state of the remote configuration is unknown—typically at startup. When it has a status of True and a reason of Succeeded, the configuration is available. When it has a status of False and a reason of NoToken, the configuration was disabled by removing the cloud.openshift.com field from the pull secret. When it has a status of False and a reason of DisabledByConfiguration, the configuration was disabled in insightsdatagather.config.openshift.io.<br>The RemoteConfigurationValid condition is used to represent whether the remote configuration is valid. When it has a status of Unknown and a reason of Unknown or NoValidationYet, the validity of the remote configuration is unknown—typically at startup. When it has a status of True and a reason of Succeeded, the configuration is valid. When it has a status of False and a reason of Invalid, the configuration is invalid.<br>The Progressing condition is used to represent the phase of gathering When it has a status of False and the reason is DataGatherPending, the gathering has not started yet. When it has a status of True and reason is Gathering, the gathering is running. When it has a status of False and reason is GatheringSucceeded, the gathering successfully finished. When it has a status of False and reason is GatheringFailed, the gathering failed. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `finishTime` | `string` | finishTime is the time when Insights data gathering finished. |
 | `gatherers` | `array` | gatherers is a list of active gatherers (and their statuses) in the last gathering. |
@@ -192,6 +200,7 @@ Type
 | `relatedObjects` | `array` | relatedObjects is an optional list of resources which are useful when debugging or inspecting the data gathering Pod It may not exceed 100 items and must not contain duplicates. |
 | `relatedObjects[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 | `startTime` | `string` | startTime is the time when Insights data gathering started. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -268,6 +277,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.gatherers {id="_statusgatherers"}
 
 Description
@@ -294,10 +304,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | `array` | conditions provide details on the status of each gatherer. The current condition type is DataGathered The DataGathered condition is used to represent whether or not the data was gathered by a gatherer specified by name. When it has a status of True and a reason of GatheredOK, the data has been successfully gathered as expected. When it has a status of False and a reason of NoData, no data was gathered—for example, when the resource is not present in the cluster. When it has a status of False and a reason of GatherError, an error occurred and no data was gathered. When it has a status of False and a reason of GatherPanic, a panic occurred during gathering and no data was collected. When it has a status of False and a reason of GatherWithErrorReason, data was partially gathered or gathered with an error message. |
+| `conditions` | `array` | conditions provide details on the status of each gatherer.<br>The current condition type is DataGathered<br>The DataGathered condition is used to represent whether or not the data was gathered by a gatherer specified by name. When it has a status of True and a reason of GatheredOK, the data has been successfully gathered as expected. When it has a status of False and a reason of NoData, no data was gathered—for example, when the resource is not present in the cluster. When it has a status of False and a reason of GatherError, an error occurred and no data was gathered. When it has a status of False and a reason of GatherPanic, a panic occurred during gathering and no data was collected. When it has a status of False and a reason of GatherWithErrorReason, data was partially gathered or gathered with an error message. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `lastGatherSeconds` | `integer` | lastGatherSeconds is required field that represents the time spent gathering in seconds |
 | `name` | `string` | name is the required name of the gatherer. It must contain at least 5 characters and may not exceed 256 characters. |
+
 ### .status.gatherers[].conditions {id="_statusgatherersconditions"}
 
 Description
@@ -343,6 +354,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.insightsReport {id="_statusinsightsreport"}
 
 Description
@@ -365,6 +377,7 @@ Required
 | `healthChecks` | `array` | healthChecks is an optional field that provides basic information about active Insights recommendations, which serve as proactive notifications for potential issues in the cluster. When omitted, it means that there are no active recommendations in the cluster. |
 | `healthChecks[]` | `object` | HealthCheck represents an Insights health check attributes. |
 | `uri` | `string` | uri is a required field that provides the URL link from which the report was downloaded. The link must be a valid HTTPS URL and the maximum length is 2048 characters. |
+
 ### .status.insightsReport.healthChecks {id="_statusinsightsreporthealthchecks"}
 
 Description
@@ -396,6 +409,7 @@ Required
 | `advisorURI` | `string` | advisorURI is required field that provides the URL link to the Insights Advisor. The link must be a valid HTTPS URL and the maximum length is 2048 characters. |
 | `description` | `string` | description is required field that provides basic description of the healthcheck. It must contain at least 10 characters and may not exceed 2048 characters. |
 | `totalRisk` | `string` | totalRisk is the required field of the healthcheck. It is indicator of the total risk posed by the detected issue; combination of impact and likelihood. Allowed values are Low, Moderate, Important and Critical. The value represents the severity of the issue. |
+
 ### .status.relatedObjects {id="_statusrelatedobjects"}
 
 Description
@@ -437,12 +451,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of DataGather
     *   `GET`: list objects of kind DataGather
     *   `POST`: create a DataGather
-*   `/apis/insights.openshift.io/v1/datagathers/{{ name }}`
+*   `/apis/insights.openshift.io/v1/datagathers/{{ name }}`{minja}
     *   `DELETE`: delete a DataGather
     *   `GET`: read the specified DataGather
     *   `PATCH`: partially update the specified DataGather
     *   `PUT`: replace the specified DataGather
-*   `/apis/insights.openshift.io/v1/datagathers/{{ name }}/status`
+*   `/apis/insights.openshift.io/v1/datagathers/{{ name }}/status`{minja}
     *   `GET`: read status of the specified DataGather
     *   `PATCH`: partially update status of the specified DataGather
     *   `PUT`: replace status of the specified DataGather

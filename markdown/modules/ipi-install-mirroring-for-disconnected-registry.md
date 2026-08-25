@@ -14,21 +14,21 @@ Complete the following steps to mirror the {{ product_title }} image repository 
 can access the certificate and credentials that you configured.
 {%- if not openshift_origin %}
 *   You downloaded the {{ cluster_manager_url_pull }} and modified it to include authentication to your mirror repository.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 *   You have created a pull secret for your mirror repository.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
 1.  Review the
 {%- if not openshift_origin %}
 [Download {{ product_title }}](https://access.redhat.com/downloads/content/290/) page to determine the version of {{ product_title }} that you want to install and determine the corresponding tag on the [Repository Tags](https://quay.io/repository/openshift-release-dev/ocp-release?tab=tags) page.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 [{{ product_title }} releases page](https://github.com/okd-project/okd/releases/)
 to determine the version and tag of {{ product_title }} that you want to install.
-{% endif %}
+{%- endif %}
 1.  Set the required environment variables:
     1.  Export the release version:
         ```terminal
@@ -49,7 +49,7 @@ to determine the version and tag of {{ product_title }} that you want to install
 
         For `<local_repository_name>`, specify the name of the repository to create in your registry, such as `ocp4/openshift4`.
     1.  Export the name of the repository to mirror:
-        {%- if not openshift_origin %}
+{% if not openshift_origin %}
         ```terminal
         $ PRODUCT_REPO='openshift-release-dev'
         ```
@@ -68,7 +68,7 @@ to determine the version and tag of {{ product_title }} that you want to install
 
         For `<path_to_pull_secret>`, specify the absolute path to and file name of the pull secret for your mirror registry that you created.
     1.  Export the release mirror:
-        {%- if not openshift_origin %}
+{% if not openshift_origin %}
         ```terminal
         $ RELEASE_NAME="ocp-release"
         ```
@@ -100,7 +100,7 @@ to determine the version and tag of {{ product_title }} that you want to install
     *   If your mirror host does not have internet access, take the following actions:
         1.  Connect the removable media to a system that is connected to the internet.
         1.  Review the images and configuration manifests to mirror:
-            {%- if openshift_origin %}
+{% if openshift_origin %}
             ```terminal
             $ oc adm release mirror -a ${LOCAL_SECRET_JSON}  \
                  --from=quay.io/${PRODUCT_REPO}/${RELEASE_NAME}:${OCP_RELEASE} \
@@ -119,7 +119,7 @@ to determine the version and tag of {{ product_title }} that you want to install
         1.  Record the entire `imageContentSources` section from the output of the previous
         command. The information about your mirrors is unique to your mirrored repository, and you must add the `imageContentSources` section to the `install-config.yaml` file during installation.
         1.  Mirror the images to a directory on the removable media:
-            {%- if openshift_origin %}
+{% if openshift_origin %}
             ```terminal
             $ oc adm release mirror -a ${LOCAL_SECRET_JSON} --to-dir=${REMOVABLE_MEDIA_PATH}/mirror quay.io/${PRODUCT_REPO}/${RELEASE_NAME}:${OCP_RELEASE}
             ```
@@ -137,7 +137,7 @@ to determine the version and tag of {{ product_title }} that you want to install
             For `REMOVABLE_MEDIA_PATH`, you must use the same path that you specified when you mirrored the images.
     *   If the local container registry is connected to the mirror host, take the following actions:
         1.  Directly push the release images to the local registry by using following command:
-            {%- if openshift_origin %}
+{% if openshift_origin %}
             ```terminal
             $ oc adm release mirror -a ${LOCAL_SECRET_JSON}  \
                  --from=quay.io/${PRODUCT_REPO}/${RELEASE_NAME}:${OCP_RELEASE} \
@@ -152,7 +152,7 @@ to determine the version and tag of {{ product_title }} that you want to install
                  --to=${LOCAL_REGISTRY}/${LOCAL_REPOSITORY} \
                  --to-release-image=${LOCAL_REGISTRY}/${LOCAL_REPOSITORY}:${OCP_RELEASE}-${ARCHITECTURE}
             ```
-{%- endif %}
+{% endif %}
 
             This command pulls the release information as a digest, and its output includes the `imageContentSources` data that you require when you install your cluster.
         1.  Record the entire `imageContentSources` section from the output of the previous
@@ -171,7 +171,7 @@ mirrored, extract it and pin it to the release:
         $ oc adm release extract -a ${LOCAL_SECRET_JSON} --command=openshift-baremetal-install "${LOCAL_REGISTRY}/${LOCAL_REPOSITORY}:${OCP_RELEASE}"
         ```
     *   If the local container registry is connected to the mirror host, run the following command:
-        {%- if openshift_origin %}
+{% if openshift_origin %}
         ```terminal
         $ oc adm release extract -a ${LOCAL_SECRET_JSON} --command=openshift-baremetal-install "${LOCAL_REGISTRY}/${LOCAL_REPOSITORY}:${OCP_RELEASE}"
         ```
@@ -180,7 +180,7 @@ mirrored, extract it and pin it to the release:
         ```terminal
         $ oc adm release extract -a ${LOCAL_SECRET_JSON} --command=openshift-baremetal-install "${LOCAL_REGISTRY}/${LOCAL_REPOSITORY}:${OCP_RELEASE}-${ARCHITECTURE}"
         ```
-{%- endif %}
+{% endif %}
 
         :::important
 

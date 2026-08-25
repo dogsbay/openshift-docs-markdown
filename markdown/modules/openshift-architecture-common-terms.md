@@ -20,13 +20,13 @@ admission plugins
 authentication
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 :   To control access to an {{ product_title }} cluster, a cluster administrator can configure user authentication to ensure only approved users access the cluster. To interact with an {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
-    To control access to a {{ product_title }} cluster, an administrator with the `dedicated-admin` role can configure user authentication to ensure only approved users access the cluster. To interact with a {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
-{% endif %}
-{% if openshift_dedicated %}
-    To control access to an {{ product_title }} cluster, an administrator with the `dedicated-admin` role can configure user authentication to ensure only approved users access the cluster. To interact with an {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
-{% endif %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
+:   To control access to a {{ product_title }} cluster, an administrator with the `dedicated-admin` role can configure user authentication to ensure only approved users access the cluster. To interact with a {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
+{%- endif %}
+{%- if openshift_dedicated %}
+:   To control access to an {{ product_title }} cluster, an administrator with the `dedicated-admin` role can configure user authentication to ensure only approved users access the cluster. To interact with an {{ product_title }} cluster, you must authenticate with the {{ product_title }} API. You can authenticate by providing an OAuth access token or an X.509 client certificate in your requests to the {{ product_title }} API.
+{%- endif %}
 
 
 bootstrap
@@ -88,17 +88,17 @@ hosted control planes
     *   Improve the cluster creation time.
     *   Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
     *   Allow a strong network segmentation between the control plane and workloads.
-{% endif %}
-{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 
 hosted control planes
 :   A {{ product_title }} feature that enables hosting a control plane on the {{ product_title }} cluster from its data plane and workers. This model performs the following actions:
 
-*   Optimize infrastructure costs required for the control planes.
-*   Improve the cluster creation time.
-*   Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
-*   Allow a strong network segmentation between the control plane and workloads.
-{% endif %}
+    *   Optimize infrastructure costs required for the control planes.
+    *   Improve the cluster creation time.
+    *   Enable hosting the control plane using the Kubernetes native high level primitives. For example, deployments and stateful sets.
+    *   Allow a strong network segmentation between the control plane and workloads.
+{%- endif %}
 
 hybrid cloud deployments
 :   Deployments that deliver a consistent platform across bare metal, virtual, private, and public cloud environments. This offers speed, agility, and portability.
@@ -182,8 +182,8 @@ Operator
 :   The preferred method of packaging, deploying, and managing a Kubernetes application in
 {%- if openshift_rosa or openshift_rosa_hcp %}
     a
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp) %}
     an
 {%- endif %}
     {{ product_title }} cluster. An Operator takes human operational knowledge and encodes it into software that is packaged and shared with customers.
@@ -252,13 +252,13 @@ Source-to-Image (S2I) image
 storage
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 :   {{ product_title }} supports many types of storage, both for on-premise and cloud providers. You can manage container storage for persistent and non-persistent data in an {{ product_title }} cluster.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
-    {{ product_title }} supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in a {{ product_title }} cluster.
-{% endif %}
-{% if openshift_dedicated %}
-    {{ product_title }} supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in an {{ product_title }} cluster.
-{% endif %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
+:   {{ product_title }} supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in a {{ product_title }} cluster.
+{%- endif %}
+{%- if openshift_dedicated %}
+:   {{ product_title }} supports many types of storage for cloud providers. You can manage container storage for persistent and non-persistent data in an {{ product_title }} cluster.
+{%- endif %}
 
 
 Telemetry

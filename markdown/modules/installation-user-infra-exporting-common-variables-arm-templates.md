@@ -41,16 +41,14 @@ Specific ARM templates can also require additional exported variables, which are
     $ export AZURE_REGION=<azure_region>
     ```
     where:
-{%- if not ash %}
+{% if not ash %}
 
     `<azure_region>`
     :   The region to deploy the cluster into, for example `centralus`. This is the value of the `.platform.azure.region` attribute from the `install-config.yaml` file.
 {% endif %}
 {% if ash %}
-
-    `<azure_region>`
-    :   The region to deploy the cluster into. This is the value of the `.platform.azure.region` attribute from the `install-config.yaml` file.
-{%- endif %}
+    `<azure_region>`:: The region to deploy the cluster into. This is the value of the `.platform.azure.region` attribute from the `install-config.yaml` file.
+{% endif %}
     ```terminal
     $ export SSH_KEY=<ssh_key>
     ```
@@ -60,30 +58,26 @@ Specific ARM templates can also require additional exported variables, which are
     $ export BASE_DOMAIN=<base_domain>
     ```
     where:
-{%- if not ash %}
+{% if not ash %}
 
     `<base_domain>`
     :   The base domain to deploy the cluster to. The base domain corresponds to the public DNS zone that you created for your cluster. This is the value of the `.baseDomain` attribute from the `install-config.yaml` file.
 {% endif %}
 {% if ash %}
-
-    `<base_domain>`
-    :   The base domain to deploy the cluster to. The base domain corresponds to the DNS zone that you created for your cluster. This is the value of the `.baseDomain` attribute from the `install-config.yaml` file.
-{%- endif %}
+    `<base_domain>`:: The base domain to deploy the cluster to. The base domain corresponds to the DNS zone that you created for your cluster. This is the value of the `.baseDomain` attribute from the `install-config.yaml` file.
+{% endif %}
     ```terminal
     $ export BASE_DOMAIN_RESOURCE_GROUP=<base_domain_resource_group>
     ```
     where:
-{%- if not ash %}
+{% if not ash %}
 
     `<base_domain_resource_group>`
     :   The resource group where the public DNS zone exists. This is the value of the `.platform.azure.baseDomainResourceGroupName` attribute from the `install-config.yaml` file.
 {% endif %}
 {% if ash %}
-
-    `<base_domain_resource_group>`
-    :   The resource group where the DNS zone exists. This is the value of the `.platform.azure.baseDomainResourceGroupName` attribute from the `install-config.yaml` file.
-{%- endif %}
+    `<base_domain_resource_group>`:: The resource group where the DNS zone exists. This is the value of the `.platform.azure.baseDomainResourceGroupName` attribute from the `install-config.yaml` file.
+{% endif %}
     For example:
     ```terminal
     $ export CLUSTER_NAME=test-cluster
@@ -112,12 +106,12 @@ Specific ARM templates can also require additional exported variables, which are
     :   Specify the path to the directory that you stored the installation files in.
 
 {% if context == "installing-azure-user-infra" %}
-{%- set cp = false -%}
+{%- set cp = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set cp = false -%}
-{%- set ash = false -%}
+{%- set cp = "" -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set cp = false -%}
+{%- set cp = "" -%}
 {% endif %}

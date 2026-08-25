@@ -19,7 +19,7 @@ In addition to the prerequisites that you need to complete before deploying any 
 *   Provide a path from the OpenShift Dedicated cluster to the internet for the domains and ports listed in the _{{ gcp_short }} firewall prerequisites_ in the _Additional resources_ section.
 *   Enabled [Cloud Identity-Aware Proxy API](https://console.cloud.google.com/marketplace/product/google/iap.googleapis.com?q=search&referrer=search&hl=en&project=openshift-gce-devel) at the {{ GCP }} project level.
 
-In addition to the requirements listed above, clusters configured with the ***Service Account authentication type*** must grant the `IAP-Secured Tunnel User` role to `osd-ccs-admin` service account.
+In addition to the requirements listed above, clusters configured with the **Service Account authentication type** must grant the `IAP-Secured Tunnel User` role to `osd-ccs-admin` service account.
 
 For more information about the prerequisites that must be completed before deploying an {{ product_title }} on {{ GCP }}, see _Customer Requirements_.
 

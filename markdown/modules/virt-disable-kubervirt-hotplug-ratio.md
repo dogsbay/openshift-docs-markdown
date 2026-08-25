@@ -11,7 +11,7 @@ If you are a cluster administrator and want to disable hot plugging for an entir
 **Procedure**
 
 1.  Modify the `HyperConverged` CR and set the `maxHotplugRatio` value to `1.0`:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:
@@ -32,7 +32,7 @@ If you are a cluster administrator and want to disable hot plugging for an entir
 **Verification**
 
 1.  Check that you have configured the `maxHotplugRatio` value correctly, by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} -n {{ CNVNamespace }} -o jsonpath='{.spec.liveUpdateConfiguration.maxHotplugRatio}'
     ```
 

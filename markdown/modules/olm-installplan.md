@@ -12,9 +12,7 @@ The install plan must then be approved according to one of the following approva
 
 After the install plan is approved, OLM creates the specified resources and installs the Operator in the namespace that is specified by the subscription.
 
-<details>
-<summary>Example `InstallPlan` object</summary>
-
+:::details{title="Example `InstallPlan` object"}
 ```yaml
 apiVersion: operators.coreos.com/v1alpha1
 kind: InstallPlan
@@ -94,4 +92,4 @@ status:
       status: Created
       ...
 ```
-</details>
+:::

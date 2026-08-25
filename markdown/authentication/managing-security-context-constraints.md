@@ -3,11 +3,11 @@ title: Managing security context constraints
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing security context constraints {id="managing-pod-security-policies"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing security context constraints {id="managing-pod-security-policies"}
 {%- set context = "configuring-internal-oauth" %}
 
-In {{ product_title }}, you can use security context constraints (SCCs) to control permissions for the pods in your cluster.
+In {{ product_title }}, you can use security context constraints (SCCs) to control permissions for the pods in your cluster. {._abstract}
 
 Default SCCs are created during installation and when you install some Operators or other components. As a cluster administrator, you can also create your own SCCs by using the OpenShift CLI (`oc`).
 
@@ -17,8 +17,8 @@ Default SCCs are created during installation and when you install some Operators
 Do not modify the default SCCs. Customizing the default SCCs can lead to issues when some of the platform pods deploy or
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 {{ product_title }}
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 ROSA
 {%- endif %}
 is upgraded. Additionally, the default SCC values are reset to the defaults during some cluster upgrades, which discards all customizations to those SCCs.
@@ -54,7 +54,7 @@ In {{ product_title }} deployments, you can create your own SCCs only for cluste
 
 {% leveloffset +1 %}{% include "./modules/security-context-constraints-command-reference.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_configuring-internal-oauth"}
+## Additional resources {id="additional-resources_configuring-internal-oauth" ._additional-resources}
 
 {% if not openshift_rosa_hcp %}
 *   [Getting support](/support/getting-support#getting-support)

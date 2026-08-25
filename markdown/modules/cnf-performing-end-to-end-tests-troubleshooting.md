@@ -11,7 +11,7 @@ To troubleshoot errors when running latency tests, verify that your cluster is a
 **Procedure**
 
 *   Verify that the cluster is accessible from inside the `cnf-tests` container by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -e KUBECONFIG=/kubeconfig/kubeconfig \
     registry.redhat.io/openshift4/cnf-tests-rhel9:v{{ product_version }} \
     oc get nodes

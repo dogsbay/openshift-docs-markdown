@@ -26,13 +26,14 @@ For more information, see "Azure resource groups".
 
 {% if azure %}
 1.  Create the resource group in a supported Azure region:
-    {% endif %}
-    {% if ash %}
-    *   Create the resource group in a supported Azure region:
-        {%- endif %}
-    ```terminal
-    $ az group create --name ${RESOURCE_GROUP} --location ${AZURE_REGION}
-    ```
+{% endif %}
+{% if ash %}
+* Create the resource group in a supported Azure region:
+{% endif %}
+
+```terminal
+$ az group create --name ${RESOURCE_GROUP} --location ${AZURE_REGION}
+```
 
 {% if azure %}
 1.  Create an Azure identity for the resource group:
@@ -70,11 +71,11 @@ For more information, see "Azure resource groups".
 {% endif %}
 
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}

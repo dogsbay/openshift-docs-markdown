@@ -19,6 +19,6 @@ You can use the {{ microshift_short }} container images to install {{ op_system_
     $ sudo podman login registry.redhat.io
     ```
 1.  Download the bootc image by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ podman pull registry.redhat.io/openshift4/microshift-bootc-rhel{{ op_system_version_major }}:v{{ product_version }}
     ```

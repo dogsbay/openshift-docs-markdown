@@ -10,7 +10,7 @@ To use network file shares as persistent volumes (PVs) in your cluster, create a
 
 **Procedure**
 
-1.  Click **Administration** -> **CustomResourceDefinitions** -> **ClusterCSIDriver**.
+1.  Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
 1.  On the **Instances** tab, click **Create ClusterCSIDriver**.
 1.  Use the following YAML file:
     ```yaml

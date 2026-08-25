@@ -3,14 +3,14 @@ title: About installing OADP
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # About installing OADP {id="about-installing-oadp"}
 {%- set toc = true %}
 
-{% include "./_attributes/common-attributes.md" %}
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "about-installing-oadp" %}
 
-As a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs {{ velero_link }}.
+As a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs {{ velero_link }}. {._abstract}
 
 To back up Kubernetes resources and internal images, you must have object storage as a backup location, such as one of the following storage types:
 
@@ -44,7 +44,7 @@ You create a default `Secret` and then you install the Data Protection Applicati
 
 {% leveloffset +1 %}{% include "./modules/oadp-configuring-noobaa-for-dr.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Installing OADP on Amazon Web Services](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
 *   [Installing OADP on Microsoft Azure](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-azure#installing-oadp-azure)

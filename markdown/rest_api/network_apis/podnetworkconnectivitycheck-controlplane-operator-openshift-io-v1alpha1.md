@@ -1,5 +1,5 @@
 ---
-title: "PodNetworkConnectivityCheck []"
+title: "PodNetworkConnectivityCheck [controlplane.operator.openshift.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the source and target of the connectivity check |
 | `status` | `object` | status contains the observed status of the connectivity check |
+
 ### .spec {id="_spec"}
 
 Description
@@ -50,6 +51,7 @@ Required
 | `sourcePod` | `string` | sourcePod names the pod from which the condition will be checked |
 | `targetEndpoint` | `string` | EndpointAddress to check. A TCP address of the form host:port. Note that if host is a DNS name, then the check would fail if the DNS name cannot be resolved. Specify an IP address for host to bypass DNS name lookup. |
 | `tlsClientCert` | `object` | TLSClientCert, if specified, references a kubernetes.io/tls type secret with 'tls.crt' and 'tls.key' entries containing an optional TLS client certificate and key to be used when checking endpoints that require a client certificate in order to gracefully preform the scan without causing excessive logging in the endpoint process. The secret must exist in the same namespace as this resource. |
+
 ### .spec.tlsClientCert {id="_spectlsclientcert"}
 
 Description
@@ -70,6 +72,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .status {id="_status"}
 
 Description
@@ -89,6 +92,7 @@ Type
 | `outages[]` | `object` | OutageEntry records time period of an outage |
 | `successes` | `array` | successes contains logs successful check actions |
 | `successes[]` | `object` | LogEntry records events |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -119,6 +123,7 @@ Required
 | `reason` | `string` | reason for the condition’s last status transition in a machine readable format. |
 | `status` | `string` | status of the condition |
 | `type` | `string` | type of the condition |
+
 ### .status.failures {id="_statusfailures"}
 
 Description
@@ -148,6 +153,7 @@ Required
 | `reason` | `string` | reason for status in a machine readable format. |
 | `success` | `boolean` | success indicates if the log entry indicates a success or failure. |
 | `time` | `` | Start time of check action. |
+
 ### .status.outages {id="_statusoutages"}
 
 Description
@@ -175,6 +181,7 @@ Type
 | `start` | `` | start of outage detected |
 | `startLogs` | `array` | startLogs contains log entries related to the start of this outage. Should contain the original failure, any entries where the failure mode changed. |
 | `startLogs[]` | `object` | LogEntry records events |
+
 ### .status.outages[].endLogs {id="_statusoutagesendlogs"}
 
 Description
@@ -205,6 +212,7 @@ Required
 | `reason` | `string` | reason for status in a machine readable format. |
 | `success` | `boolean` | success indicates if the log entry indicates a success or failure. |
 | `time` | `` | Start time of check action. |
+
 ### .status.outages[].startLogs {id="_statusoutagesstartlogs"}
 
 Description
@@ -235,6 +243,7 @@ Required
 | `reason` | `string` | reason for status in a machine readable format. |
 | `success` | `boolean` | success indicates if the log entry indicates a success or failure. |
 | `time` | `` | Start time of check action. |
+
 ### .status.successes {id="_statussuccesses"}
 
 Description
@@ -271,16 +280,16 @@ The following API endpoints are available:
 
 *   `/apis/controlplane.operator.openshift.io/v1alpha1/podnetworkconnectivitychecks`
     *   `GET`: list objects of kind PodNetworkConnectivityCheck
-*   `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks`
+*   `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks`{minja}
     *   `DELETE`: delete collection of PodNetworkConnectivityCheck
     *   `GET`: list objects of kind PodNetworkConnectivityCheck
     *   `POST`: create a PodNetworkConnectivityCheck
-*   `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }}`
+*   `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }}`{minja}
     *   `DELETE`: delete a PodNetworkConnectivityCheck
     *   `GET`: read the specified PodNetworkConnectivityCheck
     *   `PATCH`: partially update the specified PodNetworkConnectivityCheck
     *   `PUT`: replace the specified PodNetworkConnectivityCheck
-*   `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }}/status`
+*   `/apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{{ namespace }}/podnetworkconnectivitychecks/{{ name }}/status`{minja}
     *   `GET`: read status of the specified PodNetworkConnectivityCheck
     *   `PATCH`: partially update status of the specified PodNetworkConnectivityCheck
     *   `PUT`: replace status of the specified PodNetworkConnectivityCheck

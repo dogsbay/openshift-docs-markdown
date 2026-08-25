@@ -16,9 +16,9 @@ After you verify that the migration was successful, you must manually delete the
 
 1.  From the {{ product_title }} web console, navigate to **Virtualization** → **VirtualMachines**.
 1.  From the list of VMs in the same namespace, select each VM that you want to move from its current storage class.
-1.  Select **Actions** -> **Migrate storage**.
+1.  Select **Actions** → **Migrate storage**.
 
-    Alternatively, you can access this option by opening the Options menu {{ kebab }} for a selected VM, and then selecting **Migration** -> **Storage**.
+    Alternatively, you can access this option by opening the Options menu {{ kebab }} for a selected VM, and then selecting **Migration** → **Storage**.
 
     The **Migrate VirtualMachine storage** page opens.
 1.  To review the VMs that you want to migrate, click the link that identifies the number of VMs and volumes. Click **View more** to see the full list.

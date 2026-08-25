@@ -53,8 +53,8 @@ The `LokiStack` CR is not available on Grafana-hosted Loki. This topic does not 
       limits:
         global:
           ingestion:
-            ingestionBurstSize: 16 # (1)
-            ingestionRate: 8 # (2)
+            ingestionBurstSize: 16 (1)
+            ingestionRate: 8 (2)
     # ...
     ```
     1.  The `ingestionBurstSize` field defines the maximum local rate-limited sample size per distributor replica in MB. This value is a hard limit. Set this value to at least the maximum logs size expected in a single push request. Single requests that are larger than the `ingestionBurstSize` value are not permitted.

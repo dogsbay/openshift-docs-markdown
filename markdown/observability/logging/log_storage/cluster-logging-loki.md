@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "cluster-logging-loki" %}
-# Configuring the LokiStack log store {id="cluster-logging-loki"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the LokiStack log store {id="cluster-logging-loki"}
 
 In {{ logging }} documentation, _LokiStack_ refers to the {{ logging }} supported combination of Loki and web proxy with {{ product_title }} authentication integration. LokiStack’s proxy uses {{ product_title }} authentication to enforce multi-tenancy. _Loki_ refers to the log store as either the individual component or an external store.
 
@@ -43,7 +43,7 @@ In {{ logging }} documentation, _LokiStack_ refers to the {{ logging }} supporte
 {._additional-resources}
 
 {% if openshift_enterprise %}
-*   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)
+*   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac) {._additional-resources}
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/logging-loki-retention.md" %}{% endleveloffset %}

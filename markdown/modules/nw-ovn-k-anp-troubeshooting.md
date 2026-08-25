@@ -27,7 +27,7 @@ Type:                  Ready-In-Zone-ovn-worker2
 
 If plumbing is unsuccessful, an error is reported from the respective zone controller.
 
-```terminal title="Example of an ANP with a bad status and error message"
+````terminal title="Example of an ANP with a bad status and error message"
 ...
 Status:
   Conditions:
@@ -57,6 +57,6 @@ Status:
     Status:                False
     Type:                  Ready-In-Zone-example-ctlplane-0.example.example-org.net
     ```
-```
+````
 
 See the following section for `nbctl` commands to help troubleshoot unsuccessful policies.

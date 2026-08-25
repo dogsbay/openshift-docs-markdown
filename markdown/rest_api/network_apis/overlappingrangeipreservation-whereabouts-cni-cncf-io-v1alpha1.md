@@ -1,5 +1,5 @@
 ---
-title: "OverlappingRangeIPReservation []"
+title: "OverlappingRangeIPReservation [whereabouts.cni.cncf.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -27,6 +27,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OverlappingRangeIPReservationSpec defines the desired state of OverlappingRangeIPReservation |
+
 ### .spec {id="_spec"}
 
 Description
@@ -52,11 +53,11 @@ The following API endpoints are available:
 
 *   `/apis/whereabouts.cni.cncf.io/v1alpha1/overlappingrangeipreservations`
     *   `GET`: list objects of kind OverlappingRangeIPReservation
-*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations`
+*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations`{minja}
     *   `DELETE`: delete collection of OverlappingRangeIPReservation
     *   `GET`: list objects of kind OverlappingRangeIPReservation
     *   `POST`: create an OverlappingRangeIPReservation
-*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations/{{ name }}`
+*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/overlappingrangeipreservations/{{ name }}`{minja}
     *   `DELETE`: delete an OverlappingRangeIPReservation
     *   `GET`: read the specified OverlappingRangeIPReservation
     *   `PATCH`: partially update the specified OverlappingRangeIPReservation

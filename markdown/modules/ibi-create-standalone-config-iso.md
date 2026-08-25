@@ -58,7 +58,7 @@ For more information about the specifications for the `image-based-config.yaml` 
         pullSecret: '{"auths":{"<your_pull_secret>"}}}'
         sshKey: 'ssh-rsa <your_ssh_pub_key>'
         ```
-       \
+        +
         For dual-stack networking, you can specify both IPv4 and IPv6 CIDRs using a list format in the `machineNetwork` field. The first CIDR in the list is the primary address family and must match the primary address family of the seed cluster.
 
 

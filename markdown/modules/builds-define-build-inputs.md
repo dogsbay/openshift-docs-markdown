@@ -49,7 +49,7 @@ Dockerfile, custom builder logic, or
 
 The following example of a source definition includes multiple input types and an explanation of how they are combined. For more details on how each input type is defined, see the specific sections for each input type.
 
-```yaml
+```yaml {minja}
 source:
   git:
     uri: https://github.com/openshift/ruby-hello-world.git
@@ -82,4 +82,4 @@ where:
 
 `dockerFile`
 :   A Dockerfile with this content is created in `<original_workingdir>/app/dir`, overwriting any existing file with that name.
-{% endif %}
+{%- endif %}

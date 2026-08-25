@@ -3,12 +3,11 @@ title: Managing the default storage class
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing the default storage class {id="persistent-storage-csi-sc-manage"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing the default storage class {id="persistent-storage-csi-sc-manage"}
 {%- set context = "persistent-storage-csi-sc-manage" %}
 
-[role="_abstract"] 
-Many Container Storage Interface (CSI) operators can actively manage default storage classes, removing manual intervention needs and avoiding accidental deletion. Proper management ensures persistent volume claims provision correctly with the appropriate storage backend for your applications.
+Many Container Storage Interface (CSI) operators can actively manage default storage classes, removing manual intervention needs and avoiding accidental deletion. Proper management ensures persistent volume claims provision correctly with the appropriate storage backend for your applications. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-sc-overview.md" %}{% endleveloffset %}
 

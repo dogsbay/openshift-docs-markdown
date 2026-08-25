@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # Identity providers overview {id="sd-configuring-identity-providers"}
 
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "sd-configuring-identity-providers" %}
 
 After you create your {{ product_title }} cluster, configure identity providers so users can log in and access the cluster. {._abstract}
@@ -24,11 +24,11 @@ The following topics describe how to configure an identity provider using the {{
 {% leveloffset +2 %}{% include "./modules/rosa-config-htpasswd-idp-cli.md" %}{% endleveloffset %}
 {% leveloffset +2 %}{% include "./modules/rosa-config-htpasswd-idp-cli-file.md" %}{% endleveloffset %}
 {% leveloffset +2 %}{% include "./modules/config-htpasswd-idp-terraform.md" %}{% endleveloffset %}
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 {% leveloffset +2 %}{% include "./modules/sd-config-htpasswd-idp-cli.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/access-cluster.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 ## Additional resources {id="additional-resources-cluster-access-sts" ._additional-resources}
 {%- if openshift_rosa %}

@@ -9,7 +9,7 @@
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `contextId` | `string` | no | The context ID helps to narrow the scope of contributed actions to a particular area of the application. Examples include `topology` and `helm`. |
-| `filter` | `CodeRef<(scope: any, action: Action) => boolean>` | no | A function that will filter actions based on some conditions. `scope`: The scope in which actions should be provided for. A hook might be required if you want to remove the `ModifyCount` action from a deployment with a horizontal pod autoscaler (HPA). |
+| `filter` | `CodeRef<(scope: any, action: Action) => boolean>` | no | A function that will filter actions based on some conditions.<br>`scope`: The scope in which actions should be provided for. A hook might be required if you want to remove the `ModifyCount` action from a deployment with a horizontal pod autoscaler (HPA). |
 
 ## `console.action/group` {id="_consoleactiongroup"}
 
@@ -21,8 +21,8 @@
 | `id` | `string` | no | ID used to identify the action section. |
 | `label` | `string` | yes | The label to display in the UI. Required for submenus. |
 | `submenu` | `boolean` | yes | Whether this group should be displayed as submenu. |
-| `insertBefore` | `string` \ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \ | `string[]` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. The `insertBefore` value takes precedence. |
 
 ## `console.action/provider` {id="_consoleactionprovider"}
 
@@ -62,9 +62,9 @@ This extension can be used for plugins to contribute a handler that can filter s
 |     |     |     |     |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `catalogId` | `string` \ | `string[]` | no |
-| The unique identifier for the catalog this provider contributes to. | `type` | `string` | no |
-| Type ID for the catalog item type. | `filter` | `CodeRef<(item: CatalogItem) => boolean>` | no |
+| `catalogId` | `string` \| `string[]` | no | The unique identifier for the catalog this provider contributes to. |
+| `type` | `string` | no | Type ID for the catalog item type. |
+| `filter` | `CodeRef<(item: CatalogItem) => boolean>` | no | Filters items of a specific type. Value is a function that takes `CatalogItem[]` and returns a subset based on the filter criteria. |
 
 ## `console.catalog/item-metadata` {id="_consolecatalogitem-metadata"}
 
@@ -73,9 +73,9 @@ This extension can be used to contribute a provider that adds extra metadata to 
 |     |     |     |     |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `catalogId` | `string` \ | `string[]` | no |
-| The unique identifier for the catalog this provider contributes to. | `type` | `string` | no |
-| Type ID for the catalog item type. | `provider` | `CodeRef<ExtensionHook<CatalogItemMetadataProviderFunction, CatalogExtensionHookOptions>>` | no |
+| `catalogId` | `string` \| `string[]` | no | The unique identifier for the catalog this provider contributes to. |
+| `type` | `string` | no | Type ID for the catalog item type. |
+| `provider` | `CodeRef<ExtensionHook<CatalogItemMetadataProviderFunction, CatalogExtensionHookOptions>>` | no | A hook which returns a function that will be used to provide metadata to catalog items of a specific type. |
 
 ## `console.catalog/item-provider` {id="_consolecatalogitem-provider"}
 
@@ -84,11 +84,11 @@ This extension allows plugins to contribute a provider for a catalog item type. 
 |     |     |     |     |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `catalogId` | `string` \ | `string[]` | no |
-| The unique identifier for the catalog this provider contributes to. | `type` | `string` | no |
-| Type ID for the catalog item type. | `title` | `string` | no |
-| Title for the catalog item provider | `provider` | `CodeRef<ExtensionHook<CatalogItem<any>[], CatalogExtensionHookOptions>>` | no |
-| Fetch items and normalize it for the catalog. Value is a react effect hook. | `priority` | `number` | yes |
+| `catalogId` | `string` \| `string[]` | no | The unique identifier for the catalog this provider contributes to. |
+| `type` | `string` | no | Type ID for the catalog item type. |
+| `title` | `string` | no | Title for the catalog item provider |
+| `provider` | `CodeRef<ExtensionHook<CatalogItem<any>[], CatalogExtensionHookOptions>>` | no | Fetch items and normalize it for the catalog. Value is a react effect hook. |
+| `priority` | `number` | yes | Priority for this provider. Defaults to `0`. Higher priority providers may override catalog items provided by other providers. |
 
 ## `console.catalog/item-type` {id="_consolecatalogitem-type"}
 
@@ -99,10 +99,10 @@ This extension allows plugins to contribute a new type of catalog item. For exam
 | Name | Value Type | Optional | Description |
 | `type` | `string` | no | Type for the catalog item. |
 | `title` | `string` | no | Title for the catalog item. |
-| `catalogDescription` | `string` \ | `CodeRef<React.ReactNode>` | yes |
-| Description for the type specific catalog. | `typeDescription` | `string` | yes |
-| Description for the catalog item type. | `filters` | `CatalogItemAttribute[]` | yes |
-| Custom filters specific to the catalog item. | `groupings` | `CatalogItemAttribute[]` | yes |
+| `catalogDescription` | `string` \| `CodeRef<React.ReactNode>` | yes | Description for the type specific catalog. |
+| `typeDescription` | `string` | yes | Description for the catalog item type. |
+| `filters` | `CatalogItemAttribute[]` | yes | Custom filters specific to the catalog item. |
+| `groupings` | `CatalogItemAttribute[]` | yes | Custom groupings specific to the catalog item. |
 
 ## `console.catalog/item-type-metadata` {id="_consolecatalogitem-type-metadata"}
 
@@ -178,9 +178,9 @@ Adds a new dashboard card.
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `tab` | `string` | no | The ID of the dashboard tab to which the card will be added. |
-| `position` | ’LEFT' \ | 'RIGHT' \ | 'MAIN'` |
-| no | The grid position of the card on the dashboard. | `component` | `CodeRef<React.ComponentType<{}>>` |
-| no | Dashboard card component. | `span` | `OverviewCardSpan` |
+| `position` | `'LEFT' \| 'RIGHT' \| 'MAIN'` | no | The grid position of the card on the dashboard. |
+| `component` | `CodeRef<React.ComponentType<{}>>` | no | Dashboard card component. |
+| `span` | `OverviewCardSpan` | yes | Card’s vertical span in the column. Ignored for small screens; defaults to `12`. |
 
 ## `console.dashboards/custom/overview/detail/item` {id="_consoledashboardscustomoverviewdetailitem"}
 
@@ -257,10 +257,10 @@ Adds a health subsystem to the status card of Overview dashboard where the sourc
 | Name | Value Type | Optional | Description |
 | `title` | `string` | no | The display name of the subsystem. |
 | `url` | `string` | no | The URL to fetch data from. It will be prefixed with base Kubernetes URL. |
-| `healthHandler` | `CodeRef<URLHealthHandler<T, K8sResourceCommon \ | K8sResourceCommon[]>>` | no |
-| Resolve the subsystem’s health. | `additionalResource` | `CodeRef<FirehoseResource>` | yes |
-| Additional resource which will be fetched and passed to `healthHandler`. | `popupComponent` | `CodeRef<React.ComponentType<{ healthResult?: T; healthResultError?: any; k8sResult?: FirehoseResult<R>; }>>` | yes |
-| Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. | `popupTitle` | `string` | yes |
+| `healthHandler` | `CodeRef<URLHealthHandler<T, K8sResourceCommon \| K8sResourceCommon[]>>` | no | Resolve the subsystem’s health. |
+| `additionalResource` | `CodeRef<FirehoseResource>` | yes | Additional resource which will be fetched and passed to `healthHandler`. |
+| `popupComponent` | `CodeRef<React.ComponentType<{ healthResult?: T; healthResultError?: any; k8sResult?: FirehoseResult<R>; }>>` | yes | Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. |
+| `popupTitle` | `string` | yes | The title of the popover. |
 
 ## `console.dashboards/overview/inventory/item` {id="_consoledashboardsoverviewinventoryitem"}
 
@@ -281,7 +281,7 @@ Adds an inventory status group.
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `id` | `string` | no | The ID of the status group. |
-| `icon` | `CodeRef<React.ReactElement<any, string` \ | `React.JSXElementConstructor<any>>>` | no |
+| `icon` | `CodeRef<React.ReactElement<any, string` \| `React.JSXElementConstructor<any>>>` | no | React component representing the status group icon. |
 
 ## `console.dashboards/overview/inventory/item/replacement` {id="_consoledashboardsoverviewinventoryitemreplacement"}
 
@@ -324,8 +324,8 @@ Adds a new dashboard tab, placed after the **Overview** tab.
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `id` | `string` | no | A unique tab identifier, used as tab link `href` and when adding cards to this tab. |
-| `navSection` | ’home' \ | 'storage'` | no |
-| Navigation section to which the tab belongs to. | `title` | `string` | no |
+| `navSection` | `'home' \| 'storage'` | no | Navigation section to which the tab belongs to. |
+| `title` | `string` | no | The title of the tab. |
 
 ## `console.file-upload` {id="_consolefile-upload"}
 
@@ -367,7 +367,7 @@ Adds a new web console feature flag driven by the presence of a `CustomResourceD
 
 ## `console.global-config` {id="_consoleglobal-config"}
 
-This extension identifies a resource used to manage the configuration of the cluster. A link to the resource will be added to the **Administration** -> **Cluster Settings** -> **Configuration** page.
+This extension identifies a resource used to manage the configuration of the cluster. A link to the resource will be added to the **Administration** → **Cluster Settings** → **Configuration** page.
 
 |     |     |     |     |
 | --- | --- | --- | --- |
@@ -405,10 +405,10 @@ This extension can be used to contribute a navigation item that points to a spec
 | `section` | `string` | yes | Navigation section to which this item belongs to. If not specified, render this item as a top level link. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
 | `startsWith` | `string[]` | yes | Mark this item as active when the URL starts with one of these paths. |
-| `insertBefore` | `string` \ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \ | `string[]` |
-| yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. | `namespaced` | `boolean` |
-| yes | If `true`, adds `/ns/active-namespace` to the end. | `prefixNamespaced` | `boolean` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
+| `namespaced` | `boolean` | yes | If `true`, adds `/ns/active-namespace` to the end. |
+| `prefixNamespaced` | `boolean` | yes | If `true`, adds `/k8s/ns/active-namespace` to the beginning. |
 
 ## `console.navigation/resource-cluster` {id="_consolenavigationresource-cluster"}
 
@@ -423,9 +423,9 @@ This extension can be used to contribute a navigation item that points to a clus
 | `section` | `string` | yes | Navigation section to which this item belongs to. If not specified, render this item as a top-level link. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
 | `startsWith` | `string[]` | yes | Mark this item as active when the URL starts with one of these paths. |
-| `insertBefore` | `string` \ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \ | `string[]` |
-| yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. | `name` | `string` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
+| `name` | `string` | yes | Overrides the default name. If not supplied the name of the link will equal the plural value of the model. |
 
 ## `console.navigation/resource-ns` {id="_consolenavigationresource-ns"}
 
@@ -440,9 +440,9 @@ This extension can be used to contribute a navigation item that points to a name
 | `section` | `string` | yes | Navigation section to which this item belongs to. If not specified, render this item as a top-level link. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
 | `startsWith` | `string[]` | yes | Mark this item as active when the URL starts with one of these paths. |
-| `insertBefore` | `string \ | string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \ | `string[]` |
-| yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. | `name` | `string` |
+| `insertBefore` | `string \| string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
+| `name` | `string` | yes | Overrides the default name. If not supplied the name of the link will equal the plural value of the model. |
 
 ## `console.navigation/section` {id="_consolenavigationsection"}
 
@@ -454,9 +454,9 @@ This extension can be used to define a new section of navigation items in the na
 | `id` | `string` | no | A unique identifier for this item. |
 | `perspective` | `string` | yes | The perspective ID to which this item belongs to. If not specified, contributes to the default perspective. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
-| `insertBefore` | `string` \ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \ | `string[]` |
-| yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. | `name` | `string` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
+| `name` | `string` | yes | Name of this section. If not supplied, only a separator will be shown above the section. |
 
 ## `console.navigation/separator` {id="_consolenavigationseparator"}
 
@@ -469,8 +469,8 @@ This extension can be used to add a separator between navigation items in the na
 | `perspective` | `string` | yes | The perspective ID to which this item belongs to. If not specified, contributes to the default perspective. |
 | `section` | `string` | yes | Navigation section to which this item belongs to. If not specified, render this item as a top level link. |
 | `dataAttributes` | `{ [key: string]: string; }` | yes | Adds data attributes to the DOM. |
-| `insertBefore` | `string` \ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \ | `string[]` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. `insertBefore` takes precedence. |
 
 ## `console.page/resource/details` {id="_consolepageresourcedetails"}
 
@@ -498,9 +498,9 @@ Adds a new page to the web console router. For more information, see React Route
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `component` | `CodeRef<React.ComponentType<RouteComponentProps<{}, StaticContext, any>>>` | no | The component to be rendered when the route matches. |
-| `path` | `string` \ | `string[]` | no |
-| Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. | `perspective` | `string` | yes |
-| The perspective to which this page belongs to. If not specified, contributes to all perspectives. | `exact` | `boolean` | yes |
+| `path` | `string` \| `string[]` | no | Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. |
+| `perspective` | `string` | yes | The perspective to which this page belongs to. If not specified, contributes to all perspectives. |
+| `exact` | `boolean` | yes | When true, will only match if the path matches the `location.pathname` exactly. |
 
 ## `console.page/route/standalone` {id="_consolepageroutestandalone"}
 
@@ -510,8 +510,8 @@ Adds a new standalone page, rendered outside the common page layout, to the web 
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `component` | `CodeRef<React.ComponentType<RouteComponentProps<{}, StaticContext, any>>>` | no | The component to be rendered when the route matches. |
-| `path` | `string` \ | `string[]` | no |
-| Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. | `exact` | `boolean` | yes |
+| `path` | `string` \| `string[]` | no | Valid URL path or array of paths that `path-to-regexp@^1.7.0` understands. |
+| `exact` | `boolean` | yes | When true, will only match if the path matches the `location.pathname` exactly. |
 
 ## `console.perspective` {id="_consoleperspective"}
 
@@ -658,7 +658,7 @@ Adds a new details item to the default resource summary on the details page.
 </tr>
 <tr>
   <td><code>component</code></td>
-  <td>`CodeRef<React.ComponentType<DetailsItemComponentProps<K8sResourceCommon, any>>>` |yes</td>
+  <td>`CodeRef<React.ComponentType<DetailsItem ComponentProps<K8sResourceCommon, any>>>` |yes</td>
   <td>An optional React component that will render the details item value.</td>
   <td><code>sortWeight</code></td>
 </tr>
@@ -729,7 +729,7 @@ This component can be used to register a listener function receiving telemetry e
 |     |     |     |     |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `adapt` | `CodeRef<(element: GraphElement) => AdapterDataType<BuildConfigData> \ | undefined>` | no |
+| `adapt` | `CodeRef<(element: GraphElement) => AdapterDataType<BuildConfigData> \| undefined>` | no | Adapter to adapt element to data that can be used by Build component. |
 
 ## `console.topology/adapter/network` {id="_consoletopologyadapternetwork"}
 
@@ -738,7 +738,7 @@ This component can be used to register a listener function receiving telemetry e
 |     |     |     |     |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `adapt` | `CodeRef<(element: GraphElement) => NetworkAdapterType \ | undefined>` | no |
+| `adapt` | `CodeRef<(element: GraphElement) => NetworkAdapterType \| undefined>` | no | Adapter to adapt element to data that can be used by Networking component. |
 
 ## `console.topology/adapter/pod` {id="_consoletopologyadapterpod"}
 
@@ -747,7 +747,7 @@ This component can be used to register a listener function receiving telemetry e
 |     |     |     |     |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `adapt` | `CodeRef<(element: GraphElement) => AdapterDataType<PodsAdapterDataType> \ | undefined>` | no |
+| `adapt` | `CodeRef<(element: GraphElement) => AdapterDataType<PodsAdapterDataType> \| undefined>` | no | Adapter to adapt element to data that can be used by Pod component. |
 
 ## `console.topology/component/factory` {id="_consoletopologycomponentfactory"}
 
@@ -802,7 +802,7 @@ Topology Decorator Provider Extension
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `id` | `string` | no | The ID of this alert. Used to save state if the alert should not be shown after dismissed. |
-| `contentProvider` | `CodeRef<(element: GraphElement) => DetailsResourceAlertContent \ | null>` | no |
+| `contentProvider` | `CodeRef<(element: GraphElement) => DetailsResourceAlertContent \| null>` | no | Hook to return the contents of the alert. |
 
 ## `console.topology/details/resource-link` {id="_consoletopologydetailsresource-link"}
 
@@ -811,8 +811,8 @@ Topology Decorator Provider Extension
 |     |     |     |     |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `link` | `CodeRef<(element: GraphElement) => React.Component \ | undefined>` | no |
-| Return the resource link if provided, otherwise undefined. Use the `ResourceIcon` and `ResourceLink` properties for styles. | `priority` | `number` | yes |
+| `link` | `CodeRef<(element: GraphElement) => React.Component \| undefined>` | no | Return the resource link if provided, otherwise undefined. Use the `ResourceIcon` and `ResourceLink` properties for styles. |
+| `priority` | `number` | yes | A higher priority factory will get the first chance to create the link. |
 
 ## `console.topology/details/tab` {id="_consoletopologydetailstab"}
 
@@ -823,8 +823,8 @@ Topology Decorator Provider Extension
 | Name | Value Type | Optional | Description |
 | `id` | `string` | no | A unique identifier for this details tab. |
 | `label` | `string` | no | The tab label to display in the UI. |
-| `insertBefore` | `string` \ | `string[]` | yes |
-| Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \ | `string[]` |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. The `insertBefore` value takes precedence. |
 
 ## `console.topology/details/tab-section` {id="_consoletopologydetailstab-section"}
 
@@ -836,9 +836,9 @@ Topology Decorator Provider Extension
 | `id` | `string` | no | A unique identifier for this details tab section. |
 | `tab` | `string` | no | The parent tab ID that this section should contribute to. |
 | `provider` | `CodeRef<DetailsTabSectionExtensionHook>` | no | A hook that returns a component, or if null or undefined, renders in the topology sidebar. SDK component: `<Section title=\{}>...` padded area |
-| `section` | `CodeRef<(element: GraphElement, renderNull?: () => null) => React.Component \ | undefined>` | no |
-| Deprecated: Fallback if no provider is defined. renderNull is a no-op already. | `insertBefore` | `string` \ | `string[]` |
-| yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. | `insertAfter` | `string` \ |
+| `section` | `CodeRef<(element: GraphElement, renderNull?: () => null) => React.Component \| undefined>` | no | Deprecated: Fallback if no provider is defined. renderNull is a no-op already. |
+| `insertBefore` | `string` \| `string[]` | yes | Insert this item before the item referenced here. For arrays, the first one found in order is used. |
+| `insertAfter` | `string` \| `string[]` | yes | Insert this item after the item referenced here. For arrays, the first one found in order is used. The `insertBefore` value takes precedence. |
 
 ## `console.topology/display/filters` {id="_consoletopologydisplayfilters"}
 

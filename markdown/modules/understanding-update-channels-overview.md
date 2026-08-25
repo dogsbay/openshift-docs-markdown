@@ -18,10 +18,10 @@ Update channels control only release selection and do not impact the version of 
 {% if not openshift_origin %}
 {{ product_title }} {{ product_version }} offers the following update channels:
 
-*   `stable-{{ product_version }}`
+*   `stable-{{ product_version }}`{minja}
 *   `eus-4.y` (only offered for EUS versions and meant to facilitate updates between EUS versions)
-*   `fast-{{ product_version }}`
-*   `candidate-{{ product_version }}`
+*   `fast-{{ product_version }}`{minja}
+*   `candidate-{{ product_version }}`{minja}
 
 If you do not want the Cluster Version Operator to fetch available updates from the update recommendation service, you can use the `oc adm upgrade channel` command in the OpenShift CLI to configure an empty channel. This configuration can be helpful if, for example, a cluster has restricted network access and there is no local, reachable update recommendation service.
 

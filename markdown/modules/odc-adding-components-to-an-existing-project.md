@@ -8,6 +8,7 @@ You can add components to a project.
 1.  Navigate to the **+Add** view.
 1.  Click **Add to Project** (![title="Add to Project"](/_assets/images/odc_add_to_project.png)) next to left navigation pane or press <kbd>Ctrl+Space</kbd>
 1.  Search for the component and click the **Start**/**Create**/**Install** button or click <kbd>Enter</kbd> to add the component to the project and see it in the topology **Graph view**.
+
     **Figure 1. Adding component via quick search**
 
     ![odc_quick_search](/_assets/images/odc_quick_search.png)

@@ -3,13 +3,13 @@ title: Performing latency tests for platform verification
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Performing latency tests for platform verification {id="cnf-performing-platform-verification-latency-tests"}
 {% include "./_attributes/common-attributes.md" %}
+# Performing latency tests for platform verification {id="cnf-performing-platform-verification-latency-tests"}
 {%- set context = "cnf-latency-tests" %}
 
-You can use the Cloud-native Network Functions (CNF) tests image to run latency tests on a CNF-enabled {{ product_title }} cluster, where all the components required for running CNF workloads are installed. Run the latency tests to validate node tuning for your workload.
+You can use the Cloud-native Network Functions (CNF) tests image to run latency tests on a CNF-enabled {{ product_title }} cluster, where all the components required for running CNF workloads are installed. Run the latency tests to validate node tuning for your workload. {._abstract}
 
-The `cnf-tests` container image is available at `registry.redhat.io/openshift4/cnf-tests-rhel9:v{{ product_version }}`.
+The `cnf-tests` container image is available at `registry.redhat.io/openshift4/cnf-tests-rhel9:v{{ product_version }}`{minja}.
 
 ## Prerequisites for running latency tests {id="cnf-latency-tests-prerequisites_{{ context }}"}
 
@@ -19,6 +19,7 @@ Your cluster must meet the following requirements before you can run the latency
 *   You have logged in to `registry.redhat.io` with your Customer Portal credentials by using the `podman login` command. 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Scheduling a workload onto a worker with real-time capabilities](/scalability_and_performance/cnf-provisioning-low-latency-workloads#cnf-scheduling-workload-onto-worker-with-real-time-capabilities_cnf-provisioning-low-latency)
 
@@ -31,6 +32,7 @@ Your cluster must meet the following requirements before you can run the latency
 {% leveloffset +2 %}{% include "./modules/cnf-performing-end-to-end-tests-example-results-hwlatdetect.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Setting firmware parameters for system tuning](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/9/html-single/optimizing_rhel_9_for_real_time_for_low_latency_operation/index#setting-bios-parameters-for-system-tuning_optimizing-RHEL9-for-real-time-for-low-latency-operation)
 
@@ -51,6 +53,7 @@ Your cluster must meet the following requirements before you can run the latency
 {% leveloffset +2 %}{% include "./modules/cnf-performing-end-to-end-tests-mirroring-images-to-custom-registry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [registry.redhat.io](https://catalog.redhat.com/software/containers/explore)
 

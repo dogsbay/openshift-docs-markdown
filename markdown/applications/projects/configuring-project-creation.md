@@ -3,11 +3,11 @@ title: Configuring project creation
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring project creation {id="configuring-project-creation"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring project creation {id="configuring-project-creation"}
 {%- set context = "configuring-project-creation" %}
 
-As a cluster administrator, you can allow and configure how developers and service accounts can create, or _self-provision_, their own projects.
+As a cluster administrator, you can allow and configure how developers and service accounts can create, or _self-provision_, their own projects. {._abstract}
 
 In {{ product_title }}, _projects_ are used to group and isolate related objects.
 When you request to create a new project by using the web console or `oc new-project` command, an endpoint in {{ product_title }} provisions the project according to a template.

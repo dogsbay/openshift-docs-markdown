@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Customizing security in a Service Mesh {id="ossm-security-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Customizing security in a Service Mesh {id="ossm-security-v1x"}
 {%- set context = "ossm-security-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

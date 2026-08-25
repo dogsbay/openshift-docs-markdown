@@ -3,8 +3,8 @@ title: Triggering and modifying builds
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Triggering and modifying builds {id="triggering-builds-build-hooks"}
 {% include "./_attributes/common-attributes.md" %}
+# Triggering and modifying builds {id="triggering-builds-build-hooks"}
 {%- set context = "triggering-builds-build-hooks" %}
 
 The following sections outline how to trigger builds and modify builds using build hooks.
@@ -20,6 +20,7 @@ The following sections outline how to trigger builds and modify builds using bui
 {% leveloffset +3 %}{% include "./modules/recover-unstable-cluster-webhooks.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster role bindings for unauthenticated groups](/authentication/using-rbac#unauthenticated-users-cluster-role-bindings-concept_using-rbac)
 

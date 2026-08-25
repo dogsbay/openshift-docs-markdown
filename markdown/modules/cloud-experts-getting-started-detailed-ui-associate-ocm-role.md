@@ -24,7 +24,7 @@ You need the {{ cluster_manager }} role to create your cluster.  {._abstract}
 
     This command creates the {{ cluster_manager }} role and associates it with your Red&#160;Hat account.
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Creating ocm role
     I: Creating role using 'arn:aws:iam::000000000000:user/rosa-user'

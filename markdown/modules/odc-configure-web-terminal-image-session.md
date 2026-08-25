@@ -8,8 +8,8 @@ You can change the default image for the web terminal for your current session. 
 *   You have access to 
 {%- if not (openshift_rosa_hcp or openshift_rosa) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa_hcp or openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa_hcp or openshift_rosa %}
 a {{ product_title }} 
 {%- endif %}
 cluster that has the {{ web_terminal_op }} installed.

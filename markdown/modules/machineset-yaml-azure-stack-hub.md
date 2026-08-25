@@ -10,21 +10,21 @@ You can create a machine set on {{ azure_first }} Stack Hub. By defining a YAML 
 The {{ azure_full }} sample YAML defines a compute machine set that runs in the `1` {{ azure_short }} zone in a region and creates nodes that are labeled with
 {%- if not infra %}
 `node-role.kubernetes.io/<role>: ""`.
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `node-role.kubernetes.io/infra: ""`. The sample YAML specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
-{% endif %}
+{%- endif %}
 
 In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
 {%- if not infra %}
 `<role>`
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `<infra>`
 {%- endif %}
 is the node label to add.
 
-```yaml
+```yaml {minja}
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
@@ -34,8 +34,8 @@ metadata:
     machine.openshift.io/cluster-api-machine-role: <role>
     machine.openshift.io/cluster-api-machine-type: <role>
   name: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
     machine.openshift.io/cluster-api-machine-role: <infra>
     machine.openshift.io/cluster-api-machine-type: <infra>
   name: <infrastructure_id>-infra-<region>
@@ -48,8 +48,8 @@ spec:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
 {%- if not infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
 {%- endif %}
   template:
@@ -61,8 +61,8 @@ spec:
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
         machine.openshift.io/cluster-api-machine-role: <infra>
         machine.openshift.io/cluster-api-machine-type: <infra>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<region>
@@ -73,8 +73,8 @@ spec:
         labels:
 {%- if not infra %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           node-role.kubernetes.io/infra: ""
       taints:
       - key: node-role.kubernetes.io/infra
@@ -97,8 +97,8 @@ spec:
           kind: AzureMachineProviderSpec
 {%- if not infra %}
           location: <region>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           location: <region>
 {%- endif %}
           managedIdentity: <infrastructure_id>-identity
@@ -123,8 +123,8 @@ spec:
           vnet: <infrastructure_id>-vnet
 {%- if not infra %}
           zone: "1"
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           zone: "1"
 {%- endif %}
 ```
@@ -151,7 +151,7 @@ where:
         -o jsonpath='{.spec.template.spec.providerSpec.value.vnet}{"\n"}' \
         get machineset/<infrastructure_id>-worker-centralus1
     ```
-{%- if not infra %}
+{% if not infra %}
 
 `<role>`
 :   Specifies the node label to add.
@@ -213,8 +213,8 @@ Machine sets running on Azure Stack Hub do not support non-guaranteed Spot VMs.
 
 
 {% if context == "creating-infrastructure-machinesets" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}
 {% if context == "cluster-tasks" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}

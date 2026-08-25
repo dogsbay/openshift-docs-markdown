@@ -86,7 +86,7 @@ For more information about the support scope of Red Hat Developer Preview featur
     where:
 
 
-    `{{ cluster_id }}`
+    `{{ cluster_id }}`{minja}
     :   Specifies the ID of the cluster you want to migrate to the OVN-Kubernetes network plugin.
 
     `myjsonfile.json`

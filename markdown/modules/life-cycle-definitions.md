@@ -13,26 +13,29 @@ The following table defines the versioning scheme used for {{ product_title }} r
 
 Major releases or X-releases
 :   Referred to only as _major releases_ or _X-releases_ (X.y.z).
-**Examples**
 
-    *   "Major release 5" -> 5.y.z
-    *   "Major release 4" -> 4.y.z
-    *   "Major release 3" -> 3.y.z
+    **Examples**
+
+    *   "Major release 5" → 5.y.z
+    *   "Major release 4" → 4.y.z
+    *   "Major release 3" → 3.y.z
 
 
 Minor releases or Y-releases
 :   Referred to only as _minor releases_ or _Y-releases_ (x.Y.z).
-**Examples**
 
-    *   "Minor release 4" -> 4.4.z
-    *   "Minor release 5" -> 4.5.z
-    *   "Minor release 6" -> 4.6.z
+    **Examples**
+
+    *   "Minor release 4" → 4.4.z
+    *   "Minor release 5" → 4.5.z
+    *   "Minor release 6" → 4.6.z
 
 
 Patch releases or Z-releases
 :   Referred to only as _patch releases_ or _Z-releases_ (x.y.Z).
-**Examples**
 
-    *   "Patch release 14 of minor release 5" -> 4.5.14
-    *   "Patch release 25 of minor release 5" -> 4.5.25
-    *   "Patch release 26 of minor release 6" -> 4.6.26
+    **Examples**
+
+    *   "Patch release 14 of minor release 5" → 4.5.14
+    *   "Patch release 25 of minor release 5" → 4.5.25
+    *   "Patch release 26 of minor release 6" → 4.6.26

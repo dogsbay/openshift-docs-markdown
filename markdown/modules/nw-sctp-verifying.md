@@ -19,7 +19,7 @@ You can verify that SCTP is working on a cluster by creating a pod with an appli
 
 1.  Create a pod starts an SCTP listener:
     1.  Create a file named `sctp-server.yaml` that defines a pod with the following YAML:
-        ```yaml
+        ```yaml {minja}
         apiVersion: v1
         kind: Pod
         metadata:
@@ -67,7 +67,7 @@ You can verify that SCTP is working on a cluster by creating a pod with an appli
         ```
 1.  Create a pod for the SCTP client.
     1.  Create a file named `sctp-client.yaml` with the following YAML:
-        ```yaml
+        ```yaml {minja}
         apiVersion: v1
         kind: Pod
         metadata:

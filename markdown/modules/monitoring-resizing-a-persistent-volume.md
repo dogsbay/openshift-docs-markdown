@@ -33,12 +33,12 @@ You can only expand the size of the PVC. Shrinking the storage size is not possi
 **Procedure**
 
 1.  Manually expand a PVC with the updated storage request. For more information, see "Expanding persistent volume claims (PVCs) with a file system" in _Expanding persistent volumes_.
-1.  Edit the `{{ configmap_name }}` config map in the `{{ namespace_name }}` project:
-    ```terminal
+1.  Edit the `{{ configmap_name }}`{minja} config map in the `{{ namespace_name }}`{minja} project:
+    ```terminal {minja}
     $ oc -n {{ namespace_name }} edit configmap {{ configmap_name }}
     ```
 1.  Add a new storage size for the PVC configuration for the component under `data/config.yaml`:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     kind: ConfigMap
     metadata:
@@ -46,12 +46,12 @@ You can only expand the size of the PVC. Shrinking the storage size is not possi
       namespace: {{ namespace_name }}
     data:
       config.yaml: |
-        <component>: # (1)
+        <component>: (1)
           volumeClaimTemplate:
             spec:
               resources:
                 requests:
-                  storage: <amount_of_storage> # (2)
+                  storage: <amount_of_storage> (2)
     ```
     1.  The component for which you want to change the storage size.
     1.  Specify the new size for the storage volume. It must be greater than the previous value.
@@ -59,32 +59,32 @@ You can only expand the size of the PVC. Shrinking the storage size is not possi
         The following example sets the new PVC request to 
         100 gigabytes for the Prometheus instance:
         20 gigabytes for Thanos Ruler:
-        ```yaml title="Example storage configuration for {{ component }}"
-        apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: {{ configmap_name }}
-          namespace: {{ namespace_name }}
-        data:
-          config.yaml: |
-            {{ component }}:
-              volumeClaimTemplate:
-                spec:
-                  resources:
-                    requests:
-        # tag::CPM[]
-                      storage: 100Gi
-        # end::CPM[]
-        # tag::UWM[]
-                      storage: 20Gi
-        # end::UWM[]
-        ```
+    ```yaml title="Example storage configuration for {{ component }}" {minja}
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: {{ configmap_name }}
+      namespace: {{ namespace_name }}
+    data:
+      config.yaml: |
+        {{ component }}:
+          volumeClaimTemplate:
+            spec:
+              resources:
+                requests:
+    # tag::CPM[]
+                  storage: 100Gi
+    # end::CPM[]
+    # tag::UWM[]
+                  storage: 20Gi
+    # end::UWM[]
+    ```
 
-        :::note
+    :::note
 
-        Storage requirements for the `thanosRuler` component depend on the number of rules that are evaluated and how many samples each rule generates.
-        
-        :::
+    Storage requirements for the `thanosRuler` component depend on the number of rules that are evaluated and how many samples each rule generates.
+    
+    :::
 
 1.  Save the file to apply the changes. The pods affected by the new configuration are automatically redeployed.
 
@@ -95,6 +95,6 @@ You can only expand the size of the PVC. Shrinking the storage size is not possi
     :::
 
 
-{%- set configmap_name = false -%}
-{%- set namespace_name = false -%}
-{%- set component = false -%}
+{%- set configmap_name = "" -%}
+{%- set namespace_name = "" -%}
+{%- set component = "" -%}

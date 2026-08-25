@@ -172,7 +172,7 @@ In addition to the fixes and stability improvements, the following sections high
       --template='https://{{ .spec.host }}'
     ```
 *   With this update, {{ pac }} renames the default secret keys for the `Repository` custom resource definition (CRD). In your CRD, replace `token` with `provider.token`, and replace `secret` with `webhook.secret`.
-*   With this update, {{ pac }} replaces a special template variable with one that supports multiple pipeline runs for private repositories. In your pipeline runs, replace `secret: pac-git-basic-auth-{{{ repo_owner }}}-{{{ repo_name }}}` with `secret: {{ git_auth_secret }}`.
+*   With this update, {{ pac }} replaces a special template variable with one that supports multiple pipeline runs for private repositories. In your pipeline runs, replace `secret: pac-git-basic-auth-{{{ repo_owner }}}-{{{ repo_name }}}` with `secret: {{ git_auth_secret }}`{minja}.
 *   With this update, {{ pac }} updates the following commands in the `tkn-pac` CLI tool:
     *   Replace `tkn pac repository create` with `tkn pac create repository`.
     *   Replace `tkn pac repository delete` with `tkn pac delete repository`.

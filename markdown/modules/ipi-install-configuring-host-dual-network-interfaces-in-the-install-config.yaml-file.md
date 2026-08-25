@@ -147,20 +147,20 @@ Errors in the YAML syntax might result in a failure to apply the network configu
     *   This value must be less than or equal to the maximum transmission rate.
     *   Intel NICs do not support the `min-tx-rate` parameter. For more information, see [**BZ#1772847**](https://bugzilla.redhat.com/show_bug.cgi?id=1772847).
 
-`hosts.networkconfig.interfaces.max-tx-rate`
-:   Specifies the value for the `max-tx-rate` parameter. Sets a maximum transmission rate, in Mbps, for the VF. This sample value sets a rate of 200 Mbps.
+    `hosts.networkconfig.interfaces.max-tx-rate`
+    :   Specifies the value for the `max-tx-rate` parameter. Sets a maximum transmission rate, in Mbps, for the VF. This sample value sets a rate of 200 Mbps.
 
-`hosts.networkconfig.interfaces.link-aggregation.mode`
-:   Specifies the needed bond mode.
+    `hosts.networkconfig.interfaces.link-aggregation.mode`
+    :   Specifies the needed bond mode.
 
-`hosts.networkconfig.interfaces.link-aggregation.options.primary`
-:   Specifies the preferred port of the bonding interface. The bond uses the primary device as the first device of the bonding interfaces. The bond does not abandon the primary device interface unless it fails. This setting is particularly useful when one NIC in the bonding interface is faster and, therefore, able to handle a bigger load. This setting is only valid when the bonding interface is in active-backup mode (mode 1).
+    `hosts.networkconfig.interfaces.link-aggregation.options.primary`
+    :   Specifies the preferred port of the bonding interface. The bond uses the primary device as the first device of the bonding interfaces. The bond does not abandon the primary device interface unless it fails. This setting is particularly useful when one NIC in the bonding interface is faster and, therefore, able to handle a bigger load. This setting is only valid when the bonding interface is in active-backup mode (mode 1).
 
-`hosts.networkconfig.interfaces.ipv4.address.ip`
-:   Specifies the static IP address for the bond interface. This is the node IP address.
+    `hosts.networkconfig.interfaces.ipv4.address.ip`
+    :   Specifies the static IP address for the bond interface. This is the node IP address.
 
-`hosts.networkconfig.routes.config.next-hop-interface`
-:   Specifies the value for the `routes.config.next-hop-interface` parameter. Sets `bond0` as the gateway for the default route.
+    `hosts.networkconfig.routes.config.next-hop-interface`
+    :   Specifies the value for the `routes.config.next-hop-interface` parameter. Sets `bond0` as the gateway for the default route.
 
     :::important
 

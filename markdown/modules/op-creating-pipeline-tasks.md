@@ -4,7 +4,7 @@
 **Procedure**
 
 1.  Install the `apply-manifests` and `update-deployment` task resources from the `pipelines-tutorial` repository, which contains a list of reusable tasks for pipelines:
-    ```terminal
+    ```terminal {minja}
     $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/01_pipeline/01_apply_manifest_task.yaml
     $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/01_pipeline/02_update_deployment_task.yaml
     ```
@@ -41,8 +41,8 @@
     ```
 
 
-:::important
+    :::important
 
-In {{ pipelines_title }} 1.10, cluster task functionality is deprecated and is planned to be removed in a future release.
-
-:::
+    In {{ pipelines_title }} 1.10, cluster task functionality is deprecated and is planned to be removed in a future release.
+    
+    :::

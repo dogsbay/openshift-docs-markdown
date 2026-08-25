@@ -11,7 +11,7 @@ As a cluster administrator, or as a user with view access to all namespaces, you
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Observe** -> **Metrics**.
+1.  In the {{ product_title }} web console, navigate to **Observe** → **Metrics**.
 1.  In the query field, enter the following PromQL expressions to query the {{ external_secrets_operator }} metric:
     ```promql
     {job="external-secrets-operator-controller-manager-metrics-service"}

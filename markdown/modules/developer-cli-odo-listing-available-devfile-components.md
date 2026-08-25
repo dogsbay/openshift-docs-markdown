@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Listing available devfile components {id="listing-available-devfile-components_{{ context }}"}
 
-With `{{ odo_title }}`, you can display all the components that are available for you on the cluster. Components that are available depend on the configuration of your cluster.
+With `{{ odo_title }}`{minja}, you can display all the components that are available for you on the cluster. Components that are available depend on the configuration of your cluster.
 
 **Procedure**
 
@@ -10,7 +10,7 @@ With `{{ odo_title }}`, you can display all the components that are available fo
     $ odo catalog list components
     ```
 
-    The output lists the available `{{ odo_title }}` components:
+    The output lists the available `{{ odo_title }}`{minja} components:
     ```terminal
     Odo Devfile Components:
     NAME                 DESCRIPTION                            REGISTRY

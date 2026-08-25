@@ -21,36 +21,36 @@ The following example configuration file shows a pod with two containers:
     *   In this case, the total storage usage at the pod level is the sum of the disk usage from all containers plus the `emptyDir` volumes of a pod.
     *   Therefore, the pod has a request of 4GiB of local ephemeral storage, and a limit of 8GiB of local ephemeral storage.
 
-```yaml title="Example ephemeral storage configuration with quotas and limits"
-apiVersion: v1
-kind: Pod
-metadata:
-  name: frontend
-spec:
-  containers:
-  - name: app
-    image: images.my-company.example/app:v4
-    resources:
-      requests:
-        ephemeral-storage: "2Gi"
-      limits:
-        ephemeral-storage: "4Gi"
-    volumeMounts:
-    - name: ephemeral
-      mountPath: "/tmp"
-  - name: log-aggregator
-    image: images.my-company.example/log-aggregator:v6
-    resources:
-      requests:
-        ephemeral-storage: "2Gi"
-      limits:
-        ephemeral-storage: "4Gi"
-    volumeMounts:
-    - name: ephemeral
-      mountPath: "/tmp"
-  volumes:
-    - name: ephemeral
-      emptyDir: {}
-```
+    ```yaml title="Example ephemeral storage configuration with quotas and limits"
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: frontend
+    spec:
+      containers:
+      - name: app
+        image: images.my-company.example/app:v4
+        resources:
+          requests:
+            ephemeral-storage: "2Gi"
+          limits:
+            ephemeral-storage: "4Gi"
+        volumeMounts:
+        - name: ephemeral
+          mountPath: "/tmp"
+      - name: log-aggregator
+        image: images.my-company.example/log-aggregator:v6
+        resources:
+          requests:
+            ephemeral-storage: "2Gi"
+          limits:
+            ephemeral-storage: "4Gi"
+        volumeMounts:
+        - name: ephemeral
+          mountPath: "/tmp"
+      volumes:
+        - name: ephemeral
+          emptyDir: {}
+    ```
 *   `spec.containers.name.resources.requests.ephemeral-storage`: Specifies the container request for local ephemeral storage.
 *   `spec.containers.name.resources.limits.ephemeral-storage`: Specifies the container limit for local ephemeral storage.

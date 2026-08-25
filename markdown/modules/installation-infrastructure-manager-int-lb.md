@@ -3,11 +3,8 @@
 
 You can use the following Infrastructure Manager template to deploy the internal load balancer that you need for your {{ product_title }} cluster: {._abstract}
 
-<details>
-<summary>`02_lb_int.tf` Infrastructure Manager template</summary>
-
+:::details{title="`02_lb_int.tf` Infrastructure Manager template"}
 ```terraform
-```hcl
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
   required_version = ">=1.2.3"
@@ -146,5 +143,4 @@ resource "google_compute_instance_group" "master_ig" {
   }
 }
 ```
-```
-</details>
+:::

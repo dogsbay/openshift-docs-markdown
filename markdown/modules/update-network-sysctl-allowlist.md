@@ -14,7 +14,7 @@ For example, the following procedure modifies the predefined list of safe `sysct
     ```terminal
     $ oc get cm -n openshift-multus cni-sysctl-allowlist -oyaml
     ```
-    ```terminal title="Expected output"
+    ```terminal title="Expected output" {minja}
     apiVersion: v1
     data:
       allowlist.conf: |-

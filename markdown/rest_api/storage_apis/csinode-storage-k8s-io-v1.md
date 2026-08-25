@@ -1,5 +1,5 @@
 ---
-title: "CSINode []"
+title: "CSINode [storage.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -27,6 +27,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. metadata.name must be the Kubernetes node name. |
 | `spec` | `object` | CSINodeSpec holds information about the specification of all CSI drivers installed on a node |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,6 +45,7 @@ Required
 | --- | --- | --- |
 | `drivers` | `array` | drivers is a list of information of all CSI Drivers existing on a node. If all drivers in the list are uninstalled, this can become empty. |
 | `drivers[]` | `object` | CSINodeDriver holds information about the specification of one CSI driver installed on a node |
+
 ### .spec.drivers {id="_specdrivers"}
 
 Description
@@ -73,6 +75,7 @@ Required
 | `name` | `string` | name represents the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver. |
 | `nodeID` | `string` | nodeID of the node from the driver point of view. This field enables Kubernetes to communicate with storage systems that do not share the same nomenclature for nodes. For example, Kubernetes may refer to a given node as "node1", but the storage system may refer to the same node as "nodeA". When Kubernetes issues a command to the storage system to attach a volume to a specific node, it can use this field to refer to the node name using the ID that the storage system will understand, e.g. "nodeA" instead of "node1". This field is required. |
 | `topologyKeys` | `array (string)` | topologyKeys is the list of keys supported by the driver. When a driver is initialized on a cluster, it provides a set of topology keys that it understands (e.g. "company.com/zone", "company.com/region"). When a driver is initialized on a node, it provides the same topology keys along with values. Kubelet will expose these topology keys as labels on its own node object. When Kubernetes does topology aware provisioning, it can use this list to determine which labels it should retrieve from the node object and pass back to the driver. It is possible for different nodes to use different topology keys. This can be empty if driver does not support topology. |
+
 ### .spec.drivers[].allocatable {id="_specdriversallocatable"}
 
 Description
@@ -96,12 +99,12 @@ The following API endpoints are available:
     *   `POST`: create a CSINode
 *   `/apis/storage.k8s.io/v1/watch/csinodes`
     *   `GET`: watch individual changes to a list of CSINode. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/storage.k8s.io/v1/csinodes/{{ name }}`
+*   `/apis/storage.k8s.io/v1/csinodes/{{ name }}`{minja}
     *   `DELETE`: delete a CSINode
     *   `GET`: read the specified CSINode
     *   `PATCH`: partially update the specified CSINode
     *   `PUT`: replace the specified CSINode
-*   `/apis/storage.k8s.io/v1/watch/csinodes/{{ name }}`
+*   `/apis/storage.k8s.io/v1/watch/csinodes/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind CSINode. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/storage.k8s.io/v1/csinodes {id="_apisstoragek8siov1csinodes"}

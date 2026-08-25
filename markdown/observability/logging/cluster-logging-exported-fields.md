@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Log Record Fields {id="cluster-logging-exported-fields"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Log Record Fields {id="cluster-logging-exported-fields"}
 {%- set context = "cluster-logging-exported-fields" %}
 
 The following fields can be present in log records exported by the {{ logging }}. Although log records are typically formatted as JSON objects, the same data model can be applied to other encodings.

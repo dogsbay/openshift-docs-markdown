@@ -3,7 +3,7 @@
 
 The following table describes the advanced authentication configuration fields available as Technology Preview in {{ product_title }}. {._abstract}
 
-***Advanced `oidcProviders` configuration fields***
+**Advanced `oidcProviders` configuration fields**
 
 <table>
 <thead>
@@ -31,7 +31,7 @@ The following table describes the advanced authentication configuration fields a
 </tr>
 <tr>
   <td><code>claimValidationRules[].cel.expression</code></td>
-  <td>Required. CEL expression that validates token claims. Must evaluate to <code>true</code> for authentication to succeed.<br><br>Constraints: 1-1024 characters, must evaluate to boolean.<br><br>Access claims by using <code>claims</code> variable: <code>claims.sub</code>, <code>claims.foo.bar</code> (nested), <code>has(claims.email)</code> (existence check).<br><br><dl><dt>Note</dt><dd>When using the <code>email</code> claim in CEL expressions, you must also validate the <code>email_verified</code> claim to ensure the email address has been verified by the identity provider. For example: <code>claims.email_verified && claims.email.endsWith("@example.com")</code>.</dd></dl></td>
+  <td>Required. CEL expression that validates token claims. Must evaluate to <code>true</code> for authentication to succeed.<br><br>Constraints: 1-1024 characters, must evaluate to boolean.<br><br>Access claims by using <code>claims</code> variable: <code>claims.sub</code>, <code>claims.foo.bar</code> (nested), <code>has(claims.email)</code> (existence check).<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>When using the <code>email</code> claim in CEL expressions, you must also validate the <code>email_verified</code> claim to ensure the email address has been verified by the identity provider. For example: <code>claims.email_verified &amp;&amp; claims.email.endsWith("@example.com")</code>.</dd></dl></td>
 </tr>
 <tr>
   <td><code>claimValidationRules[].cel.message</code></td>

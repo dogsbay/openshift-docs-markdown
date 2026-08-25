@@ -3,8 +3,8 @@ title: Machine Config Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Machine Config Operator {id="troubleshooting-mco"}
 {% include "./_attributes/common-attributes.md" %}
+# Machine Config Operator {id="troubleshooting-mco"}
 {%- set context = "troubleshooting-mco" %}
 
 The Machine Config Operator provides useful information to cluster administrators and controls what is running directly on the bare-metal host.

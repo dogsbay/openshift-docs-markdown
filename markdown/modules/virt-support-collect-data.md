@@ -11,4 +11,4 @@ Gather troubleshooting information by using the following tools:
 *   Configure and use the `must-gather` tool.
 *   Collect `must-gather` data and memory dumps from VMs.
 *   Collect `must-gather` data for {{ product_title }} and {{ VirtProductName }}
-{% endif %}
+{%- endif %}

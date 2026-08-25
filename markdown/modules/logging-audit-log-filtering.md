@@ -53,8 +53,8 @@ metadata:
 spec:
   pipelines:
     - name: my-pipeline
-      inputRefs: audit #<1>
-      filterRefs: my-policy #<2>
+      inputRefs: audit (1)
+      filterRefs: my-policy (2)
       outputRefs: default
   filters:
     - name: my-policy

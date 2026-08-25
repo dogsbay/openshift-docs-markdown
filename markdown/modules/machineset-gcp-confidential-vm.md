@@ -22,8 +22,8 @@ If you use Confidential VM, you must ensure that you select a supported region. 
 
 1.  In a text editor, open the YAML file for an existing machine set or create a new one.
 1.  Edit the following section under the `providerSpec` field:
-    ```yaml
-{%- if not cpmso %}
+    ```yaml {minja}
+    {% if not cpmso %}
     apiVersion: machine.openshift.io/v1beta1
     kind: MachineSet
     # ...
@@ -35,8 +35,8 @@ If you use Confidential VM, you must ensure that you select a supported region. 
               confidentialCompute: Enabled
               onHostMaintenance: Terminate
               machineType: n2d-standard-8
-{% endif %}
-{% if cpmso %}
+    {% endif %}
+    {% if cpmso %}
     apiVersion: machine.openshift.io/v1
     kind: ControlPlaneMachineSet
     # ...
@@ -47,12 +47,12 @@ If you use Confidential VM, you must ensure that you select a supported region. 
                 confidentialCompute: Enabled
                 onHostMaintenance: Terminate
                 machineType: n2d-standard-8
-{%- endif %}
+    {%- endif %}
     # ...
     ```
 
     where:
-{%- if not cpmso %}
+{% if not cpmso %}
 
     `spec.template.spec.providerSpec.value.confidentialCompute`
     :   Specifies whether Confidential VM is enabled.
@@ -145,5 +145,5 @@ If you use Confidential VM, you must ensure that you select a supported region. 
 *   On the {{ gcp_full }} console, review the details for a machine deployed by the machine set and verify that the Confidential VM options match the values that you configured.
 
 {% if context == "cpmso-supported-features-gcp" %}
-{%- set cpmso = false -%}
+{%- set cpmso = "" -%}
 {% endif %}

@@ -6,7 +6,7 @@ A `Pipeline` resource definition consists of a number of fields or attributes, w
 
 The following example shows the `build-and-deploy` pipeline, which builds an application image from a Git repository using the `buildah` `ClusterTask` resource:
 
-```yaml
+```yaml {minja}
 apiVersion: tekton.dev/v1beta1 (1)
 kind: Pipeline (2)
 metadata:

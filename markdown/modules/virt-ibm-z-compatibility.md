@@ -28,9 +28,9 @@ Currently unavailable features
     *   Hyper-V
 
 Functionality differences
-    :   The following features are available for use on s390x architecture but function differently or require procedural changes:
-    * When deleting a virtual machine by using the web console, the **grace period** option is ignored. For more information, see "Deleting a virtual machine by using the web console" in the Additional resources section.
-    * When configuring the default CPU model, the `spec.defaultCPUModel` value is `"gen15b"` for an {{ ibm_z_title }} cluster. For more information, see "Configuring the default CPU model" in the Additional resources section.
-    * When configuring a downward metrics device, if you use a VM preference, the `spec.preference.name` value must be set to `rhel.9.s390x` or another available preference with the format `*.s390x`. For more information, see "Configuring a downward metrics device" in the Additional resources section.
-    * When creating virtual machines from instance types, you are not allowed to set `spec.domain.memory.maxGuest` because memory hot plugging is not supported on {{ ibm_z_name }}. For more information, see "Creating virtual machines from instance types" in the Additional resources section.
-    * Prometheus queries for VM guests could have inconsistent outcome in comparison to `x86`.
+:   The following features are available for use on s390x architecture but function differently or require procedural changes:
+    *   When deleting a virtual machine by using the web console, the **grace period** option is ignored. For more information, see "Deleting a virtual machine by using the web console" in the Additional resources section.
+    *   When configuring the default CPU model, the `spec.defaultCPUModel` value is `"gen15b"` for an {{ ibm_z_title }} cluster. For more information, see "Configuring the default CPU model" in the Additional resources section.
+    *   When configuring a downward metrics device, if you use a VM preference, the `spec.preference.name` value must be set to `rhel.9.s390x` or another available preference with the format `*.s390x`. For more information, see "Configuring a downward metrics device" in the Additional resources section.
+    *   When creating virtual machines from instance types, you are not allowed to set `spec.domain.memory.maxGuest` because memory hot plugging is not supported on {{ ibm_z_name }}. For more information, see "Creating virtual machines from instance types" in the Additional resources section.
+    *   Prometheus queries for VM guests could have inconsistent outcome in comparison to `x86`.

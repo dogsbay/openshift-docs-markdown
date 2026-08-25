@@ -29,7 +29,7 @@ However, you can run any command in the container image that is specified in the
 **Prerequisites**
 
 *   You are logged in to {{ product_title }} as a user with the `cluster-admin` role.
-{%- if openshift_dedicated %}
+{% if openshift_dedicated %}
 
     :::note
 
@@ -37,7 +37,7 @@ However, you can run any command in the container image that is specified in the
     
     :::
 
-{%- endif %}
+{% endif %}
 *   You have installed the OpenShift CLI (`oc`).
 
 **Procedure**

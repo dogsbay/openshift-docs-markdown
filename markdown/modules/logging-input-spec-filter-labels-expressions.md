@@ -24,13 +24,13 @@ You can include the application logs based on the label expressions or a matchin
           application:
             selector:
               matchExpressions:
-              - key: env # (1)
-                operator: In # (2)
-                values: [“prod”, “qa”] # (3)
+              - key: env (1)
+                operator: In (2)
+                values: [“prod”, “qa”] (3)
               - key: zone
                 operator: NotIn
                 values: [“east”, “west”]
-              matchLabels: # (4)
+              matchLabels: (4)
                 app: one
                 name: app1 
     # ...

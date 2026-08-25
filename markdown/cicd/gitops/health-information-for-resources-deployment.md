@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Monitoring health information for application resources and deployments {id="health-information-for-resources-deployment"}
 {%- set context = "health-information-for-resources-deployment" %}
-{% include "./_attributes/common-attributes.md" %}
 
 The {{ gitops_title }} **Environments** page in the **Developer** perspective of the {{ product_title }} web console shows a list of the successful deployments of the application environments, along with links to the revision for each deployment.
 

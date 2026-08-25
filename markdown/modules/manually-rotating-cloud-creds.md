@@ -9,7 +9,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if post_install %}
+{% if post_install %}
 # Rotating cloud provider credentials manually {id="manually-rotating-cloud-creds_{{ context }}"}
 {% endif %}
 {% if not post_install %}
@@ -36,7 +36,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1.  In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 1.  In the table on the **Secrets** page, find the root secret for your cloud provider.
 <table>
 <thead>
@@ -68,6 +68,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 </tr>
 </tbody>
 </table>
+
 1.  Click the Options menu {{ kebab }} in the same row as the secret and select **Edit Secret**.
 1.  Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
 1.  Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
@@ -127,7 +128,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
         ```
     1.  Delete each of the referenced component secrets:
         ```terminal
-        $ oc delete secret <secret_name> \//<1>
+        $ oc delete secret <secret_name> \ (1)
           -n <secret_namespace> (2)
         ```
 
@@ -149,15 +150,15 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 
 **Verification**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.
+1.  In the **Administrator** perspective of the web console, navigate to **Workloads** → **Secrets**.
 1.  Verify that the contents of the **Value** field or fields have changed.
 
 {% if context == "changing-cloud-credentials-configuration" %}
-{%- set post_install = false -%}
+{%- set post_install = "" -%}
 {% endif %}
 {% if context == "cco-mode-mint" %}
-{%- set mint = false -%}
+{%- set mint = "" -%}
 {% endif %}
 {% if context == "cco-mode-passthrough" %}
-{%- set passthrough = false -%}
+{%- set passthrough = "" -%}
 {% endif %}

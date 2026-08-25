@@ -366,10 +366,10 @@ This procedure configures a T-GM (Telecom Grandmaster) clock that uses an Intel 
 
 
     The configuration includes the following components:
-    *   ***PTP4L options:***
+    *   **PTP4L options:**
         *   `-2`: Use PTP version 2
         *   `--summary_interval -4`: Log summary every 2^(-4) = 0.0625 seconds
-    *   ***PHC2SYS options:***
+    *   **PHC2SYS options:**
         *   `-r`: Synchronize system clock from PTP hardware clock
         *   `-u 0`: Update rate multiplier
         *   `-m`: Print messages to stdout
@@ -377,19 +377,19 @@ This procedure configures a T-GM (Telecom Grandmaster) clock that uses an Intel 
         *   `-R 16`: Update rate
         *   `-s ens7f0`: Source interface (replace with your E810 interface name)
         *   `-n 24`: Domain number
-    *   ***Failover configuration:***
+    *   **Failover configuration:**
         *   `ts2phcOpts --ts2phc.holdover 14400`: 4-hour holdover before switching to NTP
         *   `chronydConf`: NTP server configuration for failover replace `time.nist.gov` with your preferred NTP server
         *   `ntpfailover plugin`: Enables automatic GNSS-to-NTP switching with `gnssFailover: true`
-    *   ***E810 plugin configuration:***
+    *   **E810 plugin configuration:**
         *   `LocalHoldoverTimeout: 14400`: E810 hardware holdover timeout (4 hours)
         *   `pins`: Configuration for 1PPS input on E810 physical pins (U.FL2, SMA1, SMA2, U.FL1)
         *   `ublxCmds`: Commands to configure u-blox GNSS receiver (enable GPS, disable other constellations, set survey-in mode)
-    *   ***GNSS (ts2phc) configuration:***
+    *   **GNSS (ts2phc) configuration:**
         *   `ts2phc.nmea_serialport /dev/ttyGNSS_1700_0`: GNSS serial port device path (replace with your actual GNSS device)
         *   `ts2phc.extts_polarity rising`: 1PPS signal on rising edge
         *   `ts2phc.pulsewidth 100000000`: 1PPS pulse width in nanoseconds
-    *   ***PTP4L configuration:***
+    *   **PTP4L configuration:**
         *   `masterOnly 1`: Interface acts only as PTP master
         *   `clockClass 6`: GPS-synchronized quality level
         *   `domainNumber 24`: PTP domain
@@ -441,7 +441,7 @@ This procedure configures a T-GM (Telecom Grandmaster) clock that uses an Intel 
     Success indicators in the logs are:
     *   `load profiles` - Profile is being loaded
     *   `in applyNodePTPProfiles` - Profile is being applied
-    *   No `ptp profile doesn’t exist for node` errors
+    *   No `ptp profile doesn't exist for node` errors
 1.  Check `chronyd` status to verify NTP is running as the secondary time source by running the following command:
     ```terminal
     $ oc logs -n openshift-ptp <linuxptp-daemon-pod> -c linuxptp-daemon-container | grep chronyd

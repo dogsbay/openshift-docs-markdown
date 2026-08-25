@@ -18,8 +18,8 @@ The applicable stanzas for the `ClusterLogging` CR when using multiple log forwa
     apiVersion: logging.openshift.io/v1
     kind: ClusterLogging
     metadata:
-      name:  <name> # (1)
-      namespace: <namespace> # (2)
+      name:  <name> (1)
+      namespace: <namespace> (2)
     spec:
       managementState: "Managed"
       collection:

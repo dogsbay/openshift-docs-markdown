@@ -18,7 +18,7 @@
 
 Use the CloudFormation template to deploy the Carrier Gateway on {{ aws_first }} Wavelength infrastructure. The template automates the creation of an {{ aws_short }} Carrier Gateway for {{ product_title }}. The template provisions an `AWS::EC2::CarrierGateway` and associates it with the cluster VPC to enable traffic routing to provide direct internet connectivity for resources in Wavelength Zones that use carrier networks. {._abstract}
 
-```yaml title="CloudFormation template for VPC Carrier Gateway"
+```yaml title="CloudFormation template for VPC Carrier Gateway" {minja}
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for Creating Wavelength Zone Gateway (Carrier Gateway).
 
@@ -87,8 +87,8 @@ Outputs:
 ```
 
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set post_aws_zones = false -%}
+{%- set post_aws_zones = "" -%}
 {% endif %}

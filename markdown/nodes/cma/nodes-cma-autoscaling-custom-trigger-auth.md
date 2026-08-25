@@ -4,8 +4,8 @@ title: Understanding custom metrics autoscaler trigger authentications
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom-trigger-auth" %}
-# Understanding custom metrics autoscaler trigger authentications {id="nodes-cma-autoscaling-custom-trigger-auth"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding custom metrics autoscaler trigger authentications {id="nodes-cma-autoscaling-custom-trigger-auth"}
 
 A trigger authentication allows you to include authentication information in a scaled object or a scaled job that can be used by the associated containers. You can use trigger authentications to pass {{ product_title }} secrets, platform-native pod authentication mechanisms, environment variables, and so on.
 

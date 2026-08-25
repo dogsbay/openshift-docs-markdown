@@ -22,7 +22,7 @@ Configure a GitLab identity provider to use `gitlab.com` or any other GitLab ins
 1.  Select **GitLab** from the drop-down menu.
 1.  Enter a unique name for the identity provider. This name cannot be changed later.
     *   An **OAuth callback URL** is automatically generated in the provided field. Provide this URL to GitLab.
-        {%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
         ```
         https://oauth-openshift.apps.<cluster_name>.<cluster_domain>/oauth2callback/<idp_provider_name>
         ```
@@ -31,7 +31,7 @@ Configure a GitLab identity provider to use `gitlab.com` or any other GitLab ins
         ```
         https://oauth.<cluster_name>.<cluster_domain>/oauth2callback/<idp_provider_name>
         ```
-{%- endif %}
+{% endif %}
 
         For example:
         ```

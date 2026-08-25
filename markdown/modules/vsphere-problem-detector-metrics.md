@@ -3,7 +3,7 @@
 
 The {{ operator_name }} exposes the following metrics for use by the {{ product_title }} monitoring stack. {._abstract}
 
-***Metrics exposed by the {{ operator_name }}***
+**Metrics exposed by the {{ operator_name }}**
 
 <table>
 <thead>

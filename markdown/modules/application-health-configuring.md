@@ -69,13 +69,13 @@ To add probes for a container:
     1.  Specify the number of seconds to perform the probe. The default is `10`. This value must be greater than `timeoutSeconds`.
     1.  Specify the number of seconds of inactivity after which the probe is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.
 
-        :::note
+    :::note
 
-        If the `initialDelaySeconds` value is lower than the `periodSeconds` value, the first Readiness probe occurs at some point between the two periods due to an issue with timers.
+    If the `initialDelaySeconds` value is lower than the `periodSeconds` value, the first Readiness probe occurs at some point between the two periods due to an issue with timers.
 
-        The `timeoutSeconds` value must be lower than the `periodSeconds` value.
-        
-        :::
+    The `timeoutSeconds` value must be lower than the `periodSeconds` value.
+    
+    :::
 
 1.  Create the `Pod` object:
     ```terminal

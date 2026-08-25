@@ -3,11 +3,11 @@ title: Creating a Windows machine set on vSphere
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating a Windows machine set on vSphere {id="creating-windows-machineset-vsphere"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating a Windows machine set on vSphere {id="creating-windows-machineset-vsphere"}
 {%- set context = "creating-windows-machineset-vsphere" %}
 
-You can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ vmw_full }} cluster, where you can run Windows container workloads.
+You can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ vmw_full }} cluster, where you can run Windows container workloads. {._abstract}
 
 For example, you might create infrastructure Windows machine sets and related machines so that you can move supporting Windows workloads to the new Windows machines. For more information about machine sets, see "Overview of machine management" in the _Additional resources_ section.
 
@@ -26,7 +26,7 @@ For example, you might create infrastructure Windows machine sets and related ma
 
 {% leveloffset +1 %}{% include "./modules/machineset-creating.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring a secret for the Windows Machine Config Operator](/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)
 *   [VMware vSphere infrastructure requirements](/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs)

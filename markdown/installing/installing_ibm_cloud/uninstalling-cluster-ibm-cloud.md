@@ -7,6 +7,6 @@ title: "Uninstalling a cluster on {{ ibm_cloud_title }}"
 # Uninstalling a cluster on {{ ibm_cloud_title }} {id="uninstalling-cluster-ibm-cloud"}
 {%- set context = "uninstalling-cluster-ibm-cloud" %}
 
-You can remove an {{ product_title }} cluster that you deployed to {{ ibm_cloud_name }}. The uninstall process removes all cluster resources and infrastructure components that the installation program provisioned.
+You can remove an {{ product_title }} cluster that you deployed to {{ ibm_cloud_name }}. The uninstall process removes all cluster resources and infrastructure components that the installation program provisioned. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-uninstall-clouds.md" %}{% endleveloffset %}

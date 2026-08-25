@@ -3,11 +3,11 @@ title: Creating virtual machines from templates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating virtual machines from templates {id="virt-creating-vms-from-templates"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating virtual machines from templates {id="virt-creating-vms-from-templates"}
 {%- set context = "virt-creating-vms-from-templates" %}
 
-You can create virtual machines (VMs) from Red Hat templates by using the {{ product_title }} web console.
+You can create virtual machines (VMs) from Red Hat templates by using the {{ product_title }} web console. {._abstract}
 
 ## About VM templates {id="virt-about-templates"}
 
@@ -44,5 +44,5 @@ If you copy a VM template with all its labels and annotations, your version of t
 
 {% leveloffset +2 %}{% include "./modules/virt-dedicated-resources-vm-template.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Managing automatic boot source updates](/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)

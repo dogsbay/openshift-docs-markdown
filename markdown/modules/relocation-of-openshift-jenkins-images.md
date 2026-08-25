@@ -81,7 +81,7 @@ Jenkins is no longer part of the {{ product_title }} core payload. Releases are 
 Yes. We align with the Jenkins upstream lifecycle and follow the LTS version. Red&#160;Hat typically ships OpenShift Jenkins image updates quarterly unless a critical fix requires an out-of-cycle release.
 
 To verify the current Jenkins LTS version:
-- Navigate to the Jenkins Catalog -> Packages section
+- Navigate to the Jenkins Catalog → Packages section
 - Search for “Jenkins”
 - The result will show two packages, one of which is the Jenkins LTS package.
 

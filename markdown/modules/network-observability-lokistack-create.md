@@ -7,7 +7,7 @@ You can deploy a `LokiStack` custom resource (CR) to create a namespace or new p
 
 **Procedure**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**, viewing **All projects** from the **Project** dropdown.
+1.  Navigate to **Ecosystem** → **Installed Operators**, viewing **All projects** from the **Project** dropdown.
 1.  Look for **{{ loki_op }}**. In the details, under **Provided APIs**, select **LokiStack**.
 1.  Click **Create LokiStack**.
 1.  Ensure the following fields are specified in either **Form View** or **YAML view**:

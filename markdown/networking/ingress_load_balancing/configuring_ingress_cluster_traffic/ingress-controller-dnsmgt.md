@@ -3,11 +3,11 @@ title: Understanding DNS management policies
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding DNS management policies {id="ingress-controller-dnsmgt"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding DNS management policies {id="ingress-controller-dnsmgt"}
 {%- set context = "ingress-controller-dnsmgt" %}
 
-As a cluster administrator, when you create an Ingress Controller, the Operator manages the DNS records automatically. This approach has some limitations when the required DNS zone is different from the cluster DNS zone or when the DNS zone is hosted outside the cloud provider.
+As a cluster administrator, when you create an Ingress Controller, the Operator manages the DNS records automatically. This approach has some limitations when the required DNS zone is different from the cluster DNS zone or when the DNS zone is hosted outside the cloud provider. {._abstract}
 
 The following list details key aspects for a managed DNS management policy:
 
@@ -30,5 +30,5 @@ The following list details key aspects for a unmanaged DNS management policy:
 
 {% leveloffset +1 %}{% include "./modules/modifying-an-existing-ingress-controller.md" %}{% endleveloffset %}
 
-## Additional resources {id="configuring-ingress-controller-dns-management-additional-resources"}
+## Additional resources {id="configuring-ingress-controller-dns-management-additional-resources" ._additional-resources}
 *   [Ingress Controller configuration parameters](/networking/networking_operators/ingress-operator#nw-ingress-controller-configuration-parameters_configuring-ingress)

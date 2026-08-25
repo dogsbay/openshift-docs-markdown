@@ -3,15 +3,15 @@ title: Considerations for the use of an egress router pod
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Considerations for the use of an egress router pod {id="using-an-egress-router-ovn"}
 {% include "./_attributes/common-attributes.md" %}
+# Considerations for the use of an egress router pod {id="using-an-egress-router-ovn"}
 {%- set context = "using-an-egress-router-ovn" %}
 
-Before you use the egress router pod, you must understand how the pod works. Doing so can prevent situations such as creating large numbers of egress router pods that exceed the limits of your network hardware.
+Before you use the egress router pod, you must understand how the pod works. Doing so can prevent situations such as creating large numbers of egress router pods that exceed the limits of your network hardware. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-egress-router-about.md" %}{% endleveloffset %}
 
-## Additional resources {id="using-an-egress-router-ovn-additional-resources"}
+## Additional resources {id="using-an-egress-router-ovn-additional-resources" ._additional-resources}
 
 *   [Deploying an egress router in redirection mode](/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection#deploying-egress-router-ovn-redirection)
 *   [OpenShift on OpenStack: Egress router not working](https://access.redhat.com/solutions/2803331)

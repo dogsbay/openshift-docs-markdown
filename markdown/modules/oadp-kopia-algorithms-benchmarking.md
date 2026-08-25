@@ -15,23 +15,22 @@ Run Kopia commands to benchmark the hashing, encryption, and splitter algorithms
 
 1.  Configure the `must-gather` pod as shown in the following example. Make sure you are using the `oadp-mustgather` image for {{ oadp_short }} version 1.3 and later.
 
-```yaml title="Example pod configuration"
-apiVersion: v1
-kind: Pod
-metadata:
-  name: oadp-mustgather-pod
-  labels:
-    purpose: user-interaction
-spec:
-  containers:
-  - name: oadp-mustgather-container
-    image: registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.3
-    command: ["sleep"]
-    args: ["infinity"]
-```
+    ```yaml title="Example pod configuration"
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: oadp-mustgather-pod
+      labels:
+        purpose: user-interaction
+    spec:
+      containers:
+      - name: oadp-mustgather-container
+        image: registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.3
+        command: ["sleep"]
+        args: ["infinity"]
+    ```
 
-The Kopia client is available in the `oadp-mustgather` image.
-
+    The Kopia client is available in the `oadp-mustgather` image.
 1.  Create the pod by running the following command:
     ```terminal
     $ oc apply -f <pod_config_file_name>
@@ -43,10 +42,9 @@ The Kopia client is available in the `oadp-mustgather` image.
     $ oc describe pod/oadp-mustgather-pod | grep scc
     ```
 
-```terminal title="Example output"
-openshift.io/scc: anyuid
-```
-
+    ```terminal title="Example output"
+    openshift.io/scc: anyuid
+    ```
 1.  Connect to the pod via SSH by running the following command:
     ```terminal
     $ oc -n openshift-adp rsh pod/oadp-mustgather-pod

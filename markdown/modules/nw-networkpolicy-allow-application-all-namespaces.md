@@ -28,14 +28,14 @@ If you log in with a user with the `cluster-admin` role, then you can create a n
 {%- endif %}
 *   You installed the {{ oc_first }}.
 {%- if not microshift %}
-*   You logged in to the cluster with a user with `{{ role }}` privileges.
+*   You logged in to the cluster with a user with `{{ role }}`{minja} privileges.
 {%- endif %}
 *   You are working in the namespace that the {{ name }} policy applies to.
 
 **Procedure**
 
 1.  Create a policy that allows traffic from all pods in all namespaces to a particular application. Save the YAML in the `web-allow-all-namespaces.yaml` file:
-    {%- if not multi %}
+{% if not multi %}
     ```yaml
     apiVersion: networking.k8s.io/v1
     kind: NetworkPolicy
@@ -72,7 +72,7 @@ If you log in with a user with the `cluster-admin` role, then you can create a n
       - from:
         - namespaceSelector: {}
     ```
-{%- endif %}
+{% endif %}
 
     where:
 
@@ -135,7 +135,7 @@ If you log in with a user with the `cluster-admin` role, then you can create a n
     ```
 
 {% if multi %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
-{%- set name = false -%}
-{%- set role = false -%}
+{%- set name = "" -%}
+{%- set role = "" -%}

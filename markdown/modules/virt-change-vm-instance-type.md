@@ -9,7 +9,7 @@ You can change the instance type associated with a running virtual machine (VM) 
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Virtualization** -> **VirtualMachines**.
+1.  In the {{ product_title }} web console, click **Virtualization** → **VirtualMachines**.
 1.  Select a VM to open the **VirtualMachine details** page.
 1.  Click the **Configuration** tab.
 1.  On the **Details** tab, click the instance type text to open the **Edit Instancetype** dialog. For example, click **1 CPU | 2 GiB Memory**.

@@ -19,7 +19,7 @@ where:
 
 The data model provides the details on the allowed values and semantic for the `path`, `elementType`, `objectType`, `sourceKey`, and `sourceValue` parameters.
 
-***Parameters and their descriptions***
+**Parameters and their descriptions**
 
 <table>
 <thead>

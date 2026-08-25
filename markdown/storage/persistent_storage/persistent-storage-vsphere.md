@@ -3,11 +3,11 @@ title: Persistent storage using VMware vSphere volumes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using VMware vSphere volumes {id="persistent-storage-using-vsphere"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using VMware vSphere volumes {id="persistent-storage-using-vsphere"}
 {%- set context = "persistent-storage-efs" %}
 
-{{ product_title }} allows use of VMware vSphere’s Virtual Machine Disk (VMDK) volumes. You can provision your {{ product_title }} cluster with persistent storage using VMware vSphere. Some familiarity with Kubernetes and VMware vSphere is assumed.
+{{ product_title }} allows use of VMware vSphere’s Virtual Machine Disk (VMDK) volumes. You can provision your {{ product_title }} cluster with persistent storage using VMware vSphere. Some familiarity with Kubernetes and VMware vSphere is assumed. {._abstract}
 
 VMware vSphere volumes can be provisioned dynamically. {{ product_title }} creates the disk in vSphere and attaches this disk to the correct image.
 
@@ -36,6 +36,7 @@ CSI automatic migration should be seamless. Migration does not change how you us
 You can provision VMware vSphere volumes dynamically or statically. However, dynamically provisioning VMware vSphere volumes is the recommended method.
 
 **Additional resources**
+{._additional-resources}
 
 *   [VMware vSphere](https://www.vmware.com/au/products/vsphere.html)
 *   [Installing a cluster on vSphere](/installing/installing_vsphere/upi/installing-vsphere#installing-vsphere)

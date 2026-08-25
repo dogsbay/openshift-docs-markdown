@@ -81,15 +81,15 @@ spec:
      outputRefs:
      - secureforward-offcluster
 ```
-1.  The name of the log forwarding CR must be `instance`.
-1.  Parameter to enable log forwarding. Set to `true` to enable log forwarding.
-1.  Configuration for the outputs.
-1.  A name to describe the output.
-1.  The type of output, either `elasticsearch` or `forward`.
-1.  The log forwarding endpoint, either the server name or FQDN. For the internal {{ product_title }} Elasticsearch logstore, specify `elasticsearch.openshift-logging.svc:9200`.
-1.  Optional name of the secret required by the endpoint for TLS communication. The secret must exist in the `openshift-logging` project.
-1.  Optional setting if the endpoint does not use a secret, resulting in insecure communication. 
-1.  Configuration for the pipelines.
-1.  A name to describe the pipeline.
-1.  The source type, `logs.app`, `logs.infra`, or `logs.audit`.
-1.  The name of one or more outputs configured in the CR.
+    1.  The name of the log forwarding CR must be `instance`.
+    1.  Parameter to enable log forwarding. Set to `true` to enable log forwarding.
+    1.  Configuration for the outputs.
+    1.  A name to describe the output.
+    1.  The type of output, either `elasticsearch` or `forward`.
+    1.  The log forwarding endpoint, either the server name or FQDN. For the internal {{ product_title }} Elasticsearch logstore, specify `elasticsearch.openshift-logging.svc:9200`.
+    1.  Optional name of the secret required by the endpoint for TLS communication. The secret must exist in the `openshift-logging` project.
+    1.  Optional setting if the endpoint does not use a secret, resulting in insecure communication. 
+    1.  Configuration for the pipelines.
+    1.  A name to describe the pipeline.
+    1.  The source type, `logs.app`, `logs.infra`, or `logs.audit`.
+    1.  The name of one or more outputs configured in the CR.

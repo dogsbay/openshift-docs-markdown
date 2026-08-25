@@ -3,8 +3,8 @@ title: Managing users and profiles
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing users and profiles {id="ossm-profiles-users"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing users and profiles {id="ossm-profiles-users"}
 {%- set context = "ossm-profiles-users" %}
 
 {% leveloffset +1 %}{% include "./modules/ossm-members.md" %}{% endleveloffset %}

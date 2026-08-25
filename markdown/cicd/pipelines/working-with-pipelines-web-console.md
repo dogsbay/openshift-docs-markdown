@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Working with {{ pipelines_title }} in the web console {id="working-with-pipelines-web-console"}
 {% include "./_attributes/common-attributes.md" %}
+# Working with {{ pipelines_title }} in the web console {id="working-with-pipelines-web-console"}
 {%- set context = "working-with-pipelines-web-console" %}
 
 You can use the **Administrator** or **Developer** perspective to create and modify `Pipeline`, `PipelineRun`, and `Repository` objects from the **Pipelines** page in the {{ product_title }} web console.

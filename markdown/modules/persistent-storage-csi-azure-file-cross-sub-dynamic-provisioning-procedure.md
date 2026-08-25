@@ -41,7 +41,7 @@ Enable Azure File dynamic provisioning across Azure subscriptions by granting th
 
             Or
     *   Log in to the Azure portal and on the left menu, click **Resource groups**:
-        1.  Choose the resource group in Subscription B to which you want to assign a role by clicking **resource group** -> **Access control (IAM)** -> **Role assignments** tab to view current assignments, and then click **Add** > **Add role assignment**.
+        1.  Choose the resource group in Subscription B to which you want to assign a role by clicking **resource group** → **Access control (IAM)** → **Role assignments** tab to view current assignments, and then click **Add** > **Add role assignment**.
         1.  On the **Role** tab, choose the contributor role to assign, and then click **Next**. You can also create and choose your own role with required permission.
         1.  On the **Members** tab: 
             1.  Choose an assignee by selecting the type of assignee: user, group, or service principal (or managed identity). 

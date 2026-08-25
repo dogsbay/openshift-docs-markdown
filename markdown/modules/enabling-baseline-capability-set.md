@@ -14,4 +14,4 @@ As a cluster administrator, you can enable cluster capabilities any time after a
     $ oc patch clusterversion version --type merge -p '{"spec":{"capabilities":{"baselineCapabilitySet":"vCurrent"}}}'
     ```
 
-    For `baselineCapabilitySet` you can specify `vCurrent`, `v{{ product_version }}`, or `None`.
+    For `baselineCapabilitySet` you can specify `vCurrent`, `v{{ product_version }}`{minja}, or `None`.

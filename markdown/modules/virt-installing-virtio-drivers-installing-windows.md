@@ -28,6 +28,6 @@ This procedure uses a generic approach to the Windows installation and the insta
 **Verification**
 
 1.  Open the system disk on the PC. This is typically `C:`.
-1.  Navigate to **Program Files** -> **Virtio-Win**.
+1.  Navigate to **Program Files** → **Virtio-Win**.
 
 If the **Virtio-Win** directory is present and contains a sub-directory for each driver, the installation was successful.

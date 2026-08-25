@@ -10,11 +10,11 @@ You can do this during {{ VirtProductName }} installation in the web console or 
 **Procedure**
 
 1.  Open the `HyperConverged` CR by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Edit the `spec.certConfig` fields as shown in the following example. To avoid overloading the system, ensure that all values are greater than or equal to 10 minutes. Express all values as strings that comply with the golang `ParseDuration` format.
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

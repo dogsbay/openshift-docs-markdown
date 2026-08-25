@@ -10,10 +10,10 @@ the appropriate **Cluster Type** page on the {{ cluster_manager }} {{ hybrid_con
 *   REST API for accounts.
 *   Registry tokens, which are the pull secrets that you use to obtain the required components.
 *   Cluster registration, which associates the cluster identity to your Red Hat account to facilitate the gathering of usage metrics.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 the OKD releases page.
-{% endif %}
+{%- endif %}
 
 In {{ product_title }} {{ product_version }}, the installation program is a Go binary file that performs a series of file transformations on a set of assets. 
 The way you interact with the installation program differs depending on your installation type. 

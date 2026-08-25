@@ -10,7 +10,7 @@ Before continuing, you need to verify that the environment variables are correct
     $ oc describe pod ostoy-frontend -n ${OSTOY_NAMESPACE} | grep "^\s*AWS_"
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     AWS_ROLE_ARN:                 arn:aws:iam::000000000000:role/ostoy-sa
     AWS_WEB_IDENTITY_TOKEN_FILE:  /var/run/secrets/eks.amazonaws.com/serviceaccount/token

@@ -42,8 +42,8 @@ You can define how Elasticsearch shards are replicated across data nodes in the 
         implemented your own disk/PVC backup/restore strategy.
 
 
-:::note
+        :::note
 
-The number of primary shards for the index templates is equal to the number of Elasticsearch data nodes.
-
-:::
+        The number of primary shards for the index templates is equal to the number of Elasticsearch data nodes.
+        
+        :::

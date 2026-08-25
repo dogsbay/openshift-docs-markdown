@@ -4,8 +4,8 @@
 When you deploy
 {%- if openshift_dedicated %}
 an {{ product_title }}
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 a {{ product_title }}
 {%- endif %}
 cluster into an existing Virtual Private Cloud (VPC) or create an additional machine pool with a subnet that is new to your cluster, network verification runs automatically. This helps you identify and resolve configuration issues before cluster deployment. {._abstract}

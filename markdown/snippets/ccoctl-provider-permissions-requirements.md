@@ -2,7 +2,7 @@
 
 {%- if aws_sts %}
 *   You have created an {{ aws_short }} account for the `ccoctl` utility to use with the following permissions:
-    ***Required `iam` permissions***
+    **Required `iam` permissions**
 
     *   `iam:CreateOpenIDConnectProvider`
     *   `iam:CreateRole`
@@ -19,7 +19,7 @@
     *   `iam:TagOpenIDConnectProvider`
     *   `iam:TagRole`
 
-    ***Required `s3` permissions***
+    **Required `s3` permissions**
 
     *   `s3:CreateBucket`
     *   `s3:DeleteBucket`
@@ -38,7 +38,7 @@
     *   `s3:PutObjectAcl`
     *   `s3:PutObjectTagging`
 
-    ***Required `cloudfront` permissions***
+    **Required `cloudfront` permissions**
 
     *   `cloudfront:ListCloudFrontOriginAccessIdentities`
     *   `cloudfront:ListDistributions`
@@ -60,14 +60,14 @@
     
     :::
 
-{% endif %}
-{% if rotate_aws %}
+{%- endif %}
+{%- if rotate_aws %}
 *   You have created an {{ aws_short }} account for the `ccoctl` utility to use with the following permissions:
     *   `s3:GetObject`
     *   `s3:PutObject`
     *   `s3:PutObjectTagging`
     *   For clusters that store the OIDC configuration in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL, the {{ aws_short }} account that runs the `ccoctl` utility requires the `cloudfront:ListDistributions` permission.
-{% endif %}
+{%- endif %}
 
 {%- if azure_workload_id %}
 *   You have created a global {{ azure_short }} account for the `ccoctl` utility to use with the following permissions:
@@ -95,19 +95,19 @@
     *   `Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials/delete`
     *   `Microsoft.Storage/register/action`
     *   `Microsoft.ManagedIdentity/register/action`
-{% endif %}
-{% if rotate_azure %}
+{%- endif %}
+{%- if rotate_azure %}
 *   You have created a global {{ azure_short }} account for the `ccoctl` utility to use with the following permissions:
     *   `Microsoft.Storage/storageAccounts/listkeys/action`
     *   `Microsoft.Storage/storageAccounts/read`
     *   `Microsoft.Storage/storageAccounts/write`
     *   `Microsoft.Storage/storageAccounts/blobServices/containers/read`
     *   `Microsoft.Storage/storageAccounts/blobServices/containers/write`
-{% endif %}
+{%- endif %}
 
 {%- if google_cloud_platform %}
 *   You have added one of the following authentication options to the {{ gcp_short }} account that the `ccoctl` utility uses:
-    *   The ***IAM Workload Identity Pool Admin*** role
+    *   The **IAM Workload Identity Pool Admin** role
     *   The following granular permissions:
         *   `compute.projects.get`
         *   `iam.googleapis.com/workloadIdentityPoolProviders.create`
@@ -139,11 +139,11 @@
         *   `storage.objects.create`
         *   `storage.objects.delete`
         *   `storage.objects.list`
-{% endif %}
-{% if rotate_gcp %}
+{%- endif %}
+{%- if rotate_gcp %}
 *   You have added one of the following authentication options to the {{ gcp_short }} account that the `ccoctl` utility uses:
-    *   The ***IAM Workload Identity Pool Admin*** role
+    *   The **IAM Workload Identity Pool Admin** role
     *   The following granular permissions:
         *   `storage.objects.create`
         *   `storage.objects.delete`
-{% endif %}
+{%- endif %}

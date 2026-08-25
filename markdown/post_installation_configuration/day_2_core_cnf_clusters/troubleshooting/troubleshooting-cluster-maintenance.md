@@ -3,8 +3,8 @@ title: Cluster maintenance
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Cluster maintenance {id="troubleshooting-cluster-maintenance"}
 {% include "./_attributes/common-attributes.md" %}
+# Cluster maintenance {id="troubleshooting-cluster-maintenance"}
 {%- set context = "troubleshooting-cluster-maintenance" %}
 
 When deploying {{ product_title }} on bare-metal infrastructure, you must pay more attention to certain configurations which can have a significant impact on cluster stability.

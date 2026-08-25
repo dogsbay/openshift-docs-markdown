@@ -21,10 +21,10 @@ Krew always works with {{ oc_first }} without the {{ cli_manager }} installed. Y
 
 1.  Log in to the {{ product_title }} web console.
 1.  Create the required namespace for the {{ cli_manager }}:
-    1.  Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+    1.  Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
     1.  In the **Name** field, enter `openshift-cli-manager-operator` and click **Create**.
 1.  Install the {{ cli_manager }}:
-    1.  Navigate to **Ecosystem** -> **Software Catalog**.
+    1.  Navigate to **Ecosystem** → **Software Catalog**.
     1.  In the filter box, enter **{{ cli_manager }}**.
     1.  Select the **{{ cli_manager }}** and click **Install**.
     1.  On the **Install Operator** page, complete the following steps:
@@ -42,5 +42,5 @@ Krew always works with {{ oc_first }} without the {{ cli_manager }} installed. Y
 
 **Verification**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Verify that **{{ cli_manager }}** is listed with a **Status** of **Succeeded**.

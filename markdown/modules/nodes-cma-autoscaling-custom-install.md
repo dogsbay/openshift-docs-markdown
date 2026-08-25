@@ -9,7 +9,8 @@ You can use the following procedure to install the Custom Metrics Autoscaler Ope
 *   Ensure that you have downloaded the {{ cluster_manager_url_pull }} as shown in _Obtaining the installation program_ in the installation documentation for your platform.
 
     If you have the pull secret, add the `redhat-operators` catalog to the OperatorHub custom resource (CR) as shown in _Configuring {{ product_title }} to use Red Hat Operators_.
-{% endif %}
+{%- endif %}
+
 *   Remove any previously-installed Technology Preview versions of the Cluster Metrics Autoscaler Operator.
 *   Remove any versions of the community-based KEDA.
 
@@ -27,16 +28,16 @@ You can use the following procedure to install the Custom Metrics Autoscaler Ope
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
 1.  Choose **Custom Metrics Autoscaler** from the list of available Operators, and click **Install**.
 1.  On the **Install Operator** page, ensure that the **All namespaces on the cluster (default)** option
 is selected for **Installation Mode**. This installs the Operator in all namespaces.
 1.  Ensure that the **openshift-keda** namespace is selected for **Installed Namespace**. {{ product_title }} creates the namespace, if not present in your cluster.
 1.  Click **Install**.
 1.  Verify the installation by listing the Custom Metrics Autoscaler Operator components:
-    1.  Navigate to **Workloads** -> **Pods**.
+    1.  Navigate to **Workloads** → **Pods**.
     1.  Select the `openshift-keda` project from the drop-down menu and verify that the `custom-metrics-autoscaler-operator-*` pod is running.
-    1.  Navigate to **Workloads** -> **Deployments** to verify that the `custom-metrics-autoscaler-operator` deployment is running.
+    1.  Navigate to **Workloads** → **Deployments** to verify that the `custom-metrics-autoscaler-operator` deployment is running.
 1.  Optional: Verify the installation in the OpenShift CLI using the following commands:
     ```terminal
     $ oc get all -n openshift-keda

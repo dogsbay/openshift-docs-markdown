@@ -102,8 +102,13 @@ Optionally, you can enable additional uploads of binary transparency attestation
 | `transparency.enabled` | Enable or disable automatic binary transparency uploads. | `true`, `false`, `manual` | `false` |
 | `transparency.url` | The URL for uploading binary transparency attestations, if enabled. |  | `https://rekor.sigstore.dev` |
 
-**📌 NOTE**\
+
+:::note
+
 If you set `transparency.enabled` to `manual`, only task runs and pipeline runs with the following annotation are uploaded to the transparency log:
+
+:::
+
 
 ```yaml
 chains.tekton.dev/transparency-upload: "true"

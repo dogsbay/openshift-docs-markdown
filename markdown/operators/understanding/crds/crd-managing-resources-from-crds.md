@@ -4,11 +4,11 @@ title: Managing resources from custom resource definitions
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing resources from custom resource definitions {id="crd-managing-resources-from-crds"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing resources from custom resource definitions {id="crd-managing-resources-from-crds"}
 {%- set context = "crd-managing-resources-from-crds" %}
 
-As a developer, you can manage custom resources (CRs) that come from custom resource definitions (CRDs) to work with the custom object types available in your cluster.
+As a developer, you can manage custom resources (CRs) that come from custom resource definitions (CRDs) to work with the custom object types available in your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/crd-custom-resource-definitions.md" %}{% endleveloffset %}
 

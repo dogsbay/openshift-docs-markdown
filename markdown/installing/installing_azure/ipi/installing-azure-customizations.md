@@ -3,24 +3,26 @@ title: Installing a cluster on Azure with customizations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Azure with customizations {id="installing-azure-customizations"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Azure with customizations {id="installing-azure-customizations"}
 {%- set context = "installing-azure-customizations" -%}
 {%- set platform = "Azure" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster with a customized configuration or a customized network configuration on infrastructure that the installation program provisions on {{ azure_first }}. To install a cluster with customizations or with network customizations, modify parameters in the `install-config.yaml` file before you install the cluster. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations. You must set most of the network configuration parameters during installation, and you can modify only the `kubeProxy` configuration parameters in a running cluster.
+In {{ product_title }} version {{ product_version }}, you can install a cluster with a customized configuration or a customized network configuration on infrastructure that the installation program provisions on {{ azure_first }}. To install a cluster with customizations or with network customizations, modify parameters in the `install-config.yaml` file before you install the cluster. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations. You must set most of the network configuration parameters during installation, and you can modify only the `kubeProxy` configuration parameters in a running cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-azure-marketplace-subscribe.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -31,6 +33,7 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +2 %}{% include "./modules/installation-azure-trusted-launch.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Secure Boot (Microsoft Azure documentation)](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch#secure-boot)
 *   [virtualized Trusted Platform Modules (Microsoft Azure documentation)](https://learn.microsoft.com/en-us/windows/security/hardware-security/tpm/trusted-platform-module-overview)
@@ -45,12 +48,14 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +2 %}{% include "./modules/installation-azure-config-yaml-simple.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
 {% leveloffset +2 %}{% include "./modules/installation-configure-proxy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   For more details about Accelerated Networking, see [Accelerated Networking for Microsoft Azure VMs](/machine_management/creating_machinesets/creating-machineset-azure#machineset-azure-accelerated-networking_creating-machineset-azure).
 
@@ -71,6 +76,7 @@ For more information about using Linux and Windows nodes in the same cluster, se
 
 
 **Additional resources**
+{._additional-resources}
 
 *   For more details about Accelerated Networking, see [Accelerated Networking for Microsoft Azure VMs](/machine_management/creating_machinesets/creating-machineset-azure#machineset-azure-accelerated-networking_creating-machineset-azure).
 
@@ -80,7 +86,7 @@ For more information about using Linux and Windows nodes in the same cluster, se
 
 {% leveloffset +2 %}{% include "./modules/installation-user-defined-tags-requirements-azure.md" %}{% endleveloffset %}
 
-## Alternatives to storing administrator-level secrets in the kube-system project {id="installing-azure-manual-modes_{{ context }}"}
+## Alternatives to storing administrator-level secrets in the kube-system project {id="installing-azure-manual-modes_{{ context }}" ._additional-resources}
 
 By default, administrator secrets are stored in the `kube-system` project. If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must use one of the following alternatives:
 
@@ -106,10 +112,11 @@ To install a cluster that uses {{ entra_first }}, you must configure the Cloud C
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
-## Next steps {id="_next_steps"}
+## Next steps {id="_next_steps" ._additional-resources}
 
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).
 *   If necessary, you can

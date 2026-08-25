@@ -30,6 +30,7 @@ Install the Model Context Protocol (MCP) server Helm chart to deploy the MCP ser
         ```
     *   `<hostname>` is a fully qualified domain name (FQDN) that serves as the entry point for the MCP server for Red Hat OpenShift. This host address is used by the Ingress controller to route external traffic to the MCP server service. This should be a URL such as `mcp-server.apps.cluster-name.domain.com`.
     *   `<toolset-names>` can include toolsets from the following table.
+
         **Available toolsets**
 
         | Toolset | Description | Default | Status |

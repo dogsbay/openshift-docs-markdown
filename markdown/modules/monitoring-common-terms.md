@@ -99,12 +99,12 @@ Silences
 storage
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 :   {{ product_title }} supports many types of storage, both for on-premise and cloud providers.
-{% endif %}
-{% if openshift_dedicated %}
-    {{ product_title }} supports many types of storage on AWS and {{ gcp_short }}.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
-    {{ product_title }} supports many types of storage on AWS.
+{%- endif %}
+{%- if openshift_dedicated %}
+:   {{ product_title }} supports many types of storage on AWS and {{ gcp_short }}.
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
+:   {{ product_title }} supports many types of storage on AWS.
 {%- endif %}
     You can manage container storage for persistent and non-persistent data in your {{ product_title }} cluster.
 

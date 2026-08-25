@@ -20,8 +20,8 @@ You can assign tolerations to the components that monitor user-defined projects,
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   You have access to the cluster as a user with the `cluster-admin` cluster role, or as a user with the `user-workload-monitoring-config-edit` role in the `openshift-user-workload-monitoring` project.
 *   A cluster administrator has enabled monitoring for user-defined projects.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
 *   The `user-workload-monitoring-config` `ConfigMap` object exists in the `openshift-user-workload-monitoring` namespace. This object is created by default when the cluster is created.
 {%- endif %}
@@ -29,12 +29,12 @@ You can assign tolerations to the components that monitor user-defined projects,
 
 **Procedure**
 
-1.  Edit the `{{ configmap_name }}` config map in the `{{ namespace_name }}` project:
-    ```terminal
+1.  Edit the `{{ configmap_name }}`{minja} config map in the `{{ namespace_name }}`{minja} project:
+    ```terminal {minja}
     $ oc -n {{ namespace_name }} edit configmap {{ configmap_name }}
     ```
 1.  Specify `tolerations` for the component:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     kind: ConfigMap
     metadata:
@@ -49,8 +49,8 @@ You can assign tolerations to the components that monitor user-defined projects,
 
     Substitute `<component>` and `<toleration_specification>` accordingly.
 
-    For example, `oc adm taint nodes node1 key1=value1:NoSchedule` adds a taint to `node1` with the key `key1` and the value `value1`. This prevents monitoring components from deploying pods on `node1` unless a toleration is configured for that taint. The following example configures the `{{ component }}` component to tolerate the example taint:
-    ```yaml
+    For example, `oc adm taint nodes node1 key1=value1:NoSchedule` adds a taint to `node1` with the key `key1` and the value `value1`. This prevents monitoring components from deploying pods on `node1` unless a toleration is configured for that taint. The following example configures the `{{ component }}`{minja} component to tolerate the example taint:
+    ```yaml {minja}
     apiVersion: v1
     kind: ConfigMap
     metadata:
@@ -67,6 +67,6 @@ You can assign tolerations to the components that monitor user-defined projects,
     ```
 1.  Save the file to apply the changes. The pods affected by the new configuration are automatically redeployed.
 
-{%- set configmap_name = false -%}
-{%- set namespace_name = false -%}
-{%- set component = false -%}
+{%- set configmap_name = "" -%}
+{%- set namespace_name = "" -%}
+{%- set component = "" -%}

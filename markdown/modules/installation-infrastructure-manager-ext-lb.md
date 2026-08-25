@@ -3,11 +3,8 @@
 
 You can use the following Infrastructure Manager template to deploy the external load balancer that you need for your {{ product_title }} cluster: {._abstract}
 
-<details>
-<summary>`02_lb_ext.tf` Infrastructure Manager template</summary>
-
+:::details{title="`02_lb_ext.tf` Infrastructure Manager template"}
 ```terraform
-```hcl
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
   required_version = ">=1.2.3"
@@ -76,5 +73,4 @@ resource "google_compute_forwarding_rule" "api_forwarding_rule" {
   target = google_compute_target_pool.api_target_pool.id
 }
 ```
-```
-</details>
+:::

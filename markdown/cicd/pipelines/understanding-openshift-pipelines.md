@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding {{ pipelines_shortname }} {id="understanding-openshift-pipelines"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding {{ pipelines_shortname }} {id="understanding-openshift-pipelines"}
 {%- set context = "understanding-openshift-pipelines" %}
 
 {%- set FeatureName = "OpenShift Pipelines" %}

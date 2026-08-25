@@ -17,7 +17,7 @@ The pipeline performs the following tasks for the back-end application `pipeline
 **Procedure**
 
 1.  Copy the contents of the following sample pipeline YAML file and save it:
-    ```yaml
+    ```yaml {minja}
     apiVersion: tekton.dev/v1beta1
     kind: Pipeline
     metadata:
@@ -95,7 +95,7 @@ The pipeline performs the following tasks for the back-end application `pipeline
     ```
 
     Alternatively, you can also execute the YAML file directly from the Git repository:
-    ```terminal
+    ```terminal {minja}
     $ oc create -f https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/01_pipeline/04_pipeline.yaml
     ```
 1.  Use the `tkn pipeline list` command to verify that the pipeline is added to the application:

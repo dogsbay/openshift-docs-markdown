@@ -4,8 +4,8 @@
 When you install
 {%- if openshift_rosa %}
 a {{ product_title }}
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 an {{ product_title }}
 {%- endif %}
 cluster, the sizing of the control plane and infrastructure nodes are automatically determined by the compute node count. To maintain cluster stability, the Red&#160;Hat Site Reliability Engineering (SRE) team automatically adjusts your control plane and infrastructure nodes whenever you change your compute node count. {._abstract}
@@ -17,15 +17,15 @@ During the installation process, the sizing of the control plane and infrastruct
 The following
 {%- if openshift_rosa %}
 table lists
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 tables list
 {%- endif %}
 the control plane and infrastructure node sizing that is applied during installation.
 
 {% if openshift_dedicated %}
 AWS control plane and infrastructure node size:
-{%- endif %}
+{% endif %}
 | Number of compute nodes | Control plane size | Infrastructure node size |
 | --- | --- | --- |
 | 1 to 25 | m5.2xlarge | r5.xlarge |
@@ -98,8 +98,8 @@ AWS control plane and infrastructure node size:
 The maximum number of compute nodes on
 {%- if openshift_rosa %}
 {{ product_title }}
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 {{ product_title }}
 {%- endif %}
 clusters version 4.14.14 and later is 249. For earlier versions, the limit is 180.
@@ -124,8 +124,8 @@ The resizing alert is triggered for the control plane nodes in a cluster when th
     The maximum number of compute nodes on
 {%- if openshift_rosa %}
     {{ product_title }}
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
     {{ product_title }}
 {%- endif %}
     is 180.
@@ -145,8 +145,8 @@ Resizing alerts are triggered for the infrastructure nodes in a cluster when it 
     The maximum number of compute nodes on
 {%- if openshift_rosa %}
     {{ rosa_title }}
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
     {{ product_title }}
 {%- endif %}
     cluster versions 4.14.14 and later is 249. For earlier versions, the limit is 180.

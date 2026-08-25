@@ -17,42 +17,40 @@ You can upgrade a CLI plugin to a newer version with the {{ cli_manager }} by di
     ```
 1.  Edit the YAML file to include the new specifications for your plugin.
 
-```yaml title="Example YAML file to upgrade a plugin"
-apiVersion: config.openshift.io/v1alpha1
-kind: Plugin
-metadata:
-  name: <plugin_name> (1)
-spec:
-  description: <description_of_plugin>
-  homepage: <plugin_homepage>
-  platforms:
-  - bin: (2)
-    files:
-    - from: <plugin_file_path>
-      to: .
-    image: <plugin_image>
-    imagePullSecret: (3)
-    platform: <platform> (4)
-  shortDescription: <short_description_of_plugin>
-  version: <version> (5)
-```
+    ```yaml title="Example YAML file to upgrade a plugin"
+    apiVersion: config.openshift.io/v1alpha1
+    kind: Plugin
+    metadata:
+      name: <plugin_name> (1)
+    spec:
+      description: <description_of_plugin>
+      homepage: <plugin_homepage>
+      platforms:
+      - bin: (2)
+        files:
+        - from: <plugin_file_path>
+          to: .
+        image: <plugin_image>
+        imagePullSecret: (3)
+        platform: <platform> (4)
+      shortDescription: <short_description_of_plugin>
+      version: <version> (5)
+    ```
 
-where:
+    where:
 
+    `<plugin_name>`
+    :   Specifies the name of the plugin you plan to use in commands.
 
-`<plugin_name>`
-:   Specifies the name of the plugin you plan to use in commands.
+    `bin`
+    :   Specifies the path to the plugin executable.
 
-`bin`
-:   Specifies the path to the plugin executable.
+    `imagePullSecret`
+    :   Optional field if the registry is not public to add a pull secret to access your plugin image.
 
-`imagePullSecret`
-:   Optional field if the registry is not public to add a pull secret to access your plugin image.
+    `<platform>`
+    :   Add the architecture for your system; for example, `linux/amd64`, `darwin/arm64`, `windows/amd64`, or another architecture.
 
-`<platform>`
-:   Add the architecture for your system; for example, `linux/amd64`, `darwin/arm64`, `windows/amd64`, or another architecture.
-
-`<version>`
-:   The version must be in v0.0.0 format.
-
+    `<version>`
+    :   The version must be in v0.0.0 format.
 1.  Save the file.

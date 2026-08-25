@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Forwarding control plane logs {id="rosa-forwarding-control-plane-logs"}
-
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
 {% include "./_attributes/common-attributes.md" %}
+# Forwarding control plane logs {id="rosa-forwarding-control-plane-logs"}
+
 {%- set context = "rosa-configuring-the-log-forwarder" %}
 
 {{ product_title }} provides a control plane log forwarder that is a separate system outside your cluster. You can use the control plane log forwarder to send your logs to either an Amazon CloudWatch group or Amazon S3 bucket. {._abstract}

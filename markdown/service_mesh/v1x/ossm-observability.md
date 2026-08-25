@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Data visualization and observability {id="ossm-observability-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Data visualization and observability {id="ossm-observability-v1x"}
 {%- set context = "observability-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

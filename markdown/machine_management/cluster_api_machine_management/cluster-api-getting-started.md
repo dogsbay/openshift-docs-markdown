@@ -3,12 +3,12 @@ title: Getting started with the Cluster API
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Getting started with the Cluster API {id="cluster-api-getting-started"}
 {% include "./_attributes/common-attributes.md" %}
+# Getting started with the Cluster API {id="cluster-api-getting-started"}
 {%- set context = "cluster-api-getting-started" %}
 
 The Machine API and Cluster API are distinct API groups that have similar resources.
-You can use these API groups to automate the management of infrastructure resources on your {{ product_title }} cluster.
+You can use these API groups to automate the management of infrastructure resources on your {{ product_title }} cluster. {._abstract}
 
 {%- set FeatureName = "Managing machines with the Cluster API" %}
 {% include "./snippets/technology-preview.md" %}
@@ -37,6 +37,7 @@ For clusters that do not support migrating Machine API resources to Cluster API 
 {% leveloffset +2 %}{% include "./modules/capi-creating-machine-template.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Machine API to Cluster API resource migration](/machine_management/cluster_api_machine_management/cluster-api-getting-started#mapi-to-capi-migration-overview_cluster-api-getting-started)
 *   [Sample YAML for a Cluster API machine template resource on {{ aws_full }}](/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-aws#capi-yaml-machine-template-aws_cluster-api-config-options-aws)
@@ -49,6 +50,7 @@ For clusters that do not support migrating Machine API resources to Cluster API 
 {% leveloffset +2 %}{% include "./modules/capi-creating-machine-set.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Sample YAML for a Cluster API compute machine set resource on {{ aws_full }}](/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-aws#capi-yaml-machine-set-aws_cluster-api-config-options-aws)
 *   [Sample YAML for a Cluster API compute machine set resource on {{ gcp_full }}](/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp#capi-yaml-machine-set-gcp_cluster-api-config-options-gcp)
@@ -64,12 +66,14 @@ For clusters that do not support migrating Machine API resources to Cluster API 
 {% leveloffset +2 %}{% include "./modules/migrating-between-capi-mapi.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Unexpected behavior when changing resource configurations](/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-migrate-unexpected-behavior_cluster-api-troubleshooting)
 
 {% leveloffset +2 %}{% include "./modules/deploying-capi-machines-via-mapi-machine-sets.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Troubleshooting resource migration](/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-resource-migration_cluster-api-troubleshooting)
 *   [Migrating Cluster API resources to Machine API resources](/machine_management/cluster_api_machine_management/cluster-api-disabling#capi-to-mapi-migration-overview_cluster-api-disabling)

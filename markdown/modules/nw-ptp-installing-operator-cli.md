@@ -66,7 +66,7 @@ As a cluster administrator, you can install the Operator by using the CLI. {._ab
     ```terminal
     $ oc get csv -n openshift-ptp -o custom-columns=Name:.metadata.name,Phase:.status.phase
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     Name                         Phase
     {{ product_version }}.0-202301261535          Succeeded
     ```

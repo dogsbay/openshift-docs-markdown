@@ -86,11 +86,11 @@ You can use Common Expression Language (CEL) expressions to construct usernames 
     The Operator should report `Available=True` and `Degraded=False`.
 
 
-:::note
+    :::note
 
-CEL expressions have access to standard CEL string functions (`lowerAscii()`, `upperAscii()`, `contains()`, `startsWith()`, `endsWith()`, `matches()`, `split()`), operators (`+`, `?`, `has()`, ternary `? :`), and the `orValue()` method for optional chaining. See the CEL specification link in Additional resources for the complete function reference.
-
-:::
+    CEL expressions have access to standard CEL string functions (`lowerAscii()`, `upperAscii()`, `contains()`, `startsWith()`, `endsWith()`, `matches()`, `split()`), operators (`+`, `?`, `has()`, ternary `? :`), and the `orValue()` method for optional chaining. See the CEL specification link in Additional resources for the complete function reference.
+    
+    :::
 
 
 You can use the following CEL expression patterns for claim mapping:

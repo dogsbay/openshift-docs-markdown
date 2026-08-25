@@ -3,11 +3,11 @@ title: "{{ external_secrets_operator }} overview"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ external_secrets_operator }} overview {id="external-secrets-operator-about"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ external_secrets_operator }} overview {id="external-secrets-operator-about"}
 {%- set context = "external-secrets-operator-about" %}
 
-The {{ external_secrets_operator }} operates as a cluster-wide service to deploy and manage the `external-secrets` application. The `external-secrets` application integrates with external secrets management systems and performs secret fetching, refreshing, and provisioning within the cluster.
+The {{ external_secrets_operator }} operates as a cluster-wide service to deploy and manage the `external-secrets` application. The `external-secrets` application integrates with external secrets management systems and performs secret fetching, refreshing, and provisioning within the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/external-secrets-about.md" %}{% endleveloffset %}
 
@@ -17,7 +17,7 @@ The {{ external_secrets_operator }} operates as a cluster-wide service to deploy
 
 {% leveloffset +1 %}{% include "./modules/external-secrets-operator-proxy-considerations.md" %}{% endleveloffset %}
 
-## Additional resources {id="external-secrets-operator-about_additional-resources"}
+## Additional resources {id="external-secrets-operator-about_additional-resources" ._additional-resources}
 
 *   [external-secrets application](https://external-secrets.io/latest/)
 *   [Understanding compliance](/security/container_security/security-compliance#security-compliance)

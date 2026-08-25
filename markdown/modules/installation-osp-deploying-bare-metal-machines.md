@@ -6,12 +6,12 @@
 # Deploying a cluster with bare-metal machines {id="installation-osp-deploying-bare-metal-machines_{{ context }}"}
 
 If you want your cluster to use bare-metal machines, modify the
-{% if osp_ipi %}
+{%- if osp_ipi %}
 `install-config.yaml`
-{% endif %}
-{% if not osp_ipi %}
+{%- endif %}
+{%- if not osp_ipi %}
 `inventory.yaml`
-{% endif %}
+{%- endif %}
 file. Your cluster can have compute machines running on bare metal. {._abstract}
 
 
@@ -100,7 +100,8 @@ Be sure that your `install-config.yaml` file reflects whether the {{ rh_openstac
         Use the updated `inventory.yaml` file to complete the installation process.
         Machines that are created during deployment use the flavor that you
         added to the file.
-{%- endif %}
+{% endif %}
+        +
 
         :::note
 
@@ -116,5 +117,5 @@ Be sure that your `install-config.yaml` file reflects whether the {{ rh_openstac
 
 
 {% if context == "installing-openstack-installer-custom" %}
-{%- set osp_ipi = false -%}
+{%- set osp_ipi = "" -%}
 {% endif %}

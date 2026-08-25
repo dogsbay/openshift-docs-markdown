@@ -3,11 +3,11 @@ title: Red Hat OpenShift editions
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Red Hat OpenShift editions {id="openshift-editions"}
 {% include "./_attributes/common-attributes.md" %}
+# Red Hat OpenShift editions {id="openshift-editions"}
 {%- set context = "openshift-editions" %}
 
-To help you choose the ideal deployment model for your organization, you can compare the available Red&#160;Hat OpenShift editions.
+To help you choose the ideal deployment model for your organization, you can compare the available Red&#160;Hat OpenShift editions. {._abstract}
 
 Red&#160;Hat OpenShift is offered in several editions to support a wide range of deployment models and operational preferences. Each edition delivers a consistent Kubernetes platform with integrated tools, security features, and developer experiences. OpenShift is available in cloud services and self-managed editions.
 
@@ -61,7 +61,7 @@ Red&#160;Hat {{ oke }}
 :   Provides the virtualization capabilities of Red Hat OpenShift in a streamlined, cost-effective solution to deploy, manage, and scale VMs exclusively.
     For more information, see "{{ ove_first }}" in the _Additional resources_ section.
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [{{ product_rosa }} (Red&#160;Hat product page)](https://www.redhat.com/en/technologies/cloud-computing/openshift/aws)
 *   [{{ azure_first }} Red&#160;Hat OpenShift (Red&#160;Hat product page)](https://www.redhat.com/en/technologies/cloud-computing/openshift/azure)

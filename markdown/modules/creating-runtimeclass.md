@@ -43,8 +43,8 @@ Creating a runtime class is also necessary in clusters that support multiple ope
     *   For Windows 2022, specify the `node.kubernetes.io/windows-build: '10.0.20348'` label.
     *   For Windows 2019, specify the `node.kubernetes.io/windows-build: '10.0.17763'` label.
 
-`scheduling.tolerations`
-:   Specifies tolerations to append to pods, excluding duplicates, running with this runtime class during admission. This combines the set of nodes tolerated by the pod and the runtime class.
+    `scheduling.tolerations`
+    :   Specifies tolerations to append to pods, excluding duplicates, running with this runtime class during admission. This combines the set of nodes tolerated by the pod and the runtime class.
 
 1.  Create the `RuntimeClass` object:
     ```terminal

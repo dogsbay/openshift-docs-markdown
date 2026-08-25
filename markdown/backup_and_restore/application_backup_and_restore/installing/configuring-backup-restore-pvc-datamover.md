@@ -3,11 +3,11 @@ title: Configuring backup and restore PVCs for Data Mover
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring backup and restore PVCs for Data Mover {id="configuring-backup-restore-pvc-datamover"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring backup and restore PVCs for Data Mover {id="configuring-backup-restore-pvc-datamover"}
 {%- set context = "configuring-backup-restore-pvc-datamover" %}
 
-Configure backup and restore persistent volume claims (PVCs) to optimize Data Mover operations. For storage classes like CephFS, these intermediate PVCs allow the system to create read-only volumes from snapshots, resulting in significantly faster backups.
+Configure backup and restore persistent volume claims (PVCs) to optimize Data Mover operations. For storage classes like CephFS, these intermediate PVCs allow the system to create read-only volumes from snapshots, resulting in significantly faster backups. {._abstract}
 
 You create a `readonly` backup PVC by using the `nodeAgent.backupPVC` section of the `DataProtectionApplication` (DPA) and setting the `readOnly` access mode to `true`.
 

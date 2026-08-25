@@ -11,13 +11,13 @@
 To use only trusted or locally available Operator catalogs, disable the default software catalog sources that {{ product_title }} configures during installation.
 {%- if not olm_managing_custom_catalogs %}
 In a restricted network environment, you must disable the default catalogs as a cluster administrator.
-{% endif %}
-{% if olm_restricted_networks %}
+{%- endif %}
+{%- if olm_restricted_networks %}
 You can then configure the OperatorHub custom resource definition (CRD) to use local catalog sources for the software catalog.
-{% endif %}
-{% if olm_managing_custom_catalogs %}
-As a cluster administrator, you can disable the set of default catalogs.
-{% endif %} {._abstract}
+{%- endif %}
+{%- if olm_managing_custom_catalogs %}
+As a cluster administrator, you can disable the set of default catalogs. {._abstract}
+{%- endif %}
 
 **Procedure**
 
@@ -29,14 +29,14 @@ As a cluster administrator, you can disable the set of default catalogs.
 
     :::tip
 
-    Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+    Or, you can use the web console to manage catalog sources. From the **Administration** → **Cluster Settings** → **Configuration** → **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
     
     :::
 
 
 {% if context == "olm-restricted-networks" %}
-{%- set olm_restricted_networks = false -%}
+{%- set olm_restricted_networks = "" -%}
 {% endif %}
 {% if context == "olm-managing-custom-catalogs" %}
-{%- set olm_managing_custom_catalogs = false -%}
+{%- set olm_managing_custom_catalogs = "" -%}
 {% endif %}

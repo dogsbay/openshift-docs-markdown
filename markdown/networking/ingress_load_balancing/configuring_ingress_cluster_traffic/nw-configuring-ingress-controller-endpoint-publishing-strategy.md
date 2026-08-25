@@ -3,11 +3,11 @@ title: Configuring the Ingress Controller endpoint publishing strategy
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the Ingress Controller endpoint publishing strategy {id="nw-configuring-ingress-controller-endpoint-publishing-strategy"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the Ingress Controller endpoint publishing strategy {id="nw-configuring-ingress-controller-endpoint-publishing-strategy"}
 {%- set context = "nw-configuring-ingress-controller-endpoint-publishing-strategy" %}
 
-To expose Ingress Controller endpoints to external systems and enable load balancer integrations in {{ product_title }}, configure the `endpointPublishingStrategy` parameter.
+To expose Ingress Controller endpoints to external systems and enable load balancer integrations in {{ product_title }}, configure the `endpointPublishingStrategy` parameter. {._abstract}
 
 
 :::important
@@ -27,7 +27,7 @@ For more information, see the "Setting {{ rh_openstack }} Cloud Controller Manag
 
 {% leveloffset +2 %}{% include "./modules/nw-ingress-controller-nodeportservice-projects.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Ingress Controller configuration parameters](/networking/networking_operators/ingress-operator#nw-ingress-controller-configuration-parameters_configuring-ingress)
 *   [Setting {{ rh_openstack }} Cloud Controller Manager options](/installing/installing_openstack/installing-openstack-installer-custom#installation-osp-setting-cloud-provider-options_installing-openstack-installer-custom)

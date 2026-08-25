@@ -6,7 +6,7 @@ You can increase or decrease the number of CPU sockets allocated to a virtual ma
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines**.
+1.  Navigate to **Virtualization** → **VirtualMachines**.
 1.  Select the required VM to open the **VirtualMachine details** page.
 1.  On the **Configuration** tab, click **Edit CPU|Memory**.
 1.  Select the **vCPU** radio button.

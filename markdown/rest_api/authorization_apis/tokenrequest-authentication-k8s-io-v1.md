@@ -1,5 +1,5 @@
 ---
-title: "TokenRequest []"
+title: "TokenRequest [authentication.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | TokenRequestSpec contains client provided parameters of a token request. |
 | `status` | `object` | TokenRequestStatus is the result of a token request. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -46,6 +47,7 @@ Required
 | `audiences` | `array (string)` | Audiences are the intendend audiences of the token. A recipient of a token must identify themself with an identifier in the list of audiences of the token, and otherwise should reject the token. A token issued for multiple audiences may be used to authenticate against any of the audiences listed but implies a high degree of trust between the target audiences. |
 | `boundObjectRef` | `object` | BoundObjectReference is a reference to an object that a token is bound to. |
 | `expirationSeconds` | `integer` | ExpirationSeconds is the requested duration of validity of the request. The token issuer may return a token with a different validity duration so a client needs to check the 'expiration' field in a response. |
+
 ### .spec.boundObjectRef {id="_specboundobjectref"}
 
 Description
@@ -61,6 +63,7 @@ Type
 | `kind` | `string` | Kind of the referent. Valid kinds are 'Pod' and 'Secret'. |
 | `name` | `string` | Name of the referent. |
 | `uid` | `string` | UID of the referent. |
+
 ### .status {id="_status"}
 
 Description
@@ -84,7 +87,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }}/token`
+*   `/api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }}/token`{minja}
     *   `POST`: create token of a ServiceAccount
 
 ### /api/v1/namespaces/{{ namespace }}/serviceaccounts/{{ name }}/token {id="_apiv1namespaces_namespace_serviceaccounts_name_token"}

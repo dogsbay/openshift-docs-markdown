@@ -16,7 +16,7 @@ spec:
 # ...
 ```
 
-***`backend` object fields***
+**`backend` object fields**
 
 <table>
 <thead>

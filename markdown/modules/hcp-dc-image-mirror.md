@@ -15,9 +15,9 @@ In the following procedure, the `oc-mirror` tool is used, which is a binary that
 
 **Procedure**
 
-1.  Ensure that your `${{ HOME }}/.docker/config.json` file is updated with the registries that you are going to mirror from and with the private registry that you plan to push the images to.
+1.  Ensure that your `${{ HOME }}/.docker/config.json`{minja} file is updated with the registries that you are going to mirror from and with the private registry that you plan to push the images to.
 1.  By using the following example, create an `ImageSetConfiguration` object to use for mirroring. Replace values as needed to match your environment:
-    ```yaml
+    ```yaml {minja}
     apiVersion: mirror.openshift.io/v2alpha1
     kind: ImageSetConfiguration
     mirror:

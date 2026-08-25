@@ -40,7 +40,7 @@ The following table lists the parameters for configuring trust-manager settings.
 <tr>
   <td><code>spec.trustManagerConfig.defaultCAPackage.policy</code></td>
   <td><code>string</code></td>
-  <td>Optional. Specifies whether the default CA package feature is enabled. When set to <code>Enabled</code>, the Operator configures the trusted CA bundle to trust manager. When set to <code>Disabled</code>, no default CA package is configured. The default value is <code>Disabled</code>.<br><br><dl><dt>Note</dt><dd>To enable the <code>useDefaultCAs: true</code> setting in your Bundle CR, you must set the value to <code>Enabled</code>.</dd></dl></td>
+  <td>Optional. Specifies whether the default CA package feature is enabled. When set to <code>Enabled</code>, the Operator configures the trusted CA bundle to trust manager. When set to <code>Disabled</code>, no default CA package is configured. The default value is <code>Disabled</code>.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>To enable the <code>useDefaultCAs: true</code> setting in your Bundle CR, you must set the value to <code>Enabled</code>.</dd></dl></td>
 </tr>
 <tr>
   <td><code>spec.trustManagerConfig.filterExpiredCertificates</code></td>
@@ -75,7 +75,7 @@ The following table lists the parameters for configuring trust-manager settings.
 <tr>
   <td><code>spec.trustManagerConfig.secretTargets.authorizedSecrets</code></td>
   <td><code>array</code></td>
-  <td>Optional. A list of specific secret names that trust manager is authorized to create and update.<br><br><dl><dt>Note</dt><dd>If <code>spec.trustManagerConfig.secretTargets.policy</code> is set to <code>Custom</code>, you must specify a value. If <code>spec.trustManagerConfig.secretTargets.policy</code> is set to <code>Disabled</code>, you must not specify a value.</dd></dl></td>
+  <td>Optional. A list of specific secret names that trust manager is authorized to create and update.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>If <code>spec.trustManagerConfig.secretTargets.policy</code> is set to <code>Custom</code>, you must specify a value. If <code>spec.trustManagerConfig.secretTargets.policy</code> is set to <code>Disabled</code>, you must not specify a value.</dd></dl></td>
 </tr>
 <tr>
   <td><code>spec.trustManagerConfig.secretTargets.policy</code></td>
@@ -90,7 +90,7 @@ The following table lists the parameters for configuring trust-manager settings.
 <tr>
   <td><code>spec.trustManagerConfig.trustNamespace</code></td>
   <td><code>string</code></td>
-  <td>Optional. Specifies the namespace where trust manager locates CA certificate sources, such as ConfigMaps and Secrets. This namespace must exist before you create the TrustManager custom resource. The default value is <code>cert-manager</code>.<br><br><dl><dt>Note</dt><dd>You cannot change the value once set.</dd></dl></td>
+  <td>Optional. Specifies the namespace where trust manager locates CA certificate sources, such as ConfigMaps and Secrets. This namespace must exist before you create the TrustManager custom resource. The default value is <code>cert-manager</code>.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You cannot change the value once set.</dd></dl></td>
 </tr>
 </tbody>
 </table>

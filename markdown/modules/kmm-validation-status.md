@@ -27,6 +27,6 @@ The following outlines the fields included in the `.status.modules` list:
 `verificationStatus`
 :   The status of the Module verification:
 
-*   `Success`: Verified
-*   `Failure`: Verification failed
-*   `InProgress`: Verification is in progress
+    *   `Success`: Verified
+    *   `Failure`: Verification failed
+    *   `InProgress`: Verification is in progress

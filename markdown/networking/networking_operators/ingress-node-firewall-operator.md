@@ -3,11 +3,11 @@ title: Ingress Node Firewall Operator in OpenShift Container Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Ingress Node Firewall Operator in {{ product_title }} {id="ingress-node-firewall-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Ingress Node Firewall Operator in {{ product_title }} {id="ingress-node-firewall-operator"}
 {%- set context = "ingress-node-firewall-operator" %}
 
-The Ingress Node Firewall Operator provides a stateless, eBPF-based firewall for managing node-level ingress traffic in {{ product_title }}.
+The Ingress Node Firewall Operator provides a stateless, eBPF-based firewall for managing node-level ingress traffic in {{ product_title }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-infw-operator-cr.md" %}{% endleveloffset %}
 
@@ -33,7 +33,7 @@ The Ingress Node Firewall Operator provides a stateless, eBPF-based firewall for
 {% leveloffset +1 %}{% include "./modules/nw-infw-operator-troubleshooting.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [About the eBPF Manager Operator](/networking/networking_operators/ebpf_manager/ebpf-manager-operator-about#bpfman-operator-about)
 {% endif %}

@@ -7,13 +7,13 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring SR-IOV additional network {id="nw-sriov-additional-network_{{ context }}"}
 
-You can configure an additional network that uses SR-IOV hardware by creating an `{{ rs }}` object.
-When you create an `{{ rs }}` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object. {._abstract}
+You can configure an additional network that uses SR-IOV hardware by creating an `{{ rs }}`{minja} object.
+When you create an `{{ rs }}`{minja} object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object. {._abstract}
 
 
 :::note
 
-Do not modify or delete an `{{ rs }}` object if it is attached to {{ object }} in a `running` state.
+Do not modify or delete an `{{ rs }}`{minja} object if it is attached to {{ object }} in a `running` state.
 
 :::
 
@@ -26,7 +26,7 @@ Do not modify or delete an `{{ rs }}` object if it is attached to {{ object }} i
 **Procedure**
 
 1.  Create the following `SriovNetwork` object, and then save the YAML in the `<name>-sriov-network.yaml` file. Replace `<name>` with a name for this additional network.
-    ```yaml
+    ```yaml {minja}
     apiVersion: sriovnetwork.openshift.io/v1
     kind: SriovNetwork
     metadata:
@@ -43,7 +43,7 @@ Do not modify or delete an `{{ rs }}` object if it is attached to {{ object }} i
       vlanQoS: <vlan_qos>
       trust: "<trust_vf>"
       capabilities: <capabilities>
-{%- if ocp_sriov_net %}
+    {%- if ocp_sriov_net %}
       ipam: {}
       linkState: <link_state>
       maxTxRate: <max_tx_rate>
@@ -51,7 +51,7 @@ Do not modify or delete an `{{ rs }}` object if it is attached to {{ object }} i
       vlanQoS: <vlan_qos>
       trust: "<trust_vf>"
       capabilities: <capabilities>
-{%- endif %}
+    {%- endif %}
     ```
     *   `metadata.name` defines a name for the `SriovNetwork` object. The SR-IOV Network Operator creates a `NetworkAttachmentDefinition` object with same name.
     *   `metadata.namespace` defines the namespace where the SR-IOV Network Operator is installed.
@@ -86,10 +86,10 @@ Do not modify or delete an `{{ rs }}` object if it is attached to {{ object }} i
         :::
 
     *   `spec.capabilities` an optional field that defines the capabilities to configure for this network.
-        {%- if ocp_sriov_net %}
+{%- if ocp_sriov_net %}
     You can specify `"{ "ips": true }"` to enable IP address support or `"{ "mac": true }"` to enable MAC address support.
     *   `spec.capabilities` defines a configuration object for the IPAM CNI plugin as a YAML block scalar. The plugin manages IP address assignment for the attachment definition.
-{% endif %}
+{%- endif %}
 1.  To create the object, enter the following command. Replace `<name>` with a name for this additional network.
     ```terminal
     $ oc create -f <name>-sriov-network.yaml

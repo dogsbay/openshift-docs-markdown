@@ -14,7 +14,7 @@ Use the same PromQL patterns as standalone {{ product_title }} clusters because 
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console for the hosted cluster.
-1.  Click **Observe** -> **Metrics**.
+1.  Click **Observe** → **Metrics**.
 1.  In the query field, enter a PromQL expression and run the query.
 
     Use the following examples:

@@ -3,8 +3,8 @@ title: Understanding API compatibility guidelines
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding API compatibility guidelines {id="compatibility-guidelines"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding API compatibility guidelines {id="compatibility-guidelines"}
 {%- set context = "compatibility-guidelines" %}
 
 

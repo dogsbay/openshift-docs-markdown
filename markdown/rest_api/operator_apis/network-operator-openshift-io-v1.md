@@ -1,5 +1,5 @@
 ---
-title: "Network []"
+title: "Network [operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | NetworkSpec is the top-level network configuration object. |
 | `status` | `object` | NetworkStatus is detailed operator status, which is distilled up to the Network clusteroperator object. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -50,14 +51,15 @@ Type
 | `disableNetworkDiagnostics` | `boolean` | disableNetworkDiagnostics specifies whether or not PodNetworkConnectivityCheck CRs from a test pod to every node, apiserver and LB should be disabled or not. If unset, this property defaults to 'false' and network diagnostics is enabled. Setting this to 'true' would reduce the additional load of the pods performing the checks. |
 | `exportNetworkFlows` | `object` | exportNetworkFlows enables and configures the export of network flow metadata from the pod network by using protocols NetFlow, SFlow or IPFIX. Currently only supported on OVN-Kubernetes plugin. If unset, flows will not be exported to any collector. |
 | `kubeProxyConfig` | `object` | kubeProxyConfig lets us configure desired proxy configuration, if deployKubeProxy is true. If not specified, sensible defaults will be chosen by OpenShift directly. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `migration` | `object` | migration enables and configures cluster network migration, for network changes that cannot be made instantly. |
 | `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `serviceNetwork` | `array (string)` | serviceNetwork is the ip address pool to use for Service IPs Currently, all existing network providers only support a single value here, but this is an array to allow for growth. |
 | `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 | `useMultiNetworkPolicy` | `boolean` | useMultiNetworkPolicy enables a controller which allows for MultiNetworkPolicy objects to be used on additional networks as created by Multus CNI. MultiNetworkPolicy are similar to NetworkPolicy objects, but NetworkPolicy objects only apply to the primary interface. With MultiNetworkPolicy, you can control the traffic that a pod can receive over the secondary interfaces. If unset, this property defaults to 'false' and MultiNetworkPolicy objects are ignored. If 'disableMultiNetwork' is 'true' then the value of this field is ignored. |
+
 ### .spec.additionalNetworks {id="_specadditionalnetworks"}
 
 Description
@@ -90,6 +92,7 @@ Required
 | `rawCNIConfig` | `string` | rawCNIConfig is the raw CNI configuration json to create in the NetworkAttachmentDefinition CRD |
 | `simpleMacvlanConfig` | `object` | simpleMacvlanConfig configures the macvlan interface in case of type:NetworkTypeSimpleMacvlan |
 | `type` | `string` | type is the type of network The supported values are NetworkTypeRaw, NetworkTypeSimpleMacvlan |
+
 ### .spec.additionalNetworks[].simpleMacvlanConfig {id="_specadditionalnetworkssimplemacvlanconfig"}
 
 Description
@@ -105,6 +108,7 @@ Type
 | `master` | `string` | master is the host interface to create the macvlan interface from. If not specified, it will be default route interface |
 | `mode` | `string` | mode is the macvlan mode: bridge, private, vepa, passthru. The default is bridge |
 | `mtu` | `integer` | mtu is the mtu to use for the macvlan interface. if unset, host’s kernel will select the value. |
+
 ### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig {id="_specadditionalnetworkssimplemacvlanconfigipamconfig"}
 
 Description
@@ -118,6 +122,7 @@ Type
 | --- | --- | --- |
 | `staticIPAMConfig` | `object` | staticIPAMConfig configures the static IP address in case of type:IPAMTypeStatic |
 | `type` | `string` | type is the type of IPAM module will be used for IP Address Management(IPAM). The supported values are IPAMTypeDHCP, IPAMTypeStatic |
+
 ### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig {id="_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfig"}
 
 Description
@@ -134,6 +139,7 @@ Type
 | `dns` | `object` | dns configures DNS for the interface |
 | `routes` | `array` | routes configures IP routes for the interface |
 | `routes[]` | `object` | StaticIPAMRoutes provides Destination/Gateway pairs for static IPAM routes |
+
 ### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.addresses {id="_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigaddresses"}
 
 Description
@@ -156,6 +162,7 @@ Type
 | --- | --- | --- |
 | `address` | `string` | address is the IP address in CIDR format |
 | `gateway` | `string` | gateway is IP inside of subnet to designate as the gateway |
+
 ### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.dns {id="_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigdns"}
 
 Description
@@ -170,6 +177,7 @@ Type
 | `domain` | `string` | domain configures the domainname the local domain used for short hostname lookups |
 | `nameservers` | `array (string)` | nameservers points DNS servers for IP lookup |
 | `search` | `array (string)` | search configures priority ordered search domains for short hostname lookups |
+
 ### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.routes {id="_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigroutes"}
 
 Description
@@ -192,6 +200,7 @@ Type
 | --- | --- | --- |
 | `destination` | `string` | destination points the IP route destination |
 | `gateway` | `string` | gateway is the route’s next-hop IP address If unset, a default gateway is assumed (as determined by the CNI plugin). |
+
 ### .spec.additionalRoutingCapabilities {id="_specadditionalroutingcapabilities"}
 
 Description
@@ -216,6 +225,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `providers` | `array (string)` | providers is a set of enabled components that provide additional routing capabilities. Entries on this list must be unique. The  only valid value is currrently "FRR" which provides FRR routing capabilities through the deployment of FRR. |
+
 ### .spec.clusterNetwork {id="_specclusternetwork"}
 
 Description
@@ -243,6 +253,7 @@ Type
 | --- | --- | --- |
 | `cidr` | `string` |  |
 | `hostPrefix` | `integer` |  |
+
 ### .spec.defaultNetwork {id="_specdefaultnetwork"}
 
 Description
@@ -257,6 +268,7 @@ Type
 | `openshiftSDNConfig` | `object` | openshiftSDNConfig was previously used to configure the openshift-sdn plugin. DEPRECATED: OpenShift SDN is no longer supported. |
 | `ovnKubernetesConfig` | `object` | ovnKubernetesConfig configures the ovn-kubernetes plugin. |
 | `type` | `string` | type is the type of network All NetworkTypes are supported except for NetworkTypeRaw |
+
 ### .spec.defaultNetwork.openshiftSDNConfig {id="_specdefaultnetworkopenshiftsdnconfig"}
 
 Description
@@ -274,6 +286,7 @@ Type
 | `mtu` | `integer` | mtu is the mtu to use for the tunnel interface. Defaults to 1450 if unset. This must be 50 bytes smaller than the machine’s uplink. |
 | `useExternalOpenvswitch` | `boolean` | useExternalOpenvswitch used to control whether the operator would deploy an OVS DaemonSet itself or expect someone else to start OVS. As of 4.6, OVS is always run as a system service, and this flag is ignored. |
 | `vxlanPort` | `integer` | vxlanPort is the port to use for all vxlan packets. The default is 4789. |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig {id="_specdefaultnetworkovnkubernetesconfig"}
 
 Description
@@ -297,6 +310,7 @@ Type
 | `routeAdvertisements` | `string` | routeAdvertisements determines if the functionality to advertise cluster network routes through a dynamic routing protocol, such as BGP, is enabled or not. This functionality is configured through the ovn-kubernetes RouteAdvertisements CRD. Requires the 'FRR' routing capability provider to be enabled as an additional routing capability. Allowed values are "Enabled", "Disabled" and ommited. When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is "Disabled". |
 | `v4InternalSubnet` | `string` | v4InternalSubnet is a v4 subnet used internally by ovn-kubernetes in case the default one is being already used by something else. It must not overlap with any other subnet being used by OpenShift or by the node network. The size of the subnet must be larger than the number of nodes. Default is 100.64.0.0/16 |
 | `v6InternalSubnet` | `string` | v6InternalSubnet is a v6 subnet used internally by ovn-kubernetes in case the default one is being already used by something else. It must not overlap with any other subnet being used by OpenShift or by the node network. The size of the subnet must be larger than the number of nodes. Default is fd98::/64 |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.egressIPConfig {id="_specdefaultnetworkovnkubernetesconfigegressipconfig"}
 
 Description
@@ -309,6 +323,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `reachabilityTotalTimeoutSeconds` | `integer` | reachabilityTotalTimeout configures the EgressIP node reachability check total timeout in seconds. If the EgressIP node cannot be reached within this timeout, the node is declared down. Setting a large value may cause the EgressIP feature to react slowly to node changes. In particular, it may react slowly for EgressIP nodes that really have a genuine problem and are unreachable. When omitted, this means the user has no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is 1 second. A value of 0 disables the EgressIP node’s reachability check. |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.gatewayConfig {id="_specdefaultnetworkovnkubernetesconfiggatewayconfig"}
 
 Description
@@ -324,6 +339,7 @@ Type
 | `ipv4` | `object` | ipv4 allows users to configure IP settings for IPv4 connections. When omitted, this means no opinion and the default configuration is used. Check individual members fields within ipv4 for details of default values. |
 | `ipv6` | `object` | ipv6 allows users to configure IP settings for IPv6 connections. When omitted, this means no opinion and the default configuration is used. Check individual members fields within ipv6 for details of default values. |
 | `routingViaHost` | `boolean` | routingViaHost allows pod egress traffic to exit via the ovn-k8s-mp0 management port into the host before sending it out. If this is not set, traffic will always egress directly from OVN to outside without touching the host stack. Setting this to true means hardware offload will not be supported. Default is false if GatewayConfig is specified. |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.gatewayConfig.ipv4 {id="_specdefaultnetworkovnkubernetesconfiggatewayconfigipv4"}
 
 Description
@@ -337,6 +353,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `internalMasqueradeSubnet` | `string` | internalMasqueradeSubnet contains the masquerade addresses in IPV4 CIDR format used internally by ovn-kubernetes to enable host to service traffic. Each host in the cluster is configured with these addresses, as well as the shared gateway bridge interface. The values can be changed after installation. The subnet chosen should not overlap with other networks specified for OVN-Kubernetes as well as other networks used on the host. Additionally the subnet must be large enough to accommodate 6 IPs (maximum prefix length /29). When omitted, this means no opinion and the platform is left to choose a reasonable default which is subject to change over time. The current default subnet is 169.254.0.0/17 The value must be in proper IPV4 CIDR format |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.gatewayConfig.ipv6 {id="_specdefaultnetworkovnkubernetesconfiggatewayconfigipv6"}
 
 Description
@@ -350,6 +367,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `internalMasqueradeSubnet` | `string` | internalMasqueradeSubnet contains the masquerade addresses in IPV6 CIDR format used internally by ovn-kubernetes to enable host to service traffic. Each host in the cluster is configured with these addresses, as well as the shared gateway bridge interface. The values can be changed after installation. The subnet chosen should not overlap with other networks specified for OVN-Kubernetes as well as other networks used on the host. Additionally the subnet must be large enough to accommodate 6 IPs (maximum prefix length /125). When omitted, this means no opinion and the platform is left to choose a reasonable default which is subject to change over time. The current default subnet is fd69::/112 Note that IPV6 dual addresses are not permitted |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.hybridOverlayConfig {id="_specdefaultnetworkovnkubernetesconfighybridoverlayconfig"}
 
 Description
@@ -365,6 +383,7 @@ Type
 | `hybridClusterNetwork` | `array` | hybridClusterNetwork defines a network space given to nodes on an additional overlay network. |
 | `hybridClusterNetwork[]` | `object` | ClusterNetworkEntry is a subnet from which to allocate PodIPs. A network of size HostPrefix (in CIDR notation) will be allocated when nodes join the cluster. If the HostPrefix field is not used by the plugin, it can be left unset. Not all network providers support multiple ClusterNetworks |
 | `hybridOverlayVXLANPort` | `integer` | hybridOverlayVXLANPort defines the VXLAN port number to be used by the additional overlay network. Default is 4789 |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.hybridOverlayConfig.hybridClusterNetwork {id="_specdefaultnetworkovnkubernetesconfighybridoverlayconfighybridclusternetwork"}
 
 Description
@@ -390,6 +409,7 @@ Type
 | --- | --- | --- |
 | `cidr` | `string` |  |
 | `hostPrefix` | `integer` |  |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.ipsecConfig {id="_specdefaultnetworkovnkubernetesconfigipsecconfig"}
 
 Description
@@ -404,6 +424,7 @@ Type
 | --- | --- | --- |
 | `full` | `object` | full defines configuration parameters for the IPsec `Full` mode. This is permitted only when mode is configured with `Full`, and forbidden otherwise. |
 | `mode` | `string` | mode defines the behaviour of the ipsec configuration within the platform. Valid values are `Disabled`, `External` and `Full`. When 'Disabled', ipsec will not be enabled at the node level. When 'External', ipsec is enabled on the node level but requires the user to configure the secure communication parameters. This mode is for external secure communications and the configuration can be done using the k8s-nmstate operator. When 'Full', ipsec is configured on the node level and inter-pod secure communication within the cluster is configured. Note with `Full`, if ipsec is desired for communication with external (to the cluster) entities (such as storage arrays), this is left to the user to configure. |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.ipsecConfig.full {id="_specdefaultnetworkovnkubernetesconfigipsecconfigfull"}
 
 Description
@@ -418,6 +439,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `encapsulation` | `string` | encapsulation option to configure libreswan on how inter-pod traffic across nodes are encapsulated to handle NAT traversal. When configured it uses UDP port 4500 for the encapsulation. Valid values are Always, Auto and omitted. Always means enable UDP encapsulation regardless of whether NAT is detected. Auto means enable UDP encapsulation based on the detection of NAT. When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is Auto. |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.ipv4 {id="_specdefaultnetworkovnkubernetesconfigipv4"}
 
 Description
@@ -433,6 +455,7 @@ Type
 | --- | --- | --- |
 | `internalJoinSubnet` | `string` | internalJoinSubnet is a v4 subnet used internally by ovn-kubernetes in case the default one is being already used by something else. It must not overlap with any other subnet being used by OpenShift or by the node network. The size of the subnet must be larger than the number of nodes. The current default value is 100.64.0.0/16 The subnet must be large enough to accommodate one IP per node in your cluster The value must be in proper IPV4 CIDR format |
 | `internalTransitSwitchSubnet` | `string` | internalTransitSwitchSubnet is a v4 subnet in IPV4 CIDR format used internally by OVN-Kubernetes for the distributed transit switch in the OVN Interconnect architecture that connects the cluster routers on each node together to enable east west traffic. The subnet chosen should not overlap with other networks specified for OVN-Kubernetes as well as other networks used on the host. When ommitted, this means no opinion and the platform is left to choose a reasonable default which is subject to change over time. The current default subnet is 100.88.0.0/16 The subnet must be large enough to accommodate one IP per node in your cluster The value must be in proper IPV4 CIDR format |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.ipv6 {id="_specdefaultnetworkovnkubernetesconfigipv6"}
 
 Description
@@ -448,6 +471,7 @@ Type
 | --- | --- | --- |
 | `internalJoinSubnet` | `string` | internalJoinSubnet is a v6 subnet used internally by ovn-kubernetes in case the default one is being already used by something else. It must not overlap with any other subnet being used by OpenShift or by the node network. The size of the subnet must be larger than the number of nodes. The subnet must be large enough to accommodate one IP per node in your cluster The current default value is fd98::/64 The value must be in proper IPV6 CIDR format Note that IPV6 dual addresses are not permitted |
 | `internalTransitSwitchSubnet` | `string` | internalTransitSwitchSubnet is a v4 subnet in IPV4 CIDR format used internally by OVN-Kubernetes for the distributed transit switch in the OVN Interconnect architecture that connects the cluster routers on each node together to enable east west traffic. The subnet chosen should not overlap with other networks specified for OVN-Kubernetes as well as other networks used on the host. When ommitted, this means no opinion and the platform is left to choose a reasonable default which is subject to change over time. The subnet must be large enough to accommodate one IP per node in your cluster The current default subnet is fd97::/64 The value must be in proper IPV6 CIDR format Note that IPV6 dual addresses are not permitted |
+
 ### .spec.defaultNetwork.ovnKubernetesConfig.policyAuditConfig {id="_specdefaultnetworkovnkubernetesconfigpolicyauditconfig"}
 
 Description
@@ -460,11 +484,12 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `destination` | `string` | destination is the location for policy log messages. Regardless of this config, persistent logs will always be dumped to the host at /var/log/ovn/ however Additionally syslog output may be configured as follows. Valid values are: - "libc" -> to use the libc syslog() function of the host node’s journdald process - "udp:host:port" -> for sending syslog over UDP - "unix:file" -> for using the UNIX domain socket directly - "null" -> to discard all messages logged to syslog The default is "null" |
+| `destination` | `string` | destination is the location for policy log messages. Regardless of this config, persistent logs will always be dumped to the host at /var/log/ovn/ however Additionally syslog output may be configured as follows. Valid values are: - "libc" → to use the libc syslog() function of the host node’s journdald process - "udp:host:port" → for sending syslog over UDP - "unix:file" → for using the UNIX domain socket directly - "null" → to discard all messages logged to syslog The default is "null" |
 | `maxFileSize` | `integer` | maxFilesSize is the max size an ACL_audit log file is allowed to reach before rotation occurs Units are in MB and the Default is 50MB |
 | `maxLogFiles` | `integer` | maxLogFiles specifies the maximum number of ACL_audit log files that can be present. |
 | `rateLimit` | `integer` | rateLimit is the approximate maximum number of messages to generate per-second per-node. If unset the default of 20 msg/sec is used. |
 | `syslogFacility` | `string` | syslogFacility the RFC5424 facility for generated messages, e.g. "kern". Default is "local0" |
+
 ### .spec.exportNetworkFlows {id="_specexportnetworkflows"}
 
 Description
@@ -481,6 +506,7 @@ Type
 | `ipfix` | `object` | ipfix defines IPFIX configuration. |
 | `netFlow` | `object` | netFlow defines the NetFlow configuration. |
 | `sFlow` | `object` | sFlow defines the SFlow configuration. |
+
 ### .spec.exportNetworkFlows.ipfix {id="_specexportnetworkflowsipfix"}
 
 Description
@@ -493,6 +519,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `collectors` | `array (string)` | ipfixCollectors is list of strings formatted as ip:port with a maximum of ten items |
+
 ### .spec.exportNetworkFlows.netFlow {id="_specexportnetworkflowsnetflow"}
 
 Description
@@ -505,6 +532,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `collectors` | `array (string)` | netFlow defines the NetFlow collectors that will consume the flow data exported from OVS. It is a list of strings formatted as ip:port with a maximum of ten items |
+
 ### .spec.exportNetworkFlows.sFlow {id="_specexportnetworkflowssflow"}
 
 Description
@@ -517,6 +545,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `collectors` | `array (string)` | sFlowCollectors is list of strings formatted as ip:port with a maximum of ten items |
+
 ### .spec.kubeProxyConfig {id="_speckubeproxyconfig"}
 
 Description
@@ -534,6 +563,7 @@ Type
 | `iptablesSyncPeriod` | `string` | An internal kube-proxy parameter. In older releases of OCP, this sometimes needed to be adjusted in large clusters for performance reasons, but this is no longer necessary, and there is no reason to change this from the default value. Default: 30s |
 | `proxyArguments` | `object` | Any additional arguments to pass to the kubeproxy process |
 | `proxyArguments{}` | `array (string)` | ProxyArgumentList is a list of arguments to pass to the kubeproxy process |
+
 ### .spec.kubeProxyConfig.proxyArguments {id="_speckubeproxyconfigproxyarguments"}
 
 Description
@@ -559,6 +589,7 @@ Type
 | `mode` | `string` | mode indicates the mode of network type migration. DEPRECATED: network type migration is no longer supported, and setting this to a non-empty value will result in the network operator rejecting the configuration. |
 | `mtu` | `object` | mtu contains the MTU migration configuration. Set this to allow changing the MTU values for the default network. If unset, the operation of changing the MTU for the default network will be rejected. |
 | `networkType` | `string` | networkType was previously used when changing the default network type. DEPRECATED: network type migration is no longer supported, and setting this to a non-empty value will result in the network operator rejecting the configuration. |
+
 ### .spec.migration.features {id="_specmigrationfeatures"}
 
 Description
@@ -577,6 +608,7 @@ Type
 | `egressFirewall` | `boolean` | egressFirewall specified whether or not the Egress Firewall configuration was migrated. DEPRECATED: network type migration is no longer supported. |
 | `egressIP` | `boolean` | egressIP specified whether or not the Egress IP configuration was migrated. DEPRECATED: network type migration is no longer supported. |
 | `multicast` | `boolean` | multicast specified whether or not the multicast configuration was migrated. DEPRECATED: network type migration is no longer supported. |
+
 ### .spec.migration.mtu {id="_specmigrationmtu"}
 
 Description
@@ -592,6 +624,7 @@ Type
 | --- | --- | --- |
 | `machine` | `object` | machine contains MTU migration configuration for the machine’s uplink. Needs to be migrated along with the default network MTU unless the current uplink MTU already accommodates the default network MTU. |
 | `network` | `object` | network contains information about MTU migration for the default network. Migrations are only allowed to MTU values lower than the machine’s uplink MTU by the minimum appropriate offset. |
+
 ### .spec.migration.mtu.machine {id="_specmigrationmtumachine"}
 
 Description
@@ -607,6 +640,7 @@ Type
 | --- | --- | --- |
 | `from` | `integer` | from is the MTU to migrate from. |
 | `to` | `integer` | to is the MTU to migrate to. |
+
 ### .spec.migration.mtu.network {id="_specmigrationmtunetwork"}
 
 Description
@@ -622,6 +656,7 @@ Type
 | --- | --- | --- |
 | `from` | `integer` | from is the MTU to migrate from. |
 | `to` | `integer` | to is the MTU to migrate to. |
+
 ### .status {id="_status"}
 
 Description
@@ -642,6 +677,7 @@ Type
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with |
 | `readyReplicas` | `integer` | readyReplicas indicates how many replicas are ready and at the desired state |
 | `version` | `string` | version is the level this availability applies to |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -673,6 +709,7 @@ Required
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.generations {id="_statusgenerations"}
 
 Description
@@ -715,12 +752,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Network
     *   `GET`: list objects of kind Network
     *   `POST`: create a Network
-*   `/apis/operator.openshift.io/v1/networks/{{ name }}`
+*   `/apis/operator.openshift.io/v1/networks/{{ name }}`{minja}
     *   `DELETE`: delete a Network
     *   `GET`: read the specified Network
     *   `PATCH`: partially update the specified Network
     *   `PUT`: replace the specified Network
-*   `/apis/operator.openshift.io/v1/networks/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1/networks/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Network
     *   `PATCH`: partially update status of the specified Network
     *   `PUT`: replace status of the specified Network

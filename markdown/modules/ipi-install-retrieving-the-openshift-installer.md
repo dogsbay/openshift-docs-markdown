@@ -6,7 +6,7 @@ Use the `stable-4.x` version of the installation program and your selected archi
 **Procedure**
 
 *   Retrieve the installation program by running one of the following commands:
-    ```terminal
+    ```terminal {minja}
     $ export VERSION=stable-{{ product_version }}
     ```
     ```terminal

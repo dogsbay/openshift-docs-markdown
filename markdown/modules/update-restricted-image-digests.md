@@ -10,9 +10,9 @@ In order to update a cluster in a disconnected environment using the `oc adm upg
     $ oc adm release info -o 'jsonpath={.digest}{"\n"}' quay.io/openshift-release-dev/ocp-release:${OCP_RELEASE_VERSION}-${ARCHITECTURE}
     ```
 
-    For `{{ OCP_RELEASE_VERSION }}`, specify the version of {{ product_title }} to which you want to update, such as `4.10.16`.
+    For `{{ OCP_RELEASE_VERSION }}`{minja}, specify the version of {{ product_title }} to which you want to update, such as `4.10.16`.
 
-    For `{{ ARCHITECTURE }}`, specify the architecture of the cluster, such as `x86_64`, `aarch64`, `s390x`, or `ppc64le`.
+    For `{{ ARCHITECTURE }}`{minja}, specify the architecture of the cluster, such as `x86_64`, `aarch64`, `s390x`, or `ppc64le`.
     ```terminal title="Example output"
     sha256:a8bfba3b6dddd1a2fbbead7dac65fe4fb8335089e4e7cae327f3bad334add31d
     ```

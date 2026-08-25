@@ -17,7 +17,7 @@ The `HostFirmwareComponents` resource contains two sections:
 
 The `spec` section of the `HostFirmwareComponents` resource defines the desired state of the BIOS and BMC versions of the host, and the NIC firmware components of the host if the information is available by using Redfish.
 
-***HostFirmwareComponents spec***
+**HostFirmwareComponents spec**
 
 <table>
 <thead>
@@ -29,7 +29,7 @@ The `spec` section of the `HostFirmwareComponents` resource defines the desired 
 <tbody>
 <tr>
   <td><pre>updates:&#10;  component:&#10;  url:</pre></td>
-  <td>The <code>updates</code> configuration setting contains the components to update. The fields are:<br><br><ul><li><code>component</code>: The name of the component. The valid settings are <code>bios</code>, <code>bmc</code>, or <code>nic:<ID></code>.</li><li><code>url</code>: The URL to the component's firmware specification and version.</li></ul></td>
+  <td>The <code>updates</code> configuration setting contains the components to update. The fields are:<br><br><ul><li><code>component</code>: The name of the component. The valid settings are <code>bios</code>, <code>bmc</code>, or <code>nic:&lt;ID&gt;</code>.</li><li><code>url</code>: The URL to the component's firmware specification and version.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -38,7 +38,7 @@ The `spec` section of the `HostFirmwareComponents` resource defines the desired 
 
 The `status` section of the `HostFirmwareComponents` resource returns the current status of the BIOS and BMC versions of the host, and the NIC firmware components of the host if the information is available by using Redfish.
 
-***HostFirmwareComponents status***
+**HostFirmwareComponents status**
 
 <table>
 <thead>
@@ -50,7 +50,7 @@ The `status` section of the `HostFirmwareComponents` resource returns the curren
 <tbody>
 <tr>
   <td><pre>components:&#10;  component:&#10;  initialVersion:&#10;  currentVersion:&#10;  lastVersionFlashed:&#10;  updatedAt:</pre></td>
-  <td>The <code>components</code> section contains the status of the components. The fields are:<br><br><ul><li><code>component</code>: The name of the firmware component. It returns <code>bios</code>, <code>bmc</code>, <code>nic:<ID1></code>, or <code>nic:<ID2></code>.</li><li><code>initialVersion</code>: The initial firmware version of the component. Ironic retrieves this information when creating the <code>BareMetalHost</code> resource. You cannot change it.</li><li><code>currentVersion</code>: The current firmware version of the component. Initially, the value matches the <code>initialVersion</code> value until Ironic updates the firmware on the bare-metal host.</li><li><code>lastVersionFlashed</code>: The last firmware version of the component flashed on the bare-metal host. This field returns <code>null</code> until Ironic updates the firmware.</li><li><code>updatedAt</code>: The timestamp when Ironic updated the bare-metal host's firmware.</li></ul></td>
+  <td>The <code>components</code> section contains the status of the components. The fields are:<br><br><ul><li><code>component</code>: The name of the firmware component. It returns <code>bios</code>, <code>bmc</code>, <code>nic:&lt;ID1&gt;</code>, or <code>nic:&lt;ID2&gt;</code>.</li><li><code>initialVersion</code>: The initial firmware version of the component. Ironic retrieves this information when creating the <code>BareMetalHost</code> resource. You cannot change it.</li><li><code>currentVersion</code>: The current firmware version of the component. Initially, the value matches the <code>initialVersion</code> value until Ironic updates the firmware on the bare-metal host.</li><li><code>lastVersionFlashed</code>: The last firmware version of the component flashed on the bare-metal host. This field returns <code>null</code> until Ironic updates the firmware.</li><li><code>updatedAt</code>: The timestamp when Ironic updated the bare-metal host's firmware.</li></ul></td>
 </tr>
 <tr>
   <td><pre>updates:&#10;  component:&#10;  url:</pre></td>

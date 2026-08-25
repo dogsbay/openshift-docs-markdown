@@ -7,7 +7,7 @@ Each cluster machine must meet the following minimum requirements:
 
 **Minimum resource requirements**
 
-| Machine | Operating System | CPU ^[1]^ | RAM | Storage | Input/Output Per Second (IOPS) ^[1]^ |
+| Machine | Operating System | CPU <sup>[1]</sup> | RAM | Storage | Input/Output Per Second (IOPS) <sup>[1]</sup> |
 | --- | --- | --- | --- | --- | --- |
 | Bootstrap | RHCOS | 4 | 16 GB | 120 GB | 300 |
 | Control plane | RHCOS | 4 | 16 GB | 120 GB | 300 |

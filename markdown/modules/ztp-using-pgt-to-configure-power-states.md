@@ -15,9 +15,9 @@ Workloads can be classified as critical or non-critical, with critical workloads
 
 The default configuration is for a low latency, performance mode.
 
-`{{ policy_gen_cr }}` custom resources (CRs) allow you to overlay additional configuration details onto the base source CRs provided with the GitOps plugin in the `ztp-site-generate` container.
+`{{ policy_gen_cr }}`{minja} custom resources (CRs) allow you to overlay additional configuration details onto the base source CRs provided with the GitOps plugin in the `ztp-site-generate` container.
 
-Configure the power states by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `{{ policy_gen_cr }}` CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`.
+Configure the power states by updating the `workloadHints` fields in the generated `PerformanceProfile` CR for the reference configuration, based on the `{{ policy_gen_cr }}`{minja} CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`{minja}.
 
 The following common prerequisites apply to configuring all three power states:
 

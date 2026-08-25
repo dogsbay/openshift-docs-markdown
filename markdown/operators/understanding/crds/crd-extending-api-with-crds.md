@@ -4,11 +4,11 @@ title: Extending the Kubernetes API with custom resource definitions
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Extending the Kubernetes API with custom resource definitions {id="crd-extending-api-with-crds"}
 {% include "./_attributes/common-attributes.md" %}
+# Extending the Kubernetes API with custom resource definitions {id="crd-extending-api-with-crds"}
 {%- set context = "crd-extending-api-with-crds" %}
 
-To extend the Kubernetes API with custom object types that behave like built-in Kubernetes objects, cluster administrators can create and manage custom resource definitions (CRDs) on their {{ product_title }} cluster.
+To extend the Kubernetes API with custom object types that behave like built-in Kubernetes objects, cluster administrators can create and manage custom resource definitions (CRDs) on their {{ product_title }} cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/crd-custom-resource-definitions.md" %}{% endleveloffset %}
 

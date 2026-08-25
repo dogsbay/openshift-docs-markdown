@@ -20,7 +20,7 @@ When creating the virtual machine, verify that the default network interface typ
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines**.
-1.  Select the UDN-configured namespace from the ***Project*** drop-down list.
-1.  Click **Create** -> **With Wizard**.
+1.  Click **Virtualization** → **VirtualMachines**.
+1.  Select the UDN-configured namespace from the **Project** drop-down list.
+1.  Click **Create** → **With Wizard**.
 1.  Configure the VM specifications in the wizard and click **Create VirtualMachine**.

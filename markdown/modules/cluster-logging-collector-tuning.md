@@ -32,7 +32,7 @@ These parameters are:
 :::
 
 
-***Advanced Fluentd Configuration Parameters***
+**Advanced Fluentd Configuration Parameters**
 
 <table>
 <thead>

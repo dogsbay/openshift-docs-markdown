@@ -20,15 +20,15 @@ The following table shows the supported constraints for a pod. Across all pods, 
 <tbody>
 <tr>
   <td><code>Min</code></td>
-  <td><code>Min[<resource>]</code> less than or equal to <code>container.resources.requests[<resource>]</code> (required) less than or equal to <code>container.resources.limits[<resource>]</code>. If you do not set a <code>min</code> value or you set <code>min</code> to <code>0</code>, the result is no limit and the pod can consume more of the resource than the <code>max</code> value.</td>
+  <td><code>Min[&lt;resource&gt;]</code> less than or equal to <code>container.resources.requests[&lt;resource&gt;]</code> (required) less than or equal to <code>container.resources.limits[&lt;resource&gt;]</code>. If you do not set a <code>min</code> value or you set <code>min</code> to <code>0</code>, the result is no limit and the pod can consume more of the resource than the <code>max</code> value.</td>
 </tr>
 <tr>
   <td><code>Max</code></td>
-  <td><code>container.resources.limits[<resource>]</code> (required) less than or equal to <code>Max[<resource>]</code>.</td>
+  <td><code>container.resources.limits[&lt;resource&gt;]</code> (required) less than or equal to <code>Max[&lt;resource&gt;]</code>.</td>
 </tr>
 <tr>
   <td><code>MaxLimitRequestRatio</code></td>
-  <td><code>MaxLimitRequestRatio[<resource>]</code> less than or equal to (<code>container.resources.limits[<resource>]</code> / <code>container.resources.requests[<resource>]</code>).</td>
+  <td><code>MaxLimitRequestRatio[&lt;resource&gt;]</code> less than or equal to (<code>container.resources.limits[&lt;resource&gt;]</code> / <code>container.resources.requests[&lt;resource&gt;]</code>).</td>
 </tr>
 </tbody>
 </table>

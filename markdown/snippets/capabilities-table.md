@@ -2,7 +2,7 @@
 
 The following table describes the `baselineCapabilitySet` values.
 
-***Cluster capabilities `baselineCapabilitySet` values description***
+**Cluster capabilities `baselineCapabilitySet` values description**
 
 <table>
 <thead>

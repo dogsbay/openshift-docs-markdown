@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Migrating from OpenShift SDN network plugin to OVN-Kubernetes network plugin {id="migrate-from-openshift-sdn"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Migrating from OpenShift SDN network plugin to OVN-Kubernetes network plugin {id="migrate-from-openshift-sdn"}
 {%- set context = "migrate-from-openshift-sdn" %}
 
 As a {{ product_title }} cluster administrator, you can start the migration from the OpenShift Software-Defined Networking (SDN) network plugin to the OVN-Kubernetes network plugin and verify the migration status by using the {{ rosa_cli_first }}. {._abstract}

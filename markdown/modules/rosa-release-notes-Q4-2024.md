@@ -14,10 +14,10 @@ Create a VPC using the ROSA CLI
 :   The `rosa create network` command lets you use the ROSA CLI to create a VPC for your cluster based on an AWS CloudFormation template. You can use this command to create and configure a VPC before creating your cluster.
 {%- if openshift_rosa %}
     For more information, see [create network](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-create-network_rosa-managing-objects-cli).
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     For more information, see [create network](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-create-network_rosa-managing-objects-cli).
-{% endif %}
+{%- endif %}
 
 {% if openshift_rosa_hcp %}
 
@@ -30,10 +30,10 @@ ROSA CLI update
 :   The ROSA CLI (`rosa`) was updated to a new version. For information about what has changed in this release, see the [ROSA CLI release notes](https://github.com/openshift/rosa/releases/). For more information about the ROSA CLI (`rosa`), see
 {%- if openshift_rosa_hcp %}
     [About the ROSA CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli).
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
     [About the ROSA CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-about_rosa-getting-started-cli).
-{% endif %}
+{%- endif %}
 
 {% if openshift_rosa_hcp %}
 

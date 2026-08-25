@@ -19,28 +19,38 @@ Installing a Helm chart from a direct URL bypasses the validation checks provide
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, select ***Ecosystem > Helm*** from the navigation menu. The ***Helm*** view opens.
-1.  In the ***Project*** drop-down menu, select the project where you want to install the Helm release; for example, ***default***.
-1.  From the ***Helm Releases*** tab, click ***Create***.
-1.  Select ***Helm chart URL****. The **Install Helm chart from URL*** view opens.
-1.  In the ***Chart URL*** field, enter the URL for the Helm chart you want to install.
-    **📌 NOTE**\
+1.  In the {{ product_title }} web console, select **Ecosystem > Helm** from the navigation menu. The **Helm** view opens.
+1.  In the **Project** drop-down menu, select the project where you want to install the Helm release; for example, **default**.
+1.  From the **Helm Releases** tab, click **Create**.
+1.  Select **Helm chart URL**. The **Install Helm chart from URL** view opens.
+1.  In the **Chart URL** field, enter the URL for the Helm chart you want to install.
+
+    :::note
+
     For Helm charts stored in an OCI-compliant registry, the URL must use the `oci://` protocol; for example, `oci://quay.io/organization/repository/chart-name`.
-1.  In the ***Release name*** field, enter a name for the Helm release you want to install.
-1.  In the ***Chart version*** field, enter the chart version number if it is not detected automatically.
-1.  Click ***Next****. The **Configure Helm release*** view opens.
+    
+    :::
+
+1.  In the **Release name** field, enter a name for the Helm release you want to install.
+1.  In the **Chart version** field, enter the chart version number if it is not detected automatically.
+1.  Click **Next**. The **Configure Helm release** view opens.
     *   Review the configuration. Make sure that **Chart URL**, **Release name**, and **Chart version** are correct.
-1.  For the ***Configure via*** option, select either ***Form view*** or ***YAML view***. 
-    *   Choose ***Form view*** (the default) for a guided configuration of standard parameters. 
-    *   Choose ***YAML view*** if you need to modify advanced settings that are not available in the form view.
-        **📌 NOTE**\
-        The ***Form view*** might not display every field from your Helm chart. For full control over all configuration parameters, select ***YAML view***. 
-1.  Click ***Install****. The **Helm Releases*** tab opens and, if the release installation is successful, its status is ***Deployed***.
+1.  For the **Configure via** option, select either **Form view** or **YAML view**. 
+    *   Choose **Form view** (the default) for a guided configuration of standard parameters. 
+    *   Choose **YAML view** if you need to modify advanced settings that are not available in the form view.
+
+        :::note
+
+        The **Form view** might not display every field from your Helm chart. For full control over all configuration parameters, select **YAML view**.
+        
+        :::
+
+1.  Click **Install**. The **Helm Releases** tab opens and, if the release installation is successful, its status is **Deployed**.
 
 **Verification**
 
-*   The new Helm release is listed in the table on the ***Helm Releases*** tab.
-*   The ***Status*** column for the Helm release displays ***Deployed***.
+*   The new Helm release is listed in the table on the **Helm Releases** tab.
+*   The **Status** column for the Helm release displays **Deployed**.
 
 **Additional resources**
 {._additional-resources}

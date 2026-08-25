@@ -71,40 +71,39 @@ The following issues have been resolved in the current release:
     Workaround: Perform the following steps:
     1.  Add the `SSL_CERT_DIR` environment variable:
 
-```yaml title="Example Argo CD custom resource"
-apiVersion: argoproj.io/v1alpha1
-kind: ArgoCD
-metadata:
-  name: example-argocd
-  labels:
-    example: repo
-spec:
-   ...
-  repo:
-    env:
-      - name: SSL_CERT_DIR
-        value: /tmp/sslcertdir
-    volumeMounts:
-      - name: ssl
-        mountPath: /tmp/sslcertdir
-    volumes:
-      - name: ssl
-        configMap:
-          name: user-ca-bundle
-   ...
-```
+        ```yaml title="Example Argo CD custom resource"
+        apiVersion: argoproj.io/v1alpha1
+        kind: ArgoCD
+        metadata:
+          name: example-argocd
+          labels:
+            example: repo
+        spec:
+           ...
+          repo:
+            env:
+              - name: SSL_CERT_DIR
+                value: /tmp/sslcertdir
+            volumeMounts:
+              - name: ssl
+                mountPath: /tmp/sslcertdir
+            volumes:
+              - name: ssl
+                configMap:
+                  name: user-ca-bundle
+           ...
+        ```
+    1.  Create an empty config map in the namespace where the subscription for your Operator exists and include the following label:
 
-1.  Create an empty config map in the namespace where the subscription for your Operator exists and include the following label:
+        ```yaml title="Example config map"
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          name: user-ca-bundle (1)
+          labels:
+            config.openshift.io/inject-trusted-cabundle: "true" (2)
+        ```
+        1.  Name of the config map.
+        1.  Requests the Cluster Network Operator to inject the merged bundle.
 
-```yaml title="Example config map"
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: user-ca-bundle (1)
-  labels:
-    config.openshift.io/inject-trusted-cabundle: "true" (2)
-```
-1.  Name of the config map.
-1.  Requests the Cluster Network Operator to inject the merged bundle.
-
-    After creating this config map, the `user-ca-bundle` content from the `openshift-config` namespace automatically gets injected into this config map, even merged with the system ca-bundle. [GITOPS-1482](https://issues.redhat.com/browse/GITOPS-1482)
+            After creating this config map, the `user-ca-bundle` content from the `openshift-config` namespace automatically gets injected into this config map, even merged with the system ca-bundle. [GITOPS-1482](https://issues.redhat.com/browse/GITOPS-1482)

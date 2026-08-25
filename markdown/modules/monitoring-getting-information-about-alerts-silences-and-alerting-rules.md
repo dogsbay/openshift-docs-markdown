@@ -12,7 +12,7 @@ The Alerting UI provides detailed information about alerts and their governing a
 
 To obtain information about alerts:
 
-1.  In the {{ product_title }} web console, go to the **Observe** -> **Alerting** -> **Alerts** page.
+1.  In the {{ product_title }} web console, go to the **Observe** → **Alerting** → **Alerts** page.
 1.  Optional: Search for alerts by name by using the **Name** field in the search list.
 1.  Optional: Filter alerts by state, severity, and source by selecting filters in the **Filter** list.
 1.  Optional: Sort the alerts by clicking one or more of the **Name**, **Severity**, **State**, and **Source** column headers.
@@ -26,7 +26,7 @@ To obtain information about alerts:
 
 To obtain information about silences:
 
-1.  In the {{ product_title }} web console, go to the **Observe** -> **Alerting** -> **Silences** page.
+1.  In the {{ product_title }} web console, go to the **Observe** → **Alerting** → **Silences** page.
 1.  Optional: Filter the silences by name using the **Search by name** field.
 1.  Optional: Filter silences by state by selecting filters in the **Filter** list. By default, **Active** and **Pending** filters are applied.
 1.  Optional: Sort the silences by clicking one or more of the **Name**, **Firing alerts**, **State**, and **Creator** column headers.
@@ -39,7 +39,7 @@ To obtain information about silences:
 
 To obtain information about alerting rules:
 
-1.  In the {{ product_title }} web console, go to the **Observe** -> **Alerting** -> **Alerting rules** page.
+1.  In the {{ product_title }} web console, go to the **Observe** → **Alerting** → **Alerting rules** page.
 1.  Optional: Filter alerting rules by state, severity, and source by selecting filters in the **Filter** list.
 1.  Optional: Sort the alerting rules by clicking one or more of the **Name**, **Severity**, **Alert state**, and **Source** column headers.
 1.  Select the name of an alerting rule to view its **Alerting rule details** page. The page provides the following details about the alerting rule:

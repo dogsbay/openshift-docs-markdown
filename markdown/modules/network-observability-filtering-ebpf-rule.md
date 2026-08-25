@@ -14,7 +14,7 @@ Configure multiple filtering rules in the `FlowCollector` custom resource to ref
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for **Network Observability**, select **Flow Collector**.
 1.  Select **cluster**, then select the **YAML** tab.
 1.  Configure the `FlowCollector` custom resource.

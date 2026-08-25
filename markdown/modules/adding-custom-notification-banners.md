@@ -9,7 +9,7 @@ You can create a `ConsoleNotification` custom resource to display a banner at th
 
 **Procedure**
 
-1.  From **Administration** -> **Custom Resource Definitions**, click **ConsoleNotification**.
+1.  From **Administration** → **Custom Resource Definitions**, click **ConsoleNotification**.
 1.  Select the **Instances** tab.
 1.  Click **Create Console Notification** and edit the file:
     ```yaml

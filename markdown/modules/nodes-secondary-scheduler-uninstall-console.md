@@ -18,6 +18,6 @@ You can use the web console to uninstall the {{ secondary_scheduler_operator_ful
 
 1.  Log in to the {{ product_title }} web console.
 1.  Uninstall the {{ secondary_scheduler_operator_full }} Operator.
-    1.  Navigate to **Ecosystem** -> **Installed Operators**.
+    1.  Navigate to **Ecosystem** → **Installed Operators**.
     1.  Click the Options menu {{ kebab }} next to the **{{ secondary_scheduler_operator }}** entry and click **Uninstall Operator**.
     1.  In the confirmation dialog, click **Uninstall**.

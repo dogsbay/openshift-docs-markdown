@@ -29,8 +29,8 @@ If you choose to configure a new security group, the security group must be conf
     ```
 
 
-:::note
+    :::note
 
-Be sure that your endpoint gateways are configured to use this security group.
-
-:::
+    Be sure that your endpoint gateways are configured to use this security group.
+    
+    :::

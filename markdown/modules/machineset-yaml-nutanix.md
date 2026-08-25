@@ -10,20 +10,20 @@ You can use a YAML file to automate node provisioning and ensure workloads are s
 The sample YAML shows how to define a Nutanix compute MachineSet for your cluster. It explains how to configure roles, labels, sizing, networking, and boot settings so new nodes are created consistently.
 
 The sample YAML defines a Nutanix compute machine set that creates nodes that are labeled with
-{% if not infra %}
+{%- if not infra %}
 `node-role.kubernetes.io/<role>: ""`.
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `node-role.kubernetes.io/infra: ""`.
-{% endif %}
+{%- endif %}
 
 In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-{% if not infra %}
+{%- if not infra %}
 `<role>`
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `<infra>`
-{% endif %}
+{%- endif %}
 is the node label to add.
 
 ## Values obtained by using the OpenShift CLI {id="machineset-yaml-nutanix-oc_{{ context }}"}
@@ -36,22 +36,22 @@ Infrastructure ID
     ```terminal
     $ oc get -o jsonpath='{.status.infrastructureName}{"\n"}' infrastructure cluster
     ```
-    ```yaml
+    ```yaml {minja}
     apiVersion: machine.openshift.io/v1beta1
     kind: MachineSet
     metadata:
       labels:
         machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
+    {%- if not infra %}
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
       name: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
+    {%- endif %}
+    {%- if infra %}
         machine.openshift.io/cluster-api-machine-role: <infra>
         machine.openshift.io/cluster-api-machine-type: <infra>
       name: <infrastructure_id>-<infra>-<zone>
-{%- endif %}
+    {%- endif %}
       namespace: openshift-machine-api
       annotations:
         machine.openshift.io/memoryMb: "16384"
@@ -61,35 +61,35 @@ Infrastructure ID
       selector:
         matchLabels:
           machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
+    {%- if not infra %}
           machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
+    {%- endif %}
+    {%- if infra %}
           machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<zone>
-{%- endif %}
+    {%- endif %}
       template:
         metadata:
           labels:
             machine.openshift.io/cluster-api-cluster: <infrastructure_id>
-{%- if not infra %}
+    {%- if not infra %}
             machine.openshift.io/cluster-api-machine-role: <role>
             machine.openshift.io/cluster-api-machine-type: <role>
             machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
+    {%- endif %}
+    {%- if infra %}
             machine.openshift.io/cluster-api-machine-role: <infra>
             machine.openshift.io/cluster-api-machine-type: <infra>
             machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<infra>-<zone>
-{%- endif %}
+    {%- endif %}
         spec:
           metadata:
             labels:
-{%- if not infra %}
+    {%- if not infra %}
               node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
+    {%- endif %}
+    {%- if infra %}
               node-role.kubernetes.io/infra: ""
-{%- endif %}
+    {%- endif %}
           providerSpec:
             value:
               apiVersion: machine.openshift.io/v1
@@ -118,11 +118,11 @@ Infrastructure ID
                 name: <user_data_secret>
               vcpuSockets: 4
               vcpusPerSocket: 1
-{%- if infra %}
+    {%- if infra %}
           taints:
           - key: node-role.kubernetes.io/infra
             effect: NoSchedule
-{%- endif %}
+    {%- endif %}
     ```
 
     where:
@@ -136,8 +136,8 @@ Infrastructure ID
 
 `<infrastructure_id>-<infra>-<region>`
 :   Specifies the infrastructure ID, node label, and zone.
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 
 `<infra>`
 :   Specifies the `<infra>` node label.
@@ -207,8 +207,8 @@ taints
 {%- endif %}
 
 {% if context == "creating-infrastructure-machinesets" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}
 {% if context == "cluster-tasks" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}

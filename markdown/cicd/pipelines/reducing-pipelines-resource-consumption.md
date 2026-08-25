@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Reducing resource consumption of {{ pipelines_shortname }} {id="reducing-pipelines-resource-consumption"}
 {% include "./_attributes/common-attributes.md" %}
+# Reducing resource consumption of {{ pipelines_shortname }} {id="reducing-pipelines-resource-consumption"}
 {%- set context = "reducing-pipelines-resource-consumption" %}
 
 If you use clusters in multi-tenant environments you must control the consumption of CPU, memory, and storage resources for each project and Kubernetes object. This helps prevent any one application from consuming too many resources and affecting other applications.

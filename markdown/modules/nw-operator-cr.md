@@ -35,7 +35,7 @@ After cluster installation, you can only modify the `clusterNetwork` IP address 
 
 :::
 
-{% endif %}
+{%- endif %}
 
 {% if not post_install_network_configuration %}
 You can specify the cluster network plugin configuration for your cluster by setting the fields for the `defaultNetwork` object in the CNO object named `cluster`.
@@ -44,7 +44,7 @@ You can specify the cluster network plugin configuration for your cluster by set
 
 The fields for the Cluster Network Operator (CNO) are described in the following table:
 
-***Cluster Network Operator configuration object***
+**Cluster Network Operator configuration object**
 
 <table>
 <thead>
@@ -68,7 +68,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 <tr>
   <td><code>spec.serviceNetwork</code></td>
   <td><code>array</code></td>
-  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on {{ aws_short }} with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>This value is ready-only and inherited from the <code>Network.config.openshift.io</code> object named <code>cluster</code> during cluster installation.You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file.</td>
+  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</pre><br><br>If you install a cluster on {{ aws_short }} with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br> {% if operator %} This value is ready-only and inherited from the <code>Network.config.openshift.io</code> object named <code>cluster</code> during cluster installation. {% endif %} {% if not operator %} You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file. {% endif %}</td>
 </tr>
 <tr>
   <td><code>spec.defaultNetwork</code></td>
@@ -78,7 +78,7 @@ The fields for the Cluster Network Operator (CNO) are described in the following
 <tr>
   <td><code>spec.additionalRoutingCapabilities.providers</code></td>
   <td><code>array</code></td>
-  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br>--<ul><li><code>FRR</code>: The FRR routing provider</li></ul>--<br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
+  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br><ul><li><code>FRR</code>: The FRR routing provider</li></ul><br><br><pre>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</pre></td>
 </tr>
 </tbody>
 </table>
@@ -95,7 +95,7 @@ For a cluster that needs to deploy objects across multiple networks, ensure that
 
 The values for the `defaultNetwork` object are defined in the following table:
 
-***`defaultNetwork` object***
+**`defaultNetwork` object**
 
 <table>
 <thead>
@@ -109,7 +109,7 @@ The values for the `defaultNetwork` object are defined in the following table:
 <tr>
   <td><code>type</code></td>
   <td><code>string</code></td>
-  <td><code>OVNKubernetes</code>. The {{ openshift_networking }} network plugin is selected during installation. This value cannot be changed after cluster installation.<dl><dt>Note</dt><dd>{{ product_title }} uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
+  <td><code>OVNKubernetes</code>. The {{ openshift_networking }} network plugin is selected during installation. This value cannot be changed after cluster installation.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>{{ product_title }} uses the OVN-Kubernetes network plugin by default.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ovnKubernetesConfig</code></td>
@@ -123,7 +123,7 @@ The values for the `defaultNetwork` object are defined in the following table:
 
 The following table describes the configuration fields for the OVN-Kubernetes network plugin:
 
-***`ovnKubernetesConfig` object***
+**`ovnKubernetesConfig` object**
 
 <table>
 <thead>
@@ -137,17 +137,17 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>mtu</code></td>
   <td><code>integer</code></td>
-  <td>The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This value is normally configured automatically.</td>
+  <td>{% if not operator %} The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>. {% endif %} {% if operator %} The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This value is normally configured automatically. {% endif %}</td>
 </tr>
 <tr>
   <td><code>genevePort</code></td>
   <td><code>integer</code></td>
-  <td>The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.The UDP port for the Geneve overlay network.</td>
+  <td>{% if not operator %} The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation. {% endif %} {% if operator %} The UDP port for the Geneve overlay network. {% endif %}</td>
 </tr>
 <tr>
   <td><code>ipsecConfig</code></td>
   <td><code>object</code></td>
-  <td>Specify a configuration object for customizing the IPsec configuration.An object describing the IPsec mode for the cluster.</td>
+  <td>{% if not operator %} Specify a configuration object for customizing the IPsec configuration. {% endif %} {% if operator %} An object describing the IPsec mode for the cluster. {% endif %}</td>
 </tr>
 <tr>
   <td><code>ipv4</code></td>
@@ -167,17 +167,17 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>routeAdvertisements</code></td>
   <td><code>string</code></td>
-  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.--<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul>--</td>
+  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul></td>
 </tr>
 <tr>
   <td><code>gatewayConfig</code></td>
   <td><code>object</code></td>
-  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
+  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-***`ovnKubernetesConfig.ipv4` object***
+**`ovnKubernetesConfig.ipv4` object**
 
 <table>
 <thead>
@@ -201,7 +201,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-***`ovnKubernetesConfig.ipv6` object***
+**`ovnKubernetesConfig.ipv6` object**
 
 <table>
 <thead>
@@ -225,7 +225,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-***`policyAuditConfig` object***
+**`policyAuditConfig` object**
 
 <table>
 <thead>
@@ -254,7 +254,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><code>libc</code>:: The libc <code>syslog()</code> function of the journald process on the host.<code>udp:<host>:<port></code>:: A syslog server. Replace <code><host>:<port></code> with the host and port of the syslog server.<code>unix:<file></code>:: A Unix Domain Socket file specified by <code><file></code>.<code>null</code>:: Do not send the audit logs to any additional target.</td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -266,7 +266,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 
 <a name="gatewayConfig-object_{{ context }}"></a>
 
-***`gatewayConfig` object***
+**`gatewayConfig` object**
 
 <table>
 <thead>
@@ -280,12 +280,12 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>routingViaHost</code></td>
   <td><code>boolean</code></td>
-  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack.For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack.By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table.The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature.If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
+  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack. For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack. By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table. The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature. If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
 </tr>
 <tr>
   <td><code>ipForwarding</code></td>
   <td><code>object</code></td>
-  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to {{ product_title }} 4.14 or later, the default is <code>Global</code>.<dl><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
+  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to {{ product_title }} 4.14 or later, the default is <code>Global</code>.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The default value of <code>Restricted</code> sets the IP forwarding to drop.</dd></dl></td>
 </tr>
 <tr>
   <td><code>ipv4</code></td>
@@ -302,7 +302,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 
 <a name="gatewayconfig-ipv4-object_{{ context }}"></a>
 
-***`gatewayConfig.ipv4` object***
+**`gatewayConfig.ipv4` object**
 
 <table>
 <thead>
@@ -316,14 +316,14 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl><dt>Important</dt><dd>For {{ product_title }} 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For {{ product_title }} 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
 <a name="gatewayconfig-ipv6-object_{{ context }}"></a>
 
-***`gatewayConfig.ipv6` object***
+**`gatewayConfig.ipv6` object**
 
 <table>
 <thead>
@@ -337,14 +337,14 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl><dt>Important</dt><dd>For {{ product_title }} 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For {{ product_title }} 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
 
 <a name="nw-operator-cr-ipsec_{{ context }}"></a>
 
-***`ipsecConfig` object***
+**`ipsecConfig` object**
 
 <table>
 <thead>
@@ -358,7 +358,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>mode</code></td>
   <td><code>string</code></td>
-  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br>--<ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul>--</td>
+  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br><ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -405,12 +405,12 @@ spec:
 {% endif %}
 
 {% if context == "cluster-network-operator" %}
-{%- set operator = false -%}
+{%- set operator = "" -%}
 {% endif %}
 
 {% if context == "post-install-network-configuration" %}
-{%- set post_install_network_configuration = false -%}
+{%- set post_install_network_configuration = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-customizations" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}

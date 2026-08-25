@@ -3,11 +3,11 @@ title: "{{ external_secrets_console_plugin }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ external_secrets_console_plugin }} {id="external-secrets-console-plugin-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ external_secrets_console_plugin }} {id="external-secrets-console-plugin-overview"}
 {%- set context = "external-secrets-console-plugin-overview" %}
 
-The {{ external_secrets_console_plugin }} is an Operator that manages the secrets and custom resource definitions (CRDs) for the secrets management Operators. Using {{ external_secrets_console_plugin }}, you can monitor and delete the custom resources (CRs) of all the installed secrets management Operators.
+The {{ external_secrets_console_plugin }} is an Operator that manages the secrets and custom resource definitions (CRDs) for the secrets management Operators. Using {{ external_secrets_console_plugin }}, you can monitor and delete the custom resources (CRs) of all the installed secrets management Operators. {._abstract}
 
 {%- set FeatureName = "{{ external_secrets_console_plugin }}" %}
 {% include "./snippets/technology-preview.md" %}

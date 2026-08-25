@@ -3,11 +3,11 @@ title: Installing a cluster on Azure into an existing VNet
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Azure into an existing VNet {id="installing-azure-vnet"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Azure into an existing VNet {id="installing-azure-vnet"}
 {%- set context = "installing-azure-vnet" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster into an existing {{ azure_short }} Virtual Network (VNet) on {{ azure_full }}. The installation program provisions the rest of the required infrastructure, which you can further customize. To customize the installation, you modify parameters in the `install-config.yaml` file before you install the cluster.
+In {{ product_title }} version {{ product_version }}, you can install a cluster into an existing {{ azure_short }} Virtual Network (VNet) on {{ azure_full }}. The installation program provisions the rest of the required infrastructure, which you can further customize. To customize the installation, you modify parameters in the `install-config.yaml` file before you install the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-about-custom-azure-vnet.md" %}{% endleveloffset %}
 
@@ -18,6 +18,7 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +2 %}{% include "./modules/installation-about-custom-azure-vnet-isolation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 *   [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
@@ -27,12 +28,14 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -49,12 +52,14 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +2 %}{% include "./modules/installation-azure-config-yaml-simple.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
 {% leveloffset +2 %}{% include "./modules/installation-configure-proxy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accelerated Networking for Microsoft Azure VMs](/machine_management/creating_machinesets/creating-machineset-azure#machineset-azure-accelerated-networking_creating-machineset-azure)
 
@@ -75,6 +80,7 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +1 %}{% include "./modules/installing-azure-provisioning-dns-records.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)

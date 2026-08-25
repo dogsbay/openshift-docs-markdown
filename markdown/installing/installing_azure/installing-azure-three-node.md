@@ -7,7 +7,7 @@ title: Installing a three-node cluster on Azure
 # Installing a three-node cluster on Azure {id="installing-azure-three-node"}
 {%- set context = "installing-azure-three-node" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a three-node cluster on Microsoft Azure. A three-node cluster consists of three control plane machines, which also act as compute machines.
+In {{ product_title }} version {{ product_version }}, you can install a three-node cluster on Microsoft Azure. A three-node cluster consists of three control plane machines, which also act as compute machines. {._abstract}
 
 This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.
 

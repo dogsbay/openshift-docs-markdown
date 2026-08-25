@@ -3,13 +3,13 @@ title: Using the OpenShift Container Platform dashboard to get cluster informati
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the {{ product_title }} dashboard to get cluster information {id="using-dashboard-to-get-cluster-info"}
-
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Using the {{ product_title }} dashboard to get cluster information {id="using-dashboard-to-get-cluster-info"}
+
 {%- set context = "using-dashboard-to-get-cluster-info" %}
 
-The {{ product_title }} web console captures high-level information about the cluster.
+The {{ product_title }} web console captures high-level information about the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-about-the-overview-dashboard.md" %}{% endleveloffset %}
 

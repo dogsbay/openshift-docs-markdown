@@ -15,7 +15,7 @@ After you have installed the {{ logging }} Operators, you must create a `Cluster
 1.  On the **Custom Resource Definition details** page, select **View Instances** from the **Actions** menu.
 1.  On the **ClusterLoggings** page, click **Create ClusterLogging**.
 1.  In the **collection** section, select a **Collector Implementation**.
-{% include "./snippets/logging-fluentd-dep-snip.md" %}
+    {% include "./snippets/logging-fluentd-dep-snip.md" %}
 1.  In the **logStore** section, select a type.
-{% include "./snippets/logging-elastic-dep-snip.md" %}
+    {% include "./snippets/logging-elastic-dep-snip.md" %}
 1.  Click **Create**.

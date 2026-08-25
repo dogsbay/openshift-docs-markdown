@@ -3,15 +3,15 @@ title: Installing a cluster on vSphere with network customizations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on vSphere with network customizations {id="installing-vsphere-network-customizations"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on vSphere with network customizations {id="installing-vsphere-network-customizations"}
 {%- set context = "installing-vsphere-network-customizations" %}
 
 In {{ product_title }} version {{ product_version }}, you can install a cluster on
 VMware vSphere infrastructure that you provision with customized network
 configuration options. By customizing your network configuration, your cluster
 can coexist with existing IP address allocations in your environment and
-integrate with existing MTU and VXLAN configurations.
+integrate with existing MTU and VXLAN configurations. {._abstract}
 
 You must set most of the network configuration parameters during installation,
 and you can modify only `kubeProxy` configuration parameters in a running
@@ -40,6 +40,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-vsphere-regions-zones.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Additional VMware vSphere configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
 *   [Deprecated VMware vSphere configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
@@ -49,6 +50,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -65,6 +67,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/nw-operator-vsphere-multiple-subnets.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster Network Operator configuration](/installing/installing_vsphere/upi/installing-vsphere-network-customizations#nw-operator-cr_installing-vsphere-network-customizations)
 *   [`.spec.platformSpec.vsphere.nodeNetworking`](/rest_api/config_apis/infrastructure-config-openshift-io-v1#spec-platformspec-vsphere-nodenetworking)
@@ -96,12 +99,14 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +3 %}{% include "./modules/installation-registry-storage-block-recreate-rollout.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the registry for vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
 {% leveloffset +1 %}{% include "./modules/installation-complete-user-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding compute machines to vSphere](/machine_management/user_infra/adding-vsphere-compute-user-infra#adding-vsphere-compute-user-infra)
 
@@ -110,6 +115,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing to install a cluster using user-provisioned infrastructure](/installing/installing_vsphere/upi/upi-vsphere-preparing-to-install#upi-vsphere-preparing-to-install)
 *   [{{ product_title }} installation and update processes](/architecture/architecture-installation#architecture-installation)

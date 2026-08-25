@@ -23,7 +23,7 @@ See "Requirements for installing OpenShift on a single node" for networking requ
     $ export OCP_VERSION=<ocp_version>
     ```
 
-    Replace `<ocp_version>` with the current version, for example, `latest-{{ product_version }}`
+    Replace `<ocp_version>` with the current version, for example, `latest-{{ product_version }}`{minja}
 {% endif %}
 {% if openshift_origin %}
 1.  Set the {{ product_title }} version:
@@ -82,7 +82,7 @@ See "Requirements for installing OpenShift on a single node" for networking requ
     ```terminal
     $ curl -L https://github.com/okd-project/okd/releases/download/$OKD_VERSION/openshift-install-linux-$OKD_VERSION.tar.gz -o openshift-install-linux.tar.gz
     ```
-{%- endif %}
+{% endif %}
     ```terminal
     $ tar zxvf openshift-install-linux.tar.gz
     ```

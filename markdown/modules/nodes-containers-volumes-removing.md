@@ -9,7 +9,7 @@ You can remove a volume from a pod template by running the following command:
 $ oc set volume <object_type>/<name> --remove [options]
 ```
 
-***Supported options for removing volumes***
+**Supported options for removing volumes**
 
 <table>
 <thead>

@@ -79,7 +79,7 @@ To install {{ product_title }} on user-provisioned infrastructure on VMware vSph
 1.  In the vSphere Client, create a folder in your data center to store your VMs.
     1.  Click the **VMs and Templates** view.
     1.  Right-click the name of your data center.
-    1.  Click **New Folder** -> **New VM and Template Folder**.
+    1.  Click **New Folder** → **New VM and Template Folder**.
     1.  In the window that is displayed, enter the folder name. If you did not specify an existing folder in the `install-config.yaml` file, then create a folder with the same name as the infrastructure ID. You use this folder name so vCenter dynamically provisions storage in the appropriate location for its Workspace configuration.
 1.  In the vSphere Client, create a template for the OVA image and then clone the template as needed.
 
@@ -91,7 +91,7 @@ To install {{ product_title }} on user-provisioned infrastructure on VMware vSph
 
     1.  From the **Hosts and Clusters** tab, right-click your cluster name and select **Deploy OVF Template**.
     1.  On the **Select an OVF** tab, specify the name of the {{ op_system }} OVA file that you downloaded.
-    1.  On the **Select a name and folder** tab, set a **Virtual machine name** for your template, such as `Template-{{ op_system }}`. Click the name of your vSphere cluster and select the folder you created in the previous step.
+    1.  On the **Select a name and folder** tab, set a **Virtual machine name** for your template, such as `Template-{{ op_system }}`{minja}. Click the name of your vSphere cluster and select the folder you created in the previous step.
     1.  On the **Select a compute resource** tab, click the name of your vSphere cluster.
     1.  On the **Select storage** tab, configure the storage options for your VM.
         *   Select **Thin Provision** or **Thick Provision**, based on your storage preferences.
@@ -115,7 +115,7 @@ To install {{ product_title }} on user-provisioned infrastructure on VMware vSph
     :::
 
 1.  After the template deploys, deploy a VM for a machine in the cluster.
-    1.  Right-click the template name and click **Clone** -> **Clone to Virtual Machine**.
+    1.  Right-click the template name and click **Clone** → **Clone to Virtual Machine**.
     1.  On the **Select a name and folder** tab, specify a name for the VM. You might include the machine type in the name, such as `control-plane-0` or `compute-1`.
 
         :::note
@@ -156,7 +156,7 @@ To install {{ product_title }} on user-provisioned infrastructure on VMware vSph
     1.  In the **Virtual Hardware** panel of the **Customize hardware** tab, modify the specified values as required. Ensure that the amount of RAM, CPU, and disk storage meets the minimum requirements for the
     machine type.
     1.  Complete the remaining configuration steps. On clicking the **Finish** button, you have completed the cloning operation.
-    1.  From the **Virtual Machines** tab, right-click on your VM and then select **Power** -> **Power On**.
+    1.  From the **Virtual Machines** tab, right-click on your VM and then select **Power** → **Power On**.
     1.  Check the console output to verify that Ignition ran.
         ```terminal title="Example command"
         Ignition: ran on 2022/03/14 14:48:33 UTC (this boot)

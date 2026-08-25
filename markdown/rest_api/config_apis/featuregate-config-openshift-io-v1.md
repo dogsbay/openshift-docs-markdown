@@ -1,5 +1,5 @@
 ---
-title: "FeatureGate []"
+title: "FeatureGate [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,6 +45,7 @@ Type
 | --- | --- | --- |
 | `customNoUpgrade` | `` | customNoUpgrade allows the enabling or disabling of any feature. Turning this feature set on IS NOT SUPPORTED, CANNOT BE UNDONE, and PREVENTS UPGRADES. Because of its nature, this setting cannot be validated.  If you have any typos or accidentally apply invalid combinations your cluster may fail in an unrecoverable way.  featureSet must equal "CustomNoUpgrade" must be set to use this field. |
 | `featureSet` | `string` | featureSet changes the list of features in the cluster.  The default is empty.  Be very careful adjusting this setting. Turning on or off features may cause irreversible changes in your cluster which cannot be undone. |
+
 ### .status {id="_status"}
 
 Description
@@ -59,6 +61,7 @@ Type
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `featureGates` | `array` | featureGates contains a list of enabled and disabled featureGates that are keyed by payloadVersion. Operators other than the CVO and cluster-config-operator, must read the .status.featureGates, locate the version they are managing, find the enabled/disabled featuregates and make the operand and operator match. The enabled/disabled values for a particular version may change during the life of the cluster as various .spec.featureSet values are selected. Operators may choose to restart their processes to pick up these changes, but remembering past enable/disable lists is beyond the scope of this API and is the responsibility of individual operators. Only featureGates with .version in the ClusterVersion.status will be present in this list. |
 | `featureGates[]` | `object` |  |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -94,6 +97,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.featureGates {id="_statusfeaturegates"}
 
 Description
@@ -129,6 +133,7 @@ Required
 | `enabled` | `array` | enabled is a list of all feature gates that are enabled in the cluster for the named version. |
 | `enabled[]` | `object` |  |
 | `version` | `string` | version matches the version provided by the ClusterVersion and in the ClusterOperator.Status.Versions field. |
+
 ### .status.featureGates[].disabled {id="_statusfeaturegatesdisabled"}
 
 Description
@@ -153,6 +158,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the FeatureGate. |
+
 ### .status.featureGates[].enabled {id="_statusfeaturegatesenabled"}
 
 Description
@@ -186,12 +192,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of FeatureGate
     *   `GET`: list objects of kind FeatureGate
     *   `POST`: create a FeatureGate
-*   `/apis/config.openshift.io/v1/featuregates/{{ name }}`
+*   `/apis/config.openshift.io/v1/featuregates/{{ name }}`{minja}
     *   `DELETE`: delete a FeatureGate
     *   `GET`: read the specified FeatureGate
     *   `PATCH`: partially update the specified FeatureGate
     *   `PUT`: replace the specified FeatureGate
-*   `/apis/config.openshift.io/v1/featuregates/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/featuregates/{{ name }}/status`{minja}
     *   `GET`: read status of the specified FeatureGate
     *   `PATCH`: partially update status of the specified FeatureGate
     *   `PUT`: replace status of the specified FeatureGate

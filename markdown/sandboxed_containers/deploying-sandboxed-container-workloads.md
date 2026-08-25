@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Deploying {{ sandboxed_containers_first }} workloads {id="deploying-sandboxed-containers-workloads"}
 {% include "./_attributes/common-attributes.md" %}
+# Deploying {{ sandboxed_containers_first }} workloads {id="deploying-sandboxed-containers-workloads"}
 {%- set context = "deploying-sandboxed-containers" %}
 
 You can install the {{ sandboxed_containers_operator }} using either the web console or OpenShift CLI (`oc`). Before installing the {{ sandboxed_containers_operator }}, you must prepare your {{ product_title }} cluster.

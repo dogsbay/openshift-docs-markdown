@@ -20,10 +20,39 @@ Metrics exported to Prometheus can impact the resource usage. Cardinality values
 
 **Total average resource usage**
 
-| Sampling value | Resources used | Test 1 (25 nodes) | Test 2 (250 nodes) .2+ |
-| --- | --- | --- | --- |
-| **Sampling = 50** | Total NetObserv CPU Usage | 1.35 | 5.39 |
-| Total NetObserv RSS (Memory) Usage | 16 GB | 63 GB .2+ | **Sampling = 1** |
-| Total NetObserv CPU Usage | 1.82 | 11.99 | Total NetObserv RSS (Memory) Usage |
+<table>
+<thead>
+<tr>
+  <th>Sampling value</th>
+  <th>Resources used</th>
+  <th>Test 1 (25 nodes)</th>
+  <th>Test 2 (250 nodes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td rowspan="2"><strong>Sampling = 50</strong></td>
+  <td>Total NetObserv CPU Usage</td>
+  <td>1.35</td>
+  <td>5.39</td>
+</tr>
+<tr>
+  <td>Total NetObserv RSS (Memory) Usage</td>
+  <td>16 GB</td>
+  <td>63 GB</td>
+</tr>
+<tr>
+  <td rowspan="2"><strong>Sampling = 1</strong></td>
+  <td>Total NetObserv CPU Usage</td>
+  <td>1.82</td>
+  <td>11.99</td>
+</tr>
+<tr>
+  <td>Total NetObserv RSS (Memory) Usage</td>
+  <td>22 GB</td>
+  <td>87 GB</td>
+</tr>
+</tbody>
+</table>
 
 Summary: This table shows average total resource usage of Network Observability, which includes Agents, FLP, Kafka, and Loki with all features enabled. For details about what features are enabled, see the features covered in "Observing the network traffic", which comprises all the features that are enabled for this testing.

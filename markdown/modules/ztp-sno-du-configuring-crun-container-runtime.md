@@ -13,10 +13,10 @@ To avoid the cluster rebooting when the CR is applied, apply the change as a {{ 
 :::
 
 
-```yaml title="Recommended ContainerRuntimeConfig CR for control plane nodes (enable-crun-master.yaml)"
+```yaml title="Recommended ContainerRuntimeConfig CR for control plane nodes (enable-crun-master.yaml)" {minja}
 {% include "./snippets/ztp_enable-crun-master.yaml" %}
 ```
 
-```yaml title="Recommended ContainerRuntimeConfig CR for worker nodes (enable-crun-worker.yaml)"
+```yaml title="Recommended ContainerRuntimeConfig CR for worker nodes (enable-crun-worker.yaml)" {minja}
 {% include "./snippets/ztp_enable-crun-worker.yaml" %}
 ```

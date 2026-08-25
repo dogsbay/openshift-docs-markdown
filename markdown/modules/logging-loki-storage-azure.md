@@ -13,7 +13,7 @@
     ```terminal
     $ oc create secret generic logging-loki-azure \
       --from-literal=container="<azure_container_name>" \
-      --from-literal=environment="<azure_environment>" \ # (1)
+      --from-literal=environment="<azure_environment>" \ (1)
       --from-literal=account_name="<azure_account_name>" \
       --from-literal=account_key="<azure_account_key>"
     ```

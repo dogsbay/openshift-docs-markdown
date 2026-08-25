@@ -3,11 +3,11 @@ title: Preparing to install a cluster using installer-provisioned infrastructure
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster using installer-provisioned infrastructure {id="ipi-vsphere-preparing-to-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster using installer-provisioned infrastructure {id="ipi-vsphere-preparing-to-install"}
 {%- set context = "ipi-vsphere-preparing-to-install" %}
 
-You should familiarize yourself with the steps you must perform before install an {{ product_title }} cluster on vSphere.
+You should familiarize yourself with the steps you must perform before install an {{ product_title }} cluster on vSphere. {._abstract}
 
 You prepare to install an {{ product_title }} cluster on vSphere by completing the following steps:
 
@@ -42,6 +42,6 @@ You prepare to install an {{ product_title }} cluster on vSphere by completing t
 
 {% leveloffset +1 %}{% include "./modules/installation-adding-vcenter-root-certificates.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_ipi-vsphere-preparing-to-install"}
+## Additional resources {id="additional-resources_ipi-vsphere-preparing-to-install" ._additional-resources}
 
 *   [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)

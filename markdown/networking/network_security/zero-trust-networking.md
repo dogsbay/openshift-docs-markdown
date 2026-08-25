@@ -3,8 +3,8 @@ title: Zero trust networking
 ---
 
 {%- set _content_type = "ASSEMBLY" %}
-# Zero trust networking {id="zero-trust-networking"}
 {% include "./_attributes/common-attributes.md" %}
+# Zero trust networking {id="zero-trust-networking"}
 {%- set context = "zero-trust-networking" %}
 
 Zero trust is an approach to designing security architectures based on the premise that every interaction begins in an untrusted state. This contrasts with traditional architectures, which might determine trustworthiness based on whether communication starts inside a firewall. More specifically, zero trust attempts to close gaps in security architectures that rely on implicit trust models and one-time authentication.

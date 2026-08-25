@@ -28,7 +28,7 @@ Verify the TuneD profiles that are applied to your cluster node. {._abstract}
     ```terminal
     $ oc get co/node-tuning -n openshift-cluster-node-tuning-operator
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME          VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
     node-tuning   {{ product_version }}.1    True        False         True       60m     1/5 Profiles with bootcmdline conflict
     ```

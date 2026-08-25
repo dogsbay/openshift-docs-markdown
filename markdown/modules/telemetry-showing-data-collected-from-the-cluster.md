@@ -8,17 +8,17 @@ You can view the cluster and components time series data captured by Telemetry. 
 *   You have installed the
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
 {{ product_title }}
-{% endif %}
-{% if not (openshift_enterprise or openshift_webscale or openshift_origin) %}
+{%- endif %}
+{%- if not (openshift_enterprise or openshift_webscale or openshift_origin) %}
 OpenShift Container Platform
 {%- endif %}
 CLI (`oc`).
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You have access to the cluster as a user with the `cluster-admin` role or the `cluster-monitoring-view` role.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

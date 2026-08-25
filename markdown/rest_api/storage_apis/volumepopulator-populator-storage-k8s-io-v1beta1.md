@@ -1,5 +1,5 @@
 ---
-title: "VolumePopulator []"
+title: "VolumePopulator [populator.storage.k8s.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -27,6 +27,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `sourceKind` | `object` | Kind of the data source this populator supports |
+
 ### .sourceKind {id="_sourcekind"}
 
 Description
@@ -54,7 +55,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of VolumePopulator
     *   `GET`: list objects of kind VolumePopulator
     *   `POST`: create a VolumePopulator
-*   `/apis/populator.storage.k8s.io/v1beta1/volumepopulators/{{ name }}`
+*   `/apis/populator.storage.k8s.io/v1beta1/volumepopulators/{{ name }}`{minja}
     *   `DELETE`: delete a VolumePopulator
     *   `GET`: read the specified VolumePopulator
     *   `PATCH`: partially update the specified VolumePopulator

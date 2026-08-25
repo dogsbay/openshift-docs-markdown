@@ -19,5 +19,5 @@ Cluster configuration phase
 
     The validator inform policy ensures the configuration of the cluster is fully applied and Operators have completed their initialization. The policy validates the following:
     *   The target `MachineConfigPool` contains the expected entries and has finished updating. All nodes are available and not degraded.
-*   The SR-IOV Operator has completed initialization as indicated by at least one `SriovNetworkNodeState` with `syncStatus: Succeeded`.
-*   The PTP Operator daemon set exists.
+    *   The SR-IOV Operator has completed initialization as indicated by at least one `SriovNetworkNodeState` with `syncStatus: Succeeded`.
+    *   The PTP Operator daemon set exists.

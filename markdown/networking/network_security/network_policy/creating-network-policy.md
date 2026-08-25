@@ -3,14 +3,14 @@ title: Creating a network policy
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating a network policy {id="creating-network-policy"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating a network policy {id="creating-network-policy"}
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "creating-network-policy" %}
 
-As a cluster administrator, you can create a network policy for a namespace.
+As a cluster administrator, you can create a network policy for a namespace. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-networkpolicy-object.md" %}{% endleveloffset %}
 
@@ -30,7 +30,7 @@ As a cluster administrator, you can create a network policy for a namespace.
 {% endif %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 *   [Logging for egress firewall and network policy rules](/networking/network_security/logging-network-security#logging-network-security)

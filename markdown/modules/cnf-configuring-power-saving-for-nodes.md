@@ -18,7 +18,7 @@ The feature is supported on Intel Ice Lake and later generations of Intel CPUs. 
 **Procedure**
 
 1.  Generate a `PerformanceProfile` with the `per-pod-power-management` argument set to `true`:
-    ```terminal
+    ```terminal {minja}
     $ podman run --entrypoint performance-profile-creator -v \
     /must-gather:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} \
     --mcp-name=worker-cnf --reserved-cpu-count=20 --rt-kernel=true \

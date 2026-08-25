@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "cluster-logging-collector-6-2" %}
-# Configuring the logging collector {id="cluster-logging-collector-6-2"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Configuring the logging collector {id="cluster-logging-collector-6-2"}
 
 {{ logging_title_uc }} collects operations and application logs from your cluster and enriches the data with Kubernetes pod and project metadata.
 All supported modifications to the log collector are performed though the `spec.collection` stanza in the `ClusterLogForwarder` custom resource (CR).

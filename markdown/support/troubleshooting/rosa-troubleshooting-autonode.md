@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # Troubleshoot Red&#160;Hat build of Karpenter configuration and operational issues {id="rosa-troubleshooting-autonode"}
 
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "rosa-troubleshooting-autonode" %}
 
 Understanding common failure categories for the {{ autonode }} helps you quickly identify the root cause and restore automatic scaling capabilities. Use the following table to identify which procedure addresses your symptom: {._abstract}

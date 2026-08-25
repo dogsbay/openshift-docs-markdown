@@ -1,5 +1,5 @@
 ---
-title: "Metal3Remediation []"
+title: "Metal3Remediation [infrastructure.cluster.x-k8s.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Metal3RemediationSpec defines the desired state of Metal3Remediation. |
 | `status` | `object` | Metal3RemediationStatus defines the observed state of Metal3Remediation. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -36,6 +37,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `strategy` | `object` | Strategy field defines remediation strategy. |
+
 ### .spec.strategy {id="_specstrategy"}
 
 Description
@@ -50,6 +52,7 @@ Type
 | `retryLimit` | `integer` | Sets maximum number of remediation retries. |
 | `timeout` | `string` | Sets the timeout between remediation retries. |
 | `type` | `string` | Type of remediation. |
+
 ### .status {id="_status"}
 
 Description
@@ -71,16 +74,16 @@ The following API endpoints are available:
 
 *   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/metal3remediations`
     *   `GET`: list objects of kind Metal3Remediation
-*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediations`
+*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediations`{minja}
     *   `DELETE`: delete collection of Metal3Remediation
     *   `GET`: list objects of kind Metal3Remediation
     *   `POST`: create a Metal3Remediation
-*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediations/{{ name }}`
+*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediations/{{ name }}`{minja}
     *   `DELETE`: delete a Metal3Remediation
     *   `GET`: read the specified Metal3Remediation
     *   `PATCH`: partially update the specified Metal3Remediation
     *   `PUT`: replace the specified Metal3Remediation
-*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediations/{{ name }}/status`
+*   `/apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/metal3remediations/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Metal3Remediation
     *   `PATCH`: partially update status of the specified Metal3Remediation
     *   `PUT`: replace status of the specified Metal3Remediation

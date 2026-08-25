@@ -18,7 +18,7 @@ To customize {{ pac }}, cluster administrators can configure the following param
 | `max-keep-run-upper-limit` | A maximum limit for the `max-keep-run` value for a pipeline run. | NA |
 | `default-max-keep-runs` | A default limit for the `max-keep-run` value for a pipeline run. If defined, the value is applied to all pipeline runs that do not have a `max-keep-run` annotation. | NA |
 | `auto-configure-new-github-repo` | Configures new GitHub repositories automatically. {{ pac }} sets up a namespace and creates a custom resource for your repository. This parameter is only supported with GitHub applications. | `disabled` |
-| `auto-configure-repo-namespace-template` | Configures a template to automatically generate the namespace for your new repository, if `auto-configure-new-github-repo` is enabled. | `{{ repo_name }}-pipelines` |
+| `auto-configure-repo-namespace-template` | Configures a template to automatically generate the namespace for your new repository, if `auto-configure-new-github-repo` is enabled. | `{{ repo_name }}-pipelines`{minja} |
 | `error-log-snippet` | Enables or disables the view of a log snippet for the failed tasks, with an error in a pipeline. You can disable this parameter in the case of data leakage from your pipeline. | `true` |
 | `error-detection-from-container-logs` | Enables or disables the inspection of container logs to detect error message and expose them as annotations on the pull request. This setting applies only if you are using the GitHub app. | `true` |
 | `error-detection-max-number-of-lines` | The maximum number of lines inspected in the container logs to search for error messages. Set to `-1` to inspect an unlimited number of lines. | 50 |

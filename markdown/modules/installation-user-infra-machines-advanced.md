@@ -16,5 +16,5 @@ This approach enables granular control over the node infrastructure to meet spec
 The advanced configuration topics for manual {{ op_system_first }} installations detailed in this section relate to disk partitioning, networking, and configuring Ignition in different ways.
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

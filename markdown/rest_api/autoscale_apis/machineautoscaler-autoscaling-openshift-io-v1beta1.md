@@ -1,5 +1,5 @@
 ---
-title: "MachineAutoscaler []"
+title: "MachineAutoscaler [autoscaling.openshift.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of constraints of a scalable resource |
 | `status` | `object` | Most recently observed status of a scalable resource |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,6 +45,7 @@ Required
 | `maxReplicas` | `integer` | MaxReplicas constrains the maximal number of replicas of a scalable resource |
 | `minReplicas` | `integer` | MinReplicas constrains the minimal number of replicas of a scalable resource |
 | `scaleTargetRef` | `object` | ScaleTargetRef holds reference to a scalable resource |
+
 ### .spec.scaleTargetRef {id="_specscaletargetref"}
 
 Description
@@ -63,6 +65,7 @@ Required
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name specifies a name of an object, e.g. worker-us-east-1a. Scalable resources are expected to exist under a single namespace. |
+
 ### .status {id="_status"}
 
 Description
@@ -75,6 +78,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `lastTargetRef` | `object` | LastTargetRef holds reference to the recently observed scalable resource |
+
 ### .status.lastTargetRef {id="_statuslasttargetref"}
 
 Description
@@ -101,16 +105,16 @@ The following API endpoints are available:
 
 *   `/apis/autoscaling.openshift.io/v1beta1/machineautoscalers`
     *   `GET`: list objects of kind MachineAutoscaler
-*   `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers`
+*   `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers`{minja}
     *   `DELETE`: delete collection of MachineAutoscaler
     *   `GET`: list objects of kind MachineAutoscaler
     *   `POST`: create a MachineAutoscaler
-*   `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }}`
+*   `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }}`{minja}
     *   `DELETE`: delete a MachineAutoscaler
     *   `GET`: read the specified MachineAutoscaler
     *   `PATCH`: partially update the specified MachineAutoscaler
     *   `PUT`: replace the specified MachineAutoscaler
-*   `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }}/status`
+*   `/apis/autoscaling.openshift.io/v1beta1/namespaces/{{ namespace }}/machineautoscalers/{{ name }}/status`{minja}
     *   `GET`: read status of the specified MachineAutoscaler
     *   `PATCH`: partially update status of the specified MachineAutoscaler
     *   `PUT`: replace status of the specified MachineAutoscaler

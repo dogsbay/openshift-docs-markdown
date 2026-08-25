@@ -10,7 +10,7 @@ title: "Configuring the {{ oadp_full }} with {{ VirtProductName }}"
 {%- set credentials = "cloud-credentials" -%}
 {%- set provider = "gcp" %}
 
-You can install the {{ oadp_first }} with {{ VirtProductName }} by installing the OADP Operator and configuring a backup location. Then, you can install the Data Protection Application.
+You can install the {{ oadp_first }} with {{ VirtProductName }} by installing the OADP Operator and configuring a backup location. Then, you can install the Data Protection Application. {._abstract}
 
 Back up and restore virtual machines by using the {{ oadp_full }}.
 
@@ -70,7 +70,7 @@ Red Hat only supports the combination of {{ oadp_short }} versions 1.3.0 and lat
 
 {% leveloffset +1 %}{% include "./modules/oadp-incremental-backup-support.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Application backup and restore operations](/backup_and_restore/index#application-backup-restore-operations-overview_backup-restore-overview)
 *   [Backing up applications with File System Backup: Kopia or Restic](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#oadp-backing-up-applications-restic-doc)
 *   [{{ oadp_short }} plugins](/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-plugins_oadp-features-plugins)
@@ -79,4 +79,4 @@ Red Hat only supports the combination of {{ oadp_short }} versions 1.3.0 and lat
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
 *   [Velero {{ velero_version }}](https://velero.io/docs/v{{ velero_version }})
 
-{%- set installing_oadp_kubevirt = false -%}
+{%- set installing_oadp_kubevirt = "" -%}

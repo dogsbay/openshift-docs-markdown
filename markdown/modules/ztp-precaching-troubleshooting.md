@@ -42,7 +42,7 @@ error: error rendering new refs: render reference "eko4.cloud.lab.eng.bos.redhat
     # update-ca-trust
     ```
 1.  Mount the host `/etc/pki` folder into the factory-cli image:
-    ```terminal
+    ```terminal {minja}
     # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker -v /etc/pki:/etc/pki --privileged -it --rm quay.io/openshift-kni/telco-ran-tools:latest -- \
     factory-precaching-cli download -r {{ product_version }}.0 --acm-version 2.5.4 \
        --mce-version 2.0.4 -f /mnt \--img quay.io/custom/repository

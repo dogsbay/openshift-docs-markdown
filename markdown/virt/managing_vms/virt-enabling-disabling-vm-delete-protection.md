@@ -3,11 +3,11 @@ title: Enable or disable virtual machine delete protection
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Enable or disable virtual machine delete protection {id="virt-enabling-disabling-vm-delete-protection"}
 {% include "./_attributes/common-attributes.md" %}
+# Enable or disable virtual machine delete protection {id="virt-enabling-disabling-vm-delete-protection"}
 {%- set context = "virt-enabling-disabling-vm-delete-protection" %}
 
-You can prevent accidental deletion of a virtual machine (VM) by enabling delete protection. If delete protection is enabled, you must disable it before you can delete that VM.
+You can prevent accidental deletion of a virtual machine (VM) by enabling delete protection. If delete protection is enabled, you must disable it before you can delete that VM. {._abstract}
 
 You enable or disable delete protection from either the command line or the VM’s **VirtualMachine details** page in the {{ product_title }} web console. The option is disabled by default.
 
@@ -17,6 +17,6 @@ You can also choose to remove availability of the delete protection option for a
 {% leveloffset +1 %}{% include "./modules/virt-enabling-disabling-vm-delete-protection-cli.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/virt-removing-vm-delete-protection.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Enabling or disabling virtual machine delete protection by using the web console](/virt/managing_vms/virt-enabling-disabling-vm-delete-protection#virt-enabling-disabling-vm-delete-protection-web_virt-enabling-disabling-vm-delete-protection)
 *   [Enabling or disabling virtual machine delete protection by using the CLI](/virt/managing_vms/virt-enabling-disabling-vm-delete-protection#virt-enabling-disabling-vm-delete-protection-cli_virt-enabling-disabling-vm-delete-protection)

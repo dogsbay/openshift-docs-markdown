@@ -15,6 +15,7 @@ You can provision {{ hcp }} with external DNS or service-level DNS.
 
 1.  Create an {{ aws_first }} credential secret for the HyperShift Operator and name it `hypershift-operator-external-dns-credentials` in the `local-cluster` namespace.
 1.  Verify that the secret has the required fields. For your reference, the required fields are detailed in the following table.
+
     **Required fields for the {{ aws_short }} secret**
 
     | Field name | Description | Optional or required |

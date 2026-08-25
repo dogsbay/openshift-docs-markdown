@@ -1,5 +1,5 @@
 ---
-title: "TemplateInstance []"
+title: "TemplateInstance [template.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | TemplateInstanceSpec describes the desired state of a TemplateInstance. |
 | `status` | `object` | TemplateInstanceStatus describes the current state of a TemplateInstance. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,7 +49,8 @@ Required
 | --- | --- | --- |
 | `requester` | `object` | TemplateInstanceRequester holds the identity of an agent requesting a template instantiation. |
 | `secret` | `LocalObjectReference` | secret is a reference to a Secret object containing the necessary template parameters. |
-| `template` | `object` | Template contains the inputs needed to produce a Config. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `template` | `object` | Template contains the inputs needed to produce a Config.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+
 ### .spec.requester {id="_specrequester"}
 
 Description
@@ -65,6 +67,7 @@ Type
 | `groups` | `array (string)` | groups represent the groups this user is a part of. |
 | `uid` | `string` | uid is a unique value that identifies this user across time; if this user is deleted and another user by the same name is added, they will have different UIDs. |
 | `username` | `string` | username uniquely identifies this user among all active users. |
+
 ### .spec.requester.extra {id="_specrequesterextra"}
 
 Description
@@ -100,6 +103,7 @@ Required
 | `objects` | [`array (RawExtension)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-runtime-RawExtension) | objects is an array of resources to include in this template. If a namespace value is hardcoded in the object, it will be removed during template instantiation, however if the namespace value is, or contains, a ${{ PARAMETER_REFERENCE }}, the resolved value after parameter substitution will be respected and the object will be created in that namespace. |
 | `parameters` | `array` | parameters is an optional array of Parameters used during the Template to Config transformation. |
 | `parameters[]` | `object` | Parameter defines a name/value variable that is to be processed during the Template to Config transformation. |
+
 ### .spec.template.parameters {id="_spectemplateparameters"}
 
 Description
@@ -127,11 +131,11 @@ Required
 | `description` | `string` | description of a parameter. Optional. |
 | `displayName` | `string` | Optional: The name that will show in UI instead of parameter 'Name' |
 | `from` | `string` | from is an input value for the generator. Optional. |
-| `generate` | `string` | generate specifies the generator to be used to generate random string from an input value specified by From field. The result string is stored into Value field. If empty, no generator is being used, leaving the result Value untouched. Optional. The only supported generator is "expression", which accepts a "from" value in the form of a simple regular expression containing the range expression "[a-zA-Z0-9]", and the length expression "a{{ length }}". Examples: from             \ |
-| value ----------------------------- "test[0-9]{{ 1 }}x"  \ | "test7x" "[0-1]{{ 8 }}"       \ | "01001100" "0x[A-F0-9]{{ 4 }}"  \ |
-| "0xB3AF" "[a-zA-Z0-9]{{ 8 }}" \ | "hW4yQU5i" | `name` |
-| `string` | name must be set and it can be referenced in Template Items using ${{ PARAMETER_NAME }}. Required. | `required` |
-| `boolean` | Optional: Indicates the parameter must have a value.  Defaults to false. | `value` |
+| `generate` | `string` | generate specifies the generator to be used to generate random string from an input value specified by From field. The result string is stored into Value field. If empty, no generator is being used, leaving the result Value untouched. Optional.<br>The only supported generator is "expression", which accepts a "from" value in the form of a simple regular expression containing the range expression "[a-zA-Z0-9]", and the length expression "a{{ length }}".<br>Examples:<br>from             \| value ----------------------------- "test[0-9]{{ 1 }}x"  \| "test7x" "[0-1]{{ 8 }}"       \| "01001100" "0x[A-F0-9]{{ 4 }}"  \| "0xB3AF" "[a-zA-Z0-9]{{ 8 }}" \| "hW4yQU5i" |
+| `name` | `string` | name must be set and it can be referenced in Template Items using ${{ PARAMETER_NAME }}. Required. |
+| `required` | `boolean` | Optional: Indicates the parameter must have a value.  Defaults to false. |
+| `value` | `string` | value holds the Parameter data. If specified, the generator will be ignored. The value replaces all occurrences of the Parameter ${{ Name }} expression during the Template to Config transformation. Optional. |
+
 ### .status {id="_status"}
 
 Description
@@ -147,6 +151,7 @@ Type
 | `conditions[]` | `object` | TemplateInstanceCondition contains condition information for a TemplateInstance. |
 | `objects` | `array` | objects references the objects created by the TemplateInstance. |
 | `objects[]` | `object` | TemplateInstanceObject references an object created by a TemplateInstance. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -180,6 +185,7 @@ Required
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False or Unknown. |
 | `type` | `string` | type of the condition, currently Ready or InstantiateFailure. |
+
 ### .status.objects {id="_statusobjects"}
 
 Description
@@ -210,20 +216,20 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind TemplateInstance
 *   `/apis/template.openshift.io/v1/watch/templateinstances`
     *   `GET`: watch individual changes to a list of TemplateInstance. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances`
+*   `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances`{minja}
     *   `DELETE`: delete collection of TemplateInstance
     *   `GET`: list or watch objects of kind TemplateInstance
     *   `POST`: create a TemplateInstance
-*   `/apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances`
+*   `/apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances`{minja}
     *   `GET`: watch individual changes to a list of TemplateInstance. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }}`
+*   `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }}`{minja}
     *   `DELETE`: delete a TemplateInstance
     *   `GET`: read the specified TemplateInstance
     *   `PATCH`: partially update the specified TemplateInstance
     *   `PUT`: replace the specified TemplateInstance
-*   `/apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances/{{ name }}`
+*   `/apis/template.openshift.io/v1/watch/namespaces/{{ namespace }}/templateinstances/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind TemplateInstance. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }}/status`
+*   `/apis/template.openshift.io/v1/namespaces/{{ namespace }}/templateinstances/{{ name }}/status`{minja}
     *   `GET`: read status of the specified TemplateInstance
     *   `PATCH`: partially update status of the specified TemplateInstance
     *   `PUT`: replace status of the specified TemplateInstance

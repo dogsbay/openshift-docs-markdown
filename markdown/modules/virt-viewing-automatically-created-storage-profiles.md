@@ -19,7 +19,7 @@ The system creates storage profiles for each storage class automatically. You ca
     ```
 
     Example storage profile details:
-    ```yaml
+    ```yaml {minja}
     Name:         ocs-storagecluster-ceph-rbd-virtualization
     Namespace:
     Labels:       app=containerized-data-importer
@@ -46,11 +46,11 @@ The system creates storage profiles for each storage class automatically. You ca
     Spec:
     Status:
       Claim Property Sets:
-{%- if not openshift_dedicated %}
+    {%- if not openshift_dedicated %}
         accessModes:
           ReadWriteMany
         volumeMode:  Block
-{%- endif %}
+    {%- endif %}
         accessModes:
           ReadWriteOnce
         volumeMode:  Block

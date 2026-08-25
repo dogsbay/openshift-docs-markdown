@@ -21,4 +21,4 @@ For S3 on AWS storage, the secret is expected to contain two keys:
     $ oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_S3_ACCESSKEY=myaccesskey --from-literal=REGISTRY_STORAGE_S3_SECRETKEY=mysecretkey --namespace openshift-image-registry
     ```
 
-{%- set KEY1 = false -%}
+{%- set KEY1 = "" -%}

@@ -1,5 +1,5 @@
 ---
-title: "InsightsOperator []"
+title: "InsightsOperator [operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the specification of the desired behavior of the Insights. |
 | `status` | `object` | status is the most recently observed status of the Insights operator. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -45,6 +46,7 @@ Type
 | `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
 | `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.  Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides holds a sparse config that will override any previously set options.  It only needs to be the fields to override it will end up overlaying in the following order: 1. hardcoded defaults 2. observedConfig 3. unsupportedConfigOverrides |
+
 ### .status {id="_status"}
 
 Description
@@ -65,6 +67,7 @@ Type
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with |
 | `readyReplicas` | `integer` | readyReplicas indicates how many replicas are ready and at the desired state |
 | `version` | `string` | version is the level this availability applies to |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -90,6 +93,7 @@ Type
 | `reason` | `string` |  |
 | `status` | `string` |  |
 | `type` | `string` |  |
+
 ### .status.gatherStatus {id="_statusgatherstatus"}
 
 Description
@@ -105,6 +109,7 @@ Type
 | `gatherers[]` | `object` | gathererStatus represents information about a particular data gatherer. |
 | `lastGatherDuration` | `string` | lastGatherDuration is the total time taken to process all gatherers during the last gather event. |
 | `lastGatherTime` | `string` | lastGatherTime is the last time when Insights data gathering finished. An empty value means that no data has been gathered yet. |
+
 ### .status.gatherStatus.gatherers {id="_statusgatherstatusgatherers"}
 
 Description
@@ -135,6 +140,7 @@ Required
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo’s current state.     // Known .status.conditions.type are: "Available", "Progressing", and "Degraded"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`      // other fields } |
 | `lastGatherDuration` | `string` | lastGatherDuration represents the time spent gathering. |
 | `name` | `string` | name is the name of the gatherer. |
+
 ### .status.gatherStatus.gatherers[].conditions {id="_statusgatherstatusgatherersconditions"}
 
 Description
@@ -170,6 +176,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt) |
+
 ### .status.generations {id="_statusgenerations"}
 
 Description
@@ -196,6 +203,7 @@ Type
 | `name` | `string` | name is the name of the thing you’re tracking |
 | `namespace` | `string` | namespace is where the thing you’re tracking is |
 | `resource` | `string` | resource is the resource type of the thing you’re tracking |
+
 ### .status.insightsReport {id="_statusinsightsreport"}
 
 Description
@@ -210,6 +218,7 @@ Type
 | `downloadedAt` | `string` | downloadedAt is the time when the last Insights report was downloaded. An empty value means that there has not been any Insights report downloaded yet and it usually appears in disconnected clusters (or clusters when the Insights data gathering is disabled). |
 | `healthChecks` | `array` | healthChecks provides basic information about active Insights health checks in a cluster. |
 | `healthChecks[]` | `object` | healthCheck represents an Insights health check attributes. |
+
 ### .status.insightsReport.healthChecks {id="_statusinsightsreporthealthchecks"}
 
 Description
@@ -250,16 +259,16 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of InsightsOperator
     *   `GET`: list objects of kind InsightsOperator
     *   `POST`: create an InsightsOperator
-*   `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}`
+*   `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}`{minja}
     *   `DELETE`: delete an InsightsOperator
     *   `GET`: read the specified InsightsOperator
     *   `PATCH`: partially update the specified InsightsOperator
     *   `PUT`: replace the specified InsightsOperator
-*   `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}/scale`
+*   `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}/scale`{minja}
     *   `GET`: read scale of the specified InsightsOperator
     *   `PATCH`: partially update scale of the specified InsightsOperator
     *   `PUT`: replace scale of the specified InsightsOperator
-*   `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1/insightsoperators/{{ name }}/status`{minja}
     *   `GET`: read status of the specified InsightsOperator
     *   `PATCH`: partially update status of the specified InsightsOperator
     *   `PUT`: replace status of the specified InsightsOperator

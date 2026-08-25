@@ -7,7 +7,7 @@ You can increase memory limits for the Network Observability Operator by editing
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**
 1.  Click **Network Observability** and then select **Subscription**.
 1.  From the **Actions** menu, click **Edit Subscription**.
     1.  Alternatively, you can use the CLI to open the YAML configuration for the `Subscription` object by running the following command:

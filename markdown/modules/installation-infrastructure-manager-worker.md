@@ -3,11 +3,8 @@
 
 You can use the following Infrastructure Manager template to deploy the worker machines that you need for your {{ product_title }} cluster: {._abstract}
 
-<details>
-<summary>`06_worker.tf` Infrastructure Manager template</summary>
-
+:::details{title="`06_worker.tf` Infrastructure Manager template"}
 ```terraform
-```hcl
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
   required_version = ">=1.2.3"
@@ -151,5 +148,4 @@ resource "google_compute_instance" "worker_1" {
   }
 }
 ```
-```
-</details>
+:::

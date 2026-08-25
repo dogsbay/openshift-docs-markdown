@@ -12,6 +12,6 @@ You can use the `oc adm must-gather` command to collect information about your c
 **Procedure**
 
 *   To collect PTP Operator data with `must-gather`, you must specify the PTP Operator `must-gather` image.
-    ```terminal
+    ```terminal {minja}
     $ oc adm must-gather --image=registry.redhat.io/openshift4/ptp-must-gather-rhel9:v{{ product_version }}
     ```

@@ -7,7 +7,7 @@ title: Using cohorts
 # Using cohorts {id="using-cohorts"}
 {%- set context = "using-cohorts" %}
 
-You can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.
+You can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other. {._abstract}
 
 Borrowable resources are defined as the unused nominal quota of all the cluster queues in a cohort.
 

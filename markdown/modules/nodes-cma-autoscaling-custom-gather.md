@@ -42,7 +42,7 @@ The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, do
     
     :::
 
-{% endif %}
+{%- endif %}
 1.  Perform one of the following:
     *   To get only the Custom Metrics Autoscaler Operator `must-gather` data, use the following command:
         ```terminal
@@ -63,12 +63,11 @@ The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, do
             ```terminal
             $ oc adm must-gather --image-stream=openshift/must-gather --image=${IMAGE}
             ```
+
     **Example must-gather output for the Custom Metric Autoscaler**
 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-    <details>
-    <summary>Details</summary>
-
+    :::details{title="Details"}
     ```terminal
     └── openshift-keda
         ├── apps
@@ -148,12 +147,10 @@ The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, do
         └── route.openshift.io
             └── routes.yaml
     ```
-    </details>
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-    <details>
-    <summary>Details</summary>
-
+    :::
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+    :::details{title="Details"}
     ```terminal
     └── keda
         ├── apps
@@ -233,8 +230,8 @@ The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, do
         └── route.openshift.io
             └── routes.yaml
     ```
-    </details>
-{% endif %}
+    :::
+{%- endif %}
 
 {% if not openshift_origin %}
 1.  Create a compressed file from the `must-gather` directory that was created in your working directory. For example, on a computer that uses a Linux

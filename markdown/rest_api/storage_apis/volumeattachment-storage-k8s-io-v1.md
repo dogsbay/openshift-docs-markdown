@@ -1,5 +1,5 @@
 ---
-title: "VolumeAttachment []"
+title: "VolumeAttachment [storage.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | VolumeAttachmentSpec is the specification of a VolumeAttachment request. |
 | `status` | `object` | VolumeAttachmentStatus is the status of a VolumeAttachment request. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -51,6 +52,7 @@ Required
 | `attacher` | `string` | attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName(). |
 | `nodeName` | `string` | nodeName represents the node that the volume should be attached to. |
 | `source` | `object` | VolumeAttachmentSource represents a volume that should be attached. Right now only PersistentVolumes can be attached via external attacher, in the future we may allow also inline volumes in pods. Exactly one member can be set. |
+
 ### .spec.source {id="_specsource"}
 
 Description
@@ -64,6 +66,7 @@ Type
 | --- | --- | --- |
 | `inlineVolumeSpec` | [`PersistentVolumeSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PersistentVolumeSpec) | inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod’s inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod’s inline VolumeSource to a PersistentVolumeSpec. This field is beta-level and is only honored by servers that enabled the CSIMigration feature. |
 | `persistentVolumeName` | `string` | persistentVolumeName represents the name of the persistent volume to attach. |
+
 ### .status {id="_status"}
 
 Description
@@ -83,6 +86,7 @@ Required
 | `attached` | `boolean` | attached indicates the volume is successfully attached. This field must only be set by the entity completing the attach operation, i.e. the external-attacher. |
 | `attachmentMetadata` | `object (string)` | attachmentMetadata is populated with any information returned by the attach operation, upon successful attach, that must be passed into subsequent WaitForAttach or Mount calls. This field must only be set by the entity completing the attach operation, i.e. the external-attacher. |
 | `detachError` | `object` | VolumeError captures an error encountered during a volume operation. |
+
 ### .status.attachError {id="_statusattacherror"}
 
 Description
@@ -94,9 +98,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations. This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
+| `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations.<br>This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
 | `message` | `string` | message represents the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information. |
 | `time` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | time represents the time the error was encountered. |
+
 ### .status.detachError {id="_statusdetacherror"}
 
 Description
@@ -108,7 +113,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations. This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
+| `errorCode` | `integer` | errorCode is a numeric gRPC code representing the error encountered during Attach or Detach operations.<br>This is an optional, beta field that requires the MutableCSINodeAllocatableCount feature gate being enabled to be set. |
 | `message` | `string` | message represents the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information. |
 | `time` | [`Time`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | time represents the time the error was encountered. |
 
@@ -122,14 +127,14 @@ The following API endpoints are available:
     *   `POST`: create a VolumeAttachment
 *   `/apis/storage.k8s.io/v1/watch/volumeattachments`
     *   `GET`: watch individual changes to a list of VolumeAttachment. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/storage.k8s.io/v1/volumeattachments/{{ name }}`
+*   `/apis/storage.k8s.io/v1/volumeattachments/{{ name }}`{minja}
     *   `DELETE`: delete a VolumeAttachment
     *   `GET`: read the specified VolumeAttachment
     *   `PATCH`: partially update the specified VolumeAttachment
     *   `PUT`: replace the specified VolumeAttachment
-*   `/apis/storage.k8s.io/v1/watch/volumeattachments/{{ name }}`
+*   `/apis/storage.k8s.io/v1/watch/volumeattachments/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind VolumeAttachment. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/storage.k8s.io/v1/volumeattachments/{{ name }}/status`
+*   `/apis/storage.k8s.io/v1/volumeattachments/{{ name }}/status`{minja}
     *   `GET`: read status of the specified VolumeAttachment
     *   `PATCH`: partially update status of the specified VolumeAttachment
     *   `PUT`: replace status of the specified VolumeAttachment

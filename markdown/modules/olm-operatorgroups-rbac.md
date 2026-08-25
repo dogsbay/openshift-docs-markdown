@@ -33,7 +33,7 @@ The following RBAC resources are generated when a CSV becomes an active member o
 
 <a name="olm-resources-per-api-resource-crd_{{ context }}"></a>
 
-***Cluster roles generated for each API resource from a CRD***
+**Cluster roles generated for each API resource from a CRD**
 
 <table>
 <thead>
@@ -44,27 +44,27 @@ The following RBAC resources are generated when a CSV becomes an active member o
 </thead>
 <tbody>
 <tr>
-  <td><code><kind>.<group>-<version>-admin</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>*</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-admin: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-admin: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-admin</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>*</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-admin: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-admin: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-edit</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>create</code></li><li><code>update</code></li><li><code>patch</code></li><li><code>delete</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-edit: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-edit: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-edit</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>create</code></li><li><code>update</code></li><li><code>patch</code></li><li><code>delete</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-edit: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-edit: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-view</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>get</code></li><li><code>list</code></li><li><code>watch</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-view</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>get</code></li><li><code>list</code></li><li><code>watch</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-view-crdview</code></td>
-  <td>Verbs on <code>apiextensions.k8s.io</code> <code>customresourcedefinitions</code> <code><crd-name></code>:<br><br><ul><li><code>get</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-view-crdview</code></td>
+  <td>Verbs on <code>apiextensions.k8s.io</code> <code>customresourcedefinitions</code> <code>&lt;crd-name&gt;</code>:<br><br><ul><li><code>get</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 </tbody>
 </table>
 
 <a name="olm-resources-per-api-resource-api_{{ context }}"></a>
 
-***Cluster roles generated for each API resource from an API service***
+**Cluster roles generated for each API resource from an API service**
 
 <table>
 <thead>
@@ -75,16 +75,16 @@ The following RBAC resources are generated when a CSV becomes an active member o
 </thead>
 <tbody>
 <tr>
-  <td><code><kind>.<group>-<version>-admin</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>*</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-admin: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-admin: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-admin</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>*</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-admin: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-admin: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-edit</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>create</code></li><li><code>update</code></li><li><code>patch</code></li><li><code>delete</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-edit: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-edit: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-edit</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>create</code></li><li><code>update</code></li><li><code>patch</code></li><li><code>delete</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-edit: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-edit: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 <tr>
-  <td><code><kind>.<group>-<version>-view</code></td>
-  <td>Verbs on <code><kind></code>:<br><br><ul><li><code>get</code></li><li><code>list</code></li><li><code>watch</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: <operatorgroup_name></code></li></ul></td>
+  <td><code>&lt;kind&gt;.&lt;group&gt;-&lt;version&gt;-view</code></td>
+  <td>Verbs on <code>&lt;kind&gt;</code>:<br><br><ul><li><code>get</code></li><li><code>list</code></li><li><code>watch</code></li></ul>Aggregation labels:<br><br><ul><li><code>rbac.authorization.k8s.io/aggregate-to-view: true</code></li><li><code>olm.opgroup.permissions/aggregate-to-view: &lt;operatorgroup_name&gt;</code></li></ul></td>
 </tr>
 </tbody>
 </table>

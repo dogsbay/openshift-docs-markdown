@@ -38,7 +38,7 @@ To avoid selecting an MTU value that is not acceptable by a node, verify the max
 
 The following table summarizes the migration process by segmenting between the user-initiated steps in the process and the actions that the migration performs in response.
 
-***Live migration of the cluster MTU***
+**Live migration of the cluster MTU**
 
 <table>
 <thead>

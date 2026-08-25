@@ -13,10 +13,7 @@ Some instance types require the use of Hyperdisk storage. If you use an instance
 :::
 
 
-<details>
-<summary>Machine series</summary>
-
-```
+:::details{title="Machine series"}
 * `A2`
 * `A3`
 * `C2`
@@ -31,5 +28,4 @@ Some instance types require the use of Hyperdisk storage. If you use an instance
 * `N2D`
 * `N4`
 * `Tau T2D`
-```
-</details>
+:::

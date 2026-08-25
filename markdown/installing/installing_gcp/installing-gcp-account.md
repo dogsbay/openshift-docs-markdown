@@ -7,7 +7,7 @@ title: "Configuring a {{ gcp_short }} project"
 # Configuring a {{ gcp_short }} project {id="installing-gcp-account"}
 {%- set context = "installing-gcp-account" %}
 
-Before you can install {{ product_title }}, you must configure a {{ gcp_first }} project to host it. You can configure custom roles and permissions, DNS configuration, and manage your own {{ gcp_short }} firewall rules.
+Before you can install {{ product_title }}, you must configure a {{ gcp_first }} project to host it. You can configure custom roles and permissions, DNS configuration, and manage your own {{ gcp_short }} firewall rules. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-gcp-project.md" %}{% endleveloffset %}
 
@@ -20,6 +20,7 @@ Before you can install {{ product_title }}, you must configure a {{ gcp_first }}
 {% leveloffset +1 %}{% include "./modules/installation-gcp-service-account.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Reducing permissions while using the {{ gcp_short }} CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-pd-reduce-permissions_persistent-storage-csi-gcp-pd)
 
@@ -37,7 +38,7 @@ Before you can install {{ product_title }}, you must configure a {{ gcp_first }}
 
 {% leveloffset +1 %}{% include "./modules/installation-gcp-regions.md" %}{% endleveloffset %}
 
-## Next steps {id="_next_steps"}
+## Next steps {id="_next_steps" ._additional-resources}
 
 *   Install an {{ product_title }} cluster on {{ gcp_short }}. You can
 [install a customized cluster](/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)

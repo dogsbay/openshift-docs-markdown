@@ -4,8 +4,8 @@ title: Custom Metrics Autoscaler Operator overview
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom" %}
-# Custom Metrics Autoscaler Operator overview {id="nodes-cma-autoscaling-custom"}
 {% include "./_attributes/common-attributes.md" %}
+# Custom Metrics Autoscaler Operator overview {id="nodes-cma-autoscaling-custom"}
 
 As a developer, you can use Custom Metrics Autoscaler Operator for Red Hat OpenShift to specify how {{ product_title }} should automatically increase or decrease the number of pods for a deployment, stateful set, custom resource, or job based on custom metrics that are not based only on CPU or memory.
 

@@ -18,7 +18,7 @@ The GCP PD CSI driver support for the C3 instance type for bare metal and N4 mac
     
     :::
 
-{%- if not openshift_dedicated %}
+{% if not openshift_dedicated %}
 *   Clusters with mixed virtual machines (VMs) that use different storage types, for example, N2 and N4, are not supported. This is due to hyperdisks-balanced disks not being usable on most legacy VMs. Similarly, regular persistent disks are not usable on N4/C3 VMs.
 *   A GCP cluster with c3-standard-2, c3-standard-4, n4-standard-2, and n4-standard-4 nodes can erroneously exceed the maximum attachable disk number, which should be 16. For more information, see "OCPBUGS-39258".
 *   For more limitations, see Google Cloud documentation "Limitations for Hyperdisk".

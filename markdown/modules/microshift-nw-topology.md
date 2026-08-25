@@ -46,11 +46,11 @@ OVN external switch
 *   The north-south traffic between the network service and the OVN external switch `ext_microshift-dev` is provided through the host kernel by the gateway bridge `br-ex`.
 *   The OVN gateway router `GR_microshift-dev` is connected to the external network switch `ext_microshift-dev` through the logical router port 4. Port 4 is attached with the node IP address 192.168.122.14.
 *   The join switch `join` connects the OVN gateway router `GR_microshift-dev` to the OVN cluster router `ovn_cluster_router`. The IP address range is 100.62.0.0/16.
-*   The OVN gateway router `GR_microshift-dev` connects to the OVN join switch `join` through the logical router port 3. Port 3 attaches with the internal IP address 100.64.0.2.
-*   The OVN cluster router `ovn_cluster_router` connects to the join switch `join` through the logical router port 2. Port 2 attaches with the internal IP address 100.64.0.1.
-    *   The OVN cluster router `ovn_cluster_router` connects to the node switch `microshift-dev` through the logical router port 1. Port 1 is attached with the OVN cluster network IP address 10.42.0.1.
-    *   The east-west traffic between the pods and the network service is provided by the OVN cluster router `ovn_cluster_router` and the node switch `microshift-dev`. The IP address range is 10.42.0.0/24.
-    *   The east-west traffic between pods is provided by the node switch `microshift-dev` without network address translation (NAT).
-    *   The north-south traffic between the pods and the external network is provided by the OVN cluster router `ovn_cluster_router` and the host network. This router is connected through the `ovn-kubernetes` management port `ovn-k8s-mp0`, with the IP address 10.42.0.2.
-    *   All the pods are connected to the OVN node switch through their interfaces.
-*   In this example, Pod 1 and Pod 2 are connected to the node switch through `Interface 1` and `Interface 2`.
+    *   The OVN gateway router `GR_microshift-dev` connects to the OVN join switch `join` through the logical router port 3. Port 3 attaches with the internal IP address 100.64.0.2.
+    *   The OVN cluster router `ovn_cluster_router` connects to the join switch `join` through the logical router port 2. Port 2 attaches with the internal IP address 100.64.0.1.
+*   The OVN cluster router `ovn_cluster_router` connects to the node switch `microshift-dev` through the logical router port 1. Port 1 is attached with the OVN cluster network IP address 10.42.0.1.
+*   The east-west traffic between the pods and the network service is provided by the OVN cluster router `ovn_cluster_router` and the node switch `microshift-dev`. The IP address range is 10.42.0.0/24.
+*   The east-west traffic between pods is provided by the node switch `microshift-dev` without network address translation (NAT).
+*   The north-south traffic between the pods and the external network is provided by the OVN cluster router `ovn_cluster_router` and the host network. This router is connected through the `ovn-kubernetes` management port `ovn-k8s-mp0`, with the IP address 10.42.0.2.
+*   All the pods are connected to the OVN node switch through their interfaces.
+    *   In this example, Pod 1 and Pod 2 are connected to the node switch through `Interface 1` and `Interface 2`.

@@ -43,4 +43,4 @@ In addition to MCO, you should consider the impact of the following parameters:
 
     If the status of the node is `NotReady` or `SchedulingDisabled`, then the node is not available and this impacts the update duration.
 
-    You can also check the status of nodes from the **Administrator** perspective in the web console by expanding ***Compute*** -> ***Nodes***.
+    You can also check the status of nodes from the **Administrator** perspective in the web console by expanding **Compute** → **Nodes**.

@@ -11,7 +11,7 @@ In {{ product_title }}, IPsec is disabled by default. You can enable IPsec by fo
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster** then select the **YAML** tab.
 1.  Configure the `FlowCollector` custom resource for IPsec:

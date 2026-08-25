@@ -17,7 +17,7 @@ When you install the {{ SMProductName }} Operators, OpenShift automatically crea
 
 You can verify that the Operator pods are available and running by using the {{ product_title }} console.
 
-1.  Navigate to **Workloads** -> **Pods**.
+1.  Navigate to **Workloads** → **Pods**.
 1.  Select the `openshift-operators` namespace.
 1.  Verify that the following pods exist and have a status of `running`:
     *   `istio-operator`

@@ -20,7 +20,7 @@ This tutorial uses {{ SMProductShortName }} and the Bookinfo sample application 
     ```
 
     This command simulates a user visiting the `productpage` microservice of the application.
-1.  In the {{ product_title }} console, navigate to **Networking** -> **Routes** and search for the Jaeger route, which is the URL listed under **Location**.
+1.  In the {{ product_title }} console, navigate to **Networking** → **Routes** and search for the Jaeger route, which is the URL listed under **Location**.
     *   Alternatively, use the CLI to query for details of the route. In this example, `istio-system` is the {{ SMProductShortName }} control plane namespace:
         ```terminal
         $ export JAEGER_URL=$(oc get route -n istio-system jaeger -o jsonpath='{.spec.host}')

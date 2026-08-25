@@ -43,11 +43,11 @@ During the initial cluster creation, you might want to add kernel arguments to a
         You can now continue on to create the cluster.
 
 
-:::important
+        :::important
 
-Additional postinstallation steps are required to fully enable multipathing. For more information, see "Enabling multipathing with kernel arguments on {{ op_system }}" in _Postinstallation machine configuration tasks_.
-
-:::
+        Additional postinstallation steps are required to fully enable multipathing. For more information, see "Enabling multipathing with kernel arguments on {{ op_system }}" in _Postinstallation machine configuration tasks_.
+        
+        :::
 
 
 In case of MPIO failure, use the `bootlist` command to update the boot device list with alternate logical device names. The command displays a boot list and designates the possible boot devices for when the system is booted in normal mode.

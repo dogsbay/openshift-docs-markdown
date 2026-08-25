@@ -63,18 +63,15 @@ pageSize: 0
 </thead>
 <tbody>
 <tr>
-  <td>.^</td>
   <td><code>base</code></td>
+  <td>Only consider the object specified by the base DN given for the query.</td>
 </tr>
 <tr>
-  <td>Only consider the object specified by the base DN given for the query. .^</td>
   <td><code>one</code></td>
+  <td>Consider all of the objects on the same level in the tree as the base DN for the query.</td>
 </tr>
 <tr>
-  <td>Consider all of the objects on the same level in the tree as the base DN for the query. .^</td>
   <td><code>sub</code></td>
-</tr>
-<tr>
   <td>Consider the entire subtree rooted at the base DN given for the query.</td>
 </tr>
 </tbody>
@@ -89,22 +86,19 @@ pageSize: 0
 </thead>
 <tbody>
 <tr>
-  <td>.^</td>
   <td><code>never</code></td>
+  <td>Never dereference any aliases found in the LDAP tree.</td>
 </tr>
 <tr>
-  <td>Never dereference any aliases found in the LDAP tree. .^</td>
   <td><code>search</code></td>
+  <td>Only dereference aliases found while searching.</td>
 </tr>
 <tr>
-  <td>Only dereference aliases found while searching. .^</td>
   <td><code>base</code></td>
+  <td>Only dereference aliases while finding the base object.</td>
 </tr>
 <tr>
-  <td>Only dereference aliases while finding the base object. .^</td>
   <td><code>always</code></td>
-</tr>
-<tr>
   <td>Always dereference all aliases found in the LDAP tree.</td>
 </tr>
 </tbody>

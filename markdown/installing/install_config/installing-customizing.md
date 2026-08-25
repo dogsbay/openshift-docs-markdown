@@ -3,11 +3,11 @@ title: Customizing nodes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Customizing nodes {id="installing-customizing"}
 {% include "./_attributes/common-attributes.md" %}
+# Customizing nodes {id="installing-customizing"}
 {%- set context = "installing-customizing" %}
 
-You can customize nodes both cluster-wide and per-machine configuration through Ignition, which allows arbitrary partitioning and file content changes to the operating system. 
+You can customize nodes both cluster-wide and per-machine configuration through Ignition, which allows arbitrary partitioning and file content changes to the operating system.  {._abstract}
 
 If a configuration file is documented in {{ op_system_base_full }}, you can modify the file through Ignition.
 
@@ -25,6 +25,7 @@ The following sections describe features that you might want to configure on you
 {% leveloffset +2 %}{% include "./modules/installation-special-config-butane-about.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Butane config specification](https://coreos.github.io/butane/specs/)
 
@@ -32,7 +33,7 @@ The following sections describe features that you might want to configure on you
 
 {% leveloffset +2 %}{% include "./modules/installation-special-config-butane-create.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [The addition of kernel modules to nodes](/installing/install_config/installing-customizing#installation-special-config-kmod_installing-customizing)
 *   [Encrypting and mirroring disks during installation](/installing/install_config/installing-customizing#installation-special-config-storage_installing-customizing)
@@ -40,6 +41,7 @@ The following sections describe features that you might want to configure on you
 {% leveloffset +1 %}{% include "./modules/installation-special-config-kargs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Kernel.org kernel parameters](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt)
 
@@ -52,6 +54,7 @@ The following sections describe features that you might want to configure on you
 {% leveloffset +2 %}{% include "./modules/provision-kernel-modules-via-machineconfig.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [kmods-via-containers (GitHub)](https://github.com/kmods-via-containers/kmods-via-containers)
 
@@ -63,7 +66,7 @@ The following sections describe features that you might want to configure on you
 
 {% leveloffset +2 %}{% include "./modules/installation-special-config-storage-procedure.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Network-bound disk encryption](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/{{ op_system_version_9 }}/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening#network-bound-disk-encryption_configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption)
 *   [Installing the system in FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/{{ op_system_version_9 }}/html-single/security_hardening/index#proc_installing-the-system-with-fips-mode-enabled_switching-rhel-to-fips-mode)
@@ -76,6 +79,7 @@ The following sections describe features that you might want to configure on you
 {% leveloffset +1 %}{% include "./modules/installation-special-config-chrony.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 

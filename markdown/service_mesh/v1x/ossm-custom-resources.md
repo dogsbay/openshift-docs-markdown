@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Custom resources {id="ossm-custom-resources-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Custom resources {id="ossm-custom-resources-v1x"}
 {%- set context = "ossm-controler-items-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

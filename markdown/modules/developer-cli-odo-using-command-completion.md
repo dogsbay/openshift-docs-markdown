@@ -28,8 +28,8 @@ Currently command completion is only supported for bash, zsh, and fish shells.
     1.  Press `y` when prompted to uninstall the completion hook.
 
 
-:::note
+    :::note
 
-Re-enable command completion if you either rename the {{ odo_title }} executable or move it to a different directory.
-
-:::
+    Re-enable command completion if you either rename the {{ odo_title }} executable or move it to a different directory.
+    
+    :::

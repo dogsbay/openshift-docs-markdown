@@ -24,12 +24,12 @@ You can set an environment variable from all values defined in a config map. Val
     1.  Substitute `myconfigmap` with the name of the target config map.
 
         For example, to access all user data that is stored in `userdetailsmap`, use the following YAML:
-        ```yaml
-        name: test
-        namespace: ""
-        runtime: go
-        ...
-        envs:
-        - value: '{{ configMap:userdetailsmap }}'
-        ```
+    ```yaml
+    name: test
+    namespace: ""
+    runtime: go
+    ...
+    envs:
+    - value: '{{ configMap:userdetailsmap }}'
+    ```
 1.  Save the file.

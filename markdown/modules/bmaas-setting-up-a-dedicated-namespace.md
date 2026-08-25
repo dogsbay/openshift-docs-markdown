@@ -43,7 +43,7 @@ To prevent accidental interference between {{ bmaas_first }} workloads and the {
         The editor opens and displays the Oauth resource.
     1.  Add the identity provider configuration to the `spec.identityProviders` list:
 
-        ***Identity provider configuration examples***
+        **Identity provider configuration examples**
 
 <table>
 <thead>
@@ -92,7 +92,7 @@ To prevent accidental interference between {{ bmaas_first }} workloads and the {
     $ oc adm policy add-role-to-user edit <username> -n bmaas
     ```
 1.  Clone the `baremetal-operator` repository to obtain the role-based access control (RBAC) role definitions by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ git clone -b release-{{ product_version }} https://github.com/openshift/baremetal-operator.git
     ```
 1.  For each role you want to add, apply the appropriate RBAC role YAML file from the repository by running the following command:

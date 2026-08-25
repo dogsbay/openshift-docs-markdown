@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Distributed tracing {id="ossm-dist-trac"}
 {% include "./_attributes/common-attributes.md" %}
+# Distributed tracing {id="ossm-dist-trac"}
 {%- set context = "ossm-dist-trac" %}
 
 <mark>DRAFT ASSEMBLY - Not currently listed on the Topic Map</mark>

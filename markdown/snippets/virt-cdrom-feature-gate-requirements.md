@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
 
 *   The `DeclarativeHotplugVolumes` feature gate is enabled. To ensure this, the `HyperConverged` CR must contain the `declarativeHotplugVolumes: true` line in the `spec.featureGates` configuration section:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

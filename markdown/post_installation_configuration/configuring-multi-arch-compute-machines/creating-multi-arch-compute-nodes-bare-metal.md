@@ -7,7 +7,7 @@ title: "Creating a cluster with multi-architecture compute machines on bare meta
 {% include "./_attributes/common-attributes.md" %}
 # Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }} {id="creating-multi-arch-compute-nodes-bare-metal"}
 
-You can create a cluster with multi-architecture compute machines on bare metal (`x86_64` or `aarch64`), {{ ibm_power_name }} (`ppc64le`), or {{ ibm_z_name }} (`s390x`). To do this, you must have an existing single-architecture cluster on one of these platforms. 
+You can create a cluster with multi-architecture compute machines on bare metal (`x86_64` or `aarch64`), {{ ibm_power_name }} (`ppc64le`), or {{ ibm_z_name }} (`s390x`). To do this, you must have an existing single-architecture cluster on one of these platforms.  {._abstract}
 
 See the following installation procedures for your platform:
 
@@ -40,13 +40,14 @@ Before adding a secondary architecture node to your cluster, you must install th
 {% leveloffset +1 %}{% include "./modules/machine-user-infra-machines-pxe.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red&#160;Hat Knowledgebase article)](https://access.redhat.com/articles/7212)
 *   [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)
 
 {% leveloffset +1 %}{% include "./modules/installation-approve-csrs.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Installing a user provisioned cluster on bare metal](/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
 *   [Installing a cluster on {{ ibm_power_name }}](/installing/installing_ibm_power/preparing-to-install-on-ibm-power#preparing-to-install-on-ibm-power)

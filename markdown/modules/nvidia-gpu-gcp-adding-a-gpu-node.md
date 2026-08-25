@@ -163,14 +163,14 @@ The following table lists the validated instance types:
 1.  Edit the JSON file to make the following changes to the new `MachineSet` definition:
     *   Rename the machine set `name` by inserting the substring `gpu` in `metadata.name` and in both instances of `machine.openshift.io/cluster-api-machineset`.
     *   Change the `machineType` of the new `MachineSet` definition to `a2-highgpu-1g`, which includes an NVIDIA A100 GPU.
-        ```terminal
+        ```terminal {minja}
         jq .spec.template.spec.providerSpec.value.machineType ocp_{{ product_version }}_machineset-a2-highgpu-1g.json
 
         "a2-highgpu-1g"
         ```
 
-        The `<output_file.json>` file is saved as `ocp_{{ product_version }}_machineset-a2-highgpu-1g.json`.
-1.  Update the following fields in `ocp_{{ product_version }}_machineset-a2-highgpu-1g.json`:
+        The `<output_file.json>` file is saved as `ocp_{{ product_version }}_machineset-a2-highgpu-1g.json`{minja}.
+1.  Update the following fields in `ocp_{{ product_version }}_machineset-a2-highgpu-1g.json`{minja}:
     *   Change `.metadata.name` to a name containing `gpu`.
     *   Change `.spec.selector.matchLabels["machine.openshift.io/cluster-api-machineset"]` to
     match the new `.metadata.name`.
@@ -183,7 +183,7 @@ The following table lists the validated instance types:
         "onHostMaintenance": "Terminate",
         ```
 1.  To verify your changes, perform a `diff` of the original compute definition and the new GPU-enabled node definition by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get machineset/myclustername-2pt9p-worker-a -n openshift-machine-api -o json | diff ocp_{{ product_version }}_machineset-a2-highgpu-1g.json -
     ```
     ```terminal title="Example output"
@@ -206,7 +206,7 @@ The following table lists the validated instance types:
     >                         "machineType": "n2-standard-4",
     ```
 1.  Create the GPU-enabled compute machine set from the definition file by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc create -f ocp_{{ product_version }}_machineset-a2-highgpu-1g.json
     ```
     ```terminal title="Example output"
@@ -234,8 +234,8 @@ The following table lists the validated instance types:
     ```
 
 
-:::note
+    :::note
 
-Note that there is no need to specify a namespace for the node. The node definition is cluster scoped.
-
-:::
+    Note that there is no need to specify a namespace for the node. The node definition is cluster scoped.
+    
+    :::

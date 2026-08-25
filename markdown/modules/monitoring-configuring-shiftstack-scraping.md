@@ -38,18 +38,18 @@ You can employ the federation endpoint of your {{ product_title }} cluster to ma
     spec:
       params:
         'match[]':
-        - '{__name__=~"kube_node_info|kube_persistentvolume_info|cluster:master_nodes"}' # (1)
+        - '{__name__=~"kube_node_info|kube_persistentvolume_info|cluster:master_nodes"}' (1)
       metricsPath: '/federate'
       authorization:
         type: Bearer
         credentials:
-          name: ocp-federated # (2)
+          name: ocp-federated (2)
           key: token
       scheme: HTTPS # or HTTP
-      scrapeInterval: 30s # (3)
+      scrapeInterval: 30s (3)
       staticConfigs:
       - targets:
-        - prometheus-k8s-federate-openshift-monitoring.apps.openshift.example # (4)
+        - prometheus-k8s-federate-openshift-monitoring.apps.openshift.example (4)
     ```
     1.  Add metrics here. In this example, only the metrics `kube_node_info`, `kube_persistentvolume_info`, and `cluster:master_nodes` are requested.
     1.  Insert the previously generated secret name here.

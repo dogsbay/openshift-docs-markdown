@@ -15,7 +15,7 @@ To control the scheduling priority of catalog source pods, you can override the 
 *   A `CatalogSource` object of source type `grpc` with a defined `spec.image`.
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   Access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -37,7 +37,7 @@ To control the scheduling priority of catalog source pods, you can override the 
 
     Previously, the only pod scheduling parameter that could be overriden was `priorityClassName`. This was done by adding the `operatorframework.io/priorityclass` annotation to the `CatalogSource` object. For example:
 
-    ```yaml
+    ```yaml {minja}
     apiVersion: operators.coreos.com/v1alpha1
     kind: CatalogSource
     metadata:

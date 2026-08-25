@@ -17,8 +17,8 @@ The **Developer** perspective helps you verify the status of your service bindin
     *   The **ServiceBinding details** page. In addition, the page title displays an **Error** badge.
 
 
-:::tip
+    :::tip
 
-In the **ServiceBindings** page, use the **Filter** dropdown to list the service bindings based on their status.
-
-:::
+    In the **ServiceBindings** page, use the **Filter** dropdown to list the service bindings based on their status.
+    
+    :::

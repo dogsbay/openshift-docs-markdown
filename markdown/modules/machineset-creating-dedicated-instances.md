@@ -30,9 +30,10 @@ Instances with public tenancy run on shared hardware and can share hardware with
 {% if not cpmso %}
 1.  In a text editor, open an existing machine set custom resource (CR) or create a new one.
 {% endif %}
+
 1.  Update the CR to implement your configuration changes:
-    ```yaml
-{%- if cpmso %}
+    ```yaml {minja}
+    {% if cpmso %}
     apiVersion: machine.openshift.io/v1
     kind: ControlPlaneMachineSet
     # ...
@@ -44,8 +45,8 @@ Instances with public tenancy run on shared hardware and can share hardware with
               value:
                 placement:
                   tenancy: dedicated
-{% endif %}
-{% if not cpmso %}
+    {% endif %}
+    {% if not cpmso %}
     apiVersion: machine.openshift.io/v1beta1
     kind: MachineSet
     # ...
@@ -56,7 +57,7 @@ Instances with public tenancy run on shared hardware and can share hardware with
             value:
               placement:
                 tenancy: dedicated
-{%- endif %}
+    {% endif %}
     ```
 
     To use Dedicated Instances, set the `placement.tenancy` parameter value to `dedicated`.
@@ -66,8 +67,8 @@ Instances with public tenancy run on shared hardware and can share hardware with
     When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
     *   For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
     *   For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.
-{% endif %}
+{%- endif %}
 
 {% if context == "cpmso-supported-features-aws" %}
-{%- set cpmso = false -%}
+{%- set cpmso = "" -%}
 {% endif %}

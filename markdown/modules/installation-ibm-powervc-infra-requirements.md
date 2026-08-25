@@ -26,7 +26,7 @@ IBM recommends that the network is set as a DHCP network in {{ ibm_power_vc_name
 ## DNS records {id="_dns_records"}
 DNS records pointing to a `LoadBalancer` service are required for installation. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the cluster base domain that you specify when you install the cluster. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -39,17 +39,17 @@ DNS records pointing to a `LoadBalancer` service are required for installation. 
 <tbody>
 <tr>
   <td>API VIP</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME (Canonical Name) record must point to the load balancer for the cluster. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>API VIP</td>
-  <td><code>api-int.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>This DNS A/AAAA or CNAME (Canonical Name) record must point to the load balancer for the cluster. This record must be resolvable by all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Ingress VIP</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>A wildcard DNS A/AAAA or CNAME record that points to the load balancer that targets the machines that run the Ingress router pods, which are the compute nodes by default. This record must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 </tbody>

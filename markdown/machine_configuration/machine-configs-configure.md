@@ -4,10 +4,10 @@ title: Using machine config objects to configure nodes
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "machine-configs-configure" %}
-# Using machine config objects to configure nodes {id="machine-configs-configure"}
 {% include "./_attributes/common-attributes.md" %}
+# Using machine config objects to configure nodes {id="machine-configs-configure"}
 
-You can create `MachineConfig` custom resources (CR) that modify files, systemd unit files, and other operating system features running on {{ product_title }} nodes. By using `MachineConfig` objects, you can perform tasks such as disabling chronyd, adding kernel arguments, enabling multipathing, and adding {{ op_system }} extensions.
+You can create `MachineConfig` custom resources (CR) that modify files, systemd unit files, and other operating system features running on {{ product_title }} nodes. By using `MachineConfig` objects, you can perform tasks such as disabling chronyd, adding kernel arguments, enabling multipathing, and adding {{ op_system }} extensions. {._abstract}
 
 For more ideas on working with machine configs, see "How to update ssh keys after installation in OpenShift 4?", "Container image signatures", "Enabling SCTP in Openshift Container Platform 4", and "How to provide custom iSCSI initiatornames for nodes".
 
@@ -43,7 +43,7 @@ Use the following "Configuring chrony time service" procedure as a model for how
 
 {% leveloffset +1 %}{% include "./modules/machine-config-install-time-configs.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [How to update ssh keys after installation in OpenShift 4? (Red&#160;Hat Knowledgebase article)](https://access.redhat.com/solutions/3868301)
 *   [Container image signatures](/security/container_security/security-container-signature#security-container-signature)

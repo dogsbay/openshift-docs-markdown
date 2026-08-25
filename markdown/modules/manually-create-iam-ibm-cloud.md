@@ -38,7 +38,7 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to create the
 **Procedure**
 
 1.  Edit the `install-config.yaml` configuration file so that the file includes the `credentialsMode` parameter set to `Manual`.
-    {%- if ibm_vpc %}
+{% if ibm_vpc %}
     ```yaml title="Example install-config.yaml configuration file"
     apiVersion: v1
     baseDomain: cluster1.example.com
@@ -57,7 +57,7 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to create the
     - architecture: ppc64le
       hyperthreading: Enabled
     ```
-{%- endif %}
+{% endif %}
 
     where:
 
@@ -163,7 +163,7 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to create the
     ```terminal
     $ grep resourceGroup <installation_directory>/manifests/cluster-infrastructure-02-config.yml
     ```
-{%- endif %}
+{% endif %}
     
     :::
 
@@ -173,26 +173,26 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to create the
 *   Check that the appropriate secrets exist in the `manifests` directory of your cluster.
 
 {% if context == "installing-ibm-cloud-customizations" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-vpc" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-private" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-customizations" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-private-cluster" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-ibm-powervs-vpc" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-restricted" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}

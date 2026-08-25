@@ -3,9 +3,9 @@ title: Overview of Builds
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Overview of Builds {id="overview-openshift-builds"}
 {%- set context = "overview-openshift-builds" %}
-{% include "./_attributes/common-attributes.md" %}
 
 Builds is an extensible build framework based on the [Shipwright project](https://shipwright.io/), which you can use to build container images on your {{ product_title }} cluster. You can build container images from source code and Dockerfiles by using image build tools, such as Source-to-Image (S2I) and Buildah. You can create and apply build resources, view logs of build runs, and manage builds in your {{ product_title }} namespaces.
 

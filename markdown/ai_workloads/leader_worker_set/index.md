@@ -8,7 +8,7 @@ title: "{{ lws_operator }} overview"
 
 {%- set context = "lws-about" %}
 
-Use the {{ lws_operator }} to manage multi-node AI/ML inference deployments efficiently. The {{ lws_operator }} treats groups of pods as one unit to simplify scaling, recovery, and updates for large workloads.
+Use the {{ lws_operator }} to manage multi-node AI/ML inference deployments efficiently. The {{ lws_operator }} treats groups of pods as one unit to simplify scaling, recovery, and updates for large workloads. {._abstract}
 
 Using large language models (LLMs) for AI/ML inference often requires significant compute resources, and workloads typically must be sharded across multiple nodes. This can make deployments complex, creating challenges around scaling, recovery from failures, and efficient pod placement.
 
@@ -18,6 +18,6 @@ The {{ lws_operator }} simplifies these multi-node deployments by treating a gro
 
 {% leveloffset +2 %}{% include "./modules/lws-arch.md" %}{% endleveloffset %}
 
-## Additional resources {id="lws-about_additional-resources"}
+## Additional resources {id="lws-about_additional-resources" ._additional-resources}
 
 *   [LeaderWorkerSet documentation (Kubernetes)](https://lws.sigs.k8s.io/docs/overview/)

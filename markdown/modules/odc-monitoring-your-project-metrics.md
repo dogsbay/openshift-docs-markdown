@@ -29,6 +29,7 @@ After you create applications in your project and deploy them, you can use the *
     *   Hover your cursor over the graphs to see specific details for your pod.
     *   Click **Inspect** located in the upper-right corner of every graph to see any particular graph details. The graph details appear in the **Metrics** tab.
 1.  Optional: Use the **Metrics** tab to query for the required project metric.
+
     **Figure 1. Monitoring metrics**
 
     ![odc_project_metrics](/_assets/images/odc_project_metrics.png)
@@ -41,6 +42,7 @@ After you create applications in your project and deploy them, you can use the *
     *   See the rules that trigger alerts for the applications in your project.
     *   Identify the alerts firing in the project.
     *   Silence such alerts if required.
+
     **Figure 2. Monitoring alerts**
 
     ![odc_project_alerts](/_assets/images/odc_project_alerts.png)
@@ -52,6 +54,7 @@ After you create applications in your project and deploy them, you can use the *
     You must have the permissions to edit alerts to see the **Notifications** toggle.
     *   Use the Options menu {{ kebab }} adjoining an alert rule to see the details of the alerting rule.
 1.  Optional: Use the **Events** tab to see the events for your project.
+
     **Figure 3. Monitoring events**
 
     ![odc_project_events](/_assets/images/odc_project_events.png)

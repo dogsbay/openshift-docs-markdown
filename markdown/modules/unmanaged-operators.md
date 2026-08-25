@@ -10,7 +10,7 @@ assumes full control of the individual component configurations and upgrades.
 
 An Operator can be set to an unmanaged state using the following methods:
 
-*   ***Individual Operator configuration***
+*   **Individual Operator configuration**
 
     Individual Operators have a `managementState` parameter in their configuration.
     This can be accessed in different ways, depending on the Operator. For example,
@@ -31,7 +31,7 @@ An Operator can be set to an unmanaged state using the following methods:
     
     :::
 
-*   ***Cluster Version Operator (CVO) overrides***
+*   **Cluster Version Operator (CVO) overrides**
 
     The `spec.overrides` parameter can be added to the CVO’s configuration to allow
     administrators to provide a list of overrides to the CVO’s behavior for a

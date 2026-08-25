@@ -18,17 +18,17 @@ To define the list of user-defined tags, edit the `.platform.azure.userTags` fie
     ```
     1.  Defines the additional keys and values that the installation program adds as tags to all {{ azure_short }} resources that it creates.
     1.  Specify the key and value. You can configure a maximum of 10 tags for resource group and resources. Tag keys are case-insensitive. For more information on requirements for specifying user-defined tags, see "User-defined tags requirements" section.
-        ```yaml title="Example install-config.yaml file"
-        apiVersion: v1
-        baseDomain: example.com
-        #...
-        platform:
-          azure:
-            userTags:
-              createdBy: user
-              environment: dev
-        #...
-        ```
+    ```yaml title="Example install-config.yaml file"
+    apiVersion: v1
+    baseDomain: example.com
+    #...
+    platform:
+      azure:
+        userTags:
+          createdBy: user
+          environment: dev
+    #...
+    ```
 
 **Verification**
 

@@ -28,7 +28,7 @@ The {{ cluster_manager }} and user IAM roles are required to install and manage 
         ```terminal
         $ rosa list ocm-roles
         ```
-{%- if not hcp %}
+{% if not hcp %}
         ```terminal title="Example output"
         I: Fetching ocm roles
         ROLE NAME                           ROLE ARN                                                                      LINKED  ADMIN
@@ -41,7 +41,7 @@ The {{ cluster_manager }} and user IAM roles are required to install and manage 
         ROLE NAME                                                     ROLE ARN                                                                                         LINKED  ADMIN  AWS Managed
         ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>  arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>  Yes      Yes     Yes
         ```
-{%- endif %}
+{% endif %}
     1.  If your {{ cluster_manager }} IAM role is listed as linked, unlink it from your Red&#160;Hat organization by running the following command:
         ```terminal
         $ rosa unlink ocm-role --role-arn <arn>

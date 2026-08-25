@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not non_bm %}
+{% if not non_bm %}
 # Enabling machine health checks on bare metal {id="hcp-bm-machine-health_{{ context }}"}
 
 {% endif %}
@@ -47,5 +47,5 @@ To enable machine health checks in your hosted cluster, modify the `NodePool` re
     ```
 
 {% if context == "hcp-manage-non-bm" %}
-{%- set non_bm = false -%}
+{%- set non_bm = "" -%}
 {% endif %}

@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding an out-of-service taint manually for automatic volume detachment {id="persistent-storage-csi-vol-detach-non-graceful-shutdown-procedure_{{ context }}"}
 
-[role="_abstract"] 
-After non-graceful shutdowns, to trigger automatic volume detachment and enable pod rescheduling, apply an out-of-service taint to the node. This recovers workloads faster than manually detaching volumes from failed nodes.
+After non-graceful shutdowns, to trigger automatic volume detachment and enable pod rescheduling, apply an out-of-service taint to the node. This recovers workloads faster than manually detaching volumes from failed nodes. {._abstract}
 
 **Prerequisites**
 

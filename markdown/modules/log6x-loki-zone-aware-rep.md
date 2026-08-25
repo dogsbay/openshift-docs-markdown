@@ -12,12 +12,12 @@ metadata:
  name: logging-loki
  namespace: openshift-logging
 spec:
- replicationFactor: 2 # (1)
+ replicationFactor: 2 (1)
  replication:
-   factor: 2 # (2)
+   factor: 2 (2)
    zones:
-   -  maxSkew: 1 # (3)
-      topologyKey: topology.kubernetes.io/zone # (4)
+   -  maxSkew: 1 (3)
+      topologyKey: topology.kubernetes.io/zone (4)
 ```
 1.  Deprecated field, values entered are overwritten by `replication.factor`.
 1.  This value is automatically set when deployment size is selected at setup.

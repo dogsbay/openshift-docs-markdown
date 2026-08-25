@@ -10,6 +10,7 @@
 {% if openshift_dedicated %}
 *   You have access to an {{ product_title }} account with cluster administrator or dedicated administrator access.
 {% endif %}
+
 *   Install the OpenShift CLI (`oc`).
 
 **Procedure**

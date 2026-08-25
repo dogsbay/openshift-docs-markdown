@@ -40,7 +40,7 @@ Namespaces that are defined as part of the cluster payload have pod security adm
 *   All system-created namespaces that are prefixed with `openshift-`
 {%- if not (openshift_dedicated or openshift_rosa) %}
 , except for `openshift-operators`
-{% endif %}
+{%- endif %}
 
 {% if not (openshift_dedicated or openshift_rosa) %}
 

@@ -11,7 +11,7 @@ When a recommendation is disabled for all clusters, you no longer see the recomm
 
 **Procedure**
 
-1.  Navigate to **Advisor** -> **Recommendations** on {{ cluster_manager_url }}.
+1.  Navigate to **Advisor** → **Recommendations** on {{ cluster_manager_url }}.
 1.  Filter the recommendations to display on the disabled recommendations:
     1.  From the **Status** drop-down menu, select **Status**.
     1.  From the **Filter by status** drop-down menu, select **Disabled**.

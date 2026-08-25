@@ -1,5 +1,5 @@
 ---
-title: "IPAddressClaim []"
+title: "IPAddressClaim [ipam.cluster.x-k8s.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the desired state of IPAddressClaim. |
 | `status` | `object` | status is the observed state of IPAddressClaim. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,6 +42,7 @@ Required
 | --- | --- | --- |
 | `clusterName` | `string` | clusterName is the name of the Cluster this object belongs to. |
 | `poolRef` | `object` | poolRef is a reference to the pool from which an IP address should be created. |
+
 ### .spec.poolRef {id="_specpoolref"}
 
 Description
@@ -60,6 +62,7 @@ Required
 | `apiGroup` | `string` | APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. |
 | `kind` | `string` | Kind is the type of resource being referenced |
 | `name` | `string` | Name is the name of resource being referenced |
+
 ### .status {id="_status"}
 
 Description
@@ -75,6 +78,7 @@ Type
 | `conditions` | `array` | conditions summarises the current state of the IPAddressClaim |
 | `conditions[]` | `object` | Condition defines an observation of a Cluster API resource operational state. |
 | `v1beta2` | `object` | v1beta2 groups all the fields that will be added or modified in IPAddressClaim’s status with the V1Beta2 version. |
+
 ### .status.addressRef {id="_statusaddressref"}
 
 Description
@@ -87,6 +91,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -119,6 +124,7 @@ Required
 | `severity` | `string` | severity provides an explicit classification of Reason code, so the users or machines can immediately understand the current situation and act accordingly. The Severity field MUST be set only when Status=False. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. |
+
 ### .status.v1beta2 {id="_statusv1beta2"}
 
 Description
@@ -132,6 +138,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | conditions represents the observations of a IPAddressClaim’s current state. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
+
 ### .status.v1beta2.conditions {id="_statusv1beta2conditions"}
 
 Description
@@ -173,16 +180,16 @@ The following API endpoints are available:
 
 *   `/apis/ipam.cluster.x-k8s.io/v1beta1/ipaddressclaims`
     *   `GET`: list objects of kind IPAddressClaim
-*   `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims`
+*   `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims`{minja}
     *   `DELETE`: delete collection of IPAddressClaim
     *   `GET`: list objects of kind IPAddressClaim
     *   `POST`: create an IPAddressClaim
-*   `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }}`
+*   `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }}`{minja}
     *   `DELETE`: delete an IPAddressClaim
     *   `GET`: read the specified IPAddressClaim
     *   `PATCH`: partially update the specified IPAddressClaim
     *   `PUT`: replace the specified IPAddressClaim
-*   `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }}/status`
+*   `/apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{{ namespace }}/ipaddressclaims/{{ name }}/status`{minja}
     *   `GET`: read status of the specified IPAddressClaim
     *   `PATCH`: partially update status of the specified IPAddressClaim
     *   `PUT`: replace status of the specified IPAddressClaim

@@ -19,7 +19,7 @@ You can update your cluster extension or Operator by manually editing the custom
           | jq -s '.[] | select( .schema == "olm.channel" ) \
           | select( .package == "openshift-pipelines-operator-rh") | .name'
         ```
-        ```terminal title="Example command"
+        ```terminal title="Example command" {minja}
         $ opm render registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
           | jq -s '.[] | select( .schema == "olm.channel" ) \
           | select( .package == "openshift-pipelines-operator-rh") | .name'
@@ -39,7 +39,7 @@ You can update your cluster extension or Operator by manually editing the custom
           | select( .name == "<channel_name>" ) | .entries \
           | .[] | .name'
         ```
-        ```terminal title="Example command"
+        ```terminal title="Example command" {minja}
         $ opm render registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }} \
           | jq -s '.[] | select( .package == "openshift-pipelines-operator-rh" ) \
           | select( .schema == "olm.channel" ) | select( .name == "latest" ) \

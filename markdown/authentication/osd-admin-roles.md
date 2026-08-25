@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Manage administration roles and users {id="osd-admin-roles"}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Manage administration roles and users {id="osd-admin-roles"}
 
 {%- set context = "osd-admin-roles" %}
 

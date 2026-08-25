@@ -7,6 +7,7 @@ By default, the RHSSO container is created with resource requests and limitation
 | --- | --- | --- |
 | CPU | 500 | 1000m |
 | Memory | 512 Mi | 1024 Mi |
+
 **Procedure**
 
 Modify the default resource requirements patching the Argo CD CR:

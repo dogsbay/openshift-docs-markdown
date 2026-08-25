@@ -22,7 +22,7 @@ Critical alerts must always be addressed as soon as possible, but it is especial
 
 Failing to address critical alerts before beginning an update can cause problematic conditions for the cluster.
 
-In the **Administrator** perspective of the web console, navigate to **Observe** -> **Alerting** to find critical alerts.
+In the **Administrator** perspective of the web console, navigate to **Observe** → **Alerting** to find critical alerts.
 
 ## Ensure that the cluster is in an Upgradeable state {id="cluster-upgradeable_{{ context }}"}
 

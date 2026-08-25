@@ -4,8 +4,8 @@ title: Pausing the custom metrics autoscaler for a scaled object
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom-pausing" %}
-# Pausing the custom metrics autoscaler for a scaled object {id="nodes-cma-autoscaling-custom-pausing"}
 {% include "./_attributes/common-attributes.md" %}
+# Pausing the custom metrics autoscaler for a scaled object {id="nodes-cma-autoscaling-custom-pausing"}
 
 You can pause and restart the autoscaling of a workload, as needed.
 

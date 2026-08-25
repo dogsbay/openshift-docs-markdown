@@ -14,47 +14,46 @@ Configure the Data Protection Application (DPA) to override the default Kopia ha
 
 *   Configure the DPA with the environment variables for hashing, encryption, and splitter as shown in the following example.
 
-```yaml
-apiVersion: oadp.openshift.io/v1alpha1
-kind: DataProtectionApplication
-#...
-configuration:
-  nodeAgent:
-    enable: true
-    uploaderType: kopia
-  velero:
-    defaultPlugins:
-    - openshift
-    - aws
-    - csi
-    defaultSnapshotMoveData: true
-    podConfig:
-      env:
-        - name: KOPIA_HASHING_ALGORITHM
-          value: <hashing_algorithm_name>
-        - name: KOPIA_ENCRYPTION_ALGORITHM
-          value: <encryption_algorithm_name>
-        - name: KOPIA_SPLITTER_ALGORITHM
-          value: <splitter_algorithm_name>
-```
+    ```yaml
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: DataProtectionApplication
+    #...
+    configuration:
+      nodeAgent:
+        enable: true
+        uploaderType: kopia
+      velero:
+        defaultPlugins:
+        - openshift
+        - aws
+        - csi
+        defaultSnapshotMoveData: true
+        podConfig:
+          env:
+            - name: KOPIA_HASHING_ALGORITHM
+              value: <hashing_algorithm_name>
+            - name: KOPIA_ENCRYPTION_ALGORITHM
+              value: <encryption_algorithm_name>
+            - name: KOPIA_SPLITTER_ALGORITHM
+              value: <splitter_algorithm_name>
+    ```
 
-where:
+    where:
 
+    `enable`
+    :   Set to `true` to enable the `nodeAgent`.
 
-`enable`
-:   Set to `true` to enable the `nodeAgent`.
+    `uploaderType`
+    :   Specifies the uploader type as `kopia`.
 
-`uploaderType`
-:   Specifies the uploader type as `kopia`.
+    `csi`
+    :   Include the `csi` plugin.
 
-`csi`
-:   Include the `csi` plugin.
+    `<hashing_algorithm_name>`
+    :   Specifies a hashing algorithm. For example, `BLAKE3-256`.
 
-`<hashing_algorithm_name>`
-:   Specifies a hashing algorithm. For example, `BLAKE3-256`.
+    `<encryption_algorithm_name>`
+    :   Specifies an encryption algorithm. For example, `CHACHA20-POLY1305-HMAC-SHA256`.
 
-`<encryption_algorithm_name>`
-:   Specifies an encryption algorithm. For example, `CHACHA20-POLY1305-HMAC-SHA256`.
-
-`<splitter_algorithm_name>`
-:   Specifies a splitter algorithm. For example, `DYNAMIC-8M-RABINKARP`.
+    `<splitter_algorithm_name>`
+    :   Specifies a splitter algorithm. For example, `DYNAMIC-8M-RABINKARP`.

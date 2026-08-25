@@ -8,12 +8,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Moving the Vertical Pod Autoscaler Operator components {id="infrastructure-moving-vpa_{{ context }}"}
 
-{%- if machinemgmt %}
+{% if machinemgmt %}
 You can move the VPA Operator and component pods to infrastructure nodes by adding a node selector to the VPA subscription and the `VerticalPodAutoscalerController` CR.
 {% endif %}
 {% if vpa %}
-You can move the VPA Operator and component pods to infrastructure or worker nodes by adding a node selector to the VPA subscription and the `VerticalPodAutoscalerController` CR.
-{% endif %} {._abstract}
+You can move the VPA Operator and component pods to infrastructure or worker nodes by adding a node selector to the VPA subscription and the `VerticalPodAutoscalerController` CR. {._abstract}
+{% endif %}
 
 {% if machinemgmt %}
 The Vertical Pod Autoscaler Operator (VPA) consists of three components: the recommender, updater, and admission controller. The Operator and each component has its own pod in the VPA namespace on the control plane nodes.
@@ -373,8 +373,8 @@ vpa-updater-default-db8b58df-2nkvf                  1/1     Running   0         
     ```
 
 {% if context == "nodes-pods-vertical-autoscaler" %}
-{%- set vpa = false -%}
+{%- set vpa = "" -%}
 {% endif %}
 {% if context == "creating-infrastructure-machinesets" %}
-{%- set machinemgmt = false -%}
+{%- set machinemgmt = "" -%}
 {% endif %}

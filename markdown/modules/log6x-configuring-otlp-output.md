@@ -14,7 +14,7 @@ Cluster administrators can use the OpenTelemetry Protocol (OTLP) output to colle
     kind: ClusterLogForwarder
     metadata:
       annotations:
-        observability.openshift.io/tech-preview-otlp-output: "enabled" # (1)
+        observability.openshift.io/tech-preview-otlp-output: "enabled" (1)
       name: clf-otlp
     spec:
       serviceAccount:
@@ -29,7 +29,7 @@ Cluster administrators can use the OpenTelemetry Protocol (OTLP) output to colle
             maxRetryDuration: 20
             maxWrite: 10M
             minRetryDuration: 5
-          url: <otlp_url> # (2)
+          url: <otlp_url> (2)
       pipelines:
       - inputRefs:
         - application
@@ -43,8 +43,8 @@ Cluster administrators can use the OpenTelemetry Protocol (OTLP) output to colle
     1.  This URL must be absolute and is a placeholder for the OTLP endpoint where logs are sent.
 
 
-:::note
+    :::note
 
-The OTLP output uses the OpenTelemetry data model, which is different from the ViaQ data model that is used by other output types. It adheres to the OTLP using [OpenTelemetry Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/) defined by the OpenTelemetry Observability framework.
-
-:::
+    The OTLP output uses the OpenTelemetry data model, which is different from the ViaQ data model that is used by other output types. It adheres to the OTLP using [OpenTelemetry Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/) defined by the OpenTelemetry Observability framework.
+    
+    :::

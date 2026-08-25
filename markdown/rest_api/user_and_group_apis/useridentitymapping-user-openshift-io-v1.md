@@ -1,5 +1,5 @@
 ---
-title: "UserIdentityMapping []"
+title: "UserIdentityMapping [user.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -34,7 +34,7 @@ The following API endpoints are available:
 
 *   `/apis/user.openshift.io/v1/useridentitymappings`
     *   `POST`: create an UserIdentityMapping
-*   `/apis/user.openshift.io/v1/useridentitymappings/{{ name }}`
+*   `/apis/user.openshift.io/v1/useridentitymappings/{{ name }}`{minja}
     *   `DELETE`: delete an UserIdentityMapping
     *   `GET`: read the specified UserIdentityMapping
     *   `PATCH`: partially update the specified UserIdentityMapping

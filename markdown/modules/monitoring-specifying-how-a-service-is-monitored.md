@@ -32,13 +32,13 @@ This procedure shows you how to create a `ServiceMonitor` resource for a service
     kind: ServiceMonitor
     metadata:
       name: prometheus-example-monitor
-      namespace: ns1 #<1>
+      namespace: ns1 (1)
     spec:
       endpoints:
       - interval: 30s
-        port: web #<2>
+        port: web (2)
         scheme: http
-      selector: #<3>
+      selector: (3)
         matchLabels:
           app: prometheus-example-app
     ```
@@ -46,11 +46,11 @@ This procedure shows you how to create a `ServiceMonitor` resource for a service
     1.  Specify endpoint ports to be scraped by Prometheus.
     1.  Configure a selector to match your service based on its metadata labels.
 
-        :::note
+    :::note
 
-        A `ServiceMonitor` resource in a user-defined namespace can only discover services in the same namespace. That is, the `namespaceSelector` field of the `ServiceMonitor` resource is always ignored.
-        
-        :::
+    A `ServiceMonitor` resource in a user-defined namespace can only discover services in the same namespace. That is, the `namespaceSelector` field of the `ServiceMonitor` resource is always ignored.
+    
+    :::
 
 1.  Apply the configuration to the cluster:
     ```terminal

@@ -7,7 +7,7 @@ title: "Installing a cluster on {{ oci_edge_no_rt }} by using the Agent-based In
 # Installing a cluster on {{ oci_edge_no_rt }} by using the Agent-based Installer {id="installing-c3-agent-based-installer"}
 {%- set context = "installing-c3-agent-based-installer" %}
 
-You can use the Agent-based Installer to install a cluster on {{ oci_edge }}, so that you can run cluster workloads on on-premise infrastructure while still using {{ oci_first }} services.
+You can use the Agent-based Installer to install a cluster on {{ oci_edge }}, so that you can run cluster workloads on on-premise infrastructure while still using {{ oci_first }} services. {._abstract}
 
 The following procedures describe a cluster installation on {{ oci_c3 }} as an example.
 
@@ -18,12 +18,14 @@ The following procedures describe a cluster installation on {{ oci_c3 }} as an e
 {% leveloffset +1 %}{% include "./modules/abi-c3-resources-services.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Learn About Oracle Cloud Basics (Oracle documentation)](https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/concepts.htm)
 
 {% leveloffset +1 %}{% include "./modules/creating-config-files-cluster-install-oci.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About {{ product_title }} installation](/architecture/architecture-installation#installation-overview_architecture-installation)
 *   [Selecting a cluster installation type](/installing/overview/installing-preparing#installing-preparing-selecting-cluster-type_installing-preparing)
@@ -39,7 +41,7 @@ The following procedures describe a cluster installation on {{ oci_c3 }} as an e
 
 {% leveloffset +1 %}{% include "./modules/verifying-cluster-install-oci-agent-based.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Gathering log data from a failed Agent-based installation](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-ocp-agent-gather-log_installing-with-agent-based-installer)
 *   [Adding worker nodes to an on-premise cluster](/nodes/nodes/nodes-nodes-adding-node-iso#adding-node-iso)

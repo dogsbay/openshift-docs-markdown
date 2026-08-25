@@ -5,9 +5,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a manifest object that includes a customized br-ex bridge {id="creating-manifest-file-customized-br-ex-bridge_{{ context }}"}
 
-{%- if not agent %}
-By default, {{ product_title }} automatically configures the Open vSwitch (OVS) `br-ex` bridge on bare-metal nodes. For advanced networking requirements, you can override this default behavior on bare-metal platforms. To do this, create a `MachineConfig` object that includes an NMState configuration file.
-{% endif %} {._abstract}
+{% if not agent %}
+By default, {{ product_title }} automatically configures the Open vSwitch (OVS) `br-ex` bridge on bare-metal nodes. For advanced networking requirements, you can override this default behavior on bare-metal platforms. To do this, create a `MachineConfig` object that includes an NMState configuration file. {._abstract}
+{% endif %}
 
 {% if agent %}
 By default, {{ product_title }} automatically configures the Open vSwitch (OVS) `br-ex` bridge on nodes. For advanced networking requirements, you can override this default behavior on bare-metal platforms. To do this, use the Agent-based Installer to create a `MachineConfig` object that includes an NMState configuration file.
@@ -71,7 +71,7 @@ The following list of interface names are reserved and you cannot use the names 
 *   Optional: You have installed the [`nmstatectl`](https://nmstate.io/user/quick_guide.html) CLI tool to validate your NMState configuration.
 {%- if agent %}
 *   You checked that an `openshift` subdirectory exists in your installation directory. If the subdirectory does not exist, create the subdirectory.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -156,7 +156,7 @@ The following list of interface names are reserved and you cannot use the names 
 
 {% if agent %}
 1.  Create a `MachineConfig` file as an additional manifest file. Define a customized `br-ex` bridge network configuration analogous to the following example in the file. The Agent-based Installer automatically applies the updates from the `MachineConfig` object to your cluster.
-    {%- endif %}
+{% endif %}
     ```yaml
     apiVersion: machineconfiguration.openshift.io/v1
     kind: MachineConfig
@@ -218,5 +218,5 @@ The following list of interface names are reserved and you cannot use the names 
 {% endif %}
 
 {% if context == "installing-with-agent-based-installer" %}
-{%- set agent = false -%}
+{%- set agent = "" -%}
 {% endif %}

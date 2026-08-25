@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Autoscaling {id="serverless-autoscaling-developer"}
 {% include "./_attributes/common-attributes.md" %}
+# Autoscaling {id="serverless-autoscaling-developer"}
 {%- set context = "serverless-autoscaling-developer" %}
 
 Knative Serving provides automatic scaling, or _autoscaling_, for applications to match incoming demand. For example, if an application is receiving no traffic, and scale-to-zero is enabled, Knative Serving scales the application down to zero replicas. If scale-to-zero is disabled, the application is scaled down to the minimum number of replicas configured for applications on the cluster. Replicas can also be scaled up to meet demand if traffic to the application increases.

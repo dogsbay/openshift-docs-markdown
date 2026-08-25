@@ -141,7 +141,7 @@ Deletes all subscriptions.
 
 ### HTTP method {id="_http_method"}
 
-`GET api/ocloudNotifications/v2/subscriptions/{{ subscription_id }}`
+`GET api/ocloudNotifications/v2/subscriptions/{{ subscription_id }}`{minja}
 
 ### Description {id="_description"}
 
@@ -164,7 +164,7 @@ Returns details for the subscription with ID `subscription_id`.
 
 ### HTTP method {id="_http_method"}
 
-`DELETE api/ocloudNotifications/v2/subscriptions/{{ subscription_id }}`
+`DELETE api/ocloudNotifications/v2/subscriptions/{{ subscription_id }}`{minja}
 
 ### Description {id="_description"}
 
@@ -256,15 +256,15 @@ You can use equipment synchronization status subscriptions together to deliver a
 
 ### HTTP method {id="_http_method"}
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/ptp-status/lock-state/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/ptp-status/lock-state/CurrentState`{minja}
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/sync-status/os-clock-sync-state/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/sync-status/os-clock-sync-state/CurrentState`{minja}
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/ptp-status/clock-class/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/ptp-status/clock-class/CurrentState`{minja}
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/sync-status/sync-state/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/sync-status/sync-state/CurrentState`{minja}
 
-`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/gnss-status/gnss-sync-state/CurrentState`
+`GET api/ocloudNotifications/v2/cluster/node/{{ node_name }}/sync/gnss-status/gnss-sync-state/CurrentState`{minja}
 
 ### Description {id="_description"}
 

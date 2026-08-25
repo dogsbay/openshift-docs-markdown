@@ -3,8 +3,8 @@ title: "Perform {{ sno }} network reconfiguration"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Perform {{ sno }} network reconfiguration {id="cnf-configuring-sno-ip-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Perform {{ sno }} network reconfiguration {id="cnf-configuring-sno-ip-configuration"}
 {%- set context = "configuring-sno-ip-configuration" %}
 
 You can perform a network reconfiguration on a {{ sno }} cluster by editing the `IPConfig` custom resource (CR) and transitioning through the configuration stages.

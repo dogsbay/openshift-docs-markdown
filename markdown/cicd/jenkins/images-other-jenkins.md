@@ -3,8 +3,8 @@ title: Configuring Jenkins images
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring Jenkins images {id="images-other-jenkins"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring Jenkins images {id="images-other-jenkins"}
 {%- set context = "images-other-jenkins" %}
 
 {{ product_title }} provides a container image for running Jenkins. This image provides a Jenkins server instance, which can be used to set up a basic flow for continuous testing, integration, and delivery.
@@ -66,7 +66,7 @@ The Jenkins image can be run with mounted volumes to enable persistent storage f
 
 {% leveloffset +1 %}{% include "./modules/images-other-jenkins-memory.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   See [Base image options](/architecture/understanding-development#base-image-options) for more information about the [Red Hat Universal Base Images](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/index#using_red_hat_base_container_images_standard_and_minimal) (UBI).

@@ -7,7 +7,7 @@ title: "Deploying {{ hcp }} on {{ ibm_power_title }}"
 # Deploying {{ hcp }} on {{ ibm_power_title }} {id="hcp-deploy-ibm-power"}
 {%- set context = "hcp-deploy-ibm-power" %}
 
-You can deploy {{ hcp }} on {{ ibm_power_title }} by configuring a cluster to function as a hosting cluster. This configuration provides an efficient and scalable solution for managing many clusters. The hosting cluster is an {{ product_title }} cluster that hosts control planes. The hosting cluster is also known as the _management_ cluster.
+You can deploy {{ hcp }} on {{ ibm_power_title }} by configuring a cluster to function as a hosting cluster. This configuration provides an efficient and scalable solution for managing many clusters. The hosting cluster is an {{ product_title }} cluster that hosts control planes. The hosting cluster is also known as the _management_ cluster. {._abstract}
 
 
 :::note
@@ -28,6 +28,7 @@ When you create a hosted cluster with the Agent platform, HyperShift installs th
 {% leveloffset +1 %}{% include "./modules/hcp-ibm-power-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 *   [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
@@ -44,6 +45,7 @@ When you create a hosted cluster with the Agent platform, HyperShift installs th
 {% leveloffset +1 %}{% include "./modules/hcp-bm-hc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Requirements for hosted control planes](/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements)
 *   [DNS configurations on bare metal](/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-dns_hcp-deploy-bm)
@@ -63,6 +65,7 @@ When you create a hosted cluster with the Agent platform, HyperShift installs th
 {% leveloffset +2 %}{% include "./modules/hcp-ibm-power-heterogeneous-nodepools-create-agent-cluster.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Multi-arch release images](https://multi.ocp.releases.ci.openshift.org/)
 

@@ -84,10 +84,10 @@ You can configure a toleration for log store pods by adding a taint and then mod
         elasticsearch:
           nodeCount: 1
           tolerations:
-          - key: lokistack # (1)
-            operator: Exists # (2)
-            effect: NoExecute # (3)
-            tolerationSeconds: 6000 # (4)
+          - key: lokistack (1)
+            operator: Exists (2)
+            effect: NoExecute (3)
+            tolerationSeconds: 6000 (4)
     # ...
     ```
     1.  Specify the key that you added to the node.

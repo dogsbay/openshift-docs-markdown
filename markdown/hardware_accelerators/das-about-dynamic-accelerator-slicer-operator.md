@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Dynamic Accelerator Slicer (DAS) Operator {id="das-about-dynamic-accelerator-slicer-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Dynamic Accelerator Slicer (DAS) Operator {id="das-about-dynamic-accelerator-slicer-operator"}
 {%- set context = "das-about-dynamic-accelerator-slicer-operator" %}
 
 {%- set FeatureName = "Dynamic Accelerator Slicer Operator" %}

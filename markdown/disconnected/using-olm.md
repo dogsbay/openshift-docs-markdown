@@ -3,11 +3,11 @@ title: Using Operator Lifecycle Manager in disconnected environments
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using Operator Lifecycle Manager in disconnected environments {id="olm-restricted-networks"}
 {% include "./_attributes/common-attributes.md" %}
+# Using Operator Lifecycle Manager in disconnected environments {id="olm-restricted-networks"}
 {%- set context = "olm-restricted-networks" %}
 
-For {{ product_title }} clusters in disconnected environments, Operator Lifecycle Manager (OLM) by default cannot access the Red&#160;Hat-provided software catalog sources hosted on remote registries because those remote sources require full internet connectivity.
+For {{ product_title }} clusters in disconnected environments, Operator Lifecycle Manager (OLM) by default cannot access the Red&#160;Hat-provided software catalog sources hosted on remote registries because those remote sources require full internet connectivity. {._abstract}
 
 However, as a cluster administrator you can still enable your cluster to use OLM in a disconnected environment if you have a workstation that has full internet access. The workstation, which requires full internet access to pull the remote software catalog content, is used to prepare local mirrors of the remote sources, and push the content to a mirror registry.
 
@@ -48,6 +48,7 @@ Infrastructure features
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Red&#160;Hat Ecosystem Catalog](https://catalog.redhat.com/software/search?p=1&deployed_as=Operator&type=Containerized%20application&badges_and_features=Disconnected)
 
@@ -58,6 +59,7 @@ Infrastructure features
 {% leveloffset +1 %}{% include "./modules/mirroring-operator-catalog.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring Operator catalogs for use with disconnected clusters](/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)
 *   [Operator Framework packaging format](/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
@@ -66,7 +68,7 @@ Infrastructure features
 
 {% leveloffset +1 %}{% include "./modules/olm-creating-catalog-from-index.md" %}{% endleveloffset %}
 
-## Additional resources {id="using-olm-additional-resources_{{ context }}"}
+## Additional resources {id="using-olm-additional-resources_{{ context }}" ._additional-resources}
 
 *   [Red&#160;Hat-provided Operator catalogs](/operators/understanding/olm-rh-catalogs#olm-rh-catalogs)
 *   [Accessing images for Operators from private registries](/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)

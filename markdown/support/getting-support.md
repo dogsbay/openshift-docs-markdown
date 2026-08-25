@@ -3,15 +3,15 @@ title: Getting support
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Getting support {id="getting-support"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- if openshift_dedicated %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "getting-support" %}
 
-To resolve issues with your {{ product_title }} cluster, you can search the Red&#160;Hat Knowledgebase, submit a support case, and use remote health monitoring tools.
+To resolve issues with your {{ product_title }} cluster, you can search the Red&#160;Hat Knowledgebase, submit a support case, and use remote health monitoring tools. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/support.md" %}{% endleveloffset %}
 
@@ -25,6 +25,6 @@ To resolve issues with your {{ product_title }} cluster, you can search the Red&
 {% leveloffset +1 %}{% include "./modules/about-self-service-tsr.md" %}{% endleveloffset %}
 {% endif %}
 
-## Additional resources {id="getting-support-additional-resources"}
+## Additional resources {id="getting-support-additional-resources" ._additional-resources}
 
 *   [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)

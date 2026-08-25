@@ -7,7 +7,7 @@ You can use network observability and eBPF to enrich network flows from a Kubern
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  In the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster**, and then select the **YAML** tab.
 1.  Configure the `FlowCollector` custom resource for `PacketTranslation`, for example:

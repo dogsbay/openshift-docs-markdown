@@ -3,11 +3,11 @@ title: About Single Root I/O Virtualization (SR-IOV) hardware networks
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About Single Root I/O Virtualization (SR-IOV) hardware networks {id="about-sriov"}
 {% include "./_attributes/common-attributes.md" %}
+# About Single Root I/O Virtualization (SR-IOV) hardware networks {id="about-sriov"}
 {%- set context = "about-sriov" %}
 
-To share a single physical device with multiple pods, implement the Single Root I/O Virtualization (SR-IOV) specification. This standard enables flexible PCI device assignment, allowing a device to show as multiple separate physical devices for efficient resource allocation.
+To share a single physical device with multiple pods, implement the Single Root I/O Virtualization (SR-IOV) specification. This standard enables flexible PCI device assignment, allowing a device to show as multiple separate physical devices for efficient resource allocation. {._abstract}
 
 
 :::note
@@ -62,7 +62,7 @@ You can enable SR-IOV on a node by using the following command:
 $ oc label node <node_name> feature.node.kubernetes.io/network-sriov.capable="true"
 ```
 
-## Additional resources {id="additional-resources-about-sr-iov_{{ context }}"}
+## Additional resources {id="additional-resources-about-sr-iov_{{ context }}" ._additional-resources}
 
 *   [Installing the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
 
@@ -111,7 +111,7 @@ Use caution when disabling the SR-IOV Network Operator Admission Controller webh
 :::
 
 
-## Additional resources {id="configure-multi-networks-additional-resources"}
+## Additional resources {id="configure-multi-networks-additional-resources" ._additional-resources}
 
 *   [Configuring multi-network policy](/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)
 

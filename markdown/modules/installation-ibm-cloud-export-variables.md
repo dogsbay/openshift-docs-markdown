@@ -35,46 +35,46 @@ You must set the API key you created as a global variable; the installation prog
 **Procedure**
 
 *   Export your API key for your account as a global variable:
-    {%- if ibm_vpc %}
+{%- if ibm_vpc %}
     ```terminal
     $ export IC_API_KEY=<api_key>
     ```
-{% endif %}
-{% if ibm_power_vs %}
+{%- endif %}
+{%- if ibm_power_vs %}
     ```terminal
     $ export IBMCLOUD_API_KEY=<api_key>
     ```
-{% endif %}
+{%- endif %}
 
 
-:::important
+    :::important
 
-You must set the variable name exactly as specified; the installation program expects the variable name to be present during startup.
-
-:::
+    You must set the variable name exactly as specified; the installation program expects the variable name to be present during startup.
+    
+    :::
 
 
 {% if context == "installing-ibm-cloud-customizations" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-vpc" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-private" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-customizations" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-private-cluster" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-ibm-powervs-vpc" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-restricted" %}
-{%- set ibm_vpc = false -%}
+{%- set ibm_vpc = "" -%}
 {% endif %}

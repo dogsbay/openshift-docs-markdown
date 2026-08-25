@@ -3,8 +3,8 @@ title: Configuring Service Mesh for production
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring Service Mesh for production {id="ossm-production"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring Service Mesh for production {id="ossm-production"}
 {%- set context = "ossm-architecture" %}
 
 When you are ready to move from a basic installation to production, you must configure your control plane, tracing, and security certificates to meet production requirements.
@@ -16,6 +16,6 @@ When you are ready to move from a basic installation to production, you must con
 
 {% leveloffset +1 %}{% include "./modules/ossm-smcp-prod.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_ossm-production"}
+## Additional resources {id="additional-resources_ossm-production" ._additional-resources}
 
 *   For more information about tuning {{ SMProductShortName }} for performance, see [Performance and scalability](/service_mesh/v2x/ossm-performance-scalability#ossm-performance-scalability).

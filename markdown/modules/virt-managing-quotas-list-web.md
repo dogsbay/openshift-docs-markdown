@@ -11,7 +11,7 @@ The Application Aware Quota (AAQ) quotas page in the {{ product_title }} web con
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Virtualization** -> **Quotas**.
+1.  In the {{ product_title }} web console, click **Virtualization** → **Quotas**.
 
     The quotas list view is displayed, showing all project-scoped AAQ quotas by default.
 1.  Click the **Cluster-scoped quotas** tab to view cluster scoped quotas.

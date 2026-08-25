@@ -13,7 +13,7 @@
 # Cloud controller manager capability {id="_cloud_controller_manager_capability"}
 {% endif %}
 
-{%- if cluster_caps %}
+{% if cluster_caps %}
 The Cloud Controller Manager Operator provides features for the `CloudControllerManager` capability. {._abstract}
 
 
@@ -69,8 +69,8 @@ Project
 {% endif %}
 
 {% if context == "operator-reference" %}
-{%- set operators = false -%}
+{%- set operators = "" -%}
 {% endif %}
 {% if context == "cluster-capabilities" %}
-{%- set cluster_caps = false -%}
+{%- set cluster_caps = "" -%}
 {% endif %}

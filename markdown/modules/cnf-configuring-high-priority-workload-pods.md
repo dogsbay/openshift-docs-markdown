@@ -5,7 +5,7 @@ To protect high priority workloads when using power saving configurations on a n
 
 By disabling P-states and C-states at the pod level, you can configure high priority workloads for best performance and lowest latency.
 
-***Configuration for high priority workloads***
+**Configuration for high priority workloads**
 
 <table>
 <thead>

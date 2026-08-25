@@ -10,7 +10,7 @@ You can launch an {{ ibm_name }} Secure Execution VM on {{ ibm_z_name }} and {{ 
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **Catalog** in the web console.
+1.  Navigate to **Virtualization** → **Catalog** in the web console.
 1.  Click the **Customize VirtualMachine** button.
 1.  Click the **YAML** tab, and include the `launchSecurity: {}` parameter in the YAML.
     ```yaml

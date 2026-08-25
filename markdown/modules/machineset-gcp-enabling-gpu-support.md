@@ -3,14 +3,14 @@
 
 Use the {{ gcp_first }} Compute Engine to add GPUs to Virtual Machine (VM) instances. Workloads that benefit from access to GPU resources can perform better on compute machines with this feature enabled. {{ product_title }} on {{ gcp_short }} supports NVIDIA GPU models in the A2 and N1 machine series. {._abstract}
 
-***Supported GPU configurations***
+**Supported GPU configurations**
 
 <table>
 <thead>
 <tr>
   <th>Model name</th>
   <th>GPU type</th>
-  <th>Machine types ^[1]^</th>
+  <th>Machine types <sup>[1]</sup></th>
 </tr>
 </thead>
 <tbody>
@@ -21,16 +21,18 @@ Use the {{ gcp_first }} Compute Engine to add GPUs to Virtual Machine (VM) insta
 </tr>
 <tr>
   <td>NVIDIA K80</td>
-  <td><code>nvidia-tesla-k80</code> .5+a</td>
-  <td>* <code>n1-standard-1</code></td>
+  <td><code>nvidia-tesla-k80</code></td>
+  <td rowspan="5"><ul><li><code>n1-standard-1</code></li><li><code>n1-standard-2</code></li><li><code>n1-standard-4</code></li><li><code>n1-standard-8</code></li><li><code>n1-standard-16</code></li><li><code>n1-standard-32</code></li><li><code>n1-standard-64</code></li><li><code>n1-standard-96</code></li><li><code>n1-highmem-2</code></li><li><code>n1-highmem-4</code></li><li><code>n1-highmem-8</code></li><li><code>n1-highmem-16</code></li><li><code>n1-highmem-32</code></li><li><code>n1-highmem-64</code></li><li><code>n1-highmem-96</code></li><li><code>n1-highcpu-2</code></li><li><code>n1-highcpu-4</code></li><li><code>n1-highcpu-8</code></li><li><code>n1-highcpu-16</code></li><li><code>n1-highcpu-32</code></li><li><code>n1-highcpu-64</code></li><li><code>n1-highcpu-96</code></li></ul></td>
 </tr>
 <tr>
   <td>NVIDIA P100</td>
   <td><code>nvidia-tesla-p100</code></td>
-  <td>NVIDIA P4</td>
 </tr>
 <tr>
+  <td>NVIDIA P4</td>
   <td><code>nvidia-tesla-p4</code></td>
+</tr>
+<tr>
   <td>NVIDIA T4</td>
   <td><code>nvidia-tesla-t4</code></td>
 </tr>

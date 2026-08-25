@@ -34,23 +34,23 @@ If you have enabled {{ hcp }} in your cluster, set a custom priority threshold t
 *   Ensure that you have downloaded the {{ cluster_manager_url_pull }} as shown in _Obtaining the installation program_ in the installation documentation for your platform.
 
     If you have the pull secret, add the `redhat-operators` catalog to the OperatorHub custom resource (CR) as shown in _Configuring {{ product_title }} to use Red Hat Operators_.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
 1.  Create the required namespace for the {{ descheduler_operator }}.
-    1.  Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+    1.  Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
     1.  Enter `openshift-kube-descheduler-operator` in the **Name** field, enter `openshift.io/cluster-monitoring=true` in the **Labels** field to enable descheduler metrics, and click **Create**.
 1.  Install the {{ descheduler_operator }}.
-    1.  Navigate to **Ecosystem** -> **Software Catalog**.
+    1.  Navigate to **Ecosystem** → **Software Catalog**.
     1.  Type **{{ descheduler_operator }}** into the filter box.
     1.  Select the **{{ descheduler_operator }}** and click **Install**.
     1.  On the **Install Operator** page, select **A specific namespace on the cluster**. Select **openshift-kube-descheduler-operator** from the drop-down menu.
     1.  Adjust the values for the **Update Channel** and **Approval Strategy** to the desired values.
     1.  Click **Install**.
 1.  Create a descheduler instance.
-    1.  From the **Ecosystem** -> **Installed Operators** page, click the **{{ descheduler_operator }}**.
+    1.  From the **Ecosystem** → **Installed Operators** page, click the **{{ descheduler_operator }}**.
     1.  Select the **Kube Descheduler** tab and click **Create KubeDescheduler**.
     1.  Edit the settings as necessary.
         1.  To evict pods instead of simulating the evictions, change the **Mode** field to **Automatic**.
@@ -105,9 +105,9 @@ If you have enabled {{ hcp }} in your cluster, set a custom priority threshold t
 {% endif %}
 
 {% if context == "nodes-descheduler-configuring" %}
-{%- set nodes = false -%}
+{%- set nodes = "" -%}
 {% endif %}
 
 {% if context == "virt-enabling-descheduler-evictions" %}
-{%- set virt = false -%}
+{%- set virt = "" -%}
 {% endif %}

@@ -12,6 +12,7 @@ If your private hosted cluster gets stuck, check the `AzurePrivateLinkService` c
       -o jsonpath='{.items[0].status.conditions}' | jq .
     ```
 1.  Review the output and compare it to the following condition table:
+
     **Private cluster stuck conditions**
 
     | Condition | Possible cause |

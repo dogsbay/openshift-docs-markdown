@@ -8,6 +8,6 @@ title: "Installing the {{ js_operator }}"
 
 {%- set context = "js-install" %}
 
-Install the {{ js_operator }} on {{ product_title }} to enable management of large-scale, coordinated computing workloads, giving your applications a unified API and failure recovery.
+Install the {{ js_operator }} on {{ product_title }} to enable management of large-scale, coordinated computing workloads, giving your applications a unified API and failure recovery. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installing-jobset.md" %}{% endleveloffset %}

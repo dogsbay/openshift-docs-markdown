@@ -16,7 +16,7 @@ You can create an htpasswd identity provider (IDP) with the {{ cluster_manager }
 
     :::note
 
-    You must include the password within quotes such as ’password'` to prevent your password from disrupting the Bash commands.
+    You must include the password within quotes such as `'password'` to prevent your password from disrupting the Bash commands.
 
     Passwords must include uppercase letters, lowercase letters, and numbers or symbols, specifically, ASCII-standard characters only. The password must be at least 14 characters.
     

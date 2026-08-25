@@ -1,5 +1,5 @@
 ---
-title: "VolumeSnapshot []"
+title: "VolumeSnapshot [snapshot.storage.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec defines the desired characteristics of a snapshot requested by a user. More info: https://kubernetes.io/docs/concepts/storage/volume-snapshots#volumesnapshots Required. |
 | `status` | `object` | status represents the current information of a snapshot. Consumers must verify binding between VolumeSnapshot and VolumeSnapshotContent objects is successful (by validating that both VolumeSnapshot and VolumeSnapshotContent point at each other) before using this object. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,6 +49,7 @@ Required
 | --- | --- | --- |
 | `source` | `object` | source specifies where a snapshot will be created from. This field is immutable after creation. Required. |
 | `volumeSnapshotClassName` | `string` | VolumeSnapshotClassName is the name of the VolumeSnapshotClass requested by the VolumeSnapshot. VolumeSnapshotClassName may be left nil to indicate that the default SnapshotClass should be used. A given cluster may have multiple default Volume SnapshotClasses: one default per CSI Driver. If a VolumeSnapshot does not specify a SnapshotClass, VolumeSnapshotSource will be checked to figure out what the associated CSI Driver is, and the default VolumeSnapshotClass associated with that CSI Driver will be used. If more than one VolumeSnapshotClass exist for a given CSI Driver and more than one have been marked as default, CreateSnapshot will fail and generate an event. Empty string is not allowed for this field. |
+
 ### .spec.source {id="_specsource"}
 
 Description
@@ -63,6 +65,7 @@ Type
 | --- | --- | --- |
 | `persistentVolumeClaimName` | `string` | persistentVolumeClaimName specifies the name of the PersistentVolumeClaim object representing the volume from which a snapshot should be created. This PVC is assumed to be in the same namespace as the VolumeSnapshot object. This field should be set if the snapshot does not exists, and needs to be created. This field is immutable. |
 | `volumeSnapshotContentName` | `string` | volumeSnapshotContentName specifies the name of a pre-existing VolumeSnapshotContent object representing an existing volume snapshot. This field should be set if the snapshot already exists and only needs a representation in Kubernetes. This field is immutable. |
+
 ### .status {id="_status"}
 
 Description
@@ -84,6 +87,7 @@ Type
 | `readyToUse` | `boolean` | readyToUse indicates if the snapshot is ready to be used to restore a volume. In dynamic snapshot creation case, this field will be filled in by the snapshot controller with the "ready_to_use" value returned from CSI "CreateSnapshot" gRPC call. For a pre-existing snapshot, this field will be filled with the "ready_to_use" value returned from the CSI "ListSnapshots" gRPC call if the driver supports it, otherwise, this field will be set to "True". If not specified, it means the readiness of a snapshot is unknown. |
 | `restoreSize` | `integer-or-string` | restoreSize represents the minimum size of volume required to create a volume from this snapshot. In dynamic snapshot creation case, this field will be filled in by the snapshot controller with the "size_bytes" value returned from CSI "CreateSnapshot" gRPC call. For a pre-existing snapshot, this field will be filled with the "size_bytes" value returned from the CSI "ListSnapshots" gRPC call if the driver supports it. When restoring a volume from this snapshot, the size of the volume MUST NOT be smaller than the restoreSize if it is specified, otherwise the restoration will fail. If not specified, it indicates that the size is unknown. |
 | `volumeGroupSnapshotName` | `string` | VolumeGroupSnapshotName is the name of the VolumeGroupSnapshot of which this VolumeSnapshot is a part of. |
+
 ### .status.error {id="_statuserror"}
 
 Description
@@ -109,16 +113,16 @@ The following API endpoints are available:
 
 *   `/apis/snapshot.storage.k8s.io/v1/volumesnapshots`
     *   `GET`: list objects of kind VolumeSnapshot
-*   `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots`
+*   `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots`{minja}
     *   `DELETE`: delete collection of VolumeSnapshot
     *   `GET`: list objects of kind VolumeSnapshot
     *   `POST`: create a VolumeSnapshot
-*   `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }}`
+*   `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }}`{minja}
     *   `DELETE`: delete a VolumeSnapshot
     *   `GET`: read the specified VolumeSnapshot
     *   `PATCH`: partially update the specified VolumeSnapshot
     *   `PUT`: replace the specified VolumeSnapshot
-*   `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }}/status`
+*   `/apis/snapshot.storage.k8s.io/v1/namespaces/{{ namespace }}/volumesnapshots/{{ name }}/status`{minja}
     *   `GET`: read status of the specified VolumeSnapshot
     *   `PATCH`: partially update status of the specified VolumeSnapshot
     *   `PUT`: replace status of the specified VolumeSnapshot

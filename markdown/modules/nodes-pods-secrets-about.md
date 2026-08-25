@@ -27,8 +27,8 @@ data:
 stringData:
   hostname: myapp.mydomain.com
 ```
-where:
 
+where:
 
 `type`
 :   Specifies the structure of the secret’s key names and values.

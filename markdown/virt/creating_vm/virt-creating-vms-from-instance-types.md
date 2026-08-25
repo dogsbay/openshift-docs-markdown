@@ -3,11 +3,11 @@ title: Creating virtual machines from instance types
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating virtual machines from instance types {id="virt-creating-vms-from-instance-types"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating virtual machines from instance types {id="virt-creating-vms-from-instance-types"}
 {%- set context = "virt-creating-vms-from-instance-types" %}
 
-You can simplify virtual machine (VM) creation by using instance types, whether you use the {{ product_title }} web console or the CLI to create VMs.
+You can simplify virtual machine (VM) creation by using instance types, whether you use the {{ product_title }} web console or the CLI to create VMs. {._abstract}
 
 {%- if openshift_rosa or openshift_rosa_hcp %}
 
@@ -17,7 +17,7 @@ Creating a VM from an instance type in {{ VirtProductName }} 4.15 and higher is 
 
 :::
 
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/virt-about-instance-types.md" %}{% endleveloffset %}
 
@@ -39,7 +39,7 @@ Creating a VM from an instance type in {{ VirtProductName }} 4.15 and higher is 
 
 {% leveloffset +2 %}{% include "./modules/virt-change-vm-instance-type-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Configuring a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
-{% endif %}
+{%- endif %}

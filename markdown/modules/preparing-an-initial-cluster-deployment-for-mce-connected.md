@@ -181,7 +181,7 @@ The `<assets_directory>` folder contains all the assets including the `install-c
           storage: 10Gi
     ```
 1.  Create a manifest to deploy subsequently spoke clusters.
-    ```yaml title="Example clusterimageset.yaml"
+    ```yaml title="Example clusterimageset.yaml" {minja}
       apiVersion: hive.openshift.io/v1
       kind: ClusterImageSet
       metadata:

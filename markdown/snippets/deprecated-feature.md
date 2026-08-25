@@ -7,8 +7,8 @@
 
 {% if not (openshift_rosa or openshift_dedicated) %}
 For the most recent list of major functionality that has been deprecated or removed within {{ product_title }}, refer to the _Deprecated and removed features_ section of the {{ product_title }} release notes.
-{%- endif %}
+{% endif %}
 
 :::
 
-{%- set FeatureName = false -%}
+{%- set FeatureName = "" -%}

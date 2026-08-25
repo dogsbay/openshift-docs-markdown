@@ -53,42 +53,42 @@ The default `install-config.yaml` file configuration from previous releases of {
     ```
 1.  Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
 
-```yaml title="Sample install-config.yaml file with multiple host groups"
-platform:
-  vsphere:
-    vcenters:
-# ...
-    datacenters:
-      - <data_center_1_name>
-    failureDomains:
-    - name: <host_group_1>
-      region: <cluster_1_region_tag>
-      zone: <host_group_1_zone_tag>
-      regionType: "ComputeCluster"
-      zoneType: "HostGroup"
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster_1>"
-        networks:
-        - <VM_Network1_name>
-        hostGroup: <host_group_1_name>
-        datastore: "/<data_center_1>/datastore/<datastore_1>"
-        resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
-        folder: "/<data_center_1>/vm/<folder_1>"
-    - name: <host_group_2>
-      region: <cluster_1_region_tag>
-      zone: <host_group_2_zone_tag>
-      regionType: "ComputeCluster"
-      zoneType: "HostGroup"
-      server: <fully_qualified_domain_name>
-      topology:
-        datacenter: <data_center_1>
-        computeCluster: "/<data_center_1>/host/<cluster_1>"
-        networks:
-        - <VM_Network1_name>
-        hostGroup: <host_group_2_name>
-        datastore: "/<data_center_1>/datastore/<datastore_1>"
-        resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
-        folder: "/<data_center_1>/vm/<folder_1>"
-```
+    ```yaml title="Sample install-config.yaml file with multiple host groups"
+    platform:
+      vsphere:
+        vcenters:
+    # ...
+        datacenters:
+          - <data_center_1_name>
+        failureDomains:
+        - name: <host_group_1>
+          region: <cluster_1_region_tag>
+          zone: <host_group_1_zone_tag>
+          regionType: "ComputeCluster"
+          zoneType: "HostGroup"
+          server: <fully_qualified_domain_name>
+          topology:
+            datacenter: <data_center_1>
+            computeCluster: "/<data_center_1>/host/<cluster_1>"
+            networks:
+            - <VM_Network1_name>
+            hostGroup: <host_group_1_name>
+            datastore: "/<data_center_1>/datastore/<datastore_1>"
+            resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
+            folder: "/<data_center_1>/vm/<folder_1>"
+        - name: <host_group_2>
+          region: <cluster_1_region_tag>
+          zone: <host_group_2_zone_tag>
+          regionType: "ComputeCluster"
+          zoneType: "HostGroup"
+          server: <fully_qualified_domain_name>
+          topology:
+            datacenter: <data_center_1>
+            computeCluster: "/<data_center_1>/host/<cluster_1>"
+            networks:
+            - <VM_Network1_name>
+            hostGroup: <host_group_2_name>
+            datastore: "/<data_center_1>/datastore/<datastore_1>"
+            resourcePool: "/<data_center_1>/host/<cluster_1>/Resources/<resourcePool_1>"
+            folder: "/<data_center_1>/vm/<folder_1>"
+    ```

@@ -51,17 +51,17 @@ controlPlane:
 {% endif %}
 
 {% if context == "installing-gcp-customizations" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-gcp-network-customizations" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-gcp-vpc" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp-installer-provisioned" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}

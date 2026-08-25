@@ -23,7 +23,7 @@ New features and enhancements
     *   Operator upgrade support
 
     You can now upgrade from a prior version of the Custom Metrics Autoscaler Operator. See "Changing the update channel for an Operator" in the "Additional resources" for information on upgrading an Operator.
-*   must-gather support
+    *   must-gather support
 
     You can now collect data about the Custom Metrics Autoscaler Operator and its components by using the {{ product_title }} `must-gather` tool. Currently, the process for using the `must-gather` tool with the Custom Metrics Autoscaler is different from that of other Operators. For more information, see "Gathering debugging data".
 
@@ -47,12 +47,12 @@ New features and enhancements
     *   Audit Logging
 
     You can now gather and view audit logs for the Custom Metrics Autoscaler Operator and its associated components. Audit logs are security-relevant chronological sets of records that document the sequence of activities that have affected the system by individual users, administrators, or other components of the system.
-*   Scale applications based on Apache Kafka metrics
+    *   Scale applications based on Apache Kafka metrics
 
     You can now use the KEDA Apache kafka trigger/scaler to scale deployments based on an Apache Kafka topic.
-*   Scale applications based on CPU metrics
+    *   Scale applications based on CPU metrics
 
     You can now use the KEDA CPU trigger/scaler to scale deployments based on CPU metrics.
-*   Scale applications based on memory metrics
+    *   Scale applications based on memory metrics
 
     You can now use the KEDA memory trigger/scaler to scale deployments based on memory metrics.

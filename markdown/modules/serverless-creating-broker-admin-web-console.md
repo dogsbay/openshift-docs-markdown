@@ -18,7 +18,7 @@
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** -> **Eventing**.
+1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** → **Eventing**.
 1.  In the **Create** list, select **Broker**. You will be directed to the **Create Broker** page.
 1.  Optional: Modify the YAML configuration for the broker.
 1.  Click **Create**.

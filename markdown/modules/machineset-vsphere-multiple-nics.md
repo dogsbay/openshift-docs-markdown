@@ -29,6 +29,7 @@ end::controlplane[]
     ```terminal
     $ oc get infrastructure cluster -o=jsonpath={.spec.platformSpec.vsphere.failureDomains}
     ```
+
     **Required network interface controller values**
 
     | `Infrastructure` resource value | Placeholder value for sample machine set | Description |

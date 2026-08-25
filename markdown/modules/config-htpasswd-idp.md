@@ -24,11 +24,11 @@ The htpasswd identity provider option is included only to create static administ
 {% endif %}
 
 {% if context == "config-identity-providers" %}
-{%- set osd_distro = false -%}
+{%- set osd_distro = "" -%}
 {% endif %}
 {% if context == "rosa-sts-config-identity-providers" %}
-{%- set rosa_distro = false -%}
+{%- set rosa_distro = "" -%}
 {% endif %}
 {% if context == "rosa-config-identity-providers" %}
-{%- set rosa_distro = false -%}
+{%- set rosa_distro = "" -%}
 {% endif %}

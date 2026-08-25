@@ -10,7 +10,7 @@ Set environment variables for your cluster name, region, and OpenID Connect (OID
 {% endif %}
 {% if openshift_rosa_hcp %}
 *   You have created a [multi-availability zone (AZ) {{ product_title }} cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-sts-creating-a-cluster-quickly).
-{%- endif %}
+{% endif %}
 
     :::note
 

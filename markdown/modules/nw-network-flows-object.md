@@ -3,7 +3,7 @@
 
 The fields for configuring network flows collectors in the Cluster Network Operator (CNO) are shown in the following table:
 
-***Network flows configuration***
+**Network flows configuration**
 
 <table>
 <thead>

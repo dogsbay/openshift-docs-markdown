@@ -3,12 +3,12 @@ title: Troubleshooting Windows container workload issues
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Troubleshooting Windows container workload issues {id="troubleshooting-windows-container-workload-issues"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "troubleshooting-windows-container-workload-issues" %}
 
-Use the following sections to troubleshoot Windows container workload issues.
+Use the following sections to troubleshoot Windows container workload issues. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/wmco-does-not-install.md" %}{% endleveloffset %}
 
@@ -22,7 +22,7 @@ Use the following sections to troubleshoot Windows container workload issues.
 {% leveloffset +1 %}{% include "./modules/collecting-windows-application-event-logs.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/collecting-containerd-logs-windows.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Configuring hybrid networking](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)
 *   [Containers on Windows troubleshooting](https://docs.microsoft.com/en-us/virtualization/windowscontainers/troubleshooting)

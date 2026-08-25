@@ -59,11 +59,11 @@ Use the following guide to prepare your private Microsoft Azure cluster for inst
     1.  Optional. If you have an existing VNet and subnet setup, replace `<subnet_name>` with the name of the existing compute subnet within the specified resource group.
     1.  Optional. If you have an existing VNet and subnet setup, replace `<vnet_name>` with the name of the existing virtual network (VNet) in the specified resource group.
 
-        :::note
+    :::note
 
-        The `imageregistry-config.yaml` file is consumed during the installation process. If desired, you must back it up before installation.
-        
-        :::
+    The `imageregistry-config.yaml` file is consumed during the installation process. If desired, you must back it up before installation.
+    
+    :::
 
 1.  Move the `imageregistry-config.yaml` file to the `<installation_directory/manifests>` folder by running the following command:
     ```terminal

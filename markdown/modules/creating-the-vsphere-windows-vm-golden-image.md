@@ -6,16 +6,16 @@ You must prepare your vSphere environment for Windows container workloads by cre
 **Prerequisites**
 
 *   You have created a private/public key pair, which is used to configure key-based authentication in the OpenSSH server. The private key must be configured in the Windows Machine Config Operator (WMCO) namespace so that the WMCO can communicate with the Windows VM.
-{% include "./snippets/wmco-key-ascii-encoding.md" %}
+    {% include "./snippets/wmco-key-ascii-encoding.md" %}
 
     See the "Configuring a secret for the Windows Machine Config Operator" section for more details.
 
 
-:::note
+    :::note
 
-You must use [Microsoft PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell) commands in several cases when creating your Windows VM. PowerShell commands in this guide are distinguished by the `PS C:\>` prefix.
-
-:::
+    You must use [Microsoft PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell) commands in several cases when creating your Windows VM. PowerShell commands in this guide are distinguished by the `PS C:\>` prefix.
+    
+    :::
 
 
 **Procedure**

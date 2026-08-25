@@ -11,7 +11,7 @@ You can use the web console to install the {{ external_secrets_console_plugin }}
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Enter **External Secrets Management Console** into the filter box.
 1.  Select **External Secrets Management Console**.
 1.  Select the {{ external_secrets_console_plugin }} version from the **Version** drop-down list, and click **Install**.

@@ -10,7 +10,7 @@ To resume a node from maintenance mode, you can delete a `NodeMaintenance` custo
 
 **Procedure**
 
-1.  From the **Administrator** perspective in the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  From the **Administrator** perspective in the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Select the Node Maintenance Operator from the list of Operators.
 1.  In the **Node Maintenance** tab, select the `NodeMaintenance` CR that you want to delete.
 1.  Click the Options menu {{ kebab }} at the end of the node and select **Delete NodeMaintenance**.

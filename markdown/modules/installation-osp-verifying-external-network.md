@@ -44,30 +44,35 @@ The {{ product_title }} installation process requires external network access. Y
     | `machineNetwork` | 10.0.0.0/16 |
     | `serviceNetwork` | 172.30.0.0/16 |
     | `clusterNetwork` | 10.128.0.0/14 |
+
     
     :::
 
-{% endif %}
-{% if osp_custom %}
+{%- endif %}
+{%- if osp_custom %}
 
     :::warning
 
-   \
-    If the installation program finds multiple networks with the same name, it sets one of them at random. To avoid this behavior, create unique names for resources in {{ rh_openstack }}.
-{%- endif %}
     +
+    If the installation program finds multiple networks with the same name, it sets one of them at random. To avoid this behavior, create unique names for resources in {{ rh_openstack }}.
+    
+    :::
+
+{%- endif %}
+
+    :::note
+
+    If the Neutron trunk service plugin is enabled, a trunk port is created by default. For more information, see [Neutron trunk port](https://wiki.openstack.org/wiki/Neutron/TrunkPort).
     
     :::
 
 
-    If the Neutron trunk service plugin is enabled, a trunk port is created by default. For more information, see [Neutron trunk port](https://wiki.openstack.org/wiki/Neutron/TrunkPort).
-
 {% if context == "installing-openstack-installer-custom" %}
-{%- set osp_custom = false -%}
+{%- set osp_custom = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user" %}
-{%- set osp_user = false -%}
+{%- set osp_user = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user-sr-iov" %}
-{%- set osp_user = false -%}
+{%- set osp_user = "" -%}
 {% endif %}

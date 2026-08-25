@@ -3,8 +3,8 @@ title: Getting support
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Getting support {id="windows-containers-support"}
 {% include "./_attributes/common-attributes.md" %}
+# Getting support {id="windows-containers-support"}
 {%- set context = "windows-containers-support" %}
 
 Windows Container Support for Red&#160;Hat OpenShift is provided and available as an optional, installable component. Windows Container Support for Red&#160;Hat OpenShift is not part of the {{ product_title }} subscription. It requires an additional Red&#160;Hat subscription and is supported according to the [Scope of coverage](https://access.redhat.com/support/offerings/production/soc/) and [Service level agreements](https://access.redhat.com/support/offerings/production/sla).

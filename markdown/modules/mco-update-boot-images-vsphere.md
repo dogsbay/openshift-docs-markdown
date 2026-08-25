@@ -56,7 +56,7 @@ For clusters that use a default {{ op_system }} image, you can configure the clu
     1.  On the **Ready to complete** tab, verify your settings and click **Finish**.
 
         The vSphere Client uploads the boot image to create the OVF template. This can take a few minutes depending on network speeds. You can keep track of this process in the task tab under _Deploy OVF template_.
-    1.  After the upload is complete, click the new virtual machine and click **Template** -> **Convert to template** -> **Yes**.
+    1.  After the upload is complete, click the new virtual machine and click **Template** → **Convert to template** → **Yes**.
 
         You now have a VM template based on the new boot image, which you can use to update the machine set objects.
 1.  Update each of your compute machine sets to include the new boot image:

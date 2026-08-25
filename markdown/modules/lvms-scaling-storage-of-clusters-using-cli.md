@@ -16,5 +16,5 @@ Scale up worker node storage capacity when running out of space, adding new appl
     $ oc edit <lvmcluster_file_name> -n <namespace>
     ```
 1.  Add the path to the new device in the `deviceSelector` field.
-{% include "./snippets/lvms-scaling-up-storage-lvmcluster-cr-snippet.md" %}
+    {% include "./snippets/lvms-scaling-up-storage-lvmcluster-cr-snippet.md" %}
 1.  Save the `LVMCluster` CR.

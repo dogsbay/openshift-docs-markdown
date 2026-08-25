@@ -37,7 +37,7 @@ Create your new service account that you use on your pod. {._abstract}
     $ oc describe serviceaccount ostoy-sa -n ${OSTOY_NAMESPACE}
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     Name:                ostoy-sa
     Namespace:           ostoy

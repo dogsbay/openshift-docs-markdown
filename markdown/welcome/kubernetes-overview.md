@@ -3,11 +3,11 @@ title: Kubernetes overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Kubernetes overview {id="kubernetes-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Kubernetes overview {id="kubernetes-overview"}
 {%- set context = "kubernetes-overview" %}
 
-You can run and manage container-based workloads by using Kubernetes, an open source container orchestration tool developed by Google. 
+You can run and manage container-based workloads by using Kubernetes, an open source container orchestration tool developed by Google.  {._abstract}
 
 The most common Kubernetes use case is to deploy an array of interconnected microservices, building an application in a cloud native way. You can create Kubernetes clusters that can span hosts across on-premise, public, private, or hybrid clouds.
 

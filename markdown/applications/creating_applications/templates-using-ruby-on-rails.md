@@ -3,11 +3,11 @@ title: Creating applications using Ruby on Rails
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating applications using Ruby on Rails {id="templates-using-ruby-on-rails"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating applications using Ruby on Rails {id="templates-using-ruby-on-rails"}
 {%- set context = "templates-ruby-on-rails" %}
 
-You can build and deploy a Ruby on Rails 4 application on {{ product_title }} by developing it locally.
+You can build and deploy a Ruby on Rails 4 application on {{ product_title }} by developing it locally. {._abstract}
 
 Store the source in Git, then deploy the database, frontend, and route services. With this process, you can validate your application locally before deploying it to the cluster as a set of distinct services.
 
@@ -26,8 +26,8 @@ You must complete each part of this tutorial in order to before you deploy your 
 *   You have basic Git knowledge.
 {%- if not openshift_online %}
 *   You have a running instance of {{ product_title }} 4.
-{% endif %}
-{% if openshift_online %}
+{%- endif %}
+{%- if openshift_online %}
 *   You have a provisioned account in OpenShift Online.
 {%- endif %}
 *   The {{ oc_first }} installed.

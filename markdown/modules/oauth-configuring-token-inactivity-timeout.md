@@ -49,7 +49,7 @@ If the token inactivity timeout is also configured in your OAuth client, that va
     ```
 
     Do not continue to the next step until `PROGRESSING` is listed as `False`, as shown in the following output:
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
     authentication   {{ product_version }}.0    True        False         False      145m
     ```
@@ -59,7 +59,7 @@ If the token inactivity timeout is also configured in your OAuth client, that va
     ```
 
     Do not continue to the next step until `PROGRESSING` is listed as `False`, as shown in the following output:
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
     kube-apiserver   {{ product_version }}.0     True        False         False      145m
     ```

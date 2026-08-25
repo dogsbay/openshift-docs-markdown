@@ -17,7 +17,7 @@ Only the parameters and fields listed in the [Config map reference for the {{ cm
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   The monitoring stack imposes additional resource requirements. Consult the computing resources recommendations in [Scaling the {{ cmo_full }}](/scalability_and_performance/recommended-performance-scale-practices/recommended-infrastructure-practices#scaling-cluster-monitoring-operator_recommended-infrastructure-practices) and verify that you have sufficient resources.
-{%- endif %}
+{% endif %}
 
 :::
 
@@ -50,7 +50,7 @@ In {{ product_title }}, you can enable monitoring for user-defined projects in a
 
 {%- if not (openshift_dedicated or openshift_rosa) %}
 {% leveloffset +2 %}{% include "./modules/monitoring-enabling-the-platform-alertmanager-instance-for-user-defined-alert-routing.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {% leveloffset +2 %}{% include "./modules/monitoring-enabling-a-separate-alertmanager-instance-for-user-defined-alert-routing.md" %}{% endleveloffset %}
 

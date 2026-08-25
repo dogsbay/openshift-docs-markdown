@@ -13,7 +13,7 @@ In earlier versions of {{ product_title }}, the Performance Addon Operator was u
 
 The following example `PerformanceProfile` CR illustrates the required {{ sno }} cluster configuration.
 
-```yaml title="Recommended performance profile configuration (PerformanceProfile.yaml)"
+```yaml title="Recommended performance profile configuration (PerformanceProfile.yaml)" {minja}
 {% include "./snippets/ztp_PerformanceProfile.yaml" %}
 ```
 

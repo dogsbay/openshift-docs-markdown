@@ -3,11 +3,11 @@ title: Configuring multi-network policy
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring multi-network policy {id="configuring-multi-network-policy"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring multi-network policy {id="configuring-multi-network-policy"}
 {%- set context = "configuring-multi-network-policy" %}
 
-As an administrator, you can use the `MultiNetworkPolicy` API to create multiple network policies that manage traffic for pods that are attached to secondary networks. For example, you can create policies that allow or deny traffic based on specific ports, IPs and ranges, or labels.
+As an administrator, you can use the `MultiNetworkPolicy` API to create multiple network policies that manage traffic for pods that are attached to secondary networks. For example, you can create policies that allow or deny traffic based on specific ports, IPs and ranges, or labels. {._abstract}
 
 Multi-network policies can be used to manage traffic on secondary networks in the cluster. These policies cannot manage the default cluster network or primary network of user-defined networks.
 
@@ -61,7 +61,7 @@ The `MultiNetworkPolicy` API and user-facing configuration are unchanged.
 
 {% leveloffset +2 %}{% include "./modules/nw-networkpolicy-allow-application-particular-namespace.md" %}{% endleveloffset %}
 
-## Additional resources {id="{{ context }}_additional-resources"}
+## Additional resources {id="{{ context }}_additional-resources" ._additional-resources}
 
 *   [About network policy](/networking/network_security/network_policy/about-network-policy#about-network-policy)
 *   [Understanding multiple networks](/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)

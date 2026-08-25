@@ -87,7 +87,7 @@ Kubernetes provides `Secret` objects, which can be used to store configuration a
     ```terminal
     $ oc set build-secret --pull bc/sample-build dockerhub
     ```
-{%- if not openshift_online %}
+{% if not openshift_online %}
 
     :::note
 
@@ -95,7 +95,7 @@ Kubernetes provides `Secret` objects, which can be used to store configuration a
     
     :::
 
-{%- endif %}
+{% endif %}
 
     You can also link the pull secret to the service account used by the build instead of specifying the `pullSecret` field. By default, builds use the `builder` service account. The pull secret is automatically added to the build if the secret contains a credential that matches the repository hosting the build’s input image. To link the pull secret to the service account used by the build instead of specifying the `pullSecret` field, enter the following command:
     ```terminal

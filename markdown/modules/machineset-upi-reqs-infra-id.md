@@ -15,5 +15,5 @@ To ensure the Machine API correctly identifies and manages virtual machines (VMs
     ```
 
 {% if context == "creating-machineset-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}

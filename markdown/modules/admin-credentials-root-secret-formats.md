@@ -101,8 +101,8 @@ data:
 {% endif %}
 
 {% if context == "cco-mode-mint" %}
-{%- set mint = false -%}
+{%- set mint = "" -%}
 {% endif %}
 {% if context == "cco-mode-passthrough" %}
-{%- set passthrough = false -%}
+{%- set passthrough = "" -%}
 {% endif %}

@@ -17,7 +17,7 @@ When you install the {{ SMProductShortName }} control plane, it automatically ge
 **Procedure from OpenShift console**
 
 1.  Log in to the {{ product_title }} web console as a user with cluster-admin rights. If you use {{ product_dedicated }}, you must have an account with the `dedicated-admin` role.
-1.  Navigate to **Networking** -> **Routes**.
+1.  Navigate to **Networking** → **Routes**.
 1.  On the **Routes** page, select the {{ SMProductShortName }} control plane project, for example `istio-system`, from the **Namespace** menu.
 
     The **Location** column displays the linked address for each route.
@@ -41,15 +41,14 @@ When you install the {{ SMProductShortName }} control plane, it automatically ge
 
     This command returns the URLs for the Kiali, Jaeger, Prometheus, and Grafana web consoles, and any other routes in your service mesh. You should see output similar to the following:
 
-```terminal
-NAME                    HOST/PORT                         SERVICES              PORT    TERMINATION
-bookinfo-gateway        bookinfo-gateway-yourcompany.com  istio-ingressgateway          http2
-grafana                 grafana-yourcompany.com           grafana               <all>   reencrypt/Redirect
-istio-ingressgateway    istio-ingress-yourcompany.com     istio-ingressgateway  8080
-jaeger                  jaeger-yourcompany.com            jaeger-query          <all>   reencrypt
-kiali                   kiali-yourcompany.com             kiali                 20001   reencrypt/Redirect
-prometheus              prometheus-yourcompany.com        prometheus            <all>   reencrypt/Redirect
-```
-
+    ```terminal
+    NAME                    HOST/PORT                         SERVICES              PORT    TERMINATION
+    bookinfo-gateway        bookinfo-gateway-yourcompany.com  istio-ingressgateway          http2
+    grafana                 grafana-yourcompany.com           grafana               <all>   reencrypt/Redirect
+    istio-ingressgateway    istio-ingress-yourcompany.com     istio-ingressgateway  8080
+    jaeger                  jaeger-yourcompany.com            jaeger-query          <all>   reencrypt
+    kiali                   kiali-yourcompany.com             kiali                 20001   reencrypt/Redirect
+    prometheus              prometheus-yourcompany.com        prometheus            <all>   reencrypt/Redirect
+    ```
 1.  Copy the URL for the console you want to access from the `HOST/PORT` column into a browser to open the console.
 1.  Click **Log In With OpenShift**.

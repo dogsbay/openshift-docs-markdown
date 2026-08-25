@@ -32,15 +32,15 @@ To choose a metrics collection profile for core {{ product_title }} monitoring c
     If you do not specify a value or if the `collectionProfile` key name does not exist in the config map, the default setting of `full` is used.
 
         The following example sets the metrics collection profile to `minimal` for the core platform instance of Prometheus:
-        ```yaml
-        apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: cluster-monitoring-config
-          namespace: openshift-monitoring
-        data:
-          config.yaml: |
-            prometheusK8s:
-              collectionProfile: *minimal*
-        ```
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: cluster-monitoring-config
+      namespace: openshift-monitoring
+    data:
+      config.yaml: |
+        prometheusK8s:
+          collectionProfile: *minimal*
+    ```
 1.  Save the file to apply the changes. The new configuration is applied automatically.

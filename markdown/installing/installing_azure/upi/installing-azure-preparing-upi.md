@@ -3,8 +3,8 @@ title: Preparing to install a cluster on Azure
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster on Azure {id="installing-azure-preparing-upi"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster on Azure {id="installing-azure-preparing-upi"}
 {%- set context = "installing-azure-preparing-upi" %}
 
 To prepare for installation of an {{ product_title }} cluster on {{ azure_short }}, complete the following steps:
@@ -28,5 +28,6 @@ To prepare for installation of an {{ product_title }} cluster on {{ azure_short 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   For more information about the Telemetry service, see [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring).

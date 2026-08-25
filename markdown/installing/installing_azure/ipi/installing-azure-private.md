@@ -3,11 +3,11 @@ title: Installing a private cluster on Azure
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a private cluster on Azure {id="installing-azure-private"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a private cluster on Azure {id="installing-azure-private"}
 {%- set context = "installing-azure-private" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a private cluster into an existing {{ azure_short }} Virtual Network (VNet) on {{ azure_full }}. The installation program provisions the rest of the required infrastructure, which you can further customize. To customize the installation, you modify parameters in the `install-config.yaml` file before you install the cluster.
+In {{ product_title }} version {{ product_version }}, you can install a private cluster into an existing {{ azure_short }} Virtual Network (VNet) on {{ azure_full }}. The installation program provisions the rest of the required infrastructure, which you can further customize. To customize the installation, you modify parameters in the `install-config.yaml` file before you install the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/private-clusters-default.md" %}{% endleveloffset %}
 
@@ -24,6 +24,7 @@ In {{ product_title }} version {{ product_version }}, you can install a private 
 {% leveloffset +2 %}{% include "./modules/installation-about-custom-azure-vnet-isolation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 *   [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
@@ -33,12 +34,14 @@ In {{ product_title }} version {{ product_version }}, you can install a private 
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -55,16 +58,18 @@ In {{ product_title }} version {{ product_version }}, you can install a private 
 {% leveloffset +2 %}{% include "./modules/installation-azure-config-yaml-simple.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
 {% leveloffset +2 %}{% include "./modules/installation-configure-proxy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   For more details about Accelerated Networking, see [Accelerated Networking for Microsoft Azure VMs](/machine_management/creating_machinesets/creating-machineset-azure#machineset-azure-accelerated-networking_creating-machineset-azure).
 
-## Alternatives to storing administrator-level secrets in the kube-system project {id="installing-azure-manual-modes_{{ context }}"}
+## Alternatives to storing administrator-level secrets in the kube-system project {id="installing-azure-manual-modes_{{ context }}" ._additional-resources}
 
 By default, administrator secrets are stored in the `kube-system` project. If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must use one of the following alternatives:
 
@@ -86,6 +91,7 @@ To install a cluster that uses {{ entra_first }}, you must configure the Cloud C
 {% leveloffset +1 %}{% include "./modules/installing-private-image-registry-private-azure.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   For the list of permissions needed to create a private storage endpoint, see [Required Azure permissions for installer-provisioned infrastructure](/installing/installing_azure/installing-azure-account#minimum-required-permissions-ipi-azure_installing-azure-account).
 
@@ -96,10 +102,11 @@ To install a cluster that uses {{ entra_first }}, you must configure the Cloud C
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
-## Next steps {id="_next_steps"}
+## Next steps {id="_next_steps" ._additional-resources}
 
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).
 *   If necessary, you can

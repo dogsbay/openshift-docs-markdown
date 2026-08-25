@@ -3,11 +3,11 @@ title: Resource quotas per project
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Resource quotas per project {id="quotas-setting-per-project"}
 {% include "./_attributes/common-attributes.md" %}
+# Resource quotas per project {id="quotas-setting-per-project"}
 {%- set context = "quotas-setting-per-project" %}
 
-A resource quota, defined by a `ResourceQuota` object, limits aggregate resource consumption per project. It limits the quantity of objects that you can create in a project by type, and the total amount of compute resources and storage consumed by the resources in that project.
+A resource quota, defined by a `ResourceQuota` object, limits aggregate resource consumption per project. It limits the quantity of objects that you can create in a project by type, and the total amount of compute resources and storage consumed by the resources in that project. {._abstract}
 
 This guide describes how resource quotas work, how cluster administrators can set and manage resource quotas on a per project basis, and how developers and cluster administrators can view them.
 

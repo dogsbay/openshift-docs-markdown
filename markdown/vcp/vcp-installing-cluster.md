@@ -8,7 +8,7 @@ title: Deploying a virtualized control plane
 {%- set context = "vcp-installing-cluster" %}
 
 After preparing your environment, install the virtualized control plane cluster by using your preferred installation method.
-The agent-based installer and {{ ztp_first }} are the recommended methods for virtualized control plane deployments.
+The agent-based installer and {{ ztp_first }} are the recommended methods for virtualized control plane deployments. {._abstract}
 
 {%- set FeatureName = "KubeVirt Redfish" %}
 {% include "./snippets/technology-preview.md" %}
@@ -19,7 +19,7 @@ The agent-based installer and {{ ztp_first }} are the recommended methods for vi
 
 {% leveloffset +1 %}{% include "./modules/proc_virt-installing-vcp-ipi.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Preparing to install with the agent-based installer](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)
 *   [Installation configuration parameters for the agent-based installer](/installing/installing_with_agent_based_installer/installation-config-parameters-agent#installation-config-parameters-agent)

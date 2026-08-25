@@ -48,11 +48,11 @@ spec:
     nodeSelector:
       disktype: hdd
 ```
-1.  You can use the `readiness` and `liveness` probe overrides to override all fields of a probe in a container of a deployment as specified in the Kubernetes API except for the fields related to the probe handler: `exec`, `grpc`, `httpGet`, and `tcpSocket`.
+    1.  You can use the `readiness` and `liveness` probe overrides to override all fields of a probe in a container of a deployment as specified in the Kubernetes API except for the fields related to the probe handler: `exec`, `grpc`, `httpGet`, and `tcpSocket`.
 
 
-:::note
+    :::note
 
-The `KnativeEventing` CR label and annotation settings override the deployment’s labels and annotations for both the deployment itself and the resulting pods.
-
-:::
+    The `KnativeEventing` CR label and annotation settings override the deployment’s labels and annotations for both the deployment itself and the resulting pods.
+    
+    :::

@@ -5,7 +5,7 @@ You can create a `dedicated-admins` role for {{ dedicated }} clusters or `cluste
 
 **Procedure**
 
-1.  Click the ***Add user*** button.
+1.  Click the **Add user** button.
 1.  Enter the ID of the user you want to grant cluster admin access.
 1.  Select the appropriate group for your user. Either `dedicated-admins` for {{ dedicated }} clusters, or `cluster-admins` for 
 {%- if openshift_rosa or openshift_rosa_hcp %}

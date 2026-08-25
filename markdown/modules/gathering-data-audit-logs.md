@@ -8,7 +8,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Gathering audit logs {id="gathering-data-audit-logs_{{ context }}"}
 
-{%- if support %}
+{% if support %}
 You can gather audit logs, which are a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system. You can gather audit logs for: {._abstract}
 
 *   etcd server
@@ -50,8 +50,8 @@ In {{ product_title }} deployments, customers who are not using the Customer Clo
 {% endif %}
 
 {% if context == "gathering-cluster-data" %}
-{%- set support = false -%}
+{%- set support = "" -%}
 {% endif %}
 {% if context == "audit-log-view" %}
-{%- set viewing = false -%}
+{%- set viewing = "" -%}
 {% endif %}

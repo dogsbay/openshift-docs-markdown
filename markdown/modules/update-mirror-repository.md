@@ -16,8 +16,8 @@ To avoid excessive memory usage by the OpenShift Update Service application, you
 *   You configured a mirror registry to use in your disconnected environment and can access the certificate and credentials that you configured.
 {%- if not openshift_origin %}
 *   You downloaded the {{ cluster_manager_url_pull }} and modified it to include authentication to your mirror repository.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 *   You have created a pull secret for your mirror repository.
 {%- endif %}
 *   If you use self-signed certificates, you have specified a Subject Alternative Name in the certificates.

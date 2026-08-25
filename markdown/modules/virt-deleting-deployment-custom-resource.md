@@ -9,7 +9,7 @@ To uninstall {{ VirtProductName }}, you first delete the `HyperConverged` custom
 
 **Procedure**
 
-1.  Navigate to the **Ecosystem** -> **Installed Operators** page.
+1.  Navigate to the **Ecosystem** → **Installed Operators** page.
 1.  Select the {{ VirtProductName }} Operator.
 1.  Click the **{{ VirtProductName }} Deployment** tab.
 1.  Click the Options menu {{ kebab }} beside `kubevirt-hyperconverged` and select **Delete HyperConverged**.

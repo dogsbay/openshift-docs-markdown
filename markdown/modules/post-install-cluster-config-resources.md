@@ -31,7 +31,7 @@ All cluster configuration resources are globally scoped (not namespaced) and nam
 </tr>
 <tr>
   <td><code>featuregate.config.openshift.io</code></td>
-  <td>Enables <a href="/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features">FeatureGates</a>so that you can use Tech Preview features.</td>
+  <td>Enables <a href="/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features">FeatureGates</a> so that you can use Tech Preview features.</td>
 </tr>
 <tr>
   <td><code>image.config.openshift.io</code></td>

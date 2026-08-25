@@ -220,8 +220,8 @@ To successfully complete the lab tutorial, review the provided reference materia
     ```
 
 
-:::note
+    :::note
 
-To simplify deployment of the OSToy application, all of the objects required in the above deployment manifests are grouped together. For a typical enterprise deployment, a separate manifest file for each Kubernetes object is recommended.
-
-:::
+    To simplify deployment of the OSToy application, all of the objects required in the above deployment manifests are grouped together. For a typical enterprise deployment, a separate manifest file for each Kubernetes object is recommended.
+    
+    :::

@@ -1,5 +1,5 @@
 ---
-title: "BrokerTemplateInstance []"
+title: "BrokerTemplateInstance [template.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -30,6 +30,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | BrokerTemplateInstanceSpec describes the state of a BrokerTemplateInstance. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -60,12 +61,12 @@ The following API endpoints are available:
     *   `POST`: create a BrokerTemplateInstance
 *   `/apis/template.openshift.io/v1/watch/brokertemplateinstances`
     *   `GET`: watch individual changes to a list of BrokerTemplateInstance. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/template.openshift.io/v1/brokertemplateinstances/{{ name }}`
+*   `/apis/template.openshift.io/v1/brokertemplateinstances/{{ name }}`{minja}
     *   `DELETE`: delete a BrokerTemplateInstance
     *   `GET`: read the specified BrokerTemplateInstance
     *   `PATCH`: partially update the specified BrokerTemplateInstance
     *   `PUT`: replace the specified BrokerTemplateInstance
-*   `/apis/template.openshift.io/v1/watch/brokertemplateinstances/{{ name }}`
+*   `/apis/template.openshift.io/v1/watch/brokertemplateinstances/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind BrokerTemplateInstance. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/template.openshift.io/v1/brokertemplateinstances {id="_apistemplateopenshiftiov1brokertemplateinstances"}

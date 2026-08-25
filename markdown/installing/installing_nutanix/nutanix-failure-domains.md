@@ -3,11 +3,11 @@ title: Fault tolerant deployments using multiple Prism Elements
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Fault tolerant deployments using multiple Prism Elements {id="nutanix-failure-domains"}
 {% include "./_attributes/common-attributes.md" %}
+# Fault tolerant deployments using multiple Prism Elements {id="nutanix-failure-domains"}
 {%- set context = "nutanix-failure-domains" %}
 
-By default, the installation program installs control plane and compute machines into a single Nutanix Prism Element (cluster). To improve the fault tolerance of your {{ product_title }} cluster, you can specify that these machines be distributed across multiple Nutanix clusters by configuring failure domains.
+By default, the installation program installs control plane and compute machines into a single Nutanix Prism Element (cluster). To improve the fault tolerance of your {{ product_title }} cluster, you can specify that these machines be distributed across multiple Nutanix clusters by configuring failure domains. {._abstract}
 
 A failure domain represents an additional Prism Element instance that is available to {{ product_title }} machine pools during and after installation.
 
@@ -33,6 +33,7 @@ A failure domain represents a single Prism Element instance where new control pl
 {% leveloffset +2 %}{% include "./modules/post-installation-adding-nutanix-failure-domains-control-planes.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Checking the control plane machine set custom resource state](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)
 *   [Replacing a control plane machine](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-replace_cpmso-managing-machines)
@@ -40,6 +41,7 @@ A failure domain represents a single Prism Element instance where new control pl
 {% leveloffset +2 %}{% include "./modules/nutanix-failure-domains-compute-machines-reference.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Editing existing compute machine sets to implement failure domains](/installing/installing_nutanix/nutanix-failure-domains#post-installation-adding-nutanix-failure-domains-compute-machines-edit_nutanix-failure-domains)
 *   [Replacing existing compute machine sets to implement failure domains](/installing/installing_nutanix/nutanix-failure-domains#post-installation-adding-nutanix-failure-domains-compute-machines-replace_nutanix-failure-domains)
@@ -47,17 +49,19 @@ A failure domain represents a single Prism Element instance where new control pl
 {% leveloffset +3 %}{% include "./modules/post-installation-adding-nutanix-failure-domains-compute-machines-edit.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Modifying a compute machine set](/machine_management/modifying-machineset#modifying-machineset)
 
 {% leveloffset +3 %}{% include "./modules/post-installation-adding-nutanix-failure-domains-compute-machines-replace.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a compute machine set on Nutanix](/machine_management/creating_machinesets/creating-machineset-nutanix#creating-machineset-nutanix)
 
 {% leveloffset +1 %}{% include "./modules/cpmso-ts-nutanix-multiple-subnet.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Configuring failure domains](/installing/installing_nutanix/installing-nutanix-installer-provisioned#installation-configuring-nutanix-failure-domains_installing-nutanix-installer-provisioned)
 *   [Adding failure domains to an existing Nutanix cluster](/installing/installing_nutanix/nutanix-failure-domains#nutanix-failure-domains-adding-to-existing-cluster_nutanix-failure-domains)

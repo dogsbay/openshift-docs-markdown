@@ -20,8 +20,8 @@
 Before you can use {{ cluster_manager_first }} on the {{ hybrid_console_url }} to create
 {%- if rosa_hcp %}
 {{ hcp_title }}
-{% endif %}
-{% if not rosa_hcp %}
+{%- endif %}
+{%- if not rosa_hcp %}
 {{ product_title }} (ROSA)
 {%- endif %}
 clusters that use the AWS Security Token Service (STS), you must associate your AWS account with your Red&#160;Hat organization. You can associate your account by creating and linking the following IAM roles. {._abstract}
@@ -34,7 +34,7 @@ clusters that use the AWS Security Token Service (STS), you must associate your 
 {%- if quick_install %}
 
     You can use the administrative permissions with the {{ cluster_manager }} role to deploy a cluster quickly.
-{% endif %}
+{%- endif %}
 
 
 User role

@@ -7,7 +7,7 @@ You can track RTT by editing the `FlowCollector` to the specifications in the fo
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  In the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster**, and then select the **YAML** tab.
 1.  Configure the `FlowCollector` custom resource for RTT tracing, for example:

@@ -8,7 +8,7 @@ title: "Managing workloads with the {{ js_operator }}"
 
 {%- set context = "js-managing" %}
 
-Use the {{ js_operator }} on {{ product_title }} to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.
+Use the {{ js_operator }} on {{ product_title }} to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/jobset-config.md" %}{% endleveloffset %}
 
@@ -18,7 +18,7 @@ Use the {{ js_operator }} on {{ product_title }} to manage and run large-scale, 
 
 {% leveloffset +1 %}{% include "./modules/jobset-volume-claim-policies.md" %}{% endleveloffset %}
 
-## Additional resources {id="js-managing_additional-resources"}
+## Additional resources {id="js-managing_additional-resources" ._additional-resources}
 
 *   [JobSet documentation (Kubernetes)](https://jobset.sigs.k8s.io/docs/overview/)
 *   [Failure Policy (Kubernetes)](https://jobset.sigs.k8s.io/docs/tasks/failure_policy/)

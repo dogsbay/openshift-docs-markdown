@@ -92,8 +92,8 @@ Re-encryption of all etcd data will occur.
         ```
 
 
-:::note
+    :::note
 
-Do not delete the KMS key until migration completes successfully.
-
-:::
+    Do not delete the KMS key until migration completes successfully.
+    
+    :::

@@ -10,7 +10,7 @@ You must get the route to access the application. {._abstract}
     $ oc get route
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     NAME          HOST/PORT                                                 PATH   SERVICES             PORT    TERMINATION   WILDCARD
     ostoy-route   ostoy-route-ostoy.apps.<your-rosa-cluster>.abcd.p1.openshiftapps.com          ostoy-frontend-svc   <all>                 None

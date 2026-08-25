@@ -3,7 +3,7 @@
 
 The **OpenShift Logging** dashboard contains charts that show details about your Elasticsearch instance at a cluster-level that you can use to diagnose and anticipate problems.
 
-***OpenShift Logging charts***
+**OpenShift Logging charts**
 
 <table>
 <thead>

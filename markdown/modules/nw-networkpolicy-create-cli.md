@@ -28,7 +28,7 @@ If you log in with a user with the `cluster-admin` role, then you can create a n
 {%- endif %}
 *   You installed the {{ oc_first }}.
 {%- if not microshift %}
-*   You logged in to the cluster with a user with `{{ role }}` privileges.
+*   You logged in to the cluster with a user with `{{ role }}`{minja} privileges.
 {%- endif %}
 *   You are working in the namespace that the {{ name }} policy applies to.
 
@@ -45,7 +45,7 @@ If you log in with a user with the `cluster-admin` role, then you can create a n
         `<policy_name>`
         :   Specifies the {{ name }} policy file name.
     1.  Define a {{ name }} policy in the created file. The following example denies ingress traffic from all pods in all namespaces. This is a fundamental policy, blocking all cross-pod networking other than cross-pod traffic allowed by the configuration of other Network Policies.
-        {%- if not multi %}
+{% if not multi %}
         ```yaml
         kind: NetworkPolicy
         apiVersion: networking.k8s.io/v1
@@ -75,132 +75,144 @@ If you log in with a user with the `cluster-admin` role, then you can create a n
 
         `<network_name>`
         :   Specifies the name of a network attachment definition.
-{%- endif %}
-        The following example configuration allows ingress traffic  from all pods in the same namespace:
-{%- if not multi %}
-        ```yaml
-        kind: NetworkPolicy
-        apiVersion: networking.k8s.io/v1
-        metadata:
-          name: allow-same-namespace
-        spec:
-          podSelector:
-          ingress:
-          - from:
-            - podSelector: {}
-        # ...
-        ```
-{% endif %}
-{% if multi %}
-        ```yaml
-        apiVersion: k8s.cni.cncf.io/v1beta1
-        kind: MultiNetworkPolicy
-        metadata:
-          name: allow-same-namespace
-          annotations:
-            k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
-        spec:
-          podSelector:
-          ingress:
-          - from:
-            - podSelector: {}
-        # ...
-        ```
-        where:
-        `<network_name>`:: Specifies the name of a network attachment definition.
-{%- endif %}
-        The following example allows ingress traffic to one pod from a particular namespace. This policy allows traffic to pods that have the `pod-a` label from pods running in `namespace-y`.
-{%- if not multi %}
-        ```yaml
-        kind: NetworkPolicy
-        apiVersion: networking.k8s.io/v1
-        metadata:
-          name: allow-traffic-pod
-        spec:
-          podSelector:
-           matchLabels:
-              pod: pod-a
-          policyTypes:
-          - Ingress
-          ingress:
-          - from:
-            - namespaceSelector:
-                matchLabels:
-                   kubernetes.io/metadata.name: namespace-y
-        # ...
-        ```
-{% endif %}
-{% if multi %}
-        ```yaml
-        apiVersion: k8s.cni.cncf.io/v1beta1
-        kind: MultiNetworkPolicy
-        metadata:
-          name: allow-traffic-pod
-          annotations:
-            k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
-        spec:
-          podSelector:
-           matchLabels:
-              pod: pod-a
-          policyTypes:
-          - Ingress
-          ingress:
-          - from:
-            - namespaceSelector:
-                matchLabels:
-                   kubernetes.io/metadata.name: namespace-y
-        # ...
-        ```
-        where:
-        `<network_name>`:: Specifies the name of a network attachment definition.
-{%- endif %}
-        The following example configuration restricts traffic to a service. This policy when applied ensures every pod with both labels `app=bookstore` and `role=api` can only be accessed by pods with label `app=bookstore`. In this example the application could be a REST API server, marked with labels `app=bookstore` and `role=api`.
-        This example configuration addresses the following use cases:
-        * Restricting the traffic to a service to only the other microservices that need to use it.
-        * Restricting the connections to a database to only permit the application using it.
-          {%- if not multi %}
-        ```yaml
-        kind: NetworkPolicy
-        apiVersion: networking.k8s.io/v1
-        metadata:
-          name: api-allow
-        spec:
-          podSelector:
-            matchLabels:
-              app: bookstore
-              role: api
-          ingress:
-          - from:
-              - podSelector:
-                  matchLabels:
-                    app: bookstore
-        # ...
-        ```
-{% endif %}
-{% if multi %}
-        ```yaml
-        apiVersion: k8s.cni.cncf.io/v1beta1
-        kind: MultiNetworkPolicy
-        metadata:
-          name: api-allow
-          annotations:
-            k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
-        spec:
-          podSelector:
-            matchLabels:
-              app: bookstore
-              role: api
-          ingress:
-          - from:
-              - podSelector:
-                  matchLabels:
-                    app: bookstore
-        # ...
-        ```
-        where:
-        `<network_name>`:: Specifies the name of a network attachment definition.
 {% endif %}
 
+        The following example configuration allows ingress traffic  from all pods in the same namespace:
+{% if not multi %}
+        ```yaml
+        kind: NetworkPolicy
+        apiVersion: networking.k8s.io/v1
+        metadata:
+          name: allow-same-namespace
+        spec:
+          podSelector:
+          ingress:
+          - from:
+            - podSelector: {}
+        # ...
+        ```
+{% endif %}
+{% if multi %}
+        ```yaml
+        apiVersion: k8s.cni.cncf.io/v1beta1
+        kind: MultiNetworkPolicy
+        metadata:
+          name: allow-same-namespace
+          annotations:
+            k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
+        spec:
+          podSelector:
+          ingress:
+          - from:
+            - podSelector: {}
+        # ...
+        ```
+
+        where:
+
+        `<network_name>`
+        :   Specifies the name of a network attachment definition.
+{% endif %}
+
+        The following example allows ingress traffic to one pod from a particular namespace. This policy allows traffic to pods that have the `pod-a` label from pods running in `namespace-y`.
+{% if not multi %}
+        ```yaml
+        kind: NetworkPolicy
+        apiVersion: networking.k8s.io/v1
+        metadata:
+          name: allow-traffic-pod
+        spec:
+          podSelector:
+           matchLabels:
+              pod: pod-a
+          policyTypes:
+          - Ingress
+          ingress:
+          - from:
+            - namespaceSelector:
+                matchLabels:
+                   kubernetes.io/metadata.name: namespace-y
+        # ...
+        ```
+{% endif %}
+{% if multi %}
+        ```yaml
+        apiVersion: k8s.cni.cncf.io/v1beta1
+        kind: MultiNetworkPolicy
+        metadata:
+          name: allow-traffic-pod
+          annotations:
+            k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
+        spec:
+          podSelector:
+           matchLabels:
+              pod: pod-a
+          policyTypes:
+          - Ingress
+          ingress:
+          - from:
+            - namespaceSelector:
+                matchLabels:
+                   kubernetes.io/metadata.name: namespace-y
+        # ...
+        ```
+
+        where:
+
+        `<network_name>`
+        :   Specifies the name of a network attachment definition.
+{% endif %}
+
+        The following example configuration restricts traffic to a service. This policy when applied ensures every pod with both labels `app=bookstore` and `role=api` can only be accessed by pods with label `app=bookstore`. In this example the application could be a REST API server, marked with labels `app=bookstore` and `role=api`.
+
+        This example configuration addresses the following use cases:
+        *   Restricting the traffic to a service to only the other microservices that need to use it.
+        *   Restricting the connections to a database to only permit the application using it.
+{% if not multi %}
+            ```yaml
+            kind: NetworkPolicy
+            apiVersion: networking.k8s.io/v1
+            metadata:
+              name: api-allow
+            spec:
+              podSelector:
+                matchLabels:
+                  app: bookstore
+                  role: api
+              ingress:
+              - from:
+                  - podSelector:
+                      matchLabels:
+                        app: bookstore
+            # ...
+            ```
+{% endif %}
+{% if multi %}
+            ```yaml
+            apiVersion: k8s.cni.cncf.io/v1beta1
+            kind: MultiNetworkPolicy
+            metadata:
+              name: api-allow
+              annotations:
+                k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
+            spec:
+              podSelector:
+                matchLabels:
+                  app: bookstore
+                  role: api
+              ingress:
+              - from:
+                  - podSelector:
+                      matchLabels:
+                        app: bookstore
+            # ...
+            ```
+
+            where:
+
+            `<network_name>`
+            :   Specifies the name of a network attachment definition.
+{% endif %}
 1.  To create the {{ name }} policy object, enter the following command. Successful output lists the name of the policy object and the `created` status.
     ```terminal
     $ oc apply -f <policy_name>.yaml -n <namespace>
@@ -227,7 +239,7 @@ If you log in with a user with the `cluster-admin` role, then you can create a n
 {% endif %}
 
 {% if multi %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
-{%- set name = false -%}
-{%- set role = false -%}
+{%- set name = "" -%}
+{%- set role = "" -%}

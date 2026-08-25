@@ -56,11 +56,11 @@ describes the image storage that your cluster requires.
     :   Specifies the system architecture. Valid values are `x64` (default) or `Arm64`.
 
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}

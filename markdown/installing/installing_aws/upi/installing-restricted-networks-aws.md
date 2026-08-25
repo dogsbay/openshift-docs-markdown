@@ -3,12 +3,12 @@ title: "Installing a cluster on {{ aws_short }} in a disconnected environment wi
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on {{ aws_short }} in a disconnected environment with user-provisioned infrastructure {id="installing-restricted-networks-aws"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on {{ aws_short }} in a disconnected environment with user-provisioned infrastructure {id="installing-restricted-networks-aws"}
 {%- set context = "installing-restricted-networks-aws" %}
 
 In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ aws_first }} using infrastructure that you provide and
-an internal mirror of the installation release content.
+an internal mirror of the installation release content. {._abstract}
 
 
 :::important
@@ -32,6 +32,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installing-aws-upi-restricted-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -52,6 +53,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-generate-aws-user-infra-install-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuration and credential file settings ({{ aws_short }} documentation)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 
@@ -60,6 +62,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-generate-k8s-manifest-ignition.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually creating long-term credentials](/installing/installing_aws/ipi/installing-restricted-networks-aws-installer-provisioned#manually-create-iam_installing-restricted-networks-aws-installer-provisioned)
 
@@ -74,6 +77,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-cloudformation-dns.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Listing public hosted zones({{ aws_short }} documentation)](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
 
@@ -90,6 +94,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-cloudformation-bootstrap.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ op_system }} AMIs for the {{ aws_short }} infrastructure ({{ aws_short }} documentation)](/installing/installing_aws/upi/installing-aws-user-infra#installation-aws-user-infra-rhcos-ami_installing-aws-user-infra)
 
@@ -106,6 +111,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-aws-user-infra-bootstrap.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Monitoring installation progress](/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
 *   [Gathering bootstrap node diagnostic data](/support/troubleshooting/troubleshooting-installations#gathering-bootstrap-diagnostic-data_troubleshooting-installations)
@@ -133,6 +139,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/logging-in-by-using-the-web-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

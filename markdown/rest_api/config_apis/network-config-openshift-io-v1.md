@@ -1,5 +1,5 @@
 ---
-title: "Network []"
+title: "Network [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration. As a general rule, this SHOULD NOT be read directly. Instead, you should consume the NetworkStatus, as it indicates the currently deployed configuration. Currently, most spec fields are immutable after installation. Please view the individual ones for further details on each. |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -49,10 +50,11 @@ Type
 | `clusterNetwork` | `array` | IP address pool to use for pod IPs. This field is immutable after installation. |
 | `clusterNetwork[]` | `object` | ClusterNetworkEntry is a contiguous block of IP addresses from which pod IPs are allocated. |
 | `externalIP` | `object` | externalIP defines configuration for controllers that affect Service.ExternalIP. If nil, then ExternalIP is not allowed to be set. |
-| `networkDiagnostics` | `object` | networkDiagnostics defines network diagnostics configuration. Takes precedence over spec.disableNetworkDiagnostics in network.operator.openshift.io. If networkDiagnostics is not specified or is empty, and the spec.disableNetworkDiagnostics flag in network.operator.openshift.io is set to true, the network diagnostics feature will be disabled. |
+| `networkDiagnostics` | `object` | networkDiagnostics defines network diagnostics configuration.<br>Takes precedence over spec.disableNetworkDiagnostics in network.operator.openshift.io. If networkDiagnostics is not specified or is empty, and the spec.disableNetworkDiagnostics flag in network.operator.openshift.io is set to true, the network diagnostics feature will be disabled. |
 | `networkType` | `string` | networkType is the plugin that is to be deployed (e.g. OVNKubernetes). This should match a value that the cluster-network-operator understands, or else no networking will be installed. Currently supported values are: - OVNKubernetes This field is immutable after installation. |
 | `serviceNetwork` | `array (string)` | IP address pool for services. Currently, we only support a single entry here. This field is immutable after installation. |
 | `serviceNodePortRange` | `string` | The port range allowed for Services of type NodePort. If not specified, the default of 30000-32767 will be used. Such Services without a NodePort specified will have one automatically allocated from this range. This parameter can be updated after the cluster is installed. |
+
 ### .spec.clusterNetwork {id="_specclusternetwork"}
 
 Description
@@ -77,6 +79,7 @@ Type
 | --- | --- | --- |
 | `cidr` | `string` | The complete block for pod IPs. |
 | `hostPrefix` | `integer` | The size (prefix) of block to allocate to each node. If this field is not used by the plugin, it can be left unset. |
+
 ### .spec.externalIP {id="_specexternalip"}
 
 Description
@@ -92,6 +95,7 @@ Type
 | --- | --- | --- |
 | `autoAssignCIDRs` | `array (string)` | autoAssignCIDRs is a list of CIDRs from which to automatically assign Service.ExternalIP. These are assigned when the service is of type LoadBalancer. In general, this is only useful for bare-metal clusters. In Openshift 3.x, this was misleadingly called "IngressIPs". Automatically assigned External IPs are not affected by any ExternalIPPolicy rules. Currently, only one entry may be provided. |
 | `policy` | `object` | policy is a set of restrictions applied to the ExternalIP field. If nil or empty, then ExternalIP is not allowed to be set. |
+
 ### .spec.externalIP.policy {id="_specexternalippolicy"}
 
 Description
@@ -106,6 +110,7 @@ Type
 | --- | --- | --- |
 | `allowedCIDRs` | `array (string)` | allowedCIDRs is the list of allowed CIDRs. |
 | `rejectedCIDRs` | `array (string)` | rejectedCIDRs is the list of disallowed CIDRs. These take precedence over allowedCIDRs. |
+
 ### .spec.networkDiagnostics {id="_specnetworkdiagnostics"}
 
 Description
@@ -123,9 +128,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `mode` | `string` | mode controls the network diagnostics mode When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is All. |
-| `sourcePlacement` | `object` | sourcePlacement controls the scheduling of network diagnostics source deployment See NetworkDiagnosticsSourcePlacement for more details about default values. |
-| `targetPlacement` | `object` | targetPlacement controls the scheduling of network diagnostics target daemonset See NetworkDiagnosticsTargetPlacement for more details about default values. |
+| `mode` | `string` | mode controls the network diagnostics mode<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is All. |
+| `sourcePlacement` | `object` | sourcePlacement controls the scheduling of network diagnostics source deployment<br>See NetworkDiagnosticsSourcePlacement for more details about default values. |
+| `targetPlacement` | `object` | targetPlacement controls the scheduling of network diagnostics target daemonset<br>See NetworkDiagnosticsTargetPlacement for more details about default values. |
+
 ### .spec.networkDiagnostics.sourcePlacement {id="_specnetworkdiagnosticssourceplacement"}
 
 Description
@@ -140,9 +146,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
-| `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is an empty list. |
+| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
+| `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is an empty list. |
 | `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
+
 ### .spec.networkDiagnostics.sourcePlacement.tolerations {id="_specnetworkdiagnosticssourceplacementtolerations"}
 
 Description
@@ -174,6 +181,7 @@ Type
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists, Equal, Lt, and Gt. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category. Lt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators). |
 | `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. |
+
 ### .spec.networkDiagnostics.targetPlacement {id="_specnetworkdiagnosticstargetplacement"}
 
 Description
@@ -188,9 +196,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
-| `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `- operator: "Exists"` which means that all taints are tolerated. |
+| `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
+| `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `- operator: "Exists"` which means that all taints are tolerated. |
 | `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
+
 ### .spec.networkDiagnostics.targetPlacement.tolerations {id="_specnetworkdiagnosticstargetplacementtolerations"}
 
 Description
@@ -222,6 +231,7 @@ Type
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists, Equal, Lt, and Gt. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category. Lt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators). |
 | `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. |
+
 ### .status {id="_status"}
 
 Description
@@ -241,6 +251,7 @@ Type
 | `migration` | `object` | migration contains the cluster network migration configuration. |
 | `networkType` | `string` | networkType is the plugin that is deployed (e.g. OVNKubernetes). |
 | `serviceNetwork` | `array (string)` | IP address pool for services. Currently, we only support a single entry here. |
+
 ### .status.clusterNetwork {id="_statusclusternetwork"}
 
 Description
@@ -264,6 +275,7 @@ Type
 | --- | --- | --- |
 | `cidr` | `string` | The complete block for pod IPs. |
 | `hostPrefix` | `integer` | The size (prefix) of block to allocate to each node. If this field is not used by the plugin, it can be left unset. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -299,6 +311,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.migration {id="_statusmigration"}
 
 Description
@@ -312,6 +325,7 @@ Type
 | --- | --- | --- |
 | `mtu` | `object` | mtu is the MTU configuration that is being deployed. |
 | `networkType` | `string` | networkType is the target plugin that is being deployed. DEPRECATED: network type migration is no longer supported, so this should always be unset. |
+
 ### .status.migration.mtu {id="_statusmigrationmtu"}
 
 Description
@@ -325,6 +339,7 @@ Type
 | --- | --- | --- |
 | `machine` | `object` | machine contains MTU migration configuration for the machine’s uplink. |
 | `network` | `object` | network contains MTU migration configuration for the default network. |
+
 ### .status.migration.mtu.machine {id="_statusmigrationmtumachine"}
 
 Description
@@ -338,6 +353,7 @@ Type
 | --- | --- | --- |
 | `from` | `integer` | from is the MTU to migrate from. |
 | `to` | `integer` | to is the MTU to migrate to. |
+
 ### .status.migration.mtu.network {id="_statusmigrationmtunetwork"}
 
 Description
@@ -360,7 +376,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Network
     *   `GET`: list objects of kind Network
     *   `POST`: create a Network
-*   `/apis/config.openshift.io/v1/networks/{{ name }}`
+*   `/apis/config.openshift.io/v1/networks/{{ name }}`{minja}
     *   `DELETE`: delete a Network
     *   `GET`: read the specified Network
     *   `PATCH`: partially update the specified Network

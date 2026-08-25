@@ -94,31 +94,31 @@ You use trigger authentications and cluster trigger authentications by using a c
         ```
         1.  Specify the name of your trigger authentication object.
         1.  Specify `TriggerAuthentication`. `TriggerAuthentication` is the default.
-            ```yaml title="Example scaled object with a cluster trigger authentication"
-            apiVersion: keda.sh/v1alpha1
-            kind: ScaledObject
+        ```yaml title="Example scaled object with a cluster trigger authentication"
+        apiVersion: keda.sh/v1alpha1
+        kind: ScaledObject
+        metadata:
+          name: scaledobject
+          namespace: my-namespace
+        spec:
+          scaleTargetRef:
+            name: example-deployment
+          maxReplicaCount: 100
+          minReplicaCount: 0
+          pollingInterval: 30
+          triggers:
+          - type: prometheus
             metadata:
-              name: scaledobject
-              namespace: my-namespace
-            spec:
-              scaleTargetRef:
-                name: example-deployment
-              maxReplicaCount: 100
-              minReplicaCount: 0
-              pollingInterval: 30
-              triggers:
-              - type: prometheus
-                metadata:
-                  serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
-                  namespace: kedatest # replace <NAMESPACE>
-                  metricName: http_requests_total
-                  threshold: '5'
-                  query: sum(rate(http_requests_total{job="test-app"}[1m]))
-                  authModes: "basic"
-                authenticationRef:
-                  name: prom-cluster-triggerauthentication (1)
-                  kind: ClusterTriggerAuthentication (2)
-            ```
+              serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
+              namespace: kedatest # replace <NAMESPACE>
+              metricName: http_requests_total
+              threshold: '5'
+              query: sum(rate(http_requests_total{job="test-app"}[1m]))
+              authModes: "basic"
+            authenticationRef:
+              name: prom-cluster-triggerauthentication (1)
+              kind: ClusterTriggerAuthentication (2)
+        ```
         1.  Specify the name of your trigger authentication object.
         1.  Specify `ClusterTriggerAuthentication`.
     1.  Create the scaled object by running the following command:

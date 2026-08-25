@@ -7,7 +7,7 @@ title: "Hardware, software, and operational requirements"
 # Hardware, software, and operational requirements {id="virt-requirements"}
 {%- set context = "virt-requirements" %}
 
-Review the hardware, software, and operational requirements for {{ VirtProductName }}, including CPU, OS, storage, cluster sizing, and live migration.
+Review the hardware, software, and operational requirements for {{ VirtProductName }}, including CPU, OS, storage, cluster sizing, and live migration. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-cpu-requirements.md" %}{% endleveloffset %}
 
@@ -29,7 +29,7 @@ Review the hardware, software, and operational requirements for {{ VirtProductNa
 
 {% leveloffset +1 %}{% include "./modules/virt-cluster-ha-options.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring a required node affinity rule](/nodes/scheduling/nodes-scheduler-node-affinity#nodes-scheduler-node-affinity-configuring-required_nodes-scheduler-node-affinity)
 *   [About RHCOS](/architecture/architecture-rhcos#rhcos-about_architecture-rhcos)

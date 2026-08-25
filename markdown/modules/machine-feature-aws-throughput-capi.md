@@ -4,7 +4,8 @@
 You can improve performance for high traffic services by increasing the throughput of gp3 storage volumes in an {{ aws_short }} cluster.
 You can configure the storage throughput for the root volume, non root volumes, or both. {._abstract}
 
-{% include "./snippets/apply-machine-configuration-method.md" %}
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file.
+Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 **Prerequisites**
 

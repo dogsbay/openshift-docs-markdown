@@ -1,5 +1,5 @@
 ---
-title: "CSIStorageCapacity []"
+title: "CSIStorageCapacity [storage.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -36,10 +36,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `capacity` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable. |
+| `capacity` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.<br>The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `maximumVolumeSize` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields. This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim. |
-| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-&lt;uuid>, a generated name, or a reverse-domain name which ends with the unique CSI driver name. Objects are namespaced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `maximumVolumeSize` | [`Quantity`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.<br>This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim. |
+| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-&lt;uuid>, a generated name, or a reverse-domain name which ends with the unique CSI driver name.<br>Objects are namespaced.<br>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `nodeTopology` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable. |
 | `storageClassName` | `string` | storageClassName represents the name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable. |
 
@@ -51,18 +51,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind CSIStorageCapacity
 *   `/apis/storage.k8s.io/v1/watch/csistoragecapacities`
     *   `GET`: watch individual changes to a list of CSIStorageCapacity. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/storage.k8s.io/v1/namespaces/{{ namespace }}/csistoragecapacities`
+*   `/apis/storage.k8s.io/v1/namespaces/{{ namespace }}/csistoragecapacities`{minja}
     *   `DELETE`: delete collection of CSIStorageCapacity
     *   `GET`: list or watch objects of kind CSIStorageCapacity
     *   `POST`: create a CSIStorageCapacity
-*   `/apis/storage.k8s.io/v1/watch/namespaces/{{ namespace }}/csistoragecapacities`
+*   `/apis/storage.k8s.io/v1/watch/namespaces/{{ namespace }}/csistoragecapacities`{minja}
     *   `GET`: watch individual changes to a list of CSIStorageCapacity. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/storage.k8s.io/v1/namespaces/{{ namespace }}/csistoragecapacities/{{ name }}`
+*   `/apis/storage.k8s.io/v1/namespaces/{{ namespace }}/csistoragecapacities/{{ name }}`{minja}
     *   `DELETE`: delete a CSIStorageCapacity
     *   `GET`: read the specified CSIStorageCapacity
     *   `PATCH`: partially update the specified CSIStorageCapacity
     *   `PUT`: replace the specified CSIStorageCapacity
-*   `/apis/storage.k8s.io/v1/watch/namespaces/{{ namespace }}/csistoragecapacities/{{ name }}`
+*   `/apis/storage.k8s.io/v1/watch/namespaces/{{ namespace }}/csistoragecapacities/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind CSIStorageCapacity. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/storage.k8s.io/v1/csistoragecapacities {id="_apisstoragek8siov1csistoragecapacities"}

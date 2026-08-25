@@ -8,7 +8,7 @@ A `source` object exists as part of an array of sources within any of the `crede
 
 All `source`-type objects have at least the following two fields:
 
-***`source`-type object fields***
+**`source`-type object fields**
 
 <table>
 <thead>

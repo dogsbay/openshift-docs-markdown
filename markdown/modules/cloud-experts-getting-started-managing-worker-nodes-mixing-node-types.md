@@ -10,7 +10,7 @@ You can also mix different worker node machine types in the same cluster by usin
     rosa create machinepool --cluster=<cluster-name> --name=<mp-name> --replicas=<number-nodes> --labels='<key=pair>' --instance-type=<type>
     ```
 
-    ***Example input***
+    **Example input**
     ```terminal
     rosa create machinepool --cluster=my-rosa-cluster --name=db-nodes-large-mp --replicas=2 --labels='app=db','tier=backend' --instance-type=m5.2xlarge
     ```

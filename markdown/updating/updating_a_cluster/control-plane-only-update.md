@@ -3,11 +3,11 @@ title: Performing a Control Plane Only update
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Performing a Control Plane Only update {id="control-plane-only-update"}
 {% include "./_attributes/common-attributes.md" %}
+# Performing a Control Plane Only update {id="control-plane-only-update"}
 {%- set context = "control-plane-only-update" %}
 
-To reduce the rebooting of non-control plane hosts during cluster updates, you can perform a Control Plane Only update for your cluster.
+To reduce the rebooting of non-control plane hosts during cluster updates, you can perform a Control Plane Only update for your cluster. {._abstract}
 
 Due to fundamental Kubernetes design, all {{ product_title }} updates between minor versions must be serialized.
 You must update from {{ product_title }} &lt;4.y> to &lt;4.y+1>, and then to &lt;4.y+2>. You cannot update from {{ product_title }} &lt;4.y> to &lt;4.y+2> directly.
@@ -34,6 +34,7 @@ There are several caveats to consider when attempting a Control Plane Only updat
 {% leveloffset +2 %}{% include "./modules/updating-control-plane-only-update-console.md" %}{% endleveloffset %}
 
 <a name="additional-resources_updating-control-plane-only-update-console"></a>**Additional resources**
+{._additional-resources}
 
 *   [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 *   [Updating a cluster by using the web console](/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)
@@ -41,12 +42,14 @@ There are several caveats to consider when attempting a Control Plane Only updat
 {% leveloffset +2 %}{% include "./modules/updating-control-plane-only-update-cli.md" %}{% endleveloffset %}
 
 <a name="additional-resources_updating-control-plane-only-update-cli"></a>**Additional resources**
+{._additional-resources}
 
 *   [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 
 {% leveloffset +2 %}{% include "./modules/updating-control-plane-only-layered-products.md" %}{% endleveloffset %}
 
 <a name="additional-resources_updating-control-plane-only-layered-products"></a>**Additional resources**
+{._additional-resources}
 
 *   [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 *   [Performing a Control Plane Only update using the web console](/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-console_control-plane-only-update)

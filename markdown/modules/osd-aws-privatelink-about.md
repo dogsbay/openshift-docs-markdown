@@ -27,8 +27,8 @@ You can only make a PrivateLink cluster at installation time. You cannot change 
 
 
 {% if context == "rosa-hcp-aws-private-creating-cluster" %}
-{%- set rosa_hcp = false -%}
+{%- set rosa_hcp = "" -%}
 {% endif %}
 {% if context == "rosa-aws-privatelink-creating-cluster" %}
-{%- set rosa_standalone = false -%}
+{%- set rosa_standalone = "" -%}
 {% endif %}

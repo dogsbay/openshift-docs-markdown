@@ -12,7 +12,7 @@ Query SPIRE Agent and SPIRE Server metrics using the {{ product_title }} web con
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Observe** -> **Metrics**.
+1.  In the {{ product_title }} web console, navigate to **Observe** → **Metrics**.
 1.  In the query field, enter the following PromQL expression to query SPIRE Server metrics:
     ```promql
     {job="spire-server"}

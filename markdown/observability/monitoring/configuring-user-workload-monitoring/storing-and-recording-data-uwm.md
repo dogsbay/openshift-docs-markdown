@@ -39,12 +39,12 @@ Store and record your metrics and alerting data, configure logs to specify which
 *   [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   [Enabling monitoring for user-defined projects](/observability/monitoring/configuring-user-workload-monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
-{% endif %}
-{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   [Prometheus database storage requirements](/scalability_and_performance/recommended-performance-scale-practices/recommended-infrastructure-practices#prometheus-database-storage-requirements_recommended-infrastructure-practices)
 *   [Recommended configurable storage technology](/scalability_and_performance/optimization/optimizing-storage#recommended-configurable-storage-technology_persistent-storage)
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/monitoring-setting-log-levels-for-monitoring-components.md" %}{% endleveloffset %}
 

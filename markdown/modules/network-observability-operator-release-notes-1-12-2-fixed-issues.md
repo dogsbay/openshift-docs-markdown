@@ -18,17 +18,23 @@ Narrowed Operator ClusterRole to least-privilege RBAC permissions
 
 Inherited scheduling configuration for the console plugin static deployment
 :   Before this update, the `netobserv-plugin-static` deployment in the `openshift-netobserv-operator` namespace did not inherit `nodeSelector` and `tolerations` settings from the Operator Subscription. As a consequence, you could not schedule the static console plugin pod onto infrastructure nodes alongside the controller manager.
+
     With this release, the `netobserv-plugin-static` deployment inherits the scheduling configuration set on the Operator Subscription. As a result, node placement for the static console plugin is consistent with the controller manager.
+
     [NETOBSERV-2575](https://redhat.atlassian.net/browse/NETOBSERV-2575)
 
 
 Resolved Operator startup failure with custom console logos
 :   Before this update, the Network Observability Operator failed to start when the `Console.operator.openshift.io` resource had the `spec.customization.logos` field configured. The Operator incorrectly reported a validation conflict between `logos` and the deprecated `customLogoFile` field, even when only `logos` was set.
+
     With this release, the Network Observability Operator correctly handles web console configurations that use the `spec.customization.logos` field. As a result, the Operator starts successfully on clusters with custom console branding.
+
     [NETOBSERV-2767](https://redhat.atlassian.net/browse/NETOBSERV-2767)
 
 
 Fixed controller crash when FlowCollector is on hold and ServiceAccount is absent
 :   Before this update, the Operator controller panicked with a nil pointer dereference when the `FlowCollector` resource was in `OnHold` mode and the eBPF agent `ServiceAccount` did not exist. As a consequence, the controller manager pod entered a `CrashLoopBackOff` state and all reconciliation stopped.
+
     With this release, the Network Observability Operator gracefully skips the deletion step when the `ServiceAccount` is absent during an `OnHold` reconciliation. As a result, the controller manager no longer crashes in this scenario.
+
     [NETOBSERV-2839](https://redhat.atlassian.net/browse/NETOBSERV-2839)

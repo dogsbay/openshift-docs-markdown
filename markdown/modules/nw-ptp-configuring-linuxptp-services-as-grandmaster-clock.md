@@ -26,8 +26,8 @@ See "Configuring the PTP fast event notifications publisher" for more informatio
 1.  Create the `PtpConfig` CR. For example:
     1.  Depending on your requirements, use one of the following T-GM configurations for your deployment.
     Save the YAML in the `grandmaster-clock-ptp-config.yaml` file:
-        ```yaml
-{% include "./snippets/ptp_PtpConfigGmWpc.yaml" %}
+        ```yaml {minja}
+        {% include "./snippets/ptp_PtpConfigGmWpc.yaml" %}
         ```
 
         :::note

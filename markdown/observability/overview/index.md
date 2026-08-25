@@ -3,8 +3,8 @@ title: About Observability
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About Observability {id="observability-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# About Observability {id="observability-overview"}
 {%- set context = "observability-overview" %}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
@@ -22,7 +22,7 @@ title: About Observability
 *   {{ OTELName }}
 *   Network Observability
 *   {{ PM_shortname_c }}
-{% endif %}
+{%- endif %}
 
 {{ ObservabilityLongName }} connects open-source observability tools and technologies to create a unified {{ ObservabilityShortName }} solution. The components of {{ ObservabilityLongName }} work together to help you collect, store, deliver, analyze, and visualize data.
 
@@ -42,8 +42,8 @@ Monitoring stack components are deployed by default in every {{ product_title }}
 For more information, see 
 {%- if not (openshift_dedicated or openshift_rosa_hcp or openshift_rosa) %}
 [About {{ product_title }} monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring) 
-{% endif %}
-{% if openshift_dedicated or openshift_rosa_hcp or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa_hcp or openshift_rosa %}
 [About {{ product_title }} monitoring](/observability/monitoring/about-ocp-monitoring/about-ocp-monitoring#about-ocp-monitoring) 
 {%- endif %}
 and [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring).

@@ -5,8 +5,8 @@ You can use the federation endpoint for Prometheus to scrape platform and user-d
 To do so, access the Prometheus `/federate` endpoint for the cluster via 
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 a {{ product_title }} 
 {%- endif %}
 route.

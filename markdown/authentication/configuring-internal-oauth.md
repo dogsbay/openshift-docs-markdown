@@ -3,11 +3,11 @@ title: Configuring the internal OAuth server
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the internal OAuth server {id="configuring-internal-oauth"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the internal OAuth server {id="configuring-internal-oauth"}
 {%- set context = "configuring-internal-oauth" %}
 
-The {{ product_title }} Control Plane includes a built-in OAuth server for user authentication. You can configure token duration, inactivity timeouts, and customize the OAuth server URL.
+The {{ product_title }} Control Plane includes a built-in OAuth server for user authentication. You can configure token duration, inactivity timeouts, and customize the OAuth server URL. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/oauth-server-overview.md" %}{% endleveloffset %}
 

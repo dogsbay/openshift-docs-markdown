@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Getting started with service binding on {{ ibm_power_title }}, {{ ibm_z_title }}, and {{ ibm_linuxone_title }} {id="getting-started-with-service-binding-ibm-power-ibm-z"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Getting started with service binding on {{ ibm_power_title }}, {{ ibm_z_title }}, and {{ ibm_linuxone_title }} {id="getting-started-with-service-binding-ibm-power-ibm-z"}
 {%- set context = "getting-started-with-service-binding-ibm-power-ibm-z" %}
 
 The {{ servicebinding_title }} manages the data plane for workloads and backing services. This guide provides instructions with examples to help you create a database instance, deploy an application, and use the {{ servicebinding_title }} to create a binding connection between the application and the database service. {._abstract}

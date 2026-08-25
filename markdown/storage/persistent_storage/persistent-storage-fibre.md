@@ -3,11 +3,11 @@ title: Persistent storage using Fibre Channel
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using Fibre Channel {id="persistent-storage-using-fibre"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using Fibre Channel {id="persistent-storage-using-fibre"}
 {%- set context = "persistent-storage-fibre" %}
 
-You can provision your {{ product_title }} cluster with persistent storage by using Fibre Channel volumes for workloads that require high-speed, reliable block-level storage.
+You can provision your {{ product_title }} cluster with persistent storage by using Fibre Channel volumes for workloads that require high-speed, reliable block-level storage. {._abstract}
 
 
 :::important
@@ -35,6 +35,7 @@ storage provider.
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using Fibre Channel devices](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_storage_devices/using-fibre-channel-devices_managing-storage-devices)
 

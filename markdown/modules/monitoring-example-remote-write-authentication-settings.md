@@ -11,13 +11,13 @@
 The following samples show different authentication settings you can use to connect to a remote write endpoint. Each sample also shows how to configure a corresponding `Secret` object that contains authentication credentials and other relevant settings. Each sample configures authentication for use with
 default platform monitoring
 monitoring for user-defined projects
-in the `{{ namespace_name }}` namespace.
+in the `{{ namespace_name }}`{minja} namespace.
 
 ## Sample YAML for AWS Signature Version 4 authentication {id="remote-write-sample-yaml-aws-sigv4_{{ context }}"}
 
-The following shows the settings for a `sigv4` secret named `sigv4-credentials` in the `{{ namespace_name }}` namespace.
+The following shows the settings for a `sigv4` secret named `sigv4-credentials` in the `{{ namespace_name }}`{minja} namespace.
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -31,9 +31,9 @@ type: Opaque
 1.  The AWS API access key.
 1.  The AWS API secret key.
 
-The following shows sample AWS Signature Version 4 remote write authentication settings that use a `Secret` object named `sigv4-credentials` in the `{{ namespace_name }}` namespace:
+The following shows sample AWS Signature Version 4 remote write authentication settings that use a `Secret` object named `sigv4-credentials` in the `{{ namespace_name }}`{minja} namespace:
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -64,9 +64,9 @@ data:
 
 ## Sample YAML for Basic authentication {id="remote-write-sample-yaml-basic-auth_{{ context }}"}
 
-The following shows sample Basic authentication settings for a `Secret` object named `rw-basic-auth` in the `{{ namespace_name }}` namespace:
+The following shows sample Basic authentication settings for a `Secret` object named `rw-basic-auth` in the `{{ namespace_name }}`{minja} namespace:
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -80,10 +80,10 @@ type: Opaque
 1.  The username.
 1.  The password.
 
-The following sample shows a `basicAuth` remote write configuration that uses a `Secret` object named `rw-basic-auth` in the `{{ namespace_name }}` namespace.
+The following sample shows a `basicAuth` remote write configuration that uses a `Secret` object named `rw-basic-auth` in the `{{ namespace_name }}`{minja} namespace.
 It assumes that you have already set up authentication credentials for the endpoint.
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -108,9 +108,9 @@ data:
 
 ## Sample YAML for authentication with a bearer token using a `Secret` Object {id="remote-write-sample-yaml-bearer-token_{{ context }}"}
 
-The following shows bearer token settings for a `Secret` object named `rw-bearer-auth` in the `{{ namespace_name }}` namespace:
+The following shows bearer token settings for a `Secret` object named `rw-bearer-auth` in the `{{ namespace_name }}`{minja} namespace:
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -122,9 +122,9 @@ type: Opaque
 ```
 1.  The authentication token.
 
-The following shows sample bearer token config map settings that use a `Secret` object named `rw-bearer-auth` in the `{{ namespace_name }}` namespace:
+The following shows sample bearer token config map settings that use a `Secret` object named `rw-bearer-auth` in the `{{ namespace_name }}`{minja} namespace:
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -147,9 +147,9 @@ data:
 
 ## Sample YAML for OAuth 2.0 authentication {id="remote-write-sample-yaml-oauth-20_{{ context }}"}
 
-The following shows sample OAuth 2.0 settings for a `Secret` object named `oauth2-credentials` in the `{{ namespace_name }}` namespace:
+The following shows sample OAuth 2.0 settings for a `Secret` object named `oauth2-credentials` in the `{{ namespace_name }}`{minja} namespace:
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -163,9 +163,9 @@ type: Opaque
 1.  The Oauth 2.0 ID.
 1.  The OAuth 2.0 secret.
 
-The following shows an `oauth2` remote write authentication sample configuration that uses a `Secret` object named `oauth2-credentials` in the `{{ namespace_name }}` namespace:
+The following shows an `oauth2` remote write authentication sample configuration that uses a `Secret` object named `oauth2-credentials` in the `{{ namespace_name }}`{minja} namespace:
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -200,9 +200,9 @@ data:
 
 ## Sample YAML for TLS client authentication {id="remote-write-sample-yaml-tls_{{ context }}"}
 
-The following shows sample TLS client settings for a `tls` `Secret` object named `mtls-bundle` in the `{{ namespace_name }}` namespace.
+The following shows sample TLS client settings for a `tls` `Secret` object named `mtls-bundle` in the `{{ namespace_name }}`{minja} namespace.
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -220,7 +220,7 @@ type: tls
 
 The following sample shows a `tlsConfig` remote write authentication configuration that uses a TLS `Secret` object named `mtls-bundle`.
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -249,6 +249,6 @@ data:
 1.  The key in the specified `Secret` object that contains the client certificate for the endpoint.
 1.  The key in the specified `Secret` object that contains the client key secret.
 
-{%- set configmap_name = false -%}
-{%- set namespace_name = false -%}
-{%- set component = false -%}
+{%- set configmap_name = "" -%}
+{%- set namespace_name = "" -%}
+{%- set component = "" -%}

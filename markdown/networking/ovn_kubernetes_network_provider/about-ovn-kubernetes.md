@@ -3,11 +3,11 @@ title: About the OVN-Kubernetes network plugin
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About the OVN-Kubernetes network plugin {id="about-ovn-kubernetes"}
 {% include "./_attributes/common-attributes.md" %}
+# About the OVN-Kubernetes network plugin {id="about-ovn-kubernetes"}
 {%- set context = "about-ovn-kubernetes" %}
 
-The {{ product_title }} cluster uses a virtualized network for pod and service networks. The OVN-Kubernetes network plugin is the default provider that implements this virtualized overlay network by transforming configurations into OpenFlow rules to enable advanced routing and security features.
+The {{ product_title }} cluster uses a virtualized network for pod and service networks. The OVN-Kubernetes network plugin is the default provider that implements this virtualized overlay network by transforming configurations into OpenFlow rules to enable advanced routing and security features. {._abstract}
 
 Part of {{ openshift_networking }}, the OVN-Kubernetes network plugin is the default network provider for {{ product_title }}. OVN-Kubernetes is based on Open Virtual Network (OVN) and provides an overlay-based networking implementation. A cluster that uses the OVN-Kubernetes plugin also runs Open vSwitch (OVS) on each node. OVN configures OVS on each node to implement the declared network configuration.
 
@@ -46,6 +46,7 @@ OVN-Kubernetes runs a daemon on each node. There are daemon sets for the databas
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Open Virtual Network website](https://www.ovn.org/en/)
 *   [Configuring an egress firewall for a project](/networking/network_security/egress_firewall/configuring-egress-firewall-ovn#configuring-egress-firewall-ovn)

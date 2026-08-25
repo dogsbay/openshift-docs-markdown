@@ -12,5 +12,5 @@ Cluster administrators, or users with view access to all namespaces, can query m
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Click **Observe** -> **Metrics**.
+1.  Click **Observe** → **Metrics**.
 1.  In the query field, enter the `{job="cert-manager-istio-csr"}` PromQL expression to query the `istio-csr` operand metrics. The results display metrics collected for the istio-csr operand, which can help you monitor its performance and behavior.

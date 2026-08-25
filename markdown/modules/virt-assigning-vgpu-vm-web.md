@@ -14,12 +14,12 @@ You can add hardware devices to virtual machines created from customized templat
 **Prerequisites**
 
 *   The vGPU is configured as a mediated device in your cluster.
-    *   To view the devices that are connected to your cluster, click **Compute** -> **Hardware Devices** from the side menu.
+    *   To view the devices that are connected to your cluster, click **Compute** → **Hardware Devices** from the side menu.
 *   The VM is stopped.
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Virtualization** -> **VirtualMachines** from the side menu.
+1.  In the {{ product_title }} web console, click **Virtualization** → **VirtualMachines** from the side menu.
 1.  Select the VM that you want to assign the device to.
 1.  On the **Details** tab, click **GPU devices**.
 1.  Click **Add GPU device**.

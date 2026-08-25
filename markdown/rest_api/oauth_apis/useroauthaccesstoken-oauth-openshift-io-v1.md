@@ -1,5 +1,5 @@
 ---
-title: "UserOAuthAccessToken []"
+title: "UserOAuthAccessToken [oauth.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -40,10 +40,10 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind UserOAuthAccessToken
 *   `/apis/oauth.openshift.io/v1/watch/useroauthaccesstokens`
     *   `GET`: watch individual changes to a list of UserOAuthAccessToken. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/oauth.openshift.io/v1/useroauthaccesstokens/{{ name }}`
+*   `/apis/oauth.openshift.io/v1/useroauthaccesstokens/{{ name }}`{minja}
     *   `DELETE`: delete an UserOAuthAccessToken
     *   `GET`: read the specified UserOAuthAccessToken
-*   `/apis/oauth.openshift.io/v1/watch/useroauthaccesstokens/{{ name }}`
+*   `/apis/oauth.openshift.io/v1/watch/useroauthaccesstokens/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind UserOAuthAccessToken. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/oauth.openshift.io/v1/useroauthaccesstokens {id="_apisoauthopenshiftiov1useroauthaccesstokens"}

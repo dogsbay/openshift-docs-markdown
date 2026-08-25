@@ -5,7 +5,7 @@ The `rosa create network` command is available in v.1.2.48 or later of the {{ ro
 
 If you do not specify a template, CloudFormation uses a default template that creates resources with the following parameters:
 
-***Default VPC parameters***
+**Default VPC parameters**
 
 <table>
 <thead>

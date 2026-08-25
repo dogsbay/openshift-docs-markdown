@@ -24,7 +24,7 @@ Configuring the WebAssembly extension is currently a manual process. Support for
 *   You must have a 3scale tenant account. See [SaaS](https://www.3scale.net/signup) or [3scale 2.11 On-Premises](https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.11/html-single/installing_3scale/index#install-threescale-on-openshift-guide) with a matching service and relevant applications and metrics defined.
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   If you apply the module to the `<product_page>` microservice in the `bookinfo` namespace, see the [Bookinfo sample application](/service_mesh/v2x/ossm-create-mesh#ossm-tutorial-bookinfo-overview_ossm-create-mesh).
-    {%- endif %}
+{%- endif %}
     *   The following example is the YAML format for the custom resource for `threescale-wasm-auth` module.
     This example refers to the upstream Maistra version of {{ SMProductShortName }}, `WasmPlugin` API. You must declare the namespace where the `threescale-wasm-auth` module is deployed, alongside a `selector` to identify the set of applications the module will apply to:
         ```yaml

@@ -14,5 +14,5 @@ Using manual mode allows each cluster component to have only the permissions it 
 {% endif %}
 
 {% if context == "configuring-iam-ibm-cloud" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}

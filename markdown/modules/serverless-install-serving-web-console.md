@@ -12,12 +12,13 @@ After you install the {{ ServerlessOperatorName }}, install Knative Serving by u
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster administrator or dedicated administrator access.
 {% endif %}
+
 *   You have logged in to the {{ product_title }} web console.
 *   You have installed the {{ ServerlessOperatorName }}.
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Check that the **Project** dropdown at the top of the page is set to **Project: knative-serving**.
 1.  Click **Knative Serving** in the list of **Provided APIs** for the {{ ServerlessOperatorName }} to go to the **Knative Serving** tab.
 1.  Click **Create Knative Serving**.

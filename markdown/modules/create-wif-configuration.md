@@ -22,34 +22,34 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
         1.  Optional: Replace `<osd_version>` with the desired {{ product_title }} version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest {{ product_title }} y-stream version as well as the last three supported {{ product_title }} y-stream versions (beginning with version 4.17).
         1.  Optional: Replace `<gcp_project_id>` with the ID of the dedicated project where the workload identity pools and providers will be created and managed. If the `--federated-project` flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the `--project` flag.
 
-            :::important
+        :::important
 
-            Using a dedicated project to create and manage workload identity pools and providers is recommended by {{ GCP }}.
-            Using a dedicated project helps you to establish centralized governance over the configuration of workload identity pools and providers, enforce uniform attribute mappings and conditions throughout all projects and applications, and ensure that only authorized identity providers can authenticate with WIF.
+        Using a dedicated project to create and manage workload identity pools and providers is recommended by {{ GCP }}.
+        Using a dedicated project helps you to establish centralized governance over the configuration of workload identity pools and providers, enforce uniform attribute mappings and conditions throughout all projects and applications, and ensure that only authorized identity providers can authenticate with WIF.
 
-            Creating and managing workload identity pools and providers in a dedicated project is only allowed during initial WIF configuration creation. The `--federated-project` flag cannot be applied to existing `wif-configs`.
+        Creating and managing workload identity pools and providers in a dedicated project is only allowed during initial WIF configuration creation. The `--federated-project` flag cannot be applied to existing `wif-configs`.
 
-            For more information, see [Use a dedicated project to manage workload identity pools and providers](https://cloud.google.com/iam/docs/best-practices-for-using-workload-identity-federation#dedicated-project).
-            
-            :::
+        For more information, see [Use a dedicated project to manage workload identity pools and providers](https://cloud.google.com/iam/docs/best-practices-for-using-workload-identity-federation#dedicated-project).
+        
+        :::
 
-            ***Example output***
-            ```terminal
-            2024/09/26 13:05:41 Creating workload identity configuration...
-            2024/09/26 13:05:47 Workload identity pool created with name 2e1kcps6jtgla8818vqs8tbjjls4oeub
-            2024/09/26 13:05:47 workload identity provider created with name oidc
-            2024/09/26 13:05:48 IAM service account osd-worker-oeub created
-            2024/09/26 13:05:49 IAM service account osd-control-plane-oeub created
-            2024/09/26 13:05:49 IAM service account openshift-gcp-ccm-oeub created
-            2024/09/26 13:05:50 IAM service account openshift-gcp-pd-csi-driv-oeub created
-            2024/09/26 13:05:50 IAM service account openshift-image-registry-oeub created
-            2024/09/26 13:05:51 IAM service account openshift-machine-api-gcp-oeub created
-            2024/09/26 13:05:51 IAM service account osd-deployer-oeub created
-            2024/09/26 13:05:52 IAM service account cloud-credential-operator-oeub created
-            2024/09/26 13:05:52 IAM service account openshift-cloud-network-c-oeub created
-            2024/09/26 13:05:53 IAM service account openshift-ingress-gcp-oeub created
-            2024/09/26 13:05:55 Role "osd_deployer_v4.19" updated
-            ```
+        **Example output**
+        ```terminal
+        2024/09/26 13:05:41 Creating workload identity configuration...
+        2024/09/26 13:05:47 Workload identity pool created with name 2e1kcps6jtgla8818vqs8tbjjls4oeub
+        2024/09/26 13:05:47 workload identity provider created with name oidc
+        2024/09/26 13:05:48 IAM service account osd-worker-oeub created
+        2024/09/26 13:05:49 IAM service account osd-control-plane-oeub created
+        2024/09/26 13:05:49 IAM service account openshift-gcp-ccm-oeub created
+        2024/09/26 13:05:50 IAM service account openshift-gcp-pd-csi-driv-oeub created
+        2024/09/26 13:05:50 IAM service account openshift-image-registry-oeub created
+        2024/09/26 13:05:51 IAM service account openshift-machine-api-gcp-oeub created
+        2024/09/26 13:05:51 IAM service account osd-deployer-oeub created
+        2024/09/26 13:05:52 IAM service account cloud-credential-operator-oeub created
+        2024/09/26 13:05:52 IAM service account openshift-cloud-network-c-oeub created
+        2024/09/26 13:05:53 IAM service account openshift-ingress-gcp-oeub created
+        2024/09/26 13:05:55 Role "osd_deployer_v4.19" updated
+        ```
     *   Create a WIF configuration in manual mode by running the following command:
         ```terminal
         $ ocm gcp create wif-config --name <wif_name> \ (1)
@@ -61,14 +61,14 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
 
             Once the WIF is configured, the following service accounts, roles, and groups are created.
 
-            :::note
+        :::note
 
-            Red&#160;Hat custom roles are versioned with every OpenShift y-stream release, for example 4.19.
-            
-            :::
+        Red&#160;Hat custom roles are versioned with every OpenShift y-stream release, for example 4.19.
+        
+        :::
 
 
-            ***WIF configuration service accounts, group and roles***
+        **WIF configuration service accounts, group and roles**
 
 <table>
 <thead>
@@ -126,4 +126,4 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
 </table>
 
 
-            For the complete list of WIF configuration roles and their assigned permissions, see [managed-cluster-config](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml).
+        For the complete list of WIF configuration roles and their assigned permissions, see [managed-cluster-config](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml).

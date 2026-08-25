@@ -37,7 +37,7 @@ To make container images locally available for your deployment, mirror them to t
     $ echo "{\"auths\": { \"$REGISTRY\": { \"auth\": $TOKEN } }}" > dockerauth.json
     ```
 1.  Mirror the image by running a command similar to the following example:
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -e KUBECONFIG=/kubeconfig/kubeconfig \
     registry.redhat.io/openshift4/cnf-tests-rhel9:v{{ product_version }} \
     /usr/bin/mirror -registry $REGISTRY/cnftests |  oc image mirror --insecure=true \

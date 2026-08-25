@@ -74,9 +74,9 @@ You can configure your container to use the Downward API to dynamically discover
     ```
 
 
-:::note
+    :::note
 
-The memory limit value can also be read from inside the container by the
-`/sys/fs/cgroup/memory/memory.limit_in_bytes` file.
-
-:::
+    The memory limit value can also be read from inside the container by the
+    `/sys/fs/cgroup/memory/memory.limit_in_bytes` file.
+    
+    :::

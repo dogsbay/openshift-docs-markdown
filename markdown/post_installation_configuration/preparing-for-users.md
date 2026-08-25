@@ -4,10 +4,10 @@ title: Preparing for users
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "post-install-preparing-for-users" %}
-# Preparing for users {id="post-install-preparing-for-users"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing for users {id="post-install-preparing-for-users"}
 
-You can prepare your cluster for users by configuring authentication and permissions, managing initial administrative access, and making Operators available through the software catalog.
+You can prepare your cluster for users by configuring authentication and permissions, managing initial administrative access, and making Operators available through the software catalog. {._abstract}
 
 After installing {{ product_title }}, you can further expand and customize your cluster to your requirements, including taking steps to prepare for users.
 
@@ -32,6 +32,7 @@ after you install your cluster.
 {% leveloffset +2 %}{% include "./modules/rbac-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [RBAC rules allow execution privileges](https://access.redhat.com/solutions/6989997)
 *   [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)
@@ -39,12 +40,14 @@ after you install your cluster.
 {% leveloffset +2 %}{% include "./modules/rbac-projects-namespaces.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Kubernetes documentation on namespaces](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/)
 
 {% leveloffset +2 %}{% include "./modules/rbac-default-projects.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Guaranteed Scheduling For Critical Add-On Pods (Kubernetes documentation)](https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/#rescheduler-guaranteed-scheduling-of-critical-add-ons)
 
@@ -81,6 +84,7 @@ after you install your cluster.
 {% leveloffset +1 %}{% include "./modules/post-install-mirrored-catalogs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring Operator catalogs for use with disconnected clusters](/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)
 
@@ -89,6 +93,7 @@ after you install your cluster.
 {% leveloffset +2 %}{% include "./modules/olm-creating-catalog-from-index.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Accessing images for Operators from private registries](/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)
 *   [Image template for custom catalog sources](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm)
@@ -106,6 +111,7 @@ after you install your cluster.
 {% leveloffset +2 %}{% include "./modules/olm-installing-from-software-catalog-using-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About OperatorGroups](/operators/understanding/olm/olm-understanding-operatorgroups#olm-operatorgroups-about_olm-understanding-operatorgroups)
 {% endif %}

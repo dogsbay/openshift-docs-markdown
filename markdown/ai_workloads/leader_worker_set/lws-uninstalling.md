@@ -8,7 +8,7 @@ title: "Uninstalling the {{ lws_operator }}"
 
 {%- set context = "lws-uninstalling" %}
 
-If you no longer need the {{ lws_operator }} in your cluster, you can uninstall the Operator and remove its related resources.
+If you no longer need the {{ lws_operator }} in your cluster, you can uninstall the Operator and remove its related resources. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/lws-uninstall.md" %}{% endleveloffset %}
 

@@ -9,7 +9,7 @@ You can create a network attachment definition (NAD) that describes how to attac
 
 **Procedure**
 
-1.  Go to **Networking** -> **NetworkAttachmentDefinitions** in the web console.
+1.  Go to **Networking** → **NetworkAttachmentDefinitions** in the web console.
 1.  Click **Create Network Attachment Definition**. The network attachment definition must be in the same namespace as the pod or virtual machine using it.
 1.  Enter a unique **Name** and optional **Description**.
 1.  Select **OVN Kubernetes L2 overlay network** from the **Network Type** list.

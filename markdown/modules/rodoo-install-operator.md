@@ -12,10 +12,10 @@ Install the {{ run_once_operator }} by using the web console to create the requi
 
 1.  Log in to the {{ product_title }} web console.
 1.  Create the required namespace for the {{ run_once_operator }}.
-    1.  Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+    1.  Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
     1.  Enter `openshift-run-once-duration-override-operator` in the **Name** field and click **Create**.
 1.  Install the {{ run_once_operator }}.
-    1.  Navigate to **Ecosystem** -> **Software Catalog**.
+    1.  Navigate to **Ecosystem** → **Software Catalog**.
     1.  Enter **{{ run_once_operator }}** into the filter box.
     1.  Select the **{{ run_once_operator }}** and click **Install**.
     1.  On the **Install Operator** page:
@@ -27,7 +27,7 @@ Install the {{ run_once_operator }} by using the web console to create the requi
             *   The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.
         1.  Click **Install**.
 1.  Create a `RunOnceDurationOverride` instance.
-    1.  From the **Ecosystem** -> **Installed Operators** page, click **{{ run_once_operator }}**.
+    1.  From the **Ecosystem** → **Installed Operators** page, click **{{ run_once_operator }}**.
     1.  Select the **Run Once Duration Override** tab and click **Create RunOnceDurationOverride**.
     1.  Edit the settings as necessary.
 

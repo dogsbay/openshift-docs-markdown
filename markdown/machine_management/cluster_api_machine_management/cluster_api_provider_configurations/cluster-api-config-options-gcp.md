@@ -7,7 +7,7 @@ title: "Cluster API configuration options for {{ gcp_full }}"
 # Cluster API configuration options for {{ gcp_full }} {id="cluster-api-config-options-gcp"}
 {%- set context = "cluster-api-config-options-gcp" %}
 
-You can change the configuration of your {{ gcp_first }} Cluster API machines by updating values in the Cluster API custom resource manifests.
+You can change the configuration of your {{ gcp_first }} Cluster API machines by updating values in the Cluster API custom resource manifests. {._abstract}
 
 {%- set FeatureName = "Managing machines with the Cluster API" %}
 {% include "./snippets/technology-preview.md" %}

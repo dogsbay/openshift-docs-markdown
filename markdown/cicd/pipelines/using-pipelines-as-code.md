@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using {{ pac }} {id="using-pipelines-as-code"}
 {% include "./_attributes/common-attributes.md" %}
+# Using {{ pac }} {id="using-pipelines-as-code"}
 {%- set context = "using-pipelines-as-code" %}
 
 With {{ pac }}, cluster administrators and users with the required privileges can define pipeline templates as part of source code Git repositories. When triggered by a source code push or a pull request for the configured Git repository, {{ pac }} runs the pipeline and reports the status. {._abstract}

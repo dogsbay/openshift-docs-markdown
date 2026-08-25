@@ -3,8 +3,8 @@ title: Security
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Security {id="ossm-security"}
 {% include "./_attributes/common-attributes.md" %}
+# Security {id="ossm-security"}
 {%- set context = "ossm-security" %}
 
 If your service mesh application is constructed with a complex array of microservices, you can use {{ SMProductName }} to customize the security of the communication between those services. The infrastructure of {{ product_title }} along with the traffic management features of {{ SMProductShortName }} help you manage the complexity of your applications and secure microservices.
@@ -45,12 +45,12 @@ If you don’t have a project, install the [Bookinfo sample application](/servic
 
 {% leveloffset +2 %}{% include "./modules/ossm-cert-manager-installation.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_cert-manager-operator-red-hat-openshift"}
+## Additional resources {id="additional-resources_cert-manager-operator-red-hat-openshift" ._additional-resources}
 
 For information about how to install the cert-manager Operator for {{ product_title }}, see:
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 [Installing the cert-manager Operator for Red Hat OpenShift](/security/cert_manager_operator/cert-manager-operator-install).
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 [Installing the cert-manager Operator for Red Hat OpenShift](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.12/html-single/security_and_compliance/index#cert-manager-operator-install).
-{% endif %}
+{%- endif %}

@@ -8,11 +8,12 @@ title: Overview of AI workloads on OpenShift Container Platform
 
 {%- set context = "ai-workloads-about" %}
 
-{{ product_title }} provides a secure, scalable foundation for running artificial intelligence (AI) workloads across training, inference, and data science workflows.
+{{ product_title }} provides a secure, scalable foundation for running artificial intelligence (AI) workloads across training, inference, and data science workflows. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/ai-operators.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Introduction to {{ kueue_name }}](/ai_workloads/kueue/about-kueue#about-kueue)
 *   [{{ lws_operator }} overview](/ai_workloads/leader_worker_set/index#lws-about)

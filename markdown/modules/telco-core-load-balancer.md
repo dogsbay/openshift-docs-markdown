@@ -16,7 +16,6 @@ If you have custom `FRRConfiguration` CRs in the `metallb-system` namespace, you
 :::
 
 
-
 Description
 :   MetalLB is a load-balancer implementation for bare metal Kubernetes clusters that uses standard routing protocols.
     It enables a Kubernetes service to get an external IP address which is also added to the host network for the cluster.

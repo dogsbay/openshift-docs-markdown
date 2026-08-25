@@ -9,9 +9,10 @@ The network verification includes checks for each of the following requirements:
 *   The VPC has `enableDnsHostnames` enabled.
 {%- if openshift_dedicated %}
 *   Egress is available to the required domain and port combinations.
-{% endif %}
+{%- endif %}
 
 {% if openshift_dedicated %}
+
 **Additional resources**
 {._additional-resources}
 

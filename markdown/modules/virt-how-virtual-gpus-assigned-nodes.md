@@ -35,6 +35,7 @@ Large cluster with multiple cards per node
 
 One node has a single card that supports more than one requested vGPU type
 :   {{ VirtProductName }} uses the supported type that comes first on the `mediatedDeviceTypes` list.
+
     For example, the card on a node card supports `nvidia-223` and `nvidia-224`. The following `mediatedDeviceTypes` list is configured:
     ```yaml
     # ...
@@ -45,4 +46,5 @@ One node has a single card that supports more than one requested vGPU type
       - nvidia-224
     # ...
     ```
+
     In this example, {{ VirtProductName }} uses the `nvidia-223` type.

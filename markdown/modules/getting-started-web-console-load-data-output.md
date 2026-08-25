@@ -10,7 +10,7 @@ After you have deployed the `mongodb-nationalparks` database application, load t
 
 **Procedure**
 
-1.  Navigate to **Workloads** -> **Topology**.
+1.  Navigate to **Workloads** → **Topology**.
 1.  Click the `nationalparks` deployment and select the **Resources** tab.
 1.  Copy the **Location** URL from your route.
 1.  Paste the URL into your web browser and add the following at the end of the URL:

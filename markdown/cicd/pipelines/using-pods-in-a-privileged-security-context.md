@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using pods in a privileged security context {id="using-pods-in-a-privileged-security-context"}
 {% include "./_attributes/common-attributes.md" %}
+# Using pods in a privileged security context {id="using-pods-in-a-privileged-security-context"}
 {%- set context = "using-pods-in-a-privileged-security-context" %}
 
 The default configuration of {{ pipelines_shortname }} 1.3.x and later versions does not allow you to run pods with privileged security context, if the pods result from pipeline run or task run.

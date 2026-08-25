@@ -3,8 +3,8 @@ title: Troubleshooting and maintaining OpenShift Container Platform clusters
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting and maintaining {{ product_title }} clusters {id="troubleshooting-intro"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting and maintaining {{ product_title }} clusters {id="troubleshooting-intro"}
 {%- set context = "troubleshooting-intro" %}
 
 Troubleshooting and maintenance are weekly tasks that can be a challenge if you do not have the tools to reach your goal, whether you want to update a component or investigate an issue.

@@ -27,21 +27,21 @@ Scaled registry
 
 :   In a scaled/HA {{ product_registry }} cluster deployment:
 
-*   The storage technology must support RWX access mode.
-*   The storage technology must ensure read-after-write consistency.
-*   The preferred storage technology is object storage.
-*   {{ rh_storage_first }}, Amazon Simple Storage Service (Amazon S3), {{ gcp_full }} Storage (GCS), {{ azure_full }} Blob Storage, and OpenStack Swift are supported.
-*   Object storage should be S3 or Swift compliant.
-*   For non-cloud platforms, such as {{ vmw_short }} and bare-metal installations, the only configurable technology is file storage.
-*   Block storage is not configurable.
-*   The use of Network File System (NFS) storage with {{ product_title }} is supported. However, the use of NFS storage with a scaled registry can cause known issues. For more information, see the "Is NFS supported for OpenShift cluster internal components in Production?" Red&#160;Hat Knowledgebase solution.
+    *   The storage technology must support RWX access mode.
+    *   The storage technology must ensure read-after-write consistency.
+    *   The preferred storage technology is object storage.
+    *   {{ rh_storage_first }}, Amazon Simple Storage Service (Amazon S3), {{ gcp_full }} Storage (GCS), {{ azure_full }} Blob Storage, and OpenStack Swift are supported.
+    *   Object storage should be S3 or Swift compliant.
+    *   For non-cloud platforms, such as {{ vmw_short }} and bare-metal installations, the only configurable technology is file storage.
+    *   Block storage is not configurable.
+    *   The use of Network File System (NFS) storage with {{ product_title }} is supported. However, the use of NFS storage with a scaled registry can cause known issues. For more information, see the "Is NFS supported for OpenShift cluster internal components in Production?" Red&#160;Hat Knowledgebase solution.
 
 Metrics
 
 :   In an {{ product_title }} hosted metrics cluster deployment:
 
-*   The preferred storage technology is block storage.
-*   Object storage is not configurable.
+    *   The preferred storage technology is block storage.
+    *   Object storage is not configurable.
 
 
 :::important
@@ -49,7 +49,6 @@ Metrics
 It is not recommended to use file storage for a hosted metrics cluster deployment with production workloads.
 
 :::
-
 
 
 Logging
@@ -64,20 +63,19 @@ Logging
     *   Object storage is not supported.
 
 
-:::note
+    :::note
 
-As of logging version 5.4.3 the {{ es_op }} is deprecated and is planned to be removed in a future release. Red Hat will provide bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to using the {{ es_op }} to manage the default log storage, you can use the {{ loki_op }}.
+    As of logging version 5.4.3 the {{ es_op }} is deprecated and is planned to be removed in a future release. Red Hat will provide bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to using the {{ es_op }} to manage the default log storage, you can use the {{ loki_op }}.
+    
+    :::
 
-:::
 
+    Applications
 
+    :   Application use cases vary from application to application, as described in the following examples:
 
-Applications
-
-:   Application use cases vary from application to application, as described in the following examples:
-
-    *   Storage technologies that support dynamic PV provisioning have low mount time latencies, and are not tied to nodes to support a healthy cluster.
-    *   Application developers are responsible for knowing and understanding the storage requirements for their application, and how it works with the provided storage to ensure that issues do not occur when an application scales or interacts with the storage layer.
+*   Storage technologies that support dynamic PV provisioning have low mount time latencies, and are not tied to nodes to support a healthy cluster.
+*   Application developers are responsible for knowing and understanding the storage requirements for their application, and how it works with the provided storage to ensure that issues do not occur when an application scales or interacts with the storage layer.
 
 Other specific application storage recommendations
 
@@ -89,6 +87,6 @@ Other specific application storage recommendations
     :::
 
 
-*   {{ rh_openstack_first }} Cinder: {{ rh_openstack }} Cinder tends to be adept at ROX access mode use cases.
-*   Databases: Databases (RDBMSs, NoSQL DBs, etc.) tend to perform best with dedicated block storage.
-*   The etcd database must have enough storage and adequate performance capacity to enable a large cluster. Information about monitoring and benchmarking tools to establish ample storage and a high-performance environment is described in _Recommended etcd practices_.
+    *   {{ rh_openstack_first }} Cinder: {{ rh_openstack }} Cinder tends to be adept at ROX access mode use cases.
+    *   Databases: Databases (RDBMSs, NoSQL DBs, etc.) tend to perform best with dedicated block storage.
+    *   The etcd database must have enough storage and adequate performance capacity to enable a large cluster. Information about monitoring and benchmarking tools to establish ample storage and a high-performance environment is described in _Recommended etcd practices_.

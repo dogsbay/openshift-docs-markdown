@@ -3,11 +3,11 @@ title: OVN-Kubernetes architecture
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# OVN-Kubernetes architecture {id="ovn-kubernetes-architecture-assembly"}
 {% include "./_attributes/common-attributes.md" %}
+# OVN-Kubernetes architecture {id="ovn-kubernetes-architecture-assembly"}
 {%- set context = "ovn-kubernetes-architecture" %}
 
-The following sections describe the OVN-Kubernetes architecture, how OVN components map to cluster resources and databases, and how to install and run `network-tools` for debugging.
+The following sections describe the OVN-Kubernetes architecture, how OVN components map to cluster resources and databases, and how to install and run `network-tools` for debugging. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/ovn-kubernetes-architecture-con.md" %}{% endleveloffset %}
 
@@ -27,7 +27,7 @@ The following sections describe the OVN-Kubernetes architecture, how OVN compone
 
 {% leveloffset +2 %}{% include "./modules/nw-ovn-kubernetes-running-network-tools.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_ovn-kubernetes-architecture"}
+## Additional resources {id="additional-resources_ovn-kubernetes-architecture" ._additional-resources}
 
 *   [Tracing Openflow with ovnkube-trace](/networking/ovn_kubernetes_network_provider/ovn-kubernetes-tracing-using-ovntrace#ovn-kubernetes-tracing-using-ovntrace)
 *   [OVN architecture](https://www.ovn.org/support/dist-docs/ovn-architecture.7.html)

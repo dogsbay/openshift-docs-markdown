@@ -3,7 +3,7 @@
 
 When migrating a VM running a heavy workload, such as database processing, higher memory dirty rates can prevent the migration from completing. To address this, you can enable post copy mode, which allows the migration to complete when the pre-copy phase cannot converge. {._abstract}
 
-Configure live migration for heavy workloads by updating the `HyperConverged` custom resource (CR) in the `{{ CNVNamespace }}` namespace.
+Configure live migration for heavy workloads by updating the `HyperConverged` custom resource (CR) in the `{{ CNVNamespace }}`{minja} namespace.
 
 **Prerequisites**
 
@@ -12,12 +12,12 @@ Configure live migration for heavy workloads by updating the `HyperConverged` cu
 **Procedure**
 
 1.  Edit the `HyperConverged` CR and add the necessary parameters for migrating heavy workloads:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 
     Example configuration file:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:
@@ -52,10 +52,9 @@ Configure live migration for heavy workloads by updating the `HyperConverged` cu
 
     `allowPostCopy`
     :   Specifies whether the post copy mode is enabled. You can enable post copy mode to allow the migration of one node to another to converge, even if a VM is running a heavy workload and the memory dirty rate is too high. Set allowPostCopy to true to enable post copy mode.
-    1.  Optional: If your main network is too busy for the migration, configure a secondary, dedicated migration network.
+1.  Optional: If your main network is too busy for the migration, configure a secondary, dedicated migration network.
 
     :::note
-
 
     Post copy mode can impact performance during the transfer, and should not be used for critical data, or with unstable networks.
     

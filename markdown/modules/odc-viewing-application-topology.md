@@ -14,9 +14,9 @@ You can customize the views as required using the following:
         *   Virtual Machines: Toggle to show or hide the virtual machines.
         *   Application Groupings: Clear to condense the application groups into cards with an overview of an application group and alerts associated with it.
         *   Helm Releases: Clear to condense the components deployed as Helm Release into cards with an overview of a given release.
-            {%- if not (openshift_rosa or openshift_dedicated) %}
+{%- if not (openshift_rosa or openshift_dedicated) %}
         *   Knative Services: Clear to condense the Knative Service components into cards with an overview of a given component.
-            {%- endif %}
+{%- endif %}
         *   Operator Groupings: Clear to condense the components deployed with an Operator into cards with an overview of the given group.
     *   **Show** elements based on **Pod Count** or **Labels**
         *   Pod Count: Select to show the number of pods of a component in the component icon.
@@ -24,4 +24,4 @@ You can customize the views as required using the following:
 
 {%- if not (openshift_rosa or openshift_dedicated) %}
 The **Topology** view also provides you the **Export application** option to download your application in the ZIP file format. You can then import the downloaded application to another project or cluster. For more details, see _Exporting an application to another project or cluster_ in the _Additional resources_ section.
-{% endif %}
+{%- endif %}

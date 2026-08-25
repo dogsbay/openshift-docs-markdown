@@ -3,17 +3,18 @@ title: Preparing to install a cluster that uses SR-IOV or OVS-DPDK on OpenStack
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster that uses SR-IOV or OVS-DPDK on OpenStack {id="installing-openstack-nfv-preparing"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster that uses SR-IOV or OVS-DPDK on OpenStack {id="installing-openstack-nfv-preparing"}
 {%- set context = "installing-openstack-nfv-preparing" %}
 
-Before installing an {{ product_title }} cluster that uses single-root I/O virtualization (SR-IOV) or Open vSwitch with the Data Plane Development Kit (OVS-DPDK) on {{ rh_openstack_first }} or {{ rhoso_first }}, review the requirements for each technology and complete all the preparatory tasks.
+Before installing an {{ product_title }} cluster that uses single-root I/O virtualization (SR-IOV) or Open vSwitch with the Data Plane Development Kit (OVS-DPDK) on {{ rh_openstack_first }} or {{ rhoso_first }}, review the requirements for each technology and complete all the preparatory tasks. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-openstack-nfv-requirements.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/installation-openstack-sr-iov-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About Single Root I/O Virtualization (SR-IOV) hardware networks](/networking/hardware_networks/about-sriov#about-sriov)
 *   [Planning an SR-IOV deployment ({{ rh_openstack_first }} documentation)](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_network_functions_virtualization/plan-sriov-deploy_rhosp-nfv)
@@ -24,6 +25,7 @@ Before installing an {{ product_title }} cluster that uses single-root I/O virtu
 {% leveloffset +2 %}{% include "./modules/installation-openstack-ovs-dpdk-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Planning your OVS-DPDK deployment ({{ rh_openstack_first }} documentation)](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_network_functions_virtualization/plan-ovs-dpdk-deploy_rhosp-nfv)
 *   [Creating a flavor and deploying an instance for OVS-DPDK](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_network_functions_virtualization/config-dpdk-deploy_rhosp-nfv#create-flavor-deploy-instance-ovsdpdk_cfgdpdk-nfv)
@@ -35,6 +37,7 @@ Before installing an {{ product_title }} cluster that uses single-root I/O virtu
 {% leveloffset +1 %}{% include "./modules/installation-osp-configuring-sr-iov.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Planning an SR-IOV deployment](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/html-single/network_functions_virtualization_planning_and_configuration_guide/index#assembly_sriov_parameters)
 

@@ -61,7 +61,7 @@ To receive all Operator versions in a specified range, you can set the `mirror.o
 :::
 
 
-```yaml title="Example ImageSetConfiguration file"
+```yaml title="Example ImageSetConfiguration file" {minja}
 apiVersion: mirror.openshift.io/v1alpha2
 kind: ImageSetConfiguration
 storageConfig:
@@ -88,7 +88,7 @@ To specify a maximum version instead of the latest, set the `mirror.operators.pa
 ## Use case: Including the Nutanix CSI Operator {id="oc-mirror-image-set-examples-nutanix-operator_{{ context }}"}
 The following `ImageSetConfiguration` file uses a local storage backend and includes the Nutanix CSI Operator, the OpenShift Update Service (OSUS) graph image, and an additional Red Hat Universal Base Image (UBI).
 
-```yaml title="Example ImageSetConfiguration file"
+```yaml title="Example ImageSetConfiguration file" {minja}
 kind: ImageSetConfiguration
 apiVersion: mirror.openshift.io/v1alpha2
 storageConfig:
@@ -123,7 +123,7 @@ You can find the default channel by running the following command: `oc mirror li
 :::
 
 
-```yaml title="Example ImageSetConfiguration file"
+```yaml title="Example ImageSetConfiguration file" {minja}
 apiVersion: mirror.openshift.io/v1alpha2
 kind: ImageSetConfiguration
 storageConfig:
@@ -144,7 +144,7 @@ mirror:
 
 The following `ImageSetConfiguration` file sets the `mirror.operators.full` field to `true` to include all versions for an entire Operator catalog.
 
-```yaml title="Example ImageSetConfiguration file"
+```yaml title="Example ImageSetConfiguration file" {minja}
 apiVersion: mirror.openshift.io/v1alpha2
 kind: ImageSetConfiguration
 storageConfig:
@@ -165,7 +165,7 @@ By default, for each Operator in the catalog, oc-mirror includes the latest Oper
 
 This example also uses the `targetCatalog` field to specify an alternative namespace and name to mirror the catalog as.
 
-```yaml title="Example ImageSetConfiguration file"
+```yaml title="Example ImageSetConfiguration file" {minja}
 apiVersion: mirror.openshift.io/v1alpha2
 kind: ImageSetConfiguration
 storageConfig:
@@ -182,7 +182,7 @@ mirror:
 
 The following `ImageSetConfiguration` file uses a registry storage backend and includes helm charts and an additional Red Hat Universal Base Image (UBI).
 
-```yaml title="Example ImageSetConfiguration file"
+```yaml title="Example ImageSetConfiguration file" {minja}
 apiVersion: mirror.openshift.io/v1alpha2
 kind: ImageSetConfiguration
 archiveSize: 4
@@ -238,7 +238,7 @@ mirror:
 
 ## Use case: Including the multi-arch {{ product_title }} images and catalog for {{ mce_short }} {id="oc-mirror-image-set-examples-mce-images-catalog-ocp_{{ context }}"}
 
-The following `ImageSetConfiguration` file includes {{ mce }} and all {{ product_title }} versions starting at a minimum version of `{{ product_version }}.0` in the channel.
+The following `ImageSetConfiguration` file includes {{ mce }} and all {{ product_title }} versions starting at a minimum version of `{{ product_version }}.0`{minja} in the channel.
 
 ```yaml title="Example ImageSetConfiguration file"
 apiVersion: mirror.openshift.io/v1alpha2

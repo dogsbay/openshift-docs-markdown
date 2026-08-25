@@ -15,7 +15,7 @@ To avoid unwanted disruptions from changes made by the Machine Config Operator (
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console as a user with the `cluster-admin` role.
-1.  Click **Compute** -> **MachineConfigPools**.
+1.  Click **Compute** → **MachineConfigPools**.
 1.  On the **MachineConfigPools** page, click either **master** or **worker**, depending upon which nodes you want to pause rebooting for.
 1.  On the **master** or **worker** page, click **YAML**.
 1.  In the YAML, update the `spec.paused` field to `true`.
@@ -44,7 +44,7 @@ To avoid unwanted disruptions from changes made by the Machine Config Operator (
 
     *   Unpause the autoreboot process:
 1.  Log in to the {{ product_title }} web console as a user with the `cluster-admin` role.
-1.  Click **Compute** -> **MachineConfigPools**.
+1.  Click **Compute** → **MachineConfigPools**.
 1.  On the **MachineConfigPools** page, click either **master** or **worker**, depending upon which nodes you want to pause rebooting for.
 1.  On the **master** or **worker** page, click **YAML**.
 1.  In the YAML, update the `spec.paused` field to `false`.

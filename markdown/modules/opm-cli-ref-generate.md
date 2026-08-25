@@ -49,7 +49,7 @@ $ opm generate dockerfile <dcRootDir> [<flags>]
 
 :::note
 
-To build with the official Red Hat image, use the `registry.redhat.io/openshift4/ose-operator-registry-rhel9:v{{ product_version }}` value with the `-i` flag.
+To build with the official Red Hat image, use the `registry.redhat.io/openshift4/ose-operator-registry-rhel9:v{{ product_version }}`{minja} value with the `-i` flag.
 
 :::
 

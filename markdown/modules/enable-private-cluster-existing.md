@@ -19,12 +19,11 @@ Configure an existing public cluster to be private by restricting Application Pr
 1.  On the **Networking** tab, select **Make API private** under **Control Plane API endpoint**.
 
 
-:::warning
+    :::warning
 
-When set to **Private**, you cannot access your cluster unless you have configured the private connections in your cloud provider as outlined in the prerequisites.
-
-:::
-
+    When set to **Private**, you cannot access your cluster unless you have configured the private connections in your cloud provider as outlined in the prerequisites.
+    
+    :::
 
 1.  Click **Change settings**.
 

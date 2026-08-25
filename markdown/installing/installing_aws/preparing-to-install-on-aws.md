@@ -3,11 +3,11 @@ title: Installation methods
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installation methods {id="installing-methods-aws"}
 {% include "./_attributes/common-attributes.md" %}
+# Installation methods {id="installing-methods-aws"}
 {%- set context = "preparing-to-install-on-aws" %}
 
-You can install {{ product_title }} on {{ aws_full }} using installer-provisioned, user-provisioned infrastructure, or on a single node, depending on the needs of your use case.
+You can install {{ product_title }} on {{ aws_full }} using installer-provisioned, user-provisioned infrastructure, or on a single node, depending on the needs of your use case. {._abstract}
 
 The default installation type uses installer-provisioned infrastructure, where the installation program provisions the underlying infrastructure for the cluster.
 
@@ -21,7 +21,7 @@ You can also install {{ product_title }} on a single node, which is a specialize
 
 {% leveloffset +1 %}{% include "./modules/installing-aws-single-node.md" %}{% endleveloffset %}
 
-## Additional resources {id="installing-methods-aws-ipi-additional-resources"}
+## Additional resources {id="installing-methods-aws-ipi-additional-resources" ._additional-resources}
 *   [Installing a cluster quickly on AWS](/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)
 *   [Installing a customized cluster on AWS](/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
 *   [Post-installation](/post_installation_configuration/cluster-tasks#post-install-cluster-tasks)

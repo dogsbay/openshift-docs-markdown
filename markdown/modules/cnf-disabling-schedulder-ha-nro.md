@@ -6,7 +6,7 @@ You can disable the NUMA-aware scheduler to stop all running scheduler pods and 
 **Procedure**
 
 1.  Save the following minimal required YAML in the `nro-disable-scheduler.yaml` file. Disable the scheduler by setting the `spec.replicas` field to `0`. 
-    ```yaml
+    ```yaml {minja}
     apiVersion: nodetopology.openshift.io/v1
     kind: NUMAResourcesScheduler
     metadata:

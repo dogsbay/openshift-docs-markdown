@@ -1,5 +1,5 @@
 ---
-title: "AdminPolicyBasedExternalRoute []"
+title: "AdminPolicyBasedExternalRoute [k8s.ovn.org/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | AdminPolicyBasedExternalRouteSpec defines the desired state of AdminPolicyBasedExternalRoute |
 | `status` | `object` | AdminPolicyBasedRouteStatus contains the observed status of the AdminPolicyBased route types. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -46,6 +47,7 @@ Required
 | --- | --- | --- |
 | `from` | `object` | From defines the selectors that will determine the target namespaces to this CR. |
 | `nextHops` | `object` | NextHops defines two types of hops: Static and Dynamic. Each hop defines at least one external gateway IP. |
+
 ### .spec.from {id="_specfrom"}
 
 Description
@@ -62,6 +64,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `namespaceSelector` | `object` | NamespaceSelector defines a selector to be used to determine which namespaces will be targeted by this CR |
+
 ### .spec.from.namespaceSelector {id="_specfromnamespaceselector"}
 
 Description
@@ -76,6 +79,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.from.namespaceSelector.matchExpressions {id="_specfromnamespaceselectormatchexpressions"}
 
 Description
@@ -104,6 +108,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.nextHops {id="_specnexthops"}
 
 Description
@@ -119,6 +124,7 @@ Type
 | `dynamic[]` | `object` | DynamicHop defines the configuration for a dynamic external gateway interface. These interfaces are wrapped around a pod object that resides inside the cluster. The field NetworkAttachmentName captures the name of the multus network name to use when retrieving the gateway IP to use. The PodSelector and the NamespaceSelector are mandatory fields. |
 | `static` | `array` | StaticHops defines a slice of StaticHop. This field is optional. |
 | `static[]` | `object` | StaticHop defines the configuration of a static IP that acts as an external Gateway Interface. IP field is mandatory. |
+
 ### .spec.nextHops.dynamic {id="_specnexthopsdynamic"}
 
 Description
@@ -148,6 +154,7 @@ Required
 | `namespaceSelector` | `object` | NamespaceSelector defines a selector to filter the namespaces where the pod gateways are located. |
 | `networkAttachmentName` | `string` | NetworkAttachmentName determines the multus network name to use when retrieving the pod IPs that will be used as the gateway IP. When this field is empty, the logic assumes that the pod is configured with HostNetwork and is using the node’s IP as gateway. |
 | `podSelector` | `object` | PodSelector defines the selector to filter the pods that are external gateways. |
+
 ### .spec.nextHops.dynamic[].namespaceSelector {id="_specnexthopsdynamicnamespaceselector"}
 
 Description
@@ -162,6 +169,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.nextHops.dynamic[].namespaceSelector.matchExpressions {id="_specnexthopsdynamicnamespaceselectormatchexpressions"}
 
 Description
@@ -190,6 +198,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.nextHops.dynamic[].podSelector {id="_specnexthopsdynamicpodselector"}
 
 Description
@@ -204,6 +213,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.nextHops.dynamic[].podSelector.matchExpressions {id="_specnexthopsdynamicpodselectormatchexpressions"}
 
 Description
@@ -232,6 +242,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.nextHops.static {id="_specnexthopsstatic"}
 
 Description
@@ -258,6 +269,7 @@ Required
 | --- | --- | --- |
 | `bfdEnabled` | `boolean` | BFDEnabled determines if the interface implements the Bidirectional Forward Detection protocol. Defaults to false. |
 | `ip` | `string` | IP defines the static IP to be used for egress traffic. The IP can be either IPv4 or IPv6. |
+
 ### .status {id="_status"}
 
 Description
@@ -281,12 +293,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of AdminPolicyBasedExternalRoute
     *   `GET`: list objects of kind AdminPolicyBasedExternalRoute
     *   `POST`: create an AdminPolicyBasedExternalRoute
-*   `/apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{{ name }}`
+*   `/apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{{ name }}`{minja}
     *   `DELETE`: delete an AdminPolicyBasedExternalRoute
     *   `GET`: read the specified AdminPolicyBasedExternalRoute
     *   `PATCH`: partially update the specified AdminPolicyBasedExternalRoute
     *   `PUT`: replace the specified AdminPolicyBasedExternalRoute
-*   `/apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{{ name }}/status`
+*   `/apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{{ name }}/status`{minja}
     *   `GET`: read status of the specified AdminPolicyBasedExternalRoute
     *   `PATCH`: partially update status of the specified AdminPolicyBasedExternalRoute
     *   `PUT`: replace status of the specified AdminPolicyBasedExternalRoute

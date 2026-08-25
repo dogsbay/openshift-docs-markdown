@@ -6,7 +6,7 @@ You can set a specific number of scheduler replicas by updating the `spec.replic
 **Procedure**
 
 1.  Create the `NUMAResourcesScheduler` CR with the following YAML named for example `custom-ha.yaml` that sets the number of replicas to 2:
-    ```yaml
+    ```yaml {minja}
     apiVersion: nodetopology.openshift.io/v1
     kind: NUMAResourcesScheduler
     metadata:

@@ -12,6 +12,7 @@ By default, the {{ SMProductShortName }} mTLS feature only secures traffic insid
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster or dedicated administrator access.
 {% endif %}
+
 *   You have installed the {{ ServerlessOperatorName }} and Knative Serving.
 *   Install the OpenShift CLI (`oc`).
 *   You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {{ product_title }}.

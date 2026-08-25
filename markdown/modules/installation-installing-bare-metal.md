@@ -30,7 +30,7 @@ The {{ product_title }} bootstrap process begins after the cluster nodes first b
 *   You installed {{ op_system }} on your cluster machines and provided the Ignition config files that the {{ product_title }} installation program generated.
 {%- if not restricted %}
 *   Your machines have direct internet access or have an HTTP or HTTPS proxy available.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -68,20 +68,20 @@ load balancer.
 
 
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

@@ -1,6 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-[id="virt-nw-overview-manage-overlay-nw_{{ context }}"]                                
-= Manage overlay networks
+# Manage overlay networks {id="virt-nw-overview-manage-overlay-nw_{{ context }}"}
 
 To ensure your virtual machines (VMs) connect reliably by using the standard {{ product_title }} networking model, configure the default pod network for cluster-wide connectivity.  {._abstract}
 

@@ -12,7 +12,7 @@ Uninstall {{ lvms }} when it is no longer needed or before upgrading to a differ
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Click **Ecosystem** -> **Installed Operators**.
+1.  Click **Ecosystem** → **Installed Operators**.
 1.  Click **{{ lvms }}** in the `openshift-lvm-storage` namespace.
 1.  Click the **Details** tab. 
 1.  From the **Actions** menu, select **Uninstall Operator**.

@@ -43,7 +43,7 @@ The following examples continue with the {{ ovms }}.
     $ curl -i "${DOMAIN}/v2/models/ovms-resnet50/ready" --connect-to "${DOMAIN}::${IP}:"
     ```
 
-    Instead of using the `--connect-to "${{ DOMAIN }}::${{ IP }}:"` flag, you can also use real DNS, or add the IP address and the domain to the `/etc/hosts` file.
+    Instead of using the `--connect-to "${{ DOMAIN }}::${{ IP }}:"`{minja} flag, you can also use real DNS, or add the IP address and the domain to the `/etc/hosts` file.
     ```text title="Example output"
     HTTP/1.1 200 OK
     content-type: application/json

@@ -7,7 +7,7 @@ You can view custom charts as an administrator in the **Dashboard** menu.
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  In the **Provided APIs** heading for the **NetObserv Operator**, select **FlowMetric**.
 1.  In the **Project:**  dropdown list, select the project of the Network Observability Operator instance.
 1.  Click **Create FlowMetric**.
@@ -15,7 +15,7 @@ You can view custom charts as an administrator in the **Dashboard** menu.
 
 **Verification**
 
-1.  Once the pods refresh, navigate to **Observe** -> **Dashboards**.
+1.  Once the pods refresh, navigate to **Observe** → **Dashboards**.
 1.  Search for the **NetObserv / Main** dashboard. View two panels under the **NetObserv / Main** dashboard, or optionally a dashboard name that you create:
     *   A textual single statistic showing the global external ingress rate summed across all dimensions
     *   A timeseries graph showing the same metric per destination workload

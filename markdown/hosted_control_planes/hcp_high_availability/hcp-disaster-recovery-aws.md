@@ -7,7 +7,7 @@ title: Disaster recovery for a hosted cluster in AWS
 # Disaster recovery for a hosted cluster in AWS  {id="hcp-disaster-recovery-aws"}
 {%- set context = "hcp-disaster-recovery-aws" %}
 
-You can recover a hosted cluster to the same region within {{ aws_first }}. For example, you need disaster recovery when the upgrade of a management cluster fails and the hosted cluster is in a read-only state.
+You can recover a hosted cluster to the same region within {{ aws_first }}. For example, you need disaster recovery when the upgrade of a management cluster fails and the hosted cluster is in a read-only state. {._abstract}
 
 The disaster recovery process involves the following steps:
 

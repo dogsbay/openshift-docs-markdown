@@ -7,7 +7,7 @@ A namespace can be selected by only one `AdminPolicyBasedExternalRoute` CR at a 
 
 The following tables detail supported fields for objects.
 
-***`AdminPolicyBasedExternalRoute` object***
+**`AdminPolicyBasedExternalRoute` object**
 
 <table>
 <thead>
@@ -36,7 +36,7 @@ The following tables detail supported fields for objects.
 </tbody>
 </table>
 
-***`nextHops` object***
+**`nextHops` object**
 
 <table>
 <thead>
@@ -60,7 +60,7 @@ The following tables detail supported fields for objects.
 </tbody>
 </table>
 
-***`nextHops.static` object***
+**`nextHops.static` object**
 
 <table>
 <thead>
@@ -84,7 +84,7 @@ The following tables detail supported fields for objects.
 </tbody>
 </table>
 
-***`nextHops.dynamic` object***
+**`nextHops.dynamic` object**
 
 <table>
 <thead>

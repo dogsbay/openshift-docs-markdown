@@ -3,11 +3,11 @@ title: Creating basic routes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating basic routes {id="creating-basic-routes"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating basic routes {id="creating-basic-routes"}
 {%- set context = "creating-basic-routes" %}
 
-If you have unencrypted HTTP, you can create a basic route with a route object.
+If you have unencrypted HTTP, you can create a basic route with a route object. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-creating-a-route.md" %}{% endleveloffset %}
 

@@ -15,15 +15,15 @@ The `address` field for each `bmc` entry is a URL for connecting to the {{ produ
 <tbody>
 <tr>
   <td>Redfish virtual media</td>
-  <td><code>redfish-virtualmedia://<out_of_band_ip>/redfish/v1/Systems/1</code></td>
+  <td><code>redfish-virtualmedia://&lt;out_of_band_ip&gt;/redfish/v1/Systems/1</code></td>
 </tr>
 <tr>
   <td>Redfish network boot</td>
-  <td><code>redfish://<out_of_band_ip>/redfish/v1/Systems/1</code></td>
+  <td><code>redfish://&lt;out_of_band_ip&gt;/redfish/v1/Systems/1</code></td>
 </tr>
 <tr>
   <td>IPMI</td>
-  <td><code>ipmi://<out_of_band_ip></code></td>
+  <td><code>ipmi://&lt;out_of_band_ip&gt;</code></td>
 </tr>
 </tbody>
 </table>

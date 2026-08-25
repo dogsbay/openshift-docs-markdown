@@ -68,9 +68,9 @@ For a restricted network installation, these files are on your mirror host.
         1.  Select the base domain for the Route 53 service that you configured for your cluster.
         1.  Enter a descriptive name for your cluster.
         1.  Paste the {{ cluster_manager_url_pull }}.
-            {%- if openshift_origin %}
+{%- if openshift_origin %}
         This field is optional.
-{% endif %}
+{%- endif %}
 
 {% if restricted %}
 1.  Edit the `install-config.yaml` file to give the additional information that
@@ -122,13 +122,13 @@ is required for an installation in a restricted network.
 
 
 {% if context == "installing-aws-user-infra" %}
-{%- set three_node_cluster = false -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-aws-local-zone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
 {%- set wavelength_zone = true -%}

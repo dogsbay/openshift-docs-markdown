@@ -4,10 +4,10 @@ title: Placing pods onto overcommited nodes
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-scheduler-overcommit" %}
-# Placing pods onto overcommited nodes {id="nodes-scheduler-overcommit"}
 {% include "./_attributes/common-attributes.md" %}
+# Placing pods onto overcommited nodes {id="nodes-scheduler-overcommit"}
 
-{{ product_title }} administrators can use container compute resource requests and limits to allow and manage the overcommitment of resources on a node, which enables pods to use additional resources when available, without guaranteeing those resources.
+{{ product_title }} administrators can use container compute resource requests and limits to allow and manage the overcommitment of resources on a node, which enables pods to use additional resources when available, without guaranteeing those resources. {._abstract}
 
 In an _overcommited_ state, the sum of the container compute resource requests and limits exceeds the resources available on the system.
 Overcommitment might be desirable in development environments where a trade-off of guaranteed performance for capacity is acceptable.

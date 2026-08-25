@@ -15,7 +15,7 @@ Enable private cluster settings when creating a new cluster to restrict Applicat
 **Procedure**
 
 1.  Log in to {{ cluster_manager_url }}.
-1.  Click **Create cluster** -> **{{ product_title }}** -> **Create cluster**.
+1.  Click **Create cluster** → **{{ product_title }}** → **Create cluster**.
 1.  Configure your cluster details.
 1.  When selecting your preferred network configuration, select **Advanced**.
 1.  Select **Private**.

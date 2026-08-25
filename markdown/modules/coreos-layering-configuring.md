@@ -27,7 +27,7 @@ As soon as you apply an out-of-cluster custom image to your cluster, you effecti
 
 
     For example, the following Containerfile creates a custom layered image from an {{ product_title }} {{ product_version }} image and overrides the kernel package with one from CentOS 9 Stream:
-    ```yaml title="Example Containerfile for a custom layer image"
+    ```yaml title="Example Containerfile for a custom layer image" {minja}
     # Using a {{ product_version }}.0 image
     FROM quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256...
     #Install hotfix rpm
@@ -120,7 +120,7 @@ You can verify that the custom layered image is applied by performing any of the
         ```terminal
         $ oc describe mc rendered-worker-5de4837625b1cbc237de6b22bc0bc873
         ```
-        ```terminal title="Example output"
+        ```terminal title="Example output" {minja}
         Name:         rendered-worker-5de4837625b1cbc237de6b22bc0bc873
         Namespace:
         Labels:       <none>

@@ -6,8 +6,8 @@ The table below describes the AWS service quotas and levels required to create a
 *   {{ product_title }} clusters require a minimum AWS EC2 service quota of
 {%- if not openshift_rosa_hcp %}
 100&#160;vCPUs
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 32&#160;vCPUs
 {%- endif %}
 to provide for cluster creation, availability, and upgrades. The default maximum value for vCPUs assigned to Running On-Demand Standard Amazon EC2 instances is `5`. Therefore if you have not created a {{ product_title }} cluster using the same AWS account previously, you must request additional EC2 quota for `Running On-Demand Standard (A, C, D, H, I, M, R, T, Z) instances`.
@@ -43,7 +43,7 @@ If you need to modify or increase a specific AWS quota, see Amazon’s documenta
   <td>ec2</td>
   <td>L-1216C47A</td>
   <td>5</td>
-  <td>10032</td>
+  <td>{% if not openshift_rosa_hcp %} 100 {% endif %} {% if openshift_rosa_hcp %} 32 {% endif %}</td>
   <td>Maximum number of vCPUs assigned to the Running On-Demand Standard (A, C, D, H, I, M, R, T, Z) instances. The default value of 5 vCPUs is not sufficient to create {{ product_title }} clusters.</td>
 </tr>
 <tr>
@@ -59,8 +59,8 @@ If you need to modify or increase a specific AWS quota, see Amazon’s documenta
   <td>ebs</td>
   <td>L-7A658B76</td>
   <td>50</td>
-  <td>300{%- set fn_hcp_storage_quota = "footnote:[The default quota of 50&#160;TiB is more than {{ product_title }} clusters require; however, because AWS cost is based on usage rather than quota, Red&#160;Hat recommends using the default quota.]" %}1{{ fn_hcp_storage_quota }}</td>
-  <td>The maximum aggregated amount of storage, in TiB, that can be provisioned across General Purpose SSD (gp3) volumes in this Region.300&#160;TiB1&#160;TiBof storage is the required minimum for optimal performance.</td>
+  <td>{% if not openshift_rosa_hcp %} 300 {% endif %} {% if openshift_rosa_hcp %} {%- set fn_hcp_storage_quota = "footnote:[The default quota of 50&#160;TiB is more than {{ product_title }} clusters require; however, because AWS cost is based on usage rather than quota, Red&#160;Hat recommends using the default quota.]" %}1{{ fn_hcp_storage_quota }} {% endif %}</td>
+  <td>The maximum aggregated amount of storage, in TiB, that can be provisioned across General Purpose SSD (gp3) volumes in this Region. {% if not openshift_rosa_hcp %} 300&#160;TiB {% endif %} {% if openshift_rosa_hcp %} 1&#160;TiB {% endif %} of storage is the required minimum for optimal performance.</td>
 </tr>
 <tr>
   {% if not openshift_rosa_hcp %}<td>Storage for Provisioned IOPS SSD (io1) volumes in TiB</td>{% endif %}
@@ -68,7 +68,7 @@ If you need to modify or increase a specific AWS quota, see Amazon’s documenta
   {% if not openshift_rosa_hcp %}<td>L-FD252861</td>{% endif %}
   {% if not openshift_rosa_hcp %}<td>50</td>{% endif %}
   {% if not openshift_rosa_hcp %}<td>300</td>{% endif %}
-  {% if not openshift_rosa_hcp %}<td>The maximum aggregated amount of storage, in TiB, that can be provisioned across Provisioned IOPS SSD (io1) volumes in this Region.</td>{% endif %}
+  {% if not openshift_rosa_hcp %}<td>The maximum aggregated amount of storage, in TiB, that can be provisioned across Provisioned IOPS SSD (io1) volumes in this Region.<br><br>{% if not openshift_rosa_hcp %}300&#160;TiB of storage is the required minimum for optimal performance.{% endif %}</td>{% endif %}
 </tr>
 </tbody>
 </table>

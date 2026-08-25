@@ -13,7 +13,7 @@ Standard installation by using {{ olm_first }}
 Agent-based installation
 :   Use the Agent-based Installer to deploy a cluster with {{ VirtProductName }} and related operators pre-configured. This installation method is designed for users who want a streamlined, UI-driven installation experience, particularly in disconnected environments.
 {%- set FeatureName = "Agent-based installation" %}
-{% include "./snippets/technology-preview.md" %}
+    {% include "./snippets/technology-preview.md" %}
 
 
 Assisted Installer with virtualization bundle

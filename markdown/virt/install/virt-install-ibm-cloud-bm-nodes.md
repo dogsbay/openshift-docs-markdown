@@ -10,7 +10,7 @@ title: "Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nod
 
 {%- set context = "virt-install-ibm-cloud-bm-nodes" %}
 
-Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.
+Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer. {._abstract}
 
 ## Prerequisites {id="_prerequisites"}
 

@@ -3,11 +3,11 @@ title: Connecting a virtual machine to a secondary localnet user-defined network
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Connecting a virtual machine to a secondary localnet user-defined network {id="virt-connecting-vm-to-secondary-udn"}
 {% include "./_attributes/common-attributes.md" %}
+# Connecting a virtual machine to a secondary localnet user-defined network {id="virt-connecting-vm-to-secondary-udn"}
 {%- set context = "virt-connecting-vm-to-secondary-udn" %}
 
-You can connect a virtual machine (VM) to an OVN-Kubernetes localnet secondary network by using the CLI. Cluster administrators can use the `ClusterUserDefinedNetwork` (CUDN) custom resource definition (CRD) to create a shared OVN-Kubernetes network across multiple namespaces.
+You can connect a virtual machine (VM) to an OVN-Kubernetes localnet secondary network by using the CLI. Cluster administrators can use the `ClusterUserDefinedNetwork` (CUDN) custom resource definition (CRD) to create a shared OVN-Kubernetes network across multiple namespaces. {._abstract}
 
 An OVN-Kubernetes secondary network is compatible with the multi-network policy API which provides the `MultiNetworkPolicy` custom resource definition (CRD) to control traffic flow to and from VMs. For more information, see "Additional resources".
 
@@ -33,6 +33,6 @@ A localnet topology connects the secondary network to the physical underlay. Thi
 
 {% leveloffset +1 %}{% include "./modules/virt-udn-osa-hipersockets-ibm-z.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [About the `ClusterUserDefinedNetwork` CR](/networking/multiple_networks/primary_networks/about-user-defined-networks#about-cudn_about-user-defined-networks)
 *   [Multi-network policy API](/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy)

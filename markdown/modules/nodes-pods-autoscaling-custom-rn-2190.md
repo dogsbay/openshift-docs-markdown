@@ -17,12 +17,11 @@ Before installing this version of the Custom Metrics Autoscaler Operator, remove
 :::
 
 
-
 New features and enhancements
 
 :   Note the new features and enhancements in this release:
 
-    *   Support for the `s390x` and `ppc64le` architectures
+*   Support for the `s390x` and `ppc64le` architectures
 
     The Operator can now run on the `s390x` and `ppc64le` architectures. Previously it ran on `amd64` or `arm64` only. ([AUTOSCALE-498](https://redhat.atlassian.net/browse/AUTOSCALE-498))
 *   Network policy support for the Custom Metrics Autoscaler Operator
@@ -40,5 +39,5 @@ New features and enhancements
 
     Bug fixes
 
-:   *   Before this update, the `accurateScalingStrategy` function in a scaled job was not considering the `pendingJobCount` value when checking if the `maxReplicaCount` value would be exceeded. This caused redundant idle jobs. With this release, this issue has been resolved and no longer causes redundant jobs. ([KEDA bug 7329](https://github.com/kedacore/keda/pull/7329))
+    :   *   Before this update, the `accurateScalingStrategy` function in a scaled job was not considering the `pendingJobCount` value when checking if the `maxReplicaCount` value would be exceeded. This caused redundant idle jobs. With this release, this issue has been resolved and no longer causes redundant jobs. ([KEDA bug 7329](https://github.com/kedacore/keda/pull/7329))
 *   Before this update, if the Azure Event Hub did not return partition information in the offset response, the Operator was accessing partition offsets without checking if the partitions exist. This caused incorrect lag calculations, which caused the Kafka scaler to error out. With this release, lag calculation treats missing partitions as having `0` lag instead of returning an error, resolving this issue. ([KEDA bug 7309](https://github.com/kedacore/keda/pull/7309))

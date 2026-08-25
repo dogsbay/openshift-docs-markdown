@@ -3,11 +3,11 @@ title: Configuring the node port service range
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the node port service range {id="configuring-node-port-service-range"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the node port service range {id="configuring-node-port-service-range"}
 {%- set context = "configuring-node-port-service-range" %}
 
-To meet your cluster node port requirements in {{ product_title }}, you can configure the node port service range during installation or expand it after installation. You can expand the default range of `30000-32768` on either side while preserving this default range within your new configuration.
+To meet your cluster node port requirements in {{ product_title }}, you can configure the node port service range during installation or expand it after installation. You can expand the default range of `30000-32768` on either side while preserving this default range within your new configuration. {._abstract}
 
 
 :::important
@@ -26,7 +26,7 @@ If you expand the node port range and {{ oc_first }} stops working because of a 
 
 {% leveloffset +1 %}{% include "./modules/nw-nodeport-service-range-edit.md" %}{% endleveloffset %}
 
-## Additional resources {id="configuring-node-port-service-range-additional-resources"}
+## Additional resources {id="configuring-node-port-service-range-additional-resources" ._additional-resources}
 
 *   [Configuring ingress cluster traffic using a NodePort](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
 *   [Network: config.openshift.io v1](/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1)

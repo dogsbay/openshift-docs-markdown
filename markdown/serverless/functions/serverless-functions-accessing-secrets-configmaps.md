@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Accessing secrets and config maps from functions {id="serverless-functions-accessing-secrets-configmaps"}
 {% include "./_attributes/common-attributes.md" %}
+# Accessing secrets and config maps from functions {id="serverless-functions-accessing-secrets-configmaps"}
 {%- set context = "serverless-functions-secrets" %}
 
 After your functions have been deployed to the cluster, they can access data stored in secrets and config maps. This data can be mounted as volumes, or assigned to environment variables. You can configure this access interactively by using the Knative CLI, or by manually by editing the function configuration YAML file.

@@ -18,7 +18,7 @@ After Knative Eventing is installed on your cluster, you can create a channel by
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** -> **Eventing**.
+1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** → **Eventing**.
 1.  In the **Create** list, select **Channel**. You will be directed to the **Channel** page.
 1.  Select the type of `Channel` object that you want to create in the **Type** list.
 

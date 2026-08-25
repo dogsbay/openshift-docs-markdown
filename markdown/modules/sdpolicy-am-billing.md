@@ -12,12 +12,11 @@ Customers have the option to purchase annual subscriptions of {{ product_title }
 </thead>
 <tbody>
 <tr>
-  <td>.2+</td>
-  <td>Annual fixed capacity subscriptions through Red Hat</td>
+  <td rowspan="2">Annual fixed capacity subscriptions through Red Hat</td>
   <td>Red Hat cloud account</td>
+  <td>Red Hat for consumption of both OSD subscriptions and cloud infrastructure</td>
 </tr>
 <tr>
-  <td>Red Hat for consumption of both OSD subscriptions and cloud infrastructure</td>
   <td>Customer's own cloud account</td>
   <td>Red Hat for consumption of the OSD subscriptions<br><br>Cloud provider for consumption of cloud infrastructure</td>
 </tr>

@@ -7,7 +7,7 @@ title: "Disaster recovery for a hosted cluster by using {{ oadp_short }}"
 # Disaster recovery for a hosted cluster by using {{ oadp_short }} {id="hcp-disaster-recovery-oadp"}
 {%- set context = "hcp-disaster-recovery-oadp" %}
 
-By using the {{ oadp_first }} Operator for disaster recovery, you can restore hosted cluster namespaces from object storage instead of manually rebuilding every cluster. In addition, you back up etcd as part of the control plane backup, and you can back up hosted clusters independently.
+By using the {{ oadp_first }} Operator for disaster recovery, you can restore hosted cluster namespaces from object storage instead of manually rebuilding every cluster. In addition, you back up etcd as part of the control plane backup, and you can back up hosted clusters independently. {._abstract}
 
 You can use the {{ oadp_short }} Operator to perform disaster recovery for {{ hcp }} on {{ aws_first }} and bare metal.
 
@@ -21,6 +21,7 @@ The disaster recovery process with {{ oadp_first }} involves the following steps
 {% leveloffset +1 %}{% include "./modules/hcp-prepare-aws-oadp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 *   [Support for {{ oadp_first }}](/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
@@ -29,6 +30,7 @@ The disaster recovery process with {{ oadp_first }} involves the following steps
 {% leveloffset +1 %}{% include "./modules/hcp-prepare-bm-oadp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About installing {{ oadp_short }}](/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 *   [Support for {{ oadp_first }}](/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-operator-supported_oadp-api)
@@ -37,6 +39,7 @@ The disaster recovery process with {{ oadp_first }} involves the following steps
 {% leveloffset +1 %}{% include "./modules/hcp-backup-dp-oadp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Backing up applications](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 
@@ -53,6 +56,7 @@ The disaster recovery process with {{ oadp_first }} involves the following steps
 {% leveloffset +2 %}{% include "./modules/hcp-dr-oadp-restore-new-mgmt.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Removing a cluster by using the console](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#remove-a-cluster-by-using-the-console)
 *   [Removing remaining resources after removing a cluster](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#removing-a-cluster-from-management-in-special-cases)

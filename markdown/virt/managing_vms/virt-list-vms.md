@@ -4,12 +4,12 @@ title: List virtual machines
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 
+{% include "./_attributes/common-attributes.md" %}
 # List virtual machines {id="virt-list-vms"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "virt-list-vms" %}
 
-Use the web console or {{ oc_first }} to list your virtual machines (VMs). From the list, you can filter and search for specific VMs.
+Use the web console or {{ oc_first }} to list your virtual machines (VMs). From the list, you can filter and search for specific VMs. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-listing-vms-cli.md" %}{% endleveloffset %}
 

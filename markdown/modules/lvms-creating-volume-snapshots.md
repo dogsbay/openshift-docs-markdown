@@ -28,14 +28,14 @@ To create a volume snapshot, you must create a `VolumeSnapshotClass` object.
     1.  Specify the name of the source PVC. {{ lvms }} creates a snapshot of this PVC.
     1.  Set this field to the name of a volume snapshot class.
 
-        :::note
+    :::note
 
-        To get the list of available volume snapshot classes, run the following command: 
-        ```terminal
-        $ oc get volumesnapshotclass
-        ```
-        
-        :::
+    To get the list of available volume snapshot classes, run the following command: 
+    ```terminal
+    $ oc get volumesnapshotclass
+    ```
+    
+    :::
 
 1.  Create the volume snapshot in the namespace where you created the source PVC by running the following command:
     ```terminal

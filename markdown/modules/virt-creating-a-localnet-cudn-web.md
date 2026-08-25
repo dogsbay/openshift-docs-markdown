@@ -9,7 +9,7 @@ You can connect one or more projects to a physical network for direct layer 2 ac
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Virtualization** -> **Networking**. 
+1.  In the {{ product_title }} web console, go to **Virtualization** → **Networking**. 
 1.  Click **Virtual machine networks** in the navigation pane.
 1.  Click **Create**. The **Create virtual machine network** wizard is displayed.
 1.  Give details about the network on the **Network definition** page:
@@ -30,6 +30,6 @@ You can connect one or more projects to a physical network for direct layer 2 ac
 
 **Verification**
 
-1.  Navigate to the **Virtualization** -> **Virtual machine networks** page.
+1.  Navigate to the **Virtualization** → **Virtual machine networks** page.
 1.  Click the **OVN localnet** tab.
 1.  Verify that your new network is displayed in the list.

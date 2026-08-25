@@ -18,7 +18,7 @@ Do not install Community versions of the Operators. Community Operators are not 
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Type **Kiali** into the filter box to find the Kiali Operator.
 1.  Click the **Kiali Operator** provided by Red Hat to display information about the Operator.
 1.  Click **Install**.

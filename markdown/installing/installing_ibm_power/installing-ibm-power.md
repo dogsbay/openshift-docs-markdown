@@ -7,7 +7,7 @@ title: "Installing a cluster on {{ ibm_power_title }}"
 # Installing a cluster on {{ ibm_power_title }} {id="installing-ibm-power"}
 {%- set context = "installing-ibm-power" %}
 
-To install a cluster on {{ ibm_power_name }} infrastructure that you provision, review the prerequisites and complete the installation steps.
+To install a cluster on {{ ibm_power_name }} infrastructure that you provision, review the prerequisites and complete the installation steps. {._abstract}
 
 
 :::important
@@ -20,6 +20,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-power-upi.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -35,6 +36,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -47,6 +49,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +2 %}{% include "./modules/installation-network-user-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring chrony time service](/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 
@@ -75,6 +78,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_power_name }}](/installing/installing_ibm_power/installation-config-parameters-ibm-power#installation-config-parameters-ibm-power)
 
@@ -95,6 +99,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-machines-static-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -134,7 +139,7 @@ Additional considerations exist for non-bare metal platforms. Review the guideli
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Guidelines for deploying {{ product_title }} on non-tested platforms](https://access.redhat.com/articles/4207611)
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

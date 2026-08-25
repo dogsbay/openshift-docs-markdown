@@ -3,8 +3,8 @@ title: Tang server installation considerations
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Tang server installation considerations {id="nbde-tang-server-installation-considerations"}
 {% include "./_attributes/common-attributes.md" %}
+# Tang server installation considerations {id="nbde-tang-server-installation-considerations"}
 {%- set context = "nbde-implementation" %}
 
 Network-Bound Disk Encryption (NBDE) must be enabled when a cluster node is installed. However, you can change the disk encryption policy at any time after it was initialized at installation.
@@ -28,6 +28,7 @@ To deploy one or more Tang servers, you can choose from the following options de
 {% leveloffset +2 %}{% include "./modules/nbde-http-versus-https.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring automated unlocking of encrypted volumes using policy-based decryption](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening)
 *   [Official Tang server container](https://catalog.redhat.com/software/containers/detail/5fbc405674aa0cc23b445f8f?container-tabs=overview&gti-tabs=registry-tokens)

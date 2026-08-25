@@ -32,8 +32,8 @@ You must install `oc` for {{ op_system_base }} 9 by downloading the binary. Inst
 1.  In the output for the previous command, find the pool ID for
     {%- if not openshift_rosa %}
     an {{ product_title }}
-    {% endif %}
-    {% if openshift_rosa %}
+    {%- endif %}
+    {%- if openshift_rosa %}
     a ROSA
     {%- endif %}
     subscription and attach the subscription to the registered system:
@@ -43,11 +43,11 @@ You must install `oc` for {{ op_system_base }} 9 by downloading the binary. Inst
 1.  Enable the repositories required by
     {%- if not openshift_rosa %}
     {{ product_title }} {{ product_version }}.
-    {% endif %}
-    {% if openshift_rosa %}
+    {%- endif %}
+    {%- if openshift_rosa %}
     ROSA.
     {%- endif %}
-    ```terminal
+    ```terminal {minja}
     # subscription-manager repos --enable="rhocp-{{ product_version }}-for-rhel-8-x86_64-rpms"
     ```
 1.  Install the `openshift-clients` package:

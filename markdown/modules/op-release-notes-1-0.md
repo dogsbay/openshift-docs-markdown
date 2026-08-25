@@ -85,7 +85,7 @@ The following items are deprecated in this release:
     1.  Save the file and exit.
 
 
-        Alternatively, you can also modify the `buildah` cluster task YAML file directly on the web console by navigating to **Pipelines** -> **Cluster Tasks** -> **buildah**. Select **Edit Cluster Task** from the **Actions** menu and replace the `command` field as shown in the previous procedure.
+        Alternatively, you can also modify the `buildah` cluster task YAML file directly on the web console by navigating to **Pipelines** → **Cluster Tasks** → **buildah**. Select **Edit Cluster Task** from the **Actions** menu and replace the `command` field as shown in the previous procedure.
 
 ## Fixed issues {id="fixed-issues-1-0_{{ context }}"}
 *   Previously, the `DeploymentConfig` task triggered a new deployment build even when an image build was already in progress. This caused the deployment of the pipeline to fail. With this fix, the `deploy task` command  is now replaced with the `oc rollout status` command which waits for the in-progress deployment to finish.

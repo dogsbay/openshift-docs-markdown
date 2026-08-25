@@ -67,7 +67,7 @@ When deploying a `UserDefinedNetwork` custom resource (CR) on {{ ibm_power_name 
     *   The subnets field accepts one or two items. For two items, they must be of a different family. For example, subnets values of `10.100.0.0/16` and `2001:db8::/64`.
     *   `Layer2` subnets can be omitted. If omitted, users must configure IP addresses for the pods. As a consequence, port security only prevents MAC spoofing.
     *   The `Layer2` `subnets` field is mandatory when the `ipamLifecycle` field is specified.
-        1.  Create a YAML file, such as `my-layer-three-udn.yaml`, to define your request for a `Layer3` topology as in the following example:
+    1.  Create a YAML file, such as `my-layer-three-udn.yaml`, to define your request for a `Layer3` topology as in the following example:
         ```yaml
         apiVersion: k8s.ovn.org/v1
         kind: UserDefinedNetwork
@@ -88,17 +88,17 @@ When deploying a `UserDefinedNetwork` custom resource (CR) on {{ ibm_power_name 
 
         where:
 
-    `name`
-    :   Name of your `UserDefinedNetwork` resource. This should not be `default` or duplicate any global namespaces created by the Cluster Network Operator (CNO).
+        `name`
+        :   Name of your `UserDefinedNetwork` resource. This should not be `default` or duplicate any global namespaces created by the Cluster Network Operator (CNO).
 
-    `topology`
-    :   Specifies the network configuration; accepted values are `Layer2` and `Layer3`. Specifying a `Layer2` topology type creates one logical switch that is shared by all nodes.
+        `topology`
+        :   Specifies the network configuration; accepted values are `Layer2` and `Layer3`. Specifying a `Layer2` topology type creates one logical switch that is shared by all nodes.
 
-    `role`
-    :   Specifies a `Primary` or `Secondary` role.
+        `role`
+        :   Specifies a `Primary` or `Secondary` role.
 
-    `subnets`
-    :   For `Layer3` topology types the following specifies config details for the `subnet` field:
+        `subnets`
+        :   For `Layer3` topology types the following specifies config details for the `subnet` field:
     *   The `subnets` field is mandatory.
     *   The type for the `subnets` field is `cidr` and `hostSubnet`:
         *   `cidr` is equivalent to the `clusterNetwork` configuration settings of a cluster. The IP addresses in the CIDR are distributed to pods in the user defined network. This parameter accepts a string value.

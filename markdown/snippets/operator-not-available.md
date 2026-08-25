@@ -7,4 +7,4 @@
 
 :::
 
-{%- set operator_name = false -%}
+{%- set operator_name = "" -%}

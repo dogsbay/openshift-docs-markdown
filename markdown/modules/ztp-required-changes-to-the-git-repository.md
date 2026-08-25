@@ -36,7 +36,7 @@ The following procedure assumes you are using `PolicyGenerator` resources instea
 
     :::note
 
-    The files listed in the `generator` sections must contain either `ClusterInstance` or `{{ policy_gen_cr }}` CRs only. If your existing YAML files contain other CRs, for example, `Namespace`, these other CRs must be pulled out into separate files and listed in the `resources` section.
+    The files listed in the `generator` sections must contain either `ClusterInstance` or `{{ policy_gen_cr }}`{minja} CRs only. If your existing YAML files contain other CRs, for example, `Namespace`, these other CRs must be pulled out into separate files and listed in the `resources` section.
     
     :::
 
@@ -74,7 +74,7 @@ The following procedure assumes you are using `PolicyGenerator` resources instea
 
     :::note
 
-    There is a set of `pre-sync.yaml` and `post-sync.yaml` files under both the `ClusterInstance` and `{{ policy_gen_cr }}` trees.
+    There is a set of `pre-sync.yaml` and `post-sync.yaml` files under both the `ClusterInstance` and `{{ policy_gen_cr }}`{minja} trees.
     
     :::
 

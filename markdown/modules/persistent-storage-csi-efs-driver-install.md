@@ -9,7 +9,7 @@ After installing the Container Storage Interface (CSI) Driver Operator (a Red Ha
 
 **Procedure**
 
-1.  Click **Administration** -> **CustomResourceDefinitions** -> **ClusterCSIDriver**.
+1.  Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
 1.  On the **Instances** tab, click **Create ClusterCSIDriver**.
 1.  Use the following YAML file:
     ```yaml

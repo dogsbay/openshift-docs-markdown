@@ -1,5 +1,5 @@
 ---
-title: "ConsoleQuickStart []"
+title: "ConsoleQuickStart [console.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ConsoleQuickStartSpec is the desired quick start configuration. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -63,6 +64,7 @@ Required
 | `tags` | `array (string)` | tags is a list of strings that describe the Quick Start. |
 | `tasks` | `array` | tasks is the list of steps the user has to perform to complete the Quick Start. |
 | `tasks[]` | `object` | ConsoleQuickStartTask is a single step in a Quick Start. |
+
 ### .spec.accessReviewResources {id="_specaccessreviewresources"}
 
 Description
@@ -94,6 +96,7 @@ Type
 | `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
 | `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
 | `version` | `string` | Version is the API Version of the Resource.  "*" means all. |
+
 ### .spec.accessReviewResources[].fieldSelector {id="_specaccessreviewresourcesfieldselector"}
 
 Description
@@ -108,6 +111,7 @@ Type
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.accessReviewResources[].fieldSelector.requirements {id="_specaccessreviewresourcesfieldselectorrequirements"}
 
 Description
@@ -141,6 +145,7 @@ Required
 | `key` | `string` | key is the field selector key that the requirement applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. The list of operators may grow in the future. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. |
+
 ### .spec.accessReviewResources[].labelSelector {id="_specaccessreviewresourceslabelselector"}
 
 Description
@@ -155,6 +160,7 @@ Type
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.accessReviewResources[].labelSelector.requirements {id="_specaccessreviewresourceslabelselectorrequirements"}
 
 Description
@@ -188,6 +194,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.tasks {id="_spectasks"}
 
 Description
@@ -217,6 +224,7 @@ Required
 | `review` | `object` | review contains instructions to validate the task is complete. The user will select 'Yes' or 'No'. using a radio button, which indicates whether the step was completed successfully. |
 | `summary` | `object` | summary contains information about the passed step. |
 | `title` | `string` | title describes the task and is displayed as a step heading. |
+
 ### .spec.tasks[].review {id="_spectasksreview"}
 
 Description
@@ -236,6 +244,7 @@ Required
 | --- | --- | --- |
 | `failedTaskHelp` | `string` | failedTaskHelp contains suggestions for a failed task review and is shown at the end of task. (includes markdown) |
 | `instructions` | `string` | instructions contains steps that user needs to take in order to validate his work after going through a task. (includes markdown) |
+
 ### .spec.tasks[].summary {id="_spectaskssummary"}
 
 Description
@@ -263,7 +272,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ConsoleQuickStart
     *   `GET`: list objects of kind ConsoleQuickStart
     *   `POST`: create a ConsoleQuickStart
-*   `/apis/console.openshift.io/v1/consolequickstarts/{{ name }}`
+*   `/apis/console.openshift.io/v1/consolequickstarts/{{ name }}`{minja}
     *   `DELETE`: delete a ConsoleQuickStart
     *   `GET`: read the specified ConsoleQuickStart
     *   `PATCH`: partially update the specified ConsoleQuickStart

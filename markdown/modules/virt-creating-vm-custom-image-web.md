@@ -27,8 +27,8 @@
 You can create a virtual machine (VM) by importing {{ a_object }} from a {{ data_source }} by using the {{ product_title }} web console.
 {% endif %}
 {% if clone %}
-You can create a virtual machine (VM) by cloning a persistent volume claim (PVC) by using the {{ product_title }} web console.
-{% endif %} {._abstract}
+You can create a virtual machine (VM) by cloning a persistent volume claim (PVC) by using the {{ product_title }} web console. {._abstract}
+{% endif %}
 
 **Prerequisites**
 
@@ -36,22 +36,22 @@ You can create a virtual machine (VM) by cloning a persistent volume claim (PVC)
 *   You must have access to the {{ data_source }} that contains the {{ object }}.
 {% endif %}
 {% if clone %}
-*   You must have access to the namespace that contains the source PVC.
+* You must have access to the namespace that contains the source PVC.
 {% endif %}
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **Catalog** in the web console.
+1.  Navigate to **Virtualization** → **Catalog** in the web console.
 1.  Click a template tile without an available boot source.
 1.  Click **Customize VirtualMachine**.
 1.  On the **Customize template parameters** page, expand **Storage** and select **{{ menu_item }}** from the **Disk source** list.
 {%- if url %}
 1.  Enter the image URL. Example: `https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.9/x86_64/product-software`
-{% endif %}
-{% if container_disks %}
+{%- endif %}
+{%- if container_disks %}
 1.  Enter the container image URL. Example: `https://mirror.arizona.edu/fedora/linux/releases/38/Cloud/x86_64/images/Fedora-Cloud-Base-38-1.6.x86_64.qcow2`
-{% endif %}
-{% if clone %}
+{%- endif %}
+{%- if clone %}
 1.  Select the PVC project and the PVC name.
 {%- endif %}
 1.  Set the disk size.
@@ -59,11 +59,11 @@ You can create a virtual machine (VM) by cloning a persistent volume claim (PVC)
 1.  Click **Create VirtualMachine**.
 
 {% if context == "virt-creating-vms-from-web-images" %}
-{%- set url = false -%}
+{%- set url = "" -%}
 {% endif %}
 {% if context == "virt-creating-vms-from-container-disks" %}
-{%- set container_disks = false -%}
+{%- set container_disks = "" -%}
 {% endif %}
 {% if context == "virt-creating-vms-by-cloning-pvcs" %}
-{%- set clone = false -%}
+{%- set clone = "" -%}
 {% endif %}

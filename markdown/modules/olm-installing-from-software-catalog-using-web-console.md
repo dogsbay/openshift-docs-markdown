@@ -27,10 +27,10 @@ To install and subscribe to an Operator from the software catalog, you can use t
 *   Access to an {{ product_title }} cluster using an account with
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
 `cluster-admin` permissions.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 {% endif %}
 
 {% if olm_user %}
@@ -39,8 +39,8 @@ the `dedicated-admin` role.
 
 **Procedure**
 
-1.  Navigate in the web console to the **Ecosystem** -> **Software Catalog** page.
-1.  Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `{{ filter_type }}` to find the {{ filter_operator }} Operator.
+1.  Navigate in the web console to the **Ecosystem** → **Software Catalog** page.
+1.  Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `{{ filter_type }}`{minja} to find the {{ filter_operator }} Operator.
 
     You can also filter options by **Infrastructure Features**. For example, select **Disconnected** if you want to see Operators that work in disconnected environments, also known as restricted network environments.
 1.  Select the Operator to display additional information.
@@ -68,19 +68,19 @@ the `dedicated-admin` role.
     1.  Confirm the installation mode for the Operator:
         *   **All namespaces on the cluster (default)** installs the Operator in the default `openshift-operators` namespace to watch and be made available to all namespaces in the cluster. This option is not always available.
         *   **A specific namespace on the cluster** allows you to choose a specific, single namespace in which to install the Operator. The Operator will only watch and be made available for use in this single namespace.
-            {% endif %}
-            {% if olm_user %}
+{% endif %}
+{% if olm_user %}
     1.  Choose a specific, single namespace in which to install the Operator. The Operator will only watch and be made available for use in this single namespace.
 {% endif %}
 
 {% if not openshift_rosa %}
     1.  For clusters on cloud providers with token authentication enabled:
         *   If the cluster uses {{ aws_short }} {{ sts_full }} (**STS Mode** in the web console), enter the Amazon Resource Name (ARN) of the AWS IAM role of your service account in the **role ARN** field. To create the role’s ARN, follow the procedure described in [Preparing AWS account](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/tutorials/cloud-experts-deploy-api-data-protection#prepare-aws-account_cloud-experts-deploy-api-data-protection).
-            {% endif %}
-            {% if openshift_rosa %}
+{% endif %}
+{% if openshift_rosa %}
             1.  For clusters on cloud providers with token authentication enabled:
         *   If the cluster uses {{ aws_short }} {{ sts_full }} (**STS Mode** in the web console), enter the Amazon Resource Name (ARN) of the AWS IAM role of your service account in the **role ARN** field. To create the role’s ARN, follow the procedure described in [Preparing AWS account](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/tutorials/cloud-experts-deploy-api-data-protection).
-            {% endif %}
+{% endif %}
         *   If the cluster uses {{ entra_first }} (**Workload Identity / Federated Identity Mode** in the web console), add the client ID, tenant ID, and subscription ID in the appropriate fields.
         *   If the cluster uses {{ gcp_wid_first }} (**{{ gcp_wid_short }} / Federated Identity Mode** in the web console), add the project number, pool ID, provider ID, and service account email in the appropriate fields.
 
@@ -102,7 +102,7 @@ the `dedicated-admin` role.
 
 **Verification**
 
-*   After the upgrade status of the subscription is **Up to date**, select **Ecosystem** -> **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.
+*   After the upgrade status of the subscription is **Up to date**, select **Ecosystem** → **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.
 
     :::note
 
@@ -112,7 +112,7 @@ the `dedicated-admin` role.
 
 
     If it does not:
-    *   Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** -> **Pods** page that are reporting issues to troubleshoot further.
+    *   Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** → **Pods** page that are reporting issues to troubleshoot further.
 *   When the Operator is installed, the metadata indicates which channel and version are installed.
 
     :::note

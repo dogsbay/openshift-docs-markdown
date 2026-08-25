@@ -1,5 +1,5 @@
 ---
-title: "MachineConfig []"
+title: "MachineConfig [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -26,6 +26,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | MachineConfigSpec is the spec for MachineConfig |
+
 ### .spec {id="_spec"}
 
 Description
@@ -53,7 +54,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of MachineConfig
     *   `GET`: list objects of kind MachineConfig
     *   `POST`: create a MachineConfig
-*   `/apis/machineconfiguration.openshift.io/v1/machineconfigs/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/machineconfigs/{{ name }}`{minja}
     *   `DELETE`: delete a MachineConfig
     *   `GET`: read the specified MachineConfig
     *   `PATCH`: partially update the specified MachineConfig

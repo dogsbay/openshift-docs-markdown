@@ -3,11 +3,11 @@ title: Release notes for the Compliance Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Release notes for the Compliance Operator {id="compliance-operator-release-notes"}
 {%- set context = "compliance-operator-release-notes-v0" %}
-{% include "./_attributes/common-attributes.md" %}
 
-The Compliance Operator lets {{ product_title }} administrators describe the required compliance state of a cluster and provides them with an overview of gaps and ways to remediate them.
+The Compliance Operator lets {{ product_title }} administrators describe the required compliance state of a cluster and provides them with an overview of gaps and ways to remediate them. {._abstract}
 
 These release notes track the development of the Compliance Operator in the {{ product_title }}.
 
@@ -71,7 +71,7 @@ These release notes track the development of the Compliance Operator in the {{ p
 
 {% leveloffset +1 %}{% include "./modules/compliance-rn-0-1-39.md" %}{% endleveloffset %}
 
-## Additional resources {id="compliance-operator-release-notes_additional-resources"}
+## Additional resources {id="compliance-operator-release-notes_additional-resources" ._additional-resources}
 
 *   [Understanding the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
 *   [Updating the Compliance Operator](/security/compliance_operator/co-management/compliance-operator-updating#olm-preparing-upgrade_compliance-operator-updating)

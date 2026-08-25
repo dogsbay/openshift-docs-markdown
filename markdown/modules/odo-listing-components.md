@@ -8,11 +8,11 @@ You can list all the _devfiles_ available of the different registries with the `
 
 **Procedure**
 
-1.  Log in to the cluster with `{{ odo_title }}`:
+1.  Log in to the cluster with `{{ odo_title }}`{minja}:
     ```terminal
     $ odo login -u developer -p developer
     ```
-1.  List the available `{{ odo_title }}` components:
+1.  List the available `{{ odo_title }}`{minja} components:
     ```terminal
     $ odo catalog list components
     ```

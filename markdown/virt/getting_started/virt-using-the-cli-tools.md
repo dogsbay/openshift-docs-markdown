@@ -3,11 +3,11 @@ title: Using the CLI tools
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the CLI tools {id="virt-using-the-cli-tools"}
 {% include "./_attributes/common-attributes.md" %}
+# Using the CLI tools {id="virt-using-the-cli-tools"}
 {%- set context = "virt-using-the-cli-tools" %}
 
-You can manage {{ VirtProductName }} resources by using the `virtctl` command-line tool. Virtual machine (VM) commands can also be used to manage virtual machine instances (VMIs) unless otherwise specified.
+You can manage {{ VirtProductName }} resources by using the `virtctl` command-line tool. Virtual machine (VM) commands can also be used to manage virtual machine instances (VMIs) unless otherwise specified. {._abstract}
 
 
 :::note
@@ -29,6 +29,6 @@ You can access and change VM disk images by using the `libguestfs` command-line 
 {% leveloffset +1 %}{% include "./modules/virt-deploying-libguestfs-with-virtctl.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/virt-about-libguestfs-tools-virtctl-guestfs.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 *   [Red&#160;Hat Ansible Automation Hub](https://console.redhat.com/ansible/automation-hub)
 *   [`libguestfs`](https://libguestfs.org)

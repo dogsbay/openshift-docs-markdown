@@ -33,7 +33,7 @@ Any chosen provisioner plugin also requires configuration for the relevant cloud
 <tr>
   <td>Amazon Elastic Block Store (Amazon EBS)</td>
   <td><code>ebs.csi.aws.com</code></td>
-  <td>For dynamic provisioning when using multiple clusters in different zones, tag each node with <code>Key=kubernetes.io/cluster/<cluster_name>,Value=<cluster_id></code> where <code><cluster_name></code> and <code><cluster_id></code> are unique per cluster.</td>
+  <td>For dynamic provisioning when using multiple clusters in different zones, tag each node with <code>Key=kubernetes.io/cluster/&lt;cluster_name&gt;,Value=&lt;cluster_id&gt;</code> where <code>&lt;cluster_name&gt;</code> and <code>&lt;cluster_id&gt;</code> are unique per cluster.</td>
 </tr>
 <tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>Azure Disk</td>{% endif %}
@@ -43,7 +43,7 @@ Any chosen provisioner plugin also requires configuration for the relevant cloud
 <tr>
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>Azure File</td>{% endif %}
   {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td><code>kubernetes.io/azure-file</code></td>{% endif %}
-  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>The <code>persistent-volume-binder</code> service account requires permissions to create</td>{% endif %}
+  {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}<td>The <code>persistent-volume-binder</code> service account requires permissions to create and get secrets to store the Azure storage account and keys.</td>{% endif %}
 </tr>
 <tr>
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>GCE Persistent Disk (gcePD)</td>{% endif %}

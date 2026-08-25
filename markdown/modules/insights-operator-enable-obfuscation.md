@@ -23,20 +23,20 @@ The following procedure enables obfuscation using the `support` secret in the `o
 
 **Procedure**
 
-1.  Navigate to **Workloads** -> **Secrets**.
+1.  Navigate to **Workloads** → **Secrets**.
 1.  Select the **openshift-config** project.
-1.  Search for the **support** secret using the **Search by name** field. If it does not exist, click **Create** -> **Key/value secret** to create it.
+1.  Search for the **support** secret using the **Search by name** field. If it does not exist, click **Create** → **Key/value secret** to create it.
 1.  Click the Options menu {{ kebab }}, and then click **Edit Secret**.
 1.  Click **Add Key/Value**.
 1.  Create a key named `enableGlobalObfuscation` with a value of `true`, and click **Save**.
-1.  Navigate to **Workloads** -> **Pods**
+1.  Navigate to **Workloads** → **Pods**
 1.  Select the `openshift-insights` project.
 1.  Find the `insights-operator` pod.
 1.  To restart the `insights-operator` pod, click the Options menu {{ kebab }}, and then click **Delete Pod**.
 
 **Verification**
 
-1.  Navigate to **Workloads** -> **Secrets**.
+1.  Navigate to **Workloads** → **Secrets**.
 1.  Select the **openshift-insights** project.
 1.  Search for the **obfuscation-translation-table** secret using the **Search by name** field.
 

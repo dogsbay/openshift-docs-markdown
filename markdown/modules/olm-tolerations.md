@@ -8,7 +8,7 @@ To allow catalog source pods to schedule onto nodes with matching taints, you ca
 *   A `CatalogSource` object of source type `grpc` with `spec.image` is defined.
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

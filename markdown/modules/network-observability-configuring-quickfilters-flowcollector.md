@@ -15,7 +15,7 @@ The filter matching types "all of" or "any of" is a UI setting that the users ca
 
 Here is a list of all available filter keys:
 
-***Filter keys***
+**Filter keys**
 
 <table>
 <thead>

@@ -30,18 +30,18 @@ To deploy a {{ product_title }} cluster in AWS GovCloud, you must be logged in t
         $ rosa whoami
         ```
 
-```text title="Example output"
-AWS ARN:                                 arn:aws-us-gov:iam::00000000000:user/rosa-gov-user
-AWS Account ID:                       00000000000
-AWS Default Region:                 us-gov-east-1
-OCM API:                                   https://api.openshiftusgov.com
-OCM Account Email:                  rosa-gov-user@redhat.com
-OCM Account ID:                       3ZXXXXXXXXXXXXXXXXXXXXXXXXX
-OCM Account Name:                 Rosa Gov
-OCM Account Username:          rosa-gov-user
-OCM Organization External ID:  rosa-gov-user
-OCM Organization ID:                3ZXXXXXXXXXXXXXXXXXXXXXXXXX
-OCM Organization Name:          rosa-gov-user
-```
+        ```text title="Example output"
+        AWS ARN:                                 arn:aws-us-gov:iam::00000000000:user/rosa-gov-user
+        AWS Account ID:                       00000000000
+        AWS Default Region:                 us-gov-east-1
+        OCM API:                                   https://api.openshiftusgov.com
+        OCM Account Email:                  rosa-gov-user@redhat.com
+        OCM Account ID:                       3ZXXXXXXXXXXXXXXXXXXXXXXXXX
+        OCM Account Name:                 Rosa Gov
+        OCM Account Username:          rosa-gov-user
+        OCM Organization External ID:  rosa-gov-user
+        OCM Organization ID:                3ZXXXXXXXXXXXXXXXXXXXXXXXXX
+        OCM Organization Name:          rosa-gov-user
+        ```
 1.  You must create a VPC where {{ product_title }} will be deployed.
 For instructions on setting up a VPC, see [Amazon VPC architecture for the AWS PrivateLink use case](https://docs.aws.amazon.com/ROSA/latest/userguide/getting-started-private-link.html#getting-started-private-link-step-2).

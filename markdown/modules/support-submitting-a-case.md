@@ -14,11 +14,11 @@ If you cannot resolve an {{ product_title }} issue by using the Red&#160;Hat Kno
 *   You have installed the OpenShift CLI (`oc`).
 {%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You have access to the {{ cluster_manager_first }}.
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You have a Red&#160;Hat Customer Portal account.
 *   You have a Red&#160;Hat Standard or Premium subscription.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -38,17 +38,17 @@ If you cannot resolve an {{ product_title }} issue by using the Red&#160;Hat Kno
 1.  Review the updated list of suggested Red&#160;Hat Knowledgebase solutions for a potential match against the problem that you are reporting. The list updates as you give more information during the case creation process. If the suggested articles do not address the issue, click **Continue**.
 1.  Ensure that the account information presented is as expected, and if not, change it as needed.
 1.  Check that the autofilled {{ product_title }} Cluster ID is correct. If it is not, manually obtain your cluster ID.
-    {%- if openshift_dedicated %}
+{%- if openshift_dedicated %}
     *   To manually obtain your cluster ID using {{ cluster_manager_url }}:
         1.  Navigate to **Cluster List**.
         1.  Click on the name of the cluster you need to open a support case for.
         1.  Find the value in the **Cluster ID** field of the **Details** section of the **Overview** tab.
-            {%- endif %}
+{%- endif %}
     *   To manually obtain your cluster ID using the {{ product_title }} web console:
-        1.  Navigate to **Home** -> **Overview**.
+        1.  Navigate to **Home** → **Overview**.
         1.  Find the value in the **Cluster ID** field of the **Details** section.
     *   Or, open a new support case from the {{ product_title }} web console, which automatically fills in your cluster ID.
-        1.  From the toolbar, navigate to **(?) Help** -> **Open Support Case**.
+        1.  From the toolbar, navigate to **(?) Help** → **Open Support Case**.
         1.  The **Cluster ID** value automatically fills in.
     *   To obtain your cluster ID using the OpenShift CLI (`oc`), run the following command:
         ```terminal
@@ -62,6 +62,6 @@ If you cannot resolve an {{ product_title }} issue by using the Red&#160;Hat Kno
 1.  Upload relevant diagnostic data files and click **Continue**.
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 Red&#160;Hat recommends including data gathered by using the `oc adm must-gather` command as a starting point, plus any issue-specific data that the command does not collect.
-{% endif %}
+{%- endif %}
 1.  Input relevant case management details and click **Continue**.
 1.  Preview the case details and click **Submit**.

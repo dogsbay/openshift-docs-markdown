@@ -10,7 +10,7 @@ The microservice serves internal web requests and returns a JSON object containi
     $ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     $ oc apply -f https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
     deployment.apps/ostoy-microservice created

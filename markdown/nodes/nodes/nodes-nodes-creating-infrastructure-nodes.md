@@ -3,13 +3,13 @@ title: Creating infrastructure nodes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating infrastructure nodes {id="nodes-nodes-creating-infrastructure-nodes"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating infrastructure nodes {id="nodes-nodes-creating-infrastructure-nodes"}
 {%- set context = "creating-infrastructure-nodes" %}
 
 {% leveloffset +1 %}{% include "./snippets/machine-user-provisioned-limitations.md" %}{% endleveloffset %}
 
-You can use infrastructure machine sets to create machines that host only infrastructure components, such as the default router, the integrated container image registry, and the components for cluster metrics and monitoring. These infrastructure machines are not counted toward the total number of subscriptions that are required to run the environment.
+You can use infrastructure machine sets to create machines that host only infrastructure components, such as the default router, the integrated container image registry, and the components for cluster metrics and monitoring. These infrastructure machines are not counted toward the total number of subscriptions that are required to run the environment. {._abstract}
 
 
 :::note
@@ -23,7 +23,7 @@ After adding the `NoSchedule` taint on the infrastructure node, existing DNS pod
 
 {% leveloffset +2 %}{% include "./modules/creating-an-infra-node.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Moving resources to infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets)
 *   [Creating infrastructure machine sets](/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)

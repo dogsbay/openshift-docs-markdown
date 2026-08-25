@@ -3,19 +3,19 @@ title: Enabling create-only mode for the Zero Trust Workload Identity Manager
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Enabling create-only mode for the Zero Trust Workload Identity Manager {id="zero-trust-manager-reconciliation_{{ context }}"}
 {% include "./_attributes/common-attributes.md" %}
+# Enabling create-only mode for the Zero Trust Workload Identity Manager {id="zero-trust-manager-reconciliation_{{ context }}"}
 {%- set context = "zero-trust-manager-reconciliation" %}
 
-To pause Operator reconciliation, enable `create-only` mode by setting an environment variable in the subscription object. By setting this value, you can perform manual configurations or debug the operator without the controller overwriting your changes.
+To pause Operator reconciliation, enable `create-only` mode by setting an environment variable in the subscription object. By setting this value, you can perform manual configurations or debug the operator without the controller overwriting your changes. {._abstract}
 
 The following scenarios are examples of when the `create-only` mode might be of use:
 
-***Manual Customization Required***: You need to customize operator-managed resources (ConfigMaps, Deployments, DaemonSets, etc.) with specific configurations that differ from the operator’s defaults
+**Manual Customization Required**: You need to customize operator-managed resources (ConfigMaps, Deployments, DaemonSets, etc.) with specific configurations that differ from the operator’s defaults
 
-***Day 2 Operations***: After initial deployment, you want to prevent the operator from overwriting their manual changes during subsequent reconciliation cycles
+**Day 2 Operations**: After initial deployment, you want to prevent the operator from overwriting their manual changes during subsequent reconciliation cycles
 
-***Configuration Drift Prevention***: You want to maintain control over certain resource configurations while still benefiting from the operator’s lifecycle management
+**Configuration Drift Prevention**: You want to maintain control over certain resource configurations while still benefiting from the operator’s lifecycle management
 
 {% leveloffset +1 %}{% include "./modules/zero-trust-manager-pause-reconciliation.md" %}{% endleveloffset %}
 

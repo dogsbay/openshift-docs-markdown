@@ -4,8 +4,8 @@ title: Removing the Custom Metrics Autoscaler Operator
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom-removing" %}
-# Removing the Custom Metrics Autoscaler Operator {id="nodes-cma-autoscaling-custom-removing"}
 {% include "./_attributes/common-attributes.md" %}
+# Removing the Custom Metrics Autoscaler Operator {id="nodes-cma-autoscaling-custom-removing"}
 
 You can remove the custom metrics autoscaler from your {{ product_title }} cluster. After removing the Custom Metrics Autoscaler Operator, remove other components associated with the Operator to avoid potential issues.
 

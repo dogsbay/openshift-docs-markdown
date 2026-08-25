@@ -20,7 +20,7 @@ After you mirror your image set to the mirror registry, you must apply the gener
     catalogsource.operators.coreos.com/cs-redhat-catalog created
     ```
 1.  For reference, see the following example file:
-    ```yaml title="Example catalog source configuration file"
+    ```yaml title="Example catalog source configuration file" {minja}
     apiVersion: operators.coreos.com/v2alpha1
     kind: CatalogSource
     metadata:

@@ -16,6 +16,7 @@ Consider the following when configuring the NodePort service ranges:
 *   Do not create any NodePort service without an explicit `nodePort` selection. When an explicit `nodePort` is not specified, the port is assigned randomly by the `kube-apiserver` and cannot be predicted.
 *   Do not create any NodePort service for any system service port, {{ microshift_short }} port, or other services you expose on your device `HostNetwork`.
 *   Table one specifies ports to avoid when extending the port range:
+
     **Ports to avoid.**
 
     | Port | Description |

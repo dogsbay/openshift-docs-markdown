@@ -20,6 +20,6 @@ For {{ product_title }} 4.14 or later, you must run Ingress Node Firewall Operat
 
 {% if openshift_rosa or openshift_rosa_hcp %}
 You must run Ingress Node Firewall Operator on {{ product_title }} 4.14 or later or later.
-{%- endif %}
+{% endif %}
 
 :::

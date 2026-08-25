@@ -3,12 +3,12 @@ title: Installing a cluster in a disconnected environment
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster in a disconnected environment {id="installing-disconnected-environments"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster in a disconnected environment {id="installing-disconnected-environments"}
 {%- set context = "installing-disconnected-environments" %}
 
 You can install an {{ product_title }} cluster in a disconnected environment, choosing the installation method and infrastructure that best suits your requirements.
-This includes installing {{ product_title }} on either on-premise hardware or on a cloud hosting service such as Amazon Web Services (AWS).
+This includes installing {{ product_title }} on either on-premise hardware or on a cloud hosting service such as Amazon Web Services (AWS). {._abstract}
 
 The following sections outline all of the supported methods for installing a cluster in a disconnected environment.
 
@@ -50,7 +50,7 @@ For example, if you plan to install a cluster on {{ aws_short }} with installer-
 
 {% leveloffset +1 %}{% include "./modules/installing-vsphere.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring an AWS account](/installing/installing_aws/installing-aws-account#installing-aws-account)
 *   [Preparing to install a cluster on {{ aws_short }}](/installing/installing_aws/ipi/ipi-aws-preparing-to-install#ipi-aws-preparing-to-install)

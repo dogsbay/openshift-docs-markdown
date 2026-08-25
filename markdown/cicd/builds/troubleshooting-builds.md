@@ -3,8 +3,8 @@ title: Troubleshooting builds
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting builds {id="troubleshooting-builds_{{ context }}"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting builds {id="troubleshooting-builds_{{ context }}"}
 {%- set context = "troubleshooting-builds" %}
 
 Use the following to troubleshoot build issues.

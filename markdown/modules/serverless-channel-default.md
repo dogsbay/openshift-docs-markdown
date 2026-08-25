@@ -41,8 +41,8 @@
     1.  The cluster-wide default channel type configuration. In this example, the default channel implementation for the cluster is `InMemoryChannel`.
     1.  The namespace-scoped default channel type configuration. In this example, the default channel implementation for the `my-namespace` namespace is `KafkaChannel`.
 
-        :::important
+    :::important
 
-        Configuring a namespace-specific default overrides any cluster-wide settings.
-        
-        :::
+    Configuring a namespace-specific default overrides any cluster-wide settings.
+    
+    :::

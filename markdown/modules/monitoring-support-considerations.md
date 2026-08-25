@@ -32,4 +32,4 @@ The following modifications are explicitly not supported:
 *   **Installing custom Prometheus instances on {{ product_title }}.** A custom instance is a Prometheus custom resource (CR) managed by the Prometheus Operator.
 {%- if openshift_dedicated or openshift_rosa %}
 *   **Modifying the default platform monitoring components.** You should not modify any of the components defined in the `cluster-monitoring-config` config map. Red&#160;Hat SRE uses these components to monitor the core cluster components and Kubernetes services.
-{% endif %}
+{%- endif %}

@@ -45,7 +45,7 @@ The PPC uses the `must-gather` data from your cluster to create the performance 
     Password: <password>
     ```
 1.  Optional: Display help for the PPC tool by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ podman run --rm --entrypoint performance-profile-creator registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} -h
     ```
 
@@ -81,7 +81,7 @@ The PPC uses the `must-gather` data from your cluster to create the performance 
     Use "performance-profile-creator [command] --help" for more information about a command.
     ```
 1.  To display information about the cluster, run the PPC tool with the `info` command by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ podman run --entrypoint performance-profile-creator -v <path_to_must_gather>:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} info --must-gather-dir-path /must-gather
     ```
     *   `--entrypoint performance-profile-creator` defines the performance profile creator as a new entry point to `podman`.
@@ -112,7 +112,7 @@ The PPC uses the `must-gather` data from your cluster to create the performance 
             ---
             ```
 1.  Create a performance profile by running the following command. The example uses sample PPC arguments and values:
-    ```terminal
+    ```terminal {minja}
     $ podman run --entrypoint performance-profile-creator -v <path_to_must_gather>:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} --mcp-name=worker-cnf --reserved-cpu-count=2 --rt-kernel=true --split-reserved-cpus-across-numa=false --must-gather-dir-path /must-gather --power-consumption-mode=ultra-low-latency > my-performance-profile.yaml
     ```
     *   `-v <path_to_must_gather>` specifies the path to either of the following components:

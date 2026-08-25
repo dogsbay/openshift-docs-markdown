@@ -4,14 +4,14 @@
 If you are installing
 {%- if openshift_dedicated %}
 an {{ product_title }}
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 a {{ product_title }}
 {%- endif %}
 cluster into an existing Virtual Private Cloud (VPC), you can use {{ cluster_manager_first }} to enable a cluster-wide HTTP or HTTPS proxy during installation.
 {%- if openshift_dedicated %}
-You can enable a proxy only for clusters that use the Customer Cloud Subscription (CCS) model.
-{% endif %} {._abstract}
+You can enable a proxy only for clusters that use the Customer Cloud Subscription (CCS) model. {._abstract}
+{%- endif %}
 
 Before the installation, you must verify that the proxy is accessible from the VPC that you install the cluster into. The proxy must also be accessible from the private subnets of the VPC.
 

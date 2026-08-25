@@ -16,8 +16,8 @@ The {{ devworkspace_op }} is a standalone Operator and might be required as a de
 *   You have access to 
 {%- if not (openshift_rosa_hcp or openshift_rosa) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa_hcp or openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa_hcp or openshift_rosa %}
 a {{ product_title }} 
 {%- endif %}
 cluster with cluster administrator permissions.
@@ -97,7 +97,7 @@ cluster with cluster administrator permissions.
     $ oc delete clusterrolebinding devworkspace-webhook-server
     ```
 1.  Uninstall the {{ devworkspace_op }}:
-    1.  In the **Administrator** perspective of the web console, navigate to **Ecosystem** -> **Installed Operators**.
+    1.  In the **Administrator** perspective of the web console, navigate to **Ecosystem** → **Installed Operators**.
     1.  Scroll the filter list or type a keyword into the **Filter by name** box to find the {{ devworkspace_op }}.
     1.  Click the Options menu {{ kebab }} for the Operator, and then select **Uninstall Operator**.
     1.  In the **Uninstall Operator** confirmation dialog box, click **Uninstall** to remove the Operator, Operator deployments, and pods from the cluster. The Operator stops running and no longer receives updates.

@@ -3,11 +3,11 @@ title: Export a virtual machine
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Export a virtual machine {id="virt-exporting-vms"}
 {% include "./_attributes/common-attributes.md" %}
+# Export a virtual machine {id="virt-exporting-vms"}
 {%- set context = "virt-exporting-vms" %}
 
-Export a virtual machine (VM) and its associated disks to import it into another cluster, or for another use case, such as forensic volume analysis.
+Export a virtual machine (VM) and its associated disks to import it into another cluster, or for another use case, such as forensic volume analysis. {._abstract}
 
 You create a `VirtualMachineExport` custom resource (CR) by using the command-line interface.
 
@@ -25,6 +25,6 @@ You can migrate virtual machines between OpenShift Virtualization clusters by us
 
 {% leveloffset +1 %}{% include "./modules/virt-accessing-exported-vm-manifests.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Migration Toolkit for Virtualization](https://access.redhat.com/products/migration-toolkits-virtualization)
 *   [virtctl vmexport command](/virt/getting_started/virt-using-the-cli-tools#vm-export-commands_virt-using-the-cli-tools)

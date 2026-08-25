@@ -11,6 +11,7 @@ Description
 :   The scheduler is a cluster-wide component responsible for selecting the right node for a given workload.
     It is a core part of the platform and does not require any specific configuration in the common deployment scenarios.
     However, there are few specific use cases described in the following section.
+
     NUMA-aware scheduling can be enabled through the NUMA Resources Operator.
     For more information, see "Scheduling NUMA-aware workloads".
 

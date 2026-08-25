@@ -5,7 +5,7 @@ You can clone an existing VM by using the web console. {._abstract}
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Select a VM to open the **VirtualMachine details** page.
 1.  Click **Actions**.
 

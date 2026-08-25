@@ -15,7 +15,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not ash_ipi %}
+{% if not ash_ipi %}
 # Uploading the {{ op_system }} cluster image and bootstrap Ignition config file {id="installation-azure-user-infra-uploading-rhcos_{{ context }}"}
 
 To make the {{ op_system }} cluster image and bootstrap Ignition config accessible during deployment, you can upload them to an Azure storage container. {._abstract}
@@ -65,7 +65,7 @@ You must download the {{ op_system }} virtual hard disk (VHD) cluster image and 
     $ export ACCOUNT_KEY=`az storage account keys list -g ${RESOURCE_GROUP} --account-name ${CLUSTER_NAME}sa --query "[0].value" -o tsv`
     ```
 1.  Export the URL of the {{ op_system }} VHD to an environment variable:
-    {%- if azure %}
+{% if azure %}
     ```terminal
     $ export VHD_URL=`openshift-install coreos print-stream-json | jq -r '.architectures.<architecture>."rhel-coreos-extensions"."azure-disk".url'`
     ```
@@ -76,10 +76,10 @@ You must download the {{ op_system }} virtual hard disk (VHD) cluster image and 
     :   Specifies the architecture, valid values include `x86_64` or `aarch64`.
 {% endif %}
 {% if ash %}
-        ```terminal
-        $ export COMPRESSED_VHD_URL=$(openshift-install coreos print-stream-json | jq -r '.architectures.x86_64.artifacts.azurestack.formats."vhd.gz".disk.location')
-        ```
-{%- endif %}
+    ```terminal
+    $ export COMPRESSED_VHD_URL=$(openshift-install coreos print-stream-json | jq -r '.architectures.x86_64.artifacts.azurestack.formats."vhd.gz".disk.location')
+    ```
+{% endif %}
 
     :::important
 
@@ -90,12 +90,11 @@ You must download the {{ op_system }} virtual hard disk (VHD) cluster image and 
     
     :::
 
-
 1.  Create the storage container for the VHD:
     ```terminal
     $ az storage container create --name vhd --account-name ${CLUSTER_NAME}sa --account-key ${ACCOUNT_KEY}
     ```
-{%- if ash %}
+{% if ash %}
 1.  Download the compressed {{ op_system }} VHD file locally:
     ```terminal
     $ curl -O -L ${COMPRESSED_VHD_URL}
@@ -110,7 +109,7 @@ You must download the {{ op_system }} virtual hard disk (VHD) cluster image and 
 
 {% endif %}
 1.  Copy the local VHD to a blob:
-    {%- if azure %}
+{% if azure %}
     ```terminal
     $ az storage blob copy start --account-name ${CLUSTER_NAME}sa --account-key ${ACCOUNT_KEY} --destination-blob "rhcos.vhd" --destination-container vhd --source-uri "${VHD_URL}"
     ```
@@ -151,17 +150,17 @@ You must download the {{ op_system }} virtual hard disk (VHD) cluster image and 
 {% endif %}
 
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-default" %}
-{%- set ash_ipi = false -%}
+{%- set ash_ipi = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-network-customizations" %}
-{%- set ash_ipi = false -%}
+{%- set ash_ipi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}

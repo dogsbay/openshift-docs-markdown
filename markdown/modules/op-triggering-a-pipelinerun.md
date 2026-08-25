@@ -8,11 +8,11 @@ In this section, you push an empty commit to the front-end `pipelines-vote-ui` r
 **Procedure**
 
 1.  From the terminal, clone your forked Git repository `pipelines-vote-ui`:
-    ```terminal
+    ```terminal {minja}
     $ git clone git@github.com:<your GitHub ID>/pipelines-vote-ui.git -b {{ pipelines_ver }}
     ```
 1.  Push an empty commit:
-    ```terminal
+    ```terminal {minja}
     $ git commit -m "empty-commit" --allow-empty && git push origin {{ pipelines_ver }}
     ```
 1.  Check if the pipeline run was triggered:

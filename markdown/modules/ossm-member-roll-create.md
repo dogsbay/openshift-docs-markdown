@@ -18,10 +18,10 @@ You can add one or more projects to the {{ SMProductShortName }} member roll fro
 
 1.  Log in to the {{ product_title }} web console.
 1.  If you do not already have services for your mesh, or you are starting from scratch, create a project for your applications. It must be different from the project where you installed the {{ SMProductShortName }} control plane.
-    1.  Navigate to **Home** -> **Projects**.
+    1.  Navigate to **Home** → **Projects**.
     1.  Enter a name in the **Name** field.
     1.  Click **Create**.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu and choose the project where your `ServiceMeshControlPlane` resource is deployed from the list, for example `istio-system`.
 1.  Click the {{ SMProductName }} Operator.
 1.  Click the **Istio Service Mesh Member Roll** tab.

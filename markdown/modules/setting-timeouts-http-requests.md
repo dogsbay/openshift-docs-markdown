@@ -11,7 +11,7 @@ To prevent hanging connections and ensure your application remains responsive, y
 **Procedure**
 
 1.  Create or edit an `HTTPRoute` YAML file to include your desired timeout configurations under the `spec.rules.timeouts` field.
-    The following example demonstrates a complete `HTTPRoute` custom resource (CR) where the entire request must complete within 30 seconds. For details on timeout formatting rules and backend request timeouts, see [#!httproute-timeout-configuration_{{ context }}](#httproute-timeout-configuration_{{ context }}).
+    The following example demonstrates a complete `HTTPRoute` custom resource (CR) where the entire request must complete within 30 seconds. For details on timeout formatting rules and backend request timeouts, see [httproute-timeout-configuration_{{ context }}](#httproute-timeout-configuration_{{ context }}).
 
     ```yaml
     apiVersion: gateway.networking.k8s.io/v1

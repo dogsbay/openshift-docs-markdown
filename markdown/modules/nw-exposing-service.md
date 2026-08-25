@@ -92,5 +92,5 @@ To enable external access to your application that runs on {{ product_title }}, 
 {% endif %}
 
 {% if nodeport %}
-{%- set nodeport = false -%}
+{%- set nodeport = "" -%}
 {% endif %}

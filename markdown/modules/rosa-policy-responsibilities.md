@@ -73,11 +73,11 @@ If the `cluster-admin` role is added to a user, see the responsibilities and exc
 </tr>
 <tr>
   <td>Cluster networking</td>
-  <td>Red Hat ^[1]^</td>
-  <td>Red Hat and Customer ^[2]^</td>
+  <td>Red Hat <sup>[1]</sup></td>
+  <td>Red Hat and Customer <sup>[2]</sup></td>
   <td>Red Hat and Customer</td>
-  <td>Red Hat ^[1]^</td>
-  <td>Red Hat ^[1]^</td>
+  <td>Red Hat <sup>[1]</sup></td>
+  <td>Red Hat <sup>[1]</sup></td>
 </tr>
 <tr>
   <td>Virtual networking management</td>

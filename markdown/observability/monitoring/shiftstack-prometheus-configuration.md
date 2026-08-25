@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Monitoring clusters that run on RHOSO {id="shiftstack-prometheus-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Monitoring clusters that run on RHOSO {id="shiftstack-prometheus-configuration"}
 {%- set context = "shiftstack-prometheus-configuration" %}
 
 You can correlate observability metrics for clusters that run on {{ rhoso_first }}. By collecting metrics from both environments, you can monitor and troubleshoot issues across the infrastructure and application layers.

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ VirtProductName }} release notes {id="virt-2-6-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ VirtProductName }} release notes {id="virt-2-6-release-notes"}
 {%- set context = "virt-2-6-release-notes" %}
 
 ## About Red Hat {{ VirtProductName }} {id="_about_red_hat_virtproductname"}
@@ -81,7 +81,7 @@ Other operating system templates shipped with {{ VirtProductName }} are not supp
 *   The name of the Fedora PVC in the `openshift-virtualization-os-images` namespace is `fedora`, instead of `fedora32`. If you populated the `fedora32` PVC in {{ VirtProductname }} 2.5 or earlier, the virtual machine does not appear in the web console and you cannot use it to clone another virtual machine. ([**BZ#1913352**](https://bugzilla.redhat.com/show_bug.cgi?id=1913352))
     *   As a workaround, upload a Fedora image by naming the PVC `fedora` instead of `fedora32`.
 *   When creating a HPP boot source, the data volume is `pending` with a `WaitForFirstConsumer` status if a user creates the boot source using any method except the **Upload local file (creates PVC)** option. ([**BZ#1929177**](https://bugzilla.redhat.com/show_bug.cgi?id=1929177))
-    *   As a workaround, in the **Storage** -> **Persistent Volume Claims** web console screen, edit the YAML of the underlying PVC of the data volume to add the `cdi.kubevirt.io/storage.bind.immediate.requested: "true"` annotation:
+    *   As a workaround, in the **Storage** → **Persistent Volume Claims** web console screen, edit the YAML of the underlying PVC of the data volume to add the `cdi.kubevirt.io/storage.bind.immediate.requested: "true"` annotation:
         ```yaml
         metadata:
           annotations: cdi.kubevirt.io/storage.bind.immediate.requested: "true"

@@ -122,7 +122,7 @@ The `wasp-agent` component deploys an Open Container Initiative (OCI) hook to en
         ```
         1.  Enable memory overcommitment in {{ VirtProductName }} by using the web console or the CLI.
             *   Web console
-                1.  In the {{ product_title }} web console, go to **Virtualization** -> **Settings**.
+                1.  In the {{ product_title }} web console, go to **Virtualization** → **Settings**.
                 1.  Click **Cluster**.
                 1.  Expand **Memory Density**.
                 1.  Set **Configure memory density** to on.
@@ -133,7 +133,7 @@ The `wasp-agent` component deploys an Open Container Initiative (OCI) hook to en
                 1.  Click **Save**.
             *   CLI
                 *   Configure your {{ VirtProductName }} to enable higher memory density and set the overcommit rate:
-                    ```terminal
+                    ```terminal {minja}
                     $ oc patch -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged --type='json' -p='[ \
                       { \
                       "op": "replace", \
@@ -151,7 +151,7 @@ The `wasp-agent` component deploys an Open Container Initiative (OCI) hook to en
 **Verification**
 
 1.  To verify the deployment of `wasp-agent`, run the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc rollout status ds wasp-agent -n {{ CNVNamespace }}
     ```
 
@@ -174,6 +174,7 @@ The `wasp-agent` component deploys an Open Container Initiative (OCI) hook to en
         Replace `<selected_node>` with the node name.
 
         If swap is provisioned, an amount greater than zero is displayed in the `Swap:` row.
+
         **Example output**
 
         |     |     |     |     |     |     |     |
@@ -182,7 +183,7 @@ The `wasp-agent` component deploys an Open Container Initiative (OCI) hook to en
         | Mem: | 31846 | 23155 | 1044 | 6014 | 14483 | 8690 |
         | Swap: | 8191 | 2337 | 5854 |  |  |  |
 1.  Verify the {{ VirtProductName }} memory overcommitment configuration by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get -n {{ CNVNamespace }} {{ HCOCliKind }} kubevirt-hyperconverged -o jsonpath='{.spec.higherWorkloadDensity}{"\n"}'
     ```
 

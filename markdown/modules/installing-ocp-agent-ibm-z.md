@@ -29,10 +29,11 @@ The following table lists the network devices that are supported on each hypervi
 
 | Network device | z/VM | KVM | LPAR Classic | LPAR Dynamic Partition Manager (DPM) |
 | --- | --- | --- | --- | --- |
-| Virtual Switch | Supported ^[1]^ | Not applicable ^[2]^ | Not applicable | Not applicable |
-| Direct attached Open Systems Adapter (OSA) | Supported | Not required ^[3]^ | Supported | Not required |
+| Virtual Switch | Supported <sup>[1]</sup> | Not applicable <sup>[2]</sup> | Not applicable | Not applicable |
+| Direct attached Open Systems Adapter (OSA) | Supported | Not required <sup>[3]</sup> | Supported | Not required |
 | RDMA over Converged Ethernet (RoCE) | Not required | Not required | Not required | Not required |
 | HiperSockets | Supported | Not required | Supported | Not required |
+
 1.  Supported: When the `ai.ip_cfg_override` parameter is required for the installation procedure.
 1.  Not Applicable: When a network card is not applicable to be used on the hypervisor.
 1.  Not required: When the `ai.ip_cfg_override` parameter is not required for the installation procedure.

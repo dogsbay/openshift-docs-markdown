@@ -22,67 +22,72 @@ When you deploy a {{ product_title }} cluster, you must create the Operator IAM 
     ```
 
     The Operator roles are now created and ready to use for creating your {{ product_title }} cluster.
-{% endif %}
-{% if not fips %}
-1.  To create your Operator roles, run the following command:
+{%- endif %}
+{%- if not fips %}
+    . To create your Operator roles, run the following command:
+    +
     ```terminal
     $ rosa create operator-roles --hosted-cp --prefix=$OPERATOR_ROLES_PREFIX --oidc-config-id=$OIDC_ID --installer-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/${ACCOUNT_ROLES_PREFIX}-HCP-ROSA-Installer-Role
     ```
-
+   \
     The following breakdown provides options for the Operator role creation.
+    +
     ```terminal
     $ rosa create operator-roles --hosted-cp
     	--prefix=$OPERATOR_ROLES_PREFIX
     	--oidc-config-id=$OIDC_ID
     	--installer-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/$ACCOUNT_ROLES_PREFIX-HCP-ROSA-Installer-Role
     ```
-
+   \
     where:
+    +
 
-    `--prefix=`
-    :   You must supply a prefix when creating these Operator roles. Failing to do so produces an error. See the Additional resources of this section for information on the Operator prefix.
+`--prefix=`
+:   You must supply a prefix when creating these Operator roles. Failing to do so produces an error. See the Additional resources of this section for information on the Operator prefix.
 
-    `--oidc-config-id=`
-    :   This value is the OIDC configuration ID that you created for your {{ product_title }} cluster.
+`--oidc-config-id=`
+:   This value is the OIDC configuration ID that you created for your {{ product_title }} cluster.
 
-    `--installer-role-arn`
-    :   This value is the installer role ARN that you created when you created the {{ product_title }} account roles.
+`--installer-role-arn`
+:   This value is the installer role ARN that you created when you created the {{ product_title }} account roles.
 
-    You must include the `--hosted-cp` parameter to create the correct roles for {{ product_title }} clusters. This command returns the following information.
+You must include the `--hosted-cp` parameter to create the correct roles for {{ product_title }} clusters. This command returns the following information.
 
-    For example:
-    ```terminal
-    ? Role creation mode: auto
-    ? Operator roles prefix: <pre-filled_prefix>
-    ? OIDC Configuration ID: 23soa2bgvpek9kmes9s7os0a39i13qm4 | https://dvbwgdztaeq9o.cloudfront.net/23soa2bgvpek9kmes9s7os0a39i13qm4
-    ? Create hosted control plane operator roles: Yes
-    W: More than one Installer role found
-    ? Installer role ARN: arn:aws:iam::4540112244:role/<prefix>-HCP-ROSA-Installer-Role
-    ? Permissions boundary ARN (optional):
-    I: Reusable OIDC Configuration detected. Validating trusted relationships to operator roles:
-    I: Creating roles using 'arn:aws:iam::4540112244:user/<userName>'
-    I: Created role '<prefix>-openshift-cluster-csi-drivers-ebs-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/<prefix>-openshift-cluster-csi-drivers-ebs-cloud-credentials'
-    I: Created role '<prefix>-openshift-cloud-network-config-controller-cloud-credenti' with ARN 'arn:aws:iam::4540112244:role/<prefix>-openshift-cloud-network-config-controller-cloud-credenti'
-    I: Created role '<prefix>-kube-system-kube-controller-manager' with ARN 'arn:aws:iam::4540112244:role/<prefix>-kube-system-kube-controller-manager'
-    I: Created role '<prefix>-kube-system-capa-controller-manager' with ARN 'arn:aws:iam::4540112244:role/<prefix>-kube-system-capa-controller-manager'
-    I: Created role '<prefix>-kube-system-control-plane-operator' with ARN 'arn:aws:iam::4540112244:role/<prefix>-kube-system-control-plane-operator'
-    I: Created role '<prefix>-kube-system-kms-provider' with ARN 'arn:aws:iam::4540112244:role/<prefix>-kube-system-kms-provider'
-    I: Created role '<prefix>-openshift-image-registry-installer-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/<prefix>-openshift-image-registry-installer-cloud-credentials'
-    I: Created role '<prefix>-openshift-ingress-operator-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/<prefix>-openshift-ingress-operator-cloud-credentials'
-    I: To create a cluster with these roles, run the following command:
-    	rosa create cluster --sts --oidc-config-id 23soa2bgvpek9kmes9s7os0a39i13qm4 --operator-roles-prefix <prefix> --hosted-cp
-    ```
+For example:
 
-    where:
+```terminal
+? Role creation mode: auto
+? Operator roles prefix: <pre-filled_prefix>
+? OIDC Configuration ID: 23soa2bgvpek9kmes9s7os0a39i13qm4 | https://dvbwgdztaeq9o.cloudfront.net/23soa2bgvpek9kmes9s7os0a39i13qm4
+? Create hosted control plane operator roles: Yes
+W: More than one Installer role found
+? Installer role ARN: arn:aws:iam::4540112244:role/<prefix>-HCP-ROSA-Installer-Role
+? Permissions boundary ARN (optional):
+I: Reusable OIDC Configuration detected. Validating trusted relationships to operator roles:
+I: Creating roles using 'arn:aws:iam::4540112244:user/<userName>'
+I: Created role '<prefix>-openshift-cluster-csi-drivers-ebs-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/<prefix>-openshift-cluster-csi-drivers-ebs-cloud-credentials'
+I: Created role '<prefix>-openshift-cloud-network-config-controller-cloud-credenti' with ARN 'arn:aws:iam::4540112244:role/<prefix>-openshift-cloud-network-config-controller-cloud-credenti'
+I: Created role '<prefix>-kube-system-kube-controller-manager' with ARN 'arn:aws:iam::4540112244:role/<prefix>-kube-system-kube-controller-manager'
+I: Created role '<prefix>-kube-system-capa-controller-manager' with ARN 'arn:aws:iam::4540112244:role/<prefix>-kube-system-capa-controller-manager'
+I: Created role '<prefix>-kube-system-control-plane-operator' with ARN 'arn:aws:iam::4540112244:role/<prefix>-kube-system-control-plane-operator'
+I: Created role '<prefix>-kube-system-kms-provider' with ARN 'arn:aws:iam::4540112244:role/<prefix>-kube-system-kms-provider'
+I: Created role '<prefix>-openshift-image-registry-installer-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/<prefix>-openshift-image-registry-installer-cloud-credentials'
+I: Created role '<prefix>-openshift-ingress-operator-cloud-credentials' with ARN 'arn:aws:iam::4540112244:role/<prefix>-openshift-ingress-operator-cloud-credentials'
+I: To create a cluster with these roles, run the following command:
+	rosa create cluster --sts --oidc-config-id 23soa2bgvpek9kmes9s7os0a39i13qm4 --operator-roles-prefix <prefix> --hosted-cp
+```
 
-    `Operator roles prefix`
-    :   This field is prepopulated with the prefix that you set in the initial creation command.
+where:
 
-    `OIDC Configuration ID`
-    :   This field requires you to select an OIDC configuration that you created for your {{ product_title }} cluster.
 
-    The Operator roles are now created and ready to use for creating your {{ product_title }} cluster.
-{% endif %}
+`Operator roles prefix`
+:   This field is prepopulated with the prefix that you set in the initial creation command.
+
+`OIDC Configuration ID`
+:   This field requires you to select an OIDC configuration that you created for your {{ product_title }} cluster.
+
+The Operator roles are now created and ready to use for creating your {{ product_title }} cluster.
+{%- endif %}
 
 **Verification**
 
@@ -112,5 +117,5 @@ When you deploy a {{ product_title }} cluster, you must create the Operator IAM 
     After the command runs, it displays all the prefixes associated with your AWS account and notes how many roles are associated with this prefix. If you need to see all of these roles and their details, enter "Yes" on the detail prompt to have these roles listed out with specifics.
 
 {% if context == "rosa-hcp-creating-cluster-with-fips-encryption" %}
-{%- set fips = false -%}
+{%- set fips = "" -%}
 {% endif %}

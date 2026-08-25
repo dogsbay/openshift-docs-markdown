@@ -11,13 +11,36 @@ $ oc adm prune builds [<options>]
 
 **`oc adm prune builds` flags**
 
-| Option | Description |
-| --- | --- |
-| `--confirm` | Indicate that pruning should occur, instead of performing a dry-run. |
-| `--orphans` | Prune all builds whose build configuration no longer exists, status is complete, failed, error, or canceled. |
-| `--keep-complete=<N>` | Per build configuration, keep the last `N` builds whose status is complete. The default is `5`. |
-| `--keep-failed=<N>` | Per build configuration, keep the last `N` builds whose status is failed, error, or canceled. The default is `1`. |
-| `--keep-younger-than=<duration>` | Do not prune any object that is younger than `<duration>` relative to the current time. The default is `60m`. |
+<table>
+<thead>
+<tr>
+  <th>Option</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>--confirm</code></td>
+  <td>Indicate that pruning should occur, instead of performing a dry-run.</td>
+</tr>
+<tr>
+  <td><code>--orphans</code></td>
+  <td>Prune all builds whose build configuration no longer exists, status is complete, failed, error, or canceled.</td>
+</tr>
+<tr>
+  <td><code>--keep-complete=&lt;N&gt;</code></td>
+  <td>Per build configuration, keep the last <code>N</code> builds whose status is complete. The default is <code>5</code>.</td>
+</tr>
+<tr>
+  <td><code>--keep-failed=&lt;N&gt;</code></td>
+  <td>Per build configuration, keep the last <code>N</code> builds whose status is failed, error, or canceled. The default is <code>1</code>.</td>
+</tr>
+<tr>
+  <td><code>--keep-younger-than=&lt;duration&gt;</code></td>
+  <td>Do not prune any object that is younger than <code>&lt;duration&gt;</code> relative to the current time. The default is <code>60m</code>.</td>
+</tr>
+</tbody>
+</table>
 
 **Procedure**
 

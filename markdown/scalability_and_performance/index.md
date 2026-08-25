@@ -3,11 +3,11 @@ title: OpenShift Container Platform scalability and performance overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ product_title }} scalability and performance overview {id="scalability-and-performance-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ product_title }} scalability and performance overview {id="scalability-and-performance-overview"}
 {%- set context = "index" %}
 
-{{ product_title }} provides best practices and tools to help you optimize the performance and scale of your clusters.
+{{ product_title }} provides best practices and tools to help you optimize the performance and scale of your clusters. {._abstract}
 
 The following documentation provides information on recommended performance and scalability practices, reference design specifications, optimization, and low latency tuning.
 
@@ -27,7 +27,7 @@ Some performance and scalability Operators have release cycles that are independ
 
 {% leveloffset +1 %}{% include "./modules/scalability-and-performance-planning-optimization-measurement.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Getting support](/support/getting-support#getting-support)
 *   [OpenShift Operators](https://access.redhat.com/support/policy/updates/openshift_operators)

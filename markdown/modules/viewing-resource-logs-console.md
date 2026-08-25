@@ -5,7 +5,7 @@ You can view resource logs by using the {{ product_title }} web console. By view
 
 **Procedure**
 
-1.  In the {{ product_title }} console, navigate to **Workloads** -> **Pods** or navigate to the pod through the resource you want to investigate.
+1.  In the {{ product_title }} console, navigate to **Workloads** → **Pods** or navigate to the pod through the resource you want to investigate.
 
     :::note
 

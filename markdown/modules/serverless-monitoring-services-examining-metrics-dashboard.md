@@ -8,7 +8,7 @@
 
 **Procedure**
 
-1.  In the web console, navigate to the **Observe** -> **Metrics** interface.
+1.  In the web console, navigate to the **Observe** → **Metrics** interface.
 1.  Select the `Knative User Services (Queue Proxy metrics)` dashboard.
 1.  Select the **Namespace**, **Configuration**, and **Revision** that correspond to your application.
 1.  Observe the visualized metrics:

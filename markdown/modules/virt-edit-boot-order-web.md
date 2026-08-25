@@ -5,7 +5,7 @@ You can edit the boot order list in the web console. {._abstract}
 
 **Procedure**
 
-1.  Click **Virtualization** -> **VirtualMachines** from the side menu.
+1.  Click **Virtualization** → **VirtualMachines** from the side menu.
 1.  Click the **Virtual machines** tab.
 1.  Select a virtual machine to open the **VirtualMachine details** page.
 1.  Click the **Configuration** tab.

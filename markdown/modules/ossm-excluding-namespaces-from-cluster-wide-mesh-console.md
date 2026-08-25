@@ -20,7 +20,7 @@ If you install ingress or egress gateways in the control plane namespace, you mu
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the {{ SMProductName }} Operator.
 1.  Click **Istio Service Mesh Control Plane**.
 1.  Click the name of the control plane.

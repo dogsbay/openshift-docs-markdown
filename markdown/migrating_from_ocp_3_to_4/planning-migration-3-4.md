@@ -3,8 +3,8 @@ title: Differences between OpenShift Container Platform 3 and 4
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Differences between {{ product_title }} 3 and 4 {id="planning-migration-3-4"}
 {% include "./_attributes/common-attributes.md" %}
+# Differences between {{ product_title }} 3 and 4 {id="planning-migration-3-4"}
 {%- set context = "planning-migration-3-4" %}
 
 {{ product_title }} {{ product_version }} introduces architectural changes and enhancements/ The procedures that you used to manage your {{ product_title }} 3 cluster might not apply to {{ product_title }} 4.
@@ -185,7 +185,7 @@ Review the following security changes to consider when transitioning from {{ pro
 
 #### Unauthenticated access to discovery endpoints {id="_unauthenticated_access_to_discovery_endpoints"}
 
-In {{ product_title }} 3.11, an unauthenticated user could access the discovery endpoints (for example, `/api/**` and `/apis/**`). For security reasons, unauthenticated access to the discovery endpoints is no longer allowed in {{ product_title }} {{ product_version }}. If you do need to allow unauthenticated access, you can configure the RBAC settings as necessary; however, be sure to consider the security implications as this can expose internal cluster components to the external network.
+In {{ product_title }} 3.11, an unauthenticated user could access the discovery endpoints (for example, `/api/*` and `/apis/*`). For security reasons, unauthenticated access to the discovery endpoints is no longer allowed in {{ product_title }} {{ product_version }}. If you do need to allow unauthenticated access, you can configure the RBAC settings as necessary; however, be sure to consider the security implications as this can expose internal cluster components to the external network.
 
 #### Identity providers {id="_identity_providers"}
 

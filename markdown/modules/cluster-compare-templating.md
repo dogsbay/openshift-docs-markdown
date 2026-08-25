@@ -26,18 +26,18 @@ You can handle variable content within a template by using Golang templating syn
         app: guestbook
         tier: frontend
     spec:
-{{- if and .spec.type (eq (.spec.type) "NodePort" "LoadBalancer") }}
+      {{- if and .spec.type (eq (.spec.type) "NodePort" "LoadBalancer") }}
       type: {{.spec.type }}
-{{- else }}
+      {{- else }}
       type: should be NodePort or LoadBalancer
-{{- end }}
+      {{- end }}
       ports:
       - port: 80
       selector:
         app: guestbook
-{{- if .spec.selector.tier }}
+        {{- if .spec.selector.tier }}
         tier: frontend
-{{- end }}
+        {{- end }}
     ```
 
     where:

@@ -48,5 +48,5 @@ You are ready to initiate Terraform.
 {% endif %}
 
 {% if context == "rosa-sts-creating-a-cluster-quickly-terraform" %}
-{%- set tf_defaults = false -%}
+{%- set tf_defaults = "" -%}
 {% endif %}

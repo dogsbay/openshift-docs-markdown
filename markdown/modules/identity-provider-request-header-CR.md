@@ -39,14 +39,14 @@ that will authenticate browser-based clients and then proxy their request to
 `https://_<namespace_route>_/oauth/authorize`.
 The URL that proxies to `https://_<namespace_route>_/oauth/authorize` must end with `/authorize` (with no trailing slash),
 and also proxy subpaths, in order for OAuth approval flows to work properly.
-`${{ url }}` is replaced with the current URL, escaped to be safe in a query parameter.
-`${{ query }}` is replaced with the current query string.
+`${{ url }}`{minja} is replaced with the current URL, escaped to be safe in a query parameter.
+`${{ query }}`{minja} is replaced with the current query string.
 If this attribute is not defined, then `loginURL` must be used.
 1.  Optional: URL to redirect unauthenticated `/oauth/authorize` requests to,
 that will authenticate clients which expect `WWW-Authenticate` challenges, and
 then proxy them to `https://_<namespace_route>_/oauth/authorize`.
-`${{ url }}` is replaced with the current URL, escaped to be safe in a query parameter.
-`${{ query }}` is replaced with the current query string.
+`${{ url }}`{minja} is replaced with the current URL, escaped to be safe in a query parameter.
+`${{ query }}`{minja} is replaced with the current query string.
 If this attribute is not defined, then `challengeURL` must be used.
 1.  Reference to an {{ product_title }} `ConfigMap` object containing a PEM-encoded
 certificate bundle. Used as a trust anchor to validate the TLS

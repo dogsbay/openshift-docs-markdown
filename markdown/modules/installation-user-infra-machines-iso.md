@@ -62,9 +62,10 @@ To provision physical or virtual machines, install {{ op_system }} by using a bo
     ```terminal
     $ openshift-install coreos print-stream-json | grep '\.iso[^.]'
     ```
+
     **Example output**
 
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
     ```terminal
     "location": "<url>/art/storage/releases/rhcos-4.22-aarch64/<release>/aarch64/rhcos-<release>-live.aarch64.iso",
     "location": "<url>/art/storage/releases/rhcos-4.22-ppc64le/<release>/ppc64le/rhcos-<release>-live.ppc64le.iso",
@@ -76,7 +77,7 @@ To provision physical or virtual machines, install {{ op_system }} by using a bo
     ```terminal
     "location": "<url>/prod/streams/stable/builds/<release>/x86_64/fedora-coreos-<release>-live.x86_64.iso",
     ```
-{%- endif %}
+{% endif %}
 
     :::important
 
@@ -86,7 +87,7 @@ To provision physical or virtual machines, install {{ op_system }} by using a bo
 
 
     ISO file names resemble the following example:
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 
     `rhcos-<version>-live.<architecture>.iso`
 {% endif %}
@@ -105,7 +106,7 @@ To provision physical or virtual machines, install {{ op_system }} by using a bo
     :::
 
 1.  Run the `coreos-installer` command and specify the options that meet your installation requirements. At a minimum, you must specify the URL that points to the Ignition config file for the node type, and the device that you are installing to:
-    {%- if restricted %}
+{% if restricted %}
     ```terminal
     $ sudo coreos-installer install --ignition-url=http://<HTTP_server>/<node_type>.ign <device> \
     --ignition-hash=sha512-<digest> --offline
@@ -128,7 +129,7 @@ To provision physical or virtual machines, install {{ op_system }} by using a bo
 
 
         The following example initializes a bootstrap node installation to the `/dev/sda` device. The Ignition config file for the bootstrap node is obtained from an HTTP web server with the IP address 192.168.1.2:
-{%- if restricted %}
+{% if restricted %}
         ```terminal
         $ sudo coreos-installer install --ignition-url=http://192.168.1.2:80/installation_directory/bootstrap.ign /dev/sda \
         --ignition-hash=sha512-a5a2d43879223273c9b60af66b44202a1d1248fc01cf156c46d4a79f552b6bad47bc8cc78ddf0116e80c59d2ea9e32ba53bc807afbca581aa059311def2c3e3b \
@@ -174,11 +175,11 @@ To provision physical or virtual machines, install {{ op_system }} by using a bo
 
 
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

@@ -9,7 +9,7 @@ You cannot change the `metadata.name` field of an existing `ServiceMeshControlPl
 
 1.  Configure the {{ JaegerShortName }} for production.
     1.  Edit the `ServiceMeshControlPlane` resource to use the `production` deployment strategy, by setting `spec.addons.jaeger.install.storage.type` to `Elasticsearch` and specify additional configuration options under `install`. You can create and configure your Jaeger instance and set `spec.addons.jaeger.name` to the name of the Jaeger instance.
-        ```yaml title="Default Jaeger parameters including Elasticsearch"
+        ```yaml title="Default Jaeger parameters including Elasticsearch" {minja}
         apiVersion: maistra.io/v2
         kind: ServiceMeshControlPlane
         metadata:

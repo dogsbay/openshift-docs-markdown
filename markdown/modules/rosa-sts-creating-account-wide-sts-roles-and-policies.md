@@ -29,8 +29,9 @@ Before using the {{ hybrid_console }} to create {{ product_title }} clusters tha
     $ rosa list account-roles
     ```
 {% endif %}
+
 1.  If they do not exist in your AWS account, create the required account-wide AWS IAM STS roles and policies:
-    {%- if openshift_rosa %}
+{% if openshift_rosa %}
     ```terminal
     $ rosa create account-roles
     ```
@@ -39,7 +40,7 @@ Before using the {{ hybrid_console }} to create {{ product_title }} clusters tha
     ```terminal
     $ rosa create account-roles --hosted-cp
     ```
-{%- endif %}
+{% endif %}
 
     Select the default values at the prompts to quickly create the roles and policies.
 

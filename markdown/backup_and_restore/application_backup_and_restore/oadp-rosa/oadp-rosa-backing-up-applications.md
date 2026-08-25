@@ -3,7 +3,7 @@ title: Backing up applications on ROSA clusters using OADP
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-{%- if not (openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_rosa or openshift_rosa_hcp) %}
 
 # Backing up applications on ROSA clusters using OADP {id="oadp-rosa-backing-up-applications"}
 
@@ -18,12 +18,12 @@ title: Backing up applications on ROSA clusters using OADP
 {% include "./_attributes/common-attributes.md" %}
 {%- set context = "oadp-rosa-backing-up-applications" %}
 
-{%- if openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_rosa or openshift_rosa_hcp %}
 Use {{ oadp_first }} with {{ product_title }} clusters to back up and restore application data.
 {% endif %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
-Use {{ oadp_first }} with {{ product_rosa }} (ROSA) clusters to back up and restore application data.
+Use {{ oadp_first }} with {{ product_rosa }} (ROSA) clusters to back up and restore application data. {._abstract}
 
 ROSA is a fully-managed, turnkey application platform that allows you to deliver value to your customers by building and deploying applications.
 
@@ -51,6 +51,7 @@ This process is performed in the following two stages:
 {% leveloffset +1 %}{% include "./modules/updating-role-arn-oadp-rosa-sts.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 

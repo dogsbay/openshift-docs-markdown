@@ -3,8 +3,8 @@ title: Creating applications by using the CLI
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating applications by using the CLI {id="creating-applications-using-cli"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating applications by using the CLI {id="creating-applications-using-cli"}
 {%- set context = "creating-applications-using-cli" %}
 
 You can create an {{ product_title }} application from components that include

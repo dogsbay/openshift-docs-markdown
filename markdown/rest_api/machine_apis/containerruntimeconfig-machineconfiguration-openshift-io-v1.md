@@ -1,5 +1,5 @@
 ---
-title: "ContainerRuntimeConfig []"
+title: "ContainerRuntimeConfig [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec contains the desired container runtime configuration. |
 | `status` | `object` | status contains observed information about the container runtime configuration. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,6 +49,7 @@ Required
 | --- | --- | --- |
 | `containerRuntimeConfig` | `object` | containerRuntimeConfig defines the tuneables of the container runtime. |
 | `machineConfigPoolSelector` | `object` | machineConfigPoolSelector selects which pools the ContainerRuntimeConfig shoud apply to. A nil selector will result in no pools being selected. |
+
 ### .spec.containerRuntimeConfig {id="_speccontainerruntimeconfig"}
 
 Description
@@ -64,6 +66,7 @@ Type
 | `logSizeMax` | `integer-or-string` | logSizeMax specifies the Maximum size allowed for the container log file. Negative numbers indicate that no size limit is imposed. If it is positive, it must be >= 8192 to match/exceed conmon’s read buffer. |
 | `overlaySize` | `integer-or-string` | overlaySize specifies the maximum size of a container image. This flag can be used to set quota on the size of container images. (default: 10GB) |
 | `pidsLimit` | `integer` | pidsLimit specifies the maximum number of processes allowed in a container |
+
 ### .spec.machineConfigPoolSelector {id="_specmachineconfigpoolselector"}
 
 Description
@@ -79,6 +82,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.machineConfigPoolSelector.matchExpressions {id="_specmachineconfigpoolselectormatchexpressions"}
 
 Description
@@ -108,6 +112,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status {id="_status"}
 
 Description
@@ -122,6 +127,7 @@ Type
 | `conditions` | `array` | conditions represents the latest available observations of current state. |
 | `conditions[]` | `object` | ContainerRuntimeConfigCondition defines the state of the ContainerRuntimeConfig |
 | `observedGeneration` | `integer` | observedGeneration represents the generation observed by the controller. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -156,12 +162,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ContainerRuntimeConfig
     *   `GET`: list objects of kind ContainerRuntimeConfig
     *   `POST`: create a ContainerRuntimeConfig
-*   `/apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{{ name }}`{minja}
     *   `DELETE`: delete a ContainerRuntimeConfig
     *   `GET`: read the specified ContainerRuntimeConfig
     *   `PATCH`: partially update the specified ContainerRuntimeConfig
     *   `PUT`: replace the specified ContainerRuntimeConfig
-*   `/apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{{ name }}/status`
+*   `/apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ContainerRuntimeConfig
     *   `PATCH`: partially update status of the specified ContainerRuntimeConfig
     *   `PUT`: replace status of the specified ContainerRuntimeConfig

@@ -19,11 +19,11 @@ Follow this procedure to deploy the {{ SMProductName }} control plane by using t
 
 1.  Log in to the {{ product_title }} web console as a user with the `cluster-admin` role.
 1.  Create a project named `istio-system`.
-    1.  Navigate to **Home** -> **Projects**.
+    1.  Navigate to **Home** → **Projects**.
     1.  Click **Create Project**.
     1.  Enter `istio-system` in the **Name** field.
     1.  Click **Create**.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  If necessary, select `istio-system` from the Project menu.  You may have to wait a few moments for the Operators to be copied to the new project.
 1.  Click the {{ SMProductName }} Operator.  Under **Provided APIs**, the Operator provides links to create two resource types:
     *   A `ServiceMeshControlPlane` resource

@@ -3,12 +3,12 @@ title: Managing image streams
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Managing image streams {id="managing-image-streams"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "image-streams-managing" %}
 
-To create and update container images and track version changes in {{ product_title }}, you can use image streams and tags. Add, update, remove, and import image stream tags to manage your container images.
+To create and update container images and track version changes in {{ product_title }}, you can use image streams and tags. Add, update, remove, and import image stream tags to manage your container images. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/images-imagestream-use.md" %}{% endleveloffset %}
 
@@ -39,7 +39,7 @@ To create and update container images and track version changes in {{ product_ti
 
 {% leveloffset +2 %}{% include "./modules/images-imagestream-remove-tag.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources-remove-tag_{{ context }}"}
+## Additional resources {id="additional-resources-remove-tag_{{ context }}" ._additional-resources}
 
 *   [Removing deprecated image stream tags from the Cluster Samples Operator](/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)
 

@@ -187,7 +187,7 @@ Boot image update documentation
 `AppliedFilesAndOS` machine config node condition is now `AppliedFiles` and `AppliedOSImage` (Technology Preview)
 :   With this update, the `AppliedFilesAndOS` condition reported by the machine config node has been split into the `AppliedFiles` and `AppliedOSImage` conditions as a Technology Preview feature. The machine config nodes custom resource monitors the progress of machine configuration updates to nodes. The `AppliedFiles` condition reports whether MCO has updated files on the node. The `AppliedOSImage` condition reports whether the MCO has updated the operating system.
 
-    For more information, see [About node status during updates](/machine_configuration/index.html#checking-mco-node-status_machine-config-overview).
+    For more information, see [About node status during updates](/machine_configuration/index#checking-mco-node-status_machine-config-overview).
 
 ## Machine management {id="ocp-release-notes-machine-management_{{ context }}"}
 
@@ -241,29 +241,35 @@ Kubernetes NMState Operator extends metrics support
     For more information, see [Viewing metrics collected by the Kubernetes NMState Operator](/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#viewing-stats-collected-kubernetes-nmstate-op_k8s-nmstate-about-the-k8s-nmstate-operator).
 
 Alternative interface names for network interfaces with the Kubernetes NMState Operator
-    :   Assign alternative names to network interfaces by using the Kubernetes NMState Operator. Alternative names provide consistent, descriptive labels for interfaces across cluster nodes, simplifying automation in environments where interface names vary across nodes.
+:   Assign alternative names to network interfaces by using the Kubernetes NMState Operator. Alternative names provide consistent, descriptive labels for interfaces across cluster nodes, simplifying automation in environments where interface names vary across nodes.
+
     For more information, see [Configure alternative network interface names](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-alternative-interface-names_k8s-nmstate-updating-node-network-config).
 
 
 Ingress firewall configuration with the `commatrix` plugin
-    :   The `commatrix` plugin generates `nftables` firewall rules in Butane format for deployment to cluster nodes. These rules restrict ingress traffic to only the flows required by deployed services, promoting a zero-trust security posture. The plugin also generates a `NodeDisruptionPolicy` patch to apply rule updates without node reboots.
+:   The `commatrix` plugin generates `nftables` firewall rules in Butane format for deployment to cluster nodes. These rules restrict ingress traffic to only the flows required by deployed services, promoting a zero-trust security posture. The plugin also generates a `NodeDisruptionPolicy` patch to apply rule updates without node reboots.
+
     For more information, see [Generate nftables firewall rules in Butane format](/installing/install_config/configuring-firewall#commatrix-generate-butane_configuring-firewall).
 
 
 MetalLB ConfigurationState resource reports controller and speaker configuration health
-    :   You can now use the new `ConfigurationState` custom resource to verify that MetalLB has successfully applied your settings across the cluster. This feature provides a single, consistent location to identify configuration errors that were previously only visible by searching through individual node logs or FRR status reports
+:   You can now use the new `ConfigurationState` custom resource to verify that MetalLB has successfully applied your settings across the cluster. This feature provides a single, consistent location to identify configuration errors that were previously only visible by searching through individual node logs or FRR status reports
+
     MetalLB creates a `ConfigurationState` resource for the controller and for each speaker node. Each resource reports whether your configuration is valid and surfaces specific error details if validation fails, such as issues with `IPAddressPool`, `BGPPeer`, or `BFDProfile` objects. This centralized reporting helps you monitor system integrity and resolve networking conflicts more quickly.
+
     For more information, see [Checking MetalLB configuration status](/networking/ingress_load_balancing/metallb/monitoring-metallb-status#nw-metallb-checking-configuration-status_monitor-metallb-config-status).
 
 
 Multi-network policy backend uses nftables
-    :   With this release, the multi-network policy backend uses `nftables` instead of `iptables`. The `iptables` backend has been removed and there is no option to revert to it. The `MultiNetworkPolicy` API and user-facing configuration are unchanged, so your existing multi-network policies continue to work without modification.
+:   With this release, the multi-network policy backend uses `nftables` instead of `iptables`. The `iptables` backend has been removed and there is no option to revert to it. The `MultiNetworkPolicy` API and user-facing configuration are unchanged, so your existing multi-network policies continue to work without modification.
+
     For more information, see [Configuring multi-network policy](/networking/multiple_networks/secondary_networks/configuring-multi-network-policy#configuring-multi-network-policy).
 
 
 Tune MetalLB advertisements for individual LoadBalancer services using service labels
-    :   With MetalLB, you can now set `spec.serviceSelectors` on `BGPAdvertisement` and `L2Advertisement` custom resources (CRs).
+:   With MetalLB, you can now set `spec.serviceSelectors` on `BGPAdvertisement` and `L2Advertisement` custom resources (CRs).
     This allows you to match LoadBalancer services by label so each advertisement applies its own BGP or Layer 2 settings to the services you choose, even when those services use the same IPAddressPool.
+
     For more information, see [About advertising for the IP address pools](/networking/ingress_load_balancing/metallb/about-advertising-ipaddresspool#about-advertise-for-ipaddress-pools).
 
 
@@ -272,158 +278,178 @@ Immutable AWS Network Load Balancer for a service
 
 
 BGP EVPN for cluster user-defined networks
-    :   With this release, Border Gateway Protocol Ethernet Virtual Private Network (BGP EVPN) is available for primary cluster user-defined networks. Enabling this feature on {{ product_title }} allows a `ClusterUserDefinedNetwork` overlay network to use the EVPN control plane for deeper integration with the data center network.
+:   With this release, Border Gateway Protocol Ethernet Virtual Private Network (BGP EVPN) is available for primary cluster user-defined networks. Enabling this feature on {{ product_title }} allows a `ClusterUserDefinedNetwork` overlay network to use the EVPN control plane for deeper integration with the data center network.
+
     For more information, see [About BGP EVPN for primary cluster user-defined networks](/networking/advanced_networking/bgp_evpn_udn/about-bgp-evpn-user-defined-networks#about-bgp-evpn-user-defined-networks).
 
 
 NoOverlay mode with BGP routing
-    :   With this release, no-overlay mode with Border Gateway Protocol (BGP) routing is available as a Technology Preview feature on bare-metal clusters that use OVN-Kubernetes. No-overlay mode forwards layer 3 pod traffic on the underlay network using BGP-learned routes instead of Geneve encapsulation, which can improve east-west performance. You can enable no-overlay mode on the default layer 3 cluster network and on primary `ClusterUserDefinedNetwork` resources.
+:   With this release, no-overlay mode with Border Gateway Protocol (BGP) routing is available as a Technology Preview feature on bare-metal clusters that use OVN-Kubernetes. No-overlay mode forwards layer 3 pod traffic on the underlay network using BGP-learned routes instead of Geneve encapsulation, which can improve east-west performance. You can enable no-overlay mode on the default layer 3 cluster network and on primary `ClusterUserDefinedNetwork` resources.
+
     For more information, see [Improve east-west performance by routing pods on the underlay with BGP](/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing).
 
 
 Support for PTP boundary clock without holdover on Intel Granite Rapids-D hardware
-    :   You can now configure Precision Time Protocol (PTP) boundary clock (BC) without holdover on Intel Granite Rapids-D (GNR-D) hardware that uses onboard Network Acceleration Complex (NAC) ports and optional Carter Flat expansion network interface cards (NICs).
+:   You can now configure Precision Time Protocol (PTP) boundary clock (BC) without holdover on Intel Granite Rapids-D (GNR-D) hardware that uses onboard Network Acceleration Complex (NAC) ports and optional Carter Flat expansion network interface cards (NICs).
+
     In this deployment, one time receiver (TR) port synchronizes to an upstream timing source while time transmitter (TT) ports distribute synchronized time downstream. GNR-D BC without holdover deployments on Carter Flat hardware require a continuous upstream PTP timing source because monitored holdover is not supported.
+
     For more information, see [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp).
 
 
 Support for Granite Rapids-D (GNR-D) telecom boundary clock with holdover on an Intel GNR-D platform (Technology Preview)
-    :   You can configure an Intel® Granite Rapids-D (GNR-D) platform device as telecom boundary clock (T-BC) with holdover support by using the PTP Operator.
+:   You can configure an Intel® Granite Rapids-D (GNR-D) platform device as telecom boundary clock (T-BC) with holdover support by using the PTP Operator.
+
     With this technology preview feature, you can configure T-BC holdover on GNR-D platforms `dell/XR8720t` and `hpe/EL140-Gen12`.
+
     In this configuration, one time receiver (TR) port synchronizes to an upstream telecom grandmaster clock, while time transmitter (TT) ports distribute synchronized time to downstream devices. If the upstream timing source degrades, disconnects, or becomes unavailable, the system enters holdover mode and maintains timing by using configured digital phase-locked loop (DPLL) devices.
+
     For more information, see [Configuring GNR-D T-BC holdover on a GNR-D platform](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-gnrd-t-bc-holdover_configuring-ptp).
 
 
 PTP Telecom Grandmaster on Intel Granite Rapids-D (Technology Preview)
-    :   You can configure a Precision Time Protocol (PTP) Telecom Grandmaster (T-GM) on Intel Granite Rapids-D (GNR-D) servers so a single Global Navigation Satellite System (GNSS) feed synchronizes timing across onboard Network Acceleration Complex (NAC) ports and optional Carter Flat expansion network interface cards (NICs).
+:   You can configure a Precision Time Protocol (PTP) Telecom Grandmaster (T-GM) on Intel Granite Rapids-D (GNR-D) servers so a single Global Navigation Satellite System (GNSS) feed synchronizes timing across onboard Network Acceleration Complex (NAC) ports and optional Carter Flat expansion network interface cards (NICs).
     The PTP Operator supports GNR-D deployments with the `e830` and `e825` hardware plugins and an example `PtpConfig` custom resource (CR) that you customize for your qualified hardware layout.
     PTP T-GM on GNR-D is available as a Technology Preview feature.
+
     For more information, see [Telecom Grandmaster clocks on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-telecom-grandmaster-clock-overview_configuring-ptp).
 
 ## Nodes {id="ocp-release-notes-nodes_{{ context }}"}
 
 
 Image pull credential verification in multi-tenant clusters
-    :   With this update, administrators can use the `imagePullCredentialsVerificationPolicy` parameter in a `KubeletConfig` custom resource to enforce credential verification for cached images. This parameter forces the kubelet to re-authenticate with the container registry before it deploys a pod, ensuring that the requesting namespace has valid access rights to the image.
+:   With this update, administrators can use the `imagePullCredentialsVerificationPolicy` parameter in a `KubeletConfig` custom resource to enforce credential verification for cached images. This parameter forces the kubelet to re-authenticate with the container registry before it deploys a pod, ensuring that the requesting namespace has valid access rights to the image.
+
     The underlying `KubeletEnsureSecretPulledImages` feature gate is enabled by default. Administrators can configure specific credential provider policies to balance security and stability:
-    * `AlwaysVerify`: Enforces credential checks for all image pull requests.
-    * `NeverVerifyAllowlistedImages`: Enforces credential checks for user workloads while exempting essential infrastructure images on an allowlist.
+    *   `AlwaysVerify`: Enforces credential checks for all image pull requests.
+    *   `NeverVerifyAllowlistedImages`: Enforces credential checks for user workloads while exempting essential infrastructure images on an allowlist.
+
     Before this update, multi-tenant {{ product_title }} clusters had a security vulnerability where the kubelet did not re-verify credentials for cached images. If one tenant pulled a private image, another tenant could deploy a pod by using that same cache without providing image pull secrets. To mitigate this previously, administrators relied on unsupported configurations. However, these workarounds caused cluster instability, risked control plane failures during registry outages, and blocked crucial cluster upgrades.
 
     :::note
+
 
     Do not use the `NeverVerifyPreloadedImages` policy when the default `KubeletEnsureSecretPulledImages` feature gate is active, as the policy might not function as expected. Use the `NeverVerifyAllowlistedImages` policy instead.
     
     :::
 
+
     For more information, see [Creating a KubeletConfig CRD to edit kubelet parameters](/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom).
 
-
 CPU resource enforcement is now enabled by default
-    :   With this update, the `system-reserved-compressible` parameter is enabled for all clusters that do not use the reserved CPU feature. This addresses previous issues where the system reserved CPU exceeded the desired limit. This default can be overridden by configuring the `systemReservedCPU: ""` parameter in a kubelet configuration.
+:   With this update, the `system-reserved-compressible` parameter is enabled for all clusters that do not use the reserved CPU feature. This addresses previous issues where the system reserved CPU exceeded the desired limit. This default can be overridden by configuring the `systemReservedCPU: ""` parameter in a kubelet configuration.
+
     For more information, see [How {{ product_title }} enforces system-reserved CPU](/nodes/nodes/nodes-nodes-resources-configuring#system-reserved-compressible_nodes-nodes-resources-configuring).
 
 
 Mount an OCI image into a pod
-    :   With this update, you can use an image volume to mount an Open Container Initiative (OCI)-compliant artifact directly into a pod. OCI artifacts enable users to store and distribute arbitrary files and metadata using OCI compliant container registries.
+:   With this update, you can use an image volume to mount an Open Container Initiative (OCI)-compliant artifact directly into a pod. OCI artifacts enable users to store and distribute arbitrary files and metadata using OCI compliant container registries.
+
     For more information, see [Mounting OCI images and artifacts into a pod](/nodes/pods/nodes-pods-image-volume#nodes-pods-image-volume).
 
 
 Configurable storage locations for CRI-O artifacts
-    :   With this update, you can create additional, non-default artifact storage locations in CRI-O that your pods can pull from. By using storage locations for the CRI-O container engine other than the default for OCI artifacts, complete container images, or container image layers, you can reduce application startup time and make your applications run more efficiently.
+:   With this update, you can create additional, non-default artifact storage locations in CRI-O that your pods can pull from. By using storage locations for the CRI-O container engine other than the default for OCI artifacts, complete container images, or container image layers, you can reduce application startup time and make your applications run more efficiently.
+
     For more information, see [Additional CRI-O storage locations for faster container startup](/nodes/nodes/nodes-nodes-additional-crio-storage#nodes-nodes-additional-crio-storage).
 
 
 Project-scoped image pull secrets for mirrored registries (Technology Preview)
-    :   With this update, you can pull images from mirrored registries by using project-scoped pull secrets as a technology preview feature. Before this update, you needed to use node-level secrets when pulling from a mirrored registry because the kublet does not recognize the mirror configuration, which is configured at the container-runtime level.
+:   With this update, you can pull images from mirrored registries by using project-scoped pull secrets as a technology preview feature. Before this update, you needed to use node-level secrets when pulling from a mirrored registry because the kublet does not recognize the mirror configuration, which is configured at the container-runtime level.
+
     For more information, see [Configuring project-scoped image pull secrets for mirrored registries](/openshift_images/image-configuration#images-configuration-registry-mirror-project-secret_image-configuration).
 
 
 Partitionable devices are now supported with dynamic resource allocation (Technology Preview)
-    :   With this update, the dynamic resource allocation feature supports partitioning physical hardware into smaller, logical instances, such as Multi-Instance GPUs, based on workload demands. With this technology preview feature, you can safely and efficiently share GPUs across multiple pods.
+:   With this update, the dynamic resource allocation feature supports partitioning physical hardware into smaller, logical instances, such as Multi-Instance GPUs, based on workload demands. With this technology preview feature, you can safely and efficiently share GPUs across multiple pods.
+
     For more information, see [Allocating GPUs to pods by using DRA](/nodes/pods/nodes-pods-allocate-dra#nodes-pods-allocate-dra).
 
 ## OpenShift CLI (oc) {id="ocp-release-notes-openshift-cli_{{ context }}"}
 
 
 Digest-based image pinning for the oc-mirror v2 plugin
-    :   With this update, the oc-mirror v2 plugin pins Operator catalog images by their digest in your `ImageSetConfiguration` custom resource. Pinning by digest ensures that you always deploy the same Operator catalog image, regardless of any later changes to the upstream tags. For more information, see [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2).
+:   With this update, the oc-mirror v2 plugin pins Operator catalog images by their digest in your `ImageSetConfiguration` custom resource. Pinning by digest ensures that you always deploy the same Operator catalog image, regardless of any later changes to the upstream tags. For more information, see [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#oc-mirror-workflows-partially-disconnected-v2_about-installing-oc-mirror-v2).
 
 
 Configuration of custom target repositories and tags for additional images by using the oc-mirror v2 plugin
-    :   With this update, when using the oc-mirror v2 plugin, you can provide custom destination repository path and tag for specific images. By using the new `targetRepo` and `targetTag` fields within the `additionalImages` section of your `ImageSetConfiguration` custom resource, you can specify the target repository and tag for an image in your target mirror registry. For more information, see [ImageSet configuration parameters for oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#oc-mirror-imageset-config-parameters-v2_about-installing-oc-mirror-v2).
+:   With this update, when using the oc-mirror v2 plugin, you can provide custom destination repository path and tag for specific images. By using the new `targetRepo` and `targetTag` fields within the `additionalImages` section of your `ImageSetConfiguration` custom resource, you can specify the target repository and tag for an image in your target mirror registry. For more information, see [ImageSet configuration parameters for oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#oc-mirror-imageset-config-parameters-v2_about-installing-oc-mirror-v2).
 
 
 Availability of the `oc mirror list` command in oc-mirror v2 plugin
-    :   With this update, you can use the list support feature with the oc-mirror v2 plugin. You can run the `oc mirror list` command to explore available platform and Operator content, including their specific versions, from remote and local registries. For more information, see [Creating the image set configuration](/disconnected/about-installing-oc-mirror-v2#oc-mirror-building-image-set-config-v2_about-installing-oc-mirror-v2).
+:   With this update, you can use the list support feature with the oc-mirror v2 plugin. You can run the `oc mirror list` command to explore available platform and Operator content, including their specific versions, from remote and local registries. For more information, see [Creating the image set configuration](/disconnected/about-installing-oc-mirror-v2#oc-mirror-building-image-set-config-v2_about-installing-oc-mirror-v2).
 
 ## Postinstallation configuration {id="ocp-release-notes-post-install-configuration_{{ context }}"}
 
 
 Support for the PCI addresses of NICs in `BareMetalHost` hardware data
-    :   With this release, the Peripheral Component Interconnect (PCI) address for each network interface controller (NIC) is available in two separate custom resources (CRs). The PCI address is located in the `status.hardware.nics[]` section of the `BareMetalHost` CR and in the `spec.hardware.nics[]` section of the `HardwareData` CR. While these are separate resources, the values in the `pciAddress` fields, for example  `0000:00:03.0`, are identical.
+:   With this release, the Peripheral Component Interconnect (PCI) address for each network interface controller (NIC) is available in two separate custom resources (CRs). The PCI address is located in the `status.hardware.nics[]` section of the `BareMetalHost` CR and in the `spec.hardware.nics[]` section of the `HardwareData` CR. While these are separate resources, the values in the `pciAddress` fields, for example  `0000:00:03.0`, are identical.
+
     For more information, see [About the BareMetalHost resource](/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-about-the-baremetalhost-resource_bare-metal-postinstallation-configuration) and [The BareMetalHost status](/installing/installing_bare_metal/bare-metal-postinstallation-configuration#the-baremetalhost-status).
 
 
 {{ bmaas_first }} is generally available
-    :   With this update, {{ bmaas_first }}, formerly known as Bare Metal as a Service (BMaaS), is generally available. You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the {{ product_title }} cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access. For more information, see [Using {{ bmaas_first }}](/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service#bare-metal-using-bare-metal-as-a-service).
+:   With this update, {{ bmaas_first }}, formerly known as Bare Metal as a Service (BMaaS), is generally available. You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the {{ product_title }} cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access. For more information, see [Using {{ bmaas_first }}](/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service#bare-metal-using-bare-metal-as-a-service).
 
 
 Expanding bare-metal clusters using OCI images and {{ bmaas_first }} (Technology Preview)
-    :   With this update, you can expand your bare-metal cluster using {{ bmaas_first }} with images from an OCI registry as a Technology Preview feature. You can use images from public OCI registries or from the built-in cluster registry. For more information, see [Using Red Hat Bare Metal as a Service for OpenShift](/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service).
+:   With this update, you can expand your bare-metal cluster using {{ bmaas_first }} with images from an OCI registry as a Technology Preview feature. You can use images from public OCI registries or from the built-in cluster registry. For more information, see [Using Red Hat Bare Metal as a Service for OpenShift](/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service).
 
 
 Adding an ARM node to an x86 bare metal cluster
-    :   With this update, you can add ARM nodes to bare metal clusters with x86 control planes using PXE or virtual media. You can expand your cluster by creating a `BareMetalHost` object with the `aarch64` architecture, and then scaling the machine set to deploy the new machine.
+:   With this update, you can add ARM nodes to bare metal clusters with x86 control planes using PXE or virtual media. You can expand your cluster by creating a `BareMetalHost` object with the `aarch64` architecture, and then scaling the machine set to deploy the new machine.
+
     For more information, see [Preparing the bare metal node](/installing/installing_bare_metal/bare-metal-expanding-the-cluster#preparing-the-bare-metal-node_bare-metal-expanding).
 
 ## {{ op_system_first }} {id="ocp-release-notes-rhcos_{{ context }}"}
 
 
 {{ op_system }} uses {{ op_system_base }} 9.8
-    :   With this update, {{ op_system }} uses {{ op_system_base_full }} 9.8 packages in {{ product_title }} 4.22. These packages ensure that your {{ product_title }} instances receive the latest fixes, features, enhancements, hardware support, and driver updates.
+:   With this update, {{ op_system }} uses {{ op_system_base_full }} 9.8 packages in {{ product_title }} 4.22. These packages ensure that your {{ product_title }} instances receive the latest fixes, features, enhancements, hardware support, and driver updates.
 
 
 {{ op_system }} 10.2 support (Technology Preview)
-    :   With this update, you can configure your cluster to use {{ op_system }} 10.2 as a Technology Preview feature. You can update the nodes in an existing non-production test cluster or install a new non-production test cluster. For more information, see [Setting the RHCOS version in a cluster](/machine_configuration/mco-image-streams#mco-image-streams).
+:   With this update, you can configure your cluster to use {{ op_system }} 10.2 as a Technology Preview feature. You can update the nodes in an existing non-production test cluster or install a new non-production test cluster. For more information, see [Setting the RHCOS version in a cluster](/machine_configuration/mco-image-streams#mco-image-streams).
 
 
 Ignition update to version 2.26.1
-    :   With this update, the Ignition utility is updated to version 2.26.1.
+:   With this update, the Ignition utility is updated to version 2.26.1.
 
 
 Butane update to version 0.26.0
-    :   With this update, the Butane utility is updated to version 0.26.0.
+:   With this update, the Butane utility is updated to version 0.26.0.
 
 
 Afterburn update to version 5.10.0
-    :   With this update, the Afterburn utility is updated to version 5.10.0.
+:   With this update, the Afterburn utility is updated to version 5.10.0.
 
 
 coreos-installer update to version 0.26.0
-    :   With this update, the coreos-installer utility is updated to version 0.26.0.
+:   With this update, the coreos-installer utility is updated to version 0.26.0.
 
 
 Support for the numad package
-    :   With this update, the numad package is supported. numad is an automatic NUMA affinity management daemon. It monitors NUMA topology and resource usage within a system that dynamically improves NUMA resource allocation, management, and system performance.
+:   With this update, the numad package is supported. numad is an automatic NUMA affinity management daemon. It monitors NUMA topology and resource usage within a system that dynamically improves NUMA resource allocation, management, and system performance.
 
 ## Scalability and performance {id="ocp-release-notes-scale-and-perform_{{ context }}"}
 
 
 NUMA-aware scheduler supports clusters with up to 500 nodes
-    :   With this release, you can scale the NUMA-aware secondary scheduler to support clusters with up to 500 nodes. The scheduler defaults to a `Burstable` quality of service (QoS) profile, which reduces baseline resource consumption while allowing the scheduler to scale up during peak loads.
+:   With this release, you can scale the NUMA-aware secondary scheduler to support clusters with up to 500 nodes. The scheduler defaults to a `Burstable` quality of service (QoS) profile, which reduces baseline resource consumption while allowing the scheduler to scale up during peak loads.
+
     For more information, see [Topology-aware scheduler scalability](/scalability_and_performance/cnf-numa-aware-scheduling#cnf-topology-aware-scheduler-scalability_numa-aware).
 
 
 CRI-O ExecCPUAffinity protects low-latency workloads from exec process interruption
-    :   With this release, you can protect latency-sensitive workloads from performance degradation caused by `oc exec` and shell processes. When you apply a `PerformanceProfile`, the CRI-O `ExecCPUAffinity` feature automatically pins exec processes to a designated CPU within the container’s allocated set, preventing them from running on your workload CPUs. This feature is enabled by default for `Guaranteed` QoS pods with whole-integer CPU requests and requires no additional configuration. You can disable it per profile by adding the `performance.openshift.io/exec-cpu-affinity: "disable"` annotation to the `PerformanceProfile`.
+:   With this release, you can protect latency-sensitive workloads from performance degradation caused by `oc exec` and shell processes. When you apply a `PerformanceProfile`, the CRI-O `ExecCPUAffinity` feature automatically pins exec processes to a designated CPU within the container’s allocated set, preventing them from running on your workload CPUs. This feature is enabled by default for `Guaranteed` QoS pods with whole-integer CPU requests and requires no additional configuration. You can disable it per profile by adding the `performance.openshift.io/exec-cpu-affinity: "disable"` annotation to the `PerformanceProfile`.
+
     For more information, see [How `ExecCPUAffinity` prevents latency spikes from exec operations](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-exec-cpu-affinity_cnf-tuning-low-latency-nodes-with-perf-profile).
 
 ## Support {id="ocp-release-notes-support_{{ context }}"}
 
 
 Custom image configuration for the {{ support_log_gather }}
-    :   With this update, you can collect diagnostic data by using custom images in the {{ support_log_gather }}. By pointing the `spec.imageStreamRef` field to an approved `ImageStream` tag, you can override the default image. The cluster administrators are responsible for creating and maintaining the list of allowed custom images by managing `ImageStream` resources in the Operator namespace. Each custom image requires its own `MustGather` custom resource and a service account with permissions to access the `ImageStream`. For more information, see [Configuring a {{ support_log_gather }} instance](/support/gathering-cluster-data#support-log-gather-config-cli_gathering-cluster-data).
+:   With this update, you can collect diagnostic data by using custom images in the {{ support_log_gather }}. By pointing the `spec.imageStreamRef` field to an approved `ImageStream` tag, you can override the default image. The cluster administrators are responsible for creating and maintaining the list of allowed custom images by managing `ImageStream` resources in the Operator namespace. Each custom image requires its own `MustGather` custom resource and a service account with permissions to access the `ImageStream`. For more information, see [Configuring a {{ support_log_gather }} instance](/support/gathering-cluster-data#support-log-gather-config-cli_gathering-cluster-data).
 
 ## Storage {id="ocp-release-notes-storage_{{ context }}"}
 
@@ -511,5 +537,5 @@ Install Helm charts from a direct URL
 
 
 
-***Configure Basic HTTP authentication for namespace-scoped ProjectHelmChartRepository objects in the web console***
-:   The creation form for namespace-scoped `ProjectHelmChartRepository` objects in the {{ product_title }} web console now includes a ***Basic HTTP authentication*** field. As a result, you can select a secret that has Basic authentication credentials when you create the object. Because transmitting credentials requires a secure connection, you must use HTTPS for the repository URL when you configure Basic authentication.
+**Configure Basic HTTP authentication for namespace-scoped ProjectHelmChartRepository objects in the web console**
+:   The creation form for namespace-scoped `ProjectHelmChartRepository` objects in the {{ product_title }} web console now includes a **Basic HTTP authentication** field. As a result, you can select a secret that has Basic authentication credentials when you create the object. Because transmitting credentials requires a secure connection, you must use HTTPS for the repository URL when you configure Basic authentication.

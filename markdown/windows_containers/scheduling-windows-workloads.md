@@ -3,11 +3,11 @@ title: Scheduling Windows container workloads
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Scheduling Windows container workloads {id="scheduling-windows-workloads"}
 {% include "./_attributes/common-attributes.md" %}
+# Scheduling Windows container workloads {id="scheduling-windows-workloads"}
 {%- set context = "scheduling-windows-workloads" %}
 
-You can use the Windows Machine Config Operator (WMCO) to schedule Windows workloads to Windows compute nodes.
+You can use the Windows Machine Config Operator (WMCO) to schedule Windows workloads to Windows compute nodes. {._abstract}
 
 ## Prerequisites {id="_prerequisites"}
 
@@ -25,7 +25,7 @@ You can use the Windows Machine Config Operator (WMCO) to schedule Windows workl
 
 {% leveloffset +1 %}{% include "./modules/machineset-manually-scaling.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Host and container version compatibility (Microsoft Windows documentation)](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/update-containers#host-and-container-version-compatibility)
 *   [Pod OS (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/#pod-os)
 *   [Windows container version compatibility (Microsoft Windows documentation)](https://learn.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility?tabs=windows-server-2022%2Cwindows-11-21H2)

@@ -3,11 +3,11 @@ title: Kernel Module Management Operator release notes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Kernel Module Management Operator release notes {id="kmm-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# Kernel Module Management Operator release notes {id="kmm-release-notes"}
 {%- set context = "kmm-release-notes" %}
 
-Use the release notes to learn what is new or changed in Kernel Module Management (KMM).
+Use the release notes to learn what is new or changed in Kernel Module Management (KMM). {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/kmm-rn-2-6.md" %}{% endleveloffset %}
 

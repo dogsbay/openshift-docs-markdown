@@ -4,8 +4,8 @@ title: Installing a cluster on Azure Stack Hub with network customizations
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 
-# Installing a cluster on Azure Stack Hub with network customizations {id="installing-azure-stack-hub-network-customizations"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Azure Stack Hub with network customizations {id="installing-azure-stack-hub-network-customizations"}
 {%- set context = "installing-azure-stack-hub-network-customizations" %}
 
 In {{ product_title }} version {{ product_version }}, you can install a cluster with a customized network configuration on infrastructure that the installation program provisions on Azure Stack Hub. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.
@@ -32,6 +32,7 @@ While you can select `azure` when using the installation program to deploy a clu
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure Stack Hub](/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
 
@@ -40,6 +41,7 @@ While you can select `azure` when using the installation program to deploy a clu
 {% leveloffset +1 %}{% include "./modules/manually-create-identity-access-management.md" %}{% endleveloffset %}
 
 <a name="additional-resources_installing-azure-stack-hub-network-customizations-cco"></a>**Additional resources**
+{._additional-resources}
 
 *   [Updating a cluster using the web console](/updating/updating_a_cluster/updating-cluster-web-console#manually-maintained-credentials-upgrade_updating-cluster-web-console)
 *   [Updating a cluster using the CLI](/updating/updating_a_cluster/updating-cluster-cli#manually-maintained-credentials-upgrade_updating-cluster-cli)
@@ -61,10 +63,11 @@ While you can select `azure` when using the installation program to deploy a clu
 {% leveloffset +1 %}{% include "./modules/logging-in-by-using-the-web-console.md" %}{% endleveloffset %}
 
 <a name="additional-resources_installing-azure-stack-hub-network-customizations-console"></a>**Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
-## Next steps {id="next-steps_installing-azure-stack-hub-network-customizations"}
+## Next steps {id="next-steps_installing-azure-stack-hub-network-customizations" ._additional-resources}
 
 *   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)

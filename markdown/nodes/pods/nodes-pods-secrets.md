@@ -4,10 +4,10 @@ title: Providing sensitive data to pods by using secrets
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-pods-secrets" %}
-# Providing sensitive data to pods by using secrets {id="nodes-pods-secrets"}
 {% include "./_attributes/common-attributes.md" %}
+# Providing sensitive data to pods by using secrets {id="nodes-pods-secrets"}
 
-As an administrator, you can use `Secret` objects to provide sensitive information, such as passwords and user names, to applications without exposing that information in plain text that developers could see.
+As an administrator, you can use `Secret` objects to provide sensitive information, such as passwords and user names, to applications without exposing that information in plain text that developers could see. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-pods-secrets-about.md" %}{% endleveloffset %}
 
@@ -37,7 +37,7 @@ As an administrator, you can use `Secret` objects to provide sensitive informati
 
 {% leveloffset +1 %}{% include "./modules/nodes-pods-secrets-troubleshooting.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Understanding how to create secrets](/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-creating_nodes-pods-secrets)
 

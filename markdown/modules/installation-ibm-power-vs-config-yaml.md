@@ -81,7 +81,7 @@ where:
 
 
 `compute.platform.powervs.smtLevel`
-:   Specifies the level of SMT to set to the compute machines. The supported values are 1, 2, 4, 8, ’off'`, and ’on'`. The default value is 8. The smtLevel ’off'` sets SMT to off, and smtLevel ’on'` sets SMT to the default value 8 on the cluster nodes.
+:   Specifies the level of SMT to set to the compute machines. The supported values are 1, 2, 4, 8, `'off'`, and `'on'`. The default value is 8. The smtLevel `'off'` sets SMT to off, and smtLevel `'on'` sets SMT to the default value 8 on the cluster nodes.
 
 
 `controlPlane`
@@ -101,12 +101,12 @@ where:
 
 
 `controlPlane.platform.powervs.smtLevel`
-:   Specifies the level of SMT to set to the control plane. The supported values are 1, 2, 4, 8, ’off'`, and ’on'`. The default value is 8. The smtLevel ’off'` sets SMT to off, and smtLevel ’on'` sets SMT to the default value 8 on the cluster nodes.
+:   Specifies the level of SMT to set to the control plane. The supported values are 1, 2, 4, 8, `'off'`, and `'on'`. The default value is 8. The smtLevel `'off'` sets SMT to off, and smtLevel `'on'` sets SMT to the default value 8 on the cluster nodes.
 
     :::note
 
 
-    When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as: (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the ’processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying {{ product_title }} successfully.
+    When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as: (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the `'processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying {{ product_title }} successfully.
     
     :::
 
@@ -127,14 +127,14 @@ where:
 
 `sshKey`
 :   Specifies the SSH key to use to access the machines in your cluster. This value is optional.
-{%- endif %}
-
-    :::note
+{% endif %}
 
 
-    For production {{ product_title }} clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
-    
-    :::
+:::note
+
+For production {{ product_title }} clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+
+:::
 
 {% endif %}
 
@@ -196,7 +196,7 @@ where:
 
 
 `compute.platform.powervs.smtLevel`
-:   Specifies the level of SMT to set to the compute machines. The supported values are 1, 2, 4, 8, ’off'`, and ’on'`. The default value is 8. The smtLevel ’off'` sets SMT to off, and smtLevel ’on'` sets SMT to the default value 8 on the cluster nodes.
+:   Specifies the level of SMT to set to the compute machines. The supported values are 1, 2, 4, 8, `'off'`, and `'on'`. The default value is 8. The smtLevel `'off'` sets SMT to off, and smtLevel `'on'` sets SMT to the default value 8 on the cluster nodes.
 
 
 `controlPlane`
@@ -216,12 +216,12 @@ where:
 
 
 `controlPlane.platform.powervs.smtLevel`
-:   Specifies the level of SMT to set to the control plane. The supported values are 1, 2, 4, 8, ’off'`, and ’on'`. The default value is 8. The smtLevel ’off'` sets SMT to off, and smtLevel ’on'` sets SMT to the default value 8 on the cluster nodes.
+:   Specifies the level of SMT to set to the control plane. The supported values are 1, 2, 4, 8, `'off'`, and `'on'`. The default value is 8. The smtLevel `'off'` sets SMT to off, and smtLevel `'on'` sets SMT to the default value 8 on the cluster nodes.
 
     :::note
 
 
-    When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the ’processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying {{ product_title }} successfully.
+    When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the `'processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying {{ product_title }} successfully.
     
     :::
 
@@ -319,7 +319,7 @@ where:
 
 
 `compute.platform.powervs.smtLevel`
-:   Specifies the level of SMT to set to the compute machines. The supported values are 1, 2, 4, 8, ’off'`, and ’on'`. The default value is 8. The smtLevel ’off'` sets SMT to off, and smtLevel ’on'` sets SMT to the default value 8 on the cluster nodes.
+:   Specifies the level of SMT to set to the compute machines. The supported values are 1, 2, 4, 8, `'off'`, and `'on'`. The default value is 8. The smtLevel `'off'` sets SMT to off, and smtLevel `'on'` sets SMT to the default value 8 on the cluster nodes.
 
 
 `controlPlane`
@@ -339,12 +339,12 @@ where:
 
 
 `controlPlane.platform.powervs.smtLevel`
-:   Specifies the level of SMT to set to the control plane. The supported values are 1, 2, 4, 8, ’off'`, and ’on'`. The default value is 8. The smtLevel ’off'` sets SMT to off, and smtLevel ’on'` sets SMT to the default value 8 on the cluster nodes.
+:   Specifies the level of SMT to set to the control plane. The supported values are 1, 2, 4, 8, `'off'`, and `'on'`. The default value is 8. The smtLevel `'off'` sets SMT to off, and smtLevel `'on'` sets SMT to the default value 8 on the cluster nodes.
 
     :::note
 
 
-    When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the ’processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying {{ product_title }} successfully.
+    When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the `'processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying {{ product_title }} successfully.
     
     :::
 
@@ -458,7 +458,7 @@ where:
 
 
 `compute.platform.powervs.smtLevel`
-:   Specifies the level of SMT to set to the compute machines. The supported values are 1, 2, 4, 8, ’off'`, and ’on'`. The default value is 8. The smtLevel ’off'` sets SMT to off, and smtLevel ’on'` sets SMT to the default value 8 on the cluster nodes.
+:   Specifies the level of SMT to set to the compute machines. The supported values are 1, 2, 4, 8, `'off'`, and `'on'`. The default value is 8. The smtLevel `'off'` sets SMT to off, and smtLevel `'on'` sets SMT to the default value 8 on the cluster nodes.
 
 
 `controlPlane`
@@ -478,12 +478,12 @@ where:
 
 
 `controlPlane.platform.powervs.smtLevel`
-:   Specifies the level of SMT to set to the control plane. The supported values are 1, 2, 4, 8, ’off'`, and ’on'`. The default value is 8. The smtLevel ’off'` sets SMT to off, and smtLevel ’on'` sets SMT to the default value 8 on the cluster nodes.
+:   Specifies the level of SMT to set to the control plane. The supported values are 1, 2, 4, 8, `'off'`, and `'on'`. The default value is 8. The smtLevel `'off'` sets SMT to off, and smtLevel `'on'` sets SMT to the default value 8 on the cluster nodes.
 
     :::note
 
 
-    When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the ’processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying {{ product_title }} successfully.
+    When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the `'processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying {{ product_title }} successfully.
     
     :::
 
@@ -534,14 +534,14 @@ where:
 {% endif %}
 
 {% if context == "installing-ibm-power-vs-customizations" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-private-cluster" %}
-{%- set private = false -%}
+{%- set private = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power-vs" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-ibm-powervs-vpc" %}
-{%- set ibm_powervs_vpc = false -%}
+{%- set ibm_powervs_vpc = "" -%}
 {% endif %}

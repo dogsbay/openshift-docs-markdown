@@ -41,5 +41,6 @@ SelfNodeRemediationConfig parameters
       peerRequestTimeout: 5s
       peerUpdateInterval: 15m
     ```
+
     where:
-    * `spec.safeTimeToAssumeNodeRebootedSeconds` defines the time in seconds to wait before assuming the node has rebooted. Set this value to the node reboot time plus 20% for faster recovery, or plus 40% for a more conservative approach.
+    *   `spec.safeTimeToAssumeNodeRebootedSeconds` defines the time in seconds to wait before assuming the node has rebooted. Set this value to the node reboot time plus 20% for faster recovery, or plus 40% for a more conservative approach.

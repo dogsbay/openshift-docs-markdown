@@ -12,7 +12,7 @@ Install the PF Status Relay Operator to enable {{ product_title }} to use Link A
 **Procedure**
 
 1.  Install the PF Status Relay Operator:
-    1.  In the {{ product_title }} web console, click **Ecosystem** -> **Software Catalog**.
+    1.  In the {{ product_title }} web console, click **Ecosystem** → **Software Catalog**.
     1.  Select **PF Status Relay Operator** from the list of available Operators, and then click **Install**.
     1.  On the **Install Operator** page, under **Installed Namespace**, select **Operator recommended Namespace**.
     1.  Click **Install**.

@@ -3,11 +3,11 @@ title: Using quotas and limit ranges
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using quotas and limit ranges {id="compute-resource-quotas"}
 {% include "./_attributes/common-attributes.md" %}
+# Using quotas and limit ranges {id="compute-resource-quotas"}
 {%- set context = "using-quotas-and-limit-ranges" %}
 
-As a cluster administrator, you can use quotas and limit ranges to set constraints. These constraints limit the number of objects or the amount of compute resources that are used in your project.
+As a cluster administrator, you can use quotas and limit ranges to set constraints. These constraints limit the number of objects or the amount of compute resources that are used in your project. {._abstract}
 
 By using quotes and limits, you can better manage and allocate resources across all projects. You can also ensure that no projects use more resources than is appropriate for the cluster size.
 
@@ -27,7 +27,7 @@ Quotas are set by cluster administrators and are scoped to a given project. {{ p
 
 {% leveloffset +1 %}{% include "./modules/quota-scopes.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Resources managed by quotas](/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)
 *   [Resource requests and overcommitment](/nodes/clusters/nodes-cluster-overcommit#nodes-cluster-overcommit-resource-requests_nodes-cluster-overcommit)
@@ -50,7 +50,7 @@ Quotas are set by cluster administrators and are scoped to a given project. {{ p
 {% leveloffset +2 %}{% include "./modules/setting-quota-to-consume-resource.md" %}{% endleveloffset %}
 {% endif %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Resources managed by quotas](/applications/quotas/quotas-setting-per-project#quotas-resources-managed_quotas-setting-per-project)
 *   [Working with projects](/applications/projects/working-with-projects#working-with-projects-create-project_working-with-projects-create-project)
@@ -68,7 +68,7 @@ Quotas are set by cluster administrators and are scoped to a given project. {{ p
 
 {% leveloffset +2 %}{% include "./modules/persistent-volume-claim-limits.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Managing images streams](/openshift_images/image-streams-manage#images-imagestream-use_image-streams-managing)
 *   [Restrict resource consumption with limit ranges](/nodes/clusters/nodes-cluster-limit-ranges#nodes-cluster-limit-stream-limits_nodes-cluster-limit-stream-limits)
@@ -78,6 +78,6 @@ Quotas are set by cluster administrators and are scoped to a given project. {{ p
 
 {% leveloffset +1 %}{% include "./modules/admin-limit-operations.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Resource quotas per projects](/applications/quotas/quotas-setting-per-project#quotas-setting-per-project_quotas-setting-per-project)

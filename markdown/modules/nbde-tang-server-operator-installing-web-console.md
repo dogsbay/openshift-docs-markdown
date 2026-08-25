@@ -9,7 +9,7 @@ You can install the NBDE Tang Server Operator from the software catalog using th
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, navigate to **Ecosystem** → **Software Catalog**.
 1.  Search for the NBDE Tang Server Operator:
     ![NBDE Tang Server Operator in the software catalog](/_assets/images/nbde-tang-server-operator-01-operatorhub.png)
 1.  Click **Install**.
@@ -19,6 +19,6 @@ You can install the NBDE Tang Server Operator from the software catalog using th
 
 **Verification**
 
-1.  Navigate to the **Ecosystem** -> **Installed Operators** page.
+1.  Navigate to the **Ecosystem** → **Installed Operators** page.
 1.  Check that the NBDE Tang Server Operator is installed and its status is `Succeeded`.
     ![NBDE Tang Server Operator status](/_assets/images/nbde-tang-server-operator-05-succeeded.png)

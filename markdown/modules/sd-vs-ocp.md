@@ -17,15 +17,15 @@ Review the following differences between {{ product_title }} and a standard inst
 <tbody>
 <tr>
   <td>The customer installs and configures {{ OCP }}.</td>
-  <td></td>
+  <td> {% if openshift_dedicated %}{{ product_title }} is installed through {{ cluster_manager_first }} and in a standardized way that is optimized for performance, scalability, and security.{% endif %} {% if openshift_rosa or openshift_rosa_hcp %}{{ product_title }} is installed through {{ cluster_manager_first }} or the {{ rosa_cli_first }} and in a standardized way that is optimized for performance, scalability, and security.{% endif %}</td>
 </tr>
 <tr>
   <td>Customers can choose their computing resources.</td>
-  <td></td>
+  <td> {% if openshift_dedicated %}{{ product_title }} is hosted and managed in a public cloud (Amazon Web Services or {{ gcp_full }}) either owned by Red&#160;Hat or provided by the customer.{% endif %} {% if openshift_rosa %}{{ product_title }} is hosted and managed in a public cloud (Amazon Web Services) provided by the customer.{% endif %}</td>
 </tr>
 <tr>
   <td>Customers have top-level administrative access to the infrastructure.</td>
-  <td></td>
+  <td> {% if openshift_dedicated %}Customers have a built-in administrator group (<code>dedicated-admin</code>), though the top-level administration access is available when cloud accounts are provided by the customer.{% endif %} {% if openshift_rosa %}Customers have a built-in administrator group (<code>dedicated-admin</code>), though the top-level administration access is available.{% endif %}</td>
 </tr>
 <tr>
   <td>Customers can use all supported features and configuration settings available in {{ OCP }}.</td>

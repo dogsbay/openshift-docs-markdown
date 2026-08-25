@@ -14,7 +14,8 @@ Type
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and might reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers might infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | `object` | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `spec` | `object` | FlowMetricSpec defines the desired state of FlowMetric The provided API allows you to customize these metrics according to your needs.<br> When adding new metrics or modifying existing labels, you must carefully monitor the memory usage of Prometheus workloads as this could potentially have a high impact. Cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric<br> To check the cardinality of all Network Observability metrics, run as `promql`: `count({__name__=~"netobserv.*"}) by (__name__)`. |
+| `spec` | `object` | FlowMetricSpec defines the desired state of FlowMetric The provided API allows you to customize these metrics according to your needs.<br><br>When adding new metrics or modifying existing labels, you must carefully monitor the memory usage of Prometheus workloads as this could potentially have a high impact. Cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric<br><br>To check the cardinality of all Network Observability metrics, run as `promql`: `count({__name__=~"netobserv.*"}) by (__name__)`. |
+
 ## .metadata {id="_metadata"}
 
 Description
@@ -49,16 +50,17 @@ Required
 | --- | --- | --- |
 | `buckets` | `array (string)` | A list of buckets to use when `type` is "Histogram". The list must be parsable as floats. When not set, Prometheus default buckets are used. |
 | `charts` | `array` | Charts configuration, for the {{ product_title }} Console in the administrator view, Dashboards menu. |
-| `direction` | `string` | Filter for ingress, egress or any direction flows. When set to `Ingress`, it is equivalent to adding the regular expression filter on `FlowDirection`: `0\ |
-| 2`. When set to `Egress`, it is equivalent to adding the regular expression filter on `FlowDirection`: `1\ | 2`. | `divider` |
-| `string` | When nonzero, scale factor (divider) of the value. Metric value = Flow value / Divider. | `filters` |
-| `array` | `filters` is a list of fields and values used to restrict which flows are taken into account. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference. | `flatten` |
-| `array (string)` | `flatten` is a list of array-type fields that must be flattened, such as Interfaces or NetworkEvents. Flattened fields generate one metric per item in that field. For instance, when flattening `Interfaces` on a bytes counter, a flow having Interfaces [br-ex, ens5] increases one counter for `br-ex` and another for `ens5`. | `help` |
-| `string` | Help text of the metric, as it appears in Prometheus. | `labels` |
-| `array (string)` | `labels` is a list of fields that should be used as Prometheus labels, also known as dimensions (for example: `SrcK8S_Namespace`). From choosing labels results the level of granularity of this metric, and the available aggregations at query time. It must be done carefully as it impacts the metric cardinality (cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric). In general, avoid setting very high cardinality labels such as IP or MAC addresses. "SrcK8S_OwnerName" or "DstK8S_OwnerName" should be preferred over "SrcK8S_Name" or "DstK8S_Name" as much as possible. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference. | `metricName` |
-| `string` | Name of the metric. In Prometheus, it is automatically prefixed with "netobserv_". Leave empty to generate the name based on the `FlowMetric` resource name. | `remap` |
-| `object (string)` | Set the `remap` property to use different names for the generated metric labels than the flow fields. Use the origin flow fields as keys, and the desired label names as values. | `type` |
-| `string` | Metric type: "Counter", "Histogram" or "Gauge". Use "Counter" for any value that increases over time and on which you can compute a rate, such as Bytes or Packets. Use "Histogram" for any value that must be sampled independently, such as latencies. Use "Gauge" for other values that don’t necessitate accuracy over time (gauges are sampled only every N seconds when Prometheus fetches the metric). | `valueField` |
+| `direction` | `string` | Filter for ingress, egress or any direction flows. When set to `Ingress`, it is equivalent to adding the regular expression filter on `FlowDirection`: `0\|2`. When set to `Egress`, it is equivalent to adding the regular expression filter on `FlowDirection`: `1\|2`. |
+| `divider` | `string` | When nonzero, scale factor (divider) of the value. Metric value = Flow value / Divider. |
+| `filters` | `array` | `filters` is a list of fields and values used to restrict which flows are taken into account. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference. |
+| `flatten` | `array (string)` | `flatten` is a list of array-type fields that must be flattened, such as Interfaces or NetworkEvents. Flattened fields generate one metric per item in that field. For instance, when flattening `Interfaces` on a bytes counter, a flow having Interfaces [br-ex, ens5] increases one counter for `br-ex` and another for `ens5`. |
+| `help` | `string` | Help text of the metric, as it appears in Prometheus. |
+| `labels` | `array (string)` | `labels` is a list of fields that should be used as Prometheus labels, also known as dimensions (for example: `SrcK8S_Namespace`). From choosing labels results the level of granularity of this metric, and the available aggregations at query time. It must be done carefully as it impacts the metric cardinality (cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric). In general, avoid setting very high cardinality labels such as IP or MAC addresses. "SrcK8S_OwnerName" or "DstK8S_OwnerName" should be preferred over "SrcK8S_Name" or "DstK8S_Name" as much as possible. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference. |
+| `metricName` | `string` | Name of the metric. In Prometheus, it is automatically prefixed with "netobserv_". Leave empty to generate the name based on the `FlowMetric` resource name. |
+| `remap` | `object (string)` | Set the `remap` property to use different names for the generated metric labels than the flow fields. Use the origin flow fields as keys, and the desired label names as values. |
+| `type` | `string` | Metric type: "Counter", "Histogram" or "Gauge". Use "Counter" for any value that increases over time and on which you can compute a rate, such as Bytes or Packets. Use "Histogram" for any value that must be sampled independently, such as latencies. Use "Gauge" for other values that don’t necessitate accuracy over time (gauges are sampled only every N seconds when Prometheus fetches the metric). |
+| `valueField` | `string` | `valueField` is the flow field that must be used as a value for this metric (for example: `Bytes`). This field must hold numeric values. Leave empty to count flows rather than a specific value per flow. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference. |
+
 ## .spec.charts {id="_speccharts"}
 
 Description
@@ -92,6 +94,7 @@ Required
 | `title` | `string` | Title of the chart. |
 | `type` | `string` | Type of the chart. |
 | `unit` | `string` | Unit of this chart. Only a few units are currently supported. Leave empty to use generic number. |
+
 ## .spec.charts[].queries {id="_specchartsqueries"}
 
 Description
@@ -119,9 +122,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `legend` | `string` | The query legend that applies to each timeseries represented in this chart. When multiple timeseries are displayed, you should set a legend that distinguishes each of them. It can be done with the following format: `{{ Label }}`. For example, if the `promQL` groups timeseries per label such as: `sum(rate($METRIC[2m])) by (Label1, Label2)`, you might write as the legend: `Label1={{ Label1 }}, Label2={{ Label2 }}`. |
+| `legend` | `string` | The query legend that applies to each timeseries represented in this chart. When multiple timeseries are displayed, you should set a legend that distinguishes each of them. It can be done with the following format: `{{ Label }}`{minja}. For example, if the `promQL` groups timeseries per label such as: `sum(rate($METRIC[2m])) by (Label1, Label2)`, you might write as the legend: `Label1={{ Label1 }}, Label2={{ Label2 }}`{minja}. |
 | `promQL` | `string` | The `promQL` query to be run against Prometheus. If the chart `type` is `SingleStat`, this query should only return a single timeseries. For other types, a top 7 is displayed. You can use `$METRIC` to refer to the metric defined in this resource. For example: `sum(rate($METRIC[2m]))`. To learn more about `promQL`, refer to the Prometheus documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/ |
 | `top` | `integer` | Top N series to display per timestamp. Does not apply to `SingleStat` chart type. |
+
 ## .spec.filters {id="_specfilters"}
 
 Description

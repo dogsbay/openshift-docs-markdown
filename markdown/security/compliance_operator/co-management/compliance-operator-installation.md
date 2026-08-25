@@ -3,11 +3,11 @@ title: Installing the Compliance Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing the Compliance Operator {id="compliance-operator-installation"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing the Compliance Operator {id="compliance-operator-installation"}
 {%- set context = "compliance-operator-installation" %}
 
-Before you can use the Compliance Operator, you must ensure it is deployed in the cluster.
+Before you can use the Compliance Operator, you must ensure it is deployed in the cluster. {._abstract}
 
 
 :::important
@@ -50,7 +50,7 @@ If the `restricted` Security Context Constraints (SCC) have been modified to con
 
 {% leveloffset +1 %}{% include "./modules/compliance-operator-hcp-install.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Compliance Operator reports incorrect results on Managed Services](https://access.redhat.com/solutions/6983418)
 *   [Persistent storage overview](/storage/understanding-persistent-storage#persistent-storage-overview_understanding-persistent-storage)

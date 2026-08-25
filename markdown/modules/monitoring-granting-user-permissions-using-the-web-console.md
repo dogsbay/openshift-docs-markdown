@@ -10,7 +10,7 @@ You can grant users permissions for the `openshift-monitoring` project or their 
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **User Management** -> **RoleBindings** -> **Create binding**.
+1.  In the {{ product_title }} web console, go to **User Management** → **RoleBindings** → **Create binding**.
 1.  In the **Binding Type** section, select the **Namespace Role Binding** type.
 1.  In the **Name** field, enter a name for the role binding.
 1.  In the **Namespace** field, select the project where you want to grant the access.

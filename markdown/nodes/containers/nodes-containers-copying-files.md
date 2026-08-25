@@ -4,10 +4,10 @@ title: Copying files to or from OpenShift Container Platform containers
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-containers-copying-files" %}
-# Copying files to or from {{ product_title }} containers {id="nodes-containers-copying-files"}
 {% include "./_attributes/common-attributes.md" %}
+# Copying files to or from {{ product_title }} containers {id="nodes-containers-copying-files"}
 
-You can use the `oc rsync` command, or remote sync, to copy local files to or from a remote directory in a {{ product_title }} container.
+You can use the `oc rsync` command, or remote sync, to copy local files to or from a remote directory in a {{ product_title }} container. {._abstract}
 
 The `oc rsync` command leverages the local Rsync tool on the client machine and the remote container for tasks such as copying database archives to and from your pods for backup and restore purposes,
 or copying source code changes into a running pod for development debugging.

@@ -24,23 +24,23 @@ If you update the operators in the wrong order, Kibana does not update and the K
 **Procedure**
 
 1.  Update the OpenShift Elasticsearch Operator:
-    1.  From the web console, click **Ecosystem** -> **Installed Operators**.
+    1.  From the web console, click **Ecosystem** → **Installed Operators**.
     1.  Select the `openshift-operators-redhat` project.
     1.  Click the **OpenShift Elasticsearch Operator**.
-    1.  Click **Subscription** -> **Channel**.
+    1.  Click **Subscription** → **Channel**.
     1.  In the **Change Subscription Update Channel** window, select **stable-5.x** and click **Save**.
-    1.  Wait for a few seconds, then click **Ecosystem** -> **Installed Operators**.
+    1.  Wait for a few seconds, then click **Ecosystem** → **Installed Operators**.
 
         Verify that the OpenShift Elasticsearch Operator version is 5.x.x.
 
         Wait for the **Status** field to report **Succeeded**.
 1.  Update the Red Hat OpenShift Logging Operator:
-    1.  From the web console, click **Ecosystem** -> **Installed Operators**.
+    1.  From the web console, click **Ecosystem** → **Installed Operators**.
     1.  Select the `openshift-logging` project.
     1.  Click the **Red Hat OpenShift Logging Operator**.
-    1.  Click **Subscription** -> **Channel**.
+    1.  Click **Subscription** → **Channel**.
     1.  In the **Change Subscription Update Channel** window, select **stable-5.x** and click **Save**.
-    1.  Wait for a few seconds, then click **Ecosystem** -> **Installed Operators**.
+    1.  Wait for a few seconds, then click **Ecosystem** → **Installed Operators**.
 
         Verify that the Red Hat OpenShift Logging Operator version is 5.x.x.
 
@@ -85,9 +85,7 @@ If you update the operators in the wrong order, Kibana does not update and the K
         ```
 
         Verify that the output includes the `app-00000x`, `infra-00000x`, `audit-00000x`, `.security` indices.
-        <details>
-        <summary>Sample output with indices in a green status</summary>
-
+        :::details{title="Sample output with indices in a green status"}
         ```terminal
         Tue Jun 30 14:30:54 UTC 2020
         health status index                                                                 uuid                   pri rep docs.count docs.deleted store.size pri.store.size
@@ -115,7 +113,7 @@ If you update the operators in the wrong order, Kibana does not update and the K
         green  open   infra-000013                                                          KR9mMFUpQl-jraYtanyIGw   3 1       228166            0        298            148
         green  open   audit-000001                                                          eERqLdLmQOiQDFES1LBATQ   3 1            0            0          0              0
         ```
-        </details>
+        :::
     1.  Verify that the log collector is updated to 5.3:
         ```terminal
         $ oc get ds collector -o json | grep collector
@@ -131,9 +129,7 @@ If you update the operators in the wrong order, Kibana does not update and the K
         ```
 
         Verify that the output includes a Kibana pod with the `ready` status:
-        <details>
-        <summary>Sample output with a ready Kibana pod</summary>
-
+        :::details{title="Sample output with a ready Kibana pod"}
         ```json
         [
         {
@@ -166,4 +162,4 @@ If you update the operators in the wrong order, Kibana does not update and the K
         }
         ]
         ```
-        </details>
+        :::

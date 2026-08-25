@@ -52,12 +52,11 @@
     *   `spec.current.object.spec.kubeletConfig.evictionHard.imagefs.available` specifies the remediation that was added to the `KubeletConfig` objects.
 
 
-:::note
+        :::note
 
-If the remediation invokes an `evictionHard` kubelet configuration, you must specify all of the `evictionHard` parameters: `memory.available`, `nodefs.available`, `nodefs.inodesFree`, `imagefs.available`, and `imagefs.inodesFree`. If you do not specify all parameters, only the specified parameters are applied and the remediation will not function properly.
-
-:::
-
+        If the remediation invokes an `evictionHard` kubelet configuration, you must specify all of the `evictionHard` parameters: `memory.available`, `nodefs.available`, `nodefs.inodesFree`, `imagefs.available`, and `imagefs.inodesFree`. If you do not specify all parameters, only the specified parameters are applied and the remediation will not function properly.
+        
+        :::
 
 1.  Remove the remediation:
     1.  Set `apply` to false for the remediation object:

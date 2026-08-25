@@ -11,7 +11,7 @@ The file system is based on the storage available in the worker nodes you select
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Storage** -> **{{ FusionSAN }}**.
+1.  In the {{ product_title }} web console, navigate to **Storage** → **{{ FusionSAN }}**.
 1.  In the **File systems** tab, click **Create file system**.
 1.  Enter a **Name** for the new file system.
 1.  Select the LUNs that you want to use as the storage volumes for your file system.

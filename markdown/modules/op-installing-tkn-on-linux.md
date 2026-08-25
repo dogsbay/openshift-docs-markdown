@@ -16,7 +16,7 @@ For Linux distributions, you can download the CLI as a `tar.gz` archive. {._abst
     ```terminal
     $ tar xvzf <file>
     ```
-{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 1.  Add the location of your `tkn`, `tkn-pac`, and `opc` files to your `PATH` environment variable.
 {% endif %}
 

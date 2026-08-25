@@ -5,7 +5,7 @@ You can use storage classes to differentiate and delineate storage levels and us
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Storage** -> **Storage Classes**.
+1.  In the {{ product_title }} web console, click **Storage** → **Storage Classes**.
 1.  In the storage class overview, click **Create Storage Class**.
 1.  Define the desired options on the page that appears.
     1.  Enter a name to reference the storage class.

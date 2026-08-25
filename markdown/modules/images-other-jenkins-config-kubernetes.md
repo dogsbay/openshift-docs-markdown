@@ -20,8 +20,8 @@ For more information, see the "Important changes to OpenShift Jenkins images" li
 The Maven and Node.js agent images are automatically configured as Kubernetes pod template images within the {{ product_title }} Jenkins image configuration for the Kubernetes plugin. That configuration includes labels for each image that you can apply to any of your Jenkins jobs under their `Restrict where this project can be run` setting. If the label is applied, jobs run under 
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 an {{ product_title }} 
 {%- endif %}
 pod running the respective agent image.

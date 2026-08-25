@@ -7,7 +7,7 @@ The NNS topology diagram displays all node components (network interface control
 
 **Procedure**
 
-*   In the **Administrator** view of the {{ product_title }} web console, navigate to **Networking** -> **Node Network Configuration**.
+*   In the **Administrator** view of the {{ product_title }} web console, navigate to **Networking** → **Node Network Configuration**.
 
     The NNS topology diagram opens. Each group of components represents a single node.
     *   To display the configuration and properties of a node, click inside the border of the node.

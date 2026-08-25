@@ -3,7 +3,7 @@
 
 The Network Observability Operator integrates with the {{ product_title }} console, providing an overview, topology view, and traffic flow tables. {._abstract}
 
-The Network observability metrics dashboards in **Observe** -> **Dashboards** are available only to users with administrator access.
+The Network observability metrics dashboards in **Observe** → **Dashboards** are available only to users with administrator access.
 
 
 :::note

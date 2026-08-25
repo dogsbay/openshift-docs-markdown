@@ -1,5 +1,5 @@
 ---
-title: "StorageState []"
+title: "StorageState [migration.k8s.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of the storage state. |
 | `status` | `object` | Status of the storage state. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -36,6 +37,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `resource` | `object` | The resource this storageState is about. |
+
 ### .spec.resource {id="_specresource"}
 
 Description
@@ -49,6 +51,7 @@ Type
 | --- | --- | --- |
 | `group` | `string` | The name of the group. |
 | `resource` | `string` | The name of the resource. |
+
 ### .status {id="_status"}
 
 Description
@@ -72,12 +75,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of StorageState
     *   `GET`: list objects of kind StorageState
     *   `POST`: create a StorageState
-*   `/apis/migration.k8s.io/v1alpha1/storagestates/{{ name }}`
+*   `/apis/migration.k8s.io/v1alpha1/storagestates/{{ name }}`{minja}
     *   `DELETE`: delete a StorageState
     *   `GET`: read the specified StorageState
     *   `PATCH`: partially update the specified StorageState
     *   `PUT`: replace the specified StorageState
-*   `/apis/migration.k8s.io/v1alpha1/storagestates/{{ name }}/status`
+*   `/apis/migration.k8s.io/v1alpha1/storagestates/{{ name }}/status`{minja}
     *   `GET`: read status of the specified StorageState
     *   `PATCH`: partially update status of the specified StorageState
     *   `PUT`: replace status of the specified StorageState

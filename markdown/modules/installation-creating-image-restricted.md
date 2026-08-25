@@ -9,12 +9,12 @@
 # Creating the {{ op_system }} image for restricted network installations {id="installation-creating-image-restricted_{{ context }}"}
 
 Download the {{ op_system_first }} image to install {{ product_title }} on a restricted network
-{% if osp %}
+{%- if osp %}
 {{ rh_openstack_first }}
-{% endif %}
-{% if vsphere %}
+{%- endif %}
+{%- if vsphere %}
 VMware vSphere
-{% endif %}
+{%- endif %}
 environment. {._abstract}
 
 **Prerequisites**
@@ -80,8 +80,8 @@ environment. {._abstract}
 {% endif %}
 
 {% if context == "installing-openstack-installer-restricted" %}
-{%- set osp = false -%}
+{%- set osp = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-installer-provisioned-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}

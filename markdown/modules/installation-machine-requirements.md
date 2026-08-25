@@ -53,12 +53,12 @@ As an exception, you can run zero compute machines in a bare metal cluster that 
 
 :::important
 
-{%- if ibm_z %}
+{% if ibm_z %}
 To improve high availability of your cluster, distribute the control plane machines over different hypervisor instances on at least two physical machines.
 {% endif %}
 {% if not ibm_z %}
 To keep high availability of your cluster, use separate physical hosts for these cluster machines.
-{%- endif %}
+{% endif %}
 
 :::
 
@@ -76,20 +76,20 @@ The bootstrap, control plane, and compute machines must use {{ op_system_first }
 See [Red Hat Enterprise Linux technology capabilities and limits](https://access.redhat.com/articles/rhel-limits).
 
 {% if context == "installing-bare-metal" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "installing-bare-metal-network-customizations" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-reqs" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}

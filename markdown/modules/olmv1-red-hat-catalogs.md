@@ -5,7 +5,7 @@
 
 The following custom resource (CR) examples show the default catalogs installed on the cluster:
 
-```yaml title="Red&#160;Hat Operators catalog"
+```yaml title="Red&#160;Hat Operators catalog" {minja}
 apiVersion: olm.operatorframework.io/v1
 kind: ClusterCatalog
 metadata:
@@ -20,7 +20,7 @@ spec:
 ```
 Replace `<poll_interval_duration>` with the interval in minutes for polling the remote registry for newer image digests. To disable polling, do not set the field.
 
-```yaml title="Certified Operators catalog"
+```yaml title="Certified Operators catalog" {minja}
 apiVersion: olm.operatorframework.io/v1
 kind: ClusterCatalog
 metadata:
@@ -35,7 +35,7 @@ priority: -200
     type: Image
 ```
 
-```yaml title="Red&#160;Hat Marketplace catalog"
+```yaml title="Red&#160;Hat Marketplace catalog" {minja}
 apiVersion: olm.operatorframework.io/v1
 kind: ClusterCatalog
 metadata:
@@ -49,7 +49,7 @@ spec:
     type: Image
 ```
 
-```yaml title="Community Operators catalog"
+```yaml title="Community Operators catalog" {minja}
 apiVersion: olm.operatorframework.io/v1
 kind: ClusterCatalog
 metadata:

@@ -38,7 +38,6 @@ For S3-compatible services, you might need to use the following options:
 ```terminal
 $ oadp-vmdp --help
 ```
-
 *   To view help for a specific command, run the following command:
 
 ```terminal

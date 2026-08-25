@@ -34,7 +34,7 @@ The `openshift-install` program uses the `image-based-config.yaml` manifest to c
 <tr>
   <td><code>networkConfig</code></td>
   <td><code>string</code></td>
-  <td>Specifies networking configurations for the host, for example:</td>
+  <td>Specifies networking configurations for the host, for example: [source,yaml] ---- networkConfig: interfaces: - name: ens1f0 type: ethernet state: up ... ---- If you require static networking, you must install the <code>nmstatectl</code> library on the host that creates the live installation ISO. For further information about defining network configurations by using <code>nmstate</code>, see <a href="https://nmstate.io/">nmstate.io</a>. [IMPORTANT] ==== The name of the interface must match the actual NIC name as shown in the operating system. ====</td>
 </tr>
 <tr>
   <td><code>additionalNTPSources</code></td>
@@ -49,7 +49,7 @@ The `openshift-install` program uses the `image-based-config.yaml` manifest to c
 <tr>
   <td><code>nodeLabels</code></td>
   <td><code>map[string]string</code></td>
-  <td>Specifies custom node labels for the {{ sno }} node, for example:</td>
+  <td>Specifies custom node labels for the {{ sno }} node, for example: [source,yaml] ---- nodeLabels: node-role.kubernetes.io/edge: true environment: production ----</td>
 </tr>
 </tbody>
 </table>

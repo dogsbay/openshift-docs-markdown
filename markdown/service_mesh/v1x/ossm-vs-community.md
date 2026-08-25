@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Service Mesh and Istio differences {id="ossm-vs-community-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Service Mesh and Istio differences {id="ossm-vs-community-v1x"}
 {%- set context = "ossm-vs-istio-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

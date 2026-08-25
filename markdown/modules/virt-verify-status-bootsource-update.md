@@ -10,7 +10,7 @@ You can determine if a boot source is system-defined or custom by viewing the `H
 **Procedure**
 
 1.  View the contents of the `HyperConverged` CR by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o yaml
     ```
 

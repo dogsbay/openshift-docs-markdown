@@ -65,7 +65,7 @@ spec:
 </tr>
 <tr>
   <td>spec: importRules: - type: NameSelector importAsLocal:</td>
-  <td>Set to <code>true</code> to aggregate remote endpoint with local services. When <code>true</code> services are imported as <code><name>.<namespace>.svc.cluster.local</code>. When <code>true</code>, an alias is required. When <code>false</code>, no alias is required.</td>
+  <td>Set to <code>true</code> to aggregate remote endpoint with local services. When <code>true</code> services are imported as <code>&lt;name&gt;.&lt;namespace&gt;.svc.cluster.local</code>. When <code>true</code>, an alias is required. When <code>false</code>, no alias is required.</td>
   <td><code>true</code>/<code>false</code></td>
 </tr>
 <tr>

@@ -10,11 +10,11 @@ To prepare your nodes for a hardware MTU change, you must create `MachineConfig`
 
         :::note
 
-{% include "./snippets/butane-version.md" %}
+        {% include "./snippets/butane-version.md" %}
         
         :::
 
-        ```yaml
+        ```yaml {minja}
         variant: openshift
         version: {{ product_version }}.0
         metadata:
@@ -40,11 +40,11 @@ To prepare your nodes for a hardware MTU change, you must create `MachineConfig`
 
         :::note
 
-{% include "./snippets/butane-version.md" %}
+        {% include "./snippets/butane-version.md" %}
         
         :::
 
-        ```yaml
+        ```yaml {minja}
         variant: openshift
         version: {{ product_version }}.0
         metadata:

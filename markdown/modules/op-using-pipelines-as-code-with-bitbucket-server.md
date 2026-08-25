@@ -66,8 +66,8 @@ If your organization or project uses Bitbucket Server as the preferred platform,
     1.  You can only reference a user by the `ACCOUNT_ID` in an owner file.
     1.  {{ pac }} assumes that the secret referred in the `git_provider.secret` spec and the `Repository` CR is in the same namespace.
 
-        :::note
+    :::note
 
-        The `tkn pac create` and `tkn pac bootstrap` commands are not supported on Bitbucket Server.
-        
-        :::
+    The `tkn pac create` and `tkn pac bootstrap` commands are not supported on Bitbucket Server.
+    
+    :::

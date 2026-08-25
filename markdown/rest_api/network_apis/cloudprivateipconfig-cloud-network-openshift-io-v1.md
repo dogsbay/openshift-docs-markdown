@@ -1,5 +1,5 @@
 ---
-title: "CloudPrivateIPConfig []"
+title: "CloudPrivateIPConfig [cloud.network.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -40,6 +40,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is the definition of the desired private IP request. |
 | `status` | `object` | status is the observed status of the desired private IP request. Read-only. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -52,6 +53,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `node` | `string` | node is the node name, as specified by the Kubernetes field: node.metadata.name |
+
 ### .status {id="_status"}
 
 Description
@@ -70,6 +72,7 @@ Required
 | `conditions` | `array` | condition is the assignment condition of the private IP and its status |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `node` | `string` | node is the node name, as specified by the Kubernetes field: node.metadata.name |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -113,12 +116,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of CloudPrivateIPConfig
     *   `GET`: list objects of kind CloudPrivateIPConfig
     *   `POST`: create a CloudPrivateIPConfig
-*   `/apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }}`
+*   `/apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }}`{minja}
     *   `DELETE`: delete a CloudPrivateIPConfig
     *   `GET`: read the specified CloudPrivateIPConfig
     *   `PATCH`: partially update the specified CloudPrivateIPConfig
     *   `PUT`: replace the specified CloudPrivateIPConfig
-*   `/apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }}/status`
+*   `/apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified CloudPrivateIPConfig
     *   `PATCH`: partially update status of the specified CloudPrivateIPConfig
     *   `PUT`: replace status of the specified CloudPrivateIPConfig

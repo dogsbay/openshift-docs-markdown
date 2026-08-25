@@ -10,7 +10,7 @@ To diagnose issues and monitor {{ VirtProductName }} pods, you can view logs by 
 **Procedure**
 
 1.  View a list of pods in the {{ VirtProductName }} namespace by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get pods -n {{ CNVNamespace }}
     ```
 
@@ -29,7 +29,7 @@ To diagnose issues and monitor {{ VirtProductName }} pods, you can view logs by 
     virt-operator-7ccfdbf65f-vllz8     1/1     Running   0          32m
     ```
 1.  View the pod log by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc logs -n {{ CNVNamespace }} <pod_name>
     ```
 

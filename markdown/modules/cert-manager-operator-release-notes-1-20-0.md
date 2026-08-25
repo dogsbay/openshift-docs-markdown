@@ -35,35 +35,44 @@ TrustManager Technology Preview no longer requires a cluster preview FeatureSet
 
 New performance-tuning override arguments for the cert-manager controller
 :   With this release, the {{ cert_manager_operator }} supports configuring performance-tuning parameters for the cert-manager controller by using the `overrideArgs` field of the `CertManager` custom resource (CR). Previously, users had to rely on `spec.unsupportedConfigOverrides` to tune these settings.
+
     You can now set the following arguments under `spec.controllerConfig.overrideArgs`:
-    * `--concurrent-workers`: The number of concurrent workers for each controller. The default value is `5`.
-    * `--kube-api-qps`: The maximum number of queries per second sent to the Kubernetes API server. The default value is `20`.
-    * `--kube-api-burst`: The maximum burst of queries per second sent to the Kubernetes API server. Must be greater than or equal to `--kube-api-qps`. The default value is `50`.
-    * `--max-concurrent-challenges`: The maximum number of ACME challenges that can be scheduled as processing at the same time. The default value is `60`.
+    *   `--concurrent-workers`: The number of concurrent workers for each controller. The default value is `5`.
+    *   `--kube-api-qps`: The maximum number of queries per second sent to the Kubernetes API server. The default value is `20`.
+    *   `--kube-api-burst`: The maximum burst of queries per second sent to the Kubernetes API server. Must be greater than or equal to `--kube-api-qps`. The default value is `50`.
+    *   `--max-concurrent-challenges`: The maximum number of ACME challenges that can be scheduled as processing at the same time. The default value is `60`.
+
     The Operator validates that `--kube-api-burst` is greater than or equal to `--kube-api-qps` when both values are set. If this constraint is not met, the Operator sets the `Degraded` condition on the `CertManager` CR and does not apply the invalid configuration to the controller deployment.
+
     For more information, see [Overridable arguments for the cert-manager components](/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-overridable-arguments_cert-manager-customizing-api-fields).
 
-
 Cluster TLS security profile applied to cert-manager operands
-    :   With this release, the {{ cert_manager_operator }} can read the cluster TLS security profile from the `apiserver.config.openshift.io/cluster` object and automatically apply the corresponding TLS configuration to the cert-manager controller, webhook, and CA injector deployments.
+:   With this release, the {{ cert_manager_operator }} can read the cluster TLS security profile from the `apiserver.config.openshift.io/cluster` object and automatically apply the corresponding TLS configuration to the cert-manager controller, webhook, and CA injector deployments.
+
     Previously, the TLS configuration for cert-manager operands was not tied to the cluster-wide TLS security profile. Cluster administrators who configured a stricter TLS profile at the cluster level had no automated mechanism to propagate those settings to cert-manager operands, creating a gap in cluster-wide TLS posture enforcement.
+
     With this update, when the `spec.tlsAdherence` field of the `CertManager` custom resource (CR) is set to `StrictAllComponents`, the Operator reads the `spec.tlsSecurityProfile` value from `apiserver.config.openshift.io/cluster` and applies the corresponding TLS arguments to the cert-manager operand deployments. The Operator reconciles the deployments whenever the cluster TLS profile changes.
+
     TLS arguments are applied per operand component as follows:
-    * `cert-manager-webhook`: serving TLS flags and metrics endpoint TLS flags.
-    * `cert-manager` (controller): metrics endpoint TLS flags only.
-    * `cert-manager-cainjector`: metrics endpoint TLS flags only.
+    *   `cert-manager-webhook`: serving TLS flags and metrics endpoint TLS flags.
+    *   `cert-manager` (controller): metrics endpoint TLS flags only.
+    *   `cert-manager-cainjector`: metrics endpoint TLS flags only.
+
     TLS profile enforcement is not yet supported for the IstioCSR and TrustManager operands.
+
     To support this feature, the Operator now requires `get`, `list`, and `watch` permissions on the `apiservers` resource in the `config.openshift.io` API group.
+
     This feature is gated by the `TLSAdherence` feature gate. To use this feature, you must enable the `TechPreviewNoUpgrade` feature set. For more information, see [Understanding feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling).
 
     :::note
+
 
     Elliptic curve preferences are not configurable because cert-manager does not yet support specifying curve preferences upstream.
     
     :::
 
 {%- set FeatureName = "TLS adherence for cert-manager operands" %}
-{% include "./snippets/technology-preview.md" %}
+    {% include "./snippets/technology-preview.md" %}
 
 ## Fixed issues {id="cert-manager-operator-1-20-0-fixed-issues_{{ context }}"}
 

@@ -70,7 +70,7 @@
 
 To ensure that your {{ product_title }} cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements. {._abstract}
 
-***Minimum resource requirements***
+**Minimum resource requirements**
 
 <table>
 <thead>
@@ -82,11 +82,11 @@ To ensure that your {{ product_title }} cluster runs as expected, each cluster m
   {% if bare_metal or ipi_bare_metal %}<th>CPU</th>{% endif %}
   {% if bare_metal or ipi_bare_metal %}<th>RAM</th>{% endif %}
   <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>Input/Output Per Second (IOPS)</td>
   <td>Bootstrap</td>
   {% if not ipi_bare_metal %}<td>{{ op_system }}</td>{% endif %}
   {% if ipi_bare_metal %}<td>{{ op_system_base }}</td>{% endif %}
@@ -95,19 +95,19 @@ To ensure that your {{ product_title }} cluster runs as expected, each cluster m
   <td>16 GB</td>
   <td>100 GB</td>
   {% if not ibm_z %}<td>300</td>{% endif %}
+  {% if ibm_z %}<td>N/A</td>{% endif %}
 </tr>
 <tr>
-  {% if ibm_z %}<td>N/A</td>{% endif %}
   <td>Control plane</td>
   <td>{{ op_system }}</td>
   {% if ibm_power %}<td>2</td>{% endif %}
   {% if not ibm_power %}<td>4</td>{% endif %}
   <td>16 GB</td>
   <td>100 GB</td>
-</tr>
-<tr>
   {% if not ibm_z %}<td>300</td>{% endif %}
   {% if ibm_z %}<td>N/A</td>{% endif %}
+</tr>
+<tr>
   {% if not openshift_origin %}<td>Compute</td>{% endif %}
   {% if ibm_z or ibm_power or ibm_cloud_vpc or ipi_bare_metal %}<td>{{ op_system }}</td>{% endif %}
   {% if not (ibm_z or ibm_power or ibm_cloud_vpc or vsphere or ipi_bare_metal) %}<td>{{ op_system }}</td>{% endif %}
@@ -117,12 +117,12 @@ To ensure that your {{ product_title }} cluster runs as expected, each cluster m
   {% if not openshift_origin %}<td>100 GB</td>{% endif %}
   {% if not openshift_origin %}{% if not ibm_z %}<td>300</td>{% endif %}{% endif %}
   {% if not openshift_origin %}{% if ibm_z %}<td>N/A</td>{% endif %}{% endif %}
+</tr>
+<tr>
   {% if openshift_origin %}<td>Compute</td>{% endif %}
   {% if openshift_origin %}<td>{{ op_system }}</td>{% endif %}
   {% if openshift_origin %}<td>2</td>{% endif %}
   {% if openshift_origin %}<td>8 GB</td>{% endif %}
-</tr>
-<tr>
   {% if openshift_origin %}<td>100 GB</td>{% endif %}
   {% if openshift_origin %}{% if not ibm_z %}<td>300</td>{% endif %}{% endif %}
   {% if openshift_origin %}{% if ibm_z %}<td>N/A</td>{% endif %}{% endif %}
@@ -130,26 +130,26 @@ To ensure that your {{ product_title }} cluster runs as expected, each cluster m
 </tbody>
 </table>
 
-{%- if ibm_z %}
+{% if ibm_z %}
 *   One physical core (IFL) provides two logical cores (threads) when SMT-2 is enabled. The hypervisor can provide two or more vCPUs.
 {% endif %}
 {% if bare_metal or ipi_bare_metal %}
-*   One CPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = CPUs.
+* One CPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = CPUs.
 {% endif %}
 {% if not (ibm_z or bare_metal or ibm_cloud_vpc or vsphere or ipi_bare_metal) %}
-*   One vCPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.
+* One vCPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.
 {% endif %}
 {% if not (ibm_z or ibm_power or ibm_cloud_vpc or vsphere or ipi_bare_metal) %}
-*   {{ product_title }} and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.
-*   As with all user-provisioned installations, if you choose to use {{ op_system_base }} compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. {{ product_title }} 4.10 and later do not support {{ op_system_base }} 7 compute machines.
+* {{ product_title }} and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.
+* As with all user-provisioned installations, if you choose to use {{ op_system_base }} compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. {{ product_title }} 4.10 and later do not support {{ op_system_base }} 7 compute machines.
 {% endif %}
 {% if ibm_power or ipi_bare_metal %}
-*   {{ product_title }} and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.
+* {{ product_title }} and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.
 {% endif %}
 {% if vsphere %}
-*   {{ product_title }} and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.
-*   As with all user-provisioned installations, if you choose to use {{ op_system_base }} compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. {{ product_title }} 4.10 and later do not support {{ op_system_base }} 7 compute machines.
-{%- endif %}
+* {{ product_title }} and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.
+* As with all user-provisioned installations, if you choose to use {{ op_system_base }} compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. {{ product_title }} 4.10 and later do not support {{ op_system_base }} 7 compute machines.
+{% endif %}
 
 :::note
 
@@ -195,68 +195,68 @@ For more information, see the Red&#160;Hat Knowledgebase article [Memory Balloon
 {% endif %}
 
 {% if context == "installing-azure-customizations" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-government-region" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-network-customizations" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-private" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-vnet" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-installer-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-bare-metal" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "ipi-install-prerequisites" %}
-{%- set ipi_bare_metal = false -%}
+{%- set ipi_bare_metal = "" -%}
 {% endif %}
 {% if context == "installing-bare-metal-network-customizations" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set bare_metal = false -%}
+{%- set bare_metal = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-private-cluster" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power-vs" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-reqs" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-customizations" %}
-{%- set ibm_cloud_vpc = false -%}
+{%- set ibm_cloud_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-vpc" %}
-{%- set ibm_cloud_vpc = false -%}
+{%- set ibm_cloud_vpc = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-private" %}
-{%- set ibm_cloud_vpc = false -%}
+{%- set ibm_cloud_vpc = "" -%}
 {% endif %}
 {% if context == "upi-vsphere-installation-reqs" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-restricted" %}
-{%- set ibm_cloud_vpc = false -%}
+{%- set ibm_cloud_vpc = "" -%}
 {% endif %}

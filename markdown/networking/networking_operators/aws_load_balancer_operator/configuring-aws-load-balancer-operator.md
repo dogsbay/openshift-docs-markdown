@@ -3,15 +3,16 @@ title: Configuring the AWS Load Balancer Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the AWS Load Balancer Operator {id="configuring-aws-load-balancer-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the AWS Load Balancer Operator {id="configuring-aws-load-balancer-operator"}
 {%- set context = "aws-load-balancer-operator" %}
 
-To automate the provisioning of AWS Load Balancers for your applications, configure the AWS Load Balancer Operator. This setup ensures that the Operator correctly manages ingress resources and external access to your cluster.
+To automate the provisioning of AWS Load Balancers for your applications, configure the AWS Load Balancer Operator. This setup ensures that the Operator correctly manages ingress resources and external access to your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/configuring-egress-proxy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Certificate injection using Operators](/networking/configuring_network_settings/configuring-a-custom-pki#certificate-injection-using-operators_configuring-a-custom-pki)
 

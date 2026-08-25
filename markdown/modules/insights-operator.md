@@ -14,9 +14,9 @@
 # Insights capability {id="_insights_capability"}
 {% endif %}
 
-{%- if operator_ref %}
-The {{ insights_operator }} is an optional cluster capability that can be disabled by cluster administrators during installation. For more information about optional cluster capabilities, see "Cluster capabilities" in _Installing_.
-{% endif %} {._abstract}
+{% if operator_ref %}
+The {{ insights_operator }} is an optional cluster capability that can be disabled by cluster administrators during installation. For more information about optional cluster capabilities, see "Cluster capabilities" in _Installing_. {._abstract}
+{% endif %}
 
 {% if cluster_caps %}
 The {{ insights_operator }} provides the features for the `Insights` capability.
@@ -39,9 +39,9 @@ Notes
 :   {{ insights_operator }} complements {{ product_title }} Telemetry.
 
 {% if context == "operator-reference" %}
-{%- set operator_ref = false -%}
+{%- set operator_ref = "" -%}
 {% endif %}
 
 {% if context == "cluster-caps" %}
-{%- set cluster_caps = false -%}
+{%- set cluster_caps = "" -%}
 {% endif %}

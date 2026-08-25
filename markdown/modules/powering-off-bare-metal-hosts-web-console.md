@@ -13,6 +13,6 @@ You can power off bare-metal cluster hosts in the web console. Before you power 
 
 1.  Navigate to **Nodes** and select the node that you want to power off. Expand the **Actions** menu and select **Mark as unschedulable**.
 1.  Manually delete or relocate running pods on the node by adjusting the pod deployments or scaling down workloads on the node to zero. Wait for the drain process to complete.
-1.  Navigate to **Compute** -> **Bare Metal Hosts**.
+1.  Navigate to **Compute** → **Bare Metal Hosts**.
 1.  Expand the **Options menu** for the bare-metal host that you want to power off, and select **Power Off**.
 1.  Select **Immediate power off**.

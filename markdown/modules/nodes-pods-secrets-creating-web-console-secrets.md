@@ -5,8 +5,8 @@ You can secure sensitive information, such as passwords or tokens, in a secret a
 
 **Procedure**
 
-1.  Navigate to **Workloads** -> **Secrets**.
-1.  Click **Create** -> **From YAML**.
+1.  Navigate to **Workloads** → **Secrets**.
+1.  Click **Create** → **From YAML**.
     1.  Edit the YAML manually to your specifications, or drag and drop a file into the YAML editor.
     For example:
         ```yaml

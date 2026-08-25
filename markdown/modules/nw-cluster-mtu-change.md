@@ -21,12 +21,12 @@
 # Changing the cluster network MTU to support AWS Outposts {id="_changing_the_cluster_network_mtu_to_support_aws_outposts"}
 {% endif %}
 
-{%- if outposts %}
+{% if outposts %}
 You might need to decrease the maximum transmission unit (MTU) value for the cluster network to support an AWS Outposts subnet. During installation, the MTU for the cluster network is detected automatically based on the MTU of the primary network interface of nodes in the cluster.
 {% endif %}
 {% if not outposts %}
-As a cluster administrator, you can increase or decrease the maximum transmission unit (MTU) for your cluster.
-{% endif %} {._abstract}
+As a cluster administrator, you can increase or decrease the maximum transmission unit (MTU) for your cluster. {._abstract}
+{% endif %}
 
 
 :::important

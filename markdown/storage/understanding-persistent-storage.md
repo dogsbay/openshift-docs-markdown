@@ -3,11 +3,11 @@ title: Understanding persistent storage
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding persistent storage {id="understanding-persistent-storage"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding persistent storage {id="understanding-persistent-storage"}
 {%- set context = "understanding-persistent-storage" %}
 
-Persistent storage decouples data from pod lifecycles, allowing stateful applications to retain data across restarts and failures. Administrators provision persistent volumes (PVs), and developers create persistent volume claims (PVCs) to request storage without infrastructure knowledge.
+Persistent storage decouples data from pod lifecycles, allowing stateful applications to retain data across restarts and failures. Administrators provision persistent volumes (PVs), and developers create persistent volume claims (PVCs) to request storage without infrastructure knowledge. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/storage-persistent-storage-overview.md" %}{% endleveloffset %}
 
@@ -18,21 +18,23 @@ Persistent storage decouples data from pod lifecycles, allowing stateful applica
 {% leveloffset +2 %}{% include "./modules/storage-persistent-storage-reclaim.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [When using Persistent Volumes with high file counts in OpenShift, why do pods fail to start or take an excessive amount of time to achieve "Ready" state? (Red&#160;Hat Knowledgebase)](https://access.redhat.com/solutions/6221251)
 
 {% leveloffset +1 %}{% include "./modules/storage-persistent-storage-pv.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Block volume support](/storage/understanding-persistent-storage#block-volume-support_understanding-persistent-storage)
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   [GCP hyperdisk-balanced disk additional limitations](https://cloud.google.com/compute/docs/disks/attach-disks)
 *   [VMware vSphere CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-vsphere)
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 *   [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/storage-persistent-storage-pvc.md" %}{% endleveloffset %}
 
@@ -58,6 +60,7 @@ Persistent storage decouples data from pod lifecycles, allowing stateful applica
 {% leveloffset +1 %}{% include "./modules/storage-persistent-storage-selinuxChangePolicy.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [OpenShift reports SELinux-related conflicts when creating Pods (Red&#160;Hat Knowledgebase)](https://access.redhat.com/solutions/7131398)
 *   [Opting out of the SELinux mount option default](/storage/understanding-persistent-storage#using_selinuxChangePolicy_pod-opt-out_understanding-persistent-storage)
@@ -65,6 +68,7 @@ Persistent storage decouples data from pod lifecycles, allowing stateful applica
 {% leveloffset +2 %}{% include "./modules/storage-persistent-storage-selinuxChangePolicy-testing-mountoption-RWO-RWX.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [OpenShift reports SELinux-related conflicts when creating Pods (Red&#160;Hat Knowledgebase)](https://access.redhat.com/solutions/7131398)
 *   [Opting out of the SELinux mount option default](/storage/understanding-persistent-storage#using_selinuxChangePolicy_pod-opt-out_understanding-persistent-storage)
@@ -76,6 +80,6 @@ Persistent storage decouples data from pod lifecycles, allowing stateful applica
 {% leveloffset +3 %}{% include "./modules/storage-persistent-storage-selinuxChangePolicy-pod.md" %}{% endleveloffset %}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 {% endif %}

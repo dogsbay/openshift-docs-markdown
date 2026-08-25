@@ -5,7 +5,7 @@ You must configure the network connectivity between machines to allow {{ product
 
 Review the following details about the required network ports.
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -24,50 +24,52 @@ Review the following details about the required network ports.
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.3+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="3">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
+  <td>The default ports that Kubernetes reserves</td>
 </tr>
 <tr>
-  <td>The default ports that Kubernetes reserves<br><br>.5+</td>
-  <td>UDP</td>
+  <td rowspan="4">UDP</td>
   <td><code>6081</code></td>
+  <td>Geneve</td>
 </tr>
 <tr>
-  <td>Geneve</td>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
 </tr>
 <tr>
   <td><code>500</code></td>
   <td>IPsec IKE packets</td>
-  <td><code>4500</code></td>
 </tr>
 <tr>
+  <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
+</tr>
+<tr>
   <td>TCP/UDP</td>
   <td><code>30000</code>-<code>32767</code></td>
+  <td>Kubernetes node port</td>
 </tr>
 <tr>
-  <td>Kubernetes node port</td>
   <td>ESP</td>
   <td>N/A</td>
-</tr>
-<tr>
   <td>IPsec Encapsulating Security Payload (ESP)</td>
 </tr>
 </tbody>
 </table>
 
-***Ports used for all-machine to control plane communications***
+**Ports used for all-machine to control plane communications**
 
 <table>
 <thead>
@@ -86,7 +88,7 @@ Review the following details about the required network ports.
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>

@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not non_bm %}
+{% if not non_bm %}
 # Disabling machine health checks on bare metal {id="hcp-bm-machine-health-disable_{{ context }}"}
 
 {% endif %}
@@ -27,5 +27,5 @@ To disable machine health checks for the managed cluster nodes, modify the `Node
     ```
 
 {% if context == "hcp-manage-non-bm" %}
-{%- set non_bm = false -%}
+{%- set non_bm = "" -%}
 {% endif %}

@@ -3,12 +3,12 @@ title: Securing the container platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Securing the container platform {id="security-platform"}
 {% include "./_attributes/common-attributes.md" %}
+# Securing the container platform {id="security-platform"}
 {%- set context = "security-platform" %}
 
 To make your {{ product_title }} cluster more secure, you should understand the security enhancements you can make to APIs used by {{ product_title }}.
-{{ product_title }} and Kubernetes APIs are key to automating container management at scale. APIs are used to:
+{{ product_title }} and Kubernetes APIs are key to automating container management at scale. APIs are used to: {._abstract}
 
 *   Validate and configure the data for pods, services, and replication controllers.
 *   Perform project validation on incoming requests and start triggers on other major system components.
@@ -29,6 +29,7 @@ Security-related features in {{ product_title }} that are based on Kubernetes in
 {% leveloffset +1 %}{% include "./modules/security-platform-certificates.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Introduction to {{ product_title }}](/architecture/architecture#architecture-platform-introduction_architecture)
 *   [Using RBAC to define and apply permissions](/authentication/using-rbac#using-rbac)

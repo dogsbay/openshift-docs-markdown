@@ -13,5 +13,5 @@ For example, to add a secret to your deployment so that it can access a private 
 
 1.  Log in to the {{ product_title }} web console.
 1.  Create a new project.
-1.  Navigate to **Resources** -> **Secrets** and create a new secret. Set `Secret Type` to `Image Secret` and `Authentication Type` to `Image Registry Credentials` to enter credentials for accessing a private image repository.
-1.  When creating a deployment (for example, from the **Add to Project** -> **Deploy Image** page), set the `Pull Secret` to your new secret.
+1.  Navigate to **Resources** → **Secrets** and create a new secret. Set `Secret Type` to `Image Secret` and `Authentication Type` to `Image Registry Credentials` to enter credentials for accessing a private image repository.
+1.  When creating a deployment (for example, from the **Add to Project** → **Deploy Image** page), set the `Pull Secret` to your new secret.

@@ -6,16 +6,17 @@ You can view your cluster autoscaler configurations using the `rosa describe aut
 **Procedure**
 
 *   To view cluster autoscaler configurations, run the following command:
+
     **Example**
 
-{%- if openshift_rosa_hcp %}
+{% if openshift_rosa_hcp %}
     ```terminal
     $ rosa describe autoscaler -h --cluster=<mycluster>
     ```
 {% endif %}
 
 {% if openshift_rosa %}
-```
-$ rosa describe autoscaler --cluster=<mycluster>
-```
+    ```
+    $ rosa describe autoscaler --cluster=<mycluster>
+    ```
 {% endif %}

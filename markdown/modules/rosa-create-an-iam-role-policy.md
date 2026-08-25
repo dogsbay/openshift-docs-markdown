@@ -15,7 +15,7 @@ When you forward your logs to an Amazon CloudWatch group or S3 bucket, those loc
 
 **Prerequisites**
 
-*   You have ensured that the name of you your IAM role has the prefix, `arn:aws:iam::**:role/CustomerLogDistribution-**`.
+*   You have ensured that the name of you your IAM role has the prefix, `arn:aws:iam::*:role/CustomerLogDistribution-*`.
 *   You have installed and configured the latest {{ rosa_cli_first }} on your installation host.
 *   You have installed and configured the latest {{ aws_first }} command-line interface (CLI) on your installation host.
 

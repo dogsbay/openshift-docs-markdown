@@ -10,7 +10,7 @@ Use this method if you want the {{ rosa_cli }} to automate the creation of the r
     rosa create account-roles --mode auto --yes
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Creating roles using 'arn:aws:iam::000000000000:user/rosa-user'
     I: Created role 'ManagedOpenShift-ControlPlane-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-ControlPlane-Role'
@@ -37,12 +37,12 @@ Use this method if you want the {{ rosa_cli }} to automate the creation of the r
     :::
 
 
-    ***Example input***
+    **Example input**
     ```terminal
     $ rosa create cluster --cluster-name my-rosa-cluster --sts --mode auto --yes
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Creating cluster 'my-rosa-cluster'
     I: To view a list of clusters and their status, run 'rosa list clusters'

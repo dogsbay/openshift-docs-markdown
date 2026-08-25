@@ -21,8 +21,8 @@ The FlexVolume driver contains:
 	"kubernetes.io/secret/<another key name>": "<another key value>",
 }
 ```
-where:
 
+where:
 
 `fooServer`
 :   Specifies all options from `flexVolume.options`.

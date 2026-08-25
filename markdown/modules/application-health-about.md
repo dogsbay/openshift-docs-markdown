@@ -119,7 +119,6 @@ spec:
       periodSeconds: 10 (11)
 # ...
 ```
-
 1.  The container name.
 1.  Specify the container image to deploy.
 1.  A liveness probe.
@@ -156,7 +155,6 @@ spec:
       failureThreshold: 3 (8)
 # ...
 ```
-
 1.  The container name.
 1.  Specify the container image to deploy.
 1.  The liveness probe.

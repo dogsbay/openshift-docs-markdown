@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Custom domains for applications {id="osd-config-custom-domains-applications"}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Custom domains for applications {id="osd-config-custom-domains-applications"}
 {%- set context = "osd-config-custom-domains-applications" %}
 
 

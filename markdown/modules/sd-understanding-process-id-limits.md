@@ -25,7 +25,7 @@ In {{ product_title }}, consider these two supported limits for process ID (PID)
     You can change the `podPidsLimit` by using a `KubeletConfig` object. See "Creating a KubeletConfig CR to edit kubelet parameters".
 
     Containers inherit the `podPidsLimit` value from the parent pod, so the kernel enforces the lower of the two limits. For example, if the container PID limit is set to the maximum, but the pod PID limit is `4096`, the PID limit of each container in the pod is confined to 4096.
-{% endif %}
+{%- endif %}
 
 {% if openshift_enterprise or openshift_origin %}
 *   Maximum number of PIDs per node.

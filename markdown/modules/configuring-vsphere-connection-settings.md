@@ -19,7 +19,7 @@ Modify the following vSphere configuration settings as required: {._abstract}
 
 **Procedure**
 
-1.  In the Administrator perspective, navigate to **Home -> Overview**.
+1.  In the Administrator perspective, navigate to **Home → Overview**.
 1.  Under **Status**, click **vSphere connection** to open the **vSphere connection configuration** wizard.
 1.  In the **vCenter** field, enter the network address of the vSphere vCenter server. This can be either a domain name or an IP address. It appears in the vSphere web client URL; for example `https://[your_vCenter_address]/ui`.
 1.  In the **vCenter cluster** field, enter the name of the vSphere vCenter cluster where {{ product_title }} is installed.

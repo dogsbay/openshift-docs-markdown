@@ -1,5 +1,5 @@
 ---
-title: "Image []"
+title: "Image [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -36,6 +36,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values from the cluster. They may not be overridden. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -53,6 +54,7 @@ Type
 | `externalRegistryHostnames` | `array (string)` | externalRegistryHostnames provides the hostnames for the default external image registry. The external hostname should be set only when the image registry is exposed externally. The first value is used in 'publicDockerImageRepository' field in ImageStreams. The value must be in "hostname[:port]" format. |
 | `imageStreamImportMode` | `string` | imageStreamImportMode controls the import mode behaviour of imagestreams. It can be set to `Legacy` or `PreserveOriginal` or the empty string. If this value is specified, this setting is applied to all newly created imagestreams which do not have the value set. `Legacy` indicates that the legacy behaviour should be used. For manifest lists, the legacy behaviour will discard the manifest list and import a single sub-manifest. In this case, the platform is chosen in the following order of priority: 1. tag annotations; 2. control plane arch/os; 3. linux/amd64; 4. the first manifest in the list. `PreserveOriginal` indicates that the original manifest will be preserved. For manifest lists, the manifest list and all its sub-manifests will be imported. When empty, the behaviour will be decided based on the payload type advertised by the ClusterVersion status, i.e single arch payload implies the import mode is Legacy and multi payload implies PreserveOriginal. |
 | `registrySources` | `object` | registrySources contains configuration that determines how the container runtime should treat individual registries when accessing images for builds+pods. (e.g. whether or not to allow insecure access).  It does not contain configuration for the internal cluster registry. |
+
 ### .spec.additionalTrustedCA {id="_specadditionaltrustedca"}
 
 Description
@@ -72,6 +74,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
+
 ### .spec.allowedRegistriesForImport {id="_specallowedregistriesforimport"}
 
 Description
@@ -100,6 +103,7 @@ Type
 | --- | --- | --- |
 | `domainName` | `string` | domainName specifies a domain name for the registry In case the registry use non-standard (80 or 443) port, the port should be included in the domain name as well. |
 | `insecure` | `boolean` | insecure indicates whether the registry is secure (https) or insecure (http) By default (if not specified) the registry is assumed as secure. |
+
 ### .spec.registrySources {id="_specregistrysources"}
 
 Description
@@ -114,10 +118,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `allowedRegistries` | `array (string)` | allowedRegistries are the only registries permitted for image pull and push actions. All other registries are denied. Only one of BlockedRegistries or AllowedRegistries may be set. |
-| `blockedRegistries` | `array (string)` | blockedRegistries cannot be used for image pull and push actions. All other registries are permitted. Only one of BlockedRegistries or AllowedRegistries may be set. |
+| `allowedRegistries` | `array (string)` | allowedRegistries are the only registries permitted for image pull and push actions. All other registries are denied.<br>Only one of BlockedRegistries or AllowedRegistries may be set. |
+| `blockedRegistries` | `array (string)` | blockedRegistries cannot be used for image pull and push actions. All other registries are permitted.<br>Only one of BlockedRegistries or AllowedRegistries may be set. |
 | `containerRuntimeSearchRegistries` | `array (string)` | containerRuntimeSearchRegistries are registries that will be searched when pulling images that do not have fully qualified domains in their pull specs. Registries will be searched in the order provided in the list. Note: this search list only works with the container runtime, i.e CRI-O. Will NOT work with builds or imagestream imports. |
 | `insecureRegistries` | `array (string)` | insecureRegistries are registries which do not have a valid TLS certificates or only support HTTP connections. |
+
 ### .status {id="_status"}
 
 Description
@@ -141,12 +146,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Image
     *   `GET`: list objects of kind Image
     *   `POST`: create an Image
-*   `/apis/config.openshift.io/v1/images/{{ name }}`
+*   `/apis/config.openshift.io/v1/images/{{ name }}`{minja}
     *   `DELETE`: delete an Image
     *   `GET`: read the specified Image
     *   `PATCH`: partially update the specified Image
     *   `PUT`: replace the specified Image
-*   `/apis/config.openshift.io/v1/images/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/images/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Image
     *   `PATCH`: partially update status of the specified Image
     *   `PUT`: replace status of the specified Image

@@ -36,10 +36,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
 | `ManagedOpenShift-Installer-Role` | An IAM role used by the ROSA installer. |
 | `ManagedOpenShift-Installer-Role-Policy` | An IAM policy that provides the ROSA installer with the permissions required to complete cluster installation tasks. |
 
-<details>
-<summary>`sts_installer_trust_policy.json`</summary>
-
-```json
+:::details{title="`sts_installer_trust_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -58,13 +55,9 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
-<details>
-<summary>`sts_installer_permission_policy.json`</summary>
-
-```json
+:::details{title="`sts_installer_permission_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -281,8 +274,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
 **ROSA control plane role, policy, and policy files**
 
@@ -291,10 +283,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
 | `ManagedOpenShift-ControlPlane-Role` | An IAM role used by the ROSA control plane. |
 | `ManagedOpenShift-ControlPlane-Role-Policy` | An IAM policy that provides the ROSA control plane with the permissions required to manage its components. |
 
-<details>
-<summary>`sts_instance_controlplane_trust_policy.json`</summary>
-
-```json
+:::details{title="`sts_instance_controlplane_trust_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -313,13 +302,9 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
-<details>
-<summary>`sts_instance_controlplane_permission_policy.json`</summary>
-
-```json
+:::details{title="`sts_instance_controlplane_permission_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -404,8 +389,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
 **ROSA compute node role, policy, and policy files**
 
@@ -414,10 +398,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
 | `ManagedOpenShift-Worker-Role` | An IAM role used by the ROSA compute instances. |
 | `ManagedOpenShift-Worker-Role-Policy` | An IAM policy that provides the ROSA compute instances with the permissions required to manage their components. |
 
-<details>
-<summary>`sts_instance_worker_trust_policy.json`</summary>
-
-```json
+:::details{title="`sts_instance_worker_trust_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -436,13 +417,9 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
-<details>
-<summary>`sts_instance_worker_permission_policy.json`</summary>
-
-```json
+:::details{title="`sts_instance_worker_permission_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -458,8 +435,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
 **ROSA support role, policy, and policy files**
 
@@ -468,10 +444,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
 | `ManagedOpenShift-Support-Role` | An IAM role used by the Red&#160;Hat Site Reliability Engineering (SRE) support team. |
 | `ManagedOpenShift-Support-Role-Policy` | An IAM policy that provides the Red&#160;Hat SRE support team with the permissions required to support ROSA clusters. |
 
-<details>
-<summary>`sts_support_trust_policy.json`</summary>
-
-```json
+:::details{title="`sts_support_trust_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -490,13 +463,9 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
-<details>
-<summary>`sts_support_permission_policy.json`</summary>
-
-```json
+:::details{title="`sts_support_permission_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -670,8 +639,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
 **ROSA OCM role and policy file**
 
@@ -679,10 +647,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
 | --- | --- |
 | `ManagedOpenShift-OCM-Role` | You use this IAM role to create and maintain ROSA clusters in  {{ cluster_manager }}. |
 
-<details>
-<summary>`sts_ocm_role_trust_policy.json`</summary>
-
-```json
+:::details{title="`sts_ocm_role_trust_policy.json`"}
 ```json
 {
   "Version": "2012-10-17",
@@ -702,8 +667,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
   ]
 }
 ```
-```
-</details>
+:::
 
 **ROSA user role and policy file**
 
@@ -711,10 +675,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
 | --- | --- |
 | `ManagedOpenShift-User-<OCM_user>-Role` | An IAM role used by Red&#160;Hat to verify the customer’s AWS identity. |
 
-<details>
-<summary>`sts_user_role_trust_policy.json`</summary>
-
-```json
+:::details{title="`sts_user_role_trust_policy.json`"}
 ```json
 {
     "Version": "2012-10-17",
@@ -733,8 +694,7 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
     ]
 }
 ```
-```
-</details>
+:::
 
 #### Example CLI output for policies attached to a role {id="rosa-sts-account-wide-roles-and-policies-example-cli-output-for-policies-attached-to-a-role_{{ context }}"}
 
@@ -759,17 +719,14 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
         I: Attached policy 'arn:aws:iam::000000000000:policy/testrole-Worker-Role-Policy' to role 'testrole-Worker-Role(https://console.aws.amazon.com/iam/home?#/roles/testrole-Worker-Role)'
         ```
 
-**ROSA Ingress Operator IAM policy and policy file**
+        **ROSA Ingress Operator IAM policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `ManagedOpenShift-openshift-ingress-operator-cloud-credentials` | An IAM policy that provides the ROSA Ingress Operator with the permissions required to manage external access to a cluster. |
+        | Resource | Description |
+        | --- | --- |
+        | `ManagedOpenShift-openshift-ingress-operator-cloud-credentials` | An IAM policy that provides the ROSA Ingress Operator with the permissions required to manage external access to a cluster. |
 
-<details>
-<summary>`openshift_ingress_operator_cloud_credentials_policy.json`</summary>
-
-```json
-```json
+        :::details{title="`openshift_ingress_operator_cloud_credentials_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -786,21 +743,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA back-end storage IAM policy and policy file**
+        **ROSA back-end storage IAM policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials` | An IAM policy required by ROSA to manage back-end storage through the Container Storage Interface (CSI). |
+        | Resource | Description |
+        | --- | --- |
+        | `ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials` | An IAM policy required by ROSA to manage back-end storage through the Container Storage Interface (CSI). |
 
-<details>
-<summary>`openshift_cluster_csi_drivers_ebs_cloud_credentials_policy.json`</summary>
-
-```json
-```json
+        :::details{title="`openshift_cluster_csi_drivers_ebs_cloud_credentials_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -828,21 +781,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA Machine Config Operator policy and policy file**
+        **ROSA Machine Config Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `ManagedOpenShift-openshift-machine-api-aws-cloud-credentials` | An IAM policy that provides the ROSA Machine Config Operator with the permissions required to perform core cluster functionality. |
+        | Resource | Description |
+        | --- | --- |
+        | `ManagedOpenShift-openshift-machine-api-aws-cloud-credentials` | An IAM policy that provides the ROSA Machine Config Operator with the permissions required to perform core cluster functionality. |
 
-<details>
-<summary>`openshift_machine_api_aws_cloud_credentials_policy.json`</summary>
-
-```json
-```json
+        :::details{title="`openshift_machine_api_aws_cloud_credentials_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -903,21 +852,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA Cloud Credential Operator policy and policy file**
+        **ROSA Cloud Credential Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `ManagedOpenShift-openshift-cloud-credential-operator-cloud-credentials` | An IAM policy that provides the ROSA Cloud Credential Operator with the permissions required to manage cloud provider credentials. |
+        | Resource | Description |
+        | --- | --- |
+        | `ManagedOpenShift-openshift-cloud-credential-operator-cloud-credentials` | An IAM policy that provides the ROSA Cloud Credential Operator with the permissions required to manage cloud provider credentials. |
 
-<details>
-<summary>`openshift_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json`</summary>
-
-```json
-```json
+        :::details{title="`openshift_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -932,21 +877,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA Image Registry Operator policy and policy file**
+        **ROSA Image Registry Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `ManagedOpenShift-openshift-image-registry-installer-cloud-credentials` | An IAM policy that provides the ROSA Image Registry Operator with the permissions required to manage the {{ product_registry }} storage in AWS S3 for a cluster. |
+        | Resource | Description |
+        | --- | --- |
+        | `ManagedOpenShift-openshift-image-registry-installer-cloud-credentials` | An IAM policy that provides the ROSA Image Registry Operator with the permissions required to manage the {{ product_registry }} storage in AWS S3 for a cluster. |
 
-<details>
-<summary>`openshift_image_registry_installer_cloud_credentials_policy.json`</summary>
-
-```json
-```json
+        :::details{title="`openshift_image_registry_installer_cloud_credentials_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -976,31 +917,28 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 {% endif %}
 
 {% if openshift_rosa_hcp %}
 
-**ROSA Manage Subscription policy and policy file**
+        **ROSA Manage Subscription policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| [`ROSAManageSubscription`](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAManageSubscription.html) | This policy streamlines permission setup by packaging necessary access rights, giving entities appropriate control over the ROSA subscription while preventing excessive permissions. |
+        | Resource | Description |
+        | --- | --- |
+        | [`ROSAManageSubscription`](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAManageSubscription.html) | This policy streamlines permission setup by packaging necessary access rights, giving entities appropriate control over the ROSA subscription while preventing excessive permissions. |
 
-**ROSA installer role, policy, and policy files**
+        **ROSA installer role, policy, and policy files**
 
-| Resource | Description |
-| --- | --- |
-| `HCP-ROSA-Installer-Role` | An IAM role used by the ROSA installer. |
-| [ROSAInstallerPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAInstallerPolicy.html) | An IAM policy that provides the ROSA installer with the permissions required to complete cluster installation tasks. |
-| `HCP-ROSA-Installer-Role` trust policy | Grants the Red&#160; Hat installer temporary permission to act within your AWS account for the sole purpose of setting up a {{ product_title }} cluster. |
-<details>
-<summary>`sts_hcp_installer_permission_policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `HCP-ROSA-Installer-Role` | An IAM role used by the ROSA installer. |
+        | [ROSAInstallerPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAInstallerPolicy.html) | An IAM policy that provides the ROSA installer with the permissions required to complete cluster installation tasks. |
+        | `HCP-ROSA-Installer-Role` trust policy | Grants the Red&#160; Hat installer temporary permission to act within your AWS account for the sole purpose of setting up a {{ product_title }} cluster. |
 
-```json
-```json
+        :::details{title="`sts_hcp_installer_permission_policy.json`"}
+        ```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -1362,42 +1300,36 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
         }
     ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-<details>
-<summary>`sts_hcp_installer_trust_policy.json`</summary>
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
+        :::details{title="`sts_hcp_installer_trust_policy.json`"}
+        ```json
         {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::710019948333:role/RH-Managed-OpenShift-Installer"
-            },
-            "Action": "sts:AssumeRole"
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "AWS": "arn:aws:iam::710019948333:role/RH-Managed-OpenShift-Installer"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
         }
-    ]
-}
-```
-</details>
+        ```
+        :::
 
-**ROSA worker node role, policy, and policy files**
+        **ROSA worker node role, policy, and policy files**
 
-| Resource | Description |
-| --- | --- |
-| `HCP-ROSA-Worker-Role` | An IAM role used by the compute instances. |
-| [ROSAWorkerInstancePolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAWorkerInstancePolicy.html) | An IAM policy that provides the ROSA compute instances with the permissions required to manage their components. |
-| `HCP-ROSA-Worker-Role` trust policy | Allows essential software on your worker nodes to securely connect and talk to the cluster’s control plane, which is managed remotely by Red&#160;Hat. |
+        | Resource | Description |
+        | --- | --- |
+        | `HCP-ROSA-Worker-Role` | An IAM role used by the compute instances. |
+        | [ROSAWorkerInstancePolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSAWorkerInstancePolicy.html) | An IAM policy that provides the ROSA compute instances with the permissions required to manage their components. |
+        | `HCP-ROSA-Worker-Role` trust policy | Allows essential software on your worker nodes to securely connect and talk to the cluster’s control plane, which is managed remotely by Red&#160;Hat. |
 
-<details>
-<summary>`sts_hcp_worker_instance_permission_policy.json`</summary>
-
-```json
-```json
+        :::details{title="`sts_hcp_worker_instance_permission_policy.json`"}
+        ```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -1435,41 +1367,36 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
         }
     ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-<details>
-<summary>`sts_hcp_worker_instance_trust_policy.json`</summary>
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
+        :::details{title="`sts_hcp_worker_instance_trust_policy.json`"}
+        ```json
         {
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "ec2.amazonaws.com"
-            },
-            "Action": "sts:AssumeRole"
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "ec2.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
         }
-    ]
-}
-```
-</details>
+        ```
+        :::
 
-**ROSA support role, policy, and policy files**
+        **ROSA support role, policy, and policy files**
 
-| Resource | Description |
-| --- | --- |
-| `HCP-ROSA-Support-Role` | An IAM role used by the Red Hat Site Reliability Engineering (SRE) support team. |
-| [ROSASRESupportPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSASRESupportPolicy.html) | An IAM policy that provides the Red Hat SRE support team with the permissions required to support ROSA clusters. |
-| `HCP-ROSA-Support-Role` trust policy | Provides a secure mechanism for authorized Red Hat Site Reliability Engineers (SREs) to perform diagnostic and support functions on the cluster. |
-<details>
-<summary>`sts_hcp_support_permission_policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `HCP-ROSA-Support-Role` | An IAM role used by the Red Hat Site Reliability Engineering (SRE) support team. |
+        | [ROSASRESupportPolicy](https://docs.aws.amazon.com/aws-managed-policy/latest/reference/ROSASRESupportPolicy.html) | An IAM policy that provides the Red Hat SRE support team with the permissions required to support ROSA clusters. |
+        | `HCP-ROSA-Support-Role` trust policy | Provides a secure mechanism for authorized Red Hat Site Reliability Engineers (SREs) to perform diagnostic and support functions on the cluster. |
 
-```json
-```json
+        :::details{title="`sts_hcp_support_permission_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -1674,39 +1601,34 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-<details>
-<summary>`sts_hcp_support_trust_policy.json`</summary>
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
+        :::details{title="`sts_hcp_support_trust_policy.json`"}
+        ```json
         {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::710019948333:role/RH-Technical-Support-15234082"
-            },
-            "Action": "sts:AssumeRole"
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "AWS": "arn:aws:iam::710019948333:role/RH-Technical-Support-15234082"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
         }
-    ]
-}
-```
-</details>
+        ```
+        :::
 
-**ROSA Kube Controller Operator policy and policy file**
+        **ROSA Kube Controller Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `openshift-hcp-kube-controller-manager-credentials` | An IAM policy that grants permissions to the kube controller to manage Amazon EC2, Elastic Load Balancing, and AWS KMS resources. |
-<details>
-<summary>`openshift-hcp_kube-controller-manager-credentials-policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `openshift-hcp-kube-controller-manager-credentials` | An IAM policy that grants permissions to the kube controller to manage Amazon EC2, Elastic Load Balancing, and AWS KMS resources. |
 
-```json
-```json
+        :::details{title="`openshift-hcp_kube-controller-manager-credentials-policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -1910,20 +1832,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA Control Plane Operator policy and policy file**
+        **ROSA Control Plane Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `openshift-hcp-control-plane-operator-credentials-policy` | An IAM policy that grants required permissions to the Control Plane Operator to manage Amazon EC2 and Route 53 resources. |
-<details>
-<summary>`openshift_hcp_control_plane_operator_credentials_policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `openshift-hcp-control-plane-operator-credentials-policy` | An IAM policy that grants required permissions to the Control Plane Operator to manage Amazon EC2 and Route 53 resources. |
 
-```json
-```json
+        :::details{title="`openshift_hcp_control_plane_operator_credentials_policy.json`"}
+        ```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -2138,20 +2057,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
         }
     ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA Node Pool Management Operator policy and policy file**
+        **ROSA Node Pool Management Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `openshift-hcp-capa-controller-manager-credentials-policy` | An IAM policy that grants required permissions to the NodePool controller to describe, run, and terminate Amazon EC2 instances managed as worker nodes. This policy also grants permissions to allow for disk encryption of the worker node root volume using AWS KMS keys, and to tag the elastic network interface that is attached to the worker node. |
-<details>
-<summary>`openshift_hcp_capa_controller_manager_credentials_policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `openshift-hcp-capa-controller-manager-credentials-policy` | An IAM policy that grants required permissions to the NodePool controller to describe, run, and terminate Amazon EC2 instances managed as worker nodes. This policy also grants permissions to allow for disk encryption of the worker node root volume using AWS KMS keys, and to tag the elastic network interface that is attached to the worker node. |
 
-```json
-```json
+        :::details{title="`openshift_hcp_capa_controller_manager_credentials_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -2427,20 +2343,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA Image Registry Operator policy and policy file**
+        **ROSA Image Registry Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `openshift-hcp-image-registry-operator-permission-policy` | An IAM policy that grants required permissions to the Image Registry Operator to provision and manage resources for the ROSA in-cluster image registry and dependent services, including S3. This is required so that the operator can install and maintain the internal registry of a ROSA cluster. |
-<details>
-<summary>`openshift_hcp_image_registry_operator_permission_policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `openshift-hcp-image-registry-operator-permission-policy` | An IAM policy that grants required permissions to the Image Registry Operator to provision and manage resources for the ROSA in-cluster image registry and dependent services, including S3. This is required so that the operator can install and maintain the internal registry of a ROSA cluster. |
 
-```json
-```json
+        :::details{title="`openshift_hcp_image_registry_operator_permission_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -2493,20 +2406,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA Amazon EBSCI Driver Operator policy and policy file**
+        **ROSA Amazon EBSCI Driver Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `openshift-hcp-cluster-csi-driver-ebs-operator-cloud-credentials-policy` | An IAM policy that grants necessary permissions to the Amazon EBS CSI Driver Operator to install and maintain the Amazon EBS CSI driver on a ROSA cluster. |
-<details>
-<summary>`openshift_hcp_cluster_csi_driver_ebs_operator_cloud_credentials_policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `openshift-hcp-cluster-csi-driver-ebs-operator-cloud-credentials-policy` | An IAM policy that grants necessary permissions to the Amazon EBS CSI Driver Operator to install and maintain the Amazon EBS CSI driver on a ROSA cluster. |
 
-```json
-```json
+        :::details{title="`openshift_hcp_cluster_csi_driver_ebs_operator_cloud_credentials_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -2852,19 +2762,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
-**ROSA Cloud Network Config Operator policy and policy file**
+        ```
+        :::
 
-| Resource | Description |
-| --- | --- |
-| `openshift-hcp-cloud-network-config-cloud-credentials-permission-policy` | An IAM policy that grants necessary permissions to the Amazon EBS CSI Driver Operator to install and maintain the Amazon EBS CSI driver on a ROSA cluster. |
-<details>
-<summary>`openshift_hcp_cloud_network_config_cloud_credentials_permission_policy.json`</summary>
+        **ROSA Cloud Network Config Operator policy and policy file**
 
-```json
-```json
+        | Resource | Description |
+        | --- | --- |
+        | `openshift-hcp-cloud-network-config-cloud-credentials-permission-policy` | An IAM policy that grants necessary permissions to the Amazon EBS CSI Driver Operator to install and maintain the Amazon EBS CSI driver on a ROSA cluster. |
+
+        :::details{title="`openshift_hcp_cloud_network_config_cloud_credentials_permission_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -2896,20 +2804,17 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
-```
-</details>
+        ```
+        :::
 
-**ROSA Ingress Operator policy and policy file**
+        **ROSA Ingress Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `openshift-hcp-cluster-ingress-operator-cloud-credentials-policy` | An IAM policy that provides the ROSA Ingress Operator with the permissions required to manage external access to a cluster. |
-<details>
-<summary>`openshift_hcp_cluster_ingress_operator_cloud_credentials_policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `openshift-hcp-cluster-ingress-operator-cloud-credentials-policy` | An IAM policy that provides the ROSA Ingress Operator with the permissions required to manage external access to a cluster. |
 
-```json
-```json
+        :::details{title="`openshift_hcp_cluster_ingress_operator_cloud_credentials_policy.json`"}
+        ```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -2941,21 +2846,18 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
     }
   ]
 }
-```
 
-```
-</details>
+        ```
+        :::
 
-**ROSA KMS Provider Operator policy and policy file**
+        **ROSA KMS Provider Operator policy and policy file**
 
-| Resource | Description |
-| --- | --- |
-| `openshift-hcp-kms-provider-credential-policy.` | An IAM policy grants required permissions to the built-in AWS Encryption Provider to manage AWS KMS keys that support etcd data encryption. This policy allows Amazon EC2 to use KMS keys that the AWS Encryption Provider provides to encrypt and decrypt etcd data. |
-<details>
-<summary>`openshift_hcp_kms_provider_credential_policy.json`</summary>
+        | Resource | Description |
+        | --- | --- |
+        | `openshift-hcp-kms-provider-credential-policy.` | An IAM policy grants required permissions to the built-in AWS Encryption Provider to manage AWS KMS keys that support etcd data encryption. This policy allows Amazon EC2 to use KMS keys that the AWS Encryption Provider provides to encrypt and decrypt etcd data. |
 
-```json
-```json
+        :::details{title="`openshift_hcp_kms_provider_credential_policy.json`"}
+        ```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -2976,8 +2878,7 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
       }
     ]
 }
-```
-```
-</details>
+        ```
+        :::
 
 {% endif %}

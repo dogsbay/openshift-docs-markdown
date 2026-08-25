@@ -7,7 +7,7 @@ title: Destroying a hosted cluster on non-bare-metal agent machines
 # Destroying a hosted cluster on non-bare-metal agent machines {id="hcp-destroy-non-bm"}
 {%- set context = "hcp-destroy-non-bm" %}
 
-You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.
+You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/destroy-hc-non-bm-cli.md" %}{% endleveloffset %}
 

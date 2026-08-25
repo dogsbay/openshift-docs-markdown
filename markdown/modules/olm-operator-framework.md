@@ -8,10 +8,10 @@ Operator Lifecycle Manager
 :   Operator Lifecycle Manager (OLM) controls the installation, upgrade, and role-based access control (RBAC) of Operators in a cluster. It is deployed by default in 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
     {{ product_title }} {{ product_version }}.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
     {{ product_title }}.
-{% endif %}
+{%- endif %}
 
 
 Operator Registry

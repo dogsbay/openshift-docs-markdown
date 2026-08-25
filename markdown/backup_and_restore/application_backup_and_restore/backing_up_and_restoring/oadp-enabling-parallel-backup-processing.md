@@ -7,7 +7,7 @@ title: Enabling parallel backup processing
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enabling parallel backup processing {id="oadp-enabling-parallel-backup-processing_{{ context }}"}
 
-By default, {{ oadp_full }} processes only one backup in the `InProgress` phase at a time. Configure the `DataProtectionApplication` (DPA) custom resource (CR) to run several backups simultaneously to prevent smaller backups from being queued behind larger operations.
+By default, {{ oadp_full }} processes only one backup in the `InProgress` phase at a time. Configure the `DataProtectionApplication` (DPA) custom resource (CR) to run several backups simultaneously to prevent smaller backups from being queued behind larger operations. {._abstract}
 
 **Prerequisites**
 

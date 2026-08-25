@@ -3,11 +3,11 @@ title: Advanced Security Profiles Operator tasks
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Advanced Security Profiles Operator tasks {id="spo-advanced"}
 {% include "./_attributes/common-attributes.md" %}
+# Advanced Security Profiles Operator tasks {id="spo-advanced"}
 {%- set context = "spo-advanced" %}
 
-You can use advanced Security Profiles Operator tasks to enable metrics, configure webhooks, or restrict syscalls.
+You can use advanced Security Profiles Operator tasks to enable metrics, configure webhooks, or restrict syscalls. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/spo-restrict-syscalls.md" %}{% endleveloffset %}
 

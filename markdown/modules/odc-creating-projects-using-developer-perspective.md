@@ -9,8 +9,8 @@ You can use the **Developer** perspective in the {{ product_title }} web console
 Projects starting with `openshift-` and `kube-` are considered critical by {{ product_title }}. As such, {{ product_title }} does not allow you to create projects starting with `openshift-` or `kube-` using the **Developer** perspective.
 {%- if not (openshift_rosa or openshift_dedicated) %}
 Cluster administrators can create these projects using the `oc adm new-project` command.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 For {{ product_title }} clusters that use the Customer Cloud Subscription (CCS) model, users with `cluster-admin` privileges can create these projects using the `oc adm new-project` command.
 {%- endif %}
 
@@ -26,6 +26,7 @@ For {{ product_title }} clusters that use the Customer Cloud Subscription (CCS) 
 You can create a project using the **Developer** perspective, as follows:
 
 1.  Click the **Project** menu and select **Create Project**:
+
     **Figure 1. Create project**
 
     ![odc_create_project](/_assets/images/odc_create_project.png)

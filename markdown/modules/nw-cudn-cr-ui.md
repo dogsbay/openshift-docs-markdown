@@ -18,7 +18,7 @@ Currently, creation of a `ClusterUserDefinedNetwork` CR with a `Layer3` topology
 
 **Procedure**
 
-1.  From the **Administrator** perspective, click **Networking** -> **UserDefinedNetworks**.
+1.  From the **Administrator** perspective, click **Networking** → **UserDefinedNetworks**.
 1.  Click **ClusterUserDefinedNetwork**.
 1.  In the **Name** field, specify a name for the cluster-scoped UDN.
 1.  Specify a value in the **Subnet** field.

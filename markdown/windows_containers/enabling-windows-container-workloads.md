@@ -3,11 +3,11 @@ title: Enabling Windows container workloads
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Enabling Windows container workloads {id="enabling-windows-container-workloads"}
 {% include "./_attributes/common-attributes.md" %}
+# Enabling Windows container workloads {id="enabling-windows-container-workloads"}
 {%- set context = "enabling-windows-container-workloads" %}
 
-Before adding Windows workloads to your cluster, you must install the Windows Machine Config Operator (WMCO), which is available in the {{ product_title }} software catalog. The WMCO orchestrates the process of deploying and managing Windows workloads on a cluster.
+Before adding Windows workloads to your cluster, you must install the Windows Machine Config Operator (WMCO), which is available in the {{ product_title }} software catalog. The WMCO orchestrates the process of deploying and managing Windows workloads on a cluster. {._abstract}
 
 
 :::note
@@ -67,7 +67,7 @@ Due to a limitation within the Windows operating system, `clusterNetwork` CIDR a
 
 {% leveloffset +1 %}{% include "./modules/nodes-nodes-rebooting-gracefully.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Windows Machine Config Operator prerequisites](/windows_containers/wmco_rn/windows-containers-release-notes-prereqs#windows-containers-release-notes-prereqs)
 *   [Configuring hybrid networking](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)
 *   [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)

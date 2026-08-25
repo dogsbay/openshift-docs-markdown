@@ -45,7 +45,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{%- if not (agent or generic) %}
+{% if not (agent or generic) %}
 # Available installation configuration parameters for {{ platform }} {id="installation-configuration-parameters_{{ context }}"}
 
 To customize your cluster installation, you can use configuration parameters in the `install-config.yaml` file. {._abstract}
@@ -93,7 +93,7 @@ These settings are used for installation only, and cannot be changed after insta
 
 Required installation configuration parameters are described in the following table:
 
-***Required parameters***
+**Required parameters**
 
 <table>
 <thead>
@@ -109,7 +109,7 @@ Required installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>baseDomain:</td>
-  <td>The base domain of your cloud provider. The base domain is used to create routes to your {{ product_title }} cluster components. The full DNS name for your cluster is a combination of the <code>baseDomain</code> and <code>metadata.name</code> parameter values that uses the <code><metadata.name>.<baseDomain></code> format.<br><br><strong>Value:</strong> A fully-qualified domain or subdomain name, such as <code>example.com</code>.</td>
+  <td>The base domain of your cloud provider. The base domain is used to create routes to your {{ product_title }} cluster components. The full DNS name for your cluster is a combination of the <code>baseDomain</code> and <code>metadata.name</code> parameter values that uses the <code>&lt;metadata.name&gt;.&lt;baseDomain&gt;</code> format.<br><br><strong>Value:</strong> A fully-qualified domain or subdomain name, such as <code>example.com</code>.</td>
 </tr>
 <tr>
   <td>metadata:</td>
@@ -117,14 +117,14 @@ Required installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>metadata: name:</td>
-  <td>The name of the cluster. DNS records for the cluster are all subdomains of <code>{{.metadata.name}}.{{.baseDomain}}</code>.The cluster name is set to <code>agent-cluster</code> when you do not provide the <code>metadata.name</code> parameter through either the <code>install-config.yaml</code> or <code>agent-config.yaml</code> files. For example, installations that only use ZTP manifests do not provide the <code>metadata.name</code> parameter.<br><br><strong>Value:</strong> String of lowercase letters, hyphens (<code>-</code>), and periods (<code>.</code>), such as <code>dev</code>.<strong>Value:</strong> String of lowercase letters and hyphens (<code>-</code>), such as <code>dev</code>.The string must be 14 characters or fewer long.</td>
+  <td>The name of the cluster. DNS records for the cluster are all subdomains of <code>{{.metadata.name}}.{{.baseDomain}}</code>. {% if agent %} The cluster name is set to <code>agent-cluster</code> when you do not provide the <code>metadata.name</code> parameter through either the <code>install-config.yaml</code> or <code>agent-config.yaml</code> files. For example, installations that only use ZTP manifests do not provide the <code>metadata.name</code> parameter. {% endif %} <br><br> {% if not (bare or nutanix or vsphere) %} <strong>Value:</strong> String of lowercase letters, hyphens (<code>-</code>), and periods (<code>.</code>), such as <code>dev</code>. {% endif %} {% if bare or nutanix or vsphere %} <strong>Value:</strong> String of lowercase letters and hyphens (<code>-</code>), such as <code>dev</code>. {% endif %} {% if osp %} The string must be 14 characters or fewer long. {% endif %}</td>
 </tr>
 <tr>
   <td>platform:</td>
-  {% if not agent %}<td>The configuration for the specific platform upon which to perform the installation: <code>aws</code>, <code>baremetal</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code>. For additional information about <code>platform.<platform></code> parameters, consult the table for your specific platform that follows.</td>{% endif %}
+  {% if not agent %}<td>The configuration for the specific platform upon which to perform the installation: <code>aws</code>, <code>baremetal</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code>. For additional information about <code>platform.&lt;platform&gt;</code> parameters, consult the table for your specific platform that follows.<br><br><strong>Value:</strong> Object</td>{% endif %}
+  {% if agent %}<td>The configuration for the specific platform upon which to perform the installation: <code>baremetal</code>, <code>external</code>, <code>none</code>, <code>vsphere</code>, or <code>nutanix</code>.<br><br><strong>Value:</strong> Object</td>{% endif %}
 </tr>
 <tr>
-  {% if agent %}<td>The configuration for the specific platform upon which to perform the installation: <code>baremetal</code>, <code>external</code>, <code>none</code>, <code>vsphere</code>, or <code>nutanix</code>. <strong>Value:</strong> Object</td>{% endif %}
   {% if not openshift_origin %}<td>pullSecret:</td>{% endif %}
   {% if not openshift_origin %}<td>Get a {{ cluster_manager_url_pull }} to authenticate downloading container images for {{ product_title }} components from services such as Quay.io.<br><br><strong>Value:</strong><pre>{&#10;   "auths":{&#10;      "cloud.openshift.com":{&#10;         "auth":"b3Blb=",&#10;         "email":"you@example.com"&#10;      },&#10;      "quay.io":{&#10;         "auth":"b3Blb=",&#10;         "email":"you@example.com"&#10;      }&#10;   }&#10;}</pre></td>{% endif %}
 </tr>
@@ -152,7 +152,7 @@ Required installation configuration parameters are described in the following ta
 
 Additional {{ ibm_power_vc_name }} configuration parameters are described in the following table:
 
-***Additional {{ ibm_power_vc_name }} parameters***
+**Additional {{ ibm_power_vc_name }} parameters**
 
 <table>
 <thead>
@@ -173,7 +173,7 @@ Additional {{ ibm_power_vc_name }} configuration parameters are described in the
 
 Optional {{ ibm_power_vc_name }} configuration parameters are described in the following table:
 
-***Optional {{ ibm_power_vc_name }} parameters***
+**Optional {{ ibm_power_vc_name }} parameters**
 
 <table>
 <thead>
@@ -246,21 +246,21 @@ Consider the following information before you configure network parameters for y
 
 {% if ibm_cloud %}
 
-:::note
+    :::note
 
-{{ ibm_cloud_name }} does not support IPv6 address families.
-
-:::
+    {{ ibm_cloud_name }} does not support IPv6 address families.
+    
+    :::
 
 {% endif %}
 
 {% if vsphere %}
 
-:::note
+    :::note
 
-On {{ vmw_first }}, dual-stack networking can specify either IPv4 or IPv6 as the primary address family.
-
-:::
+    On {{ vmw_first }}, dual-stack networking can specify either IPv4 or IPv6 as the primary address family.
+    
+    :::
 
 {% endif %}
 
@@ -295,7 +295,7 @@ Globalnet is not supported with {{ rh_storage_first }} disaster recovery solutio
 
 {% endif %}
 
-***Network parameters***
+**Network parameters**
 
 <table>
 <thead>
@@ -307,11 +307,11 @@ Globalnet is not supported with {{ rh_storage_first }} disaster recovery solutio
 <tbody>
 <tr>
   <td>networking:</td>
-  <td>The configuration for the cluster network.<br><br><strong>Value:</strong> Object<br><br><dl><dt>Note</dt><dd>You cannot change parameters specified by the <code>networking</code> object after installation.</dd></dl></td>
+  <td>The configuration for the cluster network.<br><br><strong>Value:</strong> Object<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You cannot change parameters specified by the <code>networking</code> object after installation.</dd></dl></td>
 </tr>
 <tr>
   <td>networking: networkType:</td>
-  <td>The {{ openshift_networking }} network plugin to install.<br><br><strong>Value:</strong><code>OVNKubernetes</code>.<code>OVNKubernetes</code>. <code>OVNKubernetes</code> is a Container Network Interface (CNI) plugin for Linux networks and hybrid networks that contain both Linux and Windows servers. The default value is <code>OVNKubernetes</code>.The default value is <code>OVNKubernetes</code>.</td>
+  <td>The {{ openshift_networking }} network plugin to install.<br><br><strong>Value:</strong> {% if openshift_origin %} <code>OVNKubernetes</code>. {% endif %} {% if not openshift_origin %} {% if not ibm_power_vs %} <code>OVNKubernetes</code>. <code>OVNKubernetes</code> is a Container Network Interface (CNI) plugin for Linux networks and hybrid networks that contain both Linux and Windows servers. The default value is <code>OVNKubernetes</code>. {% endif %} {% if ibm_power_vs %} The default value is <code>OVNKubernetes</code>. {% endif %} {% endif %}</td>
 </tr>
 <tr>
   <td>networking: clusterNetwork:</td>
@@ -319,23 +319,23 @@ Globalnet is not supported with {{ rh_storage_first }} disaster recovery solutio
 </tr>
 <tr>
   <td>networking: clusterNetwork: cidr:</td>
-  <td>Required if you use <code>networking.clusterNetwork</code>. An IP address block.<br><br>An IPv4 network.<br><br>If you use the OVN-Kubernetes network plugin, you can specify IPv4 and IPv6 networks.<br><br><strong>Value:</strong> An IP address block in Classless Inter-Domain Routing (CIDR) notation. The prefix length for an IPv4 block is between <code>0</code> and <code>32</code>.The prefix length for an IPv6 block is between <code>0</code> and <code>128</code>. For example, <code>10.128.0.0/14</code> or <code>fd01::/48</code>.</td>
+  <td>Required if you use <code>networking.clusterNetwork</code>. An IP address block.<br><br> {% if not (agent or bare) %} An IPv4 network. {% endif %} <br><br> {% if agent or aws or bare %} If you use the OVN-Kubernetes network plugin, you can specify IPv4 and IPv6 networks.<br><br><strong>Value:</strong> An IP address block in Classless Inter-Domain Routing (CIDR) notation. The prefix length for an IPv4 block is between <code>0</code> and <code>32</code>. The prefix length for an IPv6 block is between <code>0</code> and <code>128</code>. For example, <code>10.128.0.0/14</code> or <code>fd01::/48</code>. {% endif %}</td>
 </tr>
 <tr>
   <td>networking: clusterNetwork: hostPrefix:</td>
-  <td>The subnet prefix length to assign to each individual node. For example, if <code>hostPrefix</code> is set to <code>23</code> then each node is assigned a <code>/23</code> subnet out of the given <code>cidr</code>. A <code>hostPrefix</code> value of <code>23</code> provides 510 (2^(32 - 23) - 2) pod IP addresses.<br><br><strong>Value:</strong> A subnet prefix.<br><br>The default value is <code>23</code>.<br><br>For an IPv4 network the default value is <code>23</code>. For an IPv6 network <code>hostPrefix</code> must be set to <code>64</code>, which is the default value.</td>
+  <td>The subnet prefix length to assign to each individual node. For example, if <code>hostPrefix</code> is set to <code>23</code> then each node is assigned a <code>/23</code> subnet out of the given <code>cidr</code>. A <code>hostPrefix</code> value of <code>23</code> provides 510 (2^(32 - 23) - 2) pod IP addresses.<br><br><strong>Value:</strong> A subnet prefix.<br><br> {% if not (agent or bare) %} The default value is <code>23</code>. {% endif %} <br><br> {% if agent or aws or bare %} For an IPv4 network the default value is <code>23</code>. For an IPv6 network <code>hostPrefix</code> must be set to <code>64</code>, which is the default value. {% endif %}</td>
 </tr>
 <tr>
   <td>networking: serviceNetwork:</td>
-  <td>The IP address block for services. The default value is <code>172.30.0.0/16</code>.<br><br>If you use the OVN-Kubernetes network plugin, you can specify an IP address block for both of the IPv4 and IPv6 address families.<br><br><strong>Value:</strong> An array with an IP address block in CIDR format. For example:<br><br><pre>networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;   - fd02::/112</pre></td>
+  <td>The IP address block for services. The default value is <code>172.30.0.0/16</code>.<br><br> {% if agent or aws or bare %} If you use the OVN-Kubernetes network plugin, you can specify an IP address block for both of the IPv4 and IPv6 address families. {% endif %} <br><br><strong>Value:</strong> An array with an IP address block in CIDR format. For example:<br><br><pre>networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;   - fd02::/112</pre></td>
 </tr>
 <tr>
   <td>networking: machineNetwork:</td>
-  <td>The IP address blocks for machines.<br><br>If you specify multiple IP address blocks, the blocks must not overlap.<br><br>If you specify multiple IP kernel arguments, the <code>machineNetwork.cidr</code> value must be the CIDR of the primary network.<br><br><strong>Value:</strong> An array of objects. For example:<br><br><pre>networking:&#10;  machineNetwork:&#10;  - cidr: 10.0.0.0/16</pre></td>
+  <td>The IP address blocks for machines.<br><br> {% if not ibm_power_vs %} If you specify multiple IP address blocks, the blocks must not overlap. {% endif %} <br><br> {% if ibm_z or ibm_power %} If you specify multiple IP kernel arguments, the <code>machineNetwork.cidr</code> value must be the CIDR of the primary network. {% endif %} <br><br><strong>Value:</strong> An array of objects. For example:<br><br><pre>networking:&#10;  machineNetwork:&#10;  - cidr: 10.0.0.0/16</pre></td>
 </tr>
 <tr>
   <td>networking: machineNetwork: cidr:</td>
-  <td>Required if you use <code>networking.machineNetwork</code>. An IP address block. The default value is <code>10.0.0.0/16</code> for all platforms other than libvirt and {{ ibm_power_server_name }}. For libvirt, the default value is <code>192.168.126.0/24</code>. For {{ ibm_power_server_name }}, the default value is <code>192.168.0.0/24</code>.<br><br>If you are deploying the cluster to an existing Virtual Private Cloud (VPC), the CIDR must contain the subnets defined in <code>platform.ibmcloud.controlPlaneSubnets</code> and <code>platform.ibmcloud.computeSubnets</code>.<br><br><strong>Value:</strong> An IP network block in CIDR notation.<br><br>For example, <code>10.0.0.0/16</code>.For example, <code>10.0.0.0/16</code> or <code>fd00::/48</code>.For example, <code>192.168.0.0/24</code>.<br><br><dl><dt>Note</dt><dd>Set the <code>networking.machineNetwork</code> to match the CIDR that the preferred NIC resides in.<br><br>If you are installing a cluster on {{ aws_short }} with dual-stack networking, consider the following distinction:<br><br><ul><li>If the installation program creates the VPC, do not specify an IPv6 entry in <code>networking.machineNetwork</code>. The installation program will assign an IPv6 address to the VPC.</li><li>If you provide existing dual-stack subnets using the <code>platform.aws.vpc.subnets</code> parameter, you must specify IPv6 entries corresponding to either the VPC CIDR or the CIDR of the subnets.</li><li>In both cases, you must provide an IPv4 CIDR entry.</li></ul></dd></dl></td>
+  <td>Required if you use <code>networking.machineNetwork</code>. An IP address block. The default value is <code>10.0.0.0/16</code> for all platforms other than libvirt and {{ ibm_power_server_name }}. For libvirt, the default value is <code>192.168.126.0/24</code>. For {{ ibm_power_server_name }}, the default value is <code>192.168.0.0/24</code>.<br><br> {% if ibm_cloud %} If you are deploying the cluster to an existing Virtual Private Cloud (VPC), the CIDR must contain the subnets defined in <code>platform.ibmcloud.controlPlaneSubnets</code> and <code>platform.ibmcloud.computeSubnets</code>. {% endif %} <br><br><strong>Value:</strong> An IP network block in CIDR notation.<br><br> {% if not (agent or bare or ibm_power_vs) %} For example, <code>10.0.0.0/16</code>. {% endif %} {% if agent or bare %} For example, <code>10.0.0.0/16</code> or <code>fd00::/48</code>. {% endif %} {% if ibm_power_vs %} For example, <code>192.168.0.0/24</code>. {% endif %} <br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Set the <code>networking.machineNetwork</code> to match the CIDR that the preferred NIC resides in.<br><br>If you are installing a cluster on {{ aws_short }} with dual-stack networking, consider the following distinction:<br><br><ul><li>If the installation program creates the VPC, do not specify an IPv6 entry in <code>networking.machineNetwork</code>. The installation program will assign an IPv6 address to the VPC.</li><li>If you provide existing dual-stack subnets using the <code>platform.aws.vpc.subnets</code> parameter, you must specify IPv6 entries corresponding to either the VPC CIDR or the CIDR of the subnets.</li><li>In both cases, you must provide an IPv4 CIDR entry.</li></ul></dd></dl></td>
 </tr>
 <tr>
   <td>networking: ovnKubernetesConfig: ipv4: internalJoinSubnet:</td>
@@ -348,7 +348,7 @@ Globalnet is not supported with {{ rh_storage_first }} disaster recovery solutio
 
 Optional installation configuration parameters are described in the following table:
 
-***Optional parameters***
+**Optional parameters**
 
 <table>
 <thead>
@@ -380,7 +380,7 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>compute:</td>
-  <td>The configuration for the machines that comprise the compute nodes.<br><br><strong>Value:</strong> Array of <code>MachinePool</code> objects.</td>
+  <td>The configuration for the machines that comprise the compute nodes.<br><br><strong>Value:</strong> Array of <code>MachinePool</code> objects.<br><br> {% if not openshift_origin %} <br><br>   {% endif %}</td>
 </tr>
 <tr>
   {% if not openshift_origin %}{% if not (agent or aws or bare or gcp or ibm_power or ibm_z or azure or ibm_power_vs) %}<td>compute: architecture:</td>{% endif %}{% endif %}
@@ -388,7 +388,7 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   {% if not openshift_origin %}{% if aws or azure or gcp or bare %}<td>compute: architecture:</td>{% endif %}{% endif %}
-  {% if not openshift_origin %}{% if aws or azure or gcp or bare %}<td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> and <code>arm64</code>.<br><br>Not all installation options support the 64-bit ARM architecture. To verify if your installation option is supported on your platform, see <em>Supported installation methods for different platforms</em> in <em>Selecting a cluster installation method and preparing it for users</em>.<br><br><strong>Value:</strong> String</td>{% endif %}{% endif %}
+  {% if not openshift_origin %}{% if aws or azure or gcp or bare %}<td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> and <code>arm64</code>.<br><br> {% if aws or azure %} Not all installation options support the 64-bit ARM architecture. To verify if your installation option is supported on your platform, see <em>Supported installation methods for different platforms</em> in <em>Selecting a cluster installation method and preparing it for users</em>. {% endif %} <br><br><strong>Value:</strong> String</td>{% endif %}{% endif %}
 </tr>
 <tr>
   {% if not openshift_origin %}{% if ibm_z %}<td>compute: architecture:</td>{% endif %}{% endif %}
@@ -404,11 +404,11 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   {% if openshift_origin %}<td>compute: architecture:</td>{% endif %}
-  {% if openshift_origin %}<td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. The valid value is the default: <code>amd64</code>.<br><br>See <em>Supported installation methods for different platforms</em> in <em>Installing</em> documentation for information about instance availability.<br><br><strong>Value:</strong> String</td>{% endif %}
+  {% if openshift_origin %}<td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. The valid value is the default: <code>amd64</code>.<br><br> {% if aws %} See <em>Supported installation methods for different platforms</em> in <em>Installing</em> documentation for information about instance availability. {% endif %} <br><br><strong>Value:</strong> String</td>{% endif %}
 </tr>
 <tr>
   {% if not vsphere %}<td>compute: hyperthreading:</td>{% endif %}
-  {% if not vsphere %}<td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on compute machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><dl><dt>Important</dt><dd>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</dd></dl><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>{% endif %}
+  {% if not vsphere %}<td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on compute machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</dd></dl><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>{% endif %}
 </tr>
 <tr>
   {% if ibm_power_vs %}<td>compute: smtLevel:</td>{% endif %}
@@ -420,11 +420,11 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>compute: platform:</td>
-  <td>Required if you use <code>compute</code>. Use this parameter to specify the cloud provider to host the worker machines. This parameter value must match the <code>controlPlane.platform</code> parameter value.<br><br>Example usage, <code>compute.platform.powervs.sysType</code>.</td>
+  <td>Required if you use <code>compute</code>. Use this parameter to specify the cloud provider to host the worker machines. This parameter value must match the <code>controlPlane.platform</code> parameter value.<br><br> {% if ibm_power_vs %} Example usage, <code>compute.platform.powervs.sysType</code>.<br><br> {% endif %}</td>
 </tr>
 <tr>
   {% if ibm_power_vs %}<td>compute: platform: powervs: sysType:</td>{% endif %}
-  {% if ibm_power_vs %}<td>Defines the system type for the instance.<br><br><strong>Value:</strong> The available system types depend on the zone you want to target. Supported values are <code>e980</code>, <code>s922</code>, <code>e1080</code>, or <code>s1022</code>.<br><br><strong>Value:</strong><code>aws</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code><code>baremetal</code>, <code>vsphere</code>, or <code>{}</code></td>{% endif %}
+  {% if ibm_power_vs %}<td>Defines the system type for the instance.<br><br><strong>Value:</strong> The available system types depend on the zone you want to target. Supported values are <code>e980</code>, <code>s922</code>, <code>e1080</code>, or <code>s1022</code>.<br><br><strong>Value:</strong> {% if not agent %} <code>aws</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code> {% endif %} {% if agent %} <code>baremetal</code>, <code>vsphere</code>, or <code>{}</code> {% endif %}</td>{% endif %}
 </tr>
 <tr>
   <td>compute: replicas:</td>
@@ -444,7 +444,7 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   {% if not openshift_origin %}{% if aws or azure or gcp or bare %}<td>controlPlane: architecture:</td>{% endif %}{% endif %}
-  {% if not openshift_origin %}{% if aws or azure or gcp or bare %}<td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> and <code>arm64</code>.<br><br>Not all installation options support the 64-bit ARM architecture. To verify if your installation option is supported on your platform, see <em>Supported installation methods for different platforms</em> in <em>Selecting a cluster installation method and preparing it for users</em>.<br><br><strong>Value:</strong> String</td>{% endif %}{% endif %}
+  {% if not openshift_origin %}{% if aws or azure or gcp or bare %}<td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> and <code>arm64</code>.<br><br> {% if aws or azure %} Not all installation options support the 64-bit ARM architecture. To verify if your installation option is supported on your platform, see <em>Supported installation methods for different platforms</em> in <em>Selecting a cluster installation method and preparing it for users</em>. {% endif %} <br><br><strong>Value:</strong> String</td>{% endif %}{% endif %}
 </tr>
 <tr>
   {% if not openshift_origin %}{% if ibm_z %}<td>controlPlane: architecture:</td>{% endif %}{% endif %}
@@ -460,11 +460,11 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   {% if openshift_origin %}<td>controlPlane: architecture:</td>{% endif %}
-  {% if openshift_origin %}<td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. The valid value is <code>amd64</code>.<br><br>See <em>Supported installation methods for different platforms</em> in <em>Installing</em> documentation for information about instance availability.<br><br><strong>Value:</strong> String</td>{% endif %}
+  {% if openshift_origin %}<td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. The valid value is <code>amd64</code>.<br><br> {% if aws %} See <em>Supported installation methods for different platforms</em> in <em>Installing</em> documentation for information about instance availability. {% endif %} <br><br><strong>Value:</strong> String</td>{% endif %}
 </tr>
 <tr>
   {% if not vsphere %}<td>controlPlane: hyperthreading:</td>{% endif %}
-  {% if not vsphere %}<td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on control plane machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><dl><dt>Important</dt><dd>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</dd></dl><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>{% endif %}
+  {% if not vsphere %}<td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on control plane machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</dd></dl><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>{% endif %}
 </tr>
 <tr>
   <td>controlPlane: name:</td>
@@ -472,15 +472,15 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>controlPlane: platform:</td>
-  <td>Required if you use <code>controlPlane</code>. Use this parameter to specify the cloud provider that hosts the control plane machines. This parameter value must match the <code>compute.platform</code> parameter value.<br><br>Example usage, <code>controlPlane.platform.powervs.processors</code>.</td>
+  <td>Required if you use <code>controlPlane</code>. Use this parameter to specify the cloud provider that hosts the control plane machines. This parameter value must match the <code>compute.platform</code> parameter value.<br><br> {% if ibm_power_vs %} Example usage, <code>controlPlane.platform.powervs.processors</code>.<br><br> {% endif %}</td>
 </tr>
 <tr>
   {% if ibm_power_vs %}<td>controlPlane: platform: powervs: sysType:</td>{% endif %}
-  {% if ibm_power_vs %}<td>Defines the system type for the instance.<br><br><strong>Value:</strong> The available system types depend on the zone you want to target. Supported values are <code>e980</code>, <code>s922</code>, <code>e1080</code>, or <code>s1022</code>.<br><br><strong>Value:</strong><code>aws</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code><code>baremetal</code>, <code>vsphere</code>, or <code>{}</code></td>{% endif %}
+  {% if ibm_power_vs %}<td>Defines the system type for the instance.<br><br><strong>Value:</strong> The available system types depend on the zone you want to target. Supported values are <code>e980</code>, <code>s922</code>, <code>e1080</code>, or <code>s1022</code>.<br><br><strong>Value:</strong> {% if not agent %} <code>aws</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code> {% endif %} {% if agent %} <code>baremetal</code>, <code>vsphere</code>, or <code>{}</code> {% endif %}</td>{% endif %}
 </tr>
 <tr>
   <td>controlPlane: replicas:</td>
-  <td>The number of control plane machines to provision.<br><br><strong>Value:</strong>Supported values are <code>3</code>, or <code>1</code> when deploying {{ sno }}.Supported values are <code>3</code>, <code>4</code>, <code>5</code>, or <code>1</code> when deploying {{ sno }}.</td>
+  <td>The number of control plane machines to provision.<br><br><strong>Value:</strong> {% if not agent %} Supported values are <code>3</code>, or <code>1</code> when deploying {{ sno }}. {% endif %} {% if agent %} Supported values are <code>3</code>, <code>4</code>, <code>5</code>, or <code>1</code> when deploying {{ sno }}. {% endif %}</td>
 </tr>
 <tr>
   <td>arbiter: name:</td>
@@ -492,15 +492,15 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>credentialsMode:</td>
-  <td>The Cloud Credential Operator (CCO) mode. If no mode is specified, the CCO dynamically tries to determine the capabilities of the provided credentials, with a preference for mint mode on the platforms where multiple modes are supported.<br><br><dl><dt>Note</dt><dd>Not all CCO modes are supported for all cloud providers. For more information about CCO modes, see the "Managing cloud provider credentials" entry in the <em>Authentication and authorization</em> content.</dd></dl><br><br><strong>Value:</strong> <code>Mint</code>, <code>Passthrough</code>, <code>Manual</code> or an empty string (<code>""</code>).</td>
+  <td>The Cloud Credential Operator (CCO) mode. If no mode is specified, the CCO dynamically tries to determine the capabilities of the provided credentials, with a preference for mint mode on the platforms where multiple modes are supported.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>Not all CCO modes are supported for all cloud providers. For more information about CCO modes, see the "Managing cloud provider credentials" entry in the <em>Authentication and authorization</em> content.</dd></dl><br><br><strong>Value:</strong> <code>Mint</code>, <code>Passthrough</code>, <code>Manual</code> or an empty string (<code>""</code>).</td>
 </tr>
 <tr>
   {% if not (openshift_origin or ibm_power_vs) %}<td>fips:</td>{% endif %}
-  {% if not (openshift_origin or ibm_power_vs) %}<td>Enable or disable FIPS mode. The default is <code>false</code> (disabled). If you enable FIPS mode, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that {{ op_system }} provides instead.<br><br>{% include "./snippets/fips-snippet.md" %}<br><br><dl><dt>Important</dt><dd>If you are using Azure File storage, you cannot enable FIPS mode.</dd></dl><br><br><strong>Value:</strong> <code>false</code> or <code>true</code></td>{% endif %}
+  {% if not (openshift_origin or ibm_power_vs) %}<td>Enable or disable FIPS mode. The default is <code>false</code> (disabled). If you enable FIPS mode, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that {{ op_system }} provides instead.<br><br>{% include "./snippets/fips-snippet.md" %}<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>If you are using Azure File storage, you cannot enable FIPS mode.</dd></dl><br><br><strong>Value:</strong> <code>false</code> or <code>true</code></td>{% endif %}
 </tr>
 <tr>
   {% if not (openshift_origin or ibm_power_vs) %}<td>endpoint: name: <endpoint_name> clusterUseOnly: <code>true</code> or <code>false</code></td>{% endif %}
-  {% if not (openshift_origin or ibm_power_vs) %}<td>The <code>name</code> parameter contains the name of the Private Service Connect (PSC) endpoints.<br><br><dl><dt>Important</dt><dd>When <code>clusterUseOnly</code> is <code>false</code>, its default setting, you must run the installation program from a bastion host that is within the same VPC where you want to deploy the cluster.</dd></dl><br><br>When you want the installation program to use the public API endpoints and cluster Operators to use the API endpoint overrides, set <code>clusterUseOnly</code> to <code>true</code>. When you want both the installation program and the cluster Operators to use the API endpoint overrides, for example if you are running the installation program from a bastion host that is within the same VPC where you want to deploy the cluster, set <code>clusterUseOnly</code> to <code>false</code> . The parameter is optional and defaults to <code>false</code>.<br><br><strong>Value:</strong> String or boolean</td>{% endif %}
+  {% if not (openshift_origin or ibm_power_vs) %}<td>The <code>name</code> parameter contains the name of the Private Service Connect (PSC) endpoints.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When <code>clusterUseOnly</code> is <code>false</code>, its default setting, you must run the installation program from a bastion host that is within the same VPC where you want to deploy the cluster.</dd></dl><br><br>When you want the installation program to use the public API endpoints and cluster Operators to use the API endpoint overrides, set <code>clusterUseOnly</code> to <code>true</code>. When you want both the installation program and the cluster Operators to use the API endpoint overrides, for example if you are running the installation program from a bastion host that is within the same VPC where you want to deploy the cluster, set <code>clusterUseOnly</code> to <code>false</code> . The parameter is optional and defaults to <code>false</code>.<br><br><strong>Value:</strong> String or boolean</td>{% endif %}
 </tr>
 <tr>
   <td>imageContentSources:</td>
@@ -524,11 +524,11 @@ Optional installation configuration parameters are described in the following ta
 </tr>
 <tr>
   <td>publish:</td>
-  <td>How to publish or expose the user-facing endpoints of your cluster, such as the Kubernetes API, OpenShift routes.<br><br><strong>Value:</strong><code>Internal</code> or <code>External</code>. To deploy a private cluster that cannot be accessed from the internet, set the <code>publish</code> parameter to <code>Internal</code>. The default value is <code>External</code>.<code>Internal</code>, <code>External</code>, or <code>Mixed</code>. To deploy a private cluster that cannot be accessed from the internet, set the <code>publish</code> parameter to <code>Internal</code>. The default value is <code>External</code>. To deploy a cluster where the API and the ingress server have different publishing strategies, set <code>publish</code> to <code>Mixed</code> and use the <code>operatorPublishingStrategy</code> parameter.<code>Internal</code> or <code>External</code>. The default value is <code>External</code>.<br><br>Setting this field to <code>Internal</code> is not supported on non-cloud platforms.</td>
+  <td>How to publish or expose the user-facing endpoints of your cluster, such as the Kubernetes API, OpenShift routes.<br><br><strong>Value:</strong> {% if aws or gcp or ibm_cloud %} <code>Internal</code> or <code>External</code>. To deploy a private cluster that cannot be accessed from the internet, set the <code>publish</code> parameter to <code>Internal</code>. The default value is <code>External</code>. {% endif %} {% if azure %} <code>Internal</code>, <code>External</code>, or <code>Mixed</code>. To deploy a private cluster that cannot be accessed from the internet, set the <code>publish</code> parameter to <code>Internal</code>. The default value is <code>External</code>. To deploy a cluster where the API and the ingress server have different publishing strategies, set <code>publish</code> to <code>Mixed</code> and use the <code>operatorPublishingStrategy</code> parameter. {% endif %} {% if not (aws or azure or gcp or ibm_cloud) %} <code>Internal</code> or <code>External</code>. The default value is <code>External</code>.<br><br>Setting this field to <code>Internal</code> is not supported on non-cloud platforms. {% endif %}</td>
 </tr>
 <tr>
   <td>sshKey:</td>
-  <td>The SSH key to authenticate access to your cluster machines.<br><br><dl><dt>Note</dt><dd>For production {{ product_title }} clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your <code>ssh-agent</code> process uses.</dd></dl><br><br><strong>Value:</strong> For example, <code>sshKey: ssh-ed25519 AAAA..</code>.</td>
+  <td>The SSH key to authenticate access to your cluster machines.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>For production {{ product_title }} clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your <code>ssh-agent</code> process uses.</dd></dl><br><br><strong>Value:</strong> For example, <code>sshKey: ssh-ed25519 AAAA..</code>.</td>
 </tr>
 <tr>
   {% if ibm_power_vs %}<td>platform: powervs: vpcRegion:</td>{% endif %}
@@ -604,7 +604,7 @@ Setting this parameter to `Manual` enables alternatives to storing administrator
 
 Optional AWS configuration parameters are described in the following table:
 
-***Optional AWS parameters***
+**Optional AWS parameters**
 
 <table>
 <thead>
@@ -656,15 +656,15 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>compute: platform: aws: hostPlacement: affinity:</td>
-  <td>Specifies the affinity setting for placing compute machines on {{ aws_short }} Dedicated Hosts. When set to <code>DedicatedHost</code>, machines are pinned to the specific Dedicated Hosts listed in the <code>dedicatedHost</code> field. If a machine is stopped and restarted, the machine returns to the same physical host. When set to <code>AnyAvailable</code>, machines are not pinned to specific Dedicated Hosts. If a machine is stopped and restarted, {{ aws_short }} can place the machine on any available Dedicated Host that matches the instance type and availability zone.<br><br><dl><dt>Important</dt><dd>{{ aws_short }} Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> <code>DedicatedHost</code> or <code>AnyAvailable</code>.</td>
+  <td>Specifies the affinity setting for placing compute machines on {{ aws_short }} Dedicated Hosts. When set to <code>DedicatedHost</code>, machines are pinned to the specific Dedicated Hosts listed in the <code>dedicatedHost</code> field. If a machine is stopped and restarted, the machine returns to the same physical host. When set to <code>AnyAvailable</code>, machines are not pinned to specific Dedicated Hosts. If a machine is stopped and restarted, {{ aws_short }} can place the machine on any available Dedicated Host that matches the instance type and availability zone.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>{{ aws_short }} Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> <code>DedicatedHost</code> or <code>AnyAvailable</code>.</td>
 </tr>
 <tr>
   <td>compute: platform: aws: hostPlacement: dedicatedHost:</td>
-  <td>A list of {{ aws_short }} Dedicated Host entries for compute machines. Required when <code>hostPlacement.affinity</code> is set to <code>DedicatedHost</code>. Must be omitted when <code>hostPlacement.affinity</code> is set to <code>AnyAvailable</code>.<br><br><dl><dt>Important</dt><dd>{{ aws_short }} Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> A list of objects.</td>
+  <td>A list of {{ aws_short }} Dedicated Host entries for compute machines. Required when <code>hostPlacement.affinity</code> is set to <code>DedicatedHost</code>. Must be omitted when <code>hostPlacement.affinity</code> is set to <code>AnyAvailable</code>.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>{{ aws_short }} Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> A list of objects.</td>
 </tr>
 <tr>
   <td>compute: platform: aws: hostPlacement: dedicatedHost: - id:</td>
-  <td>The ID of the {{ aws_short }} Dedicated Host. The value must start with <code>h-</code> followed by 17 lowercase hexadecimal characters.<br><br><dl><dt>Important</dt><dd>{{ aws_short }} Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> String, for example <code>h-015c6d3ffa1d43d38</code>.</td>
+  <td>The ID of the {{ aws_short }} Dedicated Host. The value must start with <code>h-</code> followed by 17 lowercase hexadecimal characters.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>{{ aws_short }} Dedicated Host support is a Technology Preview feature only. Technology Preview features are not supported with Red&#160;Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> String, for example <code>h-015c6d3ffa1d43d38</code>.</td>
 </tr>
 <tr>
   <td>controlPlane: platform: aws: amiID:</td>
@@ -720,11 +720,11 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>platform: aws: userProvisionedDNS:</td>
-  <td>Enables user-provisioned DNS instead of the default cluster-provisioned DNS solution. If you use this feature, you must provide your own DNS solution that includes records for <code>api.<cluster_name>.<base_domain>.</code> and <code>*.apps.<cluster_name>.<base_domain>.</code>. <code>userProvisionedDNS</code> is a Technology Preview feature.<br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Disabled</code>.</td>
+  <td>Enables user-provisioned DNS instead of the default cluster-provisioned DNS solution. If you use this feature, you must provide your own DNS solution that includes records for <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code> and <code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code>. <code>userProvisionedDNS</code> is a Technology Preview feature.<br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Disabled</code>.</td>
 </tr>
 <tr>
   <td>platform: aws: region:</td>
-  <td>The AWS region that the installation program creates all cluster resources in.<br><br><strong>Value:</strong> Any valid <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS region</a>, such as <code>us-east-1</code>. You can use the AWS CLI to access the regions available based on your selected instance type by running the following command:<br><br><pre>$ aws ec2 describe-instance-type-offerings --filters Name=instance-type,Values=c7g.xlarge</pre><br><br><dl><dt>Important</dt><dd>When running on ARM based AWS instances, ensure that you enter a region where AWS Graviton processors are available. See <a href="https://aws.amazon.com/ec2/graviton/#Global_availability">Global availability</a> map in the AWS documentation. Currently, AWS Graviton3 processors are only available in some regions.</dd></dl></td>
+  <td>The AWS region that the installation program creates all cluster resources in.<br><br><strong>Value:</strong> Any valid <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS region</a>, such as <code>us-east-1</code>. You can use the AWS CLI to access the regions available based on your selected instance type by running the following command:<br><br><pre>$ aws ec2 describe-instance-type-offerings --filters Name=instance-type,Values=c7g.xlarge</pre><br><br> {% if not openshift_origin %} <dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When running on ARM based AWS instances, ensure that you enter a region where AWS Graviton processors are available. See <a href="https://aws.amazon.com/ec2/graviton/#Global_availability">Global availability</a> map in the AWS documentation. Currently, AWS Graviton3 processors are only available in some regions.</dd></dl> {% endif %}</td>
 </tr>
 <tr>
   <td>platform: aws: serviceEndpoints: - name: url:</td>
@@ -732,7 +732,7 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>platform: aws: userTags:</td>
-  <td>A map of keys and values that the installation program adds as tags to all resources that it creates.<br><br><strong>Value:</strong> Any valid YAML map, such as key value pairs in the <code><key>: <value></code> format. For more information about AWS tags, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Tagging Your Amazon EC2 Resources</a> in the AWS documentation.<br><br><dl><dt>Note</dt><dd>You can add up to 25 user-defined tags during installation. The remaining 25 tags are reserved for {{ product_title }}.</dd></dl></td>
+  <td>A map of keys and values that the installation program adds as tags to all resources that it creates.<br><br><strong>Value:</strong> Any valid YAML map, such as key value pairs in the <code>&lt;key&gt;: &lt;value&gt;</code> format. For more information about AWS tags, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Tagging Your Amazon EC2 Resources</a> in the AWS documentation.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You can add up to 25 user-defined tags during installation. The remaining 25 tags are reserved for {{ product_title }}.</dd></dl></td>
 </tr>
 <tr>
   <td>platform: aws: propagateUserTags:</td>
@@ -740,7 +740,7 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>platform: aws: publicIpv4Pool:</td>
-  <td>The public IPv4 pool ID that is used to allocate Elastic IPs (EIPs) when <code>publish</code> is set to <code>External</code>. You must provision and advertise the pool in the same {{ aws_short }} account and region of the cluster. You must ensure that you have 2n + 1 IPv4 addresses available in the pool where <em>n</em> is the total number of {{ aws_short }} zones used to deploy the Network Load Balancer (NLB) for API, NAT gateways, and bootstrap node. For more information about bring your own IP addresses (BYOIP) in {{ aws_short }}, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-onboard">Onboard your BYOIP</a>.<br><br><strong>Value:</strong> A valid <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-public-ipv4-pools.html">public IPv4 pool id</a><br><br><dl><dt>Note</dt><dd>You can enable BYOIP only for customized installations that do not have any network restrictions.</dd></dl></td>
+  <td>The public IPv4 pool ID that is used to allocate Elastic IPs (EIPs) when <code>publish</code> is set to <code>External</code>. You must provision and advertise the pool in the same {{ aws_short }} account and region of the cluster. You must ensure that you have 2n + 1 IPv4 addresses available in the pool where <em>n</em> is the total number of {{ aws_short }} zones used to deploy the Network Load Balancer (NLB) for API, NAT gateways, and bootstrap node. For more information about bring your own IP addresses (BYOIP) in {{ aws_short }}, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html#byoip-onboard">Onboard your BYOIP</a>.<br><br><strong>Value:</strong> A valid <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-public-ipv4-pools.html">public IPv4 pool id</a><br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>You can enable BYOIP only for customized installations that do not have any network restrictions.</dd></dl></td>
 </tr>
 <tr>
   <td>platform: aws: bestEffortDeleteIgnition:</td>
@@ -748,7 +748,7 @@ Optional AWS configuration parameters are described in the following table:
 </tr>
 <tr>
   <td>platform: aws: ipFamily:</td>
-  <td>The IP address family for networks used by the cluster. Specify <code>IPv4</code> for IPv4-only networking, <code>DualStackIPv4Primary</code> for dual-stack networking with IPv4 as the primary address family, or <code>DualStackIPv6Primary</code> for dual-stack networking with IPv6 as the primary address family. When using dual-stack, the VPC and subnets must be configured with both IPv4 and IPv6 CIDR blocks.<br><br>Consider the following requirements if you use dual-stack networking:<br><br><ul><li>All API and Ingress load balancers must be Network Load Balancers (NLB). Classic Load Balancers (CLB) do not support IPv6 addressing.</li><li>All machines in a dual-stack cluster must be Nitro-based and support IPv6 addressing.</li><li>If you are installing a cluster using existing subnets, all provided subnets must be configured with dual-stack address pools.</li><li>If you are installing a cluster using Local Zones, you must provide dual-stack subnets. The installation program cannot automatically provision dual-stack subnets in Local Zones.</li><li>Installing a cluster using dual-stack networking is not supported in Wavelength Zones.</li></ul><dl><dt>Important</dt><dd>Dual-stack networking on {{ aws_short }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> "IPv4", "DualStackIPv4Primary", or "DualStackIPv6Primary". The default value is "IPv4".</td>
+  <td>The IP address family for networks used by the cluster. Specify <code>IPv4</code> for IPv4-only networking, <code>DualStackIPv4Primary</code> for dual-stack networking with IPv4 as the primary address family, or <code>DualStackIPv6Primary</code> for dual-stack networking with IPv6 as the primary address family. When using dual-stack, the VPC and subnets must be configured with both IPv4 and IPv6 CIDR blocks.<br><br>Consider the following requirements if you use dual-stack networking:<br><br><ul><li>All API and Ingress load balancers must be Network Load Balancers (NLB). Classic Load Balancers (CLB) do not support IPv6 addressing.</li><li>All machines in a dual-stack cluster must be Nitro-based and support IPv6 addressing.</li><li>If you are installing a cluster using existing subnets, all provided subnets must be configured with dual-stack address pools.</li><li>If you are installing a cluster using Local Zones, you must provide dual-stack subnets. The installation program cannot automatically provision dual-stack subnets in Local Zones.</li><li>Installing a cluster using dual-stack networking is not supported in Wavelength Zones.</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dual-stack networking on {{ aws_short }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> "IPv4", "DualStackIPv4Primary", or "DualStackIPv6Primary". The default value is "IPv4".</td>
 </tr>
 <tr>
   <td>platform: aws: vpc: subnets:</td>
@@ -772,7 +772,7 @@ Optional AWS configuration parameters are described in the following table:
 
 Additional {{ rh_openstack }} configuration parameters are described in the following table:
 
-***Additional {{ rh_openstack }} parameters***
+**Additional {{ rh_openstack }} parameters**
 
 <table>
 <thead>
@@ -788,11 +788,11 @@ Additional {{ rh_openstack }} configuration parameters are described in the foll
 </tr>
 <tr>
   <td>compute: platform: openstack: rootVolume: types:</td>
-  <td>For compute machines, the root volume types.<br><br><strong>Value:</strong> A list of strings, for example, {<code>performance-host1</code>, <code>performance-host2</code>, <code>performance-host3</code>}. ^[1]^</td>
+  <td>For compute machines, the root volume types.<br><br><strong>Value:</strong> A list of strings, for example, {<code>performance-host1</code>, <code>performance-host2</code>, <code>performance-host3</code>}. <sup>[1]</sup></td>
 </tr>
 <tr>
   <td>compute: platform: openstack: rootVolume: type:</td>
-  <td>For compute machines, the root volume's type. This property is deprecated and is replaced by <code>compute.platform.openstack.rootVolume.types</code>.<br><br><strong>Value:</strong> String, for example, <code>performance</code>. ^[2]^</td>
+  <td>For compute machines, the root volume's type. This property is deprecated and is replaced by <code>compute.platform.openstack.rootVolume.types</code>.<br><br><strong>Value:</strong> String, for example, <code>performance</code>. <sup>[2]</sup></td>
 </tr>
 <tr>
   <td>compute: platform: openstack: rootVolume: zones:</td>
@@ -804,11 +804,11 @@ Additional {{ rh_openstack }} configuration parameters are described in the foll
 </tr>
 <tr>
   <td>controlPlane: platform: openstack: rootVolume: types:</td>
-  <td>For control plane machines, the root volume types.<br><br><strong>Value:</strong> A list of strings, for example, {<code>performance-host1</code>, <code>performance-host2</code>, <code>performance-host3</code>}. ^[1]^</td>
+  <td>For control plane machines, the root volume types.<br><br><strong>Value:</strong> A list of strings, for example, {<code>performance-host1</code>, <code>performance-host2</code>, <code>performance-host3</code>}. <sup>[1]</sup></td>
 </tr>
 <tr>
   <td>controlPlane: platform: openstack: rootVolume: type:</td>
-  <td>For control plane machines, the root volume's type. This property is deprecated and is replaced by <code>compute.platform.openstack.rootVolume.types</code>.<br><br><strong>Value:</strong> String, for example, <code>performance</code>. ^[2]^</td>
+  <td>For control plane machines, the root volume's type. This property is deprecated and is replaced by <code>compute.platform.openstack.rootVolume.types</code>.<br><br><strong>Value:</strong> String, for example, <code>performance</code>. <sup>[2]</sup></td>
 </tr>
 <tr>
   <td>controlPlane: platform: openstack: rootVolume: zones:</td>
@@ -836,7 +836,7 @@ Additional {{ rh_openstack }} configuration parameters are described in the foll
 
 Optional {{ rh_openstack }} configuration parameters are described in the following table:
 
-***Optional {{ rh_openstack }} parameters***
+**Optional {{ rh_openstack }} parameters**
 
 <table>
 <thead>
@@ -884,7 +884,7 @@ Optional {{ rh_openstack }} configuration parameters are described in the follow
 </tr>
 <tr>
   <td>platform: openstack: clusterOSImage:</td>
-  <td>The location from which the installation program downloads the {{ op_system }} image.<br><br>You must set this parameter to perform an installation in a restricted network.<br><br><strong>Value:</strong> An HTTP or HTTPS URL, optionally with an SHA-256 checksum.<br><br>For example, <code>\http://mirror.example.com/images/rhcos-43.81.201912131630.0-openstack.x86_64.qcow2.gz?sha256=ffebbd68e8a1f2a245ca19522c16c86f67f9ac8e4e0c1f0a812b068b16f7265d</code>.The value can also be the name of an existing Glance image, for example <code>my-rhcos</code>.</td>
+  <td>The location from which the installation program downloads the {{ op_system }} image.<br><br>You must set this parameter to perform an installation in a restricted network.<br><br><strong>Value:</strong> An HTTP or HTTPS URL, optionally with an SHA-256 checksum.<br><br>For example, <code>\http://mirror.example.com/images/rhcos-43.81.201912131630.0-openstack.x86_64.qcow2.gz?sha256=ffebbd68e8a1f2a245ca19522c16c86f67f9ac8e4e0c1f0a812b068b16f7265d</code>. The value can also be the name of an existing Glance image, for example <code>my-rhcos</code>.</td>
 </tr>
 <tr>
   <td>platform: openstack: clusterOSImageProperties:</td>
@@ -945,7 +945,7 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 :::
 
 
-***Additional Azure parameters***
+**Additional Azure parameters**
 
 <table>
 <thead>
@@ -957,7 +957,7 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 <tbody>
 <tr>
   <td>compute: platform: azure: bootDiagnostics: type:</td>
-  <td>Enables boot diagnostics collection for compute machines. The <code>type</code> field specifies the {{ azure_short }} boot diagnostics type for the created compute machines.<br><br>The following values are associated with the boot diagnostics type:<br><br><code>UserManaged</code>:: When you set <code>type</code> to <code>UserManaged</code>, you must provide values for <code>resourceGroup</code> and <code>storageAccountName</code>. For <code>storageAccountName</code> and  {{ product_title }} cluster nodes, use the same region and subscription.<br><br><code>Managed</code>:: When you set <code>type</code> to <code>Managed</code>, {{ azure_short }} stores the boot diagnostics data blobs  in a managed storage account.<br><br><code>Disabled</code>:: When you set <code>type</code> to <code>Disabled</code>, you turn off the parameter.<br><br><strong>Value:</strong> String, for example <code>Enabled</code>.</td>
+  <td>Enables boot diagnostics collection for compute machines. The <code>type</code> field specifies the {{ azure_short }} boot diagnostics type for the created compute machines.<br><br>The following values are associated with the boot diagnostics type:<br><br><dl><dt><code>UserManaged</code></dt><dd>When you set <code>type</code> to <code>UserManaged</code>, you must provide values for <code>resourceGroup</code> and <code>storageAccountName</code>. For <code>storageAccountName</code> and  {{ product_title }} cluster nodes, use the same region and subscription.</dd><dt><code>Managed</code></dt><dd>When you set <code>type</code> to <code>Managed</code>, {{ azure_short }} stores the boot diagnostics data blobs  in a managed storage account.</dd><dt><code>Disabled</code></dt><dd>When you set <code>type</code> to <code>Disabled</code>, you turn off the parameter.</dd></dl><strong>Value:</strong> String, for example <code>Enabled</code>.</td>
 </tr>
 <tr>
   <td>compute: platform: azure: bootDiagnostics: resourceGroup:</td>
@@ -1013,11 +1013,11 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 </tr>
 <tr>
   <td>compute: platform: azure: identity: type:</td>
-  <td>The type of identity used for compute virtual machines.The <code>UserAssigned</code> identity is a standalone Azure resource provided by the user and assigned to compute virtual machines.If you specify <code>identity.type</code> as <code>UserAssigned</code>, but do not provide a user-assigned identity, the installation program creates the identity.If you provide a user-assigned identity, the Azure account that you use to create the identity must have either the "User Access Administrator" or "RBAC Access Admin" roles.<br><br><strong>Value:</strong> <code>UserAssigned</code> or <code>None</code>. If you do not specify a value, the installation program generates a user-assigned identity.</td>
+  <td>The type of identity used for compute virtual machines. The <code>UserAssigned</code> identity is a standalone Azure resource provided by the user and assigned to compute virtual machines. If you specify <code>identity.type</code> as <code>UserAssigned</code>, but do not provide a user-assigned identity, the installation program creates the identity. If you provide a user-assigned identity, the Azure account that you use to create the identity must have either the "User Access Administrator" or "RBAC Access Admin" roles.<br><br><strong>Value:</strong> <code>UserAssigned</code> or <code>None</code>. If you do not specify a value, the installation program generates a user-assigned identity.</td>
 </tr>
 <tr>
   <td>compute: platform: azure: identity: userAssignedIdentities: - name: resourceGroup: subscription:</td>
-  <td>A group of parameters that specify the name of the user-assigned identity, and the resource group and subscription that contain the identity. All three values must be provided to specify a user-assigned identity.Only one user-assigned identity can be supplied.Supplying more than one user-assigned identity is an experimental feature, which may be enabled with the <code>MachineAPIMigration</code> feature gate.<br><br><strong>Value:</strong> Array of strings.</td>
+  <td>A group of parameters that specify the name of the user-assigned identity, and the resource group and subscription that contain the identity. All three values must be provided to specify a user-assigned identity. Only one user-assigned identity can be supplied. Supplying more than one user-assigned identity is an experimental feature, which may be enabled with the <code>MachineAPIMigration</code> feature gate.<br><br><strong>Value:</strong> Array of strings.</td>
 </tr>
 <tr>
   <td>compute: platform: azure: vmNetworkingType:</td>
@@ -1057,31 +1057,31 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 </tr>
 <tr>
   <td>controlPlane: diskSetup:</td>
-  <td>Specifies node component information for dedicated disk configuration.<br><br><strong>Value:</strong> Array of objects. Each object includes the <code>type</code> and <code>etcd</code> parameters as described in the following rows of the table.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies node component information for dedicated disk configuration.<br><br><strong>Value:</strong> Array of objects. Each object includes the <code>type</code> and <code>etcd</code> parameters as described in the following rows of the table.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: diskSetup: - type:</td>
-  <td>Specifies which node component type to assign a dedicated disk.<br><br><strong>Value:</strong> <code>etcd</code> is the only supported value.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies which node component type to assign a dedicated disk.<br><br><strong>Value:</strong> <code>etcd</code> is the only supported value.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: diskSetup: - etcd:</td>
-  <td>Specifies parameters for an <code>etcd</code> dedicated disk.<br><br><strong>Value</strong>: The <code>platformDiskID</code> object is the only supported value.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies parameters for an <code>etcd</code> dedicated disk.<br><br><strong>Value</strong>: The <code>platformDiskID</code> object is the only supported value.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: diskSetup: - etcd: platformDiskID:</td>
-  <td>Specifies a name to identify the dedicated disk.<br><br><strong>Value:</strong> String. Must not exceed 12 characters.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies a name to identify the dedicated disk.<br><br><strong>Value:</strong> String. Must not exceed 12 characters.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: identity: type:</td>
-  <td>The type of identity used for control plane virtual machines.The <code>UserAssigned</code> identity is a standalone Azure resource provided by the user and assigned to control plane virtual machines.If you specify <code>identity.type</code> as <code>UserAssigned</code>, but do not provide a user-assigned identity, the installation program creates the identity.If you provide a user-assigned identity, the Azure account that you use to create the identity must have either the "User Access Administrator" or "RBAC Access Admin" roles.<br><br><strong>Value:</strong> <code>UserAssigned</code> or <code>None</code>. If you do not specify a value, the installation program generates a user-assigned identity.</td>
+  <td>The type of identity used for control plane virtual machines. The <code>UserAssigned</code> identity is a standalone Azure resource provided by the user and assigned to control plane virtual machines. If you specify <code>identity.type</code> as <code>UserAssigned</code>, but do not provide a user-assigned identity, the installation program creates the identity. If you provide a user-assigned identity, the Azure account that you use to create the identity must have either the "User Access Administrator" or "RBAC Access Admin" roles.<br><br><strong>Value:</strong> <code>UserAssigned</code> or <code>None</code>. If you do not specify a value, the installation program generates a user-assigned identity.</td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: bootDiagnostics: type:</td>
-  <td>Enables boot diagnostics collection for control plane machines. The <code>type</code> field specifies the {{ azure_short }} boot diagnostics type for the created control plane machines.<br><br>The following values are associated with the boot diagnostics type:<br><br><code>UserManaged</code>:: When you set <code>type</code> to <code>UserManaged</code>, you must provide the values for <code>resourceGroup</code> and <code>storageAccountName</code>. For <code>storageAccountName</code> and {{ product_title }} cluster nodes, ensure that you use the same region and subscription.<br><br><code>Managed</code>:: When you set <code>type</code> to <code>Managed</code>, {{ azure_short }} stores the boot diagnostics data blobs in a managed storage account.<br><br><code>Disabled</code>:: When you set <code>type</code> to <code>Disabled</code>, you turn off the parameter.<br><br><strong>Value:</strong> String. For control plane machines, the default value is <code>Managed</code>.</td>
+  <td>Enables boot diagnostics collection for control plane machines. The <code>type</code> field specifies the {{ azure_short }} boot diagnostics type for the created control plane machines.<br><br>The following values are associated with the boot diagnostics type:<br><br><dl><dt><code>UserManaged</code></dt><dd>When you set <code>type</code> to <code>UserManaged</code>, you must provide the values for <code>resourceGroup</code> and <code>storageAccountName</code>. For <code>storageAccountName</code> and {{ product_title }} cluster nodes, ensure that you use the same region and subscription.</dd><dt><code>Managed</code></dt><dd>When you set <code>type</code> to <code>Managed</code>, {{ azure_short }} stores the boot diagnostics data blobs in a managed storage account.</dd><dt><code>Disabled</code></dt><dd>When you set <code>type</code> to <code>Disabled</code>, you turn off the parameter.</dd></dl><strong>Value:</strong> String. For control plane machines, the default value is <code>Managed</code>.</td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: identity: userAssignedIdentities: - name: resourceGroup: subscription:</td>
-  <td>A group of parameters that specify the name of the user-assigned identity, and the resource group and subscription that contain the identity. All three values must be provided to specify a user-assigned identity.Only one user-assigned identity can be supplied.Supplying more than one user-assigned identity is an experimental feature, which may be enabled with the <code>MachineAPIMigration</code> feature gate.<br><br><strong>Value:</strong> Array of strings.</td>
+  <td>A group of parameters that specify the name of the user-assigned identity, and the resource group and subscription that contain the identity. All three values must be provided to specify a user-assigned identity. Only one user-assigned identity can be supplied. Supplying more than one user-assigned identity is an experimental feature, which may be enabled with the <code>MachineAPIMigration</code> feature gate.<br><br><strong>Value:</strong> Array of strings.</td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: bootDiagnostics: resourceGroup:</td>
@@ -1093,23 +1093,23 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 </tr>
 <tr>
   <td>controlPlane: platform: azure: dataDisks:</td>
-  <td>Specifies dedicated disk parameters.<br><br><strong>Value:</strong> Array of objects. Each object includes <code>nameSuffix</code>, <code>cachingType</code>, <code>diskSizeGB</code>, and <code>lun</code> as described in the following rows of the table.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies dedicated disk parameters.<br><br><strong>Value:</strong> Array of objects. Each object includes <code>nameSuffix</code>, <code>cachingType</code>, <code>diskSizeGB</code>, and <code>lun</code> as described in the following rows of the table.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: dataDisks: - nameSuffix:</td>
-  <td>Specifies the same value you defined for <code>platformDiskID</code>.<br><br><strong>Value:</strong> String.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies the same value you defined for <code>platformDiskID</code>.<br><br><strong>Value:</strong> String.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: dataDisks: - cachingType:</td>
-  <td>Specifies the caching requirements for the disk.<br><br><strong>Value:</strong> <code>None</code> is the only value currently supported.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies the caching requirements for the disk.<br><br><strong>Value:</strong> <code>None</code> is the only value currently supported.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: dataDisks: - diskSizeGB:</td>
-  <td>Specifies a dedicated disk size in GB.<br><br><strong>Value:</strong> Integer greater than <code>0</code>.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies a dedicated disk size in GB.<br><br><strong>Value:</strong> Integer greater than <code>0</code>.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: dataDisks: - lun:</td>
-  <td>Specifies a logical unit number (LUN) for the dedicated disk.<br><br><strong>Value:</strong> Integer from <code>0</code> through <code>63</code> that is not used by another disk.<br><br><dl><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
+  <td>Specifies a logical unit number (LUN) for the dedicated disk.<br><br><strong>Value:</strong> Integer from <code>0</code> through <code>63</code> that is not used by another disk.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Dedicated disk for <code>etcd</code> on {{ azure_full }} is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process. For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: platform: azure: settings: securityType:</td>
@@ -1145,7 +1145,7 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 </tr>
 <tr>
   <td>platform: azure: defaultMachinePlatform: bootDiagnostics: type:</td>
-  <td>Enables boot diagnostics collection for all machines. The <code>type</code> field specifies the {{ azure_short }} boot diagnostics type for all the created machines.<br><br>The following values are associated with the boot diagnostics type:<br><br><code>UserManaged</code>:: When you set <code>type</code> to <code>UserManaged</code>, you must provide the values for <code>resourceGroup</code> and <code>storageAccountName</code>. For <code>storageAccountName</code> and {{ product_title }} cluster nodes, ensure that you use the same region and subscription.<br><br><code>Managed</code>:: When you set <code>type</code> to <code>Managed</code>, {{ azure_short }} stores the boot diagnostics data blobs in a managed storage account.<br><br><code>Disabled</code>:: When you set <code>type</code> to <code>Disabled</code>, you turn off the parameter.<br><br><strong>Value:</strong> String, for example <code>Enabled</code>.</td>
+  <td>Enables boot diagnostics collection for all machines. The <code>type</code> field specifies the {{ azure_short }} boot diagnostics type for all the created machines.<br><br>The following values are associated with the boot diagnostics type:<br><br><dl><dt><code>UserManaged</code></dt><dd>When you set <code>type</code> to <code>UserManaged</code>, you must provide the values for <code>resourceGroup</code> and <code>storageAccountName</code>. For <code>storageAccountName</code> and {{ product_title }} cluster nodes, ensure that you use the same region and subscription.</dd><dt><code>Managed</code></dt><dd>When you set <code>type</code> to <code>Managed</code>, {{ azure_short }} stores the boot diagnostics data blobs in a managed storage account.</dd><dt><code>Disabled</code></dt><dd>When you set <code>type</code> to <code>Disabled</code>, you turn off the parameter.</dd></dl><strong>Value:</strong> String, for example <code>Enabled</code>.</td>
 </tr>
 <tr>
   <td>platform: azure: defaultMachinePlatform: bootDiagnostics: resourceGroup:</td>
@@ -1177,11 +1177,11 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 </tr>
 <tr>
   <td>platform: azure: defaultMachinePlatform: identity: type:</td>
-  <td>The type of identity used for all virtual machines.The <code>UserAssigned</code> identity is a standalone Azure resource provided by the user and assigned to all virtual machines.If you specify <code>identity.type</code> as <code>UserAssigned</code>, but do not provide a user-assigned identity, the installation program creates the identity.If you provide a user-assigned identity, the Azure account that you use to create the identity must have either the "User Access Administrator" or "RBAC Access Admin" roles.<br><br><strong>Value:</strong> <code>UserAssigned</code> or <code>None</code>. If you do not specify a value, the installation program generates a user-assigned identity.</td>
+  <td>The type of identity used for all virtual machines. The <code>UserAssigned</code> identity is a standalone Azure resource provided by the user and assigned to all virtual machines. If you specify <code>identity.type</code> as <code>UserAssigned</code>, but do not provide a user-assigned identity, the installation program creates the identity. If you provide a user-assigned identity, the Azure account that you use to create the identity must have either the "User Access Administrator" or "RBAC Access Admin" roles.<br><br><strong>Value:</strong> <code>UserAssigned</code> or <code>None</code>. If you do not specify a value, the installation program generates a user-assigned identity.</td>
 </tr>
 <tr>
   <td>platform: azure: defaultMachinePlatform: identity: userAssignedIdentities: - name: resourceGroup: subscription:</td>
-  <td>A group of parameters that specify the name of the user-assigned identity, and the resource group and subscription that contain the identity. All three values must be provided to specify a user-assigned identity.Only one user-assigned identity can be supplied.Supplying more than one user-assigned identity is an experimental feature, which may be enabled with the <code>MachineAPIMigration</code> feature gate.<br><br><strong>Value:</strong> Array of strings.</td>
+  <td>A group of parameters that specify the name of the user-assigned identity, and the resource group and subscription that contain the identity. All three values must be provided to specify a user-assigned identity. Only one user-assigned identity can be supplied. Supplying more than one user-assigned identity is an experimental feature, which may be enabled with the <code>MachineAPIMigration</code> feature gate.<br><br><strong>Value:</strong> Array of strings.</td>
 </tr>
 <tr>
   <td>platform: azure: defaultMachinePlatform: osDisk: securityProfile: securityEncryptionType:</td>
@@ -1293,7 +1293,7 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 </tr>
 <tr>
   <td>platform: azure: outboundType:</td>
-  <td>The outbound routing strategy used to connect your cluster to the internet. The following strategies are available:<br><br><code>UserDefinedRouting</code>:: Specifies to the installation program that you will provide and configure your own networking infrastructure for outbound access. The outbound routing must be configured before installing a cluster. The installation program does not configure user-defined routing.<code>LoadBalancer</code>:: Specifies that a single load balancer will be provisioned to provide outbound access for your cluster. This is the default value.<code>NATGatewaySingleZone</code>:: Specifies that the installation program will create one NAT Gateway. If you provide your own subnets via the <code>platform.azure.subnets</code> parameter, the installation program will attach the NAT Gateway to the compute subnet you specify. If you do not provide your own subnets, the installation program will create a subnet for the control plane and a subnet for the compute plane, and attach the NAT Gateway to the compute subnet.<code>NATGatewayMultiZone</code>:: Specifies that the installation program will create multiple NAT Gateways. If you provide your own subnets via the <code>platform.azure.subnets</code> parameter, the installation program creates a NAT Gateway for each subnet with the <code>node</code> role, assigns a zone to each NAT Gateway, and associates a NAT Gateway to each subnet. If you do not provide your own subnets, the installation program creates a compute subnet and NAT Gateway for each zone in the region, then attaches them to each other.<br><br>If you specify either the <code>NATGatewaySingleZone</code> or the <code>NATGatewayMultiZone</code> routing strategy, your account must have the <code>Microsoft.Network/natGateways/read</code> and <code>Microsoft.Network/natGateways/write</code> permissions. NAT Gateways can only be used for compute machines.<br><br><strong>Value:</strong> <code>LoadBalancer</code>, <code>UserDefinedRouting</code>, <code>NATGatewaySingleZone</code>, or <code>NATGatewayMultiZone</code>. The default is <code>LoadBalancer</code>.</td>
+  <td>The outbound routing strategy used to connect your cluster to the internet. The following strategies are available:<br><br><dl><dt><code>UserDefinedRouting</code></dt><dd>Specifies to the installation program that you will provide and configure your own networking infrastructure for outbound access. The outbound routing must be configured before installing a cluster. The installation program does not configure user-defined routing.</dd><dt><code>LoadBalancer</code></dt><dd>Specifies that a single load balancer will be provisioned to provide outbound access for your cluster. This is the default value.</dd><dt><code>NATGatewaySingleZone</code></dt><dd>Specifies that the installation program will create one NAT Gateway. If you provide your own subnets via the <code>platform.azure.subnets</code> parameter, the installation program will attach the NAT Gateway to the compute subnet you specify. If you do not provide your own subnets, the installation program will create a subnet for the control plane and a subnet for the compute plane, and attach the NAT Gateway to the compute subnet.</dd><dt><code>NATGatewayMultiZone</code></dt><dd>Specifies that the installation program will create multiple NAT Gateways. If you provide your own subnets via the <code>platform.azure.subnets</code> parameter, the installation program creates a NAT Gateway for each subnet with the <code>node</code> role, assigns a zone to each NAT Gateway, and associates a NAT Gateway to each subnet. If you do not provide your own subnets, the installation program creates a compute subnet and NAT Gateway for each zone in the region, then attaches them to each other.</dd></dl>If you specify either the <code>NATGatewaySingleZone</code> or the <code>NATGatewayMultiZone</code> routing strategy, your account must have the <code>Microsoft.Network/natGateways/read</code> and <code>Microsoft.Network/natGateways/write</code> permissions. NAT Gateways can only be used for compute machines.<br><br><strong>Value:</strong> <code>LoadBalancer</code>, <code>UserDefinedRouting</code>, <code>NATGatewaySingleZone</code>, or <code>NATGatewayMultiZone</code>. The default is <code>LoadBalancer</code>.</td>
 </tr>
 <tr>
   <td>platform: azure: region:</td>
@@ -1305,11 +1305,11 @@ within [a region](https://azure.microsoft.com/en-us/global-infrastructure/region
 </tr>
 <tr>
   <td>platform: azure: userProvisionedDNS:</td>
-  <td>Enables user-provisioned DNS instead of the default cluster-provisioned DNS solution. If you use this feature, you must provide your own DNS solution that includes records for <code>api.<cluster_name>.<base_domain>.</code> and <code>*.apps.<cluster_name>.<base_domain>.</code>.<br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Disabled</code>.</td>
+  <td>Enables user-provisioned DNS instead of the default cluster-provisioned DNS solution. If you use this feature, you must provide your own DNS solution that includes records for <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code> and <code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code>.<br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Disabled</code>.</td>
 </tr>
 <tr>
   <td>platform: azure: zone:</td>
-  <td>List of availability zones to place machines in. For high availability, specifyat least two zones.<br><br><strong>Value:</strong> List of zones, for example <code>["1", "2", "3"]</code>.</td>
+  <td>List of availability zones to place machines in. For high availability, specify at least two zones.<br><br><strong>Value:</strong> List of zones, for example <code>["1", "2", "3"]</code>.</td>
 </tr>
 <tr>
   <td>platform: azure: customerManagedKey: keyVault: name:</td>
@@ -1393,7 +1393,7 @@ Configuring these fields at install time eliminates the need to set them as a Da
 :::
 
 
-***Additional bare metal parameters***
+**Additional bare metal parameters**
 
 <table>
 <thead>
@@ -1405,11 +1405,11 @@ Configuring these fields at install time eliminates the need to set them as a Da
 <tbody>
 <tr>
   <td>platform: baremetal: clusterProvisioningIP:</td>
-  <td>The IP address within the cluster where the provisioning services run.Defaults to the third IP address of the provisioning subnet.For example, <code>172.22.0.3</code> or <code>2620:52:0:1307::3</code>.<br><br><strong>Value:</strong> IPv4 or IPv6 address.</td>
+  <td>The IP address within the cluster where the provisioning services run. Defaults to the third IP address of the provisioning subnet. For example, <code>172.22.0.3</code> or <code>2620:52:0:1307::3</code>.<br><br><strong>Value:</strong> IPv4 or IPv6 address.</td>
 </tr>
 <tr>
   <td>platform: baremetal: provisioningNetwork:</td>
-  <td>The <code>provisioningNetwork</code> configuration setting determines whether the cluster uses the provisioning network.If it does, the configuration setting also determines if the cluster manages the network.<br><br><code>Managed</code>: Default. Set this parameter to <code>Managed</code> to fully manage the provisioning network, including DHCP, TFTP, and so on.<br><br><code>Disabled</code>: Set this parameter to <code>Disabled</code> to disable the requirement for a provisioning network.When set to <code>Disabled</code>, you can use only virtual media based provisioning on Day 2.If <code>Disabled</code> and using power management, BMCs must be accessible from the bare-metal network.If Disabled, you must provide two IP addresses on the bare-metal network that are used for the provisioning services.<br><br><strong>Value:</strong> <code>Managed</code> or <code>Disabled</code>.</td>
+  <td>The <code>provisioningNetwork</code> configuration setting determines whether the cluster uses the provisioning network. If it does, the configuration setting also determines if the cluster manages the network.<br><br><code>Managed</code>: Default. Set this parameter to <code>Managed</code> to fully manage the provisioning network, including DHCP, TFTP, and so on.<br><br><code>Disabled</code>: Set this parameter to <code>Disabled</code> to disable the requirement for a provisioning network. When set to <code>Disabled</code>, you can use only virtual media based provisioning on Day 2. If <code>Disabled</code> and using power management, BMCs must be accessible from the bare-metal network. If Disabled, you must provide two IP addresses on the bare-metal network that are used for the provisioning services.<br><br><strong>Value:</strong> <code>Managed</code> or <code>Disabled</code>.</td>
 </tr>
 <tr>
   <td>platform: baremetal: provisioningMACAddress:</td>
@@ -1417,11 +1417,11 @@ Configuring these fields at install time eliminates the need to set them as a Da
 </tr>
 <tr>
   <td>platform: baremetal: provisioningNetworkCIDR:</td>
-  <td>The CIDR for the network to use for provisioning.This option is required when not using the default address range on the provisioning network.<br><br><strong>Value:</strong> Valid CIDR, for example <code>10.0.0.0/16</code>.</td>
+  <td>The CIDR for the network to use for provisioning. This option is required when not using the default address range on the provisioning network.<br><br><strong>Value:</strong> Valid CIDR, for example <code>10.0.0.0/16</code>.</td>
 </tr>
 <tr>
   <td>platform: baremetal: provisioningNetworkInterface:</td>
-  <td>The name of the network interface on nodes connected to the provisioning network.Use the <code>bootMACAddress</code> configuration setting to enable Ironic to identify the IP address of the NIC instead of using the <code>provisioningNetworkInterface</code> configuration setting to identify the name of the NIC.<br><br><strong>Value:</strong> String.</td>
+  <td>The name of the network interface on nodes connected to the provisioning network. Use the <code>bootMACAddress</code> configuration setting to enable Ironic to identify the IP address of the NIC instead of using the <code>provisioningNetworkInterface</code> configuration setting to identify the name of the NIC.<br><br><strong>Value:</strong> String.</td>
 </tr>
 <tr>
   <td>platform: baremetal: provisioningDHCPRange:</td>
@@ -1453,11 +1453,11 @@ Configuring these fields at install time eliminates the need to set them as a Da
 </tr>
 <tr>
   <td>platform: baremetal: hosts: bmc: address:</td>
-  <td>The URL for communicating with the host's BMC controller.The address configuration setting specifies the protocol.For example, <code>redfish+http://10.10.10.1:8000/redfish/v1/Systems/1234</code> enables Redfish.For more information, see "BMC addressing" in the "Deploying installer-provisioned clusters on bare metal" section.<br><br><strong>Value:</strong> URL.</td>
+  <td>The URL for communicating with the host's BMC controller. The address configuration setting specifies the protocol. For example, <code>redfish+http://10.10.10.1:8000/redfish/v1/Systems/1234</code> enables Redfish. For more information, see "BMC addressing" in the "Deploying installer-provisioned clusters on bare metal" section.<br><br><strong>Value:</strong> URL.</td>
 </tr>
 <tr>
   <td>platform: baremetal: hosts: bmc: disableCertificateVerification:</td>
-  <td><code>redfish</code> and <code>redfish-virtualmedia</code> need this parameter to manage BMC addresses.The value should be <code>True</code> when using a self-signed certificate for BMC addresses.<br><br><strong>Value:</strong> Boolean.</td>
+  <td><code>redfish</code> and <code>redfish-virtualmedia</code> need this parameter to manage BMC addresses. The value should be <code>True</code> when using a self-signed certificate for BMC addresses.<br><br><strong>Value:</strong> Boolean.</td>
 </tr>
 </tbody>
 </table>
@@ -1469,7 +1469,7 @@ Configuring these fields at install time eliminates the need to set them as a Da
 
 Additional {{ gcp_short }} configuration parameters are described in the following table:
 
-***Additional {{ gcp_short }} parameters***
+**Additional {{ gcp_short }} parameters**
 
 <table>
 <thead>
@@ -1525,7 +1525,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>platform: gcp: userProvisionedDNS:</td>
-  <td>Enables user-provisioned DNS instead of the default cluster-provisioned DNS solution. If you use this feature, you must provide your own DNS solution that includes records for <code>api.<cluster_name>.<base_domain>.</code> and <code>*.apps.<cluster_name>.<base_domain>.</code>.<br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Disabled</code>.</td>
+  <td>Enables user-provisioned DNS instead of the default cluster-provisioned DNS solution. If you use this feature, you must provide your own DNS solution that includes records for <code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code> and <code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code>.<br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code>. The default value is <code>Disabled</code>.</td>
 </tr>
 <tr>
   <td>platform: gcp: region:</td>
@@ -1541,7 +1541,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>platform: gcp: defaultMachinePlatform: zones:</td>
-  <td>The availability zones where the installation program creates machines.<br><br><strong>Value:</strong> A list of valid <a href="https://cloud.google.com/compute/docs/regions-zones#available">{{ gcp_short }} availability zones</a>, such as <code>us-central1-a</code>, in a<a href="https://yaml.org/spec/1.2/spec.html#sequence//">YAML sequence</a>.<dl><dt>Important</dt><dd>When running your cluster on {{ gcp_short }} 64-bit ARM infrastructures, ensure that you use a zone where Ampere Altra Arm CPU's are available. You can find which zones are compatible with 64-bit ARM processors in the "{{ gcp_short }} availability zones" link.</dd></dl></td>
+  <td>The availability zones where the installation program creates machines.<br><br><strong>Value:</strong> A list of valid <a href="https://cloud.google.com/compute/docs/regions-zones#available">{{ gcp_short }} availability zones</a>, such as <code>us-central1-a</code>, in a <a href="https://yaml.org/spec/1.2/spec.html#sequence//">YAML sequence</a>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When running your cluster on {{ gcp_short }} 64-bit ARM infrastructures, ensure that you use a zone where Ampere Altra Arm CPU's are available. You can find which zones are compatible with 64-bit ARM processors in the "{{ gcp_short }} availability zones" link.</dd></dl></td>
 </tr>
 <tr>
   <td>platform: gcp: defaultMachinePlatform: osDisk: diskSizeGB:</td>
@@ -1585,7 +1585,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>platform: gcp: defaultMachinePlatform: osDisk: encryptionKey: kmsKeyServiceAccount:</td>
-  <td>The {{ gcp_short }} service account used for the encryption request for control plane and compute machines. If absent, the Compute Engine default service account is used. For more information about {{ gcp_short }} service accounts, see Google's documentation on <a href="https://cloud.google.com/compute/docs/access/service-accounts#compute_engine_service_account">service accounts</a>.<br><br><strong>Value:</strong> The {{ gcp_short }} service account email, for example <code><service_account_name>@<project_id>.iam.gserviceaccount.com</code>.</td>
+  <td>The {{ gcp_short }} service account used for the encryption request for control plane and compute machines. If absent, the Compute Engine default service account is used. For more information about {{ gcp_short }} service accounts, see Google's documentation on <a href="https://cloud.google.com/compute/docs/access/service-accounts#compute_engine_service_account">service accounts</a>.<br><br><strong>Value:</strong> The {{ gcp_short }} service account email, for example <code>&lt;service_account_name&gt;@&lt;project_id&gt;.iam.gserviceaccount.com</code>.</td>
 </tr>
 <tr>
   <td>platform: gcp: defaultMachinePlatform: secureBoot:</td>
@@ -1593,7 +1593,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>platform: gcp: defaultMachinePlatform: confidentialCompute:</td>
-  <td>Whether to use Confidential VMs for all machines in the cluster. Confidential VMs provide encryption for data during processing. For more information on Confidential computing, see Google's documentation about <a href="https://cloud.google.com/confidential-computing">Confidential Computing</a>.<br><br>Supported values are:<br><br><ul><li><code>Enabled</code>, which automatically selects a Confidential Computing platform</li></ul>+<dl><dt>Important</dt><dd>The <code>Enabled</code> value selects Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV), which is deprecated.</dd></dl><ul><li><code>Disabled</code>, which disables Confidential Computing</li><li><code>AMDEncryptedVirtualizationNestedPaging</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP)</li><li><code>AMDEncryptedVirtualization</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV)</li></ul>+<dl><dt>Important</dt><dd>The use of Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV) has been deprecated and will be removed in a future release.</dd></dl><ul><li><code>IntelTrustedDomainExtensions</code>, which enables Confidential Computing with Intel Trusted Domain Extensions (Intel TDX)</li></ul>If you specify any value other than <code>Disabled</code>, you must set <code>platform.gcp.defaultMachinePlatform.onHostMaintenance</code> to <code>Terminate</code>, and you must specify a region and machine type that support Confidential Computing. For more information, see Google's documentation about <a href="https://cloud.google.com/confidential-computing/confidential-vm/docs/supported-configurations#machine-type-cpu-zone">Supported configurations</a>.<br><br><strong>Value:</strong> String.</td>
+  <td>Whether to use Confidential VMs for all machines in the cluster. Confidential VMs provide encryption for data during processing. For more information on Confidential computing, see Google's documentation about <a href="https://cloud.google.com/confidential-computing">Confidential Computing</a>.<br><br>Supported values are:<br><br><ul><li><code>Enabled</code>, which automatically selects a Confidential Computing platform</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The <code>Enabled</code> value selects Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV), which is deprecated.</dd></dl><ul><li><code>Disabled</code>, which disables Confidential Computing</li><li><code>AMDEncryptedVirtualizationNestedPaging</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP)</li><li><code>AMDEncryptedVirtualization</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV)</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The use of Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV) has been deprecated and will be removed in a future release.</dd></dl><ul><li><code>IntelTrustedDomainExtensions</code>, which enables Confidential Computing with Intel Trusted Domain Extensions (Intel TDX)</li></ul>If you specify any value other than <code>Disabled</code>, you must set <code>platform.gcp.defaultMachinePlatform.onHostMaintenance</code> to <code>Terminate</code>, and you must specify a region and machine type that support Confidential Computing. For more information, see Google's documentation about <a href="https://cloud.google.com/confidential-computing/confidential-vm/docs/supported-configurations#machine-type-cpu-zone">Supported configurations</a>.<br><br><strong>Value:</strong> String.</td>
 </tr>
 <tr>
   <td>platform: gcp: defaultMachinePlatform: onHostMaintenance:</td>
@@ -1617,7 +1617,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>controlPlane: platform: gcp: osDisk: encryptionKey: kmsKeyServiceAccount:</td>
-  <td>The {{ gcp_short }} service account used for the encryption request for control plane machines. If absent, the Compute Engine default service account is used. For more information about {{ gcp_short }} service accounts, see Google's documentation on <a href="https://cloud.google.com/compute/docs/access/service-accounts#compute_engine_service_account">service accounts</a>.<br><br><strong>Value:</strong> The {{ gcp_short }} service account email, for example <code><service_account_name>@<project_id>.iam.gserviceaccount.com</code>.</td>
+  <td>The {{ gcp_short }} service account used for the encryption request for control plane machines. If absent, the Compute Engine default service account is used. For more information about {{ gcp_short }} service accounts, see Google's documentation on <a href="https://cloud.google.com/compute/docs/access/service-accounts#compute_engine_service_account">service accounts</a>.<br><br><strong>Value:</strong> The {{ gcp_short }} service account email, for example <code>&lt;service_account_name&gt;@&lt;project_id&gt;.iam.gserviceaccount.com</code>.</td>
 </tr>
 <tr>
   <td>controlPlane: platform: gcp: osDisk: diskSizeGB:</td>
@@ -1637,7 +1637,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>controlPlane: platform: gcp: zones:</td>
-  <td>The availability zones where the installation program creates control plane machines.<br><br><strong>Value:</strong> A list of valid <a href="https://cloud.google.com/compute/docs/regions-zones#available">{{ gcp_short }} availability zones</a>, such as <code>us-central1-a</code>, in a<a href="https://yaml.org/spec/1.2/spec.html#sequence//">YAML sequence</a>.<dl><dt>Important</dt><dd>When running your cluster on {{ gcp_short }} 64-bit ARM infrastructures, ensure that you use a zone where Ampere Altra Arm CPU's are available. You can find which zones are compatible with 64-bit ARM processors in the "{{ gcp_short }} availability zones" link.</dd></dl></td>
+  <td>The availability zones where the installation program creates control plane machines.<br><br><strong>Value:</strong> A list of valid <a href="https://cloud.google.com/compute/docs/regions-zones#available">{{ gcp_short }} availability zones</a>, such as <code>us-central1-a</code>, in a <a href="https://yaml.org/spec/1.2/spec.html#sequence//">YAML sequence</a>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When running your cluster on {{ gcp_short }} 64-bit ARM infrastructures, ensure that you use a zone where Ampere Altra Arm CPU's are available. You can find which zones are compatible with 64-bit ARM processors in the "{{ gcp_short }} availability zones" link.</dd></dl></td>
 </tr>
 <tr>
   <td>controlPlane: platform: gcp: secureBoot:</td>
@@ -1645,7 +1645,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>controlPlane: platform: gcp: confidentialCompute:</td>
-  <td>Whether to use Confidential VMs for control plane machines. Confidential VMs provide encryption for data during processing. For more information on Confidential computing, see Google's documentation about <a href="https://cloud.google.com/confidential-computing">Confidential Computing</a>.<br><br>Supported values are:<br><br><ul><li><code>Enabled</code>, which automatically selects a Confidential Computing platform</li></ul>+<dl><dt>Important</dt><dd>The <code>Enabled</code> value selects Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV), which is deprecated.</dd></dl><ul><li><code>Disabled</code>, which disables Confidential Computing</li><li><code>AMDEncryptedVirtualizationNestedPaging</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP)</li><li><code>AMDEncryptedVirtualization</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV)</li></ul>+<dl><dt>Important</dt><dd>The use of Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV) has been deprecated and will be removed in a future release.</dd></dl><ul><li><code>IntelTrustedDomainExtensions</code>, which enables Confidential Computing with Intel Trusted Domain Extensions (Intel TDX)</li></ul>If you specify any value other than <code>Disabled</code>, you must set <code>controlPlane.platform.gcp.defaultMachinePlatform.onHostMaintenance</code> to <code>Terminate</code>.<br><br><strong>Value:</strong> String.</td>
+  <td>Whether to use Confidential VMs for control plane machines. Confidential VMs provide encryption for data during processing. For more information on Confidential computing, see Google's documentation about <a href="https://cloud.google.com/confidential-computing">Confidential Computing</a>.<br><br>Supported values are:<br><br><ul><li><code>Enabled</code>, which automatically selects a Confidential Computing platform</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The <code>Enabled</code> value selects Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV), which is deprecated.</dd></dl><ul><li><code>Disabled</code>, which disables Confidential Computing</li><li><code>AMDEncryptedVirtualizationNestedPaging</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP)</li><li><code>AMDEncryptedVirtualization</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV)</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The use of Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV) has been deprecated and will be removed in a future release.</dd></dl><ul><li><code>IntelTrustedDomainExtensions</code>, which enables Confidential Computing with Intel Trusted Domain Extensions (Intel TDX)</li></ul>If you specify any value other than <code>Disabled</code>, you must set <code>controlPlane.platform.gcp.defaultMachinePlatform.onHostMaintenance</code> to <code>Terminate</code>.<br><br><strong>Value:</strong> String.</td>
 </tr>
 <tr>
   <td>controlPlane: platform: gcp: onHostMaintenance:</td>
@@ -1653,7 +1653,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>controlPlane: platform: gcp: serviceAccount:</td>
-  <td>Specifies the email address of a {{ gcp_short }} service account to be used during installations. This service account is used to provision control plane machines.<dl><dt>Important</dt><dd>In the case of shared VPC installations, when the service account is not provided, the installation program service account must have the <code>resourcemanager.projects.getIamPolicy</code> and <code>resourcemanager.projects.setIamPolicy</code> permissions in the host project.</dd></dl><br><br><strong>Value:</strong> String. The email address of the service account.</td>
+  <td>Specifies the email address of a {{ gcp_short }} service account to be used during installations. This service account is used to provision control plane machines.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>In the case of shared VPC installations, when the service account is not provided, the installation program service account must have the <code>resourcemanager.projects.getIamPolicy</code> and <code>resourcemanager.projects.setIamPolicy</code> permissions in the host project.</dd></dl><br><br><strong>Value:</strong> String. The email address of the service account.</td>
 </tr>
 <tr>
   <td>compute: platform: gcp: osDisk: encryptionKey: kmsKey: name:</td>
@@ -1673,7 +1673,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>compute: platform: gcp: osDisk: encryptionKey: kmsKeyServiceAccount:</td>
-  <td>The {{ gcp_short }} service account used for the encryption request for compute machines. If this value is not set, the Compute Engine default service account is used. For more information about {{ gcp_short }} service accounts, see Google's documentation on <a href="https://cloud.google.com/compute/docs/access/service-accounts#compute_engine_service_account">service accounts</a>.<br><br><strong>Value:</strong> The {{ gcp_short }} service account email, for example <code><service_account_name>@<project_id>.iam.gserviceaccount.com</code>.</td>
+  <td>The {{ gcp_short }} service account used for the encryption request for compute machines. If this value is not set, the Compute Engine default service account is used. For more information about {{ gcp_short }} service accounts, see Google's documentation on <a href="https://cloud.google.com/compute/docs/access/service-accounts#compute_engine_service_account">service accounts</a>.<br><br><strong>Value:</strong> The {{ gcp_short }} service account email, for example <code>&lt;service_account_name&gt;@&lt;project_id&gt;.iam.gserviceaccount.com</code>.</td>
 </tr>
 <tr>
   <td>compute: platform: gcp: osDisk: diskSizeGB:</td>
@@ -1693,7 +1693,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>compute: platform: gcp: zones:</td>
-  <td>The availability zones where the installation program creates compute machines.<br><br><strong>Value:</strong> A list of valid <a href="https://cloud.google.com/compute/docs/regions-zones#available">{{ gcp_short }} availability zones</a>, such as <code>us-central1-a</code>, in a<a href="https://yaml.org/spec/1.2/spec.html#sequence//">YAML sequence</a>.<dl><dt>Important</dt><dd>When running your cluster on {{ gcp_short }} 64-bit ARM infrastructures, ensure that you use a zone where Ampere Altra Arm CPU's are available. You can find which zones are compatible with 64-bit ARM processors in the "{{ gcp_short }} availability zones" link.</dd></dl></td>
+  <td>The availability zones where the installation program creates compute machines.<br><br><strong>Value:</strong> A list of valid <a href="https://cloud.google.com/compute/docs/regions-zones#available">{{ gcp_short }} availability zones</a>, such as <code>us-central1-a</code>, in a <a href="https://yaml.org/spec/1.2/spec.html#sequence//">YAML sequence</a>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When running your cluster on {{ gcp_short }} 64-bit ARM infrastructures, ensure that you use a zone where Ampere Altra Arm CPU's are available. You can find which zones are compatible with 64-bit ARM processors in the "{{ gcp_short }} availability zones" link.</dd></dl></td>
 </tr>
 <tr>
   <td>compute: platform: gcp: secureBoot:</td>
@@ -1701,7 +1701,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 </tr>
 <tr>
   <td>compute: platform: gcp: confidentialCompute:</td>
-  <td>Whether to use Confidential VMs for compute machines. Confidential VMs provide encryption for data during processing. For more information on Confidential computing, see Google's documentation on <a href="https://cloud.google.com/confidential-computing">Confidential computing</a>.<br><br>Supported values are:<br><br><ul><li><code>Enabled</code>, which automatically selects a Confidential Computing platform</li></ul>+<dl><dt>Important</dt><dd>The <code>Enabled</code> value selects Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV), which is deprecated.</dd></dl><ul><li><code>Disabled</code>, which disables Confidential Computing</li><li><code>AMDEncryptedVirtualizationNestedPaging</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP)</li><li><code>AMDEncryptedVirtualization</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV)</li></ul>+<dl><dt>Important</dt><dd>The use of Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV) has been deprecated and will be removed in a future release.</dd></dl><ul><li><code>IntelTrustedDomainExtensions</code>, which enables Confidential Computing with Intel Trusted Domain Extensions (Intel TDX)</li></ul>If you specify any value other than <code>Disabled</code>, you must set <code>compute.platform.gcp.onHostMaintenance</code> to <code>Terminate</code>.<br><br><strong>Value:</strong> String.</td>
+  <td>Whether to use Confidential VMs for compute machines. Confidential VMs provide encryption for data during processing. For more information on Confidential computing, see Google's documentation on <a href="https://cloud.google.com/confidential-computing">Confidential computing</a>.<br><br>Supported values are:<br><br><ul><li><code>Enabled</code>, which automatically selects a Confidential Computing platform</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The <code>Enabled</code> value selects Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV), which is deprecated.</dd></dl><ul><li><code>Disabled</code>, which disables Confidential Computing</li><li><code>AMDEncryptedVirtualizationNestedPaging</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP)</li><li><code>AMDEncryptedVirtualization</code>, which enables Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV)</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The use of Confidential Computing with AMD Secure Encrypted Virtualization (AMD SEV) has been deprecated and will be removed in a future release.</dd></dl><ul><li><code>IntelTrustedDomainExtensions</code>, which enables Confidential Computing with Intel Trusted Domain Extensions (Intel TDX)</li></ul>If you specify any value other than <code>Disabled</code>, you must set <code>compute.platform.gcp.onHostMaintenance</code> to <code>Terminate</code>.<br><br><strong>Value:</strong> String.</td>
 </tr>
 <tr>
   <td>compute: platform: gcp: onHostMaintenance:</td>
@@ -1716,7 +1716,7 @@ Additional {{ gcp_short }} configuration parameters are described in the followi
 
 Additional {{ ibm_cloud_name }} configuration parameters are described in the following table:
 
-***Additional {{ ibm_cloud_name }} parameters***
+**Additional {{ ibm_cloud_name }} parameters**
 
 <table>
 <thead>
@@ -1740,7 +1740,7 @@ Additional {{ ibm_cloud_name }} configuration parameters are described in the fo
 </tr>
 <tr>
   <td>platform: ibmcloud: resourceGroupName:</td>
-  <td>The name of an existing resource group.By default, an installer-provisioned VPC and cluster resources are created and placed in this resource group. The installation program creates the resource group for the cluster if you do not specify these parameters.<br><br>If you are deploying the cluster into an existing VPC, the installation-program-provisioned cluster resources are placed in this resource group. The installation program creates the resource group for the cluster if you do not specify these parameters. The VPC resources that you have provisioned must exist in a resource group that you specify using the <code>networkResourceGroupName</code> parameter.<br><br>In either case, this resource group must only be used for a single cluster installation, as the cluster components assume ownership of all of the resources in the resource group. [^1^]<br><br><strong>Value:</strong> String, for example <code>existing_resource_group</code>.</td>
+  <td>The name of an existing resource group. By default, an installer-provisioned VPC and cluster resources are created and placed in this resource group. The installation program creates the resource group for the cluster if you do not specify these parameters.<br><br>If you are deploying the cluster into an existing VPC, the installation-program-provisioned cluster resources are placed in this resource group. The installation program creates the resource group for the cluster if you do not specify these parameters. The VPC resources that you have provisioned must exist in a resource group that you specify using the <code>networkResourceGroupName</code> parameter.<br><br>In either case, this resource group must only be used for a single cluster installation, as the cluster components assume ownership of all of the resources in the resource group. [<sup>1</sup>]<br><br><strong>Value:</strong> String, for example <code>existing_resource_group</code>.</td>
 </tr>
 <tr>
   <td>platform: ibmcloud: serviceEndpoints: - name: url:</td>
@@ -1752,7 +1752,7 @@ Additional {{ ibm_cloud_name }} configuration parameters are described in the fo
 </tr>
 <tr>
   <td>platform: ibmcloud: dedicatedHosts: profile:</td>
-  <td>The new dedicated host to create. If you specify a value for <code>platform.ibmcloud.dedicatedHosts.name</code>, this parameter is not required.<br><br><strong>Value:</strong> Valid {{ ibm_cloud_name }} dedicated host profile, such as <code>cx2-host-152x304</code>. [^2^]</td>
+  <td>The new dedicated host to create. If you specify a value for <code>platform.ibmcloud.dedicatedHosts.name</code>, this parameter is not required.<br><br><strong>Value:</strong> Valid {{ ibm_cloud_name }} dedicated host profile, such as <code>cx2-host-152x304</code>. [<sup>2</sup>]</td>
 </tr>
 <tr>
   <td>platform: ibmcloud: dedicatedHosts: name:</td>
@@ -1760,7 +1760,7 @@ Additional {{ ibm_cloud_name }} configuration parameters are described in the fo
 </tr>
 <tr>
   <td>platform: ibmcloud: type:</td>
-  <td>The instance type for all {{ ibm_cloud_name }} machines.<br><br><strong>Value:</strong> Valid {{ ibm_cloud_name }} instance type, such as <code>bx2-8x32</code>. [^2^]</td>
+  <td>The instance type for all {{ ibm_cloud_name }} machines.<br><br><strong>Value:</strong> Valid {{ ibm_cloud_name }} instance type, such as <code>bx2-8x32</code>. [<sup>2</sup>]</td>
 </tr>
 <tr>
   <td>platform: ibmcloud: vpcName:</td>
@@ -1786,7 +1786,7 @@ Additional {{ ibm_cloud_name }} configuration parameters are described in the fo
 
 Additional VMware vSphere configuration parameters are described in the following table:
 
-***Additional VMware vSphere cluster parameters***
+**Additional VMware vSphere cluster parameters**
 
 <table>
 <thead>
@@ -1802,7 +1802,7 @@ Additional VMware vSphere configuration parameters are described in the followin
 </tr>
 <tr>
   {% if vsphere %}<td>platform: vsphere: apiVIPs:</td>{% endif %}
-  {% if vsphere %}<td>Virtual IP (VIP) addresses that you configured for control plane API access.<dl><dt>Note</dt><dd>This parameter applies only to installer-provisioned infrastructure without an external load balancer configured. You must not specify this parameter in user-provisioned infrastructure.<br><br>The <code>apiVIP</code> and <code>ingressVIP</code> parameters must come from the same network segment as the <code>networking.machineNetwork</code> parameter. If the <code>networking.machineNetwork</code> parameter is set to <code>10.0.0.0/16</code> then the API and Ingress VIPs must be in one of the <code>10.0.0.0/16</code> machine networks.</dd></dl><br><br><strong>Value:</strong> Multiple IP addresses</td>{% endif %}
+  {% if vsphere %}<td>Virtual IP (VIP) addresses that you configured for control plane API access.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This parameter applies only to installer-provisioned infrastructure without an external load balancer configured. You must not specify this parameter in user-provisioned infrastructure.<br><br>The <code>apiVIP</code> and <code>ingressVIP</code> parameters must come from the same network segment as the <code>networking.machineNetwork</code> parameter. If the <code>networking.machineNetwork</code> parameter is set to <code>10.0.0.0/16</code> then the API and Ingress VIPs must be in one of the <code>10.0.0.0/16</code> machine networks.</dd></dl><br><br><strong>Value:</strong> Multiple IP addresses</td>{% endif %}
 </tr>
 <tr>
   {% if vsphere %}<td>platform: vsphere: diskType:</td>{% endif %}
@@ -1818,7 +1818,7 @@ Additional VMware vSphere configuration parameters are described in the followin
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: region:</td>
-  <td>If you define multiple failure domains for your cluster, you must attach the tag to each vCenter data center. To define a region, use a tag from the <code>openshift-region</code> tag category. For a single vSphere data center environment, you do not need to attach a tag, but you must enter an alphanumeric value, such as <code>datacenter</code>, for the parameter.If you want to base your failure domains on host groups, attach these tags to your vSphere clusters instead of your data centers.<br><br><strong>Value:</strong> String</td>
+  <td>If you define multiple failure domains for your cluster, you must attach the tag to each vCenter data center. To define a region, use a tag from the <code>openshift-region</code> tag category. For a single vSphere data center environment, you do not need to attach a tag, but you must enter an alphanumeric value, such as <code>datacenter</code>, for the parameter. If you want to base your failure domains on host groups, attach these tags to your vSphere clusters instead of your data centers.<br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: regionType:</td>
@@ -1830,7 +1830,7 @@ Additional VMware vSphere configuration parameters are described in the followin
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: zone:</td>
-  <td>If you define multiple failure domains for your cluster, you must attach a tag to each vCenter cluster. To define a zone, use a tag from the <code>openshift-zone</code> tag category. For a single vSphere data center environment, you do not need to attach a tag, but you must enter an alphanumeric value, such as <code>cluster</code>, for the parameter.If you want to base your failure domains on host groups, define zones that correspond to your host groups instead of your clusters. Use these tags to associate each ESXi host with its host group.<br><br><strong>Value:</strong> String</td>
+  <td>If you define multiple failure domains for your cluster, you must attach a tag to each vCenter cluster. To define a zone, use a tag from the <code>openshift-zone</code> tag category. For a single vSphere data center environment, you do not need to attach a tag, but you must enter an alphanumeric value, such as <code>cluster</code>, for the parameter. If you want to base your failure domains on host groups, define zones that correspond to your host groups instead of your clusters. Use these tags to associate each ESXi host with its host group.<br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: zoneType:</td>
@@ -1842,19 +1842,19 @@ Additional VMware vSphere configuration parameters are described in the followin
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: topology: datacenter:</td>
-  <td>Lists and defines the data centers where {{ product_title }} virtual machines (VMs) operate.The list of data centers must match the list of data centers specified in the <code>vcenters</code> field.<br><br><strong>Value:</strong> String</td>
+  <td>Lists and defines the data centers where {{ product_title }} virtual machines (VMs) operate. The list of data centers must match the list of data centers specified in the <code>vcenters</code> field.<br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   {% if vsphere %}<td>platform: vsphere: failureDomains: topology: datastore:</td>{% endif %}
-  {% if vsphere %}<td>Specifies the path to a vSphere datastore that stores virtual machines files for a failure domain. You must apply the <code>datastore</code> role to the vSphere vCenter datastore location.<br><br><dl><dt>Important</dt><dd>You can specify the path of any datastore that exists in a datastore cluster. By default, Storage vMotion is automatically enabled for a datastore cluster. Red Hat does not support Storage vMotion, so you must disable Storage vMotion to avoid data loss issues for your {{ product_title }} cluster.<br><br>If you must specify VMs across multiple datastores, use a <code>datastore</code> object to specify a failure domain in your cluster's <code>install-config.yaml</code> configuration file. For more information, see "VMware vSphere region and zone enablement".</dd></dl><br><br><strong>Value:</strong> String</td>{% endif %}
+  {% if vsphere %}<td>Specifies the path to a vSphere datastore that stores virtual machines files for a failure domain. You must apply the <code>datastore</code> role to the vSphere vCenter datastore location.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>You can specify the path of any datastore that exists in a datastore cluster. By default, Storage vMotion is automatically enabled for a datastore cluster. Red Hat does not support Storage vMotion, so you must disable Storage vMotion to avoid data loss issues for your {{ product_title }} cluster.<br><br>If you must specify VMs across multiple datastores, use a <code>datastore</code> object to specify a failure domain in your cluster's <code>install-config.yaml</code> configuration file. For more information, see "VMware vSphere region and zone enablement".</dd></dl><br><br><strong>Value:</strong> String</td>{% endif %}
 </tr>
 <tr>
   {% if agent %}<td>platform: vsphere: failureDomains: topology: datastore:</td>{% endif %}
-  {% if agent %}<td>The path to the vSphere datastore that holds virtual machine files, templates, and ISO images.<dl><dt>Important</dt><dd>You can specify the path of any datastore that exists in a datastore cluster.By default, Storage vMotion is automatically enabled for a datastore cluster.Red&#160;Hat does not support Storage vMotion, so you must disable Storage vMotion to avoid data loss issues for your {{ product_title }} cluster.<br><br>If you must specify VMs across multiple datastores, use a <code>datastore</code> object to specify a failure domain in your cluster's <code>install-config.yaml</code> configuration file. For more information, see "VMware vSphere region and zone enablement".</dd></dl><br><br><strong>Value:</strong> String</td>{% endif %}
+  {% if agent %}<td>The path to the vSphere datastore that holds virtual machine files, templates, and ISO images.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>You can specify the path of any datastore that exists in a datastore cluster. By default, Storage vMotion is automatically enabled for a datastore cluster. Red&#160;Hat does not support Storage vMotion, so you must disable Storage vMotion to avoid data loss issues for your {{ product_title }} cluster.<br><br>If you must specify VMs across multiple datastores, use a <code>datastore</code> object to specify a failure domain in your cluster's <code>install-config.yaml</code> configuration file. For more information, see "VMware vSphere region and zone enablement".</dd></dl><br><br><strong>Value:</strong> String</td>{% endif %}
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: topology: folder:</td>
-  <td>Optional: The absolute path of an existing folder where the user creates the virtual machines, for example, <code>/<data_center_name>/vm/<folder_name>/<subfolder_name></code>.If you do not provide this value, the installation program creates a top-level folder in the data center virtual machine folder that is named with the infrastructure ID. If you are providing the infrastructure for the cluster and you do not want to use the default <code>StorageClass</code> object, named <code>thin</code>, you can omit the <code>folder</code> parameter from the <code>install-config.yaml</code> file.<br><br><strong>Value:</strong> String</td>
+  <td>Optional: The absolute path of an existing folder where the user creates the virtual machines, for example, <code>/&lt;data_center_name&gt;/vm/&lt;folder_name&gt;/&lt;subfolder_name&gt;</code>. {% if vsphere %} If you do not provide this value, the installation program creates a top-level folder in the data center virtual machine folder that is named with the infrastructure ID. If you are providing the infrastructure for the cluster and you do not want to use the default <code>StorageClass</code> object, named <code>thin</code>, you can omit the <code>folder</code> parameter from the <code>install-config.yaml</code> file. {% endif %} <br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: topology: hostGroup:</td>
@@ -1866,7 +1866,7 @@ Additional VMware vSphere configuration parameters are described in the followin
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: topology: resourcePool:</td>
-  <td>Optional: The absolute path of an existing resource pool where the installation program creates the virtual machines, for example, <code>/<data_center_name>/host/<cluster_name>/Resources/<resource_pool_name>/<optional_nested_resource_pool_name></code>.If you do not specify a value, the installation program installs the resources in the root of the cluster under <code>/<data_center_name>/host/<cluster_name>/Resources</code>.<br><br><strong>Value:</strong> String</td>
+  <td>Optional: The absolute path of an existing resource pool where the installation program creates the virtual machines, for example, <code>/&lt;data_center_name&gt;/host/&lt;cluster_name&gt;/Resources/&lt;resource_pool_name&gt;/&lt;optional_nested_resource_pool_name&gt;</code>. {% if vsphere %} If you do not specify a value, the installation program installs the resources in the root of the cluster under <code>/&lt;data_center_name&gt;/host/&lt;cluster_name&gt;/Resources</code>. {% endif %} <br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>platform: vsphere: failureDomains: topology: tagIDs:</td>
@@ -1878,7 +1878,7 @@ Additional VMware vSphere configuration parameters are described in the followin
 </tr>
 <tr>
   {% if vsphere %}<td>platform: vsphere: ingressVIPs:</td>{% endif %}
-  {% if vsphere %}<td>Virtual IP (VIP) addresses that you configured for cluster Ingress.<dl><dt>Note</dt><dd>This parameter applies only to installer-provisioned infrastructure without an external load balancer configured. You must not specify this parameter in user-provisioned infrastructure.<br><br>The <code>apiVIP</code> and <code>ingressVIP</code> parameters must come from the same network segment as the <code>networking.machineNetwork</code> parameter. If the <code>networking.machineNetwork</code> parameter is set to <code>10.0.0.0/16</code> then the API and Ingress VIPs must be in one of the <code>10.0.0.0/16</code> machine networks.</dd></dl><br><br><strong>Value:</strong> Multiple IP addresses</td>{% endif %}
+  {% if vsphere %}<td>Virtual IP (VIP) addresses that you configured for cluster Ingress.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This parameter applies only to installer-provisioned infrastructure without an external load balancer configured. You must not specify this parameter in user-provisioned infrastructure.<br><br>The <code>apiVIP</code> and <code>ingressVIP</code> parameters must come from the same network segment as the <code>networking.machineNetwork</code> parameter. If the <code>networking.machineNetwork</code> parameter is set to <code>10.0.0.0/16</code> then the API and Ingress VIPs must be in one of the <code>10.0.0.0/16</code> machine networks.</dd></dl><br><br><strong>Value:</strong> Multiple IP addresses</td>{% endif %}
 </tr>
 <tr>
   <td>platform: vsphere: vcenters:</td>
@@ -1913,7 +1913,7 @@ In {{ product_title }} 4.13, the following vSphere configuration parameters are 
 
 The following table lists each deprecated vSphere configuration parameter:
 
-***Deprecated VMware vSphere cluster parameters***
+**Deprecated VMware vSphere cluster parameters**
 
 <table>
 <thead>
@@ -1925,7 +1925,7 @@ The following table lists each deprecated vSphere configuration parameter:
 <tbody>
 <tr>
   {% if vsphere %}<td>platform: vsphere: apiVIP:</td>{% endif %}
-  {% if vsphere %}<td>The virtual IP (VIP) address that you configured for control plane API access.<br><br><dl><dt>Note</dt><dd>In {{ product_title }} 4.12 and later, the <code>apiVIP</code> configuration setting is deprecated. Instead, use a <code>List</code> format to enter a value in the <code>apiVIPs</code> configuration setting.</dd></dl><br><br><strong>Value:</strong> An IP address, for example <code>128.0.0.1</code>.</td>{% endif %}
+  {% if vsphere %}<td>The virtual IP (VIP) address that you configured for control plane API access.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>In {{ product_title }} 4.12 and later, the <code>apiVIP</code> configuration setting is deprecated. Instead, use a <code>List</code> format to enter a value in the <code>apiVIPs</code> configuration setting.</dd></dl><br><br><strong>Value:</strong> An IP address, for example <code>128.0.0.1</code>.</td>{% endif %}
 </tr>
 <tr>
   <td>platform: vsphere: cluster:</td>
@@ -1941,11 +1941,11 @@ The following table lists each deprecated vSphere configuration parameter:
 </tr>
 <tr>
   <td>platform: vsphere: folder:</td>
-  <td>Optional: The absolute path of an existing folder where the installation program creates the virtual machines. If you do not provide this value, the installation program creates a folder that is named with the infrastructure ID in the data center virtual machine folder.<br><br><strong>Value:</strong> String, for example, <code>/<data_center_name>/vm/<folder_name>/<subfolder_name></code>.</td>
+  <td>Optional: The absolute path of an existing folder where the installation program creates the virtual machines. If you do not provide this value, the installation program creates a folder that is named with the infrastructure ID in the data center virtual machine folder.<br><br><strong>Value:</strong> String, for example, <code>/&lt;data_center_name&gt;/vm/&lt;folder_name&gt;/&lt;subfolder_name&gt;</code>.</td>
 </tr>
 <tr>
   {% if vsphere %}<td>platform: vsphere: ingressVIP:</td>{% endif %}
-  {% if vsphere %}<td>Virtual IP (VIP) addresses that you configured for cluster Ingress.<dl><dt>Note</dt><dd>In {{ product_title }} 4.12 and later, the <code>ingressVIP</code> configuration setting is deprecated. Instead, use a <code>List</code> format to enter a value in the <code>ingressVIPs</code> configuration setting.</dd></dl><br><br><strong>Value:</strong> An IP address, for example <code>128.0.0.1</code>.</td>{% endif %}
+  {% if vsphere %}<td>Virtual IP (VIP) addresses that you configured for cluster Ingress.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>In {{ product_title }} 4.12 and later, the <code>ingressVIP</code> configuration setting is deprecated. Instead, use a <code>List</code> format to enter a value in the <code>ingressVIPs</code> configuration setting.</dd></dl><br><br><strong>Value:</strong> An IP address, for example <code>128.0.0.1</code>.</td>{% endif %}
 </tr>
 <tr>
   {% if vsphere %}<td>platform: vsphere: network:</td>{% endif %}
@@ -1957,7 +1957,7 @@ The following table lists each deprecated vSphere configuration parameter:
 </tr>
 <tr>
   <td>platform: vsphere: resourcePool:</td>
-  <td>Optional: The absolute path of an existing resource pool where the installation program creates the virtual machines. If you do not specify a value, the installation program installs the resources in the root of the cluster under <code>/<data_center_name>/host/<cluster_name>/Resources</code>.<br><br><strong>Value:</strong> String, for example, <code>/<data_center_name>/host/<cluster_name>/Resources/<resource_pool_name>/<optional_nested_resource_pool_name></code>.</td>
+  <td>Optional: The absolute path of an existing resource pool where the installation program creates the virtual machines. If you do not specify a value, the installation program installs the resources in the root of the cluster under <code>/&lt;data_center_name&gt;/host/&lt;cluster_name&gt;/Resources</code>.<br><br><strong>Value:</strong> String, for example, <code>/&lt;data_center_name&gt;/host/&lt;cluster_name&gt;/Resources/&lt;resource_pool_name&gt;/&lt;optional_nested_resource_pool_name&gt;</code>.</td>
 </tr>
 <tr>
   <td>platform: vsphere: username:</td>
@@ -1977,7 +1977,7 @@ The following table lists each deprecated vSphere configuration parameter:
 
 Optional VMware vSphere machine pool configuration parameters are described in the following table:
 
-***Optional VMware vSphere machine pool parameters***
+**Optional VMware vSphere machine pool parameters**
 
 <table>
 <thead>
@@ -1989,7 +1989,7 @@ Optional VMware vSphere machine pool configuration parameters are described in t
 <tbody>
 <tr>
   <td>platform: vsphere: clusterOSImage:</td>
-  <td>The location from which the installation program downloads the {{ op_system_first }} image. Before setting a path value for this parameter, ensure that the default {{ op_system }} boot image in the {{ product_title }} release matches the {{ op_system }} image template or virtual machine version; otherwise, cluster installation might fail. As an alternative to this configuration, you can use the <code>topology.template</code> parameter to point to the path in your vCenter environment that includes an {{ op_system }} image in Open Virtual Appliance (OVA) format.<br><br><strong>Value:</strong> An HTTP or HTTPS URL, optionally with a SHA-256 checksum. For example, <code>\https://mirror.openshift.com/images/rhcos-<version>-vmware.<architecture>.ova</code>.</td>
+  <td>The location from which the installation program downloads the {{ op_system_first }} image. Before setting a path value for this parameter, ensure that the default {{ op_system }} boot image in the {{ product_title }} release matches the {{ op_system }} image template or virtual machine version; otherwise, cluster installation might fail. As an alternative to this configuration, you can use the <code>topology.template</code> parameter to point to the path in your vCenter environment that includes an {{ op_system }} image in Open Virtual Appliance (OVA) format.<br><br><strong>Value:</strong> An HTTP or HTTPS URL, optionally with a SHA-256 checksum. For example, <code>\https://mirror.openshift.com/images/rhcos-&lt;version&gt;-vmware.&lt;architecture&gt;.ova</code>.</td>
 </tr>
 <tr>
   <td>platform: vsphere: osDisk: diskSizeGB:</td>
@@ -2009,7 +2009,7 @@ Optional VMware vSphere machine pool configuration parameters are described in t
 </tr>
 <tr>
   <td>platform: vsphere: dataDisks: name:</td>
-  <td>The name of the data disk to add to the virtual machines. The maximum name length is 80 characters.<br><br><dl><dt>Important</dt><dd>Installing {{ product_title }} on {{ vmw_full }} using multiple data disks is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> String</td>
+  <td>The name of the data disk to add to the virtual machines. The maximum name length is 80 characters.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Installing {{ product_title }} on {{ vmw_full }} using multiple data disks is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</dd></dl><br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>platform: vsphere: dataDisks: sizeGiB:</td>
@@ -2029,7 +2029,7 @@ Optional VMware vSphere machine pool configuration parameters are described in t
 
 Additional Azure configuration parameters are described in the following table:
 
-***Additional Azure Stack Hub parameters***
+**Additional Azure Stack Hub parameters**
 
 <table>
 <thead>
@@ -2113,7 +2113,7 @@ Additional Azure configuration parameters are described in the following table:
 
 Additional Nutanix configuration parameters are described in the following table:
 
-***Additional Nutanix cluster parameters***
+**Additional Nutanix cluster parameters**
 
 <table>
 <thead>
@@ -2173,7 +2173,7 @@ Additional Nutanix configuration parameters are described in the following table
 </tr>
 <tr>
   <td>compute: platform: nutanix: dataDisks: deviceProperties: adapterType:</td>
-  <td>The adapter type of the disk address. If the disk type is "Disk", valid values are "SCSI", "IDE", "PCI", "SATA" or "SPAPR".If the disk type is "CDRom", valid values are "IDE" or "SATA".<br><br><strong>Value:</strong> String</td>
+  <td>The adapter type of the disk address. If the disk type is "Disk", valid values are "SCSI", "IDE", "PCI", "SATA" or "SPAPR". If the disk type is "CDRom", valid values are "IDE" or "SATA".<br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>compute: platform: nutanix: dataDisks: deviceProperties: deviceIndex:</td>
@@ -2281,7 +2281,7 @@ Additional Nutanix configuration parameters are described in the following table
 </tr>
 <tr>
   <td>platform: nutanix: prismElements: endpoint: address:</td>
-  <td>The Prism Element domain name or IP address. [^1^]<br><br><strong>Value:</strong> String</td>
+  <td>The Prism Element domain name or IP address. [<sup>1</sup>]<br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>platform: nutanix: prismElements: endpoint: port:</td>
@@ -2293,7 +2293,7 @@ Additional Nutanix configuration parameters are described in the following table
 </tr>
 <tr>
   <td>platform: nutanix: subnetUUIDs:</td>
-  <td>The UUID of the Prism Element network that contains the virtual IP addresses and DNS records that you configured. [^2^]<br><br><strong>Value:</strong> String</td>
+  <td>The UUID of the Prism Element network that contains the virtual IP addresses and DNS records that you configured. [<sup>2</sup>]<br><br><strong>Value:</strong> String</td>
 </tr>
 <tr>
   <td>platform: nutanix: clusterOSImage:</td>
@@ -2307,48 +2307,48 @@ Additional Nutanix configuration parameters are described in the following table
 {% endif %}
 
 {% if context == "installation-config-parameters-vsphere" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-gcp" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-ash" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-bare-metal" %}
-{%- set bare = false -%}
+{%- set bare = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-ibm-cloud-vpc" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-ibm-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-ibm-powervc" %}
-{%- set ibm_power_vc = false -%}
+{%- set ibm_power_vc = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-nutanix" %}
-{%- set nutanix = false -%}
+{%- set nutanix = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-openstack" %}
-{%- set osp = false -%}
+{%- set osp = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-azure" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "installation-config-parameters-agent" %}
-{%- set agent = false -%}
+{%- set agent = "" -%}
 {% endif %}
-{%- set platform = false -%}
+{%- set platform = "" -%}
 {% if context == "installation-config-parameters-generic" %}
-{%- set generic = false -%}
+{%- set generic = "" -%}
 {% endif %}

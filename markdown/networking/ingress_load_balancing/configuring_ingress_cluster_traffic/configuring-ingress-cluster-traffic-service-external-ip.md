@@ -3,11 +3,11 @@ title: Configuring ingress cluster traffic for a service external IP
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring ingress cluster traffic for a service external IP {id="configuring-ingress-cluster-traffic-service-external-ip"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring ingress cluster traffic for a service external IP {id="configuring-ingress-cluster-traffic-service-external-ip"}
 {%- set context = "configuring-ingress-cluster-traffic-service-external-ip" %}
 
-You can use either a MetalLB implementation or an IP failover deployment to attach an ExternalIP resource to a service so that the service is available to traffic outside your {{ product_title }} cluster. 
+You can use either a MetalLB implementation or an IP failover deployment to attach an ExternalIP resource to a service so that the service is available to traffic outside your {{ product_title }} cluster.  {._abstract}
 
 Hosting an external IP address in this way is only applicable for a cluster installed on bare-metal hardware.
 
@@ -27,7 +27,7 @@ Do not use the same ExternalIP for the egress IP.
 
 {% leveloffset +1 %}{% include "./modules/nw-service-externalip-create.md" %}{% endleveloffset %}
 
-## Additional resources {id="configuring-ingress-cluster-traffic-service-external-ip-additional-resources"}
+## Additional resources {id="configuring-ingress-cluster-traffic-service-external-ip-additional-resources" ._additional-resources}
 
 [Configuring ExternalIPs for services](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)
 

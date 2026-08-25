@@ -17,7 +17,7 @@ Changing the update server is optional.
 
 **Procedure**
 
-1.  On the web console, navigate to **Administration** -> **Cluster Settings** and click **version**.
+1.  On the web console, navigate to **Administration** → **Cluster Settings** and click **version**.
 1.  Click the **YAML** tab and then edit the `upstream` parameter value:
     ```yaml title="Example YAML snippet"
       ...

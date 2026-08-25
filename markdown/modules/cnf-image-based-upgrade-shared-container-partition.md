@@ -9,9 +9,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring a shared container partition between ostree stateroots {id="cnf-image-based-upgrade-shared-container-partition_{{ context }}"}
 
-{%- if ibu %}
-Apply a `MachineConfig` to both the seed and the target clusters during installation time to create a separate partition and share the `/var/lib/containers` partition between the two `ostree` stateroots that will be used during the upgrade process.
-{% endif %} {._abstract}
+{% if ibu %}
+Apply a `MachineConfig` to both the seed and the target clusters during installation time to create a separate partition and share the `/var/lib/containers` partition between the two `ostree` stateroots that will be used during the upgrade process. {._abstract}
+{% endif %}
 
 
 :::important
@@ -22,8 +22,8 @@ You must complete this procedure at installation time.
 
 
 {% if ibi %}
-Apply a `MachineConfig` to the seed cluster to create a separate partition and share the `/var/lib/containers` partition between the two `ostree` stateroots that will be used during the preinstall process.
-{% endif %} {._abstract}
+Apply a `MachineConfig` to the seed cluster to create a separate partition and share the `/var/lib/containers` partition between the two `ostree` stateroots that will be used during the preinstall process. {._abstract}
+{% endif %}
 
 **Procedure**
 
@@ -87,9 +87,9 @@ Apply a `MachineConfig` to the seed cluster to create a separate partition and s
     :   Specifies a minimum size for the partition of 500 GB (512000 MiB) to ensure adequate disk space for precached images. If the value is too small, the deployments after installation will fail.
 
 {% if context == "ibi-preparing-image-based-install" %}
-{%- set ibi = false -%}
+{%- set ibi = "" -%}
 {% endif %}
 
 {% if context == "shared-container-partition" %}
-{%- set ibu = false -%}
+{%- set ibu = "" -%}
 {% endif %}

@@ -14,7 +14,7 @@ You can install {{ sno }} with with {{ op_system_base }} KVM on {{ ibm_z_title }
     $ OCP_VERSION=<ocp_version>
     ```
 
-    Replace `<ocp_version>` with the current version. For example, `latest-{{ product_version }}`.
+    Replace `<ocp_version>` with the current version. For example, `latest-{{ product_version }}`{minja}.
 1.  Set the host architecture by running the following command:
     ```terminal
     $ ARCH=<architecture>
@@ -129,7 +129,7 @@ You can install {{ sno }} with with {{ op_system_base }} KVM on {{ ibm_z_title }
 
     `rootfs`
     :   `rhcos-<version>-live-rootfs.<architecture>.img`
-    1.  Before you launch `virt-install`, move the following files and artifacts to an HTTP or HTTPS server:
+1.  Before you launch `virt-install`, move the following files and artifacts to an HTTP or HTTPS server:
     *   Downloaded {{ op_system_base }} live `kernel`, `initramfs`, and `rootfs` artifacts
     *   Ignition files
 1.  Create the KVM guest nodes by using the following components:

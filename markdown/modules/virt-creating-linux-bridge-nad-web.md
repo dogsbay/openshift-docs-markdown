@@ -13,7 +13,7 @@ Configuring IP address management (IPAM) in a network attachment definition for 
 
 **Procedure**
 
-1.  In the web console, click **Networking** -> **NetworkAttachmentDefinitions**.
+1.  In the web console, click **Networking** → **NetworkAttachmentDefinitions**.
 1.  Click **Create Network Attachment Definition**.
 
     :::note

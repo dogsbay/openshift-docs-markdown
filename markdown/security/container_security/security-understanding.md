@@ -3,11 +3,11 @@ title: Understanding container security
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding container security {id="security-understanding"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding container security {id="security-understanding"}
 {%- set context = "security-understanding" %}
 
-You should understand how {{ product_title }} secures containerized workloads across multiple layers host, container orchestration, build, and application to help you meet your organization’s security requirements and compliance standards.
+You should understand how {{ product_title }} secures containerized workloads across multiple layers host, container orchestration, build, and application to help you meet your organization’s security requirements and compliance standards. {._abstract}
 
 Securing a containerized application relies on multiple levels of security:
 
@@ -45,6 +45,7 @@ The goal of this guide is to understand the incredible security benefits of usin
 {% leveloffset +1 %}{% include "./modules/security-understanding-openshift.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring periodic importing of imagestreamtags](/openshift_images/image-streams-manage#images-imagestreams-import_image-streams-managing)
 *   [{{ product_title }} architecture](/architecture/architecture#architecture)

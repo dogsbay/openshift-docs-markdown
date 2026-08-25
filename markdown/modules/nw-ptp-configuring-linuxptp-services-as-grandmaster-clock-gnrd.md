@@ -18,8 +18,8 @@ In this deployment, GNSS input disciplines the platform clock and the example `P
 **Procedure**
 
 1.  Create a `PtpConfig` custom resource (CR) that matches your qualified GNR-D Telecom Grandmaster hardware layout:
-    ```yaml
-{% include "./snippets/ptp_PtpConfigGnrdTGM.yaml" %}
+    ```yaml {minja}
+    {% include "./snippets/ptp_PtpConfigGnrdTGM.yaml" %}
     ```
 
     where:

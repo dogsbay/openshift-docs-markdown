@@ -11,8 +11,8 @@ You can search for virtual machine instances (VMIs) by using the search bar on t
     *   Click a VM name to open its details page.
     *   Click **All search results found for ...** to view results on a dedicated page.
     *   Click a related suggestion to prefill search filters.
-1.  Optional: To open advanced search options, click the sliders icon next to the search bar. Expand the ***Details*** section and specify one or more of the available filters: **Name**, **Project**, **Description**, **Labels**, **Date created**, **vCPU**, and **Memory**.
-1.  Optional: Expand the ***Network*** section and enter an IP address to filter by.
+1.  Optional: To open advanced search options, click the sliders icon next to the search bar. Expand the **Details** section and specify one or more of the available filters: **Name**, **Project**, **Description**, **Labels**, **Date created**, **vCPU**, and **Memory**.
+1.  Optional: Expand the **Network** section and enter an IP address to filter by.
 1.  Click **Search**.
 1.  Optional: If Advanced Cluster Management (ACM) is installed, use the **Cluster** dropdown to search across multiple clusters.
 1.  Optional: Click the **Save search** icon to store your search in the `kubevirt-user-settings` ConfigMap.

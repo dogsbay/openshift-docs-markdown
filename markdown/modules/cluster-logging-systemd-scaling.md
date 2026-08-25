@@ -17,11 +17,11 @@ and other settings.
 
     :::note
 
-{% include "./snippets/butane-version.md" %}
+    {% include "./snippets/butane-version.md" %}
     
     :::
 
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:
@@ -69,16 +69,16 @@ and other settings.
     1.  Specify how much disk space systemd must leave free. The default is `20%`.
     1.  Specify the maximum size for individual journal files stored persistently in `/var/log/journal`. The default is `10M`.
 
-        :::note
+    :::note
 
-        If you are removing the rate limit, you might see increased CPU utilization on the
-        system logging daemons as it processes any messages that would have previously
-        been throttled.
-        
-        :::
+    If you are removing the rate limit, you might see increased CPU utilization on the
+    system logging daemons as it processes any messages that would have previously
+    been throttled.
+    
+    :::
 
 
-        For more information on systemd settings, see [https://www.freedesktop.org/software/systemd/man/journald.conf.html](https://www.freedesktop.org/software/systemd/man/journald.conf.html). The default settings listed on that page might not apply to {{ product_title }}.
+    For more information on systemd settings, see [https://www.freedesktop.org/software/systemd/man/journald.conf.html](https://www.freedesktop.org/software/systemd/man/journald.conf.html). The default settings listed on that page might not apply to {{ product_title }}.
 1.  Use Butane to generate a `MachineConfig` object file, `40-worker-custom-journald.yaml`, containing the configuration to be delivered to the nodes:
     ```terminal
     $ butane 40-worker-custom-journald.bu -o 40-worker-custom-journald.yaml

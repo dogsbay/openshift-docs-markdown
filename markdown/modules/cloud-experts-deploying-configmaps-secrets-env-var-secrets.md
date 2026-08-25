@@ -7,7 +7,7 @@ Kubernetes `Secret` objects allow you to store and manage sensitive information,
 
 *   In the OSToy app, in the left menu, click **Secrets**, displaying the contents of the secrets available to the OSToy application. The code snippet shows an example of a secret configuration:
 
-    ***Example output:***
+    **Example output:**
     ```text
     USERNAME=my_user
     PASSWORD=VVNFUk5BTUU9bXlfdXNlcgpQQVNTV09SRD1AT3RCbCVYQXAhIzYzMlk1RndDQE1UUWsKU01UUD1sb2NhbGhvc3QKU01UUF9QT1JUPTI1

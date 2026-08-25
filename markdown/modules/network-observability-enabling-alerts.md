@@ -19,4 +19,4 @@ spec:
         EXPERIMENTAL_ALERTS_HEALTH: "true"
 ```
 
-You can still use the existing method for creating alerts. For more information, see "Creating alerts".
+    You can still use the existing method for creating alerts. For more information, see "Creating alerts".

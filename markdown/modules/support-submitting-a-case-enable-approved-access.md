@@ -14,10 +14,10 @@ Enable the Approved Access feature for your {{ product_rosa }} clusters by creat
 
 {% if openshift_rosa %}
     1.  In the **Product** field, select **{{ product_title }}**.
-        {% endif %}
-        {% if openshift_rosa_hcp %}
+{% endif %}
+{% if openshift_rosa_hcp %}
     1.  In the **Product** field, select **{{ product_title }} {{ hcp_capital }}**.
-        {%- endif %}
+{%- endif %}
     1.  In the **Problem statement** field, enter **Enable ROSA Access Protection**.
     1.  Click **See more options**.
 1.  Select **OpenShift Cluster ID** from the drop-down list.

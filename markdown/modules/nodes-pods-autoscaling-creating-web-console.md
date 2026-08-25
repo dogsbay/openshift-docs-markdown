@@ -17,6 +17,7 @@ The following procedure creates an HPA in the web console.
 
 1.  In the **Topology** view, click the node to reveal the side pane.
 1.  From the **Actions** drop-down list, select **Add HorizontalPodAutoscaler** to open the **Add HorizontalPodAutoscaler** form.
+
     **Figure 1. Add HorizontalPodAutoscaler**
 
     ![Add HorizontalPodAutoscaler form](/_assets/images/node-add-hpa-action.png)

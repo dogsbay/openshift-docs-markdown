@@ -14,7 +14,7 @@
 # Cluster storage capability {id="_cluster_storage_capability"}
 {% endif %}
 
-{%- if operator_ref %}
+{% if operator_ref %}
 
 The Cluster Storage Operator is an optional cluster capability that can be disabled by cluster administrators during installation.  {._abstract}
 
@@ -54,9 +54,9 @@ Notes
 :   The storage class that the Operator creates can be made non-default by editing its annotation, but this storage class cannot be deleted as long as the Operator runs.
 
 {% if context == "operator-reference" %}
-{%- set operator_ref = false -%}
+{%- set operator_ref = "" -%}
 {% endif %}
 
 {% if context == "cluster-caps" %}
-{%- set cluster_caps = false -%}
+{%- set cluster_caps = "" -%}
 {% endif %}

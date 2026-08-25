@@ -45,9 +45,9 @@ Red&#160;Hat does not test third party registries with {{ product_title }}.
 
 
 {% if context == "installing-mirroring-disconnected" %}
-{%- set oc_mirror = false -%}
+{%- set oc_mirror = "" -%}
 {% endif %}
 
 {% if context == "mirroring-ocp-image-repository" %}
-{%- set oc_mirror = false -%}
+{%- set oc_mirror = "" -%}
 {% endif %}

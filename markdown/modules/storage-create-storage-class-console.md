@@ -5,18 +5,18 @@ To enable dynamic provisioning of AWS Elastic File System (EFS) volumes using th
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Storage** -> **StorageClasses**.
+1.  In the {{ product_title }} web console, click **Storage** → **StorageClasses**.
 1.  On the **StorageClasses** page, click **Create StorageClass**.
 1.  On the **StorageClass** page, perform the following steps:
     1.  Enter a name to reference the storage class.
     1.  Optional: Enter the description.
     1.  Select the reclaim policy.
-    1.  Select **`{{ Provisioner }}`** from the **Provisioner** drop-down list.
-{%- if Provisioner == "kubernetes.io/aws-ebs" %}
+    1.  Select **`{{ Provisioner }}`{minja}** from the **Provisioner** drop-down list.
+{% if Provisioner == "kubernetes.io/aws-ebs" %}
 
         :::note
 
-        To create the storage class with the equivalent CSI driver, select `{{ CsiDriver }}` from the drop-down list. For more information, see "AWS Elastic Block Store CSI Driver Operator".
+        To create the storage class with the equivalent CSI driver, select `{{ CsiDriver }}`{minja} from the drop-down list. For more information, see "AWS Elastic Block Store CSI Driver Operator".
         
         :::
 

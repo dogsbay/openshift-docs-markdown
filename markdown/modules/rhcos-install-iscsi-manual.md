@@ -29,16 +29,16 @@ You can manually install {{ op_system }} on an iSCSI target. {._abstract}
     :   Specifies the IP address of the target portal.
 
 1.  Install {{ op_system }} onto the iSCSI target by running the following command and using the necessary kernel arguments, for example:
-    ```text
-{%- if not restricted %}
+    ```text {minja}
+    {% if not restricted %}
     $ coreos-installer install \
     /dev/disk/by-path/ip-<IP_address>:<port>-iscsi-<target_iqn>-lun-<lun> \
     --append-karg rd.iscsi.initiator=<initiator_iqn> \
     --append.karg netroot=<target_iqn> \
     --console ttyS0,115200n8
     --ignition-file <path_to_file>
-{% endif %}
-{% if restricted %}
+    {% endif %}
+    {% if restricted %}
     $ coreos-installer install \
     /dev/disk/by-path/ip-<IP_address>:<port>-iscsi-<target_iqn>-lun-<lun> \
     --append-karg rd.iscsi.initiator=<initiator_iqn> \
@@ -46,7 +46,7 @@ You can manually install {{ op_system }} on an iSCSI target. {._abstract}
     --console ttyS0,115200n8 \
     --ignition-file <path_to_file> \
     --offline
-{%- endif %}
+    {% endif %}
     ```
 
     where:
@@ -69,5 +69,5 @@ You can manually install {{ op_system }} on an iSCSI target. {._abstract}
     This procedure can also be performed using the `coreos-installer iso customize` or `coreos-installer pxe customize` subcommands.
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

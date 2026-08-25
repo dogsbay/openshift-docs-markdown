@@ -38,6 +38,7 @@ When creating a {{ hcp_title }} cluster, the default machine Classless Inter-Dom
     ```terminal
     $ rosa describe cluster --cluster=<cluster_name>
     ```
+
     **Example output**
 
     ```terminal

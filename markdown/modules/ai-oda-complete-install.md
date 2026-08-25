@@ -34,5 +34,5 @@ After the cluster is installed and initialized, the {{ ai_full }} indicates that
     ```
 
     Replace `<password>` with the password of the `kubeadmin` user.
-1.  Click the web console URL or click ***Launch OpenShift Console*** to open the console.
+1.  Click the web console URL or click **Launch OpenShift Console** to open the console.
 1.  Enter the `kubeadmin` username and password. Follow the instructions in the {{ product_title }} console to configure an identity provider and configure alert receivers.

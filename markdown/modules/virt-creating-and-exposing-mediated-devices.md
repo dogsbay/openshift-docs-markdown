@@ -50,14 +50,14 @@ As an administrator, you can create mediated devices and expose them to the clus
         NVIDIA A2-2Q
         ```
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Create and expose the mediated devices by updating the configuration:
     1.  Expose the mediated devices to the cluster by adding the `mdevNameSelector` and `resourceName` values to the `spec.permittedHostDevices.mediatedDevices` stanza. The `resourceName` value is based on the `mdevNameSelector` value, but you use underscores instead of spaces.
 
         Example `HyperConverged` CR:
-        ```yaml
+        ```yaml {minja}
         apiVersion: hco.kubevirt.io/v1beta1
         kind: HyperConverged
         metadata:

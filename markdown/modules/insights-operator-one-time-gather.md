@@ -11,7 +11,6 @@ You must run a gather operation to create an {{ insights_operator }} archive. {.
 
 1.  Create a file named `gather-job.yaml` using this template:
     ```yaml
-```yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -76,7 +75,6 @@ spec:
             - -c
             - sleep 10m
           volumeMounts: [{name: snapshots, mountPath: /var/lib/insights-operator}]
-```
     ```
 1.  Copy your `insights-operator` image version:
     ```terminal

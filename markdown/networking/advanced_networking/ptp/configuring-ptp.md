@@ -3,11 +3,11 @@ title: Configuring PTP devices
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring PTP devices {id="configuring-ptp"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring PTP devices {id="configuring-ptp"}
 {%- set context = "configuring-ptp" %}
 
-The PTP Operator adds the `NodePtpDevice.ptp.openshift.io` custom resource definition (CRD) to {{ product_title }}.
+The PTP Operator adds the `NodePtpDevice.ptp.openshift.io` custom resource definition (CRD) to {{ product_title }}. {._abstract}
 
 When installed, the PTP Operator searches your cluster for Precision Time Protocol (PTP) capable network devices on each node. The Operator creates and updates a `NodePtpDevice` custom resource (CR) object for each node that provides a compatible PTP-capable network device.
 
@@ -36,6 +36,7 @@ In {{ product_title }} {{ product_version }}, supported `PtpConfig` plugins incl
 {% leveloffset +2 %}{% include "./modules/nw-ptp-granite-rapids-telecom-grandmaster-clock-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp)
 *   [Configuring linuxptp services as a boundary clock without holdover on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#ptp-configuring-linuxptp-services-as-boundary-clock-gnrd_configuring-ptp)
@@ -44,6 +45,7 @@ In {{ product_title }} {{ product_version }}, supported `PtpConfig` plugins incl
 {% leveloffset +2 %}{% include "./modules/nw-ptp-configuring-linuxptp-services-as-grandmaster-clock-gnrd.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the PTP fast event notifications publisher](/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
 *   [Boundary clocks without holdover on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-boundary-clock-overview_configuring-ptp)
@@ -65,12 +67,14 @@ In {{ product_title }} {{ product_version }}, supported `PtpConfig` plugins incl
 {% leveloffset +1 %}{% include "./modules/nw-ptp-t-bc-t-tsc-holdover.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Grandmaster clock class sync state reference](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-grandmaster-clock-class-reference_configuring-ptp)
 
 {% leveloffset +1 %}{% include "./modules/nw-ptp-gnrd-t-bc-holdover.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Machine Configuration documentation](/machine_configuration/index#machine-config-index)
 
@@ -79,6 +83,7 @@ In {{ product_title }} {{ product_version }}, supported `PtpConfig` plugins incl
 {% leveloffset +1 %}{% include "./modules/nw-ptp-configuring-linuxptp-services-as-boundary-clock.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring FIFO priority scheduling for PTP hardware](/networking/advanced_networking/ptp/configuring-ptp#cnf-configuring-fifo-priority-scheduling-for-ptp_configuring-ptp)
 *   [Configuring the PTP fast event notifications publisher](/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
@@ -94,6 +99,7 @@ In {{ product_title }} {{ product_version }}, supported `PtpConfig` plugins incl
 {% leveloffset +1 %}{% include "./modules/nw-ptp-configuring-linuxptp-services-as-ordinary-clock.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring FIFO priority scheduling for PTP hardware](/networking/advanced_networking/ptp/configuring-ptp#cnf-configuring-fifo-priority-scheduling-for-ptp_configuring-ptp)
 *   [Configuring the PTP fast event notifications publisher](/networking/advanced_networking/ptp/ptp-cloud-events-consumer-dev-reference-v2#cnf-configuring-the-ptp-fast-event-publisher-v2_ptp-consumer)
@@ -103,6 +109,7 @@ In {{ product_title }} {{ product_version }}, supported `PtpConfig` plugins incl
 {% leveloffset +2 %}{% include "./modules/nw-ptp-configuring-linuxptp-services-dual-port-oc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring linuxptp services as ordinary clock](/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-ordinary-clock_configuring-ptp)
 *   [Using dual-port NICs to improve redundancy for PTP ordinary clocks](/networking/advanced_networking/ptp/about-ptp#ptp-dual-ports-oc_about-ptp)

@@ -3,18 +3,19 @@ title: Persistent storage using AWS Elastic Block Store
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using AWS Elastic Block Store {id="persistent-storage-aws"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using AWS Elastic Block Store {id="persistent-storage-aws"}
 {%- set context = "persistent-storage-aws" %}
 
-{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-{{ product_title }} clusters are prebuilt with two storage classes that use Amazon Elastic Block Store (Amazon EBS) volumes. These storage classes are ready to use and some familiarity with Kubernetes and AWS is assumed.
+{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{{ product_title }} clusters are prebuilt with two storage classes that use Amazon Elastic Block Store (Amazon EBS) volumes. These storage classes are ready to use and some familiarity with Kubernetes and AWS is assumed. {._abstract}
 
 The following are the two prebuilt storage classes:
 | Name | Provisioner |
 | --- | --- |
 | gp2-csi | ebs.csi.aws.com |
 | gp3-csi (default) | ebs.csi.aws.com |
+
 The gp3-csi storage class is set as default; however, you can select any of the storage classes as the default storage class.
 {% endif %}
 
@@ -65,7 +66,7 @@ CSI automatic migration should be seamless. Migration does not change how you us
 
 {% leveloffset +1 %}{% include "./modules/storage-persistent-storage-volume-encrypt-with-kms-key.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_persistent-storage-aws"}
+## Additional resources {id="additional-resources_persistent-storage-aws" ._additional-resources}
 
 *   [Amazon EC2 documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 *   [AWS EBS CSI driver](https://github.com/openshift/aws-ebs-csi-driver)

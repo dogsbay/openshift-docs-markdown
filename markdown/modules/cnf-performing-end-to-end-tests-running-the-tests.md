@@ -26,7 +26,7 @@ The procedure runs the three individual tests `hwlatdetect`, `cyclictest`, and `
     :::
 
 1.  To run the latency tests, run the following command, substituting variable values as appropriate:
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -e KUBECONFIG=/kubeconfig/kubeconfig \
     -e LATENCY_TEST_RUNTIME=600 \
     -e MAXIMUM_LATENCY=20 \
@@ -38,7 +38,7 @@ The procedure runs the three individual tests `hwlatdetect`, `cyclictest`, and `
 
     If the results exceed the latency threshold, the test fails.
 1.  Optional: To override the default memory request and limit for the latency test pod, set the `LATENCY_TEST_MEMORY` variable. Use this option when the default value, which is the greater of `32Mi` multiplied by `LATENCY_TEST_CPUS` or `1Gi`, is not enough for your test. For example:
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -e KUBECONFIG=/kubeconfig/kubeconfig \
     -e LATENCY_TEST_RUNTIME=600 \
     -e LATENCY_TEST_CPUS=40 \

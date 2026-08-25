@@ -16,7 +16,7 @@ The label names are typically namespaced. The namespace is set accordingly to re
 
 See the [Docker custom metadata](https://docs.docker.com/engine/userguide/labels-custom-metadata) documentation for details about the format.
 
-***Supported Metadata***
+**Supported Metadata**
 
 <table>
 <thead>

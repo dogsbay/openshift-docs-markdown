@@ -23,8 +23,8 @@ You can also configure mTLS for individual services by creating a policy.
     ```
 
 
-:::note
+    :::note
 
-If you are not using automatic mTLS and you are setting `PeerAuthentication` to STRICT, you must create a `DestinationRule` resource for your service.
-
-:::
+    If you are not using automatic mTLS and you are setting `PeerAuthentication` to STRICT, you must create a `DestinationRule` resource for your service.
+    
+    :::

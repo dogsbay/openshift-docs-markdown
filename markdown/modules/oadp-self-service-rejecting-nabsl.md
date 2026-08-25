@@ -17,15 +17,14 @@ Reject `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) requests fro
     $ oc -n openshift-adp get NonAdminBackupStorageLocationRequests
     ```
 
-```terminal title="Example output"
-$ oc get nabslrequest
-NAME                          REQUEST-PHASE   REQUEST-NAMESPACE     REQUEST-NAME               AGE
-non-admin-bsl-test-.....175   Approved        non-admin-bsl-test    incorrect-bucket-nabsl    4m57s
-non-admin-bsl-test-.....196   Approved        non-admin-bsl-test    perfect-nabsl             5m26s
-non-admin-bsl-test-s....e1a   Rejected        non-admin-bsl-test    suspicious-sample         2m56s
-non-admin-bsl-test-.....5e0   Pending         non-admin-bsl-test    waitingapproval-nabsl     4m20s
-```
-
+    ```terminal title="Example output"
+    $ oc get nabslrequest
+    NAME                          REQUEST-PHASE   REQUEST-NAMESPACE     REQUEST-NAME               AGE
+    non-admin-bsl-test-.....175   Approved        non-admin-bsl-test    incorrect-bucket-nabsl    4m57s
+    non-admin-bsl-test-.....196   Approved        non-admin-bsl-test    perfect-nabsl             5m26s
+    non-admin-bsl-test-s....e1a   Rejected        non-admin-bsl-test    suspicious-sample         2m56s
+    non-admin-bsl-test-.....5e0   Pending         non-admin-bsl-test    waitingapproval-nabsl     4m20s
+    ```
 1.  To reject the NABSL CR request, set the `approvalDecision` field to `reject` by running the following command:
     ```terminal
     $ oc patch nabslrequest <nabsl_name> -n openshift-adp --type=merge -p '{"spec": {"approvalDecision": "reject"}}'

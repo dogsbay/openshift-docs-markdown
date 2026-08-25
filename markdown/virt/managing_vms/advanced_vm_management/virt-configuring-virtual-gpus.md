@@ -7,7 +7,7 @@ title: Configuring virtual GPUs
 # Configuring virtual GPUs {id="virt-configuring-virtual-gpus"}
 {%- set context = "virt-configuring-virtual-gpus" %}
 
-Use the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in {{ VirtProductName }}.
+Use the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in {{ VirtProductName }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-about-using-virtual-gpus.md" %}{% endleveloffset %}
 
@@ -25,7 +25,7 @@ Use the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to vi
 
 {% leveloffset +1 %}{% include "./modules/virt-assigning-vgpu-vm-web.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Enabling Intel VT-X and AMD-V Virtualization Hardware Extensions in BIOS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-troubleshooting-enabling_intel_vt_x_and_amd_v_virtualization_hardware_extensions_in_bios)
 *   [MIG Support in {{ product_title }}](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/mig-ocp.html#)
 *   [Configuring PCI passthrough](/virt/managing_vms/advanced_vm_management/virt-configuring-pci-passthrough#virt-configuring-pci-passthrough)

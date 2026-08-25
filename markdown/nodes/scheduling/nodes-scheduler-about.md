@@ -4,10 +4,10 @@ title: Controlling pod placement using the scheduler
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-scheduler-about" %}
-# Controlling pod placement using the scheduler {id="nodes-scheduler-about"}
 {% include "./_attributes/common-attributes.md" %}
+# Controlling pod placement using the scheduler {id="nodes-scheduler-about"}
 
-You can rely on the default pod scheduling or use the advanced pod scheduling tool for greater control over pod scheduling. Pod scheduling is an internal process that determines placement of new pods onto nodes within the cluster. 
+You can rely on the default pod scheduling or use the advanced pod scheduling tool for greater control over pod scheduling. Pod scheduling is an internal process that determines placement of new pods onto nodes within the cluster.  {._abstract}
 
 The scheduler code has a clean separation that watches new pods
 as they get created and identifies the most suitable node to host them. It then
@@ -24,15 +24,15 @@ Advanced pod scheduling
     You can control pod placement by using the following scheduling features:
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-*   Scheduler profiles
+    *   Scheduler profiles
 {%- endif %}
-*   Pod affinity and anti-affinity rules
-*   Node affinity
-*   Node selectors
+    *   Pod affinity and anti-affinity rules
+    *   Node affinity
+    *   Node selectors
 {%- if not (openshift_dedicated or openshift_rosa_hcp or openshift_rosa) %}
-*   Taints and tolerations
+    *   Taints and tolerations
 {%- endif %}
-*   Node overcommitment
+    *   Node overcommitment
 
 ## About the default scheduler {id="about-default-scheduler"}
 
@@ -41,7 +41,7 @@ The default {{ product_title }} pod scheduler is responsible for determining the
 {% leveloffset +2 %}{% include "./modules/nodes-scheduler-default-about.md" %}{% endleveloffset %}
 {% leveloffset +2 %}{% include "./modules/nodes-scheduler-use-cases.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   [Scheduler profiles](/nodes/scheduling/nodes-scheduler-profiles#nodes-scheduler-profiles)

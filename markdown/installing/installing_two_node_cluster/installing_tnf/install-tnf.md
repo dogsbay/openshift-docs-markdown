@@ -3,11 +3,11 @@ title: Installing a two-node OpenShift cluster with fencing
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a two-node OpenShift cluster with fencing {id="installing-tnf"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a two-node OpenShift cluster with fencing {id="installing-tnf"}
 {%- set context = "install-tnf" %}
 
-For a highly available, small-footprint container platform at your edge sites or resource-constrained environments, you can deploy a two-node OpenShift cluster with fencing (TNF). This fencing mechanism protects your applications and data from `split-brain` scenarios by safely isolating a node if communication fails. To match your existing environment, you can deploy this cluster using automated, manual, or agent-based infrastructure methods.
+For a highly available, small-footprint container platform at your edge sites or resource-constrained environments, you can deploy a two-node OpenShift cluster with fencing (TNF). This fencing mechanism protects your applications and data from `split-brain` scenarios by safely isolating a node if communication fails. To match your existing environment, you can deploy this cluster using automated, manual, or agent-based infrastructure methods. {._abstract}
 
 
 Automated Infrastructure (installer-provisioned)

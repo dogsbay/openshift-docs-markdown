@@ -16,6 +16,7 @@ To see the pipelines created using **Pipeline builder** in the **Topology** view
 1.  Click **Topology** in the left navigation panel.
 1.  Click the application to display **Pipeline Runs** in the side panel.
 1.  In **Pipeline Runs**, click **Start Last Run** to start a new pipeline run with the same parameters and resources as the previous one. This option is disabled if a pipeline run has not been initiated. You can also start a pipeline run when you create it.
+
     **Figure 1. Pipelines in Topology view**
 
     ![Pipelines in Topology view](/_assets/images/op_pipeline_topology1.png)

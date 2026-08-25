@@ -5,7 +5,7 @@ Review configuration fields so you can define how the Operator deploys the firew
 
 The fields for the Ingress Node Firewall configuration object are described in the following table:
 
-***Ingress Node Firewall Configuration object***
+**Ingress Node Firewall Configuration object**
 
 <table>
 <thead>
@@ -29,7 +29,7 @@ The fields for the Ingress Node Firewall configuration object are described in t
 <tr>
   <td><code>spec.nodeSelector</code></td>
   <td><code>string</code></td>
-  <td>A node selection constraint used to target nodes through specified node labels. For example:<br><br><pre>apiVersion: ingressnodefirewall.openshift.io/v1alpha1&#10;kind: IngressNodeFirewallConfig&#10;metadata:&#10;  name: ingressnodefirewallconfig&#10;  namespace: openshift-ingress-node-firewall&#10;spec:&#10;  nodeSelector:&#10;    node-role.kubernetes.io/worker: ""</pre><br><br><dl><dt>Note</dt><dd>One label used in <code>nodeSelector</code> must match a label on the nodes in order for the daemon set to start. For example, if the node labels <code>node-role.kubernetes.io/worker</code> and <code>node-type.kubernetes.io/vm</code> are applied to a node, then at least one label must be set using <code>nodeSelector</code> for the daemon set to start.</dd></dl></td>
+  <td>A node selection constraint used to target nodes through specified node labels. For example:<br><br><pre>apiVersion: ingressnodefirewall.openshift.io/v1alpha1&#10;kind: IngressNodeFirewallConfig&#10;metadata:&#10;  name: ingressnodefirewallconfig&#10;  namespace: openshift-ingress-node-firewall&#10;spec:&#10;  nodeSelector:&#10;    node-role.kubernetes.io/worker: ""</pre><br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>One label used in <code>nodeSelector</code> must match a label on the nodes in order for the daemon set to start. For example, if the node labels <code>node-role.kubernetes.io/worker</code> and <code>node-type.kubernetes.io/vm</code> are applied to a node, then at least one label must be set using <code>nodeSelector</code> for the daemon set to start.</dd></dl></td>
 </tr>
 <tr>
   <td><code>spec.ebpfProgramManagerMode</code></td>
@@ -42,13 +42,13 @@ The fields for the Ingress Node Firewall configuration object are described in t
 
 :::note
 
-{%- if not (openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_rosa or openshift_rosa_hcp) %}
 The Operator consumes the CR and creates an ingress node firewall daemon set on all the nodes that match the `nodeSelector`.
 {% endif %}
 
 {% if openshift_rosa or openshift_rosa_hcp %}
 To start, the Operator consumes an `IngressNodeFirewallConfig` in order to generate the daemonset on all nodes. After this is created, additional firewall rule objects can be created.
-{%- endif %}
+{% endif %}
 
 :::
 

@@ -23,6 +23,7 @@ To delete indices:
     ```
 
     The available parameters are:
+
     **Project options**
 
     | Variable Name | Description |
@@ -31,6 +32,7 @@ To delete indices:
     | `action` | The action to take, currently only `delete` is allowed. |
     | `unit` | The period to use for deletion, `days`, `weeks`, or `months`. |
     | `value` | The number of units. |
+
     **Filter options**
 
     | Variable Name | Description |

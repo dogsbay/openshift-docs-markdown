@@ -16,7 +16,7 @@ When the replacement control plane machine is ready, the Operator deletes the co
 The replacement machine then joins the control plane.
 
 If multiple control plane machines are marked for replacement, the Operator protects etcd health during replacement by repeating this replacement process one machine at a time until it has replaced each machine.
-{% endif %}
+{%- endif %}
 
 {%- if openshift_dedicated or openshift_rosa %}
 
@@ -40,9 +40,9 @@ Depending on when the {{ product_title }} cluster was originally created, the in
 
 :::
 
-{% endif %}
+{%- endif %}
 
 {% if context == "control-plane" %}
-{%- set rosa_classic = false -%}
-{%- set osd = false -%}
+{%- set rosa_classic = "" -%}
+{%- set osd = "" -%}
 {% endif %}

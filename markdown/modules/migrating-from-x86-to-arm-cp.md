@@ -40,7 +40,7 @@ You can migrate the control plane in your cluster from `x86` to `arm64` architec
 
     If the cluster is not using the multi payload, migrate the cluster to a multi-architecture cluster. For more information, see "Migrating to a cluster with multi-architecture compute machines using the CLI".
 1.  Update your image stream from single-architecture to multi-architecture by running the following command:
-{% include "./snippets/update-image-stream-to-multi-arch.md" %}
+    {% include "./snippets/update-image-stream-to-multi-arch.md" %}
 1.  Get the `arm64` compatible Amazon Machine Image (AMI) for configuring the control plane machine set by running the following command:
     ```terminal
     $ oc get configmap/coreos-bootimages -n openshift-machine-config-operator -o jsonpath='{.data.stream}' | jq -r '.architectures.aarch64.images.aws.regions."<aws_region>".image'

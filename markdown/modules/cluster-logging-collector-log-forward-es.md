@@ -26,28 +26,28 @@ If you only want to forward logs to an internal Elasticsearch instance, you do n
     apiVersion: logging.openshift.io/v1
     kind: ClusterLogForwarder
     metadata:
-      name: <log_forwarder_name> # (1)
-      namespace: <log_forwarder_namespace> # (2)
+      name: <log_forwarder_name> (1)
+      namespace: <log_forwarder_namespace> (2)
     spec:
-      serviceAccountName: <service_account_name> # (3)
+      serviceAccountName: <service_account_name> (3)
       outputs:
-       - name: elasticsearch-example # (4)
-         type: elasticsearch # (5)
+       - name: elasticsearch-example (4)
+         type: elasticsearch (5)
          elasticsearch:
-           version: 8 # (6)
-         url: http://elasticsearch.example.com:9200 # (7)
+           version: 8 (6)
+         url: http://elasticsearch.example.com:9200 (7)
          secret:
-           name: es-secret # (8)
+           name: es-secret (8)
       pipelines:
-       - name: application-logs # (9)
-         inputRefs: # (10)
+       - name: application-logs (9)
+         inputRefs: (10)
          - application
          - audit
          outputRefs:
-         - elasticsearch-example # (11)
-         - default # (12)
+         - elasticsearch-example (11)
+         - default (12)
          labels:
-           myLabel: "myValue" # (13)
+           myLabel: "myValue" (13)
     # ...
     ```
     1.  In legacy implementations, the CR name must be `instance`. In multi log forwarder implementations, you can use any name.

@@ -24,7 +24,7 @@ If you are installing a three-node cluster, skip this step. A three-node cluster
 
 **Procedure**
 
-1.  Right-click the template’s name and click **Clone** -> **Clone to Virtual Machine**.
+1.  Right-click the template’s name and click **Clone** → **Clone to Virtual Machine**.
 1.  On the **Select a name and folder** tab, specify a name for the VM. You might include the machine type in the name, such as `compute-1`.
 
     :::note
@@ -44,12 +44,12 @@ If you are installing a three-node cluster, skip this step. A three-node cluster
         *   `disk.EnableUUID`: Specify `TRUE`.
 1.  In the **Virtual Hardware** panel of the **Customize hardware** tab, modify the specified values as required. Ensure that the amount of RAM, CPU, and disk storage meets the minimum requirements for the machine type. If many networks exist, select **Add New Device** > **Network Adapter**, and then enter your network information in the fields provided by the **New Network** menu item.
 1.  Complete the remaining configuration steps. On clicking the **Finish** button, you have completed the cloning operation.
-1.  From the **Virtual Machines** tab, right-click on your VM and then select **Power** -> **Power On**.
+1.  From the **Virtual Machines** tab, right-click on your VM and then select **Power** → **Power On**.
 
 **Next steps**
 
 *   Continue to create more compute machines for your cluster.
 
 {% if context == "installing-vsphere" %}
-{%- set three_node_cluster = false -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}

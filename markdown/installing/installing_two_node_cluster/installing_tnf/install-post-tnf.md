@@ -3,15 +3,16 @@ title: Post-installation troubleshooting and recovery
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Post-installation troubleshooting and recovery {id="installing-post-tnf"}
 {% include "./_attributes/common-attributes.md" %}
+# Post-installation troubleshooting and recovery {id="installing-post-tnf"}
 {%- set context = "install-post-tnf" %}
 
-You can troubleshoot and restore  a two-node {{ product_title }} cluster with fencing (TNF) after a disruption event. Manually recover services when automated recovery is unavailable, replace degraded control plane nodes, and use the `fencing_validator` script to verify cluster health.
+You can troubleshoot and restore  a two-node {{ product_title }} cluster with fencing (TNF) after a disruption event. Manually recover services when automated recovery is unavailable, replace degraded control plane nodes, and use the `fencing_validator` script to verify cluster health. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/installation-manual-recovering-when-auto-recovery-is-unavail.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Restoring etcd from a backup](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd-restoring_backing-up-etcd)
 *   [Verifying etcd health in a two-node OpenShift cluster with fencing](/installing/installing_two_node_cluster/installing_tnf/install-post-tnf#installation-verifying-etcd-health_install-post-tnf)

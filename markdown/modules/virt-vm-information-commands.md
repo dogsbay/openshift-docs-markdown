@@ -6,7 +6,7 @@
 
 You can use `virtctl` to view information about virtual machines (VMs) and virtual machine instances (VMIs). {._abstract}
 
-***VM information commands***
+**VM information commands**
 
 <table>
 <thead>
@@ -17,15 +17,15 @@ You can use `virtctl` to view information about virtual machines (VMs) and virtu
 </thead>
 <tbody>
 <tr>
-  <td><code>virtctl fslist <vm_name></code></td>
+  <td><code>virtctl fslist &lt;vm_name&gt;</code></td>
   <td>View the file systems available on a guest machine.</td>
 </tr>
 <tr>
-  <td><code>virtctl guestosinfo <vm_name></code></td>
+  <td><code>virtctl guestosinfo &lt;vm_name&gt;</code></td>
   <td>View information about the operating systems on a guest machine.</td>
 </tr>
 <tr>
-  <td><code>virtctl userlist <vm_name></code></td>
+  <td><code>virtctl userlist &lt;vm_name&gt;</code></td>
   <td>View the logged-in users on a guest machine.</td>
 </tr>
 </tbody>

@@ -14,7 +14,7 @@ You can install {{ sno }} with z/VM on {{ ibm_z_title }} and {{ ibm_linuxone_tit
     $ OCP_VERSION=<ocp_version>
     ```
 
-    Replace `<ocp_version>` with the current version. For example, `latest-{{ product_version }}`.
+    Replace `<ocp_version>` with the current version. For example, `latest-{{ product_version }}`{minja}.
 1.  Set the host architecture by running the following command:
     ```terminal
     $ ARCH=<architecture>

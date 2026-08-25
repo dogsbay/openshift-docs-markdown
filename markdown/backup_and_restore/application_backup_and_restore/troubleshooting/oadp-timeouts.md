@@ -3,16 +3,16 @@ title: OADP timeouts
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # OADP timeouts {id="oadp-timeouts"}
 {%- set toc = true %}
 
-{% include "./_attributes/common-attributes.md" %}
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "oadp-timeouts" -%}
 {%- set namespace = "openshift-adp" -%}
 {%- set local_product = "OADP" %}
 
-Configure {{ oadp_short }} timeout parameters for Restic, Velero, Data Mover, CSI snapshots, and item operations to allow complex or resource-intensive processes to complete successfully. This helps you reduce errors, retries, and failures caused by premature termination of backup and restore operations.
+Configure {{ oadp_short }} timeout parameters for Restic, Velero, Data Mover, CSI snapshots, and item operations to allow complex or resource-intensive processes to complete successfully. This helps you reduce errors, retries, and failures caused by premature termination of backup and restore operations. {._abstract}
 
 Ensure that you balance timeout extensions in a logical manner so that you do not configure excessively long timeouts that might hide underlying issues in the process. Consider and monitor an appropriate timeout value that meets the needs of the process and the overall system performance.
 
@@ -30,7 +30,7 @@ Ensure that you balance timeout extensions in a logical manner so that you do no
 
 {% leveloffset +1 %}{% include "./modules/oadp-item-backup-timeouts.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Restic timeout](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#restic-timeout_oadp-timeouts)
 *   [Velero resource timeout](/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#velero-timeout_oadp-timeouts)

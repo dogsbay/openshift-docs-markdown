@@ -1,5 +1,5 @@
 ---
-title: "MachineHealthCheck []"
+title: "MachineHealthCheck [machine.openshift.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -25,6 +25,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of machine health check policy |
 | `status` | `object` | Most recently observed status of MachineHealthCheck resource |
+
 ### .spec {id="_spec"}
 
 Description
@@ -38,10 +39,11 @@ Type
 | --- | --- | --- |
 | `maxUnhealthy` | `integer-or-string` | Any farther remediation is only allowed if at most "MaxUnhealthy" machines selected by "selector" are not healthy. Expects either a postive integer value or a percentage value. Percentage values must be positive whole numbers and are capped at 100%. Both 0 and 0% are valid and will block all remediation. Defaults to 100% if not set. |
 | `nodeStartupTimeout` | `string` | Machines older than this duration without a node will be considered to have failed and will be remediated. To prevent Machines without Nodes from being removed, disable startup checks by setting this value explicitly to "0". Expects an unsigned duration string of decimal numbers each with optional fraction and a unit suffix, eg "300ms", "1.5h" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". |
-| `remediationTemplate` | `object` | remediationTemplate is a reference to a remediation template provided by an infrastructure provider. This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Machine API Operator. |
+| `remediationTemplate` | `object` | remediationTemplate is a reference to a remediation template provided by an infrastructure provider.<br>This field is completely optional, when filled, the MachineHealthCheck controller creates a new object from the template referenced and hands off remediation of the machine to a controller that lives outside of Machine API Operator. |
 | `selector` | `object` | Label selector to match machines whose health will be exercised. Note: An empty selector will match all machines. |
 | `unhealthyConditions` | `array` | unhealthyConditions contains a list of the conditions that determine whether a node is considered unhealthy.  The conditions are combined in a logical OR, i.e. if any of the conditions is met, the node is unhealthy. |
 | `unhealthyConditions[]` | `object` | UnhealthyCondition represents a Node condition type and value with a timeout specified as a duration.  When the named condition has been in the given status for at least the timeout value, a node is considered unhealthy. |
+
 ### .spec.remediationTemplate {id="_specremediationtemplate"}
 
 Description
@@ -66,6 +68,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .spec.selector {id="_specselector"}
 
 Description
@@ -81,6 +84,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.selector.matchExpressions {id="_specselectormatchexpressions"}
 
 Description
@@ -110,6 +114,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.unhealthyConditions {id="_specunhealthyconditions"}
 
 Description
@@ -137,6 +142,7 @@ Type
 | `status` | `string` |  |
 | `timeout` | `string` | Expects an unsigned duration string of decimal numbers each with optional fraction and a unit suffix, eg "300ms", "1.5h" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". |
 | `type` | `string` |  |
+
 ### .status {id="_status"}
 
 Description
@@ -153,6 +159,7 @@ Type
 | `currentHealthy` | `integer` | total number of machines counted by this machine health check |
 | `expectedMachines` | `integer` | total number of machines counted by this machine health check |
 | `remediationsAllowed` | `integer` | remediationsAllowed is the number of further remediations allowed by this machine health check before maxUnhealthy short circuiting will be applied |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -192,16 +199,16 @@ The following API endpoints are available:
 
 *   `/apis/machine.openshift.io/v1beta1/machinehealthchecks`
     *   `GET`: list objects of kind MachineHealthCheck
-*   `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks`
+*   `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks`{minja}
     *   `DELETE`: delete collection of MachineHealthCheck
     *   `GET`: list objects of kind MachineHealthCheck
     *   `POST`: create a MachineHealthCheck
-*   `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks/{{ name }}`
+*   `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks/{{ name }}`{minja}
     *   `DELETE`: delete a MachineHealthCheck
     *   `GET`: read the specified MachineHealthCheck
     *   `PATCH`: partially update the specified MachineHealthCheck
     *   `PUT`: replace the specified MachineHealthCheck
-*   `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks/{{ name }}/status`
+*   `/apis/machine.openshift.io/v1beta1/namespaces/{{ namespace }}/machinehealthchecks/{{ name }}/status`{minja}
     *   `GET`: read status of the specified MachineHealthCheck
     *   `PATCH`: partially update status of the specified MachineHealthCheck
     *   `PUT`: replace status of the specified MachineHealthCheck

@@ -11,9 +11,9 @@
 You can use the `queueConfig` object for remote write to tune the remote write queue parameters. The following example shows the queue parameters with their default values for 
 default platform monitoring
 monitoring for user-defined projects
-in the `{{ namespace_name }}` namespace.
+in the `{{ namespace_name }}`{minja} namespace.
 
-```yaml title="Example configuration of remote write parameters with default values"
+```yaml title="Example configuration of remote write parameters with default values" {minja}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -26,15 +26,15 @@ data:
       - url: "https://remote-write-endpoint.example.com" 
         <endpoint_authentication_credentials>
         queueConfig:
-          capacity: 10000 #<1>
-          minShards: 1 #<2>
-          maxShards: 50 #<3>
-          maxSamplesPerSend: 2000 #<4>
-          batchSendDeadline: 5s #<5>
-          minBackoff: 30ms #<6>
-          maxBackoff: 5s #<7>
-          retryOnRateLimit: false #<8>
-          sampleAgeLimit: 0s #<9>
+          capacity: 10000 (1)
+          minShards: 1 (2)
+          maxShards: 50 (3)
+          maxSamplesPerSend: 2000 (4)
+          batchSendDeadline: 5s (5)
+          minBackoff: 30ms (6)
+          maxBackoff: 5s (7)
+          retryOnRateLimit: false (8)
+          sampleAgeLimit: 0s (9)
 ```
 1.  The number of samples to buffer per shard before they are dropped from the queue.
 1.  The minimum number of shards.
@@ -46,6 +46,6 @@ data:
 1.  Set this parameter to `true` to retry a request after receiving a 429 status code from the remote write storage.
 1.  The samples that are older than the `sampleAgeLimit` limit are dropped from the queue. If the value is undefined or set to `0s`, the parameter is ignored.
 
-{%- set configmap_name = false -%}
-{%- set namespace_name = false -%}
-{%- set component = false -%}
+{%- set configmap_name = "" -%}
+{%- set namespace_name = "" -%}
+{%- set component = "" -%}

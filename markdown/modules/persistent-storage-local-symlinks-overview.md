@@ -1,13 +1,12 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Local Storage Operator symlinks overview {id="local-storage-symlinks_{{ context }}"}
 
-[role="_abstract"] 
-The Local Storage Operator (LSO) traditionally creates persistent volumes (PVs) based on `/dev/disk/by-id/` paths, following the assumption that they are stable. However, Linux kernel updates, firmware updates, or `udev` rule changes can cause these supposedly stable names to change or disappear.
+The Local Storage Operator (LSO) traditionally creates persistent volumes (PVs) based on `/dev/disk/by-id/` paths, following the assumption that they are stable. However, Linux kernel updates, firmware updates, or `udev` rule changes can cause these supposedly stable names to change or disappear. {._abstract}
 
 
 Administrator options
 :   Administrators have the following notification and correction options to deal with symlink disruptions:
 
     *   **Monitoring**: (default) If the current and preferred path do not match, an alert occurs, but no changes occur to the current path.
-*   **Use existing path**: Alerts are silenced and LSO uses the existing path.
-*   **Recreate symlinks**: Symlinks are re-created to point to the new, updated device path.
+    *   **Use existing path**: Alerts are silenced and LSO uses the existing path.
+    *   **Recreate symlinks**: Symlinks are re-created to point to the new, updated device path.

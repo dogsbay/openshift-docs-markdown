@@ -3,11 +3,11 @@ title: Configuring an egress service
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring an egress service {id="configuring-egress-traffic-loadbalancer-services"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring an egress service {id="configuring-egress-traffic-loadbalancer-services"}
 {%- set context = "configuring-egress-traffic-loadbalancer-services" %}
 
-As a cluster administrator, you can configure egress traffic for pods behind a load balancer service by using an egress service.
+As a cluster administrator, you can configure egress traffic for pods behind a load balancer service by using an egress service. {._abstract}
 
 {%- set FeatureName = "Egress service" %}
 {% include "./snippets/technology-preview.md" %}
@@ -33,6 +33,7 @@ You can use the `EgressService` custom resource (CR) to manage egress traffic in
 {% leveloffset +1 %}{% include "./modules/nw-egress-service-ovn.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Exposing a service through a network VRF](/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers)
 *   [Example: Network interface with a VRF instance node network configuration policy](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-host-vrf_k8s-nmstate-updating-node-network-config)

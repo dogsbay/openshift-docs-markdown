@@ -3,8 +3,8 @@ title: Extensions
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Extensions {id="ossm-extensions"}
 {% include "./_attributes/common-attributes.md" %}
+# Extensions {id="ossm-extensions"}
 {%- set context = "ossm-extensions" %}
 
 You can use WebAssembly extensions to add new features directly into the {{ SMProductName }} proxies. This lets you move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.

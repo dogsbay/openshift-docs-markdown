@@ -12,7 +12,7 @@ To run the `microshift healthcheck` command successfully, use the following prer
 You can add the following actions to the `microshift healthcheck` command:
 
 *   `-v=2` to increase verbosity of the output
-*   `--timeout="${{ WAIT_TIMEOUT_SECS }}s"` to override default 600s timeout value
+*   `--timeout="${{ WAIT_TIMEOUT_SECS }}s"`{minja} to override default 600s timeout value
 *   `--namespace `_<namespace>_` to specify the namespace of the workloads
 *   `--deployments `_<application-deployment>_` to check the readiness of a specific deployment
     ```terminal title="Example command"

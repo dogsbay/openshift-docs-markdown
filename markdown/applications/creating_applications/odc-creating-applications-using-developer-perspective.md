@@ -3,8 +3,8 @@ title: Creating applications by using the Developer perspective
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating applications by using the Developer perspective {id="odc-creating-applications-using-developer-perspective"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating applications by using the Developer perspective {id="odc-creating-applications-using-developer-perspective"}
 {%- set context = "odc-creating-applications-using-developer-perspective" %}
 
 The **Developer** perspective in the web console provides you the following options from the **+Add** view to create applications and associated services and deploy them on {{ product_title }}:
@@ -50,7 +50,7 @@ Note that certain options, such as **Pipelines**, **Event Source**, and **Import
 {%- endif %}
 {%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 Note that the **Pipelines** option is displayed only when the OpenShift Pipelines Operator is installed.
-{% endif %}
+{%- endif %}
 
 ## Prerequisites {id="prerequisites_odc-creating-applications-using-developer-perspective"}
 
@@ -87,7 +87,7 @@ To create serverless applications, in addition to the preceding prerequisites, e
 
 {% leveloffset +1 %}{% include "./modules/odc-using-the-developer-catalog-to-add-services-or-components.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_odc-creating-applications-using-developer-perspective"}
+## Additional resources {id="additional-resources_odc-creating-applications-using-developer-perspective" ._additional-resources}
 
 *   For more information about Knative routing settings for {{ ServerlessProductName }}, see [Routing](https://docs.openshift.com/serverless/1.28/knative-serving/external-ingress-routing/routing-overview.html#routing-overview).
 *   For more information about domain mapping settings for {{ ServerlessProductName }}, see [Configuring a custom domain for a Knative service](https://docs.openshift.com/serverless/1.28/knative-serving/config-custom-domains/serverless-custom-domains.html#serverless-custom-domains).

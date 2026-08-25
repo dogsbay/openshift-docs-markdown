@@ -99,7 +99,7 @@ In addition to the fixes and stability improvements, the following sections high
 *   Support for optional workspaces are added to the `start` command.
 *   If the plugins are not present in the `plugins` directory, they are searched in the current path.
 *   The `tkn start [task | clustertask | pipeline]` command starts interactively and ask for the `params` value, even when you specify the default parameters are specified. To stop the interactive prompts, pass the `--use-param-defaults` flag at the time of invoking the command. For example:
-    ```terminal
+    ```terminal {minja}
     $ tkn pipeline start build-and-deploy \
         -w name=shared-workspace,volumeClaimTemplateFile=https://raw.githubusercontent.com/openshift/pipelines-tutorial/{{ pipelines_ver }}/01_pipeline/03_persistent_volume_claim.yaml \
         -p deployment-name=pipelines-vote-api \

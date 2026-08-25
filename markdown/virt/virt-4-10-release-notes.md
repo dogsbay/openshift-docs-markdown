@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ VirtProductName }} release notes {id="virt-4-10-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ VirtProductName }} release notes {id="virt-4-10-release-notes"}
 {%- set context = "virt-4-10-release-notes" %}
 
 ## About Red Hat {{ VirtProductName }} {id="_about_red_hat_virtproductname"}
@@ -136,7 +136,7 @@ Some features in this release are currently in Technology Preview. These experim
         $ ovirt-aaa-jdbc-tool user unlock admin
         ```
 *   If you run {{ VirtProductName }} 2.6.5 with {{ product_title }} 4.8 or later, various issues occur. You can avoid these issues by upgrading {{ VirtProductName }} to version 4.8 or later.
-    *   In the web console, if you navigate to the **Virtualization** page and select **Create** -> **With YAML** the following error message is displayed:
+    *   In the web console, if you navigate to the **Virtualization** page and select **Create** → **With YAML** the following error message is displayed:
         ```text
         The server doesn't have a resource type "kind: VirtualMachine, apiVersion: kubevirt.io/v1"
         ```

@@ -11,7 +11,6 @@ To see a node’s current capacity and allocatable resources:
 ```
 $ oc get node/<node_name> -o yaml
 ```
-
 1.  Locate the following section in the output:
     ```yaml
     ...

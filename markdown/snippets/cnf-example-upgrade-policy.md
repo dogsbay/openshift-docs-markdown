@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-```yaml title="Example upgrade policy"
+```yaml title="Example upgrade policy" {minja}
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:

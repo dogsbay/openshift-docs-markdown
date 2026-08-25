@@ -3,11 +3,11 @@ title: Configuring the Custom File Integrity Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the Custom File Integrity Operator {id="configuring-file-integrity-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the Custom File Integrity Operator {id="configuring-file-integrity-operator"}
 {%- set context = "file-integrity-operator" %}
 
-You can configure the Custom File Integrity Operator to meet your cluster requirements.
+You can configure the Custom File Integrity Operator to meet your cluster requirements. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/file-integrity-operator-viewing-attributes.md" %}{% endleveloffset %}
 

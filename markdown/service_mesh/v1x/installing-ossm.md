@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing Service Mesh {id="installing-ossm-v1x"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing Service Mesh {id="installing-ossm-v1x"}
 {%- set context = "installing-ossm-v1x" %}
 
 {% include "./snippets/ossm-out-of-support.md" %}

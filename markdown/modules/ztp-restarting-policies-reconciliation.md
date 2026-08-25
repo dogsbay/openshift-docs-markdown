@@ -22,10 +22,10 @@ You can restart policy reconciliation when unexpected compliance issues occur, f
     ```
 
 
-:::note
+    :::note
 
-When the `ClusterGroupUpgrade` CR completes with status `UpgradeCompleted` and the managed cluster has the label `ztp-done` applied, you can make additional configuration changes by using `{{ policy_gen_cr }}`. Deleting the existing `ClusterGroupUpgrade` CR will not make the {{ cgu_operator }} generate a new CR.
+    When the `ClusterGroupUpgrade` CR completes with status `UpgradeCompleted` and the managed cluster has the label `ztp-done` applied, you can make additional configuration changes by using `{{ policy_gen_cr }}`{minja}. Deleting the existing `ClusterGroupUpgrade` CR will not make the {{ cgu_operator }} generate a new CR.
 
-At this point, {{ ztp }} has completed its interaction with the cluster and any further interactions should be treated as an update and a new `ClusterGroupUpgrade` CR created for remediation of the policies.
-
-:::
+    At this point, {{ ztp }} has completed its interaction with the cluster and any further interactions should be treated as an update and a new `ClusterGroupUpgrade` CR created for remediation of the policies.
+    
+    :::

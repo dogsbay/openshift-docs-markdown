@@ -16,7 +16,7 @@ To obfuscate the name of resources, you must manually set the `obfuscation` attr
 
 **Procedure**
 
-1.  Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.
+1.  Go to **Workloads** → **ConfigMaps** and select **Project: openshift-insights**.
 1.  Click the `insights-config` `ConfigMap` object to open it.
 1.  Click **Actions** and select **Edit ConfigMap**.
 1.  Click the **YAML view** radio button.

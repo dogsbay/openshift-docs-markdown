@@ -9,10 +9,10 @@ The {{ product_title }} web console displays resource usage, alerts, events, and
 
 | Page | Description |
 | --- | --- |
-| **Virtualization** -> **VirtualMachines** -> **Overview** page | Cluster details, status, alerts, inventory, and resource usage |
-| **Virtualization** -> **VirtualMachines** -> **Overview** -> **Overview** tab | {{ VirtProductName }} resources, usage, alerts, and status |
-| **Virtualization** -> **Migrations** page | Progress of live migrations |
-| **Virtualization** -> **VirtualMachines** -> **Virtual machines** tab | CPU, memory, and storage usage summary |
-| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Metrics** tab | VM resource usage, storage, network, and migration |
-| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Events** tab | List of VM events |
-| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Diagnostics** tab | VM status conditions and volume snapshot status |
+| **Virtualization** → **VirtualMachines** → **Overview** page | Cluster details, status, alerts, inventory, and resource usage |
+| **Virtualization** → **VirtualMachines** → **Overview** → **Overview** tab | {{ VirtProductName }} resources, usage, alerts, and status |
+| **Virtualization** → **Migrations** page | Progress of live migrations |
+| **Virtualization** → **VirtualMachines** → **Virtual machines** tab | CPU, memory, and storage usage summary |
+| **Virtualization** → **VirtualMachines** → **Virtual machines** → **VirtualMachine details** → **Metrics** tab | VM resource usage, storage, network, and migration |
+| **Virtualization** → **VirtualMachines** → **Virtual machines** → **VirtualMachine details** → **Events** tab | List of VM events |
+| **Virtualization** → **VirtualMachines** → **Virtual machines** → **VirtualMachine details** → **Diagnostics** tab | VM status conditions and volume snapshot status |

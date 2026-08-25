@@ -3,11 +3,11 @@ title: Securing routes through ingress objects
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Securing routes through ingress objects {id="creating-advanced-routes"}
 {% include "./_attributes/common-attributes.md" %}
+# Securing routes through ingress objects {id="creating-advanced-routes"}
 {%- set context = "creating-advanced-routes" %}
 
-You can secure your application traffic by managing certificates directly through ingress objects. This includes creating routes using the destination CA certificate in an ingress annotation or using the default certificate.
+You can secure your application traffic by managing certificates directly through ingress objects. This includes creating routes using the destination CA certificate in an ingress annotation or using the default certificate. {._abstract}
 
 
 :::warning

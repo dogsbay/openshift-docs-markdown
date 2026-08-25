@@ -3,11 +3,11 @@ title: "Hardening {{ op_system }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Hardening {{ op_system }} {id="security-hardening"}
 {% include "./_attributes/common-attributes.md" %}
+# Hardening {{ op_system }} {id="security-hardening"}
 {%- set context = "security-hardening" %}
 
-If you are planning to harden {{ op_system }} nodes in {{ product_title }} to meet your security needs, you should consider both what to harden and how to go about doing that hardening.
+If you are planning to harden {{ op_system }} nodes in {{ product_title }} to meet your security needs, you should consider both what to harden and how to go about doing that hardening. {._abstract}
 
 {{ op_system }} was created and tuned to be deployed in {{ product_title }} with few if any changes needed to {{ op_system }} nodes. Every organization adopting {{ product_title }} has its own requirements for system hardening. As a {{ op_system_base }} system with OpenShift-specific modifications and features added (such as Ignition, ostree, and a read-only `/usr` to provide limited immutability), {{ op_system }} can be hardened just as you would any {{ op_system_base }} system. Differences lie in the ways you manage the hardening.
 
@@ -18,6 +18,7 @@ So, if you are setting out to harden {{ op_system }} nodes in {{ product_title }
 {% leveloffset +1 %}{% include "./modules/security-hardening-what.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 {% if openshift_origin %}
 *   [Red Hat Enterprise Linux 9 Security documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9#Security)
@@ -29,6 +30,7 @@ So, if you are setting out to harden {{ op_system }} nodes in {{ product_title }
 {% leveloffset +1 %}{% include "./modules/security-hardening-how.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Kubernetes DaemonSet documentation](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
 *   [OpenShift Security Guide](https://access.redhat.com/articles/5059881)
@@ -43,4 +45,4 @@ So, if you are setting out to harden {{ op_system }} nodes in {{ product_title }
 *   [Optional configuration parameters](/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional_installation-config-parameters-aws)
 *   [Support for FIPS cryptography](/installing/overview/installing-fips#installing-fips)
 *   [{{ op_system_base }} core crypto components](https://access.redhat.com/articles/3359851)
-{% endif %}
+{%- endif %}

@@ -1,17 +1,17 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an Intel(R) Virtual RAID on CPU (VROC) data volume {id="installation-special-config-raid-intel-vroc_{{ context }}"}
+# Configuring an Intel® Virtual RAID on CPU (VROC) data volume {id="installation-special-config-raid-intel-vroc_{{ context }}"}
 
-Intel(R) VROC is a type of hybrid RAID, where some of the maintenance is offloaded to the hardware, but shows as software RAID to the operating system. You can configure an Intel(R) Virtual RAID on CPU (VROC) data volume to deliver direct-to-CPU NVMe throughput for data-intensive workloads. {._abstract}
+Intel® VROC is a type of hybrid RAID, where some of the maintenance is offloaded to the hardware, but shows as software RAID to the operating system. You can configure an Intel® Virtual RAID on CPU (VROC) data volume to deliver direct-to-CPU NVMe throughput for data-intensive workloads. {._abstract}
 
-The following procedure configures an Intel(R) VROC-enabled RAID1.
+The following procedure configures an Intel® VROC-enabled RAID1.
 
 **Prerequisites**
 
-*   You have a system with Intel(R) Volume Management Device (VMD) enabled.
+*   You have a system with Intel® Volume Management Device (VMD) enabled.
 
 **Procedure**
 
-1.  Create the Intel(R) Matrix Storage Manager (IMSM) RAID container by running the following command:
+1.  Create the Intel® Matrix Storage Manager (IMSM) RAID container by running the following command:
     ```terminal
     $ mdadm -CR /dev/md/imsm0 -e \
       imsm -n2 /dev/nvme0n1 /dev/nvme1n1

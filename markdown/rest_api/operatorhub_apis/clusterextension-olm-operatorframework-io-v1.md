@@ -1,5 +1,5 @@
 ---
-title: "ClusterExtension []"
+title: "ClusterExtension [olm.operatorframework.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec is an optional field that defines the desired state of the ClusterExtension. |
 | `status` | `object` | status is an optional field that defines the observed state of the ClusterExtension. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,12 +42,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `config` | `object` | config is optional and specifies bundle-specific configuration. Configuration is bundle-specific and a bundle may provide a configuration schema. When not specified, the default configuration of the resolved bundle is used. config is validated against a configuration schema provided by the resolved bundle. If the bundle does not provide a configuration schema the bundle is deemed to not be configurable. More information on how to configure bundles can be found in the OLM documentation associated with your current OLM version. |
+| `config` | `object` | config is optional and specifies bundle-specific configuration. Configuration is bundle-specific and a bundle may provide a configuration schema. When not specified, the default configuration of the resolved bundle is used.<br>config is validated against a configuration schema provided by the resolved bundle. If the bundle does not provide a configuration schema the bundle is deemed to not be configurable. More information on how to configure bundles can be found in the OLM documentation associated with your current OLM version. |
 | `install` | `object` | install is optional and configures installation options for the ClusterExtension, such as the pre-flight check configuration. |
-| `namespace` | `string` | namespace specifies a Kubernetes namespace. This is the namespace where the provided ServiceAccount must exist. It also designates the default namespace where namespace-scoped resources for the extension are applied to the cluster. Some extensions may contain namespace-scoped resources to be applied in other namespaces. This namespace must exist. The namespace field is required, immutable, and follows the DNS label standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters or hyphens (-), start and end with an alphanumeric character, and be no longer than 63 characters. [RFC 1123]: https://tools.ietf.org/html/rfc1123 |
+| `namespace` | `string` | namespace specifies a Kubernetes namespace. This is the namespace where the provided ServiceAccount must exist. It also designates the default namespace where namespace-scoped resources for the extension are applied to the cluster. Some extensions may contain namespace-scoped resources to be applied in other namespaces. This namespace must exist.<br>The namespace field is required, immutable, and follows the DNS label standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters or hyphens (-), start and end with an alphanumeric character, and be no longer than 63 characters.<br>[RFC 1123]: https://tools.ietf.org/html/rfc1123 |
 | `progressDeadlineMinutes` | `integer` | progressDeadlineMinutes is an optional field that defines the maximum period of time in minutes after which an installation should be considered failed and require manual intervention. This functionality is disabled when no value is provided. The minimum period is 10 minutes, and the maximum is 720 minutes (12 hours). |
 | `serviceAccount` | `object` | serviceAccount specifies a ServiceAccount used to perform all interactions with the cluster that are required to manage the extension. The ServiceAccount must be configured with the necessary permissions to perform these interactions. The ServiceAccount must exist in the namespace referenced in the spec. The serviceAccount field is required. |
-| `source` | `object` | source is required and selects the installation source of content for this ClusterExtension. Set the sourceType field to perform the selection. Catalog is currently the only implemented sourceType. Setting sourceType to "Catalog" requires the catalog field to also be defined. Below is a minimal example of a source definition (in yaml): source:   sourceType: Catalog   catalog:     packageName: example-package |
+| `source` | `object` | source is required and selects the installation source of content for this ClusterExtension. Set the sourceType field to perform the selection.<br>Catalog is currently the only implemented sourceType. Setting sourceType to "Catalog" requires the catalog field to also be defined.<br>Below is a minimal example of a source definition (in yaml):<br>source:   sourceType: Catalog   catalog:     packageName: example-package |
+
 ### .spec.config {id="_specconfig"}
 
 Description
@@ -69,8 +71,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configType` | `string` | configType is required and specifies the type of configuration source. The only allowed value is "Inline". When set to "Inline", the cluster extension configuration is defined inline within the ClusterExtension resource. |
-| `inline` | `` | inline contains JSON or YAML values specified directly in the ClusterExtension. It is used to specify arbitrary configuration values for the ClusterExtension. It must be set if configType is 'Inline' and must be a valid JSON/YAML object containing at least one property. The configuration values are validated at runtime against a JSON schema provided by the bundle. |
+| `configType` | `string` | configType is required and specifies the type of configuration source.<br>The only allowed value is "Inline".<br>When set to "Inline", the cluster extension configuration is defined inline within the ClusterExtension resource. |
+| `inline` | `` | inline contains JSON or YAML values specified directly in the ClusterExtension.<br>It is used to specify arbitrary configuration values for the ClusterExtension. It must be set if configType is 'Inline' and must be a valid JSON/YAML object containing at least one property. The configuration values are validated at runtime against a JSON schema provided by the bundle. |
+
 ### .spec.install {id="_specinstall"}
 
 Description
@@ -83,7 +86,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `preflight` | `object` | preflight is optional and configures the checks that run before installation or upgrade of the content for the package specified in the packageName field. When specified, it replaces the default preflight configuration for install/upgrade actions. When not specified, the default configuration is used. |
+| `preflight` | `object` | preflight is optional and configures the checks that run before installation or upgrade of the content for the package specified in the packageName field.<br>When specified, it replaces the default preflight configuration for install/upgrade actions. When not specified, the default configuration is used. |
+
 ### .spec.install.preflight {id="_specinstallpreflight"}
 
 Description
@@ -104,7 +108,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `crdUpgradeSafety` | `object` | crdUpgradeSafety configures the CRD Upgrade Safety pre-flight checks that run before upgrades of installed content. The CRD Upgrade Safety pre-flight check safeguards from unintended consequences of upgrading a CRD, such as data loss. |
+| `crdUpgradeSafety` | `object` | crdUpgradeSafety configures the CRD Upgrade Safety pre-flight checks that run before upgrades of installed content.<br>The CRD Upgrade Safety pre-flight check safeguards from unintended consequences of upgrading a CRD, such as data loss. |
+
 ### .spec.install.preflight.crdUpgradeSafety {id="_specinstallpreflightcrdupgradesafety"}
 
 Description
@@ -125,7 +130,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `enforcement` | `string` | enforcement is required and configures the state of the CRD Upgrade Safety pre-flight check. Allowed values are "None" or "Strict". The default value is "Strict". When set to "None", the CRD Upgrade Safety pre-flight check is skipped during an upgrade operation. Use this option with caution as unintended consequences such as data loss can occur. When set to "Strict", the CRD Upgrade Safety pre-flight check runs during an upgrade operation. |
+| `enforcement` | `string` | enforcement is required and configures the state of the CRD Upgrade Safety pre-flight check.<br>Allowed values are "None" or "Strict". The default value is "Strict".<br>When set to "None", the CRD Upgrade Safety pre-flight check is skipped during an upgrade operation. Use this option with caution as unintended consequences such as data loss can occur.<br>When set to "Strict", the CRD Upgrade Safety pre-flight check runs during an upgrade operation. |
+
 ### .spec.serviceAccount {id="_specserviceaccount"}
 
 Description
@@ -145,7 +151,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is a required, immutable reference to the name of the ServiceAccount used for installation and management of the content for the package specified in the packageName field. This ServiceAccount must exist in the installNamespace. The name field follows the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters. Some examples of valid values are:   - some-serviceaccount   - 123-serviceaccount   - 1-serviceaccount-2   - someserviceaccount   - some.serviceaccount Some examples of invalid values are:   - -some-serviceaccount   - some-serviceaccount- [RFC 1123]: https://tools.ietf.org/html/rfc1123 |
+| `name` | `string` | name is a required, immutable reference to the name of the ServiceAccount used for installation and management of the content for the package specified in the packageName field.<br>This ServiceAccount must exist in the installNamespace.<br>The name field follows the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters.<br>Some examples of valid values are:   - some-serviceaccount   - 123-serviceaccount   - 1-serviceaccount-2   - someserviceaccount   - some.serviceaccount<br>Some examples of invalid values are:   - -some-serviceaccount   - some-serviceaccount-<br>[RFC 1123]: https://tools.ietf.org/html/rfc1123 |
+
 ### .spec.source {id="_specsource"}
 
 Description
@@ -176,7 +183,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `catalog` | `object` | catalog configures how information is sourced from a catalog. It is required when sourceType is "Catalog", and forbidden otherwise. |
-| `sourceType` | `string` | sourceType is required and specifies the type of install source. The only allowed value is "Catalog". When set to "Catalog", information for determining the appropriate bundle of content to install is fetched from ClusterCatalog resources on the cluster. When using the Catalog sourceType, the catalog field must also be set. |
+| `sourceType` | `string` | sourceType is required and specifies the type of install source.<br>The only allowed value is "Catalog".<br>When set to "Catalog", information for determining the appropriate bundle of content to install is fetched from ClusterCatalog resources on the cluster. When using the Catalog sourceType, the catalog field must also be set. |
+
 ### .spec.source.catalog {id="_specsourcecatalog"}
 
 Description
@@ -193,14 +201,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `channels` | `array (string)` | channels is optional and specifies a set of channels belonging to the package specified in the packageName field. A channel is a package-author-defined stream of updates for an extension. Each channel in the list must follow the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters. You can specify no more than 256 channels. When specified, it constrains the set of installable bundles and the automated upgrade path. This constraint is an AND operation with the version field. For example:   - Given channel is set to "foo"   - Given version is set to ">=1.0.0, &lt;1.5.0"   - Only bundles that exist in channel "foo" AND satisfy the version range comparison are considered installable   - Automatic upgrades are constrained to upgrade edges defined by the selected channel When unspecified, upgrade edges across all channels are used to identify valid automatic upgrade paths. Some examples of valid values are:   - 1.1.x   - alpha   - stable   - stable-v1   - v1-stable   - dev-preview   - preview   - community Some examples of invalid values are:   - -some-channel   - some-channel-   - thisisareallylongchannelnamethatisgreaterthanthemaximumlength   - original_40   - --default-channel [RFC 1123]: https://tools.ietf.org/html/rfc1123 |
-| `packageName` | `string` | packageName specifies the name of the package to be installed and is used to filter the content from catalogs. It is required, immutable, and follows the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters. Some examples of valid values are:   - some-package   - 123-package   - 1-package-2   - somepackage Some examples of invalid values are:   - -some-package   - some-package-   - thisisareallylongpackagenamethatisgreaterthanthemaximumlength   - some.package [RFC 1123]: https://tools.ietf.org/html/rfc1123 |
-| `selector` | `object` | selector is optional and filters the set of ClusterCatalogs used in the bundle selection process. When unspecified, all ClusterCatalogs are used in the bundle selection process. |
-| `upgradeConstraintPolicy` | `string` | upgradeConstraintPolicy is optional and controls whether the upgrade paths defined in the catalog are enforced for the package referenced in the packageName field. Allowed values are "CatalogProvided", "SelfCertified", or omitted. When set to "CatalogProvided", automatic upgrades only occur when upgrade constraints specified by the package author are met. When set to "SelfCertified", the upgrade constraints specified by the package author are ignored. This allows upgrades and downgrades to any version of the package. This is considered a dangerous operation as it can lead to unknown and potentially disastrous outcomes, such as data loss. Use this option only if you have independently verified the changes. When omitted, the default value is "CatalogProvided". |
-| `version` | `string` | version is an optional semver constraint (a specific version or range of versions). When unspecified, the latest version available is installed. Acceptable version ranges are no longer than 64 characters. Version ranges are composed of comma- or space-delimited values and one or more comparison operators, known as comparison strings. You can add additional comparison strings using the OR operator (\ |
-| \ | ). # Range Comparisons To specify a version range, you can use a comparison string like ">=3.0, &lt;3.6". When specifying a range, automatic updates will occur within that range. The example comparison string means "install any version greater than or equal to 3.0.0 but less than 3.6.0.". It also states intent that if any upgrades are available within the version range after initial installation, those upgrades should be automatically performed. # Pinned Versions To specify an exact version to install you can use a version range that "pins" to a specific version. When pinning to a specific version, no automatic updates will occur. An example of a pinned version range is "0.6.0", which means "only install version 0.6.0 and never upgrade from this version". # Basic Comparison Operators The basic comparison operators and their meanings are:   - "=", equal (not aliased to an operator)   - "!=", not equal   - "&lt;", less than   - ">", greater than   - ">=", greater than OR equal to   - "&lt;=", less than OR equal to # Wildcard Comparisons You can use the "x", "X", and "**" characters as wildcard characters in all comparison operations. Some examples of using the wildcard characters:   - "1.2.x", "1.2.X", and "1.2.**" is equivalent to ">=1.2.0, &lt; 1.3.0"   - ">= 1.2.x", ">= 1.2.X", and ">= 1.2.**" is equivalent to ">= 1.2.0"   - "&lt;= 2.x", "&lt;= 2.X", and "&lt;= 2.**" is equivalent to "&lt; 3"   - "x", "X", and "*" is equivalent to ">= 0.0.0" # Patch Release Comparisons When you want to specify a minor version up to the next major version you can use the "~" character to perform patch comparisons. Some examples:   - "~1.2.3" is equivalent to ">=1.2.3, &lt;1.3.0"   - "~1" and "~1.x" is equivalent to ">=1, &lt;2"   - "~2.3" is equivalent to ">=2.3, &lt;2.4"   - "~1.2.x" is equivalent to ">=1.2.0, &lt;1.3.0" # Major Release Comparisons You can use the "^" character to make major release comparisons after a stable 1.0.0 version is published. If there is no stable version published, // minor versions define the stability level. Some examples:   - "^1.2.3" is equivalent to ">=1.2.3, &lt;2.0.0"   - "^1.2.x" is equivalent to ">=1.2.0, &lt;2.0.0"   - "^2.3" is equivalent to ">=2.3, &lt;3"   - "^2.x" is equivalent to ">=2.0.0, &lt;3"   - "^0.2.3" is equivalent to ">=0.2.3, &lt;0.3.0"   - "^0.2" is equivalent to ">=0.2.0, &lt;0.3.0"   - "^0.0.3" is equvalent to ">=0.0.3, &lt;0.0.4"   - "^0.0" is equivalent to ">=0.0.0, &lt;0.1.0"   - "^0" is equivalent to ">=0.0.0, &lt;1.0.0" # OR Comparisons You can use the "\ | \ |
-| " character to represent an OR operation in the version range. Some examples:   - ">=1.2.3, &lt;2.0.0 \ | \ | >3.0.0"   - "^0 \ |
-| \ | ^3 \ | \ |
+| `channels` | `array (string)` | channels is optional and specifies a set of channels belonging to the package specified in the packageName field.<br>A channel is a package-author-defined stream of updates for an extension.<br>Each channel in the list must follow the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters. You can specify no more than 256 channels.<br>When specified, it constrains the set of installable bundles and the automated upgrade path. This constraint is an AND operation with the version field. For example:   - Given channel is set to "foo"   - Given version is set to ">=1.0.0, &lt;1.5.0"   - Only bundles that exist in channel "foo" AND satisfy the version range comparison are considered installable   - Automatic upgrades are constrained to upgrade edges defined by the selected channel<br>When unspecified, upgrade edges across all channels are used to identify valid automatic upgrade paths.<br>Some examples of valid values are:   - 1.1.x   - alpha   - stable   - stable-v1   - v1-stable   - dev-preview   - preview   - community<br>Some examples of invalid values are:   - -some-channel   - some-channel-   - thisisareallylongchannelnamethatisgreaterthanthemaximumlength   - original_40   - --default-channel<br>[RFC 1123]: https://tools.ietf.org/html/rfc1123 |
+| `packageName` | `string` | packageName specifies the name of the package to be installed and is used to filter the content from catalogs.<br>It is required, immutable, and follows the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters.<br>Some examples of valid values are:   - some-package   - 123-package   - 1-package-2   - somepackage<br>Some examples of invalid values are:   - -some-package   - some-package-   - thisisareallylongpackagenamethatisgreaterthanthemaximumlength   - some.package<br>[RFC 1123]: https://tools.ietf.org/html/rfc1123 |
+| `selector` | `object` | selector is optional and filters the set of ClusterCatalogs used in the bundle selection process.<br>When unspecified, all ClusterCatalogs are used in the bundle selection process. |
+| `upgradeConstraintPolicy` | `string` | upgradeConstraintPolicy is optional and controls whether the upgrade paths defined in the catalog are enforced for the package referenced in the packageName field.<br>Allowed values are "CatalogProvided", "SelfCertified", or omitted.<br>When set to "CatalogProvided", automatic upgrades only occur when upgrade constraints specified by the package author are met.<br>When set to "SelfCertified", the upgrade constraints specified by the package author are ignored. This allows upgrades and downgrades to any version of the package. This is considered a dangerous operation as it can lead to unknown and potentially disastrous outcomes, such as data loss. Use this option only if you have independently verified the changes.<br>When omitted, the default value is "CatalogProvided". |
+| `version` | `string` | version is an optional semver constraint (a specific version or range of versions). When unspecified, the latest version available is installed.<br>Acceptable version ranges are no longer than 64 characters. Version ranges are composed of comma- or space-delimited values and one or more comparison operators, known as comparison strings. You can add additional comparison strings using the OR operator (\|\|).<br># Range Comparisons<br>To specify a version range, you can use a comparison string like ">=3.0, &lt;3.6". When specifying a range, automatic updates will occur within that range. The example comparison string means "install any version greater than or equal to 3.0.0 but less than 3.6.0.". It also states intent that if any upgrades are available within the version range after initial installation, those upgrades should be automatically performed.<br># Pinned Versions<br>To specify an exact version to install you can use a version range that "pins" to a specific version. When pinning to a specific version, no automatic updates will occur. An example of a pinned version range is "0.6.0", which means "only install version 0.6.0 and never upgrade from this version".<br># Basic Comparison Operators<br>The basic comparison operators and their meanings are:   - "=", equal (not aliased to an operator)   - "!=", not equal   - "&lt;", less than   - ">", greater than   - ">=", greater than OR equal to   - "&lt;=", less than OR equal to<br># Wildcard Comparisons<br>You can use the "x", "X", and "*" characters as wildcard characters in all comparison operations. Some examples of using the wildcard characters:   - "1.2.x", "1.2.X", and "1.2.*" is equivalent to ">=1.2.0, &lt; 1.3.0"   - ">= 1.2.x", ">= 1.2.X", and ">= 1.2.*" is equivalent to ">= 1.2.0"   - "&lt;= 2.x", "&lt;= 2.X", and "&lt;= 2.*" is equivalent to "&lt; 3"   - "x", "X", and "*" is equivalent to ">= 0.0.0"<br># Patch Release Comparisons<br>When you want to specify a minor version up to the next major version you can use the "~" character to perform patch comparisons. Some examples:   - "~1.2.3" is equivalent to ">=1.2.3, &lt;1.3.0"   - "~1" and "~1.x" is equivalent to ">=1, &lt;2"   - "~2.3" is equivalent to ">=2.3, &lt;2.4"   - "~1.2.x" is equivalent to ">=1.2.0, &lt;1.3.0"<br># Major Release Comparisons<br>You can use the "^" character to make major release comparisons after a stable 1.0.0 version is published. If there is no stable version published, // minor versions define the stability level. Some examples:   - "^1.2.3" is equivalent to ">=1.2.3, &lt;2.0.0"   - "^1.2.x" is equivalent to ">=1.2.0, &lt;2.0.0"   - "^2.3" is equivalent to ">=2.3, &lt;3"   - "^2.x" is equivalent to ">=2.0.0, &lt;3"   - "^0.2.3" is equivalent to ">=0.2.3, &lt;0.3.0"   - "^0.2" is equivalent to ">=0.2.0, &lt;0.3.0"   - "^0.0.3" is equvalent to ">=0.0.3, &lt;0.0.4"   - "^0.0" is equivalent to ">=0.0.0, &lt;0.1.0"   - "^0" is equivalent to ">=0.0.0, &lt;1.0.0"<br># OR Comparisons You can use the "\|\|" character to represent an OR operation in the version range. Some examples:   - ">=1.2.3, &lt;2.0.0 \|\| >3.0.0"   - "^0 \|\| ^3 \|\| ^5"<br>For more information on semver, please see https://semver.org/ |
+
 ### .spec.source.catalog.selector {id="_specsourcecatalogselector"}
 
 Description
@@ -218,6 +224,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.source.catalog.selector.matchExpressions {id="_specsourcecatalogselectormatchexpressions"}
 
 Description
@@ -247,6 +254,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status {id="_status"}
 
 Description
@@ -260,9 +268,10 @@ Type
 | --- | --- | --- |
 | `activeRevisions` | `array` | activeRevisions holds a list of currently active (non-archived) ClusterObjectSets, including both installed and rolling out revisions. |
 | `activeRevisions[]` | `object` | RevisionStatus defines the observed state of a ClusterObjectSet. |
-| `conditions` | `array` | conditions represents the current state of the ClusterExtension. The set of condition types which apply to all spec.source variations are Installed and Progressing. The Installed condition represents whether the bundle has been installed for this ClusterExtension:   - When Installed is True and the Reason is Succeeded, the bundle has been successfully installed.   - When Installed is False and the Reason is Failed, the bundle has failed to install. The Progressing condition represents whether or not the ClusterExtension is advancing towards a new state. When Progressing is True and the Reason is Succeeded, the ClusterExtension is making progress towards a new state. When Progressing is True and the Reason is Retrying, the ClusterExtension has encountered an error that could be resolved on subsequent reconciliation attempts. When Progressing is False and the Reason is Blocked, the ClusterExtension has encountered an error that requires manual intervention for recovery. When Progressing is True and Reason is RollingOut, the ClusterExtension has one or more ClusterObjectSets in active roll out. When the ClusterExtension is sourced from a catalog, it surfaces deprecation conditions based on catalog metadata. These are indications from a package owner to guide users away from a particular package, channel, or bundle:   - BundleDeprecated is True if the installed bundle is marked deprecated, False if not deprecated, or Unknown if no bundle is installed yet or if catalog data is unavailable.   - ChannelDeprecated is True if any requested channel is marked deprecated, False if not deprecated, or Unknown if catalog data is unavailable.   - PackageDeprecated is True if the requested package is marked deprecated, False if not deprecated, or Unknown if catalog data is unavailable.   - Deprecated is a rollup condition that is True when any deprecation exists, False when none exist, or Unknown when catalog data is unavailable. |
+| `conditions` | `array` | conditions represents the current state of the ClusterExtension.<br>The set of condition types which apply to all spec.source variations are Installed and Progressing.<br>The Installed condition represents whether the bundle has been installed for this ClusterExtension:   - When Installed is True and the Reason is Succeeded, the bundle has been successfully installed.   - When Installed is False and the Reason is Failed, the bundle has failed to install.<br>The Progressing condition represents whether or not the ClusterExtension is advancing towards a new state. When Progressing is True and the Reason is Succeeded, the ClusterExtension is making progress towards a new state. When Progressing is True and the Reason is Retrying, the ClusterExtension has encountered an error that could be resolved on subsequent reconciliation attempts. When Progressing is False and the Reason is Blocked, the ClusterExtension has encountered an error that requires manual intervention for recovery.<br>When Progressing is True and Reason is RollingOut, the ClusterExtension has one or more ClusterObjectSets in active roll out.<br>When the ClusterExtension is sourced from a catalog, it surfaces deprecation conditions based on catalog metadata. These are indications from a package owner to guide users away from a particular package, channel, or bundle:   - BundleDeprecated is True if the installed bundle is marked deprecated, False if not deprecated, or Unknown if no bundle is installed yet or if catalog data is unavailable.   - ChannelDeprecated is True if any requested channel is marked deprecated, False if not deprecated, or Unknown if catalog data is unavailable.   - PackageDeprecated is True if the requested package is marked deprecated, False if not deprecated, or Unknown if catalog data is unavailable.   - Deprecated is a rollup condition that is True when any deprecation exists, False when none exist, or Unknown when catalog data is unavailable. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `install` | `object` | install is a representation of the current installation status for this ClusterExtension. |
+
 ### .status.activeRevisions {id="_statusactiverevisions"}
 
 Description
@@ -291,6 +300,7 @@ Required
 | `conditions` | `array` | conditions optionally expose Progressing and Available condition of the revision, in case when it is not yet marked as successfully installed (condition Succeeded is not set to True). Given that a ClusterExtension should remain available during upgrades, an observer may use these conditions to get more insights about reasons for its current state. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `name` | `string` | name of the ClusterObjectSet resource |
+
 ### .status.activeRevisions[].conditions {id="_statusactiverevisionsconditions"}
 
 Description
@@ -328,6 +338,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -387,6 +398,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.install {id="_statusinstall"}
 
 Description
@@ -402,7 +414,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `bundle` | `object` | bundle is required and represents the identifying attributes of a bundle. A "bundle" is a versioned set of content that represents the resources that need to be applied to a cluster to install a package. |
+| `bundle` | `object` | bundle is required and represents the identifying attributes of a bundle.<br>A "bundle" is a versioned set of content that represents the resources that need to be applied to a cluster to install a package. |
+
 ### .status.install.bundle {id="_statusinstallbundle"}
 
 Description
@@ -434,12 +447,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ClusterExtension
     *   `GET`: list objects of kind ClusterExtension
     *   `POST`: create a ClusterExtension
-*   `/apis/olm.operatorframework.io/v1/clusterextensions/{{ name }}`
+*   `/apis/olm.operatorframework.io/v1/clusterextensions/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterExtension
     *   `GET`: read the specified ClusterExtension
     *   `PATCH`: partially update the specified ClusterExtension
     *   `PUT`: replace the specified ClusterExtension
-*   `/apis/olm.operatorframework.io/v1/clusterextensions/{{ name }}/status`
+*   `/apis/olm.operatorframework.io/v1/clusterextensions/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ClusterExtension
     *   `PATCH`: partially update status of the specified ClusterExtension
     *   `PUT`: replace status of the specified ClusterExtension

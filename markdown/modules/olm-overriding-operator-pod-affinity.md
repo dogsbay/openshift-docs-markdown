@@ -180,7 +180,7 @@ To control the placement of an Operator pod, complete the following steps.
 1.  Install the Operator as usual.
 1.  If needed, ensure that your nodes are labeled to properly respond to the affinity.
 1.  Edit the Operator `Subscription` object to add an affinity:
-    {%- if oplm %}
+{% if oplm %}
     ```yaml
     apiVersion: operators.coreos.com/v1alpha1
     kind: Subscription
@@ -210,33 +210,33 @@ To control the placement of an Operator pod, complete the following steps.
     :   Specifies a `nodeAffinity`, `podAffinity`, or `podAntiAffinity`. See the Additional resources section that follows for information about creating the affinity.
 {% endif %}
 {% if node %}
-        ```yaml
-        apiVersion: operators.coreos.com/v1alpha1
-        kind: Subscription
-        metadata:
-          name: openshift-custom-metrics-autoscaler-operator
-          namespace: openshift-keda
-        spec:
-          name: my-package
-          source: my-operators
-          sourceNamespace: operator-registries
-          config:
-            affinity:
-              nodeAffinity:
-                requiredDuringSchedulingIgnoredDuringExecution:
-                  nodeSelectorTerms:
-                  - matchExpressions:
-                    - key: kubernetes.io/hostname
-                      operator: In
-                      values:
-                      - ip-10-0-185-229.ec2.internal
-        #...
-        ```
+    ```yaml
+    apiVersion: operators.coreos.com/v1alpha1
+    kind: Subscription
+    metadata:
+      name: openshift-custom-metrics-autoscaler-operator
+      namespace: openshift-keda
+    spec:
+      name: my-package
+      source: my-operators
+      sourceNamespace: operator-registries
+      config:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                  - ip-10-0-185-229.ec2.internal
+    #...
+    ```
+
     where:
 
-
-`spec.config.affinity`
-:   Specifies a `nodeAffinity`.
+    `spec.config.affinity`
+    :   Specifies a `nodeAffinity`.
 {% endif %}
 {% if pod %}
     ```yaml
@@ -263,11 +263,11 @@ To control the placement of an Operator pod, complete the following steps.
                 topologyKey: topology.kubernetes.io/zone
     #...
     ```
+
     where:
 
-
-`spec.config.affinity`
-:   Specifies a `podAffinity` or `podAntiAffinity`.
+    `spec.config.affinity`
+    :   Specifies a `podAffinity` or `podAntiAffinity`.
 {% endif %}
 
 **Verification**
@@ -282,11 +282,11 @@ To control the placement of an Operator pod, complete the following steps.
     ```
 
 {% if context == "nodes-scheduler-pod-affinity" %}
-{%- set pod = false -%}
+{%- set pod = "" -%}
 {% endif %}
 {% if context == "nodes-scheduler-node-affinity" %}
-{%- set node = false -%}
+{%- set node = "" -%}
 {% endif %}
 {% if context == "olm-adding-operators-to-a-cluster" %}
-{%- set olm = false -%}
+{%- set olm = "" -%}
 {% endif %}

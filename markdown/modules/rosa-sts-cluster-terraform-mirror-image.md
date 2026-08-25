@@ -35,6 +35,6 @@ Terraform users can configure an image mirror for {{ product_title }} clusters. 
     ```terminal
     $ terraform apply
     ```
-1.  Click ***Enter*** to approve the changes.
+1.  Click **Enter** to approve the changes.
 
 The `ImageContentSourcePolicy` is now configured on your cluster, and the image mirror will be active.

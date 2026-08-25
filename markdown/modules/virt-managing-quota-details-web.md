@@ -19,7 +19,7 @@ Cluster scoped quotas show only the YAML definition due to the complexity that t
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Virtualization** -> **Quotas**.
+1.  In the {{ product_title }} web console, click **Virtualization** → **Quotas**.
 1.  Click the quota name to open the **Quota details** view.
 
     The **Quota details** view displays visual indicators, quota metadata, and tabulated data:

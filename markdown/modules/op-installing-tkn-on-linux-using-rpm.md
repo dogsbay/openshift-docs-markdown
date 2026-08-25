@@ -29,19 +29,19 @@ For {{ op_system_base_full }} version 8, you can install the {{ pipelines_title 
     ```
 1.  Enable the repositories required by {{ pipelines_title }}:
     *   Linux (x86_64, amd64)
-        ```terminal
+        ```terminal {minja}
         # subscription-manager repos --enable="pipelines-{{ pipelines_version_number }}-for-rhel-8-x86_64-rpms"
         ```
     *   Linux on {{ ibm_z_name }} and {{ ibm_linuxone_name }} (s390x)
-        ```terminal
+        ```terminal {minja}
         # subscription-manager repos --enable="pipelines-{{ pipelines_version_number }}-for-rhel-8-s390x-rpms"
         ```
     *   Linux on {{ ibm_power_name }} (ppc64le)
-        ```terminal
+        ```terminal {minja}
         # subscription-manager repos --enable="pipelines-{{ pipelines_version_number }}-for-rhel-8-ppc64le-rpms"
         ```
     *   Linux on ARM (aarch64, arm64)
-        ```terminal
+        ```terminal {minja}
         # subscription-manager repos --enable="pipelines-{{ pipelines_version_number }}-for-rhel-8-aarch64-rpms"
         ```
 1.  Install the `openshift-pipelines-client` package:

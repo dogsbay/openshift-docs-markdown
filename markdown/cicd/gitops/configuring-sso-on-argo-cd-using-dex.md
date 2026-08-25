@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring SSO for Argo CD using Dex {id="configuring-sso-for-argo-cd-using-dex"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring SSO for Argo CD using Dex {id="configuring-sso-for-argo-cd-using-dex"}
 {%- set context = "configuring-sso-for-argo-cd-using-dex" %}
 
 After the {{ gitops_title }} Operator is installed, Argo CD automatically creates a user with `admin` permissions. To manage multiple users, cluster administrators can use Argo CD to configure Single Sign-On (SSO).

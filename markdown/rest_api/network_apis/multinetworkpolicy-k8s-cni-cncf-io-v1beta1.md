@@ -1,5 +1,5 @@
 ---
-title: "MultiNetworkPolicy []"
+title: "MultiNetworkPolicy [k8s.cni.cncf.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of the desired behavior for this MultiNetworkPolicy. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,6 +45,7 @@ Required
 | `ingress[]` | `object` | NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The traffic must match both ports and from. |
 | `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
 | `policyTypes` | `array (string)` | List of rule types that the NetworkPolicy relates to. Valid options are 'Ingress', 'Egress', or 'Ingress,Egress'. If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ 'Egress' ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include 'Egress' (since such a policy would not include an Egress section and would otherwise default to just [ 'Ingress' ]). This field is beta-level in 1.8 |
+
 ### .spec.egress {id="_specegress"}
 
 Description
@@ -68,6 +70,7 @@ Type
 | `ports[]` | `object` | NetworkPolicyPort describes a port to allow traffic on |
 | `to` | `array` | List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list. |
 | `to[]` | `object` | NetworkPolicyPeer describes a peer to allow traffic from. Only certain combinations of fields are allowed |
+
 ### .spec.egress[].ports {id="_specegressports"}
 
 Description
@@ -91,6 +94,7 @@ Type
 | `endPort` | `integer` | If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. |
 | `port` | `integer-or-string` | The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. |
 | `protocol` | `string` | The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. |
+
 ### .spec.egress[].to {id="_specegressto"}
 
 Description
@@ -114,6 +118,7 @@ Type
 | `ipBlock` | `object` | IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. |
 | `namespaceSelector` | `object` | Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector. |
 | `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
+
 ### .spec.egress[].to[].ipBlock {id="_specegresstoipblock"}
 
 Description
@@ -131,6 +136,7 @@ Required
 | --- | --- | --- |
 | `cidr` | `string` | CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24' |
 | `except` | `array (string)` | Except is a slice of CIDRs that should not be included within an IP Block Valid examples are '192.168.1.1/24' Except values will be rejected if they are outside the CIDR range |
+
 ### .spec.egress[].to[].namespaceSelector {id="_specegresstonamespaceselector"}
 
 Description
@@ -146,6 +152,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed. |
+
 ### .spec.egress[].to[].namespaceSelector.matchExpressions {id="_specegresstonamespaceselectormatchexpressions"}
 
 Description
@@ -174,6 +181,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.egress[].to[].podSelector {id="_specegresstopodselector"}
 
 Description
@@ -189,6 +197,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed. |
+
 ### .spec.egress[].to[].podSelector.matchExpressions {id="_specegresstopodselectormatchexpressions"}
 
 Description
@@ -217,6 +226,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.ingress {id="_specingress"}
 
 Description
@@ -241,6 +251,7 @@ Type
 | `from[]` | `object` | NetworkPolicyPeer describes a peer to allow traffic from. Only certain combinations of fields are allowed |
 | `ports` | `array` | List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. |
 | `ports[]` | `object` | NetworkPolicyPort describes a port to allow traffic on |
+
 ### .spec.ingress[].from {id="_specingressfrom"}
 
 Description
@@ -264,6 +275,7 @@ Type
 | `ipBlock` | `object` | IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. |
 | `namespaceSelector` | `object` | Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.  If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector. |
 | `podSelector` | `object` | This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.  If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy’s own Namespace. |
+
 ### .spec.ingress[].from[].ipBlock {id="_specingressfromipblock"}
 
 Description
@@ -281,6 +293,7 @@ Required
 | --- | --- | --- |
 | `cidr` | `string` | CIDR is a string representing the IP Block Valid examples are '192.168.1.1/24' |
 | `except` | `array (string)` | Except is a slice of CIDRs that should not be included within an IP Block Valid examples are '192.168.1.1/24' Except values will be rejected if they are outside the CIDR range |
+
 ### .spec.ingress[].from[].namespaceSelector {id="_specingressfromnamespaceselector"}
 
 Description
@@ -296,6 +309,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed. |
+
 ### .spec.ingress[].from[].namespaceSelector.matchExpressions {id="_specingressfromnamespaceselectormatchexpressions"}
 
 Description
@@ -324,6 +338,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.ingress[].from[].podSelector {id="_specingressfrompodselector"}
 
 Description
@@ -339,6 +354,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed. |
+
 ### .spec.ingress[].from[].podSelector.matchExpressions {id="_specingressfrompodselectormatchexpressions"}
 
 Description
@@ -367,6 +383,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.ingress[].ports {id="_specingressports"}
 
 Description
@@ -390,6 +407,7 @@ Type
 | `endPort` | `integer` | If set, indicates that the range of ports from port to endPort, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port. |
 | `port` | `integer-or-string` | The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. |
 | `protocol` | `string` | The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. |
+
 ### .spec.podSelector {id="_specpodselector"}
 
 Description
@@ -405,6 +423,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` |  |
+
 ### .spec.podSelector.matchExpressions {id="_specpodselectormatchexpressions"}
 
 Description
@@ -440,11 +459,11 @@ The following API endpoints are available:
 
 *   `/apis/k8s.cni.cncf.io/v1beta1/multi-networkpolicies`
     *   `GET`: list objects of kind MultiNetworkPolicy
-*   `/apis/k8s.cni.cncf.io/v1beta1/namespaces/{{ namespace }}/multi-networkpolicies`
+*   `/apis/k8s.cni.cncf.io/v1beta1/namespaces/{{ namespace }}/multi-networkpolicies`{minja}
     *   `DELETE`: delete collection of MultiNetworkPolicy
     *   `GET`: list objects of kind MultiNetworkPolicy
     *   `POST`: create a MultiNetworkPolicy
-*   `/apis/k8s.cni.cncf.io/v1beta1/namespaces/{{ namespace }}/multi-networkpolicies/{{ name }}`
+*   `/apis/k8s.cni.cncf.io/v1beta1/namespaces/{{ namespace }}/multi-networkpolicies/{{ name }}`{minja}
     *   `DELETE`: delete a MultiNetworkPolicy
     *   `GET`: read the specified MultiNetworkPolicy
     *   `PATCH`: partially update the specified MultiNetworkPolicy

@@ -8,12 +8,13 @@ New in this release
 :   *   No reference design updates in this release
 
 Description
-    :   GitOps Operator and {{ ztp }} provide a GitOps-based infrastructure for managing cluster deployment and configuration.
+:   GitOps Operator and {{ ztp }} provide a GitOps-based infrastructure for managing cluster deployment and configuration.
     Cluster definitions and configurations are maintained as a declarative state in Git.
     You can apply `ClusterInstance` CRs to the hub cluster where the `SiteConfig` Operator renders them as installation CRs.
     In earlier releases, a {{ ztp }} plugin supported the generation of installation CRs from `SiteConfig` CRs.
     This plugin is now removed.
     A separate {{ ztp }} plugin is available to enable automatic wrapping of configuration CRs into policies based on the `PolicyGenerator` or `PolicyGenTemplate` CR.
+
 
     You can deploy and manage multiple versions of {{ product_title }} on managed clusters using the baseline reference configuration CRs.
     You can use custom CRs alongside the baseline CRs.

@@ -11,8 +11,8 @@ To provision high-performance hyperdisk-balanced storage volumes, configure a st
 
 {%- if openshift_dedicated %}
 1.  Create an {{ product_title }} cluster on {{ GCP }} with attached disks provisioned with hyperdisk-balanced disks. This can be achieved by provisioning the cluster with compute node types that support hyperdisk-balanced disks, such as the C3 and N4 machine series from {{ GCP }}.
-1.  After the OSD cluster is ready, navigate to the ***OpenShift console*** for Storage Class creation.
-Within the console, navigate to the ***Storage*** section to create a Storage Class specifying the hyperdisk-balanced disk:
+1.  After the OSD cluster is ready, navigate to the **OpenShift console** for Storage Class creation.
+Within the console, navigate to the **Storage** section to create a Storage Class specifying the hyperdisk-balanced disk:
     ```yaml title="Example StorageClass YAML file"
     kind: StorageClass
     apiVersion: storage.k8s.io/v1

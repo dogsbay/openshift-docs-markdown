@@ -8,8 +8,8 @@ You can update your deprecated SQLite database format catalogs to the file-based
 *   You have a SQLite database catalog source.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
 {%- endif %}
 *   You have the latest version of the `opm` CLI tool released with {{ product_title }} 
@@ -25,7 +25,7 @@ on your workstation.
     $ opm migrate <registry_image> <fbc_directory>
     ```
 1.  Generate a Dockerfile for your file-based catalog by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ opm generate dockerfile <fbc_directory> \
       --binary-image \
       registry.redhat.io/openshift4/ose-operator-registry-rhel9:v{{ product_version }}

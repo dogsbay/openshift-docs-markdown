@@ -3,11 +3,11 @@ title: Preparing to install a cluster on AWS
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster on AWS {id="ipi-aws-preparing-to-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster on AWS {id="ipi-aws-preparing-to-install"}
 {%- set context = "ipi-aws-preparing-to-install" %}
 
-To install an {{ product_title }} cluster on {{ aws_first }}, you must verify your internet connectivity, download the installation program, install the {{ oc_first }}, and generate an SSH key pair.
+To install an {{ product_title }} cluster on {{ aws_first }}, you must verify your internet connectivity, download the installation program, install the {{ oc_first }}, and generate an SSH key pair. {._abstract}
 
 If required, you also need to manually create long-term credentials for {{ aws_short }} or configure an {{ aws_short }} cluster to use short-term credentials with Amazon Web Services Security Token Service ({{ aws_short }} STS).
 
@@ -49,5 +49,6 @@ The following list outlines in detail the steps to prepare to install an {{ prod
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

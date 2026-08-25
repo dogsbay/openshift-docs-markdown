@@ -8,16 +8,16 @@ You install the Data Protection Application (DPA) by creating an instance of the
 *   You must install the OADP Operator.
 *   You must configure object storage as a backup location.
 *   If you use snapshots to back up PVs, your cloud provider must support either a native snapshot API or Container Storage Interface (CSI) snapshots.
-*   If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name, `{{ credentials }}`.
+*   If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name, `{{ credentials }}`{minja}.
 {%- if installing_oadp_azure or installing_oadp_gcp or installing_oadp_mcg or installing_oadp_ocs %}
 *   If the backup and snapshot locations use different credentials, you must create two `Secrets`:
     *   `Secret` with a custom name for the backup location. You add this `Secret` to the `DataProtectionApplication` CR.
     *   `Secret` with another custom name for the snapshot location. You add this `Secret` to the `DataProtectionApplication` CR.
-{% endif %}
+{%- endif %}
 
 {% if installing_oadp_aws %}
-*   If the backup and snapshot locations use different credentials, you must create a `Secret` with the default name, `{{ credentials }}`, which contains separate profiles for the backup and snapshot location credentials.
-{%- endif %}
+*   If the backup and snapshot locations use different credentials, you must create a `Secret` with the default name, `{{ credentials }}`{minja}, which contains separate profiles for the backup and snapshot location credentials.
+{% endif %}
 
     :::note
 
@@ -28,12 +28,12 @@ You install the Data Protection Application (DPA) by creating an instance of the
 
 **Procedure**
 
-1.  Click **Ecosystem** -> **Installed Operators** and select the OADP Operator.
+1.  Click **Ecosystem** → **Installed Operators** and select the OADP Operator.
 1.  Under **Provided APIs**, click **Create instance** in the **DataProtectionApplication** box.
 1.  Click **YAML View** and update the parameters of the `DataProtectionApplication` manifest:
 
 {% if installing_oadp_aws %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -115,7 +115,7 @@ You install the Data Protection Application (DPA) by creating an instance of the
     :   Specifies the URL of the object store that you are using to store backups. Not required for AWS S3. Required only for S3 compatible storage.
 
     `name`
-    :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`, is used. If you specify a custom name, the custom name is used for the backup location.
+    :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`{minja}, is used. If you specify a custom name, the custom name is used for the backup location.
 
     `snapshotLocations`
     :   Specifies a snapshot location, unless you use CSI snapshots or a File System Backup (FSB) to back up PVs.
@@ -124,7 +124,7 @@ You install the Data Protection Application (DPA) by creating an instance of the
     :   Specifies that the snapshot location must be in the same region as the PVs.
 
     `name`
-    :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`, is used. If you specify a custom name, the custom name is used for the snapshot location. If your backup and snapshot locations use different credentials, create separate profiles in the `credentials-velero` file.
+    :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`{minja}, is used. If you specify a custom name, the custom name is used for the snapshot location. If your backup and snapshot locations use different credentials, create separate profiles in the `credentials-velero` file.
 {% endif %}
 
 {% if installing_oadp_ibm_cloud %}
@@ -158,16 +158,27 @@ You install the Data Protection Application (DPA) by creating an instance of the
               key: cloud
               name: cloud-credentials
     ```
+
     where:
-    `provider`:: Specifies that the provider is `aws` when you use {{ ibm_cloud_title }} as a backup storage location.
-    `bucket`:: Specifies the {{ ibm_cloud_object_storage }} bucket name.
-    `region`:: Specifies the COS region name, for example, `eu-gb`.
-    `s3Url`:: Specifies the S3 URL of the COS bucket. For example, `http://s3.eu-gb.cloud-object-storage.appdomain.cloud`. Here, `eu-gb` is the region name. Replace the region name according to your bucket region.
-    `name`:: Specifies the name of the secret you created by using the access key and the secret access key from the `HMAC` credentials.
+
+    `provider`
+    :   Specifies that the provider is `aws` when you use {{ ibm_cloud_title }} as a backup storage location.
+
+    `bucket`
+    :   Specifies the {{ ibm_cloud_object_storage }} bucket name.
+
+    `region`
+    :   Specifies the COS region name, for example, `eu-gb`.
+
+    `s3Url`
+    :   Specifies the S3 URL of the COS bucket. For example, `http://s3.eu-gb.cloud-object-storage.appdomain.cloud`. Here, `eu-gb` is the region name. Replace the region name according to your bucket region.
+
+    `name`
+    :   Specifies the name of the secret you created by using the access key and the secret access key from the `HMAC` credentials.
 {% endif %}
 
 {% if installing_oadp_azure %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -211,26 +222,57 @@ You install the Data Protection Application (DPA) by creating an instance of the
               key: cloud
               name: {{ credentials }}
     ```
+
     where:
-    `namespace`:: Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
-    `openshift`:: Specifies that the `openshift` plugin is mandatory.
-    `resourceTimeout`:: Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
-    `nodeAgent`:: Specifies the administrative agent that routes the administrative requests to servers.
-    `enable`:: Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
-    `uploaderType`:: Specifies the uploader type. Enter `kopia` or `restic` as your uploader. You cannot change the selection after the installation. For the Built-in DataMover you must use Kopia. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
-    `nodeSelector`:: Specifies the nodes on which Kopia or Restic are available. By default, Kopia or Restic run on all nodes.
-    `resourceGroup`:: Specifies the Azure resource group.
-    `storageAccount`:: Specifies the Azure storage account ID.
-    `subscriptionId`:: Specifies the Azure subscription ID.
-    `name`:: Specifies the name of the `Secret` object. If you do not specify this value, the default name, `{{ credentials }}`, is used. If you specify a custom name, the custom name is used for the backup location.
-    `bucket`:: Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
-    `prefix`:: Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
-    `snapshotLocations`:: Specifies the snapshot location. You do not need to specify a snapshot location if you use CSI snapshots or Restic to back up PVs.
-    `name`:: Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`, is used. If you specify a custom name, the custom name is used for the backup location.
+
+    `namespace`
+    :   Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
+
+    `openshift`
+    :   Specifies that the `openshift` plugin is mandatory.
+
+    `resourceTimeout`
+    :   Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
+
+    `nodeAgent`
+    :   Specifies the administrative agent that routes the administrative requests to servers.
+
+    `enable`
+    :   Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
+
+    `uploaderType`
+    :   Specifies the uploader type. Enter `kopia` or `restic` as your uploader. You cannot change the selection after the installation. For the Built-in DataMover you must use Kopia. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
+
+    `nodeSelector`
+    :   Specifies the nodes on which Kopia or Restic are available. By default, Kopia or Restic run on all nodes.
+
+    `resourceGroup`
+    :   Specifies the Azure resource group.
+
+    `storageAccount`
+    :   Specifies the Azure storage account ID.
+
+    `subscriptionId`
+    :   Specifies the Azure subscription ID.
+
+    `name`
+    :   Specifies the name of the `Secret` object. If you do not specify this value, the default name, `{{ credentials }}`{minja}, is used. If you specify a custom name, the custom name is used for the backup location.
+
+    `bucket`
+    :   Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
+
+    `prefix`
+    :   Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
+
+    `snapshotLocations`
+    :   Specifies the snapshot location. You do not need to specify a snapshot location if you use CSI snapshots or Restic to back up PVs.
+
+    `name`
+    :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`{minja}, is used. If you specify a custom name, the custom name is used for the backup location.
 {% endif %}
 
 {% if installing_oadp_gcp %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -270,26 +312,57 @@ You install the Data Protection Application (DPA) by creating an instance of the
               name: {{ credentials }}
       backupImages: true
     ```
+
     where:
-    `namespace`:: Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
-    `openshift`:: Specifies that the `openshift` plugin is mandatory.
-    `resourceTimeout`:: Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
-    `nodeAgent`:: Specifies the administrative agent that routes the administrative requests to servers.
-    `enable`:: Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
-    `uploaderType`:: Specifies the uploader type. Enter `kopia` or `restic` as your uploader. You cannot change the selection after the installation. For the Built-in DataMover you must use Kopia. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
-    `nodeSelector`:: Specifies the nodes on which Kopia or Restic are available. By default, Kopia or Restic run on all nodes.
-    `key`:: Specifies the secret key that contains credentials. For Google workload identity federation cloud authentication use `service_account.json`.
-    `name`:: Specifies the secret name that contains credentials. If you do not specify this value, the default name, `{{ credentials }}`, is used.
-    `bucket`:: Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
-    `prefix`:: Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
-    `snapshotLocations`:: Specifies a snapshot location, unless you use CSI snapshots or Restic to back up PVs.
-    `snapshotLocation`:: Specifies that the snapshot location must be in the same region as the PVs.
-    `name`:: Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`, is used. If you specify a custom name, the custom name is used for the backup location.
-    `backupImages`:: Specifies that Google workload identity federation supports internal image backup. Set this field to `false` if you do not want to use image backup.
+
+    `namespace`
+    :   Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
+
+    `openshift`
+    :   Specifies that the `openshift` plugin is mandatory.
+
+    `resourceTimeout`
+    :   Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
+
+    `nodeAgent`
+    :   Specifies the administrative agent that routes the administrative requests to servers.
+
+    `enable`
+    :   Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
+
+    `uploaderType`
+    :   Specifies the uploader type. Enter `kopia` or `restic` as your uploader. You cannot change the selection after the installation. For the Built-in DataMover you must use Kopia. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
+
+    `nodeSelector`
+    :   Specifies the nodes on which Kopia or Restic are available. By default, Kopia or Restic run on all nodes.
+
+    `key`
+    :   Specifies the secret key that contains credentials. For Google workload identity federation cloud authentication use `service_account.json`.
+
+    `name`
+    :   Specifies the secret name that contains credentials. If you do not specify this value, the default name, `{{ credentials }}`{minja}, is used.
+
+    `bucket`
+    :   Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
+
+    `prefix`
+    :   Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
+
+    `snapshotLocations`
+    :   Specifies a snapshot location, unless you use CSI snapshots or Restic to back up PVs.
+
+    `snapshotLocation`
+    :   Specifies that the snapshot location must be in the same region as the PVs.
+
+    `name`
+    :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`{minja}, is used. If you specify a custom name, the custom name is used for the backup location.
+
+    `backupImages`
+    :   Specifies that Google workload identity federation supports internal image backup. Set this field to `false` if you do not want to use image backup.
 {% endif %}
 
 {% if installing_oadp_mcg %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -324,24 +397,51 @@ You install the Data Protection Application (DPA) by creating an instance of the
               bucket: <bucket_name>
               prefix: <prefix>
     ```
+
     where:
-    `namespace`:: Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
-    `aws`:: Specifies that an object store plugin corresponding to your storage locations is required. For all S3 providers, the required plugin is `aws`. For {{ azure_short }} and {{ gcp_short }} object stores, the `azure` or `gcp` plugin is required.
-    `openshift`:: Specifies that the `openshift` plugin is mandatory.
-    `resourceTimeout`:: Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
-    `nodeAgent`:: Specifies the administrative agent that routes the administrative requests to servers.
-    `enable`:: Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
-    `uploaderType`:: Specifies the uploader type. Enter `kopia` or `restic` as your uploader. You cannot change the selection after the installation. For the Built-in DataMover you must use Kopia. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
-    `nodeSelector`:: Specifies the nodes on which Kopia or Restic are available. By default, Kopia or Restic run on all nodes.
-    `region`:: Specifies the region, following the naming convention of the documentation of your object storage server.
-    `s3Url`:: Specifies the URL of the S3 endpoint.
-    `name`:: Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`, is used. If you specify a custom name, the custom name is used for the backup location.
-    `bucket`:: Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
-    `prefix`:: Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
+
+    `namespace`
+    :   Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
+
+    `aws`
+    :   Specifies that an object store plugin corresponding to your storage locations is required. For all S3 providers, the required plugin is `aws`. For {{ azure_short }} and {{ gcp_short }} object stores, the `azure` or `gcp` plugin is required.
+
+    `openshift`
+    :   Specifies that the `openshift` plugin is mandatory.
+
+    `resourceTimeout`
+    :   Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
+
+    `nodeAgent`
+    :   Specifies the administrative agent that routes the administrative requests to servers.
+
+    `enable`
+    :   Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
+
+    `uploaderType`
+    :   Specifies the uploader type. Enter `kopia` or `restic` as your uploader. You cannot change the selection after the installation. For the Built-in DataMover you must use Kopia. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
+
+    `nodeSelector`
+    :   Specifies the nodes on which Kopia or Restic are available. By default, Kopia or Restic run on all nodes.
+
+    `region`
+    :   Specifies the region, following the naming convention of the documentation of your object storage server.
+
+    `s3Url`
+    :   Specifies the URL of the S3 endpoint.
+
+    `name`
+    :   Specifies the name of the `Secret` object that you created. If you do not specify this value, the default name, `{{ credentials }}`{minja}, is used. If you specify a custom name, the custom name is used for the backup location.
+
+    `bucket`
+    :   Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
+
+    `prefix`
+    :   Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
 {% endif %}
 
 {% if installing_oadp_ocs %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -372,25 +472,54 @@ You install the Data Protection Application (DPA) by creating an instance of the
               bucket: <bucket_name>
               prefix: <prefix>
     ```
+
     where:
-    `namespace`:: Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
-    `aws`:: Specifies that an object store plugin corresponding to your storage locations is required. For all S3 providers, the required plugin is `aws`. For {{ azure_short }} and {{ gcp_short }} object stores, the `azure` or `gcp` plugin is required.
-    `kubevirt`:: Optional: The `kubevirt` plugin is used with {{ VirtProductName }}.
-    `csi`:: Specifies the `csi` default plugin if you use CSI snapshots to back up PVs. The `csi` plugin uses the [Velero CSI beta snapshot APIs](https://{{ velero_domain }}/docs/main/csi/). You do not need to configure a snapshot location.
-    `openshift`:: Specifies that the `openshift` plugin is mandatory.
-    `resourceTimeout`:: Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
-    `nodeAgent`:: Specifies the administrative agent that routes the administrative requests to servers.
-    `enable`:: Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
-    `uploaderType`:: Specifies the uploader type. Enter `kopia` or `restic` as your uploader. You cannot change the selection after the installation. For the Built-in DataMover you must use Kopia. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
-    `nodeSelector`:: Specifies the nodes on which Kopia or Restic are available. By default, Kopia or Restic run on all nodes.
-    `provider`:: Specifies the backup provider.
-    `name`:: Specifies the correct default name for the `Secret`, for example, `cloud-credentials-gcp`, if you use a default plugin for the backup provider. If specifying a custom name, then the custom name is used for the backup location. If you do not specify a `Secret` name, the default name is used.
-    `bucket`:: Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
-    `prefix`:: Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
+
+    `namespace`
+    :   Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
+
+    `aws`
+    :   Specifies that an object store plugin corresponding to your storage locations is required. For all S3 providers, the required plugin is `aws`. For {{ azure_short }} and {{ gcp_short }} object stores, the `azure` or `gcp` plugin is required.
+
+    `kubevirt`
+    :   Optional: The `kubevirt` plugin is used with {{ VirtProductName }}.
+
+    `csi`
+    :   Specifies the `csi` default plugin if you use CSI snapshots to back up PVs. The `csi` plugin uses the [Velero CSI beta snapshot APIs](https://{{ velero_domain }}/docs/main/csi/). You do not need to configure a snapshot location.
+
+    `openshift`
+    :   Specifies that the `openshift` plugin is mandatory.
+
+    `resourceTimeout`
+    :   Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
+
+    `nodeAgent`
+    :   Specifies the administrative agent that routes the administrative requests to servers.
+
+    `enable`
+    :   Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
+
+    `uploaderType`
+    :   Specifies the uploader type. Enter `kopia` or `restic` as your uploader. You cannot change the selection after the installation. For the Built-in DataMover you must use Kopia. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
+
+    `nodeSelector`
+    :   Specifies the nodes on which Kopia or Restic are available. By default, Kopia or Restic run on all nodes.
+
+    `provider`
+    :   Specifies the backup provider.
+
+    `name`
+    :   Specifies the correct default name for the `Secret`, for example, `cloud-credentials-gcp`, if you use a default plugin for the backup provider. If specifying a custom name, then the custom name is used for the backup location. If you do not specify a `Secret` name, the default name is used.
+
+    `bucket`
+    :   Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
+
+    `prefix`
+    :   Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
 {% endif %}
 
 {% if virt_backup_restore_overview or installing_oadp_kubevirt %}
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -421,23 +550,51 @@ You install the Data Protection Application (DPA) by creating an instance of the
               bucket: <bucket_name>
               prefix: <prefix>
     ```
-    where:
-    `namespace`:: Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
-    `kubevirt`:: Specifies that the `kubevirt` plugin is mandatory for {{ VirtProductName }}.
-    `gcp`:: Specifies the plugin for the backup provider, for example, `gcp`, if it exists.
-    `csi`:: Specifies that the `csi` plugin is mandatory for backing up PVs with CSI snapshots. The `csi` plugin uses the [Velero CSI beta snapshot APIs](https://{{ velero_domain }}/docs/main/csi/). You do not need to configure a snapshot location.
-    `openshift`:: Specifies that the `openshift` plugin is mandatory.
-    `resourceTimeout`:: Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
-    `nodeAgent`:: Specifies the administrative agent that routes the administrative requests to servers.
-    `enable`:: Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
-    `uploaderType`:: Specifies the uploader type. Enter `kopia` as your uploader to use the Built-in DataMover. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
-    `nodeSelector`:: Specifies the nodes on which Kopia are available. By default, Kopia runs on all nodes.
-    `provider`:: Specifies the backup provider.
-    `name`:: Specifies the correct default name for the `Secret`, for example, `cloud-credentials-gcp`, if you use a default plugin for the backup provider. If specifying a custom name, then the custom name is used for the backup location. If you do not specify a `Secret` name, the default name is used.
-    `bucket`:: Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
-    `prefix`:: Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
-{% endif %}
 
+    where:
+
+    `namespace`
+    :   Specifies the default namespace for OADP which is `openshift-adp`. The namespace is a variable and is configurable.
+
+    `kubevirt`
+    :   Specifies that the `kubevirt` plugin is mandatory for {{ VirtProductName }}.
+
+    `gcp`
+    :   Specifies the plugin for the backup provider, for example, `gcp`, if it exists.
+
+    `csi`
+    :   Specifies that the `csi` plugin is mandatory for backing up PVs with CSI snapshots. The `csi` plugin uses the [Velero CSI beta snapshot APIs](https://{{ velero_domain }}/docs/main/csi/). You do not need to configure a snapshot location.
+
+    `openshift`
+    :   Specifies that the `openshift` plugin is mandatory.
+
+    `resourceTimeout`
+    :   Specifies how many minutes to wait for several Velero resources such as Velero CRD availability, volumeSnapshot deletion, and backup repository availability, before timeout occurs. The default is 10m.
+
+    `nodeAgent`
+    :   Specifies the administrative agent that routes the administrative requests to servers.
+
+    `enable`
+    :   Set this value to `true` if you want to enable `nodeAgent` and perform File System Backup.
+
+    `uploaderType`
+    :   Specifies the uploader type. Enter `kopia` as your uploader to use the Built-in DataMover. The `nodeAgent` deploys a daemon set, which means that the `nodeAgent` pods run on each working node. You can configure File System Backup by adding `spec.defaultVolumesToFsBackup: true` to the `Backup` CR.
+
+    `nodeSelector`
+    :   Specifies the nodes on which Kopia are available. By default, Kopia runs on all nodes.
+
+    `provider`
+    :   Specifies the backup provider.
+
+    `name`
+    :   Specifies the correct default name for the `Secret`, for example, `cloud-credentials-gcp`, if you use a default plugin for the backup provider. If specifying a custom name, then the custom name is used for the backup location. If you do not specify a `Secret` name, the default name is used.
+
+    `bucket`
+    :   Specifies a bucket as the backup storage location. If the bucket is not a dedicated bucket for Velero backups, you must specify a prefix.
+
+    `prefix`
+    :   Specifies a prefix for Velero backups, for example, `velero`, if the bucket is used for multiple purposes.
+{% endif %}
 1.  Click **Create**.
 
 **Verification**

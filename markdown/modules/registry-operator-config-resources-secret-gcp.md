@@ -21,4 +21,4 @@ contents of a credentials file provided by {{ gcp_short }}:
     $ oc create secret generic image-registry-private-configuration-user --from-file=REGISTRY_STORAGE_GCS_KEYFILE=<path_to_keyfile> --namespace openshift-image-registry
     ```
 
-{%- set KEY1 = false -%}
+{%- set KEY1 = "" -%}

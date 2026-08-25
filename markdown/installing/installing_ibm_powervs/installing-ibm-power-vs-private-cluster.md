@@ -7,11 +7,12 @@ title: "Installing a private cluster on {{ ibm_power_server_title }}"
 # Installing a private cluster on {{ ibm_power_server_title }} {id="installing-ibm-power-vs-private-cluster"}
 {%- set context = "installing-ibm-power-vs-private-cluster" %}
 
-To install a private {{ product_title }} cluster on {{ ibm_power_server_name }}, deploy into an existing Virtual Private Cloud (VPC) and workspace. The installation program provisions the remaining infrastructure, which you can then customize.
+To install a private {{ product_title }} cluster on {{ ibm_power_server_name }}, deploy into an existing Virtual Private Cloud (VPC) and workspace. The installation program provisions the remaining infrastructure, which you can then customize. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-power-vs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -36,12 +37,14 @@ To install a private {{ product_title }} cluster on {{ ibm_power_server_name }},
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_power_server_name }}](/installing/installing_ibm_powervs/installation-config-parameters-ibm-power-vs#installation-config-parameters-ibm-power-vs)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -62,12 +65,13 @@ To install a private {{ product_title }} cluster on {{ ibm_power_server_name }},
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 <a name="additional-resources_installing-ibm-power-vs-private-console"></a>**Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 *   [Available cluster customizations](/post_installation_configuration/cluster-tasks#available_cluster_customizations)

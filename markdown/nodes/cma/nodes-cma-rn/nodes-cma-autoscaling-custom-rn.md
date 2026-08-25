@@ -4,10 +4,10 @@ title: Custom Metrics Autoscaler Operator release notes
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom-rn" %}
-# Custom Metrics Autoscaler Operator release notes {id="nodes-cma-autoscaling-custom-rn"}
 {% include "./_attributes/common-attributes.md" %}
+# Custom Metrics Autoscaler Operator release notes {id="nodes-cma-autoscaling-custom-rn"}
 
-You can review the following release notes to learn about changes in the Custom Metrics Autoscaler Operator version 2.19.0-2. The release notes for the Custom Metrics Autoscaler Operator for Red Hat OpenShift describe new features and enhancements, deprecated features, and known issues.
+You can review the following release notes to learn about changes in the Custom Metrics Autoscaler Operator version 2.19.0-2. The release notes for the Custom Metrics Autoscaler Operator for Red Hat OpenShift describe new features and enhancements, deprecated features, and known issues. {._abstract}
 
 The Custom Metrics Autoscaler Operator uses the Kubernetes-based Event Driven Autoscaler (KEDA) and is built on top of the {{ product_title }} horizontal pod autoscaler (HPA).
 

@@ -125,48 +125,46 @@ If you want to attach additional networks to a pod that is already running, you 
 
     In the following example, the `test_bridge` is attached to the `net1` additional network:
 
-```terminal
-$ oc get pod _<test_bridge>_ -o yaml
-```
+    ```terminal
+    $ oc get pod _<test_bridge>_ -o yaml
+    ```
 
-Replace `_<test_bridge>_` with the name of the bridge you want to use.
+    Replace `_<test_bridge>_` with the name of the bridge you want to use.
 
-The following example output shows that the `test_bridge` pod is attached to the `net1` additional network:
+    The following example output shows that the `test_bridge` pod is attached to the `net1` additional network:
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: bridge-conf
+        k8s.v1.cni.cncf.io/network-status: |-
+          [{
+              "name": "ovn-kubernetes",
+              "interface": "eth0",
+              "ips": [
+                  "10.42.0.18"
+              ],
+              "default": true,
+              "dns": {}
+          },{
+              "name": "bridge-conf",
+              "interface": "net1",
+              "ips": [
+                  "20.2.2.100"
+              ],
+              "mac": "22:2f:60:a5:f8:00",
+              "dns": {}
+          }]
+      name: pod
+      namespace: default
+    spec:
+    # ...
+    status:
+    # ...
+    ```
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  annotations:
-    k8s.v1.cni.cncf.io/networks: bridge-conf
-    k8s.v1.cni.cncf.io/network-status: |-
-      [{
-          "name": "ovn-kubernetes",
-          "interface": "eth0",
-          "ips": [
-              "10.42.0.18"
-          ],
-          "default": true,
-          "dns": {}
-      },{
-          "name": "bridge-conf",
-          "interface": "net1",
-          "ips": [
-              "20.2.2.100"
-          ],
-          "mac": "22:2f:60:a5:f8:00",
-          "dns": {}
-      }]
-  name: pod
-  namespace: default
-spec:
-# ...
-status:
-# ...
-```
-
-The `k8s.v1.cni.cncf.io/network-status` parameter is a JSON array of objects. Each object describes the status of an additional network attached to the pod. The annotation value is stored as a plain text value.
-
+    The `k8s.v1.cni.cncf.io/network-status` parameter is a JSON array of objects. Each object describes the status of an additional network attached to the pod. The annotation value is stored as a plain text value.
 1.  Verify that the pod is running by running the following command:
     ```terminal
     $ oc get pod

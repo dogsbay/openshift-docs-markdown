@@ -25,17 +25,17 @@ To update the {{ es_op }} to the current version, you must modify the subscripti
 **Procedure**
 
 {% if not (openshift_rosa or openshift_dedicated) %}
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 {% endif %}
 {% if openshift_rosa or openshift_dedicated %}
-1.  In the {{ hybrid_console }}, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ hybrid_console }}, click **Ecosystem** → **Installed Operators**.
 {% endif %}
 1.  Select the **openshift-operators-redhat** project.
 1.  Click **OpenShift Elasticsearch Operator**.
-1.  Click **Subscription** -> **Channel**.
+1.  Click **Subscription** → **Channel**.
 1.  In the **Change Subscription Update Channel** window, select **stable-5.y** and click **Save**. Note the `elasticsearch-operator.v5.y.z` version.
-1.  Wait for a few seconds, then click **Ecosystem** -> **Installed Operators**. Verify that the {{ es_op }} version matches the latest `elasticsearch-operator.v5.y.z` version.
-1.  On the **Ecosystem** -> **Installed Operators** page, wait for the **Status** field to report **Succeeded**.
+1.  Wait for a few seconds, then click **Ecosystem** → **Installed Operators**. Verify that the {{ es_op }} version matches the latest `elasticsearch-operator.v5.y.z` version.
+1.  On the **Ecosystem** → **Installed Operators** page, wait for the **Status** field to report **Succeeded**.
 
 **Verification**
 
@@ -78,9 +78,7 @@ To update the {{ es_op }} to the current version, you must modify the subscripti
     ```
 
     Verify that the output includes the `app-00000x`, `infra-00000x`, `audit-00000x`, `.security` indices:
-    <details>
-    <summary>Sample output with indices in a green status</summary>
-
+    :::details{title="Sample output with indices in a green status"}
     ```terminal
     Tue Jun 30 14:30:54 UTC 2020
     health status index                                                                 uuid                   pri rep docs.count docs.deleted store.size pri.store.size
@@ -108,16 +106,14 @@ To update the {{ es_op }} to the current version, you must modify the subscripti
     green  open   infra-000013                                                          KR9mMFUpQl-jraYtanyIGw   3 1       228166            0        298            148
     green  open   audit-000001                                                          eERqLdLmQOiQDFES1LBATQ   3 1            0            0          0              0
     ```
-    </details>
+    :::
 1.  Verify that the log visualizer is updated to the correct version by entering the following command and observing the output:
     ```terminal
     $ oc get kibana kibana -o json
     ```
 
     Verify that the output includes a Kibana pod with the `ready` status:
-    <details>
-    <summary>Sample output with a ready Kibana pod</summary>
-
+    :::details{title="Sample output with a ready Kibana pod"}
     ```json
     [
     {
@@ -150,4 +146,4 @@ To update the {{ es_op }} to the current version, you must modify the subscripti
     }
     ]
     ```
-    </details>
+    :::

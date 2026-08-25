@@ -27,7 +27,7 @@ Expired silences older than 120 hours are garbage collected.
 
 **Procedure**
 
-1.  Go to **Observe** -> **Alerting** -> **Silences**.
+1.  Go to **Observe** → **Alerting** → **Silences**.
 1.  For the silence or silences you want to expire, select the checkbox in the corresponding row.
 1.  Click **Expire 1 silence** to expire a single selected silence or **Expire _&lt;n>_ silences** to expire multiple selected silences, where _&lt;n>_ is the number of silences you selected.
 

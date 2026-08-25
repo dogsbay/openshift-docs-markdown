@@ -6,32 +6,33 @@
 # Capacity Reservation configuration options {id="machine-feature-agnostic-capacity-reservation_{{ context }}"}
 
 {{ product_title }} version {{ product_version }} and later supports
-{% if azure %}
+{%- if azure %}
 on-demand Capacity Reservation with Capacity Reservation groups on {{ azure_full }} clusters.
-{% endif %}
-{% if aws %}
-Capacity Reservations on {{ aws_full }} clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
-{% endif %} {._abstract}
+{%- endif %}
+{%- if aws %}
+Capacity Reservations on {{ aws_full }} clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML. {._abstract}
+{%- endif %}
 
 You can deploy machines on any available resources that match the parameters of a capacity request that you define.
 These parameters specify the 
-{% if azure %}
+{%- if azure %}
 VM size,
-{% endif %}
-{% if aws %}
+{%- endif %}
+{%- if aws %}
 instance type,
-{% endif %}
+{%- endif %}
 region, and number of instances that you want to reserve.
 If your 
-{% if azure %}
+{%- if azure %}
 {{ azure_short }} subscription quota
-{% endif %}
-{% if aws %}
+{%- endif %}
+{%- if aws %}
 Capacity Reservation
-{% endif %}
+{%- endif %}
 can accommodate the capacity request, the deployment succeeds.
 
-{% include "./snippets/apply-machine-configuration-method.md" %}
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file.
+Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 {% if azure %}
 
@@ -62,12 +63,12 @@ where:
 
 `spec.template.spec.capacityReservationId`
 :   Specifies the ID of the 
-{% if azure %}
+{%- if azure %}
     Capacity Reservation group
-{% endif %}
-{% if aws %}
+{%- endif %}
+{%- if aws %}
     Capacity Block for ML or On-Demand Capacity Reservation
-{% endif %}
+{%- endif %}
     that you want to deploy machines on.
 {%- if aws %}
 
@@ -102,10 +103,10 @@ where:
 {%- endif %}
 
     For more information, including limitations and suggested use cases for this offering, see
-{% if aws %}
+{%- if aws %}
     On-Demand Capacity Reservations and Capacity Blocks for ML ({{ aws_short }} documentation).
-{% endif %}
+{%- endif %}
 
 {% if context == "cluster-api-config-options-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}

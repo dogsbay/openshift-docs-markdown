@@ -47,7 +47,7 @@ Enabling AWS Windows LI on a machine pool applies the associated licensing fees 
     ```terminal
     $ rosa create machinepool --cluster=mycluster --name=mymachinepool --type=Windows --instance-type=m5zn.metal --replicas=1
     ```
-    ***Example output***
+    **Example output**
     ```terminal
     I: Machine pool 'mymachinepool' created successfully on cluster 'mycluster'
     I: To view all machine pools, run 'rosa list machinepools -c mycluster'
@@ -66,7 +66,7 @@ Enabling AWS Windows LI on a machine pool applies the associated licensing fees 
 
     The output has the image type set to `Windows` as shown in the following example:
 
-    ***Example output***
+    **Example output**
     ```terminal
     ID:                         mymachinepool
     Cluster ID:                 mycluster

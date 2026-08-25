@@ -11,7 +11,7 @@ Running a self validation checkup streamlines the process of running functional 
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Virtualization** -> **Checkups**.
+1.  In the {{ product_title }} web console, go to **Virtualization** → **Checkups**.
 1.  Go to the **Self validation** tab.
 1.  Click **Run checkup**.
 1.  Configure settings for the test that you want to run.

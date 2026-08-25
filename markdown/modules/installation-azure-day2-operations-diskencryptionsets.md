@@ -47,11 +47,11 @@ The {{ product_title }} installation program can use an existing Disk Encryption
     1.  Repeat the above steps on all the nodes that run `encryptionAtHost`.
 
 
-:::note
+    :::note
 
-If you want to enable encryption for your host during cluster installation, specify the following parameters in the `install-config.yaml` file:
-* `compute.platform.azure.encryptionAtHost`
-* `controlPlane.platform.azure.encryptionAtHost`
-* `platform.azure.defaultMachinePlatform.encryptionAtHost`
-
-:::
+    If you want to enable encryption for your host during cluster installation, specify the following parameters in the `install-config.yaml` file:
+    * `compute.platform.azure.encryptionAtHost`
+    * `controlPlane.platform.azure.encryptionAtHost`
+    * `platform.azure.defaultMachinePlatform.encryptionAtHost`
+    
+    :::

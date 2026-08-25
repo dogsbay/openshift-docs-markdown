@@ -36,30 +36,30 @@ You can customize the domain for your Knative service by mapping a custom domain
     1.  The namespace of both the `DomainMapping` CR and the target CR.
     1.  The name of the target CR to map to the custom domain.
     1.  The type of CR being mapped to the custom domain.
-        ```yaml title="Example service domain mapping"
-        apiVersion: serving.knative.dev/v1alpha1
-        kind: DomainMapping
-        metadata:
-         name: example-domain
-         namespace: default
-        spec:
-         ref:
-           name: example-service
-           kind: Service
-           apiVersion: serving.knative.dev/v1
-        ```
-        ```yaml title="Example route domain mapping"
-        apiVersion: serving.knative.dev/v1alpha1
-        kind: DomainMapping
-        metadata:
-         name: example-domain
-         namespace: default
-        spec:
-         ref:
-           name: example-route
-           kind: Route
-           apiVersion: serving.knative.dev/v1
-        ```
+    ```yaml title="Example service domain mapping"
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: DomainMapping
+    metadata:
+     name: example-domain
+     namespace: default
+    spec:
+     ref:
+       name: example-service
+       kind: Service
+       apiVersion: serving.knative.dev/v1
+    ```
+    ```yaml title="Example route domain mapping"
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: DomainMapping
+    metadata:
+     name: example-domain
+     namespace: default
+    spec:
+     ref:
+       name: example-route
+       kind: Route
+       apiVersion: serving.knative.dev/v1
+    ```
 1.  Apply the `DomainMapping` CR as a YAML file:
     ```terminal
     $ oc apply -f <filename>

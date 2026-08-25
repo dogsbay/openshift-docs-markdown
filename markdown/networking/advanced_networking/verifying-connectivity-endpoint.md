@@ -3,8 +3,8 @@ title: Verifying connectivity to an endpoint
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Verifying connectivity to an endpoint {id="verifying-connectivity-endpoint"}
 {% include "./_attributes/common-attributes.md" %}
+# Verifying connectivity to an endpoint {id="verifying-connectivity-endpoint"}
 {%- set context = "verifying-connectivity-endpoint" %}
 
 The Cluster Network Operator (CNO) runs a controller, the connectivity check controller, that performs a connection health check between resources within your cluster.

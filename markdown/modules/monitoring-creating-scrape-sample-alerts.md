@@ -23,28 +23,28 @@ You can create alerts that notify you when:
       labels:
         prometheus: k8s
         role: alert-rules
-      name: monitoring-stack-alerts #<1>
-      namespace: ns1 #<2>
+      name: monitoring-stack-alerts (1)
+      namespace: ns1 (2)
     spec:
       groups:
       - name: general.rules
         rules:
-        - alert: TargetDown #<3>
+        - alert: TargetDown (3)
           annotations:
             message: '{{ printf "%.4g" $value }}% of the {{ $labels.job }}/{{ $labels.service
-              }} targets in {{ $labels.namespace }} namespace are down.' #<4>
+              }} targets in {{ $labels.namespace }} namespace are down.' (4)
           expr: 100 * (count(up == 0) BY (job, namespace, service) / count(up) BY (job,
             namespace, service)) > 10
-          for: 10m #<5>
+          for: 10m (5)
           labels:
-            severity: warning #<6>
-        - alert: ApproachingEnforcedSamplesLimit #<7>
+            severity: warning (6)
+        - alert: ApproachingEnforcedSamplesLimit (7)
           annotations:
-            message: '{{ $labels.container }} container of the {{ $labels.pod }} pod in the {{ $labels.namespace }} namespace consumes {{ $value | humanizePercentage }} of the samples limit budget.' #<8>
-          expr: (scrape_samples_post_metric_relabeling / (scrape_sample_limit > 0)) > 0.9 #<9>
-          for: 10m #<10>
+            message: '{{ $labels.container }} container of the {{ $labels.pod }} pod in the {{ $labels.namespace }} namespace consumes {{ $value | humanizePercentage }} of the samples limit budget.' (8)
+          expr: (scrape_samples_post_metric_relabeling / (scrape_sample_limit > 0)) > 0.9 (9)
+          for: 10m (10)
           labels:
-            severity: warning #<11>
+            severity: warning (11)
     ```
     1.  Defines the name of the alerting rule.
     1.  Specifies the user-defined project where the alerting rule is deployed.
@@ -62,6 +62,6 @@ You can create alerts that notify you when:
     $ oc apply -f monitoring-stack-alerts.yaml
     ```
 1.  Additionally, you can check if a target has hit the configured limit:
-    1.  In the {{ product_title }} web console, go to **Observe** -> **Targets** and select an endpoint with a `Down` status that you want to check.
+    1.  In the {{ product_title }} web console, go to **Observe** → **Targets** and select an endpoint with a `Down` status that you want to check.
 
         The **Scrape failed: sample limit exceeded** message is displayed if the endpoint failed because of an exceeded sample limit.

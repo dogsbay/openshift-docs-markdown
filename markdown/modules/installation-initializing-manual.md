@@ -76,19 +76,19 @@ The Cloud Controller Manager Operator performs a connectivity check on a provide
 *   You have uploaded a custom RHCOS AMI.
 {% endif %}
 {% if not ibm_cloud_restricted %}
-*   You have an SSH public key on your local machine for use with the installation program. You can use the key for SSH authentication onto your cluster nodes for debugging and disaster recovery.
+* You have an SSH public key on your local machine for use with the installation program. You can use the key for SSH authentication onto your cluster nodes for debugging and disaster recovery.
 {%- endif %}
-*   You have obtained the {{ product_title }} installation program and the pull secret for your
+* You have obtained the {{ product_title }} installation program and the pull secret for your
 cluster.
 {%- if restricted or restricted_upi %}
-*   Obtain the `imageContentSources` section from the output of the command to
+* Obtain the `imageContentSources` section from the output of the command to
 mirror the repository.
-*   Obtain the contents of the certificate for your mirror registry.
-{% endif %}
-{% if ibm_cloud_restricted %}
-*   You have the `imageContentSourcePolicy.yaml` file that was created when you mirrored your registry.
-*   You have obtained the contents of the certificate for your mirror registry.
-{% endif %}
+* Obtain the contents of the certificate for your mirror registry.
+{%- endif %}
+{%- if ibm_cloud_restricted %}
+* You have the `imageContentSourcePolicy.yaml` file that was created when you mirrored your registry.
+* You have obtained the contents of the certificate for your mirror registry.
+{%- endif %}
 
 **Procedure**
 
@@ -149,16 +149,15 @@ mirror the repository.
         `<service_project_name>`
         :   Specifies the name of the project where you want to install the cluster.
 {% endif %}
-
 1.  Customize the provided sample `install-config.yaml` file template and save the file in the `<installation_directory>`.
-    {%- if azure_private %}
+{%- if azure_private %}
     1.  Edit the `install-config.yaml` file to set the `publish: Internal` parameter.
     1.  If you use your own outbound routing to connect to the internet, set the `outboundType: UserDefinedRouting` parameter.
-        {% endif %}
-        {% if azure_gov %}
+{%- endif %}
+{%- if azure_gov %}
     1.  Edit the `install-config.yaml` file so that the value of the `platform.azure.cloudName` parameter is `AzureUSGovernmentCloud`.
-{% endif %}
-{% if ibm_cloud_restricted %}
+{%- endif %}
+{%- if ibm_cloud_restricted %}
 
     :::note
 
@@ -167,7 +166,7 @@ mirror the repository.
     :::
 
 
-        When customizing the sample template, be sure to provide the information that is required for an installation in a restricted network:
+    When customizing the sample template, be sure to provide the information that is required for an installation in a restricted network:
     1.  Update the `pullSecret` value to contain the authentication information for your registry:
         ```yaml
         pullSecret: '{"auths":{"<mirror_host_name>:5000": {"auth": "<credentials>","email": "you@example.com"}}}'
@@ -245,37 +244,37 @@ mirror the repository.
         
         :::
 
-{% endif %}
-{% if not ibm_cloud_restricted %}
+{%- endif %}
+{%- if not ibm_cloud_restricted %}
 
-        :::note
+    :::note
 
-        You must name this configuration file `install-config.yaml`.
+    You must name this configuration file `install-config.yaml`.
+    
+    :::
+
+{%- endif %}
+
+{% if restricted or restricted_upi %}
+    *   Unless you use a registry that {{ op_system }} trusts by default, such as `docker.io`, you must provide the contents of the certificate for your mirror repository in the `additionalTrustBundle` section. In most cases, you must provide the certificate for your mirror.
+    *   You must include the `imageContentSources` section from the output of the command to
+    mirror the repository.
+
+        :::important
+
+        *   The `ImageContentSourcePolicy` file is generated as an output of `oc mirror` after the mirroring process is finished.
+        *   The `oc mirror` command generates an `ImageContentSourcePolicy` file which contains the YAML needed to define `ImageContentSourcePolicy`.
+        Copy the text from this file and paste it into your `install-config.yaml` file.
+        *   You must run the 'oc mirror' command twice. The first time you run the `oc mirror` command, you get a full `ImageContentSourcePolicy` file. The second time you run the `oc mirror` command, you only get the difference between the first and second run.
+        Because of this behavior, you must always keep a backup of these files in case you need to merge them into one complete `ImageContentSourcePolicy` file. Keeping a backup of these two output files ensures that you have a complete `ImageContentSourcePolicy` file.
         
         :::
 
 {% endif %}
 
-{% if restricted or restricted_upi %}
-        *   Unless you use a registry that {{ op_system }} trusts by default, such as `docker.io`, you must provide the contents of the certificate for your mirror repository in the `additionalTrustBundle` section. In most cases, you must provide the certificate for your mirror.
-        *   You must include the `imageContentSources` section from the output of the command to
-        mirror the repository.
-
-            :::important
-
-            *   The `ImageContentSourcePolicy` file is generated as an output of `oc mirror` after the mirroring process is finished.
-            *   The `oc mirror` command generates an `ImageContentSourcePolicy` file which contains the YAML needed to define `ImageContentSourcePolicy`.
-            Copy the text from this file and paste it into your `install-config.yaml` file.
-            *   You must run the 'oc mirror' command twice. The first time you run the `oc mirror` command, you get a full `ImageContentSourcePolicy` file. The second time you run the `oc mirror` command, you only get the difference between the first and second run.
-            Because of this behavior, you must always keep a backup of these files in case you need to merge them into one complete `ImageContentSourcePolicy` file. Keeping a backup of these two output files ensures that you have a complete `ImageContentSourcePolicy` file.
-            
-            :::
-
-{% endif %}
-
 {% if ash %}
 
-            Make the following modifications for Azure Stack Hub:
+    Make the following modifications for Azure Stack Hub:
     1.  Set the `replicas` parameter to `0` for the `compute` pool:
         ```yaml
         compute:
@@ -313,7 +312,8 @@ mirror the repository.
 {% endif %}
 
 {% if ash_default or ash_network %}
-        Make the following modifications:
+
+    Make the following modifications:
     1.  Specify the required installation parameters.
     1.  Update the `platform.azure` section to specify the parameters that are specific to Azure Stack Hub.
     1.  Optional: Update one or more of the default configuration parameters to customize the installation.
@@ -334,59 +334,59 @@ mirror the repository.
 
 
 {% if context == "installing-azure-government-region" %}
-{%- set azure_gov = false -%}
+{%- set azure_gov = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-vsphere" %}
-{%- set vsphere_upi_vsphere = false -%}
+{%- set vsphere_upi_vsphere = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set restricted_upi = false -%}
-{%- set vsphere_upi_vsphere = false -%}
+{%- set restricted_upi = "" -%}
+{%- set vsphere_upi_vsphere = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-network-customizations" %}
-{%- set vsphere_upi = false -%}
-{%- set vsphere_upi_vsphere = false -%}
+{%- set vsphere_upi = "" -%}
+{%- set vsphere_upi_vsphere = "" -%}
 {% endif %}
 {% if context == "installing-aws-china-region" %}
-{%- set aws_china = false -%}
+{%- set aws_china = "" -%}
 {% endif %}
 {% if context == "installing-aws-government-region" %}
-{%- set aws_gov = false -%}
+{%- set aws_gov = "" -%}
 {% endif %}
 {% if context == "installing-aws-secret-region" %}
-{%- set aws_secret = false -%}
+{%- set aws_secret = "" -%}
 {% endif %}
 {% if context == "installing-aws-private" %}
-{%- set aws_private = false -%}
+{%- set aws_private = "" -%}
 {% endif %}
 {% if context == "installing-azure-private" %}
-{%- set azure_private = false -%}
+{%- set azure_private = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
-{%- set gcp_private = false -%}
+{%- set gcp_private = "" -%}
 {% endif %}
 {% if context == "installing-gcp-shared-vpc" %}
-{%- set gcp_shared = false -%}
+{%- set gcp_shared = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-default" %}
-{%- set ash_default = false -%}
+{%- set ash_default = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-network-customizations" %}
-{%- set ash_network = false -%}
+{%- set ash_network = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-private" %}
-{%- set ibm_cloud_private = false -%}
+{%- set ibm_cloud_private = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power-vs-private-cluster" %}
-{%- set ibm_power_vs_private = false -%}
+{%- set ibm_power_vs_private = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-restricted" %}
-{%- set ibm_cloud_restricted = false -%}
+{%- set ibm_cloud_restricted = "" -%}
 {% endif %}
-{%- set platform = false -%}
+{%- set platform = "" -%}

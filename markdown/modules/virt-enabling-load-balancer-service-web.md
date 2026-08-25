@@ -11,7 +11,7 @@ You can enable the creation of load balancer services for a virtual machine (VM)
 
 **Procedure**
 
-1.  Go to **Virtualization** -> **Settings**.
+1.  Go to **Virtualization** → **Settings**.
 1.  Click **Cluster**.
 1.  Expand **General settings** and **SSH configuration**.
 1.  Set **SSH over LoadBalancer service** to on.

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Setting compute resource quota for {{ pipelines_shortname }} {id="setting-compute-resource-quota-for-openshift-pipelines"}
 {% include "./_attributes/common-attributes.md" %}
+# Setting compute resource quota for {{ pipelines_shortname }} {id="setting-compute-resource-quota-for-openshift-pipelines"}
 {%- set context = "setting-compute-resource-quota-for-openshift-pipelines" %}
 
 A `ResourceQuota` object in {{ pipelines_title }} controls the total resource consumption per namespace. You can use it to limit the quantity of objects created in a namespace, based on the type of the object. In addition, you can specify a compute resource quota to restrict the total amount of compute resources consumed in a namespace.

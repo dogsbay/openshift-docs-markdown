@@ -114,7 +114,7 @@ You can create a {{ product_title }} cluster with a customer-provided KMS key th
     --policy-name default
     ```
 1.  Create the cluster by running the following command:
-{% include "./snippets/rosa-long-cluster-name.md" %}
+    {% include "./snippets/rosa-long-cluster-name.md" %}
     ```terminal
     $ rosa create cluster --cluster-name <cluster_name> \ 
     --subnet-ids <private_subnet_id>,<public_subnet_id> \

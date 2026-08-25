@@ -15,7 +15,7 @@ You can customize the Argo CD console link by setting the `DISABLE_DEFAULT_ARGOC
 
 **Procedure**
 
-1.  In the **Administrator** perspective, navigate to **Administration** -> **CustomResourceDefinitions**.
+1.  In the **Administrator** perspective, navigate to **Administration** → **CustomResourceDefinitions**.
 1.  Find the **Subscription** CRD and click to open it.
 1.  Select the **Instances** tab and click the **openshift-gitops-operator** subscription.
 1.  Select the **YAML** tab and make your customization:

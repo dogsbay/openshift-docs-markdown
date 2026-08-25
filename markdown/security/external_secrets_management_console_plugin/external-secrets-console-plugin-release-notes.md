@@ -3,11 +3,11 @@ title: External Secrets Management Console Plug-in release notes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# External Secrets Management Console Plug-in release notes {id="external-secrets-console-plugin-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# External Secrets Management Console Plug-in release notes {id="external-secrets-console-plugin-release-notes"}
 {%- set context = "external-secrets-console-plugin-release-notes" %}
 
-The {{ external_secrets_console_plugin }} provides a unified OpenShift Console interface for viewing and managing secrets-related custom resources (CRs) from multiple Operators such as cert-manager, External Secrets Operator, and Secrets Store CSI Driver.
+The {{ external_secrets_console_plugin }} provides a unified OpenShift Console interface for viewing and managing secrets-related custom resources (CRs) from multiple Operators such as cert-manager, External Secrets Operator, and Secrets Store CSI Driver. {._abstract}
 
 These release notes track the development of {{ external_secrets_console_plugin }}.
 

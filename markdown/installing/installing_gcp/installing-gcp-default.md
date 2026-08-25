@@ -7,7 +7,7 @@ title: "Installing a cluster quickly on {{ gcp_short }}"
 # Installing a cluster quickly on {{ gcp_short }} {id="installing-gcp-default"}
 {%- set context = "installing-gcp-default" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ gcp_first }} that uses the default configuration options.
+In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ gcp_first }} that uses the default configuration options. {._abstract}
 
 ## Prerequisites {id="_prerequisites"}
 
@@ -34,16 +34,18 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Accessing the web console](/web_console/web-console#web-console) for more details about accessing and understanding the {{ product_title }} web console.
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
 
-## Next steps {id="_next_steps"}
+## Next steps {id="_next_steps" ._additional-resources}
 
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).
 *   If necessary, you can

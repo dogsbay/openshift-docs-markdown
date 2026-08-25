@@ -1,5 +1,5 @@
 ---
-title: "ClusterImagePolicy []"
+title: "ClusterImagePolicy [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec contains the configuration for the cluster image policy. |
 | `status` | `object` | status contains the observed state of the resource. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -49,6 +50,7 @@ Required
 | --- | --- | --- |
 | `policy` | `object` | policy is a required field that contains configuration to allow scopes to be verified, and defines how images not matching the verification policy will be treated. |
 | `scopes` | `array (string)` | scopes is a required field that defines the list of image identities assigned to a policy. Each item refers to a scope in a registry implementing the "Docker Registry HTTP API V2". Scopes matching individual images are named Docker references in the fully expanded form, either using a tag or digest. For example, docker.io/library/busybox:latest (not busybox:latest). More general scopes are prefixes of individual-image scopes, and specify a repository (by omitting the tag or digest), a repository namespace, or a registry host (by only specifying the host name and possibly a port number) or a wildcard expression starting with `\*.`, for matching all subdomains (not including a port number). Wildcards are only supported for subdomain matching, and may not be used in the middle of the host, i.e.  \*.example.com is a valid case, but example*.*.com is not. This support no more than 256 scopes in one object. If multiple scopes match a given image, only the policy requirements for the most specific scope apply. The policy requirements for more general scopes are ignored. In addition to setting a policy appropriate for your own deployed applications, make sure that a policy on the OpenShift image repositories quay.io/openshift-release-dev/ocp-release, quay.io/openshift-release-dev/ocp-v4.0-art-dev (or on a more general scope) allows deployment of the OpenShift images required for cluster operation. If a scope is configured in both the ClusterImagePolicy and the ImagePolicy, or if the scope in ImagePolicy is nested under one of the scopes from the ClusterImagePolicy, only the policy from the ClusterImagePolicy will be applied. For additional details about the format, please refer to the document explaining the docker transport field, which can be found at: https://github.com/containers/image/blob/main/docs/containers-policy.json.5.md#docker |
+
 ### .spec.policy {id="_specpolicy"}
 
 Description
@@ -67,6 +69,7 @@ Required
 | --- | --- | --- |
 | `rootOfTrust` | `object` | rootOfTrust is a required field that defines the root of trust for verifying image signatures during retrieval. This allows image consumers to specify policyType and corresponding configuration of the policy, matching how the policy was generated. |
 | `signedIdentity` | `object` | signedIdentity is an optional field specifies what image identity the signature claims about the image. This is useful when the image identity in the signature differs from the original image spec, such as when mirror registry is configured for the image scope, the signature from the mirror registry contains the image identity of the mirror instead of the original scope. The required matchPolicy field specifies the approach used in the verification process to verify the identity in the signature and the actual image identity, the default matchPolicy is "MatchRepoDigestOrExact". |
+
 ### .spec.policy.rootOfTrust {id="_specpolicyrootoftrust"}
 
 Description
@@ -87,6 +90,7 @@ Required
 | `pki` | `object` | pki defines the root of trust configuration based on Bring Your Own Public Key Infrastructure (BYOPKI) Root CA(s) and corresponding intermediate certificates. pki is required when policyType is PKI, and forbidden otherwise. |
 | `policyType` | `string` | policyType is a required field specifies the type of the policy for verification. This field must correspond to how the policy was generated. Allowed values are "PublicKey", "FulcioCAWithRekor", and "PKI". When set to "PublicKey", the policy relies on a sigstore publicKey and may optionally use a Rekor verification. When set to "FulcioCAWithRekor", the policy is based on the Fulcio certification and incorporates a Rekor verification. When set to "PKI", the policy is based on the certificates from Bring Your Own Public Key Infrastructure (BYOPKI). |
 | `publicKey` | `object` | publicKey defines the root of trust configuration based on a sigstore public key. Optionally include a Rekor public key for Rekor verification. publicKey is required when policyType is PublicKey, and forbidden otherwise. |
+
 ### .spec.policy.rootOfTrust.fulcioCAWithRekor {id="_specpolicyrootoftrustfulciocawithrekor"}
 
 Description
@@ -110,6 +114,7 @@ Required
 | `fulcioCAData` | `string` | fulcioCAData is a required field contains inline base64-encoded data for the PEM format fulcio CA. fulcioCAData must be at most 8192 characters. |
 | `fulcioSubject` | `object` | fulcioSubject is a required field specifies OIDC issuer and the email of the Fulcio authentication configuration. |
 | `rekorKeyData` | `string` | rekorKeyData is a required field contains inline base64-encoded data for the PEM format from the Rekor public key. rekorKeyData must be at most 8192 characters. |
+
 ### .spec.policy.rootOfTrust.fulcioCAWithRekor.fulcioSubject {id="_specpolicyrootoftrustfulciocawithrekorfulciosubject"}
 
 Description
@@ -128,6 +133,7 @@ Required
 | --- | --- | --- |
 | `oidcIssuer` | `string` | oidcIssuer is a required filed contains the expected OIDC issuer. The oidcIssuer must be a valid URL and at most 2048 characters in length. It will be verified that the Fulcio-issued certificate contains a (Fulcio-defined) certificate extension pointing at this OIDC issuer URL. When Fulcio issues certificates, it includes a value based on an URL inside the client-provided ID token. Example: "https://expected.OIDC.issuer/" |
 | `signedEmail` | `string` | signedEmail is a required field holds the email address that the Fulcio certificate is issued for. The signedEmail must be a valid email address and at most 320 characters in length. Example: "expected-signing-user@example.com" |
+
 ### .spec.policy.rootOfTrust.pki {id="_specpolicyrootoftrustpki"}
 
 Description
@@ -148,6 +154,7 @@ Required
 | `caIntermediatesData` | `string` | caIntermediatesData contains base64-encoded data of a certificate bundle PEM file, which contains one or more intermediate certificates in the PEM format. The total length of the data must not exceed 8192 characters. caIntermediatesData requires caRootsData to be set. |
 | `caRootsData` | `string` | caRootsData contains base64-encoded data of a certificate bundle PEM file, which contains one or more CA roots in the PEM format. The total length of the data must not exceed 8192 characters. |
 | `pkiCertificateSubject` | `object` | pkiCertificateSubject defines the requirements imposed on the subject to which the certificate was issued. |
+
 ### .spec.policy.rootOfTrust.pki.pkiCertificateSubject {id="_specpolicyrootoftrustpkipkicertificatesubject"}
 
 Description
@@ -161,6 +168,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` | email specifies the expected email address imposed on the subject to which the certificate was issued, and must match the email address listed in the Subject Alternative Name (SAN) field of the certificate. The email must be a valid email address and at most 320 characters in length. |
 | `hostname` | `string` | hostname specifies the expected hostname imposed on the subject to which the certificate was issued, and it must match the hostname listed in the Subject Alternative Name (SAN) DNS field of the certificate. The hostname must be a valid dns 1123 subdomain name, optionally prefixed by '*.', and at most 253 characters in length. It must consist only of lowercase alphanumeric characters, hyphens, periods and the optional preceding asterisk. |
+
 ### .spec.policy.rootOfTrust.publicKey {id="_specpolicyrootoftrustpublickey"}
 
 Description
@@ -179,6 +187,7 @@ Required
 | --- | --- | --- |
 | `keyData` | `string` | keyData is a required field contains inline base64-encoded data for the PEM format public key. keyData must be at most 8192 characters. |
 | `rekorKeyData` | `string` | rekorKeyData is an optional field contains inline base64-encoded data for the PEM format from the Rekor public key. rekorKeyData must be at most 8192 characters. |
+
 ### .spec.policy.signedIdentity {id="_specpolicysignedidentity"}
 
 Description
@@ -198,6 +207,7 @@ Required
 | `exactRepository` | `object` | exactRepository specifies the repository that must be exactly matched by the identity in the signature. exactRepository is required if matchPolicy is set to "ExactRepository". It is used to verify that the signature claims an identity matching this exact repository, rather than the original image identity. |
 | `matchPolicy` | `string` | matchPolicy is a required filed specifies matching strategy to verify the image identity in the signature against the image scope. Allowed values are "MatchRepoDigestOrExact", "MatchRepository", "ExactRepository", "RemapIdentity". When omitted, the default value is "MatchRepoDigestOrExact". When set to "MatchRepoDigestOrExact", the identity in the signature must be in the same repository as the image identity if the image identity is referenced by a digest. Otherwise, the identity in the signature must be the same as the image identity. When set to "MatchRepository", the identity in the signature must be in the same repository as the image identity. When set to "ExactRepository", the exactRepository must be specified. The identity in the signature must be in the same repository as a specific identity specified by "repository". When set to "RemapIdentity", the remapIdentity must be specified. The signature must be in the same as the remapped image identity. Remapped image identity is obtained by replacing the "prefix" with the specified “signedPrefix” if the the image identity matches the specified remapPrefix. |
 | `remapIdentity` | `object` | remapIdentity specifies the prefix remapping rule for verifying image identity. remapIdentity is required if matchPolicy is set to "RemapIdentity". It is used to verify that the signature claims a different registry/repository prefix than the original image. |
+
 ### .spec.policy.signedIdentity.exactRepository {id="_specpolicysignedidentityexactrepository"}
 
 Description
@@ -215,6 +225,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `repository` | `string` | repository is the reference of the image identity to be matched. repository is required if matchPolicy is set to "ExactRepository". The value should be a repository name (by omitting the tag or digest) in a registry implementing the "Docker Registry HTTP API V2". For example, docker.io/library/busybox |
+
 ### .spec.policy.signedIdentity.remapIdentity {id="_specpolicysignedidentityremapidentity"}
 
 Description
@@ -234,6 +245,7 @@ Required
 | --- | --- | --- |
 | `prefix` | `string` | prefix is required if matchPolicy is set to "RemapIdentity". prefix is the prefix of the image identity to be matched. If the image identity matches the specified prefix, that prefix is replaced by the specified “signedPrefix” (otherwise it is used as unchanged and no remapping takes place). This is useful when verifying signatures for a mirror of some other repository namespace that preserves the vendor’s repository structure. The prefix and signedPrefix values can be either host[:port] values (matching exactly the same host[:port], string), repository namespaces, or repositories (i.e. they must not contain tags/digests), and match as prefixes of the fully expanded form. For example, docker.io/library/busybox (not busybox) to specify that single repository, or docker.io/library (not an empty string) to specify the parent namespace of docker.io/library/busybox. |
 | `signedPrefix` | `string` | signedPrefix is required if matchPolicy is set to "RemapIdentity". signedPrefix is the prefix of the image identity to be matched in the signature. The format is the same as "prefix". The values can be either host[:port] values (matching exactly the same host[:port], string), repository namespaces, or repositories (i.e. they must not contain tags/digests), and match as prefixes of the fully expanded form. For example, docker.io/library/busybox (not busybox) to specify that single repository, or docker.io/library (not an empty string) to specify the parent namespace of docker.io/library/busybox. |
+
 ### .status {id="_status"}
 
 Description
@@ -247,6 +259,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | conditions provide details on the status of this API Resource. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -290,12 +303,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ClusterImagePolicy
     *   `GET`: list objects of kind ClusterImagePolicy
     *   `POST`: create a ClusterImagePolicy
-*   `/apis/config.openshift.io/v1/clusterimagepolicies/{{ name }}`
+*   `/apis/config.openshift.io/v1/clusterimagepolicies/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterImagePolicy
     *   `GET`: read the specified ClusterImagePolicy
     *   `PATCH`: partially update the specified ClusterImagePolicy
     *   `PUT`: replace the specified ClusterImagePolicy
-*   `/apis/config.openshift.io/v1/clusterimagepolicies/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/clusterimagepolicies/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ClusterImagePolicy
     *   `PATCH`: partially update status of the specified ClusterImagePolicy
     *   `PUT`: replace status of the specified ClusterImagePolicy

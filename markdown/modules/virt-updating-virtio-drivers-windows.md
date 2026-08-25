@@ -18,7 +18,7 @@ If you restrict the WUS to only allow drivers explicitly signed and published by
 **Procedure**
 
 1.  In the Windows Guest operating system, click the **Windows** key and select **Settings**.
-1.  Navigate to **Windows Update** -> **Advanced Options** -> **Optional Updates**.
+1.  Navigate to **Windows Update** → **Advanced Options** → **Optional Updates**.
 1.  Install all updates from **Red Hat, Inc.**.
 1.  Reboot the VM.
 

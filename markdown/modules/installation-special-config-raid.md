@@ -8,7 +8,7 @@ You can enable software Redundant Array of Independent Disks (RAID) partitioning
 
 :::note
 
-{{ product_title }} {{ product_version }} supports manually configuring a hybrid RAID on an installation drive. For a manually configured example, see "Configuring an Intel(R) Virtual RAID on CPU (VROC) data volume".
+{{ product_title }} {{ product_version }} supports manually configuring a hybrid RAID on an installation drive. For a manually configured example, see "Configuring an Intel® Virtual RAID on CPU (VROC) data volume".
 
 :::
 
@@ -29,7 +29,7 @@ You can enable software Redundant Array of Independent Disks (RAID) partitioning
 
 1.  Create a Butane config that configures a data volume by using software RAID.
     *   To configure a data volume with RAID 1 on the same disks that are used for a mirrored boot disk, create a `$HOME/clusterconfig/raid1-storage.bu` file:
-        ```yaml title="Example configuration for RAID 1 on a mirrored boot disk "
+        ```yaml title="Example configuration for RAID 1 on a mirrored boot disk " {minja}
         variant: openshift
         version: {{ product_version }}.0
         metadata:
@@ -70,7 +70,7 @@ You can enable software Redundant Array of Independent Disks (RAID) partitioning
 
         The `size_mib` field adds a data partition to the boot disk. A minimum value of 25000 mebibytes is recommended. If no value is specified or the specified value is smaller than the recommended minimum, the resulting root file system will be too small. Future reinstalls of {{ op_system }} might overwrite the beginning of the data partition.
     *   To configure a data volume with RAID 1 on secondary disks, create a `$HOME/clusterconfig/raid1-alt-storage.bu` file:
-        ```yaml title="Example configuration for RAID 1 on secondary disks"
+        ```yaml title="Example configuration for RAID 1 on secondary disks" {minja}
         variant: openshift
         version: {{ product_version }}.0
         metadata:

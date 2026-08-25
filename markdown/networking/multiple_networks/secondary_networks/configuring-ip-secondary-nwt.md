@@ -3,11 +3,11 @@ title: Configuring IP address assignment on secondary networks
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring IP address assignment on secondary networks {id="configuring-ip-secondary-nwt"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring IP address assignment on secondary networks {id="configuring-ip-secondary-nwt"}
 {%- set context = "configuring-additional-network" %}
 
-You can configure IP address assignments for secondary networks so that pods can connect to the secondary networks.
+You can configure IP address assignments for secondary networks so that pods can connect to the secondary networks. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nw-multus-ipam-object.md" %}{% endleveloffset %}
 

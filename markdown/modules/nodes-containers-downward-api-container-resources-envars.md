@@ -3,7 +3,7 @@
 
 When creating pods, you can use the Downward API to inject information about
 computing resource requests and limits by using environment variables that
-correspond to the contents of the `resources` field in the `**spec.container**`
+correspond to the contents of the `resources` field in the `*spec.container*`
 field. {._abstract}
 
 

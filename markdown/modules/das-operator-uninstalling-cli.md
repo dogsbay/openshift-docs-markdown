@@ -59,8 +59,8 @@ You can uninstall the Dynamic Accelerator Slicer (DAS) Operator using the OpenSh
     The command should return an error indicating that no custom resource definitions are found.
 
 
-:::warning
+    :::warning
 
-Uninstalling the DAS Operator removes all GPU slice allocations and might cause running workloads that depend on GPU slices to fail. Ensure that no critical workloads are using GPU slices before proceeding with the uninstallation.
-
-:::
+    Uninstalling the DAS Operator removes all GPU slice allocations and might cause running workloads that depend on GPU slices to fail. Ensure that no critical workloads are using GPU slices before proceeding with the uninstallation.
+    
+    :::

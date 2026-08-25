@@ -20,7 +20,7 @@ If the `execute` syntax is used, the **Copy to clipboard** action is present whe
 
 ## Syntax for multi-line code snippets {id="quick-starts-syntax-for-multi-line-code-snippets_{{ context }}"}
 
-```
+````
 ```
 multi line code block
 ```{{copy}}
@@ -28,4 +28,4 @@ multi line code block
 ```
 multi line code block
 ```{{execute}}
-```
+````

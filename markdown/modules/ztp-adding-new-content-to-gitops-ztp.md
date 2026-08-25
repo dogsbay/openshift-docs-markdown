@@ -6,23 +6,23 @@ Perform the following procedure to add new content to the {{ ztp }} pipeline. {.
 
 **Procedure**
 
-1.  Create a subdirectory named `source-crs` in the directory that contains the `kustomization.yaml` file for the `{{ policy_gen_cr }}` custom resource (CR).
+1.  Create a subdirectory named `source-crs` in the directory that contains the `kustomization.yaml` file for the `{{ policy_gen_cr }}`{minja} custom resource (CR).
 1.  Add your user-provided CRs to the `source-crs` subdirectory, as shown in the following example:
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/pgt-ztp-adding-new-content-to-gitops-ztp-folder-structure.md" %}
+{% if policy-gen-cr == "PolicyGenTemplate" %}
+    {% include "./snippets/pgt-ztp-adding-new-content-to-gitops-ztp-folder-structure.md" %}
 {% endif %}
 {% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/pg-ztp-adding-new-content-to-gitops-ztp-folder-structure.md" %}
-{%- endif %}
-1.  Update the required `{{ policy_gen_cr }}` CRs to include references to the content you added in the `source-crs/custom-crs` and `source-crs/elasticsearch` directories. For example:
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/pgt-ztp-adding-new-content-to-gitops-ztp.md" %}
+    {% include "./snippets/pg-ztp-adding-new-content-to-gitops-ztp-folder-structure.md" %}
+{% endif %}
+1.  Update the required `{{ policy_gen_cr }}`{minja} CRs to include references to the content you added in the `source-crs/custom-crs` and `source-crs/elasticsearch` directories. For example:
+{% if policy-gen-cr == "PolicyGenTemplate" %}
+    {% include "./snippets/pgt-ztp-adding-new-content-to-gitops-ztp.md" %}
 {% endif %}
 {% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/pg-ztp-adding-new-content-to-gitops-ztp.md" %}
-{%- endif %}
-1.  Commit the `{{ policy_gen_cr }}` change in Git, and then push to the Git repository that is monitored by the GitOps ZTP Argo CD policies application.
-1.  Update the `ClusterGroupUpgrade` CR to include the changed `{{ policy_gen_cr }}` and save it as `cgu-test.yaml`. The following example shows a generated `cgu-test.yaml` file.
+    {% include "./snippets/pg-ztp-adding-new-content-to-gitops-ztp.md" %}
+{% endif %}
+1.  Commit the `{{ policy_gen_cr }}`{minja} change in Git, and then push to the Git repository that is monitored by the GitOps ZTP Argo CD policies application.
+1.  Update the `ClusterGroupUpgrade` CR to include the changed `{{ policy_gen_cr }}`{minja} and save it as `cgu-test.yaml`. The following example shows a generated `cgu-test.yaml` file.
     ```yaml
     apiVersion: ran.openshift.io/v1alpha1
     kind: ClusterGroupUpgrade

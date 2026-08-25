@@ -14,7 +14,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
 **Procedure**
 
 1.  Pre-cache the images:
-    ```terminal
+    ```terminal {minja}
     # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- factory-precaching-cli download \
        -r {{ product_version }}.0 \
        --acm-version 2.6.3 \
@@ -27,7 +27,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
 
     Where:
     *   `factory-precaching-cli download` specifies the downloading function of the {{ factory_prestaging_tool }}.
-    *   `-r {{ product_version }}.0` specifies the {{ product_title }} release version.
+    *   `-r {{ product_version }}.0`{minja} specifies the {{ product_title }} release version.
     *   `--acm-version 2.6.3` specifies the {{ rh_rhacm }} version.
     *   `--mce-version 2.1.4` specifies the multicluster engine version.
     *   `-f /mnt` specifies the folder where you want to download the images on the disk.
@@ -41,7 +41,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
         ```
 
         The following example shows the `ImageSetConfiguration` CR:
-        ```yaml
+        ```yaml {minja}
         apiVersion: mirror.openshift.io/v1alpha2
         kind: ImageSetConfiguration
         mirror:
@@ -98,7 +98,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
     *   `mirror.operators.packages.name: advanced-cluster-management`, `mirror.operators.packages.name: multicluster-engine` -- Specifies the versions of {{ rh_rhacm }} and the {{ mce_short }} that match the versions passed to the tool.
     *   `mirror.operators.packages.name: local-storage-operator`, `mirror.operators.packages.name: ptp-operator`, `mirror.operators.packages.name: sriov-network-operator`, `mirror.operators.packages.name: cluster-logging`, `mirror.operators.packages.name: lvms-operator`, `mirror.operators.packages.name: amq7-interconnect-operator`, `mirror.operators.packages.name: bare-metal-event-relay`, `mirror.operators.packages.name: sriov-fec` -- Specifies the CR contains all the specified DU Operators.
 1.  Customize the catalog resource in the CR:
-    ```yaml
+    ```yaml {minja}
     apiVersion: mirror.openshift.io/v1alpha2
     kind: ImageSetConfiguration
     mirror:
@@ -122,7 +122,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
     # update-ca-trust
     ```
 1.  Mount the host `/etc/pki` folder into the factory-cli image:
-    ```terminal
+    ```terminal {minja}
     # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker -v /etc/pki:/etc/pki --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- \
     factory-precaching-cli download \
        -r {{ product_version }}.0 \
@@ -136,7 +136,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
 
     Where:
     *   `factory-precaching-cli download` specifies the downloading function of the {{ factory_prestaging_tool }}.
-    *   `-r {{ product_version }}.0` specifies the {{ product_title }} release version.
+    *   `-r {{ product_version }}.0`{minja} specifies the {{ product_title }} release version.
     *   `--acm-version 2.6.3` specifies the {{ rh_rhacm }} version.
     *   `--mce-version 2.1.4` specifies the multicluster engine version.
     *   `-f /mnt` specifies the folder where you want to download the images on the disk.
@@ -144,7 +144,7 @@ You can customize the `ImageSetConfiguration` CR in the following ways:
     *   `--du-profile -s` specifies pre-caching the Operators included in the DU configuration.
     *   `--skip-imageset` specifies to download the images in your customized `ImageSetConfiguration` CR.
 1.  Download the images without generating a new `imageSetConfiguration` CR:
-    ```terminal
+    ```terminal {minja}
     # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools:latest -- factory-precaching-cli download -r {{ product_version }}.0 \
     --acm-version 2.6.3 --mce-version 2.1.4 -f /mnt \
     --img quay.io/custom/repository \

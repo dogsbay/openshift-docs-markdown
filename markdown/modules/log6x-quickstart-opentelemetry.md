@@ -14,7 +14,7 @@ To configure OTLP ingestion and enable the OpenTelemetry data model, follow thes
 
 **Procedure**
 
-1.  Install the `{{ clo }}`, `{{ loki_op }}`, and `{{ coo_first }}` from the software catalog.
+1.  Install the `{{ clo }}`{minja}, `{{ loki_op }}`{minja}, and `{{ coo_first }}`{minja} from the software catalog.
 1.  Create a `LokiStack` custom resource (CR) in the `openshift-logging` namespace:
     ```yaml
     apiVersion: loki.grafana.com/v1
@@ -95,18 +95,18 @@ To configure OTLP ingestion and enable the OpenTelemetry data model, follow thes
       name: collector
       namespace: openshift-logging
       annotations:
-        observability.openshift.io/tech-preview-otlp-output: "enabled" # (1)
+        observability.openshift.io/tech-preview-otlp-output: "enabled" (1)
     spec:
       serviceAccount:
         name: collector
       outputs:
       - name: loki-otlp
-        type: lokiStack # (2)
+        type: lokiStack (2)
         lokiStack:
           target:
             name: logging-loki
             namespace: openshift-logging
-          dataModel: Otel # (3)
+          dataModel: Otel (3)
           authentication:
             token:
               from: serviceAccount
@@ -126,15 +126,15 @@ To configure OTLP ingestion and enable the OpenTelemetry data model, follow thes
     1.  Define the output type as `lokiStack`.
     1.  Specifies the OpenTelemetry data model.
 
-        :::note
+    :::note
 
-        You cannot use `lokiStack.labelKeys` when `dataModel` is `Otel`. To achieve similar functionality when `dataModel` is `Otel`, refer to "Configuring LokiStack for OTLP data ingestion".
-        
-        :::
+    You cannot use `lokiStack.labelKeys` when `dataModel` is `Otel`. To achieve similar functionality when `dataModel` is `Otel`, refer to "Configuring LokiStack for OTLP data ingestion".
+    
+    :::
 
 
 **Verification**
 
 *   To verify that OTLP is functioning correctly, complete the following steps:
-    1.  In the OpenShift web console, click **Observe** -> **OpenShift Logging** -> **LokiStack** -> **Writes**.
+    1.  In the OpenShift web console, click **Observe** → **OpenShift Logging** → **LokiStack** → **Writes**.
     1.  Check the **Distributor - Structured Metadata** section.

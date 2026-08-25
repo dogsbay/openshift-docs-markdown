@@ -3,12 +3,12 @@ title: Connect to a virtual machine console
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Connect to a virtual machine console {id="virt-accessing-vm-consoles"}
 {% include "./_attributes/common-attributes.md" %}
+# Connect to a virtual machine console {id="virt-accessing-vm-consoles"}
 {%- set context = "virt-accessing-vm-consoles" -%}
 {%- set virt_accessing_vm_consoles = true %}
 
-By using VNC, serial, or desktop viewer consoles, you can access the console of your virtual machine for troubleshooting when the VM does not have network connectivity.
+By using VNC, serial, or desktop viewer consoles, you can access the console of your virtual machine for troubleshooting when the VM does not have network connectivity. {._abstract}
 
 
 :::note

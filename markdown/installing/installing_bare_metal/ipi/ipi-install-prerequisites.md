@@ -3,11 +3,11 @@ title: Prerequisites
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Prerequisites {id="ipi-install-prerequisites"}
 {% include "./_attributes/common-attributes.md" %}
+# Prerequisites {id="ipi-install-prerequisites"}
 {%- set context = "ipi-install-prerequisites" %}
 
-You must meet several prerequisites before installing a cluster on bare metal by using installer-provisioned infrastructure.
+You must meet several prerequisites before installing a cluster on bare metal by using installer-provisioned infrastructure. {._abstract}
 
 Installer-provisioned installation of {{ product_title }} requires:
 
@@ -33,6 +33,7 @@ Before starting an installer-provisioned installation of {{ product_title }}, en
 {% leveloffset +1 %}{% include "./modules/virt-planning-bare-metal-cluster-for-ocp-virt.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing your cluster for {{ VirtProductName }}](/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)
 *   [About Single Root I/O Virtualization (SR-IOV) hardware networks](/networking/hardware_networks/about-sriov#about-sriov)
@@ -41,6 +42,7 @@ Before starting an installer-provisioned installation of {{ product_title }}, en
 {% leveloffset +1 %}{% include "./modules/ipi-install-firmware-requirements-for-installing-with-virtual-media.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Red Hat third-party support policy](https://access.redhat.com/third-party-software-support)
 *   [UCSHCL](https://ucshcltool.cloudapps.cisco.com/public/)
@@ -49,6 +51,7 @@ Before starting an installer-provisioned installation of {{ product_title }}, en
 {% leveloffset +1 %}{% include "./modules/ipi-install-nc-si-hardware-requirements-for-bare-metal.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Ironic NC-SI Specification](https://specs.openstack.org/openstack/ironic-specs/specs/approved/nc-si.html)
 *   [DMTF: Network Controller Sideband Interface (NC-SI) Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.1.1.pdf)
@@ -56,6 +59,7 @@ Before starting an installer-provisioned installation of {{ product_title }}, en
 {% leveloffset +1 %}{% include "./modules/ipi-install-network-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using DNS forwarding](/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)
 

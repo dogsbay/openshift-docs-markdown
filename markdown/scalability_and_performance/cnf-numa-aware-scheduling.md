@@ -3,11 +3,11 @@ title: Scheduling NUMA-aware workloads
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Scheduling NUMA-aware workloads {id="cnf-numa-aware-scheduling"}
 {% include "./_attributes/common-attributes.md" %}
+# Scheduling NUMA-aware workloads {id="cnf-numa-aware-scheduling"}
 {%- set context = "numa-aware" %}
 
-To deploy high performance workloads with optimal efficiency, use NUMA-aware scheduling. This feature aligns pods with the underlying hardware topology in your {{ product_title }} cluster, minimizing latency and maximizing resource utilization.
+To deploy high performance workloads with optimal efficiency, use NUMA-aware scheduling. This feature aligns pods with the underlying hardware topology in your {{ product_title }} cluster, minimizing latency and maximizing resource utilization. {._abstract}
 
 {%- set FeatureName = "NUMA-aware scheduling" %}
 
@@ -22,11 +22,12 @@ By using the NUMA Resources Operator, you can schedule high-performance workload
 {% leveloffset +1 %}{% include "./modules/cnf-numa-resource-scheduling-strategies.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Scheduling pods using a secondary scheduler](/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-configuring#secondary-scheduler-configuring)
 *   [Changing where high-performance workloads run](/scalability_and_performance/cnf-numa-aware-scheduling#cnf-changing-where-high-performance-workloads-run_numa-aware)
 
-## Installing the NUMA Resources Operator {id="installing-the-numa-resources-operator_{{ context }}"}
+## Installing the NUMA Resources Operator {id="installing-the-numa-resources-operator_{{ context }}" ._additional-resources}
 
 NUMA Resources Operator deploys resources that allow you to schedule NUMA-aware workloads and deployments. You can install the NUMA Resources Operator using the {{ product_title }} CLI or the web console.
 
@@ -45,6 +46,7 @@ NUMA Resources Operator deploys resources that allow you to schedule NUMA-aware 
 {% leveloffset +3 %}{% include "./modules/cnf-verifying-schedulder-ha-status.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring image registry repository mirroring](/disconnected/updating/disconnected-update#images-configuration-registry-mirror-configuring_updating-disconnected-cluster)
 *   [About the Performance Profile Creator](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)
@@ -60,12 +62,14 @@ NUMA Resources Operator deploys resources that allow you to schedule NUMA-aware 
 {% leveloffset +2 %}{% include "./modules/cnf-creating-nrop-cr-hosted-control-plane.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating a performance profile](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
 
 {% leveloffset +2 %}{% include "./modules/cnf-deploying-the-numa-aware-scheduler.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring image registry repository mirroring](/disconnected/updating/disconnected-update#images-configuration-registry-mirror_updating-disconnected-cluster)
 

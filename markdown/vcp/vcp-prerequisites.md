@@ -7,7 +7,7 @@ title: Prerequisites for virtualized control planes
 # Prerequisites for virtualized control planes {id="vcp-prerequisites"}
 {%- set context = "vcp-prerequisites" %}
 
-Before deploying a virtualized control plane cluster, ensure your environment meets the following requirements.
+Before deploying a virtualized control plane cluster, ensure your environment meets the following requirements. {._abstract}
 
 {%- set FeatureName = "KubeVirt Redfish" %}
 {% include "./snippets/technology-preview.md" %}
@@ -22,7 +22,7 @@ Before deploying a virtualized control plane cluster, ensure your environment me
 
 {% leveloffset +1 %}{% include "./modules/con_virt-vcp-kubevirt-redfish-requirements.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Recommended resources for the agent-based installer](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)
 *   [Effects of disk latency on etcd](/etcd/etcd-performance#etcd-disk-latency_etcd-performance)

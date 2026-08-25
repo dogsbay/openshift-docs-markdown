@@ -29,7 +29,6 @@ Custom metadata on `ComplianceRemediation` objects is not covered by this featur
 :::
 
 
-
 Profile bundle updates
 :   When a `ProfileBundle` refreshes profile content, the Operator merges user-defined annotations on `Rule` objects with parser-managed annotations so your keys remain while Operator and content fields stay current.
 

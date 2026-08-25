@@ -3,11 +3,11 @@ title: Cluster API configuration options for VMware vSphere
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Cluster API configuration options for VMware vSphere {id="cluster-api-config-options-vsphere"}
 {% include "./_attributes/common-attributes.md" %}
+# Cluster API configuration options for VMware vSphere {id="cluster-api-config-options-vsphere"}
 {%- set context = "cluster-api-config-options-vsphere" %}
 
-You can change the configuration of your {{ vmw_first }} Cluster API machines by updating values in the Cluster API custom resource manifests.
+You can change the configuration of your {{ vmw_first }} Cluster API machines by updating values in the Cluster API custom resource manifests. {._abstract}
 
 {%- set FeatureName = "Managing machines with the Cluster API" %}
 {% include "./snippets/technology-preview.md" %}

@@ -34,18 +34,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind ConfigMap
 *   `/api/v1/watch/configmaps`
     *   `GET`: watch individual changes to a list of ConfigMap. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/configmaps`
+*   `/api/v1/namespaces/{{ namespace }}/configmaps`{minja}
     *   `DELETE`: delete collection of ConfigMap
     *   `GET`: list or watch objects of kind ConfigMap
     *   `POST`: create a ConfigMap
-*   `/api/v1/watch/namespaces/{{ namespace }}/configmaps`
+*   `/api/v1/watch/namespaces/{{ namespace }}/configmaps`{minja}
     *   `GET`: watch individual changes to a list of ConfigMap. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/api/v1/namespaces/{{ namespace }}/configmaps/{{ name }}`
+*   `/api/v1/namespaces/{{ namespace }}/configmaps/{{ name }}`{minja}
     *   `DELETE`: delete a ConfigMap
     *   `GET`: read the specified ConfigMap
     *   `PATCH`: partially update the specified ConfigMap
     *   `PUT`: replace the specified ConfigMap
-*   `/api/v1/watch/namespaces/{{ namespace }}/configmaps/{{ name }}`
+*   `/api/v1/watch/namespaces/{{ namespace }}/configmaps/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind ConfigMap. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /api/v1/configmaps {id="_apiv1configmaps"}

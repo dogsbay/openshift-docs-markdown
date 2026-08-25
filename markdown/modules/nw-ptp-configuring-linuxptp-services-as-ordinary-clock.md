@@ -24,9 +24,10 @@ See "Configuring the PTP fast event notifications publisher" for more informatio
 
 1.  Create the following `PtpConfig` CR, and then save the YAML in the `ordinary-clock-ptp-config.yaml` file.
     <a name="ptp-ordinary-clock"></a>
-    ```yaml title="Example PTP ordinary clock configuration"
-{% include "./snippets/ptp_PtpConfigOrdinaryClock.yaml" %}
+    ```yaml title="Example PTP ordinary clock configuration" {minja}
+    {% include "./snippets/ptp_PtpConfigOrdinaryClock.yaml" %}
     ```
+
     **PTP ordinary clock CR configuration options**
 
     |     |     |

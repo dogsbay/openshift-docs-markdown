@@ -15,7 +15,7 @@ You can create a live {{ op_system }} ISO with SSHd enabled and with predefined 
 1.  Download the `coreos-installer` binary from the `coreos-installer` image [mirror](https://mirror.openshift.com/pub/openshift-v4/clients/coreos-installer/latest/) page.
 1.  Download the latest live {{ op_system }} ISO from [mirror.openshift.com](https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.12/latest/).
 1.  Create the `embedded.yaml` file that the `butane` utility uses to create the Ignition file:
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:
@@ -34,15 +34,15 @@ You can create a live {{ op_system }} ISO with SSHd enabled and with predefined 
     ```terminal
     $ butane -pr embedded.yaml -o embedded.ign
     ```
-1.  After the Ignition file is created, you can include the configuration in a new live {{ op_system }} ISO, which is named `rhcos-sshd-{{ product_version }}.0-x86_64-live.x86_64.iso`, with the `coreos-installer` utility:
-    ```terminal
+1.  After the Ignition file is created, you can include the configuration in a new live {{ op_system }} ISO, which is named `rhcos-sshd-{{ product_version }}.0-x86_64-live.x86_64.iso`{minja}, with the `coreos-installer` utility:
+    ```terminal {minja}
     $ coreos-installer iso ignition embed -i embedded.ign rhcos-{{ product_version }}.0-x86_64-live.x86_64.iso -o rhcos-sshd-{{ product_version }}.0-x86_64-live.x86_64.iso
     ```
 
 **Verification**
 
 *   Check that the custom live ISO can be used to boot the server by running the following command:
-    ```terminal
+    ```terminal {minja}
     # coreos-installer iso ignition show rhcos-sshd-{{ product_version }}.0-x86_64-live.x86_64.iso
     ```
 

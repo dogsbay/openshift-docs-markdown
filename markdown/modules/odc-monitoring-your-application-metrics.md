@@ -16,6 +16,7 @@ To see the alerts for your workload:
     
     :::
 
+
     **Figure 1. Monitoring application metrics**
 
     ![odc_app_metrics](/_assets/images/odc_app_metrics.png)

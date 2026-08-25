@@ -3,8 +3,8 @@ title: Creating build inputs
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating build inputs {id="creating-build-inputs"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating build inputs {id="creating-build-inputs"}
 {%- set context = "creating-build-inputs" %}
 
 Use the following sections for an overview of build inputs, instructions on how
@@ -20,6 +20,7 @@ build environments and create secrets.
 {% if not openshift_rosa_hcp %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring project-scoped image pull secrets for mirrored registries](/openshift_images/image-configuration#images-configuration-registry-mirror-project-secret_image-configuration)
 {% endif %}
@@ -88,6 +89,7 @@ build environments and create secrets.
 {% leveloffset +2 %}{% include "./modules/builds-using-secrets-as-environment-variables.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Input secrets and config maps](/cicd/builds/creating-build-inputs#builds-input-secrets-configmaps_creating-build-inputs)
 

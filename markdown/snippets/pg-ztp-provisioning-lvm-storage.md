@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-```yaml
+```yaml {minja}
 - name: subscription-policies
   policyAnnotations:
     ran.openshift.io/ztp-deploy-wave: "2"

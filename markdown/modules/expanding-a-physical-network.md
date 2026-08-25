@@ -10,7 +10,7 @@ Expanding a physical network creates a new configuration under the same logical 
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Networking** -> **Physical networks**.
+1.  In the {{ product_title }} web console, go to **Networking** → **Physical networks**.
 1.  Click the Options menu {{ kebab }} next to the network that you want to edit.
 1.  Click **Configure nodes**. The **Network configuration wizard** is displayed.
 
@@ -57,6 +57,6 @@ A single interface
     :::
 
     1.  Select the **Aggregation mode** from the drop down options.
-    1.  On the **Settings** page, enter a **Bridge name** and set the **Maximum Transmission Unit (MTU)**.
-    1.  Review the configuration details.
-    1.  Click **Create**.
+1.  On the **Settings** page, enter a **Bridge name** and set the **Maximum Transmission Unit (MTU)**.
+1.  Review the configuration details.
+1.  Click **Create**.

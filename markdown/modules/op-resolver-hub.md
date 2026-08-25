@@ -22,6 +22,7 @@ When creating a pipeline run, you can specify a remote pipeline from {{ artifact
         value: <resource_version>
     # ...
     ```
+
     **Supported parameters for the hub resolver**
 
     | Parameter | Description | Example value |
@@ -31,6 +32,7 @@ When creating a pipeline run, you can specify a remote pipeline from {{ artifact
     | `kind` | Either `task` or `pipeline`. | Default: `task` |
     | `name` | The name of the task or pipeline to fetch from the hub. | `golang-build` |
     | `version` | The version of the task or pipeline to fetch from the hub. You must use quotes (`"`) around the number. | `"0.5.0"` |
+
 
     If the pipeline or task requires additional parameters, provide these parameters in `params`.
 

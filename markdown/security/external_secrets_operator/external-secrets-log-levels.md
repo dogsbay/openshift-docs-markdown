@@ -3,11 +3,11 @@ title: Customizing the External Secrets Operator for Red Hat OpenShift
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Customizing the External Secrets Operator for Red Hat OpenShift {id="external-secrets-log-levels"}
 {% include "./_attributes/common-attributes.md" %}
+# Customizing the External Secrets Operator for Red Hat OpenShift {id="external-secrets-log-levels"}
 {%- set context = "external-secrets-log-levels" %}
 
-You can customize the behavior of the {{ external_secrets_operator }} operand components by configuring custom annotations, deployment lifecycle settings, and environment variables through the `ExternalSecretsConfig` custom resource (CR).
+You can customize the behavior of the {{ external_secrets_operator }} operand components by configuring custom annotations, deployment lifecycle settings, and environment variables through the `ExternalSecretsConfig` custom resource (CR). {._abstract}
 
 These configurations provide administrators with fine-grained control over the external-secrets deployment.
 
@@ -18,6 +18,7 @@ All supported options are defined in the `ExternalSecretsConfig` CR (for example
 For the complete list of fields and allowed values, see the `ExternalSecretsConfig` API reference in the {{ external_secrets_operator }} documentation.
 
 **Additional resources**
+{._additional-resources}
 
 *   [External Secrets Operator for Red Hat OpenShift APIs](/security/external_secrets_operator/external-secrets-operator-api#external-secrets-operator-api)
 
@@ -28,6 +29,7 @@ For the complete list of fields and allowed values, see the `ExternalSecretsConf
 {% leveloffset +1 %}{% include "./modules/external-secrets-cert-manager-config.md" %}{% endleveloffset %}
 
 <a name="external-secrets-log-levels_additional-resources"></a>**Additional resources**
+{._additional-resources}
 
 *   [External Secrets Operator for Red Hat OpenShift APIs](/security/external_secrets_operator/external-secrets-operator-api#external-secrets-operator-api)
 *   [cert-manager Operator for Red Hat Openshift](/security/cert_manager_operator/index#cert-manager-operator-about)

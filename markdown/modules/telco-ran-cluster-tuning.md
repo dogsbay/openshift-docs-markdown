@@ -16,7 +16,7 @@ Limits and requirements
 
 The following table lists the required platform tuning configurations:
 
-***Cluster capabilities configurations***
+**Cluster capabilities configurations**
 
 <table>
 <thead>
@@ -32,7 +32,7 @@ The following table lists the required platform tuning configurations:
 </tr>
 <tr>
   <td>Configure cluster monitoring</td>
-  <td>Configure the monitoring stack for reduced footprint by doing the following:<br><br><ul><li>Disable the local <code>alertmanager</code> and <code>telemeter</code> components.</li><li>If you use {{ rh_rhacm }} observability, the CR must be augmented with appropriate <code>additionalAlertManagerConfigs</code> CRs to forward alerts to the hub cluster.</li><li>{{ rh_rhacm }} observability combines its default data values with the monitoring configuration <code>ConfigMap</code> CR provided as part of the cluster tuning reference CRs.</li></ul>This merge results in the policy becoming non-compliant.To ensure that the provided configuration is not overwritten or merged with {{ rh_rhacm }} data values, you can disable the {{ rh_rhacm }} management of this <code>ConfigMap</code> CR .This keeps the policy compliant. For more information, see the Observability section of Telco hub reference design specifications.<br><br><ul><li>Reduce the <code>Prometheus</code> retention period to 24h.</li></ul>+<dl><dt>Note</dt><dd>The {{ rh_rhacm }} hub cluster aggregates managed cluster metrics.</dd></dl></td>
+  <td>Configure the monitoring stack for reduced footprint by doing the following:<br><br><ul><li>Disable the local <code>alertmanager</code> and <code>telemeter</code> components.</li><li>If you use {{ rh_rhacm }} observability, the CR must be augmented with appropriate <code>additionalAlertManagerConfigs</code> CRs to forward alerts to the hub cluster.</li><li>{{ rh_rhacm }} observability combines its default data values with the monitoring configuration <code>ConfigMap</code> CR provided as part of the cluster tuning reference CRs.</li></ul>This merge results in the policy becoming non-compliant. To ensure that the provided configuration is not overwritten or merged with {{ rh_rhacm }} data values, you can disable the {{ rh_rhacm }} management of this <code>ConfigMap</code> CR . This keeps the policy compliant. For more information, see the Observability section of Telco hub reference design specifications.<br><br><ul><li>Reduce the <code>Prometheus</code> retention period to 24h.</li></ul><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The {{ rh_rhacm }} hub cluster aggregates managed cluster metrics.</dd></dl></td>
 </tr>
 <tr>
   <td>Disable networking diagnostics</td>
@@ -40,11 +40,11 @@ The following table lists the required platform tuning configurations:
 </tr>
 <tr>
   <td>Configure a single OperatorHub catalog source</td>
-  <td>Configure the cluster to use a single catalog source that contains only the Operators required for a RAN DU deployment.</td>
+  <td>Configure the cluster to use a single catalog source that contains only the Operators required for a RAN DU deployment. Each catalog source increases the CPU use on the cluster. Using a single <code>CatalogSource</code> fits within the platform CPU budget.</td>
 </tr>
 <tr>
   <td>Disable the Console Operator</td>
-  <td>If the cluster was deployed with the console disabled, the <code>Console</code> CR (<code>ConsoleOperatorDisable.yaml</code>) is not needed.</td>
+  <td>If the cluster was deployed with the console disabled, the <code>Console</code> CR (<code>ConsoleOperatorDisable.yaml</code>) is not needed. If the cluster was deployed with the console enabled, you must apply the <code>Console</code> CR.</td>
 </tr>
 </tbody>
 </table>

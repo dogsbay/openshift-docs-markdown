@@ -25,8 +25,13 @@ Changing the `podPidsLimit` on an existing cluster will trigger non-control plan
         ```terminal
         $ rosa create kubeletconfig -c <cluster_name> --name <kubeletconfig_name> --pod-pids-limit=<value>
         ```
-        **📌 NOTE**\
+
+        :::note
+
         The `--name` parameter is optional on ROSA Classic clusters, because only one `KubeletConfig` object is supported per ROSA Classic cluster.
+        
+        :::
+
 
         For example, the following command sets a maximum of 16,384 PIDs per pod for cluster `my-cluster`:
         ```terminal

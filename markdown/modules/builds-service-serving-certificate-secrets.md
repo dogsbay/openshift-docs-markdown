@@ -14,11 +14,11 @@ To secure communication to your service, have the cluster generate a signed serv
     The certificate and key are in PEM format, stored in `tls.crt` and `tls.key` respectively. The certificate/key pair is automatically replaced when it gets close to expiration. View the expiration date in the `service.beta.openshift.io/expiry` annotation on the secret, which is in RFC3339 format.
 
 
-:::note
+    :::note
 
-In most cases, the service DNS name `<service.name>.<service.namespace>.svc` is not externally routable. The primary use of `<service.name>.<service.namespace>.svc` is for intracluster or intraservice communication, and with re-encrypt routes.
-
-:::
+    In most cases, the service DNS name `<service.name>.<service.namespace>.svc` is not externally routable. The primary use of `<service.name>.<service.namespace>.svc` is for intracluster or intraservice communication, and with re-encrypt routes.
+    
+    :::
 
 
 Other pods can trust cluster-created certificates, which are only signed for

@@ -4,16 +4,17 @@ title: Using device plugins to access external resources with pods
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-pods-device" %}
-# Using device plugins to access external resources with pods {id="nodes-pods-device"}
 {% include "./_attributes/common-attributes.md" %}
+# Using device plugins to access external resources with pods {id="nodes-pods-device"}
 
 Device plugins allow you to use a particular device type (GPU, InfiniBand,
 or other similar computing resources that require vendor-specific initialization
-and setup) in your {{ product_title }} pod without needing to write custom code.
+and setup) in your {{ product_title }} pod without needing to write custom code. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-pods-plugins-about.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Nvidia GPU device plugin for COS-based operating system](https://github.com/GoogleCloudPlatform/Container-engine-accelerators/tree/master/cmd/nvidia_gpu)
 *   [Nvidia official GPU device plugin](https://github.com/NVIDIA/k8s-device-plugin)

@@ -5,13 +5,14 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Non-guaranteed Spot Instances and hourly cost limits {id="machine-feature-agnostic-nonguaranteed-instances_{{ context }}"}
 
-{%- if aws %}
+{% if aws %}
 You can deploy machines as non-guaranteed Spot Instances on {{ aws_first }}. 
 Spot Instances use spare {{ aws_short }} EC2 capacity and are less expensive than On-Demand Instances. 
-You can use Spot Instances for workloads that can tolerate interruptions, such as batch or stateless, horizontally scalable workloads.
-{% endif %} {._abstract}
+You can use Spot Instances for workloads that can tolerate interruptions, such as batch or stateless, horizontally scalable workloads. {._abstract}
+{% endif %}
 
-{% include "./snippets/apply-machine-configuration-method.md" %}
+To deploy compute machines with your configuration, configure the appropriate values in a machine template YAML file.
+Then, configure a machine set YAML file to reference the machine template when it deploys machines.
 
 {% if aws %}
 
@@ -68,5 +69,5 @@ To satisfy the compute machine set `replicas` quantity, the compute machine set 
 {% endif %}
 
 {% if context == "cluster-api-config-options-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}

@@ -3,7 +3,7 @@
 
 You create a default `Secret` object and reference it in the backup storage location custom resource. The credentials file for the `Secret` object can contain information about the Azure service principal or a storage account access key. {._abstract}
 
-The default name of the `Secret` is `{{ credentials }}`.
+The default name of the `Secret` is `{{ credentials }}`{minja}.
 
 
 :::note
@@ -44,11 +44,11 @@ If you do not want to use the backup location credentials during the installatio
         AZURE_CLOUD_NAME=<azure_cloud_name> 
         ```
 1.  Create a `Secret` custom resource (CR) with the default name:
-    ```terminal
+    ```terminal {minja}
     $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero
     ```
 1.  Reference the `Secret` in the `spec.backupLocations.velero.credential` block of the `DataProtectionApplication` CR when you install the Data Protection Application as shown in the following example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:

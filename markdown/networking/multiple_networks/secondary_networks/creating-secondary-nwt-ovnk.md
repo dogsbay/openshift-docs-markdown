@@ -3,11 +3,11 @@ title: Creating secondary networks on OVN-Kubernetes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating secondary networks on OVN-Kubernetes {id="creating-secondary-networks-ovnk"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating secondary networks on OVN-Kubernetes {id="creating-secondary-networks-ovnk"}
 {%- set context = "configuring-additional-network-ovnk" %}
 
-As a cluster administrator, you can configure a secondary network for your cluster by using the `NetworkAttachmentDefinition` (NAD) resource. 
+As a cluster administrator, you can configure a secondary network for your cluster by using the `NetworkAttachmentDefinition` (NAD) resource.  {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/configuring-ovnk-additional-networks.md" %}{% endleveloffset %}
 

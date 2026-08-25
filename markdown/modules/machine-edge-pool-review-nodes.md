@@ -16,7 +16,7 @@ After you install a cluster that uses AWS {{ zone_type }} infrastructure, check 
     ```terminal
     $ oc get machineset -n openshift-machine-api
     ```
-{%- if local_zone %}
+{% if local_zone %}
     ```terminal title="Example output"
     NAME                                  DESIRED   CURRENT   READY   AVAILABLE   AGE
     cluster-7xw5g-edge-us-east-1-nyc-1a   1         1         1       1           3h4m
@@ -38,7 +38,7 @@ After you install a cluster that uses AWS {{ zone_type }} infrastructure, check 
     ```terminal
     $ oc get machines -n openshift-machine-api
     ```
-{%- if local_zone %}
+{% if local_zone %}
     ```text title="Example output"
     NAME                                        PHASE     TYPE          REGION      ZONE               AGE
     cluster-7xw5g-edge-us-east-1-nyc-1a-wbclh   Running   c5d.2xlarge   us-east-1   us-east-1-nyc-1a   3h
@@ -72,8 +72,8 @@ After you install a cluster that uses AWS {{ zone_type }} infrastructure, check 
     ```
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}

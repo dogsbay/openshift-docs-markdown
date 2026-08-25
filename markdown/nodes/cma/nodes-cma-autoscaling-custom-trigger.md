@@ -4,8 +4,8 @@ title: Understanding custom metrics autoscaler triggers
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom-trigger" %}
-# Understanding custom metrics autoscaler triggers {id="nodes-cma-autoscaling-custom-overview-trigger"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding custom metrics autoscaler triggers {id="nodes-cma-autoscaling-custom-overview-trigger"}
 
 Triggers, also known as scalers, provide the metrics that the Custom Metrics Autoscaler Operator uses to scale your pods.
 
@@ -22,6 +22,7 @@ You can configure a certificate authority [to use with your scaled objects](/nod
 {% leveloffset +2 %}{% include "./modules/nodes-cma-autoscaling-custom-prometheus-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding custom metrics autoscaler trigger authentications](/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth)
 

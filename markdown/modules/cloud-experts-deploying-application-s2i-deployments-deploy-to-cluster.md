@@ -29,7 +29,7 @@ You can use source-to-image (S2i) to deploy your OSToy app onto your cluster. {.
         --labels=app=ostoy
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     --> Creating resources with label app=ostoy ...
         imagestream.image.openshift.io "ostoy-microservice" created
@@ -49,7 +49,7 @@ You can use source-to-image (S2i) to deploy your OSToy app onto your cluster. {.
     $ oc status
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     In project ostoy-s2i on server https://api.myrosacluster.g14t.p1.openshiftapps.com:6443
 
@@ -68,7 +68,7 @@ You can use source-to-image (S2i) to deploy your OSToy app onto your cluster. {.
         --env=MICROSERVICE_NAME=OSTOY_MICROSERVICE
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     --> Creating resources ...
         imagestream.image.openshift.io "ostoy" created

@@ -23,8 +23,8 @@ You can create an {{ product_title }} on {{ GCP }} cluster with Workload Identit
 
                 `--interactive`
                 :   Specifies that the cluster is created in interactive mode. This mode prompts you to enter the required configuration options during cluster creation. If you do not include this parameter, the cluster is created in `non-interactive` mode by default.
-                *   Create a cluster in noninteractive mode by running the following command.
-                The following example is made up of optional and required parameters and might differ from your noninteractive mode command. Parameters not identified as optional are required. For additional details about these and other parameters, run the `ocm create cluster --help flag` command in your terminal window.
+            *   Create a cluster in noninteractive mode by running the following command.
+            The following example is made up of optional and required parameters and might differ from your noninteractive mode command. Parameters not identified as optional are required. For additional details about these and other parameters, run the `ocm create cluster --help flag` command in your terminal window.
                 ```terminal
                 $ ocm create cluster <cluster_name> \
                 --provider=gcp \
@@ -45,8 +45,8 @@ You can create an {{ product_title }} on {{ GCP }} cluster with Workload Identit
 
                 where:
 
-            `<cluster_name>`
-            :   Specifies the name of the cluster. Replace `<cluster_name>` with a name for your cluster.
+                `<cluster_name>`
+                :   Specifies the name of the cluster. Replace `<cluster_name>` with a name for your cluster.
 
 
 `--provider=gcp`
@@ -116,8 +116,8 @@ You can create an {{ product_title }} on {{ GCP }} cluster with Workload Identit
             If the cluster was created successfully, the output displays the cluster state as `ready`.
 
 
-:::important
+            :::important
 
-If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your {{ GCP }} account. To remove these resources from your {{ gcp_short }} account, you must delete the failed cluster. For more information, see "Deleting an {{ product_title }} cluster on {{ GCP }}".
-
-:::
+            If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your {{ GCP }} account. To remove these resources from your {{ gcp_short }} account, you must delete the failed cluster. For more information, see "Deleting an {{ product_title }} cluster on {{ GCP }}".
+            
+            :::

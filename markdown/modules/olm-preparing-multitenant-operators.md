@@ -40,7 +40,7 @@ In the following procedure, the _tenant_ is a user or group of users that share 
     ```terminal
     $ oc new-project team1-operator
     ```
-{% endif %}
+{%- endif %}
 1.  Create an Operator group for the tenant Operator scoped to the tenant’s namespace, with only that one namespace entry in the `spec.targetNamespaces` list:
     1.  Define an `OperatorGroup` resource and save the YAML file, for example, `team1-operatorgroup.yaml`:
         ```yaml

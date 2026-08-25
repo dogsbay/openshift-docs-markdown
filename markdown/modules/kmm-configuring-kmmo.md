@@ -30,7 +30,7 @@ To adapt the Kernel Module Management (KMM) Operator to your {{ product_title }}
     :::
 
 
-    ***Operator configuration parameters***
+    **Operator configuration parameters**
 
 <table>
 <thead>
@@ -50,7 +50,7 @@ To adapt the Kernel Module Management (KMM) Operator to your {{ product_title }}
 </tr>
 <tr>
   <td><code>leaderElection.enabled</code></td>
-  <td>Determines whether leader election is used to ensure that only one replica of the KMM Operator is running at any time. For more information, see https://kubernetes.io/docs/concepts/architecture/leases/[Leases]. The default value is <code>true</code>.</td>
+  <td>Determines whether leader election is used to ensure that only one replica of the KMM Operator is running at any time. For more information, see <a href="https://kubernetes.io/docs/concepts/architecture/leases/">Leases</a>. The default value is <code>true</code>.</td>
 </tr>
 <tr>
   <td><code>leaderElection.resourceID</code></td>
@@ -62,7 +62,7 @@ To adapt the Kernel Module Management (KMM) Operator to your {{ product_title }}
 </tr>
 <tr>
   <td><code>metrics.disableHTTP2</code></td>
-  <td>If <code>true</code>, disables HTTP/2 for the metrics server as a mitigation for https://access.redhat.com/security/cve/cve-2023-44487[CVE-2023-44487]. The default value is <code>true</code>.</td>
+  <td>If <code>true</code>, disables HTTP/2 for the metrics server as a mitigation for <a href="https://access.redhat.com/security/cve/cve-2023-44487">CVE-2023-44487</a>. The default value is <code>true</code>.</td>
 </tr>
 <tr>
   <td><code>metrics.enableAuthnAuthz</code></td>

@@ -34,28 +34,28 @@ Events:
 
 The following is a list of the possible event errors:
 
-***No redirect URI annotations or an invalid URI is specified***
+**No redirect URI annotations or an invalid URI is specified**
 
 ```terminal
 Reason                  Message
 NoSAOAuthRedirectURIs   system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>
 ```
 
-***Invalid route specified***
+**Invalid route specified**
 
 ```terminal
 Reason                  Message
 NoSAOAuthRedirectURIs   [routes.route.openshift.io "<name>" not found, system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>]
 ```
 
-***Invalid reference type specified***
+**Invalid reference type specified**
 
 ```terminal
 Reason                  Message
 NoSAOAuthRedirectURIs   [no kind "<name>" is registered for version "v1", system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>]
 ```
 
-***Missing SA tokens***
+**Missing SA tokens**
 
 ```terminal
 Reason                  Message

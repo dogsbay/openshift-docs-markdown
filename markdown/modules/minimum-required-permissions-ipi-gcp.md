@@ -5,9 +5,7 @@ When you attach the `Owner` role to the service account that you create, you gra
 
 The following permissions are required for the installer-provisioned infrastructure for creating and deleting the {{ product_title }} cluster.
 
-<details>
-<summary>Required permissions for creating network resources</summary>
-
+:::details{title="Required permissions for creating network resources"}
 *   `compute.addresses.create`
 *   `compute.addresses.createInternal`
 *   `compute.addresses.delete`
@@ -46,11 +44,9 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `compute.subnetworks.list`
 *   `compute.subnetworks.use`
 *   `compute.subnetworks.useExternalIp`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating load balancer resources</summary>
-
+:::details{title="Required permissions for creating load balancer resources"}
 *   `compute.backendServices.create`
 *   `compute.backendServices.get`
 *   `compute.backendServices.list`
@@ -70,11 +66,9 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `compute.targetTcpProxies.create`
 *   `compute.targetTcpProxies.get`
 *   `compute.targetTcpProxies.use`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating DNS resources</summary>
-
+:::details{title="Required permissions for creating DNS resources"}
 *   `dns.changes.create`
 *   `dns.changes.get`
 *   `dns.managedZones.create`
@@ -83,11 +77,9 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `dns.networks.bindPrivateDNSZone`
 *   `dns.resourceRecordSets.create`
 *   `dns.resourceRecordSets.list`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating Service Account resources</summary>
-
+:::details{title="Required permissions for creating Service Account resources"}
 *   `iam.serviceAccountKeys.create`
 *   `iam.serviceAccountKeys.delete`
 *   `iam.serviceAccountKeys.get`
@@ -102,11 +94,9 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `resourcemanager.projects.getIamPolicy`
 *   `resourcemanager.projects.setIamPolicy`
     *   This permission is not required if you use `credentialsMode: Manual` and supply your own service accounts for compute and control plane nodes.
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating compute resources</summary>
-
+:::details{title="Required permissions for creating compute resources"}
 *   `compute.disks.create`
 *   `compute.disks.get`
 *   `compute.disks.list`
@@ -128,11 +118,9 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `compute.instances.use`
 *   `compute.machineTypes.get`
 *   `compute.machineTypes.list`
-</details>
+:::
 
-<details>
-<summary>Required for creating storage resources</summary>
-
+:::details{title="Required for creating storage resources"}
 *   `storage.buckets.create`
 *   `storage.buckets.delete`
 *   `storage.buckets.get`
@@ -141,11 +129,9 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `storage.objects.delete`
 *   `storage.objects.get`
 *   `storage.objects.list`
-</details>
+:::
 
-<details>
-<summary>Required permissions for creating health check resources</summary>
-
+:::details{title="Required permissions for creating health check resources"}
 *   `compute.healthChecks.create`
 *   `compute.healthChecks.get`
 *   `compute.healthChecks.list`
@@ -157,11 +143,9 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `compute.regionHealthChecks.create`
 *   `compute.regionHealthChecks.get`
 *   `compute.regionHealthChecks.useReadOnly`
-</details>
+:::
 
-<details>
-<summary>Required permissions to get {gcp-short} zone and region related information</summary>
-
+:::details{title="Required permissions to get {{ gcp_short }} zone and region related information"}
 *   `compute.globalOperations.get`
 *   `compute.regionOperations.get`
 *   `compute.regions.get`
@@ -169,51 +153,37 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `compute.zoneOperations.get`
 *   `compute.zones.get`
 *   `compute.zones.list`
-</details>
+:::
 
-<details>
-<summary>Required permissions for checking services and quotas</summary>
-
+:::details{title="Required permissions for checking services and quotas"}
 *   `monitoring.timeSeries.list`
 *   `serviceusage.quotas.get`
 *   `serviceusage.services.list`
-</details>
+:::
 
-<details>
-<summary>Required IAM permissions for installation</summary>
-
+:::details{title="Required IAM permissions for installation"}
 *   `iam.roles.create`
 *   `iam.roles.get`
 *   `iam.roles.update`
-</details>
+:::
 
-<details>
-<summary>Required permissions when authenticating without a service account key</summary>
-
+:::details{title="Required permissions when authenticating without a service account key"}
 *   `iam.serviceAccounts.signBlob`
-</details>
+:::
 
-<details>
-<summary>Required permissions when providing Key Management Service (KMS) key rings</summary>
-
+:::details{title="Required permissions when providing Key Management Service (KMS) key rings"}
 *   `cloudkms.keyRings.list`
-</details>
+:::
 
-<details>
-<summary>Optional Images permissions for installation</summary>
-
+:::details{title="Optional Images permissions for installation"}
 *   `compute.images.list`
-</details>
+:::
 
-<details>
-<summary>Optional permission for running gather bootstrap</summary>
-
+:::details{title="Optional permission for running gather bootstrap"}
 *   `compute.instances.getSerialPortOutput`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting network resources</summary>
-
+:::details{title="Required permissions for deleting network resources"}
 *   `compute.addresses.delete`
 *   `compute.addresses.deleteInternal`
 *   `compute.addresses.list`
@@ -234,11 +204,9 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `compute.routes.list`
 *   `compute.subnetworks.delete`
 *   `compute.subnetworks.list`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting load balancer resources</summary>
-
+:::details{title="Required permissions for deleting load balancer resources"}
 *   `compute.backendServices.delete`
 *   `compute.backendServices.list`
 *   `compute.regionBackendServices.delete`
@@ -247,31 +215,25 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `compute.targetPools.list`
 *   `compute.targetTcpProxies.delete`
 *   `compute.targetTcpProxies.list`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting DNS resources</summary>
-
+:::details{title="Required permissions for deleting DNS resources"}
 *   `dns.changes.create`
 *   `dns.managedZones.delete`
 *   `dns.managedZones.get`
 *   `dns.managedZones.list`
 *   `dns.resourceRecordSets.delete`
 *   `dns.resourceRecordSets.list`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting Service Account resources</summary>
-
+:::details{title="Required permissions for deleting Service Account resources"}
 *   `iam.serviceAccounts.delete`
 *   `iam.serviceAccounts.get`
 *   `iam.serviceAccounts.list`
 *   `resourcemanager.projects.getIamPolicy`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting compute resources</summary>
-
+:::details{title="Required permissions for deleting compute resources"}
 *   `compute.disks.delete`
 *   `compute.disks.list`
 *   `compute.instanceGroups.delete`
@@ -280,31 +242,25 @@ The following permissions are required for the installer-provisioned infrastruct
 *   `compute.instances.list`
 *   `compute.instances.stop`
 *   `compute.machineTypes.list`
-</details>
+:::
 
-<details>
-<summary>Required for deleting storage resources</summary>
-
+:::details{title="Required for deleting storage resources"}
 *   `storage.buckets.delete`
 *   `storage.buckets.getIamPolicy`
 *   `storage.buckets.list`
 *   `storage.objects.delete`
 *   `storage.objects.list`
-</details>
+:::
 
-<details>
-<summary>Required permissions for deleting health check resources</summary>
-
+:::details{title="Required permissions for deleting health check resources"}
 *   `compute.healthChecks.delete`
 *   `compute.healthChecks.list`
 *   `compute.httpHealthChecks.delete`
 *   `compute.httpHealthChecks.list`
 *   `compute.regionHealthChecks.delete`
 *   `compute.regionHealthChecks.list`
-</details>
+:::
 
-<details>
-<summary>Required Images permissions for deletion</summary>
-
+:::details{title="Required Images permissions for deletion"}
 *   `compute.images.list`
-</details>
+:::

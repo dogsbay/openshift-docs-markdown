@@ -50,7 +50,7 @@ To ensure that the subnets that you provide are suitable, the installation progr
 *   The subnet CIDRs belong to the machine CIDR that you specified. Machines are not provisioned in availability zones that you do not provide private subnets for.
 {%- if azure %}
 If required, the installation program creates public load balancers that manage the control plane and worker nodes, and Azure allocates a public IP address to them.
-{% endif %}
+{%- endif %}
 
 
 :::note
@@ -72,7 +72,7 @@ The network security group rules must be in place before you install the cluster
 :::
 
 
-***Required ports***
+**Required ports**
 
 <table>
 <thead>
@@ -110,13 +110,13 @@ The network security group rules must be in place before you install the cluster
 </tr>
 <tr>
   {% if restricted %}<td><code>*</code></td>{% endif %}
-  {% if restricted %}<td>Allows connections to Azure APIs. You must set a Destination Service Tag to <code>AzureCloud</code>. ^[1]^</td>{% endif %}
+  {% if restricted %}<td>Allows connections to Azure APIs. You must set a Destination Service Tag to <code>AzureCloud</code>. <sup>[1]</sup></td>{% endif %}
   {% if restricted %}<td>x</td>{% endif %}
   {% if restricted %}<td>x</td>{% endif %}
 </tr>
 <tr>
   {% if restricted %}<td><code>*</code></td>{% endif %}
-  {% if restricted %}<td>Denies connections to the internet. You must set a Destination Service Tag to <code>Internet</code>. ^[1]^</td>{% endif %}
+  {% if restricted %}<td>Denies connections to the internet. You must set a Destination Service Tag to <code>Internet</code>. <sup>[1]</sup></td>{% endif %}
   {% if restricted %}<td>x</td>{% endif %}
   {% if restricted %}<td>x</td>{% endif %}
 </tr>
@@ -129,7 +129,7 @@ The network security group rules must be in place before you install the cluster
 
 Because cluster components do not modify the user-provided network security groups, which the Kubernetes controllers update, a pseudo-network security group is created for the Kubernetes controller to modify without impacting the rest of the environment.
 
-***Ports used for all-machine to all-machine communications***
+**Ports used for all-machine to all-machine communications**
 
 <table>
 <thead>
@@ -143,35 +143,39 @@ Because cluster components do not modify the user-provided network security grou
 <tr>
   <td>ICMP</td>
   <td>N/A</td>
-  <td>Network reachability tests<br><br>.3+</td>
+  <td>Network reachability tests</td>
 </tr>
 <tr>
-  <td>TCP</td>
+  <td rowspan="3">TCP</td>
   <td><code>1936</code></td>
   <td>Metrics</td>
 </tr>
 <tr>
   <td><code>9000</code>-<code>9999</code></td>
-  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> andthe Cluster Version Operator on port <code>9099</code>.</td>
+  <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code> and the Cluster Version Operator on port <code>9099</code>.</td>
+</tr>
+<tr>
   <td><code>10250</code>-<code>10259</code></td>
+  <td>The default ports that Kubernetes reserves</td>
 </tr>
 <tr>
-  <td>The default ports that Kubernetes reserves<br><br>.5+</td>
-  <td>UDP</td>
+  <td rowspan="5">UDP</td>
   <td><code>6081</code></td>
+  <td>Geneve</td>
 </tr>
 <tr>
-  <td>Geneve</td>
   <td><code>9000</code>-<code>9999</code></td>
   <td>Host level services, including the node exporter on ports <code>9100</code>-<code>9101</code>.</td>
 </tr>
 <tr>
   <td><code>500</code></td>
   <td>IPsec IKE packets</td>
-  <td><code>4500</code></td>
 </tr>
 <tr>
+  <td><code>4500</code></td>
   <td>IPsec NAT-T packets</td>
+</tr>
+<tr>
   <td><code>123</code></td>
   <td>Network Time Protocol (NTP) on UDP port <code>123</code>. If you configure an external NTP time server, you must open UDP port <code>123</code>.</td>
 </tr>
@@ -188,7 +192,7 @@ Because cluster components do not modify the user-provided network security grou
 </tbody>
 </table>
 
-***Ports used for control plane machine to control plane machine communications***
+**Ports used for control plane machine to control plane machine communications**
 
 <table>
 <thead>
@@ -208,15 +212,15 @@ Because cluster components do not modify the user-provided network security grou
 </table>
 
 {% if context == "installing-azure-government-region" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-azure-private" %}
-{%- set azure_private = false -%}
+{%- set azure_private = "" -%}
 {% endif %}
 {% if context == "installing-azure-vnet" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-installer-provisioned" %}
-{%- set azure = false -%}
-{%- set restricted = false -%}
+{%- set azure = "" -%}
+{%- set restricted = "" -%}
 {% endif %}

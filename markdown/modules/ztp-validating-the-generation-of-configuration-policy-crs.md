@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Validating the generation of configuration policy CRs {id="ztp-validating-the-generation-of-configuration-policy-crs_{{ context }}"}
 
-`Policy` custom resources (CRs) are generated in the same namespace as the `{{ policy_gen_cr }}` from which they are created. The same troubleshooting flow applies to all policy CRs generated from a `{{ policy_gen_cr }}` regardless of whether they are `ztp-common`, `ztp-group`, or `ztp-site` based, as shown using the following commands: {._abstract}
+`Policy` custom resources (CRs) are generated in the same namespace as the `{{ policy_gen_cr }}`{minja} from which they are created. The same troubleshooting flow applies to all policy CRs generated from a `{{ policy_gen_cr }}`{minja} regardless of whether they are `ztp-common`, `ztp-group`, or `ztp-site` based, as shown using the following commands: {._abstract}
 
 ```terminal
 $ export NS=<namespace>
@@ -56,13 +56,13 @@ If the policies failed synchronization, use the following troubleshooting steps.
     ztp-site.example-sno-config-policy           inform               Compliant          13d
     ```
 
-    {{ rh_rhacm }} copies all applicable policies into the cluster namespace. The copied policy names have the format: `<{{ policy_gen_cr }}.Namespace>.<{{ policy_gen_cr }}.Name>-<policyName>`.
-1.  Check the placement rule for any policies not copied to the cluster namespace. The `matchSelector` in the `{{ placement_rule_cr }}` for those policies should match labels on the `ManagedCluster` object:
-    ```terminal
+    {{ rh_rhacm }} copies all applicable policies into the cluster namespace. The copied policy names have the format: `<{{ policy_gen_cr }}.Namespace>.<{{ policy_gen_cr }}.Name>-<policyName>`{minja}.
+1.  Check the placement rule for any policies not copied to the cluster namespace. The `matchSelector` in the `{{ placement_rule_cr }}`{minja} for those policies should match labels on the `ManagedCluster` object:
+    ```terminal {minja}
     $ oc get {{ placement_rule_cr }} -n $NS
     ```
-1.  Note the `{{ placement_rule_cr }}` name appropriate for the missing policy, common, group, or site, using the following command:
-    ```terminal
+1.  Note the `{{ placement_rule_cr }}`{minja} name appropriate for the missing policy, common, group, or site, using the following command:
+    ```terminal {minja}
     $ oc get {{ placement_rule_cr }} -n $NS <placement_rule_name> -o yaml
     ```
     *   The status-decisions should include your cluster name.

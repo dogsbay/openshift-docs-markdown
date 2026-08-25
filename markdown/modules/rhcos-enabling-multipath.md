@@ -43,7 +43,7 @@ The following procedure enables multipath at installation time and appends kerne
     1.  Optional: If booting the PXE or ISO, you can instead enable multipath by adding `rd.multipath=default` from the kernel command line.
 1.  Append the kernel arguments by invoking the `coreos-installer` program:
     *   If there is only one multipath device connected to the machine, the device should be available at path `/dev/mapper/mpatha`. For example:
-        {%- if not restricted %}
+{% if not restricted %}
         ```terminal
         $ coreos-installer install /dev/mapper/mpatha \
         --ignition-url=http://host/worker.ign \
@@ -61,10 +61,10 @@ The following procedure enables multipath at installation time and appends kerne
         --append-karg rw \
         --offline
         ```
-{%- endif %}
+{% endif %}
         *   `/dev/mapper/mpatha`: Indicates the path of the single multipathed device.
     *   If there are multiple multipath devices connected to the machine, instead of using `/dev/mapper/mpatha`, Red&#160;Hat recommends using the World Wide Name (WWN) symlink. The symlink is available in `/dev/disk/by-id`. For example:
-        {%- if not restricted %}
+{% if not restricted %}
         ```terminal
         $ coreos-installer install /dev/disk/by-id/wwn-<wwn_ID> \
         --ignition-url=http://host/worker.ign \
@@ -82,7 +82,7 @@ The following procedure enables multipath at installation time and appends kerne
         --append-karg rw \
         --offline
         ```
-{%- endif %}
+{% endif %}
 
         where:
 
@@ -110,5 +110,5 @@ The following procedure enables multipath at installation time and appends kerne
     You should see the added kernel arguments.
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

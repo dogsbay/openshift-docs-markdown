@@ -7,7 +7,7 @@ title: Boot image skew enforcement
 {% include "./_attributes/common-attributes.md" %}
 # Boot image skew enforcement {id="mco-update-boot-skew-mgmt"}
 
-You can use boot image skew enforcement to help ensure that the boot images in a cluster are up-to-date with the {{ product_title }} and {{ op_system }} version being used in the cluster. Using an older boot image could cause issues when scaling new nodes. If the images are older than a predetermined version, the MCO disables cluster upgrades until it deems the boot images to be compliant.
+You can use boot image skew enforcement to help ensure that the boot images in a cluster are up-to-date with the {{ product_title }} and {{ op_system }} version being used in the cluster. Using an older boot image could cause issues when scaling new nodes. If the images are older than a predetermined version, the MCO disables cluster upgrades until it deems the boot images to be compliant. {._abstract}
 
 
 :::note
@@ -25,7 +25,7 @@ Boot image skew enforcement is not supported for {{ sno }} clusters.
 
 {% leveloffset +1 %}{% include "./modules/mco-update-boot-skew-mgmt-updating.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images)
 *   [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)

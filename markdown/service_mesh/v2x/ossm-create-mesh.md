@@ -3,8 +3,8 @@ title: Adding services to a service mesh
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Adding services to a service mesh {id="ossm-create-mesh"}
 {% include "./_attributes/common-attributes.md" %}
+# Adding services to a service mesh {id="ossm-create-mesh"}
 {%- set context = "ossm-create-mesh" %}
 
 A project contains services; however, the services are only available if you add the project to the service mesh.

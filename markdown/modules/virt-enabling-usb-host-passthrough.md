@@ -44,11 +44,11 @@ To do this, specify a resource name and USB device name for each device you want
           Product ID: 0a60
         ```
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Add the required USB device to the `permittedHostDevices` stanza of the `HyperConvered` CR. The following example adds a device with vendor ID `045e` and product ID `07a5`:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

@@ -11,7 +11,7 @@ This sample file is provided for reference only. You must obtain your `install-c
 :::
 
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 controlPlane:

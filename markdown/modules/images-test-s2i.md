@@ -34,7 +34,7 @@ The `test/run` script produced by the `s2i create` command requires that the sam
 
 :::
 
-{%- if not openshift_online %}
+{% if not openshift_online %}
 ## Testing locally {id="images-test-s21-testing-locally_{{ context }}"}
 The easiest way to run the S2I image tests locally is to use the generated `Makefile`.
 

@@ -3,11 +3,11 @@ title: Assigning a secondary network to a VRF
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Assigning a secondary network to a VRF {id="assigning-a-secondary-network-to-a-vrf"}
 {% include "./_attributes/common-attributes.md" %}
+# Assigning a secondary network to a VRF {id="assigning-a-secondary-network-to-a-vrf"}
 {%- set context = "assigning-a-secondary-network-to-a-vrf" %}
 
-As a cluster administrator, you can configure a secondary network for a virtual routing and forwarding (VRF) domain by using the CNI VRF plugin. The virtual network that this plugin creates is associated with the physical interface that you specify.
+As a cluster administrator, you can configure a secondary network for a virtual routing and forwarding (VRF) domain by using the CNI VRF plugin. The virtual network that this plugin creates is associated with the physical interface that you specify. {._abstract}
 
 Using a secondary network with a VRF instance has the following advantages:
 
@@ -32,6 +32,7 @@ Using a VRF through the `ip vrf exec` command is not supported in {{ product_tit
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [About virtual routing and forwarding](/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)
 

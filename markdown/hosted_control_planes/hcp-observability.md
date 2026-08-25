@@ -7,7 +7,7 @@ title: "Observability for {{ hcp }}"
 # Observability for {{ hcp }} {id="hcp-observability"}
 {%- set context = "hcp-observability" %}
 
-You can gather metrics for {{ hcp }} by configuring metrics sets. Monitoring dashboards are created in the management cluster for each hosted cluster that it manages.
+You can gather metrics for {{ hcp }} by configuring metrics sets. Monitoring dashboards are created in the management cluster for each hosted cluster that it manages. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hosted-control-planes-metrics-sets.md" %}{% endleveloffset %}
 
@@ -18,6 +18,7 @@ You can gather metrics for {{ hcp }} by configuring metrics sets. Monitoring das
 {% leveloffset +2 %}{% include "./modules/hcp-cluster-ids-example.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Dashboard customization](/hosted_control_planes/hcp-observability#hcp-customize-dashboards_hcp-observability)
 *   [Configuring metrics sets for hosted control planes](/hosted_control_planes/hcp-observability#hosted-control-planes-metrics-sets_hcp-observability)
@@ -26,6 +27,7 @@ You can gather metrics for {{ hcp }} by configuring metrics sets. Monitoring das
 {% leveloffset +1 %}{% include "./modules/hosted-control-planes-monitoring-dashboard.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Customized hosted cluster identifiers](/hosted_control_planes/hcp-observability#hcp-cluster-ids_hcp-observability)
 
@@ -38,12 +40,14 @@ You can gather metrics for {{ hcp }} by configuring metrics sets. Monitoring das
 {% leveloffset +2 %}{% include "./modules/hcp-cp-query-metrics.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Exposed metrics](/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics)
 
 {% leveloffset +2 %}{% include "./modules/hcp-cp-query-metrics-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Exposed metrics](/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics)
 
@@ -54,6 +58,7 @@ You can gather metrics for {{ hcp }} by configuring metrics sets. Monitoring das
 {% leveloffset +2 %}{% include "./modules/hcp-connect-data-plane.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Troubleshooting connectivity for {{ hcp }}](/hosted_control_planes/hcp-troubleshooting#hcp-ts-connectivity_hcp-troubleshooting)
 

@@ -9,12 +9,12 @@
 # Enabling access with floating IP addresses {id="installation-osp-accessing-api-floating_{{ context }}"}
 
 Create floating IP (FIP) addresses for external access to the {{ product_title }}
-{% if osp_user %}
+{%- if osp_user %}
 API, cluster applications, and the bootstrap process.
-{% endif %}
-{% if not osp_user %}
-API and cluster applications.
-{% endif %} {._abstract}
+{%- endif %}
+{%- if not osp_user %}
+API and cluster applications. {._abstract}
+{%- endif %}
 
 **Procedure**
 
@@ -55,48 +55,48 @@ API and cluster applications.
     :::
 
 1.  Add the FIPs to the
-    {% if osp_user %}
+    {%- if osp_user %}
     `inventory.yaml`
-    {% endif %}
-    {% if not osp_user %}
+    {%- endif %}
+    {%- if not osp_user %}
     `install-config.yaml`
-    {% endif %}
+    {%- endif %}
     file as the values of the following
-    {% if osp_user %}
+    {%- if osp_user %}
     variables:
-    {% endif %}
-    {% if not osp_user %}
+    {%- endif %}
+    {%- if not osp_user %}
     parameters:
-    {% endif %}
-    {% if osp_user %}
+    {%- endif %}
+    {%- if osp_user %}
     *   `os_api_fip`
     *   `os_bootstrap_fip`
     *   `os_ingress_fip`
-        {% endif %}
-        {% if not osp_user %}
+{%- endif %}
+{%- if not osp_user %}
     *   `platform.openstack.ingressFloatingIP`
     *   `platform.openstack.apiFloatingIP`
 {%- endif %}
 
         If you use these values, you must also enter an external network as the value of the
-{% if osp_user %}
+{%- if osp_user %}
         `os_external_network` variable in the `inventory.yaml` file.
-{% endif %}
-{% if not osp_user %}
+{%- endif %}
+{%- if not osp_user %}
         `platform.openstack.externalNetwork` parameter in the `install-config.yaml` file.
-{% endif %}
+{%- endif %}
 
 
-:::tip
+        :::tip
 
-You can make {{ product_title }} resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
-
-:::
+        You can make {{ product_title }} resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
+        
+        :::
 
 
 {% if context == "installing-openstack-user" %}
-{%- set osp_user = false -%}
+{%- set osp_user = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user-sr-iov" %}
-{%- set osp_user = false -%}
+{%- set osp_user = "" -%}
 {% endif %}

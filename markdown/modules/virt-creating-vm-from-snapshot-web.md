@@ -5,7 +5,7 @@ You can create a new VM by copying an existing snapshot. {._abstract}
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Select a VM to open the **VirtualMachine details** page.
 1.  Click the **Snapshots** tab.
 1.  Click the Options menu {{ kebab }} for the snapshot you want to copy.

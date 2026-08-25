@@ -32,7 +32,7 @@ Enabling hardware-based Linux Unified Key Setup (LUKS) encryption via {{ ibm_nam
 {% if ibm_z_kvm %}
 1.  Create Butane configuration files for the control plane and compute nodes:
     *   Create a file named `main-storage.bu` by using the following Butane configuration for a control plane node with disk encryption, for example:
-        ```yaml
+        ```yaml {minja}
         variant: openshift
         version: {{ product_version }}.0
         metadata:
@@ -59,9 +59,10 @@ Enabling hardware-based Linux Unified Key Setup (LUKS) encryption via {{ ibm_nam
         :   Specifies the location of the key that is required to decrypt the device. You cannot change this value.
 {% endif %}
 {% if not ibm_z_kvm %}
-    1.  Choose the appropriate method to create Butane configuration files for the control plane and compute nodes:
-        *   For installations on DASD-type disks, create a file named `main-storage.bu` by using the following Butane configuration for a control plane node with disk encryption, for example:
-        ```yaml
+        . Choose the appropriate method to create Butane configuration files for the control plane and compute nodes:
+        ** For installations on DASD-type disks, create a file named `main-storage.bu` by using the following Butane configuration for a control plane node with disk encryption, for example:
+        +
+        ```yaml {minja}
         variant: openshift
         version: {{ product_version }}.0
         metadata:
@@ -79,48 +80,49 @@ Enabling hardware-based Linux Unified Key Setup (LUKS) encryption via {{ ibm_nam
           kernel_arguments:
             - rd.luks.key=/etc/luks/cex.key
         ```
-
+       \
         where:
 
-    `openshift.fips`
-    :   Specifies whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
 
-    `openshift.kernel_arguments`
-    :   Specifies the location of the key that is required to decrypt the device. You cannot change this value.
-        *   For installations on FCP-type disks, create a file named `main-storage.bu` by using the following Butane configuration for a control plane node with disk encryption, for example:
-        ```yaml
-        variant: openshift
-        version: {{ product_version }}.0
-        metadata:
-          name: main-storage
-          labels:
-            machineconfiguration.openshift.io/role: master
-        storage:
-          filesystems:
-            - device: /dev/mapper/root
-              format: xfs
-              label: root
-              wipe_filesystem: true
-          luks:
-            - device: /dev/disk/by-label/root
-              label: luks-root
-              name: root
-              wipe_volume: true
-              cex:
-                enabled: true
-        openshift:
-          fips: true
-          kernel_arguments:
-            - rd.luks.key=/etc/luks/cex.key
-        ```
+`openshift.fips`
+:   Specifies whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
 
-        where:
+`openshift.kernel_arguments`
+:   Specifies the location of the key that is required to decrypt the device. You cannot change this value.
+    *   For installations on FCP-type disks, create a file named `main-storage.bu` by using the following Butane configuration for a control plane node with disk encryption, for example:
+    ```yaml {minja}
+    variant: openshift
+    version: {{ product_version }}.0
+    metadata:
+      name: main-storage
+      labels:
+        machineconfiguration.openshift.io/role: master
+    storage:
+      filesystems:
+        - device: /dev/mapper/root
+          format: xfs
+          label: root
+          wipe_filesystem: true
+      luks:
+        - device: /dev/disk/by-label/root
+          label: luks-root
+          name: root
+          wipe_volume: true
+          cex:
+            enabled: true
+    openshift:
+      fips: true
+      kernel_arguments:
+        - rd.luks.key=/etc/luks/cex.key
+    ```
 
-    `openshift.fips`
-    :   Specifies whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
+    where:
 
-    `openshift.kernel_arguments`
-    :   Specifies the location of the key that is required to decrypt the device. You cannot change this value.
+`openshift.fips`
+:   Specifies whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
+
+`openshift.kernel_arguments`
+:   Specifies the location of the key that is required to decrypt the device. You cannot change this value.
 {% endif %}
 
 1.  Create a parameter file that includes `ignition.platform.id=metal` and `ignition.firstboot`.
@@ -128,25 +130,24 @@ Enabling hardware-based Linux Unified Key Setup (LUKS) encryption via {{ ibm_nam
     **Example kernel parameter file for the control plane machine**
 
 {% if ibm_z_kvm %}
-```terminal
-cio_ignore=all,!condev rd.neednet=1 \
-console=ttysclp0 \
-ignition.firstboot ignition.platform.id=metal \
-coreos.inst.ignition_url=http://<http_server>/master.ign \
-coreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \
-ip=<ip_address>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \
-rd.znet=qeth,0.0.bdd0,0.0.bdd1,0.0.bdd2,layer2=1 \
-rd.zfcp=0.0.5677,0x600606680g7f0056,0x034F000000000000
-```
+    ```terminal
+    cio_ignore=all,!condev rd.neednet=1 \
+    console=ttysclp0 \
+    ignition.firstboot ignition.platform.id=metal \
+    coreos.inst.ignition_url=http://<http_server>/master.ign \
+    coreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \
+    ip=<ip_address>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \
+    rd.znet=qeth,0.0.bdd0,0.0.bdd1,0.0.bdd2,layer2=1 \
+    rd.zfcp=0.0.5677,0x600606680g7f0056,0x034F000000000000
+    ```
 
-where:
+    where:
 
+    `coreos.inst.ignition_url`
+    :   Specifies the location of the Ignition configuration file. Use `master.ign` or `worker.ign`. You can only use the HTTP and HTTPS protocols.
 
-`coreos.inst.ignition_url`
-:   Specifies the location of the Ignition configuration file. Use `master.ign` or `worker.ign`. You can only use the HTTP and HTTPS protocols.
-
-`coreos.live.rootfs_url`
-:   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` that you want to boot. You can only use the HTTP and HTTPS protocols.
+    `coreos.live.rootfs_url`
+    :   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` that you want to boot. You can only use the HTTP and HTTPS protocols.
 {% endif %}
 {% if not ibm_z_kvm %}
     ```terminal
@@ -163,22 +164,20 @@ where:
 
     where:
 
+    `coreos.inst.install_dev`
+    :   Specifies a unique fully qualified path depending on disk type. This can be DASD-type or FCP-type disks.
 
-`coreos.inst.install_dev`
-:   Specifies a unique fully qualified path depending on disk type. This can be DASD-type or FCP-type disks.
+    `coreos.inst.ignition_url`
+    :   Specifies the location of the Ignition configuration file. Use `master.ign` or `worker.ign`. You can only use the HTTP and HTTPS protocols.
 
-`coreos.inst.ignition_url`
-:   Specifies the location of the Ignition configuration file. Use `master.ign` or `worker.ign`. You can only use the HTTP and HTTPS protocols.
+    `coreos.live.rootfs_url`
+    :   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` that you want to boot. You can only use the HTTP and HTTPS protocols.
 
-`coreos.live.rootfs_url`
-:   Specifies the location of the `rootfs` artifact for the `kernel` and `initramfs` that you want to boot. You can only use the HTTP and HTTPS protocols.
-
-`rd.zfcp`
-:   Specifies the FCP device. For installations on DASD-type disks, replace with `rd.dasd=0.0.xxxx` to specify the DASD device.
-{%- endif %}
+    `rd.zfcp`
+    :   Specifies the FCP device. For installations on DASD-type disks, replace with `rd.dasd=0.0.xxxx` to specify the DASD device.
+{% endif %}
 
     :::note
-
 
     Write all options in the parameter file as a single line and make sure you have no newline characters.
     
@@ -186,20 +185,20 @@ where:
 
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z_lpar = false -%}
+{%- set ibm_z_lpar = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z_lpar = false -%}
+{%- set ibm_z_lpar = "" -%}
 {% endif %}

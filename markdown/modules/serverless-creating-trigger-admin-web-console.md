@@ -20,7 +20,7 @@ Using the {{ product_title }} web console provides a streamlined and intuitive u
 
 **Procedure**
 
-1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** -> **Eventing**.
+1.  In the **Administrator** perspective of the {{ product_title }} web console, navigate to **Serverless** → **Eventing**.
 1.  In the **Broker** tab, select the Options menu {{ kebab }} for the broker that you want to add a trigger to.
 1.  Click **Add Trigger** in the list.
 1.  In the **Add Trigger** dialogue box, select a **Subscriber** for the trigger. The subscriber is the Knative service that will receive events from the broker.

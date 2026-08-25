@@ -19,7 +19,7 @@ Disabling a recommendation for all of your clusters also applies to any future c
 
 **Procedure**
 
-1.  Navigate to **Advisor** -> **Recommendations** on {{ cluster_manager_url }}.
+1.  Navigate to **Advisor** → **Recommendations** on {{ cluster_manager_url }}.
 1.  Optional: Use the **Clusters Impacted** and **Status** filters as needed.
 1.  Disable an alert by using one of the following methods:
     *   To disable an alert:
@@ -28,5 +28,5 @@ Disabling a recommendation for all of your clusters also applies to any future c
     *   To view the clusters affected by this alert before disabling the alert:
         1.  Click the name of the recommendation to disable. You are directed to the single recommendation page.
         1.  Review the list of clusters in the **Affected clusters** section.
-        1.  Click **Actions** -> **Disable recommendation** to disable the alert for all of your clusters.
+        1.  Click **Actions** → **Disable recommendation** to disable the alert for all of your clusters.
         1.  Enter a justification note and click **Save**.

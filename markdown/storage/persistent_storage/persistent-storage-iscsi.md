@@ -3,11 +3,11 @@ title: Persistent storage using iSCSI
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using iSCSI {id="persistent-storage-using-iscsi"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using iSCSI {id="persistent-storage-using-iscsi"}
 {%- set context = "persistent-storage-iscsi" %}
 
-You can provision your {{ product_title }} cluster with persistent storage by creating persistent volumes that pods can use to store and access data.
+You can provision your {{ product_title }} cluster with persistent storage by creating persistent volumes that pods can use to store and access data. {._abstract}
 
 Some familiarity with Kubernetes and iSCSI is assumed.
 
@@ -38,6 +38,7 @@ Users must ensure that the iSCSI initiator is already configured on all {{ produ
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Getting started with iSCSI](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/managing_storage_devices/index#getting-started-with-iscsi_managing-storage-devices)
 *   [Configuring an iSCSI initiator](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/managing_storage_devices/index#configuring-an-iscsi-initiator_managing-storage-devices)

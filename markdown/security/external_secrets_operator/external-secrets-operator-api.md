@@ -3,11 +3,11 @@ title: External Secrets Operator for Red Hat OpenShift APIs
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# External Secrets Operator for Red Hat OpenShift APIs {id="external-secrets-operator-api"}
 {% include "./_attributes/common-attributes.md" %}
+# External Secrets Operator for Red Hat OpenShift APIs {id="external-secrets-operator-api"}
 {%- set context = "external-secrets-operator-api" %}
 
-{{ external_secrets_operator }} uses the following two APIs to configure the `external-secrets` application deployment.
+{{ external_secrets_operator }} uses the following two APIs to configure the `external-secrets` application deployment. {._abstract}
 
 | Group | Version | Kind |
 | --- | --- | --- |

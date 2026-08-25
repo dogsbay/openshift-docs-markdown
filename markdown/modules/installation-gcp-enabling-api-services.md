@@ -25,7 +25,7 @@ cluster. You may also enable optional API services which are not required for in
 [Enabling services](https://cloud.google.com/service-usage/docs/enable-disable#enabling)
 in the {{ gcp_short }} documentation.
 
-    ***Required API services***
+    **Required API services**
 
 <table>
 <thead>
@@ -63,7 +63,7 @@ in the {{ gcp_short }} documentation.
 </table>
 
 
-    ***Optional API services***
+    **Optional API services**
 
 <table>
 <thead>
@@ -97,11 +97,11 @@ in the {{ gcp_short }} documentation.
 </table>
 
 {% if context == "installing-gcp-user-infra" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}
 {% if context == "installing-gcp-restricted-networks" %}
-{%- set template = false -%}
+{%- set template = "" -%}
 {% endif %}

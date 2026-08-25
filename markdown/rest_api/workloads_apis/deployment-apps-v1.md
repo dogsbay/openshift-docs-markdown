@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | DeploymentSpec is the specification of the desired behavior of the Deployment. |
 | `status` | `object` | DeploymentStatus is the most recently observed status of the Deployment. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,6 +49,7 @@ Required
 | `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment. It must match the pod template’s labels. |
 | `strategy` | `object` | DeploymentStrategy describes how to replace existing pods with new ones. |
 | `template` | [`PodTemplateSpec`](/rest_api/objects/index#io-k8s-api-core-v1-PodTemplateSpec) | Template describes the pods that will be created. The only allowed template.spec.restartPolicy value is "Always". |
+
 ### .spec.strategy {id="_specstrategy"}
 
 Description
@@ -60,7 +62,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `rollingUpdate` | `object` | Spec to control the desired behavior of rolling update. |
-| `type` | `string` | Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate. Possible enum values:  - `"Recreate"` Kill all existing pods before creating new ones.  - `"RollingUpdate"` Replace the old ReplicaSets by new one using rolling update i.e gradually scale down the old ReplicaSets and scale up the new one. |
+| `type` | `string` | Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.<br>Possible enum values:  - `"Recreate"` Kill all existing pods before creating new ones.  - `"RollingUpdate"` Replace the old ReplicaSets by new one using rolling update i.e gradually scale down the old ReplicaSets and scale up the new one. |
+
 ### .spec.strategy.rollingUpdate {id="_specstrategyrollingupdate"}
 
 Description
@@ -74,6 +77,7 @@ Type
 | --- | --- | --- |
 | `maxSurge` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods. |
 | `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods. |
+
 ### .status {id="_status"}
 
 Description
@@ -92,9 +96,10 @@ Type
 | `observedGeneration` | `integer` | The generation observed by the deployment controller. |
 | `readyReplicas` | `integer` | Total number of non-terminating pods targeted by this Deployment with a Ready Condition. |
 | `replicas` | `integer` | Total number of non-terminating pods targeted by this deployment (their labels match the selector). |
-| `terminatingReplicas` | `integer` | Total number of terminating pods targeted by this deployment. Terminating pods have a non-null .metadata.deletionTimestamp and have not yet reached the Failed or Succeeded .status.phase. This is a beta field and requires enabling DeploymentReplicaSetTerminatingReplicas feature (enabled by default). |
+| `terminatingReplicas` | `integer` | Total number of terminating pods targeted by this deployment. Terminating pods have a non-null .metadata.deletionTimestamp and have not yet reached the Failed or Succeeded .status.phase.<br>This is a beta field and requires enabling DeploymentReplicaSetTerminatingReplicas feature (enabled by default). |
 | `unavailableReplicas` | `integer` | Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created. |
 | `updatedReplicas` | `integer` | Total number of non-terminating pods targeted by this deployment that have the desired template spec. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -135,20 +140,20 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind Deployment
 *   `/apis/apps/v1/watch/deployments`
     *   `GET`: watch individual changes to a list of Deployment. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/deployments`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/deployments`{minja}
     *   `DELETE`: delete collection of Deployment
     *   `GET`: list or watch objects of kind Deployment
     *   `POST`: create a Deployment
-*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/deployments`
+*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/deployments`{minja}
     *   `GET`: watch individual changes to a list of Deployment. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}`{minja}
     *   `DELETE`: delete a Deployment
     *   `GET`: read the specified Deployment
     *   `PATCH`: partially update the specified Deployment
     *   `PUT`: replace the specified Deployment
-*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/deployments/{{ name }}`
+*   `/apis/apps/v1/watch/namespaces/{{ namespace }}/deployments/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Deployment. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/status`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Deployment
     *   `PATCH`: partially update status of the specified Deployment
     *   `PUT`: replace status of the specified Deployment

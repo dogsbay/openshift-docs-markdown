@@ -7,7 +7,7 @@ To optimize the placement of high-performance workloads, deploy the NUMA-aware s
 
 1.  Create the `NUMAResourcesScheduler` custom resource that deploys the NUMA-aware custom pod scheduler:
     1.  Save the following minimal required YAML in the `nro-scheduler.yaml` file:
-        ```yaml
+        ```yaml {minja}
         apiVersion: nodetopology.openshift.io/v1
         kind: NUMAResourcesScheduler
         metadata:

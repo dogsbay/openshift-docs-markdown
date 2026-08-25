@@ -9,45 +9,44 @@ With {{ gitops_title }}, you can enable workload monitoring for specific Argo CD
 
 1.  Set the `.spec.monitoring.enabled` field value to `true` on a given Argo CD instance:
 
-```yaml title="Example Argo CD custom resource"
-apiVersion: argoproj.io/v1alpha1
-kind: ArgoCD
-metadata:
-  name: example-argocd
-  labels:
-    example: repo
-spec:
-  ...
-  monitoring:
-    enabled: true
-  ...
-```
-
+    ```yaml title="Example Argo CD custom resource"
+    apiVersion: argoproj.io/v1alpha1
+    kind: ArgoCD
+    metadata:
+      name: example-argocd
+      labels:
+        example: repo
+    spec:
+      ...
+      monitoring:
+        enabled: true
+      ...
+    ```
 1.  Verify whether an alert rule is included in the PrometheusRule created by the Operator:
 
-```yaml title="Example alert rule"
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  name: argocd-component-status-alert
-  namespace: openshift-gitops
-spec:
-  groups:
-    - name: ArgoCDComponentStatus
-      rules:
-        ...
-        - alert: ApplicationSetControllerNotReady (1)
-          annotations:
-            message: >-
-              applicationSet controller deployment for Argo CD instance in
-              namespace "default" is not running
-          expr: >-
-            kube_statefulset_status_replicas{statefulset="openshift-gitops-application-controller statefulset",
-            namespace="openshift-gitops"} !=
-            kube_statefulset_status_replicas_ready{statefulset="openshift-gitops-application-controller statefulset",
-            namespace="openshift-gitops"}
-          for: 1m
-          labels:
-            severity: critical
-```
-1.  Alert rule in the PrometheusRule that checks whether the workloads created by the Argo CD instances are running as expected.
+    ```yaml title="Example alert rule"
+    apiVersion: monitoring.coreos.com/v1
+    kind: PrometheusRule
+    metadata:
+      name: argocd-component-status-alert
+      namespace: openshift-gitops
+    spec:
+      groups:
+        - name: ArgoCDComponentStatus
+          rules:
+            ...
+            - alert: ApplicationSetControllerNotReady (1)
+              annotations:
+                message: >-
+                  applicationSet controller deployment for Argo CD instance in
+                  namespace "default" is not running
+              expr: >-
+                kube_statefulset_status_replicas{statefulset="openshift-gitops-application-controller statefulset",
+                namespace="openshift-gitops"} !=
+                kube_statefulset_status_replicas_ready{statefulset="openshift-gitops-application-controller statefulset",
+                namespace="openshift-gitops"}
+              for: 1m
+              labels:
+                severity: critical
+    ```
+    1.  Alert rule in the PrometheusRule that checks whether the workloads created by the Argo CD instances are running as expected.

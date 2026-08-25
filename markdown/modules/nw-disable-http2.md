@@ -16,16 +16,16 @@ You can disable HTTP/2 on a specific Ingress Controller, or you can disable HTTP
     ```
 
 
-:::tip
+    :::tip
 
-Alternatively, you can apply the following YAML code to disable HTTP/2:
-```yaml
-apiVersion: config.openshift.io/v1
-kind: Ingress
-metadata:
-  name: cluster
-  annotations:
-    ingress.operator.openshift.io/default-enable-http2: "false"
-```
-
-:::
+    Alternatively, you can apply the following YAML code to disable HTTP/2:
+    ```yaml
+    apiVersion: config.openshift.io/v1
+    kind: Ingress
+    metadata:
+      name: cluster
+      annotations:
+        ingress.operator.openshift.io/default-enable-http2: "false"
+    ```
+    
+    :::

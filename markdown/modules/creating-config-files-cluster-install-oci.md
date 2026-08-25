@@ -222,9 +222,9 @@ You can also use the Agent-based Installer to generate or accept Zero Touch Prov
 
 
 {% if context == "installing-c3-agent-based-installer" %}
-{%- set c3 = false -%}
+{%- set c3 = "" -%}
 {% endif %}
 
 {% if context == "installing-pca-agent-based-installer" %}
-{%- set pca = false -%}
+{%- set pca = "" -%}
 {% endif %}

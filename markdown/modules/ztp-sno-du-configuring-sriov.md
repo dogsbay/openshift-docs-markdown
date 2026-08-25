@@ -11,11 +11,11 @@ The configuration of the `SriovNetwork` CR will vary depending on your specific 
 :::
 
 
-```yaml title="Recommended SriovOperatorConfig CR configuration (SriovOperatorConfig.yaml)"
+```yaml title="Recommended SriovOperatorConfig CR configuration (SriovOperatorConfig.yaml)" {minja}
 {% include "./snippets/ztp_SriovOperatorConfig.yaml" %}
 ```
 
-***`SriovOperatorConfig` CR options for {{ sno }} clusters***
+**`SriovOperatorConfig` CR options for {{ sno }} clusters**
 
 <table>
 <thead>
@@ -27,7 +27,7 @@ The configuration of the `SriovNetwork` CR will vary depending on your specific 
 <tbody>
 <tr>
   <td><code>spec.enableInjector</code></td>
-  <td>Disable <code>Injector</code> pods to reduce the number of management pods.Start with the <code>Injector</code> pods enabled, and only disable them after verifying the user manifests.If the injector is disabled, containers that use SR-IOV resources must explicitly assign them in the <code>requests</code> and <code>limits</code> section of the container spec.<br><br>For example:<pre>containers:&#10;- name: my-sriov-workload-container&#10;  resources:&#10;    limits:&#10;      openshift.io/&lt;resource_name&gt;:  "1"&#10;    requests:&#10;      openshift.io/&lt;resource_name&gt;:  "1"</pre></td>
+  <td>Disable <code>Injector</code> pods to reduce the number of management pods. Start with the <code>Injector</code> pods enabled, and only disable them after verifying the user manifests. If the injector is disabled, containers that use SR-IOV resources must explicitly assign them in the <code>requests</code> and <code>limits</code> section of the container spec.<br><br>For example:<pre>containers:&#10;- name: my-sriov-workload-container&#10;  resources:&#10;    limits:&#10;      openshift.io/&lt;resource_name&gt;:  "1"&#10;    requests:&#10;      openshift.io/&lt;resource_name&gt;:  "1"</pre></td>
 </tr>
 <tr>
   <td><code>spec.enableOperatorWebhook</code></td>
@@ -36,7 +36,7 @@ The configuration of the `SriovNetwork` CR will vary depending on your specific 
 </tbody>
 </table>
 
-```yaml title="Recommended SriovNetwork configuration (SriovNetwork.yaml)"
+```yaml title="Recommended SriovNetwork configuration (SriovNetwork.yaml)" {minja}
 {% include "./snippets/ztp_SriovNetwork.yaml" %}
 ```
 
@@ -46,7 +46,7 @@ The configuration of the `SriovNetwork` CR will vary depending on your specific 
 | --- | --- |
 | `spec.vlan` | Configure `vlan` with the VLAN for the midhaul network. |
 
-```yaml title="Recommended SriovNetworkNodePolicy CR configuration (SriovNetworkNodePolicy.yaml)"
+```yaml title="Recommended SriovNetworkNodePolicy CR configuration (SriovNetworkNodePolicy.yaml)" {minja}
 {% include "./snippets/ztp_SriovNetworkNodePolicy.yaml" %}
 ```
 
@@ -59,6 +59,6 @@ The configuration of the `SriovNetwork` CR will vary depending on your specific 
 | `spec.numVfs` | Specifies the number of VFs for the fronthaul network. |
 | `spec.nicSelector.pfNames` | The exact name of physical function must match the hardware. |
 
-```yaml title="Recommended SR-IOV kernel configurations (07-sriov-related-kernel-args-master.yaml)"
+```yaml title="Recommended SR-IOV kernel configurations (07-sriov-related-kernel-args-master.yaml)" {minja}
 {% include "./snippets/ztp_07-sriov-related-kernel-args-master.yaml" %}
 ```

@@ -7,6 +7,6 @@ title: "Destroying a hosted cluster on {{ VirtProductName }}"
 # Destroying a hosted cluster on {{ VirtProductName }} {id="hcp-destroy-virt"}
 {%- set context = "hcp-destroy-virt" %}
 
-You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.
+You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/destroy-hc-virt-cli.md" %}{% endleveloffset %}

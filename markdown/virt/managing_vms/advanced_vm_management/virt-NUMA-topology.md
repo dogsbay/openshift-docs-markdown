@@ -27,6 +27,6 @@ title: Working with NUMA topology for virtual machines
 
 {% leveloffset +1 %}{% include "./modules/virt-NUMA-live-migration.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Topology Manager policies](/scalability_and_performance/using-cpu-manager#using-cpu-manager_topology-manager-policies)
 *   [Creating virtual machines from instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

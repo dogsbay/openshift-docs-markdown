@@ -3,8 +3,8 @@ title: Jenkins agent
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Jenkins agent {id="images-other-jenkins-agent"}
 {% include "./_attributes/common-attributes.md" %}
+# Jenkins agent {id="images-other-jenkins-agent"}
 {%- set context = "images-other-jenkins-agent" %}
 
 {{ product_title }} provides a base image for use as a Jenkins agent.

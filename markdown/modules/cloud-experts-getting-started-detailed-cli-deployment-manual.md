@@ -12,7 +12,7 @@ If you want to review the roles and policies before applying them to a cluster, 
     rosa create account-roles --mode manual
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: All policy files saved to the current directory
     I: Run the following commands to create the account roles and policies:
@@ -27,7 +27,7 @@ If you want to review the roles and policies before applying them to a cluster, 
     ```
 1.  Check the contents of your current directory to see the new files. Use the `aws` CLI to create each of these objects.
 
-    ***Example output***
+    **Example output**
     ```terminal
     $ ls
     openshift_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json
@@ -41,7 +41,7 @@ If you want to review the roles and policies before applying them to a cluster, 
     ```
 1.  **Optional:** Open the files to review what you will create. For example, opening the `sts_installer_permission_policy.json` shows:
 
-    ***Example output***
+    **Example output**
     ```terminal
     $ cat sts_installer_permission_policy.json
             {
@@ -88,7 +88,7 @@ If you want to review the roles and policies before applying them to a cluster, 
     Disable Workload monitoring: No
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Creating cluster 'my-rosa-cluster'
     I: To create this cluster again in the future, you can run:
@@ -151,7 +151,7 @@ If you want to review the roles and policies before applying them to a cluster, 
     rosa create operator-roles --mode manual --cluster <cluster-name>
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Run the following commands to create the operator roles:
         aws iam create-role \
@@ -171,7 +171,7 @@ If you want to review the roles and policies before applying them to a cluster, 
     ```
 1.  This displays the `aws` commands that you need to run.
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Run the following commands to create the OIDC provider:
     $ aws iam create-open-id-connect-provider \

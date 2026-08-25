@@ -4,10 +4,10 @@ title: Changing the cloud provider credentials configuration
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "changing-cloud-credentials-configuration" %}
-# Changing the cloud provider credentials configuration {id="changing-cloud-credentials-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Changing the cloud provider credentials configuration {id="changing-cloud-credentials-configuration"}
 
-You can change your cluster’s cloud provider credentials configuration to meet security and authentication requirements. You can rotate or remove credentials, or enable supported short-term credential methods.
+You can change your cluster’s cloud provider credentials configuration to meet security and authentication requirements. You can rotate or remove credentials, or enable supported short-term credential methods. {._abstract}
 
 For supported configurations, you can change how {{ product_title }} authenticates with your cloud provider.
 
@@ -37,6 +37,7 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to update key
 {% leveloffset +2 %}{% include "./modules/refreshing-service-ids-ibm-cloud.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ aws_first }} with {{ sts_first }}](/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-aws)
 *   [{{ gcp_first }} with {{ gcp_wid_short }}](/post_installation_configuration/changing-cloud-credentials-configuration#rotating-bound-service-keys_key-rotation-gcp)
@@ -48,9 +49,10 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to update key
 {% leveloffset +2 %}{% include "./modules/manually-rotating-cloud-creds.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [The Cloud Credential Operator in mint mode](/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
-*   [The Cloud Credential Operator in passthrough mode](/authentication/managing_cloud_provider_credentials/cco-mode-passthrough.html#cco-mode-passthrough)
+*   [The Cloud Credential Operator in passthrough mode](/authentication/managing_cloud_provider_credentials/cco-mode-passthrough#cco-mode-passthrough)
 *   [vSphere CSI Driver Operator](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere)
 *   [Cloud Credential Operator (CCO)](/operators/operator-reference#cloud-credential-operator_cluster-operators-ref)
 
@@ -59,6 +61,7 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to update key
 {% leveloffset +2 %}{% include "./modules/manually-removing-cloud-creds.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [The Cloud Credential Operator in mint mode](/authentication/managing_cloud_provider_credentials/cco-mode-mint#cco-mode-mint)
 *   [Cloud Credential Operator (CCO)](/operators/operator-reference#cloud-credential-operator_cluster-operators-ref)
@@ -72,6 +75,7 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to update key
 {% leveloffset +2 %}{% include "./modules/enabling-aws-sts-existing-cluster.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Microsoft Entra Workload ID](/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-azure_cco-short-term-creds)
 *   [Configuring an Azure cluster to use short-term credentials](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-with-short-term-creds_installing-azure-customizations)
@@ -80,6 +84,6 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to update key
 
 {% leveloffset +2 %}{% include "./modules/cco-ccoctl-install-verifying.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 *   [Determining the Cloud Credential Operator mode](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#cco-determine-mode_about-cloud-credential-operator)

@@ -12,7 +12,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if mapi or cpmso %}
+{% if mapi or cpmso %}
 # Machine sets that deploy machines with ultra disks as data disks {id="machineset-azure-ultra-disk_{{ context }}"}
 {% endif %}
 {% if pvc %}
@@ -38,14 +38,14 @@ Both the in-tree plugin and CSI driver support using PVCs to enable ultra disks.
 {% endif %}
 
 {% if context == "creating-machineset-azure" %}
-{%- set mapi = false -%}
+{%- set mapi = "" -%}
 {% endif %}
 {% if context == "cpmso-supported-features-azure" %}
-{%- set cpmso = false -%}
+{%- set cpmso = "" -%}
 {% endif %}
 {% if context == "persistent-storage-azure" %}
-{%- set pvc = false -%}
+{%- set pvc = "" -%}
 {% endif %}
 {% if context == "persistent-storage-csi-azure" %}
-{%- set pvc = false -%}
+{%- set pvc = "" -%}
 {% endif %}

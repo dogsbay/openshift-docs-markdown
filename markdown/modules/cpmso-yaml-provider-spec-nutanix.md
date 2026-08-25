@@ -82,7 +82,7 @@ where:
 
     :::note
 
-{% include "./snippets/cpmso-failure-domain-param-precedence.md" %}
+    {% include "./snippets/cpmso-failure-domain-param-precedence.md" %}
     
     :::
 
@@ -129,7 +129,7 @@ where:
 
     :::note
 
-{% include "./snippets/cpmso-failure-domain-param-precedence.md" %}
+    {% include "./snippets/cpmso-failure-domain-param-precedence.md" %}
     
     :::
 

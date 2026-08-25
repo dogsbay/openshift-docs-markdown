@@ -14,8 +14,8 @@ If you installed an earlier version of `oc`, you cannot use it to complete all
 of the commands in
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 {{ product_title }} {{ product_version }}.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 {{ product_title }}.
 {%- endif %}
 Download and
@@ -28,5 +28,5 @@ If you are upgrading a cluster in a restricted network, install the `oc` version
 
 
 {% if context == "updating-restricted-network-cluster" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

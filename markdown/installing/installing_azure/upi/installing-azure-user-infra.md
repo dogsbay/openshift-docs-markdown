@@ -3,12 +3,12 @@ title: Installing a cluster on Azure using ARM templates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Azure using ARM templates {id="installing-azure-user-infra"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Azure using ARM templates {id="installing-azure-user-infra"}
 {%- set context = "installing-azure-user-infra" -%}
 {%- set platform = "Azure" %}
 
-To install {{ product_title }} on Microsoft Azure with infrastructure that you provide, you can use Azure Resource Manager (ARM) templates to create required resources and complete the user-provisioned installation.
+To install {{ product_title }} on Microsoft Azure with infrastructure that you provide, you can use Azure Resource Manager (ARM) templates to create required resources and complete the user-provisioned installation. {._abstract}
 
 Several ARM templates are provided to assist in completing these steps or to help model your own. See "Azure Resource Manager templates overview".
 
@@ -23,6 +23,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-user-infra-prerequisites.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
@@ -37,12 +38,14 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-config-project-overview.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)
 
 {% leveloffset +2 %}{% include "./modules/installation-azure-limits.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 *   [Azure subscription and service limits, quotas, and constraints ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)
@@ -50,6 +53,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-azure-network-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Example for creating DNS zones](/installing/installing_azure/upi/installing-azure-user-infra#installation-azure-create-dns-zones_installing-azure-user-infra)
 
@@ -66,6 +70,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-creating-azure-service-principal.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
@@ -78,6 +83,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -106,6 +112,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-create-resource-group-and-identity.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Azure resource groups (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups)
 
@@ -114,6 +121,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-create-dns-zones.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring a public DNS zone in Azure](#installation-azure-network-config_{{ context }})
 
@@ -162,9 +170,10 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)

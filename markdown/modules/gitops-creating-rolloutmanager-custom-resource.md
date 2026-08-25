@@ -10,7 +10,7 @@ To manage progressive delivery of deployments by using Argo Rollouts in {{ gitop
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console as a cluster administrator.
-1.  In the **Administrator** perspective, click **Ecosystem** -> **Installed Operators**.
+1.  In the **Administrator** perspective, click **Ecosystem** → **Installed Operators**.
 1.  Create or select the project where you want to create and configure a `RolloutManager` custom resource (CR) from the **Project** drop-down menu.
 1.  Select **OpenShift GitOps Operator** from the installed operators.
 1.  In the **Details** tab, under the **Provided APIs** section, click **Create instance** in the **RolloutManager** pane.
@@ -27,11 +27,11 @@ To manage progressive delivery of deployments by using Argo Rollouts in {{ gitop
 1.  Click **Create**.
 1.  In the **RolloutManager** tab, under the **RolloutManagers** section, verify that the **Status** field of the RolloutManager instance shows as **Phase: Available**.
 1.  In the left navigation pane, verify the creation of the namespace-scoped supporting resources:
-    *   Click **Workloads** -> **Deployments** to verify that the `argo-rollouts` deployment is available with the **Status** showing as `1 of 1 pods` running.
-    *   Click **Workloads** -> **Secrets** to verify that the `argo-rollouts-notification-secret` secret is available.
-    *   Click **Networking** -> **Services** to verify that the `argo-rollouts-metrics` service is available.
-    *   Click **User Management** -> **Roles** to verify that the `argo-rollouts` role and `argo-rollouts-aggregate-to-admin`, `argo-rollouts-aggregate-to-edit`, and `argo-rollouts-aggregate-to-view` cluster roles are available.
-    *   Click **User Management** -> **RoleBindings** to verify that the `argo-rollouts` role binding is available.
+    *   Click **Workloads** → **Deployments** to verify that the `argo-rollouts` deployment is available with the **Status** showing as `1 of 1 pods` running.
+    *   Click **Workloads** → **Secrets** to verify that the `argo-rollouts-notification-secret` secret is available.
+    *   Click **Networking** → **Services** to verify that the `argo-rollouts-metrics` service is available.
+    *   Click **User Management** → **Roles** to verify that the `argo-rollouts` role and `argo-rollouts-aggregate-to-admin`, `argo-rollouts-aggregate-to-edit`, and `argo-rollouts-aggregate-to-view` cluster roles are available.
+    *   Click **User Management** → **RoleBindings** to verify that the `argo-rollouts` role binding is available.
 
 **Additional resources**
 

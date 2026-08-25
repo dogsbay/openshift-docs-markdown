@@ -11,7 +11,7 @@ Edit a machine pool to scale the number of worker nodes in that specific machine
         rosa list machinepools --cluster=<cluster-name>
         ```
 
-        ***Example output***
+        **Example output**
         ```terminal
         ID          AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS            TAINTS    AVAILABILITY ZONES
         Default     No           2         m5.xlarge                                  us-east-1a
@@ -21,7 +21,7 @@ Edit a machine pool to scale the number of worker nodes in that specific machine
         rosa edit machinepool --cluster=<cluster-name> --replicas=<number-nodes> <machinepool-name>
         ```
 
-        ***Example input***
+        **Example input**
         ```terminal
         rosa edit machinepool --cluster=my-rosa-cluster --replicas 3 Default
         ```
@@ -30,12 +30,12 @@ Edit a machine pool to scale the number of worker nodes in that specific machine
         rosa describe cluster --cluster=<cluster-name> | grep Compute
         ```
 
-        ***Example input***
+        **Example input**
         ```terminal
         $ rosa describe cluster --cluster=my-rosa-cluster | grep Compute
         ```
 
-        ***Example output***
+        **Example output**
         ```terminal
         - Compute:                 3 (m5.xlarge)
         ```

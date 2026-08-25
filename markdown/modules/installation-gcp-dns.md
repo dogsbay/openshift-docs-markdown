@@ -9,8 +9,8 @@ To install {{ product_title }}, the {{ gcp_first }} account you use must
 have a dedicated public hosted zone
 {%- if not user_infra_vpc %}
 in the same project that you host the {{ product_title }} cluster.
-{% endif %}
-{% if user_infra_vpc %}
+{%- endif %}
+{%- if user_infra_vpc %}
 in the project that hosts the shared VPC that you install the cluster into.
 {%- endif %}
 This zone must be authoritative for the domain. The
@@ -49,5 +49,5 @@ following topic in the Google Domains Help:
 1.  If you use a subdomain, follow your company’s procedures to add its delegation records to the parent domain. This process might include a request to your company’s IT department or the division that controls the root domain and DNS services for your company.
 
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set user_infra_vpc = false -%}
+{%- set user_infra_vpc = "" -%}
 {% endif %}

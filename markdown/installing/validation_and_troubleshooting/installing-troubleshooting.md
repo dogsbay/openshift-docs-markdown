@@ -3,11 +3,11 @@ title: Troubleshooting installation issues
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Troubleshooting installation issues {id="installing-troubleshooting"}
 {% include "./_attributes/common-attributes.md" %}
+# Troubleshooting installation issues {id="installing-troubleshooting"}
 {%- set context = "installing-troubleshooting" %}
 
-To assist in troubleshooting a failed {{ product_title }} installation, you can gather logs from the bootstrap and control plane machines. You can also get debug information from the installation program.
+To assist in troubleshooting a failed {{ product_title }} installation, you can gather logs from the bootstrap and control plane machines. You can also get debug information from the installation program. {._abstract}
 
 If you are unable to resolve the issue by using the logs and debug information, see "Determining where installation issues occur" in the _Additional resources_ section.
 
@@ -33,7 +33,7 @@ If your {{ product_title }} installation fails and the debug output or logs cont
 
 {% leveloffset +1 %}{% include "./modules/restarting-installation.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_installing-troubleshooting"}
+## Additional resources {id="additional-resources_installing-troubleshooting" ._additional-resources}
 
 *   [Determining where installation issues occur](/support/troubleshooting/troubleshooting-installations#determining-where-installation-issues-occur_troubleshooting-installations)
 *   [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)

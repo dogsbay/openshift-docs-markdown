@@ -1,5 +1,5 @@
 ---
-title: "EgressFirewall []"
+title: "EgressFirewall [k8s.ovn.org/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of the desired behavior of EgressFirewall. |
 | `status` | `object` | Observed status of EgressFirewall |
+
 ### .spec {id="_spec"}
 
 Description
@@ -49,6 +50,7 @@ Required
 | --- | --- | --- |
 | `egress` | `array` | a collection of egress firewall rule objects |
 | `egress[]` | `object` | EgressFirewallRule is a single egressfirewall rule object |
+
 ### .spec.egress {id="_specegress"}
 
 Description
@@ -78,6 +80,7 @@ Required
 | `ports[]` | `object` | EgressFirewallPort specifies the port to allow or deny traffic to |
 | `to` | `object` | to is the target that traffic is allowed/denied to |
 | `type` | `string` | type marks this as an "Allow" or "Deny" rule |
+
 ### .spec.egress[].ports {id="_specegressports"}
 
 Description
@@ -105,6 +108,7 @@ Required
 | --- | --- | --- |
 | `port` | `integer` | port that the traffic must match |
 | `protocol` | `string` | protocol (tcp, udp, sctp) that the traffic must match. |
+
 ### .spec.egress[].to {id="_specegressto"}
 
 Description
@@ -119,6 +123,7 @@ Type
 | `cidrSelector` | `string` | cidrSelector is the CIDR range to allow/deny traffic to. If this is set, dnsName and nodeSelector must be unset. |
 | `dnsName` | `string` | dnsName is the domain name to allow/deny traffic to. If this is set, cidrSelector and nodeSelector must be unset. For a wildcard DNS name, the '**' will match only one label. Additionally, only a single '**' can be used at the beginning of the wildcard DNS name. For example, '*.example.com' will match 'sub1.example.com' but won’t match 'sub2.sub1.example.com'. |
 | `nodeSelector` | `object` | nodeSelector will allow/deny traffic to the Kubernetes node IP of selected nodes. If this is set, cidrSelector and DNSName must be unset. |
+
 ### .spec.egress[].to.nodeSelector {id="_specegresstonodeselector"}
 
 Description
@@ -134,6 +139,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.egress[].to.nodeSelector.matchExpressions {id="_specegresstonodeselectormatchexpressions"}
 
 Description
@@ -163,6 +169,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status {id="_status"}
 
 Description
@@ -183,16 +190,16 @@ The following API endpoints are available:
 
 *   `/apis/k8s.ovn.org/v1/egressfirewalls`
     *   `GET`: list objects of kind EgressFirewall
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls`{minja}
     *   `DELETE`: delete collection of EgressFirewall
     *   `GET`: list objects of kind EgressFirewall
     *   `POST`: create an EgressFirewall
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls/{{ name }}`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls/{{ name }}`{minja}
     *   `DELETE`: delete an EgressFirewall
     *   `GET`: read the specified EgressFirewall
     *   `PATCH`: partially update the specified EgressFirewall
     *   `PUT`: replace the specified EgressFirewall
-*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls/{{ name }}/status`
+*   `/apis/k8s.ovn.org/v1/namespaces/{{ namespace }}/egressfirewalls/{{ name }}/status`{minja}
     *   `GET`: read status of the specified EgressFirewall
     *   `PATCH`: partially update status of the specified EgressFirewall
     *   `PUT`: replace status of the specified EgressFirewall

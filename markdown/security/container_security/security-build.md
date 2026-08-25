@@ -3,11 +3,11 @@ title: Securing the build process
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Securing the build process {id="security-build"}
 {% include "./_attributes/common-attributes.md" %}
+# Securing the build process {id="security-build"}
 {%- set context = "security-build" %}
 
-You can secure your software supply chain by using trusted base images, integrating security testing, and building once to deploy everywhere. Managing this build process ensures production deployments match verified builds and protects the software stack where code and libraries integrate.
+You can secure your software supply chain by using trusted base images, integrating security testing, and building once to deploy everywhere. Managing this build process ensures production deployments match verified builds and protects the software stack where code and libraries integrate. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/security-build-once.md" %}{% endleveloffset %}
 
@@ -19,7 +19,7 @@ You can secure your software supply chain by using trusted base images, integrat
 
 {% leveloffset +1 %}{% include "./modules/security-build-knative.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_security-build"}
+## Additional resources {id="additional-resources_security-build" ._additional-resources}
 
 *   [Understanding image builds](/cicd/builds/understanding-image-builds#understanding-image-builds)
 *   [Triggering and modifying builds](/cicd/builds/triggering-builds-build-hooks#triggering-builds-build-hooks)

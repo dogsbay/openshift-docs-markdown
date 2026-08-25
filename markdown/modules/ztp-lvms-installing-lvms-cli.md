@@ -35,7 +35,7 @@ You can use the OpenShift CLI (`oc`) to install {{ lvms }}.
         ```
 1.  Create a `Subscription` CR.
     1.  Define the `Subscription` CR and save the YAML file, for example, `lvms-subscription.yaml`:
-        ```yaml title="Example Subscription CR"
+        ```yaml title="Example Subscription CR" {minja}
         apiVersion: operators.coreos.com/v1alpha1
         kind: Subscription
         metadata:
@@ -61,7 +61,7 @@ You can use the OpenShift CLI (`oc`) to install {{ lvms }}.
     ```terminal
     $ oc get csv -n openshift-storage
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME                                                   DISPLAY                            VERSION               REPLACES                           PHASE
     lvms-operator.{{ product_version }}.x                                   LVM Storage                        {{ product_version }}x                                                   Succeeded
     ```

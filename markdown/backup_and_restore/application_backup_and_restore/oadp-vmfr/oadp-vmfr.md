@@ -8,7 +8,7 @@ title: "{{ oadp_short }} virtual machine file restore"
 # {{ oadp_short }} virtual machine file restore {id="oadp-vmfr"}
 {%- set context = "oadp-vmfr" %}
 
-Recover individual files from virtual machine backups without restoring the entire VM. Browse, compare, and download files from multiple backups simultaneously through a web browser or SSH-based tools.
+Recover individual files from virtual machine backups without restoring the entire VM. Browse, compare, and download files from multiple backups simultaneously through a web browser or SSH-based tools. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/oadp-vmfr-overview.md" %}{% endleveloffset %}
 

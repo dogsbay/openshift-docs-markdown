@@ -11,13 +11,13 @@ You can create a machine pool with either the command-line interface (CLI) or th
         rosa create machinepool --cluster=<cluster-name> --name=<machinepool-name> --replicas=<number-nodes>
         ```
 
-        ***Example input***
+        **Example input**
         ```terminal
          $ rosa create machinepool --cluster=my-rosa-cluster --name=new-mp
          --replicas=2
         ```
 
-        ***Example output***
+        **Example output**
         ```terminal
         I: Machine pool 'new-mp' created successfully on cluster 'my-rosa-cluster'
         I: To view all machine pools, run 'rosa list machinepools -c my-rosa-cluster'
@@ -27,12 +27,12 @@ You can create a machine pool with either the command-line interface (CLI) or th
         rosa create machinepool --cluster=<cluster-name> --name=<machinepool-name> --replicas=<number-nodes> --labels=`<key=pair>`
         ```
 
-        ***Example input***
+        **Example input**
         ```terminal
         $ rosa create machinepool --cluster=my-rosa-cluster --name=db-nodes-mp --replicas=2 --labels='app=db','tier=backend'
         ```
 
-        ***Example output***
+        **Example output**
         ```terminal
         I: Machine pool 'db-nodes-mp' created successfully on cluster 'my-rosa-cluster'
         ```
@@ -43,7 +43,7 @@ You can create a machine pool with either the command-line interface (CLI) or th
         rosa list machinepools --cluster=<cluster-name>
         ```
 
-        ***Example output***
+        **Example output**
         ```terminal
         ID          AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS            TAINTS    AVAILABILITY ZONES
         Default     No           2         m5.xlarge                                  us-east-1a

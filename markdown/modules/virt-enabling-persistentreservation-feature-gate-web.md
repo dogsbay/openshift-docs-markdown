@@ -5,6 +5,6 @@ You must enable the PersistentReservation feature gate to allow a LUN-backed blo
 
 **Procedure**
 
-1.  Click **Virtualization** -> **Settings** in the web console.
+1.  Click **Virtualization** → **Settings** in the web console.
 1.  Select **Cluster**.
 1.  Expand **SCSI persistent reservation** and set **Enable persistent reservation** to on.

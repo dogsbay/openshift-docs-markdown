@@ -3,11 +3,11 @@ title: Configuring storage profiles
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring storage profiles {id="virt-configuring-storage-profile"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring storage profiles {id="virt-configuring-storage-profile"}
 {%- set context = "virt-configuring-storage-profile" %}
 
-A storage profile provides recommended storage settings based on the associated storage class and is allocated for each storage class.
+A storage profile provides recommended storage settings based on the associated storage class and is allocated for each storage class. {._abstract}
 
 The Containerized Data Importer (CDI) recognizes a storage provider if it has been configured to identify and interact with the storage provider’s capabilities.
 

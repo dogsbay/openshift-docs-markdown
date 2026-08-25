@@ -53,7 +53,7 @@ To integrate ecosystem components that require Ingress resources, configure an I
     `destination-ca-certificate-secret`
     :   Specifies the `route.openshift.io/destination-ca-certificate-secret` annotation. The annotation can be used on an Ingress object to define a route with a custom destination certificate (CA). The annotation references a kubernetes secret, `secret-ca-cert` that will be inserted into the generated route.
 
-1.  If you specify the `passthrough` value in the `route.openshift.io/termination` annotation, set `path` to ’'` and `pathType` to `ImplementationSpecific` in the spec:
+1.  If you specify the `passthrough` value in the `route.openshift.io/termination` annotation, set `path` to `''` and `pathType` to `ImplementationSpecific` in the spec:
     ```yaml
     apiVersion: networking.k8s.io/v1
     kind: Ingress

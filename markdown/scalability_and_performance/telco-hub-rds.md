@@ -4,8 +4,8 @@ title: Telco hub reference design specification
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set telco_hub = true %}
-# Telco hub reference design specification {id="telco-hub-ref-design-specs"}
 {% include "./_attributes/common-attributes.md" %}
+# Telco hub reference design specification {id="telco-hub-ref-design-specs"}
 {%- set context = "telco-hub" %}
 
 The telco hub reference design specification (RDS) describes the configuration for a hub cluster that deploys and operates fleets of {{ product_title }} clusters in a telco environment.
@@ -19,6 +19,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +1 %}{% include "./modules/telco-hub-telco-management-cluster-use-model.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   For more information about core clusters or far edge clusters that host RAN distributed unit (DU) workloads, see the following:
     *   [Telco core RDS](/scalability_and_performance/telco-core-rds#telco-core-ref-design-specs)
@@ -38,12 +39,14 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +1 %}{% include "./modules/telco-hub-resource-utilization.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Comparison of hub cluster and managed cluster templates](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html-single/governance/index#template-comparison-table)
 
 {% leveloffset +1 %}{% include "./modules/telco-hub-cluster-topology.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} architecture](/welcome/learn_more_about_openshift#architecture)
 *   [Postinstallation node tasks](/post_installation_configuration/node-tasks#post-install-node-tasks)
@@ -51,6 +54,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +1 %}{% include "./modules/telco-hub-networking.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 *   [Installing a cluster in a disconnected environment](/disconnected/installing#installing-disconnected-environments)
@@ -65,6 +69,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +1 %}{% include "./modules/telco-hub-memory-and-cpu-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Scaling your {{ product_title }} cluster and tuning performance in production environments](/scalability_and_performance/index#scalability-and-performance-overview)
 *   [Sizing your cluster](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/install/installing#sizing-your-cluster)
@@ -74,6 +79,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +2 %}{% include "./modules/telco-hub-assisted-service.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Enabling central infrastructure management in disconnected environments](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#enable-cim-disconnected)
 
@@ -82,6 +88,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +2 %}{% include "./modules/telco-hub-storage-considerations.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [ODF disks cleaning procedure](https://access.redhat.com/solutions/7114870)
 *   [Persistent storage overview](/storage/understanding-persistent-storage#persistent-storage-overview_understanding-persistent-storage)
@@ -94,6 +101,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +1 %}{% include "./modules/telco-hub-hub-cluster-openshift-deployment.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation overview](/installing/overview/index#installation-overview_ocp-installation-overview)
 *   [Installing a cluster with customizations](/installing/installing_with_agent_based_installer/installing-with-agent-based-installer#installing-with-agent-based-installer)
@@ -102,6 +110,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +1 %}{% include "./modules/telco-hub-hub-cluster-day-2-operators.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Red Hat Advanced Cluster Management for Kubernetes 2.11 Support Matrix](https://access.redhat.com/articles/7073065)
 *   [OpenShift Operator lifecycles](https://access.redhat.com/support/policy/updates/openshift_operators)
@@ -117,6 +126,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +1 %}{% include "./modules/telco-hub-observability.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   For more information about observability, see:
     *   [Exporting metrics to external endpoints](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html-single/observability/index#exporting-metrics-to-external-endpoints)
@@ -129,12 +139,14 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +1 %}{% include "./modules/telco-hub-managed-clusters-lifecycle-management.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Challenges of the network far edge](/edge_computing/ztp-deploying-far-edge-clusters-at-scale#ztp-deploying-far-edge-clusters-at-scale)
 
 {% leveloffset +2 %}{% include "./modules/telco-hub-managed-cluster-deployment.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [SiteConfig](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/siteconfig-intro#siteconfig-intro)
 *   [ClusterInstance](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/apis/apis#rhacm-docs_apis_clusterinstance_jsonclusterinstance)
@@ -143,6 +155,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +2 %}{% include "./modules/telco-hub-managed-cluster-updates-and-upgrades.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuration policy YAML structure](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/governance/governance#configuration-policy-yaml)
 *   [About the ClusterGroupUpgrade CR](/edge_computing/cnf-talm-for-cluster-upgrades#talo-about-cgu-crs_cnf-topology-aware-lifecycle-manager)
@@ -152,6 +165,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +2 %}{% include "./modules/telco-hub-hub-disaster-recovery.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Business continuity](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.15/html-single/business_continuity/index)
 
@@ -160,6 +174,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +2 %}{% include "./modules/telco-hub-red-hat-advanced-cluster-management-rhacm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   * [Hub Network Configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/networking/networking#hub-network-config)
 *   [Multi Cluster Engine](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html-single/clusters/index#cluster_mce_overview)
@@ -175,6 +190,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +2 %}{% include "./modules/telco-hub-gitops-operator-and-ztp-plugins.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [ClusterInstance CR](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/siteconfig-intro)
 *   [PolicyGenTemplate CRs](/edge_computing/policygentemplate_for_ztp/ztp-configuring-managed-clusters-policies#ztp-configuring-managed-clusters-policies)
@@ -185,6 +201,7 @@ The telco hub reference design specification (RDS) describes the configuration f
 {% leveloffset +2 %}{% include "./modules/telco-hub-openshift-data-foundation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Support OpenShift dual stack with {{ rh_storage }} using IPv4](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.13/html-single/4.13_release_notes/index#support_openshift_dual_stack_with_odf_using_ipv4)
 *   [Infrastructure requirements](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.15/html-single/planning_your_deployment/index#infrastructure-requirements_rhodf)
@@ -223,4 +240,4 @@ The telco hub reference design specification (RDS) describes the configuration f
 
 {% leveloffset +1 %}{% include "./modules/telco-hub-software-stack.md" %}{% endleveloffset %}
 
-{%- set telco_hub = false -%}
+{%- set telco_hub = "" -%}

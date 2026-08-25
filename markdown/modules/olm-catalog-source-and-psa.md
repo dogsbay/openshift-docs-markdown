@@ -19,10 +19,10 @@ Default restricted enforcement for all namespaces is planned for inclusion in a 
 If you do not want to run your SQLite-based catalog source pods as restricted, you do not need to update your catalog source in 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 {{ product_title }} {{ product_version }}.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 {{ product_title }}. 
-{% endif %}
+{%- endif %}
 
 However, it is recommended that you take action now to ensure your catalog sources run under restricted pod security enforcement. If you do not take action to ensure your catalog sources run under restricted pod security enforcement, your catalog sources might not run in future {{ product_title }} releases.
 

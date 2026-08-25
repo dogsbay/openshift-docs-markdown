@@ -38,10 +38,10 @@ server certificates and public key infrastructure.
 {%- if openshift_origin or openshift_enterprise %}
 By default, a new internal PKI is created for each deployment of
 {{ product_title }}. The internal PKI uses 2048 bit RSA keys and SHA-256 signatures.
-{% endif %}
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{%- endif %}
+{%- if openshift_origin or openshift_enterprise or openshift_webscale %}
 Custom certificates for public hosts are supported as well.
-{% endif %}
+{%- endif %}
 
 {{ product_title }} uses Golang’s standard library implementation of
 [**crypto/tls**](https://golang.org/pkg/crypto/tls/) and does not depend on any

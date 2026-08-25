@@ -3,11 +3,11 @@ title: Supported extensions
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Supported extensions {id="olmv1-supported-extensions"}
 {% include "./_attributes/common-attributes.md" %}
+# Supported extensions {id="olmv1-supported-extensions"}
 {%- set context = "olmv1-supported-extensions" %}
 
-To install an Operator as a cluster extension, it must meet bundle format, install mode, and dependency requirements. {{ olmv1_first }} supports extensions that use webhooks for validation, mutation, or conversion.
+To install an Operator as a cluster extension, it must meet bundle format, install mode, and dependency requirements. {{ olmv1_first }} supports extensions that use webhooks for validation, mutation, or conversion. {._abstract}
 
 {{ olmv1_first }} supports extensions that use the `AllNamespaces` install mode. With this mode, the Operator watches and manages resources across all namespaces in the cluster.
 
@@ -16,6 +16,7 @@ As a Technology Preview feature, you can configure an extension to watch a speci
 {% leveloffset +1 %}{% include "./modules/olmv1-about-supported-bundle-formats.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Bundle format](/operators/understanding/olm-packaging-format#olm-bundle-format_olm-packaging-format)
 *   [Operator conditions](/operators/understanding/olm/olm-operatorconditions#olm-operatorconditions)
@@ -23,6 +24,7 @@ As a Technology Preview feature, you can configure an extension to watch a speci
 {% leveloffset +1 %}{% include "./modules/olmv1-webhook-support.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Types of webhook admission plugins](/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)
 *   [Service CA certificates](/security/certificate_types_descriptions/service-ca-certificates#add-service-certificate_service-ca-certificates)

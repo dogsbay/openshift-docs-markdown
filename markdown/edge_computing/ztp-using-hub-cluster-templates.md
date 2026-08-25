@@ -3,8 +3,8 @@ title: Using hub templates in PolicyGenerator or PolicyGenTemplate CRs
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using hub templates in PolicyGenerator or PolicyGenTemplate CRs {id="ztp-using-hub-cluster-templates-pgt"}
 {% include "./_attributes/common-attributes.md" %}
+# Using hub templates in PolicyGenerator or PolicyGenTemplate CRs {id="ztp-using-hub-cluster-templates-pgt"}
 {%- set context = "hub-cluster-templates-pgt" %}
 
 {{ cgu_operator_full }} supports {{ rh_rhacm_first }} hub cluster template functions in configuration policies used with {{ ztp_first }}.
@@ -24,6 +24,7 @@ This means you must create the objects referenced in the hub template in the sam
 {% include "./snippets/pgt-deprecation-notice.md" %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring managed cluster policies by using PolicyGenerator resources](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 *   [Comparing {{ rh_rhacm }} PolicyGenerator and PolicyGenTemplate resource patching](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)

@@ -10,7 +10,7 @@ You can use the {{ product_title }} web console to install {{ lvms_first }}.
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, navigate to **Ecosystem** → **Software Catalog**.
 1.  Search for the **{{ lvms }}** from the list of available Operators, and then click **Install**.
 1.  Keep the default selection of **Installation mode** (**"All namespaces on the cluster (default)"**) and **Installed Namespace** (**"openshift-operators"**) to ensure that the Operator is installed properly.
 1.  Click **Install**.
@@ -18,8 +18,8 @@ You can use the {{ product_title }} web console to install {{ lvms_first }}.
 **Verification**
 
 1.  To confirm that the installation is successful:
-    1.  Navigate to the **Ecosystem** -> **Installed Operators** page.
+    1.  Navigate to the **Ecosystem** → **Installed Operators** page.
     1.  Check that the Operator is installed in the `All Namespaces` namespace and its status is `Succeeded`.
 1.  If the Operator is not installed successfully:
-    1.  Navigate to the **Ecosystem** -> **Installed Operators** page and inspect the `Status` column for any errors or failures.
-    1.  Navigate to the **Workloads** -> **Pods** page and check the logs in any containers in the `local-storage-operator` pod that are reporting issues.
+    1.  Navigate to the **Ecosystem** → **Installed Operators** page and inspect the `Status` column for any errors or failures.
+    1.  Navigate to the **Workloads** → **Pods** page and check the logs in any containers in the `local-storage-operator` pod that are reporting issues.

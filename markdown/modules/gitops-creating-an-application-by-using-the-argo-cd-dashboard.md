@@ -76,7 +76,6 @@ Destination
 Namespace
 :   `spring-petclinic`
 {% endif %}
-
 1.  Click **CREATE** to create your application.
-1.  Open the **Administrator** perspective of the web console and navigate to **Administration** -> **Namespaces** in the menu on the left.
+1.  Open the **Administrator** perspective of the web console and navigate to **Administration** → **Namespaces** in the menu on the left.
 1.  Search for and select the namespace, then enter `argocd.argoproj.io/managed-by=openshift-gitops` in the **Label** field so that the Argo CD instance in the `openshift-gitops` namespace can manage your namespace.

@@ -33,8 +33,8 @@ To maintain compatibility between nodes in the cluster, nodes in machine pools c
 
 You can further control the time required for a machine pool update, and the impact of an update to your workload, by editing the `--max-surge` and `--max-unavailable` values for each machine pool. These options control the number of nodes that can be updated simultaneously on a machine pool, and whether an update provisions excess nodes or makes some existing nodes unavailable or both, for example:
 
-*   ***To prioritize high workload availability***, you can provision excess nodes instead of making existing nodes unavailable by setting a higher value for `--max-surge` and setting `--max-unavailable` to `0`.
-*   ***To prioritize lower infrastructure costs***, you can make some existing nodes unavailable and avoid provisioning excess nodes by setting a higher value for `--max-unavailable` and setting `--max-surge` to `0`.
-*   ***To prioritize update speed by updating multiple nodes simultaneously***, you can provision excess nodes and allow some existing nodes to be made unavailable by configuring moderate values for both `--max-surge` and `--max-unavailable`.
+*   **To prioritize high workload availability**, you can provision excess nodes instead of making existing nodes unavailable by setting a higher value for `--max-surge` and setting `--max-unavailable` to `0`.
+*   **To prioritize lower infrastructure costs**, you can make some existing nodes unavailable and avoid provisioning excess nodes by setting a higher value for `--max-unavailable` and setting `--max-surge` to `0`.
+*   **To prioritize update speed by updating multiple nodes simultaneously**, you can provision excess nodes and allow some existing nodes to be made unavailable by configuring moderate values for both `--max-surge` and `--max-unavailable`.
 
 For more information about these parameters and their usage, see the _ROSA CLI reference_ for `rosa edit machinepool`.

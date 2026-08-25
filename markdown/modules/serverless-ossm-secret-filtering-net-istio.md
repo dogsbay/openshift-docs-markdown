@@ -20,6 +20,7 @@ If you enable secret filtering, all of your secrets need to be labeled with  `ne
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster or dedicated administrator access.
 {% endif %}
+
 *   You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {{ product_title }}.
 *   Install {{ SMProductName }}. {{ ServerlessProductName }} with {{ SMProductShortName }} only is supported for use with {{ SMProductName }} version 2.0.5 or later.
 *   Install the {{ ServerlessOperatorName }} and Knative Serving.
@@ -52,8 +53,8 @@ If you enable secret filtering, all of your secrets need to be labeled with  `ne
     ```
     1.  Adding this annotation injects an environment variable, `ENABLE_SECRET_INFORMER_FILTERING_BY_CERT_UID=true`, to the `net-istio` controller pod.
 
-        :::note
+    :::note
 
-        This annotation is ignored if you set a different value by overriding deployments.
-        
-        :::
+    This annotation is ignored if you set a different value by overriding deployments.
+    
+    :::

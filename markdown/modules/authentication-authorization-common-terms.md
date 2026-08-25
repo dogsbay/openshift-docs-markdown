@@ -19,7 +19,7 @@ bearer token
 
 Cloud Credential Operator
 :   The Cloud Credential Operator (CCO) manages cloud provider credentials as custom resource definitions (CRDs).
-{% endif %}
+{%- endif %}
 
 
 config map

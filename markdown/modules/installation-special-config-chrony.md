@@ -9,12 +9,12 @@
 # Configuring chrony time service {id="installation-special-config-chrony_{{ context }}"}
 
 You
-{% if restricted %}
+{%- if restricted %}
 must
-{% endif %}
-{% if not restricted %}
+{%- endif %}
+{%- if not restricted %}
 can
-{% endif %}
+{%- endif %}
 set the time server and related settings used by the chrony time service (`chronyd`)
 by modifying the contents of the `chrony.conf` file and passing those contents
 to your nodes as a machine config. {._abstract}
@@ -31,11 +31,11 @@ For more information on chrony best practices, see the following resources:
 
     :::note
 
-{% include "./snippets/butane-version.md" %}
+    {% include "./snippets/butane-version.md" %}
     
     :::
 
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:
@@ -83,8 +83,8 @@ For more information on chrony best practices, see the following resources:
         ```
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

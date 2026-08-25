@@ -9,7 +9,7 @@ You can inject the resource allocation as environment variables, a volume plugin
 
 **Procedure**
 
-1.  Create a `{{ file_name }}` file that is similar to the following example:
+1.  Create a `{{ file_name }}`{minja} file that is similar to the following example:
     ```yaml
     apiVersion: v1
     kind: Pod
@@ -67,8 +67,8 @@ You can inject the resource allocation as environment variables, a volume plugin
     `spec.volumes.name.items.path`
     :   Specifies what resource to read and use from `requests.hugepages-1Gi` and expose the value as the file `/etc/podinfo/hugepages_1G_request`.
 
-1.  Create the pod from the `{{ file_name }}` file by entering the following command:
-    ```terminal
+1.  Create the pod from the `{{ file_name }}`{minja} file by entering the following command:
+    ```terminal {minja}
     $ oc create -f {{ file_name }}
     ```
 
@@ -91,4 +91,4 @@ You can inject the resource allocation as environment variables, a volume plugin
     2
     ```
 
-{%- set file_name = false -%}
+{%- set file_name = "" -%}

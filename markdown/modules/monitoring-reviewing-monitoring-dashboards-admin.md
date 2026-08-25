@@ -16,7 +16,7 @@ As an administrator, you can view dashboards relating to core {{ product_title }
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Observe** -> **Dashboards**.
+1.  In the {{ product_title }} web console, go to **Observe** → **Dashboards**.
 1.  Choose a dashboard in the **Dashboard** list. Some dashboards, such as **etcd** and **Prometheus** dashboards, produce additional sub-menus when selected.
 1.  Optional: Select a time range for the graphs in the **Time range** list.
     *   Select a predefined time period.

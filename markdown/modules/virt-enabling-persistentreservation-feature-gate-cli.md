@@ -10,7 +10,7 @@ You can enable the `persistentReservation` feature gate by using the command lin
 **Procedure**
 
 1.  Enable the `persistentReservation` feature gate by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type json -p \
     '[{"op":"replace","path":"/spec/featureGates/persistentReservation", "value": true}]'
     ```

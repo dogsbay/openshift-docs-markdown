@@ -107,4 +107,4 @@ Web console
 :   A user interface (UI) to manage {{ product_title }}.
 {%- if openshift_rosa or openshift_dedicated %}
     The web console for {{ product_title }} can be found at [https://console.redhat.com/openshift](https://console.redhat.com/openshift).
-{% endif %}
+{%- endif %}

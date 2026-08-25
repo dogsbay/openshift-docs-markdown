@@ -3,8 +3,8 @@ title: Installing the Operators
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing the Operators {id="installing-ossm"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing the Operators {id="installing-ossm"}
 {%- set context = "installing-ossm" %}
 
 To install {{ SMProductName }}, first install the {{ SMProductName }} Operator and any optional Operators on {{ product_title }}. Then create a `ServiceMeshControlPlane` resource to deploy the control plane.
@@ -22,10 +22,10 @@ This basic installation is configured based on the default OpenShift settings an
 *   Read the [Preparing to install {{ SMProductName }}](/service_mesh/v2x/preparing-ossm-installation#preparing-ossm-installation) process.
 {%- if openshift_rosa or openshift_rosa_hcp %}
 *   An account with the `cluster-admin` role.
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp) %}
 *   An account with the `cluster-admin` role. If you use {{ product_dedicated }}, you must have an account with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 The following steps show how to install a basic instance of {{ SMProductName }} on {{ product_title }}.
 

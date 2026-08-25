@@ -43,7 +43,7 @@ Operator and Operand images
 
         :::note
 
-        The file path of your registry credentials can be different depending on the container tool used to log in to the registry. For the `podman` CLI, the default location is `${{ XDG_RUNTIME_DIR }}/containers/auth.json`. For the `docker` CLI, the default location is `/root/.docker/config.json`.
+        The file path of your registry credentials can be different depending on the container tool used to log in to the registry. For the `podman` CLI, the default location is `${{ XDG_RUNTIME_DIR }}/containers/auth.json`{minja}. For the `docker` CLI, the default location is `/root/.docker/config.json`.
         
         :::
 
@@ -148,7 +148,7 @@ Operator and Operand images
         1.  Update the `.dockerconfigjson` file with your authentication credentials for the required private registry or registries and save it as a new file:
             ```terminal
             $ cat .dockerconfigjson | \
-                jq --compact-output '.auths["<registry>:<port>/<namespace>/"] |= . + {"auth":"<token>"}' \//<1>
+                jq --compact-output '.auths["<registry>:<port>/<namespace>/"] |= . + {"auth":"<token>"}' \ (1)
                 > new_dockerconfigjson
             ```
             1.  Replace `<registry>:<port>/<namespace>` with the private registry details and `<token>` with your authentication credentials.

@@ -3,11 +3,11 @@ title: Configuring hardware offloading
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring hardware offloading {id="configuring-hardware-offloading"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring hardware offloading {id="configuring-hardware-offloading"}
 {%- set context = "configuring-hardware-offloading" %}
 
-As a cluster administrator, you can configure hardware offloading on compatible nodes to increase data processing performance and reduce load on host CPUs.
+As a cluster administrator, you can configure hardware offloading on compatible nodes to increase data processing performance and reduce load on host CPUs. {._abstract}
 
 Before you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).
 
@@ -18,6 +18,7 @@ Before you perform any tasks in the following documentation, ensure that you [in
 {% leveloffset +1 %}{% include "./modules/nw-sriov-hwol-prerequisites.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
 *   [About the OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
@@ -34,6 +35,7 @@ Before you perform any tasks in the following documentation, ensure that you [in
 {% leveloffset +1 %}{% include "./modules/nw-sriov-hwol-improving-network-traffic-performance.md" %}{% endleveloffset %}
 
 <a name="additional-resources_using-vf-improve-network-traffic-performance"></a>**Additional resources**
+{._additional-resources}
 
 *   [SR-IOV network node configuration object](/networking/hardware_networks/configuring-sriov-device#nw-sriov-networknodepolicy-object_configuring-sriov-device)
 

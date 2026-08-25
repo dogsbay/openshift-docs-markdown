@@ -11,16 +11,17 @@ The Knative broker implementation for Apache Kafka provides integration options 
 
 {%- if openshift_enterprise %}
 *   You have cluster administrator permissions on {{ product_title }}.
-{% endif %}
+{%- endif %}
 
 {%- if openshift_dedicated or openshift_rosa %}
 *   You have cluster or dedicated administrator permissions on {{ product_title }}.
-{% endif %}
+{%- endif %}
+
 *   You are logged in to the {{ product_title }} web console.
 
 **Procedure**
 
-1.  In the **Administrator** perspective, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the **Administrator** perspective, navigate to **Ecosystem** → **Installed Operators**.
 1.  Check that the **Project** dropdown at the top of the page is set to **Project: knative-eventing**.
 1.  In the list of **Provided APIs** for the {{ ServerlessOperatorName }}, find the **Knative Kafka** box and click **Create Instance**.
 1.  Configure the **KnativeKafka** object in the **Create Knative Kafka** page.
@@ -61,14 +62,14 @@ The Knative broker implementation for Apache Kafka provides integration options 
     1.  Defines the replication factor of the Kafka topics, backed by the `Broker` objects. The default is `3`.
     1.  Enables developers to use a Kafka sink in the cluster.
 
-        :::note
+    :::note
 
-        The `replicationFactor` value must be less than or equal to the number of nodes of your Red Hat AMQ Streams cluster.
-        
-        :::
+    The `replicationFactor` value must be less than or equal to the number of nodes of your Red Hat AMQ Streams cluster.
+    
+    :::
 
-        1.  Using the form is recommended for simpler configurations that do not require full control of **KnativeKafka** object creation.
-        1.  Editing the YAML is recommended for more complex configurations that require full control of **KnativeKafka** object creation. You can access the YAML by clicking the **Edit YAML** link in the top right of the **Create Knative Kafka** page.
+    1.  Using the form is recommended for simpler configurations that do not require full control of **KnativeKafka** object creation.
+    1.  Editing the YAML is recommended for more complex configurations that require full control of **KnativeKafka** object creation. You can access the YAML by clicking the **Edit YAML** link in the top right of the **Create Knative Kafka** page.
 1.  Click **Create** after you have completed any of the optional configurations for Kafka. You are automatically directed to the **Knative Kafka** tab where **knative-kafka** is in the list of resources.
 
 **Verification**

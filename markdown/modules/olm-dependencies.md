@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if context == "olm-packaging-format" %}
+{% if context == "olm-packaging-format" %}
 # Dependencies {id="olm-dependencies_{{ context }}"}
 
 {% endif %}

@@ -3,11 +3,11 @@ title: Routing HTTP requests to services
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Routing HTTP requests to services {id="routing-http-requests-to-services"}
 {% include "./_attributes/common-attributes.md" %}
+# Routing HTTP requests to services {id="routing-http-requests-to-services"}
 {%- set context = "routing-http-requests-to-services" %}
 
-When you expose your applications through a gateway, you must configure an `HTTPRoute` custom resource (CR) to accurately direct incoming HTTP requests from your network listener to the appropriate backend services. A Gateway API `HTTPRoute` CR specifies the exact routing behavior for these requests by evaluating a set of rules.
+When you expose your applications through a gateway, you must configure an `HTTPRoute` custom resource (CR) to accurately direct incoming HTTP requests from your network listener to the appropriate backend services. A Gateway API `HTTPRoute` CR specifies the exact routing behavior for these requests by evaluating a set of rules. {._abstract}
 
 The core configuration element of an `HTTPRoute` CR is a rule. You can configure up to 16 rules for a single route. Within each rule, you can establish the following routing behaviors:
 

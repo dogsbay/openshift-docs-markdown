@@ -167,9 +167,9 @@ You can create only one `MachineOSConfig` CR for each machine config pool.
     ```terminal
     $ oc describe machineconfignode/<machine_config_node_name>
     ```
-{% include "./snippets/mco-mcn-ocl-example.md" %}
+    {% include "./snippets/mco-mcn-ocl-example.md" %}
 {%- set FeatureName = "The `ImagePulledFromRegistry` condition" %}
-{% include "./snippets/technology-preview.md" %}
+    {% include "./snippets/technology-preview.md" %}
 1.  Verify that the `MachineOSConfig` object contains a reference to the new custom layered image by running the following command:
     ```terminal
     $ oc describe machineosconfig <object_name>

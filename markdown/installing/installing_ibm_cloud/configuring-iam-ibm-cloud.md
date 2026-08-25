@@ -7,21 +7,23 @@ title: "Configuring IAM for {{ ibm_cloud_title }}"
 # Configuring IAM for {{ ibm_cloud_title }} {id="configuring-iam-ibm-cloud"}
 {%- set context = "configuring-iam-ibm-cloud" %}
 
-In environments where the cloud identity and access management (IAM) APIs are not reachable, you must put the Cloud Credential Operator (CCO) into manual mode before you install the cluster.
+In environments where the cloud identity and access management (IAM) APIs are not reachable, you must put the Cloud Credential Operator (CCO) into manual mode before you install the cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/alternatives-to-storing-admin-secrets-in-kube-system.md" %}{% endleveloffset %}
 
 <a name="additional-resources_configuring-iam-ibm-cloud-about-cco"></a>**Additional resources**
+{._additional-resources}
 
 *   [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 
 {% leveloffset +1 %}{% include "./modules/cco-ccoctl-configuring.md" %}{% endleveloffset %}
 
 <a name="additional-resources_configuring-iam-ibm-cloud-refreshing-ids"></a>**Additional resources**
+{._additional-resources}
 
 *   [Rotating API keys for {{ ibm_cloud_name }}](/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Installing a cluster on {{ ibm_cloud_name }} with customizations](/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
 *   [Preparing to update a cluster with manually maintained credentials](/updating/preparing_for_updates/preparing-manual-creds-update#preparing-manual-creds-update)

@@ -18,25 +18,24 @@ You can enable feature sets for all nodes in the cluster by editing the `install
     :::
 
 
-```yaml title="Sample install-config.yaml file with an enabled feature set"
-compute:
-- hyperthreading: Enabled
-  name: worker
-  platform:
-    aws:
-      rootVolume:
-        iops: 2000
-        size: 500
-        type: io1
-      metadataService:
-        authentication: Optional
-      type: c5.4xlarge
-      zones:
-      - us-west-2c
-  replicas: 3
-featureSet: TechPreviewNoUpgrade
-```
-
+    ```yaml title="Sample install-config.yaml file with an enabled feature set"
+    compute:
+    - hyperthreading: Enabled
+      name: worker
+      platform:
+        aws:
+          rootVolume:
+            iops: 2000
+            size: 500
+            type: io1
+          metadataService:
+            authentication: Optional
+          type: c5.4xlarge
+          zones:
+          - us-west-2c
+      replicas: 3
+    featureSet: TechPreviewNoUpgrade
+    ```
 1.  Save the file and reference it when using the installation program to deploy the cluster.
 
 **Verification**

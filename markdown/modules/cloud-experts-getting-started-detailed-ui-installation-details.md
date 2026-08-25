@@ -6,11 +6,11 @@ You can select the defaults to complete cluster installation. {._abstract}
 
 **Procedure**
 
-1.  For ***Networking***, leave all the default values for configuration.
+1.  For **Networking**, leave all the default values for configuration.
 1.  Click **Next**.
 1.  Leave all the default values for CIDR ranges.
 1.  Click **Next**.
-1.  For ***Cluster roles and policies****, leave *Auto** selected. It makes the cluster deployment process simpler and quicker.
+1.  For **Cluster roles and policies**, leave **Auto** selected. It makes the cluster deployment process simpler and quicker.
 
     :::note
 
@@ -19,7 +19,7 @@ You can select the defaults to complete cluster installation. {._abstract}
     :::
 
 
-    Leave all of the ***Cluster update*** options at default in this section.
+    Leave all of the **Cluster update** options at default in this section.
 1.  Review the content for the cluster configuration.
 1.  Click **Create cluster**.
 1.  Stay on the current page to monitor the installation progress. It should take about 40 minutes.

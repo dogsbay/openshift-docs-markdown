@@ -24,8 +24,8 @@ You can deploy a function to your cluster as a Knative service by using the `kn 
     *   The Knative service name is derived from the project name, and cannot be changed using this command.
 
 
-:::note
+    :::note
 
-You can create a serverless function with a Git repository URL by using **Import from Git** or **Create Serverless Function** in the **+Add** view of the **Developer** perspective.
-
-:::
+    You can create a serverless function with a Git repository URL by using **Import from Git** or **Create Serverless Function** in the **+Add** view of the **Developer** perspective.
+    
+    :::

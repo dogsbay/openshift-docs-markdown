@@ -3,12 +3,12 @@ title: Freeing node resources using garbage collection
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Freeing node resources using garbage collection {id="nodes-nodes-garbage-collection"}
 {% include "./_attributes/common-attributes.md" %}
+# Freeing node resources using garbage collection {id="nodes-nodes-garbage-collection"}
 {%- set context = "nodes-nodes-configuring" %}
 
 As an administrator, you can use {{ product_title }} to ensure that your nodes are running efficiently
-by freeing up resources through garbage collection.
+by freeing up resources through garbage collection. {._abstract}
 
 The {{ product_title }} node performs two types of garbage collection:
 

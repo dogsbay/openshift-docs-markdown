@@ -88,22 +88,22 @@
 
 {%- if nutanix %}
 The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on Nutanix, you must set the CCO to `manual` mode as part of the installation process.
-{% endif %}
-{% if ibm_power_vs %}
-The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on {{ ibm_power_server_name }}, you must set the CCO to `manual` mode as part of the installation process.
-{% endif %} {._abstract}
+{%- endif %}
+{%- if ibm_power_vs %}
+The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on {{ ibm_power_server_name }}, you must set the CCO to `manual` mode as part of the installation process. {._abstract}
+{%- endif %}
 
 {%- if not (update or postinstall) %}
 To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
-{% endif %}
+{%- endif %}
 
 {%- if postinstall %}
 To configure an existing cluster to create and manage cloud credentials from outside of the cluster, extract and prepare the Cloud Credential Operator utility (`ccoctl`) binary.
-{% endif %}
+{%- endif %}
 
 {%- if update %}
 To upgrade a cluster that uses the Cloud Credential Operator (CCO) in manual mode to create and manage cloud credentials from outside of the cluster, extract and prepare the CCO utility (`ccoctl`) binary.
-{% endif %}
+{%- endif %}
 
 
 :::note
@@ -121,14 +121,14 @@ The `ccoctl` utility is a Linux binary that must run in a Linux environment.
 {%- if update %}
 *   Your cluster was configured using the `ccoctl` utility to create and manage cloud credentials from outside of the cluster.
 *   You have extracted the `CredentialsRequest` custom resources (CRs) from the {{ product_title }} release image and ensured that a namespace that matches the text in the `spec.secretRef.namespace` field exists in the cluster.
-{% endif %}
+{%- endif %}
 
 {% include "./snippets/ccoctl-provider-permissions-requirements.md" %}
 
 **Procedure**
 
 1.  Set a variable for the {{ product_title }} release image by running the following command:
-    {%- if not (update or postinstall) %}
+{% if not (update or postinstall) %}
     ```terminal
     $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')
     ```
@@ -201,81 +201,81 @@ The `ccoctl` utility is a Linux binary that must run in a Linux environment.
     ```
 
 {%- if context == "changing-cloud-credentials-configuration" %}
-{%- set postinstall = false -%}
+{%- set postinstall = "" -%}
 {% endif %}
 {% if context == "preparing-manual-creds-update" %}
-{%- set update = false -%}
+{%- set update = "" -%}
 {% endif %}
 
 {%- if context == "configuring-iam-ibm-cloud" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}
 {% if context == "preparing-to-install-on-nutanix" %}
-{%- set nutanix = false -%}
+{%- set nutanix = "" -%}
 {% endif %}
 {% if context == "preparing-to-install-on-ibm-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 
 {%- if context == "installing-aws-customizations" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws-installer-provisioned" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-vpc" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-specialized-region" %}
 {%- set aws_sts = true -%}
 {% endif %}
 {% if context == "installing-aws-private" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-government-region" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-secret-region" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-china-region" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-outposts-remote-workers" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 
 {%- if context == "installing-gcp-customizations" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-network-customizations" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp-installer-provisioned" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-vpc" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-shared-vpc" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 
 {%- if context == "installing-azure-customizations" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-government-region" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-private" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-vnet" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-installer-provisioned" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}

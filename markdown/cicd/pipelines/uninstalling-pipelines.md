@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Uninstalling {{ pipelines_shortname }} {id="uninstalling-pipelines"}
 {% include "./_attributes/common-attributes.md" %}
+# Uninstalling {{ pipelines_shortname }} {id="uninstalling-pipelines"}
 {%- set context = "uninstalling-pipelines" %}
 
 Cluster administrators can uninstall the {{ pipelines_title }} Operator by performing the following steps:

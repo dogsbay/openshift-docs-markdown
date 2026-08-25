@@ -18,33 +18,33 @@ In order for the SMCP to connect to an existing Jaeger instance, the following m
 
     The value under `HOST/PORT` is the externally accessible URL of the Jaeger dashboard.
 
-```yaml title="Example Jaeger resource"
-apiVersion: jaegertracing.io/v1
-kind: "Jaeger"
-metadata:
-  name: "external-jaeger"
-  # Deploy to the Control Plane Namespace
-  namespace: istio-system
-spec:
-  # Set Up Authentication
-  ingress:
-    enabled: true
-    security: oauth-proxy
-    openshift:
-      # This limits user access to the Jaeger instance to users who have access
-      # to the control plane namespace. Make sure to set the correct namespace here
-      sar: '{"namespace": "istio-system", "resource": "pods", "verb": "get"}'
-      htpasswdFile: /etc/proxy/htpasswd/auth
+    ```yaml title="Example Jaeger resource"
+    apiVersion: jaegertracing.io/v1
+    kind: "Jaeger"
+    metadata:
+      name: "external-jaeger"
+      # Deploy to the Control Plane Namespace
+      namespace: istio-system
+    spec:
+      # Set Up Authentication
+      ingress:
+        enabled: true
+        security: oauth-proxy
+        openshift:
+          # This limits user access to the Jaeger instance to users who have access
+          # to the control plane namespace. Make sure to set the correct namespace here
+          sar: '{"namespace": "istio-system", "resource": "pods", "verb": "get"}'
+          htpasswdFile: /etc/proxy/htpasswd/auth
 
-  volumeMounts:
-  - name: secret-htpasswd
-    mountPath: /etc/proxy/htpasswd
-  volumes:
-  - name: secret-htpasswd
-    secret:
-      secretName: htpasswd
+      volumeMounts:
+      - name: secret-htpasswd
+        mountPath: /etc/proxy/htpasswd
+      volumes:
+      - name: secret-htpasswd
+        secret:
+          secretName: htpasswd
 
-```
+    ```
 
 The following `ServiceMeshControlPlane` example assumes that you have deployed Jaeger using the Jaeger Operator and the example Jaeger resource.
 

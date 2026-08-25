@@ -4,8 +4,8 @@ title: Gathering audit logs
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-cma-autoscaling-custom-audit-log" %}
-# Gathering audit logs {id="nodes-cma-autoscaling-custom-audit-log"}
 {% include "./_attributes/common-attributes.md" %}
+# Gathering audit logs {id="nodes-cma-autoscaling-custom-audit-log"}
 
 You can gather audit logs, which are a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.
 

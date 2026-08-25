@@ -32,19 +32,19 @@ All features of a supported version of upstream Alertmanager are also supported 
     ```yaml
     global:
       http_config:
-        proxy_from_environment: true # (1)
+        proxy_from_environment: true (1)
     route:
       receiver: Default
       group_by:
       - name: Default
       routes:
       - matchers:
-        - "service = prometheus-example-monitor" # (2)
-        receiver: <receiver> # (3)
+        - "service = prometheus-example-monitor" (2)
+        receiver: <receiver> (3)
     receivers:
     - name: Default
     - name: <receiver>
-      <receiver_configuration> # (4)
+      <receiver_configuration> (4)
     ```
     1.  If you configured an HTTP cluster-wide proxy, set the `proxy_from_environment` parameter to `true` to enable proxying for all alert receivers.
     1.  Specify labels to match your alerts. This example targets all alerts that have the `service="prometheus-example-monitor"` label.

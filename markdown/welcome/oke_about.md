@@ -4,11 +4,11 @@ title: About OpenShift Kubernetes Engine
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set oke = "OpenShift Kubernetes Engine" %}
-# About {{ oke }} {id="oke-about"}
 {% include "./_attributes/common-attributes.md" %}
+# About {{ oke }} {id="oke-about"}
 {%- set context = "oke-about" %}
 
-You can use the Red&#160; Hat {{ oke }} as a way to launch containers in an enterprise-class Kubernetes production platform.
+You can use the Red&#160; Hat {{ oke }} as a way to launch containers in an enterprise-class Kubernetes production platform. {._abstract}
 
 
 :::note

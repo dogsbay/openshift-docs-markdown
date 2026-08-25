@@ -22,9 +22,9 @@ The `oc adm upgrade` command lists the compatible update releases.
 
     :::important
 
-    *   ***Control plane only update***: Ensure you point to the interim &lt;y+1> release path
-    *   ***Y-stream update*** - Ensure you use the correct &lt;y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
-    *   ***Z-stream update*** - Verify that there are no problems moving to that specific release
+    *   **Control plane only update**: Ensure you point to the interim &lt;y+1> release path
+    *   **Y-stream update** - Ensure you use the correct &lt;y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
+    *   **Z-stream update** - Verify that there are no problems moving to that specific release
     
     :::
 
@@ -32,6 +32,6 @@ The `oc adm upgrade` command lists the compatible update releases.
     ```terminal
     Requested update to <version>
     ```
-   \
+    +
     where:
     `<version>`:: Specifies the version number for your particular update, such as `4.15.33`.

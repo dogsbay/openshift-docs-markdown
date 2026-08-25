@@ -7,7 +7,7 @@ title: Manually updating the boot image
 {% include "./_attributes/common-attributes.md" %}
 # Manually updating the boot image {id="mco-update-boot-images-manual"}
 
-For {{ product_title }} platforms that do not support automatic boot image updating or for clusters configured with the boot image management feature disabled, you can manually update the boot image used by the compute nodes in your cluster. By updating the boot image, you can ensure that newly scaled up nodes are able to successfully use the latest {{ op_system_first }} version and join the cluster.
+For {{ product_title }} platforms that do not support automatic boot image updating or for clusters configured with the boot image management feature disabled, you can manually update the boot image used by the compute nodes in your cluster. By updating the boot image, you can ensure that newly scaled up nodes are able to successfully use the latest {{ op_system_first }} version and join the cluster. {._abstract}
 
 
 :::note
@@ -35,7 +35,7 @@ Red&#160;Hat does not support manually updating the boot image in control plane 
 
 {% leveloffset +1 %}{% include "./modules/mco-update-boot-images-plat-none.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images)
 *   [Updating the boot image skew enforcement version](/machine_configuration/mco-update-boot-skew-mgmt#mco-update-boot-skew-mgmt)
 *   [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)

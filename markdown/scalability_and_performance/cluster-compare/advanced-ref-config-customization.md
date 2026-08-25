@@ -3,8 +3,8 @@ title: Performing advanced reference configuration customization
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Performing advanced reference configuration customization {id="advanced-ref-config-customization"}
 {% include "./_attributes/common-attributes.md" %}
+# Performing advanced reference configuration customization {id="advanced-ref-config-customization"}
 {%- set context = "advanced-ref-config-customization" %}
 
 For scenarios where you want to allow temporary deviations from the reference design, you can apply more advanced customizations. 

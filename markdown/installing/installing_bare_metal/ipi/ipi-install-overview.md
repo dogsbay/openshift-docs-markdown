@@ -3,11 +3,11 @@ title: Overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Overview {id="ipi-install-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Overview {id="ipi-install-overview"}
 {%- set context = "ipi-install" %}
 
-Installer-provisioned installation on bare metal nodes deploys and configures the infrastructure that an {{ product_title }} cluster runs on. By understanding the components of bare metal installation, you can prepare your infrastructure for a successful installation.
+Installer-provisioned installation on bare metal nodes deploys and configures the infrastructure that an {{ product_title }} cluster runs on. By understanding the components of bare metal installation, you can prepare your infrastructure for a successful installation. {._abstract}
 
 The following diagram illustrates phase 1 of deployment:
 
@@ -17,10 +17,10 @@ The following diagram illustrates phase 1 of deployment:
 
 For the installation, the key elements in the deployment phase one diagram are:
 
-*   ***Provisioner***: A physical machine that runs the installation program and hosts the bootstrap VM that deploys the control plane of a new {{ product_title }} cluster.
-*   ***Bootstrap VM***: A virtual machine used in the process of deploying an {{ product_title }} cluster.
-*   ***Network bridges***: The bootstrap VM connects to the bare metal network and to the provisioning network, if present, via network bridges, `eno1` and `eno2`.
-*   ***API VIP***: An API virtual IP address (VIP) is used to provide failover of the API server across the control plane nodes. The API VIP first resides on the bootstrap VM. A script generates the `keepalived.conf` configuration file before launching the service. The VIP moves to one of the control plane nodes after the bootstrap process has completed and the bootstrap VM stops.
+*   **Provisioner**: A physical machine that runs the installation program and hosts the bootstrap VM that deploys the control plane of a new {{ product_title }} cluster.
+*   **Bootstrap VM**: A virtual machine used in the process of deploying an {{ product_title }} cluster.
+*   **Network bridges**: The bootstrap VM connects to the bare metal network and to the provisioning network, if present, via network bridges, `eno1` and `eno2`.
+*   **API VIP**: An API virtual IP address (VIP) is used to provide failover of the API server across the control plane nodes. The API VIP first resides on the bootstrap VM. A script generates the `keepalived.conf` configuration file before launching the service. The VIP moves to one of the control plane nodes after the bootstrap process has completed and the bootstrap VM stops.
 
 
 :::important
@@ -54,5 +54,6 @@ For installer-provisioned infrastructure installations, CoreDNS exposes port 53 
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [Using DNS forwarding](/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)

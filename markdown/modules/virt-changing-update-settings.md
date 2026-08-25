@@ -10,7 +10,7 @@ You can control how and when updates are installed by changing the update channe
 
 **Procedure**
 
-1.  Click **Ecosystem** -> **Installed Operators**.
+1.  Click **Ecosystem** → **Installed Operators**.
 1.  Select **{{ VirtProductName }}** from the list.
 1.  Click the **Subscription** tab.
 1.  In the **Subscription details** section, click the setting that you want to change. For example, to change the approval strategy from **Manual** to **Automatic**, click **Manual**.

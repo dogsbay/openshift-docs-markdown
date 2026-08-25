@@ -7,7 +7,7 @@ title: "Deploying {{ hcp }} on {{ ibm_z_title }}"
 # Deploying {{ hcp }} on {{ ibm_z_title }} {id="hcp-deploy-ibmz"}
 {%- set context = "hcp-deploy-ibmz" %}
 
-You can deploy {{ hcp }} on {{ ibm_z_title }} by configuring a cluster to function as a management cluster. The management cluster is the {{ product_title }} cluster where the control planes are hosted. The management cluster is also known as the _hosting_ cluster.
+You can deploy {{ hcp }} on {{ ibm_z_title }} by configuring a cluster to function as a management cluster. The management cluster is the {{ product_title }} cluster where the control planes are hosted. The management cluster is also known as the _hosting_ cluster. {._abstract}
 
 
 :::note
@@ -30,6 +30,7 @@ When you create a hosted cluster with the Agent platform, HyperShift Operator in
 {% leveloffset +1 %}{% include "./modules/hcp-ibm-z-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)
 *   [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)
@@ -43,6 +44,7 @@ When you create a hosted cluster with the Agent platform, HyperShift Operator in
 {% leveloffset +1 %}{% include "./modules/hcp-ibmz-create-hc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually importing a hosted cluster](/hosted_control_planes/hcp-import#hcp-import)
 *   [Extracting the release image digest](/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)
@@ -61,6 +63,7 @@ When you create a hosted cluster with the Agent platform, HyperShift Operator in
 {% leveloffset +1 %}{% include "./modules/hcp-ibm-z-lpar-agents.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing in an LPAR](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/performing_a_standard_rhel_8_installation/installing-in-an-lpar_installing-rhel)
 

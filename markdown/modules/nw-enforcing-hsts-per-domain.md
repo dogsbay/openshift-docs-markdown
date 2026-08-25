@@ -47,18 +47,18 @@ HSTS cannot be applied to insecure, or non-TLS routes, even if HSTS is requested
       name: cluster
     spec:
       domain: 'hello-openshift-default.apps.username.devcluster.openshift.com'
-      requiredHSTSPolicies: # (1)
-      - domainPatterns: # (2)
+      requiredHSTSPolicies: (1)
+      - domainPatterns: (2)
         - '*hello-openshift-default.apps.username.devcluster.openshift.com'
         - '*hello-openshift-default2.apps.username.devcluster.openshift.com'
-        namespaceSelector: # (3)
+        namespaceSelector: (3)
           matchLabels:
             myPolicy: strict
-        maxAge: # (4)
+        maxAge: (4)
           smallestMaxAge: 1
           largestMaxAge: 31536000
-        preloadPolicy: RequirePreload # (5)
-        includeSubDomainsPolicy: RequireIncludeSubDomains # (6)
+        preloadPolicy: RequirePreload (5)
+        includeSubDomainsPolicy: RequireIncludeSubDomains (6)
       - domainPatterns:
         - 'abc.example.com'
         - '*xyz.example.com'

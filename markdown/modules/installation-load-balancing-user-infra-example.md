@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if not user_managed_lb %}
+{% if not user_managed_lb %}
 # Example load balancer configuration for user-provisioned clusters {id="installation-load-balancing-user-infra-example_{{ context }}"}
 
 Reference the example API and application Ingress load balancer configuration so that you can understand how to meet the load balancing requirements for user-provisioned clusters.  {._abstract}
@@ -114,5 +114,5 @@ where:
 
 
 {% if context == "installing-openstack-installer-custom" %}
-{%- set user_managed_lb = false -%}
+{%- set user_managed_lb = "" -%}
 {% endif %}

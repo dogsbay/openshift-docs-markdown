@@ -37,11 +37,11 @@ The edge compute pool creates new labels that developers can use to deploy appli
 *   `node-role.kubernetes.io/edge=''`
 {%- if local_zone %}
 *   `machine.openshift.io/zone-type=local-zone`
-{% endif %}
-{% if wavelength_zone %}
+{%- endif %}
+{%- if wavelength_zone %}
 *   `machine.openshift.io/zone-type=wavelength-zone`
-{% endif %}
-{% if post_aws_zones %}
+{%- endif %}
+{%- if post_aws_zones %}
 *   Local Zones only: `machine.openshift.io/zone-type=local-zone`
 *   Wavelength Zones only: `machine.openshift.io/zone-type=wavelength-zone`
 {%- endif %}
@@ -50,11 +50,11 @@ The edge compute pool creates new labels that developers can use to deploy appli
 By default, the machine sets for the edge compute pool define the taint of `NoSchedule` to prevent other workloads from spreading on {{ zone_type }} instances. Users can only run user workloads if they define tolerations in the pod specification.
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set post_aws_zones = false -%}
+{%- set post_aws_zones = "" -%}
 {% endif %}

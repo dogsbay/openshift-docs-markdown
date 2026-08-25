@@ -40,7 +40,7 @@ Machine pool configurations such as node drain timeout, max-unavailable, and max
     ```
 
     Replace `<cluster_name_or_id>` with the cluster name or the cluster ID.
-{%- if context != "rosa-hcp-upgrading-whole-cluster" %}
+{% if context != "rosa-hcp-upgrading-whole-cluster" %}
 
 **Example output**
 

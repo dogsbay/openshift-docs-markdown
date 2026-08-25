@@ -9,7 +9,7 @@ If you supply an inline Dockerfile, it overwrites the Dockerfile in the `context
 
 The source definition is part of the `spec` section in the `BuildConfig`:
 
-```yaml
+```yaml {minja}
 source:
   git: (1)
     uri: "https://github.com/openshift/ruby-hello-world"
@@ -23,7 +23,7 @@ source:
 1.  The `contextDir` field allows you to override the default location inside the source code repository where the build looks for the application source code. If your application exists inside a sub-directory, you can override the default location (the root folder) using this field.
 {%- if not openshift_online %}
 1.  If the optional `dockerfile` field is provided, it should be a string containing a Dockerfile that overwrites any Dockerfile that may exist in the source repository.
-{% endif %}
+{%- endif %}
 
 If the `ref` field denotes a pull request, the system uses a `git fetch` operation and then checkout `FETCH_HEAD`.
 

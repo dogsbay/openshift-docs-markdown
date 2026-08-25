@@ -8,7 +8,7 @@ Change the route configuration so that all traffic from a specific user is route
 **Procedure**
 
 1.  Run the following command to enable user-based routing in the Bookinfo sample application.
-    ```bash
+    ```bash {minja}
     $ oc apply -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
     ```
 1.  Run the following command to confirm the rule is created. This command returns all resources of `kind: VirtualService` in YAML format.

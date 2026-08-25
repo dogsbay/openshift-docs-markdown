@@ -27,16 +27,16 @@
 {% endif %}
 
 You can save on costs by creating a compute machine set that deploys machines as non-guaranteed instances.
-{% if aws %}
+{%- if aws %}
 To launch a Spot Instance on {{ aws_short }}, you add `spotMarketOptions` to your compute machine set YAML file.
-{% endif %}
-{% if azure %}
+{%- endif %}
+{%- if azure %}
 To launch a Spot VM on {{ azure_short }}, you add `spotVMOptions` to your compute machine set YAML file.
-{% endif %}
-{% if gcp %}
+{%- endif %}
+{%- if gcp %}
 To launch a Spot VM on {{ gcp_short }}, you add `provisioningModel: "Spot"` to your compute machine set YAML file.
-{% endif %}
-{% if gcp_legacy_preempt %}
+{%- endif %}
+{%- if gcp_legacy_preempt %}
 To launch a preemptible VM instance on {{ gcp_short }}, you add `preemptible` to your compute machine set YAML file. {._abstract}
 
 
@@ -46,12 +46,12 @@ To launch a preemptible VM instance on {{ gcp_short }}, you add `preemptible` to
 
 :::
 
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
 *   Add the following line under the `providerSpec` field:
-    {%- if aws %}
+{%- if aws %}
     ```yaml
     providerSpec:
       value:
@@ -68,8 +68,8 @@ To launch a preemptible VM instance on {{ gcp_short }}, you add `preemptible` to
     
     :::
 
-{% endif %}
-{% if azure %}
+{%- endif %}
+{%- if azure %}
     ```yaml
     providerSpec:
       value:
@@ -86,8 +86,8 @@ To launch a preemptible VM instance on {{ gcp_short }}, you add `preemptible` to
     
     :::
 
-{% endif %}
-{% if gcp %}
+{%- endif %}
+{%- if gcp %}
     ```yaml
     providerSpec:
       value:
@@ -102,8 +102,8 @@ To launch a preemptible VM instance on {{ gcp_short }}, you add `preemptible` to
     
     :::
 
-{% endif %}
-{% if gcp_legacy_preempt %}
+{%- endif %}
+{%- if gcp_legacy_preempt %}
     ```yaml
     providerSpec:
       value:
@@ -118,17 +118,17 @@ To launch a preemptible VM instance on {{ gcp_short }}, you add `preemptible` to
     
     :::
 
-{% endif %}
+{%- endif %}
 
 {% if context == "creating-machineset-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "creating-machineset-azure" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}
 {% if context == "creating-machineset-gcp" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "legacy-preempt" %}
-{%- set gcp_legacy_preempt = false -%}
+{%- set gcp_legacy_preempt = "" -%}
 {% endif %}

@@ -11,7 +11,7 @@ You can enable the {{ log_plug }} as part of the {{ clo }} installation, but you
 
 **Procedure**
 
-1.  In the {{ product_title }} web console **Administrator** perspective, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console **Administrator** perspective, navigate to **Ecosystem** → **Installed Operators**.
 1.  Click **Red Hat OpenShift Logging**. This takes you to the Operator **Details** page.
 1.  In the **Details** page, click **Disabled** for the **Console plugin** option.
 1.  In the **Console plugin enablement** dialog, select **Enable**.

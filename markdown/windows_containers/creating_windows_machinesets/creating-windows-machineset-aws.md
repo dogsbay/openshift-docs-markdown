@@ -3,11 +3,11 @@ title: Creating a Windows machine set on AWS
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating a Windows machine set on AWS {id="creating-windows-machineset-aws"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating a Windows machine set on AWS {id="creating-windows-machineset-aws"}
 {%- set context = "creating-windows-machineset-aws" %}
 
-You can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ aws_full }} cluster, where you can run Windows container workloads.
+You can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ aws_full }} cluster, where you can run Windows container workloads. {._abstract}
 
 For example, you might create infrastructure Windows machine sets and related machines so that you can move supporting Windows workloads to the new Windows machines. For more information about machine sets, see "Overview of machine management" in the _Additional resources_ section.
 
@@ -37,7 +37,7 @@ For example, you might create infrastructure Windows machine sets and related ma
 
 {% leveloffset +1 %}{% include "./modules/machineset-creating.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Overview of machine management](/machine_management/index#overview-of-machine-management)
 *   [Install the latest version of EC2Launch v2 (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2launch-v2-install.html)

@@ -3,11 +3,11 @@ title: Enabling the Security Profiles Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Enabling the Security Profiles Operator {id="spo-enabling"}
 {% include "./_attributes/common-attributes.md" %}
+# Enabling the Security Profiles Operator {id="spo-enabling"}
 {%- set context = "spo-enabling" %}
 
-Before you can use the Security Profiles Operator, you must ensure the Operator is deployed in the cluster.
+Before you can use the Security Profiles Operator, you must ensure the Operator is deployed in the cluster. {._abstract}
 
 
 :::important

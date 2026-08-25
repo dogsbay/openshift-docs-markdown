@@ -14,7 +14,7 @@ Install the {{ js_operator }} on {{ product_title }} using the web console to be
 1.  Log in to the {{ product_title }} web console.
 1.  Verify that the {{ cert_manager_operator }} is installed.
 1.  Install the {{ js_operator }}.
-    1.  Navigate to **Ecosystem** -> **Software Catalog**.
+    1.  Navigate to **Ecosystem** → **Software Catalog**.
     1.  Search for and select the **`openshift-operators`** project.
     1.  Enter **{{ js_operator }}** into the filter box.
     1.  Select the **{{ js_operator }}** and click **Install**.
@@ -27,7 +27,7 @@ Install the {{ js_operator }} on {{ product_title }} using the web console to be
             *   The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.
         1.  Click **Install**.
 1.  Create the custom resource (CR) for the {{ js_operator }}:
-    1.  Navigate to **Installed Operators** -> **{{ js_operator }}**.
+    1.  Navigate to **Installed Operators** → **{{ js_operator }}**.
     1.  Under **Provided APIs**, click **Create instance** in the **JobSetOperator** pane.
     1.  Set the name to **cluster**.
     1.  Set the **managementState** to **Managed**.

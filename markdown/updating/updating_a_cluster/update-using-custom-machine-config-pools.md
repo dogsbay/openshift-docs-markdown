@@ -3,12 +3,12 @@ title: Performing a canary rollout update
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Performing a canary rollout update {id="update-using-custom-machine-config-pools"}
 {% include "./_attributes/common-attributes.md" %}
+# Performing a canary rollout update {id="update-using-custom-machine-config-pools"}
 {%- set context = "update-using-custom-machine-config-pools" %}
 
 For a more controlled rollout of worker node updates, you can use a _canary update_.
-A canary update is an update strategy where worker node updates are performed in discrete, sequential stages instead of updating all worker nodes at the same time.
+A canary update is an update strategy where worker node updates are performed in discrete, sequential stages instead of updating all worker nodes at the same time. {._abstract}
 
 This strategy can be useful in the following scenarios:
 
@@ -34,6 +34,7 @@ After the rest of the cluster is updated, you can update those worker nodes in b
 {% leveloffset +1 %}{% include "./modules/update-canary-performing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Updating a cluster using the web console](/updating/updating_a_cluster/updating-cluster-web-console#update-upgrading-web_updating-cluster-web-console)
 *   [Updating a cluster using the CLI](/updating/updating_a_cluster/updating-cluster-cli#update-upgrading-cli_updating-cluster-cli)

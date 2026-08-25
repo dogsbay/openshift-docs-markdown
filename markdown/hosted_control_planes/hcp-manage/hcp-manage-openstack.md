@@ -7,7 +7,7 @@ title: "Managing {{ hcp }} on {{ rh_openstack }}"
 # Managing {{ hcp }} on {{ rh_openstack }} {id="hcp-manage-openstack"}
 {%- set context = "hcp-manage-openstack" %}
 
-After you deploy {{ hcp }} on {{ rh_openstack_first }} agent machines, you can manage a hosted cluster.
+After you deploy {{ hcp }} on {{ rh_openstack_first }} agent machines, you can manage a hosted cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hcp-openstack-accessing.md" %}{% endleveloffset %}
 
@@ -28,5 +28,6 @@ After you deploy {{ hcp }} on {{ rh_openstack_first }} agent machines, you can m
 {% leveloffset +2 %}{% include "./modules/hosted-clusters-openstack-performance-enabling.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the SR-IOV Network Operator](/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sr-iov-operator_installing-sriov-operator)

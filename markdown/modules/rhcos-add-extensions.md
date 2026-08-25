@@ -5,13 +5,13 @@ You can add software packages to {{ op_system_first }} systems by using extensio
 
 {{ op_system }} is a minimal container-oriented op-system-base-full operating system, designed to provide a common set of capabilities to {{ product_title }} clusters across all platforms. Although adding software packages to {{ op_system }} systems is generally discouraged, you can add any of the following extensions to extend {{ op_system }}:
 
-*   ***usbguard***: The `usbguard` extension protects {{ op_system }} systems from attacks by intrusive USB devices. For `usbguard`, you must create additional `MachineConfig` objects to start and enable the services as described in the following procedure. For more information, see [USBGuard](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/security_hardening/index#usbguard_protecting-systems-against-intrusive-usb-devices).
-*   ***kerberos***: The `kerberos` extension provides a mechanism that allows both users and machines to identify themselves to the network to receive defined, limited access to the areas and services that an administrator has configured. For more information, see [Using Kerberos](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/using_kerberos), including how to set up a Kerberos client and mount a Kerberized NFS share.
-*   ***sandboxed-containers***: The `sandboxed-containers` extension contains RPMs for Kata, QEMU, and its dependencies. For more information, see [OpenShift Sandboxed Containers](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers/latest).
-*   ***ipsec***: The `ipsec` extension contains RPMs for libreswan and NetworkManager-libreswan.
-*   ***wasm***: The `wasm` extension enables Developer Preview functionality in {{ product_title }} for users who want to use WASM-supported workloads.   
-*   ***sysstat***: Adding the `sysstat` extension provides additional performance monitoring for {{ product_title }} nodes, including the system activity reporter (`sar`) command for collecting and reporting information.
-*   ***kernel-devel***: The `kernel-devel` extension provides kernel headers and makefiles sufficient to build modules against the kernel package.
+*   **usbguard**: The `usbguard` extension protects {{ op_system }} systems from attacks by intrusive USB devices. For `usbguard`, you must create additional `MachineConfig` objects to start and enable the services as described in the following procedure. For more information, see [USBGuard](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/security_hardening/index#usbguard_protecting-systems-against-intrusive-usb-devices).
+*   **kerberos**: The `kerberos` extension provides a mechanism that allows both users and machines to identify themselves to the network to receive defined, limited access to the areas and services that an administrator has configured. For more information, see [Using Kerberos](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/using_kerberos), including how to set up a Kerberos client and mount a Kerberized NFS share.
+*   **sandboxed-containers**: The `sandboxed-containers` extension contains RPMs for Kata, QEMU, and its dependencies. For more information, see [OpenShift Sandboxed Containers](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers/latest).
+*   **ipsec**: The `ipsec` extension contains RPMs for libreswan and NetworkManager-libreswan.
+*   **wasm**: The `wasm` extension enables Developer Preview functionality in {{ product_title }} for users who want to use WASM-supported workloads.   
+*   **sysstat**: Adding the `sysstat` extension provides additional performance monitoring for {{ product_title }} nodes, including the system activity reporter (`sar`) command for collecting and reporting information.
+*   **kernel-devel**: The `kernel-devel` extension provides kernel headers and makefiles sufficient to build modules against the kernel package.
 
 The following procedure describes how to use a machine config to add one or more extensions to your {{ op_system }} nodes.
 
@@ -23,7 +23,7 @@ The following procedure describes how to use a machine config to add one or more
 **Procedure**
 
 1.  Create a Butane configuration file named `80-worker-usbguard.bu` to add the extension, manage the configuration files, and enable the service.
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

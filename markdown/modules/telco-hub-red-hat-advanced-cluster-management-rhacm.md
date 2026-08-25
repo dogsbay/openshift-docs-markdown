@@ -7,8 +7,9 @@ New in this release {._abstract}
 :   *   No reference design updates in this release.
 
 Description
-    :   {{ rh_rhacm_first }} provides multicluster engine installation and ongoing lifecycle management functionality for deployed clusters.
+:   {{ rh_rhacm_first }} provides multicluster engine installation and ongoing lifecycle management functionality for deployed clusters.
     You can manage cluster configuration and upgrades declaratively by applying `Policy` custom resources (CRs) to clusters during maintenance windows.
+
 
     {{ rh_rhacm }} provides functionality such as the following:
 
@@ -19,10 +20,12 @@ Description
     *   The {{ rh_rhacm }} multicluster engine Observability component provides selective monitoring, dashboards, alerts, and metrics.
     The recommended method for {{ sno }} cluster installation is the image-based installation method in multicluster engine, which uses the `ClusterInstance` CR for cluster definition.
 
+
     The recommended method for {{ sno }} upgrade is the image-based upgrade method.
 
 
     :::note
+
 
     The {{ rh_rhacm }} multicluster engine Observability component brings you a centralized view of the health and status of all the managed clusters.
     By default, every managed cluster is enabled to send metrics and alerts, created by their {{ cmo_first }}, back to Observability.

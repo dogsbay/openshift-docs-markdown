@@ -5,7 +5,7 @@ You can configure custom StorageClass behaviors for each device class, including
 
 If you set an empty configuration (storageClassOptions: {}) or omit the field entirely, the Operator uses the following default settings: 
 
-***StorageClass Options Reference***
+**StorageClass Options Reference**
 
 <table>
 <thead>
@@ -36,7 +36,7 @@ If you set an empty configuration (storageClassOptions: {}) or omit the field en
   <td><code>additionalParameters</code></td>
   <td><code>map[string]string</code></td>
   <td>Yes</td>
-  <td>Adds custom key-value pairs to the <code>StorageClass .parameters</code> map.<br><br>Default: <code>{}</code> (empty). Maximum entries: 16.<br><br>StorageClass parameters are passed to the CSI driver (TopoLVM) during volume provisioning. TopoLVM recognizes only <code>topolvm.io/device-class</code> and <code>csi.storage.k8s.io/fstype</code>. Use <code>additionalParameters</code> for forward-compatibility or for parameters consumed by other Kubernetes components.<br><br>The following keys are managed by LVMS and are rejected at admission:<br><br><ul><li><code>topolvm.io/device-class</code> — automatically set to the device class name</li><li><code>csi.storage.k8s.io/fstype</code> — automatically set from the <code>fstype</code> field on the device class</li></ul><dl><dt>Important</dt><dd>To change the filesystem type, use the <code>fstype</code> field on the device class directly. Do not use <code>additionalParameters</code>.</dd></dl></td>
+  <td>Adds custom key-value pairs to the <code>StorageClass .parameters</code> map.<br><br>Default: <code>{}</code> (empty). Maximum entries: 16.<br><br>StorageClass parameters are passed to the CSI driver (TopoLVM) during volume provisioning. TopoLVM recognizes only <code>topolvm.io/device-class</code> and <code>csi.storage.k8s.io/fstype</code>. Use <code>additionalParameters</code> for forward-compatibility or for parameters consumed by other Kubernetes components.<br><br>The following keys are managed by LVMS and are rejected at admission:<br><br><ul><li><code>topolvm.io/device-class</code> — automatically set to the device class name</li><li><code>csi.storage.k8s.io/fstype</code> — automatically set from the <code>fstype</code> field on the device class</li></ul><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>To change the filesystem type, use the <code>fstype</code> field on the device class directly. Do not use <code>additionalParameters</code>.</dd></dl></td>
   <td><pre>storageClassOptions:&#10;  additionalParameters:&#10;    custom-param-key: custom-param-value</pre></td>
 </tr>
 <tr>

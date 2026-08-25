@@ -1,6 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-[id="virt-creating-udn-namespace-web_{{ context }}"]                                   
-= Creating a namespace for user-defined networks by using the web console
+# Creating a namespace for user-defined networks by using the web console {id="virt-creating-udn-namespace-web_{{ context }}"}
 
 You can create a namespace to be used with primary user-defined networks (UDNs) by using the {{ product_title }} web console. {._abstract}
 
@@ -10,7 +9,7 @@ You can create a namespace to be used with primary user-defined networks (UDNs) 
 
 **Procedure**
 
-1.  From the **Administrator** perspective, click **Administration** -> **Namespaces**.
+1.  From the **Administrator** perspective, click **Administration** → **Namespaces**.
 1.  Click **Create Namespace**.
 1.  In the **Name** field, specify a name for the namespace. The name must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character.
 1.  In the **Labels** field, add the `k8s.ovn.org/primary-user-defined-network` label.

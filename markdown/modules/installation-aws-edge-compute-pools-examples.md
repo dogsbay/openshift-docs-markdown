@@ -79,8 +79,8 @@ sshKey: ssh-ed25519 AAAA...
 For the `additionalSecurityGroupIDs` parameter, specify the name of the security group as it is displayed on the Amazon EC2 console. Ensure that you include the `sg` prefix.
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}

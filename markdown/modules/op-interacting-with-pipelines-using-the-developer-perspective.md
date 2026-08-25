@@ -20,6 +20,7 @@ The **Pipelines** view in the **Developer** perspective lists all the pipelines 
     *   Use the zoom in, zoom out, fit to screen, and reset view features using the standard icons displayed in the lower left corner of the **Pipeline details** visualization.
     *   Change the zoom factor of the pipeline visualization using the mouse wheel.
     *   Hover over the tasks and see the task details.
+
         **Figure 1. Pipeline details**
 
         ![Pipeline details](/_assets/images/op-pipeline-details1.png)

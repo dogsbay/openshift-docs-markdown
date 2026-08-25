@@ -47,17 +47,17 @@ You can migrate individual {{ from_api_name }} objects to equivalent {{ to_api_n
 **Procedure**
 
 1.  Identify the {{ from_api_name }} resource that you want to migrate to a {{ to_api_name }} resource by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get <resource_kind> -n {{ from_namespace }}
     ```
     where `<resource_kind>` is one of the following values:
 
 
-    `machine.{{ from_api_group }}`
+    `machine.{{ from_api_group }}`{minja}
     :   The fully qualified name of the resource kind for a compute or control plane machine.
 
 
-    `machineset.{{ from_api_group }}`
+    `machineset.{{ from_api_group }}`{minja}
     :   The fully qualified name of the resource kind for a compute machine set.
 1.  Edit the resource specification by running the following command:
     ```terminal
@@ -72,14 +72,14 @@ You can migrate individual {{ from_api_name }} objects to equivalent {{ to_api_n
 
     `<resource_name>`
     :   Specifies the name of the Machine API resource that you want to migrate to a Cluster API resource.
-{% endif %}
-{% if cluster_to_machine %}
+{%- endif %}
+{%- if cluster_to_machine %}
 
     `<resource_name>`
     :   Specifies the name of the Machine API resource that corresponds to the Cluster API resource that you want to migrate to the Machine API.
 {%- endif %}
 1.  In the resource specification, update the value of the `spec.authoritativeAPI` field:
-    ```yaml
+    ```yaml {minja}
     apiVersion: machine.openshift.io/v1beta1
     kind: <resource_kind>
     metadata:
@@ -104,7 +104,7 @@ You can migrate individual {{ from_api_name }} objects to equivalent {{ to_api_n
 
     `spec.authoritativeAPI`
     :   Specifies the authoritative API that you want this resource to use.
-        For example, to start migrating a {{ from_api_name }} resource to the {{ to_api_name }}, specify `{{ to_api_value }}`.
+        For example, to start migrating a {{ from_api_name }} resource to the {{ to_api_name }}, specify `{{ to_api_value }}`{minja}.
 
     `status.authoritativeAPI`
     :   Specifies the value for the current authoritative API.
@@ -136,16 +136,16 @@ You can migrate individual {{ from_api_name }} objects to equivalent {{ to_api_n
 
     `<resource_name>`
     :   Specifies the name of the Machine API resource that you want to migrate to a Cluster API resource.
-{% endif %}
-{% if cluster_to_machine %}
+{%- endif %}
+{%- if cluster_to_machine %}
 
     `<resource_name>`
     :   Specifies the name of the Machine API resource that corresponds to the Cluster API resource that you want to migrate to the Machine API.
 {%- endif %}
     *   While the conversion progresses, this command returns a value of `Migrating`.
     If this value persists for a long time, check the logs for the `cluster-capi-operator` deployment in the `openshift-cluster-api` namespace for more information and to identify potential issues.
-    *   When the conversion is complete, this command returns a value of `{{ to_api_value }}`.
-{%- if cluster_to_machine %}
+    *   When the conversion is complete, this command returns a value of `{{ to_api_value }}`{minja}.
+{% if cluster_to_machine %}
 
     :::important
 
@@ -158,17 +158,17 @@ You can migrate individual {{ from_api_name }} objects to equivalent {{ to_api_n
 
 {% endif %}
 
-{%- set from_api_name = false -%}
-{%- set to_api_name = false -%}
-{%- set from_api_value = false -%}
-{%- set to_api_value = false -%}
-{%- set from_api_group = false -%}
-{%- set to_api_group = false -%}
-{%- set from_namespace = false -%}
+{%- set from_api_name = "" -%}
+{%- set to_api_name = "" -%}
+{%- set from_api_value = "" -%}
+{%- set to_api_value = "" -%}
+{%- set from_api_group = "" -%}
+{%- set to_api_group = "" -%}
+{%- set from_namespace = "" -%}
 
 {% if context == "cluster-api-getting-started" %}
-{%- set machine_to_cluster = false -%}
+{%- set machine_to_cluster = "" -%}
 {% endif %}
 {% if context == "cluster-api-disabling" %}
-{%- set cluster_to_machine = false -%}
+{%- set cluster_to_machine = "" -%}
 {% endif %}

@@ -17,7 +17,6 @@ Before installing this version of the Custom Metrics Autoscaler Operator, remove
 :::
 
 
-
 Bug fixes
 
 :   *   Before this update, the addition of an immutable label in the deployment selector that was not compatible with the existing deployment was causing automatic upgrades from Custom Metrics Autoscaler Operator version 2.18.1-2 to version 2.19.0-1 to fail. With the fix, automatic upgrades from version 2.18.1-2 to version 2.19.0-2 succeed without manual intervention. ([OCPBUGS-91950](https://redhat.atlassian.net/browse/OCPBUGS-91950))

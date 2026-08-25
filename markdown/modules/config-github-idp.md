@@ -36,7 +36,7 @@ Configuring GitHub authentication allows users to log in to {{ product_title }} 
         ```
 
         For example:
-{%- if not openshift_rosa_hcp %}
+{% if not openshift_rosa_hcp %}
         ```
         https://oauth-openshift.apps.openshift-cluster.example.com/oauth2callback/github
         ```

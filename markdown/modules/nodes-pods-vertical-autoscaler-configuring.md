@@ -51,11 +51,11 @@ The following procedure creates a VPA CR for a specific workload object.
     *   `Initial` to automatically apply the recommended resources to newly-created pods associated with the workload object. The VPA does not update the pods as it learns new resource recommendations.
     *   `Off` to only generate resource recommendations for the pods associated with the workload object. The VPA does not update the pods as it learns new resource recommendations and does not apply the recommendations to new pods.
 
-`spec.resourcePolicy`
-:   Specifies the containers you want to opt-out and set the mode to `Off`. This parameter is optional.
+        `spec.resourcePolicy`
+        :   Specifies the containers you want to opt-out and set the mode to `Off`. This parameter is optional.
 
-`spec.recommenders`
-:   Specifies an alternative recommender. This parameter is optional.
+        `spec.recommenders`
+        :   Specifies an alternative recommender. This parameter is optional.
 
     1.  Create the VPA CR:
         ```terminal

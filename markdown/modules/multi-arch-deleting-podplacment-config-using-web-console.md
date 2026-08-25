@@ -14,7 +14,7 @@ You can delete this object by using the {{ product_title }} web console.
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  On the **Installed Operators** page, click **Multiarch Tuning Operator**. 
 1.  Click the **Cluster Pod Placement Config** tab.
 1.  Select **Delete ClusterPodPlacementConfig** from the options menu.

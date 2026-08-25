@@ -2,4 +2,14 @@
 # Scheduling reference CRs {id="scheduling-crs_{{ context }}"}
 
 Use the following custom resources (CRs) to configure scheduling for the telco core profile. {._abstract}
- NUMA-aware scheduler,`nrop.yaml`,"Enables the NUMA Resources Operator, aligning workloads with specific NUMA node configurations. Required for clusters with multi-NUMA nodes.",No NUMA-aware scheduler,`NROPSubscription.yaml`,"Creates a subscription for the NUMA Resources Operator, managed through OLM. Required for clusters with multi-NUMA nodes.",No NUMA-aware scheduler,`NROPSubscriptionNS.yaml`,Creates the NUMA Resources Operator subscription namespace. Required for clusters with multi-NUMA nodes.,No NUMA-aware scheduler,`NROPSubscriptionOperGroup.yaml`,"Creates the Operator group in the numaresources-operator namespace, allowing the NUMA Resources Operator to watch and manage resources. Required for clusters with multi-NUMA nodes.",No NUMA-aware scheduler,`sched.yaml`,Configures a topology-aware scheduler in the cluster that can handle NUMA aware scheduling of pods across nodes.,No NUMA-aware scheduler,`Scheduler.yaml`,Configures control plane nodes as non-schedulable for workloads.,No |
+
+**Scheduling CRs**
+
+| Component | Reference CR | Description | Optional |
+| --- | --- | --- | --- |
+| NUMA-aware scheduler | `nrop.yaml` | Enables the NUMA Resources Operator, aligning workloads with specific NUMA node configurations. Required for clusters with multi-NUMA nodes. | No |
+| NUMA-aware scheduler | `NROPSubscription.yaml` | Creates a subscription for the NUMA Resources Operator, managed through OLM. Required for clusters with multi-NUMA nodes. | No |
+| NUMA-aware scheduler | `NROPSubscriptionNS.yaml` | Creates the NUMA Resources Operator subscription namespace. Required for clusters with multi-NUMA nodes. | No |
+| NUMA-aware scheduler | `NROPSubscriptionOperGroup.yaml` | Creates the Operator group in the numaresources-operator namespace, allowing the NUMA Resources Operator to watch and manage resources. Required for clusters with multi-NUMA nodes. | No |
+| NUMA-aware scheduler | `sched.yaml` | Configures a topology-aware scheduler in the cluster that can handle NUMA aware scheduling of pods across nodes. | No |
+| NUMA-aware scheduler | `Scheduler.yaml` | Configures control plane nodes as non-schedulable for workloads. | No |

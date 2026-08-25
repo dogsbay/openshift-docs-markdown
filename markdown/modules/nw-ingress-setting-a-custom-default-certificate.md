@@ -19,14 +19,14 @@ certificate authority that you configured in a custom PKI.
     ```
 
 
-:::note
+    :::note
 
-If you have intermediate certificates, they must be included in the `tls.crt`
-file of the secret containing a custom default certificate. Order matters when
-specifying a certificate; list your intermediate certificate(s) after any server
-certificate(s).
-
-:::
+    If you have intermediate certificates, they must be included in the `tls.crt`
+    file of the secret containing a custom default certificate. Order matters when
+    specifying a certificate; list your intermediate certificate(s) after any server
+    certificate(s).
+    
+    :::
 
 
 **Procedure**

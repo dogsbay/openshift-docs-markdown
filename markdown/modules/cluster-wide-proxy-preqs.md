@@ -9,8 +9,8 @@ To configure a cluster-wide proxy, you must meet the following requirements. The
 *   Your account has enough privileges.
 {%- if openshift_rosa or openshift_rosa_hcp %}
 *   You have an existing Virtual Private Cloud (VPC) for your cluster.
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 *   You have an existing VPC for your cluster.
 *   You are using the Customer Cloud Subscription (CCS) model for your cluster.
 {%- endif %}

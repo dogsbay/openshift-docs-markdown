@@ -3,11 +3,11 @@ title: Creating virtual machines by using the CLI
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Creating virtual machines by using the CLI {id="virt-creating-vms-from-cli"}
 {% include "./_attributes/common-attributes.md" %}
+# Creating virtual machines by using the CLI {id="virt-creating-vms-from-cli"}
 {%- set context = "virt-creating-vms-cli" %}
 
-You can create virtual machines (VMs) from the command line by editing or creating a `VirtualMachine` manifest. You can simplify VM configuration by using an instance type in your VM manifest.
+You can create virtual machines (VMs) from the command line by editing or creating a `VirtualMachine` manifest. You can simplify VM configuration by using an instance type in your VM manifest. {._abstract}
 
 
 :::note
@@ -21,7 +21,7 @@ You can also create VMs from instance types by using the {{ product_title }} web
 {% leveloffset +1 %}{% include "./modules/virt-uploading-image-virtctl.md" %}{% endleveloffset %}
 {% leveloffset +2 %}{% include "./modules/virt-supported-custom-video-devices.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 {%- if not openshift_dedicated %}
 *   [SSH access for virtual machines](/virt/managing_vms/ssh/virt-accessing-vm-ssh#virt-accessing-vm-ssh)
 {%- endif %}

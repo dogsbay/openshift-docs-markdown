@@ -3,8 +3,8 @@ title: Performing and configuring basic builds
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Performing and configuring basic builds {id="basic-build-operations"}
 {% include "./_attributes/common-attributes.md" %}
+# Performing and configuring basic builds {id="basic-build-operations"}
 {%- set context = "basic-build-operations" %}
 
 The following sections provide instructions for basic build operations, including starting and canceling builds, editing `BuildConfigs`, deleting `BuildConfigs`, viewing build details, and accessing build logs.

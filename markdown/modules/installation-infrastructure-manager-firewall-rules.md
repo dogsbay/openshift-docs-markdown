@@ -3,11 +3,8 @@
 
 You can use the following Infrastructure Manager template to deploy the firewall rules and IAM roles that you need for your {{ product_title }} cluster: {._abstract}
 
-<details>
-<summary>`03_security.tf` Infrastructure Manager template</summary>
-
+:::details{title="`03_security.tf` Infrastructure Manager template"}
 ```terraform
-```hcl
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
   required_version = ">=1.2.3"
@@ -238,5 +235,4 @@ resource "google_service_account" "worker_node_sa" {
   display_name = "${var.infra_id}-worker-node"
 }
 ```
-```
-</details>
+:::

@@ -5,7 +5,7 @@ You can start, stop, restart, pause, and unpause multiple virtual machines (VMs)
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Optional: Enable the **Show only projects with VirtualMachines** option above the tree view to limit the displayed projects.
 1.  Select a relevant project from the tree view.
 1.  Navigate to the appropriate menu for your use case:

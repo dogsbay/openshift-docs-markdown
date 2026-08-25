@@ -8,7 +8,7 @@ pie charts, heat maps, built-in geospatial support, and other visualizations.
 
 *   To list the **infra** and **audit** indices in Kibana, a user must have the `cluster-admin` role, the `cluster-reader` role, or both roles. The default `kubeadmin` user has proper permissions to list these indices.
 
-    If you can view the pods and logs in the `default`, `kube-**` and `openshift-**` projects, you should be able to access these indices. You can use the following command to check if the current user has proper permissions:
+    If you can view the pods and logs in the `default`, `kube-*` and `openshift-*` projects, you should be able to access these indices. You can use the following command to check if the current user has proper permissions:
     ```terminal
     $ oc auth can-i get pods --subresource log -n <project>
     ```
@@ -33,8 +33,8 @@ To launch Kibana:
     The Kibana interface launches.
 
 
-:::note
+    :::note
 
-If you get a **security_exception** error in the Kibana console and cannot access your Kibana indices, you might have an expired OAuth token. If you see this error, log out of the Kibana console, and then log back in. This refreshes your OAuth tokens and you should be able to access your indices.
-
-:::
+    If you get a **security_exception** error in the Kibana console and cannot access your Kibana indices, you might have an expired OAuth token. If you see this error, log out of the Kibana console, and then log back in. This refreshes your OAuth tokens and you should be able to access your indices.
+    
+    :::

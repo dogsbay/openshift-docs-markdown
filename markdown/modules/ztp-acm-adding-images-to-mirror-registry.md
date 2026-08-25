@@ -33,18 +33,18 @@ The {{ op_system }} images might not change with every release of {{ product_tit
         where:
 
         `<iso_image_name>`
-        :   ISO image name, for example, `rhcos-{{ product_version }}.1-x86_64-live.x86_64.iso`
+        :   ISO image name, for example, `rhcos-{{ product_version }}.1-x86_64-live.x86_64.iso`{minja}
 
         `<rootfs_image_name>`
-        :   RootFS image name, for example, `rhcos-{{ product_version }}.1-x86_64-live-rootfs.x86_64.img`
+        :   RootFS image name, for example, `rhcos-{{ product_version }}.1-x86_64-live-rootfs.x86_64.img`{minja}
 
         `<ocp_version>`
-        :   {{ product_title }} version, for example, `{{ product_version }}.1`
+        :   {{ product_title }} version, for example, `{{ product_version }}.1`{minja}
     1.  Download the required images:
-        ```terminal
+        ```terminal {minja}
         $ sudo wget https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/{{ product_version }}/${{ OCP_VERSION }}/${{ ISO_IMAGE_NAME }} -O /var/www/html/${{ ISO_IMAGE_NAME }}
         ```
-        ```terminal
+        ```terminal {minja}
         $ sudo wget https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/{{ product_version }}/${{ OCP_VERSION }}/${{ ROOTFS_IMAGE_NAME }} -O /var/www/html/${{ ROOTFS_IMAGE_NAME }}
         ```
 
@@ -56,7 +56,7 @@ The {{ op_system }} images might not change with every release of {{ product_tit
     ```
 
     Example output:
-    ```terminal
+    ```terminal {minja}
     Saving to: rhcos-{{ product_version }}.1-x86_64-live.x86_64.iso
     rhcos-{{ product_version }}.1-x86_64-live.x86_64.iso-  11%[====>    ]  10.01M  4.71MB/s
     ```

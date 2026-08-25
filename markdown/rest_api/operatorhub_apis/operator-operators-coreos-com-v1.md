@@ -1,5 +1,5 @@
 ---
-title: "Operator []"
+title: "Operator [operators.coreos.com/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | OperatorSpec defines the desired state of Operator |
 | `status` | `object` | OperatorStatus defines the observed state of an Operator and its components |
+
 ### .spec {id="_spec"}
 
 Description
@@ -45,6 +46,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `components` | `object` | Components describes resources that compose the operator. |
+
 ### .status.components {id="_statuscomponents"}
 
 Description
@@ -63,6 +65,7 @@ Required
 | `labelSelector` | `object` | LabelSelector is a label query over a set of resources used to select the operator’s components |
 | `refs` | `array` | Refs are a set of references to the operator’s component resources, selected with LabelSelector. |
 | `refs[]` | `object` | RichReference is a reference to a resource, enriched with its status conditions. |
+
 ### .status.components.labelSelector {id="_statuscomponentslabelselector"}
 
 Description
@@ -77,6 +80,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .status.components.labelSelector.matchExpressions {id="_statuscomponentslabelselectormatchexpressions"}
 
 Description
@@ -106,6 +110,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .status.components.refs {id="_statuscomponentsrefs"}
 
 Description
@@ -135,6 +140,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .status.components.refs[].conditions {id="_statuscomponentsrefsconditions"}
 
 Description
@@ -175,12 +181,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Operator
     *   `GET`: list objects of kind Operator
     *   `POST`: create an Operator
-*   `/apis/operators.coreos.com/v1/operators/{{ name }}`
+*   `/apis/operators.coreos.com/v1/operators/{{ name }}`{minja}
     *   `DELETE`: delete an Operator
     *   `GET`: read the specified Operator
     *   `PATCH`: partially update the specified Operator
     *   `PUT`: replace the specified Operator
-*   `/apis/operators.coreos.com/v1/operators/{{ name }}/status`
+*   `/apis/operators.coreos.com/v1/operators/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Operator
     *   `PATCH`: partially update status of the specified Operator
     *   `PUT`: replace status of the specified Operator

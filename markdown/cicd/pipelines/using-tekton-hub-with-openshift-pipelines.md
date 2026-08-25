@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using Tekton Hub with {{ pipelines_shortname }} {id="using-tekton-hub-with-openshift-pipelines"}
 {% include "./_attributes/common-attributes.md" %}
+# Using Tekton Hub with {{ pipelines_shortname }} {id="using-tekton-hub-with-openshift-pipelines"}
 {%- set context = "using-tekton-hub-with-openshift-pipelines" %}
 
 {%- set FeatureName = "Tekton Hub" %}

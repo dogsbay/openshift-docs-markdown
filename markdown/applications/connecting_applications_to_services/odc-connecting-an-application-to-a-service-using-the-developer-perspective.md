@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Connecting an application to a service using the Developer perspective {id="odc-connecting-an-application-to-a-service-using-the-developer-perspective"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Connecting an application to a service using the Developer perspective {id="odc-connecting-an-application-to-a-service-using-the-developer-perspective"}
 {%- set context = "odc-connecting-an-application-to-a-service-using-the-developer-perspective" %}
 
 Use the **Topology** view for the following purposes: {._abstract}

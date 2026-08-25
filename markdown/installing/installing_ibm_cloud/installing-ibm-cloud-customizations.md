@@ -7,7 +7,7 @@ title: "Installing a cluster on {{ ibm_cloud_title }} with customizations"
 # Installing a cluster on {{ ibm_cloud_title }} with customizations {id="installing-ibm-cloud-customizations"}
 {%- set context = "installing-ibm-cloud-customizations" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a customized cluster on {{ ibm_cloud_name }} by using installer-provisioned infrastructure. Change parameters in the `install-config.yaml` file before you install the cluster.
+In {{ product_title }} version {{ product_version }}, you can install a customized cluster on {{ ibm_cloud_name }} by using installer-provisioned infrastructure. Change parameters in the `install-config.yaml` file before you install the cluster. {._abstract}
 
 By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.
 
@@ -16,6 +16,7 @@ You must set most of the network configuration parameters during installation, a
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-cloud-installer-provisioned.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -34,12 +35,14 @@ You must set most of the network configuration parameters during installation, a
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_cloud_name }}](/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-config-parameters-ibm-cloud-vpc)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -68,11 +71,12 @@ You must set most of the network configuration parameters during installation, a
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 <a name="additional-resources_installing-ibm-cloud-customizations-console"></a>**Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_installing-ibm-cloud-customizations"}
+## Additional resources {id="additional-resources_installing-ibm-cloud-customizations" ._additional-resources}
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

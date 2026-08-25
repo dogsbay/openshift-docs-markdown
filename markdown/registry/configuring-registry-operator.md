@@ -3,12 +3,12 @@ title: Image Registry Operator in OpenShift Container Platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Image Registry Operator in {{ product_title }} {id="configuring-registry-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Image Registry Operator in {{ product_title }} {id="configuring-registry-operator"}
 {%- set context = "configuring-registry-operator" %}
 
-{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
-## Image Registry on cloud platforms and OpenStack {id="image-registry-on-cloud"}
+{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+## Image Registry on cloud platforms and OpenStack {id="image-registry-on-cloud" ._abstract}
 {% endif %}
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 ## Image Registry on {{ product_title }} {id="_image_registry_on_product_title"}
@@ -62,7 +62,7 @@ However, the `managementState` of the Image Registry Operator alters the behavio
 {% leveloffset +1 %}{% include "./modules/registry-operator-distribution-across-availability-zones.md" %}{% endleveloffset %}
 
 {% if not openshift_rosa_portal %}
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Configuring pod topology spread constraints](/nodes/scheduling/nodes-scheduler-pod-topology-spread-constraints#nodes-scheduler-pod-topology-spread-constraints)
 {% endif %}
@@ -75,7 +75,7 @@ However, the `managementState` of the Image Registry Operator alters the behavio
 
 {% leveloffset +1 %}{% include "./modules/registry-operator-config-resources-storage-credentials.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Configuring the registry for AWS user-provisioned infrastructure](/registry/configuring_registry_storage/configuring-registry-storage-aws-user-infrastructure#configuring-registry-storage-aws-user-infrastructure)
 *   [Configuring the registry for {{ gcp_short }} user-provisioned infrastructure](/registry/configuring_registry_storage/configuring-registry-storage-gcp-user-infrastructure#configuring-registry-storage-gcp-user-infrastructure)

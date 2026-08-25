@@ -19,8 +19,8 @@ The SQLite database catalog format is deprecated, but still supported by Red Hat
 *   You have a SQLite database catalog source.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   You have access to the cluster as a user with the `cluster-admin` role.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
 {%- endif %}
 *   You have a target namespace that supports running pods with the elevated pod security admission standard of `baseline` or `privileged`.

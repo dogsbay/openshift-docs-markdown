@@ -29,7 +29,7 @@ The lower the interval, the greater the network load. The `cacheResyncPeriod` sp
         numaresourcesscheduler.nodetopology.openshift.io "numaresourcesscheduler" deleted
         ```
 1.  Save the following YAML in the file `nro-scheduler-cacheresync.yaml`. This example changes the log level to `Debug`:
-    ```yaml
+    ```yaml {minja}
     apiVersion: nodetopology.openshift.io/v1
     kind: NUMAResourcesScheduler
     metadata:

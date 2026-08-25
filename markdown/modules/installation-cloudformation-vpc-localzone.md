@@ -5,9 +5,7 @@ You can use a CloudFormation template to deploy the VPC that you need for your {
 
 See the following template:
 
-<details>
-<summary>CloudFormation template for the VPC</summary>
-
+:::details{title="CloudFormation template for the VPC"}
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for Best Practice VPC with 1-3 AZs
@@ -321,4 +319,4 @@ Outputs:
         ]
       ]
 ```
-</details>
+:::

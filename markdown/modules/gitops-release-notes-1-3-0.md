@@ -17,7 +17,7 @@ In addition to the fixes and stability improvements, the following sections high
 ## Fixed issues {id="fixed-issues-1-3_{{ context }}"}
 The following issues were resolved in the current release:
 
-*   Previously, if you set up a new namespace to be managed by a new instance of Argo CD, it would immediately be ***Out Of Sync*** due to the new roles and bindings that the Operator creates to manage that new namespace. This behavior is fixed.  [GITOPS-1384](https://issues.redhat.com/browse/GITOPS-1384)
+*   Previously, if you set up a new namespace to be managed by a new instance of Argo CD, it would immediately be **Out Of Sync** due to the new roles and bindings that the Operator creates to manage that new namespace. This behavior is fixed.  [GITOPS-1384](https://issues.redhat.com/browse/GITOPS-1384)
 
 ## Known issues {id="known-issues-1-3_{{ context }}"}
 

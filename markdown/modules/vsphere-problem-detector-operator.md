@@ -22,4 +22,4 @@ No configuration is required.
 *   The Operator uses the `vsphere-cloud-credentials` to communicate with vSphere.
 *   The Operator performs checks that are related to storage.
 
-{%- set operator_name = false -%}
+{%- set operator_name = "" -%}

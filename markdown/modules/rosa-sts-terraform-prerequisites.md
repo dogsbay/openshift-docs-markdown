@@ -8,8 +8,8 @@ To use [the Red&#160;Hat Cloud Services provider](https://registry.terraform.io/
 *   You have installed [Terraform version 1.4.6](https://developer.hashicorp.com/terraform/downloads) or newer.
 {%- if openshift_rosa_hcp %}
 *   You have created the [ocm-role IAM role](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/rosa-hcp-about-iam-resources#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-sts-about-iam-resources).
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
 *   You have created the [ocm-role IAM role](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/introduction_to_rosa/rosa-sts-about-iam-resources#rosa-sts-ocm-roles-and-permissions-iam-basic-role_rosa-sts-about-iam-resources).
 {%- endif %}
 *   You have created your AWS account-wide IAM roles.

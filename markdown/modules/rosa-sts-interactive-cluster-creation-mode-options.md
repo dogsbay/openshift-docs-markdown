@@ -5,7 +5,7 @@ You can create a {{ product_title }} cluster with the AWS Security Token Service
 
 The following table describes the interactive cluster creation mode options:
 
-***`--interactive` cluster creation mode options***
+**`--interactive` cluster creation mode options**
 
 <table>
 <thead>
@@ -45,7 +45,7 @@ The following table describes the interactive cluster creation mode options:
 </tr>
 <tr>
   <td><code>Configure the use of IMDSv2 for ec2 instances optional/required (optional)</code></td>
-  <td>Specify <code>optional</code> to configure all EC2 instances to use both v1 and v2 endpoints of EC2 Instance Metadata Service (IMDS). This is the default value. Specify <code>required</code> to configure all EC2 instances to use IMDSv2 only.<dl><dt>Important</dt><dd>The Instance Metadata Service settings cannot be changed after your cluster is created.</dd></dl></td>
+  <td>Specify <code>optional</code> to configure all EC2 instances to use both v1 and v2 endpoints of EC2 Instance Metadata Service (IMDS). This is the default value. Specify <code>required</code> to configure all EC2 instances to use IMDSv2 only. {% if openshift_rosa %} <dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The Instance Metadata Service settings cannot be changed after your cluster is created.</dd></dl> {% endif %}</td>
 </tr>
 <tr>
   <td><code>Installer role ARN</code></td>
@@ -57,7 +57,7 @@ The following table describes the interactive cluster creation mode options:
 </tr>
 <tr>
   <td><code>Operator roles prefix</code></td>
-  <td>By default, the cluster-specific Operator role names are prefixed with the cluster name and a random 4-digit hash. You can optionally specify a custom prefix to replace <code><cluster_name>-<hash></code> in the role names. The prefix is applied when you create the cluster-specific Operator IAM roles. For information about the prefix, see <em>About custom Operator IAM role prefixes</em>.<dl><dt>Note</dt><dd>If you specified custom ARN paths when you created the associated account-wide roles, the custom path is automatically detected. The custom path is applied to the cluster-specific Operator roles when you create them in a later step.</dd></dl></td>
+  <td>By default, the cluster-specific Operator role names are prefixed with the cluster name and a random 4-digit hash. You can optionally specify a custom prefix to replace <code>&lt;cluster_name&gt;-&lt;hash&gt;</code> in the role names. The prefix is applied when you create the cluster-specific Operator IAM roles. For information about the prefix, see <em>About custom Operator IAM role prefixes</em>. {% if openshift_rosa %} <dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>If you specified custom ARN paths when you created the associated account-wide roles, the custom path is automatically detected. The custom path is applied to the cluster-specific Operator roles when you create them in a later step.</dd></dl> {% endif %}</td>
 </tr>
 <tr>
   <td><code>Deploy cluster using pre registered OIDC Configuration ID</code></td>
@@ -65,7 +65,7 @@ The following table describes the interactive cluster creation mode options:
 </tr>
 <tr>
   <td><code>Tags (optional)</code></td>
-  <td>Specify a tag that is used on all resources created by {{ product_title }} in AWS. Tags can help you manage, identify, organize, search for, and filter resources within AWS. Tags are comma separated, for example: <code>key value, data input</code>.<dl><dt>Important</dt><dd>{{ product_title }} only supports custom tags to Red&#160;Hat OpenShift resources during cluster creation. Once added, the tags cannot be removed or edited.Tags that are added by Red&#160;Hat are required for clusters to stay in compliance with Red&#160;Hat production service level agreements (SLAs). These tags must not be removed.<br><br>{{ product_title }} does not support adding additional tags outside of ROSA cluster-managed resources. These tags can be lost when AWS resources are managed by the ROSA cluster. In these cases, you might need custom solutions or tools to reconcile the tags and keep them intact.</dd></dl></td>
+  <td>Specify a tag that is used on all resources created by {{ product_title }} in AWS. Tags can help you manage, identify, organize, search for, and filter resources within AWS. Tags are comma separated, for example: <code>key value, data input</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>{{ product_title }} only supports custom tags to Red&#160;Hat OpenShift resources during cluster creation. Once added, the tags cannot be removed or edited. Tags that are added by Red&#160;Hat are required for clusters to stay in compliance with Red&#160;Hat production service level agreements (SLAs). These tags must not be removed.<br><br>{{ product_title }} does not support adding additional tags outside of ROSA cluster-managed resources. These tags can be lost when AWS resources are managed by the ROSA cluster. In these cases, you might need custom solutions or tools to reconcile the tags and keep them intact.</dd></dl></td>
 </tr>
 <tr>
   <td><code>Multiple availability zones (optional)</code></td>
@@ -93,7 +93,7 @@ The following table describes the interactive cluster creation mode options:
 </tr>
 <tr>
   <td><code>Install into an existing VPC (optional)</code></td>
-  <td>Install a cluster into an existing AWS VPC. To use this option, your VPC must have 2 subnets for each availability zone that you are installing the cluster into. The default is <code>No</code>.<dl><dt>Warning</dt><dd>You cannot install a {{ product_title }} cluster into an existing VPC that was created by the OpenShift installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.<br><br>To verify whether a VPC was created by the OpenShift installer, check for the <code>owned</code> value on the <code>kubernetes.io/cluster/<infra-id></code> tag. For example, when viewing the tags for the VPC named <code>mycluster-12abc-34def</code>, the <code>kubernetes.io/cluster/mycluster-12abc-34def</code> tag has a value of <code>owned</code>. Therefore, the VPC was created by the installer and must not be modified by the administrator.</dd></dl></td>
+  <td>Install a cluster into an existing AWS VPC. To use this option, your VPC must have 2 subnets for each availability zone that you are installing the cluster into. The default is <code>No</code>.<dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>You cannot install a {{ product_title }} cluster into an existing VPC that was created by the OpenShift installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.<br><br>To verify whether a VPC was created by the OpenShift installer, check for the <code>owned</code> value on the <code>kubernetes.io/cluster/&lt;infra-id&gt;</code> tag. For example, when viewing the tags for the VPC named <code>mycluster-12abc-34def</code>, the <code>kubernetes.io/cluster/mycluster-12abc-34def</code> tag has a value of <code>owned</code>. Therefore, the VPC was created by the installer and must not be modified by the administrator.</dd></dl></td>
 </tr>
 <tr>
   <td><code>Select availability zones (optional)</code></td>
@@ -101,7 +101,7 @@ The following table describes the interactive cluster creation mode options:
 </tr>
 <tr>
   <td><code>Enable customer managed key (optional)</code></td>
-  <td>Enable this option if you are using your own AWS Key Management Service (KMS) key to encrypt the control plane, infrastructure, worker node root volumes, and PVs. Specify the ARN for the KMS key that you added to the account-wide role ARN in the preceding step.<dl><dt>Important</dt><dd>Only persistent volumes (PVs) created from the default storage class are encrypted with this specific key.<br><br>PVs created by using any other storage class are still encrypted, but the PVs are not encrypted with this key unless the storage class is specifically configured to use this key.</dd></dl></td>
+  <td>Enable this option if you are using your own AWS Key Management Service (KMS) key to encrypt the control plane, infrastructure, worker node root volumes, and PVs. Specify the ARN for the KMS key that you added to the account-wide role ARN in the preceding step.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>Only persistent volumes (PVs) created from the default storage class are encrypted with this specific key.<br><br>PVs created by using any other storage class are still encrypted, but the PVs are not encrypted with this key unless the storage class is specifically configured to use this key.</dd></dl></td>
 </tr>
 <tr>
   <td><code>Compute nodes instance type</code></td>
@@ -145,7 +145,7 @@ The following table describes the interactive cluster creation mode options:
 </tr>
 <tr>
   <td><code>Encrypt etcd data (optional)</code></td>
-  <td>Enable this option if your use case only requires etcd key value encryption in addition to the control plane storage encryption that encrypts the etcd volumes by default. With this option, the etcd key values are encrypted but not the keys.<dl><dt>Important</dt><dd>By enabling etcd encryption for the key values in etcd, you will incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Red&#160;Hat recommends that you enable etcd encryption only if you specifically require it for your use case.</dd></dl></td>
+  <td>Enable this option if your use case only requires etcd key value encryption in addition to the control plane storage encryption that encrypts the etcd volumes by default. With this option, the etcd key values are encrypted but not the keys.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>By enabling etcd encryption for the key values in etcd, you will incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Red&#160;Hat recommends that you enable etcd encryption only if you specifically require it for your use case.</dd></dl></td>
 </tr>
 <tr>
   <td><code>Disable workload monitoring (optional)</code></td>

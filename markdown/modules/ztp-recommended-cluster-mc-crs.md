@@ -5,7 +5,7 @@ Check that the `MachineConfig` custom resources (CRs) that you extract from the 
 
 The following `MachineConfig` CRs from the `ztp-site-generate` container configure the cluster host:
 
-***Recommended {{ ztp }} MachineConfig CRs***
+**Recommended {{ ztp }} MachineConfig CRs**
 
 <table>
 <thead>

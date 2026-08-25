@@ -6,7 +6,7 @@ In the following procedure, the virtual service routes all traffic to `v1` of ea
 **Procedure**
 
 1.  Apply the virtual services.
-    ```bash
+    ```bash {minja}
     $ oc apply -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/networking/virtual-service-all-v1.yaml
     ```
 1.  To verify that you applied the virtual services, display the defined routes with the following command:

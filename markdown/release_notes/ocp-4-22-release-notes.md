@@ -3,11 +3,11 @@ title: OpenShift Container Platform 4.22 release notes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ product_title }} {{ product_version }} release notes {id="ocp-4-22-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ product_title }} {{ product_version }} release notes {id="ocp-4-22-release-notes"}
 {%- set context = "release-notes" %}
 
-{{ product_title }} ([RHEA-2026:0449](https://access.redhat.com/errata/RHEA-2026:0449)) is now available. Before working with this release, familiarize yourself with the new features, changes, and known issues that pertain to {{ product_title }} {{ product_version }} are included in this topic.
+{{ product_title }} ([RHEA-2026:0449](https://access.redhat.com/errata/RHEA-2026:0449)) is now available. Before working with this release, familiarize yourself with the new features, changes, and known issues that pertain to {{ product_title }} {{ product_version }} are included in this topic. {._abstract}
 
 Red&#160;Hat {{ product_title }} provides developers and IT organizations with a hybrid cloud application platform for deploying both new and existing applications on secure, scalable resources with minimal configuration and management. {{ product_title }} supports a wide selection of programming languages and frameworks, such as Java, JavaScript, Python, Ruby, and PHP.
 

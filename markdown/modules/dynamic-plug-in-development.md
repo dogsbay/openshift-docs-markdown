@@ -16,8 +16,8 @@ You can run the plugin using a local development environment. The {{ product_tit
 *   You must have 
 {%- if not (openshift_rosa_hcp or openshift_rosa) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa_hcp or openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa_hcp or openshift_rosa %}
 a {{ product_title }} 
 {%- endif %}
 cluster running.

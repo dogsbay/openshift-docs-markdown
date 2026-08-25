@@ -33,7 +33,7 @@ When you create a storage class, you set parameters that affect the dynamic prov
         :::note
 
         Virtual machines use data volumes based on local PVs, which reside on specific nodes. When the system prepares a disk image for the virtual machine, the scheduler might not place the virtual machine on the node where it pinned the local storage PV.
-       \
+        +
         To solve this problem, use the Kubernetes pod scheduler to bind the persistent volume claim (PVC) to a PV on the correct node. Setting the `volumeBindingMode` parameter of the `StorageClass` to `WaitForFirstConsumer` delays PV binding and provisioning until you create a pod that uses the PVC.
         
         :::

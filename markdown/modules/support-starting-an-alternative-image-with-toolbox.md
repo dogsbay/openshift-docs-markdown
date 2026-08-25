@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Starting an alternative image with `toolbox` {id="starting-an-alternative-image-with-toolbox_{{ context }}"}
 
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 By default, running the `toolbox` command starts a container with the `registry.redhat.io/rhel9/support-tools:latest` image. {._abstract}
 
 
@@ -53,6 +53,6 @@ By default, running the `toolbox` command starts a container with the `quay.io/f
 
     :::note
 
-    If an existing `toolbox` pod is already running, the `toolbox` command outputs ’toolbox-' already exists. Trying to start...`. To avoid issues with `sosreport` plugins, remove the running toolbox container with `podman rm toolbox-` and then spawn a new toolbox container. 
+    If an existing `toolbox` pod is already running, the `toolbox` command outputs `'toolbox-' already exists. Trying to start...`. To avoid issues with `sosreport` plugins, remove the running toolbox container with `podman rm toolbox-` and then spawn a new toolbox container. 
     
     :::

@@ -10,7 +10,7 @@ If you have previously installed {{ kueue_name }}, you must manually upgrade you
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Operators** -> **Installed Operators**, then select **{{ kueue_name }}** from the list.
+1.  In the {{ product_title }} web console, click **Operators** → **Installed Operators**, then select **{{ kueue_name }}** from the list.
 1.  From the **Actions** drop-down menu, select **Uninstall Operator**.
 1.  The **Uninstall Operator?** dialog box opens. Click **Uninstall**.
 
@@ -25,11 +25,11 @@ If you have previously installed {{ kueue_name }}, you must manually upgrade you
     
     :::
 
-1.  In the {{ product_title }} web console, click **Operators** -> **OperatorHub**.
+1.  In the {{ product_title }} web console, click **Operators** → **OperatorHub**.
 1.  Choose **{{ kueue_op }}** from the list of available Operators, and click **Install**.
 
 **Verification**
 
-1.  Go to **Operators** -> **Installed Operators**.
+1.  Go to **Operators** → **Installed Operators**.
 1.  Confirm that the **{{ kueue_op }}** is listed with **Status** as **Succeeded**.
 1.  Confirm that the version shown under the Operator name in the list is the latest version.

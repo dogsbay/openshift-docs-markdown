@@ -1,5 +1,5 @@
 ---
-title: "NodeMetrics []"
+title: "NodeMetrics [metrics.k8s.io/v1beta1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -38,7 +38,7 @@ The following API endpoints are available:
 
 *   `/apis/metrics.k8s.io/v1beta1/nodes`
     *   `GET`: list objects of kind NodeMetrics
-*   `/apis/metrics.k8s.io/v1beta1/nodes/{{ name }}`
+*   `/apis/metrics.k8s.io/v1beta1/nodes/{{ name }}`{minja}
     *   `GET`: read the specified NodeMetrics
 
 ### /apis/metrics.k8s.io/v1beta1/nodes {id="_apismetricsk8siov1beta1nodes"}

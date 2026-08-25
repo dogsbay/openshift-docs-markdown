@@ -30,7 +30,7 @@ Custom CA certificates affect how Ignition fetches remote resources, but they do
         -o rhcos-<version>-custom-initramfs.x86_64.img
     ```
 1.  Use the customized `initramfs` file in your PXE configuration. Add the `ignition.firstboot` and `ignition.platform.id=metal` kernel arguments if they are not already present.
-{%- endif %}
+{% endif %}
 
     :::important
 

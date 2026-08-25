@@ -3,12 +3,12 @@ title: Managing images overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Managing images overview {id="managing-images-overview"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "managing-images-overview" %}
 
-Image streams in {{ product_title }} provide a layer of abstraction over container images, enabling automation for your CI/CD pipelines. You can configure builds and deployments to watch image streams and automatically trigger new builds or deployments when images are updated.
+Image streams in {{ product_title }} provide a layer of abstraction over container images, enabling automation for your CI/CD pipelines. You can configure builds and deployments to watch image streams and automatically trigger new builds or deployments when images are updated. {._abstract}
 
 The main advantage of using image streams is the automation they enable for your continuous integration and continuous delivery (CI/CD) pipelines. For example:
 

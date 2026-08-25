@@ -5,7 +5,7 @@ You can use the web console to install the OpenShift Update Service Operator. {.
 
 **Procedure**
 
-1.  In the web console, click **Ecosystem** -> **Software Catalog**.
+1.  In the web console, click **Ecosystem** → **Software Catalog**.
 
     :::note
 
@@ -22,5 +22,5 @@ You can use the web console to install the OpenShift Update Service Operator. {.
         *   The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.
         *   The **Manual** strategy requires a cluster administrator to approve the Operator update.
     1.  Click **Install**.
-1.  Go to **Ecosystem** -> **Installed Operators** and verify that the OpenShift Update Service Operator is installed.
+1.  Go to **Ecosystem** → **Installed Operators** and verify that the OpenShift Update Service Operator is installed.
 1.  Ensure that **OpenShift Update Service** is listed in the correct namespace with a **Status** of **Succeeded**.

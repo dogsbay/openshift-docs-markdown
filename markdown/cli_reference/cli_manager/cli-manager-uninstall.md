@@ -3,8 +3,8 @@ title: "Uninstalling the {{ cli_manager }}"
 ---
 
 {%- set _content_type = "ASSEMBLY" %}
-# Uninstalling the {{ cli_manager }} {id="cli-manager-uninstall"}
 {% include "./_attributes/common-attributes.md" %}
+# Uninstalling the {{ cli_manager }} {id="cli-manager-uninstall"}
 {%- set context = "cli-manager-uninstall" %}
 
 You can remove the {{ cli_manager }} from {{ product_title }} by uninstalling the {{ cli_manager }} and removing its related resources.

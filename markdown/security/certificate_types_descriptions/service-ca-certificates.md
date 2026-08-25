@@ -3,11 +3,11 @@ title: Service CA certificates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Service CA certificates {id="cert-types-service-ca-certificates"}
 {% include "./_attributes/common-attributes.md" %}
+# Service CA certificates {id="cert-types-service-ca-certificates"}
 {%- set context = "cert-types-service-ca-certificates" %}
 
-Review service certificate authority (CA) certificate rotation, expiration, and Operator-managed signing in {{ product_title }} to plan maintenance for internal service serving certificates.
+Review service certificate authority (CA) certificate rotation, expiration, and Operator-managed signing in {{ product_title }} to plan maintenance for internal service serving certificates. {._abstract}
 
 ## Purpose {id="cert-types-service-ca-certificates-purpose_{{ context }}"}
 
@@ -71,7 +71,7 @@ Services that use service CA certificates include:
 
 This is not a comprehensive list.
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Manually rotate the service CA certificate](/security/certificates/service-serving-certificate#manually-rotate-service-ca_service-serving-certificate)
 *   [Securing service traffic using service serving certificate secrets](/security/certificates/service-serving-certificate#add-service-serving)

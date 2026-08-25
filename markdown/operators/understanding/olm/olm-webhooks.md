@@ -3,13 +3,13 @@ title: Webhook management in Operator Lifecycle Manager
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Webhook management in Operator Lifecycle Manager {id="olm-webhooks"}
 {% include "./_attributes/common-attributes.md" %}
+# Webhook management in Operator Lifecycle Manager {id="olm-webhooks"}
 {%- set context = "olm-webhooks" %}
 
-Webhooks allow Operator authors to intercept, modify, and accept or reject resources before they are saved to the object store and handled by the Operator controller. Operator Lifecycle Manager (OLM) can manage the lifecycle of these webhooks when they are shipped alongside your Operator.
+Webhooks allow Operator authors to intercept, modify, and accept or reject resources before they are saved to the object store and handled by the Operator controller. Operator Lifecycle Manager (OLM) can manage the lifecycle of these webhooks when they are shipped alongside your Operator. {._abstract}
 
-## Additional resources {id="olm-webhooks-additional-resources"}
+## Additional resources {id="olm-webhooks-additional-resources" ._additional-resources}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   [Types of webhook admission plugins](/architecture/admission-plug-ins#admission-webhook-types_admission-plug-ins)

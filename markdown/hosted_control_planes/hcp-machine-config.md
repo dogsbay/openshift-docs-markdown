@@ -7,7 +7,7 @@ title: "Handling machine configuration for {{ hcp }}"
 # Handling machine configuration for {{ hcp }} {id="hcp-machine-config"}
 {%- set context = "hcp-machine-config" %}
 
-In a standalone {{ product_title }} cluster, a machine config pool manages a set of nodes. You can handle a machine configuration by using the `MachineConfigPool` custom resource (CR).
+In a standalone {{ product_title }} cluster, a machine config pool manages a set of nodes. You can handle a machine configuration by using the `MachineConfigPool` custom resource (CR). {._abstract}
 
 
 :::tip
@@ -40,6 +40,7 @@ In {{ product_title }} 4.18 or later, the default container runtime for worker n
 {% leveloffset +1 %}{% include "./modules/hcp-configure-ntp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 *   [Creating a host inventory by using the command line interface](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli)
@@ -47,6 +48,7 @@ In {{ product_title }} 4.18 or later, the default container runtime for worker n
 {% leveloffset +1 %}{% include "./modules/scale-up-down-autoscaler-hcp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Scaling the NodePool object for a hosted cluster (bare-metal platforms)](/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm)
 *   [Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)](/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm)

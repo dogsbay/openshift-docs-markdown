@@ -3,11 +3,11 @@ title: Using container registries securely
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using container registries securely {id="security-registries"}
 {% include "./_attributes/common-attributes.md" %}
+# Using container registries securely {id="security-registries"}
 {%- set context = "security-registries" %}
 
-You can use container registries to store container images, making the images accessible to others either publicly or privately.
+You can use container registries to store container images, making the images accessible to others either publicly or privately. {._abstract}
 
 By using a registry, you can include multiple versions of an image, optionally limit access to images based on different authentication methods, or make them publicly available.
 
@@ -22,6 +22,7 @@ From a security standpoint, some registries provide special features to check an
 {% leveloffset +1 %}{% include "./modules/security-registries-ecosystem.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Red Hat Product Security Center](https://access.redhat.com/security/)
 *   [Red Hat Security Advisories](https://access.redhat.com/security/security-updates/#/security-advisories)
@@ -29,6 +30,7 @@ From a security standpoint, some registries provide special features to check an
 {% leveloffset +1 %}{% include "./modules/security-registries-openshift.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Integrated {{ product_registry }}](/registry/index#registry-overview)
 

@@ -11,19 +11,19 @@ Use the following procedure to install {{ microshift_short }} from an RPM packag
 **Procedure**
 
 1.  For all lifecycles, enable the repository for your release by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager repos \
         --enable rhocp-{{ ocp_version }}-for-rhel-{{ op_system_version_major }}-$(uname -m)-rpms \
         --enable fast-datapath-for-rhel-{{ op_system_version_major }}-$(uname -m)-rpms
     ```
 1.  For extended support (EUS) releases, also enable the EUS repositories by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager repos \
         --enable rhel-{{ op_system_version_major }}-for-$(uname -m)-appstream-eus-rpms \
         --enable rhel-{{ op_system_version_major }}-for-$(uname -m)-baseos-eus-rpms
     ```
 1.  Avoid unintended future updates into an unsupported configuration by locking your operating system version with the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager release --set={{ op_system_version }}
     ```
 1.  Install {{ microshift_short }} by running the following command:

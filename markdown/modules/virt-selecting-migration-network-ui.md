@@ -10,7 +10,7 @@ You can select a dedicated network for live migration by using the {{ product_ti
 
 **Procedure**
 
-1.  Go to **Virtualization -> Settings** in the {{ product_title }} web console.
+1.  Go to **Virtualization → Settings** in the {{ product_title }} web console.
 1.  On the **Cluster** tab, click **General settiings**.
 1.  Click **Live Migration**.
 1.  Select the network from the **Live migration network** list.

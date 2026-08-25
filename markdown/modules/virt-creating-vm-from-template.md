@@ -11,8 +11,8 @@ You can choose between two views in the web console to create the VM:
 **Procedure**
 
 1.  From the {{ product_title }} web console, choose your view:
-    *   For a virtualization-focused view, select **Administrator** -> **Virtualization** -> **Catalog**.
-    *   For a general view, navigate to **Virtualization** -> **Catalog**.
+    *   For a virtualization-focused view, select **Administrator** → **Virtualization** → **Catalog**.
+    *   For a general view, navigate to **Virtualization** → **Catalog**.
 1.  Click the **Template catalog** tab.
 1.  Click the **Boot source available** checkbox to filter templates with boot sources. The catalog displays the default templates.
 1.  Heterogeneous clusters only: To filter the search results to show templates associated with a particular architecture, click **Architecture Type** .

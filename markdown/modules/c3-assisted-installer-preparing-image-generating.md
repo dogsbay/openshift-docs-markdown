@@ -16,7 +16,7 @@ Create a cluster and download the discovery ISO image. {._abstract}
     | **Cluster name** | Specify the name of your {{ product_title }} cluster. This name is the same name you used to create the resource via the Terraform scripts. The name must be between 1-54 characters. It can use lowercase alphanumeric characters or hyphen (-), but must start and end with a lowercase letter or a number. |
     | **Base domain** | Specify the base domain of the cluster. This is the value used for the `zone_dns` variables in the Terraform scripts that run on {{ oci_edge }}. Make a note of the value. |
     | **OpenShift version** | Select **OpenShift 4.16.20**. If it is not immediately visible, scroll to the end of the dropdown menu, select **Show all available versions**, and type the version in the search box. |
-    | **Integrate with external partner platforms** | Select **Oracle Cloud Infrastructure**. After you specify this value, the **Include custom manifests** checkbox is selected by default and the **Custom manifests** page is added to the wizard. |
+    | **Integrate with external partner platforms** | Select **Oracle Cloud Infrastructure**.<br>After you specify this value, the **Include custom manifests** checkbox is selected by default and the **Custom manifests** page is added to the wizard. |
 1.  Leave the default settings for the remaining fields, and click **Next**.
 1.  On the **Operators** page, click **Next**.
 1.  On the **Host Discovery** page, click **Add hosts** and complete the following steps:

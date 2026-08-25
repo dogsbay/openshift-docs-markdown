@@ -3,13 +3,13 @@ title: Control plane architecture
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Control plane architecture {id="control-plane"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Control plane architecture {id="control-plane"}
 {%- set context = "control-plane" %}
 
 You can use a _control plane_, which is composed of control plane machines, to manage the {{ product_title }} cluster.
-The control plane machines manage workloads on the compute machines, which are also known as worker machines.
+The control plane machines manage workloads on the compute machines, which are also known as worker machines. {._abstract}
 
 The cluster manages all upgrades to the machines by the actions of the Cluster Version Operator (CVO),
 {%- if not (openshift_dedicated or openshift_rosa) %}
@@ -29,7 +29,9 @@ and a set of individual Operators.
 {% endif %}
 
 {% if not (openshift_dedicated or openshift_rosa) %}
+
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding configuration drift detection](/machine_configuration/index#machine-config-drift-detection_machine-config-overview)
 {% endif %}
@@ -42,6 +44,7 @@ and a set of individual Operators.
 {% leveloffset +2 %}{% include "./modules/arch-cluster-operators.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Cluster Operators reference](/operators/operator-reference#operator-reference)
 {% endif %}
@@ -49,6 +52,7 @@ and a set of individual Operators.
 {% leveloffset +2 %}{% include "./modules/arch-olm-operators.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Operator Lifecycle Manager (OLM) concepts and resources](/operators/understanding/olm/olm-understanding-olm#olm-understanding-olm)
 *   [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
@@ -63,8 +67,10 @@ and a set of individual Operators.
 {% endif %}
 
 {%- if not (openshift_dedicated or openshift_rosa) %}
+
 **Additional resources**
+{._additional-resources}
 
 *   [Recommended etcd practices](/etcd/etcd-practices#recommended-etcd-practices)
 *   [Backing up etcd](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)
-{% endif %}
+{%- endif %}

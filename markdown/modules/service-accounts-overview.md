@@ -17,7 +17,7 @@ For example, service accounts can allow:
 *   Replication controllers to make API calls to create or delete pods
 *   Applications inside containers to make API calls for discovery purposes
 *   External applications to make API calls for monitoring or integration purposes
-{% endif %}
+{%- endif %}
 
 Each service account’s user name is derived from its project and name:
 

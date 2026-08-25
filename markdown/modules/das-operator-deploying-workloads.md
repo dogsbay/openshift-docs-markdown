@@ -6,7 +6,7 @@ You can deploy workloads that request GPU slices managed by the Dynamic Accelera
 **Prerequisites**
 
 *   You have MIG supported GPU hardware available in your cluster.
-*   The NVIDIA GPU Operator is installed and the `ClusterPolicy` shows a ***Ready*** state.
+*   The NVIDIA GPU Operator is installed and the `ClusterPolicy` shows a **Ready** state.
 *   You have installed the DAS Operator.
 
 **Procedure**

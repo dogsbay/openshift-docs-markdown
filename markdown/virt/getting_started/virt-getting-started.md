@@ -3,11 +3,11 @@ title: "Getting started with {{ VirtProductName }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Getting started with {{ VirtProductName }} {id="virt-getting-started"}
 {% include "./_attributes/common-attributes.md" %}
+# Getting started with {{ VirtProductName }} {id="virt-getting-started"}
 {%- set context = "virt-getting-started" %}
 
-Explore {{ VirtProductName }} by taking guided tours, installing the Operator, and configuring a basic environment. Learn how to migrate from your current platform, then learn more about how to deploy and manage virtual machines (VMs) by following the additional resources links.
+Explore {{ VirtProductName }} by taking guided tours, installing the Operator, and configuring a basic environment. Learn how to migrate from your current platform, then learn more about how to deploy and manage virtual machines (VMs) by following the additional resources links. {._abstract}
 
 
 :::note
@@ -26,7 +26,7 @@ Cluster configuration procedures require `cluster-admin` privileges.
 {% leveloffset +1 %}{% include "./modules/about-self-service-tsr.md" %}{% endleveloffset %}
 {% endif %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Plan your bare-metal cluster for {{ VirtProductName }}](/installing/installing_bare_metal/preparing-to-install-on-bare-metal#virt-planning-bare-metal-cluster-for-ocp-virt_preparing-to-install-on-bare-metal)
 {%- endif %}
@@ -49,11 +49,11 @@ Cluster configuration procedures require `cluster-admin` privileges.
 *   [Clone a persistent volume claim (PVC)](/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#virt-creating-vms-by-cloning-pvcs)
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Connect a VM to a Linux bridge network](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
-{% endif %}
-{% if not openshift_dedicated %}
+{%- endif %}
+{%- if not openshift_dedicated %}
 *   [Connect a VM to an Open Virtual Network (OVN)-Kubernetes secondary network](/virt/vm_networking/virt-connecting-vm-to-ovn-secondary-network#virt-connecting-vm-to-ovn-secondary-network)
-{% endif %}
-{% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Connect a VM to a Single Root I/O Virtualization (SR-IOV) network](/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
 {%- endif %}
 *   [Connect to a virtual machine console](/virt/managing_vms/virt-accessing-vm-consoles#virt-accessing-vm-consoles)
@@ -69,7 +69,7 @@ Cluster configuration procedures require `cluster-admin` privileges.
 *   [Learn about live migration](/virt/live_migration/virt-about-live-migration#virt-about-live-migration)
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Back up and restore VMs by using the {{ oadp_first }}](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#installing-oadp-kubevirt)
-{% endif %}
-{% if not openshift_dedicated %}
+{%- endif %}
+{%- if not openshift_dedicated %}
 *   [Tune and scale your cluster](https://access.redhat.com/articles/6994974)
-{% endif %}
+{%- endif %}

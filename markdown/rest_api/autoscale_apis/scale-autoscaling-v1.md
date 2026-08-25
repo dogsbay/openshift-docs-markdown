@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. |
 | `spec` | `object` | ScaleSpec describes the attributes of a scale subresource. |
 | `status` | `object` | ScaleStatus represents the current status of a scale subresource. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -36,6 +37,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `replicas` | `integer` | replicas is the desired number of instances for the scaled object. |
+
 ### .status {id="_status"}
 
 Description
@@ -58,19 +60,19 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/scale`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/deployments/{{ name }}/scale`{minja}
     *   `GET`: read scale of the specified Deployment
     *   `PATCH`: partially update scale of the specified Deployment
     *   `PUT`: replace scale of the specified Deployment
-*   `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/scale`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/replicasets/{{ name }}/scale`{minja}
     *   `GET`: read scale of the specified ReplicaSet
     *   `PATCH`: partially update scale of the specified ReplicaSet
     *   `PUT`: replace scale of the specified ReplicaSet
-*   `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/scale`
+*   `/apis/apps/v1/namespaces/{{ namespace }}/statefulsets/{{ name }}/scale`{minja}
     *   `GET`: read scale of the specified StatefulSet
     *   `PATCH`: partially update scale of the specified StatefulSet
     *   `PUT`: replace scale of the specified StatefulSet
-*   `/api/v1/namespaces/{{ namespace }}/replicationcontrollers/{{ name }}/scale`
+*   `/api/v1/namespaces/{{ namespace }}/replicationcontrollers/{{ name }}/scale`{minja}
     *   `GET`: read scale of the specified ReplicationController
     *   `PATCH`: partially update scale of the specified ReplicationController
     *   `PUT`: replace scale of the specified ReplicationController

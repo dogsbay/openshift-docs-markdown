@@ -20,7 +20,7 @@ You can encrypt your virtual machines with the following process. You can drain 
 
 1.  Drain and cordon one of your nodes. For detailed instructions on node management, see "Working with Nodes".
 1.  Shutdown the virtual machine associated with that node in the vCenter interface.
-1.  Right-click the virtual machine in the vCenter interface and select **VM Policies** -> **Edit VM Storage Policies**.
+1.  Right-click the virtual machine in the vCenter interface and select **VM Policies** → **Edit VM Storage Policies**.
 1.  Select an encrypted storage policy and select **OK**.
 1.  Start the encrypted virtual machine in the vCenter interface.
 1.  Repeat steps 1-5 for all nodes that you want to encrypt.

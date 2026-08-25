@@ -175,4 +175,4 @@ Before you install {{ product_title }} on {{ ibm_cloud_bm }} infrastructure, pre
     $ vim pull-secret.txt
     ```
 
-    Go to [Install on Bare Metal with user-provisioned infrastructure](https://console.redhat.com/openshift/install/metal/user-provisioned). In step 1, click ***Download pull secret***. Paste the contents into the `pull-secret.txt` file and save the contents in the `kni` user’s home directory.
+    Go to [Install on Bare Metal with user-provisioned infrastructure](https://console.redhat.com/openshift/install/metal/user-provisioned). In step 1, click **Download pull secret**. Paste the contents into the `pull-secret.txt` file and save the contents in the `kni` user’s home directory.

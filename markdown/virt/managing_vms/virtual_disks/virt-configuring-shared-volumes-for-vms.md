@@ -3,11 +3,11 @@ title: Configure shared volumes for virtual machines
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configure shared volumes for virtual machines {id="virt-configuring-shared-volumes-for-vms"}
 {% include "./_attributes/common-attributes.md" %}
+# Configure shared volumes for virtual machines {id="virt-configuring-shared-volumes-for-vms"}
 {%- set context = "virt-configuring-shared-volumes-for-vms" %}
 
-Enable high-availability scenarios like Windows Failover Clustering by configuring shared disks to allow multiple virtual machines to access the same storage volume. A shared disk’s volume must be block mode.
+Enable high-availability scenarios like Windows Failover Clustering by configuring shared disks to allow multiple virtual machines to access the same storage volume. A shared disk’s volume must be block mode. {._abstract}
 
 You configure disk sharing by exposing the storage as either of these types:
 
@@ -30,6 +30,6 @@ In addition to configuring disk sharing, you can also set an error policy for ea
 
 {% leveloffset +2 %}{% include "./modules/virt-enabling-persistentreservation-feature-gate-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Persistent reservation helper protocol](https://www.qemu.org/docs/master/interop/pr-helper.html)
 *   [Failover Clustering in Windows Server and Azure Stack HCI](https://learn.microsoft.com/en-us/windows-server/failover-clustering/failover-clustering-overview)

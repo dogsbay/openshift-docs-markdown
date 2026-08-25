@@ -3,8 +3,8 @@ title: Installing tkn
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing tkn {id="installing-tkn"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing tkn {id="installing-tkn"}
 {%- set context = "installing-tkn" %}
 
 Use the CLI tool to manage {{ pipelines_title }} from a terminal. The following section describes how to install the CLI tool on different platforms.
@@ -33,7 +33,7 @@ Both the archives and the RPMs contain the following executables:
 
 :::
 
-{%- if not (openshift_rosa or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_dedicated) %}
 {%- set FeatureName = "Running {{ pipelines_title }} with the `opc` CLI tool" %}
 {% include "./snippets/technology-preview.md" %}
 

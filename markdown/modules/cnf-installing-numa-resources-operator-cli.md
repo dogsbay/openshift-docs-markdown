@@ -42,7 +42,7 @@ To enable NUMA-aware scheduling for high-performance workloads, install the NUMA
         ```
 1.  Create the subscription for the NUMA Resources Operator:
     1.  Save the following YAML in the `nro-sub.yaml` file:
-        ```yaml
+        ```yaml {minja}
         apiVersion: operators.coreos.com/v1alpha1
         kind: Subscription
         metadata:
@@ -66,7 +66,7 @@ To enable NUMA-aware scheduling for high-performance workloads, install the NUMA
     ```terminal
     $ oc get csv -n openshift-numaresources
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME                             DISPLAY                  VERSION   REPLACES   PHASE
     numaresources-operator.v{{ product_version }}.2   numaresources-operator   {{ product_version }}.2               Succeeded
     ```

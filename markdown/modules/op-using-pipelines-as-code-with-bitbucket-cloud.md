@@ -83,14 +83,14 @@ If your organization or project uses Bitbucket Cloud as the preferred platform, 
             1.  {{ pac }} assumes that the secret referred in the `git_provider.secret` spec and the `Repository` CR is in the same namespace.
 
 
-                :::note
+            :::note
 
-                *   The `tkn pac create` and `tkn pac bootstrap` commands are not supported on Bitbucket Cloud.
-                *   Bitbucket Cloud does not support webhook secrets. To secure the payload and prevent hijacking of the CI, {{ pac }} fetches the list of Bitbucket Cloud IP addresses and ensures that the webhook receptions come only from those IP addresses.
-                    *   To disable the default behavior, set the `bitbucket-cloud-check-source-ip` parameter to `false` in the `TektonConfig` custom resource, in the `pipelinesAsCode.settings` spec.
-                    *   To allow additional safe IP addresses or networks, add them as comma separated values to the `bitbucket-cloud-additional-source-ip` parameter in the `TektonConfig` custom resource, in the `pipelinesAsCode.settings` spec.
-                
-                :::
+            *   The `tkn pac create` and `tkn pac bootstrap` commands are not supported on Bitbucket Cloud.
+            *   Bitbucket Cloud does not support webhook secrets. To secure the payload and prevent hijacking of the CI, {{ pac }} fetches the list of Bitbucket Cloud IP addresses and ensures that the webhook receptions come only from those IP addresses.
+                *   To disable the default behavior, set the `bitbucket-cloud-check-source-ip` parameter to `false` in the `TektonConfig` custom resource, in the `pipelinesAsCode.settings` spec.
+                *   To allow additional safe IP addresses or networks, add them as comma separated values to the `bitbucket-cloud-additional-source-ip` parameter in the `TektonConfig` custom resource, in the `pipelinesAsCode.settings` spec.
+            
+            :::
 
 1.  Optional: For an existing `Repository` CR, add multiple Bitbucket Cloud Webhook secrets or provide a substitute for a deleted secret.
     1.  Add a webhook using the `tkn pac` CLI tool.

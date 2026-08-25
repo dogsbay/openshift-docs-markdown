@@ -5,20 +5,23 @@ Review the platform support matrix to choose the installation method that meets 
 
 **Supported platforms**
 
-| Platform | Installer-provisioned infrastructure ^[1]^ | User-provisioned infrastructure ^[2]^ | Agent-based Installer | Assisted Installer | {{ aws_first }} |
-| --- | --- | --- | --- | --- | --- |
-| X | X |  |  | Bare metal | X |
-| X | X | X | External |  |  |
-| X | X | {{ gcp_first }} | X | X |  |
-|  | {{ ibm_cloud_name }} Classic | X |  |  |  |
-| {{ ibm_cloud_name }} Virtual Private Cloud (VPC) | X |  |  |  | {{ ibm_power_name }} |
-|  | X | X | X | {{ ibm_z_name }} or {{ ibm_linuxone_name }} |  |
-| X | X | X | {{ azure_first }} | X | X |
-|  |  | {{ azure_full }} Stack Hub | X | X |  |
-|  | None |  |  | X | X |
-| Nutanix | X |  |  | X | {{ oci_first_no_rt }} |
-|  |  | X | X | {{ rh_openstack_first }} ^[3]^ | X |
-| X |  |  | {{ vmw_first }} | X | X |
+| Platform | Installer-provisioned infrastructure <sup>[1]</sup> | User-provisioned infrastructure <sup>[2]</sup> | Agent-based Installer | Assisted Installer |
+| --- | --- | --- | --- | --- |
+| {{ aws_first }} | X | X |  |  |
+| Bare metal | X | X | X | X |
+| External |  |  | X | X |
+| {{ gcp_first }} | X | X |  |  |
+| {{ ibm_cloud_name }} Classic | X |  |  |  |
+| {{ ibm_cloud_name }} Virtual Private Cloud (VPC) | X |  |  |  |
+| {{ ibm_power_name }} |  | X | X | X |
+| {{ ibm_z_name }} or {{ ibm_linuxone_name }} |  | X | X | X |
+| {{ azure_first }} | X | X |  |  |
+| {{ azure_full }} Stack Hub | X | X |  |  |
+| None |  |  | X | X |
+| Nutanix | X |  |  | X |
+| {{ oci_first_no_rt }} |  |  | X | X |
+| {{ rh_openstack_first }} <sup>[3]</sup> | X | X |  |  |
+| {{ vmw_first }} | X | X | X | X |
 
 The following list describes three different deployment pathways and their prerequisites:
 

@@ -11,7 +11,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Sample YAML for a compute machine set custom resource on {{ aws_short }} {id="machineset-yaml-aws_{{ context }}"}
 
-{%- if not edge %}
+{% if not edge %}
 The sample YAML defines a compute machine set that runs in the `us-east-1a` {{ aws_first }} Local Zone and creates nodes that are labeled with
 {% endif %}
 {% if not (infra or edge) %}
@@ -21,17 +21,17 @@ The sample YAML defines a compute machine set that runs in the `us-east-1a` {{ a
 `node-role.kubernetes.io/infra: ""`.
 {% endif %}
 {% if edge %}
-This sample YAML defines a compute machine set that runs in the `us-east-1-nyc-1a` {{ aws_short }} zone and creates nodes that are labeled with `node-role.kubernetes.io/edge: ""`.
-{% endif %} {._abstract}
+This sample YAML defines a compute machine set that runs in the `us-east-1-nyc-1a` {{ aws_short }} zone and creates nodes that are labeled with `node-role.kubernetes.io/edge: ""`. {._abstract}
+{% endif %}
 
 {% if infra or edge %}
 The sample YAML specifies a taint to prevent user workloads from being scheduled on
-{% if infra %}
+{%- if infra %}
 `infra`
-{% endif %}
-{% if edge %}
+{%- endif %}
+{%- if edge %}
 `edge`
-{% endif %}
+{%- endif %}
 nodes.
 
 After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
@@ -48,18 +48,18 @@ If you want to reference the sample YAML file in the context of Wavelength Zones
 {% endif %}
 
 In this sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-{% if not (infra or edge) %}
+{%- if not (infra or edge) %}
 `<role>`
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `<infra>`
-{% endif %}
-{% if edge %}
+{%- endif %}
+{%- if edge %}
 `<edge>`
-{% endif %}
+{%- endif %}
 is the node label to add.
 
-```yaml
+```yaml {minja}
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
@@ -67,11 +67,11 @@ metadata:
     machine.openshift.io/cluster-api-cluster: <infrastructure_id>
 {%- if not (infra or edge) %}
   name: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
   name: <infrastructure_id>-infra-<zone>
-{% endif %}
-{% if edge %}
+{%- endif %}
+{%- if edge %}
   name: <infrastructure_id>-edge-<zone>
 {%- endif %}
   namespace: openshift-machine-api
@@ -82,11 +82,11 @@ spec:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
 {%- if edge %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-edge-<zone>
-{% endif %}
-{% if not (infra or edge) %}
+{%- endif %}
+{%- if not (infra or edge) %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<zone>
 {%- endif %}
   template:
@@ -97,13 +97,13 @@ spec:
         machine.openshift.io/cluster-api-machine-role: <role>
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
         machine.openshift.io/cluster-api-machine-role: infra
         machine.openshift.io/cluster-api-machine-type: infra
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra-<zone>
-{% endif %}
-{% if edge %}
+{%- endif %}
+{%- if edge %}
         machine.openshift.io/cluster-api-machine-role: edge
         machine.openshift.io/cluster-api-machine-type: edge
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-edge-<zone>
@@ -113,11 +113,11 @@ spec:
         labels:
 {%- if not (infra or edge) %}
           node-role.kubernetes.io/<role>: ""
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           node-role.kubernetes.io/infra: ""
-{% endif %}
-{% if edge %}
+{%- endif %}
+{%- if edge %}
           machine.openshift.io/parent-zone-name: <value_of_ParentZoneName>
           machine.openshift.io/zone-group: <value_of_GroupName>
           machine.openshift.io/zone-type: <value_of_ZoneType>
@@ -158,8 +158,8 @@ spec:
               - name: tag:Name
                 values:
                   - <infrastructure_id>-subnet-private-<zone>
-                    {% endif %}
-                    {% if edge %}
+{%- endif %}
+{%- if edge %}
               id: <value_of_PublicSubnetIds>
           publicIp: true
 {%- endif %}
@@ -174,10 +174,10 @@ spec:
       taints:
 {%- if infra %}
         - key: node-role.kubernetes.io/infra
-          {% endif %}
-          {% if edge %}
+{%- endif %}
+{%- if edge %}
         - key: node-role.kubernetes.io/edge
-          {%- endif %}
+{%- endif %}
           effect: NoSchedule
 {%- endif %}
 ```
@@ -189,7 +189,7 @@ where:
     ```terminal
     $ oc get -o jsonpath='{.status.infrastructureName}{"\n"}' infrastructure cluster
     ```
-{%- if not (infra or edge) %}
+{% if not (infra or edge) %}
 
 `<infrastructure_id>-<role>-<zone>`
 :   Specifies the infrastructure ID, role node label, and zone.
@@ -230,8 +230,8 @@ where:
 
 `<infrastructure_id>-subnet-private-<zone>`
 :   Specifies the infrastructure ID and zone.
-{% endif %}
-{% if edge %}
+{%- endif %}
+{%- if edge %}
 
 `<value_of_PublicSubnetIds>`
 :   Indicates the ID of the public subnet that you created in {{ aws_short }} {{ zone_type }}. You created this public subnet ID when you finished the procedure for "Creating a subnet in an {{ aws_short }} zone".
@@ -268,11 +268,11 @@ Machine sets running on {{ aws_short }} support non-guaranteed Spot Instances. Y
 {% endif %}
 
 {% if context == "creating-infrastructure-machinesets" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}
 {% if context == "cluster-tasks" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set edge = false -%}
+{%- set edge = "" -%}
 {% endif %}

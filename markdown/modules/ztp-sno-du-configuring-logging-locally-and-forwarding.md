@@ -5,7 +5,7 @@
 The following custom resources (CRs) are required. {._abstract}
 
 <a name="ztp-clusterlogforwarder-yaml"></a>
-```yaml title="Recommended ClusterLogForwarder.yaml"
+```yaml title="Recommended ClusterLogForwarder.yaml" {minja}
 {% include "./snippets/ztp_ClusterLogForwarder.yaml" %}
 ```
 
@@ -18,31 +18,31 @@ Set the `spec.outputs.kafka.url` field to the URL of the Kafka server where the 
 
 
 <a name="ztp-clusterlogns-yaml"></a>
-```yaml title="Recommended ClusterLogNS.yaml"
+```yaml title="Recommended ClusterLogNS.yaml" {minja}
 {% include "./snippets/ztp_ClusterLogNS.yaml" %}
 ```
 
 <a name="ztp-clusterlogopergroup-yaml"></a>
-```yaml title="Recommended ClusterLogOperGroup.yaml"
+```yaml title="Recommended ClusterLogOperGroup.yaml" {minja}
 {% include "./snippets/ztp_ClusterLogOperGroup.yaml" %}
 ```
 
 <a name="ztp-clusterlogserviceaccount-yaml"></a>
-```yaml title="Recommended ClusterLogServiceAccount.yaml"
+```yaml title="Recommended ClusterLogServiceAccount.yaml" {minja}
 {% include "./snippets/ztp_ClusterLogServiceAccount.yaml" %}
 ```
 
 <a name="ztp-clusterlogserviceaccountauditbinding-yaml"></a>
-```yaml title="Recommended ClusterLogServiceAccountAuditBinding.yaml"
+```yaml title="Recommended ClusterLogServiceAccountAuditBinding.yaml" {minja}
 {% include "./snippets/ztp_ClusterLogServiceAccountAuditBinding.yaml" %}
 ```
 
 <a name="ztp-clusterlogserviceaccountinfrastructurebinding-yaml"></a>
-```yaml title="Recommended ClusterLogServiceAccountInfrastructureBinding.yaml"
+```yaml title="Recommended ClusterLogServiceAccountInfrastructureBinding.yaml" {minja}
 {% include "./snippets/ztp_ClusterLogServiceAccountInfrastructureBinding.yaml" %}
 ```
 
 <a name="ztp-clusterlogsubscription-yaml"></a>
-```yaml title="Recommended ClusterLogSubscription.yaml"
+```yaml title="Recommended ClusterLogSubscription.yaml" {minja}
 {% include "./snippets/ztp_ClusterLogSubscription.yaml" %}
 ```

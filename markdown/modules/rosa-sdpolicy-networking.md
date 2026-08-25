@@ -51,8 +51,8 @@ All cluster ingress traffic will go through the defined load balancers. Direct a
 Pod egress traffic control through `EgressNetworkPolicy` objects can be used to prevent or limit outbound traffic in
 {%- if openshift_rosa_hcp %}
 ROSA with hosted control planes (HCP).
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}.
 
 Public outbound traffic from the control plane and infrastructure nodes is required and necessary to maintain cluster image security and cluster monitoring. This requires that the `0.0.0.0/0` route belongs only to the Internet gateway; it is not possible to route this range over private connections.
@@ -63,7 +63,7 @@ Customers can determine their public static IP addresses by running a pod on the
 ```terminal
 $ oc run ip-lookup --image=busybox -i -t --restart=Never --rm -- /bin/sh -c "/bin/nslookup -type=a myip.opendns.com resolver1.opendns.com | grep -E 'Address: [0-9.]+'"
 ```
-{% endif %}
+{%- endif %}
 
 ## Cloud network configuration {id="rosa-sdpolicy-cloud-network-config_{{ context }}"}
 {{ Product_title }} allows for the configuration of a private network connection through AWS-managed technologies, such as:
@@ -91,5 +91,5 @@ Network verification checks run automatically when you deploy a ROSA cluster int
 You can also run the network verification checks manually to validate the configuration for an existing cluster.
 
 {% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = false -%}
+{%- set rosa_with_hcp = "" -%}
 {% endif %}

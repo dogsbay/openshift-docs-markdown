@@ -3,11 +3,11 @@ title: Installing a cluster on Azure Stack Hub using ARM templates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Azure Stack Hub using ARM templates {id="installing-azure-stack-hub-user-infra"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Azure Stack Hub using ARM templates {id="installing-azure-stack-hub-user-infra"}
 {%- set context = "installing-azure-stack-hub-user-infra" %}
 
-You can install a cluster on Microsoft Azure Stack Hub by using infrastructure that you provide.
+You can install a cluster on Microsoft Azure Stack Hub by using infrastructure that you provide. {._abstract}
 
 Several Azure Resource Manager (ARM) templates are provided to assist in completing these steps or to help model your own. See "Azure Resource Manager templates overview".
 
@@ -24,18 +24,21 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-stack-hub-user-infra-config-project.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Resolve reserved resource name errors (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)
 
 {% leveloffset +2 %}{% include "./modules/installation-azure-limits.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
 {% leveloffset +2 %}{% include "./modules/installation-azure-stack-hub-network-config.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Azure Stack Hub datacenter DNS integration (Microsoft documentation)](https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-dns?view=azs-2102)
 *   [Example for creating DNS zones](/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installation-azure-create-dns-zones_installing-azure-stack-hub-user-infra)
@@ -47,6 +50,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-azure-service-principal.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the Cloud Credential Operator](/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)
 
@@ -55,6 +59,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure Stack Hub](/installing/installing_azure_stack_hub/installation-config-parameters-ash#installation-config-parameters-ash)
 
@@ -67,6 +72,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-generate-k8s-manifest-ignition.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Manually manage cloud credentials](/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)
 
@@ -75,6 +81,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-create-resource-group-and-identity.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Azure resource groups (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups)
 
@@ -83,6 +90,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-create-dns-zones.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Example for creating DNS zones](/installing/installing_azure_stack_hub/upi/installing-azure-stack-hub-user-infra#installation-azure-create-dns-zones_installing-azure-stack-hub-user-infra)
 
@@ -123,9 +131,10 @@ The steps for performing a user-provisioned infrastructure installation are prov
 {% leveloffset +1 %}{% include "./modules/installation-azure-user-infra-completing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Azure Resource Manager templates overview (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)

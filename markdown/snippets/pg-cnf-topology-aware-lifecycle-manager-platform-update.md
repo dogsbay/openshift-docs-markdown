@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-```yaml
+```yaml {minja}
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:

@@ -24,7 +24,7 @@ A/AAAA records are used for name resolution and PTR records are used for reverse
 
 Installer-provisioned installation includes functionality that uses cluster membership information to generate A/AAAA records. This resolves the node names to their IP addresses. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.
 
-***Required DNS records***
+**Required DNS records**
 
 <table>
 <thead>
@@ -37,13 +37,13 @@ Installer-provisioned installation includes functionality that uses cluster memb
 <tbody>
 <tr>
   <td>Kubernetes API</td>
-  <td><code>api.<cluster_name>.<base_domain>.</code></td>
+  <td><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
   <td>An A/AAAA record and a PTR record identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>
 </tr>
 <tr>
   <td>Routes</td>
-  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>
-  <td>The wildcard A/AAAA record refers to the application ingress load balancer. The application ingress load balancer targets the nodes that run the Ingress Controller pods. The Ingress Controller pods run on the worker nodes by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the {{ product_title }} console.</td>
+  <td><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code></td>
+  <td>The wildcard A/AAAA record refers to the application ingress load balancer. The application ingress load balancer targets the nodes that run the Ingress Controller pods. The Ingress Controller pods run on the worker nodes by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> is used as a wildcard route to the {{ product_title }} console.</td>
 </tr>
 </tbody>
 </table>

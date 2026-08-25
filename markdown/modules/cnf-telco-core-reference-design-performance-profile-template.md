@@ -3,6 +3,6 @@
 
 You can use a pre-configured design performance profile that configures node-level performance settings for {{ product_title }} clusters on commodity hardware to host telco core workloads. {._abstract}
 
-```yaml title="Telco core reference design performance profile"
+```yaml title="Telco core reference design performance profile" {minja}
 {% include "./snippets/telco-core_PerformanceProfile.yaml" %}
 ```

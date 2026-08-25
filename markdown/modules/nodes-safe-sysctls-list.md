@@ -31,7 +31,7 @@ You cannot manually enable interface-specific unsafe sysctls.
 
 {{ product_title }} adds the following system-wide and interface-specific safe sysctls to an allowed safe list:
 
-***System-wide safe sysctls***
+**System-wide safe sysctls**
 
 <table>
 <thead>
@@ -47,11 +47,11 @@ You cannot manually enable interface-specific unsafe sysctls.
 </tr>
 <tr>
   <td><code>net.ipv4.ip_local_port_range</code></td>
-  <td>Defines the local port range that is used by TCP and UDP to choose the local port. The first number is the first port number, and the second number is the last local port number. If possible, ensure these numbers have different parity, such as one even and one odd value. The numbers must be greater than or equal to <code>ip_unprivileged_port_start</code>. The default values are <code>32768</code> and <code>60999</code> respectively. For more information, see <a href="https://docs.kernel.org/networking/ip-sysctl.html?highlight=ip_local_port_range#ip-variables">ip_local_port_range (Kernel.org documentation)</a>.<br><br><dl><dt>Important</dt><dd>When specifying a range for the <code>net.ipv4.ip_local_port_range</code> sysctl parameter, ensure the range does not overlap with the range you set for the <code>serviceNodePortRange</code> parameter. For more information, see "Configuring the node port service range".</dd></dl></td>
+  <td>Defines the local port range that is used by TCP and UDP to choose the local port. The first number is the first port number, and the second number is the last local port number. If possible, ensure these numbers have different parity, such as one even and one odd value. The numbers must be greater than or equal to <code>ip_unprivileged_port_start</code>. The default values are <code>32768</code> and <code>60999</code> respectively. For more information, see <a href="https://docs.kernel.org/networking/ip-sysctl.html?highlight=ip_local_port_range#ip-variables">ip_local_port_range (Kernel.org documentation)</a>.<br><br><dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>When specifying a range for the <code>net.ipv4.ip_local_port_range</code> sysctl parameter, ensure the range does not overlap with the range you set for the <code>serviceNodePortRange</code> parameter. For more information, see "Configuring the node port service range".</dd></dl></td>
 </tr>
 <tr>
   <td><code>net.ipv4.tcp_syncookies</code></td>
-  <td>When <code>net.ipv4.tcp_syncookies</code> is set, the kernel handles TCP SYN packets normally until the</td>
+  <td>When <code>net.ipv4.tcp_syncookies</code> is set, the kernel handles TCP SYN packets normally until the half-open connection queue is full, at which time, the SYN cookie functionality kicks in. This functionality allows the system to keep accepting valid connections, even if under a denial-of-service attack. For more information, see <a href="https://docs.kernel.org/networking/ip-sysctl.html?highlight=tcp_syncookies#tcp-variables">tcp_syncookies (Kernel.org documentation)</a>.</td>
 </tr>
 <tr>
   <td><code>net.ipv4.ping_group_range</code></td>
@@ -84,7 +84,7 @@ You cannot manually enable interface-specific unsafe sysctls.
 </tbody>
 </table>
 
-***Interface-specific safe sysctls***
+**Interface-specific safe sysctls**
 
 <table>
 <thead>

@@ -7,7 +7,7 @@ title: "Installing an on-premise cluster using the {{ ai_full }}"
 {%- set context = "installing-on-prem-assisted" %}
 # Installing an on-premise cluster using the {{ ai_full }} {id="installing-on-prem-assisted"}
 
-You can install {{ product_title }} on on-premise hardware or on-premise VMs by using the {{ ai_full }} for {{ product_title }}.
+You can install {{ product_title }} on on-premise hardware or on-premise VMs by using the {{ ai_full }} for {{ product_title }}. {._abstract}
 
 The {{ ai_full }} is a user-friendly installation solution offered on the {{ hybrid_console_second }}. The {{ ai_full }} reduces installation complexity, enabling users to deploy and configure {{ product_title }} clusters with minimal manual intervention.
 

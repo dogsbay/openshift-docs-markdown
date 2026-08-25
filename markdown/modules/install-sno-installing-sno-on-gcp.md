@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if not openshift_origin %}
+{% if not openshift_origin %}
 # Installing {{ sno }} on {{ gcp_short }} {id="installing-sno-on-gcp_{{ context }}"}
 
 {% endif %}

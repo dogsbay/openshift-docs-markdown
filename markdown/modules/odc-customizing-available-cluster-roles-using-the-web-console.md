@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Customizing the available cluster roles using the web console {id="odc-customizing-available-cluster-roles-using-the-web-console_{{ context }}"}
 
-In the **Developer** perspective of the web console, the **Project** -> **Project access** page enables a project administrator to grant roles to users in a project. By default, the available cluster roles that can be granted to users in a project are `admin`, `edit`, and `view`. {._abstract}
+In the **Developer** perspective of the web console, the **Project** → **Project access** page enables a project administrator to grant roles to users in a project. By default, the available cluster roles that can be granted to users in a project are `admin`, `edit`, and `view`. {._abstract}
 
 As a cluster administrator, you can define which cluster roles are available in the **Project access** page for all projects cluster-wide. You can specify the available roles by customizing the `spec.customization.projectAccess.availableClusterRoles` object in the `Console` configuration resource.
 
@@ -11,7 +11,7 @@ As a cluster administrator, you can define which cluster roles are available in 
 
 **Procedure**
 
-1.  In the **Administrator** perspective, navigate to **Administration** -> **Cluster settings**.
+1.  In the **Administrator** perspective, navigate to **Administration** → **Cluster settings**.
 1.  Click the **Configuration** tab.
 1.  From the **Configuration resource** list, select **Console `operator.openshift.io`**.
 1.  Navigate to the **YAML** tab to view and edit the YAML code.

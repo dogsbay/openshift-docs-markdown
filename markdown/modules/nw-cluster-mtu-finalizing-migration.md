@@ -45,41 +45,41 @@ Finalize the MTU migration to apply the new maximum transmission unit (MTU) sett
 {% endif %}
 
 {% if not (local_zone or wavelength_zone or post_aws_zones or outposts) %}
-    1.  To get the current MTU for the cluster network, enter the following command:
+1.  To get the current MTU for the cluster network, enter the following command:
+    ```terminal
+    $ oc describe network.config cluster
+    ```
+1.  Get the current MTU for the primary network interface of a node:
+    1.  To list the nodes in your cluster, enter the following command:
         ```terminal
-        $ oc describe network.config cluster
+        $ oc get nodes
         ```
-    1.  Get the current MTU for the primary network interface of a node:
-        1.  To list the nodes in your cluster, enter the following command:
-            ```terminal
-            $ oc get nodes
-            ```
-        1.  To obtain the current MTU setting for the primary network interface on a node, enter the following command:
-            ```terminal
-            $ oc adm node-logs <node> -u ovs-configuration | grep configure-ovs.sh | grep mtu | grep <interface> | head -1
-            ```
+    1.  To obtain the current MTU setting for the primary network interface on a node, enter the following command:
+        ```terminal
+        $ oc adm node-logs <node> -u ovs-configuration | grep configure-ovs.sh | grep mtu | grep <interface> | head -1
+        ```
 
-            where:
+        where:
 
-            `<node>`
-            :   Specifies a node from the output from the previous step.
+        `<node>`
+        :   Specifies a node from the output from the previous step.
 
-            `<interface>`
-            :   Specifies the primary network interface name for the node.
-            ```text title="Example output"
-            ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8051
-            ```
+        `<interface>`
+        :   Specifies the primary network interface name for the node.
+        ```text title="Example output"
+        ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8051
+        ```
 {% endif %}
 
 {% if context == "aws-compute-edge-tasks-local-zone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-tasks-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set post_aws_zones = false -%}
+{%- set post_aws_zones = "" -%}
 {% endif %}
 {% if context == "installing-aws-outposts" %}
-{%- set outposts = false -%}
+{%- set outposts = "" -%}
 {% endif %}

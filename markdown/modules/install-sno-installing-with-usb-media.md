@@ -19,8 +19,8 @@ You can install software using a bootable USB drive that contains an ISO image. 
 
     &lt;path_to_usb>
     :   is the location of the connected USB drive, for example, `/dev/sdb`.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 
     &lt;path_to_iso>
     :   is the relative path to the downloaded ISO file, for example, `fcos-live.iso`.

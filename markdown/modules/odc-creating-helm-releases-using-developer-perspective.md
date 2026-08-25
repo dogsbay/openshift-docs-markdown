@@ -19,6 +19,7 @@ To create Helm releases from the Helm charts provided in the **Developer Catalog
 1.  In the **Developer** perspective, navigate to the **+Add** view and select a project. Then click **Helm Chart** option to see all the Helm Charts in the **Developer Catalog**.
 1.  Select a chart and read the description, README, and other details about the chart.
 1.  Click **Create**.
+
     **Figure 1. Helm charts in developer catalog**
 
     ![odc_helm_chart_devcatalog_new](/_assets/images/odc_helm_chart_devcatalog_new.png)

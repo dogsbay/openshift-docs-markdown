@@ -49,7 +49,6 @@ In {{ product_title }} 4.13, the `stable` channel has been removed. Before upgra
 | 1.1.0 | 0.0.32 TP | 3.5.0 GA |
 | 3.9.4 GA | 2.0.0 GA | NA |
 | NA | NA | 4.7 |
-
 *   `kam` is the {{ gitops_title }} Application Manager command-line interface (CLI).
 *   RH SSO is an abbreviation for Red Hat SSO.
 

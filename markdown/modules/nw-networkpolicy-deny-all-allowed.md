@@ -28,14 +28,14 @@ Without configuring a `NetworkPolicy` custom resource (CR) that allows traffic c
 {%- endif %}
 *   You installed the {{ oc_first }}.
 {%- if not microshift %}
-*   You logged in to the cluster with a user with `{{ role }}` privileges.
+*   You logged in to the cluster with a user with `{{ role }}`{minja} privileges.
 {%- endif %}
 *   You are working in the namespace that the {{ name }} policy applies to.
 
 **Procedure**
 
 1.  Create the following YAML that defines a `deny-by-default` policy to deny ingress from all pods in all namespaces. Save the YAML in the `deny-by-default.yaml` file:
-    {%- if multi %}
+{% if multi %}
     ```yaml
     apiVersion: k8s.cni.cncf.io/v1beta1
     kind: MultiNetworkPolicy
@@ -72,29 +72,35 @@ Without configuring a `NetworkPolicy` custom resource (CR) that allows traffic c
     :   Specifies ingress rules. If not specified, all incoming traffic is dropped to all pods.
 {% endif %}
 {% if not multi %}
-        ```yaml
-        kind: NetworkPolicy
-        apiVersion: networking.k8s.io/v1
-        metadata:
-          name: deny-by-default
-          namespace: my-project
-        spec:
-          podSelector: {}
-          ingress: []
-        ```
-    where:
-    `namespace`:: Specifies the namespace in which to deploy the policy. For example, the `my-project` namespace.
-    `podSelector`:: If this field is empty, the configuration matches all the pods. Therefore, the policy applies to all pods in the `my-project` namespace.
-    `ingress`:: Where `[]` indicates that no `ingress` rules are specified. This causes incoming traffic to be dropped to all pods.
-{% endif %}
+    ```yaml
+    kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: deny-by-default
+      namespace: my-project
+    spec:
+      podSelector: {}
+      ingress: []
+    ```
 
+    where:
+
+    `namespace`
+    :   Specifies the namespace in which to deploy the policy. For example, the `my-project` namespace.
+
+    `podSelector`
+    :   If this field is empty, the configuration matches all the pods. Therefore, the policy applies to all pods in the `my-project` namespace.
+
+    `ingress`
+    :   Where `[]` indicates that no `ingress` rules are specified. This causes incoming traffic to be dropped to all pods.
+{% endif %}
 1.  Apply the policy by entering the following command. Successful output lists the name of the policy object and the `created` status.
     ```terminal
     $ oc apply -f deny-by-default.yaml
     ```
 
 {% if multi %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
-{%- set name = false -%}
-{%- set role = false -%}
+{%- set name = "" -%}
+{%- set role = "" -%}

@@ -9,7 +9,7 @@ The OpenShift CLI is ideal in the following situations:
 *   Scripting {{ product_title }} operations
 {%- if not microshift %}
 *   Managing projects while restricted by bandwidth resources and the web console is unavailable.
-{% endif %}
-{% if microshift %}
+{%- endif %}
+{%- if microshift %}
 *   Managing projects while restricted by bandwidth resources.
-{% endif %}
+{%- endif %}

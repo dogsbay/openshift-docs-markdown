@@ -6,7 +6,7 @@ VMs that are created from this template will be scheduled with dedicated resourc
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Virtualization** -> **Templates** in the side menu.
+1.  In the {{ product_title }} web console, click **Virtualization** → **Templates** in the side menu.
 1.  Select the template that you want to edit to open the **Template details** page.
 1.  On the **Scheduling** tab, click the edit icon beside **Dedicated Resources**.
 1.  Select **Schedule this workload with dedicated resources (guaranteed policy)**.

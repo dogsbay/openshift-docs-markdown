@@ -18,7 +18,7 @@ $ ocm gcp verify wif-config <wif_config_name>|<wif_config_id> (1)
 ```
 1.  Replace `<wif_config_name>` and `<wif_config_id>` with the name and ID of your WIF configuration, respectively.
 
-***Example output***
+**Example output**
 ```terminal
 Error: verification failed with error: missing role 'compute.storageAdmin'.
 Running 'ocm gcp update wif-config' may fix errors related to cloud resource misconfiguration.

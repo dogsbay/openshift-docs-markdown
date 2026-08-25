@@ -45,8 +45,8 @@ Administrators with the `dedicated-admin` role
 can create projects and delegate administrative rights for the project to any member of the user community.
 {%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 Cluster administrators
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 Administrators with the `dedicated-admin` role
 {%- endif %}
 can also allow developers to create their own projects.

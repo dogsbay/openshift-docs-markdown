@@ -27,6 +27,6 @@ If the etcd cluster is degraded, manual intervention might be required. If a sca
 {% endif %}
 
 {% if context == "control-plane" %}
-{%- set rosa_classic = false -%}
-{%- set osd = false -%}
+{%- set rosa_classic = "" -%}
+{%- set osd = "" -%}
 {% endif %}

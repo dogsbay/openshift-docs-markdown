@@ -79,7 +79,7 @@ kubernetes_nmstate_features_applied{name="dhcpv4-custom-hostname"} 1
         :::
 
 1.  If you want to view the metrics in the {{ product_title }} web console as an administrator, complete the following tasks:
-    1.  Click **Observe** -> **Metrics**.
+    1.  Click **Observe** → **Metrics**.
     1.  Enter `kubernetes_nmstate_features_applied` in the **Expression** field.
     1.  Click **Add query** and then **Run queries**.
 1.  To explore the visualized metrics, do any of the following tasks:

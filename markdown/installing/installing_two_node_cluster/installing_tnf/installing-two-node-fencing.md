@@ -3,11 +3,11 @@ title: Preparing to install a two-node OpenShift cluster with fencing
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a two-node OpenShift cluster with fencing {id="installing-two-node-fencing"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a two-node OpenShift cluster with fencing {id="installing-two-node-fencing"}
 {%- set context = "installing-two-node-fencing" %}
 
-A two-node {{ product_title }} cluster with fencing provides high availability (HA) with a reduced hardware footprint. This configuration is designed for distributed or edge environments where deploying a full three-node control plane cluster is not practical.
+A two-node {{ product_title }} cluster with fencing provides high availability (HA) with a reduced hardware footprint. This configuration is designed for distributed or edge environments where deploying a full three-node control plane cluster is not practical. {._abstract}
 
 A two-node cluster does not include compute nodes. The two control plane machines run user workloads in addition to managing the cluster.
 
@@ -50,7 +50,7 @@ The requirement to use RHCOS applies only to user-provisioned infrastructure dep
 
 {% leveloffset +1 %}{% include "./modules/installation-two-node-creating-manifest-custom-br-ex.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Installing RHCOS and starting the {{ product_title }} bootstrap process](/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#creating-machines-bare-metal_installing-bare-metal-network-customizations)
 *   [Creating a manifest file for a customized br-ex bridge](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#creating-manifest-file-customized-br-ex-bridge_ipi-install-installation-workflow)

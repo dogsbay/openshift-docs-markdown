@@ -13,19 +13,19 @@ The following parameters configure are available to configure your {{ gcp_short 
 <tbody>
 <tr>
   <td><code>bucket</code></td>
-  <td>Bucket is the bucket name in which you want to store the registry's data.It is optional and is generated if not provided.</td>
+  <td>Bucket is the bucket name in which you want to store the registry's data. It is optional and is generated if not provided.</td>
 </tr>
 <tr>
   <td><code>region</code></td>
-  <td>Region is the GCS location in which your bucket exists. It is optional and isset based on the installed GCS Region.</td>
+  <td>Region is the GCS location in which your bucket exists. It is optional and is set based on the installed GCS Region.</td>
 </tr>
 <tr>
   <td><code>projectID</code></td>
-  <td>ProjectID is the Project ID of the {{ gcp_short }} project that this bucket should beassociated with. It is optional.</td>
+  <td>ProjectID is the Project ID of the {{ gcp_short }} project that this bucket should be associated with. It is optional.</td>
 </tr>
 <tr>
   <td><code>keyID</code></td>
-  <td>KeyID is the KMS key ID to use for encryption. It is optional becausebuckets are encrypted by default on {{ gcp_short }}. This allows for the use of a customencryption key.</td>
+  <td>KeyID is the KMS key ID to use for encryption. It is optional because buckets are encrypted by default on {{ gcp_short }}. This allows for the use of a custom encryption key.</td>
 </tr>
 </tbody>
 </table>

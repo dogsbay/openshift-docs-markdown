@@ -8,8 +8,9 @@ New in this release
 :   *   No reference design updates in this release
 
 Description
-    :   {{ rh_rhacm }} provides Multi Cluster Engine (MCE) installation and ongoing lifecycle management functionality for deployed clusters.
+:   {{ rh_rhacm }} provides Multi Cluster Engine (MCE) installation and ongoing lifecycle management functionality for deployed clusters.
     You manage cluster configuration and upgrades declaratively by applying `Policy` custom resources (CRs) to clusters during maintenance windows.
+
 
     {{ rh_rhacm }} provides the following functionality:
 
@@ -17,7 +18,9 @@ Description
     *   Configuration, upgrades, and cluster status through the {{ rh_rhacm }} policy controller.
     *   During managed cluster installation, {{ rh_rhacm }} can apply labels to individual nodes as configured through the `ClusterInstance` CR.
 
+
     The recommended method for {{ sno }} cluster installation is the image-based installation approach, available in MCE, using the `ClusterInstance` CR for cluster definition.
+
 
     Image-based upgrade is the recommended method for {{ sno }} cluster upgrade.
 

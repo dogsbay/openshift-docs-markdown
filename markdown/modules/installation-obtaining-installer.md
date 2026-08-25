@@ -23,8 +23,8 @@
 Before you install {{ product_title }}, download the installation file on
 {%- if restricted %}
 the mirror host, so that installation assets exist for deployment in your environment.
-{% endif %}
-{% if not restricted %}
+{%- endif %}
+{%- if not restricted %}
 {% if ibm_z %}
  your provisioning machine.
 {% endif %}
@@ -45,11 +45,12 @@ For more information about private cluster installation requirements, see "Priva
 {% endif %}
 {% if vsphere %}
 
-    :::important
 
-    If you attempt to run the installation program on macOS, a known issue related to the `golang` compiler causes the installation of the {{ product_title }} cluster to fail. For more information about this issue, see the section named "Known Issues" in the _{{ product_title }} {{ product_version }} release notes_ document.
-    
-    :::
+:::important
+
+If you attempt to run the installation program on macOS, a known issue related to the `golang` compiler causes the installation of the {{ product_title }} cluster to fail. For more information about this issue, see the section named "Known Issues" in the _{{ product_title }} {{ product_version }} release notes_ document.
+
+:::
 
 {% endif %}
 {% if not (ibm_z or private or vsphere) %}
@@ -73,7 +74,7 @@ For more information about private cluster installation requirements, see "Priva
 {% endif %}
 {% if openshift_origin %}
 1.  Download the installation program from https://github.com/openshift/okd/releases.
-{%- endif %}
+{% endif %}
 
     :::important
 
@@ -95,33 +96,33 @@ For more information about private cluster installation requirements, see "Priva
     *   Red&#160;Hat Operators are not available.
     *   The Telemetry and {{ insights_operator }}s do not send data to Red&#160;Hat.
     *   Content from the [Red&#160;Hat Ecosystem Catalog Container images](https://catalog.redhat.com/software/containers/explore) registry, such as image streams and Operators, are not available.
-{% endif %}
-{% if not openshift_origin %}
+{%- endif %}
+{%- if not openshift_origin %}
 
-        :::tip
+    :::tip
 
-        Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
-        However, you must have an active subscription to access this page.
-        
-        :::
+    Alternatively, you can retrieve the installation program from the [Red&#160;Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download.
+    However, you must have an active subscription to access this page.
+    
+    :::
 
-{% endif %}
+{%- endif %}
 
 {% if context == "upi-ibm-z-preparing-to-install" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-default" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-network-customizations" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-private" %}
-{%- set private = false -%}
+{%- set private = "" -%}
 {% endif %}
 {% if context == "ipi-vsphere-preparing-to-install" %}
-{%- set vsphere = false -%}
+{%- set vsphere = "" -%}
 {% endif %}

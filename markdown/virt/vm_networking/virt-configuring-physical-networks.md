@@ -7,7 +7,7 @@ title: Configuring physical networks
 # Configuring physical networks {id="configuring-physical-networks"}
 {%- set context = "configuring-physical-networks" %}
 
-As an {{ product_title }} administrator, you can create or configure a physical network in the {{ product_title }} web console without using the node network configuration policy (NNCP) page.
+As an {{ product_title }} administrator, you can create or configure a physical network in the {{ product_title }} web console without using the node network configuration policy (NNCP) page. {._abstract}
 
 
 :::note

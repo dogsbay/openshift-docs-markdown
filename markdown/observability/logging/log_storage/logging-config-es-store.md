@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the Elasticsearch log store {id="logging-config-es-store"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Configuring the Elasticsearch log store {id="logging-config-es-store"}
 {%- set context = "logging-config-es-store" %}
 
 You can use Elasticsearch 6 to store and organize log data.

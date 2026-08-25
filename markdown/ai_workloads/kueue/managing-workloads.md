@@ -7,7 +7,7 @@ title: Managing jobs and workloads
 # Managing jobs and workloads {id="managing-workloads"}
 {%- set context = "managing-workloads" %}
 
-When you create jobs in your cluster, {{ kueue_name }} represents each job as a `Workload` object to track resource requirements, decisions, and statuses.
+When you create jobs in your cluster, {{ kueue_name }} represents each job as a `Workload` object to track resource requirements, decisions, and statuses. {._abstract}
 
 {{ kueue_name }} does not directly manipulate your jobs. Instead, {{ kueue_name }} manages `Workload` objects that represent the resource requirements of a job, and syncs any decisions and statuses between the two objects.
 

@@ -47,5 +47,5 @@ For additional information, see the [Kubernetes documentation](https://kubernete
 
 
 {% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = false -%}
+{%- set rosa_with_hcp = "" -%}
 {% endif %}

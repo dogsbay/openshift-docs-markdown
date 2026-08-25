@@ -4,7 +4,6 @@
 The bootstrap machine `CloudFormation` template creates the temporary {{ aws_first }} resources that the {{ product_title }} bootstrap process requires to initialize the control plane. {._abstract}
 
 ```yaml title="CloudFormation template for the bootstrap machine"
-```yaml
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Bootstrap (EC2 Instance, Security Groups and IAM)
 
@@ -220,5 +219,4 @@ Outputs:
   BootstrapPrivateIp:
     Description: The bootstrap node private IP address.
     Value: !GetAtt BootstrapInstance.PrivateIp
-```
 ```

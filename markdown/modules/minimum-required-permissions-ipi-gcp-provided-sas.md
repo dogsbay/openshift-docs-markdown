@@ -19,19 +19,15 @@ The following roles are required for user-provided service accounts for control 
 :::
 
 
-<details>
-<summary>Required roles	for control plane nodes</summary>
-
+:::details{title="Required roles	for control plane nodes"}
 *   `roles/compute.instanceAdmin`
 *   `roles/compute.networkAdmin`
 *   `roles/compute.securityAdmin`
 *   `roles/storage.admin`
-</details>
+:::
 
-<details>
-<summary>Required roles for compute nodes</summary>
-
+:::details{title="Required roles for compute nodes"}
 *   `roles/compute.viewer`
 *   `roles/storage.admin`
 *   `roles/artifactregistry.reader`
-</details>
+:::

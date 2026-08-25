@@ -42,7 +42,7 @@ Multiple compute nodes can be updated in parallel given workloads are tolerant o
     ```
 
     See "Evacuating pods on nodes" for other options to evacuate pods from a node.
-1.  Shut down the virtual machine (VM) associated with the compute node. Do this in the vSphere client by right-clicking the VM and selecting **Power** -> **Shut Down Guest OS**. Do not shut down the VM using **Power Off** because it might not shut down safely.
+1.  Shut down the virtual machine (VM) associated with the compute node. Do this in the vSphere client by right-clicking the VM and selecting **Power** → **Shut Down Guest OS**. Do not shut down the VM using **Power Off** because it might not shut down safely.
 1.  Update the VM in the vSphere client. Follow [Upgrade the Compatibility of a Virtual Machine Manually](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-60768C2F-72E1-42E0-8A17-CA76849F2950.html) (VMware vSphere documentation).
 1.  Power on the VM associated with the compute node. Do this in the vSphere client by right-clicking the VM and selecting **Power On**.
 1.  Run the following command and wait for the node to report as `Ready`:

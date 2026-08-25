@@ -28,7 +28,7 @@ Type
 
 The following API endpoints are available:
 
-*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/eviction`
+*   `/api/v1/namespaces/{{ namespace }}/pods/{{ name }}/eviction`{minja}
     *   `POST`: create eviction of a Pod
 
 ### /api/v1/namespaces/{{ namespace }}/pods/{{ name }}/eviction {id="_apiv1namespaces_namespace_pods_name_eviction"}

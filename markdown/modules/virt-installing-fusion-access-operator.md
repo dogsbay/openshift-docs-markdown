@@ -10,7 +10,7 @@ You can install the {{ FusionSAN }} Operator from the software catalog in the {{
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Ecosystem** -> **Software Catalog**.
+1.  In the {{ product_title }} web console, navigate to **Ecosystem** → **Software Catalog**.
 1.  In the **Filter by keyword** field, type `Fusion Access for SAN`.
 1.  Select the **{{ FusionSAN }}** tile and click **Install**.
 1.  On the **Install Operator** page, keep the default selections for **Update Channel**, **Version**, and **Installation mode**.
@@ -33,5 +33,5 @@ You can install the {{ FusionSAN }} Operator from the software catalog in the {{
 
 **Verification**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Verify that the {{ FusionSAN }} Operator is displayed.

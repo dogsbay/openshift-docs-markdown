@@ -3,11 +3,11 @@ title: Installing a cluster on vSphere in a disconnected environment
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on vSphere in a disconnected environment {id="installing-restricted-networks-installer-provisioned-vsphere"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on vSphere in a disconnected environment {id="installing-restricted-networks-installer-provisioned-vsphere"}
 {%- set context = "installing-restricted-networks-installer-provisioned-vsphere" %}
 
-In {{ product_title }} {{ product_version }}, you can install a cluster on VMware vSphere infrastructure in a restricted network by creating an internal mirror of the installation release content.
+In {{ product_title }} {{ product_version }}, you can install a cluster on VMware vSphere infrastructure in a restricted network by creating an internal mirror of the installation release content. {._abstract}
 
 ## Prerequisites {id="prerequisites_installing-restricted-networks-installer-provisioned-vsphere"}
 
@@ -46,6 +46,7 @@ In {{ product_title }} {{ product_version }}, you can install a cluster on VMwar
 {% leveloffset +1 %}{% include "./modules/installation-vsphere-regions-zones-host-groups.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Additional VMware vSphere configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-configuration-parameters-additional-vsphere_installation-config-parameters-vsphere)
 *   [Deprecated VMware vSphere configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#deprecated-parameters-vsphere_installation-config-parameters-vsphere)
@@ -55,6 +56,7 @@ In {{ product_title }} {{ product_version }}, you can install a cluster on VMwar
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters](/installing/installing_vsphere/installation-config-parameters-vsphere#installation-config-parameters-vsphere)
 
@@ -85,6 +87,7 @@ In {{ product_title }} {{ product_version }}, you can install a cluster on VMwar
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Preparing to install a cluster using installer-provisioned infrastructure](/installing/installing_vsphere/ipi/ipi-vsphere-preparing-to-install#ipi-vsphere-preparing-to-install)
 *   [{{ product_title }} installation and update processes](/architecture/architecture-installation#architecture-installation)

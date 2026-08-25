@@ -19,8 +19,8 @@ Repository mirroring in {{ product_title }} includes the following attributes:
 *   A particular order of registries is tried when an image pull request is made, with the permanent registry typically being the last one tried.
 {%- if not winc %}
 *   The mirror information you enter is added to the `/etc/containers/registries.conf` file on every node in the {{ product_title }} cluster.
-{% endif %}
-{% if winc %}
+{%- endif %}
+{%- if winc %}
 *   The mirror information you enter is added to the appropriate `hosts.toml` containerd configuration file(s) on every Windows node in the {{ product_title }} cluster.
 {%- endif %}
 *   When a node makes a request for an image from the source repository, it tries each mirrored repository in turn until it finds the requested content. If all mirrors fail, the cluster tries the source repository. If successful, the image is pulled to the node.
@@ -35,7 +35,7 @@ You can set up repository mirroring in the following ways:
     If you did not configure mirroring during {{ product_title }} installation, you can do so postinstallation by using any of the following custom resource (CR) objects:
     *   `ImageDigestMirrorSet` (IDMS). This object allows you to pull images from a mirrored registry by using digest specifications. The IDMS CR enables you to set a fall back policy that allows or stops continued attempts to pull from the source registry if the image pull fails.
     *   `ImageTagMirrorSet` (ITMS). This object allows you to pull images from a mirrored registry by using image tags. The ITMS CR enables you to set a fall back policy that allows or stops continued attempts to pull from the source registry if the image pull fails.
-        {%- if not winc %}
+{%- if not winc %}
     *   `ImageContentSourcePolicy` (ICSP). This object allows you to pull images from a mirrored registry by using digest specifications. The ICSP CR always falls back to the source registry if the mirrors do not work.
 
         :::important
@@ -46,7 +46,7 @@ You can set up repository mirroring in the following ways:
         
         :::
 
-{% endif %}
+{%- endif %}
 
 Each of these custom resource objects identify the following information:
 
@@ -63,16 +63,16 @@ Note the following actions and how they affect node drain behavior:
 
     :::important
 
-{% include "./snippets/node-icsp-no-drain.md" %}
+    {% include "./snippets/node-icsp-no-drain.md" %}
 
     
     :::
 
-{% endif %}
-{% if winc %}
+{%- endif %}
+{%- if winc %}
 *   If you delete an ITMS or IDMS CR object, the MCO drains and reboots the node.
 *   If you modify an ITMS or IDMS CR object, the MCO drains and reboots the node.
-{% endif %}
+{%- endif %}
 
 {% if not winc %}
 For new clusters, you can use IDMS, ITMS, and ICSP CRs objects as needed. However, using IDMS and ITMS is recommended.
@@ -96,5 +96,5 @@ The IDMS and ITMS objects must be created before you can add Windows nodes using
 {% endif %}
 
 {% if context == "enabling-windows-container-workloads" %}
-{%- set winc = false -%}
+{%- set winc = "" -%}
 {% endif %}

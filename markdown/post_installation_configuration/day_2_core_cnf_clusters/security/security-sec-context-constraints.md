@@ -3,12 +3,12 @@ title: Security context constraints
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Security context constraints {id="security-sec-context-constraints"}
 {% include "./_attributes/common-attributes.md" %}
+# Security context constraints {id="security-sec-context-constraints"}
 {%- set context = "security-sec-context-constraints" -%}
 {%- set imagesdir = "images" %}
 
-Similar to the way that RBAC resources control user access, administrators can use security context constraints (SCCs) to control permissions for pods. These permissions determine the actions that a pod can perform and what resources it can access. You can use SCCs to define a set of conditions that a pod must run.
+Similar to the way that RBAC resources control user access, administrators can use security context constraints (SCCs) to control permissions for pods. These permissions determine the actions that a pod can perform and what resources it can access. You can use SCCs to define a set of conditions that a pod must run. {._abstract}
 
 Security context constraints allow an administrator to control the following security constraints:
 

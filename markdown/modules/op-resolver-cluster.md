@@ -18,6 +18,7 @@ When creating a pipeline run, you can specify a remote pipeline from the same cl
         value: [pipeline|task]
     # ...
     ```
+
     **Supported parameters for the cluster resolver**
 
     | Parameter | Description | Example value |
@@ -25,6 +26,7 @@ When creating a pipeline run, you can specify a remote pipeline from the same cl
     | `name` | The name of the resource to fetch. | `some-pipeline` |
     | `namespace` | The namespace in the cluster containing the resource. | `other-namespace` |
     | `kind` | The kind of the resource to fetch. | `pipeline` |
+
 
     If the pipeline or task requires additional parameters, provide these parameters in `params`.
 

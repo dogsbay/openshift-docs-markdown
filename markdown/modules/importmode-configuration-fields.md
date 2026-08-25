@@ -15,7 +15,7 @@ The following table describes the options available for the `--import-mode=` fla
 <tbody>
 <tr>
   <td><strong>Legacy</strong></td>
-  <td>The default option for <code>--import-mode</code>. When specified, the manifest list is discarded, and a single sub-manifest is imported. The platform is chosen in the following order of priority:</td>
+  <td>The default option for <code>--import-mode</code>. When specified, the manifest list is discarded, and a single sub-manifest is imported. The platform is chosen in the following order of priority:<br><br>. Tag annotations . Control plane architecture . Linux/AMD64 . The first manifest in the list</td>
 </tr>
 <tr>
   <td><strong>PreserveOriginal</strong></td>

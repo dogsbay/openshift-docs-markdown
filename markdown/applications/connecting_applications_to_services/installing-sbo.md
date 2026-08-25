@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing Service Binding Operator {id="installing-sbo"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/servicebinding-document-attributes.md" %}
+# Installing Service Binding Operator {id="installing-sbo"}
 {%- set context = "installing-sbo" %}
 
 This guide walks cluster administrators through the process of installing the {{ servicebinding_title }} to an {{ product_title }} cluster. {._abstract}
@@ -13,7 +13,7 @@ You can install {{ servicebinding_title }} on {{ product_title }} 4.7 and later.
 *   You have access to an {{ product_title }} cluster using an account with `cluster-admin` permissions.
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   Your cluster has the [Marketplace capability](/installing/overview/cluster-capabilities#operator-marketplace_cluster-capabilities) enabled or the Red Hat Operator catalog source configured manually.
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/op-installing-sbo-operator-using-the-web-console.md" %}{% endleveloffset %}
 

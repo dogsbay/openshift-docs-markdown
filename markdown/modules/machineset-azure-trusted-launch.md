@@ -19,7 +19,7 @@ Some feature combinations result in an invalid configuration.
 
 **UEFI feature combination compatibility**
 
-| Secure Boot^[1]^ | vTPM^[2]^ | Valid configuration |
+| Secure Boot<sup>[1]</sup> | vTPM<sup>[2]</sup> | Valid configuration |
 | --- | --- | --- |
 | Enabled | Enabled | Yes |
 | Enabled | Disabled | Yes |
@@ -29,6 +29,7 @@ Some feature combinations result in an invalid configuration.
 | Disabled | Disabled | No |
 | Omitted | Disabled | No |
 | Omitted | Omitted | No |
+
 1.  Using the `secureBoot` field.
 1.  Using the `virtualizedTrustedPlatformModule` field.
 
@@ -38,15 +39,15 @@ For more information about related features and functionality, see the {{ azure_
 
 1.  In a text editor, open the YAML file for an existing machine set or create a new one.
 1.  Edit the following section under the `providerSpec` field to provide a valid configuration:
-    ```yaml title="Sample valid configuration with UEFI Secure Boot and vTPM enabled"
-{%- if not cpmso %}
+    ```yaml title="Sample valid configuration with UEFI Secure Boot and vTPM enabled" {minja}
+    {% if not cpmso %}
     apiVersion: machine.openshift.io/v1beta1
     kind: MachineSet
-{% endif %}
-{% if cpmso %}
+    {% endif %}
+    {% if cpmso %}
     apiVersion: machine.openshift.io/v1
     kind: ControlPlaneMachineSet
-{%- endif %}
+    {%- endif %}
     # ...
     spec:
       template:
@@ -83,5 +84,5 @@ For more information about related features and functionality, see the {{ azure_
 *   On the {{ azure_full }} portal, review the details for a machine deployed by the machine set and verify that the trusted launch options match the values that you configured.
 
 {% if context == "cpmso-supported-features-azure" %}
-{%- set cpmso = false -%}
+{%- set cpmso = "" -%}
 {% endif %}

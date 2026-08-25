@@ -13,7 +13,7 @@ You can perform a platform and an Operator update at the same time. {._abstract}
 
 **Procedure**
 
-1.  Create the `{{ policy_gen_cr }}` CR for the updates by following the steps described in the "Performing a platform update" and "Performing an Operator update" sections.
+1.  Create the `{{ policy_gen_cr }}`{minja} CR for the updates by following the steps described in the "Performing a platform update" and "Performing an Operator update" sections.
 1.  Apply the prep work for the platform and the Operator update.
     1.  Save the content of the `ClusterGroupUpgrade` CR with the policies for platform update preparation work, catalog source updates, and target clusters to the `cgu-platform-operator-upgrade-prep.yml` file, for example:
         ```yaml

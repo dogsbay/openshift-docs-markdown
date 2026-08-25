@@ -1,5 +1,5 @@
 ---
-title: "OAuthClient []"
+title: "OAuthClient [oauth.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -22,7 +22,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `accessTokenInactivityTimeoutSeconds` | `integer` | accessTokenInactivityTimeoutSeconds overrides the default token inactivity timeout for tokens granted to this client. The value represents the maximum amount of time that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. The user will need to acquire a new token to regain access once a token times out. This value needs to be set only if the default set in configuration is not appropriate for this client. Valid values are: - 0: Tokens for this client never time out - X: Tokens time out if there is no activity for X seconds The current minimum allowed value for X is 300 (5 minutes) WARNING: existing tokens' timeout will not be affected (lowered) by changing this value |
+| `accessTokenInactivityTimeoutSeconds` | `integer` | accessTokenInactivityTimeoutSeconds overrides the default token inactivity timeout for tokens granted to this client. The value represents the maximum amount of time that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. The user will need to acquire a new token to regain access once a token times out. This value needs to be set only if the default set in configuration is not appropriate for this client. Valid values are: - 0: Tokens for this client never time out - X: Tokens time out if there is no activity for X seconds The current minimum allowed value for X is 300 (5 minutes)<br>WARNING: existing tokens' timeout will not be affected (lowered) by changing this value |
 | `accessTokenMaxAgeSeconds` | `integer` | accessTokenMaxAgeSeconds overrides the default access token max age for tokens granted to this client. 0 means no expiration. |
 | `additionalSecrets` | `array (string)` | additionalSecrets holds other secrets that may be used to identify the client.  This is useful for rotation and for service account token validation |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
@@ -34,6 +34,7 @@ Type
 | `scopeRestrictions` | `array` | scopeRestrictions describes which scopes this client can request.  Each requested scope is checked against each restriction.  If any restriction matches, then the scope is allowed. If no restriction matches, then the scope is denied. |
 | `scopeRestrictions[]` | `object` | ScopeRestriction describe one restriction on scopes.  Exactly one option must be non-nil. |
 | `secret` | `string` | secret is the unique secret associated with a client |
+
 ### .scopeRestrictions {id="_scoperestrictions"}
 
 Description
@@ -56,6 +57,7 @@ Type
 | --- | --- | --- |
 | `clusterRole` | `object` | ClusterRoleScopeRestriction describes restrictions on cluster role scopes |
 | `literals` | `array (string)` | ExactValues means the scope has to match a particular set of strings exactly |
+
 ### .scopeRestrictions[].clusterRole {id="_scoperestrictionsclusterrole"}
 
 Description
@@ -87,12 +89,12 @@ The following API endpoints are available:
     *   `POST`: create an OAuthClient
 *   `/apis/oauth.openshift.io/v1/watch/oauthclients`
     *   `GET`: watch individual changes to a list of OAuthClient. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/oauth.openshift.io/v1/oauthclients/{{ name }}`
+*   `/apis/oauth.openshift.io/v1/oauthclients/{{ name }}`{minja}
     *   `DELETE`: delete an OAuthClient
     *   `GET`: read the specified OAuthClient
     *   `PATCH`: partially update the specified OAuthClient
     *   `PUT`: replace the specified OAuthClient
-*   `/apis/oauth.openshift.io/v1/watch/oauthclients/{{ name }}`
+*   `/apis/oauth.openshift.io/v1/watch/oauthclients/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind OAuthClient. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/oauth.openshift.io/v1/oauthclients {id="_apisoauthopenshiftiov1oauthclients"}

@@ -1,5 +1,5 @@
 ---
-title: "PreprovisioningImage []"
+title: "PreprovisioningImage [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PreprovisioningImageSpec defines the desired state of PreprovisioningImage. |
 | `status` | `object` | PreprovisioningImageStatus defines the observed state of PreprovisioningImage. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -38,6 +39,7 @@ Type
 | `acceptFormats` | `array (string)` | acceptFormats is a list of acceptable image formats. |
 | `architecture` | `string` | architecture is the processor architecture for which to build the image. |
 | `networkDataName` | `string` | networkDataName is the name of a Secret in the local namespace that contains network data to build in to the image. |
+
 ### .status {id="_status"}
 
 Description
@@ -57,6 +59,7 @@ Type
 | `imageUrl` | `string` | imageUrl is the URL from which the built image can be downloaded. |
 | `kernelUrl` | `string` | kernelUrl is the URL from which the kernel of the image can be downloaded. Only makes sense for initrd images. |
 | `networkData` | `object` | networkData is a reference to the version of the Secret containing the network data used to build the image. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -91,6 +94,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.networkData {id="_statusnetworkdata"}
 
 Description
@@ -112,16 +116,16 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/preprovisioningimages`
     *   `GET`: list objects of kind PreprovisioningImage
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages`{minja}
     *   `DELETE`: delete collection of PreprovisioningImage
     *   `GET`: list objects of kind PreprovisioningImage
     *   `POST`: create a PreprovisioningImage
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages/{{ name }}`{minja}
     *   `DELETE`: delete a PreprovisioningImage
     *   `GET`: read the specified PreprovisioningImage
     *   `PATCH`: partially update the specified PreprovisioningImage
     *   `PUT`: replace the specified PreprovisioningImage
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages/{{ name }}/status`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/preprovisioningimages/{{ name }}/status`{minja}
     *   `GET`: read status of the specified PreprovisioningImage
     *   `PATCH`: partially update status of the specified PreprovisioningImage
     *   `PUT`: replace status of the specified PreprovisioningImage

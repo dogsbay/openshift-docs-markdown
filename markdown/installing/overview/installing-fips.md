@@ -3,11 +3,11 @@ title: Support for FIPS cryptography
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Support for FIPS cryptography {id="installing-fips"}
 {% include "./_attributes/common-attributes.md" %}
+# Support for FIPS cryptography {id="installing-fips"}
 {%- set context = "installing-fips" %}
 
-You can install an {{ product_title }} cluster in FIPS mode.
+You can install an {{ product_title }} cluster in FIPS mode. {._abstract}
 
 {{ product_title }} is designed for FIPS. When running {{ op_system_base_full }} or {{ op_system_first }} booted in FIPS mode, {{ product_title }} core components use the {{ op_system_base }} cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
 
@@ -29,7 +29,7 @@ Because FIPS must be enabled before the operating system that your cluster uses 
 
 {% leveloffset +1 %}{% include "./modules/installation-obtaining-fips-installer-oc.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Cryptographic Module Validation Program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)
 *   [Compliance Activities and Government Standards](https://access.redhat.com/articles/2918071#fips-140-2-and-fips-140-3-2)
@@ -41,12 +41,14 @@ Because FIPS must be enabled before the operating system that your cluster uses 
 {% leveloffset +1 %}{% include "./modules/installation-about-fips-validation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [RHEL core crypto components](https://access.redhat.com/articles/3655361)
 
 {% leveloffset +1 %}{% include "./modules/installation-about-fips-components.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Encrypt the etcd data](/etcd/etcd-encrypt#etcd-encrypt)
 *   [Customizing nodes](/installing/install_config/installing-customizing#installing-customizing)
@@ -54,5 +56,6 @@ Because FIPS must be enabled before the operating system that your cluster uses 
 {% leveloffset +1 %}{% include "./modules/installing-fips-mode.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Encrypting etcd data](/etcd/etcd-encrypt#etcd-encrypt)

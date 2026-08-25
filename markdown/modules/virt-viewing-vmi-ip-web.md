@@ -13,6 +13,6 @@ You must install the QEMU guest agent on a VM to view the IP address of a second
 
 **Procedure**
 
-1.  In the {{ product_title }} console, click **Virtualization** -> **VirtualMachines** from the side menu.
+1.  In the {{ product_title }} console, click **Virtualization** → **VirtualMachines** from the side menu.
 1.  Select a VM to open the **VirtualMachine details** page.
 1.  Click the **Details** tab to view the IP address.

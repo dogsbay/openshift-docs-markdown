@@ -18,12 +18,12 @@
         *   ManagedOpenShift-ControlPlane-Role-Policy
         *   ManagedOpenShift-Worker-Role-Policy
         *   ManagedOpenShift-Support-Role-Policy
-        *   ManagedOpenShift-openshift-ingress-operator-cloud-credentials ^[1]^
-        *   ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent ^[1]^
-        *   ManagedOpenShift-openshift-cloud-network-config-controller-cloud ^[1]^
-        *   ManagedOpenShift-openshift-machine-api-aws-cloud-credentials ^[1]^
-        *   ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede ^[1]^
-        *   ManagedOpenShift-openshift-image-registry-installer-cloud-creden ^[1]^
+        *   ManagedOpenShift-openshift-ingress-operator-cloud-credentials <sup>[1]</sup>
+        *   ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent <sup>[1]</sup>
+        *   ManagedOpenShift-openshift-cloud-network-config-controller-cloud <sup>[1]</sup>
+        *   ManagedOpenShift-openshift-machine-api-aws-cloud-credentials <sup>[1]</sup>
+        *   ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede <sup>[1]</sup>
+        *   ManagedOpenShift-openshift-image-registry-installer-cloud-creden <sup>[1]</sup>
             1.  This policy is used by the cluster Operator roles, listed below. The Operator roles are created in a second step because they are dependent on an existing cluster name and cannot be created at the same time as the account-wide roles.
     *   The Operator roles are:
         *   &lt;cluster-name\>-xxxx-openshift-cluster-csi-drivers-ebs-cloud-credent

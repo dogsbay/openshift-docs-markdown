@@ -3,11 +3,11 @@ title: Configuring the Application-Aware Quota (AAQ) Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the Application-Aware Quota (AAQ) Operator {id="virt-understanding-aaq-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the Application-Aware Quota (AAQ) Operator {id="virt-understanding-aaq-operator"}
 {%- set context = "virt-understanding-aaq-operator" %}
 
-You can use the Application-Aware Quota (AAQ) Operator to customize and manage resource quotas for individual components in an {{ product_title }} cluster.
+You can use the Application-Aware Quota (AAQ) Operator to customize and manage resource quotas for individual components in an {{ product_title }} cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-about-aaq-operator.md" %}{% endleveloffset %}
 
@@ -15,7 +15,7 @@ You can use the Application-Aware Quota (AAQ) Operator to customize and manage r
 
 {% leveloffset +1 %}{% include "./modules/virt-configuring-aaq-operator.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Resource quotas per project](/applications/quotas/quotas-setting-per-project#quotas-setting-per-project)
 *   [Resource quotas across multiple projects](/applications/quotas/quotas-setting-across-multiple-projects#quotas-setting-across-multiple-projects)

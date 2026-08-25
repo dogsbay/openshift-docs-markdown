@@ -10,7 +10,7 @@ The connection configuration process updates operator statuses and control plane
 **Procedure**
 
 1.  Check that the configuration process completed successfully:
-    1.  In the OpenShift Container Platform Administrator perspective, navigate to **Home -> Overview**.
+    1.  In the OpenShift Container Platform Administrator perspective, navigate to **Home → Overview**.
     1.  Under **Status** click **Operators**. Wait for all operator statuses to change from  **Progressing** to **All succeeded**.  A **Failed** status indicates that the configuration failed.
     1.  Under **Status**, click **Control Plane**. Wait for the response rate of all Control Pane components to return to 100%. A **Failed** control plane component indicates that the configuration failed.
 
@@ -50,4 +50,4 @@ The connection configuration process updates operator statuses and control plane
          volumeMode: Filesystem
         ```
 
-        If you are unable to create a `PersistentVolumeClaims` object, you can troubleshoot by navigating to **Storage** -> **PersistentVolumeClaims** in the **Administrator** perspective of the {{ product_title }} web console.
+        If you are unable to create a `PersistentVolumeClaims` object, you can troubleshoot by navigating to **Storage** → **PersistentVolumeClaims** in the **Administrator** perspective of the {{ product_title }} web console.

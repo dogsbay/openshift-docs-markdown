@@ -15,12 +15,12 @@ You can configure an {{ product_title }} cluster to run Data Plane Development K
 1.  Map your compute nodes topology to determine which Non-Uniform Memory Access (NUMA) CPUs are isolated for DPDK applications and which ones are reserved for the operating system (OS).
 1.  If your {{ product_title }} cluster uses separate control plane and compute nodes for high-availability:
     1.  Label a subset of the compute nodes with a custom role; for example, `worker-dpdk`:
-        {%- if not openshift_rosa %}
+{% if not openshift_rosa %}
         ```terminal
         $ oc label node <node_name> node-role.kubernetes.io/worker-dpdk=""
         ```
-{%- endif %}
-{%- if openshift_rosa %}
+{% endif %}
+{% if openshift_rosa %}
         ```terminal
         $ rosa edit machinepool --cluster=<cluster_name> <machinepool_ID> node-role.kubernetes.io/worker-dpdk=""
         ```
@@ -85,7 +85,7 @@ You can configure an {{ product_title }} cluster to run Data Plane Development K
     $ oc get performanceprofiles.performance.openshift.io profile-1 -o=jsonpath='{.status.runtimeClass}{"\n"}'
     ```
 1.  Set the previously obtained `RuntimeClass` name as the default container runtime class for the `virt-launcher` pods by editing the `HyperConverged` custom resource (CR):
-    ```terminal
+    ```terminal {minja}
     $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
         --type='json' -p='[{"op": "add", "path": "/spec/defaultRuntimeClass", "value":"<runtimeclass-name>"}]'
     ```
@@ -97,7 +97,7 @@ You can configure an {{ product_title }} cluster to run Data Plane Development K
     :::
 
 1.  If your DPDK-enabled compute nodes use Simultaneous multithreading (SMT), enable the `AlignCPUs` enabler by editing the `HyperConverged` CR:
-    ```terminal
+    ```terminal {minja}
     $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \
         --type='json' -p='[{"op": "replace", "path": "/spec/featureGates/alignCPUs", "value": true}]'
     ```

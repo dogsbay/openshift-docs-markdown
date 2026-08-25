@@ -7,7 +7,7 @@ title: "Uninstalling {{ VirtProductName }}"
 # Uninstalling {{ VirtProductName }} {id="uninstalling-virt"}
 {%- set context = "uninstalling-virt" %}
 
-You can uninstall {{ VirtProductName }} by using the web console or the command-line interface (CLI) to delete {{ VirtProductName }} workloads, the Operator, and its resources.
+You can uninstall {{ VirtProductName }} by using the web console or the command-line interface (CLI) to delete {{ VirtProductName }} workloads, the Operator, and its resources. {._abstract}
 
 To uninstall {{ VirtProductName }}, perform the following tasks:
 
@@ -26,7 +26,7 @@ To uninstall {{ VirtProductName }}, perform the following tasks:
 {% leveloffset +1 %}{% include "./modules/virt-deleting-virt-crds-web.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/virt-deleting-virt-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Deleting the `HyperConverged` custom resource](/virt/install/uninstalling-virt#virt-deleting-deployment-custom-resource_uninstalling-virt)
 *   [Deleting Operators from a cluster using the web console](/virt/install/uninstalling-virt#olm-deleting-operators-from-a-cluster-using-web-console_uninstalling-virt)
 *   [Deleting a namespace using the web console](/virt/install/uninstalling-virt#deleting-a-namespace-using-the-web-console_uninstalling-virt)

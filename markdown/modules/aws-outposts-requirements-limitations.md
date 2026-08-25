@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # AWS Outposts on {{ product_title }} requirements and limitations {id="aws-outposts-requirements-limitations_{{ context }}"}
 
-You can manage the resources on your AWS Outpost similarly to those on a cloud-based AWS cluster if you configure your {{ product_title }} cluster to accommodate the following requirements and limitations:
+You can manage the resources on your AWS Outpost similarly to those on a cloud-based AWS cluster if you configure your {{ product_title }} cluster to accommodate several requirements and limitations. {._abstract}
+
+You must accommodate the following requirements and limitations:
 
 *   To extend an {{ product_title }} cluster on AWS into an Outpost, you must have installed the cluster into an existing Amazon Virtual Private Cloud (VPC).
 *   The infrastructure of an Outpost is tied to an availability zone in an AWS region and uses a dedicated subnet.

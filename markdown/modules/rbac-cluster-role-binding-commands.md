@@ -14,4 +14,5 @@ You can also manage cluster role bindings using the following operations. The `-
 | `$ oc adm policy remove-cluster-role-from-user _<role>_ _<username>_` | Removes a given role from specified users for all projects in the cluster. |
 | `$ oc adm policy add-cluster-role-to-group _<role>_ _<groupname>_` | Binds a given role to specified groups for all projects in the cluster. |
 | `$ oc adm policy remove-cluster-role-from-group _<role>_ _<groupname>_` | Removes a given role from specified groups for all projects in the cluster. |
+
 {% endif %}

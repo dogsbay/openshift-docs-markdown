@@ -3,8 +3,8 @@ title: Uninstalling Service Mesh
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Uninstalling Service Mesh {id="removing-ossm"}
 {% include "./_attributes/common-attributes.md" %}
+# Uninstalling Service Mesh {id="removing-ossm"}
 {%- set context = "removing-ossm" %}
 
 To uninstall {{ SMProductName }} from an existing {{ product_title }} instance and remove its resources, you must delete the control plane, delete the Operators, and run commands to manually remove some resources.

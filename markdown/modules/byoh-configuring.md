@@ -20,11 +20,11 @@ Any Windows instances that are to be attached to the cluster as a node must fulf
     *   Ends with an alphanumeric character.
 
 
-:::note
+    :::note
 
-Windows instances deployed by the WMCO are configured with the containerd container runtime. Because the WMCO installs and manages the runtime, it is recommended that you not manually install containerd on nodes.
-
-:::
+    Windows instances deployed by the WMCO are configured with the containerd container runtime. Because the WMCO installs and manages the runtime, it is recommended that you not manually install containerd on nodes.
+    
+    :::
 
 
 **Procedure**

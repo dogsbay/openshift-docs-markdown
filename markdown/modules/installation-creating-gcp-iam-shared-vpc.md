@@ -43,6 +43,7 @@ You must create IAM policy bindings in {{ gcp_first }} for your {{ product_title
         $ gcloud --account=${HOST_PROJECT_ACCOUNT} --project=${HOST_PROJECT} compute networks subnets add-iam-policy-binding "${HOST_PROJECT_COMPUTE_SUBNET}" --member "serviceAccount:${WORKER_SERVICE_ACCOUNT}" --role "roles/compute.networkUser" --region ${REGION}
         ```
 {% endif %}
+
 1.  The templates do not create the policy bindings due to limitations of Infrastructure Manager, so you must create them manually by running the following commands:
     ```terminal
     $ gcloud projects add-iam-policy-binding ${PROJECT_NAME} --member "serviceAccount:${MASTER_SERVICE_ACCOUNT}" --role "roles/compute.instanceAdmin"
@@ -71,5 +72,5 @@ You must create IAM policy bindings in {{ gcp_first }} for your {{ product_title
     ```
 
 {% if context == "installing-gcp-user-infra-vpc" %}
-{%- set shared_vpc = false -%}
+{%- set shared_vpc = "" -%}
 {% endif %}

@@ -3,12 +3,12 @@ title: Verifying node health
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Verifying node health {id="verifying-node-health"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "verifying-node-health" %}
 
-You can verify and troubleshoot node-related issues by reviewing the status, resource usage, and configuration of a node.
+You can verify and troubleshoot node-related issues by reviewing the status, resource usage, and configuration of a node. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/reviewing-node-status-usage-and-configuration.md" %}{% endleveloffset %}
 

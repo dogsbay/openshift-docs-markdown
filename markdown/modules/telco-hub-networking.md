@@ -18,13 +18,12 @@ Limits and requirements
         *   `ingressVIP`
 
 
-    :::note
+        :::note
 
 
-    For the above networking configurations, some values are required, or can be auto-assigned, depending on the chosen architecture and DHCP configuration.
-    
-    :::
-
+        For the above networking configurations, some values are required, or can be auto-assigned, depending on the chosen architecture and DHCP configuration.
+        
+        :::
 
     *   You must use the default {{ product_title }} network provider OVN-Kubernetes.
     *   Networking between the managed cluster and hub cluster must meet the networking requirements in the {{ rh_rhacm_first }} documentation, for example:

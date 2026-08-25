@@ -44,7 +44,7 @@ The {{ product_title }} monitoring stack receives alerts configured by using ale
 
 *   After the Alert is triggered, you can view it in the following ways:
     *   In the **Developer** perspective, select the **Observe** menu.
-    *   In the **Administrator** perspective under the **Observe** -> **Alerting** menu, select **User** in the **Filter** box. Otherwise, by default only the **Platform** Alerts are displayed.
+    *   In the **Administrator** perspective under the **Observe** → **Alerting** menu, select **User** in the **Filter** box. Otherwise, by default only the **Platform** Alerts are displayed.
 
         **Figure 1. OADP backup failing alert**
 

@@ -6,8 +6,8 @@ To make your {{ product_title }} cluster more secure, you should understand the 
 When you deploy {{ product_title }}, you have the choice of an installer-provisioned infrastructure (there are several available platforms) or your own user-provisioned infrastructure.
 {%- if not openshift_origin %}
 Some low-level security-related configuration, such as enabling FIPS mode or adding kernel modules required at first boot, might benefit from a user-provisioned infrastructure.
-{% endif %}
-{% if openshift_origin %}
+{%- endif %}
+{%- if openshift_origin %}
 Some low-level security-related configuration, such as adding kernel modules required at first boot, might benefit from a user-provisioned infrastructure.
 {%- endif %}
 Likewise, user-provisioned infrastructure is appropriate for disconnected {{ product_title }} deployments.

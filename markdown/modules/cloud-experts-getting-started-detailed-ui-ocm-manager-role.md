@@ -15,7 +15,7 @@ The user role needs to be created so that {{ product_title }} can verify your AW
     $ rosa create user-role --mode auto --yes
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Creating User role
     I: Creating ocm user role using 'arn:aws:iam::000000000000:user/rosa-user'

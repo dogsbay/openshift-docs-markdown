@@ -7,7 +7,7 @@ title: "Authentication and authorization for {{ hcp }}"
 # Authentication and authorization for {{ hcp }} {id="hcp-authentication-authorization"}
 {%- set context = "hcp-authentication-authorization" %}
 
-The {{ product_title }} control plane includes a built-in OAuth server. You can obtain OAuth access tokens to authenticate to the {{ product_title }} API. After you create your hosted cluster, you can configure OAuth by specifying an identity provider.
+The {{ product_title }} control plane includes a built-in OAuth server. You can obtain OAuth access tokens to authenticate to the {{ product_title }} API. After you create your hosted cluster, you can configure OAuth by specifying an identity provider. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hcp-configuring-oauth.md" %}{% endleveloffset %}
 
@@ -19,7 +19,7 @@ The {{ product_title }} control plane includes a built-in OAuth server. You can 
 
 {% leveloffset +2 %}{% include "./modules/hcp-cco-verify-aws-sts.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Issuer Identifier](https://openid.net/specs/openid-connect-core-1_0.html#IssuerIdentifier)
 *   [Understanding identity provider configuration](/authentication/understanding-identity-provider#understanding-identity-provider)

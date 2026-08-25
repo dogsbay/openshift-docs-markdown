@@ -10,7 +10,7 @@ You must use the {{ rosa_cli }} tool to create an admin user.  {._abstract}
     rosa create admin --cluster=<cluster-name>
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     W: It is recommended to add an identity provider to login to this cluster. See 'rosa create idp --help' for more information.
     I: Admin account has been added to cluster 'my-rosa-cluster'. It may take up to a minute for the account to become active.
@@ -26,7 +26,7 @@ You must use the {{ rosa_cli }} tool to create an admin user.  {._abstract}
     >    --password FWGYL-2mkJI-00000-00000
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     Login successful.
 
@@ -40,7 +40,7 @@ You must use the {{ rosa_cli }} tool to create an admin user.  {._abstract}
         $ oc whoami
         ```
 
-        ***Example output***
+        **Example output**
         ```terminal
         cluster-admin
         ```

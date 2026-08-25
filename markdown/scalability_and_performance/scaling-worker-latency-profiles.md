@@ -4,10 +4,10 @@ title: Improving cluster stability in high latency environments using worker lat
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "scaling-worker-latency-profiles" %}
-# Improving cluster stability in high latency environments using worker latency profiles {id="scaling-worker-latency-profiles"}
 {% include "./_attributes/common-attributes.md" %}
+# Improving cluster stability in high latency environments using worker latency profiles {id="scaling-worker-latency-profiles"}
 
-To improve cluster stability in high latency environments, apply worker latency profiles.
+To improve cluster stability in high latency environments, apply worker latency profiles. {._abstract}
 
 {% include "./snippets/worker-latency-profile-intro.md" %}
 

@@ -59,11 +59,11 @@ To configure log forwarding to Loki, you must create a `ClusterLogForwarder` cus
     1.  Specify which log types to forward by using the pipeline: `application,` `infrastructure`, or `audit`.
     1.  Specify the name of the output to use when forwarding logs with this pipeline.
 
-        :::note
+    :::note
 
-        Because Loki requires log streams to be correctly ordered by timestamp, `labelKeys` always includes the `kubernetes_host` label set, even if you do not specify it. This inclusion ensures that each stream originates from a single host, which prevents timestamps from becoming disordered due to clock differences on different hosts.
-        
-        :::
+    Because Loki requires log streams to be correctly ordered by timestamp, `labelKeys` always includes the `kubernetes_host` label set, even if you do not specify it. This inclusion ensures that each stream originates from a single host, which prevents timestamps from becoming disordered due to clock differences on different hosts.
+    
+    :::
 
 1.  Apply the `ClusterLogForwarder` CR object by running the following command:
     ```terminal

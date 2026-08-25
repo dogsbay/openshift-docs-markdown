@@ -13,7 +13,7 @@ The web console will display an alert if you switch to a channel that does not i
 
 Changing your channel might impact the supportability of your cluster. The following conditions might apply:
 
-*   Your cluster is still supported if you change from the `stable-{{ product_version }}` channel to the `fast-{{ product_version }}` channel.
-*   You can switch to the `candidate-{{ product_version }}` channel at any time, but some releases for this channel might be unsupported.
-*   You can switch from the `candidate-{{ product_version }}` channel to the `fast-{{ product_version }}` channel if your current release is a general availability release.
-*   You can always switch from the `fast-{{ product_version }}` channel to the `stable-{{ product_version }}` channel. There is a possible delay of up to a day for the release to be promoted to `stable-{{ product_version }}` if the current release was recently promoted.
+*   Your cluster is still supported if you change from the `stable-{{ product_version }}`{minja} channel to the `fast-{{ product_version }}`{minja} channel.
+*   You can switch to the `candidate-{{ product_version }}`{minja} channel at any time, but some releases for this channel might be unsupported.
+*   You can switch from the `candidate-{{ product_version }}`{minja} channel to the `fast-{{ product_version }}`{minja} channel if your current release is a general availability release.
+*   You can always switch from the `fast-{{ product_version }}`{minja} channel to the `stable-{{ product_version }}`{minja} channel. There is a possible delay of up to a day for the release to be promoted to `stable-{{ product_version }}`{minja} if the current release was recently promoted.

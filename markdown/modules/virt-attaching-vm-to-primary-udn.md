@@ -41,7 +41,7 @@ You can connect a virtual machine (VM) to the primary user-defined network (UDN)
     *   `spec.template.spec.domain.devices.interfaces.binding.name` specifies the name of the binding plugin that is used to connect the interface to the VM. The possible values are `l2bridge` and `passt`. The default value is `l2bridge`.
     *   `spec.template.spec.networks.name` specifies the name of the network. This must match the value of the `spec.template.spec.domain.devices.interfaces.name` field.
 1.  Optional: If you are using the Plug a Simple Socket Transport (passt) network binding plugin, set the `hco.kubevirt.io/deployPasstNetworkBinding` annotation to `true` in the `HyperConverged` custom resource (CR) by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc annotate {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} hco.kubevirt.io/deployPasstNetworkBinding=true --overwrite
     ```
 1.  Apply the `VirtualMachine` manifest by running the following command:

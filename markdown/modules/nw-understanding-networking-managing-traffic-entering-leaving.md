@@ -9,7 +9,7 @@ Exposing applications with Ingress and Route objects
 :   To allow external traffic to reach services inside your cluster, you use an Ingress Controller. The Ingress Controller acts as the front door that directs incoming requests to the correct application. You define the traffic rules using one of two primary resources:
 
     *   Ingress: The standard Kubernetes resource for managing external access to services, typically for HTTP and HTTPS traffic.
-*   `Route` object: A resource that provides the same functionality as Ingress but includes additional features like more advanced TLS termination options and traffic splitting. `Route` objects are specific to {{ product_title }}.
+    *   `Route` object: A resource that provides the same functionality as Ingress but includes additional features like more advanced TLS termination options and traffic splitting. `Route` objects are specific to {{ product_title }}.
 
 Distributing traffic with load balancers
 
@@ -20,6 +20,6 @@ Controlling egress traffic
 
 :   Egress refers to outbound traffic that originates from a pod inside the cluster and is destined for an external system. {{ product_title }} provides several mechanisms to manage this:
 
-*   EgressIP: You can assign a specific, predictable source IP address to all outbound traffic from a given project. Consider this configuration when you need to access an external service like a database that has a firewall where you need to allow specific source IPs.
-*   Egress Router: This is a dedicated pod that acts as a gateway for outbound traffic. By using an Egress Router, you can route connections through a single, controlled exit point.
-*   Egress Firewall: This acts as a cluster-level firewall for all outbound traffic. The Egress Firewall enhances your security posture so that you can create rules that explicitly allow or deny connections from pods to specific external destinations.
+    *   EgressIP: You can assign a specific, predictable source IP address to all outbound traffic from a given project. Consider this configuration when you need to access an external service like a database that has a firewall where you need to allow specific source IPs.
+    *   Egress Router: This is a dedicated pod that acts as a gateway for outbound traffic. By using an Egress Router, you can route connections through a single, controlled exit point.
+    *   Egress Firewall: This acts as a cluster-level firewall for all outbound traffic. The Egress Firewall enhances your security posture so that you can create rules that explicitly allow or deny connections from pods to specific external destinations.

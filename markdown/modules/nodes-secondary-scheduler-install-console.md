@@ -17,10 +17,10 @@ You can install the {{ secondary_scheduler_operator_full }} through the {{ produ
 
 1.  Log in to the {{ product_title }} web console.
 1.  Create the required namespace for the {{ secondary_scheduler_operator_full }}.
-    1.  Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.
+    1.  Navigate to **Administration** → **Namespaces** and click **Create Namespace**.
     1.  Enter `openshift-secondary-scheduler-operator` in the **Name** field and click **Create**.
 1.  Install the {{ secondary_scheduler_operator_full }}.
-    1.  Navigate to **Ecosystem** -> **Software Catalog**.
+    1.  Navigate to **Ecosystem** → **Software Catalog**.
     1.  Enter **{{ secondary_scheduler_operator_full }}** into the filter box.
     1.  Select the **{{ secondary_scheduler_operator_full }}** and click **Install**.
     1.  On the **Install Operator** page:
@@ -33,5 +33,5 @@ You can install the {{ secondary_scheduler_operator_full }} through the {{ produ
 
 **Verification**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Verify that **{{ secondary_scheduler_operator_full }}** is listed with a **Status** of **Succeeded**.

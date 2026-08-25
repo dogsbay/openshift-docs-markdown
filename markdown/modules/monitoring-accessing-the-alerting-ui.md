@@ -4,4 +4,4 @@
 
 The Alerting UI is accessible in the {{ product_title }} web console.
 
-*   In the {{ product_title }} web console, go to **Observe** -> **Alerting**. The three main pages in the Alerting UI in this perspective are the **Alerts**, **Silences**, and **Alerting rules** pages.
+*   In the {{ product_title }} web console, go to **Observe** → **Alerting**. The three main pages in the Alerting UI in this perspective are the **Alerts**, **Silences**, and **Alerting rules** pages.

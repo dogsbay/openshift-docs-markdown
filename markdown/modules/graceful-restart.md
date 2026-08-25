@@ -134,7 +134,7 @@ If your cluster fails to recover, follow the steps in "Restoring to an earlier c
         ```terminal
         $ oc get clusteroperators
         ```
-        ```terminal title="Example output"
+        ```terminal title="Example output" {minja}
         NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
         authentication                             {{ product_version }}.0    True        False         False      59m
         cloud-credential                           {{ product_version }}.0    True        False         False      85m

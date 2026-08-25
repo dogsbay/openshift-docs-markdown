@@ -48,7 +48,7 @@ You must configure and deploy the hosted cluster on AWS.
     ```terminal
     $ oc get csv -n openshift-sriov-network-operator
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     NAME                                         DISPLAY                   VERSION               REPLACES                                     PHASE
     sriov-network-operator.{{ product_version }}.0-202211021237   SR-IOV Network Operator   {{ product_version }}.0-202211021237   sriov-network-operator.{{ product_version }}.0-202210290517   Succeeded
     ```

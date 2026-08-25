@@ -72,28 +72,29 @@ If you do not specify these parameters, the system uses the default storage prof
 </thead>
 <tbody>
 <tr>
-  <td>.2+</td>
-  <td>Volume Mode</td>
+  <td rowspan="2">Volume Mode</td>
   <td>Filesystem</td>
-</tr>
-<tr>
   <td>Stores the virtual disk on a file system-based volume.</td>
-  <td>Block</td>
-  <td>Stores the virtual disk directly on the block volume. Only use <code>Block</code> if the underlying storage supports it.<br><br>.3+</td>
 </tr>
 <tr>
-  {% if not openshift_dedicated %}<td>Access Mode</td>{% endif %}
+  <td>Block</td>
+  <td>Stores the virtual disk directly on the block volume. Only use <code>Block</code> if the underlying storage supports it.</td>
+</tr>
+<tr>
+  {% if not openshift_dedicated %}<td rowspan="3">Access Mode</td>{% endif %}
   {% if not openshift_dedicated %}<td>ReadWriteOnce (RWO)</td>{% endif %}
   {% if not openshift_dedicated %}<td>Volume can be mounted as read/write by a single node.</td>{% endif %}
 </tr>
 <tr>
   {% if not openshift_dedicated %}<td>ReadWriteMany (RWX)</td>{% endif %}
-  {% if not openshift_dedicated %}<td>Volume can be mounted as read/write by many nodes at one time.<dl><dt>Note</dt><dd>This mode is required for live migration.</dd></dl></td>{% endif %}
-  {% if not openshift_dedicated %}<td>ReadOnlyMany (ROX)</td>{% endif %}
+  {% if not openshift_dedicated %}<td>Volume can be mounted as read/write by many nodes at one time.<dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This mode is required for live migration.</dd></dl></td>{% endif %}
 </tr>
 <tr>
-  {% if not openshift_dedicated %}<td>Volume can be mounted as read only by many nodes.<br><br><dl><dt>Note</dt><dd><code>ReadWriteMany</code> access mode is required for live migration.</dd></dl>.2+</td>{% endif %}
-  {% if openshift_dedicated %}<td>Access Mode</td>{% endif %}
+  {% if not openshift_dedicated %}<td>ReadOnlyMany (ROX)</td>{% endif %}
+  {% if not openshift_dedicated %}<td>Volume can be mounted as read only by many nodes.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd><code>ReadWriteMany</code> access mode is required for live migration.</dd></dl></td>{% endif %}
+</tr>
+<tr>
+  {% if openshift_dedicated %}<td rowspan="2">Access Mode</td>{% endif %}
   {% if openshift_dedicated %}<td>ReadWriteOnce (RWO)</td>{% endif %}
   {% if openshift_dedicated %}<td>Volume can be mounted as read-write by a single node.</td>{% endif %}
 </tr>

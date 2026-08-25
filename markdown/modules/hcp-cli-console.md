@@ -9,7 +9,7 @@ You can install the {{ hcp }} command-line interface (CLI), `hcp`, by using the 
 
 **Procedure**
 
-1.  From the {{ product_title }} web console, click the **Help icon** -> **Command Line Tools**.
+1.  From the {{ product_title }} web console, click the **Help icon** → **Command Line Tools**.
 1.  Click **Download hcp CLI** for your platform.
 1.  Unpack the downloaded archive by running the following command:
     ```terminal

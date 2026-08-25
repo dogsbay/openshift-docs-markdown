@@ -3,8 +3,8 @@ title: Migrating from Jenkins to OpenShift Pipelines or Tekton
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Migrating from Jenkins to OpenShift Pipelines or Tekton {id="migrating-from-jenkins-to-openshift-pipelines_{{ context }}"}
 {% include "./_attributes/common-attributes.md" %}
+# Migrating from Jenkins to OpenShift Pipelines or Tekton {id="migrating-from-jenkins-to-openshift-pipelines_{{ context }}"}
 {%- set context = "migrating-from-jenkins-to-openshift-pipelines" %}
 
 You can migrate your CI/CD workflows from Jenkins to [{{ pipelines_title }}](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html), a cloud-native CI/CD experience based on the Tekton project.
@@ -21,6 +21,6 @@ You can migrate your CI/CD workflows from Jenkins to [{{ pipelines_title }}](htt
 
 {% leveloffset +1 %}{% include "./modules/jt-examples-of-common-use-cases.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 *   [Understanding {{ pipelines_shortname }}](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html)
 *   [Role-based Access Control](/authentication/using-rbac#using-rbac)

@@ -5,7 +5,7 @@ By default, the log store that is deployed with {{ logging }} is not accessible 
 
 Externally, you can access the log store by creating a reencrypt route, your {{ product_title }} token and the installed log store CA certificate. Then, access a node that hosts the log store service with a cURL request that contains:
 
-*   The `Authorization: Bearer ${{ token }}`
+*   The `Authorization: Bearer ${{ token }}`{minja}
 *   The Elasticsearch reencrypt route and an [Elasticsearch API request](https://www.elastic.co/guide/en/elasticsearch/reference/current/api-conventions.html).
 
 Internally, you can access the log store service using the log store cluster IP,

@@ -1,5 +1,5 @@
 ---
-title: "ClusterOperator []"
+title: "ClusterOperator [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds configuration that could apply to any operator. |
 | `status` | `object` | status holds the information about the state of an operator.  It is consistent with status information across the Kubernetes ecosystem. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -59,6 +60,7 @@ Type
 | `relatedObjects[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 | `versions` | `array` | versions is a slice of operator and operand version tuples.  Operators which manage multiple operands will have multiple operand entries in the array.  Available operators must report the version of the operator itself with the name "operator". An operator reports a new "operator" version when it has rolled out the new version to all of its operands. |
 | `versions[]` | `object` |  |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -91,6 +93,7 @@ Required
 | `reason` | `string` | reason is the CamelCase reason for the condition’s current status. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type specifies the aspect reported by this condition. |
+
 ### .status.relatedObjects {id="_statusrelatedobjects"}
 
 Description
@@ -124,6 +127,7 @@ Required
 | `name` | `string` | name of the referent. |
 | `namespace` | `string` | namespace of the referent. |
 | `resource` | `string` | resource of the referent. |
+
 ### .status.versions {id="_statusversions"}
 
 Description
@@ -161,12 +165,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ClusterOperator
     *   `GET`: list objects of kind ClusterOperator
     *   `POST`: create a ClusterOperator
-*   `/apis/config.openshift.io/v1/clusteroperators/{{ name }}`
+*   `/apis/config.openshift.io/v1/clusteroperators/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterOperator
     *   `GET`: read the specified ClusterOperator
     *   `PATCH`: partially update the specified ClusterOperator
     *   `PUT`: replace the specified ClusterOperator
-*   `/apis/config.openshift.io/v1/clusteroperators/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/clusteroperators/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ClusterOperator
     *   `PATCH`: partially update status of the specified ClusterOperator
     *   `PUT`: replace status of the specified ClusterOperator

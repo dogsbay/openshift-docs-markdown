@@ -1,5 +1,5 @@
 ---
-title: "ImageStream []"
+title: "ImageStream [image.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -27,6 +27,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ImageStreamSpec represents options for ImageStreams. |
 | `status` | `object` | ImageStreamStatus contains information about the state of this image stream. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,6 +43,7 @@ Type
 | `lookupPolicy` | `object` | ImageLookupPolicy describes how an image stream can be used to override the image references used by pods, builds, and other resources in a namespace. |
 | `tags` | `array` | tags map arbitrary string values to specific image locators |
 | `tags[]` | `object` | TagReference specifies optional annotations for images using this tag and an optional reference to an ImageStreamTag, ImageStreamImage, or DockerImage this tag should track. |
+
 ### .spec.lookupPolicy {id="_speclookuppolicy"}
 
 Description
@@ -58,6 +60,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `local` | `boolean` | local will change the docker short image references (like "mysql" or "php:latest") on objects in this namespace to the image ID whenever they match this image stream, instead of reaching out to a remote registry. The name will be fully qualified to an image ID if found. The tag’s referencePolicy is taken into account on the replaced value. Only works within the current namespace. |
+
 ### .spec.tags {id="_spectags"}
 
 Description
@@ -89,6 +92,7 @@ Required
 | `name` | `string` | name of the tag |
 | `reference` | `boolean` | reference states if the tag will be imported. Default value is false, which means the tag will be imported. |
 | `referencePolicy` | `object` | TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed. |
+
 ### .spec.tags[].importPolicy {id="_spectagsimportpolicy"}
 
 Description
@@ -103,6 +107,7 @@ Type
 | `importMode` | `string` | importMode describes how to import an image manifest. |
 | `insecure` | `boolean` | insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import. |
 | `scheduled` | `boolean` | scheduled indicates to the server that this tag should be periodically checked to ensure it is up to date, and imported |
+
 ### .spec.tags[].referencePolicy {id="_spectagsreferencepolicy"}
 
 Description
@@ -119,6 +124,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | type determines how the image pull spec should be transformed when the image stream tag is used in deployment config triggers or new builds. The default value is `Source`, indicating the original location of the image should be used (if imported). The user may also specify `Local`, indicating that the pull spec should point to the integrated container image registry and leverage the registry’s ability to proxy the pull to an upstream registry. `Local` allows the credentials used to pull this image to be managed from the image stream’s namespace, so others on the platform can access a remote image but have no access to the remote secret. It also allows the image layers to be mirrored into the local registry which the images can still be pulled even if the upstream registry is unavailable. |
+
 ### .status {id="_status"}
 
 Description
@@ -134,6 +140,7 @@ Type
 | `publicDockerImageRepository` | `string` | publicDockerImageRepository represents the public location from where the image can be pulled outside the cluster. This field may be empty if the administrator has not exposed the integrated registry externally. |
 | `tags` | `array` | tags are a historical record of images associated with each tag. The first entry in the TagEvent array is the currently tagged image. |
 | `tags[]` | `object` | NamedTagEventList relates a tag to its image history. |
+
 ### .status.tags {id="_statustags"}
 
 Description
@@ -164,6 +171,7 @@ Required
 | `items` | `array` | Standard object’s metadata. |
 | `items[]` | `object` | TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag. |
 | `tag` | `string` | tag is the tag for which the history is recorded |
+
 ### .status.tags[].conditions {id="_statustagsconditions"}
 
 Description
@@ -196,6 +204,7 @@ Required
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of tag event condition, currently only ImportSuccess |
+
 ### .status.tags[].items {id="_statustagsitems"}
 
 Description
@@ -236,20 +245,20 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind ImageStream
 *   `/apis/image.openshift.io/v1/watch/imagestreams`
     *   `GET`: watch individual changes to a list of ImageStream. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams`
+*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams`{minja}
     *   `DELETE`: delete collection of ImageStream
     *   `GET`: list or watch objects of kind ImageStream
     *   `POST`: create an ImageStream
-*   `/apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams`
+*   `/apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams`{minja}
     *   `GET`: watch individual changes to a list of ImageStream. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}`
+*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}`{minja}
     *   `DELETE`: delete an ImageStream
     *   `GET`: read the specified ImageStream
     *   `PATCH`: partially update the specified ImageStream
     *   `PUT`: replace the specified ImageStream
-*   `/apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams/{{ name }}`
+*   `/apis/image.openshift.io/v1/watch/namespaces/{{ namespace }}/imagestreams/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind ImageStream. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/status`
+*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreams/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ImageStream
     *   `PATCH`: partially update status of the specified ImageStream
     *   `PUT`: replace status of the specified ImageStream

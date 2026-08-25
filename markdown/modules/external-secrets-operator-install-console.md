@@ -11,7 +11,7 @@ You can install the {{ external_secrets_operator }} by using the {{ product_titl
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
 1.  Enter **{{ external_secrets_operator_short }}** in the search box.
 1.  Select the **{{ external_secrets_operator }}** from the generated list and click **Install**.
 1.  On the **Install Operator** page:
@@ -28,5 +28,5 @@ You can install the {{ external_secrets_operator }} by using the {{ product_titl
 
 **Verification**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Verify that **{{ external_secrets_operator_short }}** is listed with a **Status** of **Succeeded** in the `external-secrets-operator` namespace.

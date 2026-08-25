@@ -3,11 +3,11 @@ title: Managing machines with the Cluster API
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing machines with the Cluster API {id="cluster-api-managing-machines"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing machines with the Cluster API {id="cluster-api-managing-machines"}
 {%- set context = "cluster-api-managing-machines" %}
 
-You can manage machines with the Cluster API by modifying a Cluster API machine template or a compute machine set by using the CLI.
+You can manage machines with the Cluster API by modifying a Cluster API machine template or a compute machine set by using the CLI. {._abstract}
 
 {%- set FeatureName = "Managing machines with the Cluster API" %}
 {% include "./snippets/technology-preview.md" %}
@@ -15,6 +15,7 @@ You can manage machines with the Cluster API by modifying a Cluster API machine 
 {% leveloffset +1 %}{% include "./modules/capi-modifying-machine-template.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Sample YAML for a Cluster API machine template resource on {{ aws_full }}](/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-aws#capi-yaml-machine-template-aws_cluster-api-config-options-aws)
 *   [Sample YAML for a Cluster API machine template resource on {{ gcp_full }}](/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp#capi-yaml-machine-template-gcp_cluster-api-config-options-gcp)
@@ -26,6 +27,7 @@ You can manage machines with the Cluster API by modifying a Cluster API machine 
 {% leveloffset +1 %}{% include "./modules/machineset-modifying.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Sample YAML for a Cluster API compute machine set resource on {{ aws_full }}](/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-aws#capi-yaml-machine-set-aws_cluster-api-config-options-aws)
 *   [Sample YAML for a Cluster API compute machine set resource on {{ gcp_full }}](/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp#capi-yaml-machine-set-gcp_cluster-api-config-options-gcp)

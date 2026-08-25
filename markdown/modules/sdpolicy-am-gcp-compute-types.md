@@ -14,9 +14,7 @@
 :::
 
 
-<details>
-<summary>General purpose</summary>
-
+:::details{title="General purpose"}
 *   custom-4-16384 (4 vCPU, 16 GiB)
 *   custom-8-32768 (8 vCPU, 32 GiB)
 *   custom-16-65536 (16 vCPU, 64 GiB)
@@ -90,11 +88,9 @@
 *   t2d-standard-32 (32 vCPU, 128 GiB)
 *   t2d-standard-48 (48 vCPU, 192 GiB)
 *   t2d-standard-60 (60 vCPU, 240 GiB)
-</details>
+:::
 
-<details>
-<summary>Memory-optimized</summary>
-
+:::details{title="Memory-optimized"}
 *   custom-4-32768-ext (4 vCPU, 32 GiB)
 *   custom-8-65536-ext (8 vCPU, 64 GiB)
 *   custom-16-131072-ext (16 vCPU, 128 GiB)
@@ -155,11 +151,9 @@
 *   n4d-highmem-64 (64 vCPU, 512 GiB)
 *   n4d-highmem-80 (80 vCPU, 640 GiB)
 *   n4d-highmem-96 (96 vCPU, 768 GiB)
-</details>
+:::
 
-<details>
-<summary>Compute-optimized</summary>
-
+:::details{title="Compute-optimized"}
 *   custom-8-16384 (8 vCPU, 16 GiB)
 *   custom-16-32768 (16 vCPU, 32 GiB)
 *   custom-36-73728 (36 vCPU, 72 GiB)
@@ -221,11 +215,9 @@
 *   n4d-highcpu-64 (64 vCPU, 128 GiB)
 *   n4d-highcpu-80 (80 vCPU, 160 GiB)
 *   n4d-highcpu-96 (96 vCPU, 192 GiB)
-</details>
+:::
 
-<details>
-<summary>Accelerated computing</summary>
-
+:::details{title="Accelerated computing"}
 *   a2-highgpu-1g (12 vCPU, 85 GiB)
 *   a2-highgpu-2g (24 vCPU, 170 GiB)
 *   a2-highgpu-4g (48 vCPU, 340 GiB)
@@ -256,4 +248,4 @@
 *   g4-standard-96 (96 vCPU, 360 GiB)
 *   g4-standard-192 (192 vCPU, 720 GiB)
 *   g4-standard-384 (384 vCPU, 1440 GiB)
-</details>
+:::

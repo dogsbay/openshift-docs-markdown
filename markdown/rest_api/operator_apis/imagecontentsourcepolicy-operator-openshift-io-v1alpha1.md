@@ -1,5 +1,5 @@
 ---
-title: "ImageContentSourcePolicy []"
+title: "ImageContentSourcePolicy [operator.openshift.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,8 +43,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `repositoryDigestMirrors` | `array` | repositoryDigestMirrors allows images referenced by image digests in pods to be pulled from alternative mirrored repository locations. The image pull specification provided to the pod will be compared to the source locations described in RepositoryDigestMirrors and the image may be pulled down from any of the mirrors in the list instead of the specified repository allowing administrators to choose a potentially faster mirror. Only image pull specifications that have an image digest will have this behavior applied to them - tags will continue to be pulled from the specified repository in the pull spec. Each “source” repository is treated independently; configurations for different “source” repositories don’t interact. When multiple policies are defined for the same “source” repository, the sets of defined mirrors will be merged together, preserving the relative order of the mirrors, if possible. For example, if policy A has mirrors `a, b, c` and policy B has mirrors `c, d, e`, the mirrors will be used in the order `a, b, c, d, e`.  If the orders of mirror entries conflict (e.g. `a, b` vs. `b, a`) the configuration is not rejected but the resulting order is unspecified. |
+| `repositoryDigestMirrors` | `array` | repositoryDigestMirrors allows images referenced by image digests in pods to be pulled from alternative mirrored repository locations. The image pull specification provided to the pod will be compared to the source locations described in RepositoryDigestMirrors and the image may be pulled down from any of the mirrors in the list instead of the specified repository allowing administrators to choose a potentially faster mirror. Only image pull specifications that have an image digest will have this behavior applied to them - tags will continue to be pulled from the specified repository in the pull spec.<br>Each “source” repository is treated independently; configurations for different “source” repositories don’t interact.<br>When multiple policies are defined for the same “source” repository, the sets of defined mirrors will be merged together, preserving the relative order of the mirrors, if possible. For example, if policy A has mirrors `a, b, c` and policy B has mirrors `c, d, e`, the mirrors will be used in the order `a, b, c, d, e`.  If the orders of mirror entries conflict (e.g. `a, b` vs. `b, a`) the configuration is not rejected but the resulting order is unspecified. |
 | `repositoryDigestMirrors[]` | `object` | RepositoryDigestMirrors holds cluster-wide information about how to handle mirros in the registries config. Note: the mirrors only work when pulling the images that are referenced by their digests. |
+
 ### .spec.repositoryDigestMirrors {id="_specrepositorydigestmirrors"}
 
 Description
@@ -97,12 +99,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ImageContentSourcePolicy
     *   `GET`: list objects of kind ImageContentSourcePolicy
     *   `POST`: create an ImageContentSourcePolicy
-*   `/apis/operator.openshift.io/v1alpha1/imagecontentsourcepolicies/{{ name }}`
+*   `/apis/operator.openshift.io/v1alpha1/imagecontentsourcepolicies/{{ name }}`{minja}
     *   `DELETE`: delete an ImageContentSourcePolicy
     *   `GET`: read the specified ImageContentSourcePolicy
     *   `PATCH`: partially update the specified ImageContentSourcePolicy
     *   `PUT`: replace the specified ImageContentSourcePolicy
-*   `/apis/operator.openshift.io/v1alpha1/imagecontentsourcepolicies/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1alpha1/imagecontentsourcepolicies/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ImageContentSourcePolicy
     *   `PATCH`: partially update status of the specified ImageContentSourcePolicy
     *   `PUT`: replace status of the specified ImageContentSourcePolicy

@@ -6,10 +6,10 @@ A node is a virtual or bare-metal machine in a Kubernetes cluster. {._abstract}
 Worker nodes host your application containers, grouped as pods. The control plane nodes run services that are required to control the Kubernetes cluster.
 {%- if not openshift_rosa_hcp %}
 In {{ product_title }}, the control plane nodes contain more than just the Kubernetes services for managing the {{ product_title }} cluster.
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 In {{ product_title }}, the control plane nodes are hosted in a Red&#160;Hat-owned AWS account. Red&#160;Hat fully manages the control plane infrastructure for you.
-{% endif %}
+{%- endif %}
 
 {% if openshift_rosa or openshift_rosa_hcp %}
 

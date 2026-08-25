@@ -9,7 +9,7 @@ The following tables describe the `oc mirror` subcommands and flags for deleting
 
 | Subcommand | Description |
 | --- | --- |
-| `--authfile <string>` | Path of the authentication file. The default value is `${{ XDG_RUNTIME_DIR }}/containers/auth.json`. |
+| `--authfile <string>` | Path of the authentication file. The default value is `${{ XDG_RUNTIME_DIR }}/containers/auth.json`{minja}. |
 | `--cache-dir <string>` | Use this flag to specify a directory where the oc-mirror plugin stores a persistent cache of image blobs and manifests for use during mirroring operations. The oc-mirror plugin uses the cache in the `disk-to-mirror` and `mirror-to-disk` workflows but does not use the cache in the `mirror-to-mirror` workflow. The plugin uses the cache to perform incremental mirroring and avoids remirroring unchanged images, which saves time and reduces network bandwidth usage. The default cache directory is `$HOME`. For more information, see "About the --cache-dir and --workspace flags". |
 | `-c <string>`, `--config <string>` | Path to the delete imageset configuration file. |
 | `--delete-id <string>` | Used to differentiate between versions for files created by the delete functionality. |

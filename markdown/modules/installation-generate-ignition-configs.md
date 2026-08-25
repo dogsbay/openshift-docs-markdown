@@ -25,7 +25,7 @@ Ignition config files that the cluster needs to make its machines. {._abstract}
 *   Obtain the {{ product_title }} installation program and the pull secret for your cluster.
 {%- if restricted %}
 For a restricted network installation, these files are on your mirror host.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -64,8 +64,8 @@ For a restricted network installation, these files are on your mirror host.
     ```
 
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

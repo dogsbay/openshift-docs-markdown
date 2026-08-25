@@ -16,7 +16,7 @@ admission webhook smcp.validation.maistra.io denied the request: [support for po
 
 For example:
 
-```yaml
+```yaml {minja}
 apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 spec:

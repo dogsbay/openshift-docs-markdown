@@ -35,15 +35,15 @@ When creating secrets:
       password: <password>
     ```
     1.  Specifies an _opaque_ secret.
-        ```yaml title="Docker Configuration JSON File Secret Object Definition"
-        apiVersion: v1
-        kind: Secret
-        metadata:
-          name: aregistrykey
-          namespace: myapps
-        type: kubernetes.io/dockerconfigjson (1)
-        data:
-          .dockerconfigjson:bm5ubm5ubm5ubm5ubm5ubm5ubm5ubmdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2cgYXV0aCBrZXlzCg== (2)
-        ```
+    ```yaml title="Docker Configuration JSON File Secret Object Definition"
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: aregistrykey
+      namespace: myapps
+    type: kubernetes.io/dockerconfigjson (1)
+    data:
+      .dockerconfigjson:bm5ubm5ubm5ubm5ubm5ubm5ubm5ubmdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2cgYXV0aCBrZXlzCg== (2)
+    ```
     1.  Specifies that the secret is using a docker configuration JSON file.
     1.  The output of a base64-encoded docker configuration JSON file.

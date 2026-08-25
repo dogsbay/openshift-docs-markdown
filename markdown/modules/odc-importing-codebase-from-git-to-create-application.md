@@ -23,7 +23,7 @@ The following procedure walks you through the **From Git** option in the **Devel
 1.  After the Git URL is validated, the recommended builder image is selected and marked with a star. If the builder image is not auto-detected, select a builder image. For the `https://github.com/sclorg/nodejs-ex` Git URL, by default the Node.js builder image is selected.
     1.  Optional: Use the **Builder Image Version** drop-down to specify a version.
     1.  Optional: Use the **Edit import strategy** to select a different strategy.
-    1.  Optional: For the Node.js builder image, use the ***Run command*** field to override the command to run the application.
+    1.  Optional: For the Node.js builder image, use the **Run command** field to override the command to run the application.
 1.  In the **General** section:
     1.  In the **Application** field, enter a unique name for the application grouping, for example, `myapp`. Ensure that the application name is unique in a namespace.
     1.  The **Name** field to identify the resources created for this application is automatically populated based on the Git repository URL if there are no existing applications. If there are existing applications, you can choose to deploy the component within an existing application, create a new application, or keep the component unassigned.
@@ -37,16 +37,16 @@ The following procedure walks you through the **From Git** option in the **Devel
 1.  In the **Resources** section, select:
     *   **Deployment**, to create an application in plain Kubernetes style.
     *   **Deployment Config**, to create an {{ product_title }} style application.
-        {%- if not (openshift_rosa or openshift_dedicated) %}
+{%- if not (openshift_rosa or openshift_dedicated) %}
     *   **Serverless Deployment**, to create a Knative service.
 
         :::note
 
-        To set the default resource preference for importing an application, go to **User Preferences** -> **Applications** -> **Resource type** field. The **Serverless Deployment** option is displayed in the **Import from Git** form only if the {{ ServerlessOperatorName }} is installed in your cluster. The **Resources** section is not available while creating a serverless function. For further details, refer to the {{ ServerlessProductName }} documentation.
+        To set the default resource preference for importing an application, go to **User Preferences** → **Applications** → **Resource type** field. The **Serverless Deployment** option is displayed in the **Import from Git** form only if the {{ ServerlessOperatorName }} is installed in your cluster. The **Resources** section is not available while creating a serverless function. For further details, refer to the {{ ServerlessProductName }} documentation.
         
         :::
 
-{% endif %}
+{%- endif %}
 1.  In the **Pipelines** section, select **Add Pipeline**, and then click **Show Pipeline Visualization** to see the pipeline for the application. A default pipeline is selected, but you can choose the pipeline you want from the list of available pipelines for the application.
 
     :::note
@@ -60,7 +60,7 @@ The following procedure walks you through the **From Git** option in the **Devel
     :::
 
 1.  Add a webhook to your repository. If **Configure PAC** is checked and the GitHub App is set up, you can see the **Use GitHub App** and **Setup a webhook** options. If GitHub App is not set up, you can only see the **Setup a webhook** option:
-    1.  Go to **Settings** -> **Webhooks** and click **Add webhook**.
+    1.  Go to **Settings** → **Webhooks** and click **Add webhook**.
     1.  Set the **Payload URL** to the Pipelines as Code controller public URL.
     1.  Select the content type as **application/json**.
     1.  Add a webhook secret and note it in an alternate location. With `openssl` installed on your local machine, generate a random secret.
@@ -70,10 +70,10 @@ The following procedure walks you through the **From Git** option in the **Devel
 
     If your application does not expose its data on the default public port, 80, clear the check box, and set the target port number you want to expose.
 1.  Optional: You can use the following advanced options to further customize your application:
-{% include "./snippets/routing-odc.md" %}
+    {% include "./snippets/routing-odc.md" %}
 {%- if not (openshift_rosa or openshift_dedicated) %}
-{% include "./snippets/serverless-domain-mapping-odc.md" %}
-{% endif %}
+    {% include "./snippets/serverless-domain-mapping-odc.md" %}
+{%- endif %}
 
 
     Health Checks
@@ -88,9 +88,10 @@ The following procedure walks you through the **From Git** option in the **Devel
 
     Build Configuration and Deployment
     :   Click the **Build Configuration** and **Deployment** links to see the respective configuration options. Some options are selected by default; you can customize them further by adding the necessary triggers and environment variables.
+
         For serverless applications, the **Deployment** option is not displayed as the Knative configuration resource maintains the desired state for your deployment instead of a `DeploymentConfig` resource.
 
-{% include "./snippets/scaling-odc.md" %}
+        {% include "./snippets/scaling-odc.md" %}
 
 
     Resource Limit

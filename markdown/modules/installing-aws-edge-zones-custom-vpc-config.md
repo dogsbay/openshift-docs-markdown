@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if local_zone %}
+{% if local_zone %}
 # Modifying an installation configuration file to use {{ aws_first }} Local Zones subnets {id="installing-aws-edge-zones-custom-vpc-config_{{ context }}"}
 
 {% endif %}
@@ -25,7 +25,7 @@ Modify your `install-config.yaml` file to include {{ zone_type }} subnets. {._ab
 **Procedure**
 
 *   Modify the `install-config.yaml` configuration file by specifying {{ zone_type }} subnets in the `platform.aws.subnets` parameter.
-    {%- if local_zone %}
+{% if local_zone %}
     ```yaml title="Example installation configuration file with {{ zone_type }} subnets"
     # ...
     platform:
@@ -66,8 +66,8 @@ Modify your `install-config.yaml` file to include {{ zone_type }} subnets. {._ab
 {% endif %}
 
 {% if context == "installing-aws-localzone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "installing-aws-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}

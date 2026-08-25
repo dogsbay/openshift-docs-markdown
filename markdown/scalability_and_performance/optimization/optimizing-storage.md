@@ -3,8 +3,8 @@ title: Optimizing storage
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Optimizing storage {id="optimizing-storage"}
 {% include "./_attributes/common-attributes.md" %}
+# Optimizing storage {id="optimizing-storage"}
 {%- set gluster = "GlusterFS" -%}
 {%- set gluster_native = "Containerized GlusterFS" -%}
 {%- set gluster_external = "External GlusterFS" -%}
@@ -21,7 +21,7 @@ title: Optimizing storage
 {% endif %}
 {%- set context = "persistent-storage" %}
 
-Optimizing storage helps to minimize storage use across all resources. As an administrator, you can optimize storage to ensure that existing storage resources are working in an efficient manner.
+Optimizing storage helps to minimize storage use across all resources. As an administrator, you can optimize storage to ensure that existing storage resources are working in an efficient manner. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/available-persistent-storage-options.md" %}{% endleveloffset %}
 
@@ -29,7 +29,7 @@ Optimizing storage helps to minimize storage use across all resources. As an adm
 
 {% leveloffset +2 %}{% include "./modules/specific-application-storage-recommendations.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Is NFS supported for OpenShift cluster internal components in Production?](https://access.redhat.com/solutions/3428661)
 

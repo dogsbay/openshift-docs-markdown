@@ -12,7 +12,7 @@ Add a custom boot source image in a heterogeneous cluster by editing the `HyperC
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Edit the `HyperConverged` CR to add the custom boot source image. You must add the appropriate values for the `ssp.kubevirt.io/dict.architectures` annotation in the `dataImportCronTemplates` section. For example:

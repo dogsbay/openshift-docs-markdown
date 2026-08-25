@@ -32,7 +32,7 @@ You can work around this issue by either ensuring that the container that needs 
 {%- if sriov %}
 *   Install the SR-IOV Operator.
 *   Create either an `SriovNetwork` object or an `SriovIBNetwork` object to attach the pod to.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -124,5 +124,5 @@ You can work around this issue by either ensuring that the container that needs 
     :   Specifies a JSON array of objects. Each object describes the status of a secondary network attached to the pod. The annotation value is stored as a plain text value.
 
 {% if context == "configuring-sr-iov" %}
-{%- set sriov = false -%}
+{%- set sriov = "" -%}
 {% endif %}

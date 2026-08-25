@@ -11,7 +11,7 @@ To modify how HTTP requests are processed before they reach your backend service
 **Procedure**
 
 1.  Create or edit an `HTTPRoute` YAML file to include your desired processing directives under the `spec.rules.filters` field. 
-    The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a `requestRedirect` filter that issues a permanent redirect (301) from HTTP to HTTPS. For details on configuring other filter types, see [#!supported-httproute-filters_{{ context }}](#supported-httproute-filters_{{ context }}).
+    The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a `requestRedirect` filter that issues a permanent redirect (301) from HTTP to HTTPS. For details on configuring other filter types, see [supported-httproute-filters_{{ context }}](#supported-httproute-filters_{{ context }}).
 
     ```yaml
     apiVersion: gateway.networking.k8s.io/v1

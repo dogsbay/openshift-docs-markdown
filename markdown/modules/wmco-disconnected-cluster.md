@@ -30,7 +30,7 @@ You can use a mirror registry with machine set or Bring-Your-Own-Host (BYOH) Win
 When using an IDMS or ITMS object to mirror container images on Windows nodes, take note of the following behaviors that differ from Linux nodes:
 
 *   Mirroring on Windows nodes works on the registry level, rather than on the image level used by Linux nodes. As such, Windows images mirrored by using IDMS or ITMS objects have specific naming requirements. 
-{% include "./snippets/wmco-mirror-naming-requirements.md" %}
+    {% include "./snippets/wmco-mirror-naming-requirements.md" %}
 *   A Windows node takes the ITMS object and uses it to configure registry-wide mirrors. In the following example, configuring `quay.io/remote-org/image` to mirror to `quay.io/my-org/image` results in the Windows node using that mirror for all images from `quay.io/remote-org`. As such, `quay.io/remote-org/image:tag` uses the `quay.io/my-org/image:tag` image, as expected, but another container using `quay.io/remote-org/different-image:tag`
 would also try to use the `quay.io/remote-org/different-image:tag` mirror. This can cause unintended behavior if it is not accounted for.
 

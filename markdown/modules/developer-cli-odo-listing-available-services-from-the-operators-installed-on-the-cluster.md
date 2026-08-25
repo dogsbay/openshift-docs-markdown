@@ -1,6 +1,6 @@
 # Listing available services from the Operators installed on the cluster {id="listing-available-services-from-the-operators-installed-on-the-cluster_{{ context }}"}
 
-With `{{ odo_title }}`, you can display the list of the Operators installed on your cluster, and the services they provide.
+With `{{ odo_title }}`{minja}, you can display the list of the Operators installed on your cluster, and the services they provide.
 
 *   To list the Operators installed in current project, run:
     ```terminal

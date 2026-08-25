@@ -14,10 +14,21 @@ pre:
 
 Every hook has a _failure policy_, which defines the action the strategy should take when a hook failure is encountered:
 
-|     |     |
-| --- | --- |
-| `Abort` | The deployment process will be considered a failure if the hook fails. |
-| `Retry` | The hook execution should be retried until it succeeds. |
-| `Ignore` | Any hook failure should be ignored and the deployment should proceed. |
+<table>
+<tbody>
+<tr>
+  <td><code>Abort</code></td>
+  <td>The deployment process will be considered a failure if the hook fails.</td>
+</tr>
+<tr>
+  <td><code>Retry</code></td>
+  <td>The hook execution should be retried until it succeeds.</td>
+</tr>
+<tr>
+  <td><code>Ignore</code></td>
+  <td>Any hook failure should be ignored and the deployment should proceed.</td>
+</tr>
+</tbody>
+</table>
 
 Hooks have a type-specific field that describes how to execute the hook. Currently, pod-based hooks are the only supported hook type, specified by the `execNewPod` field.

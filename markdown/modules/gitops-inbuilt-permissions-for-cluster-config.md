@@ -14,7 +14,7 @@ Argo CD does not have cluster-admin permissions.
 Permissions for the Argo CD instance:
 |     |     |
 | --- | --- |
-| ***Resources*** | ***Descriptions*** |
+| **Resources** | **Descriptions** |
 | Resource Groups | Configure the user or administrator |
 | `operators.coreos.com` | Optional Operators managed by OLM |
 | `user.openshift.io` , `rbac.authorization.k8s.io` | Groups, Users and their permissions |

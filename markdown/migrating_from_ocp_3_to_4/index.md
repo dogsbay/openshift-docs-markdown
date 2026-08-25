@@ -3,8 +3,8 @@ title: Migration from OpenShift Container Platform 3 to 4 overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Migration from OpenShift Container Platform 3 to 4 overview {id="migration-from-version-3-to-4-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# Migration from OpenShift Container Platform 3 to 4 overview {id="migration-from-version-3-to-4-overview"}
 {%- set context = "migration-from-version-3-to-4-overview" %}
 
 {{ product_title }} 4 clusters are different from {{ product_title }} 3 clusters. {{ product_title }} 4 clusters contain new technologies and functionality that result in a cluster that is self-managing, flexible, and automated. To learn more about migrating from {{ product_title }} 3 to 4 see [About migrating from OpenShift Container Platform 3 to 4](/migrating_from_ocp_3_to_4/about-migrating-from-3-to-4#about-migrating-from-3-to-4).

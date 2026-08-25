@@ -5,7 +5,7 @@ Customize network policies for the `netobserv` and `netobserv-privileged` namesp
 
 **Procedure**
 
-1.  Navigate to **Networking** -> **NetworkPolicies**.
+1.  Navigate to **Networking** → **NetworkPolicies**.
 1.  Select the `netobserv` project from the **Project** dropdown menu.
 1.  Name the policy. For this example, the policy name is `allow-ingress`.
 1.  Click **Add ingress rule** three times to create three ingress rules.
@@ -64,6 +64,6 @@ Customize network policies for the `netobserv` and `netobserv-privileged` namesp
 
 **Verification**
 
-1.  Navigate to **Observe** -> **Network Traffic**.
+1.  Navigate to **Observe** → **Network Traffic**.
 1.  View the **Traffic Flows** tab, or any tab, to verify that the data is displayed.
-1.  Navigate to **Observe** -> **Dashboards**. In the NetObserv/Health selection, verify that the flows are being ingested and sent to Loki, which is represented in the first graph.
+1.  Navigate to **Observe** → **Dashboards**. In the NetObserv/Health selection, verify that the flows are being ingested and sent to Loki, which is represented in the first graph.

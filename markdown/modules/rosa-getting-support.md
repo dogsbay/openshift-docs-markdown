@@ -7,7 +7,7 @@ If you experience difficulty with a procedure described in this documentation, v
 *   Submit a support case to Red Hat Support:
     1.  Click **Open a New Case**.
     1.  Select the reason for the support ticket, such as `Defect/Bug` or `Account/Customer Service Request`.
-    1.  In the `Product` field, enter `OpenShift` to filter the list. Select `{{ product_title }}` and the version from the drop-down menus.
+    1.  In the `Product` field, enter `OpenShift` to filter the list. Select `{{ product_title }}`{minja} and the version from the drop-down menus.
     1.  Complete the remaining fields.
     1.  On the _Review_ page, select the correct cluster ID that you are contacting support about, and click `Submit`.
 

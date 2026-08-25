@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{%- if not (openshift_dedicated or openshift_rosa) %}
+{% if not (openshift_dedicated or openshift_rosa) %}
 # GPUs and CSPs {id="nvidia-gpu-csps_{{ context }}"}
 {% endif %}
 {% if openshift_rosa or openshift_dedicated %}
 # GPUs and {{ product_title }} {id="_gpus_and_product_title"}
 {% endif %}
 
-{%- if not (openshift_dedicated or openshift_rosa) %}
+{% if not (openshift_dedicated or openshift_rosa) %}
 You can deploy {{ product_title }} to one of the major cloud service providers (CSPs): {{ aws_first }}, {{ gcp_full }}, or Microsoft Azure. {._abstract}
 
 Two modes of operation are available: a fully managed deployment and a self-managed deployment.

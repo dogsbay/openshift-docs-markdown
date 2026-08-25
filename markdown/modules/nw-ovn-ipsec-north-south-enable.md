@@ -117,11 +117,11 @@ After you apply the machine config, the Machine Config Operator (MCO) reboots af
 
     :::note
 
-{% include "./snippets/butane-version.md" %}
+    {% include "./snippets/butane-version.md" %}
     
     :::
 
-    ```terminal
+    ```terminal {minja}
     $ for role in master worker; do
       cat >> "99-ipsec-${role}-endpoint-config.bu" <<-EOF
       variant: openshift

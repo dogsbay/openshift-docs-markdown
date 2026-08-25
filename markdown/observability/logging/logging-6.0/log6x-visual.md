@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Visualization for logging {id="log6x-visual"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Visualization for logging {id="log6x-visual"}
 {%- set context = "logging-6x" %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}

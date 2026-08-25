@@ -7,7 +7,7 @@ title: "User-managed encryption for {{ ibm_cloud_title }}"
 # User-managed encryption for {{ ibm_cloud_title }} {id="user-managed-encryption-ibm-cloud"}
 {%- set context = "user-managed-encryption-ibm-cloud" %}
 
-By default, {{ product_title }} uses provider-managed encryption to secure the root volumes and persistent data volumes of a cluster. You can override this by specifying an {{ ibm_name }} Key Protect root key by using the `encryptionKey` parameter in the `install-config.yaml` file.
+By default, {{ product_title }} uses provider-managed encryption to secure the root volumes and persistent data volumes of a cluster. You can override this by specifying an {{ ibm_name }} Key Protect root key by using the `encryptionKey` parameter in the `install-config.yaml` file. {._abstract}
 
 You can specify that:
 
@@ -24,7 +24,7 @@ Make sure you have integrated Key Protect with your {{ ibm_cloud_title }} Block 
 :::
 
 
-## Additional resources {id="additional-resources_user-managed-encryption-ibm-cloud"}
+## Additional resources {id="additional-resources_user-managed-encryption-ibm-cloud" ._additional-resources}
 
 *   [Key Protect documentation](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-services#grant-access)
 *   [Additional {{ ibm_cloud_title }} configuration parameters](/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)

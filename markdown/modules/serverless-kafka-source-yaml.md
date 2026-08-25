@@ -31,29 +31,29 @@ Creating Knative resources by using YAML files uses a declarative API, which ena
     1.  A topic provides a destination for the storage of data. Each topic is split into one or more partitions.
     1.  A sink specifies where events are sent to from a source.
 
-        :::important
+    :::important
 
-        Only the `v1beta1` version of the API for `KafkaSource` objects on {{ ServerlessProductName }} is supported. Do not use the `v1alpha1` version of this API, as this version is now deprecated.
-        
-        :::
+    Only the `v1beta1` version of the API for `KafkaSource` objects on {{ ServerlessProductName }} is supported. Do not use the `v1alpha1` version of this API, as this version is now deprecated.
+    
+    :::
 
-        ```yaml title="Example KafkaSource object"
-        apiVersion: sources.knative.dev/v1beta1
-        kind: KafkaSource
-        metadata:
-          name: kafka-source
-        spec:
-          consumerGroup: knative-group
-          bootstrapServers:
-          - my-cluster-kafka-bootstrap.kafka:9092
-          topics:
-          - knative-demo-topic
-          sink:
-            ref:
-              apiVersion: serving.knative.dev/v1
-              kind: Service
-              name: event-display
-        ```
+    ```yaml title="Example KafkaSource object"
+    apiVersion: sources.knative.dev/v1beta1
+    kind: KafkaSource
+    metadata:
+      name: kafka-source
+    spec:
+      consumerGroup: knative-group
+      bootstrapServers:
+      - my-cluster-kafka-bootstrap.kafka:9092
+      topics:
+      - knative-demo-topic
+      sink:
+        ref:
+          apiVersion: serving.knative.dev/v1
+          kind: Service
+          name: event-display
+    ```
 1.  Apply the `KafkaSource` YAML file:
     ```terminal
     $ oc apply -f <filename>

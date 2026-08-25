@@ -3,11 +3,11 @@ title: Persistent storage using Azure
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using Azure {id="persistent-storage-using-azure"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using Azure {id="persistent-storage-using-azure"}
 {%- set context = "persistent-storage-azure" %}
 
-{{ product_title }} supports Microsoft Azure Disk volumes. You can provision your {{ product_title }} cluster with persistent storage by using Azure. Some familiarity with Kubernetes and Azure is assumed.
+{{ product_title }} supports Microsoft Azure Disk volumes. You can provision your {{ product_title }} cluster with persistent storage by using Azure. Some familiarity with Kubernetes and Azure is assumed. {._abstract}
 
 The Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure. Azure Disk volumes can be provisioned dynamically. Persistent volumes are not bound to a single project or namespace; they can be shared across the {{ product_title }} cluster. Persistent volume claims are specific to a project or namespace and can be requested by users.
 
@@ -30,6 +30,7 @@ High availability of storage in the infrastructure is left to the underlying sto
 
 
 **Additional resources**
+{._additional-resources}
 
 *   [CSI automatic migration](/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
 *   [Microsoft Azure Disk](https://azure.microsoft.com/en-us/services/storage/disks)
@@ -37,6 +38,7 @@ High availability of storage in the infrastructure is left to the underlying sto
 {% leveloffset +1 %}{% include "./modules/storage-azure-create-storage-class.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Azure Disk Storage Class](https://kubernetes.io/docs/concepts/storage/storage-classes/#new-azure-disk-storage-class-starting-from-v1-7-2)
 
@@ -47,6 +49,7 @@ High availability of storage in the infrastructure is left to the underlying sto
 {% leveloffset +1 %}{% include "./modules/machineset-azure-ultra-disk.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Microsoft Azure ultra disks documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)
 *   [Machine sets that deploy machines on ultra disks using CSI PVCs](/storage/container_storage_interface/persistent-storage-csi-azure#machineset-azure-ultra-disk_persistent-storage-csi-azure)

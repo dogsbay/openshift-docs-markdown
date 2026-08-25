@@ -17,22 +17,21 @@ You can also use the CLI to view limit range details:
     ```
 1.  Describe the `LimitRange` object you are interested in, for example the `resource-limits` limit range:
 
-```terminal
-$ oc describe limits resource-limits -n demoproject
-```
+    ```terminal
+    $ oc describe limits resource-limits -n demoproject
+    ```
 
-
-```terminal
-Name:                           resource-limits
-Namespace:                      demoproject
-Type                            Resource                Min     Max     Default Request Default Limit   Max Limit/Request Ratio
-----                            --------                ---     ---     --------------- -------------   -----------------------
-Pod                             cpu                     200m    2       -               -               -
-Pod                             memory                  6Mi     1Gi     -               -               -
-Container                       cpu                     100m    2       200m            300m            10
-Container                       memory                  4Mi     1Gi     100Mi           200Mi           -
-openshift.io/Image              storage                 -       1Gi     -               -               -
-openshift.io/ImageStream        openshift.io/image      -       12      -               -               -
-openshift.io/ImageStream        openshift.io/image-tags -       10      -               -               -
-PersistentVolumeClaim           storage                 -       50Gi    -               -               -
-```
+    ```terminal
+    Name:                           resource-limits
+    Namespace:                      demoproject
+    Type                            Resource                Min     Max     Default Request Default Limit   Max Limit/Request Ratio
+    ----                            --------                ---     ---     --------------- -------------   -----------------------
+    Pod                             cpu                     200m    2       -               -               -
+    Pod                             memory                  6Mi     1Gi     -               -               -
+    Container                       cpu                     100m    2       200m            300m            10
+    Container                       memory                  4Mi     1Gi     100Mi           200Mi           -
+    openshift.io/Image              storage                 -       1Gi     -               -               -
+    openshift.io/ImageStream        openshift.io/image      -       12      -               -               -
+    openshift.io/ImageStream        openshift.io/image-tags -       10      -               -               -
+    PersistentVolumeClaim           storage                 -       50Gi    -               -               -
+    ```

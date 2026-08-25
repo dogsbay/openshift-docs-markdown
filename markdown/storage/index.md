@@ -3,8 +3,8 @@ title: OpenShift Container Platform storage overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ product_title }} storage overview {id="storage-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ product_title }} storage overview {id="storage-overview"}
 {%- set context = "storage-overview" %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}

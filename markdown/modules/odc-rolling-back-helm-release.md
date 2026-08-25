@@ -12,6 +12,7 @@ To rollback a release using the **Helm** view:
 1.  In the **Rollback Helm Release** page, select the **Revision** you want to rollback to and click **Rollback**.
 1.  In the **Helm Releases** page, click on the chart to see the details and resources for that release.
 1.  Go to the **Revision History** tab to see all the revisions for the chart.
+
     **Figure 1. Helm revision history**
 
     ![odc_helm_revision_history](/_assets/images/odc_helm_revision_history.png)

@@ -10,7 +10,7 @@ The threshold is met when the stated value is reached through any combination of
 **Procedure**
 
 *   Create the Butane configuration file and define a disk encryption configuration in the file. For example, the `threshold` value of `2` in the following configuration can be reached by accessing two Tang servers, where the offline server is available as a backup, or by accessing the TPM secure cryptoprocessor and one of the Tang servers.
-    ```yaml title="Example Butane configuration for disk encryption"
+    ```yaml title="Example Butane configuration for disk encryption" {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

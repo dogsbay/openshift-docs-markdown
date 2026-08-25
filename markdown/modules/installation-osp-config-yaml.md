@@ -11,10 +11,8 @@ This sample file is provided for reference only. You must obtain your `install-c
 :::
 
 
-<details>
-<summary>Example single stack `install-config.yaml` file</summary>
-
-```yaml
+:::details{title="Example single stack `install-config.yaml` file"}
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 controlPlane:
@@ -50,11 +48,9 @@ fips: false
 pullSecret: '{"auths": ...}'
 sshKey: ssh-ed25519 AAAA...
 ```
-</details>
+:::
 
-<details>
-<summary>Example dual stack `install-config.yaml` file</summary>
-
+:::details{title="Example dual stack `install-config.yaml` file"}
 ```yaml
 apiVersion: v1
 baseDomain: example.com
@@ -106,4 +102,4 @@ fips: false
 pullSecret: '{"auths": ...}'
 sshKey: ssh-ed25519 AAAA...
 ```
-</details>
+:::

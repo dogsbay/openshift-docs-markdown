@@ -23,9 +23,9 @@ From the {{ product_title }} web console, you can deploy a test application from
 **Procedure**
 
 1.  Go to the **Cluster List** page in {{ cluster_manager_url }}, click the options icon (&#8942;) next to your cluster, and select **Open console**. Log in to your Red&#160;Hat account with your configured identity provider credentials.
-1.  In the **Administrator** perspective, select **Home** -> **Projects** -> **Create Project**, enter a name for your project, and click **Create**. Optional: Add a **Display Name** and **Description**.
+1.  In the **Administrator** perspective, select **Home** → **Projects** → **Create Project**, enter a name for your project, and click **Create**. Optional: Add a **Display Name** and **Description**.
 1.  Switch to the **Developer** perspective and select **+Add**. Verify that the selected **Project** is the one you created.
-1.  In the **Developer Catalog** dialog, select **All services**, then select **Languages** -> **JavaScript** from the menu and click **Node.js**.
+1.  In the **Developer Catalog** dialog, select **All services**, then select **Languages** → **JavaScript** from the menu and click **Node.js**.
 
     :::note
 
@@ -46,7 +46,7 @@ From the {{ product_title }} web console, you can deploy a test application from
     ```
     Welcome to your Node.js application on OpenShift
     ```
-1.  Optional: In the **Administrator** perspective, navigate to **Home** -> **Projects**, click the action menu for your project, and select **Delete Project** to clean up resources.
+1.  Optional: In the **Administrator** perspective, navigate to **Home** → **Projects**, click the action menu for your project, and select **Delete Project** to clean up resources.
 
 **Verification**
 

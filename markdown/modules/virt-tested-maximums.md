@@ -42,8 +42,9 @@ The following maximums apply to objects defined in {{ VirtProductName }}.
 | --- | --- | --- |
 | Number of attached PVs per node | N/A | CSI storage provider dependent |
 | Maximum PV size | N/A | CSI storage provider dependent |
-| Hosts | 500 hosts (100 or fewer recommended) ^[1]^ | Same as {{ product_title }} |
-| Defined VMs | 10,000 VMs ^[2]^ | Same as {{ product_title }} |
+| Hosts | 500 hosts (100 or fewer recommended) <sup>[1]</sup> | Same as {{ product_title }} |
+| Defined VMs | 10,000 VMs <sup>[2]</sup> | Same as {{ product_title }} |
+
 1.  If you use more than 100 nodes, consider using {{ rh_rhacm_first }} to manage multiple clusters instead of scaling out a single control plane. Larger clusters add complexity, require longer updates, and depending on node size and total object density, they can increase control plane stress.
 
     Using multiple clusters can be beneficial in areas like per-cluster isolation and high availability.

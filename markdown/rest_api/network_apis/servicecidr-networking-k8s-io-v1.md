@@ -1,5 +1,5 @@
 ---
-title: "ServiceCIDR []"
+title: "ServiceCIDR [networking.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ServiceCIDRSpec define the CIDRs the user wants to use for allocating ClusterIPs for Services. |
 | `status` | `object` | ServiceCIDRStatus describes the current state of the ServiceCIDR. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -36,6 +37,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `cidrs` | `array (string)` | CIDRs defines the IP blocks in CIDR notation (e.g. "192.168.0.0/24" or "2001:db8::/64") from which to assign service cluster IPs. Max of two CIDRs is allowed, one of each IP family. This field is immutable. |
+
 ### .status {id="_status"}
 
 Description
@@ -59,14 +61,14 @@ The following API endpoints are available:
     *   `POST`: create a ServiceCIDR
 *   `/apis/networking.k8s.io/v1/watch/servicecidrs`
     *   `GET`: watch individual changes to a list of ServiceCIDR. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/networking.k8s.io/v1/servicecidrs/{{ name }}`
+*   `/apis/networking.k8s.io/v1/servicecidrs/{{ name }}`{minja}
     *   `DELETE`: delete a ServiceCIDR
     *   `GET`: read the specified ServiceCIDR
     *   `PATCH`: partially update the specified ServiceCIDR
     *   `PUT`: replace the specified ServiceCIDR
-*   `/apis/networking.k8s.io/v1/watch/servicecidrs/{{ name }}`
+*   `/apis/networking.k8s.io/v1/watch/servicecidrs/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind ServiceCIDR. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/networking.k8s.io/v1/servicecidrs/{{ name }}/status`
+*   `/apis/networking.k8s.io/v1/servicecidrs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ServiceCIDR
     *   `PATCH`: partially update status of the specified ServiceCIDR
     *   `PUT`: replace status of the specified ServiceCIDR

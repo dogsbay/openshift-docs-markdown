@@ -8,13 +8,15 @@ New in this release
 :   *   There are no reference design updates in this release.
 
 Description
-    :   The GitOps Operator provides a GitOps driven infrastructure for managing cluster deployment and configuration.
+:   The GitOps Operator provides a GitOps driven infrastructure for managing cluster deployment and configuration.
     Cluster definitions and configuration are maintained in a Git repository.
+
 
     The SiteConfig Operator generates installation CRs from `ClusterInstance` CRs.
 
 
     :::important
+
 
     From {{ product_title }} 4.21, you must use `ClusterInstance` CRs and the SiteConfig Operator to define managed cluster installations.
     With this release, support for defining managed cluster installations with the `SiteConfig` CR is removed.
@@ -22,10 +24,13 @@ Description
     :::
 
 
+
     {{ ztp }} plugins provide support for automatically wrapping configuration CRs in policies based on {{ rh_rhacm }} `PolicyGenerator` CRs.
+
 
     You should structure the Git repository according to the release version, with all necessary artifacts added to the repository, such as the `ClusterInstance`, `PolicyGenerator`, and supporting reference CRs.
     This structure enables deploying and managing multiple versions of the {{ product_title }} and configuration versions to clusters simultaneously and through upgrades.
+
 
     The recommended Git structure keeps reference CRs in a directory separate from customer or partner provided content.
     This means that you can import reference updates by simply overwriting existing content.

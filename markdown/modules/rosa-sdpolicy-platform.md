@@ -5,17 +5,17 @@
 This section provides information about the service definition for the
 {%- if openshift_rosa_hcp %}
 {{ hcp_title_first }} platform.
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }} (ROSA) platform.
-{% endif %}
+{%- endif %}
 
 ## Autoscaling {id="rosa-sdpolicy-autoscaling_{{ context }}"}
 Node autoscaling is available on
 {%- if openshift_rosa_hcp %}
 {{ hcp_title }}.
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}.
 {%- endif %}
 You can configure the autoscaler option to automatically scale the number of machines in a cluster.
@@ -31,7 +31,7 @@ spec:
   nodeSelector:
     role: worker
 ```
-{%- endif %}
+{% endif %}
 ## Multiple availability zone {id="rosa-sdpolicy-multiple-availability-zone_{{ context }}"}
 
 {% if openshift_rosa_hcp %}
@@ -45,8 +45,8 @@ In a multiple availability zone cluster, control plane nodes are distributed acr
 Custom node labels are created by Red&#160;Hat during node creation and cannot be changed on
 {%- if openshift_rosa_hcp %}
 {{ hcp_title }}
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}
 {%- endif %}
 clusters at this time. However, custom labels are supported when creating new machine pools.
@@ -61,10 +61,10 @@ A worker node might be replaced in the following circumstances:
 *   AWS EC2 instances may be terminated when AWS detects irreparable failure of the underlying hardware that hosts the instance.
 {%- if openshift_rosa %}
 *   During upgrades, a new node is first provisioned to account for any loss of cluster resources during the upgrade process. Once this new node has been successfully integrated into the cluster via the previously described automated health checks, an older node is then removed from the cluster.
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 *   During upgrades, a new, upgraded node is first created and joined to the cluster. Once this new node has been successfully integrated into the cluster via the previously described automated health checks, an older node is then removed from the cluster.
-{% endif %}
+{%- endif %}
 
 For all containerized workloads running on a Kubernetes based system, it is best practice to configure applications to be resilient of node replacements.
 
@@ -85,14 +85,14 @@ Customers are solely responsible for backing up and restoring their applications
 ## OpenShift version {id="rosa-sdpolicy-openshift-version_{{ context }}"}
 {%- if openshift_rosa_hcp %}
 {{ hcp_title }}
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
 is run as a service. Red&#160;Hat SRE team will force upgrade when end of life (EOL) is reached.
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
 is run as a service and is kept up to date with
 the latest OpenShift Container Platform version.
 {%- endif %}
@@ -107,13 +107,13 @@ See the [{{ product_title }} Life Cycle](https://docs.openshift.com/rosa/rosa_po
 {{ productwinc }} is not available on {{ product_title }} at this time.
 {%- if openshift_rosa_hcp %}
 Alternatively, it is supported to run Windows based virtual machines on OpenShift Virtualization running on a ROSA cluster.
-{% endif %}
+{%- endif %}
 
 ## Container engine {id="rosa-sdpolicy-container-engine_{{ context }}"}
 {%- if openshift_rosa_hcp %}
 {{ hcp_title }}
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}
 {%- endif %}
 runs on OpenShift 4 and uses [CRI-O](https://www.redhat.com/en/blog/red-hat-openshift-container-platform-4-now-defaults-cri-o-underlying-container-engine) as the only available container engine
@@ -123,8 +123,8 @@ runs on OpenShift 4 and uses [CRI-O](https://www.redhat.com/en/blog/red-hat-open
 ## Operating system {id="rosa-sdpolicy-operating-system_{{ context }}"}
 {%- if openshift_rosa_hcp %}
 {{ hcp_title }}
-{% endif %}
-{% if not openshift_rosa_hcp %}
+{%- endif %}
+{%- if not openshift_rosa_hcp %}
 {{ product_title }}
 {%- endif %}
 runs on OpenShift 4 and uses Red&#160;Hat CoreOS (RHCOS) as the operating system for all cluster nodes.

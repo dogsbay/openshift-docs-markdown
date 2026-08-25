@@ -3,12 +3,12 @@ title: Connecting a virtual machine to a Linux bridge network
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Connecting a virtual machine to a Linux bridge network {id="virt-connecting-vm-to-linux-bridge"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "virt-connecting-vm-to-linux-bridge" %}
 
-By default, {{ VirtProductName }} is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by using a Linux bridge.
+By default, {{ VirtProductName }} is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by using a Linux bridge. {._abstract}
 
 To create a Linux bridge network and attach a VM to the network, perform the following steps:
 
@@ -38,6 +38,6 @@ To create a Linux bridge network and attach a VM to the network, perform the fol
 
 {% leveloffset +1 %}{% include "./modules/virt-attaching-vm-secondary-network-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Configuring IP addresses for virtual machines](/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)
 *   [Which bonding modes work when used with a bridge that virtual machine guests or containers connect to?](https://access.redhat.com/solutions/67546)

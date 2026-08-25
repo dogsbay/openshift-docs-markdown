@@ -39,7 +39,7 @@ The `ComplianceSuite` object has an optional `TailoringConfigMap` attribute that
             value: permissive
         ```
 
-        ***Attributes for spec variables***
+        **Attributes for spec variables**
 
 <table>
 <thead>

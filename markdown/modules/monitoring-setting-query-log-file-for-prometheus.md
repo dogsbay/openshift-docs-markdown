@@ -27,7 +27,7 @@ Because log rotation is not supported, only enable this feature temporarily when
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   You have access to the cluster as a user with the `cluster-admin` cluster role or as a user with the `user-workload-monitoring-config-edit` role in the `openshift-user-workload-monitoring` project.
 *   A cluster administrator has enabled monitoring for user-defined projects.
-{% endif %}
+{%- endif %}
 
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to the cluster as a user with the `dedicated-admin` role.
@@ -37,12 +37,12 @@ Because log rotation is not supported, only enable this feature temporarily when
 
 **Procedure**
 
-1.  Edit the `{{ configmap_name }}` config map in the `{{ namespace_name }}` project:
-    ```terminal
+1.  Edit the `{{ configmap_name }}`{minja} config map in the `{{ namespace_name }}`{minja} project:
+    ```terminal {minja}
     $ oc -n {{ namespace_name }} edit configmap {{ configmap_name }}
     ```
 1.  Add the `queryLogFile` parameter for Prometheus under `data/config.yaml`:
-    ```yaml
+    ```yaml {minja}
     apiVersion: v1
     kind: ConfigMap
     metadata:
@@ -51,12 +51,12 @@ Because log rotation is not supported, only enable this feature temporarily when
     data:
       config.yaml: |
         {{ component }}:
-          queryLogFile: <path> # (1)
+          queryLogFile: <path> (1)
     ```
     1.  Add the full path to the file in which queries will be logged.
 1.  Save the file to apply the changes. The pods affected by the new configuration are automatically redeployed.
 1.  Verify that the pods for the component are running. The following sample command lists the status of pods:
-    ```terminal
+    ```terminal {minja}
     $ oc -n {{ namespace_name }} get pods
     ```
     ```terminal title="Example output"
@@ -78,7 +78,7 @@ Because log rotation is not supported, only enable this feature temporarily when
     ...
     ```
 1.  Read the query log:
-    ```terminal
+    ```terminal {minja}
     $ oc -n {{ namespace_name }} exec {{ pod }} -- cat <path>
     ```
 
@@ -89,7 +89,7 @@ Because log rotation is not supported, only enable this feature temporarily when
     :::
 
 
-{%- set configmap_name = false -%}
-{%- set namespace_name = false -%}
-{%- set component = false -%}
-{%- set pod = false -%}
+{%- set configmap_name = "" -%}
+{%- set namespace_name = "" -%}
+{%- set component = "" -%}
+{%- set pod = "" -%}

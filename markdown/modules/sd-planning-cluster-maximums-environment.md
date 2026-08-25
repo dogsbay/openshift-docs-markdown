@@ -5,10 +5,11 @@ To successfully plan your deployment on the AWS cloud platform, review the teste
 
 | Node | Type | vCPU | RAM(GiB) | Disk type | Disk size(GiB)/IOPS | Count | Region |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Control plane/etcd ^[1]^ | m5.4xlarge | 16 | 64 | gp3 | 350 / 1,000 | 3 | us-west-2 |
-| Infrastructure nodes ^[2]^ | r5.2xlarge | 8 | 64 | gp3 | 300 / 900 | 3 | us-west-2 |
-| Workload ^[3]^ | m5.2xlarge | 8 | 32 | gp3 | 350 / 900 | 3 | us-west-2 |
+| Control plane/etcd <sup>[1]</sup> | m5.4xlarge | 16 | 64 | gp3 | 350 / 1,000 | 3 | us-west-2 |
+| Infrastructure nodes <sup>[2]</sup> | r5.2xlarge | 8 | 64 | gp3 | 300 / 900 | 3 | us-west-2 |
+| Workload <sup>[3]</sup> | m5.2xlarge | 8 | 32 | gp3 | 350 / 900 | 3 | us-west-2 |
 | Compute nodes | m5.2xlarge | 8 | 32 | gp3 | 350 / 900 | 102 | us-west-2 |
+
 1.  io1 disks are used for control plane/etcd nodes in all versions prior to 4.10.
 1.  Infrastructure nodes are used to host monitoring components because Prometheus can claim a large amount of memory, depending on usage patterns.
 1.  Workload nodes are dedicated to run performance and scalability workload generators.

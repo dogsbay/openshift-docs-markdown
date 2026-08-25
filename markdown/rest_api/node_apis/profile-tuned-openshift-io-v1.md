@@ -1,5 +1,5 @@
 ---
-title: "Profile []"
+title: "Profile [tuned.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` |  |
 | `status` | `object` | ProfileStatus is the status for a Profile resource; the status is for internal use only and its fields may be changed/removed in the future. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -41,6 +42,7 @@ Required
 | `config` | `object` |  |
 | `profile` | `array` | Tuned profiles. |
 | `profile[]` | `object` | A Tuned profile. |
+
 ### .spec.config {id="_specconfig"}
 
 Description
@@ -60,6 +62,7 @@ Required
 | `tunedConfig` | `object` | Global configuration for the TuneD daemon as defined in tuned-main.conf |
 | `tunedProfile` | `string` | TuneD profile to apply |
 | `verbosity` | `integer` | klog logging verbosity |
+
 ### .spec.config.tunedConfig {id="_specconfigtunedconfig"}
 
 Description
@@ -72,6 +75,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `reapply_sysctl` | `boolean` | turn reapply_sysctl functionality on/off for the TuneD daemon: true/false |
+
 ### .spec.profile {id="_specprofile"}
 
 Description
@@ -99,6 +103,7 @@ Required
 | --- | --- | --- |
 | `data` | `string` | Specification of the Tuned profile to be consumed by the Tuned daemon. |
 | `name` | `string` | Name of the Tuned profile to be used in the recommend section. |
+
 ### .status {id="_status"}
 
 Description
@@ -119,6 +124,7 @@ Required
 | `conditions[]` | `object` | StatusCondition represents a partial state of the per-node Profile application. |
 | `observedGeneration` | `integer` | If set, this represents the .metadata.generation that the conditions were set based upon. |
 | `tunedProfile` | `string` | the current profile in use by the Tuned daemon |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -157,16 +163,16 @@ The following API endpoints are available:
 
 *   `/apis/tuned.openshift.io/v1/profiles`
     *   `GET`: list objects of kind Profile
-*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles`
+*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles`{minja}
     *   `DELETE`: delete collection of Profile
     *   `GET`: list objects of kind Profile
     *   `POST`: create a Profile
-*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles/{{ name }}`
+*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles/{{ name }}`{minja}
     *   `DELETE`: delete a Profile
     *   `GET`: read the specified Profile
     *   `PATCH`: partially update the specified Profile
     *   `PUT`: replace the specified Profile
-*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles/{{ name }}/status`
+*   `/apis/tuned.openshift.io/v1/namespaces/{{ namespace }}/profiles/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Profile
     *   `PATCH`: partially update status of the specified Profile
     *   `PUT`: replace status of the specified Profile

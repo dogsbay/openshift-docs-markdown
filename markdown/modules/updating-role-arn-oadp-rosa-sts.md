@@ -6,8 +6,8 @@ Update the {{ oadp_short }} Operator subscription to fix an installation error d
 While installing the {{ oadp_short }} Operator on a
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 ROSA Security Token Service (STS)
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 {{ product_title }}
 {%- endif %}
 cluster, if you provide an incorrect IAM role Amazon Resource Name (ARN), the `openshift-adp-controller` pod gives an error. The credential requests that are generated contain the wrong IAM role ARN. To update the credential requests object with the correct IAM role ARN, you can edit the {{ oadp_short }} Operator subscription and patch the IAM role ARN with the correct value. By editing the {{ oadp_short }} Operator subscription, you do not have to uninstall and reinstall {{ oadp_short }} to update the IAM role ARN.
@@ -19,8 +19,8 @@ cluster, if you provide an incorrect IAM role Amazon Resource Name (ARN), the `o
 *   You have installed {{ oadp_short }} on the ROSA STS cluster.
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp %}
-*   You have a {{ product_title }} cluster with the required access and tokens.
-*   You have installed {{ oadp_short }} on the {{ product_title }} cluster.
+* You have a {{ product_title }} cluster with the required access and tokens.
+* You have installed {{ oadp_short }} on the {{ product_title }} cluster.
 {% endif %}
 
 **Procedure**
@@ -132,7 +132,7 @@ cluster, if you provide an incorrect IAM role Amazon Resource Name (ARN), the `o
           type: Reconciled
     ```
 1.  Verify that the `BackupStorageLocation` CR is in an available state by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ oadp_bsl_api }} -n openshift-adp
     ```
     ```terminal title="Example BackupStorageLocation"

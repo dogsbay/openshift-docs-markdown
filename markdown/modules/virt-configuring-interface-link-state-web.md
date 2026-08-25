@@ -9,7 +9,7 @@ You can set the link state of a primary or secondary virtual machine (VM) networ
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines**.
+1.  Navigate to **Virtualization** → **VirtualMachines**.
 1.  Select a VM to view the **VirtualMachine details** page.
 1.  On the **Configuration** tab, click **Network**. A list of network interfaces is displayed.
 1.  Click the Options menu {{ kebab }} of the interface that you want to edit.

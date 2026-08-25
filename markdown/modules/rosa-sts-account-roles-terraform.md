@@ -3,7 +3,7 @@
 {% endif %}
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-{%- if tf_full %}
+{% if tf_full %}
 # Account roles Terraform example {id="sd-terraform-account-roles_{{ context }}"}
 {% endif %}
 {% if not tf_full %}
@@ -184,14 +184,14 @@ The following example shows how Terraform can be used to create your Amazon Web 
     $ rosa list account-roles
     ```
 
-```terminal title="Example output"
-I: Fetching account roles
-ROLE NAME                            ROLE TYPE      ROLE ARN                                                            OPENSHIFT VERSION  AWS Managed
-account-role-6kn4-ControlPlane-Role  Control plane  arn:aws:iam::269733383066:role/account-role-6kn4-ControlPlane-Role  4.13               No
-account-role-6kn4-Installer-Role     Installer      arn:aws:iam::269733383066:role/account-role-6kn4-Installer-Role     4.13               No
-account-role-6kn4-Support-Role       Support        arn:aws:iam::269733383066:role/account-role-6kn4-Support-Role       4.13               No
-account-role-6kn4-Worker-Role        Worker         arn:aws:iam::269733383066:role/account-role-6kn4-Worker-Role        4.13               No
-```
+    ```terminal title="Example output"
+    I: Fetching account roles
+    ROLE NAME                            ROLE TYPE      ROLE ARN                                                            OPENSHIFT VERSION  AWS Managed
+    account-role-6kn4-ControlPlane-Role  Control plane  arn:aws:iam::269733383066:role/account-role-6kn4-ControlPlane-Role  4.13               No
+    account-role-6kn4-Installer-Role     Installer      arn:aws:iam::269733383066:role/account-role-6kn4-Installer-Role     4.13               No
+    account-role-6kn4-Support-Role       Support        arn:aws:iam::269733383066:role/account-role-6kn4-Support-Role       4.13               No
+    account-role-6kn4-Worker-Role        Worker         arn:aws:iam::269733383066:role/account-role-6kn4-Worker-Role        4.13               No
+    ```
 
 **Clean up**
 
@@ -199,6 +199,6 @@ When you are finished using the resources that you created using Terraform, you 
 ```terminal
 $ terraform destroy
 ```
-{%- if context == "rosa-understanding-terraform" %}
-{%- set tf_full = false -%}
+{% if context == "rosa-understanding-terraform" %}
+{%- set tf_full = "" -%}
 {% endif %}

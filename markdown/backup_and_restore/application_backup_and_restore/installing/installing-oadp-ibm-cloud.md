@@ -3,13 +3,13 @@ title: "Configuring the {{ oadp_full }} with {{ ibm_cloud_title }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the {{ oadp_full }} with {{ ibm_cloud_title }} {id="installing-oadp-ibm-cloud"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the {{ oadp_full }} with {{ ibm_cloud_title }} {id="installing-oadp-ibm-cloud"}
 {%- set context = "installing-oadp-ibm-cloud" -%}
 {%- set installing_oadp_ibm_cloud = true -%}
 {%- set credentials = "cloud-credentials" %}
 
-You install the {{ oadp_first }} Operator on an {{ ibm_cloud_title }} cluster to back up and restore applications on the cluster. You configure {{ ibm_cloud_object_storage }} to store the backups.
+You install the {{ oadp_first }} Operator on an {{ ibm_cloud_title }} cluster to back up and restore applications on the cluster. You configure {{ ibm_cloud_object_storage }} to store the backups. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/configuring-ibm-cos.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/oadp-creating-default-secret.md" %}{% endleveloffset %}
@@ -27,4 +27,4 @@ You install the {{ oadp_first }} Operator on an {{ ibm_cloud_title }} cluster to
 {% leveloffset +1 %}{% include "./modules/oadp-configuring-dpa-multiple-bsl.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/oadp-about-disable-node-agent-dpa.md" %}{% endleveloffset %}
 
-{%- set installing_oadp_ibm_cloud = false -%}
+{%- set installing_oadp_ibm_cloud = "" -%}

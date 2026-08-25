@@ -7,7 +7,7 @@ New in this release {._abstract}
 :   *   No reference design updates in this release.
 
 Description
-    :   {{ cgu_operator }} is an Operator that runs only on the hub cluster for managing how changes like cluster upgrades, Operator upgrades, and cluster configuration are rolled out to the network. {{ cgu_operator }} supports the following features:
+:   {{ cgu_operator }} is an Operator that runs only on the hub cluster for managing how changes like cluster upgrades, Operator upgrades, and cluster configuration are rolled out to the network. {{ cgu_operator }} supports the following features:
 
     *   Progressive rollout of policy updates to fleets of clusters in user configurable batches.
     *   Per-cluster actions add `ztp-done` labels or other user-configurable labels following configuration changes to managed clusters.

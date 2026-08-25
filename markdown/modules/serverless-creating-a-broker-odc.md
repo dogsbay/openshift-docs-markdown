@@ -11,7 +11,7 @@ After Knative Eventing is installed on your cluster, you can create a broker by 
 
 **Procedure**
 
-1.  In the **Developer** perspective, navigate to **+Add** -> **Broker**. The **Broker** page is displayed.
+1.  In the **Developer** perspective, navigate to **+Add** → **Broker**. The **Broker** page is displayed.
 1.  Optional. Update the **Name** of the broker. If you do not update the name, the generated broker is named `default`.
 1.  Click **Create**.
 

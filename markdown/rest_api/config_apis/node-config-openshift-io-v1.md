@@ -1,5 +1,5 @@
 ---
-title: "Node []"
+title: "Node [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
 | `status` | `object` | status holds observed values. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,6 +45,7 @@ Type
 | --- | --- | --- |
 | `cgroupMode` | `string` | cgroupMode determines the cgroups version on the node |
 | `workerLatencyProfile` | `string` | workerLatencyProfile determins the how fast the kubelet is updating the status and corresponding reaction of the cluster |
+
 ### .status {id="_status"}
 
 Description
@@ -57,6 +59,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | conditions contain the details and the current state of the nodes.config object |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -100,12 +103,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Node
     *   `GET`: list objects of kind Node
     *   `POST`: create a Node
-*   `/apis/config.openshift.io/v1/nodes/{{ name }}`
+*   `/apis/config.openshift.io/v1/nodes/{{ name }}`{minja}
     *   `DELETE`: delete a Node
     *   `GET`: read the specified Node
     *   `PATCH`: partially update the specified Node
     *   `PUT`: replace the specified Node
-*   `/apis/config.openshift.io/v1/nodes/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/nodes/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Node
     *   `PATCH`: partially update status of the specified Node
     *   `PUT`: replace status of the specified Node

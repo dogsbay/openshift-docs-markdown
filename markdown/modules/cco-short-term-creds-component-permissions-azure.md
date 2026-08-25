@@ -18,7 +18,7 @@ You should familiarize yourself with the permissions required by the {{ product_
 <tr>
   <td>{{ cluster_capi_operator }}</td>
   <td><code>openshift-cluster-api-azure</code></td>
-  <td>role: <code>Contributor</code> ^[1]^</td>
+  <td>role: <code>Contributor</code> <sup>[1]</sup></td>
 </tr>
 <tr>
   <td>Machine API Operator</td>

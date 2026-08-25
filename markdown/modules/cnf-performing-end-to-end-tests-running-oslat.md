@@ -18,7 +18,7 @@ When executing `podman` commands as a non-root or non-privileged user, mounting 
 **Procedure**
 
 *   To perform the `oslat` test, run the following command, substituting variable values as appropriate:
-    ```terminal
+    ```terminal {minja}
     $ podman run -v $(pwd)/:/kubeconfig:Z -e KUBECONFIG=/kubeconfig/kubeconfig \
     -e LATENCY_TEST_CPUS=10 -e LATENCY_TEST_RUNTIME=600 -e MAXIMUM_LATENCY=20 \
     registry.redhat.io/openshift4/cnf-tests-rhel9:v{{ product_version }} \

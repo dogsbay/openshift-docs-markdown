@@ -6,6 +6,6 @@ Use the must-gather tool to collect log files and diagnostic information when {{
 **Procedure**
 
 *   Run the `must-gather` command from the client connected to the {{ lvms }} cluster:
-    ```terminal
+    ```terminal {minja}
     $ oc adm must-gather --image=registry.redhat.io/lvms4/lvms-must-gather-rhel9:v{{ product_version }} --dest-dir=<directory_name>
     ```

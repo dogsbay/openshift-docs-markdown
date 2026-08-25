@@ -51,20 +51,20 @@ You must create a domain zone in CIS in the same account as your cluster. You mu
 
 1.  Connect an existing domain to your CIS instance:
     1.  Set the context instance for CIS:
-        {%- if not ibm_power_vs %}
+{%- if not ibm_power_vs %}
     ```terminal
     $ ibmcloud cis instance-set <instance_name>
     ```
 
         Replace `<instance_name>` with the instance cloud resource name.
-{% endif %}
-{% if ibm_power_vs %}
+{%- endif %}
+{%- if ibm_power_vs %}
         ```terminal
         $ ibmcloud cis instance-set <instance_CRN>
         ```
 
         Replace `<instance_CRN>` with the instance CRN (Cloud Resource Name). For example: `ibmcloud cis instance-set crn:v1:bluemix:public:power-iaas:osa21:a/65b64c1f1c29460d8c2e4bbfbd893c2c:c09233ac-48a5-4ccb-a051-d1cfb3fc7eb5::`
-{% endif %}
+{%- endif %}
     1.  Add the domain for CIS:
         ```terminal
         $ ibmcloud cis domain-add <domain_name>
@@ -82,5 +82,5 @@ You must create a domain zone in CIS in the same account as your cluster. You mu
 1.  Configure the name servers for your domains or subdomains at the domain’s registrar or DNS provider. For more information, see the {{ ibm_cloud_name }} documentation for "Configuring name servers".
 
 {% if context == "installing-ibm-cloud-account-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}

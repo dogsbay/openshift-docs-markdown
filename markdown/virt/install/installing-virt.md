@@ -7,7 +7,7 @@ title: "Installing {{ VirtProductName }}"
 # Installing {{ VirtProductName }} {id="installing-virt"}
 {%- set context = "installing-virt" %}
 
-Install {{ VirtProductName }} to add virtualization functionality to your {{ product_title }} cluster.
+Install {{ VirtProductName }} to add virtualization functionality to your {{ product_title }} cluster. {._abstract}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 
@@ -27,18 +27,18 @@ If you have limited internet connectivity, you can configure proxy support in {{
 {% leveloffset +1 %}{% include "./modules/virt-subscribing-cli.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/virt-deploying-operator-cli.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 {%- if openshift_enterprise %}
 *   [Installing a cluster for {{ VirtProductName }} using the Agent-based Installer](/installing/installing_with_agent_based_installer/installing-ove#installing-ove)
 *   [Installing with the virtualization operator bundle (Assisted Installer)](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/customizing-with-bundles-and-operators#openshift-virtualization-operator_customizing-with-bundles-and-operators)
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
 *   [Configuring proxy support in Operator Lifecycle Manager](/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)
 *   [Self validation checkup](/virt/post_installation_configuration/virt-self-validation-checkups#virt-self-validation-checkups)
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 *   [Creating a machine pool](/rosa_cluster_admin/rosa_nodes/rosa-managing-worker-nodes#creating_a_machine_pool_rosa-managing-worker-nodes)
-{% endif %}
-{% if openshift_dedicated %}
+{%- endif %}
+{%- if openshift_dedicated %}
 *   [Creating a machine pool](/osd_cluster_admin/osd_nodes/osd-managing-worker-nodes#creating_machine_pools_ocm_osd-managing-worker-nodes)
 {%- endif %}
 *   [Configure certificate rotation](/virt/post_installation_configuration/virt-configuring-certificate-rotation#virt-configuring-certificate-rotation)

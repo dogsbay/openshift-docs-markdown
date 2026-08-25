@@ -21,15 +21,15 @@ If you do not create the `LogFileMetricExporter` CR, you might see a **No datapo
       name: instance
       namespace: openshift-logging
     spec:
-      nodeSelector: {} # (1)
-      resources: # (2)
+      nodeSelector: {} (1)
+      resources: (2)
         limits:
           cpu: 500m
           memory: 256Mi
         requests:
           cpu: 200m
           memory: 128Mi
-      tolerations: [] # (3)
+      tolerations: [] (3)
     # ...
     ```
     1.  Optional: The `nodeSelector` stanza defines which pods are scheduled on which nodes.

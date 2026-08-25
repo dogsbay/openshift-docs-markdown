@@ -10,9 +10,9 @@ You can use the Kibana dashboard to store and retrieve Argo CD logs.
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to the {{ rh_app_icon }} menu -> **Observability** -> **Logging** to view the Kibana dashboard.
+1.  In the {{ product_title }} web console, go to the {{ rh_app_icon }} menu → **Observability** → **Logging** to view the Kibana dashboard.
 1.  Create an index pattern.
-    1.  To display all the indices, define the index pattern as `**`, and click *Next step**.
+    1.  To display all the indices, define the index pattern as `*`, and click **Next step**.
     1.  Select **@timestamp** for **Time Filter field name**.
     1.  Click **Create index pattern**.
 1.  In the navigation panel of the Kibana dashboard, click the **Discover** tab.

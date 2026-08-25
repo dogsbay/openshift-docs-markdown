@@ -64,7 +64,7 @@ You can use the OpenShift CLI (`oc`) to install the {{ lcao }}. {._abstract}
     ```
 
     Example output:
-    ```terminal
+    ```terminal {minja}
     NAME                              DISPLAY                     VERSION               REPLACES                           PHASE
     lifecycle-agent.v{{ product_version }}.0           Openshift Lifecycle Agent   {{ product_version }}.0                Succeeded
     ```

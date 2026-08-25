@@ -9,7 +9,7 @@ Read the following information about supported configurations and prerequisites 
 
 *   {{ ServerlessProductName }} is supported for installation in a restricted network environment.
 *   {{ ServerlessProductName }} currently cannot be used in a multi-tenant configuration on a single cluster.
-{% endif %}
+{%- endif %}
 
 ## Supported configurations {id="about-serverless-supported-configs"}
 
@@ -35,15 +35,15 @@ You can use the {{ product_title }} `MachineSet` API to manually scale your clus
 
 {% leveloffset +2 %}{% include "./modules/serverless-cluster-sizing-req-additional.md" %}{% endleveloffset %}
 
-{% endif %}
+{%- endif %}
 
 {%- if openshift_dedicated or openshift_rosa %}
 {% leveloffset +1 %}{% include "./modules/serverless-cluster-sizing-req.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 ## Additional resources {id="additional-resources_preparing-serverless-install" ._additional-resources}
 {%- if openshift_enterprise %}
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
 *   [Understanding the software catalog](/operators/understanding/olm-understanding-software-catalog#olm-software-catalog-overview)
 *   [Cluster capabilities](/installing/overview/cluster-capabilities#cluster-capabilities)
-{% endif %}
+{%- endif %}

@@ -9,7 +9,7 @@ You can create physical networks for {{ VirtProductName }} using the {{ product_
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Networking** -> **Physical networks**.
+1.  In the {{ product_title }} web console, go to **Networking** → **Physical networks**.
 1.  Click **Create network**. The **Network configuration wizard** is displayed.
 1.  On the **Network identity** page, enter a name for your network.
 1.  On the **Nodes configuration** page, select either **Apply to all nodes on the cluster** or **Apply to specific subsets of nodes using the nodes selector**.
@@ -46,6 +46,6 @@ A single interface
 
 **Verification**
 
-1.  In the {{ product_title }} web console, go to **Networking** -> **Physical networks**.
+1.  In the {{ product_title }} web console, go to **Networking** → **Physical networks**.
 1.  Locate your new network in the list.
 1.  Expand the network row to view the associated configurations. Verify that the **Enactment state** is **Available** and that the **Nodes** count matches your expectation.

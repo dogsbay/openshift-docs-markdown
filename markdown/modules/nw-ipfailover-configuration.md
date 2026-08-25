@@ -64,7 +64,7 @@ For production use, set a `selector` that selects at least two nodes, and set `r
     
     :::
 
-    ```yaml title="Example deployment YAML for IP failover configuration"
+    ```yaml title="Example deployment YAML for IP failover configuration" {minja}
     apiVersion: apps/v1
     kind: Deployment
     metadata:

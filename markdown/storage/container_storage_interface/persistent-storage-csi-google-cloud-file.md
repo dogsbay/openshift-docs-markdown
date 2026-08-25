@@ -3,14 +3,16 @@ title: "{{ gcp_first }} Filestore CSI Driver Operator"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ gcp_first }} Filestore CSI Driver Operator {id="persistent-storage-csi-google-cloud-file"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ gcp_first }} Filestore CSI Driver Operator {id="persistent-storage-csi-google-cloud-file"}
 {%- set context = "persistent-storage-csi-google-cloud-file" %}
 
-The Google Cloud Platform (GCP) Filestore Container Storage Interface (CSI) Driver Operator provisions and manages GCP Filestore Storage in {{ product_title }} with dynamic volume provisioning, eliminating the need to pre-provision storage.
+The Google Cloud Platform (GCP) Filestore Container Storage Interface (CSI) Driver Operator provisions and manages GCP Filestore Storage in {{ product_title }} with dynamic volume provisioning, eliminating the need to pre-provision storage. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-google-cloud-file-overview.md" %}{% endleveloffset %}
+
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
 *   [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
@@ -23,7 +25,9 @@ The Google Cloud Platform (GCP) Filestore Container Storage Interface (CSI) Driv
 {% leveloffset +2 %}{% include "./modules/persistent-storage-csi-gcp-filestore-wif.md" %}{% endleveloffset %}
 
 {% if not openshift_dedicated %}
+
 <a name="installing-the-gcp-filestore-csi-driver-operator"></a>**Additional resources**
+{._additional-resources}
 
 *   [Creating {{ gcp_short }} resources with the Cloud Credential Operator utility](/installing/installing_gcp/installing-gcp-customizations#cco-ccoctl-creating-at-once_installing-gcp-customizations)
 {% endif %}
@@ -31,6 +35,7 @@ The Google Cloud Platform (GCP) Filestore Container Storage Interface (CSI) Driv
 {% leveloffset +2 %}{% include "./modules/persistent-storage-csi-gcp-file-install.md" %}{% endleveloffset %}
 
 <a name="installing-the-gcp-filestore-csi-driver-operator"></a>**Additional resources**
+{._additional-resources}
 
 *   [Enabling an API in your Google Cloud](https://cloud.google.com/endpoints/docs/openapi/enable-api)
 *   [Enabling an API using the Google Cloud web console](https://support.google.com/googleapi/answer/6158841?hl=en)
@@ -41,8 +46,8 @@ The Google Cloud Platform (GCP) Filestore Container Storage Interface (CSI) Driv
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-google-cloud-file-delete-instances.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Configuring CSI volumes](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
 {%- if not openshift_dedicated %}
 *   [CCO-based workflow for OLM-managed Operators with {{ gcp_short }} Workload Identity](/operators/operator_sdk/token_auth/osdk-cco-gcp)
-{% endif %}
+{%- endif %}

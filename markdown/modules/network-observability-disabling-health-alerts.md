@@ -5,7 +5,7 @@ Disable specific health alerts, such as `NetObservLokiError` or `NetObservNoFlow
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
 1.  Select **cluster** then select the **YAML** tab.
 1.  Add `spec.processor.metrics.disableAlerts` to disable health alerts, as in the following YAML sample:

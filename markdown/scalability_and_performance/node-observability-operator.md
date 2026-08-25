@@ -3,8 +3,8 @@ title: Using the Node Observability Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the Node Observability Operator {id="using-node-observability-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Using the Node Observability Operator {id="using-node-observability-operator"}
 {%- set context = "node-observability-operator" %}
 
 The Node Observability Operator collects and stores CRI-O and Kubelet profiling or metrics from scripts of compute nodes.
@@ -34,6 +34,6 @@ With the Node Observability Operator, you can query the profiling data, enabling
 
 {% leveloffset +2 %}{% include "./modules/node-observability-scripting.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_node-observability-operator"}
+## Additional resources {id="additional-resources_node-observability-operator" ._additional-resources}
 
 *   [Collecting worker metrics using the Node Observability Operator](https://access.redhat.com/solutions/5343671)

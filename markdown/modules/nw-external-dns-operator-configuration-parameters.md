@@ -17,7 +17,7 @@ To customize the behavior of the External DNS Operator, configure the available 
 </tr>
 <tr>
   <td><code>zones</code></td>
-  <td>Enables you to specify DNS zones by their domains. If you do not specify zones, the <code>ExternalDNS</code> resource discovers all of the zones present in your cloud provider account.<br><br><pre>zones:&#10;- "&lt;zone_id&gt;"</pre><ul><li><code><zone_id></code>: Specifies the name of DNS zones.</li></ul></td>
+  <td>Enables you to specify DNS zones by their domains. If you do not specify zones, the <code>ExternalDNS</code> resource discovers all of the zones present in your cloud provider account.<br><br><pre>zones:&#10;- "&lt;zone_id&gt;"</pre><ul><li><code>&lt;zone_id&gt;</code>: Specifies the name of DNS zones.</li></ul></td>
 </tr>
 <tr>
   <td><code>domains</code></td>

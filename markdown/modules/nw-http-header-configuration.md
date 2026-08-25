@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # HTTP header configuration {id="nw-http-header-configuration_{{ context }}"}
 
-{%- if not microshift %}
+{% if not microshift %}
 To customize request and response headers for your applications, configure the Ingress Controller or apply specific route annotations. Understanding the interaction between these configuration methods ensures you effectively manage global and route-specific header policies. {._abstract}
 
 You can also set certain headers by using route annotations. The various ways of configuring headers can present challenges when working together.
@@ -39,7 +39,7 @@ Order of precedence
 :   When the same HTTP header is modified both in the Ingress Controller and in a route, HAProxy prioritizes the actions in certain ways depending on whether it is a request or response header.
 
     *   For HTTP response headers, actions specified in the Ingress Controller are executed after the actions specified in a route. This means that the actions specified in the Ingress Controller take precedence.
-*   For HTTP request headers, actions specified in a route are executed after the actions specified in the Ingress Controller. This means that the actions specified in the route take precedence.
+    *   For HTTP request headers, actions specified in a route are executed after the actions specified in the Ingress Controller. This means that the actions specified in the route take precedence.
 
 For example, a cluster administrator sets the X-Frame-Options response header with the value `DENY` in the Ingress Controller using the following configuration:
 
@@ -75,7 +75,7 @@ spec:
           set:
             value: SAMEORIGIN
 ```
-{%- if not microshift %}
+{% if not microshift %}
 When both the `IngressController` spec and `Route` spec are configuring the X-Frame-Options response header, then the value set for this header at the global level in the Ingress Controller takes precedence, even if a specific route allows frames. For a request header, the `Route` spec value overrides the `IngressController` spec value.
 
 This prioritization occurs because the `haproxy.config` file uses the following logic, where the Ingress Controller is considered the front end and individual routes are considered the back end. The header value `DENY` applied to the front end configurations overrides the same header with the value `SAMEORIGIN` that is set in the back end:
@@ -107,7 +107,7 @@ Special case headers
 :   The following headers are either prevented entirely from being set or deleted, or allowed under specific circumstances:
 
 {% if not microshift %}
-***Special case header configuration options***
+**Special case header configuration options**
 
 <table>
 <thead>
@@ -159,5 +159,6 @@ Special case headers
 | `proxy` | No | The `proxy` HTTP request header can be used to exploit vulnerable CGI applications by injecting the header value into the `HTTP_PROXY` environment variable. The `proxy` HTTP request header is also non-standard and prone to error during configuration. | No |
 | `host` | Yes | When the `host` HTTP request header is set using the `IngressController` CR, HAProxy can fail when looking up the correct route. | No |
 | `strict-transport-security` | No | The `strict-transport-security` HTTP response header is already handled using route annotations and does not need a separate implementation. | Yes: the `haproxy.router.openshift.io/hsts_header` route annotation |
-| `cookie` and `set-cookie` | No | The cookies that HAProxy sets are used for session tracking to map client connections to particular back-end servers. Allowing these headers to be set could interfere with HAProxy’s session affinity and restrict HAProxy’s ownership of a cookie. | Yes: * the `haproxy.router.openshift.io/disable_cookie` route annotation * the `haproxy.router.openshift.io/cookie_name` route annotation |
+| `cookie` and `set-cookie` | No | The cookies that HAProxy sets are used for session tracking to map client connections to particular back-end servers. Allowing these headers to be set could interfere with HAProxy’s session affinity and restrict HAProxy’s ownership of a cookie. | Yes:<br>* the `haproxy.router.openshift.io/disable_cookie` route annotation * the `haproxy.router.openshift.io/cookie_name` route annotation |
+
 {% endif %}

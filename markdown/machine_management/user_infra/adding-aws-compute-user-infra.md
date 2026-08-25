@@ -3,11 +3,11 @@ title: Adding compute machines to AWS by using CloudFormation templates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Adding compute machines to AWS by using CloudFormation templates {id="adding-aws-compute-user-infra"}
 {% include "./_attributes/common-attributes.md" %}
+# Adding compute machines to AWS by using CloudFormation templates {id="adding-aws-compute-user-infra"}
 {%- set context = "adding-aws-compute-user-infra" %}
 
-To scale your {{ product_title }} cluster on {{ aws_first }} after user-provisioned installation, you can add compute machines by creating CloudFormation stacks from your installation templates. You can then approve certificate signing requests so the new nodes join the cluster.
+To scale your {{ product_title }} cluster on {{ aws_first }} after user-provisioned installation, you can add compute machines by creating CloudFormation stacks from your installation templates. You can then approve certificate signing requests so the new nodes join the cluster. {._abstract}
 
 ## Prerequisites {id="prerequisites_adding-aws-compute-user-infra"}
 

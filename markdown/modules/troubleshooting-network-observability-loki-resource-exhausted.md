@@ -7,7 +7,7 @@ Loki may return a `ResourceExhausted` error when network flow data sent by netwo
 
 **Procedure**
 
-1.  Navigate to **Ecosystem** -> **Installed Operators**, viewing **All projects** from the **Project** drop-down menu.
+1.  Navigate to **Ecosystem** → **Installed Operators**, viewing **All projects** from the **Project** drop-down menu.
 1.  In the **Provided APIs** list, select the Network Observability Operator.
 1.  Click the **Flow Collector** then the **YAML view** tab.
     1.  If you are using the {{ loki_op }}, check that the `spec.loki.batchSize` value does not exceed 98 MiB.

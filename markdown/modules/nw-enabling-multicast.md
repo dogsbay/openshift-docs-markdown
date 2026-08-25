@@ -24,11 +24,11 @@ role.
 **Procedure**
 
 *   Run the following command to enable multicast for a project. Replace `<namespace>` with the namespace for the project you want to enable multicast for.
-    ```terminal
+    ```terminal {minja}
     $ oc annotate {{ namespace }} <namespace> \
         {{ annotation }}
     ```
-{%- if context == "ovn-kubernetes-enabling-multicast" %}
+{% if context == "ovn-kubernetes-enabling-multicast" %}
 
     :::tip
 
@@ -123,10 +123,10 @@ To verify that multicast is enabled for a project, complete the following proced
         ```
 
 {% if context == "openshift-sdn-enabling-multicast" %}
-{%- set annotation = false -%}
-{%- set namespace = false -%}
+{%- set annotation = "" -%}
+{%- set namespace = "" -%}
 {% endif %}
 {% if context == "ovn-kubernetes-enabling-multicast" %}
-{%- set annotation = false -%}
-{%- set namespace = false -%}
+{%- set annotation = "" -%}
+{%- set namespace = "" -%}
 {% endif %}

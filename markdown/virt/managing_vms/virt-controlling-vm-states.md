@@ -3,11 +3,11 @@ title: Control virtual machine states
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Control virtual machine states {id="virt-controlling-vm-states"}
 {% include "./_attributes/common-attributes.md" %}
+# Control virtual machine states {id="virt-controlling-vm-states"}
 {%- set context = "virt-controlling-vm-states" %}
 
-You can use `virtctl` to manage virtual machine states and perform other actions from the CLI. For example, you can use `virtctl` to force stop a VM or expose a port.
+You can use `virtctl` to manage virtual machine states and perform other actions from the CLI. For example, you can use `virtctl` to force stop a VM or expose a port. {._abstract}
 
 You can stop, start, restart, reset, pause, and unpause virtual machines from the web console.
 
@@ -29,5 +29,5 @@ You can stop, start, restart, reset, pause, and unpause virtual machines from th
 
 {% leveloffset +1 %}{% include "./modules/virt-controlling-multiple-vms.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Using the CLI tools](/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)

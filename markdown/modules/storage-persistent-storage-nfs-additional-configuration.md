@@ -11,11 +11,11 @@ security mapping. The following are some that may apply:
 <tbody>
 <tr>
   <td>NFSv4 mount incorrectly shows all files with ownership of <code>nobody:nobody</code></td>
-  <td><ul><li>Could be attributed to the ID mapping settings, found in <code>/etc/idmapd.conf</code> on your NFS.</li><li>See https://access.redhat.com/solutions/33455[this Red Hat Solution].</li></ul></td>
+  <td><ul><li>Could be attributed to the ID mapping settings, found in <code>/etc/idmapd.conf</code> on your NFS.</li><li>See <a href="https://access.redhat.com/solutions/33455">this Red Hat Solution</a>.</li></ul></td>
 </tr>
 <tr>
   <td>Disabling ID mapping on NFSv4</td>
-  <td><ul><li>On the NFS server, run the following command:</li></ul>+<pre># echo 'Y' &gt; /sys/module/nfsd/parameters/nfs4_disable_idmapping</pre></td>
+  <td><ul><li>On the NFS server, run the following command:</li></ul><pre># echo 'Y' &gt; /sys/module/nfsd/parameters/nfs4_disable_idmapping</pre></td>
 </tr>
 </tbody>
 </table>

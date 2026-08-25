@@ -30,23 +30,23 @@ You can configure the replication factor, bootstrap servers, and the number of t
     1.  The replication factor of topic messages. This prevents against data loss. A higher replication factor requires greater compute resources and more storage.
     1.  A comma separated list of bootstrap servers. This can be inside or outside of the {{ product_title }} cluster, and is a list of Kafka clusters that the broker receives events from and sends events to.
 
-        :::important
+    :::important
 
-        The `default.topic.replication.factor` value must be less than or equal to the number of Kafka broker instances in your cluster. For example, if you only have one Kafka broker, the `default.topic.replication.factor` value should not be more than `"1"`.
-        
-        :::
+    The `default.topic.replication.factor` value must be less than or equal to the number of Kafka broker instances in your cluster. For example, if you only have one Kafka broker, the `default.topic.replication.factor` value should not be more than `"1"`.
+    
+    :::
 
-        ```yaml title="Example Kafka broker config map"
-        apiVersion: v1
-        kind: ConfigMap
-        metadata:
-          name: kafka-broker-config
-          namespace: knative-eventing
-        data:
-          default.topic.partitions: "10"
-          default.topic.replication.factor: "3"
-          bootstrap.servers: "my-cluster-kafka-bootstrap.kafka:9092"
-        ```
+    ```yaml title="Example Kafka broker config map"
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: kafka-broker-config
+      namespace: knative-eventing
+    data:
+      default.topic.partitions: "10"
+      default.topic.replication.factor: "3"
+      bootstrap.servers: "my-cluster-kafka-bootstrap.kafka:9092"
+    ```
 1.  Apply the config map:
     ```yaml
     $ oc apply -f <config_map_filename>

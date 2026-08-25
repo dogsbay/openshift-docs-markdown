@@ -15,34 +15,33 @@ You can use the OADP Data Mover to back up Container Storage Interface (CSI) vol
 
 1.  Create a YAML file for the `Backup` object, as in the following example:
 
-```yaml
-kind: Backup
-apiVersion: velero.io/v1
-metadata:
-  name: backup
-  namespace: openshift-adp
-spec:
-  csiSnapshotTimeout: 10m0s
-  defaultVolumesToFsBackup:
-  includedNamespaces:
-  - mysql-persistent
-  itemOperationTimeout: 4h0m0s
-  snapshotMoveData: true
-  storageLocation: default
-  ttl: 720h0m0s
-  volumeSnapshotLocations:
-  - dpa-sample-1
-# ...
-```
+    ```yaml
+    kind: Backup
+    apiVersion: velero.io/v1
+    metadata:
+      name: backup
+      namespace: openshift-adp
+    spec:
+      csiSnapshotTimeout: 10m0s
+      defaultVolumesToFsBackup:
+      includedNamespaces:
+      - mysql-persistent
+      itemOperationTimeout: 4h0m0s
+      snapshotMoveData: true
+      storageLocation: default
+      ttl: 720h0m0s
+      volumeSnapshotLocations:
+      - dpa-sample-1
+    # ...
+    ```
 
-where:
+    where:
 
+    `defaultVolumesToFsBackup`
+    :   Set to `true` if you use Data Mover only for volumes that opt out of `fs-backup`. Set to `false` if you use Data Mover by default for volumes.
 
-`defaultVolumesToFsBackup`
-:   Set to `true` if you use Data Mover only for volumes that opt out of `fs-backup`. Set to `false` if you use Data Mover by default for volumes.
-
-`snapshotMoveData`
-:   Set to `true` to enable movement of CSI snapshots to remote object storage.
+    `snapshotMoveData`
+    :   Set to `true` to enable movement of CSI snapshots to remote object storage.
 
 1.  Apply the manifest:
     ```terminal

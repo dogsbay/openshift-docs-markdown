@@ -4,10 +4,10 @@ title: Understanding Containers
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-containers-using" %}
-# Understanding Containers {id="nodes-containers-using"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding Containers {id="nodes-containers-using"}
 
-Containers are the basic units of {{ product_title }} applications that isolate processes to provide portable micro-services. To maintain cluster stability, you must understand how container runtimes manage workloads and how kernel memory allocation impacts resource limits on your nodes.
+Containers are the basic units of {{ product_title }} applications that isolate processes to provide portable micro-services. To maintain cluster stability, you must understand how container runtimes manage workloads and how kernel memory allocation impacts resource limits on your nodes. {._abstract}
 
 [Linux container technologies](https://www.redhat.com/en/topics/containers#overview)
 are lightweight mechanisms for isolating running processes so that they are
@@ -91,7 +91,7 @@ Starting in {{ product_title }} 4.22, the runC container runtime is deprecated.
 {% endif %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Creating a `ContainerRuntimeConfig` CR to edit CRI-O parameters](/machine_configuration/machine-configs-custom#create-a-containerruntimeconfig_machine-configs-custom)
 {% endif %}

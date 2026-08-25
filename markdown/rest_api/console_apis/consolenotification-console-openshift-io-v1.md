@@ -1,5 +1,5 @@
 ---
-title: "ConsoleNotification []"
+title: "ConsoleNotification [console.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -30,6 +30,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ConsoleNotificationSpec is the desired console notification configuration. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -50,6 +51,7 @@ Required
 | `link` | `object` | link is an object that holds notification link details. |
 | `location` | `string` | location is the location of the notification in the console. Valid values are: "BannerTop", "BannerBottom", "BannerTopBottom". |
 | `text` | `string` | text is the visible text of the notification. |
+
 ### .spec.link {id="_speclink"}
 
 Description
@@ -77,12 +79,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ConsoleNotification
     *   `GET`: list objects of kind ConsoleNotification
     *   `POST`: create a ConsoleNotification
-*   `/apis/console.openshift.io/v1/consolenotifications/{{ name }}`
+*   `/apis/console.openshift.io/v1/consolenotifications/{{ name }}`{minja}
     *   `DELETE`: delete a ConsoleNotification
     *   `GET`: read the specified ConsoleNotification
     *   `PATCH`: partially update the specified ConsoleNotification
     *   `PUT`: replace the specified ConsoleNotification
-*   `/apis/console.openshift.io/v1/consolenotifications/{{ name }}/status`
+*   `/apis/console.openshift.io/v1/consolenotifications/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ConsoleNotification
     *   `PATCH`: partially update status of the specified ConsoleNotification
     *   `PUT`: replace status of the specified ConsoleNotification

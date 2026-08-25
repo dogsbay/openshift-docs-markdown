@@ -5,7 +5,7 @@ Before disabling or re-enabling vSphere storage, understand the impact on persis
 
 The consequences of disabling and enabling storage on vSphere are described in the following table.
 
-***Consequences of disabling/enabling storage on vSphere***
+**Consequences of disabling/enabling storage on vSphere**
 
 <table>
 <thead>
@@ -17,7 +17,7 @@ The consequences of disabling and enabling storage on vSphere are described in t
 <tbody>
 <tr>
   <td><ul><li>vSphere CSI Driver Operator un-installs the CSI driver.</li><li>Storage container orchestration (CO) should be healthy.</li><li>vSphere-problem-detector continues running, but does not emit alerts or events, and checks less frequently (once per 24 hours).</li><li>All existing persistent volumes (PVs), persistent volume claims (PVCs), and vSphere storage policies are unchanged:<ul><li>vSphere PVs cannot be used in new pods.</li><li>vSphere PVs stay mounted and attached forever to existing nodes for existing pods. These pods remain in terminating state indefinitely after deletion.</li></ul></li><li>Storage classes are removed</li></ul></td>
-  <td>* vSphere CSI Driver Operator re-installs the CSI driver.</td>
+  <td>* vSphere CSI Driver Operator re-installs the CSI driver.<br><br>* If necessary, the vSphere CSI Driver Operator creates the vSphere storage policy.</td>
 </tr>
 </tbody>
 </table>

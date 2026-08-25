@@ -8,8 +8,8 @@ Together they provide the system for discovering, installing, and managing the o
 Using the software catalog in the {{ product_title }} web console,
 {%- if not (openshift_dedicated or openshift_rosa) %}
 cluster administrators
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 administrators with the `dedicated-admin` role
 {%- endif %}
 and authorized users can select Operators to install from catalogs of Operators. 
@@ -18,8 +18,8 @@ After installing an Operator from the software catalog, you can make the Operato
 Default catalog sources are available that include Red Hat Operators, certified Operators, and community Operators.
 {%- if not (openshift_dedicated or openshift_rosa) %}
 Cluster administrators
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 Administrators with the `dedicated-admin` role
 {%- endif %}
 can also add their own custom catalog sources, which can contain a custom set of Operators.

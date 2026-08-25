@@ -42,7 +42,7 @@ To allow newly added machines to join your {{ product_title }} cluster, confirm 
     :::
 
 1.  Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:
-    {%- if not (ibm_z or ibm_z_kvm) %}
+{% if not (ibm_z or ibm_z_kvm) %}
     ```terminal
     $ oc get csr
     ```
@@ -89,13 +89,12 @@ To allow newly added machines to join your {{ product_title }} cluster, confirm 
 
         `<csr_name>`
         :   Specifies the name of a CSR from the list of current CSRs.
-        *   To approve all pending CSRs, run the following command:
+    *   To approve all pending CSRs, run the following command:
         ```terminal
         $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
         ```
 
         :::note
-
 
         Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.
         
@@ -121,12 +120,12 @@ To allow newly added machines to join your {{ product_title }} cluster, confirm 
 
         `<csr_name>`
         :   Specifies the name of a CSR from the list of current CSRs.
-        *   To approve all pending CSRs, run the following command:
+    *   To approve all pending CSRs, run the following command:
         ```terminal
         $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
         ```
 1.  After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:
-    {%- if not ibm_power %}
+{% if not ibm_power %}
     ```terminal
     $ oc get nodes
     ```
@@ -135,8 +134,8 @@ To allow newly added machines to join your {{ product_title }} cluster, confirm 
     ```terminal
     $ oc get nodes -o wide
     ```
-{%- endif %}
-{%- if not ibm_power %}
+{% endif %}
+{% if not ibm_power %}
     ```terminal title="Example output"
     NAME      STATUS    ROLES   AGE  VERSION
     master-0  Ready     master  73m  v1.35.4
@@ -157,7 +156,7 @@ To allow newly added machines to join your {{ product_title }} cluster, confirm 
     worker-0-x86       Ready    worker                 75d   v1.35.4   10.248.0.43      10.248.0.43   Red Hat Enterprise Linux CoreOS 415.92.202309261919-0 (Plow)   5.14.0-284.34.1.el9_2.x86_64    cri-o://1.35.4-3.rhaos4.15.gitb36169e.el9
     worker-1-x86       Ready    worker                 75d   v1.35.4   10.248.0.44      10.248.0.44   Red Hat Enterprise Linux CoreOS 415.92.202309261919-0 (Plow)   5.14.0-284.34.1.el9_2.x86_64    cri-o://1.35.4-3.rhaos4.15.gitb36169e.el9
     ```
-{%- endif %}
+{% endif %}
 
     :::note
 
@@ -167,14 +166,14 @@ To allow newly added machines to join your {{ product_title }} cluster, confirm 
 
 
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "creating-multi-arch-compute-nodes-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}

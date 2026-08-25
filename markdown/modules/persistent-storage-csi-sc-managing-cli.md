@@ -13,5 +13,5 @@ Manage storage class behavior using the CLI by configuring the `ClusterCSIDriver
     ```terminal
     $ oc patch clustercsidriver $DRIVERNAME --type=merge -p "{\"spec\":{\"storageClassState\":\"${STATE}\"}}"
     ```
-    *   Where `${{ STATE }}` is "Removed" or "Managed" or "Unmanaged".
+    *   Where `${{ STATE }}`{minja} is "Removed" or "Managed" or "Unmanaged".
     *   Where `$DRIVERNAME` is the provisioner name. You can find the provisioner name by running the command `oc get sc`.

@@ -8,12 +8,12 @@
 
 # Delete a {{ product_title }} cluster and the AWS IAM STS resources {id="rosa-getting-started-deleting-a-cluster_{{ context }}"}
 
-{%- if openshift_rosa_hcp %}
+{% if openshift_rosa_hcp %}
 You can use the {{ rosa_cli }} to delete a {{ product_title }} cluster, the AWS Identity and Access Management (IAM) account-wide roles, the cluster-specific Operator roles, and the OpenID Connect (OIDC) provider. To delete the account-wide and Operator policies, use the AWS IAM Console or the AWS CLI.
 {% endif %}
 {% if openshift_rosa %}
 You can use the {{ rosa_cli }} to delete a {{ product_title }} cluster that uses AWS Security Token Service (STS), the AWS Identity and Access Management (IAM) account-wide roles, cluster-specific Operator roles, and the OpenID Connect (OIDC) provider. To delete account-wide inline and Operator policies, use the AWS IAM Console or AWS CLI.
-{% endif %} {._abstract}
+{% endif %}
 
 
 :::important
@@ -79,10 +79,10 @@ Account-wide IAM roles and policies might be used by other {{ product_title }} c
 {% endif %}
 {% if openshift_rosa %}
 1.  Delete the account-wide and Operator IAM policies that you created for {{ product_title }} deployments that use STS:
-    {%- endif %}
+{% endif %}
     1.  Log in to the [AWS IAM Console](https://console.aws.amazon.com/iamv2/home#/home).
-    1.  Go to **Access management** -> **Policies** and select the checkbox for one of the account-wide policies.
-    1.  With the policy selected, click **Actions** -> **Delete** to open the delete policy dialog.
+    1.  Go to **Access management** → **Policies** and select the checkbox for one of the account-wide policies.
+    1.  With the policy selected, click **Actions** → **Delete** to open the delete policy dialog.
     1.  Enter the policy name to confirm the deletion and select **Delete** to delete the policy.
     1.  Repeat this step to delete each of the account-wide and Operator policies for the cluster.
 
@@ -102,8 +102,8 @@ Account-wide IAM roles and policies might be used by other {{ product_title }} c
 *   [Deleting a ROSA cluster](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-deleting-cluster.html)
 
 {% if context == "rosa-getting-started" %}
-{%- set getting_started = false -%}
+{%- set getting_started = "" -%}
 {% endif %}
 {% if context == "rosa-quickstart" %}
-{%- set quickstart = false -%}
+{%- set quickstart = "" -%}
 {% endif %}

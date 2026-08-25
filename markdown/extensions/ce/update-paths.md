@@ -3,11 +3,11 @@ title: Update paths
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Update paths {id="update-paths"}
 {% include "./_attributes/common-attributes.md" %}
+# Update paths {id="update-paths"}
 {%- set context = "update-paths" %}
 
-{{ olmv1_first }} supports {{ olmv0 }} semantics for update paths, also known as upgrade edges or upgrade constraints. Support includes `replaces`, `skips`, and `skipRange` directives, with a few noted differences.
+{{ olmv1_first }} supports {{ olmv0 }} semantics for update paths, also known as upgrade edges or upgrade constraints. Support includes `replaces`, `skips`, and `skipRange` directives, with a few noted differences. {._abstract}
 
 By supporting {{ olmv0 }} semantics, {{ olmv1 }} accurately reflects the update graph from catalogs.
 
@@ -30,6 +30,7 @@ By supporting {{ olmv0 }} semantics, {{ olmv1 }} accurately reflects the update 
     *   {{ olmv1 }} will detect the update path because {{ olmv1 }} does not have a concept of a `replaces` chain. {{ olmv1 }} finds all entries that have a `replace`, `skip`, or `skipRange` value that covers the currently installed version.
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ olmv0_caps }} upgrade semantics](/operators/understanding/olm/olm-workflow#olm-upgrades_olm-workflow)
 
@@ -42,20 +43,23 @@ By supporting {{ olmv0 }} semantics, {{ olmv1 }} accurately reflects the update 
 {% leveloffset +1 %}{% include "./modules/olmv1-forcing-an-update-or-rollback.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Support for version ranges](/extensions/ce/update-paths#olmv1-version-range-support_update-paths)
 
 {% leveloffset +1 %}{% include "./modules/olmv1-ocp-compat.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deprecated API Migration Guide (Kubernetes documentation)](https://kubernetes.io/docs/reference/using-api/deprecation-guide/)
 
 {% leveloffset +2 %}{% include "./modules/olmv1-blocked-cluster-updates.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding cluster Operator condition types](/updating/understanding_updates/intro-to-updates#understanding_clusteroperator_conditiontypes_understanding-openshift-updates)
 *   [Upgrading installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 *   [Deleting Operators from a cluster](/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operators-from-a-cluster)
-*   [Cluster Operators reference -> {{ olmv1_first }} Operator](/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference)
+*   [Cluster Operators reference → {{ olmv1_first }} Operator](/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference)

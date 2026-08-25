@@ -9,7 +9,7 @@ title: Troubleshooting
 
 {%- set toclevels = "4" %}
 
-To diagnose and resolve issues with virtual machine (VM) and cluster components, you can troubleshoot {{ VirtProductName }} by using the web console or the {{ oc_first }}. These practices help ensure your virtualized infrastructure remains healthy.
+To diagnose and resolve issues with virtual machine (VM) and cluster components, you can troubleshoot {{ VirtProductName }} by using the web console or the {{ oc_first }}. These practices help ensure your virtualized infrastructure remains healthy. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-troubleshooting-events.md" %}{% endleveloffset %}
 
@@ -49,7 +49,7 @@ To diagnose and resolve issues with virtual machine (VM) and cluster components,
 
 {% leveloffset +2 %}{% include "./modules/virt-analyzing-datavolume-conditions-and-events.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [{{ product_title }} events](/nodes/clusters/nodes-containers-events#nodes-containers-events)
 *   [List of events](/nodes/clusters/nodes-containers-events#nodes-containers-events-list_nodes-containers-events)
 *   [Aggregated logs](/virt/support/virt-troubleshooting#virt-viewing-logs-loki_virt-troubleshooting)

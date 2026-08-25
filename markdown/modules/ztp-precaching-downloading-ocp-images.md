@@ -6,7 +6,7 @@ The {{ factory_prestaging_tool }} allows you to pre-cache all the container imag
 **Procedure**
 
 *   Pre-cache the release by running the following command:
-    ```terminal
+    ```terminal {minja}
     # podman run -v /mnt:/mnt -v /root/.docker:/root/.docker --privileged --rm quay.io/openshift-kni/telco-ran-tools -- \
        factory-precaching-cli download \
        -r {{ product_version }}.0 \
@@ -18,14 +18,14 @@ The {{ factory_prestaging_tool }} allows you to pre-cache all the container imag
 
     Where:
     *   `factory-precaching-cli download` specifies the downloading function of the {{ factory_prestaging_tool }}.
-    *   `-r {{ product_version }}.0` specifies the {{ product_title }} release version.
+    *   `-r {{ product_version }}.0`{minja} specifies the {{ product_title }} release version.
     *   `--acm-version 2.6.3` specifies the {{ rh_rhacm }} version.
     *   `--mce-version 2.1.4` specifies the multicluster engine version.
     *   `-f /mnt` specifies the folder where you want to download the images on the disk.
     *   `--img quay.io/custom/repository` is optional and specifies the repository where you store your additional images. These images are downloaded and pre-cached on the disk.
 
         The following is example output:
-        ```terminal
+        ```terminal {minja}
         Generated /mnt/imageset.yaml
         Generating list of pre-cached artifacts...
         Processing artifact [1/176]: ocp-v4.0-art-dev@sha256_6ac2b96bf4899c01a87366fd0feae9f57b1b61878e3b5823da0c3f34f707fbf5

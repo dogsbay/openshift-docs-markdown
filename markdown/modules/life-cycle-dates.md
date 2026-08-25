@@ -28,8 +28,8 @@ See _Upgrade options for {{ product_title }} clusters_ in the _Additional resour
 
 :::
 
-{% endif %}
-{% if openshift_rosa_hcp or openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa_hcp or openshift_rosa %}
 # Life cycle dates for {{ product_title }} in AWS GovCloud {id="govcloud-life-cycle-dates_{{ context }}"}
 
 {{ product_title }} in AWS GovCloud is subject to FedRAMP high security controls which require the use of cryptographic modules that have received a validation status of active or implementation under test from the Cryptographic Module Validation Program (CMVP). As a result, OpenSSL which is the module that is applicable to RHEL CoreOS in an OpenShift implementation is the determining factor for what OpenShift versions {{ product_title }} in AWS GovCloud offers, which may create drift from the standard OpenShift support lifecycle.
@@ -46,4 +46,4 @@ The Extended Update Support Add-On - Term 1 is available for {{ product_title }}
 The Extended Update Support Add-On - Term 1 provides the key benefit of extending the support lifecycle for an eligible minor release from 18 months to a total of 24 months. This 6-month extension allows organizations to maintain stability for mission-critical applications, meet complex regulatory validation schedules, and manage limited maintenance windows by providing continued access to critical and important security updates and urgent-priority bug fixes without requiring a full version upgrade.
 
 To apply Extended Update Support Add-On - Term 1 to your {{ product_title }} in AWS GovCloud cluster, you must update the channel group to `eus`.
-{% endif %}
+{%- endif %}

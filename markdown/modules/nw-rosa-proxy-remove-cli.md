@@ -35,7 +35,7 @@ You must use the ROSA CLI, `rosa`, to remove the proxy’s address from your clu
     ```
 
     Before removal, the proxy IP displays in a proxy section:
-    ```yaml
+    ```yaml {minja}
     Name:                       <cluster_name>
     ID:                         <cluster_internal_id>
     External ID:                <cluster_external_id>
@@ -63,7 +63,7 @@ You must use the ROSA CLI, `rosa`, to remove the proxy’s address from your clu
     ```
 
     After removing the proxy, the proxy section is removed:
-    ```yaml
+    ```yaml {minja}
     Name:                       <cluster_name>
     ID:                         <cluster_internal_id>
     External ID:                <cluster_external_id>

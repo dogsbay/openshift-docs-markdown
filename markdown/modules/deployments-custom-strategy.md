@@ -26,10 +26,24 @@ In the above example, the `organization/strategy` container image provides the d
 
 Additionally, {{ product_title }} provides the following environment variables to the deployment process:
 
-| Environment variable | Description |
-| --- | --- |
-| `OPENSHIFT_DEPLOYMENT_NAME` | The name of the new deployment, a replication controller. |
-| `OPENSHIFT_DEPLOYMENT_NAMESPACE` | The name space of the new deployment. |
+<table>
+<thead>
+<tr>
+  <th>Environment variable</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>OPENSHIFT_DEPLOYMENT_NAME</code></td>
+  <td>The name of the new deployment, a replication controller.</td>
+</tr>
+<tr>
+  <td><code>OPENSHIFT_DEPLOYMENT_NAMESPACE</code></td>
+  <td>The name space of the new deployment.</td>
+</tr>
+</tbody>
+</table>
 
 The replica count of the new deployment will initially be zero. The responsibility of the strategy is to make the new deployment active using the
 logic that best serves the needs of the user.

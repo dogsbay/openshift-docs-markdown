@@ -14,11 +14,13 @@ You can use the {{ oadp_short }} command-line interface (CLI) to generate and in
         ```terminal
         $ oc oadp completion install [flags]
         ```
+
         **Flags for the `oc oadp completion install` command**
 
         | Flag | Description |
         | --- | --- |
         | `--shell` | The shell type to install completions for. Supported values are `bash`, `zsh`, and `fish`. If this flag is not specified, the current shell is auto-detected. |
+
         ```terminal title="Example of installing completions for zsh"
         $ oc oadp completion install --shell zsh
         ```

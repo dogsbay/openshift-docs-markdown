@@ -23,6 +23,7 @@ You can view different metrics for {{ ServerlessProductName }} by navigating to 
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster or dedicated administrator access.
 {% endif %}
+
 *   You have access to the **Administrator** perspective in the {{ product_title }} web console.
 
 

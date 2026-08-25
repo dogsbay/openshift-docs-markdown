@@ -2,4 +2,13 @@
 # Storage reference CRs {id="storage-crs_{{ context }}"}
 
 Use the following custom resources (CRs) to configure storage for the telco core profile. {._abstract}
- External ODF configuration,`01-rook-ceph-external-cluster-details.secret.yaml`,Defines a Secret resource containing base64-encoded configuration data for an external Ceph cluster in the openshift-storage namespace.,No External ODF configuration,`02-ocs-external-storagecluster.yaml`,Defines an OpenShift Container Storage (OCS) storage resource which configures the cluster to use an external storage back end.,No External ODF configuration,`odfNS.yaml`,Creates the monitored openshift-storage namespace for the OpenShift Data Foundation Operator.,No External ODF configuration,`odfOperGroup.yaml`,"Creates the Operator group in the openshift-storage namespace, allowing the OpenShift Data Foundation Operator to watch and manage resources.",No External ODF configuration,`odfSubscription.yaml`,"Creates the OpenShift Data Foundation Operator subscription, managed through OLM.",No |
+
+**Storage CRs**
+
+| Component | Reference CR | Description | Optional |
+| --- | --- | --- | --- |
+| External ODF configuration | `01-rook-ceph-external-cluster-details.secret.yaml` | Defines a Secret resource containing base64-encoded configuration data for an external Ceph cluster in the openshift-storage namespace. | No |
+| External ODF configuration | `02-ocs-external-storagecluster.yaml` | Defines an OpenShift Container Storage (OCS) storage resource which configures the cluster to use an external storage back end. | No |
+| External ODF configuration | `odfNS.yaml` | Creates the monitored openshift-storage namespace for the OpenShift Data Foundation Operator. | No |
+| External ODF configuration | `odfOperGroup.yaml` | Creates the Operator group in the openshift-storage namespace, allowing the OpenShift Data Foundation Operator to watch and manage resources. | No |
+| External ODF configuration | `odfSubscription.yaml` | Creates the OpenShift Data Foundation Operator subscription, managed through OLM. | No |

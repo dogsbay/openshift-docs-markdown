@@ -18,6 +18,7 @@ When creating a pipeline run, you can specify a remote pipeline from a Tekton bu
         value: [pipeline|task]
     # ...
     ```
+
     **Supported parameters for the bundles resolver**
 
     | Parameter | Description | Example value |
@@ -26,6 +27,7 @@ When creating a pipeline run, you can specify a remote pipeline from a Tekton bu
     | `bundle` | The bundle URL pointing at the image to fetch. | `gcr.io/tekton-releases/catalog/upstream/golang-build:0.1` |
     | `name` | The name of the resource to pull out of the bundle. | `golang-build` |
     | `kind` | The kind of the resource to pull out of the bundle. | `task` |
+
 
     If the pipeline or task requires additional parameters, provide these parameters in `params`.
 

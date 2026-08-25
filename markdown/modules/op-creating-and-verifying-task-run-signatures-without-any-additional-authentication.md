@@ -45,9 +45,9 @@ Ensure that the following components are installed on the cluster:
     $ oc create -f https://raw.githubusercontent.com/tektoncd/chains/main/examples/taskruns/task-output-image.yaml (1)
     ```
     1.  Replace the example URI with the URI or file path pointing to your task run.
-        ```terminal title="Example output"
-        taskrun.tekton.dev/build-push-run-output-image-qbjvh created
-        ```
+    ```terminal title="Example output"
+    taskrun.tekton.dev/build-push-run-output-image-qbjvh created
+    ```
 1.  Check the status of the steps by entering the following command. Wait until the process finishes.
     ```terminal
     $ tkn tr describe --last
@@ -73,6 +73,6 @@ Ensure that the following components are installed on the cluster:
 $ cosign verify-blob-attestation --insecure-ignore-tlog --key path/to/cosign.pub --signature sig --type slsaprovenance --check-claims=false /dev/null (1)
 ```
     1.  Replace `path/to/cosign.pub` with the path name of the public key file.
-        ```terminal title="Example output"
-        Verified OK
-        ```
+    ```terminal title="Example output"
+    Verified OK
+    ```

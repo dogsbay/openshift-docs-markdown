@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "cluster-logging-configuring" %}
-# Configuring OpenShift Logging {id="cluster-logging-configuring"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring OpenShift Logging {id="cluster-logging-configuring"}
 
 {{ logging_title_uc }} is configurable using a `ClusterLogging` custom resource (CR) deployed
 in the `openshift-logging` project.

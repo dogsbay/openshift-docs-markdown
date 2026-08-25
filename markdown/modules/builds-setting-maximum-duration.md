@@ -14,8 +14,8 @@ The maximum duration is counted from the time when a build pod gets scheduled in
     ```
 
 
-:::note
+    :::note
 
-This setting is not supported with the Pipeline Strategy option.
-
-:::
+    This setting is not supported with the Pipeline Strategy option.
+    
+    :::

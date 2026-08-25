@@ -12,15 +12,15 @@ You can uninstall {{ VirtProductName }} by using the OpenShift CLI (`oc`). {._ab
 **Procedure**
 
 1.  Delete the `HyperConverged` custom resource:
-    ```terminal
+    ```terminal {minja}
     $ oc delete HyperConverged kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Delete the {{ VirtProductName }} Operator subscription:
-    ```terminal
+    ```terminal {minja}
     $ oc delete subscription hco-operatorhub -n {{ CNVNamespace }}
     ```
 1.  Delete the {{ VirtProductName }} `ClusterServiceVersion` resource:
-    ```terminal
+    ```terminal {minja}
     $ oc delete csv -n openshift-cnv -l operators.coreos.com/kubevirt-hyperconverged.{{ CNVNamespace }}
     ```
 1.  Delete the {{ VirtProductName }} namespace:
@@ -28,7 +28,7 @@ You can uninstall {{ VirtProductName }} by using the OpenShift CLI (`oc`). {._ab
     $ oc delete namespace openshift-cnv
     ```
 1.  List the {{ VirtProductName }} custom resource definitions (CRDs) by running the `oc delete crd` command with the `dry-run` option:
-    ```terminal
+    ```terminal {minja}
     $ oc delete crd --dry-run=client -l operators.coreos.com/kubevirt-hyperconverged.{{ CNVNamespace }}
     ```
 
@@ -43,6 +43,6 @@ You can uninstall {{ VirtProductName }} by using the OpenShift CLI (`oc`). {._ab
     customresourcedefinition.apiextensions.k8s.io "tektontasks.tektontasks.kubevirt.io" deleted (dry run)
     ```
 1.  Delete the CRDs by running the `oc delete crd` command without the `dry-run` option:
-    ```terminal
+    ```terminal {minja}
     $ oc delete crd -l operators.coreos.com/kubevirt-hyperconverged.{{ CNVNamespace }}
     ```

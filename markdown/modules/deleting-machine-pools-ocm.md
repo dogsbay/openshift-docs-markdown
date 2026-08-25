@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not (openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_rosa or openshift_rosa_hcp) %}
 # Deleting a machine pool {id="deleting-machine-pools-ocm_{{ context }}"}
 
 {% endif %}

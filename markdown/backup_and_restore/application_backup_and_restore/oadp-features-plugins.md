@@ -3,11 +3,11 @@ title: OADP features and plugins
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# OADP features and plugins {id="oadp-features-plugins"}
 {% include "./_attributes/common-attributes.md" %}
+# OADP features and plugins {id="oadp-features-plugins"}
 {%- set context = "oadp-features-plugins" %}
 
-Review {{ oadp_first }} features and default plugins that integrate Velero with cloud providers to back up and restore {{ product_title }} resources. This helps you to select the right plugins and features for your backup and restore environment.
+Review {{ oadp_first }} features and default plugins that integrate Velero with cloud providers to back up and restore {{ product_title }} resources. This helps you to select the right plugins and features for your backup and restore environment. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/oadp-features.md" %}{% endleveloffset %}
 
@@ -39,4 +39,4 @@ Review {{ oadp_first }} features and default plugins that integrate Velero with 
 
 {% leveloffset +1 %}{% include "./modules/workaround-for-openshift-adp-controller-segmentation-fault.md" %}{% endleveloffset %}
 
-{%- set oadp_features_plugins = false -%}
+{%- set oadp_features_plugins = "" -%}

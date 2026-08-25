@@ -42,19 +42,19 @@ As part of the installation, specify the following in the `install-config.yaml` 
 *   The name of the existing resource group that contains the VPC and subnets
 {% endif %}
 {% if ibm_cloud %}
-*   The name of the existing resource group that contains the VPC and subnets (`networkResourceGroupName`)
+* The name of the existing resource group that contains the VPC and subnets (`networkResourceGroupName`)
 {% endif %}
 {% if not ibm_cloud %}
-*   The name of the existing VPC
+* The name of the existing VPC
 {% endif %}
 {% if ibm_cloud %}
-*   The name of the existing VPC (`vpcName`)
+* The name of the existing VPC (`vpcName`)
 {% endif %}
 {% if not ibm_cloud %}
-*   The subnets that were created for control plane machines and compute machines
+* The subnets that were created for control plane machines and compute machines
 {% endif %}
 {% if ibm_cloud %}
-*   The subnets that were created for control plane machines and compute machines (`controlPlaneSubnets` and `computeSubnets`)
+* The subnets that were created for control plane machines and compute machines (`controlPlaneSubnets` and `computeSubnets`)
 {% endif %}
 
 {% if ibm_cloud %}
@@ -94,11 +94,11 @@ If you deploy {{ product_title }} to an existing network, the isolation of clust
 *   Control plane TCP 22623 ingress (MCS) is allowed to the entire network.
 
 {% if context == "installing-ibm-cloud-vpc" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-restricted" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}
 {% if context == "installing-ibm-cloud-private" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}

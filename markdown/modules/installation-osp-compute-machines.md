@@ -43,11 +43,11 @@ SR-IOV deployments often employ performance optimizations, such as dedicated or 
 {% endif %}
 
 {% if context == "installing-openstack-user-sr-iov" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-sr-iov" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-ovs-dpdk" %}
-{%- set osp_sr_iov = false -%}
+{%- set osp_sr_iov = "" -%}
 {% endif %}

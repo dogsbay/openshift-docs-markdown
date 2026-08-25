@@ -13,7 +13,7 @@ Creating the `FusionAccess` CR triggers the installation of the correct version 
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the {{ FusionSAN }} Operator you installed.
 1.  In the **Fusion Access for SAN** page, select the **Fusion Access** tab.
 1.  Click **Create FusionAccess**.

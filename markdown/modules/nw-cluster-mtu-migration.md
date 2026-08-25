@@ -34,7 +34,7 @@ Start the maximum transmission unit (MTU) migration by specifying the migration 
 
     `<machine_to>`
     :   Specifies the MTU for the primary network interface on the underlying host network.
-{%- if not outposts %}
+{% if not outposts %}
     ```terminal
     $ oc patch Network.operator.openshift.io cluster --type=merge --patch \
       '{"spec": { "migration": { "mtu": { "network": { "from": 1400, "to": 9000 } , "machine": { "to" : 9100} } } } }'
@@ -61,14 +61,14 @@ Start the maximum transmission unit (MTU) migration by specifying the migration 
 
 
 {% if context == "aws-compute-edge-tasks-local-zone" %}
-{%- set local_zone = false -%}
+{%- set local_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-tasks-wavelength-zone" %}
-{%- set wavelength_zone = false -%}
+{%- set wavelength_zone = "" -%}
 {% endif %}
 {% if context == "aws-compute-edge-zone-tasks" %}
-{%- set post_aws_zones = false -%}
+{%- set post_aws_zones = "" -%}
 {% endif %}
 {% if context == "installing-aws-outposts" %}
-{%- set outposts = false -%}
+{%- set outposts = "" -%}
 {% endif %}

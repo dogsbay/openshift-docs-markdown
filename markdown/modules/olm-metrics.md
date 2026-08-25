@@ -3,7 +3,7 @@
 
 Operator Lifecycle Manager (OLM) exposes certain OLM-specific resources for use by the Prometheus-based {{ product_title }} cluster monitoring stack. {._abstract}
 
-***Metrics exposed by OLM***
+**Metrics exposed by OLM**
 
 <table>
 <thead>

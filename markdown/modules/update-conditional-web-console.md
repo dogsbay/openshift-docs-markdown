@@ -13,7 +13,7 @@ You can view and assess the risks associated with particular updates with condit
 
 **Procedure**
 
-1.  From the web console, click **Administration** -> **Cluster settings** page and review the contents of the **Details** tab.
+1.  From the web console, click **Administration** → **Cluster settings** page and review the contents of the **Details** tab.
 1.  You can enable the `Include versions with known issues` feature in the **Select new version** dropdown of the **Update cluster** modal to populate the dropdown list with conditional updates.
 
     :::note

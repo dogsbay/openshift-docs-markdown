@@ -4,7 +4,6 @@
 The control plane `CloudFormation` template creates the {{ aws_first }} resources for the three control plane machines that manage your {{ product_title }} cluster. {._abstract}
 
 ```yaml title="CloudFormation template for control plane machines"
-```yaml
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template for OpenShift Cluster Node Launch (EC2 master instances)
 
@@ -304,5 +303,4 @@ Outputs:
         ",",
         [!GetAtt Master0.PrivateIp, !GetAtt Master1.PrivateIp, !GetAtt Master2.PrivateIp]
       ]
-```
 ```

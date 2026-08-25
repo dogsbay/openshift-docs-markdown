@@ -12,6 +12,7 @@ To split traffic between multiple revisions of an application in the **Topology*
 
 1.  Click the Knative service to see its overview in the side panel.
 1.  Click the **Resources** tab, to see a list of **Revisions** and **Routes** for the service.
+
     **Figure 1. Serverless application**
 
     ![odc-serverless-app](/_assets/images/odc-serverless-app.png)
@@ -21,6 +22,7 @@ To split traffic between multiple revisions of an application in the **Topology*
     1.  Add the split traffic percentage portion for the two revisions in the **Splits** field.
     1.  Add tags to create custom URLs for the two revisions.
     1.  Click **Save** to see two nodes representing the two revisions in the Topology view.
+
         **Figure 2. Serverless application revisions**
 
         ![odc-serverless-revisions](/_assets/images/odc-serverless-revisions.png)

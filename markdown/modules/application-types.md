@@ -13,10 +13,10 @@ Suitable {{ product_title }} objects for these types of applications include `Jo
 *   Expected to run continuously. For long-running applications, you can write a
 {%- if not (openshift_dedicated or openshift_rosa) %}
 deployment.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 deployment.
-{% endif %}
+{%- endif %}
 *   Required to be highly available. If your application requires high
 availability, then you want to size your deployment to have more than one
 instance. A `Deployment` or `DeploymentConfig` object can incorporate a replica set

@@ -12,7 +12,7 @@ You can use the Kickstart file provided with {{ microshift_short }} to provision
 
 :::important
 
-The subscription must include access to the `rhocp-4.x-for-rhel-{{ op_system_version_major }}-$(uname -m)-rpms` and `fast-datapath-for-rhel-{{ op_system_version_major }}-$(uname -m)-rpms` RPM repositories.
+The subscription must include access to the `rhocp-4.x-for-rhel-{{ op_system_version_major }}-$(uname -m)-rpms`{minja} and `fast-datapath-for-rhel-{{ op_system_version_major }}-$(uname -m)-rpms`{minja} RPM repositories.
 
 :::
 

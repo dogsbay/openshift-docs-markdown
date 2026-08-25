@@ -40,10 +40,10 @@ If you have not enabled autoscaling for your machine pool, you can manually scal
     where:
 {%- if openshift_rosa %}
     *   `<replica_count>`: If you deployed {{ product_title }} using a single availability zone, the replica count defines the number of compute nodes to provision to the machine pool for the zone. If you deployed your cluster using multiple availability zones, the count defines the total number of compute nodes in the machine pool across all zones and must be a multiple of 3.
-        {% endif %}
-        {% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     *   `<replica_count>`: The replica count defines the number of compute nodes to provision to the machine pool for the zone.
-        {%- endif %}
+{%- endif %}
     *   `<machine_pool_id>`: Replace with the ID of your machine pool, as listed in the output of the preceding command.
 
 {% if openshift_rosa or openshift_rosa_hcp %}

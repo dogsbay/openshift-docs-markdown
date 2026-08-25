@@ -6,7 +6,7 @@ Large `must-gather` logs can take a significant amount of time to upload to supp
 The following examples demonstrate different methods for reducing the must-gather log size:
 
 **Skipping rotated logs**
-You can exclude older, rotated log files, such as `**.gz` or `**.1` files, from the collection by setting the shell variable `REDUCE_LOGS=skip_rotated_logs` before running the `gather` script.
+You can exclude older, rotated log files, such as `*.gz` or `*.1` files, from the collection by setting the shell variable `REDUCE_LOGS=skip_rotated_logs` before running the `gather` script.
 
 ```yaml title="Example MustGather CR configured to skip rotated logs"
 apiVersion: operator.openshift.io/v1alpha1

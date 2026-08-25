@@ -7,6 +7,6 @@ title: Destroying a hosted control plane on OpenStack
 # Destroying a hosted control plane on OpenStack {id="hcp-destroy-openstack"}
 {%- set context = "hcp-destroy-openstack" %}
 
-You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.
+You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/hosted-clusters-openstack-destroy.md" %}{% endleveloffset %}

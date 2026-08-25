@@ -3,12 +3,12 @@ title: Image configuration resources
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Image configuration resources {id="image-configuration-classic"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "image-configuration" %}
 
-You can configure an image registry to store and serve container images.
+You can configure an image registry to store and serve container images. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/images-configuration-parameters.md" %}{% endleveloffset %}
 
@@ -46,7 +46,7 @@ You can configure an image registry to store and serve container images.
 {% leveloffset +2 %}{% include "./modules/images-configuration-registry-mirror-convert.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_dedicated) %}
-## Additional resources {id="additional-resources_image-configuration"}
+## Additional resources {id="additional-resources_image-configuration" ._additional-resources}
 
 *   [Working with manifest lists](/openshift_images/image-streams-manage#images-imagestream-import-import-mode_image-streams-managing)
 *   [Understanding feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling)

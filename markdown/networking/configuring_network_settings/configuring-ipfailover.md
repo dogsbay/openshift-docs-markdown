@@ -3,11 +3,11 @@ title: Configuring IP failover
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring IP failover {id="configuring-ipfailover"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring IP failover {id="configuring-ipfailover"}
 {%- set context = "configuring-ipfailover" %}
 
-To provide high availability for Virtual IP addresses and ensure services remain accessible when nodes fail in {{ product_title }}, you can configure IP failover using Keepalived.
+To provide high availability for Virtual IP addresses and ensure services remain accessible when nodes fail in {{ product_title }}, you can configure IP failover using Keepalived. {._abstract}
 
 IP failover uses [Keepalived](http://www.keepalived.org/) to host a set of externally accessible Virtual IP (VIP) addresses on a set of hosts. Each VIP address is only serviced by a single host at a time. Keepalived uses the Virtual Router Redundancy Protocol (VRRP) to determine which host, from the set of hosts, services which VIP. If a host becomes unavailable, or if the service that Keepalived is watching does not respond, the VIP is switched to another host from the set. This means a VIP is always serviced as long as a host is available.
 
@@ -75,6 +75,7 @@ There are a maximum of 254 VIPs in the cluster.
 {% leveloffset +1 %}{% include "./modules/nw-ipfailover-cluster-ha-ingress.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuration for ExternalIP](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuration-externalip_configuring-externalip)
 *   [Kubernetes documentation on ExternalIP](https://kubernetes.io/docs/concepts/services-networking/service/#external-ips)

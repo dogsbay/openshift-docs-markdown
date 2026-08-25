@@ -10,12 +10,12 @@ You can enable or disable {{ VirtProductName }}'s kernel samepage merging (KSM) 
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Edit the `ksmConfiguration` stanza:
     *   To enable the KSM activation feature for all nodes, set the `nodeLabelSelector` value to `{}`. For example:
-        ```yaml
+        ```yaml {minja}
         apiVersion: hco.kubevirt.io/v1beta1
         kind: HyperConverged
         metadata:
@@ -27,7 +27,7 @@ You can enable or disable {{ VirtProductName }}'s kernel samepage merging (KSM) 
         # ...
         ```
     *   To enable the KSM activation feature on a subset of nodes, edit the `nodeLabelSelector` field. Add syntax that matches the nodes where you want {{ VirtProductName }} to enable KSM. For example, the following configuration allows {{ VirtProductName }} to enable KSM on nodes where both `<first_example_key>` and `<second_example_key>` are set to `"true"`:
-        ```yaml
+        ```yaml {minja}
         apiVersion: hco.kubevirt.io/v1beta1
         kind: HyperConverged
         metadata:
@@ -42,7 +42,7 @@ You can enable or disable {{ VirtProductName }}'s kernel samepage merging (KSM) 
         # ...
         ```
     *   To disable the KSM activation feature, delete the `ksmConfiguration` stanza. For example:
-        ```yaml
+        ```yaml {minja}
         apiVersion: hco.kubevirt.io/v1beta1
         kind: HyperConverged
         metadata:

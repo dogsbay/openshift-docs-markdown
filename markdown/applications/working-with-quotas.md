@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Working with quotas {id="working-with-quotas"}
 {% include "./_attributes/common-attributes.md" %}
+# Working with quotas {id="working-with-quotas"}
 {%- set context = "working-with-quotas" %}
 
 A resource quota, defined by a `ResourceQuota` object, limits aggregate resource consumption per project. You can limit the quantity of objects that you can create in a project by type, and the total amount of compute resources and storage consumed by resources in that project. {._abstract}

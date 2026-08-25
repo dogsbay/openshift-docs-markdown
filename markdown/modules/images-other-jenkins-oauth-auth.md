@@ -16,8 +16,8 @@ The default {{ product_title }} `admin`, `edit`, and `view` roles and the Jenkin
 When running Jenkins in
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 an {{ product_title }} 
 {%- endif %}
 pod, the login plugin looks for a config map named `openshift-jenkins-login-plugin-config` in the namespace that Jenkins is running in.
@@ -29,8 +29,8 @@ If this plugin finds and can read in that config map, you can define the role to
 *   If you want to add the `Overall Jenkins Administer` permission to 
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 an {{ product_title }} 
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
 an {{ product_title }} 
 {%- endif %}
 role, the key should be `Overall-Administer`.

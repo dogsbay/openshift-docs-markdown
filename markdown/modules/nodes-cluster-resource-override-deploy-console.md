@@ -13,11 +13,11 @@ By default, the installation process creates a Cluster Resource Override Operato
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Home** -> **Projects**
+1.  In the {{ product_title }} web console, navigate to **Home** → **Projects**
     1.  Click **Create Project**.
     1.  Specify `clusterresourceoverride-operator` as the name of the project.
     1.  Click **Create**.
-1.  Navigate to **Ecosystem** -> **Software Catalog**.
+1.  Navigate to **Ecosystem** → **Software Catalog**.
     1.  Choose  **ClusterResourceOverride Operator** from the list of available Operators and click **Install**.
     1.  On the **Install Operator** page, make sure **A specific Namespace on the cluster** is selected for **Installation Mode**.
     1.  Make sure **clusterresourceoverride-operator** is selected for **Installed Namespace**.

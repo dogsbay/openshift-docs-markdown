@@ -149,11 +149,11 @@ The following procedure provides an example for scaling up the default Ingress C
     1.  The Ingress Operator namespace.
     1.  This expression evaluates to however many worker nodes are present in the deployed cluster.
 
-        :::important
+    :::important
 
-        If you are using cross-namespace queries, you must target port 9091 and not port 9092 in the `serverAddress` field. You also must have elevated privileges to read metrics from this port.
-        
-        :::
+    If you are using cross-namespace queries, you must target port 9091 and not port 9092 in the `serverAddress` field. You also must have elevated privileges to read metrics from this port.
+    
+    :::
 
 1.  Apply the custom resource definition by running the following command:
     ```terminal

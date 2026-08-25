@@ -78,7 +78,7 @@ You can enable and configure encryption and mirroring before an {{ product_title
     Replace `<installation_directory>` with the path to the directory that you want to store the installation files in.
 1.  Create a Butane config that configures disk encryption, mirroring, or both.
 For example, to configure storage for compute nodes, create a `$HOME/clusterconfig/worker-storage.bu` file.
-    ```yaml title="Butane config example for a boot device"
+    ```yaml title="Butane config example for a boot device" {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

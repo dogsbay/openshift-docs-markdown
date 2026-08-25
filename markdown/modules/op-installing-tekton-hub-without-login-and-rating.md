@@ -55,11 +55,11 @@ You can install {{ tekton_hub }} on your cluster automatically with default conf
     1.  The namespace in which {{ tekton_hub }} must be installed; default is `openshift-pipelines`.
     1.  The time interval after which the catalog refreshes automatically. The supported units of time are seconds (`s`), minutes (`m`), hours (`h`), days (`d`), and weeks (`w`). The default interval is 30 minutes.
 
-        :::note
+    :::note
 
-        If you do not provide custom values for the optional fields in the `TektonHub` CR, the default values configured in the {{ tekton_hub }} API config map is used.
-        
-        :::
+    If you do not provide custom values for the optional fields in the `TektonHub` CR, the default values configured in the {{ tekton_hub }} API config map is used.
+    
+    :::
 
 1.  Apply the `TektonHub` CR.
     ```terminal

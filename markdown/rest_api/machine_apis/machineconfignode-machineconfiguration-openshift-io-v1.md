@@ -1,5 +1,5 @@
 ---
-title: "MachineConfigNode []"
+title: "MachineConfigNode [machineconfiguration.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec describes the configuration of the machine config node. |
 | `status` | `object` | status describes the last observed state of this machine config node. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -49,6 +50,7 @@ Required
 | `configVersion` | `object` | configVersion holds the desired config version for the node targeted by this machine config node resource. The desired version represents the machine config the node will attempt to update to and gets set before the machine config operator validates the new machine config against the current machine config. |
 | `node` | `object` | node contains a reference to the node for this machine config node. |
 | `pool` | `object` | pool contains a reference to the machine config pool that this machine config node’s referenced node belongs to. |
+
 ### .spec.configVersion {id="_specconfigversion"}
 
 Description
@@ -67,6 +69,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `desired` | `string` | desired is the name of the machine config that the the node should be upgraded to. This value is set when the machine config pool generates a new version of its rendered configuration. When this value is changed, the machine config daemon starts the node upgrade process. This value gets set in the machine config node spec once the machine config has been targeted for upgrade and before it is validated. Must be a lowercase RFC-1123 subdomain name (https://tools.ietf.org/html/rfc1123) consisting of only lowercase alphanumeric characters, hyphens (-), and periods (.), and must start and end with an alphanumeric character, and be at most 253 characters in length. |
+
 ### .spec.node {id="_specnode"}
 
 Description
@@ -83,6 +86,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the object being referenced. For example, this can represent a machine config pool or node name. Must be a lowercase RFC-1123 subdomain name (https://tools.ietf.org/html/rfc1123) consisting of only lowercase alphanumeric characters, hyphens (-), and periods (.), and must start and end with an alphanumeric character, and be at most 253 characters in length. |
+
 ### .spec.pool {id="_specpool"}
 
 Description
@@ -100,6 +104,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the object being referenced. For example, this can represent a machine config pool or node name. Must be a lowercase RFC-1123 subdomain name (https://tools.ietf.org/html/rfc1123) consisting of only lowercase alphanumeric characters, hyphens (-), and periods (.), and must start and end with an alphanumeric character, and be at most 253 characters in length. |
+
 ### .status {id="_status"}
 
 Description
@@ -117,6 +122,7 @@ Type
 | `observedGeneration` | `integer` | observedGeneration represents the generation of the MachineConfigNode object observed by the Machine Config Operator’s controller. This field is updated when the controller observes a change to the desiredConfig in the configVersion of the machine config node spec. |
 | `pinnedImageSets` | `array` | pinnedImageSets describes the current and desired pinned image sets for this node. |
 | `pinnedImageSets[]` | `object` | MachineConfigNodeStatusPinnedImageSet holds information about the current, desired, and failed pinned image sets for the observed machine config node. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -157,6 +163,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.configVersion {id="_statusconfigversion"}
 
 Description
@@ -174,6 +181,7 @@ Required
 | --- | --- | --- |
 | `current` | `string` | current is the name of the machine config currently in use on the node. This value is updated once the machine config daemon has completed the update of the configuration for the node. This value should match the desired version unless an upgrade is in progress. Must be a lowercase RFC-1123 subdomain name (https://tools.ietf.org/html/rfc1123) consisting of only lowercase alphanumeric characters, hyphens (-), and periods (.), and must start and end with an alphanumeric character, and be at most 253 characters in length. |
 | `desired` | `string` | desired is the MachineConfig the node wants to upgrade to. This value gets set in the machine config node status once the machine config has been validated against the current machine config. Must be a lowercase RFC-1123 subdomain name (https://tools.ietf.org/html/rfc1123) consisting of only lowercase alphanumeric characters, hyphens (-), and periods (.), and must start and end with an alphanumeric character, and be at most 253 characters in length. |
+
 ### .status.pinnedImageSets {id="_statuspinnedimagesets"}
 
 Description
@@ -212,12 +220,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of MachineConfigNode
     *   `GET`: list objects of kind MachineConfigNode
     *   `POST`: create a MachineConfigNode
-*   `/apis/machineconfiguration.openshift.io/v1/machineconfignodes/{{ name }}`
+*   `/apis/machineconfiguration.openshift.io/v1/machineconfignodes/{{ name }}`{minja}
     *   `DELETE`: delete a MachineConfigNode
     *   `GET`: read the specified MachineConfigNode
     *   `PATCH`: partially update the specified MachineConfigNode
     *   `PUT`: replace the specified MachineConfigNode
-*   `/apis/machineconfiguration.openshift.io/v1/machineconfignodes/{{ name }}/status`
+*   `/apis/machineconfiguration.openshift.io/v1/machineconfignodes/{{ name }}/status`{minja}
     *   `GET`: read status of the specified MachineConfigNode
     *   `PATCH`: partially update status of the specified MachineConfigNode
     *   `PUT`: replace status of the specified MachineConfigNode

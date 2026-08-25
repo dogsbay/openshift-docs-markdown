@@ -3,11 +3,11 @@ title: Uninstalling the External Secrets Operator for Red Hat OpenShift
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Uninstalling the External Secrets Operator for Red Hat OpenShift {id="external-secrets-operator-uninstall"}
 {% include "./_attributes/common-attributes.md" %}
+# Uninstalling the External Secrets Operator for Red Hat OpenShift {id="external-secrets-operator-uninstall"}
 {%- set context = "external-secrets-operator-uninstall" %}
 
-You can remove the {{ external_secrets_operator }} from {{ product_title }} by uninstalling the Operator and removing its related resources.
+You can remove the {{ external_secrets_operator }} from {{ product_title }} by uninstalling the Operator and removing its related resources. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/external-secrets-operator-uninstall-console.md" %}{% endleveloffset %}
 

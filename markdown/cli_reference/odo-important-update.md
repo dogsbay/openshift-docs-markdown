@@ -1,5 +1,5 @@
 ---
-title: Important update on
+title: "Important update on {{ odo_title }}"
 ---
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
@@ -8,7 +8,7 @@ title: Important update on
 # Important update on `{{ odo_title }}` {id="odo-important_update_{{ context }}"}
 {%- set context = "odo-important-update" %}
 
-Red Hat does not provide information about `{{ odo_title }}` on the {{ product_title }} documentation site. See the [documentation](https://odo.dev/docs/introduction) maintained by Red Hat and the upstream community for documentation information related to `{{ odo_title }}`.
+Red Hat does not provide information about `{{ odo_title }}`{minja} on the {{ product_title }} documentation site. See the [documentation](https://odo.dev/docs/introduction) maintained by Red Hat and the upstream community for documentation information related to `{{ odo_title }}`{minja}.
 
 
 :::important

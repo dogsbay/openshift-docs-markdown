@@ -39,13 +39,15 @@ Cluster topology
 
 
 Supported cluster topologies for RAN DU
-**Supported cluster topologies for RAN DU**
+
+    **Supported cluster topologies for RAN DU**
 
 :   | Architecture | SNO | SNO+1 | 3-node  | Standard  | RWN |
     | --- | --- | --- | --- | --- | --- |
     | x86_64 | Yes | Yes | Yes | Yes | No |
     | aarch64 | Yes | No | No | No | No |
     | mixed | N/A | No | No | Yes  | No |
+
     *   The standard mixed-architecture topology uses `x86_64` control plane nodes and `AArch64` worker nodes.
 
 Workloads
@@ -57,7 +59,7 @@ Resources
 
 
 Resource utilization
-    :   {{ product_title }} resource utilization varies depending on many factors such as the following application workload characteristics:
+:   {{ product_title }} resource utilization varies depending on many factors such as the following application workload characteristics:
 
     *   Pod count
     *   Type and frequency of probes
@@ -65,6 +67,7 @@ Resource utilization
     *   API access rate
     *   Logging rates
     *   Storage IOPS
+
 
     Resource utilization is measured for clusters configured as follows:
 
@@ -75,6 +78,7 @@ Resource utilization
 
 
     :::note
+
 
     Configuration outside the scope of the RAN DU RDS that do not meet these criteria requires additional analysis to determine the impact on resource utilization and ability to meet KPI targets.
     You might need to allocate additional cluster resources to meet these requirements.
@@ -112,12 +116,13 @@ Reference application workload characteristics
     1.  Aggregate traffic on the primary CNI is up to 30 Mbps and up to 5 Gbps on the secondary network
 
 Hub cluster management characteristics
-    :   {{ rh_rhacm }}  is the recommended cluster management solution and is configured to these limits:
+:   {{ rh_rhacm }}  is the recommended cluster management solution and is configured to these limits:
 
     1.  Use a maximum of 10 {{ rh_rhacm }} configuration policies, comprising 5 Red&#160;Hat provided policies and up to 5 custom configuration policies with a compliant evaluation interval of not less than 10 minutes.
     1.  Use a minimal number (up to 10) of managed cluster templates in cluster policies.
     Use hub-side templating.
     1.  Disable {{ rh_rhacm }} addons with the exception of the `policyController` and configure observability with the default configuration.
+
 
     The following table describes resource utilization under reference application load.
 
@@ -130,8 +135,9 @@ Hub cluster management characteristics
 
 
 Disconnected environment
-    :   RAN DU clusters are typically deployed in disconnected environments without direct access to the internet.
+:   RAN DU clusters are typically deployed in disconnected environments without direct access to the internet.
     All container images needed to install, configure, and operate the cluster must be available in a disconnected registry.
+
 
     In {{ product_title }} {{ product_version }} and later, pulling OpenShift images from a disconnected mirror registry requires copying the image signatures into that registry during the mirroring process.
     The `oc adm mirror` command does not mirror signatures and must not be used.

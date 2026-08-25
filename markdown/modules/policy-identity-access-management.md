@@ -63,30 +63,31 @@ Members of the Red Hat CEE team typically have read-only access to parts of the 
 | Role | Core namespace | Layered product namespace | Customer namespace | Cloud infrastructure account^*^ |
 | --- |
 | OpenShift SRE |
-| Read: All Write: Very Limited ^[1]^ |
-| Read: All Write: None |
-| Read: None^[2]^ Write: None |
-| Read: All ^[3]^ Write: All ^[3]^ |
+| Read: All<br>Write: Very<br>Limited <sup>[1]</sup> |
+| Read: All<br>Write: None |
+| Read: None<sup>[2]</sup><br>Write: None |
+| Read: All <sup>[3]</sup><br>Write: All <sup>[3]</sup> |
 | CEE |
-| Read: All Write: None |
-| Read: All Write: None |
-| Read: None^[2]^ Write: None |
-| Read: None Write: None |
+| Read: All<br>Write: None |
+| Read: All<br>Write: None |
+| Read: None<sup>[2]</sup><br>Write: None |
+| Read: None<br>Write: None |
 | Customer administrator |
-| Read: None Write: None |
-| Read: None Write: None |
-| Read: All Write: All |
-| Read: Limited^[4]^ Write: Limited^[4]^ |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| Read: All<br>Write: All |
+| Read: Limited<sup>[4]</sup><br>Write: Limited<sup>[4]</sup> |
 | Customer user |
-| Read: None Write: None |
-| Read: None Write: None |
-| Read: Limited^[5]^ Write: Limited^[5]^ |
-| Read: None Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| Read: Limited<sup>[5]</sup><br>Write: Limited<sup>[5]</sup> |
+| Read: None<br>Write: None |
 | Everybody else |
-| Read: None Write: None |
-| Read: None Write: None |
-| Read: None Write: None |
-| Read: None Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+
 Cloud Infrastructure Account refers to the underlying AWS or {{ gcp_full }} account
 
 1.  Limited to addressing common use cases such as failing deployments, upgrading a cluster, and replacing bad worker nodes.

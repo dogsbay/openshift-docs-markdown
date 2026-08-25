@@ -6,7 +6,7 @@ You can mount a Windows driver disk on a virtual machine (VM) by using the {{ pr
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines**.
+1.  Navigate to **Virtualization** → **VirtualMachines**.
 1.  Select the required VM to open the **VirtualMachine details** page.
 1.  On the **Configuration** tab, click **Storage**.
 1.  Select the **Mount Windows drivers disk** checkbox.

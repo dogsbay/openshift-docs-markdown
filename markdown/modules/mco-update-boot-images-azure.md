@@ -73,6 +73,7 @@ For clusters that use a default {{ op_system_first }}, Azure Red Hat OpenShift (
         | `publisher` is `redhat-limited` and `offer` is `rh-ocp-worker` | `opp-emea` |
         | `publisher` is `redhat-limited` and `offer` is `rh-ocp-worker` | `oke-emea` |
 
+
         Make note of the variant for later use. 
     1.  Determine your image Hyper-V generation by comparing the output to the entries in the following table:
 <table>

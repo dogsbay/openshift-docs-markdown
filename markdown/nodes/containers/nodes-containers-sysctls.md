@@ -4,10 +4,10 @@ title: Using sysctls in containers
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-containers-using" %}
-# Using sysctls in containers {id="nodes-containers-sysctls"}
 {% include "./_attributes/common-attributes.md" %}
+# Using sysctls in containers {id="nodes-containers-sysctls"}
 
-You can configure namespaced sysctls to manage kernel parameters for specific pods or network interfaces. By enabling safe or unsafe namespaced sysctls, you can fine-tune your environment’s performance and networking behavior at the pod level.
+You can configure namespaced sysctls to manage kernel parameters for specific pods or network interfaces. By enabling safe or unsafe namespaced sysctls, you can fine-tune your environment’s performance and networking behavior at the pod level. {._abstract}
 
 Only sysctls that are namespaced can be set independently on pods. If a sysctl is not namespaced, it is known as a _node-level_ sysctl. You must use another method of setting the sysctl, such as by using the Node Tuning Operator. To set node-level sysctls, see "Using the Node Tuning Operator".
 
@@ -27,6 +27,7 @@ If the `net.ipv4.ip_local_port_range` safe sysctl parameter value and the defaul
 Only those sysctls considered _safe_ are enabled by default. A cluster administrator can manually enable _unsafe_ sysctls on the node to be available to the user.
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the node port service range](/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
 
@@ -36,7 +37,7 @@ Only those sysctls considered _safe_ are enabled by default. A cluster administr
 
 {% leveloffset +1 %}{% include "./modules/nodes-safe-sysctls-list.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Configuring ingress cluster traffic using a NodePort](/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)
 
@@ -48,7 +49,7 @@ Only those sysctls considered _safe_ are enabled by default. A cluster administr
 
 {% leveloffset +1 %}{% include "./modules/nodes-containers-sysctls-unsafe.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_nodes-containers-sysctls"}
+## Additional resources {id="additional-resources_nodes-containers-sysctls" ._additional-resources}
 
 *   [Linux networking documentation](https://docs.kernel.org/networking/ip-sysctl.html)
 *   [Configuring system controls by using the tuning CNI](/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni)

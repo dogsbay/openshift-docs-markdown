@@ -18,50 +18,47 @@ As a regular user or project member with the appropriate RBAC permissions, you c
 
 1.  To add a new namespace-scoped Helm Chart Repository, you must add the Helm Chart Repository custom resource (CR) to your namespace.
 
-```yaml title="Sample Namespace-scoped Helm Chart Repository CR"
-apiVersion: helm.openshift.io/v1beta1
-kind: ProjectHelmChartRepository
-metadata:
-  name: <name>
-spec:
-  url: https://my.chart-repo.org/stable
+    ```yaml title="Sample Namespace-scoped Helm Chart Repository CR"
+    apiVersion: helm.openshift.io/v1beta1
+    kind: ProjectHelmChartRepository
+    metadata:
+      name: <name>
+    spec:
+      url: https://my.chart-repo.org/stable
 
-  # optional name that might be used by console
-  name: <chart-repo-display-name>
+      # optional name that might be used by console
+      name: <chart-repo-display-name>
 
-  # optional and only needed for UI purposes
-  description: <My private chart repo>
+      # optional and only needed for UI purposes
+      description: <My private chart repo>
 
-  # required: chart repository URL
-  connectionConfig:
-    url: <helm-chart-repository-url>
-```
+      # required: chart repository URL
+      connectionConfig:
+        url: <helm-chart-repository-url>
+    ```
 
-For example, to add an Azure sample chart repository scoped to your `my-namespace` namespace, run:
+    For example, to add an Azure sample chart repository scoped to your `my-namespace` namespace, run:
+    ```terminal
+    $ cat <<EOF | oc apply --namespace my-namespace -f -
+    apiVersion: helm.openshift.io/v1beta1
+    kind: ProjectHelmChartRepository
+    metadata:
+      name: azure-sample-repo
+    spec:
+      name: azure-sample-repo
+      connectionConfig:
+        url: https://raw.githubusercontent.com/Azure-Samples/helm-charts/master/docs
+    EOF
+    ```
 
-```terminal
-$ cat <<EOF | oc apply --namespace my-namespace -f -
-apiVersion: helm.openshift.io/v1beta1
-kind: ProjectHelmChartRepository
-metadata:
-  name: azure-sample-repo
-spec:
-  name: azure-sample-repo
-  connectionConfig:
-    url: https://raw.githubusercontent.com/Azure-Samples/helm-charts/master/docs
-EOF
-```
-
-The output verifies that the namespace-scoped Helm Chart Repository CR is created:
-
-.Example output
-```
-projecthelmchartrepository.helm.openshift.io/azure-sample-repo created
-```
-
+    The output verifies that the namespace-scoped Helm Chart Repository CR is created:
+    ```text title="Example output"
+    projecthelmchartrepository.helm.openshift.io/azure-sample-repo created
+    ```
 1.  Navigate to  the **Developer Catalog** in the web console to verify that the Helm charts from the chart repository are displayed in your `my-namespace` namespace.
 
     For example, use the **Chart repositories** filter to search for a Helm chart from the repository.
+
     **Figure 1. Chart repositories filter in your namespace**
 
     ![odc_namespace_helm_chart_repo_filter](/_assets/images/odc_namespace_helm_chart_repo_filter.png)

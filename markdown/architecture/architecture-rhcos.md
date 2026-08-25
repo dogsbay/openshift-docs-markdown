@@ -3,11 +3,11 @@ title: "{{ op_system_first }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ op_system_first }} {id="architecture-rhcos"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ op_system_first }} {id="architecture-rhcos"}
 {%- set context = "architecture-rhcos" %}
 
-{{ op_system_first }} represents the next generation of single-purpose container operating system technology by providing the quality standards of {{ op_system_base_full }} with automated, remote upgrade features.
+{{ op_system_first }} represents the next generation of single-purpose container operating system technology by providing the quality standards of {{ op_system_base_full }} with automated, remote upgrade features. {._abstract}
 
 {{ op_system }} is supported only as a component of {{ product_title }} {{ product_version }} for all {{ product_title }} machines. {{ op_system }} is the only supported operating system for all node types in {{ product_title }}. {{ op_system }} is deployed in {{ product_title }} {{ product_version }} in two general ways:
 
@@ -23,6 +23,7 @@ title: "{{ op_system_first }}"
 {% leveloffset +2 %}{% include "./modules/rhcos-about-ignition.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [cloud-init documentation](https://cloud-init.io/)
 *   [Kickstart installations](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/installation_guide/index#chap-kickstart-installations)

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using Argo Rollouts for progressive deployment delivery {id="using-argo-rollouts-for-progressive-deployment-delivery"}
 {% include "./_attributes/common-attributes.md" %}
+# Using Argo Rollouts for progressive deployment delivery {id="using-argo-rollouts-for-progressive-deployment-delivery"}
 {%- set context = "using-argo-rollouts-for-progressive-deployment-delivery" %}
 
 {%- set FeatureName = "Argo Rollouts" %}

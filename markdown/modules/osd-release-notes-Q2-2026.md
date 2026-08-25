@@ -31,19 +31,22 @@ GCNV for {{ VirtProductName }} on {{ GCP }}
     *   [{{ GCP }} with {{ GCP }} NetApp Volumes - Known errors and limits](https://access.redhat.com/articles/7141471)
 
 Support for excluding namespaces from default ingress load controller using label selectors
-    :   With this update, you can use the `ocm` CLI to configure default ingress namespace exclusions for your cluster. For more information, see [Configure excluded namespaces for the default ingress controller](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/networking_operators/configuring-ingress#osd-ingress-excluded-namespaces-ocm-cli_configuring-ingress).
+:   With this update, you can use the `ocm` CLI to configure default ingress namespace exclusions for your cluster. For more information, see [Configure excluded namespaces for the default ingress controller](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/networking_operators/configuring-ingress#osd-ingress-excluded-namespaces-ocm-cli_configuring-ingress).
 
 
 Support for new {{ gcp_short }} instances
-    :   With this update, you can create clusters with `g2` and `g4` instance types on {{ product_title }} version 4.21 and later. For more information, see [{{ gcp_full }} instance types](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#gcp-compute-types_osd-service-definition).
+:   With this update, you can create clusters with `g2` and `g4` instance types on {{ product_title }} version 4.21 and later. For more information, see [{{ gcp_full }} instance types](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#gcp-compute-types_osd-service-definition).
 
 
 {{ product_title }} managed DNS zones are available
-    :   You can create and manage your own DNS zones for Shared VPC deployments on {{ GCP }}, giving you greater control over your {{ product_title }} cluster’s network configuration and security. This new capability allows you to maintain ownership of your DNS infrastructure while still leveraging the powerful features of {{ product_title }}.
+:   You can create and manage your own DNS zones for Shared VPC deployments on {{ GCP }}, giving you greater control over your {{ product_title }} cluster’s network configuration and security. This new capability allows you to maintain ownership of your DNS infrastructure while still leveraging the powerful features of {{ product_title }}.
+
     By using managed DNS zones, you can ensure that your cluster’s DNS records are managed according to your organization’s policies and compliance requirements, without granting broad administrative access to your host projects. This improvement enhances security and provides a more flexible deployment option for customers with strict governance needs.
+
     To support these managed DNS zones, additional permissions have been added to the Workload Identity Federation (WIF) template for {{ product_title }} versions [4.20](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.20/vanilla.yaml) and [4.21](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.21/vanilla.yaml). The deployer service account now includes the `dns.managedZones.update` permission so that the deployer can perform update operations on managed DNS zones.
+
     For more information about managed DNS zones for {{ product_title }} on {{ GCP }}, see [Creating a managed DNS zone](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/planning_your_environment/gcp-ccs#ocm-cli-create-managed-dns-zone_gcp-ccs).
 
 
 Support for new {{ gcp_short }} instances
-    :   {{ product_title }} version 4.18 and later adds support for `c2d`, `c3d`, `n2d` and `t2d` instance types on {{ gcp_full }}. For more information, see [{{ gcp_full }} compute types](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#gcp-compute-types_osd-service-definition).
+:   {{ product_title }} version 4.18 and later adds support for `c2d`, `c3d`, `n2d` and `t2d` instance types on {{ gcp_full }}. For more information, see [{{ gcp_full }} compute types](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/introduction_to_openshift_dedicated/policies-and-service-definition#gcp-compute-types_osd-service-definition).

@@ -37,7 +37,7 @@ To change the log level of the secondary scheduler, delete the running scheduler
         numaresourcesscheduler.nodetopology.openshift.io "numaresourcesscheduler" deleted
         ```
 1.  Save the following YAML in the file `nro-scheduler-debug.yaml`. This example changes the log level to `Debug`:
-    ```yaml
+    ```yaml {minja}
     apiVersion: nodetopology.openshift.io/v1
     kind: NUMAResourcesScheduler
     metadata:

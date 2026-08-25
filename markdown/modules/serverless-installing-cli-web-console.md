@@ -22,7 +22,7 @@ Using the {{ product_title }} web console provides a streamlined and intuitive u
 
 **Procedure**
 
-1.  Download the Knative (`kn`) CLI from the **Command Line Tools** page. You can access the **Command Line Tools** page by clicking the ![title="Help"](/_assets/images/../images/question-circle.png) icon in the top right corner of the web console and selecting **Command Line Tools** in the list.
+1.  Download the Knative (`kn`) CLI from the **Command Line Tools** page. You can access the **Command Line Tools** page by clicking the ![title="Help"](/_assets/images/question-circle.png) icon in the top right corner of the web console and selecting **Command Line Tools** in the list.
 1.  Unpack the archive:
     ```terminal
     $ tar -xf <file>

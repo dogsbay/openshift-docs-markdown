@@ -4,8 +4,8 @@ title: Postinstallation storage configuration
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "post-install-storage-configuration" %}
-# Postinstallation storage configuration {id="post-install-storage-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Postinstallation storage configuration {id="post-install-storage-configuration"}
 {%- set gluster = "GlusterFS" -%}
 {%- set gluster_native = "Containerized GlusterFS" -%}
 {%- set gluster_external = "External GlusterFS" -%}
@@ -15,7 +15,7 @@ title: Postinstallation storage configuration
 {%- set gluster_external = "independent mode" -%}
 {% endif %}
 
-You can configure persistent storage after installation by using dynamic or static provisioning to retain application data beyond the lifetime of individual containers.
+You can configure persistent storage after installation by using dynamic or static provisioning to retain application data beyond the lifetime of individual containers. {._abstract}
 
 After installing {{ product_title }}, you can further expand and customize your cluster to your requirements, including storage configuration.
 
@@ -37,7 +37,7 @@ Static provisioning
 
 {% leveloffset +2 %}{% include "./modules/deploy-red-hat-openshift-container-storage.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Dynamic provisioning](/storage/dynamic-provisioning#dynamic-provisioning)
 *   [{{ rh_storage_first }} documentation](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation)
@@ -46,9 +46,9 @@ Static provisioning
 *   [GlusterFS installation guide](https://docs.gluster.org/en/latest/Install-Guide/Overview/)
 *   [GlusterFS administration guide](https://docs.gluster.org/en/latest/Administrator%20Guide/overview/)
 *   [OpenShift GlusterFS Ansible role](https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs)
-{% endif %}
-{% if openshift_enterprise or openshift_webscale %}
+{%- endif %}
+{%- if openshift_enterprise or openshift_webscale %}
 *   [Red Hat Gluster Storage installation guide](https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.3/html/installation_guide/)
 *   [Red Hat Gluster Storage administration guide](https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.3/html/administration_guide/)
 *   [Container-Native Storage for OpenShift Container Platform](https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.3/html/container-native_storage_for_openshift_container_platform/)
-{% endif %}
+{%- endif %}

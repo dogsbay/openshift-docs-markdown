@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | PodDisruptionBudgetSpec is a description of a PodDisruptionBudget. |
 | `status` | `object` | PodDisruptionBudgetStatus represents information about the status of a PodDisruptionBudget. Status may trail the actual state of a system. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -38,7 +39,8 @@ Type
 | `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable". |
 | `minAvailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying "100%". |
 | `selector` | [`LabelSelector`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty ({}) selector will select all pods within the namespace. |
-| `unhealthyPodEvictionPolicy` | `string` | UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True". Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy. IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction. Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field. Possible enum values:  - `"AlwaysAllow"` policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.  - `"IfHealthyBudget"` policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. |
+| `unhealthyPodEvictionPolicy` | `string` | UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True".<br>Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy.<br>IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction.<br>AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.<br>Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field.<br>Possible enum values:  - `"AlwaysAllow"` policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.  - `"IfHealthyBudget"` policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. |
+
 ### .status {id="_status"}
 
 Description
@@ -73,20 +75,20 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind PodDisruptionBudget
 *   `/apis/policy/v1/watch/poddisruptionbudgets`
     *   `GET`: watch individual changes to a list of PodDisruptionBudget. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets`
+*   `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets`{minja}
     *   `DELETE`: delete collection of PodDisruptionBudget
     *   `GET`: list or watch objects of kind PodDisruptionBudget
     *   `POST`: create a PodDisruptionBudget
-*   `/apis/policy/v1/watch/namespaces/{{ namespace }}/poddisruptionbudgets`
+*   `/apis/policy/v1/watch/namespaces/{{ namespace }}/poddisruptionbudgets`{minja}
     *   `GET`: watch individual changes to a list of PodDisruptionBudget. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}`
+*   `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}`{minja}
     *   `DELETE`: delete a PodDisruptionBudget
     *   `GET`: read the specified PodDisruptionBudget
     *   `PATCH`: partially update the specified PodDisruptionBudget
     *   `PUT`: replace the specified PodDisruptionBudget
-*   `/apis/policy/v1/watch/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}`
+*   `/apis/policy/v1/watch/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind PodDisruptionBudget. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}/status`
+*   `/apis/policy/v1/namespaces/{{ namespace }}/poddisruptionbudgets/{{ name }}/status`{minja}
     *   `GET`: read status of the specified PodDisruptionBudget
     *   `PATCH`: partially update status of the specified PodDisruptionBudget
     *   `PUT`: replace status of the specified PodDisruptionBudget

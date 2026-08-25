@@ -11,8 +11,8 @@ You can add bare-metal hosts to the cluster in the web console by using a YAML f
 
 **Procedure**
 
-1.  In the web console, navigate to **Compute** -> **Bare Metal Hosts**.
-1.  Select **Add Host** -> **New from YAML**.
+1.  In the web console, navigate to **Compute** → **Bare Metal Hosts**.
+1.  Select **Add Host** → **New from YAML**.
 1.  Copy and paste the below YAML, modifying the relevant fields with the details of your host:
     ```yaml
     apiVersion: metal3.io/v1alpha1
@@ -39,7 +39,7 @@ You can add bare-metal hosts to the cluster in the web console by using a YAML f
 :   Specifies whether to require TLS host validation between the cluster and the baseboard management controller (BMC). When this field is set to `true`, TLS host validation is disabled.
 
 1.  Select **Create** to save the YAML and create the new bare-metal host.
-1.  Scale up the number of replicas to match the number of available bare-metal hosts. Navigate to **Compute** -> **MachineSets**, and increase the number of machines in the cluster by selecting **Edit Machine count** from the **Actions** drop-down menu.
+1.  Scale up the number of replicas to match the number of available bare-metal hosts. Navigate to **Compute** → **MachineSets**, and increase the number of machines in the cluster by selecting **Edit Machine count** from the **Actions** drop-down menu.
 
     :::note
 

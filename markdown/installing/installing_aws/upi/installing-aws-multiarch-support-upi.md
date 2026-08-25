@@ -3,11 +3,11 @@ title: Installing a cluster with the support for configuring multi-architecture 
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster with the support for configuring multi-architecture compute machines {id="upi-aws-multiarch-support"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster with the support for configuring multi-architecture compute machines {id="upi-aws-multiarch-support"}
 {%- set context = "upi-aws-multiarch-support" %}
 
-To run workloads across `x86_64` and ARM nodes, you can install an {{ product_title }} cluster on {{ aws_first }} with multi-architecture compute machine support.
+To run workloads across `x86_64` and ARM nodes, you can install an {{ product_title }} cluster on {{ aws_first }} with multi-architecture compute machine support. {._abstract}
 
 
 :::note
@@ -27,6 +27,7 @@ You can install an {{ aws_short }} cluster with the support for configuring mult
 {% leveloffset +1 %}{% include "./modules/installing-a-cluster-with-multiarch-support.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying the cluster](/installing/installing_aws/ipi/installing-aws-localzone#installation-launching-installer_installing-aws-localzone)
 *   [Scheduling workloads on clusters with multi-architecture compute machines](/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-compute-managing#scheduling-workloads-on-clusters-with-multi-architecture-compute-machines)

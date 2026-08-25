@@ -30,7 +30,7 @@ You cannot remove actions or steps from an ongoing plan.
 
 The following table shows example plans for different levels of control over the rollout strategy:
 
-***Example upgrade plans***
+**Example upgrade plans**
 
 <table>
 <thead>

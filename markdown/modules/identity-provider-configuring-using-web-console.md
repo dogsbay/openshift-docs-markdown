@@ -9,7 +9,7 @@ Configure your identity provider (IDP) through the web console instead of the CL
 
 **Procedure**
 
-1.  Navigate to **Administration** -> **Cluster Settings**.
+1.  Navigate to **Administration** → **Cluster Settings**.
 1.  Under the **Configuration** tab, click **OAuth**.
 1.  Under the **Identity Providers** section, select your identity provider from the
 **Add** drop-down menu.

@@ -1,5 +1,5 @@
 ---
-title: "DeploymentConfig []"
+title: "DeploymentConfig [apps.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -34,6 +34,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | DeploymentConfigSpec represents the desired state of the deployment. |
 | `status` | `object` | DeploymentConfigStatus represents the current deployment state. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -55,6 +56,7 @@ Type
 | `test` | `boolean` | test ensures that this deployment config will have zero replicas except while a deployment is running. This allows the deployment config to be used as a continuous deployment test - triggering on images, running the deployment, and then succeeding or failing. Post strategy hooks and After actions can be used to integrate successful deployment with an action. |
 | `triggers` | `array` | triggers determine how updates to a DeploymentConfig result in new deployments. If no triggers are defined, a new deployment can only occur as a result of an explicit client update to the DeploymentConfig with a new LatestVersion. If null, defaults to having a config change trigger. |
 | `triggers[]` | `object` | DeploymentTriggerPolicy describes a policy for a single trigger that results in a new deployment. |
+
 ### .spec.strategy {id="_specstrategy"}
 
 Description
@@ -74,6 +76,7 @@ Type
 | `resources` | [`ResourceRequirements`](/rest_api/objects/index#io-k8s-api-core-v1-ResourceRequirements) | resources contains resource requirements to execute the deployment and any hooks. |
 | `rollingParams` | `object` | RollingDeploymentStrategyParams are the input to the Rolling deployment strategy. |
 | `type` | `string` | type is the name of a deployment strategy. |
+
 ### .spec.strategy.customParams {id="_specstrategycustomparams"}
 
 Description
@@ -88,6 +91,7 @@ Type
 | `command` | `array (string)` | command is optional and overrides CMD in the container Image. |
 | `environment` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | environment holds the environment which will be given to the container for Image. |
 | `image` | `string` | image specifies a container image which can carry out a deployment. |
+
 ### .spec.strategy.recreateParams {id="_specstrategyrecreateparams"}
 
 Description
@@ -103,6 +107,7 @@ Type
 | `post` | `object` | LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time. |
 | `pre` | `object` | LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time. |
 | `timeoutSeconds` | `integer` | timeoutSeconds is the time to wait for updates before giving up. If the value is nil, a default will be used. |
+
 ### .spec.strategy.recreateParams.mid {id="_specstrategyrecreateparamsmid"}
 
 Description
@@ -122,6 +127,7 @@ Required
 | `failurePolicy` | `string` | failurePolicy specifies what action to take if the hook fails. |
 | `tagImages` | `array` | tagImages instructs the deployer to tag the current image referenced under a container onto an image stream tag. |
 | `tagImages[]` | `object` | TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag. |
+
 ### .spec.strategy.recreateParams.mid.execNewPod {id="_specstrategyrecreateparamsmidexecnewpod"}
 
 Description
@@ -142,6 +148,7 @@ Required
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
 | `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
+
 ### .spec.strategy.recreateParams.mid.tagImages {id="_specstrategyrecreateparamsmidtagimages"}
 
 Description
@@ -169,6 +176,7 @@ Required
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
 | `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+
 ### .spec.strategy.recreateParams.post {id="_specstrategyrecreateparamspost"}
 
 Description
@@ -188,6 +196,7 @@ Required
 | `failurePolicy` | `string` | failurePolicy specifies what action to take if the hook fails. |
 | `tagImages` | `array` | tagImages instructs the deployer to tag the current image referenced under a container onto an image stream tag. |
 | `tagImages[]` | `object` | TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag. |
+
 ### .spec.strategy.recreateParams.post.execNewPod {id="_specstrategyrecreateparamspostexecnewpod"}
 
 Description
@@ -208,6 +217,7 @@ Required
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
 | `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
+
 ### .spec.strategy.recreateParams.post.tagImages {id="_specstrategyrecreateparamsposttagimages"}
 
 Description
@@ -235,6 +245,7 @@ Required
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
 | `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+
 ### .spec.strategy.recreateParams.pre {id="_specstrategyrecreateparamspre"}
 
 Description
@@ -254,6 +265,7 @@ Required
 | `failurePolicy` | `string` | failurePolicy specifies what action to take if the hook fails. |
 | `tagImages` | `array` | tagImages instructs the deployer to tag the current image referenced under a container onto an image stream tag. |
 | `tagImages[]` | `object` | TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag. |
+
 ### .spec.strategy.recreateParams.pre.execNewPod {id="_specstrategyrecreateparamspreexecnewpod"}
 
 Description
@@ -274,6 +286,7 @@ Required
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
 | `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
+
 ### .spec.strategy.recreateParams.pre.tagImages {id="_specstrategyrecreateparamspretagimages"}
 
 Description
@@ -301,6 +314,7 @@ Required
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
 | `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+
 ### .spec.strategy.rollingParams {id="_specstrategyrollingparams"}
 
 Description
@@ -313,12 +327,13 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `intervalSeconds` | `integer` | intervalSeconds is the time to wait between polling deployment status after update. If the value is nil, a default will be used. |
-| `maxSurge` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxSurge is the maximum number of pods that can be scheduled above the original number of pods. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0 if MaxUnavailable is 0. By default, 25% is used. Example: when this is set to 30%, the new RC can be scaled up by 30% immediately when the rolling update starts. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is atmost 130% of original pods. |
-| `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxUnavailable is the maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of update (ex: 10%). Absolute number is calculated from percentage by rounding down. This cannot be 0 if MaxSurge is 0. By default, 25% is used. Example: when this is set to 30%, the old RC can be scaled down by 30% immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that at least 70% of original number of pods are available at all times during the update. |
+| `maxSurge` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxSurge is the maximum number of pods that can be scheduled above the original number of pods. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up.<br>This cannot be 0 if MaxUnavailable is 0. By default, 25% is used.<br>Example: when this is set to 30%, the new RC can be scaled up by 30% immediately when the rolling update starts. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is atmost 130% of original pods. |
+| `maxUnavailable` | [`IntOrString`](/rest_api/objects/index#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | maxUnavailable is the maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total pods at the start of update (ex: 10%). Absolute number is calculated from percentage by rounding down.<br>This cannot be 0 if MaxSurge is 0. By default, 25% is used.<br>Example: when this is set to 30%, the old RC can be scaled down by 30% immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that at least 70% of original number of pods are available at all times during the update. |
 | `post` | `object` | LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time. |
 | `pre` | `object` | LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time. |
 | `timeoutSeconds` | `integer` | timeoutSeconds is the time to wait for updates before giving up. If the value is nil, a default will be used. |
 | `updatePeriodSeconds` | `integer` | updatePeriodSeconds is the time to wait between individual pod updates. If the value is nil, a default will be used. |
+
 ### .spec.strategy.rollingParams.post {id="_specstrategyrollingparamspost"}
 
 Description
@@ -338,6 +353,7 @@ Required
 | `failurePolicy` | `string` | failurePolicy specifies what action to take if the hook fails. |
 | `tagImages` | `array` | tagImages instructs the deployer to tag the current image referenced under a container onto an image stream tag. |
 | `tagImages[]` | `object` | TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag. |
+
 ### .spec.strategy.rollingParams.post.execNewPod {id="_specstrategyrollingparamspostexecnewpod"}
 
 Description
@@ -358,6 +374,7 @@ Required
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
 | `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
+
 ### .spec.strategy.rollingParams.post.tagImages {id="_specstrategyrollingparamsposttagimages"}
 
 Description
@@ -385,6 +402,7 @@ Required
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
 | `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+
 ### .spec.strategy.rollingParams.pre {id="_specstrategyrollingparamspre"}
 
 Description
@@ -404,6 +422,7 @@ Required
 | `failurePolicy` | `string` | failurePolicy specifies what action to take if the hook fails. |
 | `tagImages` | `array` | tagImages instructs the deployer to tag the current image referenced under a container onto an image stream tag. |
 | `tagImages[]` | `object` | TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag. |
+
 ### .spec.strategy.rollingParams.pre.execNewPod {id="_specstrategyrollingparamspreexecnewpod"}
 
 Description
@@ -424,6 +443,7 @@ Required
 | `containerName` | `string` | containerName is the name of a container in the deployment pod template whose container image will be used for the hook pod’s container. |
 | `env` | [`array (EnvVar)`](/rest_api/objects/index#io-k8s-api-core-v1-EnvVar) | env is a set of environment variables to supply to the hook pod’s container. |
 | `volumes` | `array (string)` | volumes is a list of named volumes from the pod template which should be copied to the hook pod. Volumes names not found in pod spec are ignored. An empty list means no volumes will be copied. |
+
 ### .spec.strategy.rollingParams.pre.tagImages {id="_specstrategyrollingparamspretagimages"}
 
 Description
@@ -451,6 +471,7 @@ Required
 | --- | --- | --- |
 | `containerName` | `string` | containerName is the name of a container in the deployment config whose image value will be used as the source of the tag. If there is only a single container this value will be defaulted to the name of that container. |
 | `to` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | to is the target ImageStreamTag to set the container’s image onto. |
+
 ### .spec.triggers {id="_spectriggers"}
 
 Description
@@ -473,6 +494,7 @@ Type
 | --- | --- | --- |
 | `imageChangeParams` | `object` | DeploymentTriggerImageChangeParams represents the parameters to the ImageChange trigger. |
 | `type` | `string` | type of the trigger |
+
 ### .spec.triggers[].imageChangeParams {id="_spectriggersimagechangeparams"}
 
 Description
@@ -492,6 +514,7 @@ Required
 | `containerNames` | `array (string)` | containerNames is used to restrict tag updates to the specified set of container names in a pod. If multiple triggers point to the same containers, the resulting behavior is undefined. Future API versions will make this a validation error. If ContainerNames does not point to a valid container, the trigger will be ignored. Future API versions will make this a validation error. |
 | `from` | [`ObjectReference`](/rest_api/objects/index#io-k8s-api-core-v1-ObjectReference) | from is a reference to an image stream tag to watch for changes. From.Name is the only required subfield - if From.Namespace is blank, the namespace of the current deployment trigger will be used. |
 | `lastTriggeredImage` | `string` | lastTriggeredImage is the last image to be triggered. |
+
 ### .status {id="_status"}
 
 Description
@@ -513,6 +536,7 @@ Type
 | `replicas` | `integer` | replicas is the total number of pods targeted by this deployment config. |
 | `unavailableReplicas` | `integer` | unavailableReplicas is the total number of unavailable pods targeted by this deployment config. |
 | `updatedReplicas` | `integer` | updatedReplicas is the total number of non-terminated pods targeted by this deployment config that have the desired template spec. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -544,6 +568,7 @@ Required
 | `reason` | `string` | The reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of deployment condition. |
+
 ### .status.details {id="_statusdetails"}
 
 Description
@@ -562,6 +587,7 @@ Required
 | `causes` | `array` | causes are extended data associated with all the causes for creating a new deployment |
 | `causes[]` | `object` | DeploymentCause captures information about a particular cause of a deployment. |
 | `message` | `string` | message is the user specified change message, if this deployment was triggered manually by the user |
+
 ### .status.details.causes {id="_statusdetailscauses"}
 
 Description
@@ -588,6 +614,7 @@ Required
 | --- | --- | --- |
 | `imageTrigger` | `object` | DeploymentCauseImageTrigger represents details about the cause of a deployment originating from an image change trigger |
 | `type` | `string` | type of the trigger that resulted in the creation of a new deployment |
+
 ### .status.details.causes[].imageTrigger {id="_statusdetailscausesimagetrigger"}
 
 Description
@@ -613,20 +640,20 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind DeploymentConfig
 *   `/apis/apps.openshift.io/v1/watch/deploymentconfigs`
     *   `GET`: watch individual changes to a list of DeploymentConfig. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs`
+*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs`{minja}
     *   `DELETE`: delete collection of DeploymentConfig
     *   `GET`: list or watch objects of kind DeploymentConfig
     *   `POST`: create a DeploymentConfig
-*   `/apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs`
+*   `/apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs`{minja}
     *   `GET`: watch individual changes to a list of DeploymentConfig. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}`
+*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}`{minja}
     *   `DELETE`: delete a DeploymentConfig
     *   `GET`: read the specified DeploymentConfig
     *   `PATCH`: partially update the specified DeploymentConfig
     *   `PUT`: replace the specified DeploymentConfig
-*   `/apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}`
+*   `/apis/apps.openshift.io/v1/watch/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind DeploymentConfig. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/status`
+*   `/apis/apps.openshift.io/v1/namespaces/{{ namespace }}/deploymentconfigs/{{ name }}/status`{minja}
     *   `GET`: read status of the specified DeploymentConfig
     *   `PATCH`: partially update status of the specified DeploymentConfig
     *   `PUT`: replace status of the specified DeploymentConfig

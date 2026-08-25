@@ -3,8 +3,8 @@ title: Understanding Service Mesh
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding Service Mesh {id="ossm-architecture"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding Service Mesh {id="ossm-architecture"}
 {%- set context = "ossm-architecture" %}
 
 {{ SMProductName }} provides a platform for behavioral insight and operational control over your networked microservices in a service mesh. With {{ SMProductName }}, you can connect, secure, and monitor microservices in your {{ product_title }} environment.

@@ -24,15 +24,16 @@ In most cases, the web console method of this procedure is preferred because it 
 *   Access to your {{ product_title }} cluster using an account with
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
 `cluster-admin` permissions.
-{% endif %}
-{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 {% endif %}
 
 {% if olm_user %}
 *   Access to your {{ product_title }} cluster using an account with Operator installation permissions.
 {% endif %}
+
 *   You have installed the OpenShift CLI (`oc`).
 
 **Procedure**
@@ -341,5 +342,5 @@ At this point, OLM is now aware of the selected Operator. A cluster service vers
     ```
 
 {% if context == "olm-installing-operators-in-namespace" %}
-{%- set olm_user = false -%}
+{%- set olm_user = "" -%}
 {% endif %}

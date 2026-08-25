@@ -15,8 +15,8 @@ Although these policies and commands work together, other restrictions in your A
 
 {%- if openshift_rosa_hcp %}
 {% leveloffset +1 %}{% include "./modules/rosa-cli-hcp-examples.md" %}{% endleveloffset %}
-{% endif %}
-{% if openshift_rosa %}
+{%- endif %}
+{%- if openshift_rosa %}
 {% leveloffset +1 %}{% include "./modules/rosa-cli-classic-examples.md" %}{% endleveloffset %}
 {%- endif %}
 {% leveloffset +1 %}{% include "./modules/rosa-cli-no-permissions-required.md" %}{% endleveloffset %}

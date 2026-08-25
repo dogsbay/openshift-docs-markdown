@@ -3,15 +3,15 @@ title: Creating images
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Creating images {id="creating-images"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "create-images" %}
 
 You can create your own container images based on pre-built base images. This process includes following best practices for writing images, defining metadata, testing images, and using a custom builder workflow with Source-to-Image (S2I).
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
-After you create an image, you can push it to the {{ product_registry }}.
-{% endif %}
+After you create an image, you can push it to the {{ product_registry }}. {._abstract}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/images-create-guidelines.md" %}{% endleveloffset %}
 
@@ -29,6 +29,6 @@ After you create an image, you can push it to the {{ product_registry }}.
 
 {% leveloffset +1 %}{% include "./modules/images-test-s2i.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_create-images"}
+## Additional resources {id="additional-resources_create-images" ._additional-resources}
 
 *   [S2I README](https://github.com/openshift/source-to-image/blob/master/README.md#installation)

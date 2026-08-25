@@ -26,6 +26,7 @@ After you have deployed the necessary applications and loaded data into the data
     https://parksmap-user-getting-started.apps.cluster.example.com
     ```
 1.  Paste this application URL into your web browser. Your browser should display a map of the national parks across the world.
+
     **Figure 1. National parks across the world**
 
     ![Map of the national parks across the world](/_assets/images/getting-started-map-national-parks.png)

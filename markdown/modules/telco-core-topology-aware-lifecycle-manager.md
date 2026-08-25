@@ -33,7 +33,7 @@ Engineering considerations
     
     :::
 
-*   You can orchestrate upgrades for {{ product_title }}, Day 2 OLM operators, and custom configurations using a ClusterGroupUpgrade (CGU) CR that defines the required policies.
-    *   An EUS to EUS upgrade can be orchestrated using chained CGU CRs.
-    *   Control of MCP pause can be managed through policy in the CGU CRs for a full control plane and worker node rollout of upgrades.
-    *   For more information, see "Performing an EUS-to-EUS update for telco core clusters".
+    *   You can orchestrate upgrades for {{ product_title }}, Day 2 OLM operators, and custom configurations using a ClusterGroupUpgrade (CGU) CR that defines the required policies.
+        *   An EUS to EUS upgrade can be orchestrated using chained CGU CRs.
+        *   Control of MCP pause can be managed through policy in the CGU CRs for a full control plane and worker node rollout of upgrades.
+        *   For more information, see "Performing an EUS-to-EUS update for telco core clusters".

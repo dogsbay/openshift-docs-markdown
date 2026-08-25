@@ -84,46 +84,40 @@ The following is a direction index for the examples log entries that follow:
 <tbody>
 <tr>
   <td>Ingress</td>
-  <td>Rule0:: Allow from tenant <code>product-development</code> and <code>customer</code> to tenant <code>backend-storage</code>; Ingress0: <code>Allow</code>Rule1:: Pass from <code>product-security</code>to tenant <code>backend-storage</code>; Ingress1: <code>Pass</code>Rule2::	Deny ingress from all pods; Ingress2: <code>Deny</code></td>
+  <td><dl><dt>Rule0</dt><dd>Allow from tenant <code>product-development</code> and <code>customer</code> to tenant <code>backend-storage</code>; Ingress0: <code>Allow</code></dd><dt>Rule1</dt><dd>Pass from <code>product-security</code>to tenant <code>backend-storage</code>; Ingress1: <code>Pass</code></dd><dt>Rule2</dt><dd>Deny ingress from all pods; Ingress2: <code>Deny</code></dd></dl></td>
 </tr>
 <tr>
   <td>Egress</td>
-  <td>Rule0:: Allow to <code>product-development</code>; Egress0: <code>Allow</code>Rule1:: Pass to <code>product-security</code>; Egress1: <code>Pass</code>Rule2:: Deny egress to all other pods; Egress2: <code>Deny</code></td>
+  <td><dl><dt>Rule0</dt><dd>Allow to <code>product-development</code>; Egress0: <code>Allow</code></dd><dt>Rule1</dt><dd>Pass to <code>product-security</code>; Egress1: <code>Pass</code></dd><dt>Rule2</dt><dd>Deny egress to all other pods; Egress2: <code>Deny</code></dd></dl></td>
 </tr>
 </tbody>
 </table>
 
-<details>
-<summary>Example ACL log entry for `Allow` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Ingress:0` and `Egress:0`</summary>
-
+:::details{title="Example ACL log entry for `Allow` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Ingress:0` and `Egress:0`"}
 ```text
 2024-06-10T16:27:45.194Z|00052|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:1a,dl_dst=0a:58:0a:80:02:19,nw_src=10.128.2.26,nw_dst=10.128.2.25,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=57814,tp_dst=8080,tcp_flags=syn
 2024-06-10T16:28:23.130Z|00059|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Ingress:0", verdict=allow, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:18,dl_dst=0a:58:0a:80:02:19,nw_src=10.128.2.24,nw_dst=10.128.2.25,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=38620,tp_dst=8080,tcp_flags=ack
 2024-06-10T16:28:38.293Z|00069|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Egress:0", verdict=allow, severity=alert, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:19,dl_dst=0a:58:0a:80:02:1a,nw_src=10.128.2.25,nw_dst=10.128.2.26,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=47566,tp_dst=8080,tcp_flags=fin|ack=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=55704,tp_dst=8080,tcp_flags=ack
 ```
-</details>
+:::
 
-<details>
-<summary>Example ACL log entry for `Pass` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Ingress:1` and `Egress:1`</summary>
-
+:::details{title="Example ACL log entry for `Pass` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Ingress:1` and `Egress:1`"}
 ```text
 2024-06-10T16:33:12.019Z|00075|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Ingress:1", verdict=pass, severity=warning, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:1b,dl_dst=0a:58:0a:80:02:19,nw_src=10.128.2.27,nw_dst=10.128.2.25,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=37394,tp_dst=8080,tcp_flags=ack
 2024-06-10T16:35:04.209Z|00081|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Egress:1", verdict=pass, severity=warning, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:19,dl_dst=0a:58:0a:80:02:1b,nw_src=10.128.2.25,nw_dst=10.128.2.27,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=34018,tp_dst=8080,tcp_flags=ack
 ```
-</details>
+:::
 
-<details>
-<summary>Example ACL log entry for `Deny` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Egress:2` and `Ingress2`</summary>
-
+:::details{title="Example ACL log entry for `Deny` action of the `AdminNetworkPolicy` named `anp-tenant-log` with `Egress:2` and `Ingress2`"}
 ```text
 2024-06-10T16:43:05.287Z|00087|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Egress:2", verdict=drop, severity=alert, direction=from-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:19,dl_dst=0a:58:0a:80:02:18,nw_src=10.128.2.25,nw_dst=10.128.2.24,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=51598,tp_dst=8080,tcp_flags=syn
 2024-06-10T16:44:43.591Z|00090|acl_log(ovn_pinctrl0)|INFO|name="ANP:anp-tenant-log:Ingress:2", verdict=drop, severity=alert, direction=to-lport: tcp,vlan_tci=0x0000,dl_src=0a:58:0a:80:02:1c,dl_dst=0a:58:0a:80:02:19,nw_src=10.128.2.28,nw_dst=10.128.2.25,nw_tos=0,nw_ecn=0,nw_ttl=64,nw_frag=no,tp_src=33774,tp_dst=8080,tcp_flags=syn
 ```
-</details>
+:::
 
 The following table describes ANP annotation:
 
-***Audit logging AdminNetworkPolicy annotation***
+**Audit logging AdminNetworkPolicy annotation**
 
 <table>
 <thead>
@@ -135,7 +129,7 @@ The following table describes ANP annotation:
 <tbody>
 <tr>
   <td><code>k8s.ovn.org/acl-logging</code></td>
-  <td>You must specify at least one of <code>Allow</code>, <code>Deny</code>, or <code>Pass</code> to enable audit logging for a namespace.<br><br><code>Deny</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.<code>Allow</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.<code>Pass</code>:: Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</td>
+  <td>You must specify at least one of <code>Allow</code>, <code>Deny</code>, or <code>Pass</code> to enable audit logging for a namespace.<br><br><dl><dt><code>Deny</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd><dt><code>Allow</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd><dt><code>Pass</code></dt><dd>Optional: Specify <code>alert</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, or <code>debug</code>.</dd></dl></td>
 </tr>
 </tbody>
 </table>

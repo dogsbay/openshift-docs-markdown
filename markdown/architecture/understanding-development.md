@@ -3,11 +3,11 @@ title: Understanding OpenShift Container Platform development
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Understanding {{ product_title }} development {id="understanding-development"}
 {% include "./_attributes/common-attributes.md" %}
+# Understanding {{ product_title }} development {id="understanding-development"}
 {%- set context = "understanding-development" %}
 
-To fully use the capability of containers when developing and running enterprise-quality applications, ensure your environment is supported by tools that provide key operational characteristics.
+To fully use the capability of containers when developing and running enterprise-quality applications, ensure your environment is supported by tools that provide key operational characteristics. {._abstract}
 
 These container characteristics tools allow containers to have following characteristics:
 
@@ -38,15 +38,17 @@ use for different kinds of applications and development requirements.
 {% leveloffset +1 %}{% include "./modules/building-simple-container.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Dockerfile (dockerdocs documentation)](https://docs.docker.com/engine/reference/builder/)
 {%- if openshift_enterprise %}
 *   [Custom image builds with Buildah](/cicd/builds/custom-builds-buildah#custom-builds-buildah)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +2 %}{% include "./modules/container-build-tool-options.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Kubernetes blog announcement (Kubernetes documentation)](https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/)
 *   [CRI-O (cri-o documentation)](https://cri-o.io/)
@@ -54,6 +56,7 @@ use for different kinds of applications and development requirements.
 {% leveloffset +2 %}{% include "./modules/base-image-options.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Red Hat Universal Base Images](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/index#using_red_hat_base_container_images_standard_and_minimal)
 *   [Red Hat Software Collections](https://access.redhat.com/documentation/en-us/red_hat_software_collections/3/html-single/using_red_hat_software_collections_container_images/index)
@@ -61,6 +64,7 @@ use for different kinds of applications and development requirements.
 {% leveloffset +2 %}{% include "./modules/understanding-development-registry-options.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Container images section of the Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/containers/explore)
 *   [Docker Hub](https://hub.docker.com/)
@@ -72,6 +76,7 @@ use for different kinds of applications and development requirements.
 {% leveloffset +2 %}{% include "./modules/understanding-kubernetes-pods.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Pods (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/)
 *   [Service (Kubernetes documentation)](https://kubernetes.io/docs/concepts/services-networking/service/)
@@ -81,11 +86,12 @@ use for different kinds of applications and development requirements.
 *   [`Deployment` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 {%- if not (openshift_dedicated or openshift_rosa) %}
 *   [`DeploymentConfig` (Kubernetes documentation)](/applications/deployments/what-deployments-are#what-deployments-are)
-{% endif %}
+{%- endif %}
 
 {% leveloffset +2 %}{% include "./modules/application-types.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`Job` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/)
 *   [`CronJob` (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)

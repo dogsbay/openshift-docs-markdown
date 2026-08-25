@@ -41,12 +41,12 @@ To include remote tasks, refer to the following examples of annotation:
     ```
     1.  Refers to the `0.1` version of the `git-clone` remote task from {{ tekton_hub }}.
 
-```yaml title="Remote tasks using URLs"
-...
-  pipelinesascode.tekton.dev/task: "<https://remote.url/task.yaml>" (1)
-...
-```
-1.  The public URL to the remote task.
+    ```yaml title="Remote tasks using URLs"
+    ...
+      pipelinesascode.tekton.dev/task: "<https://remote.url/task.yaml>" (1)
+    ...
+    ```
+    1.  The public URL to the remote task.
 
     :::note
 
@@ -60,9 +60,9 @@ To include remote tasks, refer to the following examples of annotation:
     :::
 
 
-```yaml title="Reference a task from a YAML file inside your repository"
-...
-pipelinesascode.tekton.dev/task: "<share/tasks/git-clone.yaml>" (1)
-...
-```
-1.  Relative path to the local file containing the task definition.
+    ```yaml title="Reference a task from a YAML file inside your repository"
+    ...
+    pipelinesascode.tekton.dev/task: "<share/tasks/git-clone.yaml>" (1)
+    ...
+    ```
+    1.  Relative path to the local file containing the task definition.

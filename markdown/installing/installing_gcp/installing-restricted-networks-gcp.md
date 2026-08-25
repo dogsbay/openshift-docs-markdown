@@ -7,7 +7,7 @@ title: "Installing a cluster on {{ gcp_short }} in a disconnected environment wi
 # Installing a cluster on {{ gcp_short }} in a disconnected environment with user-provisioned infrastructure {id="installing-restricted-networks-gcp"}
 {%- set context = "installing-restricted-networks-gcp" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ gcp_first }} that uses infrastructure that you provide and an internal mirror of the installation release content.
+In {{ product_title }} version {{ product_version }}, you can install a cluster on {{ gcp_first }} that uses infrastructure that you provide and an internal mirror of the installation release content. {._abstract}
 
 
 :::important
@@ -65,6 +65,7 @@ Before you can install {{ product_title }}, you must configure a {{ gcp_first }}
 {% leveloffset +2 %}{% include "./modules/minimum-required-permissions-upi-gcp.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -72,7 +73,7 @@ Before you can install {{ product_title }}, you must configure a {{ gcp_first }}
 
 {% leveloffset +2 %}{% include "./modules/installation-gcp-install-cli.md" %}{% endleveloffset %}
 
-## Requirements for a cluster with user-provisioned infrastructure {id="installation-requirements-user-infra_{{ context }}"}
+## Requirements for a cluster with user-provisioned infrastructure {id="installation-requirements-user-infra_{{ context }}" ._additional-resources}
 
 For a cluster that contains user-provisioned infrastructure, you must deploy all
 of the required machines.
@@ -94,6 +95,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ gcp_short }}](/installing/installing_gcp/installation-config-parameters-gcp#installation-config-parameters-gcp)
 
@@ -102,6 +104,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-gcp-enabling-confidential-vms.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Additional {{ gcp_first }} configuration parameters](/installing/installing_gcp/installation-config-parameters-gcp#installation-configuration-parameters-additional-gcp_installation-config-parameters-gcp)
 
@@ -110,10 +113,11 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-generate-k8s-manifest-ignition.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optional: Adding the ingress DNS records](/installing/installing_gcp/installing-gcp-user-infra#installation-gcp-user-infra-adding-ingress_installing-gcp-user-infra)
 
-## Exporting common variables {id="installation-restricted-networks-gcp-user-infra-exporting-common-variables"}
+## Exporting common variables {id="installation-restricted-networks-gcp-user-infra-exporting-common-variables" ._additional-resources}
 
 {% leveloffset +2 %}{% include "./modules/installation-extracting-infraid.md" %}{% endleveloffset %}
 
@@ -170,10 +174,11 @@ This section describes the requirements for deploying {{ product_title }} on use
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
 
-## Next steps {id="_next_steps"}
+## Next steps {id="_next_steps" ._additional-resources}
 
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).
 *   [Configure image streams](/post_installation_configuration/cluster-tasks#post-install-must-gather-disconnected) for the Cluster Samples Operator and the `must-gather` tool.

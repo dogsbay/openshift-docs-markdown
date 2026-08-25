@@ -4,4 +4,4 @@ Cluster notifications are the primary way that Red Hat Site Reliability Engineer
 
 Cluster owners and administrators must regularly review and action cluster notifications to ensure clusters remain healthy and supported.
 
-You can view cluster notifications in the {{ hybrid_console }}, in the ***Cluster history*** tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.
+You can view cluster notifications in the {{ hybrid_console }}, in the **Cluster history** tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.

@@ -3,11 +3,11 @@ title: Installing a cluster on Azure in a disconnected environment
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on Azure in a disconnected environment {id="installing-restricted-networks-azure-installer-provisioned"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on Azure in a disconnected environment {id="installing-restricted-networks-azure-installer-provisioned"}
 {%- set context = "installing-restricted-networks-azure-installer-provisioned" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster on Microsoft Azure in a restricted network by creating an internal mirror of the installation release content on an existing Azure Virtual Network (VNet).
+In {{ product_title }} version {{ product_version }}, you can install a cluster on Microsoft Azure in a restricted network by creating an internal mirror of the installation release content on an existing Azure Virtual Network (VNet). {._abstract}
 
 
 :::important
@@ -44,6 +44,7 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 {% leveloffset +2 %}{% include "./modules/installation-about-custom-azure-vnet-isolation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the OVN-Kubernetes network plugin](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 *   [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
@@ -53,6 +54,7 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 {% leveloffset +1 %}{% include "./modules/installation-initializing.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
@@ -73,6 +75,7 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 {% leveloffset +2 %}{% include "./modules/installation-azure-config-yaml-simple.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for Azure](/installing/installing_azure/installation-config-parameters-azure#installation-config-parameters-azure)
 
@@ -96,7 +99,7 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_installing-restricted-networks-azure-installer-provisioned"}
+## Additional resources {id="additional-resources_installing-restricted-networks-azure-installer-provisioned" ._additional-resources}
 
 *   [Mirroring images for a disconnected installation by using the oc adm command](/disconnected/installing-mirroring-installation-images#installation-about-mirror-registry_installing-mirroring-installation-images)
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)

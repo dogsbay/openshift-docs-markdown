@@ -3,12 +3,12 @@ title: Creating a Backup CR
 ---
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Backup CR {id="oadp-creating-backup-cr-doc"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Creating a Backup CR {id="oadp-creating-backup-cr-doc"}
 {%- set context = "backing-up-applications" %}
 
-Back up Kubernetes resources, internal images, and persistent volumes (PVs) by creating a `Backup` custom resource (CR). This helps you to protect your application data and configuration for disaster recovery.
+Back up Kubernetes resources, internal images, and persistent volumes (PVs) by creating a `Backup` custom resource (CR). This helps you to protect your application data and configuration for disaster recovery. {._abstract}
 
 **Prerequisites**
 

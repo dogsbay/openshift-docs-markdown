@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Injecting a custom CA certificate {id="olm-inject-custom-ca_{{ context }}"}
 
-{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 When a cluster administrator
 {% endif %}
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
@@ -15,7 +15,7 @@ adds a custom CA certificate to a cluster using a config map, the Cluster Networ
 *   Access to an {{ product_title }} cluster using an account with
 {%- if openshift_enterprise or openshift_webscale or openshift_origin %}
 `cluster-admin` permissions.
-{% endif %}
+{%- endif %}
 {% endif %}
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 *   Access to a {{ product_title }} cluster as a user with the `dedicated-admin` role.
@@ -70,8 +70,8 @@ adds a custom CA certificate to a cluster using a config map, the Cluster Networ
     1.  `tls-ca-bundle.pem` is required as the config map path.
     1.  Create a `trusted-ca` volume mount.
 
-        :::note
+    :::note
 
-        Deployments of an Operator can fail to validate the authority and display a `x509 certificate signed by unknown authority` error. This error can occur even after injecting a custom CA when using the subscription of an Operator. In this case, you can set the `mountPath` as `/etc/ssl/certs` for trusted-ca by using the subscription of an Operator.
-        
-        :::
+    Deployments of an Operator can fail to validate the authority and display a `x509 certificate signed by unknown authority` error. This error can occur even after injecting a custom CA when using the subscription of an Operator. In this case, you can set the `mountPath` as `/etc/ssl/certs` for trusted-ca by using the subscription of an Operator.
+    
+    :::

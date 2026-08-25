@@ -82,9 +82,9 @@ Verify that your cluster was installed and is running effectively on {{ oci_dist
         ```
 
 {% if context == "installing-c3-agent-based-installer" %}
-{%- set c3 = false -%}
+{%- set c3 = "" -%}
 {% endif %}
 
 {% if context == "installing-pca-agent-based-installer" %}
-{%- set pca = false -%}
+{%- set pca = "" -%}
 {% endif %}

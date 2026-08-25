@@ -1,15 +1,15 @@
 ---
-title: "Setting up additional trusted certificate authorities for builds {id=\"setting-up-trusted-ca\"}{% if not (openshift_dedicated or openshift_rosa) %}"
+title: Setting up additional trusted certificate authorities for builds
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 # Setting up additional trusted certificate authorities for builds {id="setting-up-trusted-ca"}
 {%- if not (openshift_dedicated or openshift_rosa) %}
 {% include "./_attributes/common-attributes.md" %}
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
-{% endif %}
+{%- endif %}
 {%- set context = "setting-up-trusted-ca" %}
 
 {% if openshift_enterprise or openshift_rosa or openshift_dedicated or openshift_webscale or openshift_origin %}
@@ -24,11 +24,11 @@ The procedure requires a cluster administrator to create a `ConfigMap` and add a
 
 {% leveloffset +1 %}{% include "./modules/configmap-adding-ca.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Create a `ConfigMap`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-a-configmap)
 *   [Secrets and `ConfigMaps`](https://kubectl.docs.kubernetes.io/guides/config_management/secrets_configmaps/)
 {%- if not (openshift_rosa or openshift_dedicated) %}
 *   [Configuring a custom PKI](/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)
-{% endif %}
+{%- endif %}
 {% endif %}

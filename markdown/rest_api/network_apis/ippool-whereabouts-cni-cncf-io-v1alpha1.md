@@ -1,5 +1,5 @@
 ---
-title: "IPPool []"
+title: "IPPool [whereabouts.cni.cncf.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -23,6 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | IPPoolSpec defines the desired state of IPPool |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,6 +43,7 @@ Required
 | `allocations` | `object` | Allocations is the set of allocated IPs for the given range. Its` indices are a direct mapping to the IP with the same index/offset for the pool’s range. |
 | `allocations{}` | `object` | IPAllocation represents metadata about the pod/container owner of a specific IP |
 | `range` | `string` | Range is a RFC 4632/4291-style string that represents an IP address and prefix length in CIDR notation |
+
 ### .spec.allocations {id="_specallocations"}
 
 Description
@@ -78,11 +80,11 @@ The following API endpoints are available:
 
 *   `/apis/whereabouts.cni.cncf.io/v1alpha1/ippools`
     *   `GET`: list objects of kind IPPool
-*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools`
+*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools`{minja}
     *   `DELETE`: delete collection of IPPool
     *   `GET`: list objects of kind IPPool
     *   `POST`: create an IPPool
-*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools/{{ name }}`
+*   `/apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{{ namespace }}/ippools/{{ name }}`{minja}
     *   `DELETE`: delete an IPPool
     *   `GET`: read the specified IPPool
     *   `PATCH`: partially update the specified IPPool

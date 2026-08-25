@@ -3,8 +3,8 @@ title: Using the 3scale Istio adapter
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the 3scale Istio adapter {id="threescale-adapter"}
 {% include "./_attributes/common-attributes.md" %}
+# Using the 3scale Istio adapter {id="threescale-adapter"}
 {%- set context = "threescale-adapter" %}
 
 The 3scale Istio Adapter is an optional adapter that allows you to label a service running within the {{ SMProductName }} and integrate that service with the 3scale API Management solution.
@@ -45,6 +45,7 @@ If you want to enable 3scale backend cache with the 3scale Istio adapter, you mu
 {% leveloffset +1 %}{% include "./modules/ossm-threescale-istio-adapter-verification.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Inspecting pod and container logs](https://docs.openshift.com/container-platform/4.7/support/troubleshooting/investigating-pod-issues.html#inspecting-pod-and-container-logs_investigating-pod-issues).
 

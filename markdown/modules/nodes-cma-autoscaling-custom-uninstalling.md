@@ -9,7 +9,7 @@ Use the following procedure to remove the custom metrics autoscaler from your {{
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 1.  Switch to the **openshift-keda** project.
@@ -22,7 +22,7 @@ Use the following procedure to remove the custom metrics autoscaler from your {{
     1.  Find the custom resource, and then click **Delete KedaController**.
     1.  Click **Uninstall**.
 1.  Remove the Custom Metrics Autoscaler Operator:
-    1.  Click **Ecosystem** -> **Installed Operators**.
+    1.  Click **Ecosystem** → **Installed Operators**.
     1.  Find the **CustomMetricsAutoscaler**  Operator and click the Options menu {{ kebab }} and select **Uninstall Operator**.
     1.  Click **Uninstall**.
 1.  Optional: Use the OpenShift CLI to remove the custom metrics autoscaler components:
@@ -54,7 +54,7 @@ Use the following procedure to remove the custom metrics autoscaler from your {{
         $ oc delete clusterrolebinding.keda.sh-v1alpha1-admin
         ```
 1.  Delete the custom metrics autoscaler project:
-    {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
     ```terminal
     $ oc delete project openshift-keda
     ```
@@ -65,7 +65,7 @@ Use the following procedure to remove the custom metrics autoscaler from your {{
     ```
 {% endif %}
 1.  Delete the Cluster Metric Autoscaler Operator:
-    {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
     ```terminal
     $ oc delete operator/openshift-custom-metrics-autoscaler-operator.openshift-keda
     ```

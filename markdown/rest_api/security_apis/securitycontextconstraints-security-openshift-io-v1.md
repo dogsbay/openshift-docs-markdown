@@ -1,5 +1,5 @@
 ---
-title: "SecurityContextConstraints []"
+title: "SecurityContextConstraints [security.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -46,11 +46,11 @@ Required
 | `allowPrivilegedContainer` | `boolean` | allowPrivilegedContainer determines if a container can request to be run as privileged. |
 | `allowedCapabilities` | `` | allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field maybe added at the pod author’s discretion. You must not list a capability in both AllowedCapabilities and RequiredDropCapabilities. To allow all capabilities you may use '*'. |
 | `allowedFlexVolumes` | `` | allowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the "Volumes" field. |
-| `allowedUnsafeSysctls` | `` | allowedUnsafeSysctls is a list of explicitly allowed unsafe sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "\*" in which case it is considered as a prefix of allowed sysctls. Single \* means all unsafe sysctls are allowed. Kubelet has to whitelist all allowed unsafe sysctls explicitly to avoid rejection. Examples: e.g. "foo/\*" allows "foo/bar", "foo/baz", etc. e.g. "foo.\*" allows "foo.bar", "foo.baz", etc. |
+| `allowedUnsafeSysctls` | `` | allowedUnsafeSysctls is a list of explicitly allowed unsafe sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "\*" in which case it is considered as a prefix of allowed sysctls. Single \* means all unsafe sysctls are allowed. Kubelet has to whitelist all allowed unsafe sysctls explicitly to avoid rejection.<br>Examples: e.g. "foo/\*" allows "foo/bar", "foo/baz", etc. e.g. "foo.\*" allows "foo.bar", "foo.baz", etc. |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `defaultAddCapabilities` | `` | defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capabiility in both DefaultAddCapabilities and RequiredDropCapabilities. |
 | `defaultAllowPrivilegeEscalation` | `` | defaultAllowPrivilegeEscalation controls the default setting for whether a process can gain more privileges than its parent process. |
-| `forbiddenSysctls` | `` | forbiddenSysctls is a list of explicitly forbidden sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "\*" in which case it is considered as a prefix of forbidden sysctls. Single \* means all sysctls are forbidden. Examples: e.g. "foo/*" forbids "foo/bar", "foo/baz", etc. e.g. "foo.*" forbids "foo.bar", "foo.baz", etc. |
+| `forbiddenSysctls` | `` | forbiddenSysctls is a list of explicitly forbidden sysctls, defaults to none. Each entry is either a plain sysctl name or ends in "\*" in which case it is considered as a prefix of forbidden sysctls. Single \* means all sysctls are forbidden.<br>Examples: e.g. "foo/*" forbids "foo/bar", "foo/baz", etc. e.g. "foo.*" forbids "foo.bar", "foo.baz", etc. |
 | `fsGroup` | `` | fsGroup is the strategy that will dictate what fs group is used by the SecurityContext. |
 | `groups` | `` | The groups that have permission to use this security context constraints |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
@@ -76,12 +76,12 @@ The following API endpoints are available:
     *   `POST`: create SecurityContextConstraints
 *   `/apis/security.openshift.io/v1/watch/securitycontextconstraints`
     *   `GET`: watch individual changes to a list of SecurityContextConstraints. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/security.openshift.io/v1/securitycontextconstraints/{{ name }}`
+*   `/apis/security.openshift.io/v1/securitycontextconstraints/{{ name }}`{minja}
     *   `DELETE`: delete SecurityContextConstraints
     *   `GET`: read the specified SecurityContextConstraints
     *   `PATCH`: partially update the specified SecurityContextConstraints
     *   `PUT`: replace the specified SecurityContextConstraints
-*   `/apis/security.openshift.io/v1/watch/securitycontextconstraints/{{ name }}`
+*   `/apis/security.openshift.io/v1/watch/securitycontextconstraints/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind SecurityContextConstraints. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/security.openshift.io/v1/securitycontextconstraints {id="_apissecurityopenshiftiov1securitycontextconstraints"}

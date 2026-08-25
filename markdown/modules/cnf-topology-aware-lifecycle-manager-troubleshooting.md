@@ -11,7 +11,7 @@ For more information about related topics, see the following documentation:
 
 <a name="talo-general-troubleshooting_{{ context }}"></a>
 
-***General troubleshooting***
+**General troubleshooting**
 
 You can determine the cause of the problem by reviewing the following questions:
 
@@ -27,7 +27,7 @@ You can determine the cause of the problem by reviewing the following questions:
 
 <a name="talo-troubleshooting-modify-cgu_{{ context }}"></a>
 
-***Cannot modify the ClusterUpgradeGroup CR***
+**Cannot modify the ClusterUpgradeGroup CR**
 
 
 Issue
@@ -50,9 +50,9 @@ Resolution
 
 <a name="talo-troubleshooting-managed-policies_{{ context }}"></a>
 
-***Managed policies***
+**Managed policies**
 
-***Checking managed policies on the system***
+**Checking managed policies on the system**
 
 
 Issue
@@ -70,7 +70,7 @@ Resolution
     ["group-du-sno-validator-du-validator-policy", "policy2-common-nto-sub-policy", "policy3-common-ptp-sub-policy"]
     ```
 
-***Checking remediationAction mode***
+**Checking remediationAction mode**
 
 
 Issue
@@ -92,7 +92,7 @@ Resolution
     default     policy4-common-sriov-sub-policy                      inform               NonCompliant       5d21h
     ```
 
-***Checking policy compliance state***
+**Checking policy compliance state**
 
 
 Issue
@@ -116,9 +116,9 @@ Resolution
 
 <a name="talo-troubleshooting-clusters_{{ context }}"></a>
 
-***Clusters***
+**Clusters**
 
-***Checking if managed clusters are present***
+**Checking if managed clusters are present**
 
 
 Issue
@@ -164,7 +164,7 @@ Resolution
 
 The error message shows that the cluster is not a managed cluster.
 
-***Checking if managed clusters are available***
+**Checking if managed clusters are available**
 
 
 Issue
@@ -187,7 +187,7 @@ Resolution
 
 The value of the `AVAILABLE` field is `True` for the managed clusters.
 
-***Checking clusterLabelSelector***
+**Checking clusterLabelSelector**
 
 
 Issue
@@ -210,7 +210,7 @@ spoke1          true           https://api.spoke1.testlab.com:6443      True    
 spoke3          true           https://api.spoke3.testlab.com:6443      True     True        27h
 ```
 
-***Checking if canary clusters are present***
+**Checking if canary clusters are present**
 
 
 Issue
@@ -254,14 +254,14 @@ Resolution
     ```
 
 
-:::note
+    :::note
 
-A cluster can be present in `spec.clusters` and also be matched by the `spec.clusterLabelSelector` label.
+    A cluster can be present in `spec.clusters` and also be matched by the `spec.clusterLabelSelector` label.
+    
+    :::
 
-:::
 
-
-***Checking the pre-caching status on spoke clusters***
+**Checking the pre-caching status on spoke clusters**
 
 1.  Check the status of pre-caching by running the following command on the spoke cluster:
     ```terminal
@@ -270,9 +270,9 @@ A cluster can be present in `spec.clusters` and also be matched by the `spec.clu
 
 <a name="talo-troubleshooting-remediation-strategy_{{ context }}"></a>
 
-***Remediation Strategy***
+**Remediation Strategy**
 
-***Checking if remediationStrategy is present in the ClusterGroupUpgrade CR***
+**Checking if remediationStrategy is present in the ClusterGroupUpgrade CR**
 
 
 Issue
@@ -290,7 +290,7 @@ Resolution
     {"maxConcurrency":2, "timeout":240}
     ```
 
-***Checking if maxConcurrency is specified in the ClusterGroupUpgrade CR***
+**Checking if maxConcurrency is specified in the ClusterGroupUpgrade CR**
 
 
 Issue
@@ -310,9 +310,9 @@ Resolution
 
 <a name="talo-troubleshooting-remediation-talo_{{ context }}"></a>
 
-***{{ cgu_operator_full }}***
+**{{ cgu_operator_full }}**
 
-***Checking condition message and status in the ClusterGroupUpgrade CR***
+**Checking condition message and status in the ClusterGroupUpgrade CR**
 
 
 Issue
@@ -330,7 +330,7 @@ Resolution
     {"lastTransitionTime":"2022-02-17T22:25:28Z", "message":"Missing managed policies:[policyList]", "reason":"NotAllManagedPoliciesExist", "status":"False", "type":"Validated"}
     ```
 
-***Checking if status.remediationPlan was computed***
+**Checking if status.remediationPlan was computed**
 
 
 Issue
@@ -348,7 +348,7 @@ Resolution
     [["spoke2", "spoke3"]]
     ```
 
-***Errors in the {{ cgu_operator }} manager container***
+**Errors in the {{ cgu_operator }} manager container**
 
 
 Issue
@@ -370,7 +370,7 @@ Resolution
 
 Displays the error.
 
-***Clusters are not compliant to some policies after a `ClusterGroupUpgrade` CR has completed***
+**Clusters are not compliant to some policies after a `ClusterGroupUpgrade` CR has completed**
 
 
 Issue
@@ -384,7 +384,7 @@ Resolution
 
 <a name="talo-troubleshooting-auto-create-policies_{{ context }}"></a>
 
-***Auto-created `ClusterGroupUpgrade` CR in the {{ ztp }} workflow has no managed policies***
+**Auto-created `ClusterGroupUpgrade` CR in the {{ ztp }} workflow has no managed policies**
 
 
 Issue
@@ -400,7 +400,7 @@ You can either manually create the `ClusterGroupUpgrade` CR or trigger auto-crea
 
 <a name="talo-troubleshooting-pre-cache-failed_{{ context }}"></a>
 
-***Pre-caching has failed***
+**Pre-caching has failed**
 
 
 Issue
@@ -430,7 +430,7 @@ Resolution
 
 <a name="talo-troubleshooting-pre-placement-tolerations_{{ context }}"></a>
 
-***Matching policies and `ManagedCluster` CRs before the managed cluster is available***
+**Matching policies and `ManagedCluster` CRs before the managed cluster is available**
 
 
 Issue

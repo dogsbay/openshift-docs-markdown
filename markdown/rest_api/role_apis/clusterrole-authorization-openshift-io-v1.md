@@ -1,5 +1,5 @@
 ---
-title: "ClusterRole []"
+title: "ClusterRole [authorization.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -32,6 +32,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `rules` | `array` | rules holds all the PolicyRules for this ClusterRole |
 | `rules[]` | `object` | PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to. |
+
 ### .rules {id="_rules"}
 
 Description
@@ -71,7 +72,7 @@ The following API endpoints are available:
 *   `/apis/authorization.openshift.io/v1/clusterroles`
     *   `GET`: list objects of kind ClusterRole
     *   `POST`: create a ClusterRole
-*   `/apis/authorization.openshift.io/v1/clusterroles/{{ name }}`
+*   `/apis/authorization.openshift.io/v1/clusterroles/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterRole
     *   `GET`: read the specified ClusterRole
     *   `PATCH`: partially update the specified ClusterRole

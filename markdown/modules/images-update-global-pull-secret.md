@@ -35,7 +35,7 @@ Use this procedure when you need a separate registry to store images than the re
 
 :::important
 
-{%- if openshift_enterprise %}
+{% if openshift_enterprise %}
 The global pull secret is a HostedControlPlane feature only and is not an OCP standalone feature.
 {% endif %}
 {% if openshift_rosa_hcp %}
@@ -126,5 +126,5 @@ For more information, see _Transferring cluster ownership_ under _Additional res
     This triggers the automatic cleanup process across your nodes.
 
 {% if context == "using-image-pull-secrets" %}
-{%- set image_pull_secrets = false -%}
+{%- set image_pull_secrets = "" -%}
 {% endif %}

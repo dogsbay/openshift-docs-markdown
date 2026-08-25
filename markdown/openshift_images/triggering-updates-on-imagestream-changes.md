@@ -3,12 +3,12 @@ title: Triggering updates on image stream changes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Triggering updates on image stream changes {id="triggering-updates-on-imagestream-changes"}
 
-{% include "./_attributes/common-attributes.md" %}
 {%- set context = "triggering-updates-on-imagestream-changes" %}
 
-When image stream tags update in {{ product_title }}, the platform automatically rolls out new images to deployments and builds that reference those tags. You configure this automatic triggering behavior differently depending on the type of resource that uses the image stream.
+When image stream tags update in {{ product_title }}, the platform automatically rolls out new images to deployments and builds that reference those tags. You configure this automatic triggering behavior differently depending on the type of resource that uses the image stream. {._abstract}
 
 ## Resources {id="openshift-resources"}
 

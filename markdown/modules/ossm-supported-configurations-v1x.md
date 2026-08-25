@@ -11,7 +11,6 @@ OpenShift Online and {{ product_dedicated }} are not supported for {{ SMProductN
 
 :::
 
-
 *   The deployment must be contained within a single {{ product_title }} cluster that is not federated.
 *   This release of {{ SMProductName }} is only available on {{ product_title }} x86_64.
 *   This release only supports configurations where all {{ SMProductShortName }} components are contained in the {{ product_title }} cluster in which it operates. It does not support management of microservices that reside outside of the cluster, or in a multi-cluster scenario.

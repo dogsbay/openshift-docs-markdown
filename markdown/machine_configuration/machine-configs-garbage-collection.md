@@ -7,7 +7,7 @@ title: Managing unused rendered machine configs
 # Managing unused rendered machine configs {id="machine-configs-garbage-collection"}
 {%- set context = "machine-configs-garbage-collection" %}
 
-You can remove old, unused rendered machine configs by using the `oc adm prune renderedmachineconfigs` command. By removing these objects, you can free up disk space and reduce performance issues.
+You can remove old, unused rendered machine configs by using the `oc adm prune renderedmachineconfigs` command. By removing these objects, you can free up disk space and reduce performance issues. {._abstract}
 
 The Machine Config Operator (MCO) does not perform any garbage collection activities. This means that all rendered machine configs remain in the cluster. Each time a user or controller applies a new machine config, the MCO creates new rendered configs for each affected machine config pool. Over time, this can lead to a large number of rendered machine configs, which can make working with machine configs confusing. Having too many rendered machine configs can also contribute to disk space issues and performance issues with etcd. 
 

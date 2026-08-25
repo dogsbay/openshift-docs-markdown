@@ -11,7 +11,7 @@ If the default values conflict with one of the following conditions, you receive
 
 For example, if you remove the `server.duration` value, the default value of `24h0m0s` is greater than the value of `ca.duration`, which conflicts with the specified conditions:
 
-```yaml
+```yaml {minja}
 apiVersion: hco.kubevirt.io/v1beta1
 kind: HyperConverged
 metadata:

@@ -42,7 +42,7 @@ Therefore, you can have generic alerting rules that apply to multiple user-defin
       namespace: openshift-user-workload-monitoring
     data:
       config.yaml: |
-        namespacesWithoutLabelEnforcement: [ <namespace1>, <namespace2> ] # (1)
+        namespacesWithoutLabelEnforcement: [ <namespace1>, <namespace2> ] (1)
         # ...
     ```
     1.  Specify one or more projects in which you want to create cross-project alerting rules. Prometheus and Thanos Ruler for user-defined monitoring do not enforce the `namespace` label in `PrometheusRule` objects created in these projects, making the `PrometheusRule` objects applicable to all projects.
@@ -54,18 +54,18 @@ The following example creates a new cross-project alerting rule called `example-
     kind: PrometheusRule
     metadata:
       name: example-security
-      namespace: ns1 #<1>
+      namespace: ns1 (1)
     spec:
       groups:
         - name: pod-security-policy
           rules:
-            - alert: "ProjectNotEnforcingRestrictedPolicy" # (2)
-              for: 5m # (3)
-              expr: kube_namespace_labels{namespace!~"(openshift|kube).*|default",label_pod_security_kubernetes_io_enforce!="restricted"} # (4)
+            - alert: "ProjectNotEnforcingRestrictedPolicy" (2)
+              for: 5m (3)
+              expr: kube_namespace_labels{namespace!~"(openshift|kube).*|default",label_pod_security_kubernetes_io_enforce!="restricted"} (4)
               annotations:
-                message: "Restricted policy not enforced. Project {{ $labels.namespace }} does not enforce the restricted pod security policy." #<5>
+                message: "Restricted policy not enforced. Project {{ $labels.namespace }} does not enforce the restricted pod security policy." (5)
               labels:
-                severity: warning # (6)
+                severity: warning (6)
     ```
     1.  Ensure that you specify the project that you defined in the `namespacesWithoutLabelEnforcement` field.
     1.  The name of the alerting rule you want to create.
@@ -74,12 +74,12 @@ The following example creates a new cross-project alerting rule called `example-
     1.  The message associated with the alert.
     1.  The severity that alerting rule assigns to the alert.
 
-        :::important
+    :::important
 
-        Ensure that you create a specific cross-project alerting rule in only one of the projects that you specified in the `namespacesWithoutLabelEnforcement` field.
-        If you create the same cross-project alerting rule in multiple projects, it results in repeated alerts.
-        
-        :::
+    Ensure that you create a specific cross-project alerting rule in only one of the projects that you specified in the `namespacesWithoutLabelEnforcement` field.
+    If you create the same cross-project alerting rule in multiple projects, it results in repeated alerts.
+    
+    :::
 
 1.  Apply the configuration file to the cluster:
     ```terminal

@@ -1,5 +1,5 @@
 ---
-title: "ConsoleCLIDownload []"
+title: "ConsoleCLIDownload [console.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -30,6 +30,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ConsoleCLIDownloadSpec is the desired cli download configuration. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -51,6 +52,7 @@ Required
 | `displayName` | `string` | displayName is the display name of the CLI download. |
 | `links` | `array` | links is a list of objects that provide CLI download link details. |
 | `links[]` | `object` |  |
+
 ### .spec.links {id="_speclinks"}
 
 Description
@@ -85,12 +87,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ConsoleCLIDownload
     *   `GET`: list objects of kind ConsoleCLIDownload
     *   `POST`: create a ConsoleCLIDownload
-*   `/apis/console.openshift.io/v1/consoleclidownloads/{{ name }}`
+*   `/apis/console.openshift.io/v1/consoleclidownloads/{{ name }}`{minja}
     *   `DELETE`: delete a ConsoleCLIDownload
     *   `GET`: read the specified ConsoleCLIDownload
     *   `PATCH`: partially update the specified ConsoleCLIDownload
     *   `PUT`: replace the specified ConsoleCLIDownload
-*   `/apis/console.openshift.io/v1/consoleclidownloads/{{ name }}/status`
+*   `/apis/console.openshift.io/v1/consoleclidownloads/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ConsoleCLIDownload
     *   `PATCH`: partially update status of the specified ConsoleCLIDownload
     *   `PUT`: replace status of the specified ConsoleCLIDownload

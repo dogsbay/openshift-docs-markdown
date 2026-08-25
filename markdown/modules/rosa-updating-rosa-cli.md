@@ -34,7 +34,7 @@ Update the {{ rosa_cli_first }} to the latest version that works with your clust
     ```terminal
     $ rosa version
     ```
-    ```terminal title="Example output"
+    ```terminal title="Example output" {minja}
     1.2.15
     Your {{ rosa_cli }} is up to date.
     ```

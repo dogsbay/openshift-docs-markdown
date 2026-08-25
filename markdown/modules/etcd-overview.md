@@ -13,17 +13,19 @@ Benefits of using etcd
     *   Distribute configuration data to provide redundancy and resiliency for the configuration of nodes
 
 How etcd works
-    :   To ensure a reliable approach to cluster configuration and management, etcd uses the etcd Operator. 
+:   To ensure a reliable approach to cluster configuration and management, etcd uses the etcd Operator. 
     The Operator simplifies the use of etcd on a Kubernetes container platform like {{ product_title }}. 
     With the etcd Operator, you can create or delete etcd members, resize clusters, perform backups, and upgrade etcd.
+
     The etcd Operator observes, analyzes, and acts:
-    . It observes the cluster state by using the Kubernetes API.
-    . It analyzes differences between the current state and the state that you want.
-    . It fixes the differences through the etcd cluster management APIs, the Kubernetes API, or both.
+    1.  It observes the cluster state by using the Kubernetes API.
+    1.  It analyzes differences between the current state and the state that you want.
+    1.  It fixes the differences through the etcd cluster management APIs, the Kubernetes API, or both.
+
     etcd holds the cluster state, which is constantly updated. etcd continuously persists this state, which leads to a high number of small changes at high frequency.
 {%- if not (openshift_dedicated or openshift_rosa) %}
     As a result, you must back the etcd cluster member with fast, low-latency I/O. For more information about best practices for etcd, see "Recommended etcd practices".
-{% endif %}
-{% if openshift_dedicated or openshift_rosa %}
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa %}
     As a result, Red Hat Site Reliability Engineering (SRE) backs the etcd cluster member with fast, low-latency I/O.
-{% endif %}
+{%- endif %}

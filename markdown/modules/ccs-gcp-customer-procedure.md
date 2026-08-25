@@ -48,7 +48,7 @@ For more information about configuring {{ gcp_short }} organization policy const
 1.  [Create a {{ gcp_full }} project](https://cloud.google.com/resource-manager/docs/creating-managing-projects) to host the {{ product_title }} cluster.
 1.  [Enable](https://cloud.google.com/service-usage/docs/enable-disable#enabling) the following required APIs in the project that hosts your {{ product_title }} cluster:
 
-    ***Required API services***
+    **Required API services**
 
 <table>
 <thead>

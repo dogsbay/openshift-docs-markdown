@@ -45,10 +45,10 @@ Once the nodes are rebooted, the rendezvous host reboots and joins the cluster. 
 
 You can install a disconnected {{ product_title }} cluster through the `openshift-install agent create image` subcommand for the following topologies:
 
-*   ***A single-node {{ product_title }} cluster***: A node that is both a control plane and compute.
-*   ***A three-node {{ product_title }} cluster*** : A compact cluster that has three control plane nodes that are also compute nodes.
-*   ***Highly available {{ product_title }} cluster (HA)***: Three control plane nodes with any number of compute nodes.
-*   ***Two-node {{ product_title }} cluster with Arbiter***: Two control plane nodes with one local arbiter node. For more information, see "About a local arbiter node".
+*   **A single-node {{ product_title }} cluster**: A node that is both a control plane and compute.
+*   **A three-node {{ product_title }} cluster** : A compact cluster that has three control plane nodes that are also compute nodes.
+*   **Highly available {{ product_title }} cluster (HA)**: Three control plane nodes with any number of compute nodes.
+*   **Two-node {{ product_title }} cluster with Arbiter**: Two control plane nodes with one local arbiter node. For more information, see "About a local arbiter node".
 
 ## Recommended resources for topologies {id="agent-based-installer-recommended-resources_{{ context }}"}
 
@@ -56,13 +56,67 @@ The following cluster resources are recommended for each topology:
 
 **Recommended cluster resources**
 
-| Topology | Number of control plane nodes | Number of compute nodes | vCPU | Memory | Storage |
-| --- | --- | --- | --- | --- | --- |
-| Single-node cluster | 1 | 0 | 8 vCPUs | 16 GB of RAM | 120 GB .2+ |
-| Two-node OpenShift cluster with Arbiter | 2 (control plane nodes) | 0 | 4 vCPUs | 16 GB of RAM | 120 GB |
-| 1 (arbiter node) | 0 | 2 vCPUs | 8 GB of RAM | 50 GB | Two-node OpenShift cluster with fencing (TNF) |
-| 2 | 0 | 4 vCPUs | 16 GB of RAM | 120 GB | Compact cluster |
-| 3 | 0 or 1 | 8 vCPUs | 16 GB of RAM | 120 GB | HA cluster |
+<table>
+<thead>
+<tr>
+  <th>Topology</th>
+  <th>Number of control plane nodes</th>
+  <th>Number of compute nodes</th>
+  <th>vCPU</th>
+  <th>Memory</th>
+  <th>Storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Single-node cluster</td>
+  <td>1</td>
+  <td>0</td>
+  <td>8 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+<tr>
+  <td rowspan="2">Two-node OpenShift cluster with Arbiter</td>
+  <td>2 (control plane nodes)</td>
+  <td>0</td>
+  <td>4 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+<tr>
+  <td>1 (arbiter node)</td>
+  <td>0</td>
+  <td>2 vCPUs</td>
+  <td>8 GB of RAM</td>
+  <td>50 GB</td>
+</tr>
+<tr>
+  <td>Two-node OpenShift cluster with fencing (TNF)</td>
+  <td>2</td>
+  <td>0</td>
+  <td>4 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+<tr>
+  <td>Compact cluster</td>
+  <td>3</td>
+  <td>0 or 1</td>
+  <td>8 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+<tr>
+  <td>HA cluster</td>
+  <td>3 to 5</td>
+  <td>2 and above</td>
+  <td>8 vCPUs</td>
+  <td>16 GB of RAM</td>
+  <td>120 GB</td>
+</tr>
+</tbody>
+</table>
 
 
 :::note
@@ -98,19 +152,19 @@ For a two-node {{ product_title }} cluster with fencing (TNF), only the followin
     The `vsphere` and `nutanix` platforms are not supported for two-node clusters with fencing.
 
 
-:::important
+    :::important
 
-For platform `none`:
+    For platform `none`:
 
-*   The `none` option requires the provision of DNS name resolution and load balancing infrastructure in your cluster. See _Requirements for a cluster using the platform "none" option_ in the "Additional resources" section for more information.
-*   See "Deploying OpenShift 4.x on non-tested platforms using the bare metal install method" before you attempt to install an {{ product_title }} cluster in virtualized or cloud environments.
+    *   The `none` option requires the provision of DNS name resolution and load balancing infrastructure in your cluster. See _Requirements for a cluster using the platform "none" option_ in the "Additional resources" section for more information.
+    *   See "Deploying OpenShift 4.x on non-tested platforms using the bare metal install method" before you attempt to install an {{ product_title }} cluster in virtualized or cloud environments.
+    
+    :::
 
-:::
 
 
+    :::note
 
-:::note
-
-For installations on {{ ibm_z_name }} (`s390x`) architecture, the minimum memory requirement is 24 GB RAM per host instead of 16 GB.
-
-:::
+    For installations on {{ ibm_z_name }} (`s390x`) architecture, the minimum memory requirement is 24 GB RAM per host instead of 16 GB.
+    
+    :::

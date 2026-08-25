@@ -3,12 +3,12 @@ title: Getting started with the OpenShift CLI
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Getting started with the OpenShift CLI {id="cli-getting-started"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Getting started with the OpenShift CLI {id="cli-getting-started"}
 {%- set context = "cli-developer-commands" %}
 
-Install and configure the {{ oc_first }} to manage {{ product_title }} clusters and deploy applications directly from a terminal.
+Install and configure the {{ oc_first }} to manage {{ product_title }} clusters and deploy applications directly from a terminal. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/cli-about-cli.md" %}{% endleveloffset %}
 

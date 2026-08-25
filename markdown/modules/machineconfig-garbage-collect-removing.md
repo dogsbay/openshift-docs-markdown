@@ -7,7 +7,7 @@ If any rendered machine config is not deleted, the command output indicates whic
 
 **Procedure**
 
-1.  Optional: List the rendered machine configs that you can remove automatically by running the following command. Any rendered machine config marked with the `as it’s currently in use` message in the command output cannot be removed.
+1.  Optional: List the rendered machine configs that you can remove automatically by running the following command. Any rendered machine config marked with the `as it's currently in use` message in the command output cannot be removed.
     ```terminal
     $ oc adm prune renderedmachineconfigs --pool-name=worker
     ```

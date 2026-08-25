@@ -24,19 +24,19 @@ You cannot downgrade {{ microshift_short }} with this process. Downgrades are no
 **Procedure**
 
 1.  For all lifecycles, enable the repository for the release you want to update to by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager repos \
         --enable rhocp-{{ ocp_version }}-for-rhel-{{ op_system_version_major }}-$(uname -m)-rpms \
         --enable fast-datapath-for-rhel-{{ op_system_version_major }}-$(uname -m)-rpms
     ```
 1.  For extended support (EUS) releases, also enable the EUS repositories by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager repos \
         --enable rhel-{{ op_system_version_major }}-for-$(uname -m)-appstream-eus-rpms \
         --enable rhel-{{ op_system_version_major }}-for-$(uname -m)-baseos-eus-rpms
     ```
 1.  Avoid unintended future updates into an unsupported configuration by locking your operating system version with the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager release --set={{ op_system_version }}
     ```
 1.  Update the {{ microshift_short }} RPMs by running the following command:

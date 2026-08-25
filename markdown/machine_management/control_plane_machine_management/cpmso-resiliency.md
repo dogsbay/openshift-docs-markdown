@@ -3,11 +3,11 @@ title: Control plane resiliency and recovery
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Control plane resiliency and recovery {id="cpmso-resiliency"}
 {% include "./_attributes/common-attributes.md" %}
+# Control plane resiliency and recovery {id="cpmso-resiliency"}
 {%- set context = "cpmso-resiliency" %}
 
-You can use the control plane machine set to improve the resiliency of the control plane for your {{ product_title }} cluster.
+You can use the control plane machine set to improve the resiliency of the control plane for your {{ product_title }} cluster. {._abstract}
 
 ## High availability and fault tolerance with failure domains {id="cpmso-failure-domains_{{ context }}"}
 
@@ -16,6 +16,7 @@ When possible, the control plane machine set spreads the control plane machines 
 {% leveloffset +2 %}{% include "./modules/cpmso-failure-domains-provider.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Sample {{ aws_full }} failure domain configuration](/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-aws#cpmso-yaml-failure-domain-aws_cpmso-config-options-aws)
 *   [Sample {{ gcp_full }} failure domain configuration](/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-gcp#cpmso-yaml-failure-domain-gcp_cpmso-config-options-gcp)
@@ -30,11 +31,13 @@ When possible, the control plane machine set spreads the control plane machines 
 {% leveloffset +1 %}{% include "./modules/cpmso-control-plane-recovery.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Deploying machine health checks](/machine_management/deploying-machine-health-checks#deploying-machine-health-checks)
 
 {% leveloffset +1 %}{% include "./modules/machine-lifecycle-hook-deletion-etcd.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Lifecycle hooks for the machine deletion phase](/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)

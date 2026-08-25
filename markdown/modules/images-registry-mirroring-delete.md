@@ -17,6 +17,7 @@ Delete operations require confirmation unless the `--yes` or `--y` argument is u
     ```terminal
     $ rosa delete image-mirror [arguments]
     ```
+
     **Arguments**
 
     | Option | Definition |
@@ -26,6 +27,7 @@ Delete operations require confirmation unless the `--yes` or `--y` argument is u
     | `--yes`, `-y` | Optional: Automatically answers "yes" to confirm deletion. |
     | --profile | Optional: Use a specific AWS profile from your credential file. |
     | --region | Optional: Use a specific AWS region, overriding the AWS_REGION environment variable. |
+
 
     **Examples**
 

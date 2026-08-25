@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Customizing configurations in the TektonConfig custom resource {id="customizing-configurations-in-the-tektonconfig-cr"}
 {% include "./_attributes/common-attributes.md" %}
+# Customizing configurations in the TektonConfig custom resource {id="customizing-configurations-in-the-tektonconfig-cr"}
 {%- set context = "customizing-configurations-in-the-tektonconfig-cr" %}
 
 In {{ pipelines_title }}, you can customize the following configurations by using the `TektonConfig` custom resource (CR):

@@ -32,7 +32,7 @@ When you configure identity providers, you must configure at least one `NodePool
 
 **Procedure**
 
-1.  Go to **Home** -> **API Explorer**.
+1.  Go to **Home** → **API Explorer**.
 1.  Use the **Filter by kind** box to search for your `HostedCluster` resource.
 1.  Click the `HostedCluster` resource that you want to edit.
 1.  Click the **Instances** tab.

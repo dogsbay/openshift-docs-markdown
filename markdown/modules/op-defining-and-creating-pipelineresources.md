@@ -14,6 +14,7 @@ image-registry.openshift-image-registry.svc:5000/<namespace-name>/vote-api:lates
 
 :::
 
+
 **Procedure**
 
 1.  Create a PipelineResource that defines the Git repository for the front-end application:

@@ -56,10 +56,10 @@ You can customize the Kubernetes API server for your hosted cluster. {._abstract
           -o jsonpath='{.data.kubeconfig}' | base64 -d
         ```
 
-    1.  To retrieve the secret by using the console, go to your hosted cluster and click ***Download Kubeconfig***.
+    1.  To retrieve the secret by using the console, go to your hosted cluster and click **Download Kubeconfig**.
 
         :::note
 
-        You cannot consume the new `kubeconfig` secret by using the ***show login command*** option in the console.
+        You cannot consume the new `kubeconfig` secret by using the **show login command** option in the console.
         
         :::

@@ -11,14 +11,14 @@ You can create a Windows virtual machine (VM) by uploading a Windows image to a 
 **Procedure**
 
 1.  Upload the Windows image as a new PVC:
-    1.  Navigate to **Storage** -> **PersistentVolumeClaims** in the web console.
-    1.  Click **Create PersistentVolumeClaim** -> **With Data upload form**.
+    1.  Navigate to **Storage** → **PersistentVolumeClaims** in the web console.
+    1.  Click **Create PersistentVolumeClaim** → **With Data upload form**.
     1.  Browse to the Windows image and select it.
     1.  Enter the PVC name, select the storage class and size and then click **Upload**.
 
         The Windows image is uploaded to a PVC.
 1.  Configure a new VM by cloning the uploaded PVC:
-    1.  Navigate to **Virtualization** -> **Catalog**.
+    1.  Navigate to **Virtualization** → **Catalog**.
     1.  Select a Windows template tile and click **Customize VirtualMachine**.
     1.  Select **Clone (clone PVC)** from the **Disk source** list.
     1.  Select the PVC project, the Windows image PVC, and the disk size.
@@ -30,6 +30,6 @@ You can create a Windows virtual machine (VM) by uploading a Windows image to a 
     1.  Clear **Start this VirtualMachine after creation** so that the VM does not start immediately.
     1.  Click **Create VirtualMachine**.
     1.  On the **YAML** tab, replace `running:false` with `runStrategy: RerunOnFailure` and click **Save**.
-1.  Click the Options menu {{ kebab }} and select **Control** -> **Start**.
+1.  Click the Options menu {{ kebab }} and select **Control** → **Start**.
 
     The VM boots from the `sysprep` disk containing the `autounattend.xml` answer file.

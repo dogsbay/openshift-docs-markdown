@@ -18,14 +18,14 @@ For best results, use the `ReadWriteMany` (RWX) access mode and the `Block` volu
 {% endif %}
 
 
-:::important
+    :::important
 
-You cannot live migrate virtual machines with the following configurations:
+    You cannot live migrate virtual machines with the following configurations:
 
-*   Storage volume with `ReadWriteOnce` (RWO) access mode
-*   Passthrough features such as GPUs
+    *   Storage volume with `ReadWriteOnce` (RWO) access mode
+    *   Passthrough features such as GPUs
 
-Set the `evictionStrategy` field to `None` for these virtual machines.
-The `None` strategy powers down VMs during node reboots.
-
-:::
+    Set the `evictionStrategy` field to `None` for these virtual machines.
+    The `None` strategy powers down VMs during node reboots.
+    
+    :::

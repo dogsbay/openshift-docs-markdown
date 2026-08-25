@@ -8,7 +8,7 @@ You can view the projects that you have access to by using the {{ product_title 
 **Procedure**
 
 *   If you are logged in as an administrator, complete the following steps:
-    1.  Navigate to **Home** -> **Projects** in the navigation menu.
+    1.  Navigate to **Home** → **Projects** in the navigation menu.
     1.  Select a project to view. The **Overview** tab includes a dashboard for your project.
     1.  Select the **Details** tab to view the project details.
     1.  Select the **YAML** tab to view and update the YAML configuration for the project resource.

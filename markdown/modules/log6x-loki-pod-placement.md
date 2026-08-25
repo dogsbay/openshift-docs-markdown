@@ -13,9 +13,9 @@ metadata:
 spec:
 # ...
   template:
-    compactor: # (1)
+    compactor: (1)
       nodeSelector:
-        node-role.kubernetes.io/infra: "" # (2)
+        node-role.kubernetes.io/infra: "" (2)
     distributor:
       nodeSelector:
         node-role.kubernetes.io/infra: ""

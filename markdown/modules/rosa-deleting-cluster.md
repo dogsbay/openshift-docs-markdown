@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not sts %}
+{% if not sts %}
 # Deleting a ROSA cluster {id="rosa-deleting-cluster_{{ context }}"}
 
 {% endif %}
@@ -13,8 +13,8 @@
 {% endif %}
 
 {% if not sts %}
-You can delete a {{ product_title }} (ROSA) cluster using the ROSA CLI (`rosa`).
-{% endif %} {._abstract}
+You can delete a {{ product_title }} (ROSA) cluster using the ROSA CLI (`rosa`). {._abstract}
+{% endif %}
 
 {% if sts %}
 You can delete a {{ product_title }} (ROSA) with AWS Security Token Service (STS) cluster by using the ROSA CLI (`rosa`) or {{ cluster_manager_first }}. {._abstract}
@@ -91,18 +91,20 @@ If the cluster that created the VPC during the installation is deleted, the asso
         1.  Enter the following command to delete the cluster and watch the logs, replacing `<cluster_name>` with the name or ID of your cluster:
 {% endif %}
 {% if not sts %}
-1.  Enter the following command to delete a cluster and watch the logs, replacing `<cluster_name>` with the name or ID of your cluster:
-    {%- endif %}
-    ```terminal
-    $ rosa delete cluster --cluster=<cluster_name> --watch
-    ```
-{%- if sts %}
+        . Enter the following command to delete a cluster and watch the logs, replacing `<cluster_name>` with the name or ID of your cluster:
+{% endif %}
+        +
+        ```terminal
+        $ rosa delete cluster --cluster=<cluster_name> --watch
+        ```
+{% if sts %}
+        +
 
-    :::important
+        :::important
 
-    You must wait for the cluster deletion to complete before you remove the Operator roles and the OIDC provider. The cluster-specific Operator roles are required to clean-up the resources created by the OpenShift Operators. The Operators use the OIDC provider to authenticate.
-    
-    :::
+        You must wait for the cluster deletion to complete before you remove the Operator roles and the OIDC provider. The cluster-specific Operator roles are required to clean-up the resources created by the OpenShift Operators. The Operators use the OIDC provider to authenticate.
+        
+        :::
 
 {% endif %}
 

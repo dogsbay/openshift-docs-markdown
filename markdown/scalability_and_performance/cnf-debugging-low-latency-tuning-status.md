@@ -3,11 +3,11 @@ title: Debugging low latency node tuning status
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Debugging low latency node tuning status {id="cnf-debugging-low-latency-tuning-status"}
 {% include "./_attributes/common-attributes.md" %}
+# Debugging low latency node tuning status {id="cnf-debugging-low-latency-tuning-status"}
 {%- set context = "cnf-debugging-low-latency" %}
 
-Use the `PerformanceProfile` custom resource (CR) status fields for reporting tuning status and debugging latency issues in a cluster node.
+Use the `PerformanceProfile` custom resource (CR) status fields for reporting tuning status and debugging latency issues in a cluster node. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/cnf-debugging-low-latency-cnf-tuning-status.md" %}{% endleveloffset %}
 
@@ -18,6 +18,7 @@ Use the `PerformanceProfile` custom resource (CR) status fields for reporting tu
 {% leveloffset +1 %}{% include "./modules/cnf-collecting-low-latency-tuning-debugging-data-for-red-hat-support.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Gathering data about your cluster with the `must-gather` tool](/support/gathering-cluster-data#gathering-cluster-data)
 *   [Managing nodes with MachineConfig and KubeletConfig CRs](/nodes/nodes/nodes-nodes-managing#nodes-nodes-managing)

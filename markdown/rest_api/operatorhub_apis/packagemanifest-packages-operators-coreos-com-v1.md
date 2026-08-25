@@ -1,5 +1,5 @@
 ---
-title: "PackageManifest []"
+title: "PackageManifest [packages.operators.coreos.com/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) |  |
 | `spec` | `object` | PackageManifestSpec defines the desired state of PackageManifest |
 | `status` | `object` | PackageManifestStatus represents the current status of the PackageManifest |
+
 ### .spec {id="_spec"}
 
 Description
@@ -64,6 +65,7 @@ Required
 | `deprecation` | `object` | Deprecation conveys information regarding a deprecated resource. |
 | `packageName` | `string` | PackageName is the name of the overall package, ala `etcd`. |
 | `provider` | `object` | AppLink defines a link to an application |
+
 ### .status.channels {id="_statuschannels"}
 
 Description
@@ -96,6 +98,7 @@ Required
 | `entries` | `array` | Entries lists all CSVs in the channel, with their upgrade edges. |
 | `entries[]` | `object` | ChannelEntry defines a member of a package channel. |
 | `name` | `string` | Name is the name of the channel, e.g. `alpha` or `stable` |
+
 ### .status.channels[].currentCSVDesc {id="_statuschannelscurrentcsvdesc"}
 
 Description
@@ -126,6 +129,7 @@ Type
 | `provider` | `object` | AppLink defines a link to an application |
 | `relatedImages` | `array (string)` | List of related images |
 | `version` | [`OperatorVersion`](/rest_api/objects/index#com-github-operator-framework-api-pkg-operators-lib-version-OperatorVersion) | Version is the CSV’s semantic version |
+
 ### .status.channels[].currentCSVDesc.icon {id="_statuschannelscurrentcsvdescicon"}
 
 Description
@@ -148,6 +152,7 @@ Type
 | --- | --- | --- |
 | `base64data` | `string` |  |
 | `mediatype` | `string` |  |
+
 ### .status.channels[].currentCSVDesc.links {id="_statuschannelscurrentcsvdesclinks"}
 
 Description
@@ -169,6 +174,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` |  |
 | `url` | `string` |  |
+
 ### .status.channels[].currentCSVDesc.maintainers {id="_statuschannelscurrentcsvdescmaintainers"}
 
 Description
@@ -190,6 +196,7 @@ Type
 | --- | --- | --- |
 | `email` | `string` |  |
 | `name` | `string` |  |
+
 ### .status.channels[].currentCSVDesc.provider {id="_statuschannelscurrentcsvdescprovider"}
 
 Description
@@ -203,6 +210,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` |  |
 | `url` | `string` |  |
+
 ### .status.channels[].deprecation {id="_statuschannelsdeprecation"}
 
 Description
@@ -219,6 +227,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `message` | `string` | Message is a human readable message describing the deprecation. |
+
 ### .status.channels[].entries {id="_statuschannelsentries"}
 
 Description
@@ -246,6 +255,7 @@ Required
 | `deprecation` | `object` | Deprecation conveys information regarding a deprecated resource. |
 | `name` | `string` | Name is the name of the bundle for this entry. |
 | `version` | `string` | Version is the version of the bundle for this entry. |
+
 ### .status.channels[].entries[].deprecation {id="_statuschannelsentriesdeprecation"}
 
 Description
@@ -262,6 +272,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `message` | `string` | Message is a human readable message describing the deprecation. |
+
 ### .status.deprecation {id="_statusdeprecation"}
 
 Description
@@ -278,6 +289,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `message` | `string` | Message is a human readable message describing the deprecation. |
+
 ### .status.provider {id="_statusprovider"}
 
 Description
@@ -298,11 +310,11 @@ The following API endpoints are available:
 
 *   `/apis/packages.operators.coreos.com/v1/packagemanifests`
     *   `GET`: list objects of kind PackageManifest
-*   `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests`
+*   `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests`{minja}
     *   `GET`: list objects of kind PackageManifest
-*   `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }}`
+*   `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }}`{minja}
     *   `GET`: read the specified PackageManifest
-*   `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }}/icon`
+*   `/apis/packages.operators.coreos.com/v1/namespaces/{{ namespace }}/packagemanifests/{{ name }}/icon`{minja}
     *   `GET`: connect GET requests to icon of PackageManifest
 
 ### /apis/packages.operators.coreos.com/v1/packagemanifests {id="_apispackagesoperatorscoreoscomv1packagemanifests"}

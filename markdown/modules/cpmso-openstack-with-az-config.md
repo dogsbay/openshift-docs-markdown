@@ -22,7 +22,7 @@ To understand why this procedure is necessary, see [Solution #7013893](https://a
     :   Specifies the ID of the upgraded cluster.
 
 1.  For the `master-1` and `master-2` control plane machines, edit the value of the `serverGroupName` property in their provider specs to match that of the machine `master-0`.
-    ```yaml title="An example {{ rh_openstack }} provider spec"
+    ```yaml title="An example {{ rh_openstack }} provider spec" {minja}
     providerSpec:
       value:
         apiVersion: machine.openshift.io/v1alpha1

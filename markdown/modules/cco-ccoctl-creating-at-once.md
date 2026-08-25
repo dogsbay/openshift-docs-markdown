@@ -65,7 +65,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if aws_sts %}
+{% if aws_sts %}
 # Creating AWS resources with a single command {id="cco-ccoctl-creating-at-once_{{ context }}"}
 
 If the process the `ccoctl` tool uses to create AWS resources automatically meets the requirements of your organization, you can use the `ccoctl aws create-all` command to automate the creation of AWS resources. {._abstract}
@@ -81,8 +81,8 @@ You can use the `ccoctl gcp create-all` command to automate the creation of {{ g
 {% if azure_workload_id %}
 = Creating Azure resources with the Cloud Credential Operator utility {._abstract}
 
-You can use the `ccoctl azure create-all` command to automate the creation of Azure resources.
-{% endif %} {._abstract}
+You can use the `ccoctl azure create-all` command to automate the creation of Azure resources. {._abstract}
+{% endif %}
 
 
 :::note
@@ -145,8 +145,8 @@ You must have:
 
 {% if aws_sts or google_cloud_platform or azure_workload_id %}
 1.  Use the `ccoctl` tool to process all `CredentialsRequest` objects by running the following command:
-    {% endif %}
-    {% if aws_sts %}
+{% endif %}
+{% if aws_sts %}
     ```terminal
     $ ccoctl aws create-all \
       --name=<name> \
@@ -193,12 +193,23 @@ You must have:
       --credentials-requests-dir=<path_to_credentials_requests_directory> \
       --key-storage-method=<key_storage_method>
     ```
+
     where:
-    `<name>`:: Specifies the user-defined name for all created {{ gcp_short }} resources used for tracking. If you plan to install the {{ gcp_short }} Filestore Container Storage Interface (CSI) Driver Operator, retain this value.
-    `<gcp_region>`:: Specifies the {{ gcp_short }} region in which cloud resources will be created.
-    `<gcp_project_id>`:: Specifies the {{ gcp_short }} project ID in which cloud resources will be created.
-    `<path_to_credentials_requests_directory>`:: Specifies the directory containing the files of `CredentialsRequest` manifests to create {{ gcp_short }} service accounts.
-    `<key_storage_method>`:: Specifies the method for storing OIDC JWK files. Accepted values are `public-bucket` and `pool-jwk-file`. The default value `public-bucket` creates a public GCS bucket to host the OIDC configuration and JWK files. The `pool-jwk-file` value attaches the JWK directly to the workload identity pool provider without creating a public bucket. This parameter is optional.
+
+    `<name>`
+    :   Specifies the user-defined name for all created {{ gcp_short }} resources used for tracking. If you plan to install the {{ gcp_short }} Filestore Container Storage Interface (CSI) Driver Operator, retain this value.
+
+    `<gcp_region>`
+    :   Specifies the {{ gcp_short }} region in which cloud resources will be created.
+
+    `<gcp_project_id>`
+    :   Specifies the {{ gcp_short }} project ID in which cloud resources will be created.
+
+    `<path_to_credentials_requests_directory>`
+    :   Specifies the directory containing the files of `CredentialsRequest` manifests to create {{ gcp_short }} service accounts.
+
+    `<key_storage_method>`
+    :   Specifies the method for storing OIDC JWK files. Accepted values are `public-bucket` and `pool-jwk-file`. The default value `public-bucket` creates a public GCS bucket to host the OIDC configuration and JWK files. The `pool-jwk-file` value attaches the JWK directly to the workload identity pool provider without creating a public bucket. This parameter is optional.
 
     :::note
 
@@ -220,16 +231,35 @@ You must have:
       --network-resource-group-name <azure_resource_group> \
       --preserve-existing-roles
     ```
+
     where:
-    `<azure_infra_name>`:: Specifies the user-defined name for all created Azure resources used for tracking.
-    `<ccoctl_output_dir>`:: Specifies the directory in which you want the `ccoctl` utility to create objects. By default, the utility creates objects in the directory in which the commands are run. This parameter is optional.
-    `<azure_region>`:: Specifies the Azure region in which cloud resources will be created.
-    `<azure_subscription_id>`:: Specifies the Azure subscription ID to use.
-    `<path_to_credentials_requests_directory>`:: Specifies the directory containing the files for the component `CredentialsRequest` objects.
-    `<azure_dns_zone_resource_group_name>`:: Specifies the name of the resource group containing the cluster’s base domain Azure DNS zone.
-    `<azure_tenant_id>`:: Specifies the Azure tenant ID to use.
-    `<azure_resource_group>`:: Specifies the virtual network resource group if it is different from the cluster resource group. This parameter is optional.
-    `--preserve-existing-roles`:: Specifies that any custom role assignments you define on managed identities are not removed during {{ product_title }} updates. This parameter is optional.
+
+    `<azure_infra_name>`
+    :   Specifies the user-defined name for all created Azure resources used for tracking.
+
+    `<ccoctl_output_dir>`
+    :   Specifies the directory in which you want the `ccoctl` utility to create objects. By default, the utility creates objects in the directory in which the commands are run. This parameter is optional.
+
+    `<azure_region>`
+    :   Specifies the Azure region in which cloud resources will be created.
+
+    `<azure_subscription_id>`
+    :   Specifies the Azure subscription ID to use.
+
+    `<path_to_credentials_requests_directory>`
+    :   Specifies the directory containing the files for the component `CredentialsRequest` objects.
+
+    `<azure_dns_zone_resource_group_name>`
+    :   Specifies the name of the resource group containing the cluster’s base domain Azure DNS zone.
+
+    `<azure_tenant_id>`
+    :   Specifies the Azure tenant ID to use.
+
+    `<azure_resource_group>`
+    :   Specifies the virtual network resource group if it is different from the cluster resource group. This parameter is optional.
+
+    `--preserve-existing-roles`
+    :   Specifies that any custom role assignments you define on managed identities are not removed during {{ product_title }} updates. This parameter is optional.
 
     :::note
 
@@ -297,67 +327,67 @@ You must have:
 {% endif %}
 
 {%- if context == "installing-aws-customizations" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-network-customizations" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-aws-installer-provisioned" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-vpc" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-private" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-government-region" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-specialized-region" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-secret-region" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-china-region" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 {% if context == "installing-aws-outposts-remote-workers" %}
-{%- set aws_sts = false -%}
+{%- set aws_sts = "" -%}
 {% endif %}
 
 {%- if context == "installing-gcp-customizations" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-network-customizations" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-gcp-installer-provisioned" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-vpc" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-shared-vpc" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
-{%- set google_cloud_platform = false -%}
+{%- set google_cloud_platform = "" -%}
 {% endif %}
 
 {%- if context == "installing-azure-customizations" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-government-region" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-private" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-azure-vnet" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-installer-provisioned" %}
-{%- set azure_workload_id = false -%}
+{%- set azure_workload_id = "" -%}
 {% endif %}

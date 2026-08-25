@@ -17,11 +17,11 @@ If the approval strategy in the subscription is set to **Automatic**, the update
 
 **Procedure**
 
-1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the web console, navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the name of the Operator you want to change the update channel for.
 1.  Click the **Subscription** tab.
 1.  Click the name of the update channel under **Update channel**.
 1.  Click the newer update channel that you want to change to, then click **Save**.
-1.  For subscriptions with an **Automatic** approval strategy, the update begins automatically. Navigate back to the **Ecosystem** -> **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
+1.  For subscriptions with an **Automatic** approval strategy, the update begins automatically. Navigate back to the **Ecosystem** → **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
 
     For subscriptions with a **Manual** approval strategy, you can manually approve the update from the **Subscription** tab.

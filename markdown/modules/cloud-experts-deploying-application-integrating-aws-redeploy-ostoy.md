@@ -19,7 +19,7 @@ After creating the new service account, you need to redeploy the OSToy app. {._a
     $ oc patch deploy ostoy-frontend -n ${OSTOY_NAMESPACE} --type=merge --patch '{"spec": {"template": {"spec":{"serviceAccount":"ostoy-sa"}}}}'
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     spec:
       # Uncomment to use with ACK portion of the workshop

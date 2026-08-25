@@ -11,10 +11,10 @@ To create your own custom project template:
 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You have access to an {{ product_title }} cluster using an account with `cluster-admin` permissions.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You have access to a {{ product_title }} cluster using an account with `dedicated-admin` permissions.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -32,7 +32,7 @@ your modified template:
     ```
 1.  Edit the project configuration resource using the web console or CLI.
     *   Using the web console, complete the following tasks:
-        1.  Navigate to the **Administration** -> **Cluster Settings** page.
+        1.  Navigate to the **Administration** → **Cluster Settings** page.
         1.  Click **Configuration** to view all configuration resources.
         1.  Find the entry for **Project** and click **Edit YAML**.
     *   Using the CLI, complete the following tasks:

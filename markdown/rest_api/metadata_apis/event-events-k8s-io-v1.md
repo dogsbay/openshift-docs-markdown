@@ -1,5 +1,5 @@
 ---
-title: "Event []"
+title: "Event [events.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -40,6 +40,7 @@ Required
 | `reportingInstance` | `string` | reportingInstance is the ID of the controller instance, e.g. `kubelet-xyzf`. This field cannot be empty for new Events and it can have at most 128 characters. |
 | `series` | `object` | EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time. How often to update the EventSeries is up to the event reporters. The default event reporter in "k8s.io/client-go/tools/events/event_broadcaster.go" shows how this struct is updated on heartbeats and can guide customized reporter implementations. |
 | `type` | `string` | type is the type of this event (Normal, Warning), new types could be added in the future. It is machine-readable. This field cannot be empty for new Events. |
+
 ### .series {id="_series"}
 
 Description
@@ -67,18 +68,18 @@ The following API endpoints are available:
     *   `GET`: list or watch objects of kind Event
 *   `/apis/events.k8s.io/v1/watch/events`
     *   `GET`: watch individual changes to a list of Event. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/events.k8s.io/v1/namespaces/{{ namespace }}/events`
+*   `/apis/events.k8s.io/v1/namespaces/{{ namespace }}/events`{minja}
     *   `DELETE`: delete collection of Event
     *   `GET`: list or watch objects of kind Event
     *   `POST`: create an Event
-*   `/apis/events.k8s.io/v1/watch/namespaces/{{ namespace }}/events`
+*   `/apis/events.k8s.io/v1/watch/namespaces/{{ namespace }}/events`{minja}
     *   `GET`: watch individual changes to a list of Event. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/events.k8s.io/v1/namespaces/{{ namespace }}/events/{{ name }}`
+*   `/apis/events.k8s.io/v1/namespaces/{{ namespace }}/events/{{ name }}`{minja}
     *   `DELETE`: delete an Event
     *   `GET`: read the specified Event
     *   `PATCH`: partially update the specified Event
     *   `PUT`: replace the specified Event
-*   `/apis/events.k8s.io/v1/watch/namespaces/{{ namespace }}/events/{{ name }}`
+*   `/apis/events.k8s.io/v1/watch/namespaces/{{ namespace }}/events/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind Event. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/events.k8s.io/v1/events {id="_apiseventsk8siov1events"}

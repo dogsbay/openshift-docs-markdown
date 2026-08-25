@@ -11,7 +11,7 @@ Using the {{ product_title }} web console provides a streamlined and intuitive u
 
 **Procedure**
 
-1.  In the **Developer** perspective, navigate to **+Add** -> **Channel**.
+1.  In the **Developer** perspective, navigate to **+Add** → **Channel**.
 1.  Select the type of `Channel` object that you want to create in the **Type** list.
 1.  Click **Create**.
 

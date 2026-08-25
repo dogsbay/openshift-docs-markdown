@@ -56,6 +56,7 @@ You can configure the Node Health Check Operator to monitor node status and trig
     *   `spec.selector` defines the nodes to monitor. This example monitors all worker nodes.
     *   `spec.unhealthyConditions` defines the parameters to identify an unhealthy node.
     *   `spec.unhealthyConditions.duration` defines the duration that a condition must persist before remediation starts. Set lower values for faster recovery. The following table shows recommended values:
+
         **Recommended `unhealthyConditions` duration values**
 
         | Environment | Recommended duration |
@@ -76,12 +77,12 @@ You can configure the Node Health Check Operator to monitor node status and trig
     ```
 
 
-:::tip
+    :::tip
 
-If remediation does not trigger as expected, verify that the remediation Operator runs correctly, and check the `NodeHealthCheck` CR events for errors:
+    If remediation does not trigger as expected, verify that the remediation Operator runs correctly, and check the `NodeHealthCheck` CR events for errors:
 
-```terminal
-$ oc describe nodehealthcheck nodehealthcheck-sample
-```
-
-:::
+    ```terminal
+    $ oc describe nodehealthcheck nodehealthcheck-sample
+    ```
+    
+    :::

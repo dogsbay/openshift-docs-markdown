@@ -9,7 +9,7 @@ You can install the Kubernetes NMState Operator by using the web console. After 
 
 **Procedure**
 
-1.  Select **Ecosystem** -> **Software Catalog**.
+1.  Select **Ecosystem** → **Software Catalog**.
 1.  In the search field below **All Items**, enter `nmstate` and click **Enter** to search for the Kubernetes NMState Operator.
 1.  Click on the Kubernetes NMState Operator search result.
 1.  Click on **Install** to open the **Install Operator** window.

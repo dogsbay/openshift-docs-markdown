@@ -1,14 +1,13 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Checking the status of the registry pods {id="checking-the-status-of-registry-pods_{{ context }}"}
 
-[role="_abstract"] 
-{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 As a cluster administrator,
 {% endif %}
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 As an administrator with the `dedicated-admin` role,
 {%- endif %}
-you can list the image registry pods running in the `openshift-image-registry` project and check their status.
+you can list the image registry pods running in the `openshift-image-registry` project and check their status. {._abstract}
 
 **Prerequisites**
 

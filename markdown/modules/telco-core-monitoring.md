@@ -10,10 +10,11 @@ New in this release
 Description
 :   The Cluster Monitoring Operator (CMO) is included by default in {{ product_title }} and provides monitoring (metrics, dashboards, and alerting) for the platform components and optionally user projects.
     You can customize the default log retention period, custom alert rules, and so on.
+
     Configuration of the monitoring stack is done through a single string value in the cluster-monitoring-config ConfigMap. The reference tuning merges content from two requirements:
-    * Prometheus configuration is extended to forward alerts to the {{ rh_rhacm_first }} hub cluster for alert aggregation.
+    *   Prometheus configuration is extended to forward alerts to the {{ rh_rhacm_first }} hub cluster for alert aggregation.
     If required, you can extend this configuration to forward alerts to additional locations.
-    * Prometheus retention period is reduced from the default.
+    *   Prometheus retention period is reduced from the default.
     The primary metrics storage is typically external to the cluster.
     Metrics storage on the core cluster is typically a backup to that central store and available for local troubleshooting purposes.
     You can add a `remoteWrite` endpoint to the Prometheus configuration to directly forward metrics to the central store.

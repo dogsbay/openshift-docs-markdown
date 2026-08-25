@@ -9,7 +9,7 @@ You can configure a network interface for a virtual machine (VM) by using the {{
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines**.
+1.  Navigate to **Virtualization** → **VirtualMachines**.
 1.  Click a VM to view the **VirtualMachine details** page.
 1.  On the **Configuration** tab, click the **Network interfaces** tab.
 1.  Click **Add network interface**.

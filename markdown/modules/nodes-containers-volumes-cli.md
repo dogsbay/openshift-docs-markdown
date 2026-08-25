@@ -16,9 +16,9 @@ $ oc set volume <object_selection> <operation> <mandatory_parameters> <options>
 Object selection
 :   Specify one of the following for the `object_selection` parameter in the `oc set volume` command:
 
-<a name="vol-object-selection_{{ context }}"></a>
+    <a name="vol-object-selection_{{ context }}"></a>
 
-    ***Object Selection***
+    **Object Selection**
 
 <table>
 <thead>
@@ -34,43 +34,43 @@ Object selection
   <td>Example</td>
 </tr>
 <tr>
-  <td><code>_<object_type><em> </em><name>_</code></td>
+  <td><code>_&lt;object_type&gt;<em> </em>&lt;name&gt;_</code></td>
 </tr>
 <tr>
-  <td>Selects <code><em><name></em></code> of type <code>_<object_type>_</code>.</td>
+  <td>Selects <code><em>&lt;name&gt;</em></code> of type <code>_&lt;object_type&gt;_</code>.</td>
 </tr>
 <tr>
   <td><code>deploymentConfig registry</code></td>
 </tr>
 <tr>
-  <td><code>_<object_type><em>/</em><name>_</code></td>
+  <td><code>_&lt;object_type&gt;<em>/</em>&lt;name&gt;_</code></td>
 </tr>
 <tr>
-  <td>Selects <code><em><name></em></code> of type <code>_<object_type>_</code>.</td>
+  <td>Selects <code><em>&lt;name&gt;</em></code> of type <code>_&lt;object_type&gt;_</code>.</td>
 </tr>
 <tr>
   <td><code>deploymentConfig/registry</code></td>
 </tr>
 <tr>
-  <td><code>_<object_type>_</code><code>--selector=_<object_label_selector>_</code></td>
+  <td><code>_&lt;object_type&gt;_</code> <code>--selector=_&lt;object_label_selector&gt;_</code></td>
 </tr>
 <tr>
-  <td>Selects resources of type <code>_<object_type>_</code> that matched the given labelselector.</td>
+  <td>Selects resources of type <code>_&lt;object_type&gt;_</code> that matched the given label selector.</td>
 </tr>
 <tr>
-  <td><code>deploymentConfig</code><code>--selector="name=registry"</code></td>
+  <td><code>deploymentConfig</code> <code>--selector="name=registry"</code></td>
 </tr>
 <tr>
-  <td><code>_<object_type>_ --all</code></td>
+  <td><code>_&lt;object_type&gt;_ --all</code></td>
 </tr>
 <tr>
-  <td>Selects all resources of type <code>_<object_type>_</code>.</td>
+  <td>Selects all resources of type <code>_&lt;object_type&gt;_</code>.</td>
 </tr>
 <tr>
   <td><code>deploymentConfig --all</code></td>
 </tr>
 <tr>
-  <td><code>-f</code> or<code>--filename=_<file_name>_</code></td>
+  <td><code>-f</code> or <code>--filename=_&lt;file_name&gt;_</code></td>
 </tr>
 <tr>
   <td>File name, directory, or URL to file to use to edit the resource.</td>

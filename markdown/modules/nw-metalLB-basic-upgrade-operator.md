@@ -41,7 +41,7 @@ To manually control when the MetalLB Operator upgrades in {{ product_title }}, y
     ```
 
     The following example output shows `install-tsz2g` as a manual install plan:
-    ```terminal
+    ```terminal {minja}
     NAME            CSV                                     APPROVAL    APPROVED
     install-shpmd   metallb-operator.v{{ product_version }}.0-202502261233   Automatic   true
     install-tsz2g   metallb-operator.v{{ product_version }}.0-202503102139   Manual      false

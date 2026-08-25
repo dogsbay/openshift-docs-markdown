@@ -7,11 +7,12 @@ title: "Installing a private cluster on {{ ibm_cloud_title }}"
 # Installing a private cluster on {{ ibm_cloud_title }} {id="installing-ibm-cloud-private"}
 {%- set context = "installing-ibm-cloud-private" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a private cluster into an existing Virtual Private Cloud (VPC) on {{ ibm_cloud_name }}. The installation program provisions the rest of the required infrastructure, which you can further customize.
+In {{ product_title }} version {{ product_version }}, you can install a private cluster into an existing Virtual Private Cloud (VPC) on {{ ibm_cloud_name }}. The installation program provisions the rest of the required infrastructure, which you can further customize. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/prereqs-ibm-cloud-installer-provisioned.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -36,12 +37,14 @@ In {{ product_title }} version {{ product_version }}, you can install a private 
 {% leveloffset +1 %}{% include "./modules/installation-initializing-manual.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation configuration parameters for {{ ibm_cloud_name }}](/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-config-parameters-ibm-cloud-vpc)
 
 {% leveloffset +2 %}{% include "./modules/installation-minimum-resource-requirements.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Optimizing storage](/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
@@ -64,11 +67,12 @@ In {{ product_title }} version {{ product_version }}, you can install a private 
 {% leveloffset +1 %}{% include "./modules/cli-logging-in-kubeadmin.md" %}{% endleveloffset %}
 
 <a name="additional-resources_installing-ibm-cloud-private-console"></a>**Additional resources**
+{._additional-resources}
 
 *   [Accessing the web console](/web_console/web-console#web-console)
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_installing-ibm-cloud-private"}
+## Additional resources {id="additional-resources_installing-ibm-cloud-private" ._additional-resources}
 *   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

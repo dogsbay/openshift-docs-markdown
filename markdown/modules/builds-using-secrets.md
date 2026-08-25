@@ -28,11 +28,11 @@ After creating secrets, you can create a pod to reference your secret, get logs,
     metadata:
       name: test-secret
     data:
-      username: <username> # (1)
-      password: <password> # (2)
+      username: <username> (1)
+      password: <password> (2)
     stringData:
-      hostname: myapp.mydomain.com # (3)
-      secret.properties: |- # (4)
+      hostname: myapp.mydomain.com (3)
+      secret.properties: |- (4)
         property1=valueA
         property2=valueB
     ```
@@ -40,57 +40,57 @@ After creating secrets, you can create a pod to reference your secret, get logs,
     1.  File contains decoded values.
     1.  File contains the provided string.
     1.  File contains the provided data.
-        ```yaml title="YAML file of a pod populating files in a volume with secret data"
-        apiVersion: v1
-        kind: Pod
-        metadata:
-          name: secret-example-pod
-        spec:
-          containers:
-            - name: secret-test-container
-              image: busybox
-              command: [ "/bin/sh", "-c", "cat /etc/secret-volume/*" ]
-              volumeMounts:
-                  # name must match the volume name below
-                  - name: secret-volume
-                    mountPath: /etc/secret-volume
-                    readOnly: true
-          volumes:
-            - name: secret-volume
-              secret:
-                secretName: test-secret
-          restartPolicy: Never
-        ```
-        ```yaml title="YAML file of a pod populating environment variables with secret data"
-        apiVersion: v1
-        kind: Pod
-        metadata:
-          name: secret-example-pod
-        spec:
-          containers:
-            - name: secret-test-container
-              image: busybox
-              command: [ "/bin/sh", "-c", "export" ]
-              env:
-                - name: TEST_SECRET_USERNAME_ENV_VAR
-                  valueFrom:
-                    secretKeyRef:
-                      name: test-secret
-                      key: username
-          restartPolicy: Never
-        ```
-        ```yaml title="YAML file of a BuildConfig object that populates environment variables with secret data"
-        apiVersion: build.openshift.io/v1
-        kind: BuildConfig
-        metadata:
-          name: secret-example-bc
-        spec:
-          strategy:
-            sourceStrategy:
-              env:
-              - name: TEST_SECRET_USERNAME_ENV_VAR
-                valueFrom:
-                  secretKeyRef:
-                    name: test-secret
-                    key: username
-        ```
+    ```yaml title="YAML file of a pod populating files in a volume with secret data"
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: secret-example-pod
+    spec:
+      containers:
+        - name: secret-test-container
+          image: busybox
+          command: [ "/bin/sh", "-c", "cat /etc/secret-volume/*" ]
+          volumeMounts:
+              # name must match the volume name below
+              - name: secret-volume
+                mountPath: /etc/secret-volume
+                readOnly: true
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: test-secret
+      restartPolicy: Never
+    ```
+    ```yaml title="YAML file of a pod populating environment variables with secret data"
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: secret-example-pod
+    spec:
+      containers:
+        - name: secret-test-container
+          image: busybox
+          command: [ "/bin/sh", "-c", "export" ]
+          env:
+            - name: TEST_SECRET_USERNAME_ENV_VAR
+              valueFrom:
+                secretKeyRef:
+                  name: test-secret
+                  key: username
+      restartPolicy: Never
+    ```
+    ```yaml title="YAML file of a BuildConfig object that populates environment variables with secret data"
+    apiVersion: build.openshift.io/v1
+    kind: BuildConfig
+    metadata:
+      name: secret-example-bc
+    spec:
+      strategy:
+        sourceStrategy:
+          env:
+          - name: TEST_SECRET_USERNAME_ENV_VAR
+            valueFrom:
+              secretKeyRef:
+                name: test-secret
+                key: username
+    ```

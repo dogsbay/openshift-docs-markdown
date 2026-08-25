@@ -3,8 +3,8 @@ title: Managing traffic in your service mesh
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Managing traffic in your service mesh {id="ossm-routing-traffic"}
 {% include "./_attributes/common-attributes.md" %}
+# Managing traffic in your service mesh {id="ossm-routing-traffic"}
 {%- set context = "traffic-management" %}
 
 Using {{ SMProductName }}, you can control the flow of traffic and API calls between services. Some services in your service mesh might need to communicate within the mesh and others might need to be hidden. You can manage the traffic to hide specific backend services, expose services, create testing or versioning deployments, or add a security layer on a set of services.
@@ -16,20 +16,21 @@ Using {{ SMProductName }}, you can control the flow of traffic and API calls bet
 {% leveloffset +2 %}{% include "./modules/ossm-automatic-gateway-injection.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/ossm-deploying-automatic-gateway-injection.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {% leveloffset +2 %}{% include "./modules/ossm-routing-ingress.md" %}{% endleveloffset %}
 
 {% if openshift_enterprise %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the node port service range](/networking/configuring_network_settings/configuring-node-port-service-range#configuring-node-port-service-range)
 {% endif %}
 
 {% leveloffset +2 %}{% include "./modules/ossm-routing-gateways.md" %}{% endleveloffset %}
 
-## Understanding automatic routes {id="ossm-auto-route_{{ context }}"}
+## Understanding automatic routes {id="ossm-auto-route_{{ context }}" ._additional-resources}
 
 {%- set FeatureName = "Istio OpenShift Routing (IOR)" %}
 {% leveloffset +1 %}{% include "./modules/deprecated-feature.md" %}{% endleveloffset %}
@@ -57,6 +58,7 @@ For more information, see "Using wildcard routes" in [Ingress Operator in {{ pro
 {% leveloffset +2 %}{% include "./modules/ossm-auto-route-annotations.md" %}{% endleveloffset %}
 
 {% if openshift_enterprise %}
+
 **Additional resources**
 
 *   [Route-specific annotations](/networking/ingress_load_balancing/routes/nw-configuring-routes#nw-route-specific-annotations).

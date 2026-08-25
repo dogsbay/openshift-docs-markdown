@@ -7,7 +7,7 @@ The {{ product_title }} TLS security profiles are based on [Mozilla recommended 
 
 You can specify one of the following TLS security profiles for each component:
 
-***TLS security profiles***
+**TLS security profiles**
 
 <table>
 <thead>
@@ -19,11 +19,11 @@ You can specify one of the following TLS security profiles for each component:
 <tbody>
 <tr>
   <td><code>Old</code></td>
-  <td>This profile is intended for use with legacy clients or libraries. The profile is based on the <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Old_backward_compatibility">Old backward compatibility</a> recommended configuration.<br><br>The <code>Old</code> profile requires a minimum TLS version of 1.0.<br><br><dl><dt>Note</dt><dd>For the Ingress Controller, the minimum TLS version is converted from 1.0 to 1.1.</dd></dl></td>
+  <td>This profile is intended for use with legacy clients or libraries. The profile is based on the <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Old_backward_compatibility">Old backward compatibility</a> recommended configuration.<br><br>The <code>Old</code> profile requires a minimum TLS version of 1.0.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>For the Ingress Controller, the minimum TLS version is converted from 1.0 to 1.1.</dd></dl></td>
 </tr>
 <tr>
   <td><code>Intermediate</code></td>
-  <td>This profile is the default TLS security profile for the Ingress Controller, kubelet, and control plane. The profile is based on the <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_.28recommended.29">Intermediate compatibility</a> recommended configuration.<br><br>The <code>Intermediate</code> profile requires a minimum TLS version of 1.2.<br><br><dl><dt>Note</dt><dd>This profile is the recommended configuration for the majority of clients.</dd></dl></td>
+  <td>This profile is the default TLS security profile for the Ingress Controller, kubelet, and control plane. The profile is based on the <a href="https://wiki.mozilla.org/Security/Server_Side_TLS#Intermediate_compatibility_.28recommended.29">Intermediate compatibility</a> recommended configuration.<br><br>The <code>Intermediate</code> profile requires a minimum TLS version of 1.2.<br><br><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>This profile is the recommended configuration for the majority of clients.</dd></dl></td>
 </tr>
 <tr>
   <td><code>Modern</code></td>
@@ -31,7 +31,7 @@ You can specify one of the following TLS security profiles for each component:
 </tr>
 <tr>
   <td><code>Custom</code></td>
-  <td>This profile allows you to define the TLS version and ciphers to use.<br><br><dl><dt>Warning</dt><dd>Use caution when using a <code>Custom</code> profile, because invalid configurations can cause problems.</dd></dl></td>
+  <td>This profile allows you to define the TLS version and ciphers to use.<br><br><dl class="db-admonition db-admonition-warning"><dt>Warning</dt><dd>Use caution when using a <code>Custom</code> profile, because invalid configurations can cause problems.</dd></dl></td>
 </tr>
 </tbody>
 </table>

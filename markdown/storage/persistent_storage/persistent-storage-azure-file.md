@@ -3,11 +3,11 @@ title: Persistent storage using Azure File
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using Azure File {id="persistent-storage-using-azure-file"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using Azure File {id="persistent-storage-using-azure-file"}
 {%- set context = "persistent-storage-azure-file" %}
 
-{{ product_title }} supports Microsoft Azure File volumes. You can provision your {{ product_title }} cluster with persistent storage using Azure. Some familiarity with Kubernetes and Azure is assumed.
+{{ product_title }} supports Microsoft Azure File volumes. You can provision your {{ product_title }} cluster with persistent storage using Azure. Some familiarity with Kubernetes and Azure is assumed. {._abstract}
 
 The Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure.
 You can provision Azure File volumes dynamically.

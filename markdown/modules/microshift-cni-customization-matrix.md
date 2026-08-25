@@ -29,8 +29,8 @@ The following table summarizes the status of networking features and capabilitie
 Additional details about networking capabilities
 
 :   *   `Advertise address`: If unset, the default value is set to the next immediate subnet after the service network. For example, when the service network is `10.43.0.0/16`, the `advertiseAddress` is set to `10.44.0.0/32`.
-*   `Multicast DNS`: You can use the multicast DNS protocol (mDNS) to allow name resolution and service discovery within a Local Area Network (LAN) using multicast exposed on the `5353/UDP` port.
-*   `Network proxies`: There is no built-in transparent proxying of egress traffic in {{ microshift_short }}. Egress must be manually configured.
-*   `Firewall`: Setting up the firewalld service is supported by {{ op_system_ostree }}.
-*   `IPv6`: Is supported in both single-stack and dual-stack networks with the OVN-Kubernetes network plugin. You can also use IPv6 by connecting to other networks with the {{ microshift_short }} Multus CNI plugin.
-*   `Ingress router`: Configure by using the {{ microshift_short }} `config.yaml` file.
+    *   `Multicast DNS`: You can use the multicast DNS protocol (mDNS) to allow name resolution and service discovery within a Local Area Network (LAN) using multicast exposed on the `5353/UDP` port.
+    *   `Network proxies`: There is no built-in transparent proxying of egress traffic in {{ microshift_short }}. Egress must be manually configured.
+    *   `Firewall`: Setting up the firewalld service is supported by {{ op_system_ostree }}.
+    *   `IPv6`: Is supported in both single-stack and dual-stack networks with the OVN-Kubernetes network plugin. You can also use IPv6 by connecting to other networks with the {{ microshift_short }} Multus CNI plugin.
+    *   `Ingress router`: Configure by using the {{ microshift_short }} `config.yaml` file.

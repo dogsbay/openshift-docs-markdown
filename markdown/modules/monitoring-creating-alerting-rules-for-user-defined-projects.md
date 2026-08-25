@@ -32,13 +32,13 @@ The following example creates a new alerting rule named `example-alert`. The ale
       groups:
       - name: example
         rules:
-        - alert: VersionAlert # (1)
-          for: 1m # (2)
-          expr: version{job="prometheus-example-app"} == 0 # (3)
+        - alert: VersionAlert (1)
+          for: 1m (2)
+          expr: version{job="prometheus-example-app"} == 0 (3)
           labels:
-            severity: warning # (4)
+            severity: warning (4)
           annotations:
-            message: This is an example alert. # (5)
+            message: This is an example alert. (5)
     ```
     1.  The name of the alerting rule you want to create.
     1.  The duration for which the condition should be true before an alert is fired.

@@ -3,8 +3,8 @@ title: Using the 3scale WebAssembly module
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the 3scale WebAssembly module {id="ossm-threescale-webassembly-module"}
 {% include "./_attributes/common-attributes.md" %}
+# Using the 3scale WebAssembly module {id="ossm-threescale-webassembly-module"}
 {%- set context = "ossm-threescale-webassembly-module" %}
 
 
@@ -40,6 +40,7 @@ Because of its self-contained design, it is possible to configure this module to
 {% leveloffset +1 %}{% include "./modules/ossm-configuring-the-threescale-wasm-auth-module.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Migrating from `ServiceMeshExtension` to `WasmPlugin` resources](/service_mesh/v2x/ossm-extensions#ossm-extensions-migration-overview_ossm-extensions)
 *   [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources)

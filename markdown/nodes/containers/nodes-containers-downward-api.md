@@ -4,10 +4,10 @@ title: Allowing containers to consume API objects
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "nodes-containers-downward-api" %}
-# Allowing containers to consume API objects {id="nodes-containers-downward-api"}
 {% include "./_attributes/common-attributes.md" %}
+# Allowing containers to consume API objects {id="nodes-containers-downward-api"}
 
-You can use the _Downward API_ to allow containers to consume information about API objects, such as the pod’s name, namespace, and resource values, without coupling to {{ product_title }} by using environment variables or a volume plugin.
+You can use the _Downward API_ to allow containers to consume information about API objects, such as the pod’s name, namespace, and resource values, without coupling to {{ product_title }} by using environment variables or a volume plugin. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/nodes-containers-downward-api-about.md" %}{% endleveloffset %}
 

@@ -1,5 +1,5 @@
 ---
-title: "FlowSchema []"
+title: "FlowSchema [flowcontrol.apiserver.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | `metadata` is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | FlowSchemaSpec describes how the FlowSchema’s specification looks like. |
 | `status` | `object` | FlowSchemaStatus represents the current state of a FlowSchema. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,6 +45,7 @@ Required
 | `priorityLevelConfiguration` | `object` | PriorityLevelConfigurationReference contains information that points to the "request-priority" being used. |
 | `rules` | `array` | `rules` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema. |
 | `rules[]` | `object` | PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request. |
+
 ### .spec.distinguisherMethod {id="_specdistinguishermethod"}
 
 Description
@@ -60,6 +62,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `type` | `string` | `type` is the type of flow distinguisher method The supported types are "ByUser" and "ByNamespace". Required. |
+
 ### .spec.priorityLevelConfiguration {id="_specprioritylevelconfiguration"}
 
 Description
@@ -76,6 +79,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | `name` is the name of the priority level configuration being referenced Required. |
+
 ### .spec.rules {id="_specrules"}
 
 Description
@@ -106,6 +110,7 @@ Required
 | `resourceRules[]` | `object` | ResourcePolicyRule is a predicate that matches some resource requests, testing the request’s verb and the target resource. A ResourcePolicyRule matches a resource request if and only if: (a) at least one member of verbs matches the request, (b) at least one member of apiGroups matches the request, (c) at least one member of resources matches the request, and (d) either (d1) the request does not specify a namespace (i.e., `Namespace==""`) and clusterScope is true or (d2) the request specifies a namespace and least one member of namespaces matches the request’s namespace. |
 | `subjects` | `array` | subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required. |
 | `subjects[]` | `object` | Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account. |
+
 ### .spec.rules[].nonResourceRules {id="_specrulesnonresourcerules"}
 
 Description
@@ -133,6 +138,7 @@ Required
 | --- | --- | --- |
 | `nonResourceURLs` | `array (string)` | `nonResourceURLs` is a set of url prefixes that a user should have access to and may not be empty. For example:   - "/healthz" is legal   - "/hea*" is illegal   - "/hea" is legal but matches nothing   - "/hea/*" also matches nothing   - "/healthz/*" matches all per-component health checks. "*" matches all non-resource urls. if it is present, it must be the only entry. Required. |
 | `verbs` | `array (string)` | `verbs` is a list of matching verbs and may not be empty. "*" matches all verbs. If it is present, it must be the only entry. Required. |
+
 ### .spec.rules[].resourceRules {id="_specrulesresourcerules"}
 
 Description
@@ -164,6 +170,7 @@ Required
 | `namespaces` | `array (string)` | `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "**".  Note that "**" matches any specified namespace but does not match a request that _does not specify_ a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true. |
 | `resources` | `array (string)` | `resources` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ "services", "nodes/status" ].  This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required. |
 | `verbs` | `array (string)` | `verbs` is a list of matching verbs and may not be empty. "*" matches all verbs and, if present, must be the only entry. Required. |
+
 ### .spec.rules[].subjects {id="_specrulessubjects"}
 
 Description
@@ -192,6 +199,7 @@ Required
 | `kind` | `string` | `kind` indicates which one of the other fields is non-empty. Required |
 | `serviceAccount` | `object` | ServiceAccountSubject holds detailed information for service-account-kind subject. |
 | `user` | `object` | UserSubject holds detailed information for user-kind subject. |
+
 ### .spec.rules[].subjects[].group {id="_specrulessubjectsgroup"}
 
 Description
@@ -208,6 +216,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the user group that matches, or "*" to match all user groups. See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required. |
+
 ### .spec.rules[].subjects[].serviceAccount {id="_specrulessubjectsserviceaccount"}
 
 Description
@@ -226,6 +235,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | `name` is the name of matching ServiceAccount objects, or "*" to match regardless of name. Required. |
 | `namespace` | `string` | `namespace` is the namespace of matching ServiceAccount objects. Required. |
+
 ### .spec.rules[].subjects[].user {id="_specrulessubjectsuser"}
 
 Description
@@ -242,6 +252,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | `name` is the username that matches, or "*" to match all usernames. Required. |
+
 ### .status {id="_status"}
 
 Description
@@ -255,6 +266,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | `conditions` is a list of the current states of FlowSchema. |
 | `conditions[]` | `object` | FlowSchemaCondition describes conditions for a FlowSchema. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -291,14 +303,14 @@ The following API endpoints are available:
     *   `POST`: create a FlowSchema
 *   `/apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas`
     *   `GET`: watch individual changes to a list of FlowSchema. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{{ name }}`
+*   `/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{{ name }}`{minja}
     *   `DELETE`: delete a FlowSchema
     *   `GET`: read the specified FlowSchema
     *   `PATCH`: partially update the specified FlowSchema
     *   `PUT`: replace the specified FlowSchema
-*   `/apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas/{{ name }}`
+*   `/apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind FlowSchema. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
-*   `/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{{ name }}/status`
+*   `/apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{{ name }}/status`{minja}
     *   `GET`: read status of the specified FlowSchema
     *   `PATCH`: partially update status of the specified FlowSchema
     *   `PUT`: replace status of the specified FlowSchema

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Getting support {id="ossm-support"}
 {% include "./_attributes/common-attributes.md" %}
+# Getting support {id="ossm-support"}
 {%- set context = "ossm-support" %}
 
 {% leveloffset +1 %}{% include "./modules/support.md" %}{% endleveloffset %}

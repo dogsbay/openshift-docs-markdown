@@ -3,11 +3,11 @@ title: Persistent storage using logical volume manager storage
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Persistent storage using logical volume manager storage {id="persistent-storage-using-lvms"}
 {% include "./_attributes/common-attributes.md" %}
+# Persistent storage using logical volume manager storage {id="persistent-storage-using-lvms"}
 {%- set context = "logical-volume-manager-storage" %}
 
-{{ lvms_first }} uses LVM2 through the `TopoLVM CSI` driver to dynamically provision local storage on a cluster with limited resources. With {{ lvms }}, you can create volume groups, persistent volume claims (PVCs), snapshots, and clones.
+{{ lvms_first }} uses LVM2 through the `TopoLVM CSI` driver to dynamically provision local storage on a cluster with limited resources. With {{ lvms }}, you can create volume groups, persistent volume claims (PVCs), snapshots, and clones. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/lvms-about-lvm-storage-installation.md" %}{% endleveloffset %}
 
@@ -18,6 +18,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-installing-logical-volume-manager-operator-disconnected-environment.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About disconnected installation mirroring](/disconnected/index#installing-mirroring-disconnected-about)
 *   [Mirroring the {{ product_title }} image repository](/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)
@@ -30,6 +31,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-installing-logical-volume-manager-operator-using-rhacm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
@@ -46,6 +48,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +1 %}{% include "./modules/lvms-about-lvmcluster-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Overview of chunk size](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/configuring_and_managing_logical_volumes/index#overview-of-chunk-size_creating-and-managing-thin-provisioned-volumes)
 *   [Limitations to configure the size of the devices used in {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#limitations-to-configure-size-of-devices_logical-volume-manager-storage)
@@ -58,6 +61,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-about-adding-devices-to-a-vg.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ op_system_base }} documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_file_systems/assembly_overview-of-persistent-naming-attributes_managing-file-systems)
 *   [Creating a software RAID on an installed system](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_storage_devices/managing-raid_managing-storage-devices#creating-a-software-raid-on-an-installed-system_managing-raid)
@@ -77,24 +81,28 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-reusing-vg-from-prev-installation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Grouping LVM objects with tags](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_logical_volumes/grouping-lvm-objects-with-tags_configuring-and-managing-logical-volumes#doc-wrapper)
 
 {% leveloffset +2 %}{% include "./modules/lvms-creating-lvms-cluster-using-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
 {% leveloffset +2 %}{% include "./modules/lvms-creating-lvms-cluster-using-web-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
 {% leveloffset +2 %}{% include "./modules/lvms-creating-lvmcluster-using-rhacm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 
@@ -125,6 +133,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +1 %}{% include "./modules/lvms-about-scaling-storage-of-clusters.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Adding worker nodes to {{ sno }} clusters](/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
 *   [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
@@ -132,6 +141,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-scaling-storage-of-clusters-using-cli.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 *   [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
@@ -140,6 +150,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-scaling-storage-of-clusters-using-web-console.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 *   [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
@@ -148,6 +159,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-scaling-storage-of-clusters-using-rhacm.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 *   [Devices not supported by {{ lvms }}](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-unsupported-devices_logical-volume-manager-storage)
@@ -156,6 +168,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +1 %}{% include "./modules/lvms-scaling-storage-expand-pvc.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Ways to scale up the storage of clusters](/storage/persistent_storage_local/persistent-storage-using-lvms#lvms-about-scaling-storage-of-cluster_logical-volume-manager-storage)
 *   [Enabling volume expansion support](/storage/expanding-persistent-volumes#add-volume-expansion_expanding-persistent-volumes)
@@ -165,6 +178,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +1 %}{% include "./modules/lvms-about-volume-snapshots.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [OADP features](/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-features_oadp-features-plugins)
 
@@ -185,6 +199,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +1 %}{% include "./modules/lvms-monitoring-logical-volume-manager-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/{{ rh_rhacm_version }}/html-single/observability/index[Observability]
 *   https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/{{ rh_rhacm_version }}/html-single/observability/index#adding-custom-metrics[Adding custom metrics]
@@ -200,6 +215,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +1 %}{% include "./modules/lvms-download-log-files-and-diagnostics.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the must-gather tool](/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 
@@ -210,6 +226,7 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-troubleshooting-recovering-from-missing-lvms-or-operator-components.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-lvmcluster_logical-volume-manager-storage)
 *   [Ways to create an `LVMCluster` custom resource](/storage/persistent_storage_local/persistent-storage-using-lvms#about-creating-lvmcluster-cr_logical-volume-manager-storage)
@@ -217,16 +234,18 @@ title: Persistent storage using logical volume manager storage
 {% leveloffset +2 %}{% include "./modules/lvms-troubleshooting-recovering-from-node-failure.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Performing a forced clean-up](/storage/persistent_storage_local/persistent-storage-using-lvms#performing-a-forced-cleanup_logical-volume-manager-storage)
 
 {% leveloffset +2 %}{% include "./modules/lvms-troubleshooting-recovering-from-disk-failure.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Performing a forced clean-up](/storage/persistent_storage_local/persistent-storage-using-lvms#performing-a-forced-cleanup_logical-volume-manager-storage)
 
 {% leveloffset +2 %}{% include "./modules/lvms-troubleshooting-performing-a-forced-cleanup.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Red Hat Advanced Cluster Management for Kubernetes: Installing while connected online](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/{{ rh_rhacm_version }}/html/install/installing#installing-while-connected-online)

@@ -16,7 +16,7 @@ For more information on the meaning of these fields, see "About checking machine
     :::
 
 {%- set FeatureName = "The custom layered image output" %}
-{% include "./snippets/technology-preview.md" %}
+    {% include "./snippets/technology-preview.md" %}
 
 **Procedure**
 

@@ -22,6 +22,7 @@ When creating a pipeline run, you can specify a remote pipeline from a Git repos
         value: <path_in_repository>
     # ...
     ```
+
     **Supported parameters for the Git resolver**
 
     | Parameter | Description | Example value |
@@ -31,6 +32,7 @@ When creating a pipeline run, you can specify a remote pipeline from a Git repos
     | `org` | The organization for the repository, when using the authenticated SCM API. | `tektoncd` |
     | `revision` | The Git revision in the repository. You can specify a branch name, a tag  name, or a commit SHA hash. | `aeb957601cf41c012be462827053a21a420befca`<br> `main`<br> `v0.38.2` |
     | `pathInRepo` | The path name of the YAML file in the repository. | `task/golang-build/0.3/golang-build.yaml` |
+
 
     :::note
 

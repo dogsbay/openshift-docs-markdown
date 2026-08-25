@@ -10,7 +10,7 @@ title: "Configuring the OpenShift API for Data Protection with {{ gcp_full }}"
 {%- set credentials = "cloud-credentials-gcp" -%}
 {%- set provider = "gcp" %}
 
-You install the OpenShift API for Data Protection (OADP) with {{ gcp_first }} by installing the OADP Operator. The Operator installs Velero {{ velero_version }}.
+You install the OpenShift API for Data Protection (OADP) with {{ gcp_first }} by installing the OADP Operator. The Operator installs Velero {{ velero_version }}. {._abstract}
 
 You configure {{ gcp_short }} for Velero, create a default `Secret`, and then install the Data Protection Application.
 
@@ -60,7 +60,7 @@ To install the OADP Operator in a restricted network environment, you must first
 
 {% leveloffset +2 %}{% include "./modules/oadp-about-disable-node-agent-dpa.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Velero {{ velero_version }}](https://{{ velero_domain }}/docs/v{{ velero_version }}/)
 *   [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)

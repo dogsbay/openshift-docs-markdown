@@ -5,7 +5,7 @@ Before you can use your VPC to create a {{ product_title }} cluster, you must ta
 
 The following table shows how to tag your resources:
 
-***Required subnet tags***
+**Required subnet tags**
 
 <table>
 <thead>

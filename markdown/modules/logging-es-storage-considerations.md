@@ -13,7 +13,7 @@ If you use a local volume for persistent storage, do not use a raw block volume,
 
 The OpenShift Elasticsearch Operator names the PVCs using the Elasticsearch resource name.
 
-Fluentd ships any logs from **systemd journal** and ***/var/log/containers/**.log** to Elasticsearch.
+Fluentd ships any logs from **systemd journal** and **/var/log/containers/*.log** to Elasticsearch.
 
 Elasticsearch requires sufficient memory to perform large merge operations. If it does not have enough memory, it becomes unresponsive. To avoid this problem, evaluate how much application log data you need, and allocate approximately double that amount of free storage capacity.
 

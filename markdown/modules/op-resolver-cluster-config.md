@@ -18,10 +18,10 @@ You can change the default kind and namespace for the cluster resolver, or limit
     spec:
       pipeline:
         cluster-resolver-config:
-          default-kind: pipeline # (1)
-          default-namespace: namespace1 # (2)
-          allowed-namespaces: namespace1, namespace2 # (3)
-          blocked-namespaces: namespace3, namespace4 # (4)
+          default-kind: pipeline (1)
+          default-namespace: namespace1 (2)
+          allowed-namespaces: namespace1, namespace2 (3)
+          blocked-namespaces: namespace3, namespace4 (4)
     ```
     1.  The default resource kind to fetch, if not specified in parameters.
     1.  The default namespace for fetching resources, if not specified in parameters.

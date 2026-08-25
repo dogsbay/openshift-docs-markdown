@@ -3,8 +3,8 @@ title: Service Mesh Release Notes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Service Mesh Release Notes {id="service-mesh-release-notes"}
 {% include "./_attributes/common-attributes.md" %}
+# Service Mesh Release Notes {id="service-mesh-release-notes"}
 {%- set context = "ossm-release-notes" %}
 
 {% leveloffset +1 %}{% include "./modules/ossm-release-2-6-11.md" %}{% endleveloffset %}
@@ -75,7 +75,7 @@ title: Service Mesh Release Notes
 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 {% leveloffset +1 %}{% include "./modules/ossm-rn-technology-preview.md" %}{% endleveloffset %}
-{% endif %}
+{%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/ossm-rn-deprecated-features.md" %}{% endleveloffset %}
 

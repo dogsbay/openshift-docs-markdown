@@ -7,7 +7,21 @@ In addition to standard Kubernetes APIs, {{ microshift_short }} includes a small
 
 **{{ microshift_short }} OpenShift APIs**
 
-| API | API group |
-| --- | --- |
-| Route | route.openshift.io/v1 |
-| SecurityContextConstraints | security.openshift.io/v1 |
+<table>
+<thead>
+<tr>
+  <th>API ^</th>
+  <th>API group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Route</td>
+  <td>route.openshift.io/v1</td>
+</tr>
+<tr>
+  <td>SecurityContextConstraints</td>
+  <td>security.openshift.io/v1</td>
+</tr>
+</tbody>
+</table>

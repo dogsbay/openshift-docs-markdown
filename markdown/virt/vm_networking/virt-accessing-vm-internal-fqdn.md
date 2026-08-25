@@ -3,11 +3,11 @@ title: Accessing a virtual machine  by using its internal FQDN
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Accessing a virtual machine  by using its internal FQDN {id="virt-accessing-vm-internal-fqdn"}
 {% include "./_attributes/common-attributes.md" %}
+# Accessing a virtual machine  by using its internal FQDN {id="virt-accessing-vm-internal-fqdn"}
 {%- set context = "virt-accessing-vm-internal-fqdn" %}
 
-You can access a virtual machine on a stable, fully qualified domain name (FQDN) by using headless services. A headless service creates DNS records for each pod instead of a virtual IP, enabling FQDN access without exposing specific ports.
+You can access a virtual machine on a stable, fully qualified domain name (FQDN) by using headless services. A headless service creates DNS records for each pod instead of a virtual IP, enabling FQDN access without exposing specific ports. {._abstract}
 
 
 :::important
@@ -23,5 +23,5 @@ If you created a VM by using the {{ product_title }} web console, you can find i
 
 {% leveloffset +1 %}{% include "./modules/virt-connecting-vm-internal-fqdn.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Exposing a VM by using a service](/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)

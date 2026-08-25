@@ -43,7 +43,7 @@ After you create the Terraform files, you must initiate Terraform to provide all
       Enter a value:
     ```
 1.  Enter `yes` to proceed or `no` to cancel when the Terraform interface lists the resources to be created or changed and prompts for confirmation:
-    {%- if tf_rosa_hcp %}
+{% if tf_rosa_hcp %}
     ```terminal
     Plan: 63 to add, 0 to change, 0 to destroy.
 
@@ -62,7 +62,7 @@ After you create the Terraform files, you must initiate Terraform to provide all
 
       Enter a value: yes
     ```
-{%- endif %}
+{% endif %}
 
     If you enter `yes`, your Terraform plan starts, creating your AWS account roles, Operator roles, and your {{ product_title }} cluster.
 
@@ -74,7 +74,7 @@ After you create the Terraform files, you must initiate Terraform to provide all
     ```
 
     This example shows a cluster in the `ready` state:
-{%- if openshift_rosa_hcp %}
+{% if openshift_rosa_hcp %}
     ```terminal
     ID                                NAME          STATE  TOPOLOGY
     27c3snjsupa9obua74ba8se5kcj11269  rosa-tf-demo  ready  Hosted CP
@@ -92,12 +92,12 @@ After you create the Terraform files, you must initiate Terraform to provide all
     ```
 
     This example shows the account roles that were created:
-    ```terminal
+    ```terminal {minja}
     I: Fetching account roles
     ROLE NAME                                   ROLE TYPE      ROLE ARN                                                           OPENSHIFT VERSION  AWS Managed
-{%- if tf_rosa_classic %}
+    {%- if tf_rosa_classic %}
     ROSA-demo-ControlPlane-Role                 Control plane  arn:aws:iam::<ID>:role/ROSA-demo-ControlPlane-Role                 4.14               No
-{%- endif %}
+    {%- endif %}
     ROSA-demo-Installer-Role                    Installer      arn:aws:iam::<ID>:role/ROSA-demo-Installer-Role                    4.14               No
     ROSA-demo-Support-Role                      Support        arn:aws:iam::<ID>:role/ROSA-demo-Support-Role                      4.14               No
     ROSA-demo-Worker-Role                       Worker         arn:aws:iam::<ID>:role/ROSA-demo-Worker-Role                       4.14               No
@@ -108,15 +108,15 @@ After you create the Terraform files, you must initiate Terraform to provide all
     ```
 
     This example shows the Terraform-created Operator roles:
-    ```terminal
+    ```terminal {minja}
     I: Fetching operator roles
     ROLE PREFIX    AMOUNT IN BUNDLE
-{%- if tf_rosa_classic %}
+    {%- if tf_rosa_classic %}
     rosa-demo      6
-{% endif %}
-{% if tf_rosa_hcp %}
+    {%- endif %}
+    {%- if tf_rosa_hcp %}
     rosa-demo      8
-{%- endif %}
+    {%- endif %}
     ```
 
 {% if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}

@@ -7,7 +7,7 @@ title: Creating a license-compliant AWS EC2 Windows VM
 # Creating a license-compliant AWS EC2 Windows VM {id="virt-creating-vms-aws-li-windows"}
 {%- set context = "virt-creating-vms-aws-li-windows" %}
 
-If you are running Windows virtual machines (VMs) on {{ product_title }} hosts, such as AMD64 bare metal EC2 instances with {{ aws_first }} Windows License Included (LI) enabled, you must ensure that any VMs you create are compliant with licensing requirements.
+If you are running Windows virtual machines (VMs) on {{ product_title }} hosts, such as AMD64 bare metal EC2 instances with {{ aws_first }} Windows License Included (LI) enabled, you must ensure that any VMs you create are compliant with licensing requirements. {._abstract}
 
 When you configure your Windows VMs correctly, they activate automatically with the {{ aws_short }} Key Management Service (KMS), and run using optimized drivers for the underlying bare-metal hardware. Proper configuration also ensures that billing is correct.
 

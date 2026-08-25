@@ -3,11 +3,11 @@ title: Kernel Module Management Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Kernel Module Management Operator {id="kernel-module-management-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Kernel Module Management Operator {id="kernel-module-management-operator"}
 {%- set context = "kernel-module-management-operator" %}
 
-The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules and device plugins on {{ product_title }} clusters. You can use KMM to build, load, and manage kernel modules across cluster lifecycle stages.
+The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules and device plugins on {{ product_title }} clusters. You can use KMM to build, load, and manage kernel modules across cluster lifecycle stages. {._abstract}
 
 {%- set FeatureName = "Kernel Module Management Operator" %}
 
@@ -24,6 +24,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +1 %}{% include "./modules/kmm-configuring-kmmo.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing the Kernel Module Management Operator](/hardware_enablement/kmm-kernel-module-management#kmm-install_kernel-module-management-operator)
 
@@ -32,6 +33,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +2 %}{% include "./modules/kmm-setting-kernel-firmware-search-path.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring the Kernel Module Management Operator](/hardware_enablement/kmm-kernel-module-management#kmm-configuring-kmmo_kernel-module-management-operator)
 
@@ -50,18 +52,21 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +1 %}{% include "./modules/kmm-security.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding and managing pod security admission](/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission)
 
 {% leveloffset +1 %}{% include "./modules/kmm-replacing-in-tree-modules-with-out-of-tree-modules.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Building a linux kernel module](https://fastbitlab.com/building-a-linux-kernel-module/)
 
 {% leveloffset +2 %}{% include "./modules/kmm-example-module-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Replacing the CA Bundle certificate](/security/certificates/updating-ca-bundle#ca-bundle-replacing_updating-ca-bundle)
 
@@ -74,12 +79,14 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +2 %}{% include "./modules/kmm-running-depmod.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Driver Toolkit](/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
 {% leveloffset +2 %}{% include "./modules/kmm-building-in-cluster.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Build configuration resources](/cicd/builds/build-configuration#build-configuration)
 *   [Preflight validation for Kernel Module Management (KMM) Modules](/updating/preparing_for_updates/kmm-preflight-validation)
@@ -87,6 +94,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +2 %}{% include "./modules/kmm-using-driver-toolkit.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Driver Toolkit](/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
@@ -107,6 +115,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +1 %}{% include "./modules/kmm-building-and-signing-a-kmod-image.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Creating service accounts](/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts).
 
@@ -115,24 +124,28 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +1 %}{% include "./modules/kmm-applying-tolerations-to-kernel-module-pods.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Understanding taints and tolerations](https://docs.openshift.com/container-platform/4.17/nodes/scheduling/nodes-scheduler-taints-tolerations.html#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
 
 {% leveloffset +1 %}{% include "./modules/kmm-hub-hub-and-spoke.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Red&#160;Hat Advanced Cluster Management (RHACM)](https://www.redhat.com/en/technologies/management/advanced-cluster-management)
 
 {% leveloffset +2 %}{% include "./modules/kmm-hub-kmm-hub.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installing KMM](https://openshift-kmm.netlify.app/documentation/install/)
 
 {% leveloffset +2 %}{% include "./modules/kmm-hub-installing-kmm-hub.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [KMM Operator bundle](https://catalog.redhat.com/software/containers/kmm/kernel-module-management-hub-operator-bundle/63d84cc33862da54bb19b8c6?architecture=amd64&image=654273ac86f7e537ae452f6ehttps://catalog.redhat.com/software/containers/kmm/kernel-module-management-hub-operator-bundle/63d84cc33862da54bb19b8c6?architecture=amd64&image=654273ac86f7e537ae452f6e)
 
@@ -149,6 +162,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +1 %}{% include "./modules/kmm-day1-kernel-module-loading.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Machine Config Operator](/machine_configuration/index#machine-config-index)
 
@@ -159,6 +173,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +2 %}{% include "./modules/kmm-day1-kernel-module-image.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Driver Toolkit](/hardware_enablement/psap-driver-toolkit#driver-toolkit)
 
@@ -169,6 +184,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +2 %}{% include "./modules/kmm-day1-machineconfigpool.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About MachineConfigPool](https://www.redhat.com/en/blog/openshift-container-platform-4-how-does-machine-config-pool-work)
 
@@ -181,6 +197,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +2 %}{% include "./modules/kmm-configuring-the-lookup-path-on-nodes.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Machine Config Operator](/machine_configuration/index#machine-config-operator_machine-config-overview)
 
@@ -203,6 +220,7 @@ The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules a
 {% leveloffset +2 %}{% include "./modules/kmm-must-gather-tool.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About the must-gather tool](/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)
 

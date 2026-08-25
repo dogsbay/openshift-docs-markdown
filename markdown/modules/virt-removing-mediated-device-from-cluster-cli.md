@@ -10,11 +10,11 @@ As a cluster administrator you can remove mediated devices from the cluster so t
 **Procedure**
 
 1.  Edit the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Remove the device information from the `spec.permittedHostDevices` stanza of the `HyperConverged` CR. For example:
-    ```yaml
+    ```yaml {minja}
     apiVersion: hco.kubevirt.io/v1beta1
     kind: HyperConverged
     metadata:

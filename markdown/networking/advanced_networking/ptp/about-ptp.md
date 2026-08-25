@@ -3,11 +3,11 @@ title: About PTP in OpenShift cluster nodes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About PTP in OpenShift cluster nodes {id="about-ptp"}
 {% include "./_attributes/common-attributes.md" %}
+# About PTP in OpenShift cluster nodes {id="about-ptp"}
 {%- set context = "about-ptp" %}
 
-Precision Time Protocol (PTP) is used to synchronize clocks in a network. When used in conjunction with hardware support, PTP is capable of sub-microsecond accuracy, and is more accurate than Network Time Protocol (NTP).
+Precision Time Protocol (PTP) is used to synchronize clocks in a network. When used in conjunction with hardware support, PTP is capable of sub-microsecond accuracy, and is more accurate than Network Time Protocol (NTP). {._abstract}
 
 
 :::important
@@ -36,6 +36,7 @@ The PTP Operator works with PTP-capable devices on clusters provisioned only on 
 {% leveloffset +1 %}{% include "./modules/nw-ptp-introduction.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Disabling chrony time service](/machine_configuration/machine-configs-configure#cnf-disable-chronyd_machine-configs-configure)
 

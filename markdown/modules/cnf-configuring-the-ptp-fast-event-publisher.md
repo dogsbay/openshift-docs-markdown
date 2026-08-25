@@ -13,12 +13,12 @@ To start using PTP fast event notifications for a network interface in your clus
 
 1.  Modify the default PTP Operator config to enable PTP fast events.
     1.  Save the following YAML in the `ptp-operatorconfig.yaml` file:
-        {%- if ptp-events-rest-api == "v1" %}
+{% if ptp-events-rest-api == "v1" %}
         {% include "./snippets/ptp-event-config-api-v1.md" %}
-        {% endif %}
-        {% if ptp-events-rest-api == "v2" %}
+{% endif %}
+{% if ptp-events-rest-api == "v2" %}
         {% include "./snippets/ptp-event-config-api-v2.md" %}
-        {% endif %}
+{% endif %}
     1.  Update the `PtpOperatorConfig` CR:
         ```terminal
         $ oc apply -f ptp-operatorconfig.yaml

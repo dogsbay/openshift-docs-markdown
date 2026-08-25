@@ -24,19 +24,19 @@ You can use the `opm` CLI to create a catalog image that uses the plain text _fi
         $ mkdir <catalog_dir>
         ```
     1.  Generate a Dockerfile that can build a catalog image by running the `opm generate dockerfile` command:
-        ```terminal
-{%- if openshift_origin %}
+        ```terminal {minja}
+        {% if openshift_origin %}
         $ opm generate dockerfile <catalog_dir>
-{% endif %}
-{% if not openshift_origin %}
+        {% endif %}
+        {% if not openshift_origin %}
         $ opm generate dockerfile <catalog_dir> \
             -i {{ registry_image }}
-{%- endif %}
+        {% endif %}
         ```
-{%- if not openshift_origin %}
-       \
+{% if not openshift_origin %}
+        +
         Specify the official Red Hat base image by using the `-i` flag, otherwise the Dockerfile uses the default upstream image.
-{%- endif %}
+{% endif %}
 
         The Dockerfile must be in the same parent directory as the catalog directory that you created in the previous step:
         ```terminal title="Example directory structure"
@@ -134,4 +134,4 @@ You can use the `opm` CLI to create a catalog image that uses the plain text _fi
         $ podman push <registry>/<namespace>/<catalog_image_name>:<tag>
         ```
 
-{%- set registry_image = false -%}
+{%- set registry_image = "" -%}

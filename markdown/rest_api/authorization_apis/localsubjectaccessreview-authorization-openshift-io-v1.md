@@ -1,5 +1,5 @@
 ---
-title: "LocalSubjectAccessReview []"
+title: "LocalSubjectAccessReview [authorization.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -56,7 +56,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/localsubjectaccessreviews`
+*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/localsubjectaccessreviews`{minja}
     *   `POST`: create a LocalSubjectAccessReview
 
 ### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/localsubjectaccessreviews {id="_apisauthorizationopenshiftiov1namespaces_namespace_localsubjectaccessreviews"}

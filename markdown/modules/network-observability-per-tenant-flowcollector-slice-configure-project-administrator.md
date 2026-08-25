@@ -31,5 +31,5 @@ Project administrators can manage flow collection and data enrichment within the
 
 **Verification**
 
-1.  In the {{ product_title }} console, navigate to **Observe** -> **Network Traffic**.
+1.  In the {{ product_title }} console, navigate to **Observe** → **Network Traffic**.
 1.  Ensure flows to `192.168.50.0/24` subnet are observed with the `EXT:Database` label.

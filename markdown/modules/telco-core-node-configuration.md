@@ -10,7 +10,7 @@ New in this release
 Limits and requirements
 :   *   Analyze additional kernel modules to determine impact on CPU load, system performance, and ability to meet KPIs.
 
-    ***Additional kernel modules***
+    **Additional kernel modules**
 
 <table>
 <thead>
@@ -26,7 +26,7 @@ Limits and requirements
 </tr>
 <tr>
   <td>Container mount namespace hiding</td>
-  <td>Reduce the frequency of kubelet housekeeping and eviction monitoring to reduce CPU usage.</td>
+  <td>Reduce the frequency of kubelet housekeeping and eviction monitoring to reduce CPU usage. Creates a container mount namespace, visible to kubelet/CRI-O, to reduce system mount scanning overhead.</td>
 </tr>
 <tr>
   <td>Kdump enable</td>

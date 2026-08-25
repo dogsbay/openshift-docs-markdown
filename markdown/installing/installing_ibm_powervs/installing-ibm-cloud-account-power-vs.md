@@ -7,7 +7,7 @@ title: "Configuring an {{ ibm_cloud_title }} account"
 # Configuring an {{ ibm_cloud_title }} account {id="installing-ibm-cloud-account-power-vs"}
 {%- set context = "installing-ibm-cloud-account-power-vs" %}
 
-To install {{ product_title }} on {{ ibm_power_server_name }}, you must configure an {{ ibm_cloud_name }} account with the correct quotas, DNS resolution, and IAM policies.
+To install {{ product_title }} on {{ ibm_power_server_name }}, you must configure an {{ ibm_cloud_name }} account with the correct quotas, DNS resolution, and IAM policies. {._abstract}
 
 ## Prerequisites {id="_prerequisites"}
 
@@ -16,6 +16,7 @@ To install {{ product_title }} on {{ ibm_power_server_name }}, you must configur
 {% leveloffset +1 %}{% include "./modules/quotas-and-limits-ibm-power-vs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Quotas and service limits](https://cloud.ibm.com/docs/vpc?topic=vpc-quotas)
 *   [Creating an {{ ibm_power_server_title }}](https://cloud.ibm.com/docs/power-iaas?topic=power-iaas-creating-power-virtual-server)
@@ -27,6 +28,7 @@ To install {{ product_title }} on {{ ibm_power_server_name }}, you must configur
 {% leveloffset +1 %}{% include "./modules/installation-ibm-cloud-iam-policies-api-key.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [{{ ibm_cloud_name }} IAM overview](https://cloud.ibm.com/docs/account?topic=account-iamoverview)
 {%- if ibm_vpc %}
@@ -39,5 +41,5 @@ To install {{ product_title }} on {{ ibm_power_server_name }}, you must configur
 
 {% leveloffset +1 %}{% include "./modules/installation-ibm-cloud-regions.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Creating an {{ ibm_power_server_name }} workspace](/installing/installing_ibm_powervs/creating-ibm-power-vs-workspace#creating-ibm-power-vs-workspace)

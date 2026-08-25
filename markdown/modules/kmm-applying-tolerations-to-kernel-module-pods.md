@@ -35,35 +35,35 @@ Toleration values must match the taint that is added to the nodes. A toleration 
     *   the `key` parameters are the same;
     *   the `effect` parameters are the same.
 
-**Example taint in a node specification**
+    **Example taint in a node specification**
 
-```yaml
-apiVersion: v1
-kind: Node
-metadata:
-  name: <my_node>
-#...
-spec:
-  taints:
-  - effect: NoSchedule
-    key: key1
-    value: value1
-#...
-```
+    ```yaml
+    apiVersion: v1
+    kind: Node
+    metadata:
+      name: <my_node>
+    #...
+    spec:
+      taints:
+      - effect: NoSchedule
+        key: key1
+        value: value1
+    #...
+    ```
 
-**Example toleration in a module specification**
+    **Example toleration in a module specification**
 
-```yaml
-apiVersion: kmm.sigs.x-k8s.io/v1beta1
-kind: Module
-metadata:
-  name: <my_kmod>
-spec:
-  ...
-  tolerations:
-    effect: NoSchedule
-    key: key1
-    operator: Equal
-    tolerationSeconds: 36000
-    value: value1
-```
+    ```yaml
+    apiVersion: kmm.sigs.x-k8s.io/v1beta1
+    kind: Module
+    metadata:
+      name: <my_kmod>
+    spec:
+      ...
+      tolerations:
+        effect: NoSchedule
+        key: key1
+        operator: Equal
+        tolerationSeconds: 36000
+        value: value1
+    ```

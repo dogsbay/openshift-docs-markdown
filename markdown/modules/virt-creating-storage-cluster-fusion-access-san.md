@@ -15,7 +15,7 @@ The wizard for creating the storage cluster in the {{ product_title }} web conso
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, navigate to **Storage** -> **{{ FusionSAN }}**.
+1.  In the {{ product_title }} web console, navigate to **Storage** → **{{ FusionSAN }}**.
 1.  Click **Create storage cluster**.
 1.  Select the worker nodes that have shared LUNs.
 

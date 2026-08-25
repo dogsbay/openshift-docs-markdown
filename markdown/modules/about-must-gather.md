@@ -13,7 +13,7 @@ Alternatively, you can collect specific information by running the command with 
 *   To collect data related to one or more specific features, use the `--image` argument with an image, as listed in a following section.
 
     For example:
-    ```terminal
+    ```terminal {minja}
     $ oc adm must-gather \
       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }}
     ```
@@ -49,7 +49,7 @@ Optionally, you can run the `oc adm must-gather` command in a specific namespace
 
 For example:
 
-```terminal
+```terminal {minja}
 $ oc adm must-gather --run-namespace <namespace> \
   --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }}
 ```

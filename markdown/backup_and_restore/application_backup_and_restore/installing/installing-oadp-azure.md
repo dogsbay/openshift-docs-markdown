@@ -3,14 +3,14 @@ title: Configuring the OpenShift API for Data Protection with Microsoft Azure
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring the OpenShift API for Data Protection with Microsoft Azure {id="installing-oadp-azure"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring the OpenShift API for Data Protection with Microsoft Azure {id="installing-oadp-azure"}
 {%- set context = "installing-oadp-azure" -%}
 {%- set installing_oadp_azure = true -%}
 {%- set credentials = "cloud-credentials-azure" -%}
 {%- set provider = "azure" %}
 
-Configure the {{ oadp_first }} with Microsoft Azure to back up and restore cluster resources by using Azure storage. This provides data protection capabilities for your {{ product_title }} clusters.
+Configure the {{ oadp_first }} with Microsoft Azure to back up and restore cluster resources by using Azure storage. This provides data protection capabilities for your {{ product_title }} clusters. {._abstract}
 
 The {{ oadp_short }} Operator installs Velero {{ velero_version }}.
 
@@ -62,7 +62,7 @@ To install the OADP Operator in a restricted network environment, you must first
 
 {% leveloffset +2 %}{% include "./modules/oadp-about-disable-node-agent-dpa.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Velero {{ velero_version }}](https://{{ velero_domain }}/docs/v{{ velero_version }}/)
 *   [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)

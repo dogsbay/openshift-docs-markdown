@@ -31,7 +31,7 @@ You can get a list of events in a given project by using the CLI. {._abstract}
     ```
 *   View events in your project from the {{ product_title }} console:
     1.  Launch the {{ product_title }} console.
-    1.  Click **Home** -> **Events** and select your project.
-    1.  Move to resource that you want to see events. For example: **Home** -> **Projects** -> &lt;project-name> -> &lt;resource-name>.
+    1.  Click **Home** → **Events** and select your project.
+    1.  Move to resource that you want to see events. For example: **Home** → **Projects** → &lt;project-name> → &lt;resource-name>.
 
         Many objects, such as pods and deployments, also have an **Events** tab, which shows events related to that object.

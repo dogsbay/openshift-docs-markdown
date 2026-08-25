@@ -3,11 +3,11 @@ title: Installing a cluster without an external registry
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster without an external registry {id="installing-ove"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster without an external registry {id="installing-ove"}
 {%- set context = "installing-ove" %}
 
-You can deploy an {{ product_title }} cluster without the need for an external image registry, either in a connected or disconnected environment. This installation method uses a simplified user interface and self-contained media to facilitate the installation.
+You can deploy an {{ product_title }} cluster without the need for an external image registry, either in a connected or disconnected environment. This installation method uses a simplified user interface and self-contained media to facilitate the installation. {._abstract}
 
 Although the method supports general clusters, the downloaded media contains an Operator bundle that is curated specifically for {{ ove_first }}, meaning additional Operators must be retrieved separately if required for other use cases.
 
@@ -26,7 +26,7 @@ Although the method supports general clusters, the downloaded media contains an 
 
 {% leveloffset +1 %}{% include "./modules/installing-ove-console-final.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Installing virtctl](/virt/getting_started/virt-using-the-cli-tools#virt-installing-virtctl-binary_virt-using-the-cli-tools)
 *   [Creating virtual machines from instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

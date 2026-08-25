@@ -12,4 +12,4 @@ Red&#160;Hat recommends, but this task is not mandatory, that the address block 
 The range must be large enough to accommodate your workload. The address block must not overlap with any external service accessed from within the cluster. The default is `10.128.0.0/14`.
 {%- if openshift_enterprise %}
 You can expand the range after cluster installation.
-{% endif %}
+{%- endif %}

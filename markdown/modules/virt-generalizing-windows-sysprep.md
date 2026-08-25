@@ -11,9 +11,9 @@ Before generalizing the VM, you must ensure the `sysprep` tool cannot detect an 
 
 **Procedure**
 
-1.  In the {{ product_title }} console, click **Virtualization** -> **VirtualMachines**.
+1.  In the {{ product_title }} console, click **Virtualization** → **VirtualMachines**.
 1.  Select a Windows VM to open the **VirtualMachine details** page.
-1.  Click **Configuration** -> **Disks**.
+1.  Click **Configuration** → **Disks**.
 1.  Click the Options menu {{ kebab }} beside the `sysprep` disk and select **Detach**.
 1.  Click **Detach**.
 1.  Rename `C:\Windows\Panther\unattend.xml` to avoid detection by the `sysprep` tool.

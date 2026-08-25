@@ -24,11 +24,12 @@ Limits and requirements
         *   AMD EPYC Zen 4 CPUs (Genoa, Bergamo)
         *   ARM CPUs (Neoverse)
 
-            :::note
+        :::note
 
-            It is recommended to evaluate features, such as per-pod power management, to determine any potential impact on performance.
-            
-            :::
+
+        It is recommended to evaluate features, such as per-pod power management, to determine any potential impact on performance.
+        
+        :::
 
     *   x86_64:
         *   Set the reserved `cpuset` to include both hyper-thread siblings for each included core.

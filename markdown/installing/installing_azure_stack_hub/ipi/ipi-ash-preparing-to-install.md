@@ -3,11 +3,11 @@ title: Preparing to install a cluster on Azure Stack Hub
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Preparing to install a cluster on Azure Stack Hub {id="ash-preparing-to-install-ipi"}
 {% include "./_attributes/common-attributes.md" %}
+# Preparing to install a cluster on Azure Stack Hub {id="ash-preparing-to-install-ipi"}
 {%- set context = "ash-preparing-to-install-ipi" %}
 
-Prepare to install an {{ product_title }} cluster on Azure Stack Hub by verifying connectivity, configuring your account, generating SSH keys, downloading the installation program, installing the CLI, and setting up cloud credentials.
+Prepare to install an {{ product_title }} cluster on Azure Stack Hub by verifying connectivity, configuring your account, generating SSH keys, downloading the installation program, installing the CLI, and setting up cloud credentials. {._abstract}
 
 *   Verifying internet connectivity for your cluster.
 *   Configuring an Azure Stack Hub account. See "Configuring an Azure Stack Hub account".
@@ -31,10 +31,11 @@ Prepare to install an {{ product_title }} cluster on Azure Stack Hub by verifyin
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Configuring an Azure Stack Hub account](/installing/installing_azure_stack_hub/installing-azure-stack-hub-account#installing-azure-stack-hub-account)
 *   [Manually manage cloud credentials](/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)

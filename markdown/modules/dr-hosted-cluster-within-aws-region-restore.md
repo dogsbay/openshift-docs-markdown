@@ -10,7 +10,7 @@ Gather all of the objects that you backed up and restore them in your destinatio
 
 :::tip
 
-Ensure that the `kubeconfig` file of the destination management cluster is placed as it is set in the `KUBECONFIG` variable or, if you use the script, in the `MGMT2_KUBECONFIG` variable. Use `export KUBECONFIG=<Kubeconfig FilePath>` or, if you use the script, use `export KUBECONFIG=${{ MGMT2_KUBECONFIG }}`.
+Ensure that the `kubeconfig` file of the destination management cluster is placed as it is set in the `KUBECONFIG` variable or, if you use the script, in the `MGMT2_KUBECONFIG` variable. Use `export KUBECONFIG=<Kubeconfig FilePath>` or, if you use the script, use `export KUBECONFIG=${{ MGMT2_KUBECONFIG }}`{minja}.
 
 :::
 

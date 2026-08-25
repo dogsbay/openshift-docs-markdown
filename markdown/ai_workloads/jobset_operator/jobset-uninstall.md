@@ -8,7 +8,7 @@ title: "Uninstalling the {{ js_operator }}"
 
 {%- set context = "js-uninstall" %}
 
-Uninstall the {{ js_operator }} by using the {{ product_title }} web console to remove the Operator instance and its resources from your cluster.
+Uninstall the {{ js_operator }} by using the {{ product_title }} web console to remove the Operator instance and its resources from your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/uninstall-jobset.md" %}{% endleveloffset %}
 

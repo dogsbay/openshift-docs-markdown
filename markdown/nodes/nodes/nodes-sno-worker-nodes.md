@@ -3,11 +3,11 @@ title: "Adding worker nodes to {{ sno }} clusters"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Adding worker nodes to {{ sno }} clusters {id="nodes-sno-worker-nodes"}
 {%- set context = "add-workers" %}
-{% include "./_attributes/common-attributes.md" %}
 
-You can add worker nodes to {{ sno }} clusters in case you need additional capacity in your cluster. 
+You can add worker nodes to {{ sno }} clusters in case you need additional capacity in your cluster.  {._abstract}
 
 Single-node clusters reduce the host prerequisites for deployment to a single host. This is useful for deployments in constrained environments or at the network edge. However, sometimes you need to add additional capacity to your cluster, for example, in telecommunications and network edge scenarios. In these scenarios, you can add worker nodes to the single-node cluster.
 
@@ -52,6 +52,7 @@ To add worker nodes, you must have access to the {{ cluster_manager }}. This met
 {% leveloffset +1 %}{% include "./modules/installation-approve-csrs.md" %}{% endleveloffset %}
 
 <a name="additional-resources_{{ context }}"></a>**Additional resources**
+{._additional-resources}
 
 *   [Minimum resource requirements for cluster installation](/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-minimum-resource-requirements_installing-restricted-networks-bare-metal)
 *   [Recommended practices for scaling the cluster](/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_cluster-scaling)

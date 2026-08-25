@@ -3,15 +3,16 @@ title: Control plane machine set configuration
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Control plane machine set configuration {id="cpmso-configuration"}
 {% include "./_attributes/common-attributes.md" %}
+# Control plane machine set configuration {id="cpmso-configuration"}
 {%- set context = "cpmso-configuration" %}
 
-Use a control plane machine set to automate management and recovery of control plane machines in your cluster.
+Use a control plane machine set to automate management and recovery of control plane machines in your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/cpmso-yaml-sample-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Getting started with control plane machine sets](/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-getting-started)
 *   [Updating the control plane configuration](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
@@ -21,12 +22,14 @@ Use a control plane machine set to automate management and recovery of control p
 {% leveloffset +2 %}{% include "./modules/cpmso-config-options.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Replacing a control plane machine](/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-replace_cpmso-managing-machines)
 
 {% leveloffset +1 %}{% include "./modules/cpmso-config-provider-specific.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Control plane configuration options for {{ aws_full }}](/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-aws#cpmso-config-options-aws)
 *   [Control plane configuration options for {{ gcp_full }}](/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-gcp#cpmso-config-options-gcp)

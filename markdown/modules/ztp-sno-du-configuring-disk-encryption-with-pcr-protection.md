@@ -42,6 +42,6 @@ Configuring the `ClusterInstance` CR enables disk encryption at the time of clus
     $ clevis luks list -d <disk_path> (1)
     ```
     1.  Replace `<disk_path>` with the path to the disk. For example, `/dev/sda4`.
-        ```terminal title="Example output"
-        1: tpm2 '{"hash":"sha256","key":"ecc","pcr_bank":"sha256","pcr_ids":"1,7"}'
-        ```
+    ```terminal title="Example output"
+    1: tpm2 '{"hash":"sha256","key":"ecc","pcr_bank":"sha256","pcr_ids":"1,7"}'
+    ```

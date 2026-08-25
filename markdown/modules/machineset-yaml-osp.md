@@ -11,21 +11,21 @@ To enable the Machine API to automate the scaling and management of compute node
 The sample YAML defines a compute machine set that runs on {{ rh_openstack_first }} and creates nodes that are labeled with
 {%- if not infra %}
 `node-role.kubernetes.io/<role>: ""`.
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `node-role.kubernetes.io/infra: ""`. It specifies a taint to prevent user workloads from being scheduled on infra nodes. After adding the `NoSchedule` taint on the infrastructure node, existing DNS pods running on that node are marked as `misscheduled`. You must either delete or [add toleration on `misscheduled` DNS pods](https://access.redhat.com/solutions/6592171).
-{% endif %}
+{%- endif %}
 
 In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and
-{% if not infra %}
+{%- if not infra %}
 `<role>`
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
 `<infra>`
-{% endif %}
+{%- endif %}
 is the node label to add.
 
-```yaml
+```yaml {minja}
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
@@ -35,8 +35,8 @@ metadata:
     machine.openshift.io/cluster-api-machine-role: <role>
     machine.openshift.io/cluster-api-machine-type: <role>
   name: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
     machine.openshift.io/cluster-api-machine-role: infra
     machine.openshift.io/cluster-api-machine-type: infra
   name: <infrastructure_id>-infra
@@ -49,8 +49,8 @@ spec:
       machine.openshift.io/cluster-api-cluster: <infrastructure_id>
 {%- if not infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
       machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
 {%- endif %}
   template:
@@ -62,8 +62,8 @@ spec:
         machine.openshift.io/cluster-api-machine-type: <role>
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>
     spec:
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
         machine.openshift.io/cluster-api-machine-role: infra
         machine.openshift.io/cluster-api-machine-type: infra
         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-infra
@@ -86,21 +86,21 @@ spec:
           flavor: <nova_flavor>
 {%- if infra %}
           image: <glance_image_name_or_location>
-{% endif %}
-{% if not infra %}
+{%- endif %}
+{%- if not infra %}
           image: <glance_image_name_or_location>
-{% endif %}
-{% if not infra %}
+{%- endif %}
+{%- if not infra %}
           serverGroupID: <optional_UUID_of_server_group>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           serverGroupID: <optional_UUID_of_server_group>
 {%- endif %}
           kind: OpenstackProviderSpec
 {%- if not infra %}
           networks:
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           networks:
 {%- endif %}
           - filter: {}
@@ -110,8 +110,8 @@ spec:
                 tags: openshiftClusterID=<infrastructure_id>
 {%- if not infra %}
           primarySubnet: <rhosp_subnet_UUID>
-{% endif %}
-{% if infra %}
+{%- endif %}
+{%- if infra %}
           primarySubnet: <rhosp_subnet_UUID>
 {%- endif %}
           securityGroups:
@@ -203,8 +203,8 @@ where:
 {% endif %}
 
 {% if context == "creating-infrastructure-machinesets" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}
 {% if context == "cluster-tasks" %}
-{%- set infra = false -%}
+{%- set infra = "" -%}
 {% endif %}

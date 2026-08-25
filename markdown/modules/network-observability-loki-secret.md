@@ -7,7 +7,7 @@ The {{ loki_op }} supports a few log storage options, such as AWS S3, {{ gcp_ful
 
 **Procedure**
 
-1.  Using the web console, navigate to the **Project** -> **All Projects** dropdown and select **Create Project**.
+1.  Using the web console, navigate to the **Project** → **All Projects** dropdown and select **Create Project**.
 1.  Name the project `netobserv-loki` and click **Create**.
 1.  Navigate to the Import icon, **+**, in the top right corner. Paste your YAML file into the editor.
 
@@ -48,4 +48,4 @@ The {{ loki_op }} supports a few log storage options, such as AWS S3, {{ gcp_ful
 
 **Verification**
 
-*   After you create the secret, you view the secret listed under **Workloads** -> **Secrets** in the web console.
+*   After you create the secret, you view the secret listed under **Workloads** → **Secrets** in the web console.

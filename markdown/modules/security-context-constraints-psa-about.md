@@ -13,7 +13,7 @@ You can also configure the pod security admission settings at the namespace leve
 
 You can configure the following pod security admission modes for a namespace:
 
-***Pod security admission modes***
+**Pod security admission modes**
 
 <table>
 <thead>
@@ -46,7 +46,7 @@ You can configure the following pod security admission modes for a namespace:
 
 You can set each of the pod security admission modes to one of the following profiles:
 
-***Pod security admission profiles***
+**Pod security admission profiles**
 
 <table>
 <thead>

@@ -12,7 +12,7 @@ To deploy the pod placement operand that enables architecture-aware workload sch
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Go to **Ecosystem** -> **Installed Operators**.
+1.  Go to **Ecosystem** → **Installed Operators**.
 1.  On the **Installed Operators** page, click **Multiarch Tuning Operator**.
 1.  Click the **Cluster Pod Placement Config** tab.
 1.  Select either **Form view** or **YAML view**.

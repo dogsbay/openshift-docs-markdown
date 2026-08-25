@@ -56,7 +56,7 @@ template describes the worker machines that your cluster requires.
     $ export WORKER_IGNITION=`cat <installation_directory>/worker.ign | base64 | tr -d '\n'`
     ```
 1.  Create the deployment by using the `az` CLI:
-    {%- if azure %}
+{% if azure %}
     ```terminal
     $ az deployment group create -g ${RESOURCE_GROUP} \
       --template-file "<installation_directory>/06_workers.json" \
@@ -77,33 +77,33 @@ template describes the worker machines that your cluster requires.
     :   Specifies the size of the compute node VM. Use a VM size compatible with your specified architecture. If this value is not defined, the default value from the template is set. This parameter is optional.
 {% endif %}
 {% if ash %}
-        ```terminal
-        $ az deployment group create -g ${RESOURCE_GROUP} \
-          --template-file "<installation_directory>/06_workers.json" \
-          --parameters workerIgnition="${WORKER_IGNITION}" \
-          --parameters baseName="${INFRA_ID}" \
-          --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
-        ```
+    ```terminal
+    $ az deployment group create -g ${RESOURCE_GROUP} \
+      --template-file "<installation_directory>/06_workers.json" \
+      --parameters workerIgnition="${WORKER_IGNITION}" \
+      --parameters baseName="${INFRA_ID}" \
+      --parameters diagnosticsStorageAccountName="${CLUSTER_NAME}sa"
+    ```
+
     where:
 
+    `workerIgnition`
+    :   Specifies the Ignition content for the worker nodes.
 
-`workerIgnition`
-:   Specifies the Ignition content for the worker nodes.
+    `baseName`
+    :   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
 
-`baseName`
-:   Specifies the base name to be used in resource names; this is usually the cluster’s infrastructure ID.
-
-`diagnosticsStorageAccountName`
-:   Specifies the name of the storage account for your cluster.
+    `diagnosticsStorageAccountName`
+    :   Specifies the name of the storage account for your cluster.
 {% endif %}
 
 {% if context == "installing-azure-user-infra" %}
-{%- set azure = false -%}
-{%- set three_node_cluster = false -%}
+{%- set azure = "" -%}
+{%- set three_node_cluster = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set azure = false -%}
+{%- set azure = "" -%}
 {% endif %}

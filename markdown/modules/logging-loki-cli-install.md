@@ -18,11 +18,11 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
     apiVersion: v1
     kind: Namespace
     metadata:
-      name: openshift-operators-redhat # (1)
+      name: openshift-operators-redhat (1)
       annotations:
         openshift.io/node-selector: ""
       labels:
-        openshift.io/cluster-monitoring: "true" # (2)
+        openshift.io/cluster-monitoring: "true" (2)
     ```
     1.  You must specify the `openshift-operators-redhat` namespace. To prevent possible conflicts with metrics, you should configure the Prometheus Cluster Monitoring stack to scrape metrics from the `openshift-operators-redhat` namespace and not the `openshift-operators` namespace. The `openshift-operators` namespace might contain community Operators, which are untrusted and could publish a metric with the same name as an {{ product_title }} metric, which would cause conflicts.
     1.  A string value that specifies the label as shown to ensure that cluster monitoring scrapes the `openshift-operators-redhat` namespace.
@@ -36,11 +36,11 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
     kind: Subscription
     metadata:
       name: loki-operator
-      namespace: openshift-operators-redhat # (1)
+      namespace: openshift-operators-redhat (1)
     spec:
-      channel: stable # (2)
+      channel: stable (2)
       name: loki-operator
-      source: redhat-operators # (3)
+      source: redhat-operators (3)
       sourceNamespace: openshift-marketplace
     ```
     1.  You must specify the `openshift-operators-redhat` namespace.
@@ -55,12 +55,12 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
     apiVersion: v1
     kind: Namespace
     metadata:
-      name: openshift-logging # (1)
+      name: openshift-logging (1)
       annotations:
         openshift.io/node-selector: ""
       labels:
         openshift.io/cluster-logging: "true"
-        openshift.io/cluster-monitoring: "true" # (2)
+        openshift.io/cluster-monitoring: "true" (2)
     ```
     1.  The Red&#160;Hat OpenShift Logging Operator is only deployable to the `openshift-logging` namespace.
     1.  A string value that specifies the label as shown to ensure that cluster monitoring scrapes the `openshift-operators-redhat` namespace.
@@ -74,7 +74,7 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
     kind: OperatorGroup
     metadata:
       name: cluster-logging
-      namespace: openshift-logging # (1)
+      namespace: openshift-logging (1)
     spec:
       targetNamespaces:
       - openshift-logging
@@ -90,11 +90,11 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
     kind: Subscription
     metadata:
       name: cluster-logging
-      namespace: openshift-logging # (1)
+      namespace: openshift-logging (1)
     spec:
-      channel: stable # (2)
+      channel: stable (2)
       name: cluster-logging
-      source: redhat-operators # (3)
+      source: redhat-operators (3)
       sourceNamespace: openshift-marketplace
     ```
     1.  You must specify the `openshift-logging` namespace.
@@ -109,21 +109,21 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
     apiVersion: loki.grafana.com/v1
     kind: LokiStack
     metadata:
-      name: logging-loki # (1)
-      namespace: openshift-logging # (2)
+      name: logging-loki (1)
+      namespace: openshift-logging (2)
     spec:
-      size: 1x.small # (3)
+      size: 1x.small (3)
       storage:
         schemas:
         - version: v13
           effectiveDate: "<yyyy>-<mm>-<dd>"
         secret:
-          name: logging-loki-s3 # (4)
-          type: s3 # (5)
-          credentialMode: # (6)
-      storageClassName: <storage_class_name> # (7)
+          name: logging-loki-s3 (4)
+          type: s3 (5)
+          credentialMode: (6)
+      storageClassName: <storage_class_name> (7)
       tenants:
-        mode: openshift-logging # (8)
+        mode: openshift-logging (8)
     ```
     1.  Use the name `logging-loki`.
     1.  You must specify the `openshift-logging` namespace.
@@ -142,8 +142,8 @@ To install and configure logging on your {{ product_title }} cluster, an Operato
     apiVersion: logging.openshift.io/v1
     kind: ClusterLogging
     metadata:
-      name: instance # (1)
-      namespace: openshift-logging # (2)
+      name: instance (1)
+      namespace: openshift-logging (2)
     spec:
       collection:
         type: vector

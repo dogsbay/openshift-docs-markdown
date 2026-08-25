@@ -47,11 +47,11 @@ For example, some {{ gcp_full }} resources require [IAM permissions](https://clo
 cluster.
 {%- if osp %}
 *   You installed the `core-installer` tool by entering the `sudo dnf install coreos-installer` command in your CLI.
-{% endif %}
-{% if ibm_cloud or ibm_power_vs %}
+{%- endif %}
+{%- if ibm_cloud or ibm_power_vs %}
 *   You have configured the `ccoctl` binary.
 *   You have installed the {{ ibm_cloud_name }} CLI and installed or updated the VPC infrastructure service plugin. For more information see "Prerequisites" in the [{{ ibm_cloud_name }} CLI documentation](https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&interface=ui#cli-ref-prereqs).
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -75,26 +75,31 @@ cluster.
 
             For more information about deleting volumes, see the [{{ ibm_cloud_name }} CLI documentation](https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&interface=ui#volume-delete).
 1.  Export the API key that was created as part of the installation process.
-    {% endif %}
-    {% if ibm_cloud %}
-    ```terminal
-    $ export IC_API_KEY=<api_key>
-    ```
-{% endif %}
-{% if ibm_power_vs %}
-    ```terminal
-    $ export IBMCLOUD_API_KEY=<api_key>
-    ```
-{% endif %}
-{% if ibm_cloud or ibm_power_vs %}
+{%- endif %}
+{%- if ibm_cloud %}
 
-    :::note
+```terminal
+$ export IC_API_KEY=<api_key>
+```
 
-    You must set the variable name exactly as specified. The installation program expects the variable name to be present to remove the service IDs that were created when the cluster was installed.
-    
-    :::
+{%- endif %}
+{%- if ibm_power_vs %}
 
-{% endif %}
+```terminal
+$ export IBMCLOUD_API_KEY=<api_key>
+```
+
+{%- endif %}
+{%- if ibm_cloud or ibm_power_vs %}
+
+:::note
+
+You must set the variable name exactly as specified. The installation program expects the variable name to be present to remove the service IDs that were created when the cluster was installed.
+
+:::
+
+{%- endif %}
+
 1.  From the directory that has the installation program on the computer that you used to install the cluster, run the following command:
     ```terminal
     $ ./openshift-install destroy cluster \
@@ -116,8 +121,8 @@ cluster.
     
     :::
 
-{% endif %}
-{% if ibm_power_vs %}
+{%- endif %}
+{%- if ibm_power_vs %}
 
     :::note
 
@@ -126,7 +131,7 @@ cluster.
     
     :::
 
-{% endif %}
+{%- endif %}
 
 {% if ibm_cloud or ibm_power_vs %}
 1.  Remove the manual CCO credentials that were created for the cluster:
@@ -150,17 +155,17 @@ cluster.
 1.  Optional: Delete the `<installation_directory>` directory and the {{ product_title }} installation program.
 
 {% if context == "uninstalling-cluster-aws" %}
-{%- set aws = false -%}
+{%- set aws = "" -%}
 {% endif %}
 {% if context == "uninstalling-cluster-gcp" %}
-{%- set gcp = false -%}
+{%- set gcp = "" -%}
 {% endif %}
 {% if context == "uninstalling-cluster-ibm-cloud" %}
-{%- set ibm_cloud = false -%}
+{%- set ibm_cloud = "" -%}
 {% endif %}
 {% if context == "uninstalling-cluster-ibm-power-vs" %}
-{%- set ibm_power_vs = false -%}
+{%- set ibm_power_vs = "" -%}
 {% endif %}
 {% if context == "uninstalling-cluster-openstack" %}
-{%- set osp = false -%}
+{%- set osp = "" -%}
 {% endif %}

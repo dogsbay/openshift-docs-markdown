@@ -21,7 +21,7 @@ Builds that use Red Hat subscriptions to install content must include the entitl
       name: etc-pki-entitlement
     type: Opaque
     data: {{ range \$key, \$value := .data }}
-{{ \$key }}: {{ \$value }} {{ end }}
+      {{ \$key }}: {{ \$value }} {{ end }}
     EOF
     $ oc get secret etc-pki-entitlement -n openshift-config-managed -o=go-template-file --template=secret-template.txt | oc apply -f -
     ```

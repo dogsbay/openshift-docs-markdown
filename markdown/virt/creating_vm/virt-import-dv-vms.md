@@ -1,5 +1,5 @@
 ---
-title: Import a virtual machine image using the  API
+title: Import a virtual machine image using the DataVolume API
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -7,7 +7,7 @@ title: Import a virtual machine image using the  API
 # Import a virtual machine image using the `DataVolume` API {id="virt-import-dv-vms"}
 {%- set context = "virt-import-dv-vms" %}
 
-You can import a virtual machine (VM) image into your {{ VirtProductName }} cluster by using the `DataVolume` API. A `DataVolume` automates PVC creation and image data transfer from an external source by using the Containerized Data Importer (CDI).
+You can import a virtual machine (VM) image into your {{ VirtProductName }} cluster by using the `DataVolume` API. A `DataVolume` automates PVC creation and image data transfer from an external source by using the Containerized Data Importer (CDI). {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/con-datavolume-supported-import-sources.md" %}{% endleveloffset %}
 
@@ -23,5 +23,5 @@ You can import a virtual machine (VM) image into your {{ VirtProductName }} clus
 
 {% leveloffset +1 %}{% include "./modules/ref-troubleshooting-datavolume-imports.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Preparing CDI scratch space](/virt/storage/virt-preparing-cdi-scratch-space#virt-preparing-cdi-scratch-space)

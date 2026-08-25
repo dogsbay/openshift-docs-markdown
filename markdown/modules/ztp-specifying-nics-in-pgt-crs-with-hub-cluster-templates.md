@@ -60,7 +60,7 @@ The repository must be accessible from the hub cluster and be defined as a sourc
         `argocd.argoproj.io/sync-options`
         :   The `argocd.argoproj.io/sync-options` annotation is required only if the `ConfigMap` is larger than 1 MiB in size.
 
-        1.  Create  a `ConfigMap` CR named `group-zones-configmap` to hold the regional configuration. For example:
+    1.  Create  a `ConfigMap` CR named `group-zones-configmap` to hold the regional configuration. For example:
         ```yaml
         apiVersion: v1
         kind: ConfigMap
@@ -72,7 +72,7 @@ The repository must be accessible from the hub cluster and be defined as a sourc
           zone-1-cluster-log-fwd-outputs: "[{\"type\":\"kafka\", \"name\":\"kafka-open\", \"url\":\"tcp://10.46.55.190:9092/test\"}]"
           zone-1-cluster-log-fwd-pipelines: "[{\"inputRefs\":[\"audit\", \"infrastructure\"], \"labels\": {\"label1\": \"test1\", \"label2\": \"test2\", \"label3\": \"test3\", \"label4\": \"test4\"}, \"name\": \"all-to-default\", \"outputRefs\": [\"kafka-open\"]}]"
         ```
-        1.  Create a `ConfigMap` CR named `site-data-configmap` to hold the site-specific configuration. For example:
+    1.  Create a `ConfigMap` CR named `site-data-configmap` to hold the site-specific configuration. For example:
         ```yaml
         apiVersion: v1
         kind: ConfigMap
@@ -100,13 +100,13 @@ The following command applies to a single cluster named `du-sno-1-zone-1` and th
 1.  Depending on your requirements, Create a group `PolicyGenerator` or `PolicyGentemplate` CR that uses hub templates to obtain the required data from the `ConfigMap` objects:
     1.  Create a group `PolicyGenerator` CR.
     This example `PolicyGenerator` CR configures logging, VLAN IDs, NICs and Performance Profile for the clusters that match the labels listed the under `policyDefaults.placement` field:
-        ```yaml
-{% include "./snippets/pg-ztp-specifying-nics-in-pgt-hub-cluster-templates.yaml" %}
+        ```yaml {minja}
+        {% include "./snippets/pg-ztp-specifying-nics-in-pgt-hub-cluster-templates.yaml" %}
         ```
     1.  Create a group `PolicyGenTemplate` CR.
     This example `PolicyGenTemplate` CR configures logging, VLAN IDs, NICs and Performance Profile for the clusters that match the labels listed under `spec.bindingRules`:
-        ```yaml
-{% include "./snippets/ztp-specifying-nics-in-pgt-hub-cluster-templates.yaml" %}
+        ```yaml {minja}
+        {% include "./snippets/ztp-specifying-nics-in-pgt-hub-cluster-templates.yaml" %}
         ```
 
 

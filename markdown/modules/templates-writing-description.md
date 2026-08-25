@@ -60,9 +60,7 @@ where:
 
     The following is a list of available icons.
 
-<details>
-<summary>Details</summary>
-
+:::details{title="Details"}
 *   `icon-3scale`
 *   `icon-aerogear`
 *   `icon-amq`
@@ -157,7 +155,7 @@ where:
 *   `icon-wordpress`
 *   `icon-xamarin`
 *   `icon-zend`
-</details>
+:::
 
 `metadata.annotations.openshift.io/provider-display-name`
 :   Specifies the name of the person or organization providing the template.

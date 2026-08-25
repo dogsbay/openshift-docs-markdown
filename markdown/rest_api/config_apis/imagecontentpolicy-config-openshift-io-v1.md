@@ -1,5 +1,5 @@
 ---
-title: "ImageContentPolicy []"
+title: "ImageContentPolicy [config.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | spec holds user settable values for configuration |
+
 ### .spec {id="_spec"}
 
 Description
@@ -42,8 +43,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `repositoryDigestMirrors` | `array` | repositoryDigestMirrors allows images referenced by image digests in pods to be pulled from alternative mirrored repository locations. The image pull specification provided to the pod will be compared to the source locations described in RepositoryDigestMirrors and the image may be pulled down from any of the mirrors in the list instead of the specified repository allowing administrators to choose a potentially faster mirror. To pull image from mirrors by tags, should set the "allowMirrorByTags". Each “source” repository is treated independently; configurations for different “source” repositories don’t interact. If the "mirrors" is not specified, the image will continue to be pulled from the specified repository in the pull spec. When multiple policies are defined for the same “source” repository, the sets of defined mirrors will be merged together, preserving the relative order of the mirrors, if possible. For example, if policy A has mirrors `a, b, c` and policy B has mirrors `c, d, e`, the mirrors will be used in the order `a, b, c, d, e`.  If the orders of mirror entries conflict (e.g. `a, b` vs. `b, a`) the configuration is not rejected but the resulting order is unspecified. |
+| `repositoryDigestMirrors` | `array` | repositoryDigestMirrors allows images referenced by image digests in pods to be pulled from alternative mirrored repository locations. The image pull specification provided to the pod will be compared to the source locations described in RepositoryDigestMirrors and the image may be pulled down from any of the mirrors in the list instead of the specified repository allowing administrators to choose a potentially faster mirror. To pull image from mirrors by tags, should set the "allowMirrorByTags".<br>Each “source” repository is treated independently; configurations for different “source” repositories don’t interact.<br>If the "mirrors" is not specified, the image will continue to be pulled from the specified repository in the pull spec.<br>When multiple policies are defined for the same “source” repository, the sets of defined mirrors will be merged together, preserving the relative order of the mirrors, if possible. For example, if policy A has mirrors `a, b, c` and policy B has mirrors `c, d, e`, the mirrors will be used in the order `a, b, c, d, e`.  If the orders of mirror entries conflict (e.g. `a, b` vs. `b, a`) the configuration is not rejected but the resulting order is unspecified. |
 | `repositoryDigestMirrors[]` | `object` | RepositoryDigestMirrors holds cluster-wide information about how to handle mirrors in the registries config. |
+
 ### .spec.repositoryDigestMirrors {id="_specrepositorydigestmirrors"}
 
 Description
@@ -100,12 +102,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ImageContentPolicy
     *   `GET`: list objects of kind ImageContentPolicy
     *   `POST`: create an ImageContentPolicy
-*   `/apis/config.openshift.io/v1/imagecontentpolicies/{{ name }}`
+*   `/apis/config.openshift.io/v1/imagecontentpolicies/{{ name }}`{minja}
     *   `DELETE`: delete an ImageContentPolicy
     *   `GET`: read the specified ImageContentPolicy
     *   `PATCH`: partially update the specified ImageContentPolicy
     *   `PUT`: replace the specified ImageContentPolicy
-*   `/apis/config.openshift.io/v1/imagecontentpolicies/{{ name }}/status`
+*   `/apis/config.openshift.io/v1/imagecontentpolicies/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ImageContentPolicy
     *   `PATCH`: partially update status of the specified ImageContentPolicy
     *   `PUT`: replace status of the specified ImageContentPolicy

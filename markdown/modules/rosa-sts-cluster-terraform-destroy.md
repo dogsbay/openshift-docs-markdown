@@ -38,7 +38,7 @@ Keep your Terraform .tf files unchanged before destroying your resources. These 
       Enter a value: 
     ```
 1.  Enter `yes` to start the role and cluster deletion:
-    {%- if tf_rosa_hcp %}
+{%- if tf_rosa_hcp %}
     ```terminal title="Example output"
     Plan: 0 to add, 0 to change, 63 to destroy.
 
@@ -48,8 +48,8 @@ Keep your Terraform .tf files unchanged before destroying your resources. These 
 
       Enter a value: yes
     ```
-{% endif %}
-{% if tf_rosa_classic %}
+{%- endif %}
+{%- if tf_rosa_classic %}
     ```terminal title="Example output"
     Plan: 0 to add, 0 to change, 74 to destroy.
 
@@ -59,7 +59,7 @@ Keep your Terraform .tf files unchanged before destroying your resources. These 
 
       Enter a value: yes
     ```
-{% endif %}
+{%- endif %}
 
 **Verification**
 

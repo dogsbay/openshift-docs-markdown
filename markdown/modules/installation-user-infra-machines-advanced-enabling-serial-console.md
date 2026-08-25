@@ -11,7 +11,7 @@ By default, the {{ op_system_first }} serial console is disabled and all output 
 
 1.  Boot the ISO installer.
 1.  Run the `coreos-installer` command to install the system, adding the `--console` option once to specify the graphical console, and a second time to specify the serial console:
-    {%- if not restricted %}
+{% if not restricted %}
     ```terminal
     $ coreos-installer install \
     --console=tty0 \
@@ -28,7 +28,7 @@ By default, the {{ op_system_first }} serial console is disabled and all output 
     --offline \
     /dev/disk/by-id/scsi-<serial_number>
     ```
-{%- endif %}
+{% endif %}
 
     where:
 
@@ -50,5 +50,5 @@ By default, the {{ op_system_first }} serial console is disabled and all output 
     To configure a PXE installation, make sure the `coreos.inst.install_dev` kernel command-line option is omitted, and use the shell prompt to run `coreos-installer` manually using the above ISO installation procedure.
 
 {% if context == "installing-restricted-networks-bare-metal" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

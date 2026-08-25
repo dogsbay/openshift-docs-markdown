@@ -26,7 +26,7 @@ After you have located the container list and completed the mirroring prerequisi
     ```terminal
     $ IMAGE_LOCAL_DIR=~/microshift-containers
     ```
-1.  Run the following script to download the container images to the `${{ IMAGE_LOCAL_DIR }}` directory:
+1.  Run the following script to download the container images to the `${{ IMAGE_LOCAL_DIR }}`{minja} directory:
     ```terminal
     while read -r src_img ; do
        # Remove the source registry prefix

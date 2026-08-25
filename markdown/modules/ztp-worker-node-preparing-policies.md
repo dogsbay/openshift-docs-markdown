@@ -1,16 +1,16 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Using {{ policy_gen_cr }} CRs to apply worker node policies to the worker node {id="ztp-additional-worker-policies-{{ policy_gen_cr }}_{{ context }}"}
 
-You can create policies for the additional worker node by using `{{ policy_gen_cr }}` CRs. {._abstract}
+You can create policies for the additional worker node by using `{{ policy_gen_cr }}`{minja} CRs. {._abstract}
 
 **Procedure**
 
-1.  Create the following `{{ policy_gen_cr }}` CR:
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/pgt-ztp-worker-node-preparing-policies.md" %}
+1.  Create the following `{{ policy_gen_cr }}`{minja} CR:
+{% if policy-gen-cr == "PolicyGenTemplate" %}
+    {% include "./snippets/pgt-ztp-worker-node-preparing-policies.md" %}
 {% endif %}
 {% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/pg-ztp-worker-node-preparing-policies.md" %}
+    {% include "./snippets/pg-ztp-worker-node-preparing-policies.md" %}
 {% endif %}
 
     You can generate the content of `crio` and `kubelet` configuration files.

@@ -21,7 +21,7 @@ you can list alerting rules for core {{ product_title }} and user-defined projec
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, go to **Observe** -> **Alerting** -> **Alerting rules**.
+1.  In the {{ product_title }} web console, go to **Observe** → **Alerting** → **Alerting rules**.
 1.  Select the **Platform** and **User** sources in the **Filter** drop-down menu.
 
     :::note

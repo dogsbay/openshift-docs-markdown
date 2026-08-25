@@ -27,11 +27,13 @@ The following descheduler profiles are available:
 
 `TopologyAndDuplicates`
 :   This profile evicts pods in an effort to evenly spread similar pods, or pods of the same topology domain, among nodes.
+
     It enables the following strategies:
     *   `RemovePodsViolatingTopologySpreadConstraint`: finds unbalanced topology domains and tries to evict pods from larger ones when `DoNotSchedule` constraints are violated.
     *   `RemoveDuplicates`: ensures that there is only one pod associated with a replica set, replication controller, deployment, or job running on same node. If there are more, those duplicate pods are evicted for better pod distribution in a cluster.
 
     :::warning
+
 
     Do not enable `TopologyAndDuplicates` with any of the following profiles: `SoftTopologyAndDuplicates` or `CompactAndScale`. Enabling these profiles together results in a conflict.
     
@@ -41,21 +43,23 @@ The following descheduler profiles are available:
 
 `LifecycleAndUtilization`
 :   This profile evicts long-running pods and balances resource usage between nodes.
+
     It enables the following strategies:
     *   `RemovePodsHavingTooManyRestarts`: removes pods whose containers have been restarted too many times.
 
-        Pods where the sum of restarts over all containers (including Init Containers) is more than 100.
+    Pods where the sum of restarts over all containers (including Init Containers) is more than 100.
     *   `LowNodeUtilization`: finds nodes that are underutilized and evicts pods, if possible, from overutilized nodes in the hope that recreation of evicted pods will be scheduled on these underutilized nodes.
         *   A node is considered underutilized if its usage is below 20% for all thresholds (CPU, memory, and number of pods).
         *   A node is considered overutilized if its usage is above 50% for any of the thresholds (CPU, memory, and number of pods).
 
 
-            Optionally, you can adjust these underutilized/overutilized threshold percentages by setting the Technology Preview field `devLowNodeUtilizationThresholds` to one the following values: `Low` for 10%/30%, `Medium` for 20%/50%, or `High` for 40%/70%. The default value is `Medium`.
+        Optionally, you can adjust these underutilized/overutilized threshold percentages by setting the Technology Preview field `devLowNodeUtilizationThresholds` to one the following values: `Low` for 10%/30%, `Medium` for 20%/50%, or `High` for 40%/70%. The default value is `Medium`.
     *   `PodLifeTime`: evicts pods that are too old.
 
-        By default, pods that are older than 24 hours are removed. You can customize the pod lifetime value.
+    By default, pods that are older than 24 hours are removed. You can customize the pod lifetime value.
 
     :::warning
+
 
     Do not enable `LifecycleAndUtilization` with any of the following profiles: `LongLifecycle` or `CompactAndScale`. Enabling these profiles together results in a conflict.
     
@@ -67,6 +71,7 @@ The following descheduler profiles are available:
 :   This profile is the same as `TopologyAndDuplicates`, except that pods with soft topology constraints, such as `whenUnsatisfiable: ScheduleAnyway`, are also considered for eviction.
 
     :::warning
+
 
     Do not enable both `SoftTopologyAndDuplicates` and `TopologyAndDuplicates`. Enabling both results in a conflict.
     
@@ -84,9 +89,11 @@ The following descheduler profiles are available:
 
 `CompactAndScale`
 :   This profile enables the `HighNodeUtilization` strategy, which attempts to evict pods from underutilized nodes to allow a workload to run on a smaller set of nodes. A node is considered underutilized if its usage is below 20% for all thresholds (CPU, memory, and number of pods).
+
     Optionally, you can adjust the underutilized percentage by setting the Technology Preview field `devHighNodeUtilizationThresholds` to one the following values: `Minimal` for 10%, `Modest` for 20%, or `Moderate` for 30%. The default value is `Modest`.
 
     :::warning
+
 
     Do not enable `CompactAndScale` with any of the following profiles: `LifecycleAndUtilization`, `LongLifecycle`, or `TopologyAndDuplicates`. Enabling these profiles together results in a conflict.
     
@@ -101,9 +108,11 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
 
 `KubeVirtRelieveAndMigrate`
 :   The `KubeVirtRelieveAndMigrate` profile evicts pods from high-cost nodes to reduce overall resource expenses and enable workload migration. It also periodically rebalances workloads to help maintain similar spare capacity across nodes, which supports better handling of sudden workload spikes. Nodes can experience the following costs:
-    *   ***Resource utilization***: Increased resource pressure raises the overhead for running applications.
-    *   ***Node maintenance***: A higher number of containers on a node increases resource consumption and maintenance costs.
+    *   **Resource utilization**: Increased resource pressure raises the overhead for running applications.
+    *   **Node maintenance**: A higher number of containers on a node increases resource consumption and maintenance costs.
+
     The profile enables the `LowNodeUtilization` strategy with the alpha-level `EvictionsInBackground` feature. By default, the profile uses the `PrometheusCPUMemoryCombinedProfile` utilization metric. This metric combines CPU and memory utilization with pressure stall information (PSI) for both dimensions for comprehensive node load balancing.
+
     The profile also exposes the following customization fields:
     *   `devActualUtilizationProfile`: Enables load-aware descheduling. You can configure the following utilization profiles:
         *   `PrometheusCPUMemoryCombinedProfile` (default): Balances nodes based on CPU utilization, CPU PSI pressure, memory utilization, and memory PSI pressure. This profile is ideal for environments with memory overcommit enabled, as it spreads the load and prevents resource contention.
@@ -111,6 +120,7 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
     *   `devLowNodeUtilizationThresholds`: Sets experimental thresholds for the `LowNodeUtilization` strategy. Do not use this field with `devDeviationThresholds`.
     *   `devDeviationThresholds`: Treats nodes with below-average resource usage as underutilized to help redistribute workloads from overutilized nodes. Do not use this field with `devLowNodeUtilizationThresholds`. Supported values are: `Low` (10%:10%), `Medium` (20%:20%), `High` (30%:30%), `AsymmetricLow` (0%:10%), `AsymmetricMedium` (0%:20%), `AsymmetricHigh` (0%:30%).
     *   `devEnableSoftTainter`: Enables the soft-tainting component to dynamically apply or remove soft taints as scheduling hints.
+
     Example configuration:
     ```yaml
     apiVersion: operator.openshift.io/v1
@@ -129,7 +139,9 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
         devDeviationThresholds: AsymmetricLow
         devActualUtilizationProfile: PrometheusCPUMemoryCombinedProfile
     ```
+
     The `KubeVirtRelieveAndMigrate` profile requires PSI metrics to be enabled on all worker nodes. You can enable this by applying the following `MachineConfig` custom resource (CR):
+
     Example `MachineConfig` CR:
     ```yaml
     apiVersion: machineconfiguration.openshift.io/v1
@@ -145,9 +157,11 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
 
     :::note
 
+
     The name of the `MachineConfig` object is significant because machine configs are processed in lexicographical order. By default, a config that starts with `98-` disables PSI. To ensure that PSI is enabled, name your config with a higher prefix, such as `99-openshift-machineconfig-worker-psi-karg`.
     
     :::
+
 
     You can use this profile with the `SoftTopologyAndDuplicates` profile to also rebalance pods based on soft topology constraints, which can be useful in hosted control plane environments.
 
@@ -162,6 +176,7 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
 
     :::warning
 
+
     Do not enable `LongLifecycle` with any of the following profiles: `LifecycleAndUtilization` or `CompactAndScale`. Enabling these profiles together results in a conflict.
     
     :::
@@ -169,9 +184,9 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
 {% endif %}
 
 {% if context == "nodes-descheduler-about" %}
-{%- set nodes = false -%}
+{%- set nodes = "" -%}
 {% endif %}
 
 {% if context == "virt-enabling-descheduler-evictions" %}
-{%- set virt = false -%}
+{%- set virt = "" -%}
 {% endif %}

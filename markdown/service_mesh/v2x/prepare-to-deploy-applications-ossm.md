@@ -3,8 +3,8 @@ title: Enabling sidecar injection
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Enabling sidecar injection {id="deploying-applications-ossm"}
 {% include "./_attributes/common-attributes.md" %}
+# Enabling sidecar injection {id="deploying-applications-ossm"}
 {%- set context = "deploying-applications-ossm" %}
 
 After adding the namespaces that contain your services to your mesh, the next step is to enable automatic sidecar injection in the Deployment resource for your application. You must enable automatic sidecar injection for each deployment.

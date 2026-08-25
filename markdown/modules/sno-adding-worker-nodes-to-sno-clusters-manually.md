@@ -17,7 +17,7 @@ You can add a worker node to a {{ sno }} cluster manually by booting the worker 
     $ OCP_VERSION=<ocp_version>
     ```
 
-    Replace `<ocp_version>` with the current version, for example, `latest-{{ product_version }}`
+    Replace `<ocp_version>` with the current version, for example, `latest-{{ product_version }}`{minja}
 1.  Set the host architecture:
     ```terminal
     $ ARCH=<architecture>

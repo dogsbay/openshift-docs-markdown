@@ -14,7 +14,7 @@ Dual NIC grandmaster clock
     Dual NIC grandmaster clocks are a feature of distributed RAN (D-RAN) configurations where the Remote Radio Unit (RRU) and Baseband Unit (BBU) are located at the same radio cell site.
     D-RAN distributes radio functions across multiple sites, with backhaul connections linking them to the core network.
 
-**Figure 1. Dual NIC grandmaster clock**
+    **Figure 1. Dual NIC grandmaster clock**
 
     ![Dual NIC PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/_assets/images/openshift-ptp-using-dual-nic-ptp.png)
 

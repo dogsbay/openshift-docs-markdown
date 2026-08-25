@@ -22,7 +22,7 @@ This sample YAML file is provided for reference only. Use it as a resource to en
 
 
 {% if ash %}
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 controlPlane:
@@ -142,7 +142,7 @@ where:
 {% endif %}
 
 {% if ash_default or ash_network %}
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 credentialsMode: Manual
@@ -268,11 +268,11 @@ where:
 {% endif %}
 
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-default" %}
-{%- set ash_default = false -%}
+{%- set ash_default = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-network-customizations" %}
-{%- set ash_network = false -%}
+{%- set ash_network = "" -%}
 {% endif %}

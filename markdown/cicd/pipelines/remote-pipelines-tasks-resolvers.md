@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Specifying remote pipelines and tasks using resolvers {id="remote-pipelines-tasks-resolvers"}
 {% include "./_attributes/common-attributes.md" %}
+# Specifying remote pipelines and tasks using resolvers {id="remote-pipelines-tasks-resolvers"}
 {%- set context = "remote-pipelines-tasks-resolvers" %}
 
 Pipelines and tasks are reusable blocks for your CI/CD processes. You can reuse pipelines or tasks that you previously developed, or that were developed by others, without having to copy and paste their definitions. These pipelines or tasks can be available from several types of sources, from other namespaces on your cluster to public catalogs.

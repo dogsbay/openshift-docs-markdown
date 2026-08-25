@@ -50,8 +50,8 @@ You can use the `config-br-defaults` config map to specify default broker class 
     1.  The `config-br-default-channel` config map specifies the default backing channel for the broker. See "Configuring the default broker backing channel" in the "Additional resources" section.
     1.  The namespace where the `config-br-default-channel` config map exists.
 
-        :::important
+    :::important
 
-        Configuring a namespace-specific default overrides any cluster-wide settings.
-        
-        :::
+    Configuring a namespace-specific default overrides any cluster-wide settings.
+    
+    :::

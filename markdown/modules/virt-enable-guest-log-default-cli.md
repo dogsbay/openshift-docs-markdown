@@ -10,7 +10,7 @@ To troubleshoot issues more easily, you can enable default access to virtual mac
 **Procedure**
 
 1.  Open the `HyperConverged` CR in your default editor by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
     ```
 1.  Update the `disableSerialConsoleLog` value. For example:

@@ -19,14 +19,14 @@ The following example modifies the `severity` setting to `critical` for the defa
     kind: AlertRelabelConfig
     metadata:
       name: watchdog
-      namespace: openshift-monitoring # (1)
+      namespace: openshift-monitoring (1)
     spec:
       configs:
-      - sourceLabels: [alertname,severity] # (2)
-        regex: "Watchdog;none" # (3)
-        targetLabel: severity # (4)
-        replacement: critical # (5)
-        action: Replace # (6)
+      - sourceLabels: [alertname,severity] (2)
+        regex: "Watchdog;none" (3)
+        targetLabel: severity (4)
+        replacement: critical (5)
+        action: Replace (6)
     ```
     1.  Ensure that the namespace is `openshift-monitoring`.
     1.  The source labels for the values you want to modify.
@@ -37,11 +37,11 @@ The following example modifies the `severity` setting to `critical` for the defa
     The default action is `Replace`.
     Other possible values are `Keep`, `Drop`, `HashMod`, `LabelMap`, `LabelDrop`, and `LabelKeep`.
 
-        :::important
+    :::important
 
-        You must create the `AlertRelabelConfig` object in the `openshift-monitoring` namespace. Otherwise, the alert label will not change.
-        
-        :::
+    You must create the `AlertRelabelConfig` object in the `openshift-monitoring` namespace. Otherwise, the alert label will not change.
+    
+    :::
 
 1.  Apply the configuration file to the cluster:
     ```terminal

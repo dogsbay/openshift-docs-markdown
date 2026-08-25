@@ -26,6 +26,7 @@ You can update the machine template resource for your cluster by modifying the Y
     | {{ rh_openstack }} | `OpenStackMachineTemplate` |
     | {{ vmw_full }} | `VSphereMachineTemplate` |
     | Bare metal | `Metal3MachineTemplate` |
+
     ```text title="Example output"
     NAME              AGE
     <template_name>   77m

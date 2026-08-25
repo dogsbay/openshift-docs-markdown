@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Configuring the Knative CLI {id="advanced-kn-config"}
 {%- set context = "advanced-kn-config" %}
-{% include "./_attributes/common-attributes.md" %}
 
 You can customize your Knative (`kn`) CLI setup by creating a `config.yaml` configuration file. You can provide this configuration by using the `--config` flag, otherwise the configuration is picked up from a default location. The default configuration location conforms to the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html), and is different for UNIX systems and Windows systems.
 

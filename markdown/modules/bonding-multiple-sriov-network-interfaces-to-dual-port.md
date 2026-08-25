@@ -22,19 +22,19 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if not (ibm_z or ibm_z_kvm) %}
+{% if not (ibm_z or ibm_z_kvm) %}
 # Bonding multiple SR-IOV network interfaces to a dual port NIC interface {id="bonding-multiple-sriov-network-interfaces-to-dual-port_{{ context }}"}
 {% endif %}
 {% if ibm_z or ibm_z_kvm %}
 # Using network teaming {id="_using_network_teaming"}
 {% endif %}
 
-{%- if not (ibm_z or ibm_z_kvm) %}
+{% if not (ibm_z or ibm_z_kvm) %}
 You can bond multiple SR-IOV network interfaces to a dual port NIC interface by using the `bond=` option. Ensure you apply the procedure tasks to each node.
 {% endif %}
 {% if ibm_z or ibm_z_kvm %}
-You can use network teaming as an alternative to bonding by using the `team=` parameter.
-{% endif %} {._abstract}
+You can use network teaming as an alternative to bonding by using the `team=` parameter. {._abstract}
+{% endif %}
 
 **Procedure**
 
@@ -43,8 +43,9 @@ You can use network teaming as an alternative to bonding by using the `team=` pa
 1.  Create the SR-IOV virtual functions (VFs) following the guidance in [Managing SR-IOV devices](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_virtualization/managing-virtual-devices_configuring-and-managing-virtualization#managing-sr-iov-devices_managing-virtual-devices). Follow the procedure in the "Attaching SR-IOV networking devices to virtual machines" section.
 {% endif %}
 {% if installing_ibm_power %}
-1.  Create the SR-IOV virtual functions (VFs).
+. Create the SR-IOV virtual functions (VFs).
 {% endif %}
+
 1.  Create the bond, attach the desired VFs to the bond and set the bond link state up following the guidance in [Configuring network bonding](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/configuring-network-bonding_configuring-and-managing-networking). Follow any of the described procedures to create the bond.
 
     The following examples illustrate the syntax you must use:
@@ -66,6 +67,7 @@ You can use network teaming as an alternative to bonding by using the `team=` pa
             ```
 {% endif %}
 {% if not ibm_power %}
+
 1.  Optional: You can use network teaming as an alternative to bonding by using the `team=` parameter.
     *   The syntax for configuring a team interface is: `team=name[:network_interfaces]`
 
@@ -86,24 +88,24 @@ You can use network teaming as an alternative to bonding by using the `team=` pa
 {% endif %}
 
 {% if context == "installing-ibm-z-kvm" %}
-{%- set ibm_z_kvm = false -%}
+{%- set ibm_z_kvm = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-z-lpar" %}
-{%- set ibm_z = false -%}
+{%- set ibm_z = "" -%}
 {% endif %}
 {% if context == "installing-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-ibm-power" %}
-{%- set ibm_power = false -%}
-{%- set restricted = false -%}
+{%- set ibm_power = "" -%}
+{%- set restricted = "" -%}
 {% endif %}

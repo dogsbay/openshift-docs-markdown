@@ -10,10 +10,10 @@ This tutorial walks you through how to create a sample application by creating a
 *   Access to the OpenShift CLI (`oc`).
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 *   You are logged in to {{ product_title }} as`cluster-admin`.
-{% endif %}
-{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
 
@@ -24,7 +24,7 @@ The Bookinfo sample application cannot be installed on {{ ibm_z_name }} and {{ i
 :::
 
 
-{%- endif %}
+{% endif %}
 
 :::note
 
@@ -35,14 +35,14 @@ The commands in this section assume the {{ SMProductShortName }} control plane p
 
 **Procedure**
 
-1.  Click **Home** -> **Projects**.
+1.  Click **Home** → **Projects**.
 1.  Click **Create Project**.
 1.  Enter `bookinfo` as the **Project Name**, enter a **Display Name**, and enter a **Description**, then click **Create**.
     *   Alternatively, you can run this command from the CLI to create the `bookinfo` project.
         ```terminal
         $ oc new-project bookinfo
         ```
-1.  Click **Ecosystem** -> **Installed Operators**.
+1.  Click **Ecosystem** → **Installed Operators**.
 1.  Click the **Project** menu and use the {{ SMProductShortName }} control plane namespace. In this example, use `istio-system`.
 1.  Click the **{{ SMProductName }}** Operator.
 1.  Click the **Istio Service Mesh Member Roll** tab.
@@ -75,7 +75,7 @@ The commands in this section assume the {{ SMProductShortName }} control plane p
     default   1/1     Configured   70s   ["bookinfo"]
     ```
 1.  From the CLI, deploy the Bookinfo application in the _`bookinfo`_ project by applying the `bookinfo.yaml` file:
-    ```bash
+    ```bash {minja}
     $ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/platform/kube/bookinfo.yaml
     ```
 
@@ -97,7 +97,7 @@ The commands in this section assume the {{ SMProductShortName }} control plane p
     deployment.apps/productpage-v1 created
     ```
 1.  Create the ingress gateway by applying the `bookinfo-gateway.yaml` file:
-    ```bash
+    ```bash {minja}
     $ oc apply -n bookinfo -f https://raw.githubusercontent.com/Maistra/istio/maistra-{{ MaistraVersion }}/samples/bookinfo/networking/bookinfo-gateway.yaml
     ```
 

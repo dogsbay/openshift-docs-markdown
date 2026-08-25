@@ -43,12 +43,13 @@ For platforms that support using the CCO in multiple modes, you must determine w
 
 Microsoft Azure Stack Hub
 :   These clusters use manual mode with long-term credentials and do not use the `ccoctl` utility.
-    Administrators of clusters on these platforms must take the following actions:
-    . Extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release.
-    . Manually update the cloud provider resources for the new release.
-    . Indicate that the cluster is ready to update with the `upgradeable-to` annotation.
 
+    Administrators of clusters on these platforms must take the following actions:
+    1.  Extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release.
+    1.  Manually update the cloud provider resources for the new release.
+    1.  Indicate that the cluster is ready to update with the `upgradeable-to` annotation.
 
 Amazon Web Services (AWS), global Microsoft Azure, and {{ gcp_first }}
 :   Clusters installed on these platforms support multiple CCO modes.
+
     The required update process depends on the mode that the cluster is configured to use. If you are not sure what mode the CCO is configured to use on your cluster, you can use the web console or the CLI to determine this information.

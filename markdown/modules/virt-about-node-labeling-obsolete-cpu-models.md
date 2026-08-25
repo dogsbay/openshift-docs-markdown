@@ -5,9 +5,7 @@ The {{ VirtProductName }} Operator uses a predefined list of obsolete CPU models
 
 By default, the following CPU models are eliminated from the list of labels generated for the node:
 
-<details>
-<summary>Obsolete CPU models</summary>
-
+:::details{title="Obsolete CPU models"}
 ```
 "486"
 Conroe
@@ -25,6 +23,6 @@ phenom
 qemu32
 qemu64
 ```
-</details>
+:::
 
 This predefined list is not visible in the `HyperConverged` CR. You cannot _remove_ CPU models from this list, but you can add to the list by editing the `spec.obsoleteCPUs.cpuModels` field of the `HyperConverged` CR.

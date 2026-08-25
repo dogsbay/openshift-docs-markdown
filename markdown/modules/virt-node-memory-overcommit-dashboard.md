@@ -5,7 +5,7 @@ The Node Memory Overcommit dashboard displays physical and virtual memory utiliz
 
 Use this dashboard to monitor memory capacity, detect memory pressure, identify overcommitment risks, and validate that system processes do not exceed their reserved memory.
 
-You can access this dashboard from the web console in **Observe** -> **Dashboards (Perses)**.
+You can access this dashboard from the web console in **Observe** → **Dashboards (Perses)**.
 
 ## Dashboard filters {id="_dashboard_filters"}
 

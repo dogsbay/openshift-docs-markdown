@@ -18,7 +18,7 @@ Red&#160;Hat recommends you consult Red&#160;Hat Support before making changes t
 
 **Procedure**
 
-1.  Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.
+1.  Go to **Workloads** → **ConfigMaps** and select **Project: openshift-insights**.
 1.  Click **Create ConfigMap**.
 1.  Select **Configure via: YAML view** and enter your configuration preferences, for example:
     ```yaml

@@ -3,12 +3,12 @@ title: "{{ VirtProductName }} runbooks"
 ---
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# {{ VirtProductName }} runbooks {id="virt-runbooks"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ VirtProductName }} runbooks {id="virt-runbooks"}
 {%- set context = "virt-runbooks" %}
 
-{%- set virt_runbooks = false %}
-To diagnose and resolve {{ VirtProductName }} alerts, you can use the {{ VirtProductName }} Operator runbooks. These guides help ensure you can effectively troubleshoot cluster issues and restore system health.
+{%- set virt_runbooks = "" %}
+To diagnose and resolve {{ VirtProductName }} alerts, you can use the {{ VirtProductName }} Operator runbooks. These guides help ensure you can effectively troubleshoot cluster issues and restore system health. {._abstract}
 
 
 :::note

@@ -13,7 +13,7 @@ You need to remove any policies that create Performance Addon Operator subscript
 :::
 
 
-The reference DU profile includes the Performance Addon Operator in the `{{ policy_gen_cr }}` CR `{{ policy_prefix }}common-ranGen.yaml`. To remove the subscription from deployed managed clusters, you must update `{{ policy_prefix }}common-ranGen.yaml`.
+The reference DU profile includes the Performance Addon Operator in the `{{ policy_gen_cr }}`{minja} CR `{{ policy_prefix }}common-ranGen.yaml`{minja}. To remove the subscription from deployed managed clusters, you must update `{{ policy_prefix }}common-ranGen.yaml`{minja}.
 
 
 :::note
@@ -31,14 +31,14 @@ If you install Performance Addon Operator 4.10.3-5 or later on {{ product_title 
 
 **Procedure**
 
-1.  Change the `complianceType` to `mustnothave` for the Performance Addon Operator namespace, Operator group, and subscription in the `{{ policy_prefix }}common-ranGen.yaml` file.
-    ```yaml
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
-{% include "./snippets/pgt-cnf-topology-aware-lifecycle-manager-pao-update.yaml" %}
-{% endif %}
-{% if policy-gen-cr == "PolicyGenerator" %}
-{% include "./snippets/pg-cnf-topology-aware-lifecycle-manager-pao-update.yaml" %}
-{%- endif %}
+1.  Change the `complianceType` to `mustnothave` for the Performance Addon Operator namespace, Operator group, and subscription in the `{{ policy_prefix }}common-ranGen.yaml`{minja} file.
+    ```yaml {minja}
+    {% if policy-gen-cr == "PolicyGenTemplate" %}
+    {% include "./snippets/pgt-cnf-topology-aware-lifecycle-manager-pao-update.yaml" %}
+    {% endif %}
+    {% if policy-gen-cr == "PolicyGenerator" %}
+    {% include "./snippets/pg-cnf-topology-aware-lifecycle-manager-pao-update.yaml" %}
+    {% endif %}
     ```
 1.  Merge the changes with your custom site repository and wait for the ArgoCD application to synchronize the change to the hub cluster. The status of the `common-subscriptions-policy` policy changes to `Non-Compliant`.
 1.  Apply the change to your target clusters by using the {{ cgu_operator_full }}. For more information about rolling out configuration changes, see the "Additional resources" section.
@@ -46,5 +46,5 @@ If you install Performance Addon Operator 4.10.3-5 or later on {{ product_title 
     ```terminal
     $ oc get policy -n ztp-common common-subscriptions-policy
     ```
-1.  Delete the Performance Addon Operator namespace, Operator group and subscription CRs from `{{ rangen_yaml_path }}` in the `{{ policy_prefix }}common-ranGen.yaml` file.
+1.  Delete the Performance Addon Operator namespace, Operator group and subscription CRs from `{{ rangen_yaml_path }}`{minja} in the `{{ policy_prefix }}common-ranGen.yaml`{minja} file.
 1.  Merge the changes with your custom site repository and wait for the ArgoCD application to synchronize the change to the hub cluster. The policy remains compliant.

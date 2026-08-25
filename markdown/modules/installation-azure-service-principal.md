@@ -25,10 +25,10 @@ To enable {{ product_title }} to create Azure resources, you must create a servi
 *   Your Azure account has the required roles for the subscription that you use.
 {%- if ipi %}
 *   If you want to use a custom role, you have created a [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) with the required permissions listed in the _Required Azure permissions for installer-provisioned infrastructure_ section.
-{% endif %}
-{% if upi %}
+{%- endif %}
+{%- if upi %}
 *   If you want to use a custom role, you have created a [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) with the required permissions listed in the _Required Azure permissions for user-provisioned infrastructure_ section.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
@@ -50,11 +50,12 @@ To enable {{ product_title }} to create Azure resources, you must create a servi
     $ az cloud update --profile 2019-03-01-hybrid
     ```
 {% endif %}
+
 1.  Log in to the Azure CLI:
     ```terminal
     $ az login
     ```
-{%- if ash %}
+{% if ash %}
 
     If you are in a multitenant environment, you must also supply the tenant ID.
 {% endif %}
@@ -65,15 +66,15 @@ subscription:
         ```terminal
         $ az account list --refresh
         ```
-        ```terminal title="Example output"
+        ```terminal title="Example output" {minja}
         [
           {
-{%- if not ash %}
+        {%- if not ash %}
             "cloudName": "AzureCloud",
-{% endif %}
-{% if ash %}
+        {%- endif %}
+        {%- if ash %}
             "cloudName": AzureStackCloud",
-{%- endif %}
+        {%- endif %}
             "id": "9bab1460-96d5-40b3-a78e-17b15e978a80",
             "isDefault": true,
             "name": "Subscription Name",
@@ -91,14 +92,14 @@ subscription:
         ```terminal
         $ az account show
         ```
-        ```terminal title="Example output"
+        ```terminal title="Example output" {minja}
         {
-{%- if not ash %}
+        {%- if not ash %}
           "environmentName": "AzureCloud",
-{% endif %}
-{% if ash %}
+        {%- endif %}
+        {%- if ash %}
           "environmentName": AzureStackCloud",
-{%- endif %}
+        {%- endif %}
           "id": "9bab1460-96d5-40b3-a78e-17b15e978a80",
           "isDefault": true,
           "name": "Subscription Name",
@@ -122,14 +123,14 @@ subscription:
         ```terminal
         $ az account show
         ```
-        ```terminal title="Example output"
+        ```terminal title="Example output" {minja}
         {
-{%- if not ash %}
+        {%- if not ash %}
           "environmentName": "AzureCloud",
-{% endif %}
-{% if ash %}
+        {%- endif %}
+        {%- if ash %}
           "environmentName": AzureStackCloud",
-{%- endif %}
+        {%- endif %}
           "id": "33212d16-bdf6-45cb-b038-f6565b61edda",
           "isDefault": true,
           "name": "Subscription Name",
@@ -206,7 +207,6 @@ subscription:
     }
     ```
 {% endif %}
-
 1.  Record the values of the `appId` and `password` parameters from the previous
 output. You need these values during {{ product_title }} installation.
 
@@ -221,17 +221,17 @@ output. You need these values during {{ product_title }} installation.
 {% endif %}
 
 {% if context == "installing-azure-stack-hub-user-infra" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-azure-stack-hub-account" %}
-{%- set ash = false -%}
+{%- set ash = "" -%}
 {% endif %}
 {% if context == "installing-azure-account" %}
-{%- set ipi = false -%}
+{%- set ipi = "" -%}
 {% endif %}
 {% if context == "installing-azure-user-infra" %}
-{%- set upi = false -%}
+{%- set upi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-azure-user-provisioned" %}
-{%- set upi = false -%}
+{%- set upi = "" -%}
 {% endif %}

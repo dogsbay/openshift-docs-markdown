@@ -3,17 +3,17 @@ title: OpenShift Container Platform security and compliance
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ product_title }} security and compliance {id="security-compliance-overview"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ product_title }} security and compliance {id="security-compliance-overview"}
 {%- set context = "security-compliance-overview" %}
 
-Review the security and compliance capabilities available in {{ product_title }}, and learn how to secure your cluster.
+Review the security and compliance capabilities available in {{ product_title }}, and learn how to secure your cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/security-overview-capabilities.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/security-compliance-capabilities.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Understanding authentication](/authentication/understanding-authentication#understanding-authentication)
 *   [Configuring the internal OAuth server](/authentication/configuring-internal-oauth#configuring-internal-oauth)

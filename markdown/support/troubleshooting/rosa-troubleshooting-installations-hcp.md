@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/attributes-openshift-dedicated.md" %}
 # Troubleshooting {{ product_title }} cluster installations {id="rosa-troubleshooting-installations-hcp"}
 
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
 {%- set context = "rosa-troubleshooting-installations-hcp" %}
 
 Troubleshoot the installation of {{ product_title }} clusters by completing the following instructions. {._abstract}

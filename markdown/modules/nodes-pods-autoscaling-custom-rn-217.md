@@ -35,14 +35,14 @@ New features and enhancements
     *   The KEDA controller is automatically created during installation
 
     The KEDA controller is now automatically created when you install the Custom Metrics Autoscaler Operator. Previously, you needed to manually create the KEDA controller. You can edit the automatically-created KEDA controller, as needed. 
-*   Support for the Kubernetes workload trigger
+    *   Support for the Kubernetes workload trigger
 
     The Cluster Metrics Autoscaler Operator now supports using the Kubernetes workload trigger to scale pods based on the number of pods matching a specific label selector.
-*   Support for bound service account tokens
+    *   Support for bound service account tokens
 
     The Cluster Metrics Autoscaler Operator now supports bound service account tokens. Previously, the Operator supported only legacy service account tokens, which are being phased out in favor of bound service account tokens for security reasons.
 
-    Bug fixes
+Bug fixes
 
 :   *   Before this update, the KEDA controller did not support volume mounts. As a result, you could not use Kerberos with the Kafka scaler. With this release, the KEDA controller now supports volume mounts. ([OCPBUGS-42559](https://issues.redhat.com/browse/OCPBUGS-42559))
     *   Before this update, the KEDA version in the `keda-operator` deployment object log reported that the Custom Metrics Autoscaler Operator was based on an incorrect KEDA version. With this release, the correct KEDA version is reported in the log. ([OCPBUGS-58129](https://issues.redhat.com/browse/OCPBUGS-58129))

@@ -7,7 +7,7 @@ title: Managing catalogs
 # Managing catalogs {id="managing-catalogs"}
 {%- set context = "managing-catalogs" %}
 
-Cluster administrators can add _catalogs_, or curated collections of Operators and Kubernetes extensions, to their clusters. Operator authors publish their products to these catalogs.
+Cluster administrators can add _catalogs_, or curated collections of Operators and Kubernetes extensions, to their clusters. Operator authors publish their products to these catalogs. {._abstract}
 
 When you add a catalog to your cluster, you have access to the versions, patches, and over-the-air updates of the Operators and extensions that are published to the catalog.
 
@@ -26,6 +26,7 @@ Kubernetes periodically deprecates certain APIs that are removed in subsequent r
 {% leveloffset +1 %}{% include "./modules/olmv1-about-catalogs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [File-based catalogs](/extensions/catalogs/fbc#fbc)
 

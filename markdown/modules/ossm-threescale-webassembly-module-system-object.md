@@ -19,7 +19,7 @@ spec:
 # ...
 ```
 
-***`system` object fields***
+**`system` object fields**
 
 <table>
 <thead>

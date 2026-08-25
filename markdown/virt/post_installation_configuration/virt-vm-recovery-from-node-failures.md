@@ -6,13 +6,13 @@ title: Virtual machine recovery from node failures
 {% endif %}
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
 # Virtual machine recovery from node failures {id="virt-vm-recovery-from-node-failures"}
 
-{% include "./_attributes/common-attributes.md" %}
 
 {%- set context = "virt-vm-recovery-from-node-failures" %}
 
-To ensure that virtual machines (VMs) recover automatically when a node fails, configure node health checks, automated remediation, and capacity planning. These recommendations come from chaos testing results and help minimize VM downtime during node failure conditions.
+To ensure that virtual machines (VMs) recover automatically when a node fails, configure node health checks, automated remediation, and capacity planning. These recommendations come from chaos testing results and help minimize VM downtime during node failure conditions. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-about-recommended-node-practices.md" %}{% endleveloffset %}
 
@@ -26,7 +26,7 @@ To ensure that virtual machines (VMs) recover automatically when a node fails, c
 
 {% leveloffset +1 %}{% include "./modules/virt-about-capacity-planning-for-vm-failover.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Configure eviction and run strategies](/virt/nodes/virt-eviction-strategies#virt-eviction-strategies)
 *   [Run strategies](/virt/nodes/virt-eviction-strategies#virt-runstrategies-vms_virt-eviction-strategies)

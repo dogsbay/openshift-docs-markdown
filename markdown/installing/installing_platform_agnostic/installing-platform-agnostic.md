@@ -3,11 +3,11 @@ title: Installing a cluster on any platform
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Installing a cluster on any platform {id="installing-platform-agnostic"}
 {% include "./_attributes/common-attributes.md" %}
+# Installing a cluster on any platform {id="installing-platform-agnostic"}
 {%- set context = "installing-platform-agnostic" %}
 
-In {{ product_title }} version {{ product_version }}, you can install a cluster on any infrastructure that you provision, including virtualization and cloud environments.
+In {{ product_title }} version {{ product_version }}, you can install a cluster on any infrastructure that you provision, including virtualization and cloud environments. {._abstract}
 
 
 :::important
@@ -20,6 +20,7 @@ See "Deploying OpenShift 4.x on non-tested platforms using the bare metal instal
 {% leveloffset +1 %}{% include "./modules/installing-ocp-agnostic-prereqs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Installation and update](/architecture/architecture-installation#architecture-installation)
 *   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
@@ -38,6 +39,7 @@ See "Deploying OpenShift 4.x on non-tested platforms using the bare metal instal
 {% leveloffset +2 %}{% include "./modules/installation-network-user-infra.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Configuring chrony time service](/installing/install_config/installing-customizing#installation-special-config-chrony_installing-customizing)
 
@@ -76,6 +78,7 @@ See "Deploying OpenShift 4.x on non-tested platforms using the bare metal instal
 {% leveloffset +1 %}{% include "./modules/creating-machines-bare-metal.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [coreos-installer image mirror](https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/coreos-installer/)
 
@@ -88,6 +91,7 @@ See "Deploying OpenShift 4.x on non-tested platforms using the bare metal instal
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-machines-static-network.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [`dracut.cmdline` manual page](https://www.man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
 
@@ -132,10 +136,11 @@ See "Deploying OpenShift 4.x on non-tested platforms using the bare metal instal
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method](https://access.redhat.com/articles/4207611)
 *   [Available cluster customizations](/post_installation_configuration/cluster-tasks#available_cluster_customizations)

@@ -10,15 +10,15 @@ If the control plane will run on a worker node, skip this task.
 *   You have installed the {{ SMProductName }} Operator.
 {%- if not (openshift_rosa or openshift_dedicated) %}
 *   You are logged in to {{ product_title }} as`cluster-admin`.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 *   You are logged in to {{ product_title }} as a user with the `dedicated-admin` role.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  Navigate to **Ecosystem** -> **Installed Operators**.
+1.  Navigate to **Ecosystem** → **Installed Operators**.
 1.  Click the {{ SMProductName }} Operator, and then click **Istio Service Mesh Control Plane**.
 1.  Click the name of the control plane resource. For example, `basic`.
 1.  Click **YAML**.

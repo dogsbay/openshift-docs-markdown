@@ -73,6 +73,6 @@ When creating a connection profile, you must use a `.nmconnection` filename exte
         -o rhcos-<version>-custom-initramfs.x86_64.img
     ```
 1.  Use the customized `initramfs` file in your PXE configuration. Add the `ignition.firstboot` and `ignition.platform.id=metal` kernel arguments if they are not already present.
-{%- endif %}
+{% endif %}
 
     Network settings are applied to the live system and are carried over to the destination system.

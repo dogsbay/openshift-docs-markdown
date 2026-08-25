@@ -6,7 +6,7 @@ As a user, if you want to create a bindable service, you must know which service
 **Procedure**
 
 *   To discover and identify Operator-backed bindable services, consider the following alternative approaches:
-    *   Click **+Add** -> **Developer Catalog** -> **Operator Backed** to see the Operator-backed tiles. Operator-backed services that support service binding features have a **Bindable** badge on the tiles.
+    *   Click **+Add** → **Developer Catalog** → **Operator Backed** to see the Operator-backed tiles. Operator-backed services that support service binding features have a **Bindable** badge on the tiles.
     *   On the left pane of the **Operator Backed** page, select **Bindable**.
 
         :::tip
@@ -15,4 +15,4 @@ As a user, if you want to create a bindable service, you must know which service
         
         :::
 
-    *   Click  **+Add** -> **Add** and search for Operator-backed services. When you click the bindable service, you can view the **Bindable** badge in the side panel.
+    *   Click  **+Add** → **Add** and search for Operator-backed services. When you click the bindable service, you can view the **Bindable** badge in the side panel.

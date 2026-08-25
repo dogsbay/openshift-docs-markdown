@@ -10,7 +10,7 @@ To set static IP addresses, MAC addresses, and default routes for a pod in {{ pr
 *   You must log in to the cluster.
 {%- if sriov %}
 *   You must have the SR-IOV Operator installed and a `SriovNetwork` object defined.
-{% endif %}
+{%- endif %}
 
 **Procedure**
 

@@ -20,11 +20,11 @@ Specifics of using {{ rhoai }} with {{ microshift_short }}
 :   As an edge-optimized Kubernetes deployment, {{ microshift_short }} has the following limitations when using {{ rhoai }}:
 
     *   AI model serving on {{ microshift_short }} is only available on the x86_64 architecture.
-*   A subset of {{ rhoai }} Operator components are supported on {{ microshift_short }}.
-*   As a single-node Kubernetes distribution, {{ microshift_short }} does not support multi-model deployments. You must use the single-model serving platform.
-*   You must develop the AI models you want to run on the {{ microshift_short }} model-serving platform in the cloud or your data center. Using {{ microshift_short }} as a development platform for AI models is not supported.
-*   You must plan for any additional RAM, disk space, and storage configurations required to serve your AI model.
-*   Not all model servers support the IPv6 networking protocol. Check each model server’s documentation to verify that your networking configuration is supported.
-*   You must secure the exposed model server endpoint, for example, with OAUTH2.
-*   `ClusterServingRuntimes` CRDs are not supported by {{ rhoai }}, which means that you must copy the `ServingRuntime` CR shipped within the `microshift-ai-model-serving` RPM to your workload namespace.
-*   To administer model serving on {{ microshift_short }}, you must use the CLI. The {{ rhoai }} dashboard is not supported.
+    *   A subset of {{ rhoai }} Operator components are supported on {{ microshift_short }}.
+    *   As a single-node Kubernetes distribution, {{ microshift_short }} does not support multi-model deployments. You must use the single-model serving platform.
+    *   You must develop the AI models you want to run on the {{ microshift_short }} model-serving platform in the cloud or your data center. Using {{ microshift_short }} as a development platform for AI models is not supported.
+    *   You must plan for any additional RAM, disk space, and storage configurations required to serve your AI model.
+    *   Not all model servers support the IPv6 networking protocol. Check each model server’s documentation to verify that your networking configuration is supported.
+    *   You must secure the exposed model server endpoint, for example, with OAUTH2.
+    *   `ClusterServingRuntimes` CRDs are not supported by {{ rhoai }}, which means that you must copy the `ServingRuntime` CR shipped within the `microshift-ai-model-serving` RPM to your workload namespace.
+    *   To administer model serving on {{ microshift_short }}, you must use the CLI. The {{ rhoai }} dashboard is not supported.

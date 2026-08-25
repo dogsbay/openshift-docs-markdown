@@ -26,12 +26,14 @@ The load balancing infrastructure must meet the following requirements:
 
 
     Configure the following ports on both the front and back of the load balancers:
+
     **API load balancer**
 
     | Port | Back-end machines (pool members) | Internal | External | Description |
     | --- | --- | :-: | :-: | --- |
     | `6443` | Control plane. You must configure the `/readyz` endpoint for the API server health check probe. | X | X | Kubernetes API server |
     | `22623` | Control plane. | X |  | Machine config server |
+
 
     :::important
 
@@ -65,12 +67,14 @@ The load balancing infrastructure must meet the following requirements:
 
 
     Configure the following ports on both the front and back of the load balancers:
+
     **Application Ingress load balancer**
 
     | Port | Back-end machines (pool members) | Internal | External | Description |
     | --- | --- | :-: | :-: | --- |
     | `443` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTPS traffic |
     | `80` | The machines that run the Ingress Controller pods, compute, or worker, by default. | X | X | HTTP traffic |
+
 
     :::note
 
@@ -153,8 +157,8 @@ listen ingress-router-80
 
 
 
-:::tip
+    :::tip
 
-If you are using HAProxy as a load balancer, you can check that the `haproxy` process is listening on ports `6443`, `22623`, `443`, and `80` by running `netstat -nltupe` on the HAProxy node.
-
-:::
+    If you are using HAProxy as a load balancer, you can check that the `haproxy` process is listening on ports `6443`, `22623`, `443`, and `80` by running `netstat -nltupe` on the HAProxy node.
+    
+    :::

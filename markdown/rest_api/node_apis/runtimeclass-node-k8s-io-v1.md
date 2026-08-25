@@ -1,5 +1,5 @@
 ---
-title: "RuntimeClass []"
+title: "RuntimeClass [node.k8s.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -29,6 +29,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `overhead` | `object` | Overhead structure represents the resource overhead associated with running a pod. |
 | `scheduling` | `object` | Scheduling specifies the scheduling constraints for nodes supporting a RuntimeClass. |
+
 ### .overhead {id="_overhead"}
 
 Description
@@ -41,6 +42,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `podFixed` | [`object (Quantity)`](/rest_api/objects/index#io-k8s-apimachinery-pkg-api-resource-Quantity) | podFixed represents the fixed resource overhead associated with running a pod. |
+
 ### .scheduling {id="_scheduling"}
 
 Description
@@ -65,12 +67,12 @@ The following API endpoints are available:
     *   `POST`: create a RuntimeClass
 *   `/apis/node.k8s.io/v1/watch/runtimeclasses`
     *   `GET`: watch individual changes to a list of RuntimeClass. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
-*   `/apis/node.k8s.io/v1/runtimeclasses/{{ name }}`
+*   `/apis/node.k8s.io/v1/runtimeclasses/{{ name }}`{minja}
     *   `DELETE`: delete a RuntimeClass
     *   `GET`: read the specified RuntimeClass
     *   `PATCH`: partially update the specified RuntimeClass
     *   `PUT`: replace the specified RuntimeClass
-*   `/apis/node.k8s.io/v1/watch/runtimeclasses/{{ name }}`
+*   `/apis/node.k8s.io/v1/watch/runtimeclasses/{{ name }}`{minja}
     *   `GET`: watch changes to an object of kind RuntimeClass. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
 
 ### /apis/node.k8s.io/v1/runtimeclasses {id="_apisnodek8siov1runtimeclasses"}

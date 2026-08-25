@@ -30,7 +30,7 @@ Modify the `CloudCredential` resource to include an `upgradeable-to` annotation.
 
 **Verification**
 
-1.  In the **Administrator** perspective of the web console, navigate to **Administration** -> **Cluster Settings**.
+1.  In the **Administrator** perspective of the web console, navigate to **Administration** → **Cluster Settings**.
 1.  To view the CCO status details, click **cloud-credential** in the **Cluster Operators** list.
     *   If the **Upgradeable** status in the **Conditions** section is **False**, verify that the `upgradeable-to` annotation is free of typographical errors.
 1.  When the **Upgradeable** status in the **Conditions** section is **True**, begin the {{ product_title }} upgrade.

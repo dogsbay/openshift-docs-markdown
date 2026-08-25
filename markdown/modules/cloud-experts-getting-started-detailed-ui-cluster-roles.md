@@ -21,7 +21,7 @@ If this is the _first time_ you are deploying {{ product_title }} in this accoun
     $ rosa create account-roles --mode auto --yes
     ```
 
-    ***Example output***
+    **Example output**
     ```terminal
     I: Creating roles using 'arn:aws:iam::000000000000:user/rosa-user'
     I: Created role 'ManagedOpenShift-ControlPlane-Role' with ARN 'arn:aws:iam::000000000000:role/ManagedOpenShift-ControlPlane-Role'

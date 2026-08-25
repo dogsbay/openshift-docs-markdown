@@ -12,7 +12,7 @@ After Knative Eventing is installed on your cluster, you can create a sink bindi
 **Procedure**
 
 1.  Create a Knative service to use as a sink:
-    1.  In the **Developer** perspective, navigate to **+Add** -> **YAML**.
+    1.  In the **Developer** perspective, navigate to **+Add** → **YAML**.
     1.  Copy the example YAML:
         ```yaml
         apiVersion: serving.knative.dev/v1
@@ -27,7 +27,7 @@ After Knative Eventing is installed on your cluster, you can create a sink bindi
         ```
     1.  Click **Create**.
 1.  Create a `CronJob` resource that is used as an event source and sends an event every minute.
-    1.  In the **Developer** perspective, navigate to **+Add** -> **YAML**.
+    1.  In the **Developer** perspective, navigate to **+Add** → **YAML**.
     1.  Copy the example YAML:
         ```yaml
         apiVersion: batch/v1
@@ -66,7 +66,7 @@ After Knative Eventing is installed on your cluster, you can create a sink bindi
         1.  Ensure that you include the `bindings.knative.dev/include: true` label. The default namespace selection behavior of {{ ServerlessProductName }} uses inclusion mode.
     1.  Click **Create**.
 1.  Create a sink binding in the same namespace as the service created in the previous step, or any other sink that you want to send events to.
-    1.  In the **Developer** perspective, navigate to **+Add** -> **Event Source**. The  **Event Sources** page is displayed.
+    1.  In the **Developer** perspective, navigate to **+Add** → **Event Source**. The  **Event Sources** page is displayed.
     1.  Optional: If you have multiple providers for your event sources, select the required provider from the **Providers** list to filter the available event sources from the provider.
     1.  Select **Sink Binding** and then click **Create Event Source**. The **Create Event Source** page is displayed.
 

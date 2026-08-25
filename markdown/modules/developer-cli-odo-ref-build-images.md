@@ -15,7 +15,7 @@ components:
   name: component-built-from-dockerfile
 ```
 1.  The `uri` field indicates the relative path of the Dockerfile to use, relative to the directory containing the `devfile.yaml`. The devfile specification indicates that `uri` could also be an HTTP URL, but this case is not supported by odo yet.
-1.  The `buildContext` indicates the directory used as build context. The default value is `${{ PROJECTS_ROOT }}`.
+1.  The `buildContext` indicates the directory used as build context. The default value is `${{ PROJECTS_ROOT }}`{minja}.
 
 For each image component, odo executes either `podman` or `docker` (the first one found, in this order), to build the image with the specified Dockerfile, build context, and arguments.
 

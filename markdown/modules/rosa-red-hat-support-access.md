@@ -5,36 +5,37 @@ Members of the Red&#160;Hat Customer Experience and Engagement (CEE) team typica
 
 | Role | Core namespace | Layered product namespace | Customer namespace | AWS account^*^ |
 | --- |
-| OpenShift SRE - Normal operations ^[1]^ |
-| Read: All Write: Very limited |
-| Read: All Write: None |
-| Read: None Write: None |
-| Read: None Write: None |
-| OpenShift SRE - Elevated Access ^[2]^ (Gated by [Approved Access](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/support/approved-access)) |
-| Read: All Write: All |
-| Read: All Write: All |
-| Read: All Write: All |
-| Read: All Write: All |
+| OpenShift SRE - Normal operations <sup>[1]</sup> |
+| Read: All<br>Write: Very<br>limited |
+| Read: All<br>Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| OpenShift SRE - Elevated Access <sup>[2]</sup> (Gated by [Approved Access](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/support/approved-access)) |
+| Read: All<br>Write: All |
+| Read: All<br>Write: All |
+| Read: All<br>Write: All |
+| Read: All<br>Write: All |
 | CEE |
-| Read: All Write: None |
-| Read: All Write: None |
-| Read: None Write: None |
-| Read: None Write: None |
+| Read: All<br>Write: None |
+| Read: All<br>Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
 | Customer administrator |
-| Read: None Write: None |
-| Read: None Write: None |
-| Read: All Write: All |
-| Read: All Write: All |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| Read: All<br>Write: All |
+| Read: All<br>Write: All |
 | Customer user |
-| Read: None Write: None |
-| Read: None Write: None |
-| Read: Limited ^[3]^ Write: Limited ^[3]^ |
-| Read: None Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| Read: Limited <sup>[3]</sup><br>Write: Limited <sup>[3]</sup> |
+| Read: None<br>Write: None |
 | Everybody else |
-| Read: None Write: None |
-| Read: None Write: None |
-| Read: None Write: None |
-| Read: None Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+| Read: None<br>Write: None |
+
 1.  Limited to addressing common use cases such as failing deployments, upgrading a cluster, and replacing bad worker nodes.
 1.  Elevated access gives SRE the access levels of a `cluster-admin` role and is gated by Approved Access. For more information, see "Default cluster roles" and "Approved Access".
 1.  Limited to what is granted through RBAC by the Customer Administrator and namespaces created by the user.

@@ -46,7 +46,7 @@ Check your pod counts with one of the following methods:
     oc get pods --field-selector=status.phase=Running | grep microservice
     ```
 
-    ***Example output:***
+    **Example output:**
     ```terminal
     ostoy-microservice-79894f6945-cdmbd   1/1     Running   0          3m14s
     ostoy-microservice-79894f6945-mgwk7   1/1     Running   0          4h24m

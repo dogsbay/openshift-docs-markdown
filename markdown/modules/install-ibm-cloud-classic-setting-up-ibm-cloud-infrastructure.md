@@ -154,7 +154,7 @@ Contact {{ ibm_cloud_name }} support to request that they increase the IPMI priv
 
 ## Create bare-metal servers {id="_create_bare-metal_servers"}
 
-Create bare-metal servers in the {{ ibm_cloud_name }} dashboard by navigating to **Create resource** -> **Bare Metal Servers for Classic**.
+Create bare-metal servers in the {{ ibm_cloud_name }} dashboard by navigating to **Create resource** → **Bare Metal Servers for Classic**.
 
 You can also create bare-metal servers with the `ibmcloud` CLI utility. For example:
 

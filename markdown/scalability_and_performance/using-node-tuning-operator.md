@@ -3,8 +3,8 @@ title: Using the Node Tuning Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the Node Tuning Operator {id="using-node-tuning-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# Using the Node Tuning Operator {id="using-node-tuning-operator"}
 {%- set context = "node-tuning-operator" %}
 
 Learn about the Node Tuning Operator and how you can use it to manage node-level
@@ -25,6 +25,7 @@ tuning by orchestrating the tuned daemon.
 {% leveloffset +1 %}{% include "./modules/defer-applicaton-tuning-example.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Coordinating reboots for configuration changes](/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-coordinating-reboots-for-config-changes_ztp-configuring-managed-clusters-policygenerator)
 

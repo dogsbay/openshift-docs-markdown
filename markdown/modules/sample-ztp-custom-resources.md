@@ -5,7 +5,7 @@ You can optionally use {{ ztp_first }} custom resource (CR) objects to install a
 
 You can customize the following {{ ztp }} custom resources to specify more details about your {{ product_title }} cluster. The following sample {{ ztp }} custom resources are for a single-node cluster.
 
-```yaml title="Example agent-cluster-install.yaml file"
+```yaml title="Example agent-cluster-install.yaml file" {minja}
   apiVersion: extensions.hive.openshift.io/v1beta1
   kind: AgentClusterInstall
   metadata:
@@ -52,7 +52,7 @@ spec:
 
 To declaratively bind specific bare-metal hosts to a cluster, use the `bmac.agent-install.openshift.io/cluster-reference` annotation on `BareMetalHost` resources.
 
-```yaml title="Example cluster-image-set.yaml file"
+```yaml title="Example cluster-image-set.yaml file" {minja}
 apiVersion: hive.openshift.io/v1
 kind: ClusterImageSet
 metadata:

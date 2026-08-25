@@ -8,12 +8,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating {{ op_system }} machines by using an ISO image {id="machine-user-infra-machines-iso_{{ context }}"}
 
-{%- if not ibm_power %}
+{% if not ibm_power %}
 To scale your {{ product_title }} bare metal cluster, you can create more {{ op_system_first }} compute machines by using an ISO image.
 {% endif %}
 {% if ibm_power %}
-To scale your {{ product_title }} cluster, you can create more {{ op_system_first }} compute machines by using an ISO image.
-{% endif %} {._abstract}
+To scale your {{ product_title }} cluster, you can create more {{ op_system_first }} compute machines by using an ISO image. {._abstract}
+{% endif %}
 
 **Prerequisites**
 
@@ -78,8 +78,8 @@ To scale your {{ product_title }} cluster, you can create more {{ op_system_firs
 1.  Continue to create more compute machines for your cluster.
 
 {% if context == "multi-architecture-configuration" %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
 {% if context == "creating-multi-arch-compute-nodes-ibm-power" %}
-{%- set ibm_power = false -%}
+{%- set ibm_power = "" -%}
 {% endif %}

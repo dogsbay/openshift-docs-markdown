@@ -5,7 +5,7 @@ You can restore a virtual machine (VM) to a previous configuration represented b
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Select a VM to open the **VirtualMachine details** page.
 1.  If the VM is running, click the Options menu {{ kebab }} and select **Stop** to power it down.
 1.  Click the **Snapshots** tab to view a list of snapshots associated with the VM.

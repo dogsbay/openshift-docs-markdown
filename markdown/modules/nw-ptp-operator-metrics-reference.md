@@ -3,7 +3,7 @@
 
 The following table describes the PTP fast events metrics that are available from cluster nodes where the `linuxptp-daemon` service is running.
 
-***PTP fast event metrics***
+**PTP fast event metrics**
 
 <table>
 <thead>
@@ -32,7 +32,7 @@ The following table describes the PTP fast events metrics that are available fro
 <tr>
   <td><code>openshift_ptp_ha_profile_status</code></td>
   <td>Returns the current status of the highly available system clock when there are multiple time sources on different NICs. Possible values are 0 (<code>INACTIVE</code>) and 1 (<code>ACTIVE</code>).</td>
-  <td><code>{node="node1",process="phc2sys",profile="profile1"} 1</code></td>
+  <td><code>{node="node1",process="phc2sys",profile="profile1"} 1</code> <code>{node="node1",process="phc2sys",profile="profile2"} 0</code></td>
 </tr>
 <tr>
   <td><code>openshift_ptp_frequency_adjustment_ns</code></td>

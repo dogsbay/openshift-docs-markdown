@@ -3,8 +3,8 @@ title: Connecting service meshes
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Connecting service meshes {id="ossm-federation"}
 {% include "./_attributes/common-attributes.md" %}
+# Connecting service meshes {id="ossm-federation"}
 {%- set context = "federation" %}
 
 _Federation_ is a deployment model that lets you share services and workloads between separate meshes managed in distinct administrative domains.

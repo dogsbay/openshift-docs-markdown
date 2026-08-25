@@ -17,7 +17,6 @@ The AWS Load Balancer (ALB) Operator version 1.x.x cannot upgrade automatically 
 :::
 
 
-
 Notable changes
 
 :   *   This release uses the new `v1` API version.
@@ -25,5 +24,5 @@ Notable changes
 Bug fixes
 
 :   *   Previously, the controller provisioned by the AWS Load Balancer Operator did not properly use the configuration for the cluster-wide proxy.
-    These settings are now applied appropriately to the controller.
-    ([**OCPBUGS-4052**](https://issues.redhat.com/browse/OCPBUGS-4052), [**OCPBUGS-5295**](https://issues.redhat.com/browse/OCPBUGS-5295))
+These settings are now applied appropriately to the controller.
+([**OCPBUGS-4052**](https://issues.redhat.com/browse/OCPBUGS-4052), [**OCPBUGS-5295**](https://issues.redhat.com/browse/OCPBUGS-5295))

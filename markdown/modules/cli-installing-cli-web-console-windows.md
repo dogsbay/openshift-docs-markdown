@@ -17,11 +17,11 @@ To manage your cluster and deploy applications from the command line on Windows,
 1.  Select the `oc` binary for Windows platform, and then click **Download oc for Windows for x86_64**.
 1.  Save the file.
 1.  Unzip the archive with a ZIP program.
-{% endif %}
-{% if openshift_rosa or openshift_dedicated %}
+{%- endif %}
+{%- if openshift_rosa or openshift_dedicated %}
 1.  Download the latest version of the `oc` CLI for your operating system from the [**Downloads**](https://console.redhat.com/openshift/downloads) page on {{ cluster_manager }}.
 1.  Extract the `oc` binary file from the downloaded archive.
-{% endif %}
+{%- endif %}
 1.  Move the `oc` binary to a directory that is on your `PATH`.
 
     To check your `PATH`, open the command prompt and execute the following command:
@@ -37,5 +37,5 @@ To manage your cluster and deploy applications from the command line on Windows,
     ```
 
 {% if context == "updating-restricted-network-cluster" %}
-{%- set restricted = false -%}
+{%- set restricted = "" -%}
 {% endif %}

@@ -3,8 +3,8 @@ title: Configuring an htpasswd identity provider
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configuring an htpasswd identity provider {id="configuring-htpasswd-identity-provider"}
 {% include "./_attributes/common-attributes.md" %}
+# Configuring an htpasswd identity provider {id="configuring-htpasswd-identity-provider"}
 {%- set context = "configuring-htpasswd-identity-provider" %}
 
 Configure the `htpasswd` identity provider to allow users to log in to {{ product_title }} with credentials from an htpasswd file.
@@ -40,6 +40,7 @@ See one of the following sections for instructions about how to create the htpas
 {% leveloffset +1 %}{% include "./modules/identity-provider-htpasswd-CR.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   See [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
 

@@ -51,7 +51,7 @@ The following guidelines are based on internal lab benchmark testing only and do
 :::
 
 
-***Representative three-node hub cluster machine specifications***
+**Representative three-node hub cluster machine specifications**
 
 <table>
 <thead>

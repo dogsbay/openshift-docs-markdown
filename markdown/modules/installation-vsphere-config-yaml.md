@@ -21,7 +21,7 @@ Carefully review the "Installation configuration parameters for {{ vmw_short }}"
 :::
 
 
-```yaml
+```yaml {minja}
 apiVersion: v1
 baseDomain: example.com
 metadata:
@@ -32,8 +32,8 @@ compute:
   platform: {}
 {%- if vsphere_upi %}
   replicas: 0
-{% endif %}
-{% if not vsphere_upi %}
+{%- endif %}
+{%- if not vsphere_upi %}
   replicas: 3
 {%- endif %}
 controlPlane:
@@ -51,7 +51,7 @@ platform:
     - 10.0.0.1
     ingressVIPs:
     - 10.0.0.2
-      {%- endif %}
+{%- endif %}
     failureDomains:
     - name: <failure_domain_name>
       region: <default_region_name>
@@ -85,11 +85,11 @@ where:
 :   Specifies the parameters that apply to the configuration of the platform hosting the cluster.
 
 {% if context == "installing-vsphere" %}
-{%- set vsphere_upi = false -%}
+{%- set vsphere_upi = "" -%}
 {% endif %}
 {% if context == "installing-restricted-networks-vsphere" %}
-{%- set vsphere_upi = false -%}
+{%- set vsphere_upi = "" -%}
 {% endif %}
 {% if context == "installing-vsphere-network-customizations" %}
-{%- set vsphere_upi = false -%}
+{%- set vsphere_upi = "" -%}
 {% endif %}

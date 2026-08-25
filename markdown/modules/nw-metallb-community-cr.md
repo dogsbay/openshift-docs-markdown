@@ -13,7 +13,7 @@ The `community` CRD applies only to BGPAdvertisement.
 :::
 
 
-***MetalLB community custom resource***
+**MetalLB community custom resource**
 
 <table>
 <thead>
@@ -32,7 +32,7 @@ The `community` CRD applies only to BGPAdvertisement.
 <tr>
   <td><code>metadata.namespace</code></td>
   <td><code>string</code></td>
-  <td>Specifies the namespace for the <code>community</code>.Specify the same namespace that the MetalLB Operator uses.</td>
+  <td>Specifies the namespace for the <code>community</code>. Specify the same namespace that the MetalLB Operator uses.</td>
 </tr>
 <tr>
   <td><code>spec.communities</code></td>
@@ -42,7 +42,7 @@ The `community` CRD applies only to BGPAdvertisement.
 </tbody>
 </table>
 
-***CommunityAlias***
+**CommunityAlias**
 
 <table>
 <thead>

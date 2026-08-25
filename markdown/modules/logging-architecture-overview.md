@@ -6,17 +6,17 @@ The major components of the {{ logging }} are:
 
 Collector
 :   The collector is a daemonset that deploys pods to each {{ product_title }} node. It collects log data from each node, transforms the data, and forwards it to configured outputs. You can use the Vector collector or the legacy Fluentd collector.
-{% include "./snippets/logging-fluentd-dep-snip.md" %}
+    {% include "./snippets/logging-fluentd-dep-snip.md" %}
 
 
 Log store
 :   The log store stores log data for analysis and is the default output for the log forwarder. You can use the default LokiStack log store, the legacy Elasticsearch log store, or forward logs to additional external log stores.
-{% include "./snippets/logging-elastic-dep-snip.md" %}
+    {% include "./snippets/logging-elastic-dep-snip.md" %}
 
 
 Visualization
 :   You can use a UI component to view a visual representation of your log data. The UI provides a graphical interface to search, query, and view stored logs. The {{ product_title }} web console UI is provided by enabling the {{ product_title }} console plugin.
-{% include "./snippets/logging-kibana-dep-snip.md" %}
+    {% include "./snippets/logging-kibana-dep-snip.md" %}
 
 {{ logging_uc }} collects container logs and node logs. These are categorized into types:
 

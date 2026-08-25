@@ -64,8 +64,8 @@ with a `localhost.localdomain` hostname. To address the error, force the node to
     [core@master-X ~]$ sudo journalctl -fu kubelet.service
     ```
 
-    If the cluster node is not getting the correct hostname over DHCP after the cluster is up and running, such as during a reboot, the cluster will have a pending `csr`. ***Do not*** approve a `csr`, or other issues might arise.
-    *   ***Addressing a `csr`***
+    If the cluster node is not getting the correct hostname over DHCP after the cluster is up and running, such as during a reboot, the cluster will have a pending `csr`. **Do not** approve a `csr`, or other issues might arise.
+    *   **Addressing a `csr`**
         1.  Get CSRs on the cluster by running the following command:
             ```terminal
             $ oc get csr

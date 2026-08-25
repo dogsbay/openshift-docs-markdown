@@ -3,13 +3,13 @@ title: "Manually installing a {{ sno }} cluster with {{ ztp }}"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Manually installing a {{ sno }} cluster with {{ ztp }} {id="ztp-manual-install"}
 {% include "./_attributes/common-attributes.md" %}
+# Manually installing a {{ sno }} cluster with {{ ztp }} {id="ztp-manual-install"}
 {%- set context = "ztp-manual-install" -%}
 {%- set policy_gen_cr = "PolicyGenerator" -%}
 {%- set policy_prefix = "acm-" %}
 
-You can deploy a managed {{ sno }} cluster by using {{ rh_rhacm_first }} and the assisted service.
+You can deploy a managed {{ sno }} cluster by using {{ rh_rhacm_first }} and the assisted service. {._abstract}
 
 
 :::note
@@ -36,6 +36,7 @@ The target bare-metal host must meet the networking, firmware, and hardware requ
 {% leveloffset +1 %}{% include "./modules/ztp-manually-install-a-single-managed-cluster.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [BMC addressing](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)
 *   [About root device hints](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#root-device-hints_preparing-to-install-with-agent-based-installer)
@@ -48,6 +49,7 @@ The target bare-metal host must meet the networking, firmware, and hardware requ
 {% leveloffset +1 %}{% include "./modules/ztp-late-binding-bare-metal-host-pools.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Bind bare-metal hosts to clusters using the cluster-reference annotation in {{ ztp }} deployments](/edge_computing/ztp-manual-install#ztp-binding-bmh-to-cluster-using-annotation_ztp-manual-install)
 *   [`BareMetalHost` cluster-reference annotation reference](/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install)
@@ -56,6 +58,7 @@ The target bare-metal host must meet the networking, firmware, and hardware requ
 {% leveloffset +1 %}{% include "./modules/ztp-binding-bmh-to-cluster-using-annotation.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Late binding for bare-metal host pools in {{ ztp }} deployments](/edge_computing/ztp-manual-install#ztp-late-binding-bare-metal-host-pools_ztp-manual-install)
 *   [`BareMetalHost` cluster-reference annotation reference](/edge_computing/ztp-manual-install#ztp-bmh-cluster-reference-annotation-ref_ztp-manual-install)
@@ -69,5 +72,5 @@ The target bare-metal host must meet the networking, firmware, and hardware requ
 
 {% leveloffset +1 %}{% include "./modules/ztp-installation-crs.md" %}{% endleveloffset %}
 
-{%- set policy_gen_cr = false -%}
-{%- set policy_prefix = false -%}
+{%- set policy_gen_cr = "" -%}
+{%- set policy_prefix = "" -%}

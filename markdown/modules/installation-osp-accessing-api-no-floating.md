@@ -20,19 +20,19 @@ You can install {{ product_title }} on {{ rh_openstack_first }} without providin
 **Procedure**
 
 1.  In the
-{% if osp_ipi %}
+{%- if osp_ipi %}
 `install-config.yaml`
-{% endif %}
-{% if osp_upi %}
+{%- endif %}
+{%- if osp_upi %}
 `inventory.yaml`
-{% endif %}
+{%- endif %}
 file, do not define the following
-{% if osp_ipi %}
+{%- if osp_ipi %}
 parameters:
-{% endif %}
-{% if osp_upi %}
+{%- endif %}
+{%- if osp_upi %}
 variables:
-{% endif %}
+{%- endif %}
 
 {% if osp_ipi %}
     *   `platform.openstack.ingressFloatingIP`
@@ -47,9 +47,9 @@ variables:
 1.  If you cannot provide an external network, you can also leave `os_external_network` blank. If you do not provide a value for `os_external_network`, a router is not created for you, and, without additional action, the installer will fail to retrieve an image from Glance. Later in the installation process, when you create network resources, you must configure external connectivity on your own.
 {% endif %}
 1.  If you run the installer
-{% if osp_upi %}
+{%- if osp_upi %}
 with the `wait-for` command
-{% endif %}
+{%- endif %}
 from a system that cannot reach the cluster API due to a lack of floating IP addresses or name resolution, installation fails. To prevent installation failure in these cases, you can use a proxy network or run the installer from a system that is on the same network as your machines.
 
     :::note
@@ -67,15 +67,15 @@ from a system that cannot reach the cluster API due to a lack of floating IP add
 
 
 {% if context == "installing-openstack-installer-custom" %}
-{%- set osp_ipi = false -%}
+{%- set osp_ipi = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user" %}
-{%- set osp_upi = false -%}
+{%- set osp_upi = "" -%}
 {% endif %}
 {% if context == "installing-openstack-user-sr-iov" %}
-{%- set osp_upi = false -%}
+{%- set osp_upi = "" -%}
 {% endif %}
 {% if context == "installing-openstack-installer-restricted" %}
-{%- set osp_ipi = false -%}
-{%- set osp_restricted = false -%}
+{%- set osp_ipi = "" -%}
+{%- set osp_restricted = "" -%}
 {% endif %}

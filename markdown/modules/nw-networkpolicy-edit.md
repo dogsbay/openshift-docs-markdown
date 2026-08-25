@@ -38,14 +38,14 @@ If you log in with `cluster-admin` privileges, you can edit network policies in 
 {%- endif %}
 *   You installed the {{ oc_first }}.
 {%- if not microshift %}
-*   You are logged in to the cluster with a user with `{{ role }}` privileges.
+*   You are logged in to the cluster with a user with `{{ role }}`{minja} privileges.
 {%- endif %}
 *   You are working in the namespace where the {{ name }} policy exists.
 
 **Procedure**
 
 1.  Optional: To list the {{ name }} policy objects in a namespace, enter the following command:
-    ```terminal
+    ```terminal {minja}
     $ oc get {{ name }} policy -n <namespace>
     ```
 
@@ -68,7 +68,7 @@ If you log in with `cluster-admin` privileges, you can edit network policies in 
         `<policy_file>`
         :   Specifies the name of the file containing the network policy.
     1.  If you need to update the {{ name }} policy object directly, enter the following command:
-        ```terminal
+        ```terminal {minja}
         $ oc edit {{ name }} policy <policy_name> -n <namespace>
         ```
 
@@ -81,7 +81,7 @@ If you log in with `cluster-admin` privileges, you can edit network policies in 
         :   Optional: Specifies the namespace if the object is defined in a different namespace than the current namespace.
 
 1.  Confirm that the {{ name }} policy object is updated.
-    ```terminal
+    ```terminal {minja}
     $ oc describe {{ name }}policy <policy_name> -n <namespace>
     ```
 
@@ -94,7 +94,7 @@ If you log in with `cluster-admin` privileges, you can edit network policies in 
     :   Optional: Specifies the namespace if the object is defined in a different namespace than the current namespace.
 
 {% if multi %}
-{%- set multi = false -%}
+{%- set multi = "" -%}
 {% endif %}
-{%- set name = false -%}
-{%- set role = false -%}
+{%- set name = "" -%}
+{%- set role = "" -%}

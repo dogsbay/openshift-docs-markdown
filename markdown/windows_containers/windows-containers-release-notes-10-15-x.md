@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# {{ productwinc }} release notes {id="windows-containers-release-notes-10-15-x"}
 {% include "./_attributes/common-attributes.md" %}
+# {{ productwinc }} release notes {id="windows-containers-release-notes-10-15-x"}
 {%- set context = "windows-containers-release-notes" %}
 
 ## About {{ productwinc }} {id="about-windows-containers"}

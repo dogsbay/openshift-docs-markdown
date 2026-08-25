@@ -13,25 +13,26 @@ Getting your AI model ready
 Setting up the deployment environment
 
 :   *   Configure your {{ op_system_bundle }} for the specific hardware your deployment runs on, including driver and device plugins.
-*   To enable GPU or other hardware accelerators for {{ microshift_short }}, follow the guidance specific for your edge device about what you need to install. For example, to use an NVIDIA GPU accelerator, begin by reading the following NVIDIA documentation: [Running a GPU-Accelerated Workload on Red Hat Device Edge](https://docs.nvidia.com/datacenter/cloud-native/edge/latest/nvidia-gpu-with-device-edge.html#running-a-gpu-accelerated-workload-on-red-hat-device-edge) (NVIDIA documentation).
-*   For troubleshooting, consult the device documentation or product support.
+    *   To enable GPU or other hardware accelerators for {{ microshift_short }}, follow the guidance specific for your edge device about what you need to install. For example, to use an NVIDIA GPU accelerator, begin by reading the following NVIDIA documentation: [Running a GPU-Accelerated Workload on Red Hat Device Edge](https://docs.nvidia.com/datacenter/cloud-native/edge/latest/nvidia-gpu-with-device-edge.html#running-a-gpu-accelerated-workload-on-red-hat-device-edge) (NVIDIA documentation).
+    *   For troubleshooting, consult the device documentation or product support.
 
     :::tip
+
 
     Using only a driver and device plugin instead of an Operator might be more resource-efficient.
     
     :::
 
 
-    Installing the {{ microshift_short }} {{ rhoai }} RPM
+Installing the {{ microshift_short }} {{ rhoai }} RPM
 
 :   *   Install the `microshift-ai-model-serving` RPM package.
-*   Restart {{ microshift_short }} if you are adding the RPM while {{ microshift_short }} is running.
+    *   Restart {{ microshift_short }} if you are adding the RPM while {{ microshift_short }} is running.
 
 Getting ready to deploy
 
 :   *   Package your AI model into an OCI image, otherwise known as the ModelCar format. If you already have S3-compatible storage or a persistent volume claim set up, you can skip this step, but only the ModelCar format is tested and supported for {{ microshift_short }}.
-*   Select a model-serving runtime, which acts as your model server. Configure the runtime with the serving runtime and inference service.
+    *   Select a model-serving runtime, which acts as your model server. Configure the runtime with the serving runtime and inference service.
     *   Copy the `ServingRuntime` custom resource (CR) from the default `redhat-ods-applications` namespace to your own namespace.
     *   Create the `InferenceService` CR.
 *   Optional: Create a `Route` object so that your model can connect outside the node.

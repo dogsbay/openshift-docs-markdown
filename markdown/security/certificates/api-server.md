@@ -3,11 +3,11 @@ title: Adding API server certificates
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Adding API server certificates {id="api-server-certificates"}
 {% include "./_attributes/common-attributes.md" %}
+# Adding API server certificates {id="api-server-certificates"}
 {%- set context = "api-server-certificates" %}
 
-To allow clients outside of the cluster to verify the API server’s certificate, you can replace the default API server certificate with one that is issued by a CA that clients trust.
+To allow clients outside of the cluster to verify the API server’s certificate, you can replace the default API server certificate with one that is issued by a CA that clients trust. {._abstract}
 
 By default, the API server certificate is issued by an internal {{ product_title }} cluster CA. As a result, clients outside of the cluster cannot verify the API server’s certificate.
 

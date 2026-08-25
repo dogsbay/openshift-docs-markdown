@@ -6,6 +6,6 @@ If you prefer to use the {{ product_title }} web console, you can use it to crea
 **Procedure**
 
 1.  Open the {{ product_title }} web console and log in by entering your administrator credentials. For instructions to open the console, see "Accessing the web console".
-1.  In the console header, ensure that ***All Clusters*** is selected.
-1.  Click ***Infrastructure -> Host inventory -> Create infrastructure environment***.
-1.  After you create the `InfraEnv` resource, add bare-metal hosts from within the ***InfraEnv*** view by clicking ***Add hosts*** and selecting from the available options.
+1.  In the console header, ensure that **All Clusters** is selected.
+1.  Click **Infrastructure → Host inventory → Create infrastructure environment**.
+1.  After you create the `InfraEnv` resource, add bare-metal hosts from within the **InfraEnv** view by clicking **Add hosts** and selecting from the available options.

@@ -10,7 +10,7 @@ To view pipeline logs in the Kibana web console:
 1.  Create an index pattern:
     1.  On the left navigation panel of the **Kibana** web console, click **Management**.
     1.  Click **Create index pattern**.
-    1.  Under **Step 1 of 2: Define index pattern** → **Index pattern**, enter a **`**`* pattern and click **Next Step**.
+    1.  Under **Step 1 of 2: Define index pattern** → **Index pattern**, enter a **`*`** pattern and click **Next Step**.
     1.  Under **Step 2 of 2: Configure settings** → **Time filter field name**, select **@timestamp** from the drop-down menu, and click **Create index pattern**.
 1.  Add a filter:
     1.  On the left navigation panel of the **Kibana** web console, click **Discover**.
@@ -37,6 +37,7 @@ To view pipeline logs in the Kibana web console:
             }
             ```
         1.  Filter all containers that are not `place-tools` container. As an illustration of using the graphical drop-down menus instead of editing the query DSL, consider the following approach:
+
             **Figure 1. Example of filtering using the drop-down fields**
 
             ![Not place-tools](/_assets/images/not-placetools.png)
@@ -72,6 +73,7 @@ To view pipeline logs in the Kibana web console:
 
             Ensure that the selected fields are displayed under the **Selected fields** list.
     1.  The logs are displayed under the **message** field.
+
         **Figure 2. Filtered messages**
 
         ![Filtered messages](/_assets/images/filtered-messages.png)

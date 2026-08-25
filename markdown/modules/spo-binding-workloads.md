@@ -16,8 +16,8 @@ You can use the `ProfileBinding` resource to bind a security profile to the `Sec
 
 **Procedure**
 
-1.  To bind a pod that uses a `quay.io/security-profiles-operator/test-nginx-unprivileged:1.21` image to the example `{{ kind }}` profile, create a `ProfileBinding` object in the same namespace with the pod and the `{{ kind }}` objects:
-    ```yaml
+1.  To bind a pod that uses a `quay.io/security-profiles-operator/test-nginx-unprivileged:1.21` image to the example `{{ kind }}`{minja} profile, create a `ProfileBinding` object in the same namespace with the pod and the `{{ kind }}`{minja} objects:
+    ```yaml {minja}
     apiVersion: security-profiles-operator.x-k8s.io/v1alpha1
     kind: ProfileBinding
     metadata:
@@ -98,12 +98,12 @@ You can use the `ProfileBinding` resource to bind a security profile to the `Sec
 {% endif %}
 
 {% if context == "spo-seccomp" %}
-{%- set seccomp = false -%}
-{%- set type = false -%}
-{%- set kind = false -%}
+{%- set seccomp = "" -%}
+{%- set type = "" -%}
+{%- set kind = "" -%}
 {% endif %}
 {% if context == "spo-selinux" %}
-{%- set selinux = false -%}
-{%- set type = false -%}
-{%- set kind = false -%}
+{%- set selinux = "" -%}
+{%- set type = "" -%}
+{%- set kind = "" -%}
 {% endif %}

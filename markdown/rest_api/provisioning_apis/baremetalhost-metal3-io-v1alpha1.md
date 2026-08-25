@@ -1,5 +1,5 @@
 ---
-title: "BareMetalHost []"
+title: "BareMetalHost [metal3.io/v1alpha1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -24,6 +24,7 @@ Type
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | BareMetalHostSpec defines the desired state of BareMetalHost. |
 | `status` | `object` | BareMetalHostStatus defines the observed state of BareMetalHost. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -48,8 +49,8 @@ Required
 | `customDeploy` | `object` | A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use "image" instead. Setting this field triggers provisioning. |
 | `description` | `string` | Description is a human-entered text used to help identify the host. |
 | `disablePowerOff` | `boolean` | When set to true, power off of the node will be disabled, instead, a reboot will be used in place of power on/off |
-| `externallyProvisioned` | `boolean` | ExternallyProvisioned means something else has provisioned the image running on the host, and the operator should only manage the power status. This field is used for integration with already provisioned hosts and when pivoting hosts between clusters. This field can be set to true either: 1. During initial host creation (e.g., for pre-provisioned hosts) 2. After inspection completes when the host reaches Available state When used in environments with Cluster API Provider Metal3 (CAPM3), ensure hosts are labeled appropriately so CAPM3’s host selector can distinguish them from CAPM3-managed hosts. If unsure, leave this field as false. |
-| `firmware` | `object` | Firmware (BIOS) configuration for bare metal server. If set, the requested settings will be applied before the host is provisioned. Deprecated: no longer supported by any driver. An alternative is to use HostFirmwareSettings resources that allow changing arbitrary values and support the generic Redfish-based drivers. |
+| `externallyProvisioned` | `boolean` | ExternallyProvisioned means something else has provisioned the image running on the host, and the operator should only manage the power status. This field is used for integration with already provisioned hosts and when pivoting hosts between clusters.<br>This field can be set to true either: 1. During initial host creation (e.g., for pre-provisioned hosts) 2. After inspection completes when the host reaches Available state<br>When used in environments with Cluster API Provider Metal3 (CAPM3), ensure hosts are labeled appropriately so CAPM3’s host selector can distinguish them from CAPM3-managed hosts. If unsure, leave this field as false. |
+| `firmware` | `object` | Firmware (BIOS) configuration for bare metal server. If set, the requested settings will be applied before the host is provisioned.<br>Deprecated: no longer supported by any driver. An alternative is to use HostFirmwareSettings resources that allow changing arbitrary values and support the generic Redfish-based drivers. |
 | `hardwareProfile` | `string` | What is the name of the hardware profile for this host? Hardware profiles are deprecated and should not be used. Use the separate fields Architecture and RootDeviceHints instead. Set to "empty" to prepare for the future version of the API without hardware profiles. |
 | `image` | `object` | Image holds the details of the image to be provisioned. Populating the image will cause the host to start provisioning. |
 | `inspectionMode` | `string` | Specifies the mode for host inspection. "disabled" - no inspection will be performed "agent" - normal agent-based inspection will run |
@@ -62,6 +63,7 @@ Required
 | `taints` | `array` | Taints is the full, authoritative list of taints to apply to the corresponding Machine. This list will overwrite any modifications made to the Machine on an ongoing basis. |
 | `taints[]` | `object` | The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint. |
 | `userData` | `object` | UserData holds the reference to the Secret containing the user data which is passed to the Config Drive and interpreted by the first-boot software such as cloud-init. The format of user data is specific to the first-boot software. |
+
 ### .spec.bmc {id="_specbmc"}
 
 Description
@@ -82,6 +84,7 @@ Required
 | `address` | `string` | Address holds the URL for accessing the controller on the network. The scheme part designates the driver to use with the host. |
 | `credentialsName` | `string` | The name of the secret containing the BMC credentials (requires keys "username" and "password"). |
 | `disableCertificateVerification` | `boolean` | DisableCertificateVerification disables verification of server certificates when using HTTPS to connect to the BMC. This is required when the server certificate is self-signed, but is insecure because it allows a man-in-the-middle to intercept the connection. |
+
 ### .spec.consumerRef {id="_specconsumerref"}
 
 Description
@@ -103,6 +106,7 @@ Type
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
+
 ### .spec.customDeploy {id="_speccustomdeploy"}
 
 Description
@@ -122,6 +126,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `method` | `string` | Custom deploy method name. This name is specific to the deploy ramdisk used. If you don’t have a custom deploy ramdisk, you shouldn’t use CustomDeploy. |
+
 ### .spec.firmware {id="_specfirmware"}
 
 Description
@@ -142,6 +147,7 @@ Type
 | `simultaneousMultithreadingEnabled` | `boolean` | Allows a single physical processor core to appear as several logical processors. |
 | `sriovEnabled` | `boolean` | SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance. |
 | `virtualizationEnabled` | `boolean` | Supports the virtualization of platform hardware. |
+
 ### .spec.image {id="_specimage"}
 
 Description
@@ -162,6 +168,7 @@ Required
 | `checksumType` | `string` | ChecksumType is the checksum algorithm for the image, e.g md5, sha256 or sha512. The special value "auto" can be used to detect the algorithm from the checksum. If missing, MD5 is used. If in doubt, use "auto". |
 | `format` | `string` | Format contains the format of the image (raw, qcow2, ...). When set to "live-iso", an ISO 9660 image referenced by the url will be live-booted and not deployed to disk. |
 | `url` | `string` | URL is a location of an image to deploy. |
+
 ### .spec.metaData {id="_specmetadata"}
 
 Description
@@ -177,6 +184,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.networkData {id="_specnetworkdata"}
 
 Description
@@ -192,6 +200,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .spec.raid {id="_specraid"}
 
 Description
@@ -209,6 +218,7 @@ Type
 | --- | --- | --- |
 | `hardwareRAIDVolumes` | `` | The list of logical disks for hardware RAID, if rootDeviceHints isn’t used, first volume is root volume. You can set the value of this field to `[]` to clear all the hardware RAID configurations. |
 | `softwareRAIDVolumes` | `` | The list of logical disks for software RAID, if rootDeviceHints isn’t used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting host in case of a disk failure. Software RAID will always be deleted. |
+
 ### .spec.rootDeviceHints {id="_specrootdevicehints"}
 
 Description
@@ -232,6 +242,7 @@ Type
 | `wwn` | `string` | Unique storage identifier. The hint must match the actual value exactly. |
 | `wwnVendorExtension` | `string` | Unique vendor storage identifier. The hint must match the actual value exactly. |
 | `wwnWithExtension` | `string` | Unique storage identifier with the vendor extension appended. The hint must match the actual value exactly. |
+
 ### .spec.taints {id="_spectaints"}
 
 Description
@@ -264,6 +275,7 @@ Required
 | `key` | `string` | Required. The taint key to be applied to a node. |
 | `timeAdded` | `string` | TimeAdded represents the time at which the taint was added. |
 | `value` | `string` | The taint value corresponding to the taint key. |
+
 ### .spec.userData {id="_specuserdata"}
 
 Description
@@ -280,6 +292,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .status {id="_status"}
 
 Description
@@ -313,6 +326,7 @@ Required
 | `poweredOn` | `boolean` | The currently detected power state of the host. This field may get briefly out of sync with the actual state of the hardware while provisioning processes are running. |
 | `provisioning` | `object` | Information tracked by the provisioner. |
 | `triedCredentials` | `object` | The last credentials we sent to the provisioning backend. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -347,6 +361,7 @@ Required
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.goodCredentials {id="_statusgoodcredentials"}
 
 Description
@@ -360,6 +375,7 @@ Type
 | --- | --- | --- |
 | `credentials` | `object` | SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace |
 | `credentialsVersion` | `string` |  |
+
 ### .status.goodCredentials.credentials {id="_statusgoodcredentialscredentials"}
 
 Description
@@ -374,6 +390,7 @@ Type
 | --- | --- | --- |
 | `name` | `string` | name is unique within a namespace to reference a secret resource. |
 | `namespace` | `string` | namespace defines the space within which the secret name must be unique. |
+
 ### .status.hardware {id="_statushardware"}
 
 Description
@@ -396,6 +413,7 @@ Type
 | `storage` | `array` | List of storage (disk, SSD, etc.) available to the host. |
 | `storage[]` | `object` | Storage describes one storage device (disk, SSD, etc.) on the host. |
 | `systemVendor` | `object` | System vendor information. |
+
 ### .status.hardware.cpu {id="_statushardwarecpu"}
 
 Description
@@ -412,6 +430,7 @@ Type
 | `count` | `integer` |  |
 | `flags` | `array (string)` |  |
 | `model` | `string` |  |
+
 ### .status.hardware.firmware {id="_statushardwarefirmware"}
 
 Description
@@ -424,6 +443,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `bios` | `object` | The BIOS for this firmware |
+
 ### .status.hardware.firmware.bios {id="_statushardwarefirmwarebios"}
 
 Description
@@ -438,6 +458,7 @@ Type
 | `date` | `string` | The release/build date for this BIOS |
 | `vendor` | `string` | The vendor name for this BIOS |
 | `version` | `string` | The version of the BIOS |
+
 ### .status.hardware.nics {id="_statushardwarenics"}
 
 Description
@@ -469,6 +490,7 @@ Type
 | `vlanId` | `integer` | The untagged VLAN ID |
 | `vlans` | `array` | The VLANs available |
 | `vlans[]` | `object` | VLAN represents the name and ID of a VLAN. |
+
 ### .status.hardware.nics[].lldp {id="_statushardwarenicslldp"}
 
 Description
@@ -483,6 +505,7 @@ Type
 | `portID` | `string` | The switch port ID from LLDP |
 | `switchID` | `string` | The switch chassis ID from LLDP |
 | `switchSystemName` | `string` | The switch system name from LLDP |
+
 ### .status.hardware.nics[].vlans {id="_statushardwarenicsvlans"}
 
 Description
@@ -505,6 +528,7 @@ Type
 | --- | --- | --- |
 | `id` | `integer` | VLANID is a 12-bit 802.1Q VLAN identifier |
 | `name` | `string` |  |
+
 ### .status.hardware.storage {id="_statushardwarestorage"}
 
 Description
@@ -537,6 +561,7 @@ Type
 | `wwn` | `string` | The WWN of the device |
 | `wwnVendorExtension` | `string` | The WWN Vendor extension of the device |
 | `wwnWithExtension` | `string` | The WWN with the extension |
+
 ### .status.hardware.systemVendor {id="_statushardwaresystemvendor"}
 
 Description
@@ -551,6 +576,7 @@ Type
 | `manufacturer` | `string` |  |
 | `productName` | `string` |  |
 | `serialNumber` | `string` |  |
+
 ### .status.operationHistory {id="_statusoperationhistory"}
 
 Description
@@ -567,6 +593,7 @@ Type
 | `inspect` | `object` | OperationMetric contains metadata about an operation (inspection, provisioning, etc.) used for tracking metrics. |
 | `provision` | `object` | OperationMetric contains metadata about an operation (inspection, provisioning, etc.) used for tracking metrics. |
 | `register` | `object` | OperationMetric contains metadata about an operation (inspection, provisioning, etc.) used for tracking metrics. |
+
 ### .status.operationHistory.deprovision {id="_statusoperationhistorydeprovision"}
 
 Description
@@ -581,6 +608,7 @@ Type
 | --- | --- | --- |
 | `end` | `` |  |
 | `start` | `` |  |
+
 ### .status.operationHistory.inspect {id="_statusoperationhistoryinspect"}
 
 Description
@@ -595,6 +623,7 @@ Type
 | --- | --- | --- |
 | `end` | `` |  |
 | `start` | `` |  |
+
 ### .status.operationHistory.provision {id="_statusoperationhistoryprovision"}
 
 Description
@@ -609,6 +638,7 @@ Type
 | --- | --- | --- |
 | `end` | `` |  |
 | `start` | `` |  |
+
 ### .status.operationHistory.register {id="_statusoperationhistoryregister"}
 
 Description
@@ -623,6 +653,7 @@ Type
 | --- | --- | --- |
 | `end` | `` |  |
 | `start` | `` |  |
+
 ### .status.provisioning {id="_statusprovisioning"}
 
 Description
@@ -647,6 +678,7 @@ Required
 | `raid` | `object` | The RAID configuration that has been applied. |
 | `rootDeviceHints` | `object` | The root device hints used to provision the host. |
 | `state` | `string` | An indicator for what the provisioner is doing with the host. |
+
 ### .status.provisioning.customDeploy {id="_statusprovisioningcustomdeploy"}
 
 Description
@@ -663,6 +695,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `method` | `string` | Custom deploy method name. This name is specific to the deploy ramdisk used. If you don’t have a custom deploy ramdisk, you shouldn’t use CustomDeploy. |
+
 ### .status.provisioning.firmware {id="_statusprovisioningfirmware"}
 
 Description
@@ -677,6 +710,7 @@ Type
 | `simultaneousMultithreadingEnabled` | `boolean` | Allows a single physical processor core to appear as several logical processors. |
 | `sriovEnabled` | `boolean` | SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance. |
 | `virtualizationEnabled` | `boolean` | Supports the virtualization of platform hardware. |
+
 ### .status.provisioning.image {id="_statusprovisioningimage"}
 
 Description
@@ -697,6 +731,7 @@ Required
 | `checksumType` | `string` | ChecksumType is the checksum algorithm for the image, e.g md5, sha256 or sha512. The special value "auto" can be used to detect the algorithm from the checksum. If missing, MD5 is used. If in doubt, use "auto". |
 | `format` | `string` | Format contains the format of the image (raw, qcow2, ...). When set to "live-iso", an ISO 9660 image referenced by the url will be live-booted and not deployed to disk. |
 | `url` | `string` | URL is a location of an image to deploy. |
+
 ### .status.provisioning.raid {id="_statusprovisioningraid"}
 
 Description
@@ -710,6 +745,7 @@ Type
 | --- | --- | --- |
 | `hardwareRAIDVolumes` | `` | The list of logical disks for hardware RAID, if rootDeviceHints isn’t used, first volume is root volume. You can set the value of this field to `[]` to clear all the hardware RAID configurations. |
 | `softwareRAIDVolumes` | `` | The list of logical disks for software RAID, if rootDeviceHints isn’t used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting host in case of a disk failure. Software RAID will always be deleted. |
+
 ### .status.provisioning.rootDeviceHints {id="_statusprovisioningrootdevicehints"}
 
 Description
@@ -731,6 +767,7 @@ Type
 | `wwn` | `string` | Unique storage identifier. The hint must match the actual value exactly. |
 | `wwnVendorExtension` | `string` | Unique vendor storage identifier. The hint must match the actual value exactly. |
 | `wwnWithExtension` | `string` | Unique storage identifier with the vendor extension appended. The hint must match the actual value exactly. |
+
 ### .status.triedCredentials {id="_statustriedcredentials"}
 
 Description
@@ -744,6 +781,7 @@ Type
 | --- | --- | --- |
 | `credentials` | `object` | SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace |
 | `credentialsVersion` | `string` |  |
+
 ### .status.triedCredentials.credentials {id="_statustriedcredentialscredentials"}
 
 Description
@@ -765,16 +803,16 @@ The following API endpoints are available:
 
 *   `/apis/metal3.io/v1alpha1/baremetalhosts`
     *   `GET`: list objects of kind BareMetalHost
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts`{minja}
     *   `DELETE`: delete collection of BareMetalHost
     *   `GET`: list objects of kind BareMetalHost
     *   `POST`: create a BareMetalHost
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts/{{ name }}`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts/{{ name }}`{minja}
     *   `DELETE`: delete a BareMetalHost
     *   `GET`: read the specified BareMetalHost
     *   `PATCH`: partially update the specified BareMetalHost
     *   `PUT`: replace the specified BareMetalHost
-*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts/{{ name }}/status`
+*   `/apis/metal3.io/v1alpha1/namespaces/{{ namespace }}/baremetalhosts/{{ name }}/status`{minja}
     *   `GET`: read status of the specified BareMetalHost
     *   `PATCH`: partially update status of the specified BareMetalHost
     *   `PUT`: replace status of the specified BareMetalHost

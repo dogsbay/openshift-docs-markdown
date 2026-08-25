@@ -4,11 +4,11 @@
 The following recommendations are based on observations of performance made in the scale and performance lab. The backup and restore resources can be impacted by the type of plugin, the amount of resources required by that backup or restore, and the respective data contained in the persistent volumes (PVs) related to those resources. {._abstract}
 
 ## CPU and memory requirement for configurations {id="_cpu_and_memory_requirement_for_configurations"}
-| Configuration types | ^[1]^ Average usage | ^[2]^ Large usage | resourceTimeouts |
+| Configuration types | <sup>[1]</sup> Average usage | <sup>[2]</sup> Large usage | resourceTimeouts |
 | --- | --- | --- | --- |
-| CSI | Velero: CPU- Request 200m, Limits 1000m Memory - Request 256Mi, Limits 1024Mi | Velero: CPU- Request 200m, Limits 2000m Memory- Request  256Mi, Limits 2048Mi | N/A |
-| Restic | ^[3]^ Restic: CPU- Request 1000m, Limits 2000m Memory - Request 16Gi, Limits 32Gi | ^[4]^ Restic: CPU - Request 2000m, Limits 8000m Memory - Request 16Gi, Limits 40Gi | 900m |
-| ^[5]^ Data Mover | N/A | N/A | 10m - average usage 60m - large usage |
+| CSI | Velero:<br>CPU- Request 200m, Limits 1000m<br>Memory - Request 256Mi, Limits 1024Mi | Velero:<br>CPU- Request 200m, Limits 2000m<br>Memory- Request  256Mi, Limits 2048Mi | N/A |
+| Restic | <sup>[3]</sup> Restic:<br>CPU- Request 1000m, Limits 2000m<br>Memory - Request 16Gi, Limits 32Gi | <sup>[4]</sup> Restic:<br>CPU - Request 2000m, Limits 8000m<br>Memory - Request 16Gi, Limits 40Gi | 900m |
+| <sup>[5]</sup> Data Mover | N/A | N/A | 10m - average usage<br>60m - large usage |
 
 1.  Average usage - use these settings for most usage situations.
 1.  Large usage - use these settings for large usage situations, such as a large PV (500GB Usage), multiple namespaces (100+), or many pods within a single namespace (2000 pods+), and for optimal performance for backup and restore involving large datasets.

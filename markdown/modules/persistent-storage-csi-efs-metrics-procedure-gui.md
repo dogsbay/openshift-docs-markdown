@@ -6,10 +6,10 @@ To monitor Elastic File System (EFS) volume space consumption through the web co
 **Prerequisites**
 
 *   Access to
-    {%- if openshift_rosa or openshift_rosa_hcp %}
+{%- if openshift_rosa or openshift_rosa_hcp %}
  a {{ product_title }} cluster
-{% endif %}
-{% if not (openshift_rosa or openshift_rosa_hcp) %}
+{%- endif %}
+{%- if not (openshift_rosa or openshift_rosa_hcp) %}
  an {{ product_title }} cluster
 {%- endif %}
 with administrator rights

@@ -7,7 +7,7 @@ title: "Using {{ VirtProductName }} with {{ IBMFusionFirst }}"
 # Using {{ VirtProductName }} with {{ IBMFusionFirst }} {id="install-configure-fusion-access-san"}
 {%- set context = "install-configure-fusion-access-san" %}
 
-You configure SAN-based storage for virtual machines by using {{ IBMFusionFirst }} with {{ VirtProductName }}. You must install the {{ FusionSAN }} Operator (Fusion Access for SAN) and set up the storage cluster and file systems.
+You configure SAN-based storage for virtual machines by using {{ IBMFusionFirst }} with {{ VirtProductName }}. You must install the {{ FusionSAN }} Operator (Fusion Access for SAN) and set up the storage cluster and file systems. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/virt-about-fusion-access-san.md" %}{% endleveloffset %}
 
@@ -27,7 +27,7 @@ You configure SAN-based storage for virtual machines by using {{ IBMFusionFirst 
 
 {% leveloffset +1 %}{% include "./modules/virt-fusion-access-san-release-updates.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Creating virtual machines from instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
 *   [Creating virtual machines from templates](/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)

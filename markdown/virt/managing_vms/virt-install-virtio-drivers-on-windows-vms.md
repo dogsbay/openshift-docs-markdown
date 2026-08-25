@@ -3,11 +3,11 @@ title: Install VirtIO drivers on Windows VMs
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Install VirtIO drivers on Windows VMs {id="virt-install-virtio-drivers-on-windows-vms"}
 {% include "./_attributes/common-attributes.md" %}
+# Install VirtIO drivers on Windows VMs {id="virt-install-virtio-drivers-on-windows-vms"}
 {%- set context = "virt-install-virtio-drivers-on-windows-vms" %}
 
-VirtIO drivers are paravirtualized device drivers required for Microsoft Windows virtual machines (VMs) to run in {{ VirtProductName }}. The drivers are shipped with the rest of the images and do not require a separate download.
+VirtIO drivers are paravirtualized device drivers required for Microsoft Windows virtual machines (VMs) to run in {{ VirtProductName }}. The drivers are shipped with the rest of the images and do not require a separate download. {._abstract}
 
 The `container-native-virtualization/virtio-win` container disk must be attached to the VM as a SATA CD drive to enable driver installation. You can install VirtIO drivers during Windows installation or add them to an existing Windows installation.
 

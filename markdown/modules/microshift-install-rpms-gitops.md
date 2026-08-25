@@ -21,7 +21,7 @@ The Argo CD web console is not available on {{ microshift_short }}. This process
 **Procedure**
 
 1.  Enable the {{ gitops }} repository with the subscription manager by running the following command:
-    ```terminal
+    ```terminal {minja}
     $ sudo subscription-manager repos --enable=gitops-{{ gitops_ver }}-for-{{ rhel_major }}-$(uname -m)-rpms
     ```
 1.  Install the {{ microshift_short }} {{ gitops }} package by running the following command:

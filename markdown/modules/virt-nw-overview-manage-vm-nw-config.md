@@ -1,6 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-[id="virt-nw-overview-manage-vm-nw-config_{{ context }}"]                                
-= Manage VM network interface configuration
+# Manage VM network interface configuration {id="virt-nw-overview-manage-vm-nw-config_{{ context }}"}
 
 Manage virtual machine (VM) network configuration to scale connectivity without incurring application downtime, troubleshoot network latency, define and automate management of MAC address pools, configure IP addresses, and isolate live migration traffic. {._abstract}
 

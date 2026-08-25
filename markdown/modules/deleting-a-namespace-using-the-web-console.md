@@ -9,7 +9,7 @@ You can delete a namespace by using the {{ product_title }} web console. {._abst
 
 **Procedure**
 
-1.  Navigate to **Administration** -> **Namespaces**.
+1.  Navigate to **Administration** → **Namespaces**.
 1.  Locate the namespace that you want to delete in the list of namespaces.
 1.  On the far right side of the namespace listing, select **Delete Namespace** from the
 Options menu {{ kebab }}.

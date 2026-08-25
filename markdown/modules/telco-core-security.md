@@ -9,7 +9,7 @@ New in this release
     The generated `MachineConfig` CRs can then be added to the cluster configuration to improve security.
 
 Description
-    :   Telco customers are security conscious and require clusters to be hardened against multiple attack vectors.
+:   Telco customers are security conscious and require clusters to be hardened against multiple attack vectors.
     In {{ product_title }}, there is no single component or feature responsible for securing a cluster.
     Described below are various security oriented features and configurations for the use models covered in the telco core RDS.
 
@@ -21,10 +21,12 @@ Description
     *   Storage: The storage network should be isolated and non-routable to other cluster networks.
     See the "Storage" section for additional details.
 
+
     Security-conscious cluster administrators can configure nftables rules to restrict inbound network flows.
     See [the {{ product_title }} documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/installation_configuration/configuring-firewall.html#network-commatrix-plugin-intro_configuring-firewall) for a supported method for implementing custom nftables firewall rules in {{ product_title }} cluster nodes with the `oc commatrix` plugin.
     You can add the generated `MachineConfig` CRs to the cluster configuration at install time as extra manifests.
     When the cluster is managed under a Hub RDS compliant {{ rh_rhacm }} cluster the content of the `MachineConfig` resource is maintained across the life of the cluster through a `Policy` resource.
+
 
     It is crucial to carefully consider the operational implications before deploying this method, including:
 
@@ -38,11 +40,12 @@ Description
     *   Node reboot: Unless node disruption policies are configured, applying the `MachineConfig` CR with the required firewall settings causes a node reboot.
     Be aware of this impact and schedule a maintenance window accordingly.
 
-        :::note
+    :::note
 
-        Node disruption policies are available in {{ product_title }} 4.17 and later.
-        
-        :::
+
+    Node disruption policies are available in {{ product_title }} 4.17 and later.
+    
+    :::
 
     *   Network flow matrix: For more information about managing ingress traffic, see "Network flow matrix".
     You can restrict ingress traffic to essential flows to improve network security.
@@ -59,6 +62,6 @@ Limits and requirements
         *   Configure the `container_t` SELinux context for the tap plugin.
         *   Enable the `container_use_devices` SELinux boolean for the cluster host.
 
-    Engineering considerations
+Engineering considerations
 :   *   For rootless DPDK pod support, enable the SELinux `container_use_devices` boolean on the host to allow the tap device to be created.
     This introduces an acceptable security risk.

@@ -5,7 +5,7 @@ As a cluster administrator, you can specify parameters in the BFD profile CR. Th
 
 The following table describes parameters for the BFD profile CR:
 
-***BFD profile custom resource***
+**BFD profile custom resource**
 
 <table>
 <thead>
@@ -34,7 +34,7 @@ The following table describes parameters for the BFD profile CR:
 <tr>
   <td><code>spec.echoMode</code></td>
   <td><code>boolean</code></td>
-  <td>Specifies the echo transmission mode. If you are not using distributed BFD, echo transmission mode works only when the peer is also FRR. The default value is <code>false</code> and echo transmission mode is disabled.<br><br>When echo transmission mode is enabled, consider increasing the transmission interval of control packets to reduce bandwidth usage.For example, consider increasing the transmit interval to <code>2000</code> ms.</td>
+  <td>Specifies the echo transmission mode. If you are not using distributed BFD, echo transmission mode works only when the peer is also FRR. The default value is <code>false</code> and echo transmission mode is disabled.<br><br>When echo transmission mode is enabled, consider increasing the transmission interval of control packets to reduce bandwidth usage. For example, consider increasing the transmit interval to <code>2000</code> ms.</td>
 </tr>
 <tr>
   <td><code>spec.echoInterval</code></td>
@@ -49,7 +49,7 @@ The following table describes parameters for the BFD profile CR:
 <tr>
   <td><code>spec.passiveMode</code></td>
   <td><code>boolean</code></td>
-  <td>Specifies whether a session is marked as active or passive. A passive session does not attempt to start the connection.Instead, a passive session waits for control packets from a peer before it begins to reply.<br><br>Marking a session as passive is useful when you have a router that acts as the central node of a star network and you want to avoid sending control packets that you do not need the system to send. The default value is <code>false</code> and marks the session as active.</td>
+  <td>Specifies whether a session is marked as active or passive. A passive session does not attempt to start the connection. Instead, a passive session waits for control packets from a peer before it begins to reply.<br><br>Marking a session as passive is useful when you have a router that acts as the central node of a star network and you want to avoid sending control packets that you do not need the system to send. The default value is <code>false</code> and marks the session as active.</td>
 </tr>
 <tr>
   <td><code>spec.receiveInterval</code></td>

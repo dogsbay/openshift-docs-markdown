@@ -9,5 +9,5 @@ You can cancel the live migration of a virtual machine (VM) by using the {{ prod
 
 **Procedure**
 
-1.  Navigate to **Virtualization** -> **VirtualMachines** in the web console.
+1.  Navigate to **Virtualization** → **VirtualMachines** in the web console.
 1.  Select **Cancel Migration** on the Options menu {{ kebab }} beside a VM.

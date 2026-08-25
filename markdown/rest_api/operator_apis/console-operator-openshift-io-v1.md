@@ -1,5 +1,5 @@
 ---
-title: "Console []"
+title: "Console [operator.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ConsoleSpec is the specification of the desired behavior of the Console. |
 | `status` | `object` | ConsoleStatus defines the observed status of the Console. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -44,14 +45,15 @@ Type
 | --- | --- | --- |
 | `customization` | `object` | customization is used to optionally provide a small set of customization options to the web console. |
 | `ingress` | `object` | ingress allows to configure the alternative ingress for the console. This field is intended for clusters without ingress capability, where access to routes is not possible. |
-| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
-| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves. Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
+| `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `plugins` | `array (string)` | plugins defines a list of enabled console plugin names. |
 | `providers` | `object` | providers contains configuration for using specific service providers. |
 | `route` | `object` | route contains hostname and secret reference that contains the serving certificate. If a custom route is specified, a new route will be created with the provided hostname, under which console will be available. In case of custom hostname uses the default routing suffix of the cluster, the Secret specification for a serving certificate will not be needed. In case of custom hostname points to an arbitrary domain, manual DNS configurations steps are necessary. The default console route will be maintained to reserve the default hostname for console if the custom route is removed. If not specified, default route will be used. DEPRECATED |
 | `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+
 ### .spec.customization {id="_speccustomization"}
 
 Description
@@ -78,6 +80,7 @@ Type
 | `perspectives[]` | `object` | Perspective defines a perspective that cluster admins want to show/hide in the perspective switcher dropdown |
 | `projectAccess` | `object` | projectAccess allows customizing the available list of ClusterRoles in the Developer perspective Project access page which can be used by a project admin to specify roles to other users and restrict access within the project. If set, the list will replace the default ClusterRole options. |
 | `quickStarts` | `object` | quickStarts allows customization of available ConsoleQuickStart resources in console. |
+
 ### .spec.customization.addPage {id="_speccustomizationaddpage"}
 
 Description
@@ -90,6 +93,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `disabledActions` | `array (string)` | disabledActions is a list of actions that are not shown to users. Each action in the list is represented by its ID. |
+
 ### .spec.customization.capabilities {id="_speccustomizationcapabilities"}
 
 Description
@@ -120,6 +124,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the unique name of a capability. Available capabilities are LightspeedButton, GettingStartedBanner, and GuidedTour. |
 | `visibility` | `object` | visibility defines the visibility state of the capability. |
+
 ### .spec.customization.capabilities[].visibility {id="_speccustomizationcapabilitiesvisibility"}
 
 Description
@@ -136,6 +141,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `state` | `string` | state defines if the capability is enabled or disabled in the console UI. Enabling the capability in the console UI is represented by the "Enabled" value. Disabling the capability in the console UI is represented by the "Disabled" value. |
+
 ### .spec.customization.customLogoFile {id="_speccustomizationcustomlogofile"}
 
 Description
@@ -157,6 +163,7 @@ Type
 | --- | --- | --- |
 | `key` | `string` | key allows pointing to a specific key/value inside of the configmap.  This is useful for logical file references. |
 | `name` | `string` |  |
+
 ### .spec.customization.developerCatalog {id="_speccustomizationdevelopercatalog"}
 
 Description
@@ -171,6 +178,7 @@ Type
 | `categories` | `array` | categories which are shown in the developer catalog. |
 | `categories[]` | `object` | DeveloperConsoleCatalogCategory for the developer console catalog. |
 | `types` | `object` | types allows enabling or disabling of sub-catalog types that user can see in the Developer catalog. When omitted, all the sub-catalog types will be shown. |
+
 ### .spec.customization.developerCatalog.categories {id="_speccustomizationdevelopercatalogcategories"}
 
 Description
@@ -201,6 +209,7 @@ Required
 | `subcategories` | `array` | subcategories defines a list of child categories. |
 | `subcategories[]` | `object` | DeveloperConsoleCatalogCategoryMeta are the key identifiers of a developer catalog category. |
 | `tags` | `array (string)` | tags is a list of strings that will match the category. A selected category show all items which has at least one overlapping tag between category and item. |
+
 ### .spec.customization.developerCatalog.categories[].subcategories {id="_speccustomizationdevelopercatalogcategoriessubcategories"}
 
 Description
@@ -229,6 +238,7 @@ Required
 | `id` | `string` | id is an identifier used in the URL to enable deep linking in console. ID is required and must have 1-32 URL safe (A-Z, a-z, 0-9, - and _) characters. |
 | `label` | `string` | label defines a category display label. It is required and must have 1-64 characters. |
 | `tags` | `array (string)` | tags is a list of strings that will match the category. A selected category show all items which has at least one overlapping tag between category and item. |
+
 ### .spec.customization.developerCatalog.types {id="_speccustomizationdevelopercatalogtypes"}
 
 Description
@@ -248,6 +258,7 @@ Required
 | `disabled` | `array (string)` | disabled is a list of developer catalog types (sub-catalogs IDs) that are not shown to users. Types (sub-catalogs) are added via console plugins, the available types (sub-catalog IDs) are available in the console on the cluster configuration page, or when editing the YAML in the console. Example: "Devfile", "HelmChart", "BuilderImage" If the list is empty or all the available sub-catalog types are added, then the complete developer catalog should be hidden. |
 | `enabled` | `array (string)` | enabled is a list of developer catalog types (sub-catalogs IDs) that will be shown to users. Types (sub-catalogs) are added via console plugins, the available types (sub-catalog IDs) are available in the console on the cluster configuration page, or when editing the YAML in the console. Example: "Devfile", "HelmChart", "BuilderImage" If the list is non-empty, a new type will not be shown to the user until it is added to list. If the list is empty the complete developer catalog will be shown. |
 | `state` | `string` | state defines if a list of catalog types should be enabled or disabled. |
+
 ### .spec.customization.logos {id="_speccustomizationlogos"}
 
 Description
@@ -281,6 +292,7 @@ Required
 | `themes` | `array` | themes specifies the themes for the console UI logo. themes is a required field that allows a list of themes. Each item in the themes list must have a unique mode and a source field. Each mode determines whether the logo is for the dark or light mode of the console UI. If a theme is not specified, the default OpenShift logo will be displayed for that theme. There must be at least one entry and no more than 2 entries. |
 | `themes[]` | `object` | Theme defines a theme mode for the console UI. |
 | `type` | `string` | type specifies the type of the logo for the console UI. It determines whether the logo is for the masthead or favicon. type is a required field that allows values of Masthead and Favicon. When set to "Masthead", the logo will be used in the masthead and about modal of the console UI. When set to "Favicon", the logo will be used as the favicon of the console UI. |
+
 ### .spec.customization.logos[].themes {id="_speccustomizationlogosthemes"}
 
 Description
@@ -312,6 +324,7 @@ Required
 | --- | --- | --- |
 | `mode` | `string` | mode is used to specify what theme mode a logo will apply to in the console UI. mode is a required field that allows values of Dark and Light. When set to Dark, the logo file referenced in the 'file' field will be used when an end-user of the console UI enables the Dark mode. When set to Light, the logo file referenced in the 'file' field will be used when an end-user of the console UI enables the Light mode. |
 | `source` | `object` | source is used by the console to locate the specified file containing a custom logo. source is a required field that references a ConfigMap name and key that contains the custom logo file in the openshift-config namespace. You can create it with a command like: - 'oc create configmap custom-logos-config --namespace=openshift-config --from-file=/path/to/file' The ConfigMap key must include the file extension so that the console serves the file with the correct MIME type. The recommended file format for the Masthead and Favicon logos is SVG, but other file formats are allowed if supported by the browser. The logo image size must be less than 1 MB due to constraints on the ConfigMap size. For more information, see the documentation: https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/web_console/customizing-web-console#customizing-web-console |
+
 ### .spec.customization.logos[].themes[].source {id="_speccustomizationlogosthemessource"}
 
 Description
@@ -336,6 +349,7 @@ Required
 | --- | --- | --- |
 | `configMap` | `object` | configMap specifies the ConfigMap sourcing details such as the name of the ConfigMap and the key for the file. The ConfigMap must exist in the openshift-config namespace. Required when from is "ConfigMap", and forbidden otherwise. |
 | `from` | `string` | from is a required field to specify the source type of the file reference. Allowed values are ConfigMap. When set to ConfigMap, the file will be sourced from a ConfigMap in the openshift-config namespace. The configMap field must be set when from is set to ConfigMap. |
+
 ### .spec.customization.logos[].themes[].source.configMap {id="_speccustomizationlogosthemessourceconfigmap"}
 
 Description
@@ -356,6 +370,7 @@ Required
 | --- | --- | --- |
 | `key` | `string` | key is the logo key inside the referenced ConfigMap. Must consist only of alphanumeric characters, dashes (-), underscores (_), and periods (.). Must be at most 253 characters in length. Must end in a valid file extension. A valid file extension must consist of a period followed by 2 to 5 alpha characters. |
 | `name` | `string` | name is the name of the ConfigMap. name is a required field. Must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character. Must be at most 253 characters in length. |
+
 ### .spec.customization.perspectives {id="_speccustomizationperspectives"}
 
 Description
@@ -385,6 +400,7 @@ Required
 | `pinnedResources` | `array` | pinnedResources defines the list of default pinned resources that users will see on the perspective navigation if they have not customized these pinned resources themselves. The list of available Kubernetes resources could be read via `kubectl api-resources`. The console will also provide a configuration UI and a YAML snippet that will list the available resources that can be pinned to the navigation. Incorrect or unknown resources will be ignored. |
 | `pinnedResources[]` | `object` | PinnedResourceReference includes the group, version and type of resource |
 | `visibility` | `object` | visibility defines the state of perspective along with access review checks if needed for that perspective. |
+
 ### .spec.customization.perspectives[].pinnedResources {id="_speccustomizationperspectivespinnedresources"}
 
 Description
@@ -417,6 +433,7 @@ Required
 | `group` | `string` | group is the API Group of the Resource. Enter empty string for the core group. This value should consist of only lowercase alphanumeric characters, hyphens and periods. Example: "", "apps", "build.openshift.io", etc. |
 | `resource` | `string` | resource is the type that is being referenced. It is normally the plural form of the resource kind in lowercase. This value should consist of only lowercase alphanumeric characters and hyphens. Example: "deployments", "deploymentconfigs", "pods", etc. |
 | `version` | `string` | version is the API Version of the Resource. This value should consist of only lowercase alphanumeric characters. Example: "v1", "v1beta1", etc. |
+
 ### .spec.customization.perspectives[].visibility {id="_speccustomizationperspectivesvisibility"}
 
 Description
@@ -434,6 +451,7 @@ Required
 | --- | --- | --- |
 | `accessReview` | `object` | accessReview defines required and missing access review checks. |
 | `state` | `string` | state defines the perspective is enabled or disabled or access review check is required. |
+
 ### .spec.customization.perspectives[].visibility.accessReview {id="_speccustomizationperspectivesvisibilityaccessreview"}
 
 Description
@@ -449,6 +467,7 @@ Type
 | `missing[]` | `object` | ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface |
 | `required` | `array` | required defines a list of permission checks. The perspective will only be shown when all checks are successful. When omitted, the access review is skipped and the perspective will not be shown unless it is required to do so based on the configuration of the missing access review list. |
 | `required[]` | `object` | ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface |
+
 ### .spec.customization.perspectives[].visibility.accessReview.missing {id="_speccustomizationperspectivesvisibilityaccessreviewmissing"}
 
 Description
@@ -478,6 +497,7 @@ Type
 | `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
 | `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
 | `version` | `string` | Version is the API Version of the Resource.  "*" means all. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.missing[].fieldSelector {id="_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselector"}
 
 Description
@@ -492,6 +512,7 @@ Type
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.missing[].fieldSelector.requirements {id="_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselectorrequirements"}
 
 Description
@@ -525,6 +546,7 @@ Required
 | `key` | `string` | key is the field selector key that the requirement applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. The list of operators may grow in the future. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.missing[].labelSelector {id="_speccustomizationperspectivesvisibilityaccessreviewmissinglabelselector"}
 
 Description
@@ -539,6 +561,7 @@ Type
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.missing[].labelSelector.requirements {id="_speccustomizationperspectivesvisibilityaccessreviewmissinglabelselectorrequirements"}
 
 Description
@@ -572,6 +595,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.required {id="_speccustomizationperspectivesvisibilityaccessreviewrequired"}
 
 Description
@@ -601,6 +625,7 @@ Type
 | `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
 | `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
 | `version` | `string` | Version is the API Version of the Resource.  "*" means all. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.required[].fieldSelector {id="_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselector"}
 
 Description
@@ -615,6 +640,7 @@ Type
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.required[].fieldSelector.requirements {id="_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselectorrequirements"}
 
 Description
@@ -648,6 +674,7 @@ Required
 | `key` | `string` | key is the field selector key that the requirement applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. The list of operators may grow in the future. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.required[].labelSelector {id="_speccustomizationperspectivesvisibilityaccessreviewrequiredlabelselector"}
 
 Description
@@ -662,6 +689,7 @@ Type
 | `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
+
 ### .spec.customization.perspectives[].visibility.accessReview.required[].labelSelector.requirements {id="_speccustomizationperspectivesvisibilityaccessreviewrequiredlabelselectorrequirements"}
 
 Description
@@ -695,6 +723,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.customization.projectAccess {id="_speccustomizationprojectaccess"}
 
 Description
@@ -709,6 +738,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `availableClusterRoles` | `array (string)` | availableClusterRoles is the list of ClusterRole names that are assignable to users through the project access tab. |
+
 ### .spec.customization.quickStarts {id="_speccustomizationquickstarts"}
 
 Description
@@ -721,6 +751,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `disabled` | `array (string)` | disabled is a list of ConsoleQuickStart resource names that are not shown to users. |
+
 ### .spec.ingress {id="_specingress"}
 
 Description
@@ -736,6 +767,7 @@ Type
 | --- | --- | --- |
 | `clientDownloadsURL` | `string` | clientDownloadsURL is a URL to be used as the address to download client binaries. If not specified, the downloads route hostname will be used. This field is required for clusters without ingress capability, where access to routes is not possible. The console operator will monitor the URL and may go degraded if it’s unreachable for an extended period. Must use the HTTPS scheme. |
 | `consoleURL` | `string` | consoleURL is a URL to be used as the base console address. If not specified, the console route hostname will be used. This field is required for clusters without ingress capability, where access to routes is not possible. Make sure that appropriate ingress is set up at this URL. The console operator will monitor the URL and may go degraded if it’s unreachable for an extended period. Must use the HTTPS scheme. |
+
 ### .spec.providers {id="_specproviders"}
 
 Description
@@ -748,6 +780,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `statuspage` | `object` | statuspage contains ID for statuspage.io page that provides status info about. |
+
 ### .spec.providers.statuspage {id="_specprovidersstatuspage"}
 
 Description
@@ -760,6 +793,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `pageID` | `string` | pageID is the unique ID assigned by Statuspage for your page. This must be a public page. |
+
 ### .spec.route {id="_specroute"}
 
 Description
@@ -782,6 +816,7 @@ Type
 | --- | --- | --- |
 | `hostname` | `string` | hostname is the desired custom domain under which console will be available. |
 | `secret` | `object` | secret points to secret in the openshift-config namespace that contains custom certificate and key and needs to be created manually by the cluster admin. Referenced Secret is required to contain following key value pairs: - "tls.crt" - to specifies custom certificate - "tls.key" - to specifies private key of the custom certificate If the custom hostname uses the default routing suffix of the cluster, the Secret specification for a serving certificate will not be needed. |
+
 ### .spec.route.secret {id="_specroutesecret"}
 
 Description
@@ -804,6 +839,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
+
 ### .status {id="_status"}
 
 Description
@@ -823,6 +859,7 @@ Type
 | `observedGeneration` | `integer` | observedGeneration is the last generation change you’ve dealt with |
 | `readyReplicas` | `integer` | readyReplicas indicates how many replicas are ready and at the desired state |
 | `version` | `string` | version is the level this availability applies to |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -854,6 +891,7 @@ Required
 | `reason` | `string` |  |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
+
 ### .status.generations {id="_statusgenerations"}
 
 Description
@@ -896,12 +934,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of Console
     *   `GET`: list objects of kind Console
     *   `POST`: create a Console
-*   `/apis/operator.openshift.io/v1/consoles/{{ name }}`
+*   `/apis/operator.openshift.io/v1/consoles/{{ name }}`{minja}
     *   `DELETE`: delete a Console
     *   `GET`: read the specified Console
     *   `PATCH`: partially update the specified Console
     *   `PUT`: replace the specified Console
-*   `/apis/operator.openshift.io/v1/consoles/{{ name }}/status`
+*   `/apis/operator.openshift.io/v1/consoles/{{ name }}/status`{minja}
     *   `GET`: read status of the specified Console
     *   `PATCH`: partially update status of the specified Console
     *   `PUT`: replace status of the specified Console

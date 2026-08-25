@@ -18,14 +18,14 @@ Platform monitoring using the Cluster Monitoring Operator
 
     For more information, see [Monitoring projects on {{ product_title }}](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/monitoring/index).
 
-    AWS Windows License Included is available for {{ product_title }}
-    :   You can add a Windows License Included enabled machine pool to a {{ product_title }} cluster. For more information, see [Creating a machine pool with AWS Windows License Included enabled using the {{ rosa_cli }}](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/managing-compute-nodes-using-machine-pools#creating_a_machine_pools_cli_win_li_rosa-managing-worker-nodes).
+AWS Windows License Included is available for {{ product_title }}
+:   You can add a Windows License Included enabled machine pool to a {{ product_title }} cluster. For more information, see [Creating a machine pool with AWS Windows License Included enabled using the {{ rosa_cli }}](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/managing-compute-nodes-using-machine-pools#creating_a_machine_pools_cli_win_li_rosa-managing-worker-nodes).
 
 
 Updating the global pull secret is available for {{ product_title }} clusters
-    :   You can modify the global pull secret to include additional pull secrets for accessing container images from private registries. For more information, see [Updating the global cluster pull secret](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets).
+:   You can modify the global pull secret to include additional pull secrets for accessing container images from private registries. For more information, see [Updating the global cluster pull secret](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/images/managing-images#images-update-global-pull-secret_using-image-pull-secrets).
 {% endif %}
 
 
 New version of {{ product_title }} available
-    :   {{ product_title }} version 4.21 is available for new clusters.
+:   {{ product_title }} version 4.21 is available for new clusters.

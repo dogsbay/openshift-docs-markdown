@@ -23,7 +23,7 @@ where:
 
 
 `metadata.name`
-:   Specifies the name of the `{{ policy_gen_crs }}` object. This name is also used as part of the names for the `placementBinding`, `placementRule`, and `policy` that are created in the requested `namespace`.
+:   Specifies the name of the `{{ policy_gen_crs }}`{minja} object. This name is also used as part of the names for the `placementBinding`, `placementRule`, and `policy` that are created in the requested `namespace`.
 
 `metadata.namespace`
 :   Specifies the namespace. This value should match the `namespace` used in the group `policy-gen-crs`.

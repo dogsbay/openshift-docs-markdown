@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Scale bounds {id="serverless-autoscaling-developer-scale-bounds"}
 {% include "./_attributes/common-attributes.md" %}
+# Scale bounds {id="serverless-autoscaling-developer-scale-bounds"}
 {%- set context = "serverless-serving-scale-bounds" %}
 
 Scale bounds determine the minimum and maximum numbers of replicas that can serve an application at any given time. You can set scale bounds for an application to help prevent cold starts or control computing costs.

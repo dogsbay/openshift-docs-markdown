@@ -3,7 +3,7 @@
 
 The `PodNetworkConnectivityCheck` object fields are described in the following tables.
 
-***PodNetworkConnectivityCheck object fields***
+**PodNetworkConnectivityCheck object fields**
 
 <table>
 <thead>
@@ -17,7 +17,7 @@ The `PodNetworkConnectivityCheck` object fields are described in the following t
 <tr>
   <td><code>metadata.name</code></td>
   <td><code>string</code></td>
-  <td>The name of the object in the following format: <code><source>-to-<target></code>. The destination described by <code><target></code> includes one of following strings:<br><br><ul><li><code>load-balancer-api-external</code></li><li><code>load-balancer-api-internal</code></li><li><code>kubernetes-apiserver-endpoint</code></li><li><code>kubernetes-apiserver-service-cluster</code></li><li><code>network-check-target</code></li><li><code>openshift-apiserver-endpoint</code></li><li><code>openshift-apiserver-service-cluster</code></li></ul></td>
+  <td>The name of the object in the following format: <code>&lt;source&gt;-to-&lt;target&gt;</code>. The destination described by <code>&lt;target&gt;</code> includes one of following strings:<br><br><ul><li><code>load-balancer-api-external</code></li><li><code>load-balancer-api-internal</code></li><li><code>kubernetes-apiserver-endpoint</code></li><li><code>kubernetes-apiserver-service-cluster</code></li><li><code>network-check-target</code></li><li><code>openshift-apiserver-endpoint</code></li><li><code>openshift-apiserver-service-cluster</code></li></ul></td>
 </tr>
 <tr>
   <td><code>metadata.namespace</code></td>

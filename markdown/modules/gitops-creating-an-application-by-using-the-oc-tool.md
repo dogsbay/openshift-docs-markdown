@@ -17,11 +17,11 @@ You can create Argo CD applications in your terminal by using the `oc` tool.
     $ git clone git@github.com:redhat-developer/openshift-gitops-getting-started.git
     ```
 1.  Create the application:
-    {%- if app %}
+{%- if app %}
     ```terminal
     $ oc create -f openshift-gitops-getting-started/argo/app.yaml
     ```
-{% endif %}
+{%- endif %}
 
 {% if cluster %}
     ```terminal

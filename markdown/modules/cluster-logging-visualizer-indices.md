@@ -28,7 +28,7 @@ An index pattern defines the Elasticsearch indices that you want to visualize. T
 To define index patterns and create visualizations in Kibana:
 
 1.  In the {{ product_title }} console, click the Application Launcher {{ launch }} and select **Logging**.
-1.  Create your Kibana index patterns by clicking **Management** -> **Index Patterns** -> **Create index pattern**:
+1.  Create your Kibana index patterns by clicking **Management** → **Index Patterns** → **Create index pattern**:
     *   Each user must manually create index patterns when logging into Kibana the first time to see logs for their projects. Users must create an index pattern named `app` and use the `@timestamp` time field to view their container logs.
     *   Each admin user must create index patterns when logged into Kibana the first time for the `app`, `infra`, and `audit` indices using the `@timestamp` time field.
 1.  Create Kibana Visualizations from the new index patterns.

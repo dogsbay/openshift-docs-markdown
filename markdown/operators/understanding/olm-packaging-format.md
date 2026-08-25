@@ -3,11 +3,11 @@ title: Operator Framework packaging format
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Operator Framework packaging format {id="olm-packaging-format"}
 {% include "./_attributes/common-attributes.md" %}
+# Operator Framework packaging format {id="olm-packaging-format"}
 {%- set context = "olm-packaging-format" %}
 
-You can use the Operator Framework packaging format to bundle and publish Operator metadata for Operator Lifecycle Manager (OLM) in {{ product_title }}. The format covers bundle images, dependencies, and file-based catalog schemas.
+You can use the Operator Framework packaging format to bundle and publish Operator metadata for Operator Lifecycle Manager (OLM) in {{ product_title }}. The format covers bundle images, dependencies, and file-based catalog schemas. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/olm-bundle-format.md" %}{% endleveloffset %}
 
@@ -20,6 +20,7 @@ You can use the Operator Framework packaging format to bundle and publish Operat
 {% leveloffset +2 %}{% include "./modules/olm-dependencies.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Operator Lifecycle Manager dependency resolution](/operators/understanding/olm/olm-understanding-dependency-resolution#olm-understanding-dependency-resolution)
 
@@ -27,7 +28,7 @@ You can use the Operator Framework packaging format to bundle and publish Operat
 *   See [CLI tools](/cli_reference/opm/cli-opm-install#cli-opm-install) for steps on installing the `opm` CLI.
 
 {% if openshift_origin %}
-## Additional resources {id="olm-packaging-format-addtl-resources"}
+## Additional resources {id="olm-packaging-format-addtl-resources" ._additional-resources}
 
 *   [Operator Bundle Overview](https://github.com/operator-framework/operator-registry/blob/master/docs/design/operator-bundle.md)
 *   [Operator Registry README](https://github.com/operator-framework/operator-registry/blob/master/README.md)
@@ -37,6 +38,7 @@ You can use the Operator Framework packaging format to bundle and publish Operat
 {% leveloffset +1 %}{% include "./modules/olm-fb-catalogs.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   [Managing custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)
@@ -55,6 +57,7 @@ You can use the Operator Framework packaging format to bundle and publish Operat
 {% leveloffset +3 %}{% include "./modules/olm-channel-schema.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [CUE language specification](https://cuelang.org/docs/references/spec/)
 
@@ -63,6 +66,7 @@ You can use the Operator Framework packaging format to bundle and publish Operat
 {% leveloffset +3 %}{% include "./modules/olm-deprecations-schema.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Updating or filtering a file-based catalog image](/operators/admin/olm-managing-custom-catalogs#olm-filtering-fbc_olm-managing-custom-catalogs)
 
@@ -73,6 +77,7 @@ You can use the Operator Framework packaging format to bundle and publish Operat
 {% leveloffset +2 %}{% include "./modules/olm-fb-catalogs-guidelines.md" %}{% endleveloffset %}
 
 **Additional resources**
+{._additional-resources}
 
 *   [Managing custom catalogs](/operators/admin/olm-managing-custom-catalogs#olm-creating-fb-catalog-image_olm-managing-custom-catalogs)
 *   [CLI tools](/cli_reference/opm/cli-opm-ref#cli-opm-ref)

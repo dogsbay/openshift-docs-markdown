@@ -11,7 +11,7 @@ You can install the Node Observability Operator from the {{ product_title }} web
 **Procedure**
 
 1.  Log in to the {{ product_title }} web console.
-1.  In the Administrator’s navigation panel, select **Ecosystem** -> **Software Catalog**.
+1.  In the Administrator’s navigation panel, select **Ecosystem** → **Software Catalog**.
 1.  In the **All items** field, enter **Node Observability Operator** and select the **Node Observability Operator** tile.
 1.  Click **Install**.
 1.  On the **Install Operator** page, configure the following settings:
@@ -23,5 +23,5 @@ You can install the Node Observability Operator from the {{ product_title }} web
 
 **Verification**
 
-1.  In the Administrator’s navigation panel, expand **Ecosystem** -> **Installed Operators**.
+1.  In the Administrator’s navigation panel, expand **Ecosystem** → **Installed Operators**.
 1.  Verify that the Node Observability Operator is listed in the Operators list.

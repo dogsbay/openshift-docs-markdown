@@ -5,7 +5,7 @@ Review the default Velero plugins provided by {{ oadp_first }} that integrate wi
 
 {{ oadp_short }} also provides plugins for {{ product_title }} resource backups, OpenShift Virtualization resource backups, and Container Storage Interface (CSI) snapshots.
 
-***OADP plugins***
+**OADP plugins**
 
 <table>
 <thead>
@@ -17,53 +17,50 @@ Review the default Velero plugins provided by {{ oadp_first }} that integrate wi
 </thead>
 <tbody>
 <tr>
-  <td>.2+</td>
-  <td><code>aws</code></td>
+  <td rowspan="2"><code>aws</code></td>
   <td>Backs up and restores Kubernetes objects.</td>
+  <td>AWS S3</td>
 </tr>
 <tr>
-  <td>AWS S3</td>
   <td>Backs up and restores volumes with snapshots.</td>
   <td>AWS EBS</td>
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>.2+</td>{% endif %}
-  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td><code>azure</code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td rowspan="2"><code>azure</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>Backs up and restores Kubernetes objects.</td>{% endif %}
+  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>Microsoft Azure Blob storage</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>Microsoft Azure Blob storage</td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>Backs up and restores volumes with snapshots.</td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>Microsoft Azure Managed Disks</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>.2+</td>{% endif %}
-  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td><code>gcp</code></td>{% endif %}
+  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td rowspan="2"><code>gcp</code></td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>Backs up and restores Kubernetes objects.</td>{% endif %}
+  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>{{ gcp_full }} Storage</td>{% endif %}
 </tr>
 <tr>
-  {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>{{ gcp_full }} Storage</td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>Backs up and restores volumes with snapshots.</td>{% endif %}
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>Google Compute Engine Disks</td>{% endif %}
 </tr>
 <tr>
   <td><code>openshift</code></td>
-  <td>Backs up and restores {{ product_title }} resources. ^[1]^</td>
+  <td>Backs up and restores {{ product_title }} resources. <sup>[1]</sup></td>
   <td>Object store</td>
 </tr>
 <tr>
   <td><code>kubevirt</code></td>
-  <td>Backs up and restores OpenShift Virtualization resources. ^[2]^</td>
+  <td>Backs up and restores OpenShift Virtualization resources. <sup>[2]</sup></td>
   <td>Object store</td>
 </tr>
 <tr>
   <td><code>csi</code></td>
-  <td>Backs up and restores volumes with CSI snapshots. ^[3]^</td>
+  <td>Backs up and restores volumes with CSI snapshots. <sup>[3]</sup></td>
   <td>Cloud storage that supports CSI snapshots</td>
 </tr>
 <tr>
   <td><code>hypershift</code></td>
-  <td>Backs up and restores HyperShift hosted cluster resources. ^[4]^</td>
+  <td>Backs up and restores HyperShift hosted cluster resources. <sup>[4]</sup></td>
   <td>Object store</td>
 </tr>
 </tbody>

@@ -12,11 +12,12 @@ High availability (HA) is available by default for the Knative broker implementa
 {% if openshift_dedicated or openshift_rosa %}
 *   You have access to an {{ product_title }} account with cluster administrator or dedicated administrator access.
 {% endif %}
+
 *   The {{ ServerlessOperatorName }} and Knative broker for Apache Kafka are installed on your cluster.
 
 **Procedure**
 
-1.  In the {{ product_title }} web console **Administrator** perspective, navigate to **OperatorHub** -> **Installed Operators**.
+1.  In the {{ product_title }} web console **Administrator** perspective, navigate to **OperatorHub** → **Installed Operators**.
 1.  Select the `knative-eventing` namespace.
 1.  Click **Knative Kafka** in the list of **Provided APIs** for the {{ ServerlessOperatorName }} to go to the **Knative Kafka** tab.
 1.  Click **knative-kafka**, then go to the **YAML** tab in the **knative-kafka** page.

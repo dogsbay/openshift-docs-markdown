@@ -21,13 +21,13 @@ You can configure your log collector to listen for HTTP connections and receive 
     spec:
       serviceAccountName: <service_account_name>
       inputs:
-        - name: http-receiver # (1)
+        - name: http-receiver (1)
           receiver:
-            type: http # (2)
+            type: http (2)
             http:
-              format: kubeAPIAudit # (3)
-              port: 8443 # (4)
-      pipelines: # (5)
+              format: kubeAPIAudit (3)
+              port: 8443 (4)
+      pipelines: (5)
         - name: http-pipeline
           inputRefs:
             - http-receiver
@@ -46,13 +46,13 @@ You can configure your log collector to listen for HTTP connections and receive 
       namespace: openshift-logging
     spec:
       inputs:
-        - name: http-receiver # (1)
+        - name: http-receiver (1)
           receiver:
-            type: http # (2)
+            type: http (2)
             http:
-              format: kubeAPIAudit # (3)
-              port: 8443 # (4)
-      pipelines: # (5)
+              format: kubeAPIAudit (3)
+              port: 8443 (4)
+      pipelines: (5)
       - inputRefs:
         - http-receiver
         name: http-pipeline

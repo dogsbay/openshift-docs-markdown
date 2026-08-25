@@ -64,7 +64,7 @@ Package kernel module software with a `MachineConfig` object to deliver that sof
     
     :::
 
-    ```yaml
+    ```yaml {minja}
     variant: openshift
     version: {{ product_version }}.0
     metadata:

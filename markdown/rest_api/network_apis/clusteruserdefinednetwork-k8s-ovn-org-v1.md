@@ -1,5 +1,5 @@
 ---
-title: "ClusterUserDefinedNetwork []"
+title: "ClusterUserDefinedNetwork [k8s.ovn.org/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -28,6 +28,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ClusterUserDefinedNetworkSpec defines the desired state of ClusterUserDefinedNetwork. |
 | `status` | `object` | ClusterUserDefinedNetworkStatus contains the observed status of the ClusterUserDefinedNetwork. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -46,6 +47,7 @@ Required
 | --- | --- | --- |
 | `namespaceSelector` | `object` | NamespaceSelector Label selector for which namespace network should be available for. |
 | `network` | `object` | Network is the user-defined-network spec |
+
 ### .spec.namespaceSelector {id="_specnamespaceselector"}
 
 Description
@@ -60,6 +62,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.namespaceSelector.matchExpressions {id="_specnamespaceselectormatchexpressions"}
 
 Description
@@ -89,6 +92,7 @@ Required
 | `key` | `string` | key is the label key that the selector applies to. |
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
+
 ### .spec.network {id="_specnetwork"}
 
 Description
@@ -108,8 +112,9 @@ Required
 | `layer2` | `object` | Layer2 is the Layer2 topology configuration. |
 | `layer3` | `object` | Layer3 is the Layer3 topology configuration. |
 | `localnet` | `object` | Localnet is the Localnet topology configuration. |
-| `topology` | `string` | Topology describes network configuration. Allowed values are "Layer3", "Layer2" and "Localnet". Layer3 topology creates a layer 2 segment per node, each with a different subnet. Layer 3 routing is used to interconnect node subnets. Layer2 topology creates one logical switch shared by all nodes. Localnet topology is based on layer 2 topology, but also allows connecting to an existent (configured) physical network to provide north-south traffic to the workloads. |
+| `topology` | `string` | Topology describes network configuration.<br>Allowed values are "Layer3", "Layer2" and "Localnet". Layer3 topology creates a layer 2 segment per node, each with a different subnet. Layer 3 routing is used to interconnect node subnets. Layer2 topology creates one logical switch shared by all nodes. Localnet topology is based on layer 2 topology, but also allows connecting to an existent (configured) physical network to provide north-south traffic to the workloads. |
 | `transport` | `string` | Transport describes the transport technology for pod-to-pod traffic. Allowed values are "NoOverlay" and "EVPN". - "NoOverlay": The network operates in no-overlay mode. - "EVPN": The network uses EVPN transport. When omitted, the network uses the default OVN overlay transport (e.g. Geneve, VXLAN) as configured by ovn-encap-type. |
+
 ### .spec.network.evpn {id="_specnetworkevpn"}
 
 Description
@@ -129,6 +134,7 @@ Required
 | `ipVRF` | `object` | IPVRF contains the IP-VRF configuration for Layer 3 EVPN. This field is required for Layer3 topology and optional for Layer2 topology. |
 | `macVRF` | `object` | MACVRF contains the MAC-VRF configuration for Layer 2 EVPN. This field is required for Layer2 topology and forbidden for Layer3 topology. |
 | `vtep` | `string` | VTEP is the name of the VTEP CR that defines VTEP IPs for EVPN. |
+
 ### .spec.network.evpn.ipVRF {id="_specnetworkevpnipvrf"}
 
 Description
@@ -145,9 +151,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `routeTarget` | `string` | RouteTarget is the import/export route target for this VRF. If not specified, it will be auto-generated as "&lt;AS (Autonomous System)>:&lt;VNI (Virtual Network Identifier)>". Auto-generation will use 2-byte AS if VNI > 65535, since 4-byte AS/IPv4 only allows 2-byte local admin. Follows FRR EVPN L3 Route-Target format (A.B.C.D:MN\ |
-| EF:OPQR\ | GHJK:MN\ | *:OPQR\ |
-| *:MN):   - EF:OPQR   = 2-byte AS (1-65535) : local admin (4 bytes, 1-4294967295)   - GHJK:MN   = 4-byte AS (65536-4294967295) : local admin (2 bytes, 1-65535)   - A.B.C.D:MN = IPv4 address : local admin (2 bytes, 1-65535)   - *:OPQR    = wildcard AS : local admin (4 bytes, 1-4294967295) - for import matching   - *:MN      = wildcard AS : local admin (2 bytes, 1-65535) - for import matching The 6-byte value constraint (RFC 4360) means AS size + local admin size = 6 bytes. | `vni` | `integer` |
+| `routeTarget` | `string` | RouteTarget is the import/export route target for this VRF. If not specified, it will be auto-generated as "&lt;AS (Autonomous System)>:&lt;VNI (Virtual Network Identifier)>". Auto-generation will use 2-byte AS if VNI > 65535, since 4-byte AS/IPv4 only allows 2-byte local admin.<br>Follows FRR EVPN L3 Route-Target format (A.B.C.D:MN\|EF:OPQR\|GHJK:MN\|**:OPQR\|**:MN):   - EF:OPQR   = 2-byte AS (1-65535) : local admin (4 bytes, 1-4294967295)   - GHJK:MN   = 4-byte AS (65536-4294967295) : local admin (2 bytes, 1-65535)   - A.B.C.D:MN = IPv4 address : local admin (2 bytes, 1-65535)   - *:OPQR    = wildcard AS : local admin (4 bytes, 1-4294967295) - for import matching   - *:MN      = wildcard AS : local admin (2 bytes, 1-65535) - for import matching<br>The 6-byte value constraint (RFC 4360) means AS size + local admin size = 6 bytes. |
+| `vni` | `integer` | VNI is the Virtual Network Identifier for this VRF. VNI is a 24-bit field in the VXLAN header (RFC 7348), allowing values from 1 to 16777215. but in the future this could be having different limit for other dataplane implementations. Must be unique across all EVPN configurations in the cluster. |
+
 ### .spec.network.evpn.macVRF {id="_specnetworkevpnmacvrf"}
 
 Description
@@ -164,9 +170,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `routeTarget` | `string` | RouteTarget is the import/export route target for this VRF. If not specified, it will be auto-generated as "&lt;AS (Autonomous System)>:&lt;VNI (Virtual Network Identifier)>". Auto-generation will use 2-byte AS if VNI > 65535, since 4-byte AS/IPv4 only allows 2-byte local admin. Follows FRR EVPN L3 Route-Target format (A.B.C.D:MN\ |
-| EF:OPQR\ | GHJK:MN\ | *:OPQR\ |
-| *:MN):   - EF:OPQR   = 2-byte AS (1-65535) : local admin (4 bytes, 1-4294967295)   - GHJK:MN   = 4-byte AS (65536-4294967295) : local admin (2 bytes, 1-65535)   - A.B.C.D:MN = IPv4 address : local admin (2 bytes, 1-65535)   - *:OPQR    = wildcard AS : local admin (4 bytes, 1-4294967295) - for import matching   - *:MN      = wildcard AS : local admin (2 bytes, 1-65535) - for import matching The 6-byte value constraint (RFC 4360) means AS size + local admin size = 6 bytes. | `vni` | `integer` |
+| `routeTarget` | `string` | RouteTarget is the import/export route target for this VRF. If not specified, it will be auto-generated as "&lt;AS (Autonomous System)>:&lt;VNI (Virtual Network Identifier)>". Auto-generation will use 2-byte AS if VNI > 65535, since 4-byte AS/IPv4 only allows 2-byte local admin.<br>Follows FRR EVPN L3 Route-Target format (A.B.C.D:MN\|EF:OPQR\|GHJK:MN\|**:OPQR\|**:MN):   - EF:OPQR   = 2-byte AS (1-65535) : local admin (4 bytes, 1-4294967295)   - GHJK:MN   = 4-byte AS (65536-4294967295) : local admin (2 bytes, 1-65535)   - A.B.C.D:MN = IPv4 address : local admin (2 bytes, 1-65535)   - *:OPQR    = wildcard AS : local admin (4 bytes, 1-4294967295) - for import matching   - *:MN      = wildcard AS : local admin (2 bytes, 1-65535) - for import matching<br>The 6-byte value constraint (RFC 4360) means AS size + local admin size = 6 bytes. |
+| `vni` | `integer` | VNI is the Virtual Network Identifier for this VRF. VNI is a 24-bit field in the VXLAN header (RFC 7348), allowing values from 1 to 16777215. but in the future this could be having different limit for other dataplane implementations. Must be unique across all EVPN configurations in the cluster. |
+
 ### .spec.network.layer2 {id="_specnetworklayer2"}
 
 Description
@@ -182,14 +188,15 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `defaultGatewayIPs` | `array (string)` | defaultGatewayIPs specifies the default gateway IP used in the internal OVN topology. Dual-stack clusters may set 2 IPs (one for each IP family), otherwise only 1 IP is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, an IP from the subnets field is used. |
+| `defaultGatewayIPs` | `array (string)` | defaultGatewayIPs specifies the default gateway IP used in the internal OVN topology.<br>Dual-stack clusters may set 2 IPs (one for each IP family), otherwise only 1 IP is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, an IP from the subnets field is used. |
 | `infrastructureSubnets` | `array (string)` | infrastructureSubnets specifies a list of internal CIDR ranges that OVN-Kubernetes will reserve for internal network infrastructure. Any IP addresses within these ranges cannot be assigned to workloads. When omitted, OVN-Kubernetes will automatically allocate IP addresses from `subnets` for its infrastructure needs. When there are not enough available IPs in the provided infrastructureSubnets, OVN-Kubernetes will automatically allocate IP addresses from subnets for its infrastructure needs. When `reservedSubnets` is also specified the CIDRs cannot overlap. When `defaultGatewayIPs` is also specified, the default gateway IPs must belong to one of the infrastructure subnet CIDRs. Each item should be in range of the specified CIDR(s) in `subnets`. The maximum number of entries allowed is 4. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `subnets` is unset or `ipam.mode` is `Disabled`. |
 | `ipam` | `object` | IPAM section contains IPAM-related configuration for the network. |
-| `joinSubnets` | `array (string)` | JoinSubnets are used inside the OVN network topology. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, the platform will choose a reasonable default which is subject to change over time. |
+| `joinSubnets` | `array (string)` | JoinSubnets are used inside the OVN network topology.<br>Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, the platform will choose a reasonable default which is subject to change over time. |
 | `mtu` | `integer` | MTU is the maximum transmission unit for a network. MTU is optional, if not provided, the globally configured value in OVN-Kubernetes (defaults to 1400) is used for the network. |
 | `reservedSubnets` | `array (string)` | reservedSubnets specifies a list of CIDRs reserved for static IP assignment, excluded from automatic allocation. reservedSubnets is optional. When omitted, all IP addresses in `subnets` are available for automatic assignment. IPs from these ranges can still be requested through static IP assignment. Each item should be in range of the specified CIDR(s) in `subnets`. The maximum number of entries allowed is 25. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `subnets` is unset or `ipam.mode` is `Disabled`. |
-| `role` | `string` | Role describes the network role in the pod. Allowed value is "Secondary". Secondary network is only assigned to pods that use `k8s.v1.cni.cncf.io/networks` annotation to select given network. |
-| `subnets` | `array (string)` | Subnets are used for the pod network across the cluster. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `ipam.mode` is `Disabled`. |
+| `role` | `string` | Role describes the network role in the pod.<br>Allowed value is "Secondary". Secondary network is only assigned to pods that use `k8s.v1.cni.cncf.io/networks` annotation to select given network. |
+| `subnets` | `array (string)` | Subnets are used for the pod network across the cluster. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed.<br>The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `ipam.mode` is `Disabled`. |
+
 ### .spec.network.layer2.ipam {id="_specnetworklayer2ipam"}
 
 Description
@@ -201,8 +208,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lifecycle` | `string` | Lifecycle controls IP addresses management lifecycle. The only allowed value is Persistent. When set, the IP addresses assigned by OVN Kubernetes will be persisted in an `ipamclaims.k8s.cni.cncf.io` object. These IP addresses will be reused by other pods if requested. Only supported when mode is `Enabled`. |
+| `lifecycle` | `string` | Lifecycle controls IP addresses management lifecycle.<br>The only allowed value is Persistent. When set, the IP addresses assigned by OVN Kubernetes will be persisted in an `ipamclaims.k8s.cni.cncf.io` object. These IP addresses will be reused by other pods if requested. Only supported when mode is `Enabled`. |
 | `mode` | `string` | Mode controls how much of the IP configuration will be managed by OVN. `Enabled` means OVN-Kubernetes will apply IP configuration to the SDN infrastructure and it will also assign IPs from the selected subnet to the individual pods. `Disabled` means OVN-Kubernetes will only assign MAC addresses and provide layer 2 communication, letting users configure IP addresses for the pods. `Disabled` is only available for Secondary networks. By disabling IPAM, any Kubernetes features that rely on selecting pods by IP will no longer function (such as network policy, services, etc). Additionally, IP port security will also be disabled for interfaces attached to this network. Defaults to `Enabled`. |
+
 ### .spec.network.layer3 {id="_specnetworklayer3"}
 
 Description
@@ -219,11 +227,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `joinSubnets` | `array (string)` | JoinSubnets are used inside the OVN network topology. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, the platform will choose a reasonable default which is subject to change over time. |
-| `mtu` | `integer` | MTU is the maximum transmission unit for a network. MTU is optional, if not provided, the globally configured value in OVN-Kubernetes (defaults to 1400) is used for the network. |
-| `role` | `string` | Role describes the network role in the pod. Allowed values are "Primary" and "Secondary". Primary network is automatically assigned to every pod created in the same namespace. Secondary network is only assigned to pods that use `k8s.v1.cni.cncf.io/networks` annotation to select given network. |
-| `subnets` | `array` | Subnets are used for the pod network across the cluster. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. Given subnet is split into smaller subnets for every node. |
+| `joinSubnets` | `array (string)` | JoinSubnets are used inside the OVN network topology.<br>Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. This field is only allowed for "Primary" network. It is not recommended to set this field without explicit need and understanding of the OVN network topology. When omitted, the platform will choose a reasonable default which is subject to change over time. |
+| `mtu` | `integer` | MTU is the maximum transmission unit for a network.<br>MTU is optional, if not provided, the globally configured value in OVN-Kubernetes (defaults to 1400) is used for the network. |
+| `role` | `string` | Role describes the network role in the pod.<br>Allowed values are "Primary" and "Secondary". Primary network is automatically assigned to every pod created in the same namespace. Secondary network is only assigned to pods that use `k8s.v1.cni.cncf.io/networks` annotation to select given network. |
+| `subnets` | `array` | Subnets are used for the pod network across the cluster.<br>Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. Given subnet is split into smaller subnets for every node. |
 | `subnets[]` | `object` |  |
+
 ### .spec.network.layer3.subnets {id="_specnetworklayer3subnets"}
 
 Description
@@ -252,7 +261,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `cidr` | `string` | CIDR specifies L3Subnet, which is split into smaller subnets for every node. |
-| `hostSubnet` | `integer` | HostSubnet specifies the subnet size for every node. When not set, it will be assigned automatically. |
+| `hostSubnet` | `integer` | HostSubnet specifies the subnet size for every node.<br>When not set, it will be assigned automatically. |
+
 ### .spec.network.localnet {id="_specnetworklocalnet"}
 
 Description
@@ -276,6 +286,7 @@ Required
 | `role` | `string` | role describes the network role in the pod, required. Controls whether the pod interface will act as primary or secondary. Localnet topology supports `Secondary` only. The network will be assigned to pods that have the `k8s.v1.cni.cncf.io/networks` annotation in place pointing to subject. |
 | `subnets` | `array (string)` | subnets is a list of subnets used for pods in this localnet network across the cluster. The list may be either 1 IPv4 subnet, 1 IPv6 subnet, or 1 of each IP family. When set, OVN-Kubernetes assigns an IP address from the specified CIDRs to the connected pod, eliminating the need for manual IP assignment or reliance on an external IPAM service (e.g., a DHCP server). subnets is optional. When omitted OVN-Kubernetes won’t assign IP address automatically. Dual-stack clusters may set 2 subnets (one for each IP family), otherwise only 1 subnet is allowed. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `ipam.mode` is `Disabled`. When physicalNetworkName points to the OVS bridge mapping of a network that provides IPAM services (e.g., a DHCP server), ipam.mode should be set to Disabled. This turns off OVN-Kubernetes IPAM and avoids conflicts with the existing IPAM services on this localnet network. |
 | `vlan` | `object` | vlan configuration for the network. vlan.mode is the VLAN mode.   When "Access" is set, OVN-Kubernetes configures the network logical switch port in access mode. vlan.access is the access VLAN configuration. vlan.access.id is the VLAN ID (VID) to be set on the network logical switch port. vlan is optional, when omitted the underlying network default VLAN will be used (usually `1`). When set, OVN-Kubernetes will apply VLAN configuration to the SDN infra and to the connected pods. |
+
 ### .spec.network.localnet.ipam {id="_specnetworklocalnetipam"}
 
 Description
@@ -297,8 +308,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lifecycle` | `string` | Lifecycle controls IP addresses management lifecycle. The only allowed value is Persistent. When set, the IP addresses assigned by OVN Kubernetes will be persisted in an `ipamclaims.k8s.cni.cncf.io` object. These IP addresses will be reused by other pods if requested. Only supported when mode is `Enabled`. |
+| `lifecycle` | `string` | Lifecycle controls IP addresses management lifecycle.<br>The only allowed value is Persistent. When set, the IP addresses assigned by OVN Kubernetes will be persisted in an `ipamclaims.k8s.cni.cncf.io` object. These IP addresses will be reused by other pods if requested. Only supported when mode is `Enabled`. |
 | `mode` | `string` | Mode controls how much of the IP configuration will be managed by OVN. `Enabled` means OVN-Kubernetes will apply IP configuration to the SDN infrastructure and it will also assign IPs from the selected subnet to the individual pods. `Disabled` means OVN-Kubernetes will only assign MAC addresses and provide layer 2 communication, letting users configure IP addresses for the pods. `Disabled` is only available for Secondary networks. By disabling IPAM, any Kubernetes features that rely on selecting pods by IP will no longer function (such as network policy, services, etc). Additionally, IP port security will also be disabled for interfaces attached to this network. Defaults to `Enabled`. |
+
 ### .spec.network.localnet.vlan {id="_specnetworklocalnetvlan"}
 
 Description
@@ -322,6 +334,7 @@ Required
 | --- | --- | --- |
 | `access` | `object` | Access is the access VLAN configuration |
 | `mode` | `string` | mode describe the network VLAN mode. Allowed value is "Access". Access sets the network logical switch port in access mode, according to the config. |
+
 ### .spec.network.localnet.vlan.access {id="_specnetworklocalnetvlanaccess"}
 
 Description
@@ -338,6 +351,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `id` | `integer` | id is the VLAN ID (VID) to be set for the network. id should be higher than 0 and lower than 4095. |
+
 ### .status {id="_status"}
 
 Description
@@ -351,6 +365,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | Conditions slice of condition objects indicating details about ClusterUserDefineNetwork status. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
+
 ### .status.conditions {id="_statusconditions"}
 
 Description
@@ -394,12 +409,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ClusterUserDefinedNetwork
     *   `GET`: list objects of kind ClusterUserDefinedNetwork
     *   `POST`: create a ClusterUserDefinedNetwork
-*   `/apis/k8s.ovn.org/v1/clusteruserdefinednetworks/{{ name }}`
+*   `/apis/k8s.ovn.org/v1/clusteruserdefinednetworks/{{ name }}`{minja}
     *   `DELETE`: delete a ClusterUserDefinedNetwork
     *   `GET`: read the specified ClusterUserDefinedNetwork
     *   `PATCH`: partially update the specified ClusterUserDefinedNetwork
     *   `PUT`: replace the specified ClusterUserDefinedNetwork
-*   `/apis/k8s.ovn.org/v1/clusteruserdefinednetworks/{{ name }}/status`
+*   `/apis/k8s.ovn.org/v1/clusteruserdefinednetworks/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ClusterUserDefinedNetwork
     *   `PATCH`: partially update status of the specified ClusterUserDefinedNetwork
     *   `PUT`: replace status of the specified ClusterUserDefinedNetwork

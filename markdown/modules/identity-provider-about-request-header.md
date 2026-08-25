@@ -38,19 +38,19 @@ the request to `https://_<namespace_route>_/oauth/authorize`.
 The `provider.challengeURL` and `provider.loginURL` parameters can include
 the following tokens in the query portion of the URL:
 
-*   `${{ url }}` is replaced with the current URL, escaped to be safe in a query parameter.
+*   `${{ url }}`{minja} is replaced with the current URL, escaped to be safe in a query parameter.
 
-    For example: `https://www.example.com/sso-login?then=${{ url }}`
-*   `${{ query }}` is replaced with the current query string, unescaped.
+    For example: `https://www.example.com/sso-login?then=${{ url }}`{minja}
+*   `${{ query }}`{minja} is replaced with the current query string, unescaped.
 
-    For example: `https://www.example.com/auth-proxy/oauth/authorize?${{ query }}`
+    For example: `https://www.example.com/auth-proxy/oauth/authorize?${{ query }}`{minja}
 
 
-:::important
+    :::important
 
-As of {{ product_title }} 4.1, your proxy must support mutual TLS.
-
-:::
+    As of {{ product_title }} 4.1, your proxy must support mutual TLS.
+    
+    :::
 
 
 ## SSPI connection support on Microsoft Windows {id="sspi-windows_{{ context }}"}

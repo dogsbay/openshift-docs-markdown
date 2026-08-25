@@ -18,7 +18,7 @@ When you disable `spec.security.manageNetworkPolicy` {{ SMProductName }} will no
 
 **Procedure**
 
-1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  In the {{ product_title }} web console, click **Ecosystem** → **Installed Operators**.
 1.  Select the project where you installed the {{ SMProductShortName }} control plane, for example `istio-system`, from the **Project** menu.
 1.  Click the {{ SMProductName }} Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane`, for example `basic-install`.
 1.  On the **Create ServiceMeshControlPlane Details** page, click `YAML` to modify your configuration.

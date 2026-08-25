@@ -4,10 +4,10 @@ title: Using node disruption policies to minimize disruption from machine config
 
 {%- set _mod_docs_content_type = "ASSEMBLY" -%}
 {%- set context = "machine-configs-configure" %}
-# Using node disruption policies to minimize disruption from machine config changes {id="machine-config-node-disruption_{{ context }}"}
 {% include "./_attributes/common-attributes.md" %}
+# Using node disruption policies to minimize disruption from machine config changes {id="machine-config-node-disruption_{{ context }}"}
 
-You can create a _node disruption policy_ to define the configuration changes that cause a disruption to your cluster, and which changes do not.
+You can create a _node disruption policy_ to define the configuration changes that cause a disruption to your cluster, and which changes do not. {._abstract}
 
 
 :::note

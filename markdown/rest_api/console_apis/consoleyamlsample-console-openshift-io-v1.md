@@ -1,5 +1,5 @@
 ---
-title: "ConsoleYAMLSample []"
+title: "ConsoleYAMLSample [console.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -31,6 +31,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ConsoleYAMLSampleSpec is the desired YAML sample configuration. Samples will appear with their descriptions in a samples sidebar when creating a resources in the web console. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -56,6 +57,7 @@ Required
 | `targetResource` | `object` | targetResource contains apiVersion and kind of the resource YAML sample is representating. |
 | `title` | `string` | title of the YAML sample. |
 | `yaml` | `string` | yaml is the YAML sample to display. |
+
 ### .spec.targetResource {id="_spectargetresource"}
 
 Description
@@ -79,7 +81,7 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ConsoleYAMLSample
     *   `GET`: list objects of kind ConsoleYAMLSample
     *   `POST`: create a ConsoleYAMLSample
-*   `/apis/console.openshift.io/v1/consoleyamlsamples/{{ name }}`
+*   `/apis/console.openshift.io/v1/consoleyamlsamples/{{ name }}`{minja}
     *   `DELETE`: delete a ConsoleYAMLSample
     *   `GET`: read the specified ConsoleYAMLSample
     *   `PATCH`: partially update the specified ConsoleYAMLSample

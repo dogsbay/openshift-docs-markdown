@@ -3,13 +3,13 @@ title: Using the Node Tuning Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Using the Node Tuning Operator {id="nodes-node-tuning-operator"}
 {% include "./_attributes/common-attributes.md" %}
 {% include "./_attributes/attributes-openshift-dedicated.md" %}
+# Using the Node Tuning Operator {id="nodes-node-tuning-operator"}
 {%- set context = "nodes-node-tuning-operator" %}
 
-{%- if not openshift_rosa_hcp %}
-The Node Tuning Operator in {{ product_title }} helps you manage node-level tuning by orchestrating the TuneD daemon. You can use this unified interface to apply custom tuning specifications and achieve low latency performance for high-performance applications.
+{% if not openshift_rosa_hcp %}
+The Node Tuning Operator in {{ product_title }} helps you manage node-level tuning by orchestrating the TuneD daemon. You can use this unified interface to apply custom tuning specifications and achieve low latency performance for high-performance applications. {._abstract}
 {% endif %}
 
 {% if openshift_rosa_hcp %}

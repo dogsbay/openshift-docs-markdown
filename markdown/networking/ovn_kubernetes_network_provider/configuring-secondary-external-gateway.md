@@ -3,11 +3,11 @@ title: Configure an external gateway on the default network
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# Configure an external gateway on the default network {id="configuring-secondary-external-gateway"}
 {% include "./_attributes/common-attributes.md" %}
+# Configure an external gateway on the default network {id="configuring-secondary-external-gateway"}
 {%- set context = "configuring-secondary-external-gateway" %}
 
-As a cluster administrator, you can configure an external gateway on the default network.
+As a cluster administrator, you can configure an external gateway on the default network. {._abstract}
 
 This feature offers the following benefits:
 
@@ -24,7 +24,7 @@ This feature offers the following benefits:
 
 {% leveloffset +1 %}{% include "./modules/nw-secondary-ext-gw-object.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Set-based requirement (Kubernetes)](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#set-based-requirement)
 
@@ -32,5 +32,5 @@ This feature offers the following benefits:
 
 {% leveloffset +1 %}{% include "./modules/nw-secondary-ext-gw-configure.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="_additional_resources" ._additional-resources}
 *   [Understanding multiple networks](/networking/multiple_networks/understanding-multiple-networks#understanding-multiple-networks)

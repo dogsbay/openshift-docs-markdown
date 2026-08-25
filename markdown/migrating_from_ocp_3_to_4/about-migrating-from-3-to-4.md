@@ -3,8 +3,8 @@ title: About migrating from OpenShift Container Platform 3 to 4
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# About migrating from {{ product_title }} 3 to 4 {id="about-migrating-from-3-to-4"}
 {% include "./_attributes/common-attributes.md" %}
+# About migrating from {{ product_title }} 3 to 4 {id="about-migrating-from-3-to-4"}
 {%- set context = "about-migrating-from-3-to-4" %}
 
 {{ product_title }} 4 contains new technologies and functionality that result in a cluster that is self-managing, flexible, and automated. {{ product_title }} 4 clusters are deployed and managed very differently from {{ product_title }} 3.

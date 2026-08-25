@@ -3,8 +3,8 @@ title: AMD GPU Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
-# AMD GPU Operator {id="amd-gpu-operator"}
 {% include "./_attributes/common-attributes.md" %}
+# AMD GPU Operator {id="amd-gpu-operator"}
 {%- set context = "amd-gpu-operator" %}
 
 AMD Instinct GPU accelerators combined with the AMD GPU Operator within your {{ product_title }} cluster lets you seamlessly harness computing capabilities for machine learning, Generative AI, and GPU-accelerated applications. 

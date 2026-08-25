@@ -8,7 +8,7 @@ title: Use virtual machine file restore
 # Use virtual machine file restore {id="virt-using-vm-file-restore"}
 {%- set context = "virt-using-vm-file-restore" %}
 
-Discover VM backups, restore files, and access restored files through a web browser or SSH-based tools.
+Discover VM backups, restore files, and access restored files through a web browser or SSH-based tools. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/oadp-vmfr-enabling.md" %}{% endleveloffset %}
 
@@ -24,7 +24,7 @@ Discover VM backups, restore files, and access restored files through a web brow
 
 {% leveloffset +1 %}{% include "./modules/oadp-vmfr-end-to-end-workflow.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources_{{ context }}"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Recover individual files from virtual machine backups](/virt/backup_restore/virt-recovering-individual-files-from-vm-backups#virt-recovering-individual-files-from-vm-backups)
 *   [Backing up and restoring virtual machines](/virt/backup_restore/virt-backup-restore-overview#virt-backup-restore-overview)
 *   [Introduction to {{ oadp_full }}](/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-introduction)

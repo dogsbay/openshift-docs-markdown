@@ -7,4 +7,4 @@
 
 :::
 
-{%- set FeatureName = false -%}
+{%- set FeatureName = "" -%}

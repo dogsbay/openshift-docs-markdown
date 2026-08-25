@@ -9,7 +9,7 @@ You can use the Loki logging component to view aggregated logs for {{ VirtProduc
 
 **Procedure**
 
-1.  Navigate to **Observe** -> **Logs** in the web console.
+1.  Navigate to **Observe** → **Logs** in the web console.
 1.  Select **application**, for `virt-launcher` pod logs, or **infrastructure**, for {{ VirtProductName }} control plane pods and containers, from the log type list.
 1.  Click **Show Query** to display the query field.
 1.  Enter the LogQL query in the query field and click **Run Query** to display the filtered logs.

@@ -1,5 +1,5 @@
 ---
-title: "LocalResourceAccessReview []"
+title: "LocalResourceAccessReview [authorization.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -50,7 +50,7 @@ Required
 
 The following API endpoints are available:
 
-*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/localresourceaccessreviews`
+*   `/apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/localresourceaccessreviews`{minja}
     *   `POST`: create a LocalResourceAccessReview
 
 ### /apis/authorization.openshift.io/v1/namespaces/{{ namespace }}/localresourceaccessreviews {id="_apisauthorizationopenshiftiov1namespaces_namespace_localresourceaccessreviews"}

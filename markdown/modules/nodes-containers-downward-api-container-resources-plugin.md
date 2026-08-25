@@ -61,7 +61,7 @@ Downward API defaults to the node’s CPU and memory allocatable values.
                       resource: requests.memory
         # ...
         ```
-    1.  Create the pod from the `**_volume-pod.yaml_**` file by using the following command:
+    1.  Create the pod from the `*_volume-pod.yaml_*` file by using the following command:
         ```terminal
         $ oc create -f volume-pod.yaml
         ```

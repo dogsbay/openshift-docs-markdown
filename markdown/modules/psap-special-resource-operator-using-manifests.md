@@ -47,11 +47,11 @@ The Special Resource Operator(SRO) image contains a local repository of Helm cha
     ```
 
 
-:::note
+    :::note
 
-To remove the simple-kmod kernel module from the node, delete the simple-kmod `SpecialResource` API object using the `oc delete` command. The kernel module is unloaded when the driver container pod is deleted.
-
-:::
+    To remove the simple-kmod kernel module from the node, delete the simple-kmod `SpecialResource` API object using the `oc delete` command. The kernel module is unloaded when the driver container pod is deleted.
+    
+    :::
 
 
 **Verification**
@@ -83,8 +83,8 @@ The `simple-kmod` resources are deployed in the `simple-kmod` namespace as speci
     ```
 
 
-:::tip
+    :::tip
 
-The `sro_kind_completed_info` SRO Prometheus metric provides information about the status of the different objects being deployed, which can be useful to troubleshoot SRO CR installations. The SRO also provides other types of metrics that you can use to watch the health of your environment.
-
-:::
+    The `sro_kind_completed_info` SRO Prometheus metric provides information about the status of the different objects being deployed, which can be useful to troubleshoot SRO CR installations. The SRO also provides other types of metrics that you can use to watch the health of your environment.
+    
+    :::

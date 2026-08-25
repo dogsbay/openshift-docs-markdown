@@ -11,7 +11,7 @@ You can disable the importing of simple content access entitlements by using the
 
 **Procedure**
 
-1.  Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.
+1.  Go to **Workloads** → **ConfigMaps** and select **Project: openshift-insights**.
 1.  Click the **insights-config** `ConfigMap` object to open it.
 1.  Click **Actions** and select **Edit ConfigMap**.
 1.  Click **YAML view**.

@@ -39,7 +39,7 @@ You can use the {{ rosa_cli_first }} to update a {{ product_title }} cluster eit
     $ rosa edit -c <cluster_name_or_id> --channel <stable-4.19>
     ```
 1.  To upgrade the cluster to a specified version immediately within the next hour, enter the following command:
-    {%- if not rosa_hcp %}
+{% if not rosa_hcp %}
     ```terminal
     $ rosa upgrade cluster --cluster=<cluster_name_or_id> --version <version-id>
     ```
@@ -48,7 +48,7 @@ You can use the {{ rosa_cli_first }} to update a {{ product_title }} cluster eit
     ```terminal
     $ rosa upgrade cluster --cluster=<cluster_name_or_id> --control-plane
     ```
-{%- endif %}
+{% endif %}
 
     :::note
 

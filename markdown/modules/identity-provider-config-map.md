@@ -38,5 +38,5 @@ This procedure is required only for GitHub Enterprise.
     The certificate authority must be stored in the `ca.crt` key of the `ConfigMap` object.
 
 {%- if context == "configuring-google-identity-provider" %}
-{%- set github = false -%}
+{%- set github = "" -%}
 {% endif %}

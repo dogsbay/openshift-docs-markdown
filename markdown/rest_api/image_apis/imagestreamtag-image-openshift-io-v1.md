@@ -1,5 +1,5 @@
 ---
-title: "ImageStreamTag []"
+title: "ImageStreamTag [image.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -33,11 +33,12 @@ Required
 | `conditions` | `array` | conditions is an array of conditions that apply to the image stream tag. |
 | `conditions[]` | `object` | TagEventCondition contains condition information for a tag event. |
 | `generation` | `integer` | generation is the current generation of the tagged image - if tag is provided and this value is not equal to the tag generation, a user has requested an import that has not completed, or conditions will be filled out indicating any error. |
-| `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `image` | `object` | Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `lookupPolicy` | `object` | ImageLookupPolicy describes how an image stream can be used to override the image references used by pods, builds, and other resources in a namespace. |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `tag` | `object` | TagReference specifies optional annotations for images using this tag and an optional reference to an ImageStreamTag, ImageStreamImage, or DockerImage this tag should track. |
+
 ### .conditions {id="_conditions"}
 
 Description
@@ -70,6 +71,7 @@ Required
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of tag event condition, currently only ImportSuccess |
+
 ### .image {id="_image"}
 
 Description
@@ -99,7 +101,8 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signatures` | `array` | signatures holds all signatures of the image. |
-| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+| `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
+
 ### .image.dockerImageLayers {id="_imagedockerimagelayers"}
 
 Description
@@ -129,6 +132,7 @@ Required
 | `mediaType` | `string` | mediaType of the referenced object. |
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
+
 ### .image.dockerImageManifests {id="_imagedockerimagemanifests"}
 
 Description
@@ -163,6 +167,7 @@ Required
 | `mediaType` | `string` | mediaType defines the type of the manifest, possible values are application/vnd.oci.image.manifest.v1+json, application/vnd.docker.distribution.manifest.v2+json or application/vnd.docker.distribution.manifest.v1+json. |
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
+
 ### .image.signatures {id="_imagesignatures"}
 
 Description
@@ -203,6 +208,7 @@ Required
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | metadata is the standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
+
 ### .image.signatures[].conditions {id="_imagesignaturesconditions"}
 
 Description
@@ -234,6 +240,7 @@ Required
 | `reason` | `string` | (brief) reason for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
+
 ### .image.signatures[].issuedBy {id="_imagesignaturesissuedby"}
 
 Description
@@ -247,6 +254,7 @@ Type
 | --- | --- | --- |
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
+
 ### .image.signatures[].issuedTo {id="_imagesignaturesissuedto"}
 
 Description
@@ -265,6 +273,7 @@ Required
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 | `publicKeyID` | `string` | If present, it is a human readable key id of public key belonging to the subject used to verify image signature. It should contain at least 64 lowest bits of public key’s fingerprint (e.g. 0x685ebe62bf278440). |
+
 ### .lookupPolicy {id="_lookuppolicy"}
 
 Description
@@ -281,6 +290,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `local` | `boolean` | local will change the docker short image references (like "mysql" or "php:latest") on objects in this namespace to the image ID whenever they match this image stream, instead of reaching out to a remote registry. The name will be fully qualified to an image ID if found. The tag’s referencePolicy is taken into account on the replaced value. Only works within the current namespace. |
+
 ### .tag {id="_tag"}
 
 Description
@@ -303,6 +313,7 @@ Required
 | `name` | `string` | name of the tag |
 | `reference` | `boolean` | reference states if the tag will be imported. Default value is false, which means the tag will be imported. |
 | `referencePolicy` | `object` | TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed. |
+
 ### .tag.importPolicy {id="_tagimportpolicy"}
 
 Description
@@ -317,6 +328,7 @@ Type
 | `importMode` | `string` | importMode describes how to import an image manifest. |
 | `insecure` | `boolean` | insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import. |
 | `scheduled` | `boolean` | scheduled indicates to the server that this tag should be periodically checked to ensure it is up to date, and imported |
+
 ### .tag.referencePolicy {id="_tagreferencepolicy"}
 
 Description
@@ -340,10 +352,10 @@ The following API endpoints are available:
 
 *   `/apis/image.openshift.io/v1/imagestreamtags`
     *   `GET`: list objects of kind ImageStreamTag
-*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags`
+*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags`{minja}
     *   `GET`: list objects of kind ImageStreamTag
     *   `POST`: create an ImageStreamTag
-*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags/{{ name }}`
+*   `/apis/image.openshift.io/v1/namespaces/{{ namespace }}/imagestreamtags/{{ name }}`{minja}
     *   `DELETE`: delete an ImageStreamTag
     *   `GET`: read the specified ImageStreamTag
     *   `PATCH`: partially update the specified ImageStreamTag

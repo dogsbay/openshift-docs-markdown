@@ -1,5 +1,5 @@
 ---
-title: "ConsoleLink []"
+title: "ConsoleLink [console.openshift.io/v1]"
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
@@ -30,6 +30,7 @@ Required
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | ConsoleLinkSpec is the desired console link configuration. |
+
 ### .spec {id="_spec"}
 
 Description
@@ -52,6 +53,7 @@ Required
 | `location` | `string` | location determines which location in the console the link will be appended to (ApplicationMenu, HelpMenu, UserMenu, NamespaceDashboard). |
 | `namespaceDashboard` | `object` | namespaceDashboard holds information about namespaces in which the dashboard link should appear, and it is applicable only when location is set to NamespaceDashboard. If not specified, the link will appear in all namespaces. |
 | `text` | `string` | text is the display text for the link |
+
 ### .spec.applicationMenu {id="_specapplicationmenu"}
 
 Description
@@ -70,6 +72,7 @@ Required
 | --- | --- | --- |
 | `imageURL` | `string` | imageURL is the URL for the icon used in front of the link in the application menu. The URL must be an HTTPS URL or a Data URI. The image should be square and will be shown at 24x24 pixels. |
 | `section` | `string` | section is the section of the application menu in which the link should appear. This can be any text that will appear as a subheading in the application menu dropdown. A new section will be created if the text does not match text of an existing section. |
+
 ### .spec.namespaceDashboard {id="_specnamespacedashboard"}
 
 Description
@@ -85,6 +88,7 @@ Type
 | --- | --- | --- |
 | `namespaceSelector` | `object` | namespaceSelector is used to select the Namespaces that should contain dashboard link by label. If the namespace labels match, dashboard link will be shown for the namespaces. |
 | `namespaces` | `array (string)` | namespaces is an array of namespace names in which the dashboard link should appear. |
+
 ### .spec.namespaceDashboard.namespaceSelector {id="_specnamespacedashboardnamespaceselector"}
 
 Description
@@ -100,6 +104,7 @@ Type
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 | `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+
 ### .spec.namespaceDashboard.namespaceSelector.matchExpressions {id="_specnamespacedashboardnamespaceselectormatchexpressions"}
 
 Description
@@ -138,12 +143,12 @@ The following API endpoints are available:
     *   `DELETE`: delete collection of ConsoleLink
     *   `GET`: list objects of kind ConsoleLink
     *   `POST`: create a ConsoleLink
-*   `/apis/console.openshift.io/v1/consolelinks/{{ name }}`
+*   `/apis/console.openshift.io/v1/consolelinks/{{ name }}`{minja}
     *   `DELETE`: delete a ConsoleLink
     *   `GET`: read the specified ConsoleLink
     *   `PATCH`: partially update the specified ConsoleLink
     *   `PUT`: replace the specified ConsoleLink
-*   `/apis/console.openshift.io/v1/consolelinks/{{ name }}/status`
+*   `/apis/console.openshift.io/v1/consolelinks/{{ name }}/status`{minja}
     *   `GET`: read status of the specified ConsoleLink
     *   `PATCH`: partially update status of the specified ConsoleLink
     *   `PUT`: replace status of the specified ConsoleLink

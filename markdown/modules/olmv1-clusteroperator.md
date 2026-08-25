@@ -7,7 +7,7 @@
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
 
-{%- if operators %}
+{% if operators %}
 # {{ olmv1_first }} Operator {id="cluster-operators-ref-olmv1_{{ context }}"}
 
 {% endif %}
@@ -16,9 +16,9 @@
 
 {% endif %}
 
-{%- if cluster_caps %}
-{{ olmv1 }} provides the features for the `OperatorLifecycleManagerV1` capability.
-{% endif %} {._abstract}
+{% if cluster_caps %}
+{{ olmv1 }} provides the features for the `OperatorLifecycleManagerV1` capability. {._abstract}
+{% endif %}
 
 Starting in {{ product_title }} 4.18, {{ olmv1 }} is enabled by default alongside {{ olmv0 }}. This next-generation iteration provides an updated framework that evolves many of {{ olmv0 }} concepts that enable cluster administrators to extend capabilities for their users.
 

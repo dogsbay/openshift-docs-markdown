@@ -3,6 +3,6 @@
 
 The following `MachineConfig` CR configures the system to set `rcu_normal` to 1 after the system has finished startup. This improves kernel latency for vDU applications. {._abstract}
 
-```yaml title="Recommended configuration for disabling rcu_expedited after the node has finished startup (08-set-rcu-normal-master.yaml)"
+```yaml title="Recommended configuration for disabling rcu_expedited after the node has finished startup (08-set-rcu-normal-master.yaml)" {minja}
 {% include "./snippets/ztp_08-set-rcu-normal-master.yaml" %}
 ```

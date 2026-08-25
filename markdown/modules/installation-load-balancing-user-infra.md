@@ -5,9 +5,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Load balancing requirements for user-provisioned infrastructure {id="installation-load-balancing-user-infra_{{ context }}"}
 
-{%- if not user_managed_lb %}
-Before you install {{ product_title }}, you must provision the API and application Ingress load balancing infrastructure. In production scenarios, you can deploy the API and application Ingress load balancers separately so that you can scale the load balancer infrastructure for each in isolation.
-{% endif %} {._abstract}
+{% if not user_managed_lb %}
+Before you install {{ product_title }}, you must provision the API and application Ingress load balancing infrastructure. In production scenarios, you can deploy the API and application Ingress load balancers separately so that you can scale the load balancer infrastructure for each in isolation. {._abstract}
+{% endif %}
 
 {% if user_managed_lb %}
 Before you install {{ product_title }}, you can provision your own API and application ingress load balancing infrastructure to use in place of the default, internal load balancing solution. In production scenarios, you can deploy the API and application Ingress load balancers separately so that you can scale the load balancer infrastructure for each in isolation.
@@ -28,11 +28,11 @@ The load balancing infrastructure must meet the following requirements:
     *   A stateless load balancing algorithm. The options vary based on the load balancer implementation.
 
 
-:::important
+    :::important
 
-Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your {{ product_title }} cluster and the Kubernetes API that runs inside the cluster.
-
-:::
+    Do not configure session persistence for an API load balancer. Configuring session persistence for a Kubernetes API server might cause performance issues from excess application traffic for your {{ product_title }} cluster and the Kubernetes API that runs inside the cluster.
+    
+    :::
 
 
 Configure the following ports on both the front and back of the API load balancers:
@@ -60,11 +60,11 @@ to become unhealthy, are well-tested values.
     *   A connection-based or session-based persistence is recommended, based on the options available and types of applications that will be hosted on the platform.
 
 
-:::tip
+    :::tip
 
-If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
-
-:::
+    If the true IP address of the client can be seen by the application Ingress load balancer, enabling source IP-based session persistence can improve performance for applications that use end-to-end TLS encryption.
+    
+    :::
 
 
 Configure the following ports on both the front and back of the load balancers:
@@ -85,5 +85,5 @@ If you are deploying a three-node cluster with zero compute nodes, the Ingress C
 
 
 {% if context == "installing-openstack-installer-custom" %}
-{%- set user_managed_lb = false -%}
+{%- set user_managed_lb = "" -%}
 {% endif %}

@@ -7,7 +7,7 @@ You can create an htpasswd identity provider with the {{ cluster_manager }} web 
 **Procedure**
 
 1.  Select your cluster from the **Cluster List** page on {{ cluster_manager_url }}.
-1.  Select **Access control** -> **Identity providers**.
+1.  Select **Access control** → **Identity providers**.
 1.  Click **Add identity provider**.
 1.  Select **htpasswd** from the **Identity Provider** list.
 1.  Add a unique name in the **Name** field for the identity provider.
@@ -26,7 +26,7 @@ You can create an htpasswd identity provider with the {{ cluster_manager }} web 
 
 **Verification**
 
-*   You can see your configured htpasswd identity provider on the **Access control** -> **Identity providers** page.
+*   You can see your configured htpasswd identity provider on the **Access control** → **Identity providers** page.
 
     :::note
 
