@@ -2,6 +2,7 @@ schemaVersion: 1
 site:
   name: OpenShift Container Platform
   basePath: ""
+  url: https://dogsbay.github.io/openshift-docs-markdown
 content:
   sources:
     - path: ./markdown
