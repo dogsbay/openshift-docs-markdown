@@ -191,10 +191,12 @@ jobs:
           yq -i '.content.sources[0].path = "./markdown" | .output = "./site"' dogsbay.config.yml
 
           cat > .gitignore <<'GITIGNORE'
-          # Derived: `dogsbay site build` regenerates site/ and `astro build`
-          # regenerates site/dist. The Astro PROJECT is committed (it is the
-          # generator's output and worth diffing); the built HTML is not.
-          site/dist/
+          # markdown/ and site/ are BOTH tracked, including site/dist — the
+          # built HTML is what GitHub Pages will publish, so it is a
+          # deliverable here rather than a build artefact.
+          #
+          # Only genuinely local state is ignored. node_modules is restorable
+          # from package-lock.json; .astro is Astro's own cache.
           site/node_modules/
           site/.astro/
           node_modules/

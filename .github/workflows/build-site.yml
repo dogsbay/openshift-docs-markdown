@@ -13,9 +13,9 @@ name: Build Astro site
 # workflows from the branch that was pushed — so it takes the branch as an
 # input instead.
 #
-# It DOES run `astro build` as a verification step — generating .astro
-# files does not prove they compile, and on this corpus the build is ~90s.
-# `dist/` is gitignored; it becomes a deliverable when Pages is wired up.
+# It runs the full build: `astro build` plus the Pagefind search index, and
+# commits `site/dist` — the built HTML is what GitHub Pages will publish, so
+# it is tracked rather than treated as a throwaway artefact.
 
 on:
   workflow_dispatch:
@@ -115,8 +115,7 @@ jobs:
       # needed here — openshift-docs-dogsbay still runs an apply-astro7.mjs
       # written when the scaffold emitted Astro 6.
       #
-      # dist/ is gitignored: this is verification, not a deliverable. It
-      # becomes one when Pages is wired up.
+      # dist/ is COMMITTED: it is what Pages will serve.
       - name: Install Astro project deps
         working-directory: site
         run: npm install --no-audit --no-fund --legacy-peer-deps
@@ -127,11 +126,31 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=8192
         run: npx astro build
 
+      # Without an index the published site's search box finds nothing.
+      # Part of the build, not an extra: dist is only complete with it.
+      - name: Build the Pagefind search index
+        working-directory: site
+        run: npx -y pagefind --site dist
+
+      # GitHub Pages runs Jekyll unless told not to, and Jekyll refuses to
+      # serve directories beginning with an underscore — which is every
+      # Astro build asset (`_astro/`) and every converted image
+      # (`_assets/`). Without this the site publishes with no CSS, no JS
+      # and no images.
+      - name: Add .nojekyll
+        working-directory: site
+        run: touch dist/.nojekyll
+
       - name: Report built output
+        id: built
         working-directory: site
         run: |
           set -euo pipefail
-          echo "built $(find dist -name '*.html' | wc -l) HTML page(s)"
+          h=$(find dist -name '*.html' | wc -l)
+          b=$(find dist -type f -printf '%s\n' | awk '{s+=$1} END{printf "%.1f", s/1048576}')
+          echo "html=$h" >> "$GITHUB_OUTPUT"
+          echo "mb=$b"   >> "$GITHUB_OUTPUT"
+          echo "built $h HTML page(s), ${b} MB total"
 
       - name: Commit the generated site
         env:
@@ -142,8 +161,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Explicit path. site/dist and site/node_modules are gitignored on
-          # the content branch; only the generated project is tracked.
+          # Explicit path. site/node_modules and site/.astro are ignored;
+          # the generated project AND the built dist are both tracked.
           git add site
 
           if git diff --cached --quiet; then
@@ -159,10 +178,12 @@ jobs:
         if: always()
         env:
           PAGES: ${{ steps.count.outputs.pages }}
+          HTML: ${{ steps.built.outputs.html }}
+          MB: ${{ steps.built.outputs.mb }}
         run: |
           {
             echo "### Site build \`$BRANCH\`"
             echo ""
             echo "- generated pages: ${PAGES:-?}"
-            echo "- \`astro build\` ran; the site compiles"
+            echo "- built HTML: ${HTML:-?} (${MB:-?} MB, committed to \`dist/\`)"
           } >> "$GITHUB_STEP_SUMMARY"

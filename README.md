@@ -36,8 +36,8 @@ preserving that branch's history. Also weekly, Mondays 05:00 UTC, for
 `enterprise-4.22`.
 
 **2. Build Astro site** — reads that branch's `markdown/`, generates the
-Astro project into `site/`, **compiles it with `astro build`** as a check,
-and commits the project. `dist/` is not committed.
+Astro project into `site/`, runs `astro build` plus the Pagefind search
+index, and commits both the project and the built `site/dist`.
 
 The build is cheap, which is why it is a check rather than a later step.
 Measured on the equivalent `openshift-docs-dogsbay` run (2026-08-24):
@@ -79,18 +79,39 @@ rather than `dogsbay convert` — `convert` has no `--attribute`.
 ```
 markdown/            the Dogsbay MD, plus nav.yml and _assets/images/
 site/                generated Astro project (.astro sources)
-  dist/              gitignored — derived, and not built here yet
+  dist/              built HTML + Pagefind index + .nojekyll  ← committed
 dogsbay.config.yml   sources: ./markdown, output: ./site
 MIGRATION.md         what survived conversion and what did not
 README.md            the upstream commit this was built from
 ```
 
-`site/` is the Astro **project**. It is committed on purpose, so the output
-is readable on GitHub and a converter or generator change shows up as a diff.
-`dist/` is not: fully derived, and it would not diff usefully.
+Everything except `node_modules` and Astro's `.astro` cache is tracked. The
+markdown is the point of the repo; the generated project makes converter and
+generator changes visible as diffs; and `dist/` is tracked because it is what
+GitHub Pages will publish.
 
-`astro build` runs on every site build, so the project is known to compile —
-but nothing is published yet. Wiring up GitHub Pages is the remaining step.
+`.nojekyll` matters more than it looks. Pages runs Jekyll by default, and
+Jekyll refuses to serve directories starting with an underscore — which is
+every Astro asset (`_astro/`) and every converted image (`_assets/`). Without
+it the site publishes with no CSS, no JS and no images.
+
+### The cost of tracking `dist`
+
+Worth knowing before the history gets long:
+
+- **Images are stored twice** — once in `markdown/_assets/` and again in
+  `dist/_assets/` (62.6 MB each on `enterprise-4.22`).
+- **`_astro/` churns.** Asset filenames carry a content hash, so a rebuild
+  that changes anything shared rewrites those files under new names. Git
+  stores new blobs rather than diffs, and the old ones stay in history.
+- **It is not required for Pages.** `actions/deploy-pages` publishes from an
+  uploaded artefact and never needs the output committed — that is how
+  `openshift-docs-dogsbay` works today.
+
+It is tracked anyway, deliberately: the published bytes are inspectable and
+reviewable in the same place as their source. If the repo gets
+uncomfortable, switching to artefact-based deploys is a workflow change with
+no effect on `markdown/`.
 
 **Routable pages are far fewer than markdown files.** The config excludes
 `_attributes`, `modules`, `snippets` and `includes` from routes and takes
