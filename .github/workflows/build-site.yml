@@ -1,4 +1,4 @@
-name: Build Astro site
+name: 2. Build HTML site
 
 # Generates the Astro project from a content branch's `markdown/` and commits
 # it back to that branch as `site/`.
@@ -8,7 +8,7 @@ name: Build Astro site
 # fixes, and folding them into one job makes the markdown hostage to the
 # site building.
 #
-# Lives on `main` with the sync workflow. A `push`-triggered version is not
+# Lives on `main` with the convert workflow. A `push`-triggered version is not
 # possible without copying this file onto every content branch — GitHub reads
 # workflows from the branch that was pushed — so it takes the branch as an
 # input instead.

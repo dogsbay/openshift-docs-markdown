@@ -1,4 +1,4 @@
-name: Sync upstream AsciiDoc → Dogsbay MD
+name: 1. Convert AsciiDoc → Markdown
 
 # Mirrors one OpenShift docs version, converted from AsciiDoc to Dogsbay MD.
 #
@@ -228,8 +228,8 @@ jobs:
           | \`dogsbay.config.yml\` | points at \`./markdown\`, outputs to \`./site\` |
 
           Regenerate from the [\`main\`](../../tree/main) branch:
-          Actions → **Sync upstream AsciiDoc → Dogsbay MD** (markdown), then
-          **Build Astro site** (site). Both take this branch as an input.
+          Actions → **1. Convert AsciiDoc → Markdown**, then
+          **2. Build HTML site**. Both take this branch as an input.
           EOF
 
           # Explicit paths, never `git add -A`: the runner temp is outside the
