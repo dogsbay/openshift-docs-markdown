@@ -1,0 +1,121 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring an ACME issuer by using explicit credentials for AWS Route53 {id="cert-manager-acme-dns01-explicit-aws_{{ context }}"}
+
+You can use {{ cert_manager_operator }} to set up an Automated Certificate Management Environment (ACME) issuer to solve DNS-01 challenges by using explicit credentials on AWS. This procedure uses _Let’s Encrypt_ as the ACME certificate authority (CA) server and shows how to solve DNS-01 challenges with Amazon Route 53. {._abstract}
+
+**Prerequisites**
+
+*   You must provide the explicit `accessKeyID` and `secretAccessKey` credentials. For more information, see [Route53](https://cert-manager.io/docs/configuration/acme/dns01/route53/) in the upstream cert-manager documentation.
+
+    :::note
+
+    You can use Amazon Route 53 with explicit credentials in an {{ product_title }} cluster that is not running on AWS.
+    
+    :::
+
+
+**Procedure**
+
+1.  Optional: Override the name server settings for the DNS-01 self check.
+
+    This step is required only when the target public-hosted zone overlaps with the cluster’s default private-hosted zone.
+    1.  Edit the `CertManager` resource by running the following command:
+        ```terminal
+        $ oc edit certmanager cluster
+        ```
+    1.  Add a `spec.controllerConfig` section with the following override arguments:
+        ```yaml
+        apiVersion: operator.openshift.io/v1alpha1
+        kind: CertManager
+        metadata:
+          name: cluster
+          ...
+        spec:
+          ...
+          controllerConfig:
+            overrideArgs:
+              - '--dns01-recursive-nameservers-only'
+              - '--dns01-recursive-nameservers=1.1.1.1:53'
+        ```
+
+        where:
+
+        `--dns01-recursive-nameservers-only`
+        :   Specifies recursive name servers instead of checking the authoritative name servers associated with that domain.
+
+        `--dns01-recursive-nameservers=1.1.1.1:53`
+        :   Specifies a comma-separated list of `<host>:<port>` names servers to query for the DNS-01 self check. You must use a `1.1.1.1:53` value to avoid the public and private zones overlapping.
+
+    1.  Save the file to apply the changes.
+1.  Optional: Create a namespace for the issuer:
+    ```terminal
+    $ oc new-project <issuer_namespace>
+    ```
+1.  Create a secret to store your AWS credentials in by running the following command:
+    ```terminal
+    $ oc create secret -n my-issuer-namespace generic aws-secret \
+      --from-literal=awsSecretAccessKey=<aws_secret_access_key>
+    ```
+
+    Replace `<aws_secret_access_key>` with your AWS secret access key.
+1.  Create an issuer:
+    1.  Create a YAML file that defines the `Issuer` object:
+        ```yaml title="Example issuer.yaml file"
+        apiVersion: cert-manager.io/v1
+        kind: Issuer
+        metadata:
+          name: <issuer_name>
+          namespace: <issuer_namespace>
+        spec:
+          acme:
+            server: <server>
+            email: "<email_address>"
+            privateKeySecretRef:
+              name: <secret_private_key>
+            solvers:
+            - dns01:
+                route53:
+                  accessKeyID: <aws_key_id>
+                  hostedZoneID: <hosted_zone_id>
+                  region: <region_name>
+                  secretAccessKeySecretRef:
+                    name: "<aws_secret>"
+                    key: "<aws_secret_access_key>"
+        ```
+
+        where:
+
+        `<issuer_name>`
+        :   Specifies a name for the issuer.
+
+        `<issuer_namespace>`
+        :   Specifies the namespace that you created for the issuer.
+
+        `server`
+        :   Specifies the URL to access the ACME server’s `directory` endpoint. This example uses the _Let’s Encrypt_ staging environment.
+
+        `<email_address>`
+        :   Specifies your email address.
+
+        `<secret_private_key>`
+        :   Specifies the name of the secret to store the ACME account private key in.
+
+        `<aws_key_id>`
+        :   Specifies your AWS key ID.
+
+        `<hosted_zone_id>`
+        :   Specifies your hosted zone ID.
+
+        `<region_name>`
+        :   Specifies the AWS region name. For example, `us-east-1`.
+
+        `<aws_secret>`
+        :   Specifies the name of the secret you created.
+
+        `<aws_secret_access_key>`
+        :   Specifies the key in the secret you created that stores your AWS secret access key.
+
+    1.  Create the `Issuer` object by running the following command:
+        ```terminal
+        $ oc create -f issuer.yaml
+        ```

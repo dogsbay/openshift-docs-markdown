@@ -1,0 +1,30 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Verifying your local OSUS installation {id="verifying-local-osus-installation_{{ context }}"}
+
+Before you proceed to update your cluster, verify that the local OSUS instance is correctly installed and configured in your environment. {._abstract}
+
+**Procedure**
+
+1.  Confirm that the following conditions are met:
+    *   The Cluster Version Operator (CVO) is configured to use your installed OpenShift Update Service application.
+    *   The release image signature config map for the new release is applied to your cluster.
+
+        :::note
+
+        The Cluster Version Operator (CVO) uses release image signatures to ensure that release images have not been modified, by verifying that the release image signatures match the expected result.
+        
+        :::
+
+    *   The current release and update target release images are mirrored to a registry in the disconnected environment.
+    *   A recent graph data container image has been mirrored to your registry.
+    *   A recent version of the OpenShift Update Service Operator is installed.
+
+        :::note
+
+        If you have not recently installed or updated the OpenShift Update Service Operator, there might be a more recent version available.
+        For more information about how to update your OLM catalog in a disconnected environment, see "Using Operator Lifecycle Manager in disconnected environments".
+        
+        :::
+
+
+        After you configure your cluster to use the installed OpenShift Update Service and local mirror registry, you can proceed to update your cluster.

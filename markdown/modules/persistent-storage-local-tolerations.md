@@ -1,0 +1,59 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Using tolerations with Local Storage Operator pods {id="local-tolerations_{{ context }}"}
+
+Configure tolerations in the `LocalVolume` resource to allow Local Storage Operator (LSO) pods to run on tainted nodes, enabling local storage provisioning on nodes that would otherwise repel all pods. {._abstract}
+
+Taints can be applied to nodes to prevent them from running general workloads. To allow the LSO to use tainted nodes, you must add tolerations to the `Pod` or `DaemonSet` definition. This allows the created resources to run on these tainted nodes.
+
+You apply tolerations to the LSO pod through the `LocalVolume` resource and apply taints to a node through the node specification. A taint on a node instructs the node to repel all pods that do not tolerate the taint. Using a specific taint that is not on other pods ensures that the LSO pod can also run on that node.
+
+
+:::important
+
+Taints and tolerations consist of a key, value, and effect. As an argument, it is expressed as `key=value:effect`. An operator allows you to leave one of these parameters empty.
+
+:::
+
+
+**Prerequisites**
+
+*   The LSO is installed.
+*   Local disks are attached to {{ product_title }} nodes with a taint.
+*   Tainted nodes are expected to provision local storage.
+
+**Procedure**
+
+1.  Modify the YAML file that defines the `Pod` and add the `LocalVolume` spec, as shown in the following example:
+    ```yaml
+      apiVersion: "local.storage.openshift.io/v1"
+      kind: "LocalVolume"
+      metadata:
+        name: "local-disks"
+        namespace: "openshift-local-storage"
+      spec:
+        tolerations:
+          - key: localstorage
+            operator: Equal
+            value: "localstorage"
+        storageClassDevices:
+            - storageClassName: "local-sc"
+              volumeMode: Block
+              devicePaths:
+                - /dev/xvdg
+    ```
+    *   `spec.tolerations.key`: Specifies the key that you added to the node.
+    *   `spec.tolerations.operator`: Specifies the `Equal` operator to require the `key`/`value` parameters to match. If operator is `Exists`, the system checks that the key exists and ignores the value. If operator is `Equal`, then the key and value must match.
+    *   `spec.tolerations.value`: Specifies the value `local` of the tainted node.
+    *   `spec.storageClassDevices.volumeMode`: Specifies the volume mode, either `Filesystem` or `Block`, defining the type of the local volumes.
+    *   `spec.storageClassDevices.devicePaths`: Specifies the path containing a list of local storage devices to choose from.
+1.  Optional: To create local persistent volumes on only tainted nodes, modify the YAML file and add the `LocalVolume` spec, as shown in the following example:
+    ```yaml
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+    ```
+
+**Results**
+
+The defined tolerations is passed to the resulting daemon sets, allowing the diskmaker and provisioner pods to be created for nodes that contain the specified taints.

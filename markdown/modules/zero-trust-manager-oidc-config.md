@@ -1,0 +1,86 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+
+# Deploying the SPIRE OpenID Connect Discovery Provider {id="zero-trust-manager-oidc-config_{{ context }}"}
+
+Deploy the SPIRE OpenID Connect (OIDC) Discovery Provider by configuring the `SpireOIDCDiscoveryProvider` CR. This allows you to define the trust domain and JSON web token (JWT) issuer for your cluster. {._abstract}
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with the `cluster-admin` role.
+*   You have installed {{ zero_trust_full }} in the cluster.
+
+**Procedure**
+
+1.  Create the `SpireOIDCDiscoveryProvider` CR:
+    1.  Create a YAML file that defines the `SpireOIDCDiscoveryProvider` CR, for example, `SpireOIDCDiscoveryProvider.yaml`:
+        ```yaml title="Example SpireOIDCDiscoveryProvider YAML"
+        aapiVersion: operator.openshift.io/v1alpha1
+        kind: SpireOIDCDiscoveryProvider
+        metadata:
+         name: cluster
+        spec:
+          logLevel: "info"
+          logFormat: "text"
+          csiDriverName: "csi.spiffe.io"
+          jwtIssuer: "https://oidc-discovery.apps.cluster.example.com"
+          replicaCount: 1
+          managedRoute: "true"
+          externalSecretRef: ""
+        ```
+
+        where:
+
+        `metadata.name`
+        :   Specifies that the value must be `cluster`.
+
+
+`spec.logLevel`
+:   Specifies the logging level for the SPIRE Server. The valid options are `debug`, `info`, `warn`, and `error`.
+
+
+`spec.logFormat`
+:   Specifies the logging format for the SPIRE Server. The valid options are `text` and `json`.
+
+
+`spec.csiDriverName`
+:   Specifies the name of the CSI driver to use for mounting the Workload API socket. This must match the `SpiffeCSIDriver.spec.pluginName` value for the OIDC provider to access SPIFFE identities. Must be a valid DNS subdomain format (for example, `csi.spiffe.io`) with a maximum length of 127 characters.
+
+
+`spec.jwtIssuer`
+:   Specifies the JWT issuer URL. Must be a valid HTTPS or HTTP URL with a maximum length of 512 characters. This value must match the `SpireServer.spec.jwtIssuer` value.
+
+
+`spec.replicaCount`
+:   Specifies the number of replicas for the OIDC Discovery Provider deployment. Must be between 1 and 5.
+
+
+`spec.managedRoute`
+:   Specifies  whether the Operator automatically creates an OpenShift route for the OIDC Discovery Provider endpoints. Set to `true` to have the Operator automatically create and maintain an OpenShift route for OIDC discovery endpoints (`*.apps.`). Set to `false` for administrators to manually configure routes or ingress.
+
+
+`spec.externalSecretRef`
+:   Specifies a reference to an externally managed secret that contains the TLS certificate for the OIDC Discovery Provider route host. Must be a valid Kubernetes secret reference name with a maximum length of 253 characters. This field is optional.
+
+    1.  Apply the configuration by running the following command:
+        ```terminal
+        $ oc apply -f SpireOIDCDiscoveryProvider.yaml
+        ```
+
+**Verification**
+
+1.  Verify that the deployment of OIDC Discovery Provider is ready and available by running the following command:
+    ```terminal
+    $ oc get deployment -l app.kubernetes.io/name=spiffe-oidc-discovery-provider -n zero-trust-workload-identity-manager
+    ```
+    ```terminal title="Example output"
+    NAME                                    READY  UP-TO-DATE  AVAILABLE  AGE
+    spire-spiffe-oidc-discovery-provider    1/1    1           1          2m58s
+    ```
+1.  Verify that the status of OIDC Discovery Provider pods is `Running` by running the following command:
+    ```terminal
+    $ oc get po -l app.kubernetes.io/name=spiffe-oidc-discovery-provider -n zero-trust-workload-identity-manager
+    ```
+    ```terminal title="Example output"
+    NAME                                                    READY   STATUS    RESTARTS   AGE
+    spire-spiffe-oidc-discovery-provider-64586d599f-lcc94   2/2     Running   0          7m15s
+    ```

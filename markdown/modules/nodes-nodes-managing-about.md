@@ -1,0 +1,88 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Modifying nodes {id="nodes-nodes-managing-about_{{ context }}"}
+
+To make configuration changes to a cluster, or machine pool, you must create a custom resource definition (CRD), or `kubeletConfig` object. {{ product_title }} uses the Machine Config Controller to watch for changes introduced through the CRD to apply the changes to the cluster. {._abstract}
+
+Most [Kubelet Configuration options](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/) can be set by the user. However, you cannot overwrite the following options:
+
+*   CgroupDriver
+*   ClusterDNS
+*   ClusterDomain
+*   StaticPodPath
+
+
+:::note
+
+If a single node contains more than 50 images, pod scheduling might be imbalanced across nodes. This is because the list of images on a node is shortened to 50 by default. You can disable the image limit by editing the `KubeletConfig` object and setting the value of `nodeStatusMaxImages` to `-1`.
+
+:::
+
+
+
+:::note
+
+Because the fields in a `kubeletConfig` object are passed directly to the kubelet from upstream Kubernetes, the validation of those fields is handled directly by the kubelet itself. Please refer to the relevant Kubernetes documentation for the valid values for these fields. Invalid values in the `kubeletConfig` object can render cluster nodes unusable.
+
+:::
+
+
+**Procedure**
+
+1.  Obtain the label associated with the static CRD, Machine Config Pool, for the type of node you want to configure.
+Perform one of the following steps:
+    1.  Check current labels of the desired machine config pool.
+
+        For example:
+        ```terminal
+        $  oc get machineconfigpool  --show-labels
+        ```
+        ```terminal title="Example output"
+        NAME      CONFIG                                             UPDATED   UPDATING   DEGRADED   LABELS
+        master    rendered-master-e05b81f5ca4db1d249a1bf32f9ec24fd   True      False      False      operator.machineconfiguration.openshift.io/required-for-upgrade=
+        worker    rendered-worker-f50e78e1bc06d8e82327763145bfcf62   True      False      False
+        ```
+    1.  Add a custom label to the desired machine config pool.
+
+        For example:
+        ```terminal
+        $ oc label machineconfigpool worker custom-kubelet=enabled
+        ```
+1.  Create a `kubeletconfig` custom resource (CR) for your configuration change, as demonstrated in the following sample configuration for a `custom-config` CR:
+    ```yaml
+    apiVersion: machineconfiguration.openshift.io/v1
+    kind: KubeletConfig
+    metadata:
+      name: custom-config
+    spec:
+      machineConfigPoolSelector:
+        matchLabels:
+          custom-kubelet: enabled
+      kubeletConfig:
+        podsPerCore: 10
+        maxPods: 250
+        systemReserved:
+          cpu: 2000m
+          memory: 1Gi
+    #...
+    ```
+
+    where:
+
+    `name`
+    :   Assign a name to CR.
+
+    `custom-kubelet`
+    :   Specify the label to apply the configuration change, this is the label you added to the machine config pool.
+
+    `kubeletConfig`
+    :   Specify the new value(s) you want to change.
+
+1.  Create the CR object:
+    ```terminal
+    $ oc create -f <file-name>
+    ```
+
+    For example:
+    ```terminal
+    $ oc create -f master-kube-config.yaml
+    ```

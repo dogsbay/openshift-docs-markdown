@@ -1,0 +1,28 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Overview of GCP PD CSI Driver Operator {id="persistent-storage-csi-gcp-pd-overview_{{ context }}"}
+
+You can provision and manage Google Cloud Platform (GCP) persistent disk (PD) storage in {{ product_title }} by using the GCP PD Container Storage Interface (CSI) Driver Operator and driver, which are installed by default. {._abstract}
+
+Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI Operator and driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".
+
+To create CSI-provisioned persistent volumes (PVs) that mount to GCP PD storage assets, {{ product_title }} installs the GCP PD CSI Driver Operator and the GCP PD CSI driver by default in the `openshift-cluster-csi-drivers` namespace.
+
+
+GCP PD CSI Driver Operator
+:   By default, the GCP PD CSI Driver Operator provides a storage class that you can use to create PVCs. You can disable this default storage class if desired (see "Managing the default storage class"). You also have the option to create the GCP PD storage class as described in "Persistent storage using GCE Persistent Disk".
+
+
+GCP PD driver
+:   The GCP PD driver enables you to create and mount GCP PD PVs.
+
+    GCP PD CSI driver supports the C3 instance type for bare metal and N4 machine series. The C3 instance type and N4 machine series support the hyperdisk-balanced disks and hyperdisk-balanced high-availability disks. For more information, see "C3 instance type for bare metal and N4 machine series".
+
+{% if not openshift_dedicated %}
+
+:::note
+
+{{ product_title }} provides automatic migration for the GCE Persistent Disk in-tree volume plugin to its equivalent CSI driver. For more information, see "CSI automatic migration".
+
+:::
+
+{% endif %}

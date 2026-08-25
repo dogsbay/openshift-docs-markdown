@@ -1,0 +1,36 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Describing an existing broker by using the Knative CLI {id="serverless-describe-broker-kn_{{ context }}"}
+
+Using the Knative (`kn`) CLI to describe brokers provides a streamlined and intuitive user interface. You can use the `kn broker describe` command to print information about existing brokers in your cluster by using the Knative CLI.
+
+**Prerequisites**
+
+*   The {{ ServerlessOperatorName }} and Knative Eventing are installed on your {{ product_title }} cluster.
+*   You have installed the Knative (`kn`) CLI.
+
+**Procedure**
+
+*   Describe an existing broker:
+    ```terminal
+    $ kn broker describe <broker_name>
+    ```
+    ```terminal title="Example command using default broker"
+    $ kn broker describe default
+    ```
+    ```terminal title="Example output"
+    Name:         default
+    Namespace:    default
+    Annotations:  eventing.knative.dev/broker.class=MTChannelBasedBroker, eventing.knative.dev/creato ...
+    Age:          22s
+
+    Address:
+      URL:    http://broker-ingress.knative-eventing.svc.cluster.local/default/default
+
+    Conditions:
+      OK TYPE                   AGE REASON
+      ++ Ready                  22s
+      ++ Addressable            22s
+      ++ FilterReady            22s
+      ++ IngressReady           22s
+      ++ TriggerChannelReady    22s
+    ```

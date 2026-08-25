@@ -1,0 +1,135 @@
+{% if context == "installing-aws-user-infra" %}
+{%- set three_node_cluster = true -%}
+{% endif %}
+{% if context == "installing-restricted-networks-aws" %}
+{%- set restricted = true -%}
+{% endif %}
+{% if context == "installing-aws-local-zone" %}
+{%- set local_zone = true -%}
+{% endif %}
+{% if context == "installing-aws-wavelength-zone" %}
+{%- set wavelength_zone = true -%}
+{% endif %}
+
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating the installation configuration file {id="installation-generate-aws-user-infra-install-config_{{ context }}"}
+
+Generate and customize the installation configuration file that the installation program needs to deploy your cluster. {._abstract}
+
+**Prerequisites**
+
+*   You obtained the {{ product_title }} installation program
+{%- if not (localzone or wavelength_zone) %}
+for user-provisioned infrastructure
+{%- endif %}
+and the pull secret for your cluster.
+{%- if restricted %}
+For a restricted network installation, these files are on your mirror host.
+{%- endif %}
+*   You checked that you are deploying your cluster to an {{ aws_first }} Region with an accompanying {{ op_system_first }} AMI published by Red Hat. If you are deploying to an {{ aws_short }} Region that requires a custom AMI, such as an {{ aws_short }} GovCloud Region, you must create the `install-config.yaml` file manually.
+
+**Procedure**
+
+1.  Create the `install-config.yaml` file.
+    1.  Change to the directory that contains the installation program and run the following command:
+        ```terminal
+        $ ./openshift-install create install-config --dir <installation_directory>
+        ```
+
+        For `<installation_directory>`, specify the directory name to store the files that the installation program creates.
+
+        :::important
+
+        Specify an empty directory. Some installation assets, such as bootstrap X.509 certificates have short expiration intervals, so you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier {{ product_title }} version.
+        
+        :::
+
+    1.  At the prompts, provide the configuration details for your cloud:
+        1.  Optional: Select an SSH key to use to access your cluster machines.
+
+            :::note
+
+            For production {{ product_title }} clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+            
+            :::
+
+        1.  Select **aws** as the platform to target.
+        1.  If you do not have an {{ aws_short }} profile stored on your computer, enter the AWS
+        access key ID and secret access key for the user that you configured to run the
+        installation program.
+
+            :::note
+
+            The {{ aws_short }} access key ID and secret access key are stored in `~/.aws/credentials` in the home directory of the current user on the installation host. You are prompted for the credentials by the installation program if the credentials for the exported profile are not present in the file. Any credentials that you provide to the installation program are stored in the file.
+            
+            :::
+
+        1.  Select the {{ aws_short }} Region to deploy the cluster to.
+        1.  Select the base domain for the Route 53 service that you configured for your cluster.
+        1.  Enter a descriptive name for your cluster.
+        1.  Paste the {{ cluster_manager_url_pull }}.
+            {%- if openshift_origin %}
+        This field is optional.
+{% endif %}
+
+{% if restricted %}
+1.  Edit the `install-config.yaml` file to give the additional information that
+is required for an installation in a restricted network.
+    1.  Update the `pullSecret` value to contain the authentication information for
+    your registry:
+        ```yaml
+        pullSecret: '{"auths":{"<local_registry>": {"auth": "<credentials>","email": "you@example.com"}}}'
+        ```
+
+        For `<local_registry>`, specify the registry domain name, and optionally the port, that your mirror registry uses to serve content. For example `registry.example.com` or `registry.example.com:5000`. For `<credentials>`, specify the base64-encoded user name and password for your mirror registry.
+    1.  Add the `additionalTrustBundle` parameter and value. The value must be the contents of the certificate file that you used for your mirror registry. The certificate file can be an existing, trusted certificate authority or the self-signed certificate that you generated for the mirror registry.
+        ```yaml
+        additionalTrustBundle: |
+          -----BEGIN CERTIFICATE-----
+          ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+          -----END CERTIFICATE-----
+        ```
+    1.  Add the image content resources:
+        ```yaml
+        imageContentSources:
+        - mirrors:
+          - <local_registry>/<local_repository_name>/release
+          source: quay.io/openshift-release-dev/ocp-release
+        - mirrors:
+          - <local_registry>/<local_repository_name>/release
+          source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+        ```
+
+        Use the `imageContentSources` section from the output of the command to mirror the repository or the values that you used when you mirrored the content from the media that you brought into your restricted network.
+    1.  Optional: Set the publishing strategy to `Internal`:
+        ```yaml
+        publish: Internal
+        ```
+
+        By setting this option, you create an internal Ingress Controller and a private load balancer.
+{% endif %}
+
+{% if three_node_cluster %}
+1.  If you are installing a three-node cluster, modify the `install-config.yaml` file by setting the `compute.replicas` parameter to `0`. This ensures that the cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster on AWS".
+{% endif %}
+1.  Optional: Back up the `install-config.yaml` file.
+
+    :::important
+
+    The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
+    
+    :::
+
+
+{% if context == "installing-aws-user-infra" %}
+{%- set three_node_cluster = false -%}
+{% endif %}
+{% if context == "installing-restricted-networks-aws" %}
+{%- set restricted = false -%}
+{% endif %}
+{% if context == "installing-aws-local-zone" %}
+{%- set local_zone = false -%}
+{% endif %}
+{% if context == "installing-aws-wavelength-zone" %}
+{%- set wavelength_zone = true -%}
+{% endif %}

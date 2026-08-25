@@ -1,0 +1,61 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# CSI Volume Admission plugin {id="ephemeral-storage-csi-overview-admin-plugin_{{ context }}"}
+
+To restrict Container Storage Interface (CSI) ephemeral volume usage based on pod security standards, the CSI Volume Admission plugin enforces admission policies by inspecting security profile labels on CSI drivers. {._abstract}
+
+## Overview of CSI Volume Admission plugin {id="overview-admission-plugin_{{ context }}"}
+The CSI Volume Admission plugin allows you to restrict the use of an individual CSI driver capable of provisioning CSI ephemeral volumes on pod admission. Administrators can add a `csi-ephemeral-volume-profile` label, and this label is then inspected by the Admission plugin and used in enforcement, warning, and audit decisions.
+
+To use the CSI Volume Admission plugin, administrators add the `security.openshift.io/csi-ephemeral-volume-profile` label to a `CSIDriver` object, which declares the CSI driver’s effective pod security profile when it is used to provide CSI ephemeral volumes, as shown in the following example:
+
+```yaml title="Example CSIDriver YAML file enabling using of the CSI Admission plugin"
+kind: CSIDriver
+metadata:
+  name: csi.mydriver.company.org
+  labels:
+    security.openshift.io/csi-ephemeral-volume-profile: restricted
+```
+Setting `metadata.labels.security.openshift.io/csi-ephemeral-volume-profile` to `restricted` enables use of the CSI Admission plugin.
+
+This “effective profile” communicates that a pod can use the CSI driver to mount CSI ephemeral volumes when the pod’s namespace is governed by a pod security standard.
+
+The CSI Volume Admission plugin inspects pod volumes when pods are created; existing pods that use CSI volumes are not affected. If a pod uses a container storage interface (CSI) volume, the plugin looks up the `CSIDriver` object and inspects the `csi-ephemeral-volume-profile` label, and then use the label’s value in its enforcement, warning, and audit decisions.
+
+## Pod security profile enforcement {id="security-profile-enforcement_{{ context }}"}
+When a CSI driver has the `csi-ephemeral-volume-profile` label, pods using the CSI driver to mount CSI ephemeral volumes must run in a namespace that enforces a pod security standard of equal or greater permission. If the namespace enforces a more restrictive standard, the CSI Volume Admission plugin denies admission. The following table describes the enforcement behavior for different pod security profiles for given label values.
+
+**Pod security profile enforcement**
+
+| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |
+| --- | :-: | :-: | :-: | :-: |
+| Allowed | Denied | Denied | Baseline | Allowed |
+| Allowed | Denied | Privileged | Allowed | Allowed |
+
+## Pod security profile warning {id="security-profile-warning_{{ context }}"}
+The CSI Volume Admission plugin can warn you if the CSI driver’s effective profile is more permissive than the pod security warning profile for the pod namespace. The following table shows when a warning occurs for different pod security profiles for given label values.
+
+**Pod security profile warning**
+
+| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |
+| --- | :-: | :-: | :-: | :-: |
+| No warning | Warning | Warning | Baseline | No warning |
+| No warning | Warning | Privileged | No warning | No warning |
+
+## Pod security profile audit {id="security-profile-audit_{{ context }}"}
+The CSI Volume Admission plugin can apply audit annotations to the pod if the CSI driver’s effective profile is more permissive than the pod security audit profile for the pod namespace. The following table shows the audit annotation applied for different pod security profiles for given label values.
+
+**Pod security profile audit**
+
+| Pod security profile | Driver label: restricted | Driver label: baseline | Driver label: privileged | Restricted |
+| --- | :-: | :-: | :-: | :-: |
+| No audit | Audit | Audit | Baseline | No audit |
+| No audit | Audit | Privileged | No audit | No audit |
+
+## Default behavior for the CSI Volume Admission plugin {id="admission-plugin-default-behavior_{{ context }}"}
+If the referenced CSI driver for a CSI ephemeral volume does not have the `csi-ephemeral-volume-profile` label, the CSI Volume Admission plugin considers the driver to have the privileged profile for enforcement, warning, and audit behaviors. Likewise, if the pod’s namespace does not have the pod security admission label set, the Admission plugin assumes the restricted profile is allowed for enforcement, warning, and audit decisions. Therefore, if no labels are set, CSI ephemeral volumes using that CSI driver are only usable in privileged namespaces by default.
+
+The CSI drivers that ship with {{ product_title }} and support ephemeral volumes have a reasonable default set for the `csi-ephemeral-volume-profile` label:
+
+*   Azure File CSI driver: privileged
+
+If desired, an admin can change the default value of the label.

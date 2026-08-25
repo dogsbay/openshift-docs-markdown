@@ -1,0 +1,50 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring linuxptp services as a Telecom Grandmaster clock on Intel Granite Rapids-D hardware {id="configuring-linuxptp-services-as-grandmaster-clock-gnrd_{{ context }}"}
+
+Use this procedure to configure the `linuxptp` services (`ptp4l`, `phc2sys`, `ts2phc`) as a Telecom Grandmaster (T-GM) on Intel Granite Rapids-D (GNR-D) hardware that uses onboard Network Acceleration Complex (NAC) ports and optional Carter Flat expansion network interface cards (NICs).
+In this deployment, GNSS input disciplines the platform clock and the example `PtpConfig` CR uses the `e830` and `e825` plugins for onboard NAC and optional Carter Flat ports. {._abstract}
+
+{%- set FeatureName = "Telecom Grandmaster clock configuration on Intel Granite Rapids-D (GNR-D) hardware" %}
+{% include "./snippets/technology-preview.md" %}
+
+**Prerequisites**
+
+*   You have verified your qualified GNR-D hardware layout, including NAC ports, Carter Flat ports, and interface naming.
+*   The {{ oc_first }} is installed.
+*   You are logged in as a user with `cluster-admin` privileges.
+*   The PTP Operator is installed.
+*   You have verified that interface names, GNSS serial paths, and plugin device entries are aligned with your qualified hardware layout.
+
+**Procedure**
+
+1.  Create a `PtpConfig` custom resource (CR) that matches your qualified GNR-D Telecom Grandmaster hardware layout:
+    ```yaml
+{% include "./snippets/ptp_PtpConfigGnrdTGM.yaml" %}
+    ```
+
+    where:
+    *   `eno8703` -- Specifies the example leading NAC interface name used in `phc2sysOpts`, `plugins.e825.devices`, and the primary `ts2phcConf` stanza. Replace this value with the NAC interface name from your qualified GNR-D hardware layout.
+    *   `enp108s0f0` and `enp110s0f0` -- Specify the example Carter Flat (E830) interface names listed in `plugins.e830.devices` and used as Carter Flat `ts2phcConf` stanzas. Replace these values with your Carter Flat interface names. Add or remove stanzas and `plugins` entries if you install fewer than two expansion cards.
+    *   `enp108s0f1` through `enp108s0f7` and `enp110s0f1` through `enp110s0f7` -- Specify additional example time transmitter interfaces on the two Carter Flat cards as `masterOnly 1` ports in `ptp4lConf`. Align or remove these stanzas to match your port count and naming.
+    *   `eno8403`, `eno8503`, `eno8603`, `eno8703`, `eno8803`, `eno8903`, and `eno9003` -- Specify example onboard NAC time transmitter interfaces as `masterOnly 1` ports in `ptp4lConf`. Replace these values with your NAC port names. Remove stanzas you do not use.
+1.  Customize interface names, the `plugins` device list, `ts2phcConf`, `ptp4lConf`, and the `recommend` stanza in the preceding example to match your qualified hardware layout.
+1.  Add or remove Carter Flat interface blocks in `ts2phcConf` and `ptp4lConf` to match the number of expansion cards on your server.
+1.  In the `recommend` stanza, replace the `$mcp` placeholder with the machine config pool label for the nodes that run this PTP profile, for example, `worker`.
+1.  Save the customized `PtpConfig` CR as `gnrd-grandmaster-clock-ptp-config.yaml`.
+1.  Verify that the `plugins` stanza lists the `e830` and `e825` device entries your qualified hardware layout requires.
+1.  Apply the `PtpConfig` CR by running the following command:
+    ```terminal
+    $ oc apply -f gnrd-grandmaster-clock-ptp-config.yaml
+    ```
+
+**Verification**
+
+1.  Verify that the `PtpConfig` profile is applied:
+    1.  Retrieve the pods in the `openshift-ptp` namespace by running the following command:
+        ```terminal
+        $ oc get pods -n openshift-ptp -o wide
+        ```
+    1.  Review `linuxptp` daemon logs for the pod on your Granite Rapids-D node by running the following command, replacing `<linuxptp_daemon_pod>` with the pod name that is scheduled on your target node:
+        ```terminal
+        $ oc logs <linuxptp_daemon_pod> -n openshift-ptp -c linuxptp-daemon-container
+        ```

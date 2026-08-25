@@ -1,0 +1,29 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Configuration for a dummy device additional network {id="nw-multus-dummy-device-object_{{ context }}"}
+
+The dummy CNI plugin functions like a loopback device. The plugin is a virtual interface, and you can use the plugin to route the packets to a designated IP address. Unlike a loopback device, the IP address is arbitrary and is not restricted to the `127.0.0.0/8` address range. {._abstract}
+
+The dummy device CNI plugin JSON configuration object describes the configuration parameters for the dummy CNI plugin. The following table details these parameters:
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `cniVersion` | `string` | The CNI specification version. A minimum version of `0.3.1` is required. |
+| `name` | `string` | The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations. |
+| `type` | `string` | The name of the CNI plugin that you want to configure. The required value is `dummy`. |
+| `ipam` | `object` | The configuration object for the IPAM CNI plugin. The plugin manages the IP address assignment for the attachment definition. |
+
+## dummy configuration example {id="nw-multus-dummy-device-config-example_{{ context }}"}
+
+The following example configures an additional network named `hostdev-net`:
+
+```json
+{
+  "cniVersion": "0.3.1",
+  "name": "dummy-net",
+  "type": "dummy",
+  "ipam": {
+      "type": "host-local",
+      "subnet": "10.1.1.0/24"
+  }
+}
+```

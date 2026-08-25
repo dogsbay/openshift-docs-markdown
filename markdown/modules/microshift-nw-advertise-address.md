@@ -1,0 +1,14 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Configuring the advertise address network flag {id="microshift-yaml-advertiseAddress_{{ context }}"}
+
+The `apiserver.advertiseAddress` flag specifies the IP address on which to advertise the API server to members of the node. This address must be reachable by the node. You can set a custom IP address here, but you must also add the IP address to a host interface. Customizing this parameter preempts {{ microshift_short }} from adding a default IP address to the `br-ex` network interface. {._abstract}
+
+
+:::important
+
+If you customize the `advertiseAddress` IP address, make sure it is reachable by the node when {{ microshift_short }} starts by adding the IP address to a host interface.
+
+:::
+
+
+If unset, the default value is set to the next immediate subnet after the service network. For example, when the service network is `10.43.0.0/16`, the `advertiseAddress` is set to `10.44.0.0/32`.

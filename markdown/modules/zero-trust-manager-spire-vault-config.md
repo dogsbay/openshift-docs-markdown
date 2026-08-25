@@ -1,0 +1,128 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring the SPIRE Vault UpstreamAuthority plugin {id="zero-trust-manager-spire-vault-config_{{ context }}"}
+
+Configure SPIRE Server to obtain intermediate signing certificates from HashiCorp Vault by setting `spec.upstreamAuthority.vault` on the `SpireServer` custom resource (CR). {{ zero_trust_full }} generates the SPIRE Server configuration, mounts Vault credentials into the SPIRE Server pod, and reconciles the SPIRE Server `StatefulSet`. {._abstract}
+
+On {{ product_title }}, the `SpireServer` CR supports Vault authentication only through the Kubernetes auth method. {{ zero_trust_full }} mounts a projected SPIRE Server `ServiceAccount` token and, when configured, a Vault CA certificate Secret at fixed paths inside the pod.
+
+**Prerequisites**
+
+*   You have installed {{ zero_trust_full }} and deployed a `SpireServer` CR.
+*   You have a running HashiCorp Vault instance with the PKI secrets engine enabled at your mount point (default: `pki`) and a root CA configured to sign intermediate certificates.
+*   You have a Vault policy that grants the `update` capability on `<pki_mount>/root/sign-intermediate`.
+*   You have configured the Vault Kubernetes authentication method and created a Vault role bound to the SPIRE Server `ServiceAccount`. For example, `spire-server` in the `zero-trust-workload-identity-manager` namespace.
+*   The value of `spec.caValidity` on the `SpireServer` CR is less than or equal to the maximum lease Time to Live (TTL) configured on the Vault PKI secrets engine.
+*   If Vault uses a private or custom TLS certificate authority, you have a PEM-encoded CA certificate available to store in a Kubernetes `Secret`.
+
+**Procedure**
+
+1.  Export the current `SpireServer` CR to a file by running the following command:
+    ```terminal
+    $ oc get spireserver cluster -o yaml > SpireServer-vault.yaml
+    ```
+1.  In `SpireServer-vault.yaml`, add the `upstreamAuthority` section from the following example under `spec:`:
+    ```yaml
+    apiVersion: operator.openshift.io/v1alpha1
+    kind: SpireServer
+    metadata:
+      name: cluster
+    spec:
+      logLevel: "info"
+      logFormat: "text"
+      jwtIssuer: "https://oidc-discovery.apps.cluster.example.com"
+      caValidity: "24h"
+      defaultX509Validity: "1h"
+      defaultJWTValidity: "5m"
+      jwtKeyType: "rsa-2048"
+      caSubject:
+        country: "US"
+        organization: "Example Corporation"
+        commonName: "SPIRE Server CA"
+      persistence:
+        size: "5Gi"
+        accessMode: "ReadWriteOnce"
+        storageClass: "gp3-csi"
+      datastore:
+        databaseType: "sqlite3"
+        connectionString: "/run/spire/data/datastore.sqlite3"
+        tlsSecretName: ""
+        maxOpenConns: 100
+        maxIdleConns: 10
+        connMaxLifetime: 0
+        disableMigration: "false"
+      upstreamAuthority:
+        vault:
+          vaultAddr: "https://vault.example.com:8200"
+          pkiMountPoint: "pki"
+          caCertSecretRef:
+            name: vault-ca-cert
+            key: ca.crt
+          k8sAuth:
+            k8sAuthMountPoint: "kubernetes"
+            k8sAuthRoleName: "spire-server"
+            audience: "vault"
+          vaultNamespace: "vault-namespace" # optional
+    ```
+
+    :::note
+
+    For in-cluster Vault over HTTP, set `vaultAddr` to the in-cluster service URL, such as `http://vault.vault.svc:8200`, and omit `caCertSecretRef`.
+
+    Include `caCertSecretRef` only when Vault TLS is signed by a custom CA. Omit it when Vault uses a public CA.
+    
+    :::
+
+
+    where:
+
+    `spec.caValidity`
+    :   Specifies the SPIRE Server CA validity. Must be less than or equal to the Vault PKI `max_lease_ttl`. {{ zero_trust_full }} maps this value to SPIRE `ca_ttl`.
+
+    `spec.upstreamAuthority.vault.vaultAddr`
+    :   Specifies the URL of the Vault server.
+
+    `spec.upstreamAuthority.vault.pkiMountPoint`
+    :   Specifies the Vault PKI secrets engine mount path. Default: `pki`.
+
+    `spec.upstreamAuthority.vault.caCertSecretRef`
+    :   Optional. Specifies the `Secret` reference when Vault TLS is signed by a custom CA. {{ zero_trust_full }} mounts the Secret at `/run/spire/upstream-ca/ca.crt`.
+
+    `spec.upstreamAuthority.vault.k8sAuth.k8sAuthRoleName`
+    :   Specifies the Vault Kubernetes auth role name.
+
+    `spec.upstreamAuthority.vault.k8sAuth.k8sAuthMountPoint`
+    :   Specifies the Vault Kubernetes auth mount path. The default is `kubernetes`.
+
+    `spec.upstreamAuthority.vault.k8sAuth.audience`
+    :   Specifies the projected `ServiceAccount` token audience. This must match the Vault role. The default is `vault`.
+
+    `spec.upstreamAuthority.vault.vaultNamespace`
+    :   Optional. Specifies the Vault namespace name.
+
+1.  Apply the updated CR by running the following command:
+    ```terminal
+    $ oc apply -f SpireServer-vault.yaml
+    ```
+1.  Wait for {{ zero_trust_full }} to reconcile the SPIRE Server by running the following command:
+    ```terminal
+    $ oc rollout status statefulset/spire-server -n zero-trust-workload-identity-manager
+    ```
+
+**Verification**
+
+1.  Verify that SPIRE Server is healthy and that logs show the UpstreamAuthority plugin loaded by running the following commands:
+    ```terminal
+    $ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \
+        /opt/spire/bin/spire-server healthcheck
+    $ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=50
+    ```
+    ```terminal title="Example output"
+    Server is healthy.
+    time="2026-04-07T10:15:30Z" level=info msg="Upstream authority loaded" subsystem_name=ca
+    time="2026-04-07T10:15:31Z" level=info msg="Server CA activated" certificate_fingerprint="ABC123..."
+    ```
+1.  Confirm that a Vault-signed intermediate certificate is present by running the following command:
+    ```terminal
+    $ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \
+        /opt/spire/bin/spire-server bundle show
+    ```

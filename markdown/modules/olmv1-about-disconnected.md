@@ -1,0 +1,21 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+
+# About disconnected support and the oc-mirror plugin in {{ olmv1 }} {id="olmv1-about-disconnected_{{ context }}"}
+
+After you use the oc-mirror plugin for the {{ oc_first }} to mirror images to a mirror registry, {{ olmv1 }} relies on specific resource sets to function. {._abstract}
+
+Depending on your oc-mirror plugin version, {{ olmv1 }} uses one of the following resource sets:
+
+
+oc-mirror plugin v1
+:   Automatically generates `ImageContentSourcePolicy` resources and requires manually created `ClusterCatalog` resources.
+
+oc-mirror plugin v2
+:   Automatically generates `ImageDigestMirrorSet`, `ImageTagMirrorSet`, and `ClusterCatalog` resources.
+
+
+:::note
+
+The oc-mirror plugin v2 is the recommended version for mirroring.
+
+:::

@@ -1,0 +1,24 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Cluster notification policy {id="managed-cluster-notification-policy_{{ context }}"}
+
+Cluster notifications are designed to keep you informed about the health of your cluster and high impact events that affect it. {._abstract}
+
+Most cluster notifications are generated and sent automatically to ensure that you are immediately informed of problems or important changes to the state of your cluster.
+
+In certain situations, Red&#160;Hat Site Reliability Engineering (SRE) creates and sends cluster notifications to provide additional context and guidance for a complex issue.
+
+Cluster notifications are not sent for low-impact events, low-risk security updates, routine operations and maintenance, or minor, transient issues that are quickly resolved by Red&#160;Hat SRE.
+
+Red&#160;Hat services automatically send notifications when:
+
+*   Remote health monitoring or environment verification checks detect an issue in your cluster, for example, when a worker node has low disk space.
+*   Significant cluster life cycle events occur, for example, when scheduled maintenance or upgrades begin, or cluster operations are impacted by an event, but do not require customer intervention.
+*   Significant cluster management changes occur, for example, when cluster ownership or administrative control is transferred from one user to another.
+*   Your cluster subscription is changed or updated, for example, when Red&#160;Hat makes updates to subscription terms or features available to your cluster.
+
+SRE creates and sends notifications when:
+
+*   An incident results in a degradation or outage that impacts your cluster’s availability or performance, for example, your cloud provider has a regional outage. SRE sends subsequent notifications to inform you of incident resolution progress, and when the incident is resolved.
+*   A security vulnerability, security breach, or unusual activity is detected on your cluster.
+*   Red&#160;Hat detects that changes you have made are creating or may result in cluster instability.
+*   Red&#160;Hat detects that your workloads are causing performance degradation or instability in your cluster.

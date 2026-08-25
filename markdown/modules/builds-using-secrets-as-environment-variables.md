@@ -1,0 +1,31 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Using secrets as environment variables {id="builds-using-secrets-as-environment-variables_{{ context }}"}
+
+You can make key values from secrets available as environment variables using the `valueFrom` syntax.
+
+
+:::important
+
+This method shows the secrets as plain text in the output of the build pod console. To avoid this, use input secrets and config maps instead.
+
+:::
+
+
+**Procedure**
+
+*   To use a secret as an environment variable, set the `valueFrom` syntax:
+    ```yaml
+    apiVersion: build.openshift.io/v1
+    kind: BuildConfig
+    metadata:
+      name: secret-example-bc
+    spec:
+      strategy:
+        sourceStrategy:
+          env:
+          - name: MYVAL
+            valueFrom:
+              secretKeyRef:
+                key: myval
+                name: mysecret
+    ```

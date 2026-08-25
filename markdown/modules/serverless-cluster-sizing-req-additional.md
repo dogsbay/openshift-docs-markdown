@@ -1,0 +1,7 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Additional requirements for advanced use-cases {id="serverless-cluster-sizing-req-additional_{{ context }}"}
+
+For more advanced use-cases such as logging or metering on {{ product_title }}, you must deploy more resources. Recommended requirements for such use-cases are 24 CPUs and 96GB of memory.
+
+If you have high availability (HA) enabled on your cluster, this requires between 0.5 - 1.5 cores and between 200MB - 2GB of memory for each replica of the Knative Serving control plane.
+HA is enabled for some Knative Serving components by default. You can disable HA by following the documentation on "Configuring high availability replicas".

@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Overview of Azure Stack Hub {id="persistent-storage-csi-azure-stack-hub-overview_{{ context }}"}
+
+{{ product_title }} is capable of provisioning persistent volumes (PVs) using the Container Storage Interface (CSI) driver for Azure Stack Hub Storage, which allows you to run apps in an on-premise environment and deliver Azure services in your data center. {._abstract}
+
+Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI Operator and driver. For more information, see "Understanding persistent volumes" and "Configuring CSI volumes".
+
+To create CSI-provisioned PVs that mount to Azure Stack Hub storage assets, {{ product_title }} installs the Azure Stack Hub CSI Driver Operator and the Azure Stack Hub CSI driver by default in the `openshift-cluster-csi-drivers` namespace.
+
+
+Azure Stack Hub CSI Driver Operator
+:   The Azure Stack CSI Driver Operator provides a storage class (`managed-csi`), with "Standard_LRS" as the default storage account type, that you can use to create persistent volume claims (PVCs). The Azure Stack Hub CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand, eliminating the need for cluster administrators to pre-provision storage.
+
+
+Azure Stack Hub CSI driver
+:   The Azure Stack Hub CSI driver enables you to create and mount Azure Stack Hub PVs.

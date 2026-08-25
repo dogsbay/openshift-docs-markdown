@@ -1,0 +1,25 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Logical Volume Manager Storage {id="telco-ran-lvms-operator_{{ context }}"}
+
+{{ lvms_first }} provides dynamic provisioning of block and file storage by creating logical volumes from local devices that can be consumed as persistent volume claim (PVC) resources by applications. {._abstract}
+
+
+New in this release
+:   *   No reference design updates in this release
+
+Description
+:   {{ lvms_first }} is an optional component.
+    It provides dynamic provisioning of both block and file storage by creating logical volumes from local devices that can be consumed as persistent volume claim (PVC) resources by applications.
+    Volume expansion and snapshots are also possible.
+    An example configuration is provided in the RDS with the `StorageLVMCluster.yaml` file.
+
+
+Limits and requirements
+:   *   In {{ sno }} clusters, persistent storage must be provided by either {{ lvms }} or local storage, not both.
+    *   Volume snapshots are excluded from the reference configuration.
+
+Engineering considerations
+:   *   {{ lvms }} can be used as the local storage implementation for the RAN DU use case.
+    When {{ lvms }} is used as the storage solution, it replaces the Local Storage Operator, and the CPU required is assigned to the management partition as platform overhead.
+    The reference configuration must include one of these storage solutions but not both.
+    *   Ensure that sufficient disks or partitions are available for storage requirements.

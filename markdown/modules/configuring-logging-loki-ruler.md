@@ -1,0 +1,36 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring the ruler {id="configuring-logging-loki-ruler_{{ context }}"}
+
+When the LokiStack ruler component is enabled, users can define a group of [LogQL](https://grafana.com/docs/loki/latest/query/) expressions that trigger logging alerts or recorded metrics.
+
+Administrators can enable the ruler by modifying the `LokiStack` custom resource (CR).
+
+**Prerequisites**
+
+*   You have installed the {{ clo }} and the {{ loki_op }}.
+*   You have created a `LokiStack` CR.
+*   You have administrator permissions.
+
+**Procedure**
+
+*   Enable the ruler by ensuring that the `LokiStack` CR contains the following spec configuration:
+    ```yaml
+    apiVersion: loki.grafana.com/v1
+    kind: LokiStack
+    metadata:
+      name: <name>
+      namespace: <namespace>
+    spec:
+    # ...
+      rules:
+        enabled: true (1)
+        selector:
+          matchLabels:
+            openshift.io/<label_name>: "true" (2)
+        namespaceSelector:
+          matchLabels:
+            openshift.io/<label_name>: "true" (3)
+    ```
+    1.  Enable Loki alerting and recording rules in your cluster.
+    1.  Add a custom label that can be added to namespaces where you want to enable the use of logging alerts and metrics.
+    1.  Add a custom label that can be added to namespaces where you want to enable the use of logging alerts and metrics.

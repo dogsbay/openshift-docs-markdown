@@ -1,0 +1,20 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Dockerfile source {id="builds-dockerfile-source_{{ context }}"}
+
+When you supply a `dockerfile` value, the content of this field is written to disk as a file named `dockerfile`. This is done after other input sources are processed, so if the input source repository contains a Dockerfile in the root directory, it is overwritten with this content.
+
+The source definition is part of the `spec` section in the `BuildConfig`:
+
+```yaml
+source:
+  dockerfile: "FROM centos:7\nRUN yum install -y httpd" (1)
+```
+1.  The `dockerfile` field contains an inline Dockerfile that is built.
+
+{% if not (openshift_rosa or openshift_rosa_hcp) %}
+
+**Additional resources**
+{._additional-resources}
+
+*   The typical use for this field is to provide a Dockerfile to a docker strategy build.
+{% endif %}

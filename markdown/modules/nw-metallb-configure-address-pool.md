@@ -1,0 +1,61 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring an address pool {id="nw-metallb-configure-address-pool_{{ context }}"}
+
+To precisely manage external access to application workloads, configure MetalLB address pools for your cluster. By defining these pools, you can control the specific IP address ranges assigned to load balancer services for consistent network routing. {._abstract}
+
+**Prerequisites**
+
+*   Install the {{ oc_first }}.
+*   Log in as a user with `cluster-admin` privileges.
+
+**Procedure**
+
+1.  Create a file, such as `ipaddresspool.yaml`, with content like the following example:
+    ```yaml
+    apiVersion: metallb.io/v1beta1
+    kind: IPAddressPool
+    metadata:
+      namespace: metallb-system
+      name: doc-example
+      labels:
+        zone: east
+    spec:
+      addresses:
+      - 203.0.113.1-203.0.113.10
+      - 203.0.113.65-203.0.113.75
+    # ...
+    ```
+
+    where:
+
+    `labels`
+    :   The label assigned to the `IPAddressPool` can be referenced by the `ipAddressPoolSelectors` in the `BGPAdvertisement` CRD to associate the `IPAddressPool` with the advertisement.
+
+1.  Apply the configuration for the IP address pool by entering the following command:
+    ```terminal
+    $ oc apply -f ipaddresspool.yaml
+    ```
+
+**Verification**
+
+1.  View the address pool by entering the following command:
+    ```terminal
+    $ oc describe -n metallb-system IPAddressPool doc-example
+    ```
+    ```terminal title="Example output"
+    Name:         doc-example
+    Namespace:    metallb-system
+    Labels:       zone=east
+    Annotations:  <none>
+    API Version:  metallb.io/v1beta1
+    Kind:         IPAddressPool
+    Metadata:
+      ...
+    Spec:
+      Addresses:
+        203.0.113.1-203.0.113.10
+        203.0.113.65-203.0.113.75
+      Auto Assign:  true
+    Events:         <none>
+    ```
+1.  Confirm that the address pool name, such as `doc-example`, and the IP address ranges exist in the output.

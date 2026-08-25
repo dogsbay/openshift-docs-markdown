@@ -1,0 +1,62 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Verifying support for Redfish APIs {id="verifying-support-for-redfish-apis_{{ context }}"}
+
+When installing using the Redfish API, the installation program calls several Redfish endpoints on the baseboard management controller (BMC) when using installer-provisioned infrastructure on bare metal. If you use Redfish, ensure that your BMC supports all of the Redfish APIs before installation. {._abstract}
+
+**Procedure**
+
+1.  Set the IP address or hostname and ID of the BMC:
+    1.  Set the IP address or hostname of the BMC by running the following command:
+        ```terminal
+        $ export SERVER=<ip_address>
+        ```
+
+        Replace `<ip_address>` with the IP address or hostname of the BMC.
+    1.  Set the ID of the system by running the following command:
+        ```terminal
+        $ export SystemID=<system_id>
+        ```
+
+        Replace `<system_id>` with the system ID. For example, `System.Embedded.1` or `1`. See the following vendor-specific BMC sections for details.
+1.  Check the list of Redfish APIs:
+    1.  Check `power on` support by running the following command:
+        ```terminal
+        $ curl -u $USER:$PASS -X POST -H'Content-Type: application/json' -H'Accept: application/json' -d '{"ResetType": "On"}' https://$SERVER/redfish/v1/Systems/$SystemID/Actions/ComputerSystem.Reset
+        ```
+    1.  Check `power off` support by running the following command:
+        ```terminal
+        $ curl -u $USER:$PASS -X POST -H'Content-Type: application/json' -H'Accept: application/json' -d '{"ResetType": "ForceOff"}' https://$SERVER/redfish/v1/Systems/$SystemID/Actions/ComputerSystem.Reset
+        ```
+    1.  Check the temporary boot implementation that uses `pxe` by running the following command:
+        ```terminal
+        $ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" -H "If-Match: <ETAG>"  https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideTarget": "pxe", "BootSourceOverrideEnabled": "Once"}}
+        ```
+    1.  Check the status of setting the firmware boot mode that uses `Legacy` or `UEFI` by running the following command:
+        ```terminal
+        $ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" -H "If-Match: <ETAG>"  https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideMode":"UEFI"}}
+        ```
+1.  Check the list of Redfish virtual media APIs:
+    1.  Check the ability to set the temporary boot device that uses `cd` or `dvd` by running the following command:
+        ```terminal
+        $ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" -H "If-Match: <ETAG>" https://$Server/redfish/v1/Systems/$SystemID/ -d '{"Boot": {"BootSourceOverrideTarget": "cd", "BootSourceOverrideEnabled": "Once"}}'
+        ```
+    1.  Virtual media might use `POST` or `PATCH`, depending on your hardware. Check the ability to mount virtual media by running one of the following commands:
+        ```terminal
+        $ curl -u $USER:$PASS -X POST -H "Content-Type: application/json" https://$Server/redfish/v1/Managers/$ManagerID/VirtualMedia/$VmediaId -d '{"Image": "https://example.com/test.iso", "TransferProtocolType": "HTTPS", "UserName": "", "Password":""}'
+        ```
+        ```terminal
+        $ curl -u $USER:$PASS -X PATCH -H "Content-Type: application/json" -H "If-Match: <ETAG>" https://$Server/redfish/v1/Managers/$ManagerID/VirtualMedia/$VmediaId -d '{"Image": "https://example.com/test.iso", "TransferProtocolType": "HTTPS", "UserName": "", "Password":""}'
+        ```
+
+        :::note
+
+        The `PowerOn` and `PowerOff` commands for Redfish APIs are the same for the Redfish virtual media APIs. In some hardware, you might only find the `VirtualMedia` resource under `Systems/$SystemID` instead of `Managers/$ManagerID`. For the `VirtualMedia` resource, the `UserName` and `Password` fields are optional.
+        
+        :::
+
+
+        :::important
+
+        `HTTPS` and `HTTP` are the only supported parameter types for `TransferProtocolTypes`.
+        
+        :::

@@ -1,0 +1,48 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configure routing destinations and traffic weights for gRPC {id="configuring-routing-destinations-traffic-weights-grpc_{{ context }}"}
+
+When you route gRPC traffic, you must define backend service destinations and traffic weights to distribute requests across your APIs. `BackendRefs` designate the backend services where matching and filtered gRPC requests are delivered. {._abstract}
+
+You can configure optional backend references for each routing rule. By defining multiple backend references and assigning a `weight` to each, you can control the proportion of gRPC traffic that is forwarded to specific versions of your service. The proportion of traffic sent to a specific backend is calculated by dividing its assigned weight by the sum of all weights across all backends configured in the rule.
+
+Because {{ SMProductName }} handles the data-plane behavior, you must ensure that your `GRPCRoute` references an Istio ingress gateway in its `parentRefs` configuration.
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with the `cluster-admin` role.
+*   You have installed the {{ oc_first }}.
+*   You have installed {{ SMProductName }}.
+
+**Procedure**
+
+1.  Create or edit a `GRPCRoute` YAML file to include your desired service destinations and traffic weights under the `spec.rules.backendRefs` field.
+    The following example demonstrates a complete `GRPCRoute` resource that routes gRPC traffic between two versions of a backend service using proportional traffic weights:
+
+    ```yaml
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: GRPCRoute
+    metadata:
+      name: grpc-weight-example
+      namespace: my-application
+    spec:
+      parentRefs:
+      - name: my-gateway
+        namespace: openshift-ingress
+      hostnames:
+      - "example.com"
+      rules:
+      - backendRefs:
+        - name: greeter-service-v1
+          port: 50051
+          weight: 90
+        - name: greeter-service-v2
+          port: 50051
+          weight: 10
+    ```
+    *   `parentRefs` attaches the route to the `my-gateway` Gateway.
+    *   `backendRefs` defines the destination services for the traffic.
+    *   `weight` dictates the traffic split. In this configuration, the total sum of the weights is 100. The route forwards 90% of the traffic to `greeter-service-v1` and 10% to `greeter-service-v2`. 
+1.  Apply the `GRPCRoute` resource by running the following command:
+    ```terminal
+    $ oc apply -f <filename>.yaml
+    ```

@@ -1,0 +1,45 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Firmware requirements for installing with virtual media {id="ipi-install-firmware-requirements-for-installing-with-virtual-media_{{ context }}"}
+
+The installation program for installer-provisioned {{ product_title }} clusters depends on the hardware and firmware compatibility with Redfish virtual media. The installation may not succeed if the node firmware is not compatible. {._abstract}
+
+The following tables list the firmware versions tested and verified to work for installer-provisioned {{ product_title }} clusters deployed by using Redfish virtual media.
+
+
+:::note
+
+Red Hat does not test every combination of firmware, hardware, or other third-party components. For further information about third-party support, see "Red Hat third-party support policy". For information about updating the firmware, see the hardware documentation for the nodes or contact the hardware vendor.
+
+:::
+
+
+**Firmware compatibility for HP hardware with Redfish virtual media**
+
+| Model | Management | Firmware versions |
+| --- | --- | --- |
+| 11th Generation | iLO6 | 1.57 or later |
+| 10th Generation | iLO5 | 2.63 or later |
+
+**Firmware compatibility for Dell hardware with Redfish virtual media**
+
+| Model | Management | Firmware versions |
+| --- | --- | --- |
+| 17th Generation | iDRAC 10 | v1.20.25.00, v1.20.60.50, and v1.20.70.50 |
+| 16th Generation | iDRAC 9 | v7.10.70.00 |
+| 15th Generation | iDRAC 9 | v6.10.30.00, v7.10.50.00, and v7.10.70.00 |
+| 14th Generation | iDRAC 9 | v6.10.30.00 |
+
+**Firmware compatibility for Cisco UCS hardware with Redfish virtual media**
+
+| Model | Management | Firmware versions |
+| --- | --- | --- |
+| UCS X-Series servers | Intersight Managed Mode | 5.2(2) or later |
+| FI-Attached UCS C-Series servers | Intersight Managed Mode | 4.3 or later |
+| Standalone UCS C-Series servers | Standalone / Intersight | 4.3 or later |
+
+
+:::note
+
+Always confirm that your server supports {{ op_system_first }} on UCS Hardware and Software Compatibility. For more information, see "UCSHCL".
+
+:::

@@ -1,0 +1,148 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Advanced audit logs for a specific pod {id="spo-log-adv-pod_{{ context }}"}
+
+To log activity for a single pod, create a `SeccompProfile` that logs specific syscalls such as `execve`, and create a `ProfileBinding` that applies the profile to pods in a target namespace. The `SeccompProfile` applies cluster-wide. The `ProfileBinding` applies to workloads in that namespace. {._abstract}
+
+Starting with {{ product_title }} 4.20 and CRI-O 1.33, you can apply a `SeccompProfile` to privileged containers. Add the `--privileged-seccomp-profile` flag to the CRI-O runtime configuration so that privileged debugging pods are also covered by the profile.
+
+Bind the profile to a namespace to apply it to workloads. New pods in that namespace then receive the profile automatically.
+
+**Procedure**
+
+1.  Create a file such as `profile1.yaml` with the following content:
+    ```yaml
+    apiVersion: security-profiles-operator.x-k8s.io/v1beta1
+    kind: SeccompProfile
+    metadata:
+      name: profile1
+      namespace: openshift-security-profiles
+    spec:
+      defaultAction: SCMP_ACT_ALLOW
+      syscalls:
+      - action: SCMP_ACT_LOG
+        names:
+          - execve
+          - clone
+          - getpid
+    ```
+
+    This profile allows all normal actions (`defaultAction: SCMP_ACT_ALLOW`). It specifically tells the system to log when a process tries to run a new program (`execve`), create a new process (`clone`), or get its own process ID (`getpid`). These actions often indicate user interaction within a pod.
+1.  Apply this `SeccompProfile` to your cluster by running the following command:
+    ```terminal
+    # kubectl apply -f profile1.yaml
+    ```
+
+    :::note
+
+    The Security Profiles Operator must use the privileged `SeccompProfile`.
+    
+    :::
+
+1.  Create a file named `image_sec_comp.yaml` that contains the following YAML:
+    ```yaml
+    apiVersion: security-profiles-operator.x-k8s.io/v1alpha1
+    kind: ProfileBinding
+    metadata:
+      namespace: default
+      name: all-pod-binding
+    spec:
+      profileRef:
+        kind: SeccompProfile
+        name: profile1
+      image: "*"
+    ```
+1.  Apply the binding by running the following command:
+    ```terminal
+    # kubectl apply -f image_sec_comp.yaml
+    ```
+1.  Label the namespace to activate the binding by running the following command:
+    ```terminal
+    # kubectl label ns default spo.x-k8s.io/enable-binding=true
+    ```
+1.  Create a file such as `my-pod.yaml` that contains the following pod definition:
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: my-pod
+      labels:
+        app: my-app
+    spec:
+      securityContext:
+        seccompProfile:
+          type: Localhost
+          localhostProfile: operator/profile1.json
+      containers:
+        - name: nginx
+          image: quay.io/security-profiles-operator/test-nginx:1.19.1
+    ```
+    *   `type: Localhost` means you are using a profile that you defined in the cluster.
+    *   `localhostProfile: operator/profile1.json` tells the pod to use the `profile1` profile that you created. The `operator/` path is where the Security Profiles Operator stores these profiles.
+1.  Apply the pod definition by running the following command:
+    ```terminal
+    # kubectl apply -f my-pod.yaml
+    ```
+1.  Open a shell in the pod by running the following command:
+    ```terminal
+    # kubectl exec -it my-pod -- /bin/sh
+    ```
+1.  Create an empty file in the pod by running the following command:
+    ```terminal
+    # touch /tmp/audittest/demo-file
+    ```
+1.  Stream the advanced audit log by running the following command:
+    ```terminal
+    # kubectl -n openshift-security-profiles logs --since=1m --selector name=spod -c json-enricher --max-log-requests 6 -f
+    ```
+1.  Identify the node where the pod runs by running the following command:
+    ```terminal
+    # kubectl get pod my-pod -o wide
+    ```
+
+    The audit log file specified in the `auditLogPath` field is written to the file system on the node where the pod is running. To inspect the audit logs, access the node and open the file at the configured path, such as `/tmp/logs/audit1.log`.
+1.  Access the node by running the following command:
+    ```terminal
+    $ sudo ssh core@<node_name>
+    ```
+1.  View the audit log by running the following command:
+    ```terminal
+    $ cat /tmp/logs/audit1.log
+    ```
+    ```terminal title="Example output"
+    {
+    "auditID": "a1b2c3d4-e5f6-7890-abcd-111111111111",
+    "cmdLine": "mkdir /tmp/audittest ",
+    "executable": "/bin/bash",
+    "gid": 0,
+    "node": {"name": "worker-1"},
+    "pid": 27184,
+    "requestUID": "f011c4a3-b20e-44ed-bb91-23e03ae31b3e",
+    "resource": {
+    "container": "nginx",
+    "namespace": "default",
+    "pod": "my-pod"
+    },
+    "syscalls": ["getpid", "execve"],
+    "timestamp": "2026-02-16T06:34:53.000Z",
+    "uid": 0,
+    "version": "spo/v1_alpha"
+    }
+    {
+    "auditID": "a1b2c3d4-e5f6-7890-abcd-222222222222",
+    "cmdLine": "touch /tmp/audittest/demo-file ",
+    "executable": "/bin/bash",
+    "gid": 0,
+    "node": {"name": "worker-1"},
+    "pid": 27274,
+    "requestUID": "f011c4a3-b20e-44ed-bb91-23e03ae31b3e",
+    "resource": {
+    "container": "nginx",
+    "namespace": "default",
+    "pod": "my-pod"
+    },
+    "syscalls": ["getpid", "execve"],
+    "timestamp": "2026-02-16T06:35:02.000Z",
+    "uid": 0,
+    "version": "spo/v1_alpha"
+    }
+    ```

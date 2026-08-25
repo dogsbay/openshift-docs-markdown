@@ -1,0 +1,6 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Allocating load balancers to specific subnets {id="allocating-load-balancers_{{ context }}"}
+
+You can manage application traffic efficiently by allocating load balancers. Network administrators can allocate load balancers to customize deployments which can ensure optimal traffic distribution, high availability of applications, uninterrupted service, and network segmentation. {._abstract}
+
+You can also limit subnet selection for a load balancer by using subnet roles. Subnet roles prevent security risks by ensuring Load Balancers are automatically placed only in subnets explicitly designated for public or private traffic. This eliminates manual configuration errors and guarantees architectural compliance across multiple availability zones.

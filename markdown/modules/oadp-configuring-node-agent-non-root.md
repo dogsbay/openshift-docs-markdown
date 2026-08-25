@@ -1,0 +1,121 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring the node agent as a non-root and non-privileged user {id="oadp-configuring-node-agent-non-root_{{ context }}"}
+
+To enhance the node agent security, you can configure the {{ oadp_short }} Operator node agent daemonset to run as a non-root and non-privileged user by using the `spec.configuration.velero.disableFsBackup` setting in the `DataProtectionApplication` (DPA) custom resource (CR). {._abstract}
+
+By setting the `spec.configuration.velero.disableFsBackup` setting to `true`, the node agent security context sets the root file system to read-only and sets the `privileged` flag to `false`.
+
+
+:::note
+
+Setting `spec.configuration.velero.disableFsBackup` to `true` enhances the node agent security by removing the need for privileged containers and enforcing a read-only root file system. 
+
+However, it also disables File System Backup (FSB) with Kopia. If your workloads rely on FSB for backing up volumes that do not support native snapshots, then you should evaluate whether the `disableFsBackup` configuration fits your use case.
+
+:::
+
+
+**Prerequisites**
+
+*   You have installed the {{ oadp_short }} Operator.
+
+**Procedure**
+
+*   Configure the `disableFsBackup` field in the DPA as shown in the following example:
+    ```yaml
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: DataProtectionApplication
+    metadata:
+      name: ts-dpa
+      namespace: openshift-adp
+    spec:
+      backupLocations:
+      - velero:
+          credential:
+            key: cloud
+            name: cloud-credentials
+          default: true
+          objectStorage:
+            bucket: <bucket_name>
+            prefix: velero
+          provider: gcp
+      configuration:
+        nodeAgent:
+          enable: true
+          uploaderType: kopia
+        velero:
+          defaultPlugins:
+          - csi
+          - gcp
+          - openshift
+          disableFsBackup: true
+    ```
+
+    where:
+
+    `nodeAgent`
+    :   Specifies to enable the node agent in the DPA.
+
+    `disableFsBackup`
+    :   Specifies to set the `disableFsBackup` field to `true`.
+
+**Verification**
+
+1.  Verify that the node agent security context is set to run as non-root and the root file system is `readOnly` by running the following command:
+    ```terminal
+    $ oc get daemonset node-agent -o yaml
+    ```
+
+    The example output is as following:
+    ```yaml
+    apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      ...
+      name: node-agent
+      namespace: openshift-adp
+      ...
+    spec:
+      ...
+      template:
+        metadata:
+          ...
+        spec:
+          containers:
+          ...
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+              privileged: false
+              readOnlyRootFilesystem: true
+            ...
+          nodeSelector:
+            kubernetes.io/os: linux
+          os:
+            name: linux
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext:
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+          serviceAccount: velero
+          serviceAccountName: velero
+          ....
+    ```
+
+    where:
+
+    `allowPrivilegeEscalation`
+    :   Specifies that the `allowPrivilegeEscalation` field is false.
+
+    `privileged`
+    :   Specifies that the `privileged` field is false.
+
+    `readOnlyRootFilesystem`
+    :   Specifies that the root file system is read-only.
+
+    `runAsNonRoot`
+    :   Specifies that the node agent is run as a non-root user.

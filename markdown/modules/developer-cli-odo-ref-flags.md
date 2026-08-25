@@ -1,0 +1,24 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Common flags {id="odo-flags_{{ context }}"}
+
+The following flags are available with most `odo` commands:
+
+**odo flags**
+
+| Command | Description |
+| --- | --- |
+| `--context` | Set the context directory where the component is defined. |
+| `--project` | Set the project for the component. Defaults to the project defined in the local configuration. If none is available, then current project on the cluster. |
+| `--app` | Set the application of the component. Defaults to the application defined in the local configuration. If none is available, then _app_. |
+| `--kubeconfig` | Set the path to the `kubeconfig` value if not using the default configuration. |
+| `--show-log` | Use this flag to see the logs. |
+| `-f`, `--force` | Use this flag to tell the command not to prompt the user for confirmation. |
+| `-v`, `--v` | Set the verbosity level. See [Logging in odo](https://github.com/redhat-developer/odo/wiki/Logging-in-odo) for more information. |
+| `-h`, `--help` | Output the help for a command. |
+
+
+:::note
+
+Some flags might not be available for some commands. Run the command with the `--help` flag to get a list of all the available flags.
+
+:::

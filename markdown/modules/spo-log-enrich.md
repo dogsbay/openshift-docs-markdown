@@ -1,0 +1,18 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# The Audit JSON log enricher {id="spo-log-enrich_{{ context }}"}
+
+The SPO Advanced Audit Logging Framework is enabled by the Audit JSON log enricher. Similar to the log enricher feature, the Audit JSON log enricher watches the `auditd` (`/var/log/audit/audit.log`) or the `syslog` (`/var/log/syslog`) daemons and generates a new audit log in JSON lines format. {._abstract}
+
+Each JSON line includes the following:
+
+*   Timestamp: When the activity happened, shown in a standard ISO format
+*   Executable Name: The name of the program that was run (`bash`, `ls`).
+*   Linux Command Line Arguments (`cmdline`): The extra instructions given when the program was started (`ls -l /home`).
+*   User and Group IDs (`UID/GID`): The identification numbers of the system user who ran the program.
+*   System Calls (`syscalls`): A list of system calls (`syscalls`) that the process made
+
+This log format and configuration is similar to how Kubernetes records audit logs. This is useful for:
+
+*   Seeing what users and automated processes are doing inside a pod.
+*   Tracking when someone uses commands such as `kubectl exec` to enter a running container and run commands or scripts.
+*   Monitoring activities in debug containers where users might run various tools.

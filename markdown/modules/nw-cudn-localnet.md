@@ -1,0 +1,118 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a ClusterUserDefinedNetwork CR for a Localnet topology {id="nw-cudn-localnet_{{ context }}"}
+
+You deploy a `Localnet` topology to connect the secondary network to the physical underlay. This enables both east-west cluster traffic and access to services running outside the cluster. This topology type requires the additional configuration of the underlying Open vSwitch (OVS) system on cluster nodes. {._abstract}
+
+**Prerequisites**
+
+*   You are logged in as a user with `cluster-admin` privileges.
+*   You created and configured the Open vSwitch (OVS) bridge mapping to associate the logical OVN-Kubernetes network with the physical node network through the OVS bridge. For more information, see "Configuration for a localnet switched topology".
+
+**Procedure**
+
+1.  Create a cluster-wide user-defined network with a `Localnet` topology:
+    1.  Create a YAML file, such as `cluster-udn-localnet.yaml`, to define your request for a `Localnet` topology as in the following example:
+        ```yaml
+        apiVersion: k8s.ovn.org/v1
+        kind: ClusterUserDefinedNetwork
+        metadata:
+          name: <cudn_name>
+        spec:
+          namespaceSelector:
+            matchLabels:
+              "<label_1_key>": "<label_1_value>"
+              "<label_2_key>": "<label_2_value>"
+          network:
+            topology: Localnet
+            localnet:
+              role: Secondary
+              physicalNetworkName: test
+              ipam: {lifecycle: Persistent}
+              subnets: ["192.168.0.0/16", "2001:dbb::/64"]
+        ```
+
+        where:
+
+        `Name`
+        :   Specifies the name of your `ClusterUserDefinedNetwork` CR.
+
+        `namespaceSelector`
+        :   Specifies a label query over the set of namespaces that the CUDN CR applies to. Uses the standard Kubernetes `MatchLabel` selector. Must not point to `default` or `openshift-*` namespaces.
+
+        `matchLabels`
+        :   Uses the `matchLabels` selector type, where terms are evaluated with an `AND` relationship. In this example, the CUDN CR is deployed to namespaces that contain both `<label_1_key>=<alabel_1_value>` and `<label_2_key>=<label_2_value>` labels.
+
+        `network`
+        :   Describes the network configuration.
+
+        `topology`
+        :   Specifying a `Localnet` topology type creates one logical switch that is directly bridged to one provider network.
+
+        `role`
+        :   Specifies the `role` for the network configuration. `Secondary` is the only `role` specification supported for the `localnet` topology.
+
+        `subnets`
+        :   For `Localnet` topology types the following specifies config details for the `subnet` field:
+    *   The subnets field is optional.
+    *   The subnets field is of type `string` and accepts standard CIDR formats for both IPv4 and IPv6.
+    *   The subnets field accepts one or two items. For two items, they must be of a different IP family. For example, subnets values of `10.100.0.0/16` and `2001:db8::/64`.
+    *   `localnet` subnets can be omitted. If omitted, users must configure static IP addresses for the pods. As a consequence, port security only prevents MAC spoofing. For more information, see "Configuring pods with a static IP address".
+1.  Apply your request by running the following command:
+    ```terminal
+    $ oc create --validate=true -f <example_cluster_udn>.yaml
+    ```
+
+    where:
+
+    `<example_cluster_udn>.yaml`
+    :   Is the name of your `Localnet` configuration file.
+
+1.  Verify that your request is successful by running the following command:
+    ```terminal
+    $ oc get clusteruserdefinednetwork <cudn_name> -o yaml
+    ```
+
+    where:
+
+    `<cudn_name>`
+    :   Is the name you created of your cluster-wide user-defined network.
+
+<details>
+<summary>Example output</summary>
+
+```yaml
+apiVersion: k8s.ovn.org/v1
+kind: ClusterUserDefinedNetwork
+metadata:
+  creationTimestamp: "2025-05-28T19:30:38Z"
+  finalizers:
+  - k8s.ovn.org/user-defined-network-protection
+  generation: 1
+  name: cudn-test
+  resourceVersion: "140936"
+  uid: 7ff185fa-d852-4196-858a-8903b58f6890
+spec:
+  namespaceSelector:
+    matchLabels:
+      "1": "1"
+      "2": "2"
+  network:
+    localnet:
+      ipam:
+        lifecycle: Persistent
+      physicalNetworkName: test
+      role: Secondary
+      subnets:
+      - 192.168.0.0/16
+      - 2001:dbb::/64
+    topology: Localnet
+status:
+  conditions:
+  - lastTransitionTime: "2025-05-28T19:30:38Z"
+    message: 'NetworkAttachmentDefinition has been created in following namespaces:
+      [test1, test2]'
+    reason: NetworkAttachmentDefinitionCreated
+    status: "True"
+    type: NetworkCreated
+```
+</details>

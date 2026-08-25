@@ -1,0 +1,108 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating an ocm-role IAM role {id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_{{ context }}"}
+
+You create your `ocm-role` IAM roles by using the {{ rosa_cli_first }}. If you want to create and manage clusters by using only the {{ rosa_cli_first }} and the OpenShift CLI (`oc`), you can use the `--no-console` profile for the `ocm-role` IAM resource. For more information about the `ocm-role` IAM resource permissions profile, see the _Additional resources_. {._abstract}
+
+
+:::important
+
+You must create the `ocm-role` IAM role before you can create your {{ product_title }} cluster.
+
+:::
+
+
+**Prerequisites**
+
+*   You have an AWS account.
+*   You have Red&#160;Hat Organization Administrator privileges in the {{ cluster_manager }} organization.
+*   You have the permissions required to install AWS account-wide roles.
+*   You have installed and configured the latest {{ rosa_cli }}, `rosa`, on your installation host.
+
+**Procedure**
+
+*   Run one of the following commands to create the required `ocm-role` IAM resource:
+
+    :::important
+
+    The process to change your `ocm-role` IAM resource profile requires you to unlink and delete the current `ocm-role` IAM resource and create a new one with the required profile.
+    
+    :::
+
+    *   To create an `ocm-role` IAM role with standard privileges, run the following command:
+        ```terminal
+        $ rosa create ocm-role
+        ```
+    *   To create an `ocm-role` IAM role with admin privileges, run the following command:
+
+        :::important
+
+        The admin profile supports "auto" mode configuration for {{ product_title }} clusters which provisions OIDC Configuration and Operator roles automatically. To achieve this automatic flow, the profile has a wider set of permissions than the standard profile.
+        
+        :::
+
+        ```terminal
+        $ rosa create ocm-role --admin
+        ```
+
+        This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the {{ rosa_cli }} (`rosa`) create your Operator roles and policies.
+        See "Methods of account-wide role creation" for more information. The following example shows what your creation flow might look like.
+        ```terminal
+        I: Creating ocm role
+        ? Role prefix: ManagedOpenShift
+        ? Enable admin capabilities for the OCM role (optional): No
+        ? Permissions boundary ARN (optional):
+        ? Role Path (optional):
+        ? Role creation mode: auto
+        I: Creating role using 'arn:aws:iam::<ARN>:user/<UserName>'
+        ? Create the 'ManagedOpenShift-OCM-Role-182' role? Yes
+        I: Created role 'ManagedOpenShift-OCM-Role-182' with ARN  'arn:aws:iam::<ARN>:role/ManagedOpenShift-OCM-Role-182'
+        I: Linking OCM role
+        ? OCM Role ARN: arn:aws:iam::<ARN>:role/ManagedOpenShift-OCM-Role-182
+        ? Link the 'arn:aws:iam::<ARN>:role/ManagedOpenShift-OCM-Role-182' role with organization '<AWS ARN>'? Yes
+        I: Successfully linked role-arn 'arn:aws:iam::<ARN>:role/ManagedOpenShift-OCM-Role-182' with organization account '<AWS ARN>'
+        ```
+
+        where:
+
+        `Role prefix`
+        :   A prefix value for all of the created AWS resources. In this example, `ManagedOpenShift` prepends all of the AWS resources.
+
+        `Enable admin capabilities for the OCM role (optional)`
+        :   Choose if you want this role to have the additional admin permissions.
+
+            :::note
+
+
+            You do not see this prompt if you used the `--admin` option.
+            
+            :::
+
+
+        `Permissions boundary ARN (optional)`
+        :   The Amazon Resource Name (ARN) of the policy to set permission boundaries.
+
+        `Role Path (optional)`
+        :   Specify an IAM path for the user name.
+
+        `Role creation mode`
+        :   Choose the method to create your AWS roles. By using `auto`, the {{ rosa_cli }} generates and links the roles and policies. In the `auto` mode, you receive some different prompts to create the AWS roles.
+
+        `Create the 'ManagedOpenShift-OCM-Role-182' role?`
+        :   The `auto` method asks if you want to create a specific `ocm-role` by using your prefix.
+
+        `OCM Role ARN`
+        :   Confirm that you want to associate your IAM role with your {{ cluster_manager }}.
+
+        `Link the 'arn:aws:iam::<ARN>:role/ManagedOpenShift-OCM-Role-182' role with organization '<AWS ARN>'?`
+        :   Links the created role with your AWS organization.
+    *   To create an `ocm-role` IAM role with the minimum required privileges, run the following command:
+
+        :::note
+
+        While the `no-console` profile offers the minimum permissions policy that can still create {{ product_title }} clusters, the permissions are insufficient if you want to use {{ cluster_manager_url }} for cluster creation.
+        
+        :::
+
+        ```terminal
+        $ rosa create ocm-role --no-console
+        ```

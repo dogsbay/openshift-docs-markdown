@@ -1,0 +1,57 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Verifying that the PTP events REST API v2 consumer application is receiving events {id="ptp-verifying-events-consumer-app-is-receiving-events-v2_{{ context }}"}
+
+Verify that the `cloud-event-consumer` container in the application pod is receiving Precision Time Protocol (PTP) events.
+
+**Prerequisites**
+
+*   You have installed the OpenShift CLI (`oc`).
+*   You have logged in as a user with `cluster-admin` privileges.
+*   You have installed and configured the PTP Operator.
+*   You have deployed a cloud events application pod and PTP events consumer application.
+
+**Procedure**
+
+1.  Check the logs for the deployed events consumer application.
+For example, run the following command:
+    ```terminal
+    $ oc -n cloud-events logs -f deployment/cloud-consumer-deployment
+    ```
+    ```terminal title="Example output"
+    time = "2024-09-02T13:49:01Z"
+    level = info msg = "transport host path is set to  ptp-event-publisher-service-compute-1.openshift-ptp.svc.cluster.local:9043"
+    time = "2024-09-02T13:49:01Z"
+    level = info msg = "apiVersion=2.0, updated apiAddr=ptp-event-publisher-service-compute-1.openshift-ptp.svc.cluster.local:9043, apiPath=/api/ocloudNotifications/v2/"
+    time = "2024-09-02T13:49:01Z"
+    level = info msg = "Starting local API listening to :9043"
+    time = "2024-09-02T13:49:06Z"
+    level = info msg = "transport host path is set to  ptp-event-publisher-service-compute-1.openshift-ptp.svc.cluster.local:9043"
+    time = "2024-09-02T13:49:06Z"
+    level = info msg = "checking for rest service health"
+    time = "2024-09-02T13:49:06Z"
+    level = info msg = "health check http://ptp-event-publisher-service-compute-1.openshift-ptp.svc.cluster.local:9043/api/ocloudNotifications/v2/health"
+    time = "2024-09-02T13:49:07Z"
+    level = info msg = "rest service returned healthy status"
+    time = "2024-09-02T13:49:07Z"
+    level = info msg = "healthy publisher; subscribing to events"
+    time = "2024-09-02T13:49:07Z"
+    level = info msg = "received event {\"specversion\":\"1.0\",\"id\":\"ab423275-f65d-4760-97af-5b0b846605e4\",\"source\":\"/sync/ptp-status/clock-class\",\"type\":\"event.sync.ptp-status.ptp-clock-class-change\",\"time\":\"2024-09-02T13:49:07.226494483Z\",\"data\":{\"version\":\"1.0\",\"values\":[{\"ResourceAddress\":\"/cluster/node/compute-1.example.com/ptp-not-set\",\"data_type\":\"metric\",\"value_type\":\"decimal64.3\",\"value\":\"0\"}]}}"
+    ```
+1.  Optional. Test the REST API by using `oc` and port-forwarding port `9043` from the `linuxptp-daemon` deployment.
+For example, run the following command:
+    ```terminal
+    $ oc port-forward -n openshift-ptp ds/linuxptp-daemon 9043:9043
+    ```
+    ```terminal title="Example output"
+    Forwarding from 127.0.0.1:9043 -> 9043
+    Forwarding from [::1]:9043 -> 9043
+    Handling connection for 9043
+    ```
+
+    Open a new shell prompt and test the REST API v2 endpoints:
+    ```terminal
+    $ curl -X GET http://localhost:9043/api/ocloudNotifications/v2/health
+    ```
+    ```terminal title="Example output"
+    OK
+    ```

@@ -1,0 +1,33 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring Operator resource constraints {id="operator-resource-constraints_{{ context }}"}
+
+You can configure the `resources` field in the `compliance-operator` subscription object to define resource constraints for all the containers in the pod created by the Operator Lifecycle Manager (OLM), so the Operator pods have enough CPU and memory. {._abstract}
+
+
+:::note
+
+Resource Constraints applied in this process overwrites the existing resource constraints.
+
+:::
+
+
+**Procedure**
+
+*   Inject a request of 0.25 cpu and 64 Mi of memory, and a limit of 0.5 cpu and 128 Mi of memory in each container by editing the `Subscription` object:
+    ```yaml
+    kind: Subscription
+    metadata:
+      name: compliance-operator
+      namespace: openshift-compliance
+    spec:
+      package: package-name
+      channel: stable
+      config:
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+    ```

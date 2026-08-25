@@ -1,0 +1,51 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Running the example pipelines using the CLI {id="virt-running-tto-pipeline-cli_{{ context }}"}
+
+Use a `PipelineRun` resource to run the example pipelines. A `PipelineRun` object is the running instance of a pipeline. It instantiates a pipeline for execution with specific inputs, outputs, and execution parameters on a cluster. It also creates a `TaskRun` object for each task in the pipeline. {._abstract}
+
+**Prerequisites**
+
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  To run the Microsoft Windows 11 installer pipeline, create the following `PipelineRun` manifest:
+    ```yaml
+    apiVersion: tekton.dev/v1
+    kind: PipelineRun
+    metadata:
+      generateName: windows11-installer-run-
+      labels:
+        pipelinerun: windows11-installer-run
+    spec:
+        params:
+        -   name: winImageDownloadURL
+            value: <windows_image_download_url>
+        -   name: acceptEula
+            value: false
+        pipelineRef:
+            params:
+            -   name: catalog
+                value: redhat-pipelines
+            -   name: type
+                value: artifact
+            -   name: kind
+                value: pipeline
+            -   name: name
+                value: windows-efi-installer
+            -   name: version
+                value: {{ product_version }}
+            resolver: hub
+        taskRunSpecs:
+        -   pipelineTaskName: modify-windows-iso-file
+            PodTemplate:
+                securityContext:
+                    fsGroup: 107
+                    runAsUser: 107
+    ```
+    *   For `<windows_image_download_url>`, specify the URL for the Windows 11 64-bit ISO file. The product’s language must be English (United States).
+    *   Example `PipelineRun` objects have a special parameter, `acceptEula`. By setting this parameter, you are agreeing to the applicable Microsoft user license agreements for each deployment or installation of the Microsoft products. If you set it to false, the pipeline exits at the first task.
+1.  Apply the `PipelineRun` manifest:
+    ```terminal
+    $ oc apply -f windows11-customize-run.yaml
+    ```

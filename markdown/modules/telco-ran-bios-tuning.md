@@ -1,0 +1,33 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Host firmware tuning {id="telco-ran-bios-tuning_{{ context }}"}
+
+Tune host firmware settings for optimal performance during initial cluster deployment. {._abstract}
+
+
+New in this release
+:   *   No reference design updates in this release
+
+Description
+:   Tune host firmware settings for optimal performance during initial cluster deployment.
+    For more information, see "Recommended {{ sno }} cluster configuration for vDU application workloads".
+    Apply tuning settings in the host firmware during initial deployment. For more information, see "Managing host firmware settings with {{ ztp }}".
+    The managed cluster host firmware settings are available on the hub cluster as individual `BareMetalHost` custom resources (CRs) that are created when you deploy the managed cluster with the `ClusterInstance` CR and {{ ztp }}.
+
+    :::note
+
+    Create the `ClusterInstance` CR based on the provided reference `example-sno.yaml` CR.
+    
+    :::
+
+
+
+Limits and requirements
+:   *   You must enable Hyper-Threading in the host firmware settings
+
+Engineering considerations
+:   *   Tune all firmware settings for maximum performance.
+    *   All settings are expected to be for maximum performance unless tuned for power savings.
+    *   You can tune host firmware for power savings at the expense of performance as required.
+    *   Enable secure boot.
+    When secure boot is enabled, only signed kernel modules are loaded by the kernel.
+    Out-of-tree drivers are not supported.

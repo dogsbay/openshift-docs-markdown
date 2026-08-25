@@ -1,0 +1,52 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Audit JSON Log Enricher configuration {id="spo-log-json-enrich_{{ context }}"}
+
+Configure the Audit JSON Log Enricher to set the audit log interval, destination, and file path so Advanced Audit Logging records are written on a schedule and to a location you can collect and review. {._abstract}
+
+
+:::note
+
+Each configuration change triggers a restart of the SPOD pods. After applying a patch, wait for all SPOD pods to return to the `Running` state before continuing.
+
+:::
+
+
+Setting the audit log interval determines how often audit logs are created using the `auditLogIntervalSeconds` option.
+
+**Procedure**
+
+1.  Configure the audit log interval to 30 seconds by using the following command:
+    ```terminal
+    # kubectl -n openshift-security-profiles patch spod spod --type=merge -p '{"spec":{"enableJsonEnricher":true,"verbosity":0,"jsonEnricherOptions":{"auditLogIntervalSeconds":30}}}'
+    ```
+
+    Wait until all SPOD pods show `Running` before proceeding. By default, audit logs go to your standard output in JSON lines format. You can send them to a file instead.
+
+    Configure the Security Profiles Operator to store the log file on the node. Update the `security-profiles-operator-profile` `configmap` with two keys. This example YAML uses both keys to set up a host path volume at `/tmp/logs`.
+1.  Create a file such as `patch-volume-source.json` that contains the following content:
+    ```json
+    {
+      "data": {
+        "json-enricher-log-volume-mount-path": "/tmp/logs",
+        "json-enricher-log-volume-source.json": "{\"hostPath\": {\"path\": \"/tmp/logs\",\"type\": \"DirectoryOrCreate\"}}"
+      }
+    }
+    ```
+    *   `json-enricher-log-volume-source.json`: Defines the type of volume (for example, a host path and empty directory) where logs are stored. This value must be a JSON string that represents a `corev1.VolumeSource` object.
+    *   `json-enricher-log-volume-mount-path`: Specifies the directory path where the log file is generated.
+1.  Verify the file contents by running the following command:
+    ```terminal
+    $ cat patch-volume-source.json
+    ```
+1.  Update the `security-profiles-operator-profile` `configmap` by using the following command:
+    ```terminal
+    # kubectl patch configmap security-profiles-operator-profile -n openshift-security-profiles --patch-file patch-volume-source.json
+    ```
+
+    Wait until all SPOD pods show `Running` before proceeding.
+1.  Set the audit log file path by configuring the JSON log enricher with the full path to your audit log file, including the file name, by running the following command:
+    ```terminal
+    # kubectl -n openshift-security-profiles patch spod spod --type=merge -p '{"spec":{"enableJsonEnricher":true,"verbosity":0,"jsonEnricherOptions":{"auditLogPath":"/tmp/logs/audit1.log"}}}'
+    ```
+
+    Wait until all SPOD pods show `Running` before proceeding.

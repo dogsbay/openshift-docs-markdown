@@ -1,0 +1,72 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating metrics from nested or array fields in the Traffic flows table {id="network-observability-creating-metrics-network-events_{{ context }}"}
+
+Create a `FlowMetric` custom resource to generate metrics for nested or array fields in the **Traffic flows** table, such as **Network events** or **Interfaces**. {._abstract}
+
+{%- set FeatureName = "OVN Observability / Viewing `NetworkEvents`" %}
+{% include "./snippets/technology-preview.md" %}
+
+:::important
+
+OVN Observability and the ability to view and track network events is available only in {{ product_title }} 4.17 and 4.18.
+
+:::
+
+
+The following example shows how to generate metrics from the **Network events** field for network policy events.
+
+**Prerequisites**
+
+*   Enable `NetworkEvents feature`. See the Additional resources for how to do this.
+*   A network policy specified.
+
+**Procedure**
+
+1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the **Provided APIs** heading for the **NetObserv Operator**, select **FlowMetric**.
+1.  In the **Project**  dropdown list, select the project of the Network Observability Operator instance.
+1.  Click **Create FlowMetric**.
+1.  Create `FlowMetric` resources to add the following configurations:
+    ```yaml title="Configuration counting network policy events per policy name and namespace"
+    apiVersion: flows.netobserv.io/v1alpha1
+    kind: FlowMetric
+    metadata:
+      name: network-policy-events
+      namespace: netobserv
+    spec:
+      metricName: network_policy_events_total
+      type: Counter
+      labels: [NetworkEvents>Type, NetworkEvents>Namespace, NetworkEvents>Name, NetworkEvents>Action, NetworkEvents>Direction]
+      filters:
+      - field: NetworkEvents>Feature
+        value: acl
+      flatten: [NetworkEvents]
+      remap:
+        "NetworkEvents>Type": type
+        "NetworkEvents>Namespace": namespace
+        "NetworkEvents>Name": name
+        "NetworkEvents>Direction": direction
+    ```
+
+    where:
+
+    `spec.labels`
+    :   Specifies the labels that represent the nested fields for **Network Events** from the **Traffic flows** table. Each network event has a specific type, namespace, name, action, and direction. You can alternatively specify `Interfaces` if `NetworkEvents` is unavailable in your version of {{ product_title }}.
+
+    `spec.flatten`
+    :   Specifies an optional field that contains a list of items to be represented as distinct items.
+
+    `spec.remap`
+    :   Specifies an optional set of fields to rename in Prometheus.
+
+**Verification**
+
+1.  In the web console, navigate to **Observe** -> **Dashboards** and scroll down to see the **Network Policy** tab.
+1.  You should begin seeing metrics filter in based on the metric you created along with the network policy specifications.
+
+
+:::important
+
+High cardinality can affect the memory usage of Prometheus. You can check if specific labels have high cardinality in the network flows format. See "Network Flows format reference".
+
+:::

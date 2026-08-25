@@ -1,0 +1,62 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a horizontal pod autoscaler for a percent of CPU use {id="nodes-pods-autoscaling-creating-cpu-percent_{{ context }}"}
+
+You can use the {{ product_title }} CLI to create a horizontal pod autoscaler (HPA) that automatically scales an existing object based on percent of CPU use. The HPA scales the pods associated with that object to maintain the CPU use that you specify. {._abstract}
+
+When autoscaling for a percent of CPU use, you can use the `oc autoscale` command to specify the minimum and maximum number of pods that you want to run at any given time and the average CPU use your pods should target. If you do not specify a minimum, the pods are given default values from the {{ product_title }} server.
+
+
+:::note
+
+Use a `Deployment` object or `ReplicaSet` object unless you need a specific feature or behavior provided by other objects.
+
+:::
+
+
+**Prerequisites**
+
+{% include "./snippets/nodes-pods-autoscaling-creating-cpu-prereqs.md" %}
+
+**Procedure**
+
+1.  Create a `HorizontalPodAutoscaler` object for an existing object:
+    ```terminal
+    $ oc autoscale <object_type>/<name> \
+      --min <number> \
+      --max <number> \
+      --cpu-percent=<percent>
+    ```
+
+    where:
+
+    `<object_type>/<name>`
+    :   Specifies the type and name of the object to autoscale. The object must exist and be a `Deployment`, `DeploymentConfig`/`dc`, `ReplicaSet`/`rs`, `ReplicationController`/`rc`, or `StatefulSet`.
+
+    `min`
+    :   Specifies the minimum number of replicas when scaling down. Replace `<number>` with the minimum number of replicas. This parameter is optional.
+
+    `max`
+    :   Specifies the maximum number of replicas when scaling up. Replace `<number>` with the maximum number of replicas.
+
+    `cpu-percent`
+    :   Specifies the target average CPU use over all the pods, represented as a percent of requested CPU. Replace `<percent>` with requested percentage. If not specified or negative, a default autoscaling policy is used.
+
+    For example, the following command shows autoscaling for the `hello-node` deployment object. The initial deployment requires 3 pods. The HPA object increases the minimum to 5. If CPU usage on the pods reaches 75%, the pods will increase to 7:
+    ```terminal
+    $ oc autoscale deployment/hello-node --min=5 --max=7 --cpu-percent=75
+    ```
+1.  Create the horizontal pod autoscaler:
+    ```terminal
+    $ oc create -f <file-name>.yaml
+    ```
+
+**Verification**
+
+*   Ensure that the horizontal pod autoscaler was created:
+    ```terminal
+    $ oc get hpa cpu-autoscale
+    ```
+    ```terminal title="Example output"
+    NAME            REFERENCE            TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+    cpu-autoscale   Deployment/example   173m/500m       1         10        1          20m
+    ```

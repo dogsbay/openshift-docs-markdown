@@ -1,0 +1,56 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About the SPIRE Vault UpstreamAuthority plugin {id="zero-trust-manager-about-vault-plugin_{{ context }}"}
+
+The Vault UpstreamAuthority plugin connects SPIRE Server to the HashiCorp Vault PKI secrets engine for automated intermediate CA certificate signing. Use this plugin when you centralize PKI in Vault and want SPIRE to obtain intermediate signing certificates through Vault policies and authentication method. {._abstract}
+
+The SPIRE Vault UpstreamAuthority plugin provides the following features:
+
+*   Integration with HashiCorp Vault PKI secrets engine as an upstream certificate authority
+*   Support for `Kubernetes auth` Vault authentication methods
+*   Automatic signing of SPIRE intermediate CA certificates
+*   Vault Enterprise namespace support
+*   Secure certificate management using Vault’s security features
+
+
+:::important
+
+The Vault UpstreamAuthority plugin does not support the `PublishJWTKey` remote procedure call (RPC) and is not appropriate for use in nested SPIRE topologies where JSON Web Token {{ svid_full }} (JWT-SVIDs) are used.
+
+:::
+
+
+## Supported authentication method {id="spire-vault-authentication-methods_{{ context }}"}
+
+The Vault UpstreamAuthority plugin supports only the following authentication methods for connecting to Vault:
+
+
+Kubernetes authentication
+:   Uses Kubernetes service account tokens to authenticate to Vault.
+
+## Prerequisites and requirements {id="spire-vault-requirements_{{ context }}"}
+
+Before configuring the Vault UpstreamAuthority plugin, ensure the following requirements are met:
+
+
+Vault PKI secrets engine
+:   A running HashiCorp Vault instance with the PKI secrets engine enabled at a configured mount point (default: `pki`). The PKI secrets engine must have a root CA certificate configured for signing intermediate certificates.
+
+
+Vault policy
+:   A Vault policy that grants the `update` capability for the `pki/root/sign-intermediate` endpoint, attached to the credentials SPIRE Server uses.
+
+
+Authentication credentials
+:   Valid credentials for one of the supported authentication methods, associated with the Vault signing policy.
+
+
+TTL configuration
+:   SPIRE Server `ca_ttl` must not exceed the Vault PKI secrets engine maximum lease TTL.
+
+
+Network connectivity
+:   SPIRE Server must reach the Vault server over the network and trust the Vault TLS certificate when TLS is enabled.
+
+
+Kubernetes RBAC (when using Kubernetes authentication)
+:   A `ServiceAccount` for SPIRE Server bound to the Vault Kubernetes auth role. The SPIRE Server `ServiceAccount` requires no additional RBAC. However, the Vault `ServiceAccount` must have `system:auth-delegator` permissions to validate projected tokens via the Kubernetes `TokenReview` API.

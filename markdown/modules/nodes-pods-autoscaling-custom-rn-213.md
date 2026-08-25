@@ -1,0 +1,31 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Custom Metrics Autoscaler Operator 2.13 release notes {id="nodes-pods-autoscaling-custom-rn-213_{{ context }}"}
+
+You can review the following release notes to learn about changes in the 2.13.z releases. {._abstract}
+
+## Custom Metrics Autoscaler Operator 2.13.1 release notes {id="nodes-pods-autoscaling-custom-rn-2131_{{ context }}"}
+
+This release of the Custom Metrics Autoscaler Operator 2.13.1-421 provides a new feature and a bug fix for running the Operator in an {{ product_title }} cluster. The following advisory is available for the Custom Metrics Autoscaler: [RHBA-2024:4837](https://access.redhat.com/errata/RHBA-2024:4837).
+
+
+:::important
+
+Before installing this version of the Custom Metrics Autoscaler Operator, remove any previously installed Technology Preview versions or the community-supported version of Kubernetes-based Event Driven Autoscaler (KEDA).
+
+:::
+
+
+
+New features and enhancements
+
+:   Note the new features and enhancements in this release:
+
+    *   Support for custom certificates with the Custom Metrics Autoscaler Operator 
+
+    The Custom Metrics Autoscaler Operator can now use custom service CA certificates to connect securely to TLS-enabled metrics sources, such as an external Kafka cluster or an external Prometheus service. By default, the Operator uses automatically-generated service certificates to connect to on-cluster services only. There is a new field in the `KedaController` object that allows you to load custom server CA certificates for connecting to external services by using config maps. 
+
+    For more information, see "Custom CA certificates for the Custom Metrics Autoscaler".
+
+Bug fixes
+
+:   *   Before this update, the `custom-metrics-autoscaler` and `custom-metrics-autoscaler-adapter` images were missing time zone information. As a consequence, scaled objects with `cron` triggers failed to work because the controllers were unable to find time zone information. With this release, the image builds are updated to include time zone information. As a result, scaled objects containing `cron` triggers now function properly. Scaled objects containing `cron` triggers are currently not supported for the custom metrics autoscaler. ([OCPBUGS-34018](https://issues.redhat.com/browse/OCPBUGS-34018))

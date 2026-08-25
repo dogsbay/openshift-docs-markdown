@@ -1,0 +1,42 @@
+{%- set _mod_docs_content_type = "SNIPPET" %}
+```yaml title="Example LVMCluster CR YAML file"
+apiVersion: lvm.topolvm.io/v1alpha1
+kind: LVMCluster
+metadata:
+  name: my-lvmcluster
+spec:
+  tolerations:
+  - effect: NoSchedule
+    key: xyz
+    operator: Equal
+    value: "true"
+  storage:
+    deviceClasses: 
+    - name: vg1  
+      fstype: ext4
+      default: true 
+      nodeSelector:
+        nodeSelectorTerms: 
+        - matchExpressions:
+          - key: mykey
+            operator: In
+            values:
+            - ssd
+      deviceSelector:
+        paths: 
+        - /dev/disk/by-path/pci-0000:87:00.0-nvme-1
+        - /dev/disk/by-path/pci-0000:88:00.0-nvme-1
+        optionalPaths:
+        - /dev/disk/by-path/pci-0000:89:00.0-nvme-1
+        - /dev/disk/by-path/pci-0000:90:00.0-nvme-1
+        forceWipeDevicesAndDestroyAllData: true
+      thinPoolConfig: 
+        name: thin-pool-1
+        sizePercent: 90
+        overprovisionRatio: 10 
+        chunkSize: 128Ki
+        chunkSizeCalculationPolicy: Static
+        metadataSize: 1Gi
+        metadataSizeCalculationPolicy: Host
+```
+The following are optional fields: `fstype`, `nodeSelector`, `deviceSelector`, `sizePercent`, `chunkSize`, `chunkSizeCalculationPolicy`, `metadataSize`,`metadataSizeCalculationPolicy`.

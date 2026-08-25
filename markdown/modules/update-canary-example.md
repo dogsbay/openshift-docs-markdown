@@ -1,0 +1,57 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Example Canary update strategy {id="example_{{ context }}"}
+
+To better understand how the canary rollout strategy works, it is useful to consider an example of an update using the strategy. {._abstract}
+
+The following example describes a canary update strategy where you have a cluster with 100 nodes with 10% excess capacity, you have maintenance windows that must not exceed 4 hours, and you know that it takes no longer than 8 minutes to drain and reboot a worker node.
+
+
+:::note
+
+The previous values are an example only.
+The time it takes to drain a node might vary depending on factors such as workloads.
+
+:::
+
+
+## Definition of custom machine config pools {id="defining-custom-mcps_{{ context }}"}
+
+In order to organize the worker node updates into separate stages, you can begin by defining the following machine config pools:
+
+*   **workerpool-canary** with 10 nodes
+*   **workerpool-A** with 30 nodes
+*   **workerpool-B** with 30 nodes
+*   **workerpool-C** with 30 nodes
+
+## Update of the canary worker pool {id="updating-canary-worker-pool_{{ context }}"}
+
+During your first maintenance window, you pause the machine config pools (MCPs) for **workerpool-A**, **workerpool-B**, and **workerpool-C**, and then initiate the cluster update.
+This updates components that run on top of {{ product_title }} and the 10 nodes that are part of the unpaused **workerpool-canary** MCP.
+The other three MCPs are not updated because they were paused.
+
+## Whether or not to proceed with the remaining worker pool updates {id="determining-remaining-worker-pools_{{ context }}"}
+
+If for some reason you determine that your cluster or workload health was negatively affected by the **workerpool-canary** update, you then cordon and drain all nodes in that pool while still maintaining sufficient capacity until you have diagnosed and resolved the problem.
+When everything is working as expected, you evaluate the cluster and workload health before deciding to unpause, and thus update, **workerpool-A**, **workerpool-B**, and **workerpool-C** in succession during each additional maintenance window.
+
+Managing worker node updates using custom machine config pools (MCPs) provides flexibility, however it can be a time-consuming process that requires you execute multiple commands. This complexity can result in errors that might affect the entire cluster. It is recommended that you carefully consider your organizational needs and carefully plan the implementation of the process before you start.
+
+
+:::important
+
+Pausing a machine config pool prevents the Machine Config Operator from applying any configuration changes on the associated nodes. Pausing an MCP also prevents any automatically rotated certificates from being pushed to the associated nodes, including the automatic CA rotation of the `kube-apiserver-to-kubelet-signer` CA certificate.
+
+If the MCP is paused when the `kube-apiserver-to-kubelet-signer` CA certificate expires and the MCO attempts to automatically renew the certificate, the MCO cannot push the newly rotated certificates to those nodes. This causes failure in multiple `oc` commands, including `oc debug`, `oc logs`, `oc exec`, and `oc attach`. You receive alerts in the Alerting UI of the {{ product_title }} web console if an MCP is paused when the certificates are rotated.
+
+Pausing an MCP should be done with careful consideration about the `kube-apiserver-to-kubelet-signer` CA certificate expiration and for short periods of time only.
+
+:::
+
+
+
+:::note
+
+It is not recommended to update the MCPs to different {{ product_title }} versions. For example, do not update one MCP from 4.y.10 to 4.y.11 and another to 4.y.12.
+This scenario has not been tested and might result in an undefined cluster state.
+
+:::

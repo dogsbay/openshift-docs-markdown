@@ -1,0 +1,20 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Python function template structure {id="serverless-python-template_{{ context }}"}
+
+When you create a Python function by using the Knative (`kn`) CLI, the project directory looks similar to a typical Python project. Python functions have very few restrictions. The only requirements are that your project contains a `func.py` file that contains a `main()` function, and a `func.yaml` configuration file.
+
+Developers are not restricted to the dependencies provided in the template `requirements.txt` file. Additional dependencies can be added as they would be in any other Python project. When the project is built for deployment, these dependencies will be included in the created runtime container image.
+
+Both `http` and `event` trigger functions have the same template structure:
+
+```terminal title="Template structure"
+fn
+├── func.py (1)
+├── func.yaml (2)
+├── requirements.txt (3)
+└── test_func.py (4)
+```
+1.  Contains a `main()` function.
+1.  Used to determine the image name and registry.
+1.  Additional dependencies can be added to the `requirements.txt` file as they are in any other Python project.
+1.  Contains a simple unit test that can be used to test your function locally.

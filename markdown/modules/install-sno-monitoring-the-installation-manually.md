@@ -1,0 +1,58 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Monitoring the cluster installation using openshift-install {id="install-sno-monitoring-the-installation-manually_{{ context }}"}
+
+Use the `openshift-install` binary to monitor the progress of the single-node cluster installation. {._abstract}
+
+**Prerequisites**
+
+*   Ensure that the boot drive order in the server BIOS settings defaults to booting the server from the target installation disk.
+
+**Procedure**
+
+1.  Attach the discovery ISO image to the target host.
+1.  Boot the server from the discovery ISO image. The discovery ISO image writes the system configuration to the target installation disk and automatically triggers a server restart.
+1.  On the administration host, monitor the installation by running the following command:
+    {%- if not openshift_origin %}
+    ```terminal
+    $ ./openshift-install --dir=ocp wait-for install-complete
+    ```
+{% endif %}
+{% if openshift_origin %}
+    ```terminal
+    $ ./openshift-install --dir=sno wait-for install-complete
+    ```
+{% endif %}
+1.  Optional: Remove the discovery ISO image.
+
+    The server restarts several times while deploying the control plane.
+
+**Verification**
+
+*   After the installation is complete, check the environment by running the following command:
+    {%- if not openshift_origin %}
+    ```terminal
+    $ export KUBECONFIG=ocp/auth/kubeconfig
+    ```
+{% endif %}
+{% if openshift_origin %}
+    ```terminal
+    $ export KUBECONFIG=sno/auth/kubeconfig
+    ```
+{%- endif %}
+    ```terminal
+    $ oc get nodes
+    ```
+    **Example output**
+
+{%- if not openshift_origin %}
+    ```terminal
+    NAME                         STATUS   ROLES           AGE     VERSION
+    control-plane.example.com    Ready    master,worker   10m     v1.35.4
+    ```
+{% endif %}
+{% if openshift_origin %}
+    ```terminal
+    NAME                         STATUS   ROLES           AGE     VERSION
+    control-plane.example.com    Ready    master,worker   10m     v1.27.9+e36e183
+    ```
+{% endif %}

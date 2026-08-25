@@ -1,0 +1,15 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Release notes for the Multiarch Tuning Operator 1.1.1 {id="multi-arch-tuning-operator-release-notes-1-1-1_{{ context }}"}
+
+The release notes for the Multiarch Tuning Operator 1.1.1 summarize all new features and enhancements, notable technical changes, major corrections from the previous version, and any known bugs upon general availability. {._abstract}
+
+Issued: 27 May 2025
+
+## Bug fixes {id="multi-arch-tuning-operator-1-1-1-bug-fixes_{{ context }}"}
+
+*   Previously, the pod placement operand did not support authenticating registries using wildcard entries in the hostname of their pull secret. This caused inconsistent behavior with Kubelet when pulling images, because Kubelet supported wildcard entries while the operand required exact hostname matches. As a result, image pulls could fail unexpectedly when registries used wildcard hostnames.
+
+    With this release, the pod placement operand supports pull secrets that include wildcard hostnames, ensuring consistent and reliable image authentication and pulling.
+*   Previously, when image inspection failed after all retries and the `nodeAffinityScoring` plugin was enabled, the pod placement operand applied incorrect `nodeAffinityScoring` labels.
+
+    With this release, the operand sets `nodeAffinityScoring` labels correctly, even when image inspection fails. The operand now applies these labels independently of the required affinity process to ensure accurate and consistent scheduling.

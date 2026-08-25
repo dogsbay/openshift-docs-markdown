@@ -1,0 +1,24 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# How {{ product_title }} determines the external gateway IP address {id="nw-secondary-ext-gw-about_{{ context }}"}
+
+You configure a secondary external gateway with the `AdminPolicyBasedExternalRoute` custom resource (CR) from the `k8s.ovn.org` API group. The CR supports static and dynamic approaches for specifying an IP address for an external gateway. {._abstract}
+
+Each namespace that an `AdminPolicyBasedExternalRoute` CR targets cannot be selected by any other `AdminPolicyBasedExternalRoute` CR. A namespace cannot have concurrent secondary external gateways.
+
+Changes to policies are isolated in the controller. If a policy fails to apply, changes to other policies do not trigger a retry of other policies. Policies are re-evaluated when updates occur to the policy or to related objects such as target namespaces, pod gateways, or the namespaces that host them from dynamic hops. When re-evaluated, the policy applies any differences from the changes.
+
+
+Static assignment
+:   You specify an IP address directly.
+
+Dynamic assignment
+:   You specify an IP address indirectly, with namespace and pod selectors, and an optional network attachment definition.
+
+
+:::important
+
+If the name of a network attachment definition is provided, the external gateway IP address of the network attachment is used.
+
+If the name of a network attachment definition is not provided, the external gateway IP address for the pod itself is used. However, this approach works only if the pod is configured with `hostNetwork` set to `true`.
+
+:::

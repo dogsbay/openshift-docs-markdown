@@ -1,0 +1,29 @@
+---
+title: "Configuring {{ ibm_title }} Secure Execution virtual machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }}"
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+{% include "./_attributes/common-attributes.md" %}
+
+# Configuring {{ ibm_title }} Secure Execution virtual machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }} {id="virt-configuring-ibm-secure-execution-vms-ibm-z"}
+
+{%- set context = "virt-configuring-ibm-secure-execution-vms-ibm-z" %}
+
+You can configure {{ ibm_name }} Secure Execution virtual machines (VMs) on {{ ibm_z_name }} and {{ ibm_linuxone_name }}.
+
+{{ ibm_name }} Secure Execution for Linux is a s390x security technology that is introduced with {{ ibm_name }} z15 and {{ ibm_linuxone_name }} III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment.
+
+Hardware administrators, KVM administrators, and KVM code cannot access data in an {{ ibm_name }} Secure Execution guest VM.
+
+{% leveloffset +1 %}{% include "./modules/virt-enabling-vms-ibm-secure-execution-ibm-z.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/virt-launching-ibm-secure-execution-vm-ibm-z.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/virt-launching-ibm-secure-execution-vm-using-cli-ibm-z.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/virt-launching-ibm-secure-execution-vm-using-common-instance-type-ibm-z.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z.md" %}{% endleveloffset %}
+
+## Additional resources {id="additional-resources_{{ context }}"}
+*   [What is IBM Secure Execution?](https://www.ibm.com/docs/en/linux-on-systems?topic=execution-introduction)

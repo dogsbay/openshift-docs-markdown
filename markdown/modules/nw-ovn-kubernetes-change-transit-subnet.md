@@ -1,0 +1,48 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring the OVN-Kubernetes transit subnet {id="nw-ovn-kubernetes-change-transit-subnet_{{ context }}"}
+
+You can change the transit subnet used by OVN-Kubernetes to avoid conflicting with any existing subnets already in use in your environment.
+
+**Prerequisites**
+
+*   Install the OpenShift CLI (`oc`).
+*   Log in to the cluster with a user with `cluster-admin` privileges.
+*   Ensure that the cluster uses the OVN-Kubernetes network plugin.
+
+**Procedure**
+
+*   To change the OVN-Kubernetes transit subnet, enter the following command:
+    ```terminal
+    $ oc patch network.operator.openshift.io cluster --type='merge' \
+      -p='{"spec":{"defaultNetwork":{"ovnKubernetesConfig":
+        {"ipv4":{"internalTransitSwitchSubnet": "<transit_subnet>"},
+        "ipv6":{"internalTransitSwitchSubnet": "<transit_subnet>"}}}}}'
+    ```
+    where:
+
+
+    `<transit_subnet>`
+    :   Specifies an IP address subnet for the distributed transit switch that enables east-west traffic. This subnet cannot overlap with any other subnets used by OVN-Kubernetes or on the host itself. The default value for IPv4 is `100.88.0.0/16` and the default value for IPv6 is `fd97::/64`.
+    ```text title="Example output"
+    network.operator.openshift.io/cluster patched
+    ```
+
+**Verification**
+
+*   To confirm that the configuration is active, enter the following command:
+    ```terminal
+    $ oc get network.operator.openshift.io \
+      -o jsonpath="{.items[0].spec.defaultNetwork}"
+    ```
+
+    It can take up to 30 minutes for this change to take effect.
+    ```text title="Example output"
+    {
+      "ovnKubernetesConfig": {
+        "ipv4": {
+          "internalTransitSwitchSubnet": "100.88.1.0/16"
+        },
+      },
+      "type": "OVNKubernetes"
+    }
+    ```

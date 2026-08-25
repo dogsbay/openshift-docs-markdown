@@ -1,0 +1,52 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating node pools on the multi-architecture hosted cluster {id="hcp-migrate-aws-multiarch-nodepools_{{ context }}"}
+
+After you transition your hosted cluster from single-architecture to multi-architecture, create node pools on compute machines based on 64-bit AMD and 64-bit ARM architectures. {._abstract}
+
+**Procedure**
+
+1.  Create node pools based on 64-bit ARM architecture by entering the following command:
+    ```terminal
+    $ hcp create nodepool aws \
+      --cluster-name <hosted_cluster_name> \
+      --name <nodepool_name> \
+      --node-count=<node_count> \
+      --arch arm64
+    ```
+    *   Replace `<hosted_cluster_name>` with your hosted cluster name.
+    *   Replace `<nodepool_name>` with your node pool name.
+    *   Replace `<node_count>` with integer for your node count, for example, `2`.
+1.  Create node pools based on 64-bit AMD architecture by entering the following command:
+    ```terminal
+    $ hcp create nodepool aws \
+      --cluster-name <hosted_cluster_name> \
+      --name <nodepool_name> \
+      --node-count=<node_count> \
+      --arch amd64
+    ```
+    *   Replace `<hosted_cluster_name>` with your hosted cluster name.
+    *   Replace `<nodepool_name>` with your node pool name.
+    *   Replace `<node_count>` with integer for your node count, for example, `2`.
+
+**Verification**
+
+*   Verify that a node pool is using the multi-architecture release image by entering the following command:
+    ```terminal
+    $ oc get nodepool/<nodepool_name> -oyaml
+    ```
+    ```yaml title="Example output for 64-bit AMD node pools"
+    #...
+    spec:
+      arch: amd64
+    #...
+      release:
+        image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi
+    ```
+    ```yaml title="Example output for 64-bit ARM node pools"
+    #...
+    spec:
+      arch: arm64
+    #...
+      release:
+        image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi
+    ```

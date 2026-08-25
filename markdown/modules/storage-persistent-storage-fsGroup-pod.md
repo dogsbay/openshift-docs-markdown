@@ -1,0 +1,51 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+
+# Changing fsGroup at the pod level {id="using_fsGroup_pod_{{ context }}"}
+
+You can set `fsGroupChangePolicy` parameter in new or existing deployments and stateful sets, and then the pods that it manages will have this parameter value. You cannot edit `fsGroupChangePolicy` on an existing pod; however, you can set this parameter when creating a new pod. {._abstract}
+
+This procedure describes how to set the `fsGroupChangePolicy` parameter in an existing deployment.
+
+**Prerequisites**
+
+*   Access to the {{ product_title }} console.
+
+**Procedure**
+
+1.  Click **Workloads** > **Deployments**.
+1.  On the **Deployment** page, click the desired deployment.
+1.  On the **Deployment details** page, click the **YAML** tab.
+1.  Edit the deployment’s YAML file under `spec.template.spec.securityContext` using the following example file:
+    ```yaml title="Example deployment YAML file setting fsGroupChangePolicy"
+    ...
+    spec:
+    replicas: 3
+    selector:
+    matchLabels:
+    app: my-app
+    template:
+    metadata:
+    creationTimestamp: null
+    labels:
+    app: my-app
+    spec:
+    containers:
+    - name: container
+    image: 'image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest'
+    ports:
+    - containerPort: 8080
+    protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    imagePullPolicy: Always
+    restartPolicy: Always
+    terminationGracePeriodSeconds: 30
+    dnsPolicy: ClusterFirst
+    securityContext:
+      fsGroupChangePolicy: OnRootMismatch
+    ...
+    ```
+
+    `spec.securityContext.fsGroupChangePolicy`, `OnRootMismatch`, specifies skipping recursive permission change, thus helping to avoid pod timeout problems. The default value is `Always`, which always changes permission and ownership of the volume when a volume is mounted.
+1.  Click **Save**.

@@ -1,0 +1,42 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Kubelet settings {id="telco-ran-sysctls_{{ context }}"}
+
+Configure kubelet settings and sysctls for the telco RAN DU use model, including `systemReserved` and unsafe sysctl parameters. {._abstract}
+
+
+New in this release
+:   *   No reference design updates in this release
+
+Some CNF workloads make use of sysctls which are not in the list of system-wide safe sysctls.
+Generally, network sysctls are namespaced and you can enable them using the `kubeletconfig.experimental` annotation in the `PerformanceProfile` Custom Resource (CR).
+
+Additionally, the `systemReserved` memory can be configured through the same `kubeletconfig.experimental` annotation to reserve memory for system daemons and kernel processes.
+
+An example setting of these parameters as a string of JSON is shown here:
+
+```yaml title="Example snippet showing allowedUnsafeSysctls and systemReserved"
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  name: {{ .metadata.name }}
+  annotations:
+    # allowedUnsafeSysctls: some pods want the kernel stack to ignore IPv6 router Advertisement.
+    # systemReserved: when used, it should be tailored for each environment.
+    kubeletconfig.experimental: |
+      {
+       "allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],
+       "systemReserved":{"memory":"11Gi"}
+      }
+# ...
+```
+
+
+:::note
+
+Although these sysctls are namespaced, they may allow a pod to consume memory or other resources beyond any limits specified in the pod description.
+You must ensure that these sysctls do not exhaust platform resources.
+
+:::
+
+
+For more information, see "Using sysctls in containers".

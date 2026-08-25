@@ -1,0 +1,228 @@
+---
+title: "NetworkAttachmentDefinition []"
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# NetworkAttachmentDefinition [k8s.cni.cncf.io/v1] {id="networkattachmentdefinition-k8s-cni-cncf-io-v1"}
+{%- set toc = "macro" -%}
+{%- set toc_title = true %}
+
+
+Description
+:   NetworkAttachmentDefinition is a CRD schema specified by the Network Plumbing Working Group to express the intent for attaching pods to one or more logical or physical networks. More information available at: https://github.com/k8snetworkplumbingwg/multi-net-spec
+
+
+Type
+:     `object`
+
+## Specification {id="_specification"}
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
+| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ObjectMeta`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `spec` | `object` | NetworkAttachmentDefinition spec defines the desired state of a network attachment |
+### .spec {id="_spec"}
+
+Description
+:   NetworkAttachmentDefinition spec defines the desired state of a network attachment
+
+
+Type
+:     `object`
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `config` | `string` | NetworkAttachmentDefinition config is a JSON-formatted CNI configuration |
+
+## API endpoints {id="_api_endpoints"}
+
+The following API endpoints are available:
+
+*   `/apis/k8s.cni.cncf.io/v1/network-attachment-definitions`
+    *   `GET`: list objects of kind NetworkAttachmentDefinition
+*   `/apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions`
+    *   `DELETE`: delete collection of NetworkAttachmentDefinition
+    *   `GET`: list objects of kind NetworkAttachmentDefinition
+    *   `POST`: create a NetworkAttachmentDefinition
+*   `/apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions/{{ name }}`
+    *   `DELETE`: delete a NetworkAttachmentDefinition
+    *   `GET`: read the specified NetworkAttachmentDefinition
+    *   `PATCH`: partially update the specified NetworkAttachmentDefinition
+    *   `PUT`: replace the specified NetworkAttachmentDefinition
+
+### /apis/k8s.cni.cncf.io/v1/network-attachment-definitions {id="_apisk8scnicncfiov1network-attachment-definitions"}
+
+
+HTTP method
+:     `GET`
+
+
+Description
+:     list objects of kind NetworkAttachmentDefinition
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`NetworkAttachmentDefinitionList`](/rest_api/objects/index#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList) schema |
+| 401 - Unauthorized | Empty |
+
+### /apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions {id="_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions"}
+
+
+HTTP method
+:     `DELETE`
+
+
+Description
+:     delete collection of NetworkAttachmentDefinition
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 401 - Unauthorized | Empty |
+
+
+HTTP method
+:     `GET`
+
+
+Description
+:     list objects of kind NetworkAttachmentDefinition
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`NetworkAttachmentDefinitionList`](/rest_api/objects/index#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList) schema |
+| 401 - Unauthorized | Empty |
+
+
+HTTP method
+:     `POST`
+
+
+Description
+:     create a NetworkAttachmentDefinition
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+| `fieldValidation` | `string` | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. |
+
+**Body parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `body` | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |  |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 201 - Created | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 202 - Accepted | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 401 - Unauthorized | Empty |
+
+### /apis/k8s.cni.cncf.io/v1/namespaces/{{ namespace }}/network-attachment-definitions/{{ name }} {id="_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions_name"}
+
+**Global path parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | name of the NetworkAttachmentDefinition |
+
+
+HTTP method
+:     `DELETE`
+
+
+Description
+:     delete a NetworkAttachmentDefinition
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/rest_api/objects/index#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 401 - Unauthorized | Empty |
+
+
+HTTP method
+:     `GET`
+
+
+Description
+:     read the specified NetworkAttachmentDefinition
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 401 - Unauthorized | Empty |
+
+
+HTTP method
+:     `PATCH`
+
+
+Description
+:     partially update the specified NetworkAttachmentDefinition
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+| `fieldValidation` | `string` | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 401 - Unauthorized | Empty |
+
+
+HTTP method
+:     `PUT`
+
+
+Description
+:     replace the specified NetworkAttachmentDefinition
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+| `fieldValidation` | `string` | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. |
+
+**Body parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `body` | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |  |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 201 - Created | [`NetworkAttachmentDefinition`](/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
+| 401 - Unauthorized | Empty |

@@ -1,0 +1,82 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Sample YAML for a control plane machine set custom resource {id="cpmso-yaml-sample-cr_{{ context }}"}
+
+Use this sample YAML as a starting point for creating or modifying control plane machine set configurations on any supported platform. {._abstract}
+
+```yaml title="Sample ControlPlaneMachineSet CR YAML file"
+apiVersion: machine.openshift.io/v1
+kind: ControlPlaneMachineSet
+metadata:
+  name: cluster
+  namespace: openshift-machine-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: <cluster_id>
+      machine.openshift.io/cluster-api-machine-role: master
+      machine.openshift.io/cluster-api-machine-type: master
+  state: Active
+  strategy:
+    type: RollingUpdate
+  template:
+    machineType: machines_v1beta1_machine_openshift_io
+    machines_v1beta1_machine_openshift_io:
+      failureDomains:
+        platform: <platform>
+        <platform_failure_domains>
+      metadata:
+        labels:
+          machine.openshift.io/cluster-api-cluster: <cluster_id>
+          machine.openshift.io/cluster-api-machine-role: master
+          machine.openshift.io/cluster-api-machine-type: master
+      spec:
+        providerSpec:
+          value:
+            <platform_provider_spec>
+```
+
+where:
+
+
+`name: cluster`
+:   Specifies the name of the `ControlPlaneMachineSet` CR, which is `cluster`. Do not change this value.
+
+
+`replicas: 3`
+:   Specifies the number of control plane machines. Only clusters with three control plane machines are supported, so the `replicas` value is `3`. Horizontal scaling is not supported. Do not change this value.
+
+
+`<cluster_id>`
+:   Specifies the infrastructure ID that is based on the cluster ID that you set when you provisioned the cluster. You must specify this value when you create a `ControlPlaneMachineSet` CR. If you have the OpenShift CLI (`oc`) installed, you can obtain the infrastructure ID by running the following command:
+    ```terminal
+    $ oc get -o jsonpath='{.status.infrastructureName}{"\n"}' infrastructure cluster
+    ```
+
+
+`state: Active`
+:   Specifies the state of the Operator. When the state is `Inactive`, the Operator is not operational. You can activate the Operator by setting the value to `Active`.
+
+    :::important
+
+
+    Before you activate the Operator, you must ensure that the `ControlPlaneMachineSet` CR configuration is correct for your cluster requirements. For more information about activating the Control Plane Machine Set Operator, see "Getting started with control plane machine sets".
+    
+    :::
+
+
+
+`type: RollingUpdate`
+:   Specifies the update strategy for the cluster. The allowed values are `OnDelete` and `RollingUpdate`. The default value is `RollingUpdate`. For more information about update strategies, see "Updating the control plane configuration".
+
+
+`platform: <platform>`
+:   Specifies the cloud provider platform name. Do not change this value.
+
+
+`<platform_failure_domains>`
+:   Specifies the failure domains configuration for the cluster. The format and values of this section are provider-specific. For more information, see the sample failure domain configuration for your cloud provider.
+
+
+`<platform_provider_spec>`
+:   Specifies the provider spec configuration for the cluster. The format and values of this section are provider-specific. For more information, see the sample provider specification for your cloud provider.

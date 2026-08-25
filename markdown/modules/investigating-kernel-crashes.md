@@ -1,0 +1,4 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Investigating kernel crashes {id="investigating-kernel-crashes"}
+
+The `kdump` service, included in the `kexec-tools` package, provides a crash-dumping mechanism. You can use this service to save the contents of a system’s memory for later analysis.

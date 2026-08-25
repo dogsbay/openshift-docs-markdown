@@ -1,0 +1,133 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+
+# Deploying customer workloads that authenticate with {{ gcp_wid_short }} {id="pod-short-term-auth-gcp-deploy-pod_{{ context }}"}
+
+To use short-term authentication in your application, you must configure its related pods to use the {{ product_title }} service account.
+Use of the {{ product_title }} service account triggers the webhook to mutate the pods so they can impersonate the {{ gcp_short }} service account. {._abstract}
+
+The following example demonstrates how to deploy a pod that uses the {{ product_title }} service account and verify the configuration.
+
+**Prerequisites**
+
+*   Your {{ gcp_short }} cluster uses {{ gcp_wid_short }}.
+*   You have created a federated {{ gcp_short }} service account.
+*   You have created an {{ product_title }} service account for {{ gcp_short }}.
+
+**Procedure**
+
+1.  To create a pod that authenticates with {{ gcp_wid_short }}, create a deployment YAML file similar to the following example:
+    ```yaml title="Sample deployment"
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: ubi9
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: ubi9
+      template:
+        metadata:
+          labels:
+            app: ubi9
+        spec:
+          serviceAccountName: "<service_account_name>"
+          containers:
+            - name: ubi
+              image: 'registry.access.redhat.com/ubi9/ubi-micro:latest'
+              command:
+                - /bin/sh
+                - '-c'
+                - |
+                  sleep infinity
+    ```
+
+    Replace &lt;service_account_name> with the name of the {{ product_title }} service account.
+1.  Apply the deployment file by running the following command:
+    ```terminal
+    $ oc apply -f deployment.yaml
+    ```
+
+**Verification**
+
+1.  To verify that a pod is using short-term authentication, run the following command:
+    ```terminal
+    $ oc get pods -o json | jq -r '.items[0].spec.containers[0].env[] | select(.name=="GOOGLE_APPLICATION_CREDENTIALS")'
+    ```
+    ```terminal title="Example output:"
+    {   "name": "GOOGLE_APPLICATION_CREDENTIALS",   "value": "/var/run/secrets/workload-identity/federation.json" }
+    ```
+
+    The presence of the `GOOGLE_APPLICATION_CREDENTIALS` environment variable indicates a pod that authenticates with {{ gcp_wid_short }}.
+1.  To verify additional configuration details, examine the pod specification.
+
+    The following example pod specification shows the environment variables and volume fields that the webhook mutates.
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: app-x-pod
+      namespace: service-a
+    annotations:
+      cloud.google.com/skip-containers: "init-first,sidecar"
+      cloud.google.com/external-credentials-json: |-
+        {
+          "type": "external_account",
+          "audience": "//iam.googleapis.com/projects/<project_number>/locations/global/workloadIdentityPools/on-prem-kubernetes/providers/<identity_provider>",
+          "subject_token_type": "urn:ietf:params:oauth:token-type:jwt",
+          "token_url": "https://sts.googleapis.com/v1/token",
+          "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/app-x@project.iam.gserviceaccount.com:generateAccessToken",
+          "credential_source": {
+            "file": "/var/run/secrets/sts.googleapis.com/serviceaccount/token",
+            "format": {
+              "type": "text"
+            }
+          }
+        }
+    spec:
+      serviceAccountName: app-x
+      initContainers:
+      - name: init-first
+        image: container-image:version
+      containers:
+      - name: sidecar
+        image: container-image:version
+      - name: container-name
+        image: container-image:version
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/run/secrets/gcloud/config/federation.json
+        - name: CLOUDSDK_COMPUTE_REGION
+          value: asia-northeast1
+        volumeMounts:
+        - name: gcp-iam-token
+          readOnly: true
+          mountPath: /var/run/secrets/sts.googleapis.com/serviceaccount
+        - mountPath: /var/run/secrets/gcloud/config
+          name: external-credential-config
+          readOnly: true
+      volumes:
+      - name: gcp-iam-token
+        projected:
+          sources:
+          - serviceAccountToken:
+              audience: sts.googleapis.com
+              expirationSeconds: 86400
+              path: token
+      - downwardAPI:
+          defaultMode: 288
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.annotations['cloud.google.com/external-credentials-json']
+            path: federation.json
+        name: external-credential-config
+    ```
+
+    where:
+
+    `annotations.cloud.google.com/external-credentials-json`
+    :   Specifies the external credentials configuration generated by the webhook controller. The Kubernetes `downwardAPI` volume mounts the configuration into the container filesystem.
+
+    `spec.containers.env`
+    :   Specifies the webhook-injected environment variables for token-based authentication.

@@ -1,0 +1,31 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Cluster API primary resources {id="capi-arch-resources_{{ context }}"}
+
+The Cluster API consists of the following primary resources. For the Technology Preview of this feature, you must create some of these resources manually in the `openshift-cluster-api` namespace. {._abstract}
+
+
+Cluster
+:   A fundamental unit that represents a cluster that is managed by the Cluster API.
+
+
+Infrastructure cluster
+:   A provider-specific resource that defines properties that all of the compute machine sets in the cluster share, such as the region and subnets.
+
+
+Machine template
+:   A provider-specific template that defines the properties of the machines that a compute machine set creates.
+
+
+Machine set
+:   A group of machines.
+
+    Compute machine sets are to machines as replica sets are to pods.
+    To add machines or scale them down, change the `replicas` field on the compute machine set custom resource to meet your compute needs.
+
+    With the Cluster API, a compute machine set references a `Cluster` object and a provider-specific machine template.
+
+
+Machine
+:   A fundamental unit that describes the host for a node.
+
+    The Cluster API creates machines based on the configuration in the machine template.

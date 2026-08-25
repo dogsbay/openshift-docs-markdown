@@ -1,0 +1,42 @@
+---
+title: Workload partitioning
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Workload partitioning {id="enabling-workload-partitioning"}
+{% include "./_attributes/common-attributes.md" %}
+{%- set context = "enabling-workload-partitioning" %}
+
+Workload partitioning separates compute node CPU resources into distinct CPU sets. Ensure that you keep platform pods on the specified cores to avoid interrupting the CPUs the customer workloads are running on. 
+
+The minimum number of reserved CPUs required for the cluster management is four CPU Hyper-Threads (HTs).
+
+In the context of enabling workload partitioning and managing CPU resources effectively, the cluster might not permit incorrectly configured nodes to join the cluster through a node admission webhook. When the workload partitioning feature is enabled, the machine config pools for control plane nodes and compute nodes get supplied with configurations for nodes to use. Adding new nodes to these pools ensures the pools correctly get configured before joining the cluster.
+
+Currently, nodes must have uniform configurations per machine config pool to ensure that correct CPU affinity is set across all nodes within that pool. After admission, nodes within the cluster identify themselves as supporting a new resource type called `management.workload.openshift.io/cores` and accurately report their CPU capacity. Workload partitioning can be enabled during cluster installation only by adding the additional field `cpuPartitioningMode` to the `install-config.yaml` file.
+
+When workload partitioning is enabled, the `management.workload.openshift.io/cores` resource allows the scheduler to correctly assign pods based on the `cpushares` capacity of the host, not just the default `cpuset`. This ensures more precise allocation of resources for workload partitioning scenarios.
+
+Workload partitioning ensures that CPU requests and limits specified in the pod’s configuration are respected. In {{ product_title }} 4.16 or later, accurate CPU usage limits are set for platform pods through CPU partitioning. As workload partitioning uses the custom resource type of `management.workload.openshift.io/cores`, the values for requests and limits are the same due to a requirement by Kubernetes for extended resources. However, the annotations modified by workload partitioning correctly reflect the desired limits. 
+
+
+:::note
+
+Extended resources cannot be overcommitted, so request and limit must be equal if both are present in a container spec.
+
+:::
+
+
+{% leveloffset +1 %}{% include "./modules/enabling-workload-partitioning.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/create-perf-profile-workload-partitioning.md" %}{% endleveloffset %}
+
+```yaml title="Sample performance profile configuration"
+{% include "./snippets/ztp_PerformanceProfile.yaml" %}
+```
+
+{% include "./snippets/performance-profile-workload-partitioning.md" %}
+
+**Additional resources**
+
+*   [About the Performance Profile Creator](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-about-the-profile-creator-tool_cnf-tuning-low-latency-nodes-with-perf-profile)

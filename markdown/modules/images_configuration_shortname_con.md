@@ -1,0 +1,10 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About adding registries that allow image short names {id="images-configuration-shortname-con_{{ context }}"}
+
+With an image short name, you can search for images without including the fully qualified domain name in the pull `spec` parameter. {._abstract}
+
+For example, you could use `rhel7/etcd` instead of `registry.access.redhat.com/rhe7/etcd`. You can add registries to search for an image short name by editing the `image.config.openshift.io/cluster` custom resource (CR).
+
+You might use short names in situations where using the full path is not practical. For example, if your cluster references multiple internal registries whose DNS changes often, you would need to update the fully qualified domain names in your pull specs with each change. In this case, using an image short name might be beneficial.
+
+When pulling or pushing images, the container runtime searches the registries listed under the `registrySources` parameter in the `image.config.openshift.io/cluster` CR. If you created a list of registries under the `containerRuntimeSearchRegistries` parameter, when pulling an image with a short name, the container runtime searches those registries.

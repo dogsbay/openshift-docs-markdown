@@ -1,0 +1,6 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Signaling workloads {id="telco-core-signaling-workloads_{{ context }}"}
+
+Signaling workloads typically use SCTP, REST, gRPC, or similar TCP or UDP protocols.
+Signaling workloads support hundreds of thousands of transactions per second (TPS) by using a secondary multus CNI configured as MACVLAN or SR-IOV interface.
+These workloads can run in pods with either guaranteed or burstable QoS. {._abstract}

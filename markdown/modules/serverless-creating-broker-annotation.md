@@ -1,0 +1,58 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a broker by annotating a trigger {id="serverless-creating-broker-annotation_{{ context }}"}
+
+Brokers can be used in combination with triggers to deliver events from an event source to an event sink. You can create a broker by adding the `eventing.knative.dev/injection: enabled` annotation to a `Trigger` object.
+
+
+:::important
+
+If you create a broker by using the `eventing.knative.dev/injection: enabled` annotation, you cannot delete this broker without cluster administrator permissions.
+If you delete the broker without having a cluster administrator remove this annotation first, the broker is created again after deletion.
+
+:::
+
+
+**Prerequisites**
+
+*   The {{ ServerlessOperatorName }} and Knative Eventing are installed on your {{ product_title }} cluster.
+*   Install the OpenShift CLI (`oc`).
+*   You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {{ product_title }}.
+
+**Procedure**
+
+1.  Create a `Trigger` object as a YAML file that has the `eventing.knative.dev/injection: enabled` annotation:
+    ```yaml
+    apiVersion: eventing.knative.dev/v1
+    kind: Trigger
+    metadata:
+      annotations:
+        eventing.knative.dev/injection: enabled
+      name: <trigger_name>
+    spec:
+      broker: default
+      subscriber: (1)
+        ref:
+          apiVersion: serving.knative.dev/v1
+          kind: Service
+          name: <service_name>
+    ```
+    1.  Specify details about the event sink, or _subscriber_, that the trigger sends events to.
+1.  Apply the `Trigger` YAML file:
+    ```terminal
+    $ oc apply -f <filename>
+    ```
+
+**Verification**
+
+You can verify that the broker has been created successfully by using the `oc` CLI, or by observing it in the **Topology** view in the web console.
+
+1.  Enter the following `oc` command to get the broker:
+    ```terminal
+    $ oc -n <namespace> get broker default
+    ```
+    ```terminal title="Example output"
+    NAME      READY     REASON    URL                                                                     AGE
+    default   True                http://broker-ingress.knative-eventing.svc.cluster.local/test/default   3m56s
+    ```
+1.  Optional: If you are using the {{ product_title }} web console, you can navigate to the **Topology** view in the **Developer** perspective, and observe that the broker exists:
+    ![View the broker in the web console Topology view](/_assets/images/odc-view-broker.png)

@@ -1,0 +1,8 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# KMM firmware support {id="kmm-firmware-support_{{ context }}"}
+
+KMM firmware support copying firmware files from the kmod image to a node on {{ product_title }} before loading a kernel module. {._abstract}
+
+The contents of `.spec.moduleLoader.container.modprobe.firmwarePath` are copied into the `/var/lib/firmware` path on the node before running the `modprobe` command to insert the kernel module.
+
+All files and empty directories are removed from that location before running the `modprobe -r` command to unload the kernel module, when the pod is terminated.

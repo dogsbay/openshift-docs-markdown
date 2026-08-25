@@ -1,0 +1,110 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Updating the nodes in an existing cluster from {{ op_system }} 9 to {{ op_system }} 10 {id="mco-image-streams-updating_{{ context }}"}
+
+For an existing {{ product_title }} 4.21.2 or later cluster, you can move the nodes in your machine config pool to {{ op_system_first }} 10.x. By running {{ op_system_first }} 10.x as a Technology Preview feature, you can test how the operating system works with your cluster and your hardware, anticipate changes, and report bugs to Red Hat. {._abstract}
+
+Use the following procedure for an {{ product_title }} 4.22.x cluster. For an {{ product_title }} 4.21.x cluster that is 4.21.2 or later, see the [How to deploy a RHCOS 10 {{ product_title }} cluster knowledgebase article](https://access.redhat.com/articles/7138399).
+
+
+:::important
+
+Running a cluster with a mixture of RHCOS 9.x and 10.x nodes is not supported. You must move all of your nodes to RHCOS 10.x.
+
+:::
+
+
+**Prerequisites**
+
+*   You have updated the boot image in your cluster to at least {{ op_system }} 9.x. Note that the boot image on each node remains at {{ op_system }} 9.x after installing or upgrading to {{ op_system }} 10.x. After you configure {{ op_system }} 10.x in your cluster, new nodes boot using {{ op_system }} 9.x initially and automatically upgrade to {{ op_system }} 10.x. For more information, see "Manually updating the boot image".
+*   You have enabled the `TechPreviewNoUpgrade` feature set in your cluster’s `FeatureGate` custom resource (CR).
+For more information, see "Enabling features using feature gates".
+
+**Procedure**
+
+1.  Confirm that your cluster has the {{ op_system }} 10.x stream available by running the following command:
+    ```terminal
+    $ oc get osImageStreams/cluster -o yaml | grep rhel-10
+    ```
+    ```terminal title="Example output"
+      - name: rhel-10
+    ```
+
+    It can take several minutes for the `osImageStream` object to become available after you enable the `TechPreviewNoUpgrade` feature set.
+1.  Update the nodes by using one of the following procedures:
+    *   Update all of the nodes in your cluster to RHCOS 10:
+        1.  Edit the `OSImageStream` custom resource by running the following command:
+            ```terminal
+            $ oc edit osimagestream cluster
+            ```
+        1.  Add or edit the `defaultStream` parameter to specify `rhel-10`:
+            ```terminal
+            apiVersion: machineconfiguration.openshift.io/v1alpha1
+            kind: OSImageStream
+            metadata:
+              annotations:
+                machineconfiguration.openshift.io/release-image-version: c4a08067821f304642e731fdcca0c8c6a6b19484
+              creationTimestamp: "2026-04-13T17:27:41Z"
+              generation: 1
+              name: cluster
+              resourceVersion: "36503"
+              uid: f2ef4c15-4c1b-4117-850e-ae6adf408c4f
+            spec:
+              defaultStream: rhel-10
+            status:
+              availableStreams:
+              - name: rhel-10
+                osExtensionsImage: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:34baf90f333d89690a2f99b3ab746f8a43fee99b1218a8a058f75231f7c7ab53
+                osImage: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:b208f0f861d009008b43a103e64d087f6da59e480bb0292d401895e041095da7
+              - name: rhel-9
+                osExtensionsImage: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:4aa864da633b1ce0a3612992a75849ff2b7d289699fa9b9b400522371a77d3ea
+                osImage: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:cb34964bd5d957a1226e9fb082a591b650eca339ebd4aad15343d02fc21130dd
+              defaultStream: rhel-9
+            ```
+
+            The `spec.defaultStream: rhel-10` parameter directs the Machine Config Operator (MCO) to update the nodes to the image referenced in `status.availableStreams.osImage` value under `name: rhel-10`.
+    *   Update all machine config pools to RHCOS 10:
+        1.  Update the worker machine config pool to RHCOS 10 by using the following command:
+            ```terminal
+            $ oc patch mcp worker --type merge -p '{"spec":{"osImageStream":{"name":"rhel-10"}}}'
+            ```
+        1.  Update the control plane machine config pool to RHCOS 10 by using the following command:
+            ```terminal
+            $ oc patch mcp master --type merge -p '{"spec":{"osImageStream":{"name":"rhel-10"}}}'
+            ```
+        1.  Update all custom machine config pools to RHCOS 10 by using the following command with the name of the machine config pool to update:
+            ```terminal
+            $ oc patch mcp <mcp_name> --type merge -p '{"spec":{"osImageStream":{"name":"rhel-10"}}}'
+            ```
+
+            Replace `<mcp_name>` with the names of the custom machine config pools to update.
+
+        :::important
+
+        Running a cluster with a mixture of RHCOS 9.x and 10.x nodes is not supported. You must move all of your nodes to RHCOS 10.x.
+        
+        :::
+
+
+        Wait for the pools to finish rolling out the update.
+           
+        .Verification
+1.  After the nodes have returned to the READY state, examine the `/etc/redhat-release` file to see the current {{ op_system }} version on the nodes:
+    1.  Log in to a node by using the following command:
+        ```terminal
+        $ oc debug node/<node_name>
+        ```
+
+        Replace `<node_name>` with the name of the node. 
+    1.  Set `/host` as the root directory within the debug shell by using the following command:
+        ```terminal
+        $ chroot /host
+        ```
+    1.  Look at the contents of the `/etc/redhat-release` file by using the following command:
+        ```terminal
+        $ cat /etc/redhat-release
+        ```
+
+        The output should appear similar to  the following example:
+        ```terminal title="Example output"
+        Red Hat Enterprise Linux release 10.2 (Coughlan)
+        ```

@@ -1,0 +1,72 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Accessing metrics from outside the cluster for custom applications {id="accessing-metrics-from-outside-cluster_{{ context }}"}
+
+You can query Prometheus metrics from outside the cluster when monitoring your own services with user-defined projects. Access this data from outside the cluster by using the `thanos-querier` route.
+
+This access only supports using a bearer token for authentication.
+
+**Prerequisites**
+
+*   You have deployed your own service, following the "Enabling monitoring for user-defined projects" procedure.
+*   You are logged in to an account with the `cluster-monitoring-view` cluster role, which provides permission to access the Thanos Querier API.
+*   You are logged in to an account that has permission to get the Thanos Querier API route.
+
+    :::note
+
+    If your account does not have permission to get the Thanos Querier API route, a cluster administrator can provide the URL for the route.
+    
+    :::
+
+
+**Procedure**
+
+1.  Extract an authentication token to connect to Prometheus by running the following command:
+    ```terminal
+    $ TOKEN=$(oc whoami -t)
+    ```
+1.  Extract the `thanos-querier` API route URL by running the following command:
+    ```terminal
+    $ HOST=$(oc -n openshift-monitoring get route thanos-querier -ojsonpath='{.status.ingress[].host}')
+    ```
+1.  Set the namespace to the namespace in which your service is running by using the following command:
+    ```terminal
+    $ NAMESPACE=ns1
+    ```
+1.  Query the metrics of your own services in the command line by running the following command:
+    ```terminal
+    $ curl -H "Authorization: Bearer $TOKEN" -k "https://$HOST/api/v1/query?" --data-urlencode "query=up{namespace='$NAMESPACE'}"
+    ```
+
+    The output shows the status for each application pod that Prometheus is scraping:
+    ```terminal title="The formatted example output"
+    {
+      "status": "success",
+      "data": {
+        "resultType": "vector",
+        "result": [
+          {
+            "metric": {
+              "__name__": "up",
+              "endpoint": "web",
+              "instance": "10.129.0.46:8080",
+              "job": "prometheus-example-app",
+              "namespace": "ns1",
+              "pod": "prometheus-example-app-68d47c4fb6-jztp2",
+              "service": "prometheus-example-app"
+            },
+            "value": [
+              1591881154.748,
+              "1"
+            ]
+          }
+        ],
+      }
+    }
+    ```
+
+    :::note
+
+    *   The formatted example output uses a filtering tool, such as `jq`, to provide the formatted indented JSON. See the [jq Manual](https://stedolan.github.io/jq/manual/) (jq documentation) for more information about using `jq`.
+    *   The command requests an instant query endpoint of the Thanos Querier service, which evaluates selectors at one point in time.
+    
+    :::

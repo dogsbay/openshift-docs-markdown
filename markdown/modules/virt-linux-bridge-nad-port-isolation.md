@@ -1,0 +1,48 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling port isolation for a Linux bridge NAD {id="virt-linux-bridge-nad-port-isolation_{{ context }}"}
+
+You can enable port isolation for a Linux bridge network attachment definition (NAD) so that virtual machines (VMs) or pods that run on the same virtual LAN (VLAN) can operate in isolation from one another. {._abstract}
+
+The Linux bridge NAD creates a virtual bridge, or _virtual switch_, between network interfaces and the physical network.
+
+Isolating ports in this way can provide enhanced security for VM workloads that run on the same node.
+
+**Prerequisites**
+
+*   For VMs, you configured either a static or dynamic IP address for each VM. See "Configuring IP addresses for virtual machines".
+*   You created a Linux bridge NAD by using either the web console or the command-line interface.
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Edit the Linux bridge NAD by setting `portIsolation` to `true`:
+    ```yaml
+    apiVersion: "k8s.cni.cncf.io/v1"
+    kind: NetworkAttachmentDefinition
+    metadata:
+      name: bridge-network
+      annotations:
+        k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1
+    spec:
+      config: |
+        {
+          "cniVersion": "0.3.1",
+          "name": "bridge-network",
+          "type": "bridge",
+          "bridge": "br1",
+          "preserveDefaultVlan": false,
+          "vlan": 100,
+          "disableContainerInterface": false,
+          "portIsolation": true
+        }
+    # ...
+    ```
+    *   `spec.config.name` specifies the name for the configuration. The name must match the value in the `metadata.name` of the NAD.
+    *   `spec.config.type` specifies the actual name of the Container Network Interface (CNI) plugin that provides the network for this network attachment definition. Do not change this field unless you want to use a different CNI.
+    *   `spec.config.bridge` specifies the name of the Linux bridge that is configured on the node. The name must match the interface bridge name defined in the `NodeNetworkConfigurationPolicy` manifest.
+    *   `spec.config.portIsolation` specifies whether port isolation on the virtual bridge is enabled or disabled. The default value is `false`. When set to `true`, each VM or pod is assigned to an isolated port. The virtual bridge prevents traffic from one isolated port from reaching another isolated port.
+1.  Apply the configuration:
+    ```terminal
+    $ oc apply -f example-vm.yaml
+    ```
+1.  Optional: If you edited a running virtual machine, you must restart it for the changes to take effect.

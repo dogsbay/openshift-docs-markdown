@@ -1,0 +1,43 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Understanding process ID limits {id="understanding-process-id-limits_{{ context }}"}
+
+You can review the following information to learn how to limit the number of processes running on your nodes. Configuring an appropriate number of processes can help keep the nodes in your cluster running efficiently.  {._abstract}
+
+{% if openshift_enterprise or openshift_origin %}
+A process identifier (PID) is a unique identifier assigned by the Linux kernel to each process or thread currently running on a system. The number of processes that can run simultaneously on a system is limited to 4,194,304 by the Linux kernel. This number might also be affected by limited access to other system resources such as memory, CPU, and disk space.
+{% endif %}
+
+In {{ product_title }}, consider these two supported limits for process ID (PID) usage before you schedule work on your cluster:
+
+*   Maximum number of PIDs per pod.
+
+    The default value is 4,096 in {{ product_title }} 4.11 and later. This value is controlled by the `podPidsLimit` parameter set on the node.
+{%- if openshift_enterprise or openshift_origin %}
+
+    You can view the current PID limit on a node by running the following command in a `chroot` environment:
+    ```terminal
+    sh-5.1# cat /etc/kubernetes/kubelet.conf | grep -i pids
+    ```
+    ```terminal title="Example output"
+    "podPidsLimit": 4096,
+    ```
+
+    You can change the `podPidsLimit` by using a `KubeletConfig` object. See "Creating a KubeletConfig CR to edit kubelet parameters".
+
+    Containers inherit the `podPidsLimit` value from the parent pod, so the kernel enforces the lower of the two limits. For example, if the container PID limit is set to the maximum, but the pod PID limit is `4096`, the PID limit of each container in the pod is confined to 4096.
+{% endif %}
+
+{% if openshift_enterprise or openshift_origin %}
+*   Maximum number of PIDs per node.
+
+    The default value depends on node resources. In {{ product_title }}, this value is controlled by the `systemReserved` parameter in a kubelet configuration, which reserves PIDs on each node based on the total resources of the node. For more information, see "Allocating resources for nodes in an {{ product_title }} cluster".
+{% endif %}
+{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+*   Maximum number of PIDs per node.
+
+    The default value depends on [node resources](https://access.redhat.com/documentation/en-us/openshift_container_platform/latest/html-single/nodes/index#nodes-nodes-resources-configuring). In {{ product_title }}, this value is controlled by the [`--system-reserved`](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved) parameter, which reserves PIDs on each node based on the total resources of the node.
+{% endif %}
+
+When a pod exceeds the allowed maximum number of PIDs per pod, the pod might stop functioning correctly and might be evicted from the node. See [the Kubernetes documentation for eviction signals and thresholds](https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals-and-thresholds) for more information.
+
+When a node exceeds the allowed maximum number of PIDs per node, the node can become unstable because new processes cannot have PIDs assigned. If existing processes cannot complete without creating additional processes, the entire node can become unusable and require reboot. This situation can result in data loss, depending on the processes and applications being run. Customer administrators and Red&#160;Hat Site Reliability Engineering are notified when this threshold is reached, and a `Worker node is experiencing PIDPressure` warning will appear in the cluster logs.

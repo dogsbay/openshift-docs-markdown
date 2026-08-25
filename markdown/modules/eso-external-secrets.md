@@ -1,0 +1,14 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# externalSecretsConfig {id="eso-external-secrets_{{ context }}"}
+
+The `externalSecretsConfig` object defines the configuration and information for the managed `external-secrets` operand deployment. Set the name to `cluster` as `externalSecretsConfig` object allows only one instance per cluster. {._abstract}
+
+Creating an `externalSecretsConfig` object triggers the deployment of the `external-secrets` operand and maintains the desired state.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `apiVersion` | _string_ | The `apiVersion` specifies the version of the schema in use, which is `operator.openshift.io/v1alpha1`. |
+| `kind` | _string_ | `kind` specifies the type of the object, which is `externalSecrets` for this object. |
+| `metadata` | [_ObjectMeta_](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#objectmeta-v1-meta) | Refer to Kubernetes API documentation for details about the `metadata` fields. |
+| `spec` | _object_ | `spec` contains the specifications of the desired behavior of the `externalSecrets` object. |
+| `status` | _object_ | `status` displays the most recently observed status of the `externalSecrets` object. |

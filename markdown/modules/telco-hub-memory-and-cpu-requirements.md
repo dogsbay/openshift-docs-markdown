@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Hub cluster memory and CPU requirements {id="telco-hub-memory-and-cpu-requirements_{{ context }}"}
+
+The memory and CPU requirements of the hub cluster vary depending on the configuration of the hub cluster, the number of resources on the cluster, and the number of managed clusters. {._abstract}
+
+
+Limits and requirements
+:   *   Ensure that the hub cluster meets the underlying memory and CPU requirements for {{ product_title }} and {{ rh_rhacm_first }}.
+
+Engineering considerations
+    :   *   Before deploying a telco hub cluster, ensure that your cluster host meets cluster requirements.
+
+    For more information about scaling the number of managed clusters, see "Hub cluster scaling target".

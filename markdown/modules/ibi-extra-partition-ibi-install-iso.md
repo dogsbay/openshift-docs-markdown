@@ -1,0 +1,101 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring additional partitions on the target host {id="ibi-extra-partition-ibi-install-iso_{{ context }}"}
+
+The installation ISO creates a partition for the `/var/lib/containers` directory as part of the image-based installation process. {._abstract}
+
+You can create additional partitions by using the `coreosInstallerArgs` specification. For example, in hard disks with adequate storage, you might need an additional partition for storage options, such as {{ lvms_first }}.
+
+
+:::note
+
+The `/var/lib/containers` partition requires at least 500 GB to ensure adequate disk space for precached images. You must create additional partitions with a starting position larger than the partition for `/var/lib/containers`.
+
+:::
+
+
+**Procedure**
+
+1.  Edit the `image-based-installation-config.yaml` file to configure additional partitions:
+
+    Example `image-based-installation-config.yaml` file:
+    ```yaml
+    apiVersion: v1beta1
+    kind: ImageBasedInstallationConfig
+    metadata:
+      name: example-extra-partition
+    seedImage: quay.io/repo-id/seed:latest
+    seedVersion: "4.22.0"
+    installationDisk: /dev/sda
+    pullSecret: '{"auths": ...}'
+    # ...
+    skipDiskCleanup: <skip_disk_cleanup>
+    coreosInstallerArgs:
+       - "--save-partindex"
+       - "<partition_index>"
+    ignitionConfigOverride: |
+      {
+        "ignition": {
+          "version": "3.2.0"
+        },
+        "storage": {
+          "disks": [
+            {
+              "device": "<installation_disk>",
+              "partitions": [
+                {
+                  "label": "<partition_label>",
+                  "number": <partition_number>,
+                  "sizeMiB": <partition_size>,
+                  "startMiB": <starting_position>
+                }
+              ]
+            }
+          ]
+        }
+      }
+
+    ```
+
+    where:
+
+    `<skip_disk_cleanup>`
+    :   Specifies whether to skip disk formatting during the installation process. Set to `true` to skip.
+
+    `"--save-partindex"`
+    :   Specifies the argument to preserve a partition.
+
+    `<partition_index>`
+    :   Specifies the additional partition to preserve. The live installation ISO requires five partitions. Set a number greater than five, for example `6`.
+
+    `<installation_disk>`
+    :   Specifies the installation disk on the target host, for example `/dev/sda`.
+
+    `<partition_label>`
+    :   Specifies the label for the partition, for example `storage`.
+
+    `<partition_number>`
+    :   Specifies the number for the partition, for example `6`.
+
+    `<partition_size>`
+    :   Specifies the size of partition in MiB, for example `380000`.
+
+    `<starting_position>`
+    :   Specifies the starting position on the disk in MiB for the additional partition. You must specify a starting point larger than the partition for `/var/lib/containers`, for example `500000`.
+
+**Verification**
+
+*   When you complete the preinstallation of the host with the live installation ISO, login to the target host and run the following command to view the partitions:
+    ```terminal
+    $ lsblk
+    ```
+
+    Example output:
+    ```terminal
+    sda    8:0    0  140G  0 disk
+    ├─sda1 8:1    0    1M  0 part
+    ├─sda2 8:2    0  127M  0 part
+    ├─sda3 8:3    0  384M  0 part /var/mnt/boot
+    ├─sda4 8:4    0  120G  0 part /var/mnt
+    ├─sda5 8:5    0  500G  0 part /var/lib/containers
+    └─sda6 8:6    0  380G  0 part
+    ```

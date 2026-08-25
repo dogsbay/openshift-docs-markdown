@@ -1,0 +1,40 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# List of available metrics {id="list-of-metrics_{{ context }}"}
+
+Review the following table for a list of `Velero` metrics provided by {{ oadp_short }} together with their [Types](https://prometheus.io/docs/concepts/metric_types/): {._abstract}
+
+**Velero metrics**
+
+| Metric name | Description | Type |
+| --- | --- | --- |
+| `velero_backup_tarball_size_bytes` | Size, in bytes, of a backup | Gauge |
+| `velero_backup_total` | Current number of existent backups | Gauge |
+| `velero_backup_attempt_total` | Total number of attempted backups | Counter |
+| `velero_backup_success_total` | Total number of successful backups | Counter |
+| `velero_backup_partial_failure_total` | Total number of partially failed backups | Counter |
+| `velero_backup_failure_total` | Total number of failed backups | Counter |
+| `velero_backup_validation_failure_total` | Total number of validation failed backups | Counter |
+| `velero_backup_duration_seconds` | Time taken to complete backup, in seconds | Histogram |
+| `velero_backup_duration_seconds_bucket` | Total count of observations for a bucket in the histogram for the metric `velero_backup_duration_seconds` | Counter	 |
+| `velero_backup_duration_seconds_count` | Total count of observations for the metric `velero_backup_duration_seconds` | Counter	 |
+| `velero_backup_duration_seconds_sum` | Total sum of observations for the metric `velero_backup_duration_seconds` | Counter	 |
+| `velero_backup_deletion_attempt_total` | Total number of attempted backup deletions | Counter |
+| `velero_backup_deletion_success_total` | Total number of successful backup deletions | Counter |
+| `velero_backup_deletion_failure_total` | Total number of failed backup deletions | Counter |
+| `velero_backup_last_successful_timestamp` | Last time a backup ran successfully, UNIX timestamp in seconds | Gauge |
+| `velero_backup_items_total` | Total number of items backed up | Gauge |
+| `velero_backup_items_errors` | Total number of errors encountered during backup | Gauge |
+| `velero_backup_warning_total` | Total number of warned backups | Counter |
+| `velero_backup_last_status` | Last status of the backup. A value of 1 is success, 0 is failure | Gauge |
+| `velero_restore_total` | Current number of existent restores | Gauge |
+| `velero_restore_attempt_total` | Total number of attempted restores | Counter |
+| `velero_restore_validation_failed_total` | Total number of failed restores failing validations | Counter |
+| `velero_restore_success_total` | Total number of successful restores | Counter |
+| `velero_restore_partial_failure_total` | Total number of partially failed restores | Counter |
+| `velero_restore_failed_total` | Total number of failed restores | Counter |
+| `velero_volume_snapshot_attempt_total` | Total number of attempted volume snapshots | Counter |
+| `velero_volume_snapshot_success_total` | Total number of successful volume snapshots | Counter |
+| `velero_volume_snapshot_failure_total` | Total number of failed volume snapshots | Counter |
+| `velero_csi_snapshot_attempt_total` | Total number of CSI attempted volume snapshots | Counter |
+| `velero_csi_snapshot_success_total` | Total number of CSI successful volume snapshots | Counter |
+| `velero_csi_snapshot_failure_total` | Total number of CSI failed volume snapshots | Counter |

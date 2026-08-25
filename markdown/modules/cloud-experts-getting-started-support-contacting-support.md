@@ -1,0 +1,45 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Contacting Red&#160;Hat for support  {id="cloud-experts-getting-started-support-contacting-support_{{ context }}"}
+
+You can contact support by using the UI or using the support page. {._abstract}
+
+**Procedure**
+
+*   Contact Support using the UI
+    1.  On the {{ cluster_manager }} UI, click the **Support** tab.
+    1.  Click **Open support case**.
+*   Contacting Red&#160;Hat for support using the support page
+    1.  Go to the [Red&#160;Hat support page](https://support.redhat.com).
+    1.  Click **Open a new Case**.
+        ![obtain-support-case](/_assets/images/obtain-support-case.png)
+    1.  Log in to your Red&#160;Hat account.
+    1.  Select the reason for contacting support.
+        ![obtain-support-reason](/_assets/images/obtain-support-reason.png)
+    1.  Select **Red&#160;Hat OpenShift Service on AWS**.
+        ![obtain-support-select-rosa](/_assets/images/obtain-support-select-rosa.png)
+    1.  Click **continue**.
+    1.  Enter a summary of the issue and the details of your request. Upload any files, logs, and screenshots. The more details you provide, the better Red&#160;Hat support can help your case.
+
+        :::note
+
+        Relevant suggestions that might help with your issue will appear at the bottom of this page.
+        
+        :::
+
+        ![obtain-support-summary](/_assets/images/obtain-support-summary.png)
+    1.  Click **Continue**. 
+    1.  Answer the questions in the new fields.
+    1.  Click **Continue**.
+    1.  Enter the following information about your case:
+        1.  **Support level:** Premium
+        1.  **Severity:** Review the Red&#160;Hat Support Severity Level Definitions to choose the correct one.
+        1.  **Group:** If this is related to a few other cases you can select the corresponding group.
+        1.  **Language**
+        1.  **Send notifications:** Add any additional email addresses to keep notified of activity.
+        1.  **Red&#160;Hat associates:** If you are working with anyone from Red&#160;Hat and want to keep them in the loop you can enter their email address here.
+        1.  **Alternate Case ID:** If you want to attach your own ID to it you can enter it here.
+    1.  Click **Continue**.
+    1.  On the review screen make sure you select the correct cluster ID that you are contacting support about.
+        ![obtain-support-cluster-id](/_assets/images/obtain-support-cluster-id.png)
+    1.  Click **Submit**.
+    1.  You will be contacted based on the response time committed to for the [indicated severity level](https://access.redhat.com/support/offerings/openshift/sla).

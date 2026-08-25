@@ -1,0 +1,20 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# IPv6 networking with {{ microshift_short }} {id="microshift-intro-ipv6_{{ context }}"}
+
+The {{ product_title }} service defaults to IPv4. IPv6 single-stack and IPv4/IPv6 dual-stack networking is available on supported platforms. You configure IPv6 or dual-stack networking in the configuration file. {._abstract}
+
+Consider the following when configuring IPv6 or dual-stack networking with {{ microshift_short }}:
+
+*   When you set the values for IPv6 in the {{ microshift_short }} configuration file and restart the service, settings managed by the OVN-Kubernetes network plugin are updated automatically.
+*   After migrating to dual-stack networking, both new and existing pods have dual-stack networking enabled.
+*   If you require node-wide IPv6 access, such as for the control plane and other services, use the following configuration examples. The {{ microshift_short }} Multus Container Network Interface (CNI) plugin can enable IPv6 for pods.
+*   For dual-stack networking, each {{ microshift_short }} node network and service network supports up to two values in the node and service network configuration parameters.
+
+
+:::important
+
+Plan for IPv6 before starting {{ microshift_short }} for the first time. Switching a node to and from different IP families is not supported unless you are migrating a node from default single-stack to dual-stack networking.
+
+If you configure your networking for either IPv6 single stack or IPv4/IPv6 dual stack, you must restart application pods and services. Otherwise pods and services remain configured with the default IP family.
+
+:::

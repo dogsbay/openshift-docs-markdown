@@ -1,0 +1,2 @@
+# 3scale Adapter metrics {id="ossm-threescale-metrics-1x_{{ context }}"}
+The adapter, by default reports various Prometheus metrics that are exposed on port `8080` at the `/metrics` endpoint. These metrics provide insight into how the interactions between the adapter and 3scale are performing. The service is labeled to be automatically discovered and scraped by Prometheus.

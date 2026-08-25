@@ -1,0 +1,7 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About KubeVirt Redfish {id="con_virt-about-kubevirt-redfish_{{ context }}"}
+
+KubeVirt Redfish is a Redfish-compatible API that exposes virtual machines (VMs) managed by {{ VirtProductName }} on {{ product_title }}. {._abstract}
+
+You can use the same Redfish automation patterns you use for physical baseboard management controllers (BMCs) to manage VM power and inventory.
+The primary use case is deploying virtualized control plane clusters, where the control plane nodes run as VMs on an existing {{ VirtProductName }} cluster.

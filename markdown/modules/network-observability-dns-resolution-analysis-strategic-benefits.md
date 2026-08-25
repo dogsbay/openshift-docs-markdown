@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Strategic benefits of DNS resolution analysis {id="network-observability-dns-resolution-analysis-strategic-benefits_{{ context }}"}
+
+Use DNS resolution analysis to differentiate between network transport failures and service discovery issues by enriching eBPF flow records with domain names and status codes. {._abstract}
+
+Standard flow logs only show that traffic occurred on port 53. DNS resolution analysis allows you to complete the following tasks:
+
+*   Reduced Mean time to identify (Mtti): Distinguish immediately between a network routing failure and a DNS resolution failure, such as an `NXDOMAIN` error.
+*   Measure internal service latency: Track the time it takes for CoreDNS to respond to specific internal lookups (e.g., `my-service.namespace.svc.cluster.local`).
+*   Audit external dependencies: Audit which external APIs or third-party domains your workloads are communicating with without requiring sidecars or manual packet captures.
+*   Improved security posture: Detect potential data exfiltration or Command and Control (C2) activity by auditing the Fully Qualified Domain Names (FQDNs) queried by internal workloads.
+
+## DNS flow enrichment {id="dns-flow-enrichment_{{ context }}"}
+When this feature is active, the eBPF agent enriches the flow records. This metadata allows you to group and filter traffic by the intent of the connection (the domain) rather than just the source IP.
+
+Enhanced DNS decoding allows the eBPF agent to inspect UDP and TCP DNS traffic on port 53 along with the query names for the DNS request.

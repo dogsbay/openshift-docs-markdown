@@ -1,0 +1,22 @@
+{%- set _mod_docs_content_type = "SNIPPET" %}
+
+
+:::important
+
+*   The Cluster Samples Operator is deprecated. No new templates, samples, or non-Source-to-Image (Non-S2I) image streams are added to the Cluster Samples Operator. However, the existing S2I builder image streams and templates will continue to receive updates until the Cluster Samples Operator is removed in a future release. S2I image streams and templates include:
+    *   Ruby
+    *   Python
+    *   Node.js
+    *   Perl
+    *   PHP
+    *   HTTPD
+    *   Nginx
+    *   EAP
+    *   Java
+    *   Webserver
+    *   .NET
+    *   Go
+*   The Cluster Samples Operator will stop managing and providing support to the non-S2I samples (image streams and templates). You can contact the image stream or template owner for any requirements and future plans. In addition, refer to the following link:
+    *   [List of the repositories hosting the image stream or templates](https://github.com/openshift/library/blob/master/official.yaml)
+
+:::

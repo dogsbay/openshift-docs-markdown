@@ -1,0 +1,31 @@
+---
+title: Two-Node with Arbiter
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Two-Node with Arbiter {id="about-two-node-arbiter-installation"}
+{%- set context = "about-two-node-arbiter-installation" %}
+
+An {{ product_title }} cluster with two control plane nodes and one local arbiter node is a compact, cost-effective {{ product_title }} topology.
+
+The arbiter node stores the full etcd data, maintaining an etcd quorum and preventing split brain. The arbiter node does not run the additional control plane components `kube-apiserver` and `kube-controller-manager`, nor does it run workloads.
+
+To install a cluster with two control plane nodes and one local arbiter node, assign an arbiter role to at least one of the nodes and set the control plane node count for the cluster to 2. Although {{ product_title }} does not currently impose a limit on the number of arbiter nodes, the typical deployment includes only one to minimize the use of hardware resources.
+
+After installation, you can add additional worker nodes to a cluster with two control plane nodes and one local arbiter node but it cannot be converted to a standard multi-node cluster.
+
+
+:::note
+
+Do not add more than two worker nodes to the {{ product_title }} cluster.
+For a cluster with an arbiter, the same networking requirements as a regular cluster for connectivity between machines apply.
+
+:::
+
+
+**Additional resources**
+
+*   [Network connectivity requirements](/installing/installing_platform_agnostic/installing-platform-agnostic#installation-network-connectivity-user-infra_installing-platform-agnostic)
+*   [Configuring a local arbiter node with installer-provisioned infrastructure](/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#ipi-install-config-local-arbiter-node_ipi-install-installation-workflow)
+*   [About a local arbiter node](/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#installing-ocp-agent-local-arbiter-node_preparing-to-install-with-agent-based-installer)
+*   [Configuring a local arbiter node with user-provisioned infrastructure](/installing/installing_bare_metal/upi/installing-bare-metal#upi-install-config-local-arbiter-node_installing-bare-metal)

@@ -1,0 +1,42 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a hosted cluster on non-bare-metal agent machines by using a mirror registry {id="hcp-non-bm-hc-mirror_{{ context }}"}
+
+You can use a mirror registry to create a hosted cluster on non-bare-metal agent machines by specifying the `--image-content-sources` flag in the `hcp create cluster` command. {._abstract}
+
+**Procedure**
+
+1.  Create a YAML file to define Image Content Source Policies (ICSP). See the following example:
+    ```yaml
+    - mirrors:
+      - brew.registry.redhat.io
+      source: registry.redhat.io
+    - mirrors:
+      - brew.registry.redhat.io
+      source: registry.stage.redhat.io
+    - mirrors:
+      - brew.registry.redhat.io
+      source: registry-proxy.engineering.redhat.com
+    ```
+1.  Save the file as `icsp.yaml`. This file contains your mirror registries.
+1.  To create a hosted cluster by using your mirror registries, run the following command:
+    ```terminal
+    $ hcp create cluster agent \
+        --name=my-hosted-cluster \
+        --pull-secret=/user/name/pullsecret\
+        --agent-namespace=clusters-example \
+        --base-domain=krnl.es \
+        --api-server-address=api.my-hosted-cluster.krnl.es \
+        --image-content-sources icsp.yaml  \
+        --ssh-key  ~/.ssh/id_rsa.pub \
+        --namespace my-hosted-cluster-namespace \
+        --release-image=quay.io/openshift-release-dev/ocp-release:4.22.0-multi
+    ```
+    *   `--name` specifies the name of your hosted cluster.
+    *   `--pull-secret` specifies the path to your pull secret.
+    *   `--agent-namespace` specifies your hosted control plane namespace. Ensure that agents are available in this namespace by using the `oc get agent -n <hosted-control-plane-namespace>` command.
+    *   `--base-domain` specifies your base domain.
+    *   `--api-server-address` defines the IP address that is used for the Kubernetes API communication in the hosted cluster. If you do not set the `--api-server-address` flag, you must log in to connect to the management cluster.
+    *   `--image-content-sources` specifies the `icsp.yaml` file that defines ICSP and your mirror registries.
+    *   `--ssh-key` specifies the path to your SSH public key. The default file path is `~/.ssh/id_rsa.pub`.
+    *   `--namespace` specifies your hosted cluster namespace.
+    *   `--release-image` specifies the supported {{ product_title }} version that you want to use. If you are using a disconnected environment, replace the version with the digest image. To extract the {{ product_title }} release image digest, see "Extracting the release image digest".

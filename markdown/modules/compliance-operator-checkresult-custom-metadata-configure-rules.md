@@ -1,0 +1,57 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Adding custom labels and annotations to a Rule object {id="compliance-operator-checkresult-custom-metadata-configure-rules_{{ context }}"}
+
+You can attach custom labels and annotations to a `Rule` that Open Security Content Automation Protocol (OpenSCAP) evaluates, and verify that they are displayed on the aggregated `ComplianceCheckResult` after the next scan. {._abstract}
+
+**Prerequisites**
+
+*   You have installed Compliance Operator 1.9.0 or later.
+*   You have access to the `openshift-compliance` namespace (or the namespace where your rules and scans run).
+*   You identified the `Rule` object name and the `ComplianceScan` that evaluates it.
+
+**Procedure**
+
+1.  Add custom labels to the rule. Replace `<rule_name>` with your `Rule` object name, and adjust labels as needed with the following command:
+    ```terminal
+    $ oc label rule.compliance/<rule_name> \
+      business-unit=payments \
+      risk-tier=critical \
+      -n openshift-compliance
+    ```
+1.  Add custom annotations with the following command:
+    ```terminal
+    $ oc annotate rule.compliance/<rule_name> \
+      internal-id=SEC-4021 \
+      exception-ticket=JIRA-123 \
+      -n openshift-compliance
+    ```
+
+    Long or free-form values are better suited to annotations than labels because of Kubernetes label length limits.
+1.  Trigger a new scan or wait for the next scheduled run. For example, to request a rescan of an existing `ComplianceScan` named `ocp4-cis` use the following command:
+    ```terminal
+    $ oc annotate compliancescan ocp4-cis \
+      compliance.openshift.io/rescan= \
+      -n openshift-compliance
+    ```
+1.  After the scan finishes, list `ComplianceCheckResult` objects that carry your label using the following command:
+    ```terminal
+    $ oc get compliancecheckresults \
+      -l business-unit=payments \
+      -n openshift-compliance
+    ```
+1.  Confirm an annotation on a specific result with the following command: 
+    ```terminal
+    $ oc get compliancecheckresult <result_name> \
+      -o jsonpath='{.metadata.annotations.internal-id}' \
+      -n openshift-compliance
+    ```
+
+    Replace `<result_name>` with the `ComplianceCheckResult` name for your rule.
+1.  Optional: Verify that a user annotation survives a `ProfileBundle` content image update using the following command. 
+    ```terminal
+    $ oc get rule.compliance/<rule_name> \
+      -o jsonpath='{.metadata.annotations.exception-ticket}' \
+      -n openshift-compliance
+    ```
+
+    After the profile parser reconciles the `Rule`, your key should still be present.

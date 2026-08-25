@@ -1,0 +1,42 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Example: VM node placement with pod affinity and pod anti-affinity {id="virt-example-vm-node-placement-pod-affinity_{{ context }}"}
+
+In this example, the VM must be scheduled on a node that has a running pod with the label `example-key-1 = example-value-1`. If there is no such pod running on any node, the VM is not scheduled. {._abstract}
+
+If possible, the VM is not scheduled on a node that has any pod with the label `example-key-2 = example-value-2`. However, if all candidate nodes have a pod with this label, the scheduler ignores this constraint.
+
+**Example VM manifest**
+
+```yaml
+metadata:
+  name: example-vm-pod-affinity
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+spec:
+  template:
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: example-key-1
+                operator: In
+                values:
+                - example-value-1
+            topologyKey: kubernetes.io/hostname
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: example-key-2
+                  operator: In
+                  values:
+                  - example-value-2
+              topologyKey: kubernetes.io/hostname
+# ...
+```
+*   If you use the `requiredDuringSchedulingIgnoredDuringExecution` rule type, the VM is not scheduled if the constraint is not met.
+*   If you use the `preferredDuringSchedulingIgnoredDuringExecution` rule type, the VM is still scheduled if the constraint is not met, provided that all required constraints are met.

@@ -1,0 +1,36 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Custom URLs for revisions {id="serverless-custom-revision-urls_{{ context }}"}
+
+Assigning a `--tag` flag to a service by using the `kn service update` command creates a custom URL for the revision that is created when you update the service. The custom URL follows the pattern `https://<tag>-<service_name>-<namespace>.<domain>` or `http://<tag>-<service_name>-<namespace>.<domain>`.
+
+The `--tag` and `--untag` flags use the following syntax:
+
+*   Require one value.
+*   Denote a unique tag in the traffic block of the service.
+*   Can be specified multiple times in one command.
+
+## Example: Assign a tag to a revision {id="serverless-custom-revision-urls-assign_{{ context }}"}
+
+The following example assigns the tag `latest` to a revision named `example-revision`:
+
+```terminal
+$ kn service update <service_name> --tag @latest=example-tag
+```
+
+## Example: Remove a tag from a revision {id="serverless-custom-revision-urls-remove_{{ context }}"}
+
+You can remove a tag to remove the custom URL, by using the `--untag` flag.
+
+
+:::note
+
+If a revision has its tags removed, and it is assigned 0% of the traffic, the revision is removed from the traffic block entirely.
+
+:::
+
+
+The following command removes all tags from the revision named `example-revision`:
+
+```terminal
+$ kn service update <service_name> --untag example-tag
+```

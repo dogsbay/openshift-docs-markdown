@@ -1,0 +1,60 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Querying your AI model {id="microshift-rhoai-query-model_{{ context }}"}
+
+You can make an inference request against the AI model server that is using the `ovms-resnet50` model. {._abstract}
+
+**Prerequisites**
+
+*   {{ microshift_short }} is running.
+*   You configured the model-serving runtime.
+*   You uploaded your AI model to {{ microshift_short }}.
+
+**Procedure**
+
+*   Make an inference request against the model server that is using the `ovms-resnet50` model by running the following command:
+    ```terminal
+    $ curl \
+        --data-binary "@./request.json" \
+        --header "Inference-Header-Content-Length: ${HEADER_LEN}" \
+        "${DOMAIN}/v2/models/ovms-resnet50/infer" \
+        --connect-to "${DOMAIN}::${IP}:" > response.json
+    ```
+    ```json title="Example inferencing output, saved to a response.json"
+    {
+        "model_name": "ovms-resnet50",
+        "model_version": "1",
+        "outputs": [{
+                "name": "1463",
+                "shape": [1, 1000],
+                "datatype": "FP32",
+                "data": [ ....... ] (1)
+            }]
+    }
+    ```
+
+    The contents of `.outputs[0].data` were omitted from the example for brevity.
+
+**Verification**
+
+1.  To determine the model’s prediction, get the index of the highest element in the `.outputs[0].data` to determine the model’s predicted value by using the following Python script:
+    ```python
+    import json
+    with open('response.json') as f:
+        response = json.load(f)
+    data = response["outputs"][0]["data"]
+    argmax = data.index(max(data))
+    print(argmax)
+    ```
+    ```text title="Example output"
+    309
+    ```
+
+    In this example, the element labeled `309` is the model’s response.
+1.  Validate the output against [resnet’s input data](https://github.com/openvinotoolkit/model_server/blob/main/client/common/resnet_input_images.txt), for example:
+    ```text
+    ../../../../demos/common/static/images/bee.jpeg 309
+    ```
+
+**Next steps**
+
+*   Optional. Query the AI model using other images available in the resnet input data.

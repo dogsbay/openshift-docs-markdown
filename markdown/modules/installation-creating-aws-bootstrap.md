@@ -1,0 +1,194 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating the bootstrap node in AWS {id="installation-creating-aws-bootstrap_{{ context }}"}
+
+To initialize the {{ product_title }} control plane, create the bootstrap node in {{ aws_first }} by uploading the Ignition config to an S3 bucket and launching the `CloudFormation` template. {._abstract}
+
+*   Providing a location to serve the `bootstrap.ign` Ignition config file to your cluster. This file is in your installation directory. The provided `CloudFormation` template assumes that you serve the Ignition config files for your cluster from an S3 bucket. If you choose to serve the files from another location, you must change the templates.
+*   Using the provided `CloudFormation` template and a custom parameter file to create a stack of {{ aws_short }} resources. The stack represents the bootstrap node that your {{ product_title }} installation requires.
+
+
+:::note
+
+If you do not use the provided `CloudFormation` template to create your bootstrap node, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
+
+:::
+
+
+**Prerequisites**
+
+*   You created and configured DNS, load balancers, and listeners in {{ aws_short }}.
+*   You created the security groups and roles required for your cluster in {{ aws_short }}.
+
+**Procedure**
+
+1.  Create the bucket by running the following command:
+    ```terminal
+    $ aws s3 mb s3://<cluster_name>-infra
+    ```
+
+    where `<cluster_name>-infra` is the bucket name. When creating the `install-config.yaml` file, replace `<cluster_name>` with the name specified for the cluster.
+    You must use a presigned URL for your S3 bucket, instead of the `s3://` schema, if you are:
+
+    *   Deploying to a region that has endpoints that differ from the {{ aws_short }} SDK.
+    *   Deploying a proxy.
+    *   Providing your own custom endpoints.
+1.  Upload the `bootstrap.ign` Ignition config file to the bucket by running the following command:
+    ```terminal
+    $ aws s3 cp <installation_directory>/bootstrap.ign s3://<cluster_name>-infra/bootstrap.ign
+    ```
+
+    where `<installation_directory>` is the path to the directory that you stored the installation files in.
+1.  Verify that the file uploaded by running the following command:
+    ```terminal
+    $ aws s3 ls s3://<cluster_name>-infra/
+    ```
+    ```terminal title="Example output"
+    2019-04-03 16:15:16     314878 bootstrap.ign
+    ```
+
+    :::note
+
+    The bootstrap Ignition config file does have secrets, such as X.509 keys. The following steps give basic security for the S3 bucket. To give additional security, you can enable an S3 bucket policy to allow only certain users, such as the OpenShift IAM user, to access objects that the bucket has. You can avoid S3 entirely and serve your bootstrap Ignition config file from any address that the bootstrap machine can reach.
+    
+    :::
+
+1.  Create a JSON file that has the parameter values that the template requires:
+    ```json
+    [
+      {
+        "ParameterKey": "InfrastructureName",
+        "ParameterValue": "mycluster-<random_string>"
+      },
+      {
+        "ParameterKey": "RhcosAmi",
+        "ParameterValue": "ami-<random_string>"
+      },
+      {
+        "ParameterKey": "AllowedBootstrapSshCidr",
+        "ParameterValue": "0.0.0.0/0"
+      },
+      {
+        "ParameterKey": "PublicSubnet",
+        "ParameterValue": "subnet-<random_string>"
+      },
+      {
+        "ParameterKey": "MasterSecurityGroupId",
+        "ParameterValue": "sg-<random_string>"
+      },
+      {
+        "ParameterKey": "VpcId",
+        "ParameterValue": "vpc-<random_string>"
+      },
+      {
+        "ParameterKey": "BootstrapIgnitionLocation",
+        "ParameterValue": "s3://<bucket_name>/bootstrap.ign"
+      },
+      {
+        "ParameterKey": "AutoRegisterELB",
+        "ParameterValue": "yes"
+      },
+      {
+        "ParameterKey": "RegisterNlbIpTargetsLambdaArn",
+        "ParameterValue": "arn:aws:lambda:<aws_region>:<account_number>:function:<dns_stack_name>-RegisterNlbIpTargets-<random_string>"
+      },
+      {
+        "ParameterKey": "ExternalApiTargetGroupArn",
+        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Exter-<random_string>"
+      },
+      {
+        "ParameterKey": "InternalApiTargetGroupArn",
+        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+      },
+      {
+        "ParameterKey": "InternalServiceTargetGroupArn",
+        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+      }
+    ]
+
+    ```
+
+    where:
+
+    `InfrastructureName`
+    :   Specifies the name for your cluster infrastructure that your Ignition config files encode for the cluster. Specify the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster_name>-<random_string>`.
+
+    `RhcosAmi`
+    :   Specifies the current {{ op_system_first }} AMI to use for the bootstrap node based on your selected architecture. Specify a valid `AWS::EC2::Image::Id` value.
+
+    `AllowedBootstrapSshCidr`
+    :   Specifies the CIDR block to allow SSH access to the bootstrap node. Specify a CIDR block in the format `x.x.x.x/16-24`.
+
+    `PublicSubnet`
+    :   Specifies the public subnet in your VPC to launch the bootstrap node into. Specify the `PublicSubnetIds` value from the output of the `CloudFormation` template for the VPC.
+
+    `MasterSecurityGroupId`
+    :   Specifies the control plane security group ID for registering temporary rules. Specify the `MasterSecurityGroupId` value from the output of the `CloudFormation` template for the security group and roles.
+
+    `VpcId`
+    :   Specifies the VPC that the created resources will belong to. Specify the `VpcId` value from the output of the `CloudFormation` template for the VPC.
+
+    `BootstrapIgnitionLocation`
+    :   Specifies the location to fetch the bootstrap Ignition config file from. Specify the S3 bucket and file name in the form `s3://<bucket_name>/bootstrap.ign`.
+
+    `AutoRegisterELB`
+    :   Specifies whether to register a network load balancer (NLB). Specify `yes` or `no`. If you specify `yes`, you must give a Lambda Amazon Resource Name (ARN) value.
+
+    `RegisterNlbIpTargetsLambdaArn`
+    :   Specifies the ARN for NLB IP target registration lambda group. Specify the `RegisterNlbIpTargetsLambda` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an {{ aws_short }} `GovCloud` region.
+
+    `ExternalApiTargetGroupArn`
+    :   Specifies the ARN for external API load balancer target group. Specify the `ExternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an {{ aws_short }} `GovCloud` region.
+
+    `InternalApiTargetGroupArn`
+    :   Specifies the ARN for internal API load balancer target group. Specify the `InternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an {{ aws_short }} `GovCloud` region.
+
+    `InternalServiceTargetGroupArn`
+    :   Specifies the ARN for internal service load balancer target group. Specify the `InternalServiceTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an {{ aws_short }} `GovCloud` region.
+1.  Copy the template from the **`CloudFormation` template for the bootstrap machine** section and save it as a YAML file on your computer. This template describes the bootstrap machine that your cluster requires.
+1.  Optional: If you are deploying the cluster with a proxy, you must update the ignition in the template to add the  `ignition.config.proxy` fields. Additionally, If you have added the Amazon EC2, Elastic Load Balancing, and S3 VPC endpoints to your VPC, you must add these endpoints to the `noProxy` field.
+1.  Launch the `CloudFormation` template to create a stack of {{ aws_short }} resources that represent the bootstrap node:
+
+    :::important
+
+    You must enter the command on a single line.
+    
+    :::
+
+    ```terminal
+    $ aws cloudformation create-stack --stack-name <name> \
+         --template-body file://<template>.yaml \
+         --parameters file://<parameters>.json \
+         --capabilities CAPABILITY_NAMED_IAM
+    ```
+
+    where:
+
+    `<name>`
+    :   Specifies the name for the `CloudFormation` stack, such as `cluster-bootstrap`. You need the name of this stack if you remove the cluster.
+
+    `<template>`
+    :   Specifies the relative path to and name of the `CloudFormation` template YAML file that you saved.
+
+    `<parameters>`
+    :   Specifies the relative path to and name of the `CloudFormation` parameters JSON file.
+
+    `CAPABILITY_NAMED_IAM`
+    :   You must explicitly declare this capability because the provided template creates some `AWS::IAM::Role` and `AWS::IAM::InstanceProfile` resources.
+    ```terminal title="Example output"
+    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-bootstrap/12944486-2add-11eb-9dee-12dace8e3a83
+    ```
+1.  Confirm that the template components exist:
+    ```terminal
+    $ aws cloudformation describe-stacks --stack-name <name>
+    ```
+
+    After the `StackStatus` displays `CREATE_COMPLETE`, the output displays values for the following parameters. You must give these parameter values to the other `CloudFormation` templates that you run to create your cluster:
+
+    `BootstrapInstanceId`
+    :   The bootstrap Instance ID.
+
+    `BootstrapPublicIp`
+    :   The bootstrap node public IP address.
+
+    `BootstrapPrivateIp`
+    :   The bootstrap node private IP address.

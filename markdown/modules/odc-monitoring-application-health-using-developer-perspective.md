@@ -1,0 +1,10 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Monitoring application health using the Developer perspective {id="odc-monitoring-application-health-using-developer-perspective_{{ context }}"}
+
+You can use the **Developer** perspective to add three types of health probes to your container to ensure that your application is healthy:
+
+*   Use the Readiness probe to check if the container is ready to handle requests.
+*   Use the Liveness probe to check if the container is running.
+*   Use the Startup probe to check if the application within the container has started.
+
+You can add health checks either while creating and deploying an application, or after you have deployed an application.

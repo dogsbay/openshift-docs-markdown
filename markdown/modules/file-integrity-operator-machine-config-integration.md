@@ -1,0 +1,8 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Machine config integration {id="file-integrity-operator-machine-config-integration_{{ context }}"}
+
+In {{ product_title }} {{ product_version }}, the cluster node configuration is delivered through `MachineConfig` objects. You can assume that the changes to files that are caused by a `MachineConfig` object are expected and should not cause the file integrity scan to fail. {._abstract}
+
+To suppress changes to files caused by `MachineConfig` object updates, the File Integrity Operator watches the node objects; when a node is being updated, the AIDE scans are suspended for the duration of the update. When the update finishes, the database is reinitialized and the scans resume.
+
+This pause and resume logic only applies to updates through the `MachineConfig` API, as they are reflected in the node object annotations.

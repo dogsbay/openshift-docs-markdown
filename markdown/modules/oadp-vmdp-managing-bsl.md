@@ -1,0 +1,14 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# {{ oadp_short }} VMDP BSL management commands {id="oadp-vmdp-managing-bsl_{{ context }}"}
+
+Review the available commands for managing backup storage locations (BSL) with the virtual machine data protection (VMDP) command-line interface (CLI). This helps you to connect, disconnect, and manage your BSL connections. {._abstract}
+
+**BSL management commands**
+
+| Command | Description |
+| --- | --- |
+| `oadp-vmdp bsl create` | Create and connect to a new BSL. |
+| `oadp-vmdp bsl connect` | Connect to an existing BSL. |
+| `oadp-vmdp bsl disconnect` | Disconnect from the current BSL. |
+| `oadp-vmdp bsl status` | Show the current BSL connection status. |
+| `oadp-vmdp bsl change-password` | Change the BSL encryption password. |

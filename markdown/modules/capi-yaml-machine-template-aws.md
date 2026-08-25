@@ -1,0 +1,46 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Sample YAML for a Cluster API machine template resource on {{ aws_full }} {id="capi-yaml-machine-template-aws_{{ context }}"}
+
+The machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates.
+The compute machine set references this template when creating machines. {._abstract}
+
+```yaml
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta2
+kind: AWSMachineTemplate
+metadata:
+  name: <template_name>
+  namespace: openshift-cluster-api
+spec:
+  template:
+    spec:
+      iamInstanceProfile: # ...
+      instanceType: m5.large
+      ignition:
+        storageType: UnencryptedUserData
+        version: "3.4"
+      ami:
+        id: # ...
+      subnet:
+        filters:
+        - name: tag:Name
+          values:
+          - # ...
+      additionalSecurityGroups:
+      - filters:
+        - name: tag:Name
+          values:
+          - # ...
+```
+
+where:
+
+
+`kind`
+:   Specifies the machine template kind.
+    This value must match the value for your platform.
+
+`metadata.name`
+:   Specifies a name for the machine template.
+
+`spec.template.spec`
+:   Specifies the details for your environment. The values here are examples.

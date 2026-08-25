@@ -1,0 +1,44 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a NodePool object for the hosted cluster {id="hcp-nodepool-hc_{{ context }}"}
+
+A `NodePool` object is a scalable set of compute nodes that is associated with a hosted cluster. `NodePool` machine architectures remain consistent within a specific pool and are independent of the machine architecture of the control plane. {._abstract}
+
+**Procedure**
+
+1.  Create a YAML file with the following information about the `NodePool` object, replacing values as necessary:
+    ```yaml
+    apiVersion: hypershift.openshift.io/v1beta1
+    kind: NodePool
+    metadata:
+      creationTimestamp: null
+      name: <hosted_cluster_name>
+      namespace: <hosted_cluster_namespace>
+    spec:
+      arch: amd64
+      clusterName: <hosted_cluster_name>
+      management:
+        autoRepair: false
+        upgradeType: InPlace
+      nodeDrainTimeout: 0s
+      platform:
+        type: Agent
+      release:
+        image: registry.<dns.base.domain.name>:5000/openshift/release-images:4.x.y-x86_64
+      replicas: 2
+    status:
+      replicas: 2
+    ```
+    *   `metadata.name` specifies the name of your hosted cluster.
+    *   `metadata.namespace` specifies the name of your hosted cluster namespace.
+    *   `spec.management.autoRepair` specifies whether the node will be re-created if it is removed. In this example, the `autoRepair` field is set to `false` because the node will not be re-created if it is removed.
+    *   `spec.management.upgradeType` specifies the upgrade type. In this example, the `upgradeType` field is set to `InPlace`, which indicates that the same bare-metal node is reused during an upgrade.
+    *   `spec.release.image` specifies which {{ product_title }} version the nodes in the `NodePool` object are based on. Replace the `<dns.base.domain.name>` value with your DNS base domain name and the `4.x.y` value with the supported {{ product_title }} version you want to use.
+    *   `spec.replicas` specifies the number of node pool replicas to create. In this example, the `replicas` value is `2` to create two node pool replicas in your hosted cluster.
+1.  Create the `NodePool` object by entering the following command:
+    ```terminal
+    $ oc apply -f 02-nodepool.yaml
+    ```
+    ```terminal title="Example output"
+    NAMESPACE   NAME          CLUSTER   DESIRED NODES   CURRENT NODES   AUTOSCALING   AUTOREPAIR   VERSION                              UPDATINGVERSION   UPDATINGCONFIG   MESSAGE
+    clusters    hosted-dual   hosted    0                               False         False        4.x.y-x86_64
+    ```

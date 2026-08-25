@@ -1,0 +1,24 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Connect to the serial console by using virtctl {id="virt-connecting-serial-console-virtctl_{{ context }}"}
+
+You can use the `virtctl` command-line tool to connect to the serial console of a running virtual machine. {._abstract}
+
+
+:::note
+
+If you run the `virtctl vnc` command on a remote machine over an SSH connection, you must forward the X session to your local machine by running the `ssh` command with the `-X` or `-Y` flags.
+
+:::
+
+
+**Prerequisites**
+
+*   You installed the `virt-viewer` package.
+
+**Procedure**
+
+1.  Run the following command to start the console session:
+    ```terminal
+    $ virtctl console <vm_name>
+    ```
+1.  Press `Ctrl+]` to end the console session.

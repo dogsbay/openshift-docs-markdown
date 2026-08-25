@@ -1,0 +1,21 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Proxy certificate purpose {id="proxy-cert-purpose_{{ context }}"}
+
+Proxy certificates allow platform components to trust custom certificate authorities when making egress connections. Proxy certificates allow users to specify one or more custom certificate authority (CA) certificates used by platform components when making egress connections. {._abstract}
+
+The `trustedCA` field of the Proxy object is a reference to a config map that contains a user-provided trusted certificate authority (CA) bundle. This bundle is merged with the {{ op_system_first }} trust bundle and injected into the `truststore` of platform components that make egress HTTPS calls. For example, `image-registry-operator` calls an external image registry to download images. If `trustedCA` is not specified, only the {{ op_system }} trust bundle is used for proxied HTTPS connections. Provide custom CA certificates to the {{ op_system }} trust bundle if you want to use your own certificate infrastructure.
+
+The `trustedCA` field should only be consumed by a proxy validator. The validator reads the certificate bundle from the required key `ca-bundle.crt`. The validator copies the bundle to a config map named `user-ca-bundle` in the `openshift-config-managed` namespace.
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-ca-bundle
+  namespace: openshift-config
+data:
+  ca-bundle.crt: |
+    -----BEGIN CERTIFICATE-----
+    Custom CA certificate bundle.
+    -----END CERTIFICATE-----
+```

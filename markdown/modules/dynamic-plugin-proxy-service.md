@@ -1,0 +1,54 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Plugin service proxy {id="dynamic-plugin-proxy-service_{{ context }}"}
+
+If you need to make HTTP requests to an in-cluster service from your plugin, you can declare a service proxy in its `ConsolePlugin` resource by using the `spec.proxy` array field. The console backend exposes the `/api/proxy/plugin/<plugin-name>/<proxy-alias>/<request-path>++?++<optional-query-parameters>` endpoint to proxy the communication between the plugin and the service. A proxied request uses a _service CA bundle_ by default. The service must use HTTPS. {._abstract}
+
+
+:::note
+
+The plugin must use the `consolefetch` API to make requests from its JavaScript code or some requests might fail. For more information, see "Dynamic plugin API".
+
+:::
+
+
+For each entry, you must specify an endpoint and alias of the proxy under the `endpoint` and `alias` fields. For the Service proxy type, you must set the endpoint `type` field to `Service` and the `service` must include values for the `name`, `namespace`, and `port` fields. For example, `/api/proxy/plugin/helm/helm-charts/releases++?++limit++=++10` is a proxy request path from the `helm` plugin with a `helm-charts` service that lists ten helm releases.
+
+```YAML title="Example service proxy"
+apiVersion: console.openshift.io/v1
+kind: ConsolePlugin
+metadata:
+  name:<plugin-name>
+spec:
+  proxy:
+  - alias: helm-charts
+    authorization: UserToken
+    caCertificate: +'-----BEGIN CERTIFICATE-----\nMIID....'en+
+    endpoint:
+      service:
+        name: <service-name>
+        namespace: <service-namespace>
+        port: <service-port>
+      type: Service
+```
+where:
+
+
+`spec.proxy.alias.helm-charts`
+:   Alias of the proxy.
+
+`spec.proxy.authorization.UserToken`
+:   If the service proxy request must contain the logged-in user’s {{ product_title }} access token, you must set the authorization field to `UserToken`.
+
+    :::note
+
+
+    If the service proxy request does not contain the logged-in user’s {{ product_title }} access token, set the authorization field to `None`.
+    
+    :::
+
+
+`spec.proxy.caCertificate.+'-----BEGIN CERTIFICATE-----\nMIID....'en+`
+:   If the service uses a custom service CA, the `caCertificate` field must contain the certificate bundle.
+
+`spec.proxy.endpoint`
+:   Endpoint of the proxy.

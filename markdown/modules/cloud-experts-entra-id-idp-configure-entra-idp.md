@@ -1,0 +1,64 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configure Entra ID as the cluster identity provider {id="cloud-experts-entra-id-idp-configure-entra-idp_{{ context }}"}
+
+Use the {{ rosa_cli_first }} to configure the cluster’s OAuth provider to use Entra ID as its identity provider, enabling users to log in with their Microsoft credentials and optional group-based access control. {._abstract}
+
+**Procedure**
+
+1.  Create the variables necessary for the identity provider configuration by running the following command:
+    ```terminal
+    $ CLUSTER_NAME=example-cluster
+    $ IDP_NAME=AAD
+    $ APP_ID=yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy
+    $ CLIENT_SECRET=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    $ TENANT_ID=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz
+    ```
+    where:
+
+
+    `example-cluster`
+    :   Replace this with the name of your cluster.
+
+    `AAD`
+    :   Replace this value with the name you used in the OAuth callback URL that you generated earlier in this process.
+
+    `yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy`
+    :   Replace this with the Application (client) ID.
+
+    `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
+    :   Replace this with the Client Secret.
+
+    `zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz`
+    :   Replace this with the Directory (tenant) ID.
+1.  Configure the cluster’s OAuth provider by running the following command. If you enabled group claims, ensure that you use the `--group-claims groups` argument.
+    *   If you enabled group claims, run the following command:
+        ```terminal
+        $ rosa create idp \
+        --cluster ${CLUSTER_NAME} \
+        --type openid \
+        --name ${IDP_NAME} \
+        --client-id ${APP_ID} \
+        --client-secret ${CLIENT_SECRET} \
+        --issuer-url https://login.microsoftonline.com/${TENANT_ID}/v2.0 \
+        --email-claims email \
+        --name-claims name \
+        --username-claims preferred_username \
+        --extra-scopes email,profile \
+        --groups-claims groups
+        ```
+    *   If you did not enable group claims, run the following command:
+        ```terminal
+        $ rosa create idp \
+        --cluster ${CLUSTER_NAME} \
+        --type openid \
+        --name ${IDP_NAME} \
+        --client-id ${APP_ID} \
+        --client-secret ${CLIENT_SECRET} \
+        --issuer-url https://login.microsoftonline.com/${TENANT_ID}/v2.0 \
+        --email-claims email \
+        --name-claims name \
+        --username-claims preferred_username \
+        --extra-scopes email,profile
+        ```
+
+        After a few minutes, the cluster authentication Operator reconciles your changes, and you can log in to the cluster by using Entra ID.

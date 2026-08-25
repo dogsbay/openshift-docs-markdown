@@ -1,0 +1,41 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Adding a custom prefix to control plane machine names {id="cpmso-config-prefix_{{ context }}"}
+
+Customize the prefix of control plane machine names to distinguish machines across environments or match your naming conventions. {._abstract}
+
+**Procedure**
+
+1.  Edit the `ControlPlaneMachineSet` CR by running the following command:
+    ```terminal
+    $ oc edit controlplanemachineset.machine.openshift.io cluster \
+      -n openshift-machine-api
+    ```
+1.  Edit the `.spec.machineNamePrefix` field of the `ControlPlaneMachineSet` CR:
+    ```yaml
+    apiVersion: machine.openshift.io/v1
+    kind: ControlPlaneMachineSet
+    metadata:
+      name: cluster
+      namespace: openshift-machine-api
+    spec:
+      machineNamePrefix: <machine_prefix>
+    # ...
+    ```
+
+    where `<machine_prefix>` specifies a prefix name that follows the requirements for a lowercase RFC 1123 subdomain.
+
+    :::important
+
+    A lowercase RFC 1123 subdomain must consist of only lowercase alphanumeric characters, hyphens ('-'), and periods ('.').
+    Each block, separated by periods, must start and end with an alphanumeric character.
+    Hyphens are not allowed at the start or end of a block, and consecutive periods are not permitted.
+    
+    :::
+
+1.  Save your changes.
+
+**Next steps**
+
+*   If you changed only the value of the `machineNamePrefix` parameter, clusters that use the default `RollingUpdate` update strategy are not automatically updated.
+To propagate this change, you must replace your control plane machines manually, regardless of the update strategy for the cluster.
+For more information, see "Replacing a control plane machine".

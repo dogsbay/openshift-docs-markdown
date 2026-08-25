@@ -1,0 +1,97 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a custom resource definition {id="crd-creating-custom-resources-definition_{{ context }}"}
+
+To create custom resource (CR) objects, cluster administrators must first create a custom resource definition (CRD). {._abstract}
+
+**Prerequisites**
+
+*   Access to an {{ product_title }} cluster with `cluster-admin` user privileges.
+
+**Procedure**
+
+1.  Create a YAML file that contains the following field types:
+    ```yaml title="Example YAML file for a CRD"
+    apiVersion: apiextensions.k8s.io/v1
+    kind: CustomResourceDefinition
+    metadata:
+      name: crontabs.stable.example.com
+    spec:
+      group: stable.example.com
+      versions:
+        - name: v1
+          served: true
+          storage: true
+          schema:
+            openAPIV3Schema:
+              type: object
+              properties:
+                spec:
+                  type: object
+                  properties:
+                    cronSpec:
+                      type: string
+                    image:
+                      type: string
+                    replicas:
+                      type: integer
+      scope: Namespaced
+      names:
+        plural: crontabs
+        singular: crontab
+        kind: CronTab
+        shortNames:
+        - ct
+    ```
+
+    where:
+
+    `apiVersion`
+    :   Specifies the `apiextensions.k8s.io/v1` API parameter.
+
+    `metadata.name`
+    :   Specifies a name for the definition. This must be in the `<plural-name>.<group>` format using the values from the `group` and `plural` fields.
+
+    `spec.group`
+    :   Specifies a group name for the API. An API group is a collection of objects that are logically related. For example, all batch objects like `Job` or `ScheduledJob` could be in the batch API group (such as `batch.api.example.com`). A good practice is to use a fully-qualified-domain name (FQDN) of your organization.
+
+    `spec.versions.name`
+    :   Specifies a version name to be used in the URL. Each API group can exist in multiple versions, for example `v1alpha`, `v1beta`, `v1`.
+
+    `spec.scope`
+    :   Specifies whether the custom objects are available to a project (`Namespaced`) or all projects in the cluster (`Cluster`).
+
+    `spec.names.plural`
+    :   Specifies the plural name to use in the URL. The `plural` field is the same as a resource in an API URL.
+
+    `spec.names.singular`
+    :   Specifies a singular name to use as an alias on the CLI and for display.
+
+    `spec.names.kind`
+    :   Specifies the kind of objects that can be created. The type can be in camel case.
+
+    `spec.names.shortNames`
+    :   Specifies a shorter string to match your resource on the CLI.
+
+    :::note
+
+    By default, a CRD is cluster-scoped and available to all projects.
+    
+    :::
+
+
+1.  Create the CRD object:
+    ```terminal
+    $ oc create -f <file_name>.yaml
+    ```
+
+    A new RESTful API endpoint is created at:
+    ```terminal
+    /apis/<spec:group>/<spec:version>/<scope>/*/<names-plural>/...
+    ```
+
+    For example, using the example file, the following endpoint is created:
+    ```terminal
+    /apis/stable.example.com/v1/namespaces/*/crontabs/...
+    ```
+
+    You can now use this endpoint URL to create and manage CRs. The object kind is based on the `spec.kind` field of the CRD object you created.

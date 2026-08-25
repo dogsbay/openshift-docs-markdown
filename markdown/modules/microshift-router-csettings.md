@@ -1,0 +1,42 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Router settings and valid values {id="microshift-router-csettings_{{ context }}"}
+
+Valid values and defaults for ingress router fields in the `config.yaml` file on {{ microshift_short }} cover `listenAddress`, `ports`, `routeAdmissionPolicy`, and `status`. {._abstract}
+
+```yaml title="Example config.yaml router settings"
+# ...
+ingress:
+  listenAddress:
+    - "" 
+  ports:
+    http: 80
+    https: 443
+  routeAdmissionPolicy:
+    namespaceOwnership: InterNamespaceAllowed
+  status: Managed
+# ...
+```
+where:
+
+
+`ingress.listenAddress`
+:   Specifies the single IP address or host name or a list of IP addresses or host names. The default value is the entire network of the host.
+
+
+`ingress.ports`
+:   Specifies a single, unique port in the `1` to `65535` range. The values of the `ports.http` and `ports.https` fields cannot be the same.
+
+
+`ingress.routeAdmissionPolicy.namespaceOwnership`
+:   Specifies whether routes can claim different paths of the same host name across namespaces. The default value is `InterNamespaceAllowed`.
+
+
+`ingress.status`
+:   Specifies whether the ingress ports remain open. The default value is `Managed`.
+
+
+:::important
+
+The firewalld service is bypassed by the default {{ microshift_short }} router and by configurations that enable the router. Ingress and egress must be controlled by setting network policies when the router is active.
+
+:::

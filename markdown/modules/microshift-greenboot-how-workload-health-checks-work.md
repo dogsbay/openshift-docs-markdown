@@ -1,0 +1,29 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# How workload health checks work {id="microshift-greenboot-how-workload-health-checks-work_{{ context }}"}
+
+You can use greenboot health checks to assess the health of your workloads and applications. You can also write your own health check scripts for your applications. Greenboot health checks are helpful on edge devices where direct serviceability is either limited or non-existent. {._abstract}
+
+These additional health checks are useful for software problem detection and automatic system rollbacks.
+
+Workload or application health checks can use the {{ microshift_short }} basic health check functions already implemented for the {{ microshift_short }} core services. Creating your own comprehensive scripts for your applications is recommended. For example, you can write one that verifies that a service has started.
+
+You can also use the `microshift healthcheck` command, which can run checks that the basic functions of the workload are operating as expected.
+
+
+:::important
+
+The following functions related to checking workload health in `/usr/share/microshift/functions/greenboot.sh` are deprecated and planned for removal in a future release:
+
+*   `wait_for`
+*   `namespace_images_downloaded`
+*   `namespace_deployment_ready`
+*   `namespace_daemonset_ready`
+*   `namespace_pods_ready`
+*   `namespace_pods_not_restarting`
+*   `print_failure_logs`
+*   `log_failure_cmd`
+*   `log_script_exit`
+*   `lvmsDriverShouldExist`
+*   `csiComponentShouldBeDeploy`
+
+:::

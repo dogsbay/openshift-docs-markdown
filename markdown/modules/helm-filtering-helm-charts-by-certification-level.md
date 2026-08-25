@@ -1,0 +1,22 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Filtering Helm Charts by their certification level {id="filtering-helm-charts-by-certification-level_{{ context }}"}
+
+You can filter Helm charts based on their certification level in the **Developer Catalog**.
+
+**Procedure**
+
+1.  In the **Developer** perspective, navigate to the **+Add** view and select a project.
+1.  From the **Developer Catalog** tile, select the **Helm Chart** option to see all the Helm charts in the **Developer Catalog**.
+1.  Use the filters to the left of the list of Helm charts to filter the required charts:
+    *   Use the **Chart Repositories** filter to filter charts provided by **Red Hat Certification Charts** or **OpenShift Helm Charts**.
+    *   Use the **Source** filter to filter charts sourced from **Partners**, **Community**, or **Red Hat**. Certified charts are indicated with the (![title="Certified icon"](/_assets/images/odc_verified_icon.png)) icon.
+
+
+:::note
+
+The **Source** filter will not be visible when there is only one provider type.
+
+:::
+
+
+You can now select the required chart and install it.

@@ -1,0 +1,65 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Using an OVN-Kubernetes localnet topology to map VLANs to a secondary interface {id="nw-multus-edit-network-additional-vlans_{{ context }}"}
+
+You can use OVN-Kubernetes localnet topology in a `NetworkAttachmentDefinition` (NAD) to map a specific VLAN ID from the physical network to the secondary interface of a pod. {._abstract}
+
+To provide multiple VLANs for cluster workloads in {{ product_title }}, define additional VLANs in the `NetworkAttachmentDefinition` custom resource (CR). Configuring trunk ports ensures that the physical network associates correctly with your virtual infrastructure for reliable traffic management.
+
+The example in the procedure demonstrates the following configurations:
+
+*   Physical switch ports connect to {{ product_title }} nodes by using VLAN trunking. The trunk carries tagged traffic for the VLANs you define in NADs.
+*   The `br-ex` acts as the OVS bridge that connects virtual workloads to the physical workloads.
+*   Multiple NADs with specific VLAN tags get created by using the `localnet` topology. This configuration defines specific VLAN IDs for traffic isolation.
+*   Pods or virtual machines (VMs) attach to the NAD CRs for the purposes of improved network connectivity.
+
+**Prerequisites**
+
+*   You installed the {{ oc_first }}.
+*   You logged in as a user with `cluster-admin` privileges.
+*   You installed the NMState Operator.
+*   You configured the `br-ex` bridge interface during cluster installation.
+
+**Procedure**
+
+1.  Create an `NetworkAttachmentDefinition` CR for each VLAN, such as `nad-cvlan100.yaml`. OVN-Kubernetes uses the NAD files to tag and untag Ethernet frames for pods or VMs.
+    ```yaml title="Example configuration"
+    apiVersion: k8s.cni.cncf.io/v1
+    kind: NetworkAttachmentDefinition
+    metadata:
+      name: vlan-100
+      namespace: default
+    spec:
+      config: |-
+        {
+          "cniVersion": "0.4.0",
+          "name": "localnet-vlan-100",
+          "type": "ovn-k8s-cni-overlay",
+          "physicalNetworkName": "physnet",
+          "topology": "localnet",
+          "vlanID": 100,
+          "mtu": 1500,
+          "netAttachDefName": "default/vlan-100"
+        }
+    # ...
+    ```
+1.  Attach pods or VMs to the VLANs by referencing the NAD in the configuration for the pod or VM:
+    ```yaml title="Example pod configuration"
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: vlan-100
+    # ...
+    ```
+    ```yaml title="Example VM configuration"
+    apiVersion: kubevirt.io/v1
+    kind: VirtualMachine
+    spec:
+        template:
+            spec:
+            networks:
+            - multus:
+                networkName: vlan-100
+                name: secondary-vlan
+    # ...
+    ```

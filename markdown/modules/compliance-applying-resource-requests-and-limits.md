@@ -1,0 +1,21 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Applying resource requests and limits {id="compliance-applying-resource-requests-and-limits_{{ context }}"}
+
+You can configure a container’s requests and limits for memory and CPU to define how much CPU time and memory that the container can use. {._abstract}
+
+When the kubelet starts a container as part of a Pod, the kubelet passes that container’s requests and limits for memory and CPU to the container runtime. In Linux, the container runtime configures the kernel cgroups that apply and enforce the limits you defined.
+
+The CPU limit defines how much CPU time the container can use. During each scheduling interval, the Linux kernel checks to see if this limit is exceeded. If so, the kernel waits before allowing the cgroup to resume execution.
+
+If several different containers (cgroups) want to run on a contended system, workloads with larger CPU requests are allocated more CPU time than workloads with small requests. The memory request is used during Pod scheduling. On a node that uses cgroups v2, the container runtime might use the memory request as a hint to set `memory.min` and `memory.low` values.
+
+If a container attempts to allocate more memory than this limit, the Linux kernel out-of-memory subsystem activates and intervenes by stopping one of the processes in the container that tried to allocate memory. The memory limit for the Pod or container can also apply to pages in memory-backed volumes, such as an emptyDir.
+
+The kubelet tracks `tmpfs` `emptyDir` volumes as container memory is used, rather than as local ephemeral storage. If a container exceeds its memory request and the node that it runs on becomes short of memory overall, the Pod’s container might be evicted.
+
+
+:::important
+
+A container might not exceed its CPU limit for extended periods. Container run times do not stop Pods or containers for excessive CPU usage. To determine whether a container cannot be scheduled or is being killed due to resource limits, see _Troubleshooting the Compliance Operator_.
+
+:::

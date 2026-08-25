@@ -1,0 +1,10 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Considerations for cluster maximum tests {id="planning-environment-cluster-maximums-considerations_{{ context }}"}
+
+These tests measure individual OpenShift resource limits with dedicated workloads. The following considerations describe factors that can change the limits you observe in production compared with the published tested maximums. {._abstract}
+
+*   **Idle pod baselines:** Metrics include `pause` pods and default cluster control plane pods on control plane nodes. Results use the `node-density` workload and change with active application load.
+*   **Resource and I/O limitations:** Observed limits depend on workload intensity. For example, high-density I/O workloads or hitting the PVC-per-node ceiling can reduce the maximum stable pod count.
+*   **Namespace composition:** Tests include default cluster Operator namespaces. Each test namespace has idle pods, config maps, and secrets to model routine operational load.
+*   **Service scalability:** Data reflects tested `ClusterIP` services with a single endpoint using the `cni-density` workload. Other service types can scale differently.
+*   **Infrastructure and routing:** The test environment used two routers with default settings on dedicated {{ product_title }} infrastructure nodes. Limits used the `cluster-density` workload.

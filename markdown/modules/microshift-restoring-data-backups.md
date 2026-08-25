@@ -1,0 +1,46 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Restore {{ microshift_short }} data backups manually {id="microshift-restoring-data-backups-manually_{{ context }}"}
+
+To restore {{ product_title }} data after an update or data loss, you can run `microshift restore` with the full path to the backup. Backups can be restored after updates, or after other system events that remove or damage required data. When you restore a backup, you must use the entire file path. {._abstract}
+
+
+:::note
+
+On an `rpm-ostree` system, {{ microshift_short }} backs up and restores data automatically. Automated backups are in the `/var/lib/microshift-backups` directory by default.
+
+:::
+
+
+**Prerequisites**
+
+*   Root access to the host.
+*   You have the full path of the data backup file.
+*   The {{ microshift_short }} service is stopped.
+
+**Procedure**
+
+1.  Manually restore {{ microshift_short }} data by using the full file path of the backup you want to restore by running the following command:
+    ```terminal
+    $ sudo microshift restore /var/lib/microshift-backups/_<manual_backup>_
+    ```
+    *   For `_<manual_backup>_`, specify the backup name that you want to use. Optionally, you can also restore automatic `ostree` backups using the full file path.
+        ```terminal title="Example output"
+        ??? I1017 07:39:52.055165    6007 data_manager.go:131] "Copying backup to data directory" storage="/var/lib/microshift-backups" name="test" data="/var/lib/microshift"
+        ??? I1017 07:39:52.055243    6007 data_manager.go:154] "Renaming existing data dir" data="/var/lib/microshift" renamedTo="/var/lib/microshift.saved"
+        ??? I1017 07:39:52.055326    6007 data_manager.go:227] "Starting copy" cmd="/bin/cp --verbose --recursive --preserve --reflink=auto /var/lib/microshift-backups/test /var/lib/microshift"
+        ??? I1017 07:39:52.061363    6007 data_manager.go:241] "Finished copy" cmd="/bin/cp --verbose --recursive --preserve --reflink=auto /var/lib/microshift-backups/test /var/lib/microshift"
+        ??? I1017 07:39:52.061404    6007 data_manager.go:175] "Removing temporary data directory" path="/var/lib/microshift.saved"
+        ??? I1017 07:39:52.063745    6007 data_manager.go:180] "Copied backup to data directory" name="test" data="/var/lib/microshift"
+        ```
+1.  Optional. Manually restore data from a customized directory by using the full file path of the backup. Run the following command:
+    ```terminal
+    $ sudo microshift restore /mnt/_<other_backups_location>_/_<another_manual_backup>_
+    ```
+    *   For `_<other_backups_location>_`, specify the directory that you used.
+    *   For `_<another_manual_backup>_`, specify the backup name that you used when creating the backup you are restoring.
+1.  Restart the host. Restarting the host enables all workloads and pods to restart.
+
+**Verification**
+
+*   Use the `oc get pods -A` command to verify that the node is running, then check the restored data.
+{% leveloffset +2 %}{% include "./snippets/microshift-healthy-pods-snip.md" %}{% endleveloffset %}

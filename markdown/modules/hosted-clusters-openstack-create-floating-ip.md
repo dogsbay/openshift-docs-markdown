@@ -1,0 +1,30 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a floating IP for ingress {id="hosted-clusters-openstack-create-floating-ip_{{ context }}"}
+
+If you want to make ingress available in a hosted cluster without manual intervention, you can create a floating IP address for it in advance. {._abstract}
+
+**Prerequisites**
+
+*   You have access to the {{ rh_openstack_first }} cloud.
+*   If you use a pre-defined floating IP address for ingress, you created a DNS record that points to it for the following wildcard domain: `*.apps.<cluster_name>.<base_domain>`, where:
+    *   `<cluster_name>` is the name of the management cluster.
+    *   `<base_domain>` is the parent DNS domain under which your cluster’s applications live.
+
+**Procedure**
+
+*   Create a floating IP address by running the following command:
+    ```terminal
+    $ openstack floating ip create <external_network_id>
+    ```
+    where:
+
+
+    `<external_network_id>`
+    :   Specifies the ID of the external network.
+
+    :::note
+
+    If you specify a floating IP address by using the `--openstack-ingress-floating-ip` flag without creating it in advance, the `cloud-provider-openstack` component attempts to create it automatically. This process only succeeds if the
+     Neutron API policy permits creating a floating IP address with a specific IP address.
+    
+    :::

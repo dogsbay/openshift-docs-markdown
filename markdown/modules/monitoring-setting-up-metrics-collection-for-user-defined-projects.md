@@ -1,0 +1,6 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Setting up metrics collection for user-defined projects {id="setting-up-metrics-collection-for-user-defined-projects_{{ context }}"}
+
+You can create a `ServiceMonitor` resource to scrape metrics from a service endpoint in a user-defined project. This assumes that your application uses a Prometheus client library to expose metrics to the `/metrics` canonical name.
+
+This section describes how to deploy a sample service in a user-defined project and then create a `ServiceMonitor` resource that defines how that service should be monitored.

@@ -1,0 +1,57 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Widening the scope of the mirror image catalog to reduce the frequency of cluster node reboots {id="generating-icsp-object-scoped-to-a-registry_{{ context }}"}
+
+You can scope the mirrored image catalog at the repository level or the wider registry level. A widely scoped `ImageContentSourcePolicy` resource reduces the number of times the nodes need to reboot in response to changes to the resource. {._abstract}
+
+To widen the scope of the mirror image catalog in the `ImageContentSourcePolicy` resource, perform the following procedure.
+
+**Prerequisites**
+
+*   Install the {{ product_title }} CLI `oc`.
+*   Log in as a user with `cluster-admin` privileges.
+*   Configure a mirrored image catalog for use in your disconnected cluster.
+
+**Procedure**
+
+1.  Run the following command, specifying values for `<local_registry>`, `<pull_spec>`, and `<pull_secret_file>`:
+    ```terminal
+    $ oc adm catalog mirror <local_registry>/<pull_spec> <local_registry> -a <pull_secret_file> --icsp-scope=registry
+    ```
+
+    where:
+
+    &lt;local_registry>
+    :   is the local registry you have configured for your disconnected cluster, for example, `local.registry:5000`.
+
+    &lt;pull_spec>
+    :   is the pull specification as configured in your disconnected registry, for example, `redhat/redhat-operator-index:v{{ product_version }}`
+
+    &lt;pull_secret_file>
+    :   is the `registry.redhat.io` pull secret in `.json` file format. You can download the {{ cluster_manager_url_pull }}.
+
+    The `oc adm catalog mirror` command creates a `/redhat-operator-index-manifests` directory and generates `imageContentSourcePolicy.yaml`, `catalogSource.yaml`, and `mapping.txt` files.
+1.  Apply the new `ImageContentSourcePolicy` resource to the cluster:
+    ```terminal
+    $ oc apply -f imageContentSourcePolicy.yaml
+    ```
+
+**Verification**
+
+*   Verify that `oc apply` successfully applied the change to `ImageContentSourcePolicy`:
+    ```terminal
+    $ oc get ImageContentSourcePolicy -o yaml
+    ```
+
+```yaml title="Example output"
+apiVersion: v1
+items:
+- apiVersion: operator.openshift.io/v1alpha1
+  kind: ImageContentSourcePolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"operator.openshift.io/v1alpha1","kind":"ImageContentSourcePolicy","metadata":{"annotations":{},"name":"redhat-operator-index"},"spec":{"repositoryDigestMirrors":[{"mirrors":["local.registry:5000"],"source":"registry.redhat.io"}]}}
+...
+```
+
+After you update the `ImageContentSourcePolicy` resource, {{ product_title }} deploys the new settings to each node and the cluster starts using the mirrored repository for requests to the source repository.

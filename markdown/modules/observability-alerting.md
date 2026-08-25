@@ -1,0 +1,48 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Alerting {id="observability-alerting_{{ context }}"}
+
+{{ product_title }} includes a large number of alert rules, which can change from release to release.  {._abstract}
+
+## Viewing default alerts {id="viewing-default-alerts_{{ context }}"}
+
+To review all of the alert rules in a cluster, run the following command:
+
+```terminal
+$ oc get cm -n openshift-monitoring prometheus-k8s-rulefiles-0 -o yaml
+```
+
+Rules can include a description and provide a link to additional information and mitigation steps. 
+For example, see the rule for `etcdHighFsyncDurations`:
+
+```terminal
+      - alert: etcdHighFsyncDurations
+        annotations:
+          description: 'etcd cluster "{{ $labels.job }}": 99th percentile fsync durations
+            are {{ $value }}s on etcd instance {{ $labels.instance }}.'
+          runbook_url: https://github.com/openshift/runbooks/blob/master/alerts/cluster-etcd-operator/etcdHighFsyncDurations.md
+          summary: etcd cluster 99th percentile fsync durations are too high.
+        expr: |
+          histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket{job=~".*etcd.*"}[5m]))
+          > 1
+        for: 10m
+        labels:
+          severity: critical
+```
+
+## Alert notifications {id="alert-notifications"}
+
+You can view alerts in the {{ product_title }} console. However, an administrator must configure an external receiver to forward the alerts to. 
+{{ product_title }} supports the following receiver types:
+
+
+PagerDuty
+:   A third-party incident response platform.
+
+Webhook
+:   An arbitrary API endpoint that receives an alert through a `POST` request and can take any necessary action.
+
+Email
+:   Sends an email to a designated address.
+
+Slack
+:   Sends a notification to either a Slack channel or an individual user.

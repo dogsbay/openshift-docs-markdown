@@ -1,0 +1,46 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Logging 5.8.4 {id="logging-release-notes-5-8-4_{{ context }}"}
+This release includes [OpenShift Logging Bug Fix Release 5.8.4](https://access.redhat.com/errata/RHBA-2024:1065).
+
+## Bug fixes {id="logging-release-notes-5-8-4-bug-fixes"}
+
+*   Before this update, the developer console’s logs did not account for the current namespace, resulting in query rejection for users without cluster-wide log access. With this update, all supported OCP versions ensure correct namespace inclusion. ([LOG-4905](https://issues.redhat.com/browse/LOG-4905))
+*   Before this update, the Cluster Logging Operator deployed `ClusterRoles` supporting LokiStack deployments only when the default log output was  LokiStack. With this update, the roles are split into two groups: read and write. The write roles deploys based on the setting of the default log storage, just like all the roles used to do before. The read roles deploys based on whether the logging console plugin is active. ([LOG-4987](https://issues.redhat.com/browse/LOG-4987))
+*   Before this update, multiple `ClusterLogForwarders` defining the same input receiver name had their service endlessly reconciled because of changing `ownerReferences` on one service. With this update, each receiver input will have its own service named with the convention of `<CLF.Name>-<input.Name>`. ([LOG-5009](https://issues.redhat.com/browse/LOG-5009))
+*   Before this update, the `ClusterLogForwarder` did not report errors when forwarding logs to cloudwatch without a secret. With this update, the following error message appears when forwarding logs to cloudwatch without a secret: `secret must be provided for cloudwatch output`. ([LOG-5021](https://issues.redhat.com/browse/LOG-5021))
+*   Before this update, the `log_forwarder_input_info` included `application`, `infrastructure`, and `audit` input metric points. With this update, `http` is also added as a metric point. ([LOG-5043](https://issues.redhat.com/browse/LOG-5043))
+
+## CVEs {id="logging-release-notes-5-8-4-CVEs"}
+*   [CVE-2021-35937](https://access.redhat.com/security/cve/CVE-2021-35937)
+*   [CVE-2021-35938](https://access.redhat.com/security/cve/CVE-2021-35938)
+*   [CVE-2021-35939](https://access.redhat.com/security/cve/CVE-2021-35939)
+*   [CVE-2022-3545](https://access.redhat.com/security/cve/CVE-2022-3545)
+*   [CVE-2022-24963](https://access.redhat.com/security/cve/CVE-2022-24963)
+*   [CVE-2022-36402](https://access.redhat.com/security/cve/CVE-2022-36402)
+*   [CVE-2022-41858](https://access.redhat.com/security/cve/CVE-2022-41858)
+*   [CVE-2023-2166](https://access.redhat.com/security/cve/CVE-2023-2166)
+*   [CVE-2023-2176](https://access.redhat.com/security/cve/CVE-2023-2176)
+*   [CVE-2023-3777](https://access.redhat.com/security/cve/CVE-2023-3777)
+*   [CVE-2023-3812](https://access.redhat.com/security/cve/CVE-2023-3812)
+*   [CVE-2023-4015](https://access.redhat.com/security/cve/CVE-2023-4015)
+*   [CVE-2023-4622](https://access.redhat.com/security/cve/CVE-2023-4622)
+*   [CVE-2023-4623](https://access.redhat.com/security/cve/CVE-2023-4623)
+*   [CVE-2023-5178](https://access.redhat.com/security/cve/CVE-2023-5178)
+*   [CVE-2023-5363](https://access.redhat.com/security/cve/CVE-2023-5363)
+*   [CVE-2023-5388](https://access.redhat.com/security/cve/CVE-2023-5388)
+*   [CVE-2023-5633](https://access.redhat.com/security/cve/CVE-2023-5633)
+*   [CVE-2023-6679](https://access.redhat.com/security/cve/CVE-2023-6679)
+*   [CVE-2023-7104](https://access.redhat.com/security/cve/CVE-2023-7104)
+*   [CVE-2023-27043](https://access.redhat.com/security/cve/CVE-2023-27043)
+*   [CVE-2023-38409](https://access.redhat.com/security/cve/CVE-2023-38409)
+*   [CVE-2023-40283](https://access.redhat.com/security/cve/CVE-2023-40283)
+*   [CVE-2023-42753](https://access.redhat.com/security/cve/CVE-2023-42753)
+*   [CVE-2023-43804](https://access.redhat.com/security/cve/CVE-2023-43804)
+*   [CVE-2023-45803](https://access.redhat.com/security/cve/CVE-2023-45803)
+*   [CVE-2023-46813](https://access.redhat.com/security/cve/CVE-2023-46813)
+*   [CVE-2024-20918](https://access.redhat.com/security/cve/CVE-2024-20918)
+*   [CVE-2024-20919](https://access.redhat.com/security/cve/CVE-2024-20919)
+*   [CVE-2024-20921](https://access.redhat.com/security/cve/CVE-2024-20921)
+*   [CVE-2024-20926](https://access.redhat.com/security/cve/CVE-2024-20926)
+*   [CVE-2024-20945](https://access.redhat.com/security/cve/CVE-2024-20945)
+*   [CVE-2024-20952](https://access.redhat.com/security/cve/CVE-2024-20952)

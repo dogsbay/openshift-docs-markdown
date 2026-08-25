@@ -1,0 +1,34 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Release notes for Red Hat {{ ServerlessProductName }} 1.25.0 {id="serverless-rn-1-25-0_{{ context }}"}
+
+{{ ServerlessProductName }} 1.25.0 is now available. New features, changes, and known issues that pertain to {{ ServerlessProductName }} on {{ product_title }} are included in this topic.
+
+## New features {id="new-features-1.25.0_{{ context }}"}
+
+*   {{ ServerlessProductName }} now uses Knative Serving 1.4.
+*   {{ ServerlessProductName }} now uses Knative Eventing 1.4.
+*   {{ ServerlessProductName }} now uses Kourier 1.4.
+*   {{ ServerlessProductName }} now uses Knative (`kn`) CLI 1.4.
+*   {{ ServerlessProductName }} now uses Knative Kafka 1.4.
+*   The `kn func` CLI plugin now uses `func` 1.7.0.
+*   Integrated development environment (IDE) plugins for creating and deploying functions are now available for [Visual Studio Code](https://github.com/redhat-developer/vscode-knative) and [IntelliJ](https://github.com/redhat-developer/intellij-knative).
+*   Knative Kafka broker is now GA. Knative Kafka broker is a highly performant implementation of the Knative broker API, directly targeting Apache Kafka.
+
+    It is recommended to not use the MT-Channel-Broker, but the Knative Kafka broker instead.
+*   Knative Kafka sink is now GA. A `KafkaSink` takes a `CloudEvent` and sends it to an Apache Kafka topic. Events can be specified in either structured or binary content modes.
+*   Enabling TLS for internal traffic is now available as a Technology Preview.
+
+## Fixed issues {id="fixed-issues-1.25.0_{{ context }}"}
+
+*   Previously, Knative Serving had an issue where the readiness probe failed if the container was restarted after a liveness probe fail. This issue has been fixed.
+
+## Known issues {id="known-issues-1.25.0_{{ context }}"}
+
+*   The Federal Information Processing Standards (FIPS) mode is disabled for Kafka broker, Kafka source, and Kafka sink.
+*   The `SinkBinding` object does not support custom revision names for services.
+*   The Knative Serving Controller pod adds a new informer to watch secrets in the cluster. The informer includes the secrets in the cache, which increases memory consumption of the controller pod.
+
+    If the pod runs out of memory, you can work around the issue by increasing the memory limit for the deployment.
+*   If you use `net-istio` for Ingress and enable mTLS via SMCP using `security.dataPlane.mtls: true`, Service Mesh deploys `DestinationRules` for the `*.local` host, which does not allow `DomainMapping` for {{ ServerlessProductName }}.
+
+    To work around this issue, enable mTLS by deploying `PeerAuthentication` instead of using `security.dataPlane.mtls: true`.

@@ -1,0 +1,106 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About switching between CLI profiles {id="about-switches-between-cli-profiles_{{ context }}"}
+
+You can use contexts to easily switch between users across multiple {{ product_title }} clusters when using the {{ oc_first }}. You specify a nickname to make managing CLI configurations easier by providing short-hand references to contexts, user credentials, and cluster details. {._abstract}
+
+After a user logs in with the `oc` CLI for the first time, {{ product_title }} creates a `~/.kube/config` file if one does not already exist. As more authentication and connection details are provided to the CLI, the updated information is stored in the configuration file:
+
+```yaml title="CLI configuration file"
+apiVersion: v1
+clusters:
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://openshift1.example.com:8443
+  name: openshift1.example.com:8443
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://openshift2.example.com:8443
+  name: openshift2.example.com:8443
+contexts:
+- context:
+    cluster: openshift1.example.com:8443
+    namespace: alice-project
+    user: alice/openshift1.example.com:8443
+  name: alice-project/openshift1.example.com:8443/alice
+- context:
+    cluster: openshift1.example.com:8443
+    namespace: joe-project
+    user: alice/openshift1.example.com:8443
+  name: joe-project/openshift1/alice
+current-context: joe-project/openshift1.example.com:8443/alice
+kind: Config
+preferences: {}
+users: (4)
+- name: alice/openshift1.example.com:8443
+  user:
+    token: xZHd2piv5_9vQrg-SKXRJ2Dsl9SceNJdhNTljEKTb8k
+```
+where:
+
+
+`clusters`
+:   Specifies connection details for {{ product_title }} clusters, including the address for their master server. In this example, one cluster is nicknamed `openshift1.example.com:8443` and another is nicknamed `openshift2.example.com:8443`.
+
+`contexts`
+:   Specifies two contexts: one nicknamed `alice-project/openshift1.example.com:8443/alice`, using the `alice-project` project, `openshift1.example.com:8443` cluster, and `alice` user, and another nicknamed `joe-project/openshift1.example.com:8443/alice`, using the `joe-project` project, `openshift1.example.com:8443` cluster and `alice` user.
+
+`current-context`
+:   Specifies that the `joe-project/openshift1.example.com:8443/alice` context is currently in use, allowing the `alice` user to work in the `joe-project` project on the `openshift1.example.com:8443` cluster.
+
+`users`
+:   Specifies user credentials. In this example, the user nickname `alice/openshift1.example.com:8443` uses an access token.
+
+The CLI can support multiple configuration files which are loaded at runtime and merged together along with any override options specified from the command line. After you are logged in, you can use the `oc status` or `oc project` command to verify your current working environment:
+
+```terminal title="Verify the current working environment"
+$ oc status
+```
+
+```terminal title="Example output"
+In project Joe's Project (joe-project)
+
+service database (172.30.43.12:5434 -> 3306)
+  database deploys docker.io/openshift/mysql-55-centos7:latest
+    #1 deployed 25 minutes ago - 1 pod
+
+service frontend (172.30.159.137:5432 -> 8080)
+  frontend deploys origin-ruby-sample:latest <-
+    builds https://github.com/openshift/ruby-hello-world with joe-project/ruby-20-centos7:latest
+    #1 deployed 22 minutes ago - 2 pods
+
+To see more information about a service or deployment, use 'oc describe service <name>' or 'oc describe dc <name>'.
+You can use 'oc get all' to see lists of each of the types described in this example.
+```
+
+```terminal title="List the current project"
+$ oc project
+```
+
+```terminal title="Example output"
+Using project "joe-project" from context named "joe-project/openshift1.example.com:8443/alice" on server "https://openshift1.example.com:8443".
+```
+
+You can run the `oc login` command again and supply the required information during the interactive process, to log in using any other combination of user credentials and cluster details. A context is constructed based on the supplied information if one does not already exist. If you are already logged in and want to switch to another project the current user already has access to, use the `oc project` command and enter the name of the project:
+
+```terminal
+$ oc project alice-project
+```
+
+```terminal title="Example output"
+Now using project "alice-project" on server "https://openshift1.example.com:8443".
+```
+
+At any time, you can use the `oc config view` command to view your current CLI configuration, as seen in the output. Additional CLI configuration commands are also available for more advanced usage.
+
+
+:::note
+
+If you have access to administrator credentials but are not logged in as the default system user `system:admin`, you can log back in as this user as long as the credentials are present in your CLI configuration file.
+
+The following command logs in and switches to the default project:
+
+```terminal
+$ oc login -u system:admin -n default
+```
+
+:::

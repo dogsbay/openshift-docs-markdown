@@ -1,0 +1,78 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring enhanced PTP log reduction {id="cnf-configuring-enhanced-log-reduction-for-linuxptp_{{ context }}"}
+
+Basic log reduction effectively filters out frequent logs. However, if you want a periodic summary of the filtered logs, use the enhanced log reduction feature. {._abstract}
+
+**Prerequisites**
+
+*   Install the OpenShift CLI (`oc`).
+*   Log in as a user with `cluster-admin` privileges.
+*   Install the PTP Operator.
+
+**Procedure**
+
+1.  Edit the `PtpConfig` custom resource (CR):
+    ```terminal
+    $ oc edit PtpConfig -n openshift-ptp
+    ```
+1.  Add the `ptpSettings.logReduce` specification in the `spec.profile` section, and set the value to `enhanced`:
+    ```yaml
+    apiVersion: ptp.openshift.io/v1
+    kind: PtpConfig
+    metadata:
+      name: <ptp_config_name>
+      namespace: openshift-ptp
+    ...
+    spec:
+      profile:
+      - name: "profile1"
+    ...
+        ptpSettings:
+          logReduce: "enhanced"
+    ```
+1.  Optional: Configure the interval for summary logs and a threshold in nanoseconds for the master offset logs. For example, to set the interval to 60 seconds and the threshold to 100 nanoseconds, add the `ptpSettings.logReduce` specification in the `spec.profile` section and set the value to `enhanced 60s 100`.
+    ```yaml
+    apiVersion: ptp.openshift.io/v1
+    kind: PtpConfig
+    metadata:
+      name: <ptp_config_name>
+      namespace: openshift-ptp
+    spec:
+      profile:
+      - name: "profile1"
+        ptpSettings:
+          logReduce: "enhanced 60s 100"
+    ```
+    *   By default, the `linuxptp-daemon` is configured to generate summary logs every 30 seconds if no value is specified. In the example configuration, the daemon generates summary logs every 60 seconds and a threshold of 100 nanoseconds for the master offset logs is set. This means the daemon only produces summary logs at the specified interval. However, if your clock’s offset from the master exceeds plus or minus 100 nanoseconds, that specific log entry is recorded.
+1.  Optional: To set the interval without a master offset threshold, configure the `logReduce` field to `enhanced 60s` in the YAML.
+    ```yaml
+    apiVersion: ptp.openshift.io/v1
+    kind: PtpConfig
+    metadata:
+      name: <ptp_config_name>
+      namespace: openshift-ptp
+    spec:
+      profile:
+      - name: "profile1"
+        ptpSettings:
+          logReduce: "enhanced 60s"
+    ```
+1.  Save and exit to apply the changes to the `PtpConfig` CR.
+
+**Verification**
+
+1.  Get the name of the `linuxptp-daemon` pod and the corresponding node where the `PtpConfig` CR is applied by running the following command
+    ```terminal
+    $ oc get pods -n openshift-ptp -o wide
+    ```
+    ```terminal title="Example output"
+    NAME                            READY   STATUS    RESTARTS   AGE     IP            NODE
+    linuxptp-daemon-gmv2n           3/3     Running   0          1d17h   10.1.196.24   compute-0.example.com
+    linuxptp-daemon-lgm55           3/3     Running   0          1d17h   10.1.196.25   compute-1.example.com
+    ptp-operator-3r4dcvf7f4-zndk7   1/1     Running   0          1d7h    10.129.0.61   control-plane-1.example.com
+    ```
+1.  Verify that master offset messages are excluded from the logs by running the following command:
+    ```terminal
+    $ oc -n openshift-ptp logs <linux_daemon_container> -c linuxptp-daemon-container | grep "master offset"
+    ```
+    *   `<linux_daemon_container>` is the name of the `linuxptp-daemon` pod, for example, `linuxptp-daemon-gmv2n`.

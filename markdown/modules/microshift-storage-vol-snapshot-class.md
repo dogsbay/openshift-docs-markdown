@@ -1,0 +1,37 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Volume snapshot classes {id="microshift-volume-snapshot-class_{{ context }}"}
+
+To enable dynamic snapshotting in LVMS, ensure that at least one `VolumeSnapshotClass` configuration file is present on the node. This resource defines the Container Storage Interface (CSI) parameters required to create and manage volume snapshots. {._abstract}
+
+
+:::important
+
+You must enable thin logical volumes to take logical volume snapshots.
+
+:::
+
+
+```yaml title="Example VolumeSnapshotClass configuration file"
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: topolvm-snapclass
+  annotations:
+    snapshot.storage.kubernetes.io/is-default-class: "true"
+driver: topolvm.io
+deletionPolicy: Delete
+```
+
+where:
+
+
+`snapshot.storage.kubernetes.io/is-default-class`
+:   Specifies the `VolumeSnapshotClass` configuration file to use when none is specified by `VolumeSnapshot`. Where `VolumeSnapshot` is a request for snapshot of a volume by a user.
+
+
+`driver`
+:   Identifies the snapshot provisioner that manages the requests for snapshots of a volume by a user for this class.
+
+
+`deletionPolicy`
+:   Specifies the `VolumeSnapshotContent` objects and the backing snapshots that are kept or deleted when a bound `VolumeSnapshot` is deleted. Valid values are `Retain` or `Delete`.

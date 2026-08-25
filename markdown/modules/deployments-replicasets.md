@@ -1,0 +1,46 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Replica sets {id="deployments-replicasets_{{ context }}"}
+
+To keep a specified number of identical pods running in {{ product_title }}, you can use a Kubernetes `ReplicaSet` object. Deployments create and manage replica sets for you, so use a replica set directly only when you need custom update orchestration or no updates at all. {._abstract}
+
+
+:::note
+
+Only use replica sets if you require custom update orchestration or do not require updates at all. Otherwise, use deployments. Replica sets can be used independently, but are used by deployments to orchestrate pod creation, deletion, and updates. Deployments manage their replica sets automatically, provide declarative updates to pods, and do not have to manually manage the replica sets that they create.
+
+:::
+
+
+The following is an example `ReplicaSet` definition:
+
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend-1
+  labels:
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - image: openshift/hello-openshift
+        name: helloworld
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      restartPolicy: Always
+```
+
+*   `spec.selector` is a label query over a set of resources. The result of `matchLabels` and `matchExpressions` are logically conjoined.
+*   `spec.selector.matchLabels` is an equality-based selector that specifies resources with labels that match the selector.
+*   `spec.selector.matchExpressions` is a set-based selector that filters keys. This parameter selects all resources with key equal to `tier` and value equal to `frontend`.

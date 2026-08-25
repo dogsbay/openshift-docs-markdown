@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Gateway listener troubleshooting reference {id="gateway-listener-troubleshooting-reference_{{ context }}"}
+
+When you troubleshoot your gateway listeners, you can review the status conditions in the `Gateway` custom resource (CR) output to identify configuration errors or conflicts.  {._abstract}
+
+The following table describes common listener conditions and how to resolve them:
+
+**Gateway listener status conditions**
+
+| Condition | Description |
+| --- | --- |
+| `Ready` | Indicates that the listener is configured correctly and is actively listening for traffic. |
+| `Conflicted` | Signifies an ambiguity or conflict in the listener’s configuration with another listener on the same gateway. If a listener is conflicted, review your listener configurations against the conflict management rules to identify and resolve the ambiguity. |
+| `Programmed` | Denotes that the underlying infrastructure, such as a load balancer or proxy, has successfully been programmed with the listener’s configuration. |
+| `Accepted` | Indicates that the gateway has accepted the listener’s configuration. This is usually an early step in the listener’s lifecycle. |
+| `Invalid` | Means the listener’s configuration itself contains errors or is malformed, preventing it from being processed. An invalid status indicates errors in your YAML configuration. Check your configuration for typos, incorrect syntax, or missing required fields. |

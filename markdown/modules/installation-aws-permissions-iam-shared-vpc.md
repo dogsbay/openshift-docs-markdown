@@ -1,0 +1,27 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Modifying trust policy when installing into a shared VPC {id="installation-aws-permissions-iam-shared-vpc_{{ context }}"}
+
+If you install your cluster using a shared VPC, you can use the `Passthrough` or `Manual` credentials mode. You must add the IAM role used to install the cluster as a principal in the trust policy of the account that owns the VPC. {._abstract}
+
+If you use `Passthrough` mode, add the Amazon Resource Name (ARN) of the account that creates the cluster, such as `arn:aws:iam::123456789012:user/clustercreator`, to the trust policy as a principal.
+
+If you use `Manual` mode, add the ARN of the account that creates the cluster as well as the ARN of the ingress operator role in the cluster owner account, such as `arn:aws:iam::123456789012:role/<cluster-name>-openshift-ingress-operator-cloud-credentials`, to the trust policy as principals.
+
+You must add the following actions to the policy:
+
+<details>
+<summary>Required actions for shared VPC installation</summary>
+
+*   `route53:ChangeResourceRecordSets`
+*   `route53:ListHostedZones`
+*   `route53:ListHostedZonesByName`
+*   `route53:ListResourceRecordSets`
+*   `route53:ChangeTagsForResource`
+*   `route53:GetAccountLimit`
+*   `route53:GetChange`
+*   `route53:GetHostedZone`
+*   `route53:ListTagsForResource`
+*   `route53:UpdateHostedZoneComment`
+*   `tag:GetResources`
+*   `tag:UntagResources`
+</details>

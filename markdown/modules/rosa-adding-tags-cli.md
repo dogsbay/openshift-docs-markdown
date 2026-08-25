@@ -1,0 +1,76 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Adding tags to a machine pool using the ROSA CLI {id="rosa-adding-tags-cli_{{ context }}"}
+
+You can add tags to a machine pool for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. You can not edit the tags after after you create the machine pool.
+
+
+:::important
+
+You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-clustertype`, or `Name`. In addition, you must not set a tag key that begins with `kubernetes.io/cluster/`. Your tag’s key cannot be longer than 128 characters, while your tag’s value cannot be longer than 256 characters. Red&#160;Hat reserves the right to add additional reserved tags in the future.
+
+:::
+
+
+**Prerequisites**
+
+*   You installed and configured the latest AWS (`aws`), ROSA (`rosa`), and OpenShift (`oc`) CLIs on your workstation.
+*   You logged in to your Red&#160;Hat account by using the {{ rosa_cli }}.
+*   You created a {{ product_title }} cluster.
+
+**Procedure**
+
+*   Create a machine pool with a custom tag by running the following command:
+    ```terminal
+    $ rosa create machinepools --cluster=<name> --replicas=<replica_count> \
+         --name <mp_name> --tags='<key> <value>,<key> <value>' // (1)
+    ```
+    1.  Replace `<key> <value>,<key> <value>` with a key and value for each tag.
+    ```terminal title="Example output"
+    $ rosa create machinepools --cluster=mycluster --replicas 2 --tags='tagkey1 tagvalue1,tagkey2 tagvaluev2'
+
+    I: Checking available instance types for machine pool 'mp-1'
+    I: Machine pool 'mp-1' created successfully on cluster 'mycluster'
+    I: To view the machine pool details, run 'rosa describe machinepool --cluster mycluster --machinepool mp-1'
+    I: To view all machine pools, run 'rosa list machinepools --cluster mycluster'
+    ```
+
+**Verification**
+
+*   Use the `describe` command to see the details of the machine pool with the tags, and verify that the tags are included for your machine pool in the output:
+    ```terminal
+    $ rosa describe machinepool --cluster=<cluster_name> --machinepool=<machinepool_name>
+    ```
+    **Example output**
+
+{%- if not openshift_rosa_hcp %}
+    ```terminal
+    ID:                                    mp-1
+    Cluster ID:                            2baiirqa2141oreotoivp4sipq84vp5g
+    Autoscaling:                           No
+    Replicas:                              2
+    Instance type:                         m7i.xlarge
+    Labels:
+    Taints:
+    Availability zones:                    us-east-1a
+    Subnets:
+    Spot instances:                        No
+    Disk size:                             300 GiB
+    Additional Security Group IDs:
+    Tags:                                  red-hat-clustertype=rosa, red-hat-managed=true, tagkey1=tagvalue1, tagkey2=tagvaluev2
+    ```
+{% endif %}
+{% if openshift_rosa_hcp %}
+    ```terminal
+    ID:                            db-nodes-mp
+    Cluster ID:                    <ID_of_cluster>
+    Autoscaling:                   No
+    Desired replicas:              2
+    Current replicas:              2
+    Instance type:                 m7i.xlarge
+    Labels:
+    Tags:                          red-hat-clustertype=rosa, red-hat-managed=true, tagkey1=tagvalue1, tagkey2=tagvaluev2
+    Taints:
+    Availability zone:             us-east-2a
+    ...
+    ```
+{% endif %}

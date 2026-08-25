@@ -1,0 +1,282 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Integrating with user-workload monitoring {id="ossm-integrating-with-user-workload-monitoring_{{ context }}"}
+
+By default, {{ SMProductName }} (OSSM) installs the Service Mesh control plane (SMCP) with a dedicated instance of Prometheus for collecting metrics from a mesh. However, production systems need more advanced monitoring systems, like {{ product_title }} monitoring for user-defined projects.
+
+The following steps show how to integrate Service Mesh with user-workload monitoring.
+
+**Prerequisites**
+
+*   User-workload monitoring is enabled.
+*   {{ SMProductName }} Operator 2.4 is installed.
+*   Kiali Operator 1.65 is installed.
+
+**Procedure**
+
+1.  Grant the `cluster-monitoring-view` role to the Kiali Service Account:
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata: 
+      name: kiali-monitoring-rbac
+    roleRef: 
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: cluster-monitoring-view
+    subjects: 
+    - kind: ServiceAccount
+      name: kiali-service-account
+      namespace: istio-system
+    ```
+1.  Configure Kiali for user-workload monitoring:
+    {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+    ```yaml
+    apiVersion: kiali.io/v1alpha1
+    kind: Kiali
+    metadata:
+      name: kiali-user-workload-monitoring
+      namespace: istio-system
+    spec: 
+      external_services:
+        prometheus: 
+          auth: 
+            type: bearer
+            use_kiali_token: true
+          query_scope:
+            mesh_id: "basic-istio-system"
+          thanos_proxy:
+            enabled: true
+          url: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
+    ```
+{% endif %}
+{% if openshift_rosa or openshift_rosa_hcp %}
+    ```yaml
+    apiVersion: kiali.io/v1alpha1
+    kind: Kiali
+    metadata:
+      name: kiali
+      namespace: istio-system
+    spec:
+      auth:
+        strategy: openshift
+      deployment:
+        accessible_namespaces:   #restricted setting for ROSA
+          - istio-system
+        image_pull_policy: ''
+        ingress_enabled: true
+        namespace: istio-system
+    ```
+{% endif %}
+{% if openshift_dedicated %}
+    ```yaml
+    apiVersion: kiali.io/v1alpha1
+    kind: Kiali
+    metadata:
+      name: kiali
+      namespace: istio-system
+    spec:
+      auth:
+        strategy: openshift
+      deployment:
+        accessible_namespaces:   #restricted setting for OSD
+          - istio-system
+        image_pull_policy: ''
+        ingress_enabled: true
+        namespace: istio-system
+    ```
+{% endif %}
+    *   If you use Istio Operator 2.4, use this configuration to configure Kiali for user-workload monitoring:
+        ```yaml
+        apiVersion: kiali.io/v1alpha1
+        kind: Kiali
+        metadata:
+          name: kiali-user-workload-monitoring
+          namespace: istio-system
+        spec:
+          external_services:
+            istio:
+              config_map_name: istio-<smcp-name>
+              istio_sidecar_injector_config_map_name: istio-sidecar-injector-<smcp-name>
+              istiod_deployment_name: istiod-<smcp-name>
+              url_service_version: 'http://istiod-<smcp-name>.istio-system:15014/version'
+            prometheus:
+              auth:
+                token: secret:thanos-querier-web-token:token
+                type: bearer
+                use_kiali_token: false
+              query_scope:
+                mesh_id: "basic-istio-system"
+              thanos_proxy:
+                enabled: true
+              url: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
+          version: v1.65
+        ```
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+
+        :::note
+
+        {{ product_title }} places additional restrictions on where you can create resources and does not let you create the Kiali resource in a Red Hat managed namespace.
+
+        This means that the following common settings for `spec.deployment.accessible_namespaces` are not allowed in an OpenShift dedicated cluster:
+
+        *   `['**']`   (all namespaces)
+        *   `default`
+        *   `codeready-*`
+        *   `openshift-*`
+        *   `redhat-*`
+
+        The validation error message provides a complete list of all the restricted namespaces.
+        
+        :::
+
+{% endif %}
+1.  Configure the SMCP for external Prometheus:
+    ```yaml
+    apiVersion: maistra.io/v2
+    kind: ServiceMeshControlPlane
+    metadata:
+      name: basic
+      namespace: istio-system
+    spec:
+      addons:
+        prometheus:
+          enabled: false # (1)
+        grafana:
+          enabled: false # (2)
+        kiali:
+          name: kiali-user-workload-monitoring
+      meshConfig:
+        extensionProviders:
+        - name: prometheus
+          prometheus: {}
+    ```
+    1.  Disable the default Prometheus instance provided by OSSM.
+    1.  Disable Grafana. It is not supported with an external Prometheus instance.
+1.  Apply a custom network policy to allow ingress traffic from the monitoring namespace:
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: user-workload-access
+      namespace: istio-system # (1)
+    spec:
+      ingress:
+      - from:
+        - namespaceSelector:
+            matchLabels:
+              network.openshift.io/policy-group: monitoring
+      podSelector: {}
+      policyTypes:
+      - Ingress
+    ```
+    1.  The custom network policy must be applied to all namespaces.
+1.  Apply a `Telemetry` object to enable traffic metrics in Istio proxies:
+    ```yaml
+    apiVersion: telemetry.istio.io/v1alpha1
+    kind: Telemetry
+    metadata:
+      name: enable-prometheus-metrics
+      namespace: istio-system # (1)
+    spec:
+      selector: # (2)
+        matchLabels:
+          app: bookinfo
+      metrics:
+      - providers:
+        - name: prometheus
+    ```
+    1.  A `Telemetry` object created in the control plane namespace applies to all workloads in a mesh. To apply telemetry to only one namespace, create the object in the target namespace.
+    1.  Optional: Setting the `selector.matchLabels` spec applies the `Telemetry` object to specific workloads in the target namespace.
+1.  Apply a `ServiceMonitor` object to monitor the Istio control plane:
+    ```yaml
+    apiVersion: monitoring.coreos.com/v1
+    kind: ServiceMonitor
+    metadata:
+      name: istiod-monitor
+      namespace: istio-system # (1)
+    spec:
+      targetLabels:
+      - app
+      selector:
+        matchLabels:
+          istio: pilot
+      endpoints:
+      - port: http-monitoring
+        interval: 30s
+        relabelings:
+        - action: replace
+          replacement: "basic-istio-system" # (2)
+          targetLabel: mesh_id
+    ```
+    1.  Create  this `ServiceMonitor` object in the Istio control plane namespace because it monitors the Istiod service. In this example, the namespace is `istio-system`.
+    1.  The string `"basic-istio-system"` is a combination of the SMCP name and its namespace, but any label can be used as long as it is unique for every mesh using user workload monitoring in the cluster. The `spec.prometheus.query_scope` of the Kiali resource configured in Step 2 needs to match this value.
+
+        :::note
+
+        If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
+
+        If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
+
+        If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
+        
+        :::
+
+1.  Apply a `PodMonitor` object to collect metrics from Istio proxies:
+    ```yaml
+    apiVersion: monitoring.coreos.com/v1
+    kind: PodMonitor
+    metadata:
+      name: istio-proxies-monitor
+      namespace: istio-system # (1)
+    spec:
+      selector:
+        matchExpressions:
+        - key: istio-prometheus-ignore
+          operator: DoesNotExist
+      podMetricsEndpoints:
+      - path: /stats/prometheus
+        interval: 30s
+        relabelings:
+        - action: keep
+          sourceLabels: [__meta_kubernetes_pod_container_name]
+          regex: "istio-proxy"
+        - action: keep
+          sourceLabels: [__meta_kubernetes_pod_annotationpresent_prometheus_io_scrape]
+        - action: replace
+          regex: (\d+);(([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4})
+          replacement: '[$2]:$1'
+          sourceLabels: [__meta_kubernetes_pod_annotation_prometheus_io_port,
+          __meta_kubernetes_pod_ip]
+          targetLabel: __address__
+        - action: replace
+          regex: (\d+);((([0-9]+?)(\.|$)){4})
+          replacement: $2:$1
+          sourceLabels: [__meta_kubernetes_pod_annotation_prometheus_io_port,
+          __meta_kubernetes_pod_ip]
+          targetLabel: __address__
+        - action: labeldrop
+          regex: "__meta_kubernetes_pod_label_(.+)"
+        - sourceLabels: [__meta_kubernetes_namespace]
+          action: replace
+          targetLabel: namespace
+        - sourceLabels: [__meta_kubernetes_pod_name]
+          action: replace
+          targetLabel: pod_name
+        - action: replace
+          replacement: "basic-istio-system" # (2)
+          targetLabel: mesh_id
+    ```
+    1.  Since {{ product_title }} monitoring ignores the `namespaceSelector` spec in `ServiceMonitor` and `PodMonitor` objects, you must apply the `PodMonitor` object in all mesh namespaces, including the control plane namespace.
+    1.  The string `"basic-istio-system"` is a combination of the SMCP name and its namespace, but any label can be used as long as it is unique for every mesh using user workload monitoring in the cluster. The `spec.prometheus.query_scope` of the Kiali resource configured in Step 2 needs to match this value.
+
+        :::note
+
+        If there is only one mesh using user-workload monitoring, then both the `mesh_id` relabeling and the `spec.prometheus.query_scope` field in the Kiali resource are optional (but the `query_scope` field given here should be removed if the `mesh_id` label is removed).
+
+        If multiple mesh instances on the cluster might use user-workload monitoring, then both the `mesh_id` relabelings and the `spec.prometheus.query_scope` field in the Kiali resource are required. This ensures that Kiali only sees metrics from its associated mesh.
+
+        If you are not deploying Kiali, you can still apply `mesh_id` relabeling so that metrics from different meshes can be distinguished from one another.
+        
+        :::
+
+1.  Open the {{ product_title }} web console, and check that metrics are visible.

@@ -1,0 +1,22 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About invoking Python functions {id="serverless-invoking-python-functions_{{ context }}"}
+
+Python functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a `context` object as the first parameter.
+
+The `context` object is a Python class with two attributes:
+
+*   The `request` attribute is always present, and contains the Flask `request` object.
+*   The second attribute, `cloud_event`, is populated if the incoming request is a `CloudEvent` object.
+
+Developers can access any `CloudEvent` data from the context object.
+
+```python title="Example context object"
+def main(context: Context):
+    """
+    The context parameter contains the Flask request object and any
+    CloudEvent received with the request.
+    """
+    print(f"Method: {context.request.method}")
+    print(f"Event data {context.cloud_event.data}")
+    # ... business logic here
+```

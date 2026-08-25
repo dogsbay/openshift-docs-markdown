@@ -1,0 +1,28 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling the SR-IOV Network Operator in a hosted cluster {id="hosted-clusters-openstack-performance-enabling_{{ context }}"}
+
+To manage the SR-IOV-capable devices on nodes deployed by the `NodePool` resource, you can enable the SR-IOV Network Operator. {._abstract}
+
+The Operator runs in the hosted cluster and requires labeled worker nodes.
+
+**Procedure**
+
+1.  Generate a `kubeconfig` file for the hosted cluster by running the following command:
+    ```terminal
+    $ hcp create kubeconfig --name $CLUSTER_NAME > $CLUSTER_NAME-kubeconfig
+    ```
+1.  Create a `kubeconfig` resource environment variable by running the following command:
+    ```terminal
+    $ export KUBECONFIG=$CLUSTER_NAME-kubeconfig
+    ```
+1.  Label each worker node to indicate SR-IOV capability by running the following command:
+    ```terminal
+    $ oc label node <worker_node_name> feature.node.kubernetes.io/network-sriov.capable=true
+    ```
+    where:
+
+
+    `<worker_node_name>`
+    :   Specifies the name of a worker node in the hosted cluster.
+1.  Install the SR-IOV Network Operator in the hosted cluster by following the instructions in "Installing the SR-IOV Network Operator".
+1.  After installation, configure SR-IOV workloads in the hosted cluster by using the same process as for a standalone cluster.

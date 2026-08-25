@@ -1,0 +1,72 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Precaching user-specified images with {{ cgu_operator }} on {{ sno }} clusters {id="talm-prechache-user-specified-images-concept_{{ context }}"}
+
+You can precache application-specific workload images on {{ sno }} clusters before updating your applications. {._abstract}
+
+You can specify the configuration options for the precaching jobs by using the following custom resources (CR):
+
+*   `PreCachingConfig` CR
+*   `ClusterGroupUpgrade` CR
+
+{{ cgu_operator }} derives the platform image from the `ClusterVersion` object in the managed policies.
+{{ cgu_operator }} derives Operator index images from `CatalogSource` objects that the managed policies reference.
+
+
+:::note
+
+All fields in the `PreCachingConfig` CR are optional.
+
+:::
+
+
+The following example shows a `PreCachingConfig` CR:
+
+```yaml
+apiVersion: ran.openshift.io/v1alpha1
+kind: PreCachingConfig
+metadata:
+  name: exampleconfig
+  namespace: exampleconfig-ns
+spec:
+  overrides:
+    operatorsPackagesAndChannels:
+      - local-storage-operator: stable
+      - ptp-operator: stable
+      - sriov-network-operator: stable
+  spaceRequired: 30 Gi
+  excludePrecachePatterns:
+    - aws
+    - vsphere
+  additionalImages:
+    - quay.io/exampleconfig/application1@sha256:3d5800990dee7cd4727d3fe238a97e2d2976d3808fc925ada29c559a47e2e1ef
+    - quay.io/exampleconfig/application2@sha256:3d5800123dee7cd4727d3fe238a97e2d2976d3808fc925ada29c559a47adfaef
+    - quay.io/exampleconfig/applicationN@sha256:4fe1334adfafadsf987123adfffdaf1243340adfafdedga0991234afdadfsa09
+```
+
+*   `overrides` - Specifies Operator packages and channels to precache instead of the values that {{ cgu_operator }} derives from the managed policies.
+The only supported override is `operatorsPackagesAndChannels`.
+{{ cgu_operator }} ignores the deprecated `platformImage` and `operatorsIndexes` override fields if they are present.
+*   `spaceRequired` - Specifies the minimum required disk space on the cluster.
+If unspecified, {{ cgu_operator }} defines a default value for {{ product_title }} images.
+The disk space field must include an integer value and the storage unit.
+For example: `40 GiB`, `200 MB`, `1 TiB`.
+*   `excludePrecachePatterns` - Specifies the images to exclude from precaching based on image name matching.
+*   `additionalImages` - Specifies the list of additional images to precache.
+
+The following example shows a `ClusterGroupUpgrade` CR with a `PreCachingConfig` CR reference:
+
+```yaml
+apiVersion: ran.openshift.io/v1alpha1
+kind: ClusterGroupUpgrade
+metadata:
+  name: cgu
+spec:
+  preCaching: true
+  preCachingConfigRef:
+    name: exampleconfig
+    namespace: exampleconfig-ns
+```
+
+*   `preCaching` set to `true` enables the precaching job.
+*   `preCachingConfigRef.name` specifies the `PreCachingConfig` CR that you want to use.
+*   `preCachingConfigRef.namespace` specifies the namespace of the `PreCachingConfig` CR that you want to use.

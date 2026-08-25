@@ -1,0 +1,35 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+
+# Components specific to {{ product_title }} with STS {id="cloud-experts-components-specific-to-rosa-with-sts_{{ context }}"}
+
+*   **AWS infrastructure** - This provides the infrastructure required for the cluster. It contains the actual EC2 instances, storage, and networking components.
+*   **AWS STS** - See the credential method section above.
+*   **OpenID Connect (OIDC)** - This provides a mechanism for cluster Operators to authenticate with AWS, assume the cluster roles through a trust policy, and obtain temporary credentials from STS to make the required API calls.
+*   **Roles and policies** - The roles and policies are one of the main differences between {{ product_title }} with STS and {{ product_title }} with IAM Users. For {{ product_title }} with STS, the roles and policies used by {{ product_title }} are broken into account-wide roles and policies and Operator roles and policies.
+
+    The policies determine the allowed actions for each of the roles. See the _Additional resources_ for more details about the individual roles and policies.
+    *   The following account-wide roles are required:
+        *   ManagedOpenShift-Installer-Role
+        *   ManagedOpenShift-ControlPlane-Role
+        *   ManagedOpenShift-Worker-Role
+        *   ManagedOpenShift-Support-Role
+    *   The following account-wide policies are required:
+        *   ManagedOpenShift-Installer-Role-Policy
+        *   ManagedOpenShift-ControlPlane-Role-Policy
+        *   ManagedOpenShift-Worker-Role-Policy
+        *   ManagedOpenShift-Support-Role-Policy
+        *   ManagedOpenShift-openshift-ingress-operator-cloud-credentials ^[1]^
+        *   ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent ^[1]^
+        *   ManagedOpenShift-openshift-cloud-network-config-controller-cloud ^[1]^
+        *   ManagedOpenShift-openshift-machine-api-aws-cloud-credentials ^[1]^
+        *   ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede ^[1]^
+        *   ManagedOpenShift-openshift-image-registry-installer-cloud-creden ^[1]^
+            1.  This policy is used by the cluster Operator roles, listed below. The Operator roles are created in a second step because they are dependent on an existing cluster name and cannot be created at the same time as the account-wide roles.
+    *   The Operator roles are:
+        *   &lt;cluster-name\>-xxxx-openshift-cluster-csi-drivers-ebs-cloud-credent
+        *   &lt;cluster-name\>-xxxx-openshift-cloud-network-config-controller-cloud
+        *   &lt;cluster-name\>-xxxx-openshift-machine-api-aws-cloud-credentials
+        *   &lt;cluster-name\>-xxxx-openshift-cloud-credential-operator-cloud-crede
+        *   &lt;cluster-name\>-xxxx-openshift-image-registry-installer-cloud-creden
+        *   &lt;cluster-name\>-xxxx-openshift-ingress-operator-cloud-credentials
+    *   Trust policies are created for each account-wide and Operator role.

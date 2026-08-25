@@ -1,0 +1,44 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Sample YAML for a Cluster API machine template resource on {{ gcp_full }} {id="capi-yaml-machine-template-gcp_{{ context }}"}
+
+The machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates.
+The compute machine set references this template when creating machines. {._abstract}
+
+```yaml
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: GCPMachineTemplate
+metadata:
+  name: <template_name>
+  namespace: openshift-cluster-api
+spec:
+  template:
+    spec:
+      rootDeviceType: pd-ssd
+      rootDeviceSize: 128
+      instanceType: n1-standard-4
+      image: projects/rhcos-cloud/global/images/rhcos-411-85-202203181601-0-gcp-x86-64
+      subnet: <cluster_name>-worker-subnet
+      serviceAccounts:
+        email: <service_account_email_address>
+        scopes:
+          - https://www.googleapis.com/auth/cloud-platform
+      additionalLabels:
+        kubernetes-io-cluster-<cluster_name>: owned
+      additionalNetworkTags:
+        - <cluster_name>-worker
+      ipForwarding: Disabled
+```
+
+where:
+
+
+`kind`
+:   Specifies the machine template kind.
+    This value must match the value for your platform.
+
+`metadata.name`
+:   Specifies a name for the machine template.
+
+`spec.template.spec`
+:   Specifies the details for your environment. 
+    The values here are examples.

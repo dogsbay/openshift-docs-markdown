@@ -1,0 +1,50 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Overriding resource utilization measurements for a hosted cluster {id="hcp-override_{{ context }}"}
+
+You can override resource utilization measurements based on the type and pace of your cluster workload. {._abstract}
+
+**Procedure**
+
+1.  Create the `ConfigMap` resource by running the following command:
+    ```terminal
+    $ oc create -f <your-config-map-file.yaml>
+    ```
+
+    Replace `<your-config-map-file.yaml>` with the name of your YAML file that contains your `hcp-sizing-baseline` config map.
+1.  Create the `hcp-sizing-baseline` config map in the `local-cluster` namespace to specify the measurements you want to override. Your config map might resemble the following YAML file:
+    ```yaml
+    kind: ConfigMap
+    apiVersion: v1
+    metadata:
+      name: hcp-sizing-baseline
+      namespace: local-cluster
+    data:
+      incrementalCPUUsagePer1KQPS: "9.0"
+      memoryRequestPerHCP: "18"
+      minimumQPSPerHCP: "50.0"
+    ```
+1.  Delete the `hypershift-addon-agent` deployment to restart the `hypershift-addon-agent` pod by running the following command:
+    ```terminal
+    $ oc delete deployment hypershift-addon-agent \
+      -n open-cluster-management-agent-addon
+    ```
+
+**Verification**
+
+*   Observe the `hypershift-addon-agent` pod logs. Verify that the overridden measurements are updated in the config map by running the following command:
+    ```terminal
+    $ oc logs hypershift-addon-agent -n open-cluster-management-agent-addon
+    ```
+
+    Your logs might resemble the following output:
+    ```terminal title="Example output"
+    2024-01-05T19:41:05.392Z	INFO	agent.agent-reconciler	agent/agent.go:793	setting cpuRequestPerHCP to 5
+    2024-01-05T19:41:05.392Z	INFO	agent.agent-reconciler	agent/agent.go:802	setting memoryRequestPerHCP to 18
+    2024-01-05T19:53:54.070Z	INFO	agent.agent-reconciler	agent/hcp_capacity_calculation.go:141	The worker nodes have 12.000000 vCPUs
+    2024-01-05T19:53:54.070Z	INFO	agent.agent-reconciler	agent/hcp_capacity_calculation.go:142	The worker nodes have 49.173369 GB memory
+    ```
+
+    If the overridden measurements are not updated properly in the `hcp-sizing-baseline` config map, you might see the following error message in the `hypershift-addon-agent` pod logs:
+    ```terminal title="Example error"
+    2024-01-05T19:53:54.052Z	ERROR	agent.agent-reconciler	agent/agent.go:788	failed to get configmap from the hub. Setting the HCP sizing baseline with default values.	{"error": "configmaps \"hcp-sizing-baseline\" not found"}
+    ```

@@ -1,0 +1,52 @@
+---
+title: Installation methods
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Installation methods {id="preparing-to-install-on-azure"}
+{% include "./_attributes/common-attributes.md" %}
+{%- set context = "preparing-to-install-on-azure" %}
+
+When you plan an {{ product_title }} deployment on Microsoft Azure, you can select installer-provisioned or user-provisioned infrastructure. Compare installation methods to find the path that matches your network, security, and operational requirements.
+
+The default installation type uses installer-provisioned infrastructure, where the installation program provisions the underlying infrastructure for the cluster.
+
+You can also install {{ product_title }} on infrastructure that you provision. If you do not use infrastructure that the installation program provisions, you must manage and support the cluster resources yourself.
+
+## Installing a cluster on installer-provisioned infrastructure {id="_installing_a_cluster_on_installer-provisioned_infrastructure"}
+
+You can install a cluster on {{ azure_first }} infrastructure that is provisioned by the {{ product_title }} installation program, by using one of the following methods:
+
+*   You can install {{ product_title }} on {{ azure_short }} infrastructure that the installation program provisions and use default configuration options for a quick deployment. For more information, see "Installing a cluster quickly on Azure".
+*   You can install a customized cluster on {{ azure_short }} infrastructure that the installation program provisions. The installation program supports some customization during installation, and many other options are available postinstallation. For more information, see "Installing a customized cluster on {{ azure_short }}".
+*   You can customize your {{ product_title }} configuration during installation so that your cluster coexists with existing IP address allocations and meets customized network requirements. For more information, see "Installing a cluster on {{ azure_short }} with customizations".
+*   You can install a cluster on {{ azure_short }} in a restricted network by creating an internal mirror of the installation release content on an existing Azure Virtual Network (`VNet`). For more information, see "Installing a cluster on {{ azure_short }} in a restricted network".
+*   You can install {{ product_title }} on an existing Azure `VNet` when company guidelines limit new accounts or infrastructure. For more information, see "Installing a cluster on {{ azure_short }} into an existing `VNet`".
+*   You can install a private cluster into an existing Azure `VNet` on {{ azure_short }} and deploy {{ product_title }} on an internal network that is not visible to the internet. For more information, see "Installing a private cluster on {{ azure_short }}".
+*   You can deploy {{ product_title }} into Microsoft Azure Government (MAG) regions for US government agencies, contractors, educational institutions, and other US customers that must run sensitive workloads on {{ azure_short }}. For more information, see "Installing a cluster on {{ azure_short }} into a government region".
+
+**Additional resources**
+
+*   [Installing a cluster quickly on Azure](/installing/installing_azure/ipi/installing-azure-default#installing-azure-default)
+*   [Installing a cluster on {{ azure_short }} with customizations](/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)
+*   [Installing a cluster on {{ azure_short }} in a restricted network](/installing/installing_azure/ipi/installing-restricted-networks-azure-installer-provisioned#installing-restricted-networks-azure-installer-provisioned)
+*   [Installing a cluster on {{ azure_short }} into an existing `VNet`](/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet)
+*   [Installing a private cluster on {{ azure_short }}](/installing/installing_azure/ipi/installing-azure-private#installing-azure-private)
+*   [Installing a cluster on {{ azure_short }} into a government region](/installing/installing_azure/ipi/installing-azure-government-region#installing-azure-government-region)
+
+## Installing a cluster on user-provisioned infrastructure {id="choosing-an-method-to-install-ocp-on-azure-user-provisioned"}
+
+You can install a cluster on {{ azure_short }} infrastructure that you provision, by using one of the following methods:
+
+*   You can install a cluster on {{ azure_short }} in a restricted network with user-provisioned infrastructure when you do not require an active internet connection to obtain software components. For more information, see "Installing a cluster on {{ azure_short }} in a restricted network with user-provisioned infrastructure".
+*   You can install {{ product_title }} on {{ azure_short }} by using infrastructure that you manage and Azure Resource Manager (ARM) templates to assist with the installation. For more information, see "Installing a cluster on {{ azure_short }} using ARM templates".
+
+**Additional resources**
+
+*   [Installing a cluster on {{ azure_short }} in a restricted network with user-provisioned infrastructure](/installing/installing_azure/upi/installing-restricted-networks-azure-user-provisioned#installing-restricted-networks-azure-user-provisioned)
+*   [Installing a cluster on {{ azure_short }} using ARM templates](/installing/installing_azure/upi/installing-azure-user-infra#installing-azure-user-infra)
+
+## Additional resources {id="preparing-to-install-on-azure-additional-resources"}
+
+*   [Configuring an {{ azure_short }} account](/installing/installing_azure/installing-azure-account#installing-azure-account)
+*   [Installation process](/architecture/architecture-installation#installation-process_architecture-installation)

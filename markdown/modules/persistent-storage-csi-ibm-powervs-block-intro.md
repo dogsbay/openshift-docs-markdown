@@ -1,0 +1,6 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Introduction to {{ ibm_power_server_name }} Block CSI Driver Operator  {id="persistent-storage-csi-ibm-powervs-block-intro_{{ context }}"}
+
+The {{ ibm_power_server_name }} Block CSI Driver is installed through the {{ ibm_power_server_name }} Block CSI Driver Operator and the operator is based on `library-go`.  {._abstract}
+
+The {{ product_title }} `library-go` framework is a collection of functions that allows users to build OpenShift operators easily. Most of the functionality of a CSI Driver Operator is already available there. The {{ ibm_power_server_name }} Block CSI Driver Operator is installed by the Cluster Storage Operator. The Cluster Storage Operator installs the {{ ibm_power_server_name }} Block CSI Driver Operator if the platform type is Power Virtual Servers.

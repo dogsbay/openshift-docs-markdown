@@ -1,0 +1,36 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Overview of the AWS EBS CSI Driver Operator {id="persistent-storage-csi-aws-ebs-overview_{{ context }}"}
+
+{{ product_title }} is capable of provisioning persistent volumes (PVs) using the AWS Elastic Block Storage (EBS) Container Storage Interface (CSI) driver. {._abstract}
+
+Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI Operator and driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".
+
+To create CSI-provisioned PVs that mount to AWS EBS storage assets, {{ product_title }} installs the AWS EBS CSI Driver Operator (a Red Hat operator) and the AWS EBS CSI driver by default in the `openshift-cluster-csi-drivers` namespace.
+
+
+AWS EBS CSI Driver Operator
+:   The AWS EBS CSI Driver Operator provides a `StorageClass` by default that you can use to create persistent volume claims (PVCs). You can disable this default storage class if desired (see "Managing the default storage class"). You also have the option to create the AWS EBS `StorageClass` as described in "Creating the EBS storage class".
+
+
+AWS EBS CSI driver
+:   The AWS EBS CSI driver enables you to create and mount AWS EBS PVs.
+
+{% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
+
+:::note
+
+If you installed the AWS EBS CSI Operator and driver on an {{ product_title }} 4.5 cluster, you must uninstall the 4.5 Operator and driver before you update to {{ product_title }} {{ product_version }}.
+
+:::
+
+{% endif %}
+
+
+:::important
+
+{{ product_title }} defaults to using the CSI plugin to provision Amazon Elastic Block Store (Amazon EBS) storage.
+
+:::
+
+
+For information about dynamically provisioning AWS EBS persistent volumes in {{ product_title }}, see "Dynamic provisioning".

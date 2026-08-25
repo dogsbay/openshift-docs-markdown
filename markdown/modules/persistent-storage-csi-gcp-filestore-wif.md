@@ -1,0 +1,90 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Preparing to install the {{ gcp_short }} Filestore CSI Driver Operator with Workload Identity {id="persistent-storage-csi-gcp-filestore-wif_{{ context }}"}
+
+If you are planning to use {{ gcp_wid_short }} with Google Compute Platform Filestore, you must obtain certain parameters that you will use during the installation of the {{ gcp_short }} Filestore Container Storage Interface (CSI) Driver Operator. {._abstract}
+
+**Prerequisites**
+
+*   Access to the cluster as a user with the cluster-admin role.
+
+**Procedure**
+
+1.  Obtain the project number:
+    1.  Obtain the project ID by running the following command:
+        ```terminal
+        $ export PROJECT_ID=$(oc get infrastructure/cluster -o jsonpath='{.status.platformStatus.gcp.projectID}')
+        ```
+    1.  Obtain the project number, using the project ID, by running the following command:
+        ```terminal
+        $ gcloud projects describe $PROJECT_ID --format="value(projectNumber)"
+        ```
+1.  Find the identity pool ID and the provider ID:
+
+    During cluster installation, the names of these resources are provided to the Cloud Credential Operator utility (`ccoctl`) with the `--name parameter`. See "Creating {{ gcp_short }} resources with the Cloud Credential Operator utility".
+1.  Create Workload Identity resources for the {{ gcp_short }} Filestore Operator:
+    1.  Create a `CredentialsRequest` file using the following example file:
+        ```YAML title="Example Credentials Request YAML file"
+        apiVersion: cloudcredential.openshift.io/v1
+        kind: CredentialsRequest
+        metadata:
+          name: openshift-gcp-filestore-csi-driver-operator
+          namespace: openshift-cloud-credential-operator
+          annotations:
+            include.release.openshift.io/self-managed-high-availability: "true"
+            include.release.openshift.io/single-node-developer: "true"
+        spec:
+          serviceAccountNames:
+          - gcp-filestore-csi-driver-operator
+          - gcp-filestore-csi-driver-controller-sa
+          secretRef:
+            name: gcp-filestore-cloud-credentials
+            namespace: openshift-cluster-csi-drivers
+          providerSpec:
+            apiVersion: cloudcredential.openshift.io/v1
+        	kind: GCPProviderSpec
+            predefinedRoles:
+            - roles/file.editor
+            - roles/resourcemanager.tagUser
+            skipServiceCheck: true
+        ```
+    1.  Use the `CredentialsRequest` file to create a {{ gcp_short }} service account by running the following command:
+        ```terminal
+        $ ./ccoctl gcp create-service-accounts --name=<filestore-service-account> \//
+          --workload-identity-pool=<workload-identity-pool> \//
+          --workload-identity-provider=<workload-identity-provider> \//
+          --project=<project-id> \//
+          --credentials-requests-dir=/tmp/credreq
+        ```
+        *   `<filestore-service-account>` is a user-chosen name. 
+        *   `<workload-identity-pool>` comes from Step 2 above.
+        *   `<workload-identity-provider>` comes from Step 2 above.
+        *   `<project-id>` comes from Step 1.a above.
+        *   `credentials-requests-dir` is the name of directory where the `CredentialsRequest` file resides.
+        ```terminal title="Example output"
+        2025/02/10 17:47:39 Credentials loaded from gcloud CLI defaults
+        2025/02/10 17:47:42 IAM service account filestore-service-account-openshift-gcp-filestore-csi-driver-operator created
+        2025/02/10 17:47:44 Unable to add predefined roles to IAM service account, retrying...
+        2025/02/10 17:47:59 Updated policy bindings for IAM service account filestore-service-account-openshift-gcp-filestore-csi-driver-operator
+        2025/02/10 17:47:59 Saved credentials configuration to: /tmp/install-dir/
+        openshift-cluster-csi-drivers-gcp-filestore-cloud-credentials-credentials.yaml
+        ```
+
+        Where `/tmp/install-dir/` is the current directory.
+    1.  Find the service account email of the newly created service account by running the following command:
+        ```terminal
+        $ cat /tmp/install-dir/manifests/openshift-cluster-csi-drivers-gcp-filestore-cloud-credentials-credentials.yaml | yq '.data["service_account.json"]' | base64 -d | jq '.service_account_impersonation_url'
+        ```
+        ```terminal title="Example output"
+        https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/filestore-se-openshift-g-ch8cm@openshift-gce-devel.iam.gserviceaccount.com:generateAccessToken
+        ```
+
+        In this example output, the service account email is `filestore-se-openshift-g-ch8cm@openshift-gce-devel.iam.gserviceaccount.com`.
+
+**Results**
+
+You now have the following parameters that you need to install the {{ gcp_short }} Filestore CSI Driver Operator:
+
+*   Project number - from Step 1.b
+*   Pool ID - from Step 2
+*   Provider ID - from Step 2
+*   Service account email - from Step 3.c

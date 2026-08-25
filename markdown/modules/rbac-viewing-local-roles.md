@@ -1,0 +1,89 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Viewing local roles and bindings {id="viewing-local-roles_{{ context }}"}
+
+You can view local role bindings by using the `oc` CLI to identify the users, groups, and service accounts that have roles within the current project or another project. {._abstract}
+
+You can use the `oc` CLI to view local roles and bindings by using the
+`oc describe` command.
+
+**Prerequisites**
+
+*   Install the `oc` CLI.
+*   Obtain permission to view the local roles and bindings:
+
+{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+    *   Users with the `cluster-admin` default cluster role bound cluster-wide can
+    perform any action on any resource, including viewing local roles and bindings.
+{% endif %}
+    *   Users with the `admin` default cluster role bound locally can view and manage
+    roles and bindings in that project.
+
+**Procedure**
+
+1.  To view the current set of local role bindings, which show the users and groups
+that are bound to various roles for the current project:
+    ```terminal
+    $ oc describe rolebinding.rbac
+    ```
+1.  To view the local role bindings for a different project, add the `-n` flag
+to the command:
+    ```terminal
+    $ oc describe rolebinding.rbac -n joe-project
+    ```
+    ```terminal title="Example output"
+    Name:         admin
+    Labels:       <none>
+    Annotations:  <none>
+    Role:
+      Kind:  ClusterRole
+      Name:  admin
+    Subjects:
+      Kind  Name        Namespace
+      ----  ----        ---------
+      User  kube:admin
+
+
+    Name:         system:deployers
+    Labels:       <none>
+    Annotations:  openshift.io/description:
+                    Allows deploymentconfigs in this namespace to rollout pods in
+                    this namespace.  It is auto-managed by a controller; remove
+                    subjects to disa...
+    Role:
+      Kind:  ClusterRole
+      Name:  system:deployer
+    Subjects:
+      Kind            Name      Namespace
+      ----            ----      ---------
+      ServiceAccount  deployer  joe-project
+
+
+    Name:         system:image-builders
+    Labels:       <none>
+    Annotations:  openshift.io/description:
+                    Allows builds in this namespace to push images to this
+                    namespace.  It is auto-managed by a controller; remove subjects
+                    to disable.
+    Role:
+      Kind:  ClusterRole
+      Name:  system:image-builder
+    Subjects:
+      Kind            Name     Namespace
+      ----            ----     ---------
+      ServiceAccount  builder  joe-project
+
+
+    Name:         system:image-pullers
+    Labels:       <none>
+    Annotations:  openshift.io/description:
+                    Allows all pods in this namespace to pull images from this
+                    namespace.  It is auto-managed by a controller; remove subjects
+                    to disable.
+    Role:
+      Kind:  ClusterRole
+      Name:  system:image-puller
+    Subjects:
+      Kind   Name                                Namespace
+      ----   ----                                ---------
+      Group  system:serviceaccounts:joe-project
+    ```

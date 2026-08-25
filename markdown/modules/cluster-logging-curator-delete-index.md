@@ -1,0 +1,92 @@
+# Configuring Curator index deletion {id="cluster-logging-curator-yaml_{{ context }}"}
+
+You can configure Curator to delete Elasticsearch data that uses the data model prior to {{ product_title }} 4.5. You can configure per-project and global settings. Global settings apply to any project not specified. Per-project settings override global settings.
+
+**Prerequisites**
+
+*   OpenShift Logging must be installed.
+
+**Procedure**
+
+To delete indices:
+
+1.  Edit the {{ product_title }} custom Curator configuration file:
+    ```terminal
+    $ oc edit configmap/curator
+    ```
+1.  Set the following parameters as needed:
+    ```yaml
+    config.yaml: |
+      project_name:
+        action
+          unit:value
+    ```
+
+    The available parameters are:
+    **Project options**
+
+    | Variable Name | Description |
+    | --- | --- |
+    | `project_name` | The actual name of a project, such as **myapp-devel**. For {{ product_title }} **operations** logs, use the name `.operations` as the project name. |
+    | `action` | The action to take, currently only `delete` is allowed. |
+    | `unit` | The period to use for deletion, `days`, `weeks`, or `months`. |
+    | `value` | The number of units. |
+    **Filter options**
+
+    | Variable Name | Description |
+    | --- | --- |
+    | `.defaults` | Use `.defaults` as the `project_name` to set the defaults for projects that are not specified. |
+    | `.regex` | The list of regular expressions that match project names. |
+    | `pattern` | The valid and properly escaped regular expression pattern enclosed by single quotation marks. |
+
+For example, to configure Curator to:
+
+*   Delete indices in the **myapp-dev** project older than `1 day`
+*   Delete indices in the **myapp-qe** project older than `1 week`
+*   Delete **operations** logs older than `8 weeks`
+*   Delete all other projects indices after they are `31 days` old
+*   Delete indices older than 1 day that are matched by the `^project\..+\-dev.*$` regex
+*   Delete indices older than 2 days that are matched by the `^project\..+\-test.*$` regex
+
+Use:
+
+```yaml
+  config.yaml: |
+    .defaults:
+      delete:
+        days: 31
+
+    .operations:
+      delete:
+        weeks: 8
+
+    myapp-dev:
+      delete:
+        days: 1
+
+    myapp-qe:
+      delete:
+        weeks: 1
+
+    .regex:
+      - pattern: '^project\..+\-dev\..*$'
+        delete:
+          days: 1
+      - pattern: '^project\..+\-test\..*$'
+        delete:
+          days: 2
+```
+
+
+:::important
+
+When you use `months` as the `$UNIT` for an operation, Curator starts counting at
+the first day of the current month, not the current day of the current month.
+For example, if today is April 15, and you want to delete indices that are 2 months
+older than today (delete: months: 2), Curator does not delete indices that are dated
+older than February 15; it deletes indices older than February 1. That is, it
+goes back to the first day of the current month, then goes back two whole months
+from that date. If you want to be exact with Curator, it is best to use days
+(for example, `delete: days: 30`).
+
+:::

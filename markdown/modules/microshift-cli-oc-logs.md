@@ -1,0 +1,42 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Using oc with a {{ microshift_short }} node {id="cli-using-cli_{{ context }}"}
+
+You can complete common tasks in {{ microshift_short }} by using the `oc` CLI. {._abstract}
+
+
+:::note
+
+When you run `oc` inside a pod and do not specify a namespace, the namespace of the pod is used by default.
+
+:::
+
+
+*   To view the pods for the current project, run the `oc get pods` command:
+    ```terminal
+    $ oc get pods -o wide
+    ```
+    ```terminal title="Example output"
+    NAME                  READY   STATUS      RESTARTS   AGE     IP            NODE                           NOMINATED NODE
+    cakephp-ex-1-build    0/1     Completed   0          5m45s   10.131.0.10   ip-10-0-141-74.ec2.internal    <none>
+    cakephp-ex-1-deploy   0/1     Completed   0          3m44s   10.129.2.9    ip-10-0-147-65.ec2.internal    <none>
+    cakephp-ex-1-ktz97    1/1     Running     0          3m33s   10.128.2.11   ip-10-0-168-105.ec2.internal   <none>
+    ```
+*   To view logs for a particular pod, run the `oc logs` command:
+    ```terminal
+    $ oc logs cakephp-ex-1-deploy
+    ```
+    ```terminal title="Example output"
+    --> Scaling cakephp-ex-1 to 1
+    --> Success
+    ```
+*   To view the list of supported API resources on the server, run the `oc api-resources` command:
+    ```terminal
+    $ oc api-resources
+    ```
+    ```terminal title="Example output"
+    NAME                                  SHORTNAMES       APIGROUP                              NAMESPACED   KIND
+    bindings                                                                                     true         Binding
+    componentstatuses                     cs                                                     false        ComponentStatus
+    configmaps                            cm                                                     true         ConfigMap
+    ...
+    ```

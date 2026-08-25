@@ -1,0 +1,17 @@
+# Full list of configuration variables {id="full-list-of-configuration-variables_{{ context }}"}
+
+This table contains the full list of the inventory file variables for configuring the Cluster Monitoring Operator:
+
+**Cluster Monitoring Operator Ansible variables**
+
+| Variable | Description |
+| --- | --- |
+| `openshift_cluster_monitoring_operator_install` | Deploy the Cluster Monitoring Operator if `true`. Otherwise, undeploy. This variable is set to `true` by default. |
+| `openshift_cluster_monitoring_operator_prometheus_storage_capacity` | The persistent volume claim size for each of the Prometheus instances. This variable applies only if `openshift_cluster_monitoring_operator_prometheus_storage_enabled` is set to `true`. Defaults to `50Gi`. |
+| `openshift_cluster_monitoring_operator_alertmanager_storage_capacity` | The persistent volume claim size for each of the Alertmanager instances. This variable applies only if `openshift_cluster_monitoring_operator_alertmanager_storage_enabled` is set to `true`. Defaults to `2Gi`. |
+| `openshift_cluster_monitoring_operator_node_selector` | Set to the desired, existing [node selector] to ensure that pods are placed onto nodes with specific labels. Defaults to `node-role.kubernetes.io/infra=true`. |
+| `openshift_cluster_monitoring_operator_alertmanager_config` | Configures Alertmanager. |
+| `openshift_cluster_monitoring_operator_prometheus_storage_enabled` | Enable persistent storage of Prometheus' time-series data. This variable is set to `false` by default. |
+| `openshift_cluster_monitoring_operator_alertmanager_storage_enabled` | Enable persistent storage of Alertmanager notifications and silences. This variable is set to `false` by default. |
+| `openshift_cluster_monitoring_operator_prometheus_storage_class_name` | If you enabled the `openshift_cluster_monitoring_operator_prometheus_storage_enabled` option, set a specific StorageClass to ensure that pods are configured to use the `PVC` with that `storageclass`. Defaults to `none`, which applies the default storage class name. |
+| `openshift_cluster_monitoring_operator_alertmanager_storage_class_name` | If you enabled the `openshift_cluster_monitoring_operator_alertmanager_storage_enabled` option, set a specific StorageClass to ensure that pods are configured to use the `PVC` with that `storageclass`. Defaults to `none`, which applies the default storage class name. |

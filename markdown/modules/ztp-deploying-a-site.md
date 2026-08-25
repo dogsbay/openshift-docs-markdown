@@ -1,0 +1,120 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Deploying a managed cluster with ClusterInstance and {{ ztp }} {id="ztp-deploying-a-site_{{ context }}"}
+
+Use the following procedure to create a `ClusterInstance` custom resource (CR) and related files and initiate the {{ ztp_first }} cluster deployment. {._abstract}
+
+
+:::note
+
+You require {{ rh_rhacm_first }} version 2.12 or later to install the SiteConfig Operator and use the `ClusterInstance` CR.
+
+:::
+
+
+**Prerequisites**
+
+*   You have installed the OpenShift CLI (`oc`).
+*   You installed the SiteConfig Operator in the hub cluster.
+*   You have logged in to the hub cluster as a user with `cluster-admin` privileges.
+*   You configured the hub cluster for generating the required installation and policy CRs.
+*   You created a Git repository where you manage your custom site configuration data. The repository must be accessible from the hub cluster and you must configure it as a source repository for the ArgoCD application. See "Preparing the {{ ztp }} site configuration repository" for more information.
+
+    :::note
+
+    When you create the source repository, ensure that you patch the ArgoCD application with the `argocd/deployment/argocd-openshift-gitops-patch.json` patch-file that you extract from the `ztp-site-generate` container. See "Configuring the hub cluster with ArgoCD".
+    
+    :::
+
+*   To be ready for provisioning managed clusters, you require the following for each bare-metal host:
+
+Network connectivity
+:   Your network requires DNS. Managed cluster hosts should be reachable from the hub cluster. Ensure that Layer 3 connectivity exists between the hub cluster and the managed cluster host.
+
+Baseboard Management Controller (BMC) details
+:   {{ ztp }} uses BMC username and password details to connect to the BMC during cluster installation. The {{ ztp }} plugin manages the `ManagedCluster` CRs on the hub cluster based on the `ClusterInstance` CR in your site Git repo. You create individual `BMCSecret` CRs for each host manually.
+
+**Procedure**
+
+1.  Create the required managed cluster secrets on the hub cluster. These resources must be in a namespace with a name matching the cluster name. For example, in `out/argocd/example/clusterinstance/example-sno.yaml`, the cluster name and namespace is `example-sno`.
+    1.  Export the cluster namespace by running the following command:
+        ```terminal
+        $ export CLUSTERNS=example-sno
+        ```
+    1.  Create the namespace:
+        ```terminal
+        $ oc create namespace $CLUSTERNS
+        ```
+1.  Create pull secret and BMC `Secret` CRs for the managed cluster. The pull secret must contain all the credentials necessary for installing {{ product_title }} and all required Operators. See "Creating the managed bare-metal host secrets" for more information.
+
+    :::note
+
+    The secrets are referenced from the `ClusterInstance` custom resource (CR) by name. The namespace must match the `ClusterInstance` namespace.
+    
+    :::
+
+1.  Create a `ClusterInstance` CR for your cluster in your local clone of the Git repository:
+    1.  Choose the appropriate example for your CR from the  `out/argocd/example/clusterinstance/` folder.
+    The folder includes example files for single node, three-node, and standard clusters:
+        *   `example-sno.yaml`
+        *   `example-3node.yaml`
+        *   `example-standard.yaml`
+    1.  Change the cluster and host details in the example file to match the type of cluster you want. For example:
+        ```yaml title="Example {{ sno }} ClusterInstance CR"
+{% include "./snippets/ztp_example-sno.yaml" %}
+        ```
+
+        :::note
+
+        For more information about BMC addressing, see the "Additional resources" section. The `installConfigOverrides` and  `ignitionConfigOverride` fields are expanded in the example for ease of readability.   
+        
+        :::
+
+
+        :::note
+
+        To override the default `BareMetalHost` CR for a node, create a custom node template in a `ConfigMap` and reference it in the node-level `spec.nodes.templateRefs` field in the `ClusterInstance` CR. Ensure that you set the `argocd.argoproj.io/sync-wave: "3"` annotation in your override `BareMetalHost` CR.
+        
+        :::
+
+    1.  You can inspect the default set of extra-manifest `MachineConfig` CRs in `out/argocd/extra-manifest`. It is automatically applied to the cluster when it is installed.
+    1.  Optional: To provision additional install-time manifests on the provisioned cluster, package your extra manifest CRs in a `ConfigMap` and reference it in the `extraManifestsRefs` field of the `ClusterInstance` CR. For more information, see "Customizing extra installation manifests in the {{ ztp }} pipeline".
+
+        :::important
+
+        For optimal cluster performance, enable crun for master and worker nodes in {{ sno }}, {{ sno }} with additional worker nodes, {{ 3no }}, and standard clusters.
+
+        Enable crun in a `ContainerRuntimeConfig` CR as an additional Day 0 install-time manifest to avoid the cluster having to reboot.
+
+        The `enable-crun-master.yaml` and `enable-crun-worker.yaml` CR files are in the `out/source-crs/optional-extra-manifest/` folder that you can extract from the `ztp-site-generate` container.
+        
+        :::
+
+1.  Add the `ClusterInstance` CR to the `kustomization.yaml` file in the `generators` section, similar to the example shown in `out/argocd/example/clusterinstance/kustomization.yaml`.
+1.  Commit the `ClusterInstance` CR and associated `kustomization.yaml` changes in your Git repository and push the changes.
+
+    The ArgoCD pipeline detects the changes and begins the managed cluster deployment.
+
+**Verification**
+
+*   Verify that the custom roles and labels are applied after the node is deployed:
+    ```terminal
+    $ oc describe node example-node.example.com
+    ```
+
+    The following example output shows the custom roles and labels:
+    ```terminal
+    Name:   example-node.example.com
+    Roles:  control-plane,example-label,master,worker
+    Labels: beta.kubernetes.io/arch=amd64
+            beta.kubernetes.io/os=linux
+            custom-label/parameter1=true
+            kubernetes.io/arch=amd64
+            kubernetes.io/hostname=cnfdf03.telco5gran.eng.rdu2.redhat.com
+            kubernetes.io/os=linux
+            node-role.kubernetes.io/control-plane=
+            node-role.kubernetes.io/example-label=
+            node-role.kubernetes.io/master=
+            node-role.kubernetes.io/worker=
+            node.openshift.io/os_id=rhcos
+    ```
+    *   `node-role.kubernetes.io/example-label=` shows the custom label applied to the node.

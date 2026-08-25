@@ -1,0 +1,115 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Disabling the CPU hot plug by instance type {id="virt-disable-CPU-VM-hotplug-instancetype_{{ context }}"}
+
+As a cluster administrator, you can disable the CPU hot plug by instance type.
+This is the recommended approach to standardize VM configurations and ensure NUMA-aware CPU allocation without hot plugs for specific instance types. {._abstract}
+
+When a VM is created by using an instance type where the CPU hot plug is disabled, the VM inherits these settings and the CPU hot plug is disabled for that VM.
+
+**Prerequisites**
+
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Create a YAML file for a `VirtualMachineClusterInstancetype` custom resource (CR). Add a `maxSockets` spec to the instance type that you want to configure.
+
+    Example `VirtualMachineClusterInstancetype` CR:
+    ```yaml
+    apiVersion: instancetype.kubevirt.io/v1beta1
+    kind: VirtualMachineClusterInstancetype
+    metadata:
+      name: cx1.mycustom-numa-instance
+    spec:
+      cpu:
+        dedicatedCPUPlacement: true
+        isolateEmulatorThread: true
+        numa:
+          guestMappingPassthrough: {}
+        guest: 8
+        maxSockets: 8
+      memory:
+        guest: 16Gi
+        hugepages:
+          pageSize: 1Gi
+    ```
+
+    where:
+
+    `spec.cpu.dedicatedCPUPlacement`
+    :   Specifies whether dedicated resources are allocated to the VM instance. If this is set to `true`, the VM’s VCPUs are pinned to physical host CPUs. This is often used for high-performance workloads to minimize scheduling jitter.
+
+
+    `spec.cpu.isolateEmulatorThread`
+    :   Specifies whether the QEMU emulator thread should be isolated and run on a dedicated physical CPU core. This is a performance optimization that is typically used alongside the `dedicatedCPUPlacement` spec.
+
+
+    `spec.cpu.numa`
+    :   Specifies the NUMA topology configuration for the VM.
+
+
+    `spec.cpu.numa.guestMappingPassthrough`
+    :   Specifies that the VM’s NUMA topology should directly pass through the NUMA topology of the underlying host machine. This is critical for applications that are NUMA-aware and require optimal performance.
+
+
+    `spec.cpu.guest`
+    :   Specifies the total number of vCPUs to be allocated to the VM.
+
+
+    `spec.cpu.maxSockets`
+    :   Specifies the maximum number of CPU sockets the VM is allowed to have.
+
+
+    `spec.memory`
+    :   Specifies the memory configuration for the VM.
+
+
+    `spec.memory.guest`
+    :   Specifies the total amount of memory to be allocated to the VM.
+
+
+    `spec.memory.hugepages`
+    :   Specifies configuration related to hugepages.
+
+
+    `spec.memory.hugepages.pageSize`
+    :   Specifies the size of the hugepages to be used for the VM’s memory.
+1.  Create the `VirtualMachineClusterInstancetype` CR by running the following command:
+    ```terminal
+    $ oc create -f <filename>.yaml
+    ```
+
+**Verification**
+
+1.  Create a VM that uses the updated `VirtualMachineClusterInstancetype` configuration.
+1.  Inspect the configuration of the created VM by running the following command and inspecting the output:
+    ```terminal
+    $ oc get vmi <vm_name> -o yaml
+    ```
+
+    **Example output**
+    ```yaml
+    apiVersion: kubevirt.io/v1
+    kind: VirtualMachineInstance
+    metadata:
+      name: example-vmi
+      labels:
+        instancetype.kubevirt.io/cluster-instancetype: cx1.example-numa-instance
+    spec:
+      domain:
+        cpu:
+          dedicatedCPUPlacement: true
+          isolateEmulatorThread: true
+          sockets: 8
+          cores: 1
+          threads: 1
+          numa:
+            guestMappingPassthrough: {}
+          guest: 8
+          maxSockets: 8
+    # ...
+    ```
+
+    The update has applied successfully if in the `spec.template.spec.domain.cpu` section:
+    *   The `sockets` value matches the `maxSockets` and `guest` values from the instance type, which ensures that no extra hot plug slots are configured.
+    *   The `dedicatedCPUPlacement` and `isolateEmulatorThread` fields are present and set to `true`.

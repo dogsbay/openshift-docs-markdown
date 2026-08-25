@@ -1,0 +1,48 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About nodes {id="nodes-overview-about-nodes_{{ context }}"}
+
+A node is a virtual or bare-metal machine in a Kubernetes cluster. {._abstract}
+
+Worker nodes host your application containers, grouped as pods. The control plane nodes run services that are required to control the Kubernetes cluster.
+{%- if not openshift_rosa_hcp %}
+In {{ product_title }}, the control plane nodes contain more than just the Kubernetes services for managing the {{ product_title }} cluster.
+{% endif %}
+{% if openshift_rosa_hcp %}
+In {{ product_title }}, the control plane nodes are hosted in a Red&#160;Hat-owned AWS account. Red&#160;Hat fully manages the control plane infrastructure for you.
+{% endif %}
+
+{% if openshift_rosa or openshift_rosa_hcp %}
+
+:::important
+
+Worker nodes are not guaranteed longevity, and may be replaced at any time as part of the normal operation and management of OpenShift.
+
+:::
+
+{% endif %}
+
+Having stable and healthy nodes in a cluster is fundamental to the smooth functioning of your hosted application.
+In {{ product_title }}, you can access, manage, and monitor a node through the `Node` object representing the node.
+Using the OpenShift CLI (`oc`) or the web console, you can perform read, management, and enhancement operations on a node.
+
+The following components of a node are responsible for maintaining the running of pods and providing the Kubernetes runtime environment.
+
+
+Container runtime
+:   The container runtime is responsible for running containers. {{ product_title }} deploys the CRI-O container runtime on each of the {{ op_system_first }} nodes in your cluster. The Windows Machine Config Operator (WMCO) deploys the containerd runtime on its Windows nodes.
+
+
+Kubelet
+:   Kubelet runs on nodes and reads the container manifests. It ensures that the defined containers have started and are running. The kubelet process maintains the state of work and the node server. Kubelet manages network rules and port forwarding. The kubelet manages containers that are created by Kubernetes only.
+
+
+DNS
+:   Cluster DNS is a DNS server which serves DNS records for Kubernetes services. Containers started by Kubernetes automatically include this DNS server in their DNS searches.
+
+{% if not openshift_rosa_hcp %}
+![Overview of control plane and worker node](/_assets/images/295_OpenShift_Nodes_Overview_1222.png)
+{% endif %}
+
+{% if openshift_rosa_hcp %}
+![Overview of control plane and worker node](/_assets/images/ROSA-HCP-overview-of-nodes-487.png)
+{% endif %}

@@ -1,0 +1,18 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Securing inside the container {id="security-container-content-inside_{{ context }}"}
+
+For the security of your containers, you need to know where any source packages originally came from, what versions are used, who built them, and whether there is any malicious code inside them. {._abstract}
+
+However, when using these packages, you should answer the following questions about the packages: 
+
+Containerized versions of these packages are also available. However, you need to know where the packages originally came from, what versions are used, who built them, and whether there is any malicious code inside them.
+
+Some questions to answer include:
+
+*   Will what is inside the containers compromise your infrastructure?
+*   Are there known vulnerabilities in the application layer?
+*   Are the runtime and operating system layers current?
+
+By building your containers from Red Hat Universal Base Images (UBI) you are assured of a foundation for your container images that consists of the same RPM-packaged software that is included in Red Hat Enterprise Linux. No subscriptions are required to either use or redistribute UBI images.
+
+To assure ongoing security of the containers themselves, security scanning features, used directly from {{ op_system_base }} or added to {{ product_title }}, can alert you when an image you are using has vulnerabilities. OpenSCAP image scanning is available in {{ op_system_base }} and the {{ rhq_cso }} can be added to check container images used in {{ product_title }}.

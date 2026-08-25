@@ -1,0 +1,15 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Assigning an SR-IOV network to a VRF {id="cnf-assigning-a-sriov-network-to-a-vrf_{{ context }}"}
+
+As a cluster administrator, you can assign an SR-IOV network interface to your VRF domain by using the CNI VRF plugin. {._abstract}
+
+To do this, add the VRF configuration to the optional `metaPlugins` parameter of the `SriovNetwork` resource.
+
+
+:::note
+
+Applications that use VRF instances need to bind to a specific device. The common usage is to use the `SO_BINDTODEVICE` option for a socket. `SO_BINDTODEVICE` binds the socket to a device that is specified in the passed interface name, for example, `eth1`. To use `SO_BINDTODEVICE`, the application must have `CAP_NET_RAW` capabilities.
+
+Using a VRF through the `ip vrf exec` command is not supported in {{ product_title }} pods. To use VRF, bind applications directly to the VRF interface.
+
+:::

@@ -1,0 +1,57 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About volume snapshots {id="about-volume-snapshots_{{ context }}"}
+
+You can use volume snapshots with logical volume manager (LVM) thin volumes to help protect against data loss from applications running in a {{ microshift_short }} node. {{ microshift_short }} only supports the logical volume manager storage (LVMS) Container Storage Interface (CSI) provider. {._abstract}
+
+
+:::note
+
+LVMS only supports the `volumeBindingMode` of the storage class being set to `WaitForFirstConsumer`. This setting means the storage volume is not provisioned until a pod is ready to mount it.
+
+:::
+
+
+```terminal title="Example workload that deploys a single pod and PVC"
+$ oc apply -f - <<EOF
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-claim-thin
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: topolvm-provisioner-thin
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: base
+spec:
+  containers:
+  - command:
+	    - nginx
+	    - -g
+	    - 'daemon off;'
+    image: registry.redhat.io/rhel8/nginx-122@sha256:908ebb0dec0d669caaf4145a8a21e04fdf9ebffbba5fd4562ce5ab388bf41ab2
+    name: test-container
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+    volumeMounts:
+    - mountPath: /vol
+      name: test-vol
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  volumes:
+  - name: test-vol
+    persistentVolumeClaim:
+      claimName: test-claim-thin
+EOF
+```

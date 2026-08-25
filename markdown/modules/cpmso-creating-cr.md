@@ -1,0 +1,94 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a control plane machine set custom resource {id="cpmso-creating-cr_{{ context }}"}
+
+To use the control plane machine set, you must ensure that a `ControlPlaneMachineSet` custom resource (CR) with the correct settings for your cluster exists. On a cluster without a generated CR, you must create the CR manually and activate it. {._abstract}
+
+
+:::note
+
+For more information about the structure and parameters of the CR, see "Control plane machine set configuration".
+
+:::
+
+
+**Procedure**
+
+1.  Create a YAML file using the following template:
+    ```yaml
+    apiVersion: machine.openshift.io/v1
+    kind: ControlPlaneMachineSet
+    metadata:
+      name: cluster
+      namespace: openshift-machine-api
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          machine.openshift.io/cluster-api-cluster: <cluster_id>
+          machine.openshift.io/cluster-api-machine-role: master
+          machine.openshift.io/cluster-api-machine-type: master
+      state: Active
+      strategy:
+        type: RollingUpdate
+      template:
+        machineType: machines_v1beta1_machine_openshift_io
+        machines_v1beta1_machine_openshift_io:
+          failureDomains:
+            platform: <platform>
+            <platform_failure_domains>
+          metadata:
+            labels:
+              machine.openshift.io/cluster-api-cluster: <cluster_id>
+              machine.openshift.io/cluster-api-machine-role: master
+              machine.openshift.io/cluster-api-machine-type: master
+          spec:
+            providerSpec:
+              value:
+                <platform_provider_spec>
+    ```
+
+    where:
+
+
+    `<cluster_id>`
+    :   Specifies the infrastructure ID that is based on the cluster ID that you set when you provisioned the cluster. You must specify this value when you create a `ControlPlaneMachineSet` CR. If you have the OpenShift CLI (`oc`) installed, you can obtain the infrastructure ID by running the following command:
+        ```terminal
+        $ oc get -o jsonpath='{.status.infrastructureName}{"\n"}' infrastructure cluster
+        ```
+
+
+    `state: Active`
+    :   Specifies the state of the Operator. When the state is `Inactive`, the Operator is not operational. You can activate the Operator by setting the value to `Active`.
+
+        :::important
+
+
+        Before you activate the CR, you must ensure that its configuration is correct for your cluster requirements.
+        
+        :::
+
+
+
+    `type: RollingUpdate`
+    :   Specifies the update strategy for the cluster. Valid values are `OnDelete` and `RollingUpdate`. The default value is `RollingUpdate`. For more information about update strategies, see "Updating the control plane configuration".
+
+
+    `platform: <platform>`
+    :   Specifies the cloud provider platform name. Valid values are `AWS`, `Azure`, `GCP`, `Nutanix`, `VSphere`, and `OpenStack`.
+
+
+    `<platform_failure_domains>`
+    :   Specifies the failure domains configuration for the cluster. The format and values of this section are provider-specific. For more information, see the sample failure domain configuration for your cloud provider.
+
+
+    `<platform_provider_spec>`
+    :   Specifies the provider spec configuration for the cluster. The format and values of this section are provider-specific. For more information, see the sample provider specification for your cloud provider.
+1.  Refer to the sample YAML for a control plane machine set CR and populate your file with values that are appropriate for your cluster configuration.
+1.  Refer to the sample failure domain configuration and sample provider specification for your cloud provider and update those sections of your file with the appropriate values.
+1.  When the configuration is correct, activate the CR by setting the `.spec.state` field to `Active` and saving your changes.
+1.  Create the CR from your YAML file by running the following command:
+    ```terminal
+    $ oc create -f <control_plane_machine_set>.yaml
+    ```
+
+    where `<control_plane_machine_set>` specifies the name of the YAML file that contains the CR configuration.

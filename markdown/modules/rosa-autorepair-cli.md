@@ -1,0 +1,65 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring machine pool AutoRepair using the ROSA CLI {id="rosa-autorepair-cli_{{ context }}"}
+
+You can configure machine pool AutoRepair for your {{ product_title }} cluster by using the {{ rosa_cli_first }}.
+
+**Prerequisites**
+
+*   You installed and configured the latest AWS (`aws`) and ROSA (`rosa`) CLIs on your workstation.
+*   You logged in to your Red&#160;Hat account by using the `rosa` CLI.
+*   You created a {{ product_title }} cluster.
+*   You have an existing machine pool.
+
+**Procedure**
+
+1.  List the machine pools in the cluster by running the following command:
+    ```terminal
+    $ rosa list machinepools --cluster=<cluster_name>
+    ```
+    ```terminal title="Example output"
+    ID           AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS    TAINTS    AVAILABILITY ZONE  SUBNET                    VERSION  AUTOREPAIR
+    workers      No           2/2       m7i.xlarge                          us-east-2a         subnet-0df2ec3377847164f  4.16.6   Yes
+    db-nodes-mp  No           2/2       m7i.xlarge                          us-east-2a         subnet-0df2ec3377847164f  4.16.6   Yes
+    ```
+1.  Enable or disable AutoRepair on a machine pool:
+    *   To disable AutoRepair for a machine pool, run the following command:
+        ```terminal
+        $ rosa edit machinepool --cluster=mycluster --machinepool=<machinepool_name>  --autorepair=false
+        ```
+    *   To enable AutoRepair for a machine pool, run the following command:
+        ```terminal
+        $ rosa edit machinepool --cluster=mycluster --machinepool=<machinepool_name>  --autorepair=true
+        ```
+        ```terminal title="Example output"
+        I: Updated machine pool 'machinepool_name' on cluster 'mycluster'
+        ```
+
+**Verification**
+
+1.  Describe the details of the machine pool:
+    ```terminal
+    $ rosa describe machinepool --cluster=<cluster_name> --machinepool=<machinepool_name>
+    ```
+    ```terminal title="Example output"
+    ID:                            machinepool_name
+    Cluster ID:                    <ID_of_cluster>
+    Autoscaling:                   No
+    Desired replicas:              2
+    Current replicas:              2
+    Instance type:                 m7i.xlarge
+    Labels:
+    Tags:
+    Taints:
+    Availability zone:             us-east-2a
+    ...
+    Autorepair:                    Yes
+    Tuning configs:
+    Kubelet configs:
+    Additional security group IDs:
+    Node drain grace period:
+    Management upgrade:
+     - Type:                               Replace
+     - Max surge:                          1
+     - Max unavailable:                    0
+    ```
+1.  Verify that the AutoRepair setting is correct for your machine pool in the output.

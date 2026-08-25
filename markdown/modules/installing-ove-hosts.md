@@ -1,0 +1,28 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Booting the remaining cluster hosts {id="virt-installing-ove-hosts_{{ context }}"}
+
+After you have configured initial cluster details in the installation web console and have a defined cluster topology, you must boot the remaining machines that will make up your cluster from the ISO image. {._abstract}
+
+
+:::note
+
+You can boot non-rendezvous node machines earlier in the installation process, even before you designate a machine as the rendezvous node. However, you must know the valid IP address that you will select for the rendezvous node.
+
+When you boot your non-rendezvous node machines, the machines will perform a check to see if an Assisted Service is running at the specified rendezvous IP address.
+If the service is not yet running, a warning appears to confirm whether you would still like to proceed booting the machine from the ISO image.
+
+:::
+
+
+**Prerequisites**
+
+*   You have downloaded the installation ISO.
+
+**Procedure**
+
+1.  Attach the ISO image to a machine and boot the machine from this image.
+You can also boot from a USB drive containing the ISO image.
+1.  Wait for a machine to boot from the image and display the **Rendezvous node setup** menu.
+1.  Enter the rendezvous node IP address in the **Rendezvous node setup** menu and select **Save rendezvous IP**.
+1.  Select **Save and Continue**.
+1.  Repeat this process for each remaining machine that will comprise the hosts in your cluster.

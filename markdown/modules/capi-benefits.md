@@ -1,0 +1,11 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Cluster API benefits {id="cluster-api-benefits_{{ context }}"}
+
+With the Cluster API, you can use Kubernetes tools for infrastructure management to perform advanced machine management and scaling. {._abstract}
+
+By using the Cluster API, {{ product_title }} users and developers can gain the following advantages:
+
+*   The option to use upstream community Cluster API infrastructure providers that might not be supported by the Machine API.
+*   The opportunity to collaborate with third parties who maintain machine controllers for infrastructure providers.
+*   The ability to use the same set of Kubernetes tools for infrastructure management in {{ product_title }}.
+*   The ability to create compute machine sets by using the Cluster API that support features that are not available with the Machine API.

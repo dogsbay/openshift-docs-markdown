@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# `OpenshiftEC2NodeClass` immutability and lifecycle rules {id="rosa-nodes-autonode-ref-nodeclass-rules_{{ context }}"}
+
+The `OpenshiftEC2NodeClass` resource has immutability and lifecycle rules that you must follow when managing node classes. {._abstract}
+
+*   **Resource immutability:** The default `OpenshiftEC2NodeClass` resource is immutable. Use this resource only for referencing purposes inside the `NodePool` resources that you create.
+*   **Default node classes:** A default `OpenshiftEC2NodeClass` is created automatically when you enable the {{ autonode }} in the cluster. All `NodePool` resources that reference the default `OpenshiftEC2NodeClass` upgrade automatically when the hosted control plane upgrades.
+*   **Control plane version pinning:** All `NodePool` resources that do not specify a `spec.version` field upgrade automatically alongside the hosted control plane. If you prefer to prevent automated upgrades for specific node pools, you must pin the version of the `OpenshiftEC2NodeClass` resource by using the `spec.version` field.
+*   **Reserved AWS tags:** Avoid using reserved AWS tags within your node class configurations. The following tag patterns are strictly prohibited:
+    *   `red-hat-managed`
+    *   `api.openshift.com/*`
+    *   `kubernetes.io/cluster/*`
+*   **De-provisioning sequence:** When you remove nodes managed by Karpenter, clean up the `NodePool` custom resources and the applications running on them before cleaning up any custom `OpenshiftEC2NodeClass` that the `NodePool` resources reference.

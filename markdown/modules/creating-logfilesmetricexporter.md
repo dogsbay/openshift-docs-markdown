@@ -1,0 +1,55 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a LogFileMetricExporter resource {id="creating-logfilesmetricexporter_{{ context }}"}
+
+In {{ logging }} version 5.8 and newer versions, the LogFileMetricExporter is no longer deployed with the collector by default. You must manually create a `LogFileMetricExporter` custom resource (CR) to generate metrics from the logs produced by running containers.
+
+If you do not create the `LogFileMetricExporter` CR, you may see a **No datapoints found** message in the {{ product_title }} web console dashboard for **Produced Logs**.
+
+**Prerequisites**
+
+*   You have administrator permissions.
+*   You have installed the {{ clo }}.
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Create a `LogFileMetricExporter` CR as a YAML file:
+    ```yaml title="Example LogFileMetricExporter CR"
+    apiVersion: logging.openshift.io/v1alpha1
+    kind: LogFileMetricExporter
+    metadata:
+      name: instance
+      namespace: openshift-logging
+    spec:
+      nodeSelector: {} # (1)
+      resources: # (2)
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 200m
+          memory: 128Mi
+      tolerations: [] # (3)
+    # ...
+    ```
+    1.  Optional: The `nodeSelector` stanza defines which nodes the pods are scheduled on.
+    1.  The `resources` stanza defines resource requirements for the `LogFileMetricExporter` CR.
+    1.  Optional: The `tolerations` stanza defines the tolerations that the pods accept.
+1.  Apply the `LogFileMetricExporter` CR by running the following command:
+    ```terminal
+    $ oc apply -f <filename>.yaml
+    ```
+
+**Verification**
+
+A `logfilesmetricexporter` pod runs concurrently with a `collector` pod on each node.
+
+*   Verify that the `logfilesmetricexporter` pods are running in the namespace where you have created the `LogFileMetricExporter` CR, by running the following command and observing the output:
+    ```terminal
+    $ oc get pods -l app.kubernetes.io/component=logfilesmetricexporter -n openshift-logging
+    ```
+    ```terminal title="Example output"
+    NAME                           READY   STATUS    RESTARTS   AGE
+    logfilesmetricexporter-9qbjj   1/1     Running   0          2m46s
+    logfilesmetricexporter-cbc4v   1/1     Running   0          2m46s
+    ```

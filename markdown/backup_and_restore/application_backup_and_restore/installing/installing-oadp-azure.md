@@ -1,0 +1,72 @@
+---
+title: Configuring the OpenShift API for Data Protection with Microsoft Azure
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Configuring the OpenShift API for Data Protection with Microsoft Azure {id="installing-oadp-azure"}
+{% include "./_attributes/common-attributes.md" %}
+{%- set context = "installing-oadp-azure" -%}
+{%- set installing_oadp_azure = true -%}
+{%- set credentials = "cloud-credentials-azure" -%}
+{%- set provider = "azure" %}
+
+Configure the {{ oadp_first }} with Microsoft Azure to back up and restore cluster resources by using Azure storage. This provides data protection capabilities for your {{ product_title }} clusters.
+
+The {{ oadp_short }} Operator installs Velero {{ velero_version }}.
+
+You configure Azure for Velero, create a default `Secret`, and then install the Data Protection Application.
+
+To install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog.
+
+{% leveloffset +1 %}{% include "./modules/migration-configuring-azure.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-about-backup-snapshot-locations-secrets.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-auth-azure-methods.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-auth-azure-secret-based.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-auth-azure-sts.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-setting-resource-limits-and-requests.md" %}{% endleveloffset %}
+
+{% include "./snippets/oadp-nodeselector-snippet.md" %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-self-signed-certificate.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-using-ca-certificates-with-velero-command.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-installing-dpa-1-3.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-client-burst-qps.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-node-agents.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-node-agent-load-affinity.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-node-agent-load-affinity-guidelines.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-node-agent-load-concurrency.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-node-agent-non-root.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-repository-maintenance.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-velero-load-affinity.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-priority-class.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-configuring-imagepullpolicy.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/oadp-enabling-csi-dpa.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/oadp-about-disable-node-agent-dpa.md" %}{% endleveloffset %}
+
+## Additional resources {id="additional-resources_{{ context }}"}
+
+*   [Velero {{ velero_version }}](https://{{ velero_domain }}/docs/v{{ velero_version }}/)
+*   [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
+*   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+*   [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)
+*   [Running tasks in pods using jobs](/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)
+*   [Configuring the {{ oadp_first }} with multiple backup storage locations](/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-bsl#configuring-oadp-multiple-bsl)

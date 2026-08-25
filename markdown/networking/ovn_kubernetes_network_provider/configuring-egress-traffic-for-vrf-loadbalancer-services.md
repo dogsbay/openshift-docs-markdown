@@ -1,0 +1,40 @@
+---
+title: Configuring an egress service
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Configuring an egress service {id="configuring-egress-traffic-loadbalancer-services"}
+{% include "./_attributes/common-attributes.md" %}
+{%- set context = "configuring-egress-traffic-loadbalancer-services" %}
+
+As a cluster administrator, you can configure egress traffic for pods behind a load balancer service by using an egress service.
+
+{%- set FeatureName = "Egress service" %}
+{% include "./snippets/technology-preview.md" %}
+
+You can use the `EgressService` custom resource (CR) to manage egress traffic in the following ways:
+
+*   Assign a load balancer service IP address as the source IP address for egress traffic for pods behind the load balancer service.
+
+    Assigning the load balancer IP address as the source IP address in this context is useful to present a single point of egress and ingress. For example, in some scenarios, an external system communicating with an application behind a load balancer service can expect the source and destination IP address for the application to be the same.
+
+    :::note
+
+    When you assign the load balancer service IP address to egress traffic for pods behind the service, OVN-Kubernetes restricts the ingress and egress point to a single node. This limits the load balancing of traffic that MetalLB typically provides.
+    
+    :::
+
+*   Assign the egress traffic for pods behind a load balancer to a different network than the default node network.
+
+    This is useful to assign the egress traffic for applications behind a load balancer to a different network than the default network. Typically, the different network is implemented by using a VRF instance associated with a network interface.
+
+{% leveloffset +1 %}{% include "./modules/nw-egress-service-cr.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/nw-egress-service-ovn.md" %}{% endleveloffset %}
+
+**Additional resources**
+
+*   [Exposing a service through a network VRF](/networking/ingress_load_balancing/metallb/metallb-configure-bgp-peers#nw-metallb-bgp-peer-vrf_configure-metallb-bgp-peers)
+*   [Example: Network interface with a VRF instance node network configuration policy](/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#virt-example-host-vrf_k8s-nmstate-updating-node-network-config)
+*   [Managing symmetric routing with MetalLB](/networking/ingress_load_balancing/metallb/metallb-configure-return-traffic#metallb-configure-return-traffic)
+*   [About virtual routing and forwarding](/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)

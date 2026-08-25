@@ -1,0 +1,55 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Scanning custom node pools {id="compliance-custom-node-pools_{{ context }}"}
+
+The Compliance Operator does not maintain a copy of each node pool configuration.  {._abstract}
+
+The Compliance Operator aggregates consistent configuration options for all nodes within a single node pool into one copy of the configuration file. The Compliance Operator then uses the configuration file for a particular node pool to evaluate rules against nodes within that pool.
+
+**Procedure**
+
+1.  Add the `example` role to the `ScanSetting` object that will be stored in the `ScanSettingBinding` CR:
+    ```yaml
+    apiVersion: compliance.openshift.io/v1alpha1
+    kind: ScanSetting
+    metadata:
+      name: default
+      namespace: openshift-compliance
+    rawResultStorage:
+      rotation: 3
+      size: 1Gi
+    roles:
+    - worker
+    - master
+    - example
+    scanTolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+      operator: Exists
+    schedule: '0 1 * * *'
+    ```
+1.  Create a scan that uses the `ScanSettingBinding` CR:
+    ```yaml
+    apiVersion: compliance.openshift.io/v1alpha1
+    kind: ScanSettingBinding
+    metadata:
+      name: cis
+      namespace: openshift-compliance
+    profiles:
+    - apiGroup: compliance.openshift.io/v1alpha1
+      kind: Profile
+      name: ocp4-cis
+    - apiGroup: compliance.openshift.io/v1alpha1
+      kind: Profile
+      name: ocp4-cis-node
+    settingsRef:
+      apiGroup: compliance.openshift.io/v1alpha1
+      kind: ScanSetting
+      name: default
+    ```
+
+**Verification**
+
+*   The Platform KubeletConfig rules are checked through the `Node/Proxy` object. You can find those rules by running the following command:
+    ```terminal
+    $ oc get rules -o json | jq '.items[] | select(.checkType == "Platform") | select(.metadata.name | contains("ocp4-kubelet-")) | .metadata.name'
+    ```

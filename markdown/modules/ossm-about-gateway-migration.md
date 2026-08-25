@@ -1,0 +1,7 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+
+# About gateway migration {id="ossm-about-gateway-migration_{{ context }}"}
+
+In {{ SMProductName }} 2.x, the {{ SMProductShortName }} Operator creates an ingress and egress gateway in the control plane namespace by default. You can define additional gateways in the `ServiceMeshControlPlane` resource. 
+
+Deploying ingress and egress gateways with a `Deployment` resource using gateway injection provides greater flexibility and control. This deployment approach is a better practice because it allows you to manage gateways alongside the corresponding applications rather than in the control plane resource. Therefore, you should disable the default gateways, move away from the Service Mesh Control Plane declaration, and begin to use gateway injection.

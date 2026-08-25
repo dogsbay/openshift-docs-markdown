@@ -1,0 +1,37 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Unable to discover new bare metal hosts using the BMC {id="unable-to-discover-new-bare-metal-hosts-using-the-bmc_{{ context }}"}
+
+In some cases, the installation program will not be able to discover the new bare metal hosts and issue an error, because it cannot mount the remote virtual media share.
+
+For example:
+```terminal
+ProvisioningError 51s metal3-baremetal-controller Image provisioning failed: Deploy step deploy.deploy failed with BadRequestError: HTTP POST
+https://<bmc_address>/redfish/v1/Managers/iDRAC.Embedded.1/VirtualMedia/CD/Actions/VirtualMedia.InsertMedia
+returned code 400.
+Base.1.8.GeneralError: A general error has occurred. See ExtendedInfo for more information
+Extended information: [
+  {
+    "Message": "Unable to mount remote share https://<ironic_address>/redfish/boot-<uuid>.iso.",
+    "MessageArgs": [
+      "https://<ironic_address>/redfish/boot-<uuid>.iso"
+    ],
+    "MessageArgs@odata.count": 1,
+    "MessageId": "IDRAC.2.5.RAC0720",
+    "RelatedProperties": [
+      "#/Image"
+    ],
+    "RelatedProperties@odata.count": 1,
+    "Resolution": "Retry the operation.",
+    "Severity": "Informational"
+  }
+].
+```
+
+In this situation, if you are using virtual media with an unknown certificate authority, you can configure your baseboard management controller (BMC) remote file share settings to trust an unknown certificate authority to avoid this error.
+
+
+:::note
+
+This resolution was tested on {{ product_title }} 4.11 with Dell iDRAC 9 and firmware version 5.10.50.
+
+:::

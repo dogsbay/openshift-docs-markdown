@@ -1,0 +1,73 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling USB host passthrough {id="virt-enabling-usb-host-passthrough_{{ context }}"}
+
+To attach a USB device to a virtual machine (VM), you must first enable USB host passthrough at the cluster level. {._abstract}
+
+To do this, specify a resource name and USB device name for each device you want first to add and then assign to a VM. You can allocate more than one device, each of which is known as a `selector` in the `HyperConverged` custom resource (CR), to a single resource name. If you have multiple identical USB devices on the cluster, you can choose to allocate a VM to a specific device.
+
+**Prerequisites**
+
+*   You have access to an {{ product_title }} cluster as a user who has the `cluster-admin` role.
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Identify the USB device vendor and product:
+    ```terminal
+    $ lsusb
+    ```
+
+    **Example output**
+    ```terminal
+    Bus 003 Device 007: ID 1b1c:0a60 example_manufacturer example_product_name
+    ```
+    *   If you cannot use the `lsusb` command, inspect the USB device configurations in the host’s `/sys/bus/usb/devices/` directory:
+        ```terminal
+        for dev in *; do
+            if [[ -f "$dev/idVendor" && -f "$dev/idProduct" ]]; then
+                echo "Device: $dev"
+                echo -n "  Manufacturer : "; cat "$dev/manufacturer"
+                echo -n "  Product: "; cat "$dev/product"
+                echo -n "  Vendor ID : "; cat "$dev/idVendor"
+                echo -n "  Product ID: "; cat "$dev/idProduct"
+                echo
+            fi
+        done
+        ```
+
+        **Example output**
+        ```terminal
+        Device: 3-7
+          Manufacturer : example_manufacturer
+          Product: example_product_name
+          Vendor ID : 1b1c
+          Product ID: 0a60
+        ```
+1.  Open the `HyperConverged` CR in your default editor by running the following command:
+    ```terminal
+    $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+    ```
+1.  Add the required USB device to the `permittedHostDevices` stanza of the `HyperConvered` CR. The following example adds a device with vendor ID `045e` and product ID `07a5`:
+    ```yaml
+    apiVersion: hco.kubevirt.io/v1beta1
+    kind: HyperConverged
+    metadata:
+      name: kubevirt-hyperconverged
+      namespace: {{ CNVNamespace }}
+    spec:
+      permittedHostDevices:
+        usbHostDevices:
+        - resourceName: kubevirt.io/peripherals
+          selectors:
+          - vendor: "045e"
+            product: "07a5"
+          - vendor: "062a"
+            product: "4102"
+          - vendor: "072f"
+            product: "b100"
+    ```
+    *   `spec.permittedHostDevices` defines the host devices that have permission to be used in the cluster.
+    *   `spec.permittedHostDevices.usbHostDevices` defines a list of available USB devices.
+    *   `spec.permittedHostDevices.usbHostDevices.resourceName` defines the USB device that you want to add and assign to the
+      VM. In this example, the resource is bound to three devices, each of which is identified by `vendor` and `product` and
+      is known as a `selector`.

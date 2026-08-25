@@ -1,0 +1,30 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Infrastructure node sizing {id="infrastructure-node-sizing_{{ context }}"}
+
+_Infrastructure nodes_ are nodes that are labeled to run pieces of the {{ product_title }} environment. The infrastructure node resource requirements depend on the cluster age, nodes, and objects in the cluster, as these factors can lead to an increase in the number of metrics or time series in Prometheus. The following infrastructure node size recommendations are based on the results observed in cluster-density testing detailed in the **Control plane node sizing** section, where the monitoring stack and the default ingress-controller were moved to these nodes. {._abstract}
+
+| Number of worker nodes | Cluster density, or number of namespaces | CPU cores | Memory (GB) |
+| --- | --- | --- | --- |
+| 27 | 500 | 4 | 24 |
+| 120 | 1000 | 8 | 48 |
+| 252 | 4000 | 16 | 128 |
+| 501 | 4000 | 32 | 128 |
+
+In general, three infrastructure nodes are recommended per cluster.
+
+
+:::important
+
+These sizing recommendations should be used as a guideline. Prometheus is a highly memory intensive application; the resource usage depends on various factors including the number of nodes, objects, the Prometheus metrics scraping interval, metrics or time series, and the age of the cluster. In addition, the router resource usage can also be affected by the number of routes and the amount/type of inbound requests.
+
+These recommendations apply only to infrastructure nodes hosting Monitoring, Ingress and Registry infrastructure components installed during cluster creation.
+
+:::
+
+
+
+:::note
+
+In {{ product_title }} {{ product_version }}, half of a CPU core (500 millicore) is now reserved by the system by default compared to {{ product_title }} 3.11 and previous versions. This influences the stated sizing recommendations.
+
+:::

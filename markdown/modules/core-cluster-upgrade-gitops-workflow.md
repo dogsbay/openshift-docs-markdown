@@ -1,0 +1,17 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# GitOps workflows for {{ rh_rhacm }} update policies {id="core-cluster-upgrade-gitops-workflow_{{ context }}"}
+
+GitOps provides a declarative approach to managing cluster configuration and lifecycle operations.
+You define the desired state of your clusters in Git, and automation tools ensure the actual state matches the desired state. {._abstract}
+
+For cluster updates, the GitOps workflow begins with defining the desired cluster version as a policy in a Git repository.
+After committing and pushing the policy changes through your review process, you apply the policy to the {{ rh_rhacm }} hub cluster.
+{{ cgu_operator }} then orchestrates the rollout to target clusters according to your batching strategy, using `ClusterGroupUpgrade` custom resources (CRs).
+You can monitor progress and verify successful updates throughout the process.
+
+With a GitOps workflow for cluster updates, you can do the following:
+
+*   Track changes through Git commit history for full audit trails.
+*   Review policy changes through pull requests before application.
+*   Revert to previous policy versions if needed.
+*   Maintain consistent update configurations across all clusters.

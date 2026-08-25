@@ -1,0 +1,85 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Syncing groups by using the RFC 2307 schema with user-defined name mappings {id="ldap-syncing-rfc2307-user-defined_{{ context }}"}
+
+Sync LDAP groups using the RFC 2307 schema with user-defined name mappings so you can map LDAP group identifiers to {{ product_title }} group names. {._abstract}
+
+When you sync groups with user-defined name mappings, include the mappings in the configuration file, as shown in the following `rfc2307_config_user_defined.yaml` example:
+
+```yaml
+kind: LDAPSyncConfig
+apiVersion: v1
+groupUIDNameMapping:
+  "cn=admins,ou=groups,dc=example,dc=com": Administrators
+rfc2307:
+    groupsQuery:
+        baseDN: "ou=groups,dc=example,dc=com"
+        scope: sub
+        derefAliases: never
+        pageSize: 0
+    groupUIDAttribute: dn
+    groupNameAttributes: [ cn ]
+    groupMembershipAttributes: [ member ]
+    usersQuery:
+        baseDN: "ou=users,dc=example,dc=com"
+        scope: sub
+        derefAliases: never
+        pageSize: 0
+    userUIDAttribute: dn
+    userNameAttributes: [ mail ]
+    tolerateMemberNotFoundErrors: false
+    tolerateMemberOutOfScopeErrors: false
+```
+
+where:
+
+
+`groupUIDNameMapping`
+:   Specifies the user-defined name mapping.
+
+`rfc2307.groupUIDAttribute`
+:   Specifies the unique identifier attribute that is used for the keys in the user-defined name mapping. You cannot specify `groupsQuery` filters when using DN for groupUIDAttribute. For fine-grained filtering, use an allowlist file, a denylist file, or both.
+
+`rfc2307.groupNameAttributes`
+:   Specifies the attribute to name {{ product_title }} groups with if their unique identifier is
+    not in the user-defined name mapping.
+
+`rfc2307.userUIDAttribute`
+:   Specifies the attribute that uniquely identifies a user on the LDAP server. You cannot specify `usersQuery` filters when using DN for the `userUIDAttribute` parameter. For fine-grained filtering, use an allowlist file, a denylist file, or both.
+
+**Prerequisites**
+
+*   An LDAP sync configuration file exists. This procedure uses an example file named `rfc2307_config_user_defined.yaml`.
+{%- if not (openshift_dedicated or openshift_rosa) %}
+*   You have access to the cluster as a user with the `cluster-admin` role.
+{% endif %}
+{% if openshift_dedicated or openshift_rosa %}
+*   You have access to the cluster as a user with the `dedicated-admin` role.
+{% endif %}
+
+**Procedure**
+
+*   Sync groups using the `rfc2307_config_user_defined.yaml` file by running the following command:
+    ```terminal
+    $ oc adm groups sync --sync-config=rfc2307_config_user_defined.yaml --confirm
+    ```
+
+    After you run the sync command, the following group record is created in {{ product_title }}:
+    ```yaml
+    apiVersion: user.openshift.io/v1
+    kind: Group
+    metadata:
+      annotations:
+        openshift.io/ldap.sync-time: 2015-10-13T10:08:38-0400
+        openshift.io/ldap.uid: cn=admins,ou=groups,dc=example,dc=com
+        openshift.io/ldap.url: LDAP_SERVER_IP:389
+      creationTimestamp:
+      name: Administrators
+    users:
+    - jane.smith@example.com
+    - jim.adams@example.com
+    ```
+
+    where:
+
+    `metadata.name`
+    :   Specifies the name of the group as specified by the user-defined name mapping.

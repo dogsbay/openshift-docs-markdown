@@ -1,0 +1,47 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Sample basic authentication custom resource {id="identity-provider-basic-authentication-CR_{{ context }}"}
+
+You can configure basic authentication for your cluster by applying an `OAuth` custom resource (CR) with a `BasicAuth` identity provider. Use this sample to review provider parameters and acceptable values before you connect to your remote authentication server. {._abstract}
+
+```yaml
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+  - name: basicidp
+    mappingMethod: claim
+    type: BasicAuth
+    basicAuth:
+      url: https://www.example.com/remote-idp
+      ca:
+        name: ca-config-map
+      tlsClientCert:
+        name: client-cert-secret
+      tlsClientKey:
+        name: client-key-secret
+```
+
+where:
+
+
+`spec.identityProviders.name`
+:   Specifies that the provider name is prefixed to the returned user ID to form an identity
+    name.
+
+`spec.identityProviders.mappingMethod`
+:   Specifies how mappings are established between the identities of this provider and `User` objects.
+
+`spec.identityProviders.basicAuth.url`
+:   Specifies the URL that accepts credentials in Basic authentication headers.
+
+`spec.identityProviders.basicAuth.ca`
+:   Optional: Specifies a reference to an {{ product_title }} `ConfigMap` object containing the Privacy-Enhanced Mail (PEM)-encoded certificate authority bundle to use in validating server
+    certificates for the configured URL.
+
+`spec.identityProviders.basicAuth.tlsClientCert`
+:   Optional: Specifies a reference to an {{ product_title }} `Secret` object containing the client certificate to present when making requests to the configured URL.
+
+`spec.identityProviders.basicAuth.tlsClientKey`
+:   Specifies a reference to an {{ product_title }} `Secret` object containing the key for the client certificate. Required if `tlsClientCert` is specified.

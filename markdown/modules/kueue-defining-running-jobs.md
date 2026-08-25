@@ -1,0 +1,81 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Defining a job to run with {{ kueue_name }} {id="defining-running-jobs_{{ context }}"}
+
+When you are defining a job to run with {{ kueue_name }}, ensure that it meets the required criteria. {._abstract}
+
+The job must:
+
+*   Specify the local queue to submit the job to, by using the `kueue.x-k8s.io/queue-name` label.
+*   Include the resource requests for each job pod.
+
+{{ kueue_name }} suspends the job, and then starts it when resources are available. {{ kueue_name }} creates a corresponding workload, represented as a `Workload` object with a name that matches the job.
+
+**Prerequisites**
+
+{% include "./snippets/prereqs-snippet-yaml-user.md" %}
+*   You have identified the name of the local queue that you want to submit jobs to.
+
+**Procedure**
+
+1.  Create a `Job` object.
+    ```yaml title="Example job"
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      generateName: sample-job-
+      namespace: my-namespace
+      labels:
+        kueue.x-k8s.io/queue-name: user-queue
+    spec:
+      parallelism: 3
+      completions: 3
+      template:
+        spec:
+          containers:
+          - name: dummy-job
+            image: registry.k8s.io/e2e-test-images/agnhost:2.53
+            args: ["entrypoint-tester", "hello", "world"]
+            resources:
+              requests:
+                cpu: 1
+                memory: "200Mi"
+          restartPolicy: Never
+    ```
+
+    where:
+
+    `kind`
+    :   Defines the resource type as a `Job` object, which represents a batch computation task.
+
+    `metadata.generateName`
+    :   Provides a prefix for generating a unique name for the job.
+
+    `metadata.labels.kueue.x-k8s.io/queue-name`
+    :   Identifies the queue to send the job to.
+
+    `spec.template.spec.containers[].resources`
+    :   Defines the resource requests for each pod.
+
+1.  Run the job by running the following command:
+    ```terminal
+    $ oc create -f <filename>.yaml
+    ```
+
+**Verification**
+
+*   Verify that pods are running for the job you have created, by running the following command and observing the output:
+    ```terminal
+    $ oc get job <job-name>
+    ```
+    ```terminal title="Example output"
+    NAME               STATUS      COMPLETIONS   DURATION   AGE
+    sample-job-sk42x   Suspended   0/1                      2m12s
+    ```
+*   Verify that a workload has been created in your namespace for the job, by running the following command and observing the output:
+    ```terminal
+    $ oc -n <namespace> get workloads
+    ```
+    ```terminal title="Example output"
+    NAME                         QUEUE          RESERVED IN   ADMITTED   FINISHED   AGE
+    job-sample-job-sk42x-77c03   user-queue                                         3m8s
+    ```

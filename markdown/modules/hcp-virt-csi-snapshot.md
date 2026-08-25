@@ -1,0 +1,31 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Mapping a single KubeVirt CSI volume snapshot class {id="hcp-virt-csi-snapshot_{{ context }}"}
+
+You can expose your infrastructure volume snapshot class to the hosted cluster by using KubeVirt CSI. {._abstract}
+
+**Procedure**
+
+*   To map your volume snapshot class to the hosted cluster, use the `--infra-volumesnapshot-class-mapping` argument when creating a hosted cluster as shown in the following example:
+    ```terminal
+    $ hcp create cluster kubevirt \
+      --name my-hosted-cluster \
+      --node-pool-replicas 2 \
+      --pull-secret /user/name/pullsecret \
+      --memory 8Gi \
+      --cores 2 \
+      --infra-storage-class-mapping=<infrastructure_storage_class>/<hosted_storage_class> \
+      --infra-volumesnapshot-class-mapping=<infrastructure_volume_snapshot_class>/<hosted_volume_snapshot_class>
+    ```
+    *   `--name` specifies the name of your hosted cluster.
+    *   `--node-pool-replicas` specifies the worker count.
+    *   `--pull-secret` specifies the path to your pull secret.
+    *   `--memory` specifies a value for memory.
+    *   `--cores` specifies a value for CPU.
+    *   `--infra-storage-class-mapping` specifies the storage classes. Replace `<infrastructure_storage_class>` with the storage class in the infrastructure cluster, and replace `<hosted_storage_class>` with the storage class in the hosted cluster.
+    *   `--infra-volumesnapshot-class-mapping` specifies the volume snapshot classes. Replace `<infrastructure_volume_snapshot_class>` with the volume snapshot class in the infrastructure cluster, and replace `<hosted_volume_snapshot_class>` with the volume snapshot class in the hosted cluster.
+
+        :::note
+
+        If you do not use the `--infra-storage-class-mapping` and `--infra-volumesnapshot-class-mapping` arguments, a hosted cluster is created with the default storage class and the volume snapshot class. Therefore, you must set the default storage class and the volume snapshot class in the infrastructure cluster.
+        
+        :::

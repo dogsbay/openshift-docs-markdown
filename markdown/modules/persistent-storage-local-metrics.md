@@ -1,0 +1,17 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Local Storage Operator Metrics {id="local-storage-metrics_{{ context }}"}
+
+To understand storage utilization and troubleshoot provisioning issues, you can track Local Storage Operator (LSO) operations with available metrics that monitor disk discovery, persistent volume creation, unmatched disks, and orphaned symlinks. {._abstract}
+
+{{ product_title }} provides the following metrics for the LSO:
+
+*   `lso_discovery_disk_count`: total number of discovered devices on each node
+*   `lso_lvset_provisioned_PV_count`: total number of PVs created by `LocalVolumeSet` objects
+*   `lso_lvset_unmatched_disk_count`: total number of disks that LSO did not select for provisioning because of mismatching criteria
+*   `lso_lvset_orphaned_symlink_count`: number of devices with PVs that no longer match `LocalVolumeSet` object criteria
+*   `lso_lv_orphaned_symlink_count`: number of devices with PVs that no longer match `LocalVolume` object criteria
+*   `lso_lv_provisioned_PV_count`: total number of provisioned PVs for `LocalVolume`
+
+To use metrics, you must enable them first. For more information, see "Enabling Local Storage Operator Metrics".
+
+For more information about metrics, see "Accessing metrics as an administrator".

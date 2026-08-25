@@ -1,0 +1,127 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Using trigger authentications {id="nodes-cma-autoscaling-custom-trigger-auth-using_{{ context }}"}
+
+You use trigger authentications and cluster trigger authentications by using a custom resource to create the authentication,  then add a reference to a scaled object or scaled job.
+
+**Prerequisites**
+
+*   The Custom Metrics Autoscaler Operator must be installed.
+*   If you are using a bound service account token, the service account must exist.
+*   If you are using a bound service account token, a role-based access control (RBAC) object that enables the Custom Metrics Autoscaler Operator to request service account tokens from the service account must exist.
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      name: keda-operator-token-creator
+      namespace: <namespace_name> (1)
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - serviceaccounts/token
+      verbs:
+      - create
+      resourceNames:
+      - thanos (2)
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: keda-operator-token-creator-binding
+      namespace: <namespace_name> (3)
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: Role
+      name: keda-operator-token-creator
+    subjects:
+    - kind: ServiceAccount
+      name: keda-operator
+      namespace: openshift-keda
+    ```
+    1.  Specifies the namespace of the service account.
+    1.  Specifies the name of the service account.
+    1.  Specifies the namespace of the service account.
+*   If you are using a secret, the `Secret` object must exist.
+
+**Procedure**
+
+1.  Create the `TriggerAuthentication` or  `ClusterTriggerAuthentication` object.
+    1.  Create a YAML file that defines the object:
+        ```yaml title="Example trigger authentication with a bound service account token"
+        kind: TriggerAuthentication
+        apiVersion: keda.sh/v1alpha1
+        metadata:
+          name: prom-triggerauthentication
+          namespace: my-namespace (1)
+          spec:
+          boundServiceAccountToken: (2)
+            - parameter: token
+              serviceAccountName: thanos (3)
+        ```
+        1.  Specifies the namespace of the object you want to scale.
+        1.  Specifies that this trigger authentication uses a bound service account token for authorization when connecting to the metrics endpoint.
+        1.  Specifies the name of the service account to use.
+    1.  Create the `TriggerAuthentication` object:
+        ```terminal
+        $ oc create -f <filename>.yaml
+        ```
+1.  Create or edit a `ScaledObject` YAML file that uses the trigger authentication:
+    1.  Create a YAML file that defines the object by running the following command:
+        ```yaml title="Example scaled object with a trigger authentication"
+        apiVersion: keda.sh/v1alpha1
+        kind: ScaledObject
+        metadata:
+          name: scaledobject
+          namespace: my-namespace
+        spec:
+          scaleTargetRef:
+            name: example-deployment
+          maxReplicaCount: 100
+          minReplicaCount: 0
+          pollingInterval: 30
+          triggers:
+          - type: prometheus
+            metadata:
+              serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
+              namespace: kedatest # replace <NAMESPACE>
+              metricName: http_requests_total
+              threshold: '5'
+              query: sum(rate(http_requests_total{job="test-app"}[1m]))
+              authModes: "basic"
+            authenticationRef:
+              name: prom-triggerauthentication (1)
+              kind: TriggerAuthentication (2)
+        ```
+        1.  Specify the name of your trigger authentication object.
+        1.  Specify `TriggerAuthentication`. `TriggerAuthentication` is the default.
+            ```yaml title="Example scaled object with a cluster trigger authentication"
+            apiVersion: keda.sh/v1alpha1
+            kind: ScaledObject
+            metadata:
+              name: scaledobject
+              namespace: my-namespace
+            spec:
+              scaleTargetRef:
+                name: example-deployment
+              maxReplicaCount: 100
+              minReplicaCount: 0
+              pollingInterval: 30
+              triggers:
+              - type: prometheus
+                metadata:
+                  serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
+                  namespace: kedatest # replace <NAMESPACE>
+                  metricName: http_requests_total
+                  threshold: '5'
+                  query: sum(rate(http_requests_total{job="test-app"}[1m]))
+                  authModes: "basic"
+                authenticationRef:
+                  name: prom-cluster-triggerauthentication (1)
+                  kind: ClusterTriggerAuthentication (2)
+            ```
+        1.  Specify the name of your trigger authentication object.
+        1.  Specify `ClusterTriggerAuthentication`.
+    1.  Create the scaled object by running the following command:
+        ```terminal
+        $ oc apply -f <filename>
+        ```

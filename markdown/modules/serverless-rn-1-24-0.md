@@ -1,0 +1,41 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Release notes for Red Hat {{ ServerlessProductName }} 1.24.0 {id="serverless-rn-1-24-0_{{ context }}"}
+
+{{ ServerlessProductName }} 1.24.0 is now available. New features, changes, and known issues that pertain to {{ ServerlessProductName }} on {{ product_title }} are included in this topic.
+
+## New features {id="new-features-1.24.0_{{ context }}"}
+
+*   {{ ServerlessProductName }} now uses Knative Serving 1.3.
+*   {{ ServerlessProductName }} now uses Knative Eventing 1.3.
+*   {{ ServerlessProductName }} now uses Kourier 1.3.
+*   {{ ServerlessProductName }} now uses Knative `kn` CLI 1.3.
+*   {{ ServerlessProductName }} now uses Knative Kafka 1.3.
+*   The `kn func` CLI plugin now uses `func` 0.24.
+*   Init containers support for Knative services is now generally available (GA).
+*   {{ ServerlessProductName }} logic is now available as a Developer Preview. It enables defining declarative workflow models for managing serverless applications.
+
+{% if openshift_enterprise %}
+*   You can now use the cost management service with {{ ServerlessProductName }}.
+{% endif %}
+
+## Fixed issues {id="fixed-issues-1.24.0_{{ context }}"}
+
+*   Integrating {{ ServerlessProductName }} with {{ SMProductName }} causes the `net-istio-controller` pod to run out of memory on startup when too many secrets are present on the cluster.
+
+    It is now possible to enable secret filtering, which causes `net-istio-controller` to consider only secrets with a `networking.internal.knative.dev/certificate-uid` label, thus reducing the amount of memory needed.
+*   The {{ FunctionsProductName }} Technology Preview now uses [Cloud Native Buildpacks](https://buildpacks.io/) by default to build container images.
+
+## Known issues {id="known-issues-1-24-0_{{ context }}"}
+
+*   The Federal Information Processing Standards (FIPS) mode is disabled for Kafka broker, Kafka source, and Kafka sink.
+*   In {{ ServerlessProductName }} 1.23, support for KafkaBindings and the `kafka-binding` webhook were removed. However, an existing `kafkabindings.webhook.kafka.sources.knative.dev MutatingWebhookConfiguration` might remain, pointing to the `kafka-source-webhook` service, which no longer exists.
+
+    For certain specifications of KafkaBindings on the cluster, `kafkabindings.webhook.kafka.sources.knative.dev MutatingWebhookConfiguration` might be configured to pass any create and update events to various resources, such as Deployments, Knative Services, or Jobs, through the webhook, which would then fail.
+
+    To work around this issue, manually delete `kafkabindings.webhook.kafka.sources.knative.dev MutatingWebhookConfiguration` from the cluster after upgrading to {{ ServerlessProductName }} 1.23:
+    ```terminal
+    $ oc delete mutatingwebhookconfiguration kafkabindings.webhook.kafka.sources.knative.dev
+    ```
+*   If you use `net-istio` for Ingress and enable mTLS via SMCP using `security.dataPlane.mtls: true`, Service Mesh deploys `DestinationRules` for the `*.local` host, which does not allow `DomainMapping` for {{ ServerlessProductName }}.
+
+    To work around this issue, enable mTLS by deploying `PeerAuthentication` instead of using `security.dataPlane.mtls: true`.

@@ -1,0 +1,33 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Delete a VirtualMachineFileRestore CR {id="oadp-vmfr-deleting-vmfr_{{ context }}"}
+
+Delete a `VirtualMachineFileRestore` (VMFR) custom resource (CR) to clean up file-serving resources after you have recovered the files you need. This helps you free cluster resources used by the file-serving pod and temporary namespace. {._abstract}
+
+When you delete a VMFR CR, the controller performs the following cleanup operations:
+
+*   Stops the file-serving pod and associated services.
+*   Deletes the restored PVCs.
+*   Deletes the temporary namespace if one was automatically created.
+
+**Prerequisites**
+
+*   You are logged in to the cluster with the `cluster-admin` role.
+*   You have a `VirtualMachineFileRestore` CR that you want to delete.
+
+**Procedure**
+
+*   To delete a `VirtualMachineFileRestore` CR, run the following command:
+    ```terminal
+    $ oc delete vmfr <vmfr_cr_name> -n openshift-adp
+    ```
+
+    Replace `<vmfr_cr_name>` with the name of the VMFR CR.
+
+**Verification**
+
+*   To verify that the VMFR CR is deleted and resources are cleaned up, run the following command:
+    ```terminal
+    $ oc get vmfr -n openshift-adp
+    ```
+
+    The deleted VMFR CR should not appear in the output.

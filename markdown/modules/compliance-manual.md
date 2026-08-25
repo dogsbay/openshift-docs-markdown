@@ -1,0 +1,41 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Remediating a platform check manually {id="compliance-manual_{{ context }}"}
+
+You must manually remediate checks from Platform scans so you can fix findings that the Compliance Operator cannot apply automatically. {._abstract}
+
+Manual remediations are necessary for the following reasons:
+
+*   It is not always possible to automatically determine the value that must be set. One of the checks requires that a list of allowed registries is provided, but the scanner has no way of knowing which registries the organization wants to allow.
+*   Different checks modify different API objects, requiring automated remediation to possess `root` or superuser access to modify objects in the cluster, which is not advised.
+
+**Procedure**
+
+1.  The example below uses the `ocp4-ocp-allowed-registries-for-import` rule, which would fail on a default {{ product_title }} installation. Inspect the rule `oc get rule.compliance/ocp4-ocp-allowed-registries-for-import -oyaml`, the rule is to limit the registries the users are allowed to import images from by setting the `allowedRegistriesForImport` attribute, The _warning_ attribute of the rule also shows the API object checked, so it can be modified and remediate the issue:
+    ```terminal
+    $ oc edit image.config.openshift.io/cluster
+    ```
+    ```yaml title="Example output"
+    apiVersion: config.openshift.io/v1
+    kind: Image
+    metadata:
+      annotations:
+        release.openshift.io/create-only: "true"
+      creationTimestamp: "2020-09-10T10:12:54Z"
+      generation: 2
+      name: cluster
+      resourceVersion: "363096"
+      selfLink: /apis/config.openshift.io/v1/images/cluster
+      uid: 2dcb614e-2f8a-4a23-ba9a-8e33cd0ff77e
+    spec:
+      allowedRegistriesForImport:
+      - domainName: registry.redhat.io
+    status:
+      externalRegistryHostnames:
+      - default-route-openshift-image-registry.apps.user-cluster-09-10-12-07.devcluster.openshift.com
+      internalRegistryHostname: image-registry.openshift-image-registry.svc:5000
+    ```
+1.  Re-run the scan:
+    ```terminal
+    $ oc -n openshift-compliance \
+    annotate compliancescans/rhcos4-e8-worker compliance.openshift.io/rescan=
+    ```

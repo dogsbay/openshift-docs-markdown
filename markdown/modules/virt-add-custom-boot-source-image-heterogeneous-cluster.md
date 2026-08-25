@@ -1,0 +1,65 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Adding a custom boot source image in a heterogeneous cluster {id="virt-add-custom-boot-source-image-heterogeneous-cluster_{{ context }}"}
+
+Add a custom boot source image in a heterogeneous cluster by editing the `HyperConverged` custom resource (CR). {._abstract}
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with `cluster-admin` permissions.
+*   You have installed the {{ oc_first }}.
+*   You have enabled the `enableMultiArchBootImageImport` feature gate in the `HyperConverged` CR.
+
+**Procedure**
+
+1.  Open the `HyperConverged` CR in your default editor by running the following command:
+    ```terminal
+    $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+    ```
+1.  Edit the `HyperConverged` CR to add the custom boot source image. You must add the appropriate values for the `ssp.kubevirt.io/dict.architectures` annotation in the `dataImportCronTemplates` section. For example:
+    ```yaml
+    apiVersion: hco.kubevirt.io/v1beta1
+    kind: HyperConverged
+    metadata:
+      name: kubevirt-hyperconverged
+    spec:
+      dataImportCronTemplates:
+      - metadata:
+          name: custom-image1
+          annotations:
+            ssp.kubevirt.io/dict.architectures: "<architecture_list>"
+        spec:
+          schedule: "0 */12 * * *"
+          template:
+            spec:
+              source:
+                registry:
+                  url: docker://myprivateregistry/custom1
+          managedDataSource: custom1
+          retentionPolicy: "All"
+    #...
+    ```
+
+    where:
+
+    `<architecture_list>`
+    :   Specifies a comma-separated list of supported architectures for this image. For example, if the image supports `amd64` and `arm64` architectures, the value would be `"amd64,arm64"`.
+
+    :::important
+
+    Only include architectures that are present on your worker nodes and supported by your registry image. You do not need to list every architecture an image supports. {{ VirtProductName }} does not validate the declared architectures.
+
+    The annotation is optional but strongly recommended. Without it, only one boot source is created, and missing annotations trigger `HCOGoldenImageWithNoArchitectureAnnotation`.
+    
+    :::
+
+
+1.  Save and exit the editor to update the `HyperConverged` CR.
+
+**Verification**
+
+*   Verify that architecture-suffixed data sources are created for the custom image by running the following command:
+    ```terminal
+    $ oc get datasources -n openshift-virtualization-os-images
+    ```
+
+    Architecture-suffixed data sources for the custom image should appear in the output.

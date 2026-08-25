@@ -1,0 +1,80 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Chained builds {id="builds-chaining-builds_{{ context }}"}
+
+For compiled languages such as Go, C, C++, and Java, including the dependencies necessary for compilation in the application image might increase the size of the image or introduce vulnerabilities that can be exploited.
+
+To avoid these problems, two builds can be chained together. One build that produces the compiled artifact, and a second build that places that artifact in a separate image that runs the artifact.
+
+{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+In the following example, a source-to-image (S2I) build is combined with a docker build to compile an artifact that is then placed in a separate runtime image.
+
+
+:::note
+
+Although this example chains a S2I build and a docker build, the first build can use any strategy that produces an image containing the desired artifacts, and the second build can use any strategy that can consume input content from an image.
+
+:::
+
+
+The first build takes the application source and produces an image containing a `WAR` file. The image is pushed to the `artifact-image` image stream. The path of the output artifact depends on the `assemble` script of the S2I builder used. In this case, it is output to `/wildfly/standalone/deployments/ROOT.war`.
+
+```yaml
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: artifact-build
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: artifact-image:latest
+  source:
+    git:
+      uri: https://github.com/openshift/openshift-jee-sample.git
+      ref: "master"
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: wildfly:10.1
+        namespace: openshift
+```
+
+The second build uses image source with a path to the WAR file inside the output image from the first build. An inline `dockerfile` copies that `WAR` file into a runtime image.
+
+```yaml
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: image-build
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: image-build:latest
+  source:
+    dockerfile: |-
+      FROM jee-runtime:latest
+      COPY ROOT.war /deployments/ROOT.war
+    images:
+    - from: (1)
+        kind: ImageStreamTag
+        name: artifact-image:latest
+      paths: (2)
+      - sourcePath: /wildfly/standalone/deployments/ROOT.war
+        destinationDir: "."
+  strategy:
+    dockerStrategy:
+      from: (3)
+        kind: ImageStreamTag
+        name: jee-runtime:latest
+  triggers:
+  - imageChange: {}
+    type: ImageChange
+```
+1.  `from` specifies that the docker build should include the output of the image from the `artifact-image` image stream, which was the target of the previous build.
+1.  `paths` specifies which paths from the target image to include in the current docker build.
+1.  The runtime image is used as the source image for the docker build.
+
+The result of this setup is that the output image of the second build does not have to contain any of the build tools that are needed to create the `WAR` file. Also, because the second build contains an image change trigger, whenever the first build is run and produces a new image with the binary artifact, the second build is automatically triggered to produce a runtime image that contains that artifact. Therefore, both builds behave as a single build with two stages.
+{% endif %}

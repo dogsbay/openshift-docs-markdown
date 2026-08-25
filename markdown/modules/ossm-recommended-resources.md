@@ -1,0 +1,65 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Setting limits on compute resources {id="ossm-recommended-resources_{{ context }}"}
+
+By default, `spec.proxy` has the settings `cpu: 10m` and  `memory: 128M`. If you are using Pilot, `spec.runtime.components.pilot` has the same default values.
+
+The settings in the following example are based on 1,000 services and 1,000 requests per second. You can change the values for `cpu` and `memory` in the `ServiceMeshControlPlane`.
+
+**Procedure**
+
+1.  In the {{ product_title }} web console, click **Ecosystem** -> **Installed Operators**.
+1.  Click the **Project** menu and select the project where you installed the {{ SMProductShortName }} control plane, for example **istio-system**.
+1.  Click the {{ SMProductName }} Operator. In the **Istio Service Mesh Control Plane** column, click the name of your `ServiceMeshControlPlane`, for example `basic`.
+1.  Add the name of your standalone Jaeger instance to the `ServiceMeshControlPlane`.
+    1.  Click the **YAML** tab.
+    1.  Set the values for `spec.proxy.runtime.container.resources.requests.cpu`, `spec.proxy.runtime.container.resources.requests.memory`, `components.kiali.container`, and `components.global.oauthproxy` in your `ServiceMeshControlPlane` resource.
+        ```yaml title="Example version {{ MaistraVersion }} ServiceMeshControlPlane"
+        apiVersion: maistra.io/v2
+        kind: ServiceMeshControlPlane
+        metadata:
+          name: basic
+          namespace: istio-system
+        spec:
+          version: v{{ MaistraVersion }}
+          proxy:
+            runtime:
+              container:
+                resources:
+                  requests:
+                    cpu: 600m
+                    memory: 50Mi
+                  limits: {}
+          runtime:
+            components:
+              pilot:
+                container:
+                  resources:
+                    requests:
+                      cpu: 1000m
+                      memory: 1.6Gi
+                    limits: {}
+              kiali:
+                container:
+                  resources:
+                    limits:
+                      cpu: "90m"
+                      memory: "245Mi"
+                    requests:
+                      cpu: "30m"
+                      memory: "108Mi"
+              global.oauthproxy:
+                container:
+                  resources:
+                    requests:
+                      cpu: "101m"
+                      memory: "256Mi"
+                    limits:
+                      cpu: "201m"
+                      memory: "512Mi"
+        ```
+    1.  To set values for {{ JaegerName }}, see "Configuring and deploying the distributed tracing platform Jaeger".
+    1.  Click **Save**.
+
+**Verification**
+
+*   Click **Reload** to verify that the `ServiceMeshControlPlane` resource was configured correctly.

@@ -1,0 +1,163 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Restarting the cluster {id="graceful-restart_{{ context }}"}
+
+You can restart the cluster after a graceful shutdown by powering on nodes, uncordoning schedulable nodes, and approving pending certificate signing requests (CSRs) if nodes are not ready. The cluster returns to normal operations after all nodes and Operators are healthy. {._abstract}
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with the `cluster-admin` role.
+*   You have gracefully shut down your cluster.
+
+If your cluster fails to recover, follow the steps in "Restoring to an earlier cluster state".
+
+**Procedure**
+
+1.  Turn on the control plane nodes.
+    *   If you are using the `admin.kubeconfig` from the cluster installation and the API virtual IP address (VIP) is up, complete the following steps:
+        1.  Set the `KUBECONFIG` environment variable to the `admin.kubeconfig` path.
+        1.  Uncordon each control plane node in the cluster by running the following command:
+            ```terminal
+            $ oc adm uncordon <node>
+            ```
+    *   If you do not have access to your `admin.kubeconfig` credentials, complete the following steps:
+        1.  Use SSH to connect to a control plane node.
+        1.  Copy the `localhost-recovery.kubeconfig` file to the `/root` directory.
+        1.  Use that file to uncordon each control plane node in the cluster by running the following command:
+            ```terminal
+            $ oc adm uncordon <node>
+            ```
+1.  Power on any cluster dependencies, such as external storage or a Lightweight Directory Access Protocol (LDAP) server.
+1.  Start all cluster machines.
+
+    Use the appropriate method for your cloud environment to start the machines, for example, from the web console for your cloud provider.
+
+    Wait approximately 10 minutes before continuing to check the status of control plane nodes.
+1.  Verify that all control plane nodes are ready by running the following command:
+    ```terminal
+    $ oc get nodes -l node-role.kubernetes.io/master
+    ```
+
+    The control plane nodes are ready if the status is `Ready`, as shown in the following output:
+    ```terminal
+    NAME                           STATUS   ROLES                  AGE   VERSION
+    ip-10-0-168-251.ec2.internal   Ready    control-plane,master   75m   v1.35.0
+    ip-10-0-170-223.ec2.internal   Ready    control-plane,master   75m   v1.35.0
+    ip-10-0-211-16.ec2.internal    Ready    control-plane,master   75m   v1.35.0
+    ```
+1.  If the control plane nodes are not ready, then check whether there are any pending CSRs that must be approved.
+    1.  Get the list of current CSRs by running the following command:
+        ```terminal
+        $ oc get csr
+        ```
+    1.  Review the details of each CSR to verify that it is valid by running the following command:
+        ```terminal
+        $ oc get csr <csr_name> -o jsonpath='{.spec.request}' | base64 -d | openssl req -text -noout
+        ```
+
+        When validating the CSR, verify that the following fields match your infrastructure expectations:
+        *   Subject / Common Name (CN): Must follow the format `system:node:<node_name>`, such as `system:node:control-plane-0.example.com`.
+        *   Organization (O): Must be exactly `system:nodes`.
+        *   Requested Extensions (Extended Key Usage): Must list `TLS Web Client Authentication`.
+            ```terminal title="Example output"
+            Certificate Request:
+                Data:
+                    Version: 1 (0x0)
+                    Subject: O = system:nodes, CN = system:node:control-plane-0.example.com
+                    Subject Public Key Info:
+                        Public Key Algorithm: id-ecPublicKey
+                            Public-Key: (256 bit)
+                    Attributes:
+                        Requested Extensions:
+                            X509v3 Extended Key Usage: 
+                                TLS Web Client Authentication
+            ```
+
+            The process verifies that the certificate is allowed to be used as a client credential for the node.
+    1.  Approve each valid CSR by running the following command:
+        ```terminal
+        $ oc adm certificate approve <csr_name>
+        ```
+1.  After the control plane nodes are ready, verify that all compute nodes are ready by running the following command:
+    ```terminal
+    $ oc get nodes -l node-role.kubernetes.io/worker
+    ```
+
+    The compute nodes are ready if the status is `Ready`, as shown in the following output:
+    ```terminal
+    NAME                           STATUS   ROLES    AGE   VERSION
+    ip-10-0-179-95.ec2.internal    Ready    worker   64m   v1.35.0
+    ip-10-0-182-134.ec2.internal   Ready    worker   64m   v1.35.0
+    ip-10-0-250-100.ec2.internal   Ready    worker   64m   v1.35.0
+    ```
+1.  If the compute nodes are not ready, then check whether there are any pending CSRs that must be approved.
+    1.  Get the list of current CSRs by running the following command:
+        ```terminal
+        $ oc get csr
+        ```
+    1.  Review the details of each CSR to verify the validity of the CSR by running the following command:
+        ```terminal
+        $ oc get csr <csr_name> -o jsonpath='{.spec.request}' | base64 -d | openssl req -text -noout
+        ```
+
+        Compute node CSRs can be for client certificates (kubelet to API) or serving certificates (API to kubelet). Verify that the following fields match your infrastructure expectations:
+        *   Subject / Common Name (CN): Must follow the format `system:node:<compute_node_name>`.
+        *   Organization (O): Must be exactly `system:nodes`.
+        *   Extended Key Usage (EKU): Must list `TLS Web Client Authentication` (for client requests) or `TLS Web Server Authentication` (for serving requests).
+        *   Subject Alternative Name (SAN): For serving certificates, this field must contain the correct internal DNS hostname and the internal IP address of the respective compute node.
+            ```terminal title="Example output"
+            Certificate Request:
+                Data:
+                    Version: 1 (0x0)
+                    Subject: O = system:nodes, CN = system:node:worker-0.example.com
+                    Subject Public Key Info:
+                        Public Key Algorithm: rsaEncryption
+                            Public-Key: (2048 bit)
+                    Attributes:
+                        Requested Extensions:
+                            X509v3 Extended Key Usage: 
+                                TLS Web Server Authentication
+                            X509v3 Subject Alternative Name: 
+                                DNS:worker-0.example.com, IP Address:10.0.12.34
+            ```
+
+            This process verifies the validity of the certificate as a server credential for cluster communication.
+    1.  Approve each valid CSR by running the following command:
+        ```terminal
+        $ oc adm certificate approve <csr_name>
+        ```
+1.  After the control plane and compute nodes are ready, mark all the nodes in the cluster as schedulable by running the following command:
+    ```terminal
+    $ for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do echo ${node} ; oc adm uncordon ${node} ; done
+    ```
+1.  Verify that the cluster started properly.
+    1.  Check that there are no degraded cluster Operators by running the following command:
+        ```terminal
+        $ oc get clusteroperators
+        ```
+        ```terminal title="Example output"
+        NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
+        authentication                             {{ product_version }}.0    True        False         False      59m
+        cloud-credential                           {{ product_version }}.0    True        False         False      85m
+        cluster-autoscaler                         {{ product_version }}.0    True        False         False      73m
+        config-operator                            {{ product_version }}.0    True        False         False      73m
+        console                                    {{ product_version }}.0    True        False         False      62m
+        csi-snapshot-controller                    {{ product_version }}.0    True        False         False      66m
+        dns                                        {{ product_version }}.0    True        False         False      76m
+        etcd                                       {{ product_version }}.0    True        False         False      76m
+        ...
+        ```
+    1.  Check that all nodes are in the `Ready` state by running the following command:
+        ```terminal
+        $ oc get nodes
+        ```
+        ```terminal title="Example output"
+        NAME                           STATUS   ROLES                  AGE   VERSION
+        ip-10-0-168-251.ec2.internal   Ready    control-plane,master   82m   v1.35.0
+        ip-10-0-170-223.ec2.internal   Ready    control-plane,master   82m   v1.35.0
+        ip-10-0-179-95.ec2.internal    Ready    worker                 70m   v1.35.0
+        ip-10-0-182-134.ec2.internal   Ready    worker                 70m   v1.35.0
+        ip-10-0-211-16.ec2.internal    Ready    control-plane,master   82m   v1.35.0
+        ip-10-0-250-100.ec2.internal   Ready    worker                 69m   v1.35.0
+        ```
+
+        If the cluster did not start properly, follow the steps in "Restoring to an earlier cluster state".

@@ -1,0 +1,67 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating scrape sample alerts {id="creating-scrape-sample-alerts_{{ context }}"}
+
+You can create alerts that notify you when:
+
+*   The target cannot be scraped or is not available for the specified `for` duration
+*   A scrape sample threshold is reached or is exceeded for the specified `for` duration
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with the `cluster-admin` cluster role, or as a user with the `user-workload-monitoring-config-edit` role in the `openshift-user-workload-monitoring` project.
+*   A cluster administrator has enabled monitoring for user-defined projects.
+*   You have limited the number of samples that can be accepted per target scrape in user-defined projects, by using `enforcedSampleLimit`.
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Create a YAML file with alerts that inform you when the targets are down and when the enforced sample limit is approaching. The file in this example is called `monitoring-stack-alerts.yaml`:
+    ```yaml
+    apiVersion: monitoring.coreos.com/v1
+    kind: PrometheusRule
+    metadata:
+      labels:
+        prometheus: k8s
+        role: alert-rules
+      name: monitoring-stack-alerts #<1>
+      namespace: ns1 #<2>
+    spec:
+      groups:
+      - name: general.rules
+        rules:
+        - alert: TargetDown #<3>
+          annotations:
+            message: '{{ printf "%.4g" $value }}% of the {{ $labels.job }}/{{ $labels.service
+              }} targets in {{ $labels.namespace }} namespace are down.' #<4>
+          expr: 100 * (count(up == 0) BY (job, namespace, service) / count(up) BY (job,
+            namespace, service)) > 10
+          for: 10m #<5>
+          labels:
+            severity: warning #<6>
+        - alert: ApproachingEnforcedSamplesLimit #<7>
+          annotations:
+            message: '{{ $labels.container }} container of the {{ $labels.pod }} pod in the {{ $labels.namespace }} namespace consumes {{ $value | humanizePercentage }} of the samples limit budget.' #<8>
+          expr: (scrape_samples_post_metric_relabeling / (scrape_sample_limit > 0)) > 0.9 #<9>
+          for: 10m #<10>
+          labels:
+            severity: warning #<11>
+    ```
+    1.  Defines the name of the alerting rule.
+    1.  Specifies the user-defined project where the alerting rule is deployed.
+    1.  The `TargetDown` alert fires if the target cannot be scraped and is not available for the `for` duration.
+    1.  The message that is displayed when the `TargetDown` alert fires.
+    1.  The conditions for the `TargetDown` alert must be true for this duration before the alert is fired.
+    1.  Defines the severity for the `TargetDown` alert.
+    1.  The `ApproachingEnforcedSamplesLimit` alert fires when the defined scrape sample threshold is exceeded and lasts for the specified `for` duration.
+    1.  The message that is displayed when the `ApproachingEnforcedSamplesLimit` alert fires.
+    1.  The threshold for the `ApproachingEnforcedSamplesLimit` alert. In this example, the alert fires when the number of ingested samples exceeds 90% of the configured limit.
+    1.  The conditions for the `ApproachingEnforcedSamplesLimit` alert must be true for this duration before the alert is fired.
+    1.  Defines the severity for the `ApproachingEnforcedSamplesLimit` alert.
+1.  Apply the configuration to the user-defined project:
+    ```terminal
+    $ oc apply -f monitoring-stack-alerts.yaml
+    ```
+1.  Additionally, you can check if a target has hit the configured limit:
+    1.  In the {{ product_title }} web console, go to **Observe** -> **Targets** and select an endpoint with a `Down` status that you want to check.
+
+        The **Scrape failed: sample limit exceeded** message is displayed if the endpoint failed because of an exceeded sample limit.

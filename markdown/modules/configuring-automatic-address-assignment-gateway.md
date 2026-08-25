@@ -1,0 +1,52 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configure automatic address assignment for a gateway {id="configuring-automatic-address-assignment-gateway_{{ context }}"}
+
+When you create a gateway resource, you must configure it for automatic address provisioning to successfully deploy the gateway without violating {{ product_title }} manual address constraints. By intentionally omitting the addresses field, you allow the controller to seamlessly provision and bind the necessary external network addresses to your gateway. {._abstract}
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with the `cluster-admin` role.
+*   You have installed the {{ oc_first }}.
+*   You have an existing `GatewayClass` custom resource, such as `openshift-default`.
+
+**Procedure**
+
+1.  Create a YAML file, such as `hello-gateway.yaml`, that defines your `Gateway` object.
+    ```yaml
+    apiVersion: gateway.networking.k8s.io/v1
+    kind: Gateway
+    metadata:
+      name: sample-gateway
+      namespace: openshift-ingress
+    spec:
+      gatewayClassName: openshift-default
+      listeners:
+      - name: http
+        hostname: "*.gwapi.<cluster_domain>"
+        port: 80
+        protocol: HTTP
+        allowedRoutes:
+          namespaces:
+            from: Selector
+            selector:
+              matchLabels:
+                shared-gateway-access: "true"
+    ```
+    *   `metadata.name`: Specify the name of your `Gateway` object. The name must consist of a maximum of 63 lowercase alphanumeric characters or hyphens (`-`). The name must also start and end with an alphanumeric character.
+    *   `spec.gatewayClassName`: Specify the `GatewayClass` object whose controller provisions the address and populates the `status.addresses` field.
+    *   `spec.listeners[].hostname`: Specify the listener hostname. Replace `<cluster_domain>` with your actual cluster ingress domain (for example, `example.com`). Setting a hostname limits which route hostnames can match this listener.
+    *   `spec.listeners[].allowedRoutes.namespaces`: Allow route attachment only from namespaces that have the `shared-gateway-access: "true"` label.
+1.  Apply the `Gateway` configuration by running the following command:
+    ```terminal
+    $ oc apply -f hello-gateway.yaml
+    ```
+1.  Verify that the controller automatically assigned an address to your gateway by running the following command:
+    ```terminal
+    $ oc -n openshift-ingress get gateway sample-gateway
+    ```
+    ```terminal title="Example output"
+    NAME             CLASS               ADDRESS             PROGRAMMED   AGE
+    sample-gateway   openshift-default   <gateway_address>   True         6m16s
+    ```
+
+    The `ADDRESS` column in the output displays the dynamically provisioned network address for your gateway.

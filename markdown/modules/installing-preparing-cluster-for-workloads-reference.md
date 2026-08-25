@@ -1,0 +1,8 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Preparing your cluster for workloads {id="installing-preparing-cluster-for-workloads_{{ context }}"}
+
+Take extra steps to prepare your cluster before deploying applications, depending on your workload needs. {._abstract}
+
+Depending on your workload needs, you might need to take extra steps before you begin deploying applications. For example, after you prepare infrastructure to support your application [build strategy](/cicd/builds/build-strategies#build-strategies), you might need to make provisions for [low-latency](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-tuning-low-latency-nodes-with-perf-profile) workloads or to [protect sensitive workloads](/nodes/pods/nodes-pods-secrets#nodes-pods-secrets). You can also configure [monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm) for application workloads.
+
+If you plan to run [Windows workloads](/windows_containers/enabling-windows-container-workloads#enabling-windows-container-workloads), you must enable [hybrid networking with OVN-Kubernetes](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-networking) during the installation process; hybrid networking cannot be enabled after your cluster is installed.

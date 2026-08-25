@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About 802.1Q-in-802.1Q support {id="nw-about-qinq-support_{{ context }}"}
+
+In traditional VLAN setups, frames typically contain a single VLAN tag, such as VLAN-100, as well as other metadata such as Quality of Service (QoS) bits and protocol information. QinQ introduces a second VLAN tag, where the service provider designates the outer tag for their use, offering them flexibility, while the inner tag remains dedicated to the customer’s VLAN. {._abstract}
+
+QinQ facilitates the creation of nested VLANs by using double VLAN tagging, enabling finer segmentation and isolation of traffic within a network environment. This approach is particularly valuable in service provider networks where you need to deliver VLAN-based services to multiple customers over a common infrastructure, while ensuring separation and isolation of traffic.
+
+The following diagram illustrates how {{ product_title }} can use SR-IOV and QinQ to achieve advanced network segmentation and isolation for containerized workloads.
+
+The diagram shows how double VLAN tagging (QinQ) works in a worker node with SR-IOV support. The SR-IOV virtual function (VF) located in the pod namespace, `ext0` is configured by the SR-IOV Container Network Interface (CNI) with a VLAN ID and VLAN protocol. This corresponds to the S-tag. Inside the pod, the VLAN CNI creates a subinterface using the primary interface `ext0`. This subinterface adds an internal VLAN ID using the 802.1Q protocol, which corresponds to the C-tag.
+
+This demonstrates how QinQ enables finer traffic segmentation and isolation within the network. The Ethernet frame structure is detailed on the right, highlighting the inclusion of both VLAN tags, EtherType, IP, TCP, and Payload sections. QinQ facilitates the delivery of VLAN-based services to multiple customers over a shared infrastructure while ensuring traffic separation and isolation.
+
+![alt="Diagram showing QinQ (double VLAN tagging)"](/_assets/images/693_OpenShift_QinQ_SR-IOV_CNI_0624.png)
+
+The {{ product_title }} SR-IOV solution already supports setting the VLAN protocol on the `SriovNetwork` custom resource (CR). The virtual function (VF) can use this protocol to set the VLAN tag, also known as the outer tag. Pods can then use the VLAN CNI plugin to configure the inner tag.

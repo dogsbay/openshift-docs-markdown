@@ -1,0 +1,38 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Troubleshooting certificate rotation parameters {id="virt-troubleshooting-cert-rotation-parameters_{{ context }}"}
+
+Deleting one or more `certConfig` values in the `HyperConverged` custom resource (CR) causes the `certConfig` values to revert to the default values. {._abstract}
+
+If the default values conflict with one of the following conditions, you receive an error message instead:
+
+*   The value of `ca.renewBefore` must be less than or equal to the value of `ca.duration`.
+*   The value of `server.duration` must be less than or equal to the value of `ca.duration`.
+*   The value of `server.renewBefore` must be less than or equal to the value of `server.duration`.
+
+For example, if you remove the `server.duration` value, the default value of `24h0m0s` is greater than the value of `ca.duration`, which conflicts with the specified conditions:
+
+```yaml
+apiVersion: hco.kubevirt.io/v1beta1
+kind: HyperConverged
+metadata:
+  name: kubevirt-hyperconverged
+  namespace: {{ CNVNamespace }}
+spec:
+  # ...
+  certConfig:
+    ca:
+      duration: 4h0m0s
+      renewBefore: 1h0m0s
+    server:
+      duration: 4h0m0s
+      renewBefore: 4h0m0s
+# ...
+```
+
+This results in the following error message:
+
+```terminal
+error: hyperconvergeds.hco.kubevirt.io "kubevirt-hyperconverged" could not be patched: admission webhook "validate-hco.kubevirt.io" denied the request: spec.certConfig: ca.duration is smaller than server.duration
+```
+
+The error message only mentions the first conflict. Review all `certConfig` values before you proceed.

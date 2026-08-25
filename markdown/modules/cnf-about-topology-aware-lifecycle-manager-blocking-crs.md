@@ -1,0 +1,344 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Blocking ClusterGroupUpgrade CRs {id="cnf-about-topology-aware-lifecycle-manager-blocking-crs_{{ context }}"}
+
+You can create multiple `ClusterGroupUpgrade` CRs and control their order of application. {._abstract}
+
+For example, if you create `ClusterGroupUpgrade` CR C that blocks the start of `ClusterGroupUpgrade` CR A, then `ClusterGroupUpgrade` CR A cannot start until the status of `ClusterGroupUpgrade` CR C becomes `UpgradeComplete`.
+
+One `ClusterGroupUpgrade` CR can have multiple blocking CRs. In this case, all the blocking CRs must complete before the upgrade for the current CR can start.
+
+**Prerequisites**
+
+*   Install the {{ cgu_operator_first }}.
+*   Provision one or more managed clusters.
+*   Log in as a user with `cluster-admin` privileges.
+*   Create {{ rh_rhacm }} policies in the hub cluster.
+
+**Procedure**
+
+1.  Save the content of the `ClusterGroupUpgrade` CRs in the `cgu-a.yaml`, `cgu-b.yaml`, and `cgu-c.yaml` files.
+    ```yaml
+    apiVersion: ran.openshift.io/v1alpha1
+    kind: ClusterGroupUpgrade
+    metadata:
+      name: cgu-a
+      namespace: default
+    spec:
+      blockingCRs:
+      - name: cgu-c
+        namespace: default
+      clusters:
+      - spoke1
+      - spoke2
+      - spoke3
+      enable: false
+      managedPolicies:
+      - policy1-common-cluster-version-policy
+      - policy2-common-pao-sub-policy
+      - policy3-common-ptp-sub-policy
+      remediationStrategy:
+        canaries:
+        - spoke1
+        maxConcurrency: 2
+        timeout: 240
+    status:
+      conditions:
+      - message: The ClusterGroupUpgrade CR is not enabled
+        reason: UpgradeNotStarted
+        status: "False"
+        type: Ready
+      managedPoliciesForUpgrade:
+      - name: policy1-common-cluster-version-policy
+        namespace: default
+      - name: policy2-common-pao-sub-policy
+        namespace: default
+      - name: policy3-common-ptp-sub-policy
+        namespace: default
+      placementBindings:
+      - cgu-a-policy1-common-cluster-version-policy
+      - cgu-a-policy2-common-pao-sub-policy
+      - cgu-a-policy3-common-ptp-sub-policy
+      placementRules:
+      - cgu-a-policy1-common-cluster-version-policy
+      - cgu-a-policy2-common-pao-sub-policy
+      - cgu-a-policy3-common-ptp-sub-policy
+      remediationPlan:
+      - - spoke1
+      - - spoke2
+    ```
+
+    *   `spec.blockingCRs.name` defines the blocking CRs. The `cgu-a` update cannot start until `cgu-c` is complete.
+
+    ```yaml
+    apiVersion: ran.openshift.io/v1alpha1
+    kind: ClusterGroupUpgrade
+    metadata:
+      name: cgu-b
+      namespace: default
+    spec:
+      blockingCRs:
+      - name: cgu-a
+        namespace: default
+      clusters:
+      - spoke4
+      - spoke5
+      enable: false
+      managedPolicies:
+      - policy1-common-cluster-version-policy
+      - policy2-common-pao-sub-policy
+      - policy3-common-ptp-sub-policy
+      - policy4-common-sriov-sub-policy
+      remediationStrategy:
+        maxConcurrency: 1
+        timeout: 240
+    status:
+      conditions:
+      - message: The ClusterGroupUpgrade CR is not enabled
+        reason: UpgradeNotStarted
+        status: "False"
+        type: Ready
+      managedPoliciesForUpgrade:
+      - name: policy1-common-cluster-version-policy
+        namespace: default
+      - name: policy2-common-pao-sub-policy
+        namespace: default
+      - name: policy3-common-ptp-sub-policy
+        namespace: default
+      - name: policy4-common-sriov-sub-policy
+        namespace: default
+      placementBindings:
+      - cgu-b-policy1-common-cluster-version-policy
+      - cgu-b-policy2-common-pao-sub-policy
+      - cgu-b-policy3-common-ptp-sub-policy
+      - cgu-b-policy4-common-sriov-sub-policy
+      placementRules:
+      - cgu-b-policy1-common-cluster-version-policy
+      - cgu-b-policy2-common-pao-sub-policy
+      - cgu-b-policy3-common-ptp-sub-policy
+      - cgu-b-policy4-common-sriov-sub-policy
+      remediationPlan:
+      - - spoke4
+      - - spoke5
+      status: {}
+    ```
+
+    The `cgu-b` update cannot start until `cgu-a` is complete.
+
+    ```yaml
+    apiVersion: ran.openshift.io/v1alpha1
+    kind: ClusterGroupUpgrade
+    metadata:
+      name: cgu-c
+      namespace: default
+    spec:
+      clusters:
+      - spoke6
+      enable: false
+      managedPolicies:
+      - policy1-common-cluster-version-policy
+      - policy2-common-pao-sub-policy
+      - policy3-common-ptp-sub-policy
+      - policy4-common-sriov-sub-policy
+      remediationStrategy:
+        maxConcurrency: 1
+        timeout: 240
+    status:
+      conditions:
+      - message: The ClusterGroupUpgrade CR is not enabled
+        reason: UpgradeNotStarted
+        status: "False"
+        type: Ready
+      managedPoliciesCompliantBeforeUpgrade:
+      - policy2-common-pao-sub-policy
+      - policy3-common-ptp-sub-policy
+      managedPoliciesForUpgrade:
+      - name: policy1-common-cluster-version-policy
+        namespace: default
+      - name: policy4-common-sriov-sub-policy
+        namespace: default
+      placementBindings:
+      - cgu-c-policy1-common-cluster-version-policy
+      - cgu-c-policy4-common-sriov-sub-policy
+      placementRules:
+      - cgu-c-policy1-common-cluster-version-policy
+      - cgu-c-policy4-common-sriov-sub-policy
+      remediationPlan:
+      - - spoke6
+      status: {}
+    ```
+
+    The `cgu-c` update does not have any blocking CRs. {{ cgu_operator }} starts the `cgu-c` update when the `enable` field is set to `true`.
+1.  Create the `ClusterGroupUpgrade` CRs by running the following command for each relevant CR:
+    ```terminal
+    $ oc apply -f <name>.yaml
+    ```
+1.  Start the update process by running the following command for each relevant CR:
+    ```terminal
+    $ oc --namespace=default patch clustergroupupgrade.ran.openshift.io/<name> \
+    --type merge -p '{"spec":{"enable":true}}'
+    ```
+
+    The following examples show `ClusterGroupUpgrade` CRs where the `enable` field is set to `true`:
+    Example for `cgu-a` with blocking CRs:
+
+    ```yaml
+    apiVersion: ran.openshift.io/v1alpha1
+    kind: ClusterGroupUpgrade
+    metadata:
+      name: cgu-a
+      namespace: default
+    spec:
+      blockingCRs:
+      - name: cgu-c
+        namespace: default
+      clusters:
+      - spoke1
+      - spoke2
+      - spoke3
+      enable: true
+      managedPolicies:
+      - policy1-common-cluster-version-policy
+      - policy2-common-pao-sub-policy
+      - policy3-common-ptp-sub-policy
+      remediationStrategy:
+        canaries:
+        - spoke1
+        maxConcurrency: 2
+        timeout: 240
+    status:
+      conditions:
+      - message: 'The ClusterGroupUpgrade CR is blocked by other CRs that have not yet
+          completed: [cgu-c]'
+        reason: UpgradeCannotStart
+        status: "False"
+        type: Ready
+      managedPoliciesForUpgrade:
+      - name: policy1-common-cluster-version-policy
+        namespace: default
+      - name: policy2-common-pao-sub-policy
+        namespace: default
+      - name: policy3-common-ptp-sub-policy
+        namespace: default
+      placementBindings:
+      - cgu-a-policy1-common-cluster-version-policy
+      - cgu-a-policy2-common-pao-sub-policy
+      - cgu-a-policy3-common-ptp-sub-policy
+      placementRules:
+      - cgu-a-policy1-common-cluster-version-policy
+      - cgu-a-policy2-common-pao-sub-policy
+      - cgu-a-policy3-common-ptp-sub-policy
+      remediationPlan:
+      - - spoke1
+      - - spoke2
+      status: {}
+    ```
+
+    Shows the list of blocking CRs.
+
+    Example for `cgu-b` with blocking CRs:
+
+    ```yaml
+    apiVersion: ran.openshift.io/v1alpha1
+    kind: ClusterGroupUpgrade
+    metadata:
+      name: cgu-b
+      namespace: default
+    spec:
+      blockingCRs:
+      - name: cgu-a
+        namespace: default
+      clusters:
+      - spoke4
+      - spoke5
+      enable: true
+      managedPolicies:
+      - policy1-common-cluster-version-policy
+      - policy2-common-pao-sub-policy
+      - policy3-common-ptp-sub-policy
+      - policy4-common-sriov-sub-policy
+      remediationStrategy:
+        maxConcurrency: 1
+        timeout: 240
+    status:
+      conditions:
+      - message: 'The ClusterGroupUpgrade CR is blocked by other CRs that have not yet
+          completed: [cgu-a]'
+        reason: UpgradeCannotStart
+        status: "False"
+        type: Ready
+      managedPoliciesForUpgrade:
+      - name: policy1-common-cluster-version-policy
+        namespace: default
+      - name: policy2-common-pao-sub-policy
+        namespace: default
+      - name: policy3-common-ptp-sub-policy
+        namespace: default
+      - name: policy4-common-sriov-sub-policy
+        namespace: default
+      placementBindings:
+      - cgu-b-policy1-common-cluster-version-policy
+      - cgu-b-policy2-common-pao-sub-policy
+      - cgu-b-policy3-common-ptp-sub-policy
+      - cgu-b-policy4-common-sriov-sub-policy
+      placementRules:
+      - cgu-b-policy1-common-cluster-version-policy
+      - cgu-b-policy2-common-pao-sub-policy
+      - cgu-b-policy3-common-ptp-sub-policy
+      - cgu-b-policy4-common-sriov-sub-policy
+      remediationPlan:
+      - - spoke4
+      - - spoke5
+      status: {}
+    ```
+
+    Shows the list of blocking CRs.
+
+    Example for `cgu-c` with blocking CRs:
+
+    ```yaml
+    apiVersion: ran.openshift.io/v1alpha1
+    kind: ClusterGroupUpgrade
+    metadata:
+      name: cgu-c
+      namespace: default
+    spec:
+      clusters:
+      - spoke6
+      enable: true
+      managedPolicies:
+      - policy1-common-cluster-version-policy
+      - policy2-common-pao-sub-policy
+      - policy3-common-ptp-sub-policy
+      - policy4-common-sriov-sub-policy
+      remediationStrategy:
+        maxConcurrency: 1
+        timeout: 240
+    status:
+      conditions:
+      - message: The ClusterGroupUpgrade CR has upgrade policies that are still non compliant
+        reason: UpgradeNotCompleted
+        status: "False"
+        type: Ready
+      managedPoliciesCompliantBeforeUpgrade:
+      - policy2-common-pao-sub-policy
+      - policy3-common-ptp-sub-policy
+      managedPoliciesForUpgrade:
+      - name: policy1-common-cluster-version-policy
+        namespace: default
+      - name: policy4-common-sriov-sub-policy
+        namespace: default
+      placementBindings:
+      - cgu-c-policy1-common-cluster-version-policy
+      - cgu-c-policy4-common-sriov-sub-policy
+      placementRules:
+      - cgu-c-policy1-common-cluster-version-policy
+      - cgu-c-policy4-common-sriov-sub-policy
+      remediationPlan:
+      - - spoke6
+      status:
+        currentBatch: 1
+        remediationPlanForBatch:
+          spoke6: 0
+    ```
+
+    The `cgu-c` update does not have any blocking CRs.

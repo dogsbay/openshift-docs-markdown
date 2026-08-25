@@ -1,0 +1,19 @@
+# Federation features {id="ossm-federation-features_{{ context }}"}
+
+Features of the {{ SMProductName }} federated approach to joining meshes include the following: {._abstract}
+
+*   Supports common root certificates for each mesh.
+*   Supports different root certificates for each mesh.
+*   Mesh administrators must manually configure certificate chains, service discovery endpoints, trust domains, etc for meshes outside of the Federated mesh.
+*   Only export/import the services that you want to share between meshes.
+    *   Defaults to not sharing information about deployed workloads with other meshes in the federation. A service can be **exported** to make it visible to other meshes and allow requests from workloads outside of its own mesh.
+    *   A service that has been exported can be **imported** to another mesh, enabling workloads on that mesh to send requests to the imported service.
+*   Encrypts communication between meshes at all times.
+*   Supports configuring load balancing across workloads deployed locally and workloads that are deployed in another mesh in the federation.
+
+When a mesh is joined to another mesh it can do the following:
+
+*   Provide trust details about itself to the federated mesh.
+*   Discover trust details about the federated mesh.
+*   Provide information to the federated mesh about its own exported services.
+*   Discover information about services exported by the federated mesh.

@@ -1,0 +1,32 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling KubeVirt VM image caching {id="hcp-virt-image-caching_{{ context }}"}
+
+To optimize both cluster startup time and storage usage, you can use KubeVirt virtual machine (VM) image caching.  {._abstract}
+
+KubeVirt VM image caching supports the use of a storage class that is capable of smart cloning and the `ReadWriteMany` access mode. For more information about smart cloning, see "Cloning a data volume using smart-cloning".
+
+Image caching works as follows:
+
+1.  The VM image is imported to a persistent volume claim (PVC) that is associated with the hosted cluster.
+1.  A unique clone of that PVC is created for every KubeVirt VM that is added as a worker node to the cluster.
+
+Image caching reduces VM startup time by requiring only a single image import. It can further reduce overall cluster storage usage when the storage class supports copy-on-write cloning.
+
+**Procedure**
+
+*   To enable image caching, during cluster creation, use the `--root-volume-cache-strategy=PVC` argument by running a command as shown in the following example:
+    ```terminal
+    $ hcp create cluster kubevirt \
+      --name my-hosted-cluster \
+      --node-pool-replicas 2 \
+      --pull-secret /user/name/pullsecret \
+      --memory 8Gi \
+      --cores 2 \
+      --root-volume-cache-strategy=PVC
+    ```
+    *   `--name` specifies the name of your hosted cluster.
+    *   `--node-pool-replicas` specifies the worker count.
+    *   `--pull-secret` specifies the path to your pull secret.
+    *   `--memory` specifies a value for memory.
+    *   `--cores` specifies a value for CPU.
+    *   `--root-volume-cache-strategy` specifies a strategy for image caching.

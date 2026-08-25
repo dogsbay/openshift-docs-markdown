@@ -1,0 +1,26 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Default console configuration {id="installation-user-infra-machines-advanced-console-configuration_{{ context }}"}
+
+{{ op_system_first }} nodes installed from an {{ product_title }} {{ product_version }} boot image use a default console that is meant to accomodate most virtualized and bare metal setups. Different cloud and virtualization platforms may use different default settings depending on the chosen architecture. {._abstract}
+
+Bare-metal installations use the kernel default settings which typically means the graphical console is the primary console and the serial console is disabled.
+
+The default consoles may not match your specific hardware configuration or you might have specific needs that require you to adjust the default console. For example:
+
+*   You want to access the emergency shell on the console for debugging purposes.
+*   Your cloud platform does not provide interactive access to the graphical console, but provides a serial console.
+*   You want to enable multiple consoles.
+
+Console configuration is inherited from the boot image. This means that new nodes in existing clusters are unaffected by changes to the default console.
+
+You can configure the console for bare metal installations in the following ways:
+
+*   Using `coreos-installer` manually on the command line.
+*   Using the `coreos-installer iso customize` or `coreos-installer pxe customize` subcommands with the `--dest-console` option to create a custom image that automates the process.
+
+
+:::note
+
+For advanced customization, perform console configuration using the `coreos-installer iso` or `coreos-installer pxe` subcommands, and not kernel arguments.
+
+:::

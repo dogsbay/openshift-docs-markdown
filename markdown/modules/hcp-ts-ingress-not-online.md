@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Identifying why ingress and console cluster Operators are not coming online {id="hcp-ts-ingress-not-online_{{ context }}"}
+
+If a hosted control plane is not coming fully online because the Ingress and console cluster Operators are not online, check the wildcard DNS routes and load balancer. {._abstract}
+
+**Procedure**
+
+*   If the cluster uses the default Ingress behavior, enter the following command to ensure that wildcard DNS routes are enabled on the {{ product_title }} cluster that the virtual machines (VMs) are hosted on:
+    ```terminal
+    $ oc patch ingresscontroller -n openshift-ingress-operator \
+      default --type=json -p \
+      '[{ "op": "add", "path": "/spec/routeAdmission", "value": {wildcardPolicy: "WildcardsAllowed"}}]'
+    ```
+*   If you use a custom base domain for the hosted control plane, complete the following steps:
+    *   Ensure that the load balancer is targeting the VM pods correctly.
+    *   Ensure that the wildcard DNS entry is targeting the load balancer IP address.

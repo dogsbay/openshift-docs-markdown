@@ -1,0 +1,89 @@
+{% if context == "installing-vsphere-installer-provisioned-network-customizations" %}
+{%- set vsphere = true -%}
+{% endif %}
+
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Deploying IP addressing with dual-stack networking {id="modifying-install-config-for-dual-stack-network_{{ context }}"}
+
+When deploying IP addressing with dual-stack networking for the bootstrap virtual machine (VM), the bootstrap VM functions with a single IP version. {._abstract}
+
+
+:::note
+
+The following examples are for DHCP. DHCP-based dual stack clusters can deploy with one IPv4 and one IPv6 virtual IP address (VIP) each from Day 1.
+
+Deploying a cluster with static IP addresses involves configuring IP addresses for the bootstrap VM, API, and ingress VIPs. Configuring dual-stack with a static IP set in `install-config` requires one VIP each for API and ingress. Add secondary VIPs after deployment.
+
+:::
+
+
+For dual-stack networking in {{ product_title }} clusters, you can configure IPv4 and IPv6 address endpoints for cluster nodes. To configure IPv4 and IPv6 address endpoints for cluster nodes, edit the `machineNetwork`, `clusterNetwork`, and `serviceNetwork` configuration settings in the `install-config.yaml` file. Each setting must have two CIDR entries each. For a cluster with the IPv4 family as the primary address family, specify the IPv4 setting first. For a cluster with the IPv6 family as the primary address family, specify the IPv6 setting first.
+
+```yaml
+machineNetwork:
+- cidr: {{ extcidrnet }}
+- cidr: {{ extcidrnet6 }}
+clusterNetwork:
+- cidr: 10.128.0.0/14
+  hostPrefix: 23
+- cidr: fd02::/48
+  hostPrefix: 64
+serviceNetwork:
+- 172.30.0.0/16
+- fd03::/112
+```
+
+{% if not vsphere %}
+
+:::important
+
+On a bare metal platform, if you specified an NMState configuration in the `networkConfig` section of your `install-config.yaml` file, add `interfaces.wait-ip: ipv4+ipv6` to the NMState YAML file to resolve an issue that prevents your cluster from deploying on a dual-stack network.
+
+```yaml title="Example NMState YAML configuration file that includes the wait-ip parameter"
+networkConfig:
+  nmstate:
+    interfaces:
+    - name: <interface_name>
+# ...
+      wait-ip: ipv4+ipv6
+# ...
+```
+
+:::
+
+{% endif %}
+
+To provide an interface to the cluster for applications that use IPv4 and IPv6 addresses, configure IPv4 and IPv6 virtual IP (VIP) address endpoints for the Ingress VIP and API VIP services. To configure IPv4 and IPv6 address endpoints, edit the `apiVIPs` and `ingressVIPs` configuration settings in the `install-config.yaml` file . The `apiVIPs` and `ingressVIPs` configuration settings use a list format. The order of the list indicates the primary and secondary VIP address for each service.
+
+{% if vsphere %}
+```yaml
+platform:
+  vsphere:
+    apiVIPs:
+      - <api_ipv4>
+      - <api_ipv6>
+    ingressVIPs:
+      - <wildcard_ipv4>
+      - <wildcard_ipv6>
+```
+{% endif %}
+
+{% if not vsphere %}
+```yaml
+platform:
+  baremetal:
+    apiVIPs:
+      - <api_ipv4>
+      - <api_ipv6>
+    ingressVIPs:
+      - <wildcard_ipv4>
+      - <wildcard_ipv6>
+```
+{% endif %}
+
+
+:::note
+
+For a cluster with dual-stack networking configuration, you must assign both IPv4 and IPv6 addresses to the same interface.
+
+:::

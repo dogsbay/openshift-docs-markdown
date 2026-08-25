@@ -1,0 +1,12 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Performing a canary rollout update {id="updating-clusters-overview-perform-canary-rollout-update_{{ context }}"}
+
+Control the rollout of an update to your worker nodes to keep mission-critical applications available during the update. {._abstract}
+
+[Performing a canary rollout update](/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools): By controlling the rollout of an update to the worker nodes, you can ensure that mission-critical applications stay available during the whole update, even if the update process causes your applications to fail. Depending on your organizational needs, you might want to update a small subset of worker nodes, evaluate cluster and workload health over a period of time, and then update the remaining nodes. This is referred to as a _canary_ update. Alternatively, you might also want to fit worker node updates, which often requires a host reboot, into smaller defined maintenance windows when it is not possible to take a large maintenance window to update the entire cluster at one time. You can perform the following procedures:
+
+*   [Creating machine configuration pools to perform a canary rollout update](/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools-mcp_update-using-custom-machine-config-pools)
+*   [Pausing the machine configuration pools](/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools-pause_update-using-custom-machine-config-pools)
+*   [Performing the cluster update](/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools-update_update-using-custom-machine-config-pools)
+*   [Unpausing the machine configuration pools](/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools-unpause_update-using-custom-machine-config-pools)
+*   [Moving a node to the original machine configuration pool](/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools-mcp-remove_update-using-custom-machine-config-pools)

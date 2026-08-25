@@ -1,0 +1,12 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Grant permissions for custom namespace and secret access {id="network-observability-grant-permissions-custom-namespace-and-secret-access_{{ context }}"}
+
+Grant RBAC permissions to allow the Network Observability Operator to access secrets across custom or non-default namespaces. {._abstract}
+
+For security, the Network Observability Operator does not have cluster-wide permissions to read secrets. You must explicitly grant the required permissions when any of the following conditions apply:
+
+*   You configured `spec.namespace` in the `FlowCollector` resource to a namespace other than `netobserv`.
+*   You configured the `FlowCollector` resource with `spec.deploymentModel: Kafka` and TLS or mTLS enabled.
+*   You use the {{ loki_op }} with `LokiStack` installed in a namespace other than `netobserv`.
+
+Complete only the procedures that apply to your configuration. If you do not meet any of these conditions, no additional permissions are required.

@@ -1,0 +1,197 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating the control plane machines in AWS {id="installation-creating-aws-control-plane_{{ context }}"}
+
+To run the {{ product_title }} control plane, create the three control plane machines in {{ aws_first }} by using the provided `CloudFormation` template and a custom parameter file. {._abstract}
+
+
+:::important
+
+The `CloudFormation` template creates a stack that represents three control plane nodes.
+
+:::
+
+
+
+:::note
+
+If you do not use the provided `CloudFormation` template to create your control plane nodes, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
+
+:::
+
+
+**Prerequisites**
+
+*   You created the bootstrap machine.
+
+**Procedure**
+
+1.  Create a JSON file that has the parameter values that the template requires:
+    ```json
+    [
+      {
+        "ParameterKey": "InfrastructureName",
+        "ParameterValue": "mycluster-<random_string>"
+      },
+      {
+        "ParameterKey": "RhcosAmi",
+        "ParameterValue": "ami-<random_string>"
+      },
+      {
+        "ParameterKey": "AutoRegisterDNS",
+        "ParameterValue": "yes"
+      },
+      {
+        "ParameterKey": "PrivateHostedZoneId",
+        "ParameterValue": "<random_string>"
+      },
+      {
+        "ParameterKey": "PrivateHostedZoneName",
+        "ParameterValue": "mycluster.example.com"
+      },
+      {
+        "ParameterKey": "Master0Subnet",
+        "ParameterValue": "subnet-<random_string>"
+      },
+      {
+        "ParameterKey": "Master1Subnet",
+        "ParameterValue": "subnet-<random_string>"
+      },
+      {
+        "ParameterKey": "Master2Subnet",
+        "ParameterValue": "subnet-<random_string>"
+      },
+      {
+        "ParameterKey": "MasterSecurityGroupId",
+        "ParameterValue": "sg-<random_string>"
+      },
+      {
+        "ParameterKey": "IgnitionLocation",
+        "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/master"
+      },
+      {
+        "ParameterKey": "CertificateAuthorities",
+        "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz=="
+      },
+      {
+        "ParameterKey": "MasterInstanceProfileName",
+        "ParameterValue": "<roles_stack>-MasterInstanceProfile-<random_string>"
+      },
+      {
+        "ParameterKey": "MasterInstanceType",
+        "ParameterValue": ""
+      },
+      {
+        "ParameterKey": "AutoRegisterELB",
+        "ParameterValue": "yes"
+      },
+      {
+        "ParameterKey": "RegisterNlbIpTargetsLambdaArn",
+        "ParameterValue": "arn:aws:lambda:<aws_region>:<account_number>:function:<dns_stack_name>-RegisterNlbIpTargets-<random_string>"
+      },
+      {
+        "ParameterKey": "ExternalApiTargetGroupArn",
+        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Exter-<random_string>"
+      },
+      {
+        "ParameterKey": "InternalApiTargetGroupArn",
+        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+      },
+      {
+        "ParameterKey": "InternalServiceTargetGroupArn",
+        "ParameterValue": "arn:aws:elasticloadbalancing:<aws_region>:<account_number>:targetgroup/<dns_stack_name>-Inter-<random_string>"
+      }
+    ]
+    ```
+
+    where:
+
+    `InfrastructureName`
+    :   Specifies the name for your cluster infrastructure that your Ignition config files encode for the cluster. Specify the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster_name>-<random_string>`.
+
+    `RhcosAmi`
+    :   Specifies the current {{ op_system_first }} AMI to use for the control plane machines based on your selected architecture. Specify an `AWS::EC2::Image::Id` value.
+
+    `AutoRegisterDNS`
+    :   Specifies whether to perform DNS etcd registration. Specify `yes` or `no`. If you specify `yes`, you must give hosted zone information.
+
+    `PrivateHostedZoneId`
+    :   Specifies the Route 53 private zone ID to register the etcd targets with. Specify the `PrivateHostedZoneId` value from the output of the `CloudFormation` template for DNS and load balancing.
+
+    `PrivateHostedZoneName`
+    :   Specifies the Route 53 zone to register the targets with. Specify `<cluster_name>.<domain_name>` where `<domain_name>` is the Route 53 base domain that you used when you generated the `install-config.yaml` file for the cluster. Do not include the trailing period (.) that is displayed in the {{ aws_short }} console.
+
+    `Master0Subnet`, `Master1Subnet`, `Master2Subnet`
+    :   Specifies a subnet, preferably private, to launch the control plane machines on. Specify a subnet from the `PrivateSubnets` value from the output of the `CloudFormation` template for DNS and load balancing.
+
+    `MasterSecurityGroupId`
+    :   Specifies the control plane security group ID to associate with control plane nodes. Specify the `MasterSecurityGroupId` value from the output of the `CloudFormation` template for the security group and roles.
+
+    `IgnitionLocation`
+    :   Specifies the location to fetch the control plane Ignition config file from. Specify the generated Ignition config file location, `https://api-int.<cluster_name>.<domain_name>:22623/config/master`.
+
+    `CertificateAuthorities`
+    :   Specifies the base64 encoded certificate authority string to use. Specify the value from the `master.ign` file that is in the installation directory. This value is the long string with the format `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
+
+    `MasterInstanceProfileName`
+    :   Specifies the IAM profile to associate with control plane nodes. Specify the `MasterInstanceProfile` parameter value from the output of the `CloudFormation` template for the security group and roles.
+
+    `MasterInstanceType`
+    :   Specifies the type of {{ aws_short }} instance to use for the control plane machines based on your selected architecture. The instance type value corresponds to the minimum resource requirements for control plane machines. For example `m6i.xlarge` is a type for AMD64
+{%- if not openshift_origin %}
+        and `m6g.xlarge` is a type for ARM64.
+{%- endif %}
+
+    `AutoRegisterELB`
+    :   Specifies whether to register a network load balancer (NLB). Specify `yes` or `no`. If you specify `yes`, you must give a Lambda Amazon Resource Name (ARN) value.
+
+    `RegisterNlbIpTargetsLambdaArn`
+    :   Specifies the ARN for NLB IP target registration lambda group. Specify the `RegisterNlbIpTargetsLambda` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an {{ aws_short }} `GovCloud` region.
+
+    `ExternalApiTargetGroupArn`
+    :   Specifies the ARN for external API load balancer target group. Specify the `ExternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an {{ aws_short }} `GovCloud` region.
+
+    `InternalApiTargetGroupArn`
+    :   Specifies the ARN for internal API load balancer target group. Specify the `InternalApiTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an {{ aws_short }} `GovCloud` region.
+
+    `InternalServiceTargetGroupArn`
+    :   Specifies the ARN for internal service load balancer target group. Specify the `InternalServiceTargetGroupArn` value from the output of the `CloudFormation` template for DNS and load balancing. Use `arn:aws-us-gov` if deploying the cluster to an {{ aws_short }} `GovCloud` region.
+1.  Copy the template from the **`CloudFormation` template for control plane machines** section and save it as a YAML file on your computer. This template describes the control plane machines that your cluster requires.
+1.  If you specified an `m5` instance type as the value for `MasterInstanceType`, add that instance type to the `MasterInstanceType.AllowedValues` parameter in the `CloudFormation` template.
+1.  Launch the `CloudFormation` template to create a stack of {{ aws_short }} resources that represent the control plane nodes:
+
+    :::important
+
+    You must enter the command on a single line.
+    
+    :::
+
+    ```terminal
+    $ aws cloudformation create-stack --stack-name <name> \
+         --template-body file://<template>.yaml \
+         --parameters file://<parameters>.json
+    ```
+
+    where:
+
+    `<name>`
+    :   Specifies the name for the `CloudFormation` stack, such as `cluster-control-plane`. You need the name of this stack if you remove the cluster.
+
+    `<template>`
+    :   Specifies the relative path to and name of the `CloudFormation` template YAML file that you saved.
+
+    `<parameters>`
+    :   Specifies the relative path to and name of the `CloudFormation` parameters JSON file.
+    ```terminal title="Example output"
+    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-control-plane/21c7e2b0-2ee2-11eb-c6f6-0aa34627df4b
+    ```
+
+    :::note
+
+    The `CloudFormation` template creates a stack that represents three control plane nodes.
+    
+    :::
+
+1.  Confirm that the template components exist:
+    ```terminal
+    $ aws cloudformation describe-stacks --stack-name <name>
+    ```

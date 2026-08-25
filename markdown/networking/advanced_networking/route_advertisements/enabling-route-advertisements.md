@@ -1,0 +1,14 @@
+---
+title: Enabling route advertisements
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Enabling route advertisements {id="enabling-route-advertisements"}
+{% include "./_attributes/common-attributes.md" %}
+{%- set context = "enabling-route-advertisements" %}
+
+To improve network reachability and failover visibility for your cluster, you can enable route advertisements for pod and egress IP addresses. This configuration requires the OVN-Kubernetes network plugin and allows your cluster to share routes with an external provider network.
+
+As a cluster administrator, you can configure additional route advertisements for your cluster. You must use the OVN-Kubernetes network plugin.
+
+{% leveloffset +1 %}{% include "./modules/nw-route-advertisements-enable.md" %}{% endleveloffset %}

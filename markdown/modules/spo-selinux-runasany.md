@@ -1,0 +1,11 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+
+# About seLinuxContext: RunAsAny {id="spo-selinux-runasany_{{ context }}"}
+
+To record SELinux policies, a webhook injects a permissive SELinux type so the pod logs AVC denials while recording. {._abstract}
+
+The SELinux type makes the pod run in `permissive` mode, logging all the AVC denials into `audit.log`. By default, a workload is not allowed to run with a custom SELinux policy, but uses an automatically generated type.
+
+To record a workload, the workload must use a service account that has permissions to use an SCC that allows the webhook to inject the permissive SELinux type. The `privileged` SCC contains `seLinuxContext: RunAsAny`.
+
+In addition, the namespace must be labeled with `pod-security.kubernetes.io/enforce: privileged` if your cluster enables Pod Security Admission, because only the `privileged` Pod Security Standard allows using a custom SELinux policy.

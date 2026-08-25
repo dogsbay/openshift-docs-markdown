@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Default cluster roles for {{ VirtProductName }} {id="default-cluster-roles-for-virt_{{ context }}"}
+
+By using cluster role aggregation, {{ VirtProductName }} extends the default {{ product_title }} cluster roles to include permissions for accessing virtualization objects. Roles unique to {{ VirtProductName }} are not aggregated with {{ product_title }} roles. {._abstract}
+
+**{{ VirtProductName }} cluster roles**
+
+| Default cluster role | {{ VirtProductName }} cluster role | {{ VirtProductName }} cluster role description |
+| --- | --- | --- |
+| `view` | `kubevirt.io:view` | A user that can view all {{ VirtProductName }} resources in the cluster but cannot create, delete, modify, or access them. For example, the user can see that a virtual machine (VM) is running but cannot shut it down or gain access to its console. |
+| `edit` | `kubevirt.io:edit` | A user that can modify all {{ VirtProductName }} resources in the cluster. For example, the user can create VMs, access VM consoles, and delete VMs. |
+| `admin` | `kubevirt.io:admin` | A user that has full permissions to all {{ VirtProductName }} resources, including the ability to delete collections of resources. The user can also view and modify the {{ VirtProductName }} runtime configuration, which is located in the `HyperConverged` custom resource in the `openshift-cnv` namespace. |
+| `N/A` | `kubevirt.io:migrate` | A user that can create, delete, and update VM live migration requests, which are represented by namespaced `VirtualMachineInstanceMigration` (VMIM) objects. This role is specific to {{ VirtProductName }}. |

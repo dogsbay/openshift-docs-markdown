@@ -1,0 +1,49 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating private Domain Name System records for private Google access {id="cloud-experts-osd-limit-egress-ngfw-create-private-dns_{{ context }}"}
+
+Create a private Domain Name System (DNS) zone to route Google application programming interface (API) traffic through the internal network of Google for faster and more secure connections. {._abstract}
+
+**Procedure**
+
+1.  Create a private DNS zone for the googleapis.com domain by running the following command:
+    ```terminal
+    $ gcloud dns managed-zones create ${prefix}-googleapis \
+        --visibility=private \
+        --networks=https://www.googleapis.com/compute/v1/projects/${project_id}/global/networks/${prefix}-vpc \
+        --description="Private Google Access" \
+        --dns-name=googleapis.com
+    ```
+1.  Begin a record set transaction by running the following command:
+    ```terminal
+    $ gcloud dns record-sets transaction start \
+        --zone=${prefix}-googleapis
+    ```
+1.  Stage the DNS records for Google APIs under the googleapis.com domain by running the following commands:
+    ```terminal
+    $ gcloud dns record-sets transaction add --name="*.googleapis.com." \
+        --type=CNAME restricted.googleapis.com. \
+        --zone=${prefix}-googleapis \
+        --ttl=300
+    ```
+    ```terminal
+    $ gcloud dns record-sets transaction add 199.36.153.4 199.36.153.5 199.36.153.6 199.36.153.7 \
+        --name=restricted.googleapis.com. \
+        --type=A \
+        --zone=${prefix}-googleapis \
+        --ttl=300
+
+    ```
+1.  Apply the staged record set transaction you started above by running the following command:
+    ```terminal
+    $ gcloud dns record-sets transaction execute \
+        --zone=$prefix-googleapis
+    ```
+
+**Verification**
+
+*   Verify the private DNS zone and records were created by running the following command:
+    ```terminal
+    $ gcloud dns record-sets list --zone=${prefix}-googleapis
+    ```
+
+    The output shows the DNS zone with CNAME and A records for googleapis.com.

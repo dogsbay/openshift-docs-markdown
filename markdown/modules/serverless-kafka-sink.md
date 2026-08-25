@@ -1,0 +1,53 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating an Apache Kafka sink by using YAML {id="serverless-kafka-sink_{{ context }}"}
+
+You can create a Kafka sink that sends events to a Kafka topic. By default, a Kafka sink uses the binary content mode, which is more efficient than the structured mode. To create a Kafka sink by using YAML, you must create a YAML file that defines a `KafkaSink` object, then apply it by using the `oc apply` command.
+
+**Prerequisites**
+
+*   The {{ ServerlessOperatorName }}, Knative Eventing, and the `KnativeKafka` custom resource (CR) are installed on your cluster.
+*   You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {{ product_title }}.
+*   You have access to a Red Hat AMQ Streams (Kafka) cluster that produces the Kafka messages you want to import.
+*   Install the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1.  Create a `KafkaSink` object definition as a YAML file:
+    ```yaml title="Kafka sink YAML"
+    apiVersion: eventing.knative.dev/v1alpha1
+    kind: KafkaSink
+    metadata:
+      name: <sink-name>
+      namespace: <namespace>
+    spec:
+      topic: <topic-name>
+      bootstrapServers:
+       - <bootstrap-server>
+    ```
+1.  To create the Kafka sink, apply the `KafkaSink` YAML file:
+    ```terminal
+    $ oc apply -f <filename>
+    ```
+1.  Configure an event source so that the sink is specified in its spec:
+    ```yaml title="Example of a Kafka sink connected to an API server source"
+    apiVersion: sources.knative.dev/v1alpha2
+    kind: ApiServerSource
+    metadata:
+      name: <source-name> (1)
+      namespace: <namespace> (2)
+    spec:
+      serviceAccountName: <service-account-name> (3)
+      mode: Resource
+      resources:
+      - apiVersion: v1
+        kind: Event
+      sink:
+        ref:
+          apiVersion: eventing.knative.dev/v1alpha1
+          kind: KafkaSink
+          name: <sink-name> (4)
+    ```
+    1.  The name of the event source.
+    1.  The namespace of the event source.
+    1.  The service account for the event source.
+    1.  The Kafka sink name.

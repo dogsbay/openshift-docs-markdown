@@ -1,0 +1,39 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Verifying etcd health in a two-node OpenShift cluster with fencing {id="installation-verifying-etcd-health_{{ context }}"}
+
+After completing node recovery or maintenance procedures, verify that both control plane nodes and etcd are operating correctly. {._abstract}
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with `cluster-admin` privileges.
+*   You can access at least one control plane node through SSH.
+
+**Procedure**
+
+1.  Check the overall node status by running the following command:
+    ```terminal
+    $ oc get nodes
+    ```
+
+    This command verifies that both control plane nodes are in the `Ready` state, indicating that they can receive workloads for scheduling.
+1.  Verify the status of the `cluster-etcd-operator` by running the following command:
+    ```terminal
+    $ oc describe co/etcd
+    ```
+
+    The `cluster-etcd-operator` manages and reports on the health of your etcd setup. Reviewing its status helps you identify any ongoing issues or degraded conditions.
+1.  Review the etcd member list by running the following command:
+    ```terminal
+    $ oc rsh -n openshift-etcd <etcd_pod> etcdctl member list -w table
+    ```
+
+    This command shows the current etcd members and their roles. Look for any nodes marked as `learner`, which indicates that they are in the process of becoming voting members.
+1.  Review the Pacemaker resource status by running the following command on either control plane node:
+    ```terminal
+    $ sudo pcs status --full
+    ```
+
+    This command provides a detailed overview of all resources managed by Pacemaker. You must ensure that the following conditions are met:
+    *   Both nodes are online.
+    *   The `kubelet` and `etcd` resources are running.
+    *   Fencing is correctly configured for both nodes.

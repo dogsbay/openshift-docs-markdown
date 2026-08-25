@@ -1,0 +1,48 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Filtering the audit and infrastructure log inputs by source {id="logging-input-spec-filter-audit-infrastructure_{{ context }}"}
+
+You can define the list of `audit` and `infrastructure` sources to collect the logs by using the `input` selector.
+
+**Prerequisites**
+
+*   You have installed the {{ clo }}.
+*   You have administrator permissions.
+*   You have created a `ClusterLogForwarder` custom resource (CR).
+
+**Procedure**
+
+1.  Add a configuration to define the `audit` and `infrastructure` sources in the `ClusterLogForwarder` CR.
+
+
+    The following example shows how to configure the `ClusterLogForwarder` CR to define `aduit` and `infrastructure` sources:
+    ```yaml title="Example ClusterLogForwarder CR"
+    apiVersion: "logging.openshift.io/v1"
+    kind: ClusterLogForwarder
+    # ...
+    spec:
+      inputs:
+        - name: mylogs1
+          infrastructure:
+            sources: # (1)
+              - node
+        - name: mylogs2
+          audit:
+            sources: # (2)
+              - kubeAPI
+              - openshiftAPI
+              - ovn
+    # ...
+    ```
+    1.  Specifies the list of infrastructure sources to collect. The valid sources include:
+        *   `node`: Journal log from the node
+        *   `container`: Logs from the workloads deployed in the namespaces
+    1.  Specifies the list of audit sources to collect. The valid sources include:
+        *   `kubeAPI`: Logs from the Kubernetes API servers
+        *   `openshiftAPI`: Logs from the OpenShift API servers
+        *   `auditd`: Logs from a node auditd service
+        *   `ovn`: Logs from an open virtual network service
+1.  Apply the `ClusterLogForwarder` CR by running the following command:
+
+    ```terminal
+    $ oc apply -f <filename>.yaml
+    ```

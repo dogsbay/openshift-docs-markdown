@@ -1,0 +1,52 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a new tailored profile {id="compliance-new-tailored-profiles_{{ context }}"}
+
+You can write a tailored profile from scratch by using the `TailoredProfile` object. Set an appropriate `title` and `description` and leave the `extends` field empty.  {._abstract}
+
+Indicate to the Compliance Operator what type of scan this custom profile will generate:
+
+*   Node scan: Scans the operating system.
+*   Platform scan: Scans the {{ product_title }} configuration.
+
+**Procedure**
+
+*   Set the following annotation on the `TailoredProfile` object:
+    ```yaml title="Example new-profile.yaml"
+    apiVersion: compliance.openshift.io/v1alpha1
+    kind: TailoredProfile
+    metadata:
+      name: new-profile
+      annotations:
+        compliance.openshift.io/product-type: Node
+    spec:
+      extends: ocp4-cis-node
+      description: My custom profile
+      title: Custom profile
+      enableRules:
+        - name: ocp4-etcd-unique-ca
+          rationale: We really need to enable this
+      disableRules:
+        - name: ocp4-file-groupowner-cni-conf
+          rationale: This does not apply to the cluster
+    ```
+
+    where:
+
+    `metadata.annotations.compliance.openshift.io/product-type`
+    :   Sets `Node` or `Platform` accordingly.
+
+    `spec.extends`
+    :   Optional field to specify the base profile.
+
+    `spec.description`
+    :   Specifies the function of the new `TailoredProfile` object.
+
+    `spec.title`
+    :   Specifies a title for the `TailoredProfile` object.
+
+
+:::note
+
+Adding the `-node` suffix to the `name` field of the `TailoredProfile` object is similar to adding the `Node` product type annotation and generates an operating system scan.
+
+:::

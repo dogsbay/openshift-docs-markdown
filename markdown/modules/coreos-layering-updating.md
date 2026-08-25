@@ -1,0 +1,12 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Updating with a {{ op_system }} custom layered image {id="coreos-layering-updating_{{ context }}"}
+
+When you configure {{ image_mode_os_lower }}, {{ product_title }} no longer automatically updates the node pool that uses the custom layered image. You become responsible to manually update your nodes as appropriate. {._abstract}
+
+Updating a node with a custom layered image is not required. However, if that node gets too far behind the current {{ product_title }} version, you could experience unexpected results.
+
+To update a node that uses a custom layered image, follow these general steps:
+
+1.  The cluster automatically upgrades to version x.y.z+1, except for the nodes that use the custom layered image.
+1.  You could then create a new Containerfile that references the updated {{ product_title }} image and the RPM that you had previously applied.
+1.  Create a new machine config that points to the updated custom layered image.

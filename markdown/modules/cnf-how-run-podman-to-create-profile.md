@@ -1,0 +1,41 @@
+# How to run podman to create a performance profile {id="how-to-run-podman-to-create-a-profile_{{ context }}"}
+The following example illustrates how to run `podman` to create a performance profile with 20 reserved CPUs that are to be split across the NUMA nodes.
+
+Node hardware configuration:
+
+*   80 CPUs
+*   Hyperthreading enabled
+*   Two NUMA nodes
+*   Even numbered CPUs run on NUMA node 0 and odd numbered CPUs run on NUMA node 1
+
+Run `podman` to create the performance profile:
+
+```terminal
+$ podman run --entrypoint performance-profile-creator -v /must-gather:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-operator:latest --mcp-name=worker-cnf --reserved-cpu-count=20 --rt-kernel=true --split-reserved-cpus-across-numa=true --must-gather-dir-path /must-gather > my-performance-profile.yaml
+```
+
+The created profile is described in the following YAML:
+
+```yaml
+  apiVersion: performance.openshift.io/v2
+  kind: PerformanceProfile
+  metadata:
+    name: performance
+  spec:
+    cpu:
+      isolated: 10-39,50-79
+      reserved: 0-9,40-49
+    nodeSelector:
+      node-role.kubernetes.io/worker-cnf: ""
+    numa:
+      topologyPolicy: restricted
+    realTimeKernel:
+      enabled: true
+```
+
+
+:::note
+
+In this case, 10 CPUs are reserved on NUMA node 0 and 10 are reserved on NUMA node 1.
+
+:::

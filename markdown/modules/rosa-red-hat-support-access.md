@@ -1,0 +1,40 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+
+# Red&#160;Hat support access {id="rosa-policy-rh-access_{{ context }}"}
+Members of the Red&#160;Hat Customer Experience and Engagement (CEE) team typically have read-only access to parts of the cluster. Specifically, CEE has limited access to the core and product namespaces and does not have access to the customer namespaces.
+
+| Role | Core namespace | Layered product namespace | Customer namespace | AWS account^*^ |
+| --- |
+| OpenShift SRE - Normal operations ^[1]^ |
+| Read: All Write: Very limited |
+| Read: All Write: None |
+| Read: None Write: None |
+| Read: None Write: None |
+| OpenShift SRE - Elevated Access ^[2]^ (Gated by [Approved Access](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/support/approved-access)) |
+| Read: All Write: All |
+| Read: All Write: All |
+| Read: All Write: All |
+| Read: All Write: All |
+| CEE |
+| Read: All Write: None |
+| Read: All Write: None |
+| Read: None Write: None |
+| Read: None Write: None |
+| Customer administrator |
+| Read: None Write: None |
+| Read: None Write: None |
+| Read: All Write: All |
+| Read: All Write: All |
+| Customer user |
+| Read: None Write: None |
+| Read: None Write: None |
+| Read: Limited ^[3]^ Write: Limited ^[3]^ |
+| Read: None Write: None |
+| Everybody else |
+| Read: None Write: None |
+| Read: None Write: None |
+| Read: None Write: None |
+| Read: None Write: None |
+1.  Limited to addressing common use cases such as failing deployments, upgrading a cluster, and replacing bad worker nodes.
+1.  Elevated access gives SRE the access levels of a `cluster-admin` role and is gated by Approved Access. For more information, see "Default cluster roles" and "Approved Access".
+1.  Limited to what is granted through RBAC by the Customer Administrator and namespaces created by the user.

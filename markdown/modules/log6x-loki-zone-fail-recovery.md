@@ -1,0 +1,65 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Recovering Loki pods from failed zones {id="logging-loki-zone-fail-recovery_{{ context }}"}
+
+In {{ product_title }} a zone failure happens when specific availability zone resources become inaccessible. Availability zones are isolated areas within a cloud provider’s data center, aimed at enhancing redundancy and fault tolerance. If your {{ product_title }} cluster is not configured to handle this, a zone failure can lead to service or data loss.
+
+Loki pods are part of a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/), and they come with Persistent Volume Claims (PVCs) provisioned by a `StorageClass` object. Each Loki pod and its PVCs reside in the same zone. When a zone failure occurs in a cluster, the StatefulSet controller automatically attempts to recover the affected pods in the failed zone.
+
+
+:::warning
+
+The following procedure will delete the PVCs in the failed zone, and all data contained therein.  To avoid complete data loss the replication factor field of the `LokiStack` CR should always be set to a value greater than 1 to ensure that Loki is replicating.
+
+:::
+
+
+**Prerequisites**
+
+*   Verify your `LokiStack` CR has a replication factor greater than 1.
+*   Zone failure detected by the control plane, and nodes in the failed zone are marked by cloud provider integration.
+
+The StatefulSet controller automatically attempts to reschedule pods in a failed zone. Because the associated PVCs are also in the failed zone, automatic rescheduling to a different zone does not work. You must manually delete the PVCs in the failed zone to allow successful re-creation of the stateful Loki Pod and its provisioned PVC in the new zone.
+
+**Procedure**
+
+1.  List the pods in `Pending` status by running the following command:
+    ```terminal
+    $ oc get pods --field-selector status.phase==Pending -n openshift-logging
+    ```
+    ```terminal title="Example oc get pods output"
+    NAME                           READY   STATUS    RESTARTS   AGE # (1)
+    logging-loki-index-gateway-1   0/1     Pending   0          17m
+    logging-loki-ingester-1        0/1     Pending   0          16m
+    logging-loki-ruler-1           0/1     Pending   0          16m
+    ```
+    1.  These pods are in `Pending` status because their corresponding PVCs are in the failed zone.
+1.  List the PVCs in `Pending` status by running the following command:
+    ```terminal
+    $ oc get pvc -o=json -n openshift-logging | jq '.items[] | select(.status.phase == "Pending") | .metadata.name' -r
+    ```
+    ```terminal title="Example oc get pvc output"
+    storage-logging-loki-index-gateway-1
+    storage-logging-loki-ingester-1
+    wal-logging-loki-ingester-1
+    storage-logging-loki-ruler-1
+    wal-logging-loki-ruler-1
+    ```
+1.  Delete the PVC(s) for a pod by running the following command:
+    ```terminal
+    $ oc delete pvc <pvc_name> -n openshift-logging
+    ```
+1.  Delete the pod(s) by running the following command:
+    ```terminal
+    $ oc delete pod <pod_name> -n openshift-logging
+    ```
+
+    Once these objects have been successfully deleted, they should automatically be rescheduled in an available zone.
+
+## Troubleshooting PVC in a terminating state {id="logging-loki-zone-fail-term-state_{{ context }}"}
+
+The PVCs might hang in the terminating state without being deleted, if PVC metadata finalizers are set to `kubernetes.io/pv-protection`. Removing the finalizers should allow the PVCs to delete successfully.
+
+*   Remove the finalizer for each PVC by running the command below, then retry deletion.
+    ```terminal
+    $ oc patch pvc <pvc_name> -p '{"metadata":{"finalizers":null}}' -n openshift-logging
+    ```

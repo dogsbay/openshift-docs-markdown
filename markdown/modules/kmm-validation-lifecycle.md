@@ -1,0 +1,8 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Validation lifecycle {id="kmm-validation-lifecycle_{{ context }}"}
+
+Preflight validation continuously validates all cluster modules, retrying failures after changes until all modules succeed or the validation resource is deleted. {._abstract}
+
+Each module stops being validated after it succeeds individually. Failed modules are retried in subsequent validation loops.
+
+If you want to run Preflight validation for an additional kernel, then you should create another `PreflightValidationOCP` resource for that kernel. After all the modules have been validated, it is recommended to delete the `PreflightValidationOCP` resource.

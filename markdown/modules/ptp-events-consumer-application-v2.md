@@ -1,0 +1,96 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# PTP events REST API v2 consumer application reference {id="ptp-events-consumer-application-v2_{{ context }}"}
+
+PTP event consumer applications require the following features:
+
+1.  A web service running with a `POST` handler to receive the cloud native PTP events JSON payload
+1.  A `createSubscription` function to subscribe to the PTP events producer
+1.  A `getCurrentState` function to poll the current state of the PTP events producer
+
+The following example Go snippets illustrate these requirements:
+
+```go title="Example PTP events consumer server function in Go"
+func server() {
+  http.HandleFunc("/event", getEvent)
+  http.ListenAndServe(":9043", nil)
+}
+
+func getEvent(w http.ResponseWriter, req *http.Request) {
+  defer req.Body.Close()
+  bodyBytes, err := io.ReadAll(req.Body)
+  if err != nil {
+    log.Errorf("error reading event %v", err)
+  }
+  e := string(bodyBytes)
+  if e != "" {
+    processEvent(bodyBytes)
+    log.Infof("received event %s", string(bodyBytes))
+  }
+  w.WriteHeader(http.StatusNoContent)
+}
+```
+
+```go title="Example PTP events createSubscription function in Go"
+import (
+"github.com/redhat-cne/sdk-go/pkg/pubsub"
+"github.com/redhat-cne/sdk-go/pkg/types"
+v1pubsub "github.com/redhat-cne/sdk-go/v1/pubsub"
+)
+
+// Subscribe to PTP events using v2 REST API
+s1,_:=createsubscription("/cluster/node/<node_name>/sync/sync-status/sync-state")
+s2,_:=createsubscription("/cluster/node/<node_name>/sync/ptp-status/lock-state")
+s3,_:=createsubscription("/cluster/node/<node_name>/sync/gnss-status/gnss-sync-status")
+s4,_:=createsubscription("/cluster/node/<node_name>/sync/sync-status/os-clock-sync-state")
+s5,_:=createsubscription("/cluster/node/<node_name>/sync/ptp-status/clock-class")
+
+// Create PTP event subscriptions POST
+func createSubscription(resourceAddress string) (sub pubsub.PubSub, err error) {
+  var status int
+  apiPath := "/api/ocloudNotifications/v2/"
+  localAPIAddr := "consumer-events-subscription-service.cloud-events.svc.cluster.local:9043" // vDU service API address
+  apiAddr := "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043" // (1)
+  apiVersion := "2.0"
+
+  subURL := &types.URI{URL: url.URL{Scheme: "http",
+    Host: apiAddr
+    Path: fmt.Sprintf("%s%s", apiPath, "subscriptions")}}
+  endpointURL := &types.URI{URL: url.URL{Scheme: "http",
+    Host: localAPIAddr,
+    Path: "event"}}
+
+  sub = v1pubsub.NewPubSub(endpointURL, resourceAddress, apiVersion)
+  var subB []byte
+
+  if subB, err = json.Marshal(&sub); err == nil {
+    rc := restclient.New()
+    if status, subB = rc.PostWithReturn(subURL, subB); status != http.StatusCreated {
+      err = fmt.Errorf("error in subscription creation api at %s, returned status %d", subURL, status)
+    } else {
+      err = json.Unmarshal(subB, &sub)
+    }
+  } else {
+    err = fmt.Errorf("failed to marshal subscription for %s", resourceAddress)
+  }
+  return
+}
+```
+1.  Replace `<node_name>` with the FQDN of the node that is generating the PTP events. For example, `compute-1.example.com`.
+
+```go title="Example PTP events consumer getCurrentState function in Go"
+//Get PTP event state for the resource
+func getCurrentState(resource string) {
+  //Create publisher
+  url := &types.URI{URL: url.URL{Scheme: "http",
+    Host: "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043", // (1)
+    Path: fmt.SPrintf("/api/ocloudNotifications/v2/%s/CurrentState",resource}}
+  rc := restclient.New()
+  status, event := rc.Get(url)
+  if status != http.StatusOK {
+    log.Errorf("CurrentState:error %d from url %s, %s", status, url.String(), event)
+  } else {
+    log.Debugf("Got CurrentState: %s ", event)
+  }
+}
+```
+1.  Replace `<node_name>` with the FQDN of the node that is generating the PTP events. For example, `compute-1.example.com`.

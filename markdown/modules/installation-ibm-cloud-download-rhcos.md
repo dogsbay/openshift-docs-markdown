@@ -1,0 +1,26 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Downloading the RHCOS cluster image {id="installation-ibm-cloud-download-rhcos_{{ context }}"}
+
+The installation program requires the {{ op_system_first }} image to install the cluster. While optional, downloading the {{ op_system_first }} image before deploying removes the need for internet access when creating the cluster. {._abstract}
+
+**Prerequisites**
+
+*   The host running the installation program has internet access.
+
+**Procedure**
+
+1.  Change to the directory that contains the installation program and run the following command:
+    ```terminal
+    $ ./openshift-install coreos print-stream-json
+    ```
+1.  Use the output of the command to find the location of the {{ ibm_cloud_name }} image.
+    ```terminal title="Example output"
+      "release": "415.92.202311241643-0",
+      "formats": {
+        "qcow2.gz": {
+          "disk": {
+            "location": "https://rhcos.mirror.openshift.com/art/storage/prod/streams/4.15-9.2/builds/415.92.202311241643-0/x86_64/rhcos-415.92.202311241643-0-ibmcloud.x86_64.qcow2.gz",
+            "sha256": "6b562dee8431bec3b93adeac1cfefcd5e812d41e3b7d78d3e28319870ffc9eae",
+            "uncompressed-sha256": "5a0f9479505e525a30367b6a6a6547c86a8f03136f453c1da035f3aa5daa8bc9"
+    ```
+1.  Download and extract the image archive. Make the image available on the host that the installation program uses to create the cluster.

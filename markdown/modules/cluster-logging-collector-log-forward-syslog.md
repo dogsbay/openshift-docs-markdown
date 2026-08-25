@@ -1,0 +1,177 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Forwarding logs using the syslog protocol {id="cluster-logging-collector-log-forward-syslog_{{ context }}"}
+
+You can use the **syslog** [RFC3164](https://tools.ietf.org/html/rfc3164) or [RFC5424](https://tools.ietf.org/html/rfc5424) protocol to send a copy of your logs to an external log aggregator that is configured to accept the protocol instead of, or in addition to, the default Elasticsearch log store. You are responsible for configuring the external log aggregator, such as a syslog server, to receive the logs from {{ product_title }}.
+
+To configure log forwarding using the **syslog** protocol, you must create a `ClusterLogForwarder` custom resource (CR) with one or more outputs to the syslog servers, and pipelines that use those outputs. The syslog output can use a UDP, TCP, or TLS connection.
+
+**Prerequisites**
+
+*   You must have a logging server that is configured to receive the logging data using the specified protocol or format.
+
+**Procedure**
+
+1.  Create or edit a YAML file that defines the `ClusterLogForwarder` CR object:
+    ```yaml
+    apiVersion: logging.openshift.io/v1
+    kind: ClusterLogForwarder
+    metadata:
+      name: <log_forwarder_name> (1)
+      namespace: <log_forwarder_namespace> (2)
+    spec:
+      serviceAccountName: <service_account_name> (3)
+      outputs:
+       - name: rsyslog-east (4)
+         type: syslog (5)
+         syslog: (6)
+           facility: local0
+           rfc: RFC3164
+           payloadKey: message
+           severity: informational
+         url: 'tls://rsyslogserver.east.example.com:514' (7)
+         secret: (8)
+            name: syslog-secret
+       - name: rsyslog-west
+         type: syslog
+         syslog:
+          appName: myapp
+          facility: user
+          msgID: mymsg
+          procID: myproc
+          rfc: RFC5424
+          severity: debug
+         url: 'tcp://rsyslogserver.west.example.com:514'
+      pipelines:
+       - name: syslog-east (9)
+         inputRefs: (10)
+         - audit
+         - application
+         outputRefs: (11)
+         - rsyslog-east
+         - default (12)
+         labels:
+           secure: "true" (13)
+           syslog: "east"
+       - name: syslog-west (14)
+         inputRefs:
+         - infrastructure
+         outputRefs:
+         - rsyslog-west
+         - default
+         labels:
+           syslog: "west"
+    ```
+    1.  In legacy implementations, the CR name must be `instance`. In multi log forwarder implementations, you can use any name.
+    1.  In legacy implementations, the CR namespace must be `openshift-logging`. In multi log forwarder implementations, you can use any namespace.
+    1.  The name of your service account. The service account is only required in multi log forwarder implementations if the log forwarder is not deployed in the `openshift-logging` namespace.
+    1.  Specify a name for the output.
+    1.  Specify the `syslog` type.
+    1.  Optional: Specify the syslog parameters, listed below.
+    1.  Specify the URL and port of the external syslog instance. You can use the `udp` (insecure), `tcp` (insecure) or `tls` (secure TCP) protocol. If the cluster-wide proxy using the CIDR annotation is enabled, the output must be a server name or FQDN, not an IP address.
+    1.  If using a `tls` prefix, you must specify the name of the secret required by the endpoint for TLS communication. The secret must contain a `ca-bundle.crt` key that points to the certificate it represents. In legacy implementations, the secret must exist in the `openshift-logging` project.
+    1.  Optional: Specify a name for the pipeline.
+    1.  Specify which log types to forward by using the pipeline: `application,` `infrastructure`, or `audit`.
+    1.  Specify the name of the output to use when forwarding logs with this pipeline.
+    1.  Optional: Specify the `default` output to forward logs to the internal Elasticsearch instance.
+    1.  Optional: String. One or more labels to add to the logs. Quote values like "true" so they are recognized as string values, not as a boolean.
+    1.  Optional: Configure multiple outputs to forward logs to other external log aggregators of any supported type:
+        *   A name to describe the pipeline.
+        *   The `inputRefs` is the log type to forward by using the pipeline: `application,` `infrastructure`, or `audit`.
+        *   The `outputRefs` is the name of the output to use.
+        *   Optional: String. One or more labels to add to the logs.
+1.  Create the CR object:
+    ```terminal
+    $ oc create -f <filename>.yaml
+    ```
+
+## Adding log source information to message output {id="cluster-logging-collector-log-forward-examples-syslog-log-source"}
+
+You can add `namespace_name`, `pod_name`, and `container_name` elements to the `message` field of the record by adding the `AddLogSource` field to your `ClusterLogForwarder` custom resource (CR).
+
+```yaml
+  spec:
+    outputs:
+    - name: syslogout
+      syslog:
+        addLogSource: true
+        facility: user
+        payloadKey: message
+        rfc: RFC3164
+        severity: debug
+        tag: mytag
+      type: syslog
+      url: tls://syslog-receiver.openshift-logging.svc:24224
+    pipelines:
+    - inputRefs:
+      - application
+      name: test-app
+      outputRefs:
+      - syslogout
+```
+
+
+:::note
+
+This configuration is compatible with both RFC3164 and RFC5424.
+
+:::
+
+
+```text title="Example syslog message output without AddLogSource"
+<15>1 2020-11-15T17:06:14+00:00 fluentd-9hkb4 mytag - - -  {"msgcontent"=>"Message Contents", "timestamp"=>"2020-11-15 17:06:09", "tag_key"=>"rec_tag", "index"=>56}
+```
+
+```text title="Example syslog message output with AddLogSource"
+<15>1 2020-11-16T10:49:37+00:00 crc-j55b9-master-0 mytag - - -  namespace_name=clo-test-6327,pod_name=log-generator-ff9746c49-qxm7l,container_name=log-generator,message={"msgcontent":"My life is my message", "timestamp":"2020-11-16 10:49:36", "tag_key":"rec_tag", "index":76}
+```
+
+## Syslog parameters {id="cluster-logging-collector-log-forward-examples-syslog-parms"}
+
+You can configure the following for the `syslog` outputs. For more information, see the syslog [RFC3164](https://tools.ietf.org/html/rfc3164) or [RFC5424](https://tools.ietf.org/html/rfc5424) RFC.
+
+*   facility: The [syslog facility](https://tools.ietf.org/html/rfc5424#section-6.2.1). The value can be a decimal integer or a case-insensitive keyword:
+    *   `0` or `kern` for kernel messages
+    *   `1` or `user` for user-level messages, the default.
+    *   `2` or `mail` for the mail system
+    *   `3` or `daemon` for system daemons
+    *   `4` or `auth` for security/authentication messages
+    *   `5` or `syslog` for messages generated internally by syslogd
+    *   `6` or `lpr` for the line printer subsystem
+    *   `7` or `news` for the network news subsystem
+    *   `8` or `uucp` for the UUCP subsystem
+    *   `9` or `cron` for the clock daemon
+    *   `10` or `authpriv` for security authentication messages
+    *   `11` or `ftp` for the FTP daemon
+    *   `12` or `ntp` for the NTP subsystem
+    *   `13` or `security` for the syslog audit log
+    *   `14` or `console` for the syslog alert log
+    *   `15` or `solaris-cron` for the scheduling daemon
+    *   `16`–`23` or `local0` – `local7` for locally used facilities
+*   Optional: `payloadKey`: The record field to use as payload for the syslog message.
+
+    :::note
+
+    Configuring the `payloadKey` parameter prevents other parameters from being forwarded to the syslog.
+    
+    :::
+
+*   rfc: The RFC to be used for sending logs using syslog. The default is RFC5424.
+*   severity: The [syslog severity](https://tools.ietf.org/html/rfc5424#section-6.2.1) to set on outgoing syslog records. The value can be a decimal integer or a case-insensitive keyword:
+    *   `0` or `Emergency` for messages indicating the system is unusable
+    *   `1` or `Alert` for messages indicating action must be taken immediately
+    *   `2` or `Critical` for messages indicating critical conditions
+    *   `3` or `Error` for messages indicating error conditions
+    *   `4` or `Warning` for messages indicating warning conditions
+    *   `5` or `Notice` for messages indicating normal but significant conditions
+    *   `6` or `Informational` for messages indicating informational messages
+    *   `7` or `Debug` for messages indicating debug-level messages, the default
+*   tag: Tag specifies a record field to use as a tag on the syslog message.
+*   trimPrefix: Remove the specified prefix from the tag.
+
+## Additional RFC5424 syslog parameters {id="cluster-logging-collector-log-forward-examples-syslog-5424"}
+
+The following parameters apply to RFC5424:
+
+*   appName: The APP-NAME is a free-text string that identifies the application that sent the log. Must be specified for `RFC5424`.
+*   msgID: The MSGID is a free-text string that identifies the type of message. Must be specified for `RFC5424`.
+*   procID: The PROCID is a free-text string. A change in the value indicates a discontinuity in syslog reporting. Must be specified for `RFC5424`.

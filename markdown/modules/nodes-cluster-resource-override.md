@@ -1,0 +1,114 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Cluster-level overcommit using the Cluster Resource Override Operator {id="nodes-cluster-resource-override_{{ context }}"}
+
+You can use the Cluster Resource Override Operator to control the level of overcommit and manage container density across all the nodes in your cluster. The Operator, which is an admission webhook, controls how nodes in specific projects can exceed defined memory and CPU limits. {._abstract}
+
+The Operator modifies the ratio between the requests and limits that are set on developer containers. In conjunction with a per-project limit range that specifies limits and defaults, you can achieve the desired level of overcommit.
+
+You must install the Cluster Resource Override Operator by using the {{ product_title }} console or CLI as shown in the following sections. After you deploy the Cluster Resource Override Operator, the Operator modifies all new pods in specific namespaces. The Operator does not edit pods that existed before you deployed the Operator. 
+
+During the installation, you create a `ClusterResourceOverride` custom resource (CR), where you set the level of overcommit, as shown in the following example:
+
+```yaml
+apiVersion: operator.autoscaling.openshift.io/v1
+kind: ClusterResourceOverride
+metadata:
+    name: cluster
+spec:
+  podResourceOverride:
+    spec:
+      memoryRequestToLimitPercent: 50
+      cpuRequestToLimitPercent: 25
+      limitCPUToMemoryPercent: 200
+# ...
+```
+where:
+
+
+`metadata.name`
+:   Specifies a name for the object. The name must be `cluster`.
+
+`spec.podResourceOverride.spec.memoryRequestToLimitPercent`
+:   If a container memory limit has been specified or defaulted, the memory request is overridden to this percentage of the limit, between 1-100. The default is 50.
+
+`spec.podResourceOverride.spec.cpuRequestToLimitPercent`
+:   If a container CPU limit has been specified or defaulted, the CPU request is overridden to this percentage of the limit, between 1-100. The default is 25.
+
+`spec.podResourceOverride.spec.limitCPUToMemoryPercent`
+:   If a container memory limit has been specified or defaulted, the CPU limit is overridden to a percentage of the memory limit, if specified. Scaling 1Gi of RAM at 100 percent is equal to 1 CPU core. This is processed before overriding the CPU request (if configured). The default is 200.
+
+
+:::note
+
+The Cluster Resource Override Operator overrides have no effect if limits have not been set on containers. Create a `LimitRange` object with default limits per individual project or configure limits in `Pod` specs for the overrides to apply.
+
+:::
+
+
+When configured, you can enable overrides on a per-project basis by applying the following label to the `Namespace` object for each project where you want the overrides to apply. For example, you can configure override so that infrastructure components are not subject to the overrides.
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+
+# ...
+
+  labels:
+    clusterresourceoverrides.admission.autoscaling.openshift.io/enabled: "true"
+
+# ...
+```
+
+The Operator watches for the `ClusterResourceOverride` CR and ensures that the `ClusterResourceOverride` admission webhook is installed into the same namespace as the operator.
+
+For example, a pod has the following resources limits:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  namespace: my-namespace
+# ...
+spec:
+  containers:
+    - name: hello-openshift
+      image: openshift/hello-openshift
+      resources:
+        limits:
+          memory: "512Mi"
+          cpu: "2000m"
+# ...
+```
+
+The Cluster Resource Override Operator intercepts the original pod request, then overrides the resources according to the configuration set in the `ClusterResourceOverride` object.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  namespace: my-namespace
+# ...
+spec:
+  containers:
+  - image: openshift/hello-openshift
+    name: hello-openshift
+    resources:
+      limits:
+        cpu: "1"
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+# ...
+```
+where:
+
+
+`spec.containers.resources.limits.cpu`
+:   Specifies that the CPU limit has been overridden to `1` because the `limitCPUToMemoryPercent` parameter is set to `200` in the `ClusterResourceOverride` object. As such, 200% of the memory limit, 512Mi in CPU terms, is 1 CPU core. 
+
+`spec.containers.resources.memory.cpu`
+:   Specifies that the CPU request is now `250m` because the `cpuRequestToLimit` is set to `25` in the `ClusterResourceOverride` object. As such, 25% of the 1 CPU core is 250m.

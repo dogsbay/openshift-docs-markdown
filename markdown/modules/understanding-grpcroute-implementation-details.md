@@ -1,0 +1,20 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# GRPCRoute implementation details {id="understanding-grpcroute-implementation-details_{{ context }}"}
+
+The {{ product_title }} Cluster Ingress Operator vendors the standard-channel Gateway API v1.4.1 custom resource definition (CRD). When you migrate upstream `GRPCRoute` configurations to your cluster, you must ensure your manifests rely on standard-channel features to avoid validation errors. {._abstract}
+
+Additionally, the `cluster-ingress-operator` only installs the `GRPCRoute` CRD and delegates all runtime semantics to {{ SMProductName }}. Because the operator does not reconcile `GRPCRoute` instances, the data-plane behavior depends entirely on your Service Mesh implementation.
+
+The following list outlines the specific implementation details and channel limitations that apply to `GRPCRoute` resources on {{ product_title }}.
+
+
+Experimental fields
+:   Because {{ product_title }} uses the standard-channel CRD, upstream experimental features are not available. For example, the `sessionPersistence` block is excluded. The CRD will reject configurations that attempt to use any experimental fields.
+
+
+Rule names
+:   The `spec.rules[].name` field is currently an experimental feature in the upstream Gateway API. Because {{ product_title }} relies on the standard channel, this field is not available. You cannot annotate or deduplicate rule identities, and conformance suites expecting this field might fail.
+
+
+Match limits
+:   The {{ product_title }} schema fully aligns with upstream standard limits. A single `GRPCRoute` supports up to 16 rules, and each rule supports up to 64 matches. However, the total number of matches across all rules in a single route cannot exceed 128.

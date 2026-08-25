@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Recovering network connectivity manually {id="nbde-recovering-network-connectivity-manually_{{ context }}"}
+
+A somewhat complex and manually intensive process is also available to the onsite technician for network recovery.
+
+**Procedure**
+
+1.  The onsite technician extracts the Clevis header from the hard disks. Depending on BIOS lockdown, this might involve removing the disks and installing them in a lab machine.
+1.  The onsite technician transmits the Clevis headers to a colleague with legitimate access to the Tang network who then performs the decryption.
+1.  Due to the necessity of limited access to the Tang network, the technician should not be able to access that network via VPN or other remote connectivity.  Similarly, the technician cannot patch the remote server through to this network in order to decrypt the disks automatically.
+1.  The technician reinstalls the disk and manually enters the plain text passphrase provided by their colleague.
+1.  The machine successfully starts even without direct access to the Tang servers.  Note that the transmission of the key material from the install site to another site with network access must be done carefully.
+1.  When network connectivity is restored, the technician rotates the encryption keys.

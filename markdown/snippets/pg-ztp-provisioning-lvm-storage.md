@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "SNIPPET" %}
+```yaml
+- name: subscription-policies
+  policyAnnotations:
+    ran.openshift.io/ztp-deploy-wave: "2"
+  manifests:
+    - path: source-crs/StorageLVMOSubscriptionNS.yaml
+    - path: source-crs/StorageLVMOSubscriptionOperGroup.yaml
+    - path: source-crs/StorageLVMOSubscription.yaml
+      spec:
+        name: lvms-operator
+        channel: stable-{{ product_version }}
+```

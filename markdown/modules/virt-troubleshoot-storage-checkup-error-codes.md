@@ -1,0 +1,15 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Storage checkup error codes {id="virt-troubleshoot-storage-checkup-error-codes_{{ context }}"}
+
+Storage checkup error codes might appear in the `storage-checkup-config` config map after a storage checkup fails. {._abstract}
+
+| Error code | Meaning |
+| --- | --- |
+| `ErrNoDefaultStorageClass` | No default storage class is configured. |
+| `ErrPvcNotBound` | One or more persistent volume claims (PVCs) failed to bind. |
+| `ErrMultipleDefaultStorageClasses` | Multiple default storage classes are configured. |
+| `ErrEmptyClaimPropertySets` | There are `StorageProfile` objects containing empty `ClaimPropertySets` specs. |
+| `ErrVMsWithUnsetEfsStorageClass` | There are VMs using elastic file system (EFS) storage classes, where the GID and UID are not set in the `StorageClass` object. |
+| `ErrGoldenImagesNotUpToDate` | One or more golden images has a `DataImportCron` object that is either not up to date or has a `DataSource` object which is not ready. |
+| `ErrGoldenImageNoDataSource` | The `DataSource` object of the golden image has either no PVC or no snapshot source configured. |
+| `ErrBootFailedOnSomeVMs` | Some VMs failed to boot within the expected time. |

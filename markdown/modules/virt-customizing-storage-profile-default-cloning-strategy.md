@@ -1,0 +1,44 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Setting a default cloning strategy by using a storage profile {id="virt-customizing-storage-profile-default-cloning-strategy_{{ context }}"}
+
+You can use storage profiles to set a default cloning method for a storage class by creating a cloning strategy. This can be helpful, for example, if your storage vendor supports only certain cloning methods. It also allows you to select a method that limits resource usage or maximizes performance. {._abstract}
+
+Cloning strategies are specified by setting the `cloneStrategy` attribute in a storage profile to one of the following values:
+
+*   `snapshot` is used by default when snapshots are configured. The Containerized Data Importer (CDI) uses the snapshot method if it recognizes the storage provider and the provider supports Container Storage Interface (CSI) snapshots. This cloning strategy uses a temporary volume snapshot to clone the volume.
+*   `copy` uses a source pod and a target pod to copy data from the source volume to the target volume. Host-assisted cloning is the least efficient method of cloning.
+*   `csi-clone` uses the CSI clone API to efficiently clone an existing volume without using an interim volume snapshot. Unlike `snapshot` or `copy`, which are used by default if no storage profile is defined, CSI volume cloning is used only when you specify it in the `StorageProfile` object for the storage class of the provisioner.
+
+
+:::note
+
+You can set clone strategies by using the CLI without modifying the default `claimPropertySets` in your YAML `spec` section.
+
+:::
+
+
+**Procedure**
+
+1.  Create or edit a `StorageProfile` object to define the cloning strategy. In the `spec` section, set the `cloneStrategy` field and define the required `claimPropertySets` values, as shown in the following example.
+    ```yaml
+    apiVersion: cdi.kubevirt.io/v1beta1
+    kind: StorageProfile
+    metadata:
+      name: <provisioner_class>
+    # ...
+    spec:
+      claimPropertySets:
+      - accessModes:
+        - ReadWriteOnce
+        volumeMode: Filesystem
+      cloneStrategy: csi-clone
+    status:
+      provisioner: <provisioner>
+      storageClass: <provisioner_class>
+    ```
+    *   `accessModes` and `volumeMode` define the claim properties.
+    *   `cloneStrategy` sets the default cloning method.
+1.  Apply the configuration:
+    ```terminal
+    $ oc apply -f <storage_profile>.yaml
+    ```

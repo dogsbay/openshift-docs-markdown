@@ -1,0 +1,42 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About {{ IBMFusionFirst }} {id="about-fusion-access-san_{{ context }}"}
+
+{{ IBMFusionFirst }} provides a scalable clustered file system for enterprise storage, primarily designed to offer access to consolidated, block-level data storage. It presents storage devices, such as disk arrays, to the operating system as if they were direct-attached storage. {._abstract}
+
+{{ IBMFusionFirst }} uses existing Storage Area Network (SAN) infrastructure to provide enterprise storage for {{ VirtProductName }}. A SAN is a dedicated network of storage devices that is typically not accessible through the local area network (LAN).
+
+To use {{ VirtProductName }} with {{ IBMFusionFirst }}, you must first install the {{ FusionSAN }} Operator.
+
+Then you must create a Kubernetes pull secret and create the `FusionAccess` custom resource (CR).
+
+Finally, follow the {{ product_title }} web console wizard to configure the storage cluster, local disk, and file systems.
+
+## Why use {{ FusionSAN }} {id="why-use-fusion-san_{{ context }}"}
+
+
+Easy user experience
+:   {{ FusionSAN }} features a wizard-driven user interface (UI) for installing and configuring storage clusters, file systems, and storage classes, to simplify the setup process.
+
+
+Use existing infrastructure
+:   Organizations can use their existing SAN investments, including Fibre Channel (FC) and iSCSI technologies, as they migrate to or expand with {{ VirtProductName }}.
+
+
+Scalability
+:   The storage cluster is designed to scale with {{ product_title }} clusters and virtual machine (VM) workloads. It can support up to approximately 3000 VMs on 6 bare-metal hosts, with possibilities for further scaling by adding more file systems or using specific storage class parameters.
+
+
+Consolidated and shared storage
+:   SANs enable multiple servers to access a large, shared data storage capacity. This architecture facilitates automatic data backup and continuous monitoring of the storage and backup processes.
+
+
+High-speed data transfer
+:   By using a dedicated high-speed network for storage, {{ FusionSAN }} overcomes the data transfer bottlenecks that can occur over a traditional LAN, especially for large volumes of data.
+
+
+File-level access
+:   Although a SAN primarily operates at the block level, file systems built on top of SAN storage can provide file-level access through shared-disk file systems.
+
+
+Centralized management
+:   The underlying SAN software manages servers, storage devices, and the network to ensure that data moves directly between storage devices with minimal server intervention. It also supports centralized management and configuration of SAN components such as Logical Unit Numbers (LUNs).

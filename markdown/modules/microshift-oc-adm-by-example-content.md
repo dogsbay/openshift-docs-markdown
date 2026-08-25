@@ -1,0 +1,78 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# OpenShift CLI (oc) administrator commands {id="microshift-cli-admin_{{ context }}"}
+
+You can use the `oc adm` command-line tool to perform administrative tasks on your MicroShift cluster. Use the following commands, along with their descriptions and example usage, to manage and troubleshoot your cluster. {._abstract}
+
+## oc adm inspect {id="microshift-oc-adm-inspect_{{ context }}"}
+Collect debugging data for a given resource
+
+```bash title="Example usage"
+  # Collect debugging data for a kubernetes service
+  oc adm inspect service/kubernetes
+
+  # Collect debugging data for a node
+  oc adm inspect node/<node_name>
+
+  # Collect debugging data for logicalvolumes in a CRD
+  oc adm inspect crd/logicalvolumes.topolvm.io
+
+  # Collect debugging data for routes.route.openshift.io in a CRD
+  oc adm inspect crd/routes.route.openshift.io
+```
+
+## oc adm release extract {id="microshift-oc-adm-release-extract_{{ context }}"}
+Extract the contents of an update payload to disk
+
+```bash title="Example usage"
+  # Use git to check out the source code for the current cluster release to DIR
+  oc adm release extract --git=DIR
+
+  # Extract cloud credential requests for AWS
+  oc adm release extract --credentials-requests --cloud=aws
+
+  # Use git to check out the source code for the current cluster release to DIR from linux/s390x image
+  # Note: Wildcard filter is not supported; pass a single os/arch to extract
+  oc adm release extract --git=DIR quay.io/openshift-release-dev/ocp-release:4.11.2 --filter-by-os=linux/s390x
+```
+
+## oc adm release info {id="microshift-oc-adm-release-info_{{ context }}"}
+Display information about a release
+
+```bash title="Example usage"
+  # Show information about the cluster's current release
+  oc adm release info
+
+  # Show the source code that comprises a release
+  oc adm release info 4.11.2 --commit-urls
+
+  # Show the source code difference between two releases
+  oc adm release info 4.11.0 4.11.2 --commits
+
+  # Show where the images referenced by the release are located
+  oc adm release info quay.io/openshift-release-dev/ocp-release:4.11.2 --pullspecs
+
+  # Show information about linux/s390x image
+  # Note: Wildcard filter is not supported; pass a single os/arch to extract
+  oc adm release info quay.io/openshift-release-dev/ocp-release:4.11.2 --filter-by-os=linux/s390x
+```
+
+## oc adm taint {id="microshift-oc-adm-taint_{{ context }}"}
+Update the taints on nodes
+
+```bash title="Example usage"
+  # Update node 'foo' with a taint with key 'dedicated' and value 'special-user' and effect 'NoSchedule'
+  # If a taint with that key and effect already exists, its value is replaced as specified
+  oc adm taint nodes foo dedicated=special-user:NoSchedule
+
+  # Remove from node 'foo' the taint with key 'dedicated' and effect 'NoSchedule' if one exists
+  oc adm taint nodes foo dedicated:NoSchedule-
+
+  # Remove from node 'foo' all the taints with key 'dedicated'
+  oc adm taint nodes foo dedicated-
+
+  # Add a taint with key 'dedicated' on nodes having label mylabel=X
+  oc adm taint node -l myLabel=X  dedicated=foo:PreferNoSchedule
+
+  # Add to node 'foo' a taint with key 'bar' and no value
+  oc adm taint nodes foo bar:NoSchedule
+```

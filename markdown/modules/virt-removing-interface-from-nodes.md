@@ -1,0 +1,54 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Removing an interface from nodes {id="virt-removing-interface-from-nodes_{{ context }}"}
+
+You can remove an interface from one or more nodes in the cluster by editing the `NodeNetworkConfigurationPolicy` object and setting the `state` of the interface to `absent`. {._abstract}
+
+Removing an interface from a node does not automatically restore the node network configuration to a previous state. If you want to restore the previous state, you will need to define that node network configuration in the policy.
+
+If you remove a bridge or bonding interface, any node NICs in the cluster that were previously attached or subordinate to that bridge or bonding interface are placed in a `down` state and become unreachable. To avoid losing connectivity, configure the node NIC in the same policy so that it has a status of `up` and either DHCP or a static IP address.
+
+
+:::note
+
+Deleting the node network policy that added an interface does not change the configuration of the policy on the node. Although a `NodeNetworkConfigurationPolicy` is an object in the cluster, the object only represents the requested configuration. Similarly, removing an interface does not delete the policy.
+
+:::
+
+
+**Prerequisites**
+
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Update the `NodeNetworkConfigurationPolicy` manifest used to create the interface. The following example removes a Linux bridge and configures the `eth1` NIC with DHCP to avoid losing connectivity:
+    ```yaml
+    apiVersion: nmstate.io/v1
+    kind: NodeNetworkConfigurationPolicy
+    metadata:
+      name: <br1-eth1-policy>
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/worker: ""
+      desiredState:
+        interfaces:
+        - name: br1
+          type: linux-bridge
+          state: absent
+        - name: eth1
+          type: ethernet
+          state: up
+          ipv4:
+            dhcp: true
+            enabled: true
+    ```
+    *   `metadata.name` defines the name of the policy.
+    *   `spec.nodeSelector` defines the `nodeSelector` parameter. This parameter is optional. If you do not include the `nodeSelector` parameter, the policy applies to all nodes in the cluster. This example uses the `node-role.kubernetes.io/worker: ""` node selector to select all worker nodes in the cluster.
+    *   `spec.desiredState.interfaces` defines the name, type, and desired state of an interface. This example creates both Linux bridge and Ethernet networking interfaces. Setting `state: absent` removes the interface.
+    *   `spec.desiredState.interfaces.ipv4` defines `ipv4` settings for the interface. These settings are optional. If you do not use `dhcp`, you can either set a static IP or leave the interface without an IP address. Setting `enabled: true` enables `ipv4` in this example.
+1.  Update the policy on the node and remove the interface:
+    ```terminal
+    $ oc apply -f <filename.yaml>
+    ```
+
+    Where `<filename.yaml>` is the filename of the policy manifest.

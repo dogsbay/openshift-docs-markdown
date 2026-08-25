@@ -1,0 +1,46 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Distributing control planes across failure domains {id="post-installation-adding-nutanix-failure-domains-control-planes_{{ context }}"}
+
+You distribute control planes across Nutanix failure domains by modifying the control plane machine set custom resource (CR). {._abstract}
+
+**Prerequisites**
+
+*   You have configured the failure domains in the cluster’s Infrastructure custom resource (CR).
+*   The control plane machine set custom resource (CR) is in an active state.
+
+For more information on checking the control plane machine set custom resource state, see "Additional resources".
+
+**Procedure**
+
+1.  Edit the control plane machine set CR by running the following command:
+    ```terminal
+    $ oc edit controlplanemachineset.machine.openshift.io cluster -n openshift-machine-api
+    ```
+1.  Configure the control plane machine set to use failure domains by adding a `spec.template.machines_v1beta1_machine_openshift_io.failureDomains` stanza.
+    ```yaml title="Example control plane machine set with Nutanix failure domains"
+    apiVersion: machine.openshift.io/v1
+    kind: ControlPlaneMachineSet
+      metadata:
+        creationTimestamp: null
+        labels:
+          machine.openshift.io/cluster-api-cluster: <cluster_name>
+        name: cluster
+        namespace: openshift-machine-api
+    spec:
+    # ...
+      template:
+        machineType: machines_v1beta1_machine_openshift_io
+        machines_v1beta1_machine_openshift_io:
+          failureDomains:
+            platform: Nutanix
+            nutanix:
+            - name: <failure_domain_name_1>
+            - name: <failure_domain_name_2>
+            - name: <failure_domain_name_3>
+    # ...
+    ```
+1.  Save your changes.
+
+**Result**
+
+By default, the control plane machine set propagates changes to your control plane configuration automatically. If the cluster is configured to use the `OnDelete` update strategy, you must replace your control planes manually.

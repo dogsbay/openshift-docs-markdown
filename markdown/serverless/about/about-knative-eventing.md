@@ -1,0 +1,36 @@
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Knative Eventing {id="about-knative-eventing"}
+{%- set context = "about-knative-eventing" %}
+{% include "./_attributes/common-attributes.md" %}
+
+Knative Eventing on {{ product_title }} enables developers to use an [event-driven architecture](https://www.redhat.com/en/topics/integration/what-is-event-driven-architecture) with serverless applications. An event-driven architecture is based on the concept of decoupled relationships between event producers and event consumers.
+
+Event producers create events, and event _sinks_, or consumers, receive events. Knative Eventing uses standard HTTP POST requests to send and receive events between event producers and sinks. These events conform to the [CloudEvents specifications](https://cloudevents.io), which enables creating, parsing, sending, and receiving events in any programming language.
+
+Knative Eventing supports the following use cases:
+
+
+Publish an event without creating a consumer
+:   You can send events to a broker as an HTTP POST, and use binding to decouple the destination configuration from your application that produces events.
+
+
+Consume an event without creating a publisher
+:   You can use a trigger to consume events from a broker based on event attributes. The application receives events as an HTTP POST.
+
+To enable delivery to multiple types of sinks, Knative Eventing defines the following generic interfaces that can be implemented by multiple Kubernetes resources:
+
+
+Addressable resources
+:   Able to receive and acknowledge an event delivered over HTTP to an address defined in the `status.address.url` field of the event. The Kubernetes `Service` resource also satisfies the addressable interface.
+
+
+Callable resources
+:   Able to receive an event delivered over HTTP and transform it, returning `0` or `1` new events in the HTTP response payload. These returned events may be further processed in the same way that events from an external event source are processed.
+
+{% leveloffset +1 %}{% include "./modules/serverless-kafka-developer.md" %}{% endleveloffset %}
+
+## Additional resources {id="additional-resources_about-knative-eventing" ._additional-resources}
+*   [Installing the `KnativeKafka` custom resource](/serverless/install/installing-knative-eventing#serverless-install-kafka-odc_installing-knative-eventing).
+*   [Red Hat AMQ Streams documentation](https://access.redhat.com/documentation/en-us/red_hat_amq/7.6/html/amq_streams_on_openshift_overview/kafka-concepts_str#kafka-concepts-key_str)
+*   [Red Hat AMQ Streams TLS and SASL on Apache Kafka documentation](https://access.redhat.com/documentation/en-us/red_hat_amq/7.6/html-single/using_amq_streams_on_rhel/index#assembly-kafka-encryption-and-authentication-str)
+*   [Event delivery](/serverless/eventing/brokers/serverless-event-delivery#serverless-event-delivery)

@@ -1,0 +1,12 @@
+{%- set _mod_docs_content_type = "SNIPPET" %}
+
+Only the configuration options described in this documentation are supported for {{ logging }}.
+
+Do not use any other configuration options, as they are unsupported. Configuration paradigms might change across {{ product_title }} releases, and such cases can only be handled gracefully if all configuration possibilities are controlled. If you use configurations other than those described in this documentation, your changes will be overwritten, because Operators are designed to reconcile any differences.
+
+
+:::note
+
+If you must perform configurations not described in the {{ product_title }} documentation, you must set your Red Hat OpenShift Logging Operator to `Unmanaged`. An unmanaged {{ logging }} instance is not supported and does not receive updates until you return its status to `Managed`.
+
+:::

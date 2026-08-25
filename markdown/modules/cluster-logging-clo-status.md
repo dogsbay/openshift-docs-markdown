@@ -1,0 +1,201 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Viewing the status of the {{ clo }} {id="cluster-logging-clo-status_{{ context }}"}
+
+You can view the status of the {{ clo }}.
+
+**Prerequisites**
+
+*   The {{ clo }} and {{ es_op }} are installed.
+
+**Procedure**
+
+1.  Change to the `openshift-logging` project by running the following command:
+    ```terminal
+    $ oc project openshift-logging
+    ```
+1.  Get the `ClusterLogging` instance status by running the following command:
+    ```terminal
+    $ oc get clusterlogging instance -o yaml
+    ```
+    ```yaml title="Example output"
+    apiVersion: logging.openshift.io/v1
+    kind: ClusterLogging
+    # ...
+    status:  (1)
+      collection:
+        logs:
+          fluentdStatus:
+            daemonSet: fluentd  (2)
+            nodes:
+              collector-2rhqp: ip-10-0-169-13.ec2.internal
+              collector-6fgjh: ip-10-0-165-244.ec2.internal
+              collector-6l2ff: ip-10-0-128-218.ec2.internal
+              collector-54nx5: ip-10-0-139-30.ec2.internal
+              collector-flpnn: ip-10-0-147-228.ec2.internal
+              collector-n2frh: ip-10-0-157-45.ec2.internal
+            pods:
+              failed: []
+              notReady: []
+              ready:
+              - collector-2rhqp
+              - collector-54nx5
+              - collector-6fgjh
+              - collector-6l2ff
+              - collector-flpnn
+              - collector-n2frh
+      logstore: (3)
+        elasticsearchStatus:
+        - ShardAllocationEnabled:  all
+          cluster:
+            activePrimaryShards:    5
+            activeShards:           5
+            initializingShards:     0
+            numDataNodes:           1
+            numNodes:               1
+            pendingTasks:           0
+            relocatingShards:       0
+            status:                 green
+            unassignedShards:       0
+          clusterName:             elasticsearch
+          nodeConditions:
+            elasticsearch-cdm-mkkdys93-1:
+          nodeCount:  1
+          pods:
+            client:
+              failed:
+              notReady:
+              ready:
+              - elasticsearch-cdm-mkkdys93-1-7f7c6-mjm7c
+            data:
+              failed:
+              notReady:
+              ready:
+              - elasticsearch-cdm-mkkdys93-1-7f7c6-mjm7c
+            master:
+              failed:
+              notReady:
+              ready:
+              - elasticsearch-cdm-mkkdys93-1-7f7c6-mjm7c
+      visualization:  (4)
+        kibanaStatus:
+        - deployment: kibana
+          pods:
+            failed: []
+            notReady: []
+            ready:
+            - kibana-7fb4fd4cc9-f2nls
+          replicaSets:
+          - kibana-7fb4fd4cc9
+          replicas: 1
+    ```
+    1.  In the output, the cluster status fields appear in the `status` stanza.
+    1.  Information on the Fluentd pods.
+    1.  Information on the Elasticsearch pods, including Elasticsearch cluster health, `green`, `yellow`, or `red`.
+    1.  Information on the Kibana pods.
+
+## Example condition messages {id="cluster-logging-clo-status-message_{{ context }}"}
+
+The following are examples of some condition messages from the `Status.Nodes` section of the `ClusterLogging` instance.
+
+A status message similar to the following indicates a node has exceeded the configured low watermark and no shard will be allocated to this node:
+
+```yaml title="Example output"
+  nodes:
+  - conditions:
+    - lastTransitionTime: 2019-03-15T15:57:22Z
+      message: Disk storage usage for node is 27.5gb (36.74%). Shards will be not
+        be allocated on this node.
+      reason: Disk Watermark Low
+      status: "True"
+      type: NodeStorage
+    deploymentName: example-elasticsearch-clientdatamaster-0-1
+    upgradeStatus: {}
+```
+
+A status message similar to the following indicates a node has exceeded the configured high watermark and shards will be relocated to other nodes:
+
+```yaml title="Example output"
+  nodes:
+  - conditions:
+    - lastTransitionTime: 2019-03-15T16:04:45Z
+      message: Disk storage usage for node is 27.5gb (36.74%). Shards will be relocated
+        from this node.
+      reason: Disk Watermark High
+      status: "True"
+      type: NodeStorage
+    deploymentName: cluster-logging-operator
+    upgradeStatus: {}
+```
+
+A status message similar to the following indicates the Elasticsearch node selector in the CR does not match any nodes in the cluster:
+
+```terminal title="Example output"
+    Elasticsearch Status:
+      Shard Allocation Enabled:  shard allocation unknown
+      Cluster:
+        Active Primary Shards:  0
+        Active Shards:          0
+        Initializing Shards:    0
+        Num Data Nodes:         0
+        Num Nodes:              0
+        Pending Tasks:          0
+        Relocating Shards:      0
+        Status:                 cluster health unknown
+        Unassigned Shards:      0
+      Cluster Name:             elasticsearch
+      Node Conditions:
+        elasticsearch-cdm-mkkdys93-1:
+          Last Transition Time:  2019-06-26T03:37:32Z
+          Message:               0/5 nodes are available: 5 node(s) didn't match node selector.
+          Reason:                Unschedulable
+          Status:                True
+          Type:                  Unschedulable
+        elasticsearch-cdm-mkkdys93-2:
+      Node Count:  2
+      Pods:
+        Client:
+          Failed:
+          Not Ready:
+            elasticsearch-cdm-mkkdys93-1-75dd69dccd-f7f49
+            elasticsearch-cdm-mkkdys93-2-67c64f5f4c-n58vl
+          Ready:
+        Data:
+          Failed:
+          Not Ready:
+            elasticsearch-cdm-mkkdys93-1-75dd69dccd-f7f49
+            elasticsearch-cdm-mkkdys93-2-67c64f5f4c-n58vl
+          Ready:
+        Master:
+          Failed:
+          Not Ready:
+            elasticsearch-cdm-mkkdys93-1-75dd69dccd-f7f49
+            elasticsearch-cdm-mkkdys93-2-67c64f5f4c-n58vl
+          Ready:
+```
+
+A status message similar to the following indicates that the requested PVC could not bind to PV:
+
+```terminal title="Example output"
+      Node Conditions:
+        elasticsearch-cdm-mkkdys93-1:
+          Last Transition Time:  2019-06-26T03:37:32Z
+          Message:               pod has unbound immediate PersistentVolumeClaims (repeated 5 times)
+          Reason:                Unschedulable
+          Status:                True
+          Type:                  Unschedulable
+```
+
+A status message similar to the following indicates that the Fluentd pods cannot be scheduled because the node selector did not match any nodes:
+
+```yaml title="Example output"
+Status:
+  Collection:
+    Logs:
+      Fluentd Status:
+        Daemon Set:  fluentd
+        Nodes:
+        Pods:
+          Failed:
+          Not Ready:
+          Ready:
+```

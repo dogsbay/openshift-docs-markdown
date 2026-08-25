@@ -1,0 +1,19 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Advisor recommendation filters {id="insights-operator-advisor-recommendation-filters_{{ context }}"}
+
+The {{ red_hat_lightspeed }} advisor service can return a large number of recommendations. To focus on your most critical recommendations, you can apply filters to the advisor recommendations list on the {{ hybrid_console_second }} to remove low-priority recommendations. {._abstract}
+
+By default, filters are set to only show enabled recommendations that are impacting one or more clusters. To view all or disabled recommendations in the {{ red_hat_lightspeed }} library, you can customize the filters.
+
+To apply a filter, select a filter type and then set its value based on the options that are available in the drop-down list. You can apply multiple filters to the list of recommendations.
+
+You can set the following filter types:
+
+*   **Name:** Search for a recommendation by name.
+*   **Total risk:** Select one or more values from **Critical**, **Important**, **Moderate**, and **Low** indicating the likelihood and the severity of a negative impact on a cluster.
+*   **Impact:** Select one or more values from **Critical**, **High**, **Medium**, and **Low** indicating the potential impact to the continuity of cluster operations.
+*   **Likelihood:** Select one or more values from **Critical**, **High**, **Medium**, and **Low** indicating the potential for a negative impact to a cluster if the recommendation comes to fruition.
+*   **Category:** Select one or more categories from **Service Availability**, **Performance**, **Fault Tolerance**, **Security**, and **Best Practice** to focus your attention on.
+*   **Status:** Click a radio button to show enabled recommendations (default), disabled recommendations, or all recommendations.
+*   **Clusters impacted:** Set the filter to show recommendations currently impacting one or more clusters, non-impacting recommendations, or all recommendations.
+*   **Risk of change:** Select one or more values from **High**, **Moderate**, **Low**, and **Very low** indicating the risk that the implementation of the resolution could have on cluster operations.

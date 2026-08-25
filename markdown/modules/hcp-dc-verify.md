@@ -1,0 +1,35 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Verifying the status of the hosted control plane feature {id="hcp-dc-verify_{{ context }}"}
+
+The hosted control plane feature is enabled by default. However, if you are not sure that it is enabled, you can run a command to verify its status. {._abstract}
+
+**Procedure**
+
+1.  If the feature is disabled and you want to enable it, enter the following command. Replace `<multiclusterengine>` with the name of your {{ mce_short }} instance:
+    ```terminal
+    $ oc patch mce <multiclusterengine> --type=merge -p \
+      '{"spec":{"overrides":{"components":[{"name":"hypershift","enabled": true}]}}}'
+    ```
+
+    When you enable the feature, the `hypershift-addon` managed cluster add-on is installed in the `local-cluster` managed cluster, and the add-on agent installs the HyperShift Operator on the {{ mce_short }} hub cluster.
+1.  Confirm that the `hypershift-addon` managed cluster add-on is installed by entering the following command:
+    ```terminal
+    $ oc get managedclusteraddons -n local-cluster hypershift-addon
+    ```
+    ```terminal title="Example output"
+    NAME               AVAILABLE   DEGRADED   PROGRESSING
+    hypershift-addon   True        False
+    ```
+1.  To avoid a timeout during this process, enter the following commands:
+    1.  To avoid a timeout when the condition is `Degraded`, enter the following command:
+        ```terminal
+        $ oc wait --for=condition=Degraded=True managedclusteraddons/hypershift-addon \
+          -n local-cluster --timeout=5m
+        ```
+    1.  To avoid a timeout when the condition is `Available`, enter the following command:
+        ```terminal
+        $ oc wait --for=condition=Available=True managedclusteraddons/hypershift-addon \
+          -n local-cluster --timeout=5m
+        ```
+
+        When the process is complete, the `hypershift-addon` managed cluster add-on and the HyperShift Operator are installed, and the `local-cluster` managed cluster is available to host and manage hosted clusters.

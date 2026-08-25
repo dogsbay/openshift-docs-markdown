@@ -1,0 +1,33 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Using image streams {id="images-imagestream-use_{{ context }}"}
+
+Image streams provide an abstraction for referencing container images from within {{ product_title }}. You can use image streams to manage image versions and automate builds and deployments in your cluster. {._abstract}
+
+Image streams do not contain actual image data, but present a single virtual view of related images, similar to an image repository.
+
+You can configure builds and deployments to watch an image stream for notifications when new images are added and react by performing a build or deployment, respectively.
+
+For example, if a deployment is using a certain image and a new version of that image is created, a deployment could be automatically performed to pick up the new version of the image.
+
+However, if the image stream tag used by the deployment or build is not updated, then even if the container image in the container image registry is updated, the build or deployment continues using the previous, presumably known good
+image.
+
+The source images can be stored in any of the following:
+
+*   {{ product_title }}'s integrated registry.
+*   An external registry, for example registry.redhat.io or quay.io.
+*   Other image streams in the {{ product_title }} cluster.
+
+When you define an object that references an image stream tag, such as a build or deployment configuration, you point to an image stream tag and not the repository. When you build or deploy your application, {{ product_title }} queries the repository using the image stream tag to locate the associated ID of the image and uses that exact image.
+
+The image stream metadata is stored in the etcd instance along with other cluster information.
+
+Using image streams has several significant benefits:
+
+*   You can tag, rollback a tag, and quickly deal with images, without having to re-push using the command line.
+*   You can trigger builds and deployments when a new image is pushed to the registry. Also, {{ product_title }} has generic triggers for other resources, such as Kubernetes objects.
+*   You can mark a tag for periodic re-import. If the source image has changed, that change is picked up and reflected in the image stream, which triggers the build or deployment flow, depending upon the build or deployment configuration.
+*   You can share images using fine-grained access control and quickly distribute images across your teams.
+*   If the source image changes, the image stream tag still points to a known-good version of the image, ensuring that your application does not break unexpectedly.
+*   You can configure security around who can view and use the images through permissions on the image stream objects.
+*   Users that lack permission to read or list images on the cluster level can still retrieve the images tagged in a project using image streams.

@@ -1,0 +1,33 @@
+---
+title: Distributing hosted cluster workloads
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Distributing hosted cluster workloads {id="hcp-distribute-workloads"}
+{% include "./_attributes/common-attributes.md" %}
+{%- set context = "hcp-distribute-workloads" %}
+
+In {{ hcp }} for {{ product_title }}, cluster management is separate from cluster workload. As you prepare your deployment, ensure you know how you want to distribute your hosted cluster workloads.
+
+
+:::important
+
+Do not use the management cluster for your workload. Workloads must not run on nodes where control planes run.
+
+:::
+
+
+{% leveloffset +1 %}{% include "./modules/hcp-node-labeling.md" %}{% endleveloffset %}
+
+**Additional resources**
+
+*   [Labeling management cluster nodes](/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)
+*   [Network isolation for hosted clusters](/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking)
+
+{% leveloffset +1 %}{% include "./modules/hcp-labels-taints.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/hcp-priority-classes.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/hcp-virt-taints-tolerations.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/hcp-isolation.md" %}{% endleveloffset %}

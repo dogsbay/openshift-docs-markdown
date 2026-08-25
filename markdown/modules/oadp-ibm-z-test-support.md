@@ -1,0 +1,8 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# OADP testing and support for target backup locations using {{ ibm_z_title }} {id="oadp-ibm-z-test-support_{{ context }}"}
+
+Review the tested and supported {{ oadp_short }} and {{ product_title }} version combinations for {{ ibm_z_name }} against S3 backup location targets. This helps you verify that your {{ ibm_z_name }} environment and {{ oadp_short }} version are supported for backup operations. {._abstract}
+
+*   {{ ibm_z_name }} running with {{ product_title }} 4.12, 4.13, 4.14, and 4.15, and {{ oadp_version_1_3 }} was tested successfully against an AWS S3 backup location target. Although the test involved only an AWS S3 target, Red Hat supports running {{ ibm_z_name }} with {{ product_title }} 4.13 4.14, and 4.15, and {{ oadp_version_1_3 }} against all S3 backup location targets, which are not AWS, as well.
+*   {{ ibm_z_name }} running with {{ product_title }} 4.14, 4.15, 4.16, and 4.17, and {{ oadp_version_1_4 }} was tested successfully against an AWS S3 backup location target. Although the test involved only an AWS S3 target, Red Hat supports running {{ ibm_z_name }} with {{ product_title }} 4.14, 4.15, 4.16, and 4.17, and {{ oadp_version_1_4 }} against all S3 backup location targets, which are not AWS, as well.
+*   {{ ibm_z_name }} running with {{ product_title }} 4.19 and {{ oadp_short }} {{ oadp_version_1_5 }} was tested successfully against an AWS S3 backup location target. Although the test involved only an AWS S3 target, Red Hat supports running {{ ibm_z_name }} with {{ product_title }} 4.19 and {{ oadp_short }} {{ oadp_version_1_5 }} against all S3 backup location targets, which are not AWS, as well.

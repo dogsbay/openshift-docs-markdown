@@ -1,0 +1,110 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Modifying an on-cluster custom layered image {id="coreos-layering-configuring-on-modifying_{{ context }}"}
+
+You can modify an on-cluster custom layered image, as needed, to install additional packages, remove existing packages, change the pull or push repositories, update secrets, or other similar changes.  {._abstract}
+
+You can edit the `MachineOSConfig` object, apply changes to the YAML file that created the `MachineOSConfig` object, or create a new YAML file for that purpose.
+
+If you modify and apply the `MachineOSConfig` object YAML or create a new YAML file, the YAML overwrites any changes you made directly to the `MachineOSConfig` object itself.
+
+{% include "./snippets//coreos-layering-configuring-on-pause.md" %}
+
+**Prerequisites**
+
+*   You have opted in to {{ image_mode_os_on_lower }} by creating a `MachineOSConfig` object.
+
+**Procedure**
+
+*   Modify an object to update the associated custom layered image:
+    1.  Edit the `MachineOSConfig` object to modify the custom layered image. The following example adds the `rngd` daemon to nodes that already have the tree package that was installed using a custom layered image.
+        ```yaml
+        apiVersion: machineconfiguration.openshift.io/v1
+        kind: MachineOSConfig
+        metadata:
+          name: layered-image
+        spec:
+          machineConfigPool:
+            name: layered-image
+          containerFile:
+          - containerfileArch: noarch
+            content: |-
+              FROM configs AS final
+
+              RUN rpm-ostree install rng-tools && \
+                  systemctl enable rngd && \
+                  rpm-ostree cleanup -m && \
+                  bootc container lint
+
+              RUN rpm-ostree install tree && \
+                  bootc container lint
+          imageBuilder:
+            imageBuilderType: PodImageBuilder
+          baseImagePullSecret:
+            name: global-pull-secret-copy
+          renderedImagePushspec: image-registry.openshift-image-registry.svc:5000/openshift-machine-config-operator/os-images:latest
+          renderedImagePushSecret:
+            name: new-secret-name
+        ```
+
+        where:
+
+        `spec:containerFile.content`
+        :    Modify the Containerfile, for example to add or remove packages. This parameter is optional.
+
+        `spec.baseImagePullSecret`
+        :   Update the secret needed to pull the base operating system image from the registry. This parameter is optional.
+
+        `spec.renderedImagePushspec`
+        :   Modify the image registry to push the newly built custom layered image to. This parameter is optional.
+
+        `spec.renderedImagePushSecret`
+        :   Update the secret needed to push the newly built custom layered image to the registry. This parameter is optional.
+
+        When you save the changes, the MCO drains, cordons, and reboots the nodes. After the reboot, the node uses the cluster base {{ op_system_first }} image. If your changes modify a secret only, no new build is triggered and no reboot is performed.
+
+**Verification**
+
+1.  Verify that the new `MachineOSBuild` object was created by using the following command:
+    ```terminal
+    $ oc get machineosbuild
+    ```
+    ```terminal title="Example output"
+    NAME                                             PREPARED   BUILDING   SUCCEEDED   INTERRUPTED   FAILED   AGE
+    layered-image-a5457b883f5239cdcb71b57e1a30b6ef   False      False      True        False         False    4d17h
+    layered-image-f91f0f5593dd337d89bf4d38c877590b   False      True       False       False         False    2m41s
+    ```
+
+    The value `True` in the `BUILDING` column indicates that the `MachineOSBuild` object is building. When the `SUCCEEDED` column reports `True`, the build is complete.
+1.  You can watch as the new machine config is rolled out to the nodes by using the following command:
+    ```terminal
+    $ oc get machineconfigpools
+    ```
+    ```terminal title="Example output"
+    NAME      CONFIG                                              UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE
+    master    rendered-master-a0b404d061a6183cc36d302363422aba    True      False      False      3              3                   3                     0                      3h38m
+    worker    rendered-worker-221507009cbcdec0eec8ab3ccd789d18    False     True       False      2              2                   2                     0                      3h38m
+    ```
+
+    The value `FALSE` in the `UPDATED` column indicates that the `MachineOSBuild` object is building. When the `UPDATED` column reports `FALSE`, the new custom layered image has rolled out to the nodes.
+1.  When the node is back in the `Ready` state, check that the changes were applied:
+    1.  Open an `oc debug` session to the node by running the following command:
+        ```terminal
+        $ oc debug node/<node_name>
+        ```
+    1.  Set `/host` as the root directory within the debug shell by running the following command:
+        ```terminal
+        sh-5.1# chroot /host
+        ```
+    1.  Use an appropriate command to verify that change was applied. The following examples shows that the `rngd` daemon was installed:
+        ```terminal
+        sh-5.1# rpm -qa |grep rng-tools
+        ```
+        ```terminal title="Example output"
+        rng-tools-6.17-3.fc41.x86_64
+        ```
+        ```terminal
+        sh-5.1# rngd -v
+        ```
+        ```terminal title="Example output"
+        rngd 6.16
+        ```

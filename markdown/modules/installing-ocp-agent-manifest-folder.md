@@ -1,0 +1,21 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a directory to contain additional manifests {id="installing-ocp-agent-manifest-folder_{{ context }}"}
+
+If you create additional manifests to configure your Agent-based installation beyond the `install-config.yaml` and `agent-config.yaml` files, you must create an `openshift` subdirectory within your installation directory.
+All of your additional machine configurations must be located within this subdirectory. {._abstract}
+
+
+:::note
+
+The most common type of additional manifest you can add is a `MachineConfig` object.
+For examples of `MachineConfig` objects you can add during the Agent-based installation, see "Using MachineConfig objects to configure nodes" in the "Additional resources" section.
+
+:::
+
+
+**Procedure**
+
+*   On your installation host, create an `openshift` subdirectory within the installation directory by running the following command:
+    ```terminal
+    $ mkdir <installation_directory>/openshift
+    ```

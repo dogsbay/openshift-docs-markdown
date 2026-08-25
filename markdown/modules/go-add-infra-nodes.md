@@ -1,0 +1,61 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Moving {{ gitops_shortname }} workloads to infrastructure nodes {id="add-infra-nodes_{{ context }}"}
+
+You can move the default workloads installed by the {{ gitops_title }} to the infrastructure nodes. The workloads that can be moved are:
+
+*   `kam deployment`
+*   `cluster deployment` (backend service)
+*   `openshift-gitops-applicationset-controller deployment`
+*   `openshift-gitops-dex-server deployment`
+*   `openshift-gitops-redis deployment`
+*   `openshift-gitops-redis-ha-haproxy deployment`
+*   `openshift-gitops-repo-sever deployment`
+*   `openshift-gitops-server deployment`
+*   `openshift-gitops-application-controller statefulset`
+*   `openshift-gitops-redis-server statefulset`
+
+**Procedure**
+
+1.  Label existing nodes as infrastructure by running the following command:
+    ```terminal
+    $ oc label node <node-name> node-role.kubernetes.io/infra=
+    ```
+1.  Edit the `GitOpsService` custom resource (CR) to add the infrastructure node selector:
+    ```terminal
+    $ oc edit gitopsservice -n openshift-gitops
+    ```
+1.  In the `GitOpsService` CR file, add `runOnInfra` field to the `spec` section and set it to `true`. This field moves the workloads in `openshift-gitops` namespace to the infrastructure nodes:
+    ```yaml
+    apiVersion: pipelines.openshift.io/v1alpha1
+    kind: GitopsService
+    metadata:
+      name: cluster
+    spec:
+      runOnInfra: true
+    ```
+1.  Optional: Apply taints and isolate the workloads on infrastructure nodes and prevent other workloads from scheduling on these nodes.
+    ```terminal
+    $ oc adm taint nodes -l node-role.kubernetes.io/infra
+    infra=reserved:NoSchedule infra=reserved:NoExecute
+    ```
+1.  Optional: If you apply taints to the nodes, you can add tolerations in the `GitOpsService` CR:
+    ```yaml
+    spec:
+      runOnInfra: true
+      tolerations:
+      - effect: NoSchedule
+        key: infra
+        value: reserved
+      - effect: NoExecute
+        key: infra
+        value: reserved
+    ```
+
+To verify that the workloads are scheduled on infrastructure nodes in the {{ gitops_title }} namespace, click any of the pod names and ensure that the **Node selector** and **Tolerations** have been added.
+
+
+:::note
+
+Any manually added **Node selectors** and **Tolerations** in the default Argo CD CR will be overwritten by the toggle and the tolerations in the `GitOpsService` CR.
+
+:::

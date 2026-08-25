@@ -1,0 +1,80 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Disabling the {{ insights_operator }} periodic gather operations {id="disabling-insights-operator-gather_{{ context }}"}
+
+You can optionally disable the periodic `InsightsDataGather` operations that the {{ insights_operator }} runs every 2 hours by default. Disabling the periodic data gather operations increases privacy for your organization as {{ insights_operator }} will no longer gather and send {{ red_hat_lightspeed }} cluster reports to Red&#160;Hat. {._abstract}
+
+Disabling gather operations will also disable {{ red_hat_lightspeed }} analysis and recommendations for your cluster without affecting other core functions that require communication with Red&#160;Hat such as cluster transfers.
+
+You can view a list of attempted gather operations for your cluster from the `/insights-operator/gathers.json` file in your {{ insights_operator }} archive. Be aware that some gather operations occur only when certain conditions are met and might not show in your most recent archive.
+
+{%- set FeatureName = "The `InsightsDataGather` custom resource" %}
+{% include "./snippets/technology-preview.md" %}
+
+
+:::note
+
+If you enable Technology Preview in your cluster, the {{ insights_operator }} runs gather operations in individual pods. This is part of the Technology Preview feature set for the {{ insights_operator }} and supports the new data gathering features.
+
+:::
+
+
+**Prerequisites**
+
+{% if not (openshift_rosa or openshift_dedicated) %}
+*   You are logged in to the {{ product_title }} web console as a user with the `cluster-admin` role.
+{% endif %}
+{% if openshift_rosa or openshift_dedicated %}
+*   You are logged in to the {{ product_title }} web console as a user with the `dedicated-admin` role.
+{% endif %}
+
+**Procedure**
+
+1.  Navigate to **Administration** > **CustomResourceDefinitions**.
+1.  On the **CustomResourceDefinitions** page, use the **Search by name** field to find the **InsightsDataGather** custom resource definition (CRD), and click to open.
+1.  On the **CustomResourceDefinition details** page, click the **Instances** tab.
+1.  Click **cluster**, and then click the **YAML** tab.
+1.  Edit the `InsightsDataGather` CRD, and complete one of the following steps:
+    *   To disable all the gather operations and data collection, define the `gatherers` specification and set the `mode` to `None`:
+        ```yaml
+
+        apiVersion: insights.openshift.io/v1
+        kind: InsightsDataGather
+        metadata:
+          name: cluster
+        spec:
+        # Gatherers configuration
+          gatherers:
+            mode: None # Options: All, None, Custom
+        ```
+    *   To disable individual gather operations, under `gatherers`, set the `mode` to `Custom` and then specify the individual gatherer that you intend to disable. For example, to disable the workload gatherer, define the following specification:
+        ```yaml
+        apiVersion: insights.openshift.io/v1
+        kind: InsightsDataGather
+        metadata:
+          name: cluster
+        spec:
+            # Gatherers configuration
+          gatherers:
+            mode: Custom  # Options: All, None, Custom
+            custom:
+              configs:
+                # Essential cluster configuration gatherers
+                - name: clusterconfig/authentication
+                  state: Enabled
+                - name: clusterconfig/clusteroperators
+                  state: Enabled
+                - name: workloads
+                  state: Disabled
+        ```
+1.  Click **Save**.
+
+**Results**
+
+The {{ insights_operator }} updates the gather configurations and no longer runs the operations that you disabled.
+
+
+:::note
+
+Disabling gather operations restricts the ability of the {{ red_hat_lightspeed }} advisor service to offer effective recommendations for your cluster.
+
+:::

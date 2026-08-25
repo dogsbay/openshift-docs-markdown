@@ -1,0 +1,82 @@
+{% if context == "configuring-an-openshift-cluster-by-deploying-an-application-with-cluster-configurations" %}
+{%- set cluster = true -%}
+{% endif %}
+{% if context == "deploying-a-spring-boot-application-with-argo-cd" %}
+{%- set app = true -%}
+{% endif %}
+
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating an application by using the Argo CD dashboard {id="creating-an-application-by-using-the-argo-cd-dashboard_{{ context }}"}
+
+Argo CD provides a dashboard which allows you to create applications.
+
+{% if cluster %}
+This sample workflow walks you through the process of configuring Argo CD to recursively sync the content of the `cluster` directory to the `cluster-configs` application. The directory defines the {{ product_title }} web console cluster configurations that add a link to the **Red Hat Developer Blog - Kubernetes** under the {{ rh_app_icon }} menu in the web console, and defines a namespace `spring-petclinic` on the cluster.
+{% endif %}
+
+**Procedure**
+
+1.  In the Argo CD dashboard, click **NEW APP** to add a new Argo CD application.
+
+{% if cluster %}
+1.  For this workflow, create a **cluster-configs** application with the following configurations:
+
+Application Name
+:   `cluster-configs`
+
+Project
+:   `default`
+
+Sync Policy
+:   `Manual`
+
+Repository URL
+:   `https://github.com/redhat-developer/openshift-gitops-getting-started`
+
+Revision
+:   `HEAD`
+
+Path
+:   `cluster`
+
+Destination
+:   `https://kubernetes.default.svc`
+
+Namespace
+:   `spring-petclinic`
+
+Directory Recurse
+:   `checked`
+{% endif %}
+
+{% if app %}
+1.  For this workflow, create a **spring-petclinic** application with the following configurations:
+
+Application Name
+:   `spring-petclinic`
+
+Project
+:   `default`
+
+Sync Policy
+:   `Automatic`
+
+Repository URL
+:   `https://github.com/redhat-developer/openshift-gitops-getting-started`
+
+Revision
+:   `HEAD`
+
+Path
+:   `app`
+
+Destination
+:   `https://kubernetes.default.svc`
+
+Namespace
+:   `spring-petclinic`
+{% endif %}
+
+1.  Click **CREATE** to create your application.
+1.  Open the **Administrator** perspective of the web console and navigate to **Administration** -> **Namespaces** in the menu on the left.
+1.  Search for and select the namespace, then enter `argocd.argoproj.io/managed-by=openshift-gitops` in the **Label** field so that the Argo CD instance in the `openshift-gitops` namespace can manage your namespace.

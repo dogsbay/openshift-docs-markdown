@@ -1,0 +1,24 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Machine configuration {id="telco-ran-machine-configuration_{{ context }}"}
+
+Configure machine configuration settings for container runtime, kubelet, SCTP, kdump, and other system-level components in the telco RAN DU reference design. {._abstract}
+
+
+New in this release
+:   *   No reference design updates in this release
+
+Limits and requirements
+:   *   To ensure images are static, except during scheduled maintenance in defined maintenance windows, do not set the pod `imagePullPolicy` field to `Always`.
+    *   The configuration CRs in this table are required components unless otherwise noted.
+
+**Machine configuration options**
+
+| Feature | Description |
+| --- | --- |
+| Container Runtime | Sets the container runtime to `crun` for all node roles. |
+| Kubelet config and container mount namespace hiding | Reduces the frequency of kubelet housekeeping and eviction monitoring, which reduces CPU usage |
+| SCTP | Optional configuration (enabled by default) |
+| Kdump | Optional configuration (enabled by default) Enables kdump to capture debug information when a kernel panic occurs. The reference CRs that enable kdump have an increased memory reservation based on the set of drivers and kernel modules included in the reference configuration. |
+| SR-IOV-related kernel arguments | Include additional SR-IOV-related arguments in the kernel command line |
+| Set RCU Normal | Systemd service that sets `rcu_normal` after the system finishes startup |
+| One-shot time sync | Replaces `chrony-wait.service` with a one-time NTP system time synchronization job for control plane or worker nodes. This MachineConfig is required for nodes running PTP and should not be included for nodes which use NTP for time synchronization. |

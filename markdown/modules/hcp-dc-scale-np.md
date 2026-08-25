@@ -1,0 +1,33 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Scaling up the node pool {id="hcp-dc-scale-np_{{ context }}"}
+
+After you create bare-metal hosts, agents are added to your namespace. The agents represent nodes that are available for installation. To assign the nodes to a hosted cluster, scale up the node pool. {._abstract}
+
+**Prerequisites**
+
+*   You created bare-metal hosts for your hosted cluster.
+
+**Procedure**
+
+1.  To scale up the node pool, enter the following command:
+    ```terminal
+    $ oc -n <hosted_cluster_namespace> scale nodepool <hosted_cluster_name> \
+      --replicas 3
+    ```
+    *   `<hosted_cluster_namespace>` is the name of the hosted cluster namespace.
+    *   `<hosted_cluster_name>` is the name of the hosted cluster.
+1.  After the scaling process is complete, notice that the agents are assigned to a hosted cluster:
+    ```terminal title="Example output"
+    NAMESPACE         NAME                                   CLUSTER   APPROVED   ROLE          STAGE
+    clusters-hosted   aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaa0411   hosted    true       auto-assign
+    clusters-hosted   aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaa0412   hosted    true       auto-assign
+    clusters-hosted   aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaa0413   hosted    true       auto-assign
+    ```
+1.  Also notice that the node pool replicas are set, as shown in the following example:
+    ```terminal title="Example output"
+    NAMESPACE   NAME     CLUSTER   DESIRED NODES   CURRENT NODES   AUTOSCALING   AUTOREPAIR   VERSION       UPDATINGVERSION   UPDATINGCONFIG   MESSAGE
+    clusters    hosted   hosted    3                               False         False        <4.x.y>-x86_64                                     Minimum availability requires 3 replicas, current 0 available
+    ```
+
+    In your output, `<4.x.y>` is replaced with the supported {{ product_title }} version that you are using.
+1.  Wait until the nodes join the cluster. During the process, the agents provide updates on their stage and status.

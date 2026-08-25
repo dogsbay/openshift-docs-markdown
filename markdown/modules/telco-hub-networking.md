@@ -1,0 +1,47 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Hub cluster networking {id="telco-hub-networking_{{ context }}"}
+
+The reference hub cluster is designed to operate in a disconnected networking environment where direct access to the internet is not possible.
+As with all {{ product_title }} clusters, the hub cluster requires access to an image registry hosting all OpenShift and Day 2 {{ olm_first }} images. {._abstract}
+
+The hub cluster supports dual-stack networking support for IPv6 and IPv4 networks.
+IPv6 is typical in edge or far-edge network segments, while IPv4 is more prevalent for use with legacy equipment in the data center.
+
+
+Limits and requirements
+:   *   Regardless of the installation method, you must configure the following network types for the hub cluster:
+        *   `clusterNetwork`
+        *   `serviceNetwork`
+        *   `machineNetwork`
+    *   You must configure the following IP addresses for the hub cluster:
+        *   `apiVIP`
+        *   `ingressVIP`
+
+
+    :::note
+
+
+    For the above networking configurations, some values are required, or can be auto-assigned, depending on the chosen architecture and DHCP configuration.
+    
+    :::
+
+
+    *   You must use the default {{ product_title }} network provider OVN-Kubernetes.
+    *   Networking between the managed cluster and hub cluster must meet the networking requirements in the {{ rh_rhacm_first }} documentation, for example:
+        *   Hub cluster access to managed cluster API service, Ironic Python agent, and baseboard management controller (BMC) port.
+        *   Managed cluster access to hub cluster API service, ingress IP and control plane node IP addresses.
+        *   Managed cluster BMC access to hub cluster control plane node IP addresses.
+    *   An image registry must be accessible throughout the lifetime of the hub cluster.
+        *   All required container images must be mirrored to the disconnected registry.
+        All {{ product_title }} releases and OLM Operator release images needed in your deployment must be mirrored to the registry.
+        You can see example mirroring configuration in the `imageset-config.yaml` resource. You must update this example YAML to include your required versions.
+        For deploying clusters, you can only use `ClusterImageSet` CRs that reference mirrored versions.
+        *   The hub cluster must be configured to use a disconnected registry.
+        *   The hub cluster cannot host its own image registry.
+        For example, the registry must be available in a scenario where a power failure affects all cluster nodes.
+
+Engineering considerations
+:   *   When deploying a hub cluster, ensure you define appropriately sized CIDR range definitions.
+    *   In {{ product_title }} {{ product_version }} and later, pulling OpenShift images from a disconnected mirror registry requires copying the image signatures into that registry during the mirroring process.
+    The `oc adm mirror` command does not mirror signatures and must not be used.
+    Instead, use the `oc mirror` plugin v2 to ensure signatures are properly mirrored.

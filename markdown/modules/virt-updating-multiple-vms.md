@@ -1,0 +1,78 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Updating multiple virtual machines {id="virt-updating-multiple-vms_{{ context }}"}
+
+You can use the command line interface (CLI) to update multiple virtual machines (VMs) at the same time. {._abstract}
+
+**Prerequisites**
+
+*   You installed the {{ oc_first }}.
+*   You have access to the {{ product_title }} cluster, and you have `cluster-admin` permissions.
+
+**Procedure**
+
+1.  Create a privileged service account by running the following commands:
+    ```terminal
+    $ oc adm new-project kubevirt-api-lifecycle-automation
+    ```
+    ```terminal
+    $ oc create sa kubevirt-api-lifecycle-automation -n kubevirt-api-lifecycle-automation
+    ```
+    ```terminal
+    $ oc create clusterrolebinding kubevirt-api-lifecycle-automation --clusterrole=cluster-admin --serviceaccount=kubevirt-api-lifecycle-automation:kubevirt-api-lifecycle-automation
+    ```
+1.  Determine the pull URL for the `kubevirt-api-lifecycle` image by running the following command:
+    ```terminal
+    $ oc get csv -n openshift-cnv -l=operators.coreos.com/kubevirt-hyperconverged.openshift-cnv -ojson | jq '.items[0].spec.relatedImages[] | select(.name|test(".*kubevirt-api-lifecycle-automation.*")) | .image'
+    ```
+1.  Deploy `Kubevirt-Api-Lifecycle-Automation` by creating a job object as shown in the following example:
+    ```yaml
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+     name: kubevirt-api-lifecycle-automation
+     namespace: kubevirt-api-lifecycle-automation
+    spec:
+     template:
+      spec:
+       containers:
+       - name: kubevirt-api-lifecycle-automation
+         image: quay.io/openshift-virtualization/kubevirt-api-lifecycle-automation:v4.22
+         imagePullPolicy: Always
+         env:
+         - name: MACHINE_TYPE_GLOB
+           value: smth-glob9.10.0
+         - name: RESTART_REQUIRED
+           value: "true"
+         - name: NAMESPACE
+           value: "default"
+         - name: LABEL_SELECTOR
+           value: my-vm
+         securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+           drop:
+           - ALL
+          privileged: false
+          runAsNonRoot: true
+          seccompProfile:
+           type: RuntimeDefault
+       restartPolicy: Never
+       serviceAccountName: kubevirt-api-lifecycle-automation
+    ```
+
+    where:
+
+    `quay.io/openshift-virtualization/kubevirt-api-lifecycle-automation:v4.22`
+    :   Specifies the pull URL for your image. Replace the image value in this example with your pull URL for the image.
+
+    `MACHINE_TYPE_GLOB`
+    :   Specifies the pattern that is used to detect deprecated machine types that need to be upgraded. Replace the `MACHINE_TYPE_GLOB` value with your own pattern.
+
+    `RESTART_REQUIRED`
+    :   Specifies whether VMs should be restarted after the machine type is updated. If the `RESTART_REQUIRED` environment variable is set to `true`, VMs are restarted after the machine type is updated. If you do not want VMs to be restarted, set this value to `false`.
+
+    `NAMESPACE`
+    :   Specifies the namespace to look for VMs in. Leave the parameter empty for the job to go over all namespaces in the cluster.
+
+    `LABEL_SELECTOR`
+    :   Specifies which VMs receive the job action. If you want the job to go over all VMs in the cluster, do not assign a value to the parameter.

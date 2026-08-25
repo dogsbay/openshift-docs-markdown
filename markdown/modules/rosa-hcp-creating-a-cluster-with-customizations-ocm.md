@@ -1,0 +1,470 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Create a cluster by using {{ cluster_manager }} {id="rosa-hcp-creating-cluster-customizations-ocm_{{ context }}"}
+
+When you create a {{ product_title }} cluster, you can customize your installation interactively by using {{ cluster_manager_first }}. {._abstract}
+
+**Procedure**
+
+1.  Navigate to {{ cluster_manager_url }} and select **Create cluster**.
+1.  On the **Create an OpenShift cluster** page, select **Create cluster** in the **{{ product_title }}** row.
+1.  If an AWS account is automatically detected, the account ID is listed in the **Associated AWS accounts** drop-down menu. If no AWS accounts are automatically detected, click **Select an account** -> **Associate AWS account** and follow these steps:
+    1.  On the **Authenticate** page, click the copy button next to the `rosa login` command. The command includes your {{ cluster_manager }} API login token.
+
+        :::note
+
+        You can also load your API token on the {{ cluster_manager_url_pull }}.
+        
+        :::
+
+    1.  Run the copied command in the CLI to log in to your {{ product_title }} account.
+        ```terminal
+        $ rosa login --token=<api_login_token>
+        ```
+
+        Replace `<api_login_token>` with the token that is provided in the copied command.
+
+        The following example shows sample output:
+        ```terminal
+        I: Logged in as '<username>' on 'https://api.openshift.com'
+        ```
+    1.  On the **Authenticate** page in {{ cluster_manager }}, click **Next**.
+    1.  On the **OCM role** page, click the copy button next to the **Basic OCM role** or the **Admin OCM role** commands.
+
+        The basic role enables {{ cluster_manager }} to detect the AWS IAM roles and policies required by {{ product_title }}. The admin role also enables the detection of the roles and policies. In addition, the admin role enables automatic deployment of the cluster-specific Operator roles and the OpenID Connect (OIDC) provider by using {{ cluster_manager }}.
+    1.  Run the copied command in the CLI and follow the prompts to create the {{ cluster_manager }} IAM role. The following example creates a basic {{ cluster_manager }} IAM role using the default options:
+        ```terminal
+        $ rosa create ocm-role
+        ```
+
+        The following example shows sample output:
+        ```terminal
+        I: Creating ocm role
+        ? Role prefix: ManagedOpenShift
+        ? Enable admin capabilities for the OCM role (optional): No
+        ? Permissions boundary ARN (optional):
+        ? Role Path (optional):
+        ? Role creation mode: auto
+        I: Creating role using 'arn:aws:iam::<aws_account_id>:user/<aws_username>'
+        ? Create the 'ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>' role? Yes
+        I: Created role 'ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>' with ARN 'arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>'
+        I: Linking OCM role
+        ? OCM Role ARN: arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>
+        ? Link the 'arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>' role with organization '<red_hat_organization_id>'? Yes
+        I: Successfully linked role-arn 'arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>' with organization account '<red_hat_organization_id>'
+        ```
+
+        The prompts in this output include the following options:
+
+        Role prefix
+        :   Specify the prefix to include in the OCM IAM role name. The default is `ManagedOpenShift`. You can create only one OCM role per AWS account for your Red&#160;Hat organization.
+
+        Enable admin capabilities
+        :   Enable the admin {{ cluster_manager }} IAM role, which is equivalent to specifying the `--admin` argument. The admin role is required if you want to use **Auto** mode to automatically provision the cluster-specific Operator roles and the OIDC provider by using {{ cluster_manager }}.
+
+        Permissions boundary ARN
+        :   Optional. Specify a permissions boundary Amazon Resource Name (ARN) for the role.
+
+        Role Path
+        :   Specify a custom ARN path for your OCM role. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
+
+        Role creation mode
+        :   Select the role creation mode. You can use `auto` mode to automatically create the {{ cluster_manager }} IAM role and link it to your Red&#160;Hat organization account. In `manual` mode, the {{ rosa_cli }} generates the `aws` commands needed to create and link the role. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
+
+        Link role prompt
+        :   Link the {{ cluster_manager }} IAM role to your Red&#160;Hat organization account.
+    1.  If you opted not to link the {{ cluster_manager }} IAM role to your Red&#160;Hat organization account in the preceding command, copy the `rosa link` command from the {{ cluster_manager }} **OCM role** page and run it:
+        ```terminal
+        $ rosa link ocm-role <arn>
+        ```
+
+        Replace `<arn>` with the ARN of the {{ cluster_manager }} IAM role that is included in the output of the preceding command.
+    1.  Select **Next** on the {{ cluster_manager }} **OCM role** page.
+    1.  On the **User role** page, click the copy button for the **User role** command and run the command in the CLI. Red&#160;Hat uses the user role to verify your AWS identity when you install a cluster and the required resources with {{ cluster_manager }}.
+
+        Follow the prompts to create the user role:
+        ```terminal
+        $ rosa create user-role
+        ```
+
+        The following example shows sample output:
+        ```terminal
+        I: Creating User role
+        ? Role prefix: ManagedOpenShift
+        ? Permissions boundary ARN (optional):
+        ? Role Path (optional): [? for help]
+        ? Role creation mode: auto
+        I: Creating ocm user role using 'arn:aws:iam::<aws_account_id>:user/<aws_username>'
+        ? Create the 'ManagedOpenShift-User-<red_hat_username>-Role' role? Yes
+        I: Created role 'ManagedOpenShift-User-<red_hat_username>-Role' with ARN 'arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-User-<red_hat_username>-Role'
+        I: Linking User role
+        ? User Role ARN: arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-User-<red_hat_username>-Role
+        ? Link the 'arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-User-<red_hat_username>-Role' role with account '<red_hat_user_account_id>'? Yes
+        I: Successfully linked role ARN 'arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-User-<red_hat_username>-Role' with account '<red_hat_user_account_id>'
+        ```
+
+        The prompts in this output include the following options:
+
+        Role prefix
+        :   Specify the prefix to include in the user role name. The default is `ManagedOpenShift`.
+
+        Permissions boundary ARN
+        :   Optional. Specify a permissions boundary Amazon Resource Name (ARN) for the role. For more information, see [Permissions boundaries for IAM entities](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) in the AWS documentation.
+
+        Role Path
+        :   Specify a custom ARN path for your user role. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
+
+        Role creation mode
+        :   Select the role creation mode. You can use `auto` mode to automatically create the user role and link it to your {{ cluster_manager }} user account. In `manual` mode, the {{ rosa_cli }} generates the `aws` commands needed to create and link the role. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
+
+        Link role prompt
+        :   Link the user role to your {{ cluster_manager }} user account.
+    1.  If you opted not to link the user role to your {{ cluster_manager }} user account in the preceding command, copy the `rosa link` command from the {{ cluster_manager }} **User role** page and run it:
+        ```terminal
+        $ rosa link user-role <arn>
+        ```
+
+        Replace `<arn>` with the ARN of the user role that is included in the output of the preceding command.
+    1.  On the {{ cluster_manager }} **User role** page, click **Ok**.
+    1.  Verify that the AWS account ID is listed in the **Associated AWS accounts** drop-down menu on the **Accounts and roles** page.
+    1.  If the required account roles do not exist, a notification is provided stating that **Some account roles ARNs were not detected**. You can create the AWS account-wide roles and policies, including the Operator policies, by clicking the copy buffer next to the `rosa create account-roles` command and running the command in the CLI:
+        ```terminal
+        $ rosa create account-roles
+        ```
+        The following example shows sample output:
+
+        ```terminal
+        I: Logged in as '<red_hat_username>' on 'https://api.openshift.com'
+        I: Validating AWS credentials...
+        I: AWS credentials are valid!
+        I: Validating AWS quota...
+        I: AWS quota ok. If cluster installation fails, validate actual AWS resource usage against https://docs.openshift.com/rosa/rosa_getting_started/rosa-required-aws-service-quotas.html
+        I: Verifying whether OpenShift command-line tool is available...
+        I: Current OpenShift Client Version: {{ product_version }}.0
+        I: Creating account roles
+        ? Role prefix: ManagedOpenShift
+        ? Permissions boundary ARN (optional):
+        ? Path (optional): [? for help]
+        ? Role creation mode: auto
+        I: Creating roles using 'arn:aws:iam::<aws_account_number>:user/<aws_username>'
+        ? Create the 'ManagedOpenShift-Installer-Role' role? Yes
+        I: Created role 'ManagedOpenShift-Installer-Role' with ARN 'arn:aws:iam::<aws_account_number>:role/ManagedOpenShift-Installer-Role'
+        ? Create the 'ManagedOpenShift-ControlPlane-Role' role? Yes
+        I: Created role 'ManagedOpenShift-ControlPlane-Role' with ARN 'arn:aws:iam::<aws_account_number>:role/ManagedOpenShift-ControlPlane-Role'
+        ? Create the 'ManagedOpenShift-Worker-Role' role? Yes
+        I: Created role 'ManagedOpenShift-Worker-Role' with ARN 'arn:aws:iam::<aws_account_number>:role/ManagedOpenShift-Worker-Role'
+        ? Create the 'ManagedOpenShift-Support-Role' role? Yes
+        I: Created role 'ManagedOpenShift-Support-Role' with ARN 'arn:aws:iam::<aws_account_number>:role/ManagedOpenShift-Support-Role'
+        I: To create a cluster with these roles, run the following command:
+        rosa create cluster --sts
+        ```
+
+        The prompts in this output include the following options:
+
+
+        Role prefix
+        :   Specify the prefix to include in the {{ cluster_manager }} IAM role name. The default is `ManagedOpenShift`.
+
+            :::important
+
+
+            You must specify an account-wide role prefix that is unique across your AWS account, even if you use a custom ARN path for your account roles.
+            
+            :::
+
+
+
+        Permissions boundary ARN
+        :   Optional. Specify a permissions boundary Amazon Resource Name (ARN) for the role. For more information, see [Permissions boundaries for IAM entities](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) in the AWS documentation.
+
+        Path
+        :   Specify a custom ARN path for your account-wide roles. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
+
+        Role creation mode
+        :   Select the role creation mode. You can use `auto` mode to automatically create the account wide roles and policies. In `manual` mode, the {{ rosa_cli }} generates the `aws` commands needed to create the roles and policies. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
+
+        Create role prompts
+        :   Creates the account-wide installer, control plane, worker and support roles and corresponding IAM policies.
+
+
+            :::note
+
+
+            In this step, the {{ rosa_cli }} also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the ROSA cluster Operators to carry out core OpenShift functionality.
+            
+            :::
+
+    1.  On the **Accounts and roles** page, click **Refresh ARNs** and verify that the installer, support, worker, and control plane account role ARNs are listed.
+
+        If you have more than one set of account roles in your AWS account for your cluster version, a drop-down list of **Installer role** ARNs is provided. Select the ARN for the installer role that you want to use with your cluster. The cluster uses the account-wide roles and policies that relate to the selected installer role.
+1.  Click **Next**.
+
+    :::note
+
+    If the **Accounts and roles** page was refreshed, you might need to select the checkbox again to acknowledge that you have read and completed all of the prerequisites.
+    
+    :::
+
+1.  On the **Cluster details** page, provide a name for your cluster and specify the cluster details:
+    1.  Add a **Cluster name**.
+    1.  Optional: Cluster creation generates a domain prefix as a subdomain for your provisioned cluster on `openshiftapps.com`. If the cluster name is less than or equal to 15 characters, that name is used for the domain prefix. If the cluster name is longer than 15 characters, the domain prefix is randomly generated to a 15 character string.
+
+        To customize the subdomain, select the **Create custom domain prefix** checkbox, and enter your domain prefix name in the **Domain prefix** field. The domain prefix cannot be longer than 15 characters, must be unique within your organization, and cannot be changed after cluster creation.
+    1.  Select a cluster version from the **Version** drop-down menu.
+    1.  Select a channel group from the **Channel group** drop-down menu.
+{% include "./snippets/rosa-osd-channel-group-options.md" %}
+    1.  Select a cloud provider region from the **Region** drop-down menu.
+    1.  Select a **Single zone** or **Multi-zone** configuration.
+    1.  Leave **Enable user workload monitoring** selected to monitor your own projects in isolation from Red&#160;Hat Site Reliability Engineer (SRE) platform metrics. This option is enabled by default.
+    1.  Optional: Expand **Advanced Encryption** to make changes to encryption settings.
+        1.  Accept the default setting **Use default KMS Keys** to use your default AWS KMS key, or select **Use Custom KMS keys** to use a custom KMS key.
+            1.  With **Use Custom KMS keys** selected, enter the AWS Key Management Service (KMS) custom key Amazon Resource Name (ARN) ARN in the **Key ARN** field.
+            The key is used for encrypting all control plane, infrastructure, worker node root volumes, and persistent volumes in your cluster.
+            1.  Optional: To create a customer managed KMS key, follow the procedure for [Creating symmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk).
+
+                :::important
+
+                The EBS Operator role is required in addition to the account roles to successfully create your cluster.
+
+                This role must be attached with the `ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials` policy, an IAM policy required by {{ product_title }} to manage back-end storage through the Container Storage Interface (CSI).
+
+                For more information about the policies and permissions that the cluster Operators require, see _Methods of account-wide role creation_.
+
+                The following example shows an EBS Operator role:
+
+                `"arn:aws:iam::<aws_account_id>:role/<cluster_name>-xxxx-openshift-cluster-csi-drivers-ebs-cloud-credent"`
+
+                After you create your Operator roles, you must edit the _Key Policy_ in the [**Key Management Service (KMS)** page of the AWS Console](https://console.aws.amazon.com/kms) to add the roles.
+                
+                :::
+
+        1.  Optional: Select **Enable FIPS cryptography** if you require your cluster to be FIPS validated.
+
+            :::note
+
+            If **Enable FIPS cryptography** is selected, **Enable additional etcd encryption** is enabled by default and cannot be disabled. You can select **Enable additional etcd encryption** without selecting **Enable FIPS cryptography**.
+            
+            :::
+
+        1.  Optional: Select **Enable additional etcd encryption** if you require etcd key value encryption. With this option, the etcd key values are encrypted, but the keys are not. This option is in addition to the control plane storage encryption that encrypts the etcd volumes in {{ product_title }} clusters by default.
+
+            :::note
+
+            By enabling etcd encryption for the key values in etcd, you incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Consider enabling etcd encryption only if you specifically require it for your use case.
+            
+            :::
+
+    1.  Click **Next**.
+1.  On the **Default machine pool** page, select a **Compute node instance type**.
+
+    :::note
+
+    After your cluster is created, you can change the number of compute nodes in your cluster, but you cannot change the compute node instance type in the default machine pool. The number and types of nodes available to you depend on whether you use single or multiple availability zones. They also depend on what is enabled and available in your AWS account and the selected region.
+    
+    :::
+
+1.  Optional: Configure autoscaling for the default machine pool:
+    1.  Select **Enable autoscaling** to automatically scale the number of machines in your default machine pool to meet the deployment needs.
+    1.  Set the minimum and maximum node count limits for autoscaling. The cluster autoscaler does not reduce or increase the default machine pool node count beyond the limits that you specify.
+        *   If you deployed your cluster using a single availability zone, set the **Minimum node count** and **Maximum node count**. This defines the minimum and maximum compute node limits in the availability zone.
+        *   If you deployed your cluster using multiple availability zones, set the **Minimum nodes per zone** and **Maximum nodes per zone**. This defines the minimum and maximum compute node limits per zone.
+
+        :::note
+
+        Alternatively, you can set your autoscaling preferences for the default machine pool after the machine pool is created.
+        
+        :::
+
+1.  If you did not enable autoscaling, select a compute node count for your default machine pool:
+    *   If you deployed your cluster using a single availability zone, select a **Compute node count** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool for the zone.
+    *   If you deployed your cluster using multiple availability zones, select a **Compute node count (per zone)** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool per zone.
+1.  Optional: Select an EC2 Instance Metadata Service (IMDS) configuration - `optional` (default) or `required` - to enforce use of IMDSv2. For more information regarding IMDS, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the AWS documentation.
+
+    :::important
+
+    The Instance Metadata Service settings cannot be changed after your cluster is created.
+    
+    :::
+
+1.  Optional: Expand **Edit node labels** to add labels to your nodes. Click **Add label** to add more node labels and select **Next**.
+1.  In the **Cluster privacy** section of the **Network configuration** page, select **Public** or **Private** to use either public or private API endpoints and application routes for your cluster.
+
+    :::important
+
+    The API endpoint cannot be changed between public and private after your cluster is created.
+    
+    :::
+
+
+    Public API endpoint
+    :   Select **Public** if you do not want to restrict access to your cluster. You can access the Kubernetes API endpoint and application routes from the internet.
+
+
+Private API endpoint
+:   Select **Private** if you want to restrict network access to your cluster. The Kubernetes API endpoint and application routes are accessible from direct private connections only.
+
+    :::important
+
+    If you are using private API endpoints, you cannot access your cluster until you update the network settings in your cloud provider account.
+    
+    :::
+
+
+1.  Optional: If you opted to use public API endpoints, by default a new VPC is created for your cluster. If you want to install your cluster in an existing VPC instead, select **Install into an existing VPC**.
+
+    :::warning
+
+    You cannot install a ROSA cluster into an existing VPC that was created by the OpenShift installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.
+
+    To verify whether a VPC was created by the OpenShift installer, check for the `owned` value on the `kubernetes.io/cluster/<infra-id>` tag. For example, when viewing the tags for the VPC named `mycluster-12abc-34def`, the `kubernetes.io/cluster/mycluster-12abc-34def` tag has a value of `owned`. Therefore, the VPC was created by the installer and must not be modified by the administrator.
+    
+    :::
+
+
+    :::note
+
+    If you opted to use private API endpoints, you must use an existing VPC and PrivateLink and the **Install into an existing VPC** and **Use a PrivateLink** options are automatically selected. With these options, the Red&#160;Hat Site Reliability Engineering (SRE) team can connect to the cluster to assist with support by using only AWS PrivateLink endpoints.
+    
+    :::
+
+1.  Optional: If you are installing your cluster into an existing VPC, select **Configure a cluster-wide proxy** to enable an HTTP or HTTPS proxy to deny direct access to the internet from your cluster.
+1.  Click **Next**.
+1.  If you opted to install the cluster in an existing AWS VPC, provide your **Virtual Private Cloud (VPC) subnet settings**.
+
+    :::note
+
+    You must ensure that your VPC is configured with a public and a private subnet for each availability zone that you want the cluster installed into. If you opted to use PrivateLink, only private subnets are required.
+    
+    :::
+
+    1.  Optional: Expand **Additional security groups** and select additional custom security groups to apply to nodes in the machine pools created by default. You must have already created the security groups and associated them with the VPC you selected for this cluster. You cannot add or edit security groups to the default machine pools after you create the cluster.
+
+        By default, the security groups you specify are added for all node types. Clear the **Apply the same security groups to all node types (control plane, infrastructure and worker)** checkbox to select different security groups for each node type.
+
+        For more information, see the requirements for _Security groups_ under _Additional resources_.
+1.  If you opted to configure a cluster-wide proxy, provide your proxy configuration details on the **Cluster-wide proxy** page:
+    1.  Enter a value in at least one of the following fields:
+        *   Specify a valid **HTTP proxy URL**.
+        *   Specify a valid **HTTPS proxy URL**.
+        *   In the **Additional trust bundle** field, provide a PEM encoded X.509 certificate bundle. The bundle is added to the trusted certificate store for the cluster nodes. An additional trust bundle file is required if you use a TLS-inspecting proxy unless the identity certificate for the proxy is signed by an authority from the {{ op_system_first }} trust bundle. This requirement applies regardless of whether the proxy is transparent or requires explicit configuration using the `http-proxy` and `https-proxy` arguments.
+    1.  Click **Next**.
+
+        For more information about configuring a proxy with {{ product_title }}, see _Configuring a cluster-wide proxy_.
+1.  In the **CIDR ranges** dialog, configure custom classless inter-domain routing (CIDR) ranges or use the defaults that are provided and click **Next**.
+
+    :::note
+
+    If you are installing into a VPC, the **Machine CIDR** range must match the VPC subnets.
+    
+    :::
+
+
+    :::important
+
+    CIDR configurations cannot be changed later. Confirm your selections with your network administrator before proceeding.
+    
+    :::
+
+1.  Under the **Cluster roles and policies** page, select your preferred cluster-specific Operator IAM role and OIDC provider creation mode.
+
+    With **Manual** mode, you can use either the `rosa` CLI commands or the `aws` CLI commands to generate the required Operator roles and OIDC provider for your cluster. **Manual** mode enables you to review the details before using your preferred option to create the IAM resources manually and complete your cluster installation.
+
+    Alternatively, you can use **Auto** mode to automatically create the Operator roles and OIDC provider. To enable **Auto** mode, the {{ cluster_manager }} IAM role must have administrator capabilities.
+
+    :::note
+
+    If you specified custom ARN paths when you created the associated account-wide roles, the custom path is automatically detected and applied to the Operator roles. The custom ARN path is applied when the Operator roles are created by using either **Manual** or **Auto** mode.
+    
+    :::
+
+1.  Optional: Specify a **Custom operator roles prefix** for your cluster-specific Operator IAM roles.
+
+    :::note
+
+    By default, the cluster-specific Operator role names are prefixed with the cluster name and random 4-digit hash. You can optionally specify a custom prefix to replace `<cluster_name>-<hash>` in the role names. The prefix is applied when you create the cluster-specific Operator IAM roles. For information about the prefix, see _About custom Operator IAM role prefixes_.
+    
+    :::
+
+1.  Select **Next**.
+1.  On the **Cluster update strategy** page, configure your update preferences:
+    1.  Choose a cluster update method:
+        *   Select **Individual updates** if you want to schedule each update individually. This is the default option.
+        *   Select **Recurring updates** to update your cluster on your preferred day and start time, when updates are available.
+
+            :::important
+
+            Even when you opt for recurring updates, you must update the account-wide and cluster-specific IAM resources before you upgrade your cluster between minor releases.
+            
+            :::
+
+
+            :::note
+
+            You can review the end-of-life dates in the update life cycle documentation for {{ product_title }}. For more information, see _{{ product_title }} update life cycle_.
+            
+            :::
+
+    1.  If you opted for recurring updates, select a preferred day of the week and upgrade start time in UTC from the drop-down menus.
+    1.  Optional: You can set a grace period for **Node draining** during cluster upgrades. A **1 hour** grace period is set by default.
+    1.  Click **Next**.
+
+        :::note
+
+        If there are critical security concerns that significantly impact the security or stability of a cluster, Red&#160;Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see [Understanding Red&#160;Hat security ratings](https://access.redhat.com/security/updates/classification).
+        
+        :::
+
+1.  Review the summary of your selections and click **Create cluster** to start the cluster installation.
+1.  If you opted to use **Manual** mode, create the cluster-specific Operator roles and OIDC provider manually to continue the installation:
+    1.  In the **Action required to continue installation** dialog, select either the **AWS CLI** or the **ROSA CLI** tab and manually create the resources:
+        *   If you opted to use the **AWS CLI** method, click **Download .zip**, save the file, and then extract the AWS CLI command and policy files. Then, run the provided `aws` commands in the CLI.
+
+            :::note
+
+            You must run the `aws` commands in the directory that contains the policy files.
+            
+            :::
+
+        *   If you opted to use the **ROSA CLI** method, click the copy button next to the `rosa create` commands and run them in the CLI.
+
+            :::note
+
+            If you specified custom ARN paths when you created the associated account-wide roles, the custom path is automatically detected and applied to the Operator roles when you create them by using these manual methods.
+            
+            :::
+
+    1.  In the **Action required to continue installation** dialog, click **x** to return to the **Overview** page for your cluster.
+    1.  Verify that the cluster **Status** in the **Details** section of the **Overview** page for your cluster has changed from **Waiting** to **Installing**. There might be a short delay of approximately two minutes before the status changes.
+
+    :::note
+
+    If you opted to use **Auto** mode, {{ cluster_manager }} creates the Operator roles and the OIDC provider automatically.
+    
+    :::
+
+
+    :::important
+
+    The EBS Operator role is required in addition to the account roles to successfully create your cluster.
+
+    This role must be attached with the `ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials` policy, an IAM policy required by {{ product_title }} to manage back-end storage through the Container Storage Interface (CSI).
+
+    For more information about the policies and permissions that the cluster Operators require, see _Methods of account-wide role creation_.
+
+    The following example shows an EBS Operator role:
+
+    `"arn:aws:iam::<aws_account_id>:role/<cluster_name>-xxxx-openshift-cluster-csi-drivers-ebs-cloud-credent"`
+
+    After you create your Operator roles, you must edit the _Key Policy_ in the [**Key Management Service (KMS)** page of the AWS Console](https://console.aws.amazon.com/kms) to add the roles.
+    
+    :::
+
+
+**Verification**
+
+*   You can monitor the progress of the installation in the **Overview** page for your cluster. You can view the installation logs on the same page. Your cluster is ready when the **Status** in the **Details** section of the page is listed as **Ready**.
+
+    :::note
+
+    If the installation fails or the cluster **State** does not change to **Ready** after about 40 minutes, check the installation troubleshooting documentation for details. For more information, see _Troubleshooting installations_. For steps to contact Red&#160;Hat Support for assistance, see _Getting support for Red&#160;Hat OpenShift Service on AWS_.
+    
+    :::

@@ -1,0 +1,61 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Viewing network events {id="network-observability-viewing-network-events_{{ context }}"}
+
+Configure the `FlowCollector` custom resource to enable network event tracking for auditing how security policies, firewalls, and isolation rules affect traffic flows in the web console. {._abstract}
+
+{%- set FeatureName = "OVN-Kubernetes networking events tracking" %}
+{% include "./snippets/technology-preview.md" %}
+
+You can edit the `FlowCollector` to view information about network traffic events, such as network flows that are dropped or allowed by the following resources:
+
+*   `NetworkPolicy`
+*   `AdminNetworkPolicy`
+*   `BaselineNetworkPolicy`
+*   `EgressFirewall`
+*   `UserDefinedNetwork` isolation
+*   Multicast ACLs
+
+**Prerequisites**
+
+*   You must have `OVNObservability` enabled by setting the `TechPreviewNoUpgrade` feature set in the `FeatureGate` custom resource (CR) named `cluster`. For more information, see "Enabling feature sets using the CLI" and "Checking OVN-Kubernetes network traffic with OVS sampling using the CLI".
+*   You have created at least one of the following network APIs: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or `EgressFirewall`.
+
+**Procedure**
+
+1.  In the web console, navigate to **Ecosystem** -> **Installed Operators**.
+1.  In the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.
+1.  Select **cluster**, and then select the **YAML** tab.
+1.  Configure the `FlowCollector` CR to enable viewing `NetworkEvents`, for example:
+    <a name="network-observability-flowcollector-configuring-networkevents_{{ context }}"></a>
+    ```yaml title="Example FlowCollector configuration"
+    apiVersion: flows.netobserv.io/v1beta2
+    kind: FlowCollector
+    metadata:
+      name: cluster
+    spec:
+       agent:
+        type: eBPF
+        ebpf:
+      #   sampling: 1
+          privileged: true
+          features:
+           - "NetworkEvents"
+    ```
+
+    where:
+
+    `spec.agent.ebpf.sampling`
+    :   Specifies the sampling rate for network events. Set to a value of `1` to capture all network events. If the sampling `1` is too resource heavy, set sampling to something more appropriate for your needs. This value is optional.
+
+    `spec.agent.ebpf.privileged`
+    :   Specifies whether the eBPF agent runs in privileged mode. Set to `true` because the OVN observability library needs to access local Open vSwitch (OVS) socket and Open Virtual Network (OVN) databases.
+
+**Verification**
+
+1.  Navigate to the **Network Traffic** view and select the **Traffic flows** table.
+1.  You should see the new column, **Network Events**, where you can view information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
+
+    An example of the kind of events you could see in this column is as follows:
+    ```text title="Example of Network Events output"
+    <Dropped_or_Allowed> by <network_event_and_event_name>, direction <Ingress_or_Egress>
+    ```

@@ -1,0 +1,60 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring node agent load affinity {id="oadp-configuring-node-agent-load-affinity_{{ context }}"}
+
+You can schedule the node agent pods on specific nodes by using the `spec.podConfig.nodeSelector` object of the `DataProtectionApplication` (DPA) custom resource (CR).  {._abstract}
+
+See the following example in which you can schedule the node agent pods on nodes with the label `label.io/role: cpu-1` and `other-label.io/other-role: cpu-2`.
+
+```yaml
+...
+spec:
+  configuration:
+    nodeAgent:
+      enable: true
+      uploaderType: kopia
+      podConfig:
+        nodeSelector:
+          label.io/role: cpu-1
+          other-label.io/other-role: cpu-2
+        ...
+```
+
+You can add more restrictions on the node agent pods scheduling by using the `nodeagent.loadAffinity` object in the DPA spec.
+
+**Prerequisites**
+
+*   You must be logged in as a user with `cluster-admin` privileges.
+*   You have installed the {{ oadp_short }} Operator.
+*   You have configured the DPA CR.
+
+**Procedure**
+
+*   Configure the DPA spec `nodegent.loadAffinity` object as shown in the following example. 
+
+    In the example, you ensure that the node agent pods are scheduled only on nodes with the label `label.io/role: cpu-1` and the label `label.io/hostname` matching with either `node1` or `node2`.
+    ```yaml
+    ...
+    spec:
+      configuration:
+        nodeAgent:
+          enable: true
+          loadAffinity:
+            - nodeSelector:
+                matchLabels:
+                  label.io/role: cpu-1
+                matchExpressions:
+                  - key: label.io/hostname
+                    operator: In
+                    values:
+                      - node1
+                      - node2
+                      ...
+    ```
+
+    where:
+
+    `loadAffinity`
+    :   Specifies the `loadAffinity` object by adding the `matchLabels` and `matchExpressions` objects.
+
+    `matchExpressions`
+    :   Specifies the `matchExpressions` object to add restrictions on the node agent pods scheduling.

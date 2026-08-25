@@ -1,0 +1,109 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Sample customized install-config.yaml file for {{ rh_openstack }} {id="installation-osp-config-yaml_{{ context }}"}
+
+The example `install-config.yaml` files demonstrate all of the possible {{ rh_openstack_first }} customization options. {._abstract}
+
+
+:::important
+
+This sample file is provided for reference only. You must obtain your `install-config.yaml` file by using the installation program.
+
+:::
+
+
+<details>
+<summary>Example single stack `install-config.yaml` file</summary>
+
+```yaml
+apiVersion: v1
+baseDomain: example.com
+controlPlane:
+  name: master
+  platform: {}
+  replicas: 3
+compute:
+- name: worker
+  platform:
+    openstack:
+      type: ml.large
+  replicas: 3
+metadata:
+  name: example
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  serviceNetwork:
+  - 172.30.0.0/16
+  networkType: OVNKubernetes
+platform:
+  openstack:
+    cloud: mycloud
+    externalNetwork: external
+    computeFlavor: m1.xlarge
+    apiFloatingIP: 128.0.0.1
+{%- if not openshift_origin %}
+fips: false
+{%- endif %}
+pullSecret: '{"auths": ...}'
+sshKey: ssh-ed25519 AAAA...
+```
+</details>
+
+<details>
+<summary>Example dual stack `install-config.yaml` file</summary>
+
+```yaml
+apiVersion: v1
+baseDomain: example.com
+controlPlane:
+  name: master
+  platform: {}
+  replicas: 3
+compute:
+- name: worker
+  platform:
+    openstack:
+      type: ml.large
+  replicas: 3
+metadata:
+  name: example
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  - cidr: fd01::/48
+    hostPrefix: 64
+  machineNetwork:
+  - cidr: 192.168.25.0/24
+  - cidr: fd2e:6f44:5dd8:c956::/64
+  serviceNetwork:
+  - 172.30.0.0/16
+  - fd02::/112
+  networkType: OVNKubernetes
+platform:
+  openstack:
+    cloud: mycloud
+    externalNetwork: external
+    computeFlavor: m1.xlarge
+    apiVIPs:
+    - 192.168.25.10
+    - fd2e:6f44:5dd8:c956:f816:3eff:fec3:5955
+    ingressVIPs:
+    - 192.168.25.132
+    - fd2e:6f44:5dd8:c956:f816:3eff:fe40:aecb
+    controlPlanePort:
+      fixedIPs:
+      - subnet:
+          name: openshift-dual4
+      - subnet:
+          name: openshift-dual6
+      network:
+        name: openshift-dual
+fips: false
+pullSecret: '{"auths": ...}'
+sshKey: ssh-ed25519 AAAA...
+```
+</details>

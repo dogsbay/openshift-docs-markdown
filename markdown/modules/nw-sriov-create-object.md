@@ -1,0 +1,35 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Example SR-IOV network operator {id="nw-sriov-create-object_{{ context }}"}
+
+The following is an example definition of an `sriovNetwork` object. In this case, Intel and Mellanox configurations are identical:
+```yaml
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetwork
+metadata:
+  name: dpdk-network-1
+  namespace: openshift-sriov-network-operator
+spec:
+  ipam: '{"type": "host-local","ranges": [[{"subnet": "10.0.1.0/24"}]],"dataDir":
+   "/run/my-orchestrator/container-ipam-state-1"}'
+  networkNamespace: dpdk-test
+  spoofChk: "off"
+  trust: "on"
+  resourceName: dpdk_nic_1
+---
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetwork
+metadata:
+  name: dpdk-network-2
+  namespace: openshift-sriov-network-operator
+spec:
+  ipam: '{"type": "host-local","ranges": [[{"subnet": "10.0.2.0/24"}]],"dataDir":
+   "/run/my-orchestrator/container-ipam-state-1"}'
+  networkNamespace: dpdk-test
+  spoofChk: "off"
+  trust: "on"
+  resourceName: dpdk_nic_2
+```
+
+*   You can use a different IP Address Management (IPAM) implementation, such as Whereabouts. For more information, see _Dynamic IP address assignment configuration with Whereabouts_.
+*   You must request the `networkNamespace` where the network attachment definition will be created. You must create the `sriovNetwork` CR under the `openshift-sriov-network-operator` namespace.
+*   The `resourceName` value must match that of the `resourceName` created under the `sriovNetworkNodePolicy`.

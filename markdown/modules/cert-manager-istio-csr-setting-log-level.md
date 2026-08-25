@@ -1,0 +1,39 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Setting the log level for the istio-csr component {id="cert-manager-istio-csr-setting-log-level_{{ context }}"}
+
+You can set the log level for the istio-csr component to control the verbosity and format of its log messages. {._abstract}
+
+**Prerequisites**
+
+*   You have access to the cluster with `cluster-admin` privileges.
+*   You have created the `IstioCSR` custom resource (CR).
+
+**Procedure**
+
+1.  Edit the `IstioCSR` CR by running the following command:
+    ```terminal
+    $ oc edit istiocsrs.operator.openshift.io default -n <istio_csr_project_name> (1)
+    ```
+
+    Replace `<istio_csr_project_name>` with the namespace where you created the `IstioCSR` CR.
+1.  Configure the log level and format in the `spec.istioCSRConfig` section by using the following example configuration:
+    ```yaml
+    apiVersion: operator.openshift.io/v1alpha1
+    kind: IstioCSR
+    ...
+    spec:
+      istioCSRConfig:
+        logFormat: text
+        logLevel: 2
+    # ...
+    ```
+
+    where:
+
+    `istioCSRConfig.logFormat`
+    :   Specifies the log output format. You can set this field to either `text` or `json`.
+
+    `istioCSRConfig.logLevel`
+    :   Specifies the log level. Supported values are in the range `1` through `5`, as defined by Kubernetes logging guidelines. The default value is `1`.
+
+1.  Save and close the editor to apply your changes. After the changes are applied, the cert-manager Operator updates the log configuration for the istio-csr operand.

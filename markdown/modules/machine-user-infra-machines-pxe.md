@@ -1,0 +1,139 @@
+{% if context == "creating-multi-arch-compute-nodes-ibm-power" %}
+{%- set ibm_power = true -%}
+{% endif %}
+
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating {{ op_system }} machines by PXE or iPXE booting {id="machine-user-infra-machines-pxe_{{ context }}"}
+
+To scale your {{ product_title }} bare metal cluster, you can create more {{ op_system_first }} compute machines by using PXE or iPXE booting. {._abstract}
+
+**Prerequisites**
+
+*   You have obtained the URL of the Ignition config file for the compute machines for your cluster. You uploaded this file to your HTTP server during installation.
+*   You have obtained the URLs of the {{ op_system }} ISO image, compressed metal BIOS, `kernel`, and `initramfs` files that you uploaded to your HTTP server during cluster installation.
+*   You have access to the PXE booting infrastructure that you used to create the machines for your {{ product_title }} cluster during installation. The machines must boot from their local disks after {{ op_system }} is installed on them.
+*   If you use UEFI, you have access to the `grub.conf` file that you modified during {{ product_title }} installation.
+
+**Procedure**
+
+1.  Confirm that your PXE or iPXE installation for the {{ op_system }} images is correct.
+    *   For PXE:
+        ```
+        DEFAULT pxeboot
+        TIMEOUT 20
+        PROMPT 0
+        LABEL pxeboot
+            KERNEL http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture>
+            APPEND initrd=http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/worker.ign coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img
+        ```
+
+        where:
+
+        `KERNEL`
+        :   Specifies the location of the live `kernel` file that you uploaded to your HTTP server.
+
+        `APPEND`
+        :   Specifies the locations of the {{ op_system }} files that you uploaded to your HTTP server:
+
+        `initrd`
+        :   Specifies the location of the live `initramfs` file.
+
+        `coreos.inst.ignition_url`
+        :   Specifies the location of the worker Ignition config file. This parameter supports only HTTP and HTTPS.
+
+        `coreos.live.rootfs_url`
+        :   Specifies the location of the live `rootfs` file. This parameter supports only HTTP and HTTPS.
+
+        :::note
+
+        This configuration does not enable serial console access on machines with a graphical console. To configure a different console, add one or more `console=` arguments to the `APPEND` line. For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console. For more information on setting up a serial terminal and/or console in {{ op_system }}, see "How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?".
+        
+        :::
+
+{%- if not ibm_power %}
+    *   For iPXE (`x86_64` + `aarch64`):
+        {% endif %}
+        {% if ibm_power %}
+    *   For iPXE (`x86_64` + `ppc64le`):
+        {%- endif %}
+        ```
+        kernel http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture> initrd=main coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/worker.ign
+        initrd --name main http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img
+        boot
+        ```
+
+        where:
+
+        `kernel`
+        :   Specifies the location of the `kernel` file that you uploaded to your HTTP server.
+
+        `initrd=main`
+        :   Specifies an argument that is required for booting on UEFI systems.
+
+        `coreos.live.rootfs_url`
+        :   Specifies the location of the `rootfs` file that you uploaded to your HTTP server.
+
+        `coreos.inst.ignition_url`
+        :   Specifies the location of the worker Ignition config file that you uploaded to your HTTP server.
+
+        `initrd --name main`
+        :   Specifies the location of the `initramfs` file that you uploaded to your HTTP server.
+
+        :::note
+
+        *   If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC named `eno1`, set `ip=eno1:dhcp`.
+        *   This configuration does not enable serial console access on machines with a graphical console. To configure a different console, add one or more `console=` arguments to the `kernel` line. For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console. For more information on setting up a serial terminal and/or console in {{ op_system }}, see "How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?" in the Additional resources section and "Enabling the serial console for PXE and ISO installation" in the "Advanced {{ op_system }} installation configuration" section.
+        
+        :::
+
+
+        :::note
+
+{%- if not ibm_power %}
+        To network boot the CoreOS `kernel` on `aarch64` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. For more information, see "IMAGE_GZIP option in iPXE".
+{% endif %}
+{% if ibm_power %}
+        To network boot the CoreOS `kernel` on `ppc64le` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. For more information, see "IMAGE_GZIP option in iPXE".
+{%- endif %}
+        
+        :::
+
+{%- if not ibm_power %}
+    *   For PXE (with UEFI and GRUB as second stage) on `aarch64`:
+        {% endif %}
+        {% if ibm_power %}
+    *   For PXE (with UEFI and GRUB as second stage) on `ppc64le`:
+        {%- endif %}
+        ```
+        menuentry 'Install CoreOS' {
+            linux rhcos-<version>-live-kernel-<architecture>  coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/worker.ign
+            initrd rhcos-<version>-live-initramfs.<architecture>.img
+        }
+        ```
+
+        where:
+
+        `linux`
+        :   Specifies the location of the live `kernel` file on your TFTP server.
+
+        `coreos.live.rootfs_url`
+        :   Specifies the location of the live `rootfs` file.
+
+        `coreos.inst.ignition_url`
+        :   Specifies the location of the worker Ignition config file.
+
+        `initrd`
+        :   Specifies the location of the live `initramfs` file on your TFTP server.
+
+        :::note
+
+        If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC named `eno1`, set `ip=eno1:dhcp`.
+        
+        :::
+
+
+1.  Use the PXE or iPXE infrastructure to create the required compute machines for your cluster.
+
+{% if context == "creating-multi-arch-compute-nodes-ibm-power" %}
+{%- set ibm_power = false -%}
+{% endif %}

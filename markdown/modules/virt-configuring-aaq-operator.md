@@ -1,0 +1,42 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring the AAQ Operator by using the CLI {id="virt-configuring-aaq-operator_{{ context }}"}
+
+You can configure the AAQ Operator by specifying the fields of the `spec.applicationAwareConfig` object in the `HyperConverged` custom resource (CR). {._abstract}
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with `cluster-admin` privileges.
+*   You have installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+*   Update the `HyperConverged` CR by running the following command:
+    ```terminal
+    $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} --type merge -p '{
+      "spec": {
+        "applicationAwareConfig": {
+          "vmiCalcConfigName": "DedicatedVirtualResources",
+          "namespaceSelector": {
+            "matchLabels": {
+              "app": "my-app"
+            }
+          },
+          "allowApplicationAwareClusterResourceQuota": true
+        }
+      }
+    }'
+    ```
+
+    where:
+
+    `vmiCalcConfigName`
+    :   Specifies how resource counting is managed for pods that run virtual machine (VM) workloads. Possible values are:
+    *   `VmiPodUsage`: Counts compute resources for pods associated with VMs in the same way as native resource quotas and excludes migration-related resources.
+    *   `VirtualResources`: Counts compute resources based on the VM specifications, using the VM RAM size for memory and virtual CPUs for processing.
+    *   `DedicatedVirtualResources` (default): Similar to `VirtualResources`, but separates resource tracking for pods associated with VMs by adding a `/vmi` suffix to CPU and memory resource names. For example, `requests.cpu/vmi` and `requests.memory/vmi`.
+
+    `namespaceSelector`
+    :   Determines the namespaces for which an AAQ scheduling gate is added to pods when they are created. If a namespace selector is not defined, the AAQ Operator targets namespaces with the `application-aware-quota/enable-gating` label as default.
+
+    `allowApplicationAwareClusterResourceQuota`
+    :   If set to `true`, you can create and manage the `ApplicationAwareClusterResourceQuota` object. Setting this attribute to `true` can increase scheduling time.

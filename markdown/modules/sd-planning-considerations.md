@@ -1,0 +1,169 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Control plane and infrastructure node sizing and scaling {id="control-plane-and-infra-node-sizing-and-scaling-sd_{{ context }}"}
+
+When you install
+{%- if openshift_rosa %}
+a {{ product_title }}
+{% endif %}
+{% if openshift_dedicated %}
+an {{ product_title }}
+{%- endif %}
+cluster, the sizing of the control plane and infrastructure nodes are automatically determined by the compute node count. To maintain cluster stability, the Red&#160;Hat Site Reliability Engineering (SRE) team automatically adjusts your control plane and infrastructure nodes whenever you change your compute node count. {._abstract}
+
+## Node sizing during installation {id="node-sizing-during-installation_{{ context }}"}
+
+During the installation process, the sizing of the control plane and infrastructure nodes are dynamically calculated. The sizing calculation is based on the number of compute nodes in a cluster.
+
+The following
+{%- if openshift_rosa %}
+table lists
+{% endif %}
+{% if openshift_dedicated %}
+tables list
+{%- endif %}
+the control plane and infrastructure node sizing that is applied during installation.
+
+{% if openshift_dedicated %}
+AWS control plane and infrastructure node size:
+{%- endif %}
+| Number of compute nodes | Control plane size | Infrastructure node size |
+| --- | --- | --- |
+| 1 to 25 | m5.2xlarge | r5.xlarge |
+| 26 to 100 | m5.4xlarge | r5.2xlarge |
+| 101 to 249 | m5.8xlarge | r5.4xlarge |
+
+{% if openshift_dedicated %}
+
+{{ gcp_short }} control plane and infrastructure node size:
+<table>
+<thead>
+<tr>
+  <th>Number of compute nodes</th>
+  <th>Control plane size</th>
+  <th>Infrastructure node size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1 to 25</td>
+  <td>custom-8-32768</td>
+  <td>custom-4-32768-ext</td>
+</tr>
+<tr>
+  <td>26 to 100</td>
+  <td>custom-16-65536</td>
+  <td>custom-8-65536-ext</td>
+</tr>
+<tr>
+  <td>101 to 249</td>
+  <td>custom-32-131072</td>
+  <td>custom-16-131072-ext</td>
+</tr>
+</tbody>
+</table>
+
+{{ gcp_short }} control plane and infrastructure node size for clusters created on or after 21 June 2024:
+<table>
+<thead>
+<tr>
+  <th>Number of compute nodes</th>
+  <th>Control plane size</th>
+  <th>Infrastructure node size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1 to 25</td>
+  <td>n2-standard-8</td>
+  <td>n2-highmem-4</td>
+</tr>
+<tr>
+  <td>26 to 100</td>
+  <td>n2-standard-16</td>
+  <td>n2-highmem-8</td>
+</tr>
+<tr>
+  <td>101 to 249</td>
+  <td>n2-standard-32</td>
+  <td>n2-highmem-16</td>
+</tr>
+</tbody>
+</table>
+
+{% endif %}
+
+
+:::note
+
+The maximum number of compute nodes on
+{%- if openshift_rosa %}
+{{ product_title }}
+{% endif %}
+{% if openshift_dedicated %}
+{{ product_title }}
+{%- endif %}
+clusters version 4.14.14 and later is 249. For earlier versions, the limit is 180.
+
+:::
+
+
+## Node scaling after installation {id="node-scaling-after-installation_{{ context }}"}
+
+If you change the number of compute nodes after installation, the control plane and infrastructure nodes are scaled by the Red&#160;Hat Site Reliability Engineering (SRE) team as required. The nodes are scaled to maintain platform stability.
+
+Postinstallation scaling requirements for control plane and infrastructure nodes are assessed on a case-by-case basis. Node resource consumption and received alerts are taken into consideration.
+
+**Rules for control plane node resizing alerts**
+
+The resizing alert is triggered for the control plane nodes in a cluster when the following occurs:
+
+*   Control plane nodes sustain over 66% utilization on average in a cluster.
+
+    :::note
+
+    The maximum number of compute nodes on
+{%- if openshift_rosa %}
+    {{ product_title }}
+{% endif %}
+{% if openshift_dedicated %}
+    {{ product_title }}
+{%- endif %}
+    is 180.
+    
+    :::
+
+
+**Rules for infrastructure node resizing alerts**
+
+Resizing alerts are triggered for the infrastructure nodes in a cluster when it has high-sustained CPU or memory utilization. This high-sustained utilization status is:
+
+*   Infrastructure nodes sustain over 50% utilization on average in a cluster with a single availability zone using 2 infrastructure nodes.
+*   Infrastructure nodes sustain over 66% utilization on average in a cluster with multiple availability zones using 3 infrastructure nodes.
+
+    :::note
+
+    The maximum number of compute nodes on
+{%- if openshift_rosa %}
+    {{ rosa_title }}
+{% endif %}
+{% if openshift_dedicated %}
+    {{ product_title }}
+{%- endif %}
+    cluster versions 4.14.14 and later is 249. For earlier versions, the limit is 180.
+
+    The resizing alerts only appear after sustained periods of high utilization. Short usage spikes, such as a node temporarily going down causing the other node to scale up, do not trigger these alerts.
+    
+    :::
+
+
+The SRE team might scale the control plane and infrastructure nodes for additional reasons, for example to manage an increase in resource consumption on the nodes.
+
+{% if openshift_rosa %}
+When scaling is applied, the customer is notified through a service log entry. For more information about the service log, see _Accessing the service logs for ROSA clusters_.
+{% endif %}
+
+## Sizing considerations for larger clusters {id="sizing-considerations-for-larger-clusters_{{ context }}"}
+
+For larger clusters, infrastructure node sizing can become a significant impacting factor to scalability. There are many factors that influence the stated thresholds, including the etcd version or storage data format.
+
+Exceeding these limits does not necessarily mean that the cluster will fail. In most cases, exceeding these numbers results in lower overall performance.

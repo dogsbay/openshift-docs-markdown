@@ -1,0 +1,31 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Multiple networks with the OVN-K CNI {id="understanding-multiple-networks-con_{{ context }}"}
+
+By default, OVN-Kubernetes serves as the Container Network Interface (CNI) of an {{ product_title }} cluster. This network interface is what administrators use to create default networks. {._abstract}
+
+Both user-defined networks and Network Attachment Definitions can serve as the following network types:
+
+*   **Primary networks**: Act as the primary network for the pod. By default, all traffic passes through the primary network unless you have configured a pod route to send traffic through other networks.
+*   **Secondary networks**: Act as secondary, non-default networks for a pod. Secondary networks offer separate interfaces dedicated to specific traffic types or purposes. Only pod traffic that you explicitly configure to use a secondary network routes through its interface.
+
+The following diagram shows a cluster that has an existing default network infrastructure that uses a physical network interface, `eth0`, to connect to two namespaces. Pods or virtual machines (VMs) in one namespace run in isolation from pods or VMs in the other namespace. You can create only one primary network. However, you can create multiple secondary networks for each namespace.
+
+**Figure 1. Diagram showing namespaces with multiple secondary UDNs**
+
+![Diagram showing namespaces with multiple secondary UDNs](/_assets/images/501_OpenShift_UDN_pri_sec_0925.png)
+
+During cluster installation, {{ product_title }} administrators can configure alternative default secondary pod networks by leveraging the Multus CNI plugin. With Multus, you can use multiple CNI plugins such as ipvlan, macvlan, or Network Attachment Definitions together to serve as secondary networks for pods.
+
+
+:::important
+
+User-defined networks are only supported when OVN-Kubernetes is used as the CNI. UDNs are not supported for use with other CNIs.
+
+:::
+
+
+You can define an secondary network based on the available CNI plugins and attach one or more of these networks to your pods. You can define more than one secondary network for your cluster depending on your needs. This gives you flexibility when you configure pods that deliver network functionality, such as switching or routing. For more information:
+
+*   For a complete list of supported CNI plugins, see "Secondary networks in {{ product_title }}".
+*   For information about user-defined networks, see "About user-defined networks (UDNs)".
+*   For information about Network Attachment Definitions, see "Creating primary networks by using a NetworkAttachmentDefinition".

@@ -1,0 +1,110 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring regions and zones for a VMware vCenter {id="configuring-vsphere-regions-zones_{{ context }}"}
+
+You can modify the default installation configuration file, so that you can deploy an {{ product_title }} cluster to multiple vSphere data centers. {._abstract}
+
+The default `install-config.yaml` file configuration from the previous release of {{ product_title }} is deprecated. You can continue to use the deprecated default configuration, but the `openshift-installer` will prompt you with a warning message that indicates the use of deprecated fields in the configuration file.
+
+**Prerequisites**
+
+*   You have an existing `install-config.yaml` installation configuration file.
+
+    :::important
+
+    You must specify at least one failure domain for your {{ product_title }} cluster, so that you can provision data center objects for your VMware vCenter server. Consider specifying multiple failure domains if you need to provision virtual machine nodes in different data centers, clusters, datastores, and other components. To enable regions and zones, you must define multiple failure domains for your {{ product_title }} cluster.
+    
+    :::
+
+*   You have installed the `govc` command line tool.
+
+    :::important
+
+    The example uses the `govc` command. The `govc` command is an open source command available from VMware; it is not available from Red&#160;Hat. The Red&#160;Hat support team does not maintain the `govc` command. Instructions for downloading and installing `govc` are found on the VMware documentation website.
+    
+    :::
+
+
+**Procedure**
+
+1.  Create the `openshift-region` and `openshift-zone` vCenter tag categories by running the following commands:
+
+    :::important
+
+    If you specify different names for the `openshift-region` and `openshift-zone` vCenter tag categories, the installation of the {{ product_title }} cluster fails.
+    
+    :::
+
+    ```terminal
+    $ govc tags.category.create -d "OpenShift region" openshift-region
+    ```
+    ```terminal
+    $ govc tags.category.create -d "OpenShift zone" openshift-zone
+    ```
+1.  For each region where you want to deploy your cluster, create a region tag by running the following command:
+    ```terminal
+    $ govc tags.create -c <region_tag_category> <region_tag>
+    ```
+1.  For each zone where you want to deploy your cluster, create a zone tag by running the following command:
+    ```terminal
+    $ govc tags.create -c <zone_tag_category> <zone_tag>
+    ```
+1.  Attach region tags to each vCenter data center object by running the following command:
+    ```terminal
+    $ govc tags.attach -c <region_tag_category> <region_tag_1> /<data_center_1>
+    ```
+1.  Attach the zone tags to each vCenter cluster object by running the following command:
+    ```terminal
+    $ govc tags.attach -c <zone_tag_category> <zone_tag_1> /<data_center_1>/host/<cluster1>
+    ```
+1.  Change to the directory that contains the installation program and initialize the cluster deployment according to your chosen installation requirements.
+
+```yaml title="Sample install-config.yaml file with multiple data centers defined in a vSphere center"
+# ...
+compute:
+---
+  vsphere:
+      zones:
+        - "<machine_pool_zone_1>"
+        - "<machine_pool_zone_2>"
+# ...
+controlPlane:
+# ...
+vsphere:
+      zones:
+        - "<machine_pool_zone_1>"
+        - "<machine_pool_zone_2>"
+# ...
+platform:
+  vsphere:
+    vcenters:
+# ...
+    datacenters:
+      - <data_center_1_name>
+      - <data_center_2_name>
+    failureDomains:
+    - name: <machine_pool_zone_1>
+      region: <region_tag_1>
+      zone: <zone_tag_1>
+      server: <fully_qualified_domain_name>
+      topology:
+        datacenter: <data_center_1>
+        computeCluster: "/<data_center_1>/host/<cluster1>"
+        networks:
+        - <VM_Network1_name>
+        datastore: "/<data_center_1>/datastore/<datastore1>"
+        resourcePool: "/<data_center_1>/host/<cluster1>/Resources/<resourcePool1>"
+        folder: "/<data_center_1>/vm/<folder1>"
+    - name: <machine_pool_zone_2>
+      region: <region_tag_2>
+      zone: <zone_tag_2>
+      server: <fully_qualified_domain_name>
+      topology:
+        datacenter: <data_center_2>
+        computeCluster: "/<data_center_2>/host/<cluster2>"
+        networks:
+        - <VM_Network2_name>
+        datastore: "/<data_center_2>/datastore/<datastore2>"
+        resourcePool: "/<data_center_2>/host/<cluster2>/Resources/<resourcePool2>"
+        folder: "/<data_center_2>/vm/<folder2>"
+# ...
+```

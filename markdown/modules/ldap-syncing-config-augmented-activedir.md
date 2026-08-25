@@ -1,0 +1,45 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About the augmented Active Directory configuration file {id="ldap-syncing-config-augmented-activedir_{{ context }}"}
+
+Review the augmented Active Directory LDAP sync configuration file so you can define user and group queries and the attributes used in {{ product_title }} group records. {._abstract}
+
+The augmented Active Directory schema requires you to provide an LDAP query definition for both user entries and group entries, as well as the attributes with which to represent them in the internal {{ product_title }} group records.
+
+For clarity, the group you create in {{ product_title }} should use attributes other than the distinguished name whenever possible for user-facing or administrator-facing fields. For example, identify the users of an {{ product_title }} group by their e-mail, and use the name of the group as the common name. The following configuration file creates these relationships.
+
+```yaml
+kind: LDAPSyncConfig
+apiVersion: v1
+url: ldap://LDAP_SERVICE_IP:389
+augmentedActiveDirectory:
+    groupsQuery:
+        baseDN: "ou=groups,dc=example,dc=com"
+        scope: sub
+        derefAliases: never
+        pageSize: 0
+    groupUIDAttribute: dn
+    groupNameAttributes: [ cn ]
+    usersQuery:
+        baseDN: "ou=users,dc=example,dc=com"
+        scope: sub
+        derefAliases: never
+        filter: (objectclass=person)
+        pageSize: 0
+    userNameAttributes: [ mail ]
+    groupMembershipAttributes: [ memberOf ]
+```
+
+where:
+
+
+`augmentedActiveDirectory.groupUIDAttribute`
+:   Specifies the attribute that uniquely identifies a group on the LDAP server. You cannot specify `groupsQuery` filters when using DN for groupUIDAttribute. For fine-grained filtering, use an allowlist file, a denylist file, or both.
+
+`augmentedActiveDirectory.groupNameAttributes`
+:   Specifies the attribute to use as the name of the group.
+
+`augmentedActiveDirectory.userNameAttributes`
+:   Specifies the attribute to use as the name of the user in the {{ product_title }} group record.
+
+`augmentedActiveDirectory.groupMembershipAttributes`
+:   Specifies the attribute on the user that stores the membership information.

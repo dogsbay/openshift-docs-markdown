@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Requirements for upgrading to OpenShift 4.9 {id="rosa-upgrading-requirements-49_{{ context }}"}
+
+You must meet the following requirements before upgrading a {{ product_title }} (ROSA) cluster that uses the AWS Security Token Service (STS) from version 4.8 to 4.9.
+
+**Prerequisites**
+
+*   You have installed the latest AWS CLI on your installation host.
+*   You have installed 1.1.10 or later of the ROSA CLI (`rosa`) on your installation host.
+*   You have installed version 4.9 or later of the OpenShift CLI (`oc`) on your workstation(s) as needed.
+*   You have the permissions required to update the AWS account-wide roles and policies.
+*   You must be the owner or the creator of the cluster.
+*   You updated the AWS Identity and Access Management (IAM) account-wide roles and policies, including the Operator policies to version 4.9.

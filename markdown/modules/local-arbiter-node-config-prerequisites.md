@@ -1,0 +1,35 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Local arbiter node configuration prerequisites {id="local-arbiter-node-config-prerequisites_{{ context }}"}
+
+To retain high availability (HA) while reducing infrastructure costs for your cluster, you can configure an {{ product_title }} cluster with two control plane nodes and one local arbiter node. {._abstract}
+
+A local arbiter node is a lower-cost, co-located machine that participates in control plane quorum decisions. Unlike a standard control plane node, the arbiter node does not run the full set of control plane services. You can use this configuration to maintain HA in your cluster with only two fully provisioned control plane nodes instead of three.
+
+
+:::important
+
+You can configure a local arbiter node only. Remote arbiter nodes are not supported.
+
+:::
+
+
+To deploy a cluster with two control plane nodes and one local arbiter node, you must define the following nodes in the `install-config.yaml` file:
+
+*   2 control plane nodes
+*   1 arbiter node
+
+The arbiter node must meet the following minimum system requirements:
+
+*   2 threads
+*   8 GB of RAM
+*   50 GB of SSD or equivalent storage
+
+The arbiter node must be located in a network environment with an end-to-end latency of less than 500 milliseconds, including disk I/O. In high-latency environments, you might need to apply the `etcd` slow profile.
+
+The control plane nodes must meet the following minimum system requirements:
+
+*   4 threads
+*   16 GB of RAM
+*   120 GB of SSD or equivalent storage
+
+Additionally, the control plane nodes must also have enough storage for the workload.

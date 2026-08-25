@@ -1,0 +1,5 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Logging reference CRs {id="logging-crs_{{ context }}"}
+
+The following custom resources (CRs) configure logging for the telco hub cluster. {._abstract}
+ Cluster Logging Operator,`clusterLogForwarder.yaml`,Defines the `ClusterLogForwarder` CR to send logs to configured outputs.,Yes Cluster Logging Operator,`clusterLogNS.yaml`,Configures a namespace for the Cluster Logging Operator.,Yes Cluster Logging Operator,`clusterLogOperGroup.yaml`,Configures an Operator group for the Cluster Logging Operator.,Yes Cluster Logging Operator,`clusterLogServiceAccount.yaml`,Defines the `ServiceAccount` CR used by Cluster Logging Operator components.,Yes Cluster Logging Operator,`clusterLogServiceAccountAuditBinding.yaml`,Binds the Cluster Logging `ServiceAccount` CR to audit log roles.,Yes Cluster Logging Operator,`clusterLogServiceAccountInfrastructureBinding.yaml`,Binds the Cluster Logging `ServiceAccount` CR to infrastructure log roles.,Yes Cluster Logging Operator,`clusterLogSubscription.yaml`,Defines a subscription for installing and managing the Cluster Logging Operator.,Yes |

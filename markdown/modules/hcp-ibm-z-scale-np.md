@@ -1,0 +1,83 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Scaling the NodePool object for a hosted cluster on {{ ibm_z_title }} {id="hcp-ibm-z-scale-np_{{ context }}"}
+
+The `NodePool` object is created when you create a hosted cluster. By scaling the `NodePool` object, you can add more compute nodes to the hosted control plane. {._abstract}
+
+When you scale up a node pool, a machine is created. The Cluster API provider finds an Agent that is approved, is passing validations, is not currently in use, and meets the requirements that are specified in the node pool specification. You can monitor the installation of an Agent by checking its status and conditions.
+
+**Procedure**
+
+1.  Run the following command to scale the `NodePool` object to two nodes:
+    ```terminal
+    $ oc -n <clusters_namespace> scale nodepool <nodepool_name> --replicas 2
+    ```
+
+    The Cluster API agent provider randomly picks two agents that are then assigned to the hosted cluster. Those agents go through different states and finally join the hosted cluster as {{ product_title }} nodes. The agents pass through the transition phases in the following order:
+    *   `binding`
+    *   `discovering`
+    *   `insufficient`
+    *   `installing`
+    *   `installing-in-progress`
+    *   `added-to-existing-cluster`
+1.  Run the following command to see the status of a specific scaled agent:
+    ```terminal
+    $ oc -n <hosted_control_plane_namespace> get agent -o \
+      jsonpath='{range .items[*]}BMH: {@.metadata.labels.agent-install\.openshift\.io/bmh} \
+      Agent: {@.metadata.name} State: {@.status.debugInfo.state}{"\n"}{end}'
+    ```
+    ```terminal title="Example output"
+    BMH: Agent: 50c23cda-cedc-9bbd-bcf1-9b3a5c75804d State: known-unbound
+    BMH: Agent: 5e498cd3-542c-e54f-0c58-ed43e28b568a State: insufficient
+    ```
+1.  Run the following command to see the transition phases:
+    ```terminal
+    $ oc -n <hosted_control_plane_namespace> get agent
+    ```
+    ```terminal title="Example output"
+    NAME                                   CLUSTER           APPROVED       ROLE        STAGE
+    50c23cda-cedc-9bbd-bcf1-9b3a5c75804d   hosted-forwarder   true          auto-assign
+    5e498cd3-542c-e54f-0c58-ed43e28b568a                      true          auto-assign
+    da503cf1-a347-44f2-875c-4960ddb04091   hosted-forwarder   true          auto-assign
+    ```
+1.  Run the following command to generate the `kubeconfig` file to access the hosted cluster:
+    ```terminal
+    $ hcp create kubeconfig \
+      --namespace <clusters_namespace> \
+      --name <hosted_cluster_namespace> > <hosted_cluster_name>.kubeconfig
+    ```
+1.  After the agents reach the `added-to-existing-cluster` state, verify that you can see the {{ product_title }} nodes by entering the following command:
+    ```terminal
+    $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes
+    ```
+    ```terminal title="Example output"
+    NAME                             STATUS   ROLES    AGE      VERSION
+    worker-zvm-0.hostedn.example.com Ready    worker   5m41s    v1.24.0+3882f8f
+    worker-zvm-1.hostedn.example.com Ready    worker   6m3s     v1.24.0+3882f8f
+    ```
+
+    Cluster Operators start to reconcile by adding workloads to the nodes.
+1.  Enter the following command to verify that two machines were created when you scaled up the `NodePool` object:
+    ```terminal
+    $ oc -n <hosted_control_plane_namespace> get machine.cluster.x-k8s.io
+    ```
+    ```terminal title="Example output"
+    NAME                                CLUSTER  NODENAME PROVIDERID     PHASE     AGE   VERSION
+    hosted-forwarder-79558597ff-5tbqp   hosted-forwarder-crqq5   worker-zvm-0.hostedn.example.com   agent://50c23cda-cedc-9bbd-bcf1-9b3a5c75804d   Running   41h   4.15.0
+    hosted-forwarder-79558597ff-lfjfk   hosted-forwarder-crqq5   worker-zvm-1.hostedn.example.com   agent://5e498cd3-542c-e54f-0c58-ed43e28b568a   Running   41h   4.15.0
+    ```
+1.  Run the following command to check the cluster version:
+    ```terminal
+    $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get clusterversion,co
+    ```
+    ```terminal title="Example output"
+    NAME                                         VERSION       AVAILABLE   PROGRESSING   SINCE   STATUS
+    clusterversion.config.openshift.io/version   4.15.0-ec.2   True        False         40h     Cluster version is 4.15.0-ec.2
+    ```
+1.  Run the following command to check the cluster operator status:
+    ```terminal
+    $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get clusteroperators
+    ```
+
+    For each component of your cluster, the output shows the following cluster operator statuses: `NAME`, `VERSION`, `AVAILABLE`, `PROGRESSING`, `DEGRADED`, `SINCE`, and `MESSAGE`.
+
+    For an output example, see "Initial Operator configuration".

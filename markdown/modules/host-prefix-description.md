@@ -1,0 +1,20 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Host prefix {id="host-prefix-description_{{ context }}"}
+
+In the `hostPrefix` parameter, you must specify the subnet prefix length assigned to pods scheduled to individual machines. The host prefix determines the pod IP address pool for each machine. {._abstract}
+
+{% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+For example, if you set the `hostPrefix` parameter to `/23`, each machine is assigned a `/23` subnet from the pod CIDR address range. The default is `/23`, allowing 512 cluster nodes and 512 pods per node. Note that where 512 cluster nodes and 512 pods are beyond the maximum supported.
+{% endif %}
+
+{% if openshift_enterprise or openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+For example, if the host prefix is set to `/23`, each machine is assigned a `/23` subnet from the pod CIDR address range. The default is `/23`, allowing 510 cluster nodes and 510 pod IP addresses per node.
+
+Consider another example where you set the `clusterNetwork.cidr` parameter to `10.128.0.0/16`, you define the complete address space for the cluster. This assigns a pool of 65,536 IP addresses to your cluster. If you then set the `hostPrefix` parameter to `/23`, you define a subnet slice to each node in the cluster, where the `/23` slice becomes a subnet of the `/16` subnet network. This assigns 512 IP addresses to each node, where 2 IP addresses get reserved for networking and broadcasting purposes. The following example calculation uses these IP address figures to determine the maximum number of nodes that you can create for your cluster:
+
+```text
+65536 / 512 = 128
+```
+
+You can use the [Red Hat OpenShift Network Calculator](https://access.redhat.com/labs/ocpnc/) to calculate the maximum number of nodes for your cluster.
+{% endif %}

@@ -1,0 +1,38 @@
+---
+title: Assigning a secondary network to a VRF
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Assigning a secondary network to a VRF {id="assigning-a-secondary-network-to-a-vrf"}
+{% include "./_attributes/common-attributes.md" %}
+{%- set context = "assigning-a-secondary-network-to-a-vrf" %}
+
+As a cluster administrator, you can configure a secondary network for a virtual routing and forwarding (VRF) domain by using the CNI VRF plugin. The virtual network that this plugin creates is associated with the physical interface that you specify.
+
+Using a secondary network with a VRF instance has the following advantages:
+
+
+Workload isolation
+:   Isolate workload traffic by configuring a VRF instance for the secondary network. 
+
+Improved security
+:   Enable improved security through isolated network paths in the VRF domain.
+
+Multi-tenancy support
+:   Support multi-tenancy through network segmentation with a unique routing table in the VRF domain for each tenant.
+
+
+:::note
+
+Applications that use VRFs must bind to a specific device. The common usage is to use the `SO_BINDTODEVICE` option for a socket. The `SO_BINDTODEVICE` option binds the socket to the device that is specified in the passed interface name, for example, `eth1`. To use the `SO_BINDTODEVICE` option, the application must have `CAP_NET_RAW` capabilities.
+
+Using a VRF through the `ip vrf exec` command is not supported in {{ product_title }} pods. To use VRF, bind applications directly to the VRF interface.
+
+:::
+
+
+**Additional resources**
+
+*   [About virtual routing and forwarding](/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)
+
+{% leveloffset +1 %}{% include "./modules/cnf-assigning-a-secondary-network-to-a-vrf.md" %}{% endleveloffset %}

@@ -1,0 +1,9 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Known limitations for internal subnets for hosted clusters {id="hcp-ts-internal-subnets_{{ context }}"}
+
+Several known limitations exist for internal subnets on hosted clusters. {._abstract}
+
+*   IPv6 subnets are not supported.
+*   The {{ hcp }} command-line interface, `hcp`, might not have native flags for the subnet fields. Manual YAML editing or `oc patch` is required.
+*   Modifying OVN subnets after you create a cluster triggers a rollout of OVN components, which might cause brief network disruptions.
+*   You cannot modify OVN subnet configuration while a cluster update is in progress or scheduled.

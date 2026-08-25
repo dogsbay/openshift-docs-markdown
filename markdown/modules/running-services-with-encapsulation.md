@@ -1,0 +1,17 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Running additional services in the encapsulated namespace {id="running-services-with-encapsulation_{{ context }}"}
+
+You can adapt any existing tools by using the `kubensenter` script that is provided with {{ product_title }} to execute an additional command inside the Kubernetes mount point. {._abstract}
+
+Any monitoring tool that relies on the ability to run in the host operating system and have visibility of mount points created by kubelet, CRI-O, or containers themselves, must enter the container mount namespace to see these mount points.
+
+The `kubensenter` script is aware of the state of the mount encapsulation feature status, and is safe to run even if encapsulation is not enabled. In that case the script executes the provided command in the default mount namespace.
+
+For example, if a systemd service needs to run inside the new Kubernetes mount namespace, edit the service file and use the `ExecStart=` command line with `kubensenter`.
+
+```terminal
+[Unit]
+Description=Example service
+[Service]
+ExecStart=/usr/bin/kubensenter /path/to/original/command arg1 arg2
+```

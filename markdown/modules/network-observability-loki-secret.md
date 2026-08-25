@@ -1,0 +1,51 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a secret for Loki storage {id="network-observability-loki-secret_{{ context }}"}
+
+Create a secret with cloud storage credentials, such as for {{ aws_first }}, to allow the Loki Operator to access the necessary object store for log persistence. {._abstract}
+
+The {{ loki_op }} supports a few log storage options, such as AWS S3, {{ gcp_full }} Storage, Azure, Swift, Minio, {{ rh_storage }}. The following example shows how to create a secret for AWS S3 storage. The secret created in this example, `loki-s3`, is referenced in "Creating a LokiStack custom resource". You can create this secret in the web console or CLI.
+
+**Procedure**
+
+1.  Using the web console, navigate to the **Project** -> **All Projects** dropdown and select **Create Project**.
+1.  Name the project `netobserv-loki` and click **Create**.
+1.  Navigate to the Import icon, **+**, in the top right corner. Paste your YAML file into the editor.
+
+    The following shows an example secret YAML file for S3 storage:
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: loki-s3
+      namespace: netobserv-loki
+    stringData:
+      access_key_id: QUtJQUlPU0ZPRE5ON0VYQU1QTEUK
+      access_key_secret: d0phbHJYVXRuRkVNSS9LN01ERU5HL2JQeFJmaUNZRVhBTVBMRUtFWQo=
+      bucketnames: s3-bucket-name
+      endpoint: https://s3.eu-central-1.amazonaws.com
+      region: eu-central-1
+    ```
+
+    where:
+
+    `metadata.namespace`
+    :   Specifies the namespace for the Loki S3 secret. While this example uses `netobserv-loki`, you can use a different namespace for different components.
+
+    `stringData.access_key_id`
+    :   Specifies the access key ID for the S3 bucket.
+
+    `stringData.access_key_secret`
+    :   Specifies the secret access key for the S3 bucket.
+
+    `stringData.bucketnames`
+    :   Specifies the name of the S3 bucket.
+
+    `stringData.endpoint`
+    :   Specifies the endpoint URL for the S3 service.
+
+    `stringData.region`
+    :   Specifies the AWS region where the bucket is located.
+
+**Verification**
+
+*   After you create the secret, you view the secret listed under **Workloads** -> **Secrets** in the web console.

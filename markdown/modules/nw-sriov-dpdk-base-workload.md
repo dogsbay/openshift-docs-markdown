@@ -1,0 +1,79 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Example DPDK base workload {id="nw-sriov-dpdk-base-workload_{{ context }}"}
+
+The following is an example of a Data Plane Development Kit (DPDK) container:
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dpdk-test
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/networks: '[
+     {
+      "name": "dpdk-network-1",
+      "namespace": "dpdk-test"
+     },
+     {
+      "name": "dpdk-network-2",
+      "namespace": "dpdk-test"
+     }
+   ]'
+    irq-load-balancing.crio.io: "disable"
+    cpu-load-balancing.crio.io: "disable"
+    cpu-quota.crio.io: "disable"
+  labels:
+    app: dpdk
+  name: testpmd
+  namespace: dpdk-test
+spec:
+  runtimeClassName: performance-performance
+  containers:
+    - command:
+        - /bin/bash
+        - -c
+        - sleep INF
+      image: registry.redhat.io/openshift4/dpdk-base-rhel8
+      imagePullPolicy: Always
+      name: dpdk
+      resources:
+        limits:
+          cpu: "16"
+          hugepages-1Gi: 8Gi
+          memory: 2Gi
+        requests:
+          cpu: "16"
+          hugepages-1Gi: 8Gi
+          memory: 2Gi
+      securityContext:
+        capabilities:
+          add:
+            - IPC_LOCK
+            - SYS_RESOURCE
+            - NET_RAW
+            - NET_ADMIN
+        runAsUser: 0
+      volumeMounts:
+        - mountPath: /mnt/huge
+          name: hugepages
+  terminationGracePeriodSeconds: 5
+  volumes:
+    - emptyDir:
+        medium: HugePages
+      name: hugepages
+```
+
+*   Request the SR-IOV networks you need. Resources for the devices are injected automatically.
+*   Disable the CPU and IRQ load balancing base. See _Disabling interrupt processing for individual pods_ for more information.
+*   Set the `runtimeClass` to `performance-performance`. Do not set the `runtimeClass` to `HostNetwork` or `privileged`.
+*   Request an equal number of resources for requests and limits to start the pod with `Guaranteed` Quality of Service (QoS).
+
+
+:::note
+
+Do not start the pod with `SLEEP` and then exec into the pod to start the testpmd or the DPDK workload. This can add additional interrupts as the `exec` process is not pinned to any CPU.
+
+:::

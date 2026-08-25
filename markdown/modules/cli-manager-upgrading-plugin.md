@@ -1,0 +1,58 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Upgrading a plugin with the {{ cli_manager }} {id="cli-manager-upgrading-plugin-yamls_{{ context }}"}
+
+You can upgrade a CLI plugin to a newer version with the {{ cli_manager }} by directly editing the plugin’s resource YAML file. {._abstract}
+
+**Prerequisites**
+
+*   You are logged in to {{ product_title }} as a user with the `cluster-admin` role.
+*   The {{ cli_manager }} is installed.
+*   The plugin you are upgrading is installed.
+
+**Procedure**
+
+1.  Using the CLI, enter the following command:
+    ```terminal
+    oc edit plugin/<plugin_name>
+    ```
+1.  Edit the YAML file to include the new specifications for your plugin.
+
+```yaml title="Example YAML file to upgrade a plugin"
+apiVersion: config.openshift.io/v1alpha1
+kind: Plugin
+metadata:
+  name: <plugin_name> (1)
+spec:
+  description: <description_of_plugin>
+  homepage: <plugin_homepage>
+  platforms:
+  - bin: (2)
+    files:
+    - from: <plugin_file_path>
+      to: .
+    image: <plugin_image>
+    imagePullSecret: (3)
+    platform: <platform> (4)
+  shortDescription: <short_description_of_plugin>
+  version: <version> (5)
+```
+
+where:
+
+
+`<plugin_name>`
+:   Specifies the name of the plugin you plan to use in commands.
+
+`bin`
+:   Specifies the path to the plugin executable.
+
+`imagePullSecret`
+:   Optional field if the registry is not public to add a pull secret to access your plugin image.
+
+`<platform>`
+:   Add the architecture for your system; for example, `linux/amd64`, `darwin/arm64`, `windows/amd64`, or another architecture.
+
+`<version>`
+:   The version must be in v0.0.0 format.
+
+1.  Save the file.

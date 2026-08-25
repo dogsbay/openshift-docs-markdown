@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Overview of {{ ibm_cloud_name }} VPC Block CSI Driver Operator {id="persistent-storage-csi-ibm-vpc-block-overview_{{ context }}"}
+
+You can dynamically provision block storage volumes on {{ ibm_cloud_name }} Virtual Private Cloud (VPC) infrastructure by using the Container Storage Interface (CSI) driver, which supports multiple IOPS tiers to match your workload performance requirements. {._abstract}
+
+Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI Operator and driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".
+
+To create CSI-provisioned PVs that mount to {{ ibm_cloud_name }} VPC Block storage assets, {{ product_title }} installs the {{ ibm_cloud_name }} VPC Block CSI Driver Operator and the {{ ibm_cloud_name }} VPC Block CSI driver by default in the `openshift-cluster-csi-drivers` namespace.
+
+
+{{ ibm_cloud_name }} VPC Block CSI Driver Operator
+:   The {{ ibm_cloud_name }} VPC Block CSI Driver Operator provides three storage classes named `ibmc-vpc-block-10iops-tier` (default), `ibmc-vpc-block-5iops-tier`, and `ibmc-vpc-block-custom` for different tiers that you can use to create persistent volume claims (PVCs). The {{ ibm_cloud_name }} VPC Block CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand, eliminating the need for cluster administrators to pre-provision storage. You can disable this default storage class if necessary (see "Managing the default storage class").
+
+
+{{ ibm_cloud_name }} VPC Block CSI driver
+:   The {{ ibm_cloud_name }} VPC Block CSI driver enables you to create and mount {{ ibm_cloud_name }} VPC Block PVs.

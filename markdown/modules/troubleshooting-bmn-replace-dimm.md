@@ -1,0 +1,12 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# DIMM memory replacement {id="troubleshooting-bmn-replace-dimm_{{ context }}"}
+
+Dual in-line memory module (DIMM) problems sometimes only appear after a server reboots.
+You can check the log files for these problems. {._abstract}
+
+When you perform a standard reboot and the server does not start, you can see a message in the console that there is a faulty DIMM memory.
+In that case, you can acknowledge the faulty DIMM and continue rebooting if the remaining memory is sufficient.
+Then, you can schedule a maintenance window to replace the faulty DIMM.
+
+Sometimes, a message in the event logs indicates a bad memory module.
+In these cases, you can schedule the memory replacement before the server is rebooted.

@@ -1,0 +1,131 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating the Ingress DNS records {id="installation-create-ingress-dns-records_{{ context }}"}
+
+If you removed the DNS zone configuration during installation, you must manually create DNS records that point to the Ingress load balancer so that your {{ product_title }} cluster routes are reachable. {._abstract}
+
+You can create either a wildcard record or specific records. While the following procedure uses A records, you can use other record types that you require, such as CNAME or alias.
+
+**Prerequisites**
+
+*   You deployed an {{ product_title }} cluster on {{ aws_first }} that uses infrastructure that you provisioned.
+*   You installed the OpenShift CLI (`oc`).
+*   You installed the `jq` package.
+*   You downloaded the {{ aws_short }} CLI and installed it on your computer. See
+[Install the {{ aws_short }} CLI Using the Bundled Installer (Linux, macOS, or Unix)](https://docs.aws.amazon.com/cli/latest/userguide/install-bundle.html).
+
+**Procedure**
+
+1.  Find the routes to create.
+    *   To create a wildcard record, use `*.apps.<cluster_name>.<domain_name>`, where `<cluster_name>` is your cluster name, and `<domain_name>` is the Route 53 base domain for your {{ product_title }} cluster.
+    *   To create specific records, you must create a record for each route that your cluster uses, as shown in the output of the following command:
+        ```terminal
+        $ oc get --all-namespaces -o jsonpath='{range .items[*]}{range .status.ingress[*]}{.host}{"\n"}{end}{end}' routes
+        ```
+        ```terminal title="Example output"
+        oauth-openshift.apps.<cluster_name>.<domain_name>
+        console-openshift-console.apps.<cluster_name>.<domain_name>
+        downloads-openshift-console.apps.<cluster_name>.<domain_name>
+        alertmanager-main-openshift-monitoring.apps.<cluster_name>.<domain_name>
+        prometheus-k8s-openshift-monitoring.apps.<cluster_name>.<domain_name>
+        ```
+1.  Retrieve the Ingress Operator load balancer status and note the value of the external IP address that it uses, which the `EXTERNAL-IP` column displays:
+    ```terminal
+    $ oc -n openshift-ingress get service router-default
+    ```
+    ```terminal title="Example output"
+    NAME             TYPE           CLUSTER-IP      EXTERNAL-IP                            PORT(S)                      AGE
+    router-default   LoadBalancer   172.30.62.215   ab3...28.us-east-2.elb.amazonaws.com   80:31499/TCP,443:30693/TCP   5m
+    ```
+1.  Locate the hosted zone ID for the load balancer:
+    ```terminal
+    $ aws elb describe-load-balancers | jq -r '.LoadBalancerDescriptions[] | select(.DNSName == "<external_ip>").CanonicalHostedZoneNameID'
+    ```
+
+    For `<external_ip>`, specify the value of the external IP address of the Ingress Operator load balancer that you obtained.
+    ```terminal title="Example output"
+    Z3AADJGX6KTTL2
+    ```
+
+
+    The output of this command is the load balancer hosted zone ID.
+1.  Obtain the public hosted zone ID for your cluster’s domain:
+    ```terminal
+    $ aws route53 list-hosted-zones-by-name \
+                --dns-name "<domain_name>" \
+                --query 'HostedZones[? Config.PrivateZone != `true` && Name == `<domain_name>.`].Id'
+                --output text
+    ```
+
+    For `<domain_name>`, specify the Route 53 base domain for your {{ product_title }} cluster.
+    ```terminal title="Example output"
+    /hostedzone/Z3URY6TWQ91KVV
+    ```
+
+    The command output displays the public hosted zone ID for your domain. In this example, it is `Z3URY6TWQ91KVV`.
+1.  Add the alias records to your private zone:
+    ```terminal
+    $ aws route53 change-resource-record-sets --hosted-zone-id "<private_hosted_zone_id>" --change-batch '{
+    >   "Changes": [
+    >     {
+    >       "Action": "CREATE",
+    >       "ResourceRecordSet": {
+    >         "Name": "\\052.apps.<cluster_domain>",
+    >         "Type": "A",
+    >         "AliasTarget":{
+    >           "HostedZoneId": "<hosted_zone_id>",
+    >           "DNSName": "<external_ip>.",
+    >           "EvaluateTargetHealth": false
+    >         }
+    >       }
+    >     }
+    >   ]
+    > }'
+    ```
+
+    where:
+
+    `<private_hosted_zone_id>`
+    :   Specifies the value from the output of the CloudFormation template for DNS and load balancing.
+
+    `<cluster_domain>`
+    :   Specifies the domain or subdomain that you use with your {{ product_title }} cluster.
+
+    `<hosted_zone_id>`
+    :   Specifies the public hosted zone ID for the load balancer that you obtained.
+
+    `<external_ip>`
+    :   Specifies the value of the external IP address of the Ingress Operator load balancer. Ensure that you include the trailing period (`.`) in this parameter value.
+
+1.  Add the records to your public zone:
+    ```terminal
+    $ aws route53 change-resource-record-sets --hosted-zone-id "<public_hosted_zone_id>"" --change-batch '{
+    >   "Changes": [
+    >     {
+    >       "Action": "CREATE",
+    >       "ResourceRecordSet": {
+    >         "Name": "\\052.apps.<cluster_domain>",
+    >         "Type": "A",
+    >         "AliasTarget":{
+    >           "HostedZoneId": "<hosted_zone_id>",
+    >           "DNSName": "<external_ip>.",
+    >           "EvaluateTargetHealth": false
+    >         }
+    >       }
+    >     }
+    >   ]
+    > }'
+    ```
+
+    where:
+
+    `<public_hosted_zone_id>`
+    :   Specifies the public hosted zone for your domain.
+
+    `<cluster_domain>`
+    :   Specifies the domain or subdomain that you use with your {{ product_title }} cluster.
+
+    `<hosted_zone_id>`
+    :   Specifies the public hosted zone ID for the load balancer that you obtained.
+
+    `<external_ip>`
+    :   Specifies the value of the external IP address of the Ingress Operator load balancer. Ensure that you include the trailing period (`.`) in this parameter value.

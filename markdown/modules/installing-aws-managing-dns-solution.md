@@ -1,0 +1,35 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling a user-managed DNS {id="installation-aws-enabling-user-managed-DNS_{{ context }}"}
+
+You can install a cluster with a domain name server (DNS) solution that you manage instead of the default cluster-provisioned DNS solution that uses the Route 53 service for {{ aws_first }}. {._abstract}
+
+For example, your organization’s security policies might not allow the use of public DNS services such as {{ aws_full }} DNS. In such scenarios, you can use your own DNS service to bypass the public DNS service and manage your own DNS for the IP addresses of the API and Ingress services.
+
+If you enable user-managed DNS during installation, the installation program provisions DNS records for the API and Ingress services only within the cluster. To ensure access from outside the cluster, you must provision the DNS records in an external DNS service of your choice for the API and Ingress services after installation.
+
+{%- set FeatureName = "User-provisioned DNS" %}
+{% leveloffset +1 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}
+
+**Procedure**
+
+*   Before you deploy your cluster, use a text editor to open the `install-config.yaml` file  and add the following stanza:
+    *   To enable user-managed DNS:
+        ```yaml
+        featureSet: CustomNoUpgrade
+        featureGates: ["AWSClusterHostedDNSInstall=true"]
+
+        # ...
+
+        platform:
+          aws:
+            userProvisionedDNS: Enabled
+        ```
+
+        where:
+
+        `userProvisionedDNS`
+        :   Enables user-provisioned DNS management.
+
+**Next steps**
+
+For information about provisioning your DNS records for the API server and the Ingress services, see "Provisioning your own DNS records".

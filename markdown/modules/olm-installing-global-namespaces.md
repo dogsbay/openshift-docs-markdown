@@ -1,0 +1,68 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Installing global Operators in custom namespaces {id="olm-installing-global-namespaces_{{ context }}"}
+
+To avoid installing global Operators in the default `openshift-operators` namespace, you can create a custom global namespace in {{ product_title }} and install Operators there instead. {._abstract}
+
+When installing Operators with the {{ product_title }} web console, the default behavior installs Operators that support the **All namespaces** install mode into the default `openshift-operators` global namespace. This can cause issues related to shared install plans and update policies between all Operators in the namespace. For more details on these limitations, see "Multitenancy and Operator colocation".
+
+**Prerequisites**
+
+{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+*   You have access to the cluster as a user with the `cluster-admin` role.
+{% endif %}
+{% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+*   You have access to the cluster as a user with the `dedicated-admin` role.
+{% endif %}
+
+**Procedure**
+
+{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+1.  Before installing the Operator, create a namespace for the installation of your desired Operator. This installation namespace will become the custom global namespace:
+    1.  Define a `Namespace` resource and save the YAML file, for example, `global-operators.yaml`:
+        ```yaml
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: global-operators
+        ```
+    1.  Create the namespace by running the following command:
+        ```terminal
+        $ oc create -f global-operators.yaml
+        ```
+{%- endif %}
+{%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+1.  Before installing the Operator, create a namespace for the installation of your desired Operator. You can do this by creating a project. The namespace for this project will become the custom global namespace:
+    ```terminal
+    $ oc new-project global-operators
+    ```
+{% endif %}
+1.  Create a custom _global Operator group_, which is an Operator group that watches all namespaces:
+    1.  Define an `OperatorGroup` resource and save the YAML file, for example, `global-operatorgroup.yaml`. Omit both the `spec.selector` and `spec.targetNamespaces` fields to make it a _global Operator group_, which selects all namespaces:
+        ```yaml
+        apiVersion: operators.coreos.com/v1
+        kind: OperatorGroup
+        metadata:
+          name: global-operatorgroup
+          namespace: global-operators
+        ```
+
+        :::note
+
+        The `status.namespaces` of a created global Operator group contains the empty string (`""`), which signals to a consuming Operator that it should watch all namespaces.
+        
+        :::
+
+    1.  Create the Operator group by running the following command:
+        ```terminal
+        $ oc create -f global-operatorgroup.yaml
+        ```
+
+**Next steps**
+
+*   Install the desired Operator in your custom global namespace. Because the web console does not populate the **Installed Namespace** menu during Operator installation with custom global namespaces, the install task can only be performed with the OpenShift CLI (`oc`). For a detailed installation procedure, see "Installing from software catalog by using the CLI".
+
+    :::note
+
+    When you initiate the Operator installation, if the Operator has dependencies, the dependencies are also automatically installed in the custom global namespace. As a result, it is then valid for the dependency Operators to have the same update policy and shared install plans.
+    
+    :::

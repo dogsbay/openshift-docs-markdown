@@ -1,0 +1,107 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Exposing PCI host devices in the cluster using the CLI {id="virt-exposing-pci-device-in-cluster-cli_{{ context }}"}
+
+To expose PCI host devices in the cluster, add details about the PCI devices to the `spec.permittedHostDevices.pciHostDevices` array of the `HyperConverged` custom resource (CR). {._abstract}
+
+**Prerequisites**
+
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Edit the `HyperConverged` CR in your default editor by running the following command:
+    ```terminal
+    $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+    ```
+1.  Add the PCI device information to the `spec.permittedHostDevices.pciHostDevices` array.
+
+    Example configuration file:
+    ```yaml
+    apiVersion: hco.kubevirt.io/v1beta1
+    kind: HyperConverged
+    metadata:
+      name: kubevirt-hyperconverged
+      namespace: {{ CNVNamespace }}
+    spec:
+      permittedHostDevices:
+        pciHostDevices:
+        - pciDeviceSelector: "10DE:1DB6"
+          resourceName: "nvidia.com/GV100GL_Tesla_V100"
+        - pciDeviceSelector: "10DE:1EB8"
+          resourceName: "nvidia.com/TU104GL_Tesla_T4"
+        - pciDeviceSelector: "8086:6F54"
+          resourceName: "intel.com/qat"
+          externalResourceProvider: true
+    # ...
+    ```
+    *   `spec.permittedHostDevices` specifies the host devices that are permitted to be used in the cluster.
+    *   `spec.permittedHostDevices.pciHostDevices` specifies the list of PCI devices available on the node.
+    *   `spec.permittedHostDevices.pciHostDevices.pciDeviceSelector` specifies the vendor ID and the device ID required to identify the PCI device.
+    *   `spec.permittedHostDevices.pciHostDevices.resourceName` specifies the name of a PCI host device.
+    *   `spec.permittedHostDevices.pciHostDevices.externalResourceProvider` is an optional setting. Setting this field to `true` indicates that the resource is provided by an external device plugin. {{ VirtProductName }} allows the usage of this device in the cluster but leaves the allocation and monitoring to an external device plugin.
+
+        :::note
+
+        The above example snippet shows two PCI host devices that are named `nvidia.com/GV100GL_Tesla_V100` and `nvidia.com/TU104GL_Tesla_T4` added to the list of permitted host devices in the `HyperConverged` CR. These devices have been tested and verified to work with {{ VirtProductName }}.
+        
+        :::
+
+
+        Example configuration file for an {{ ibm_name }} Spyre device on `s390x` architecture:
+        ```yaml
+        apiVersion: hco.kubevirt.io/v1beta1
+        kind: HyperConverged
+        metadata:
+          name: kubevirt-hyperconverged
+          namespace: {{ CNVNamespace }}
+        spec:
+          permittedHostDevices:
+            pciHostDevices:
+            - pciDeviceSelector: "1014:06a8"
+              resourceName: "ibm.com/spyre"
+        # ...
+        ```
+1.  Save your changes and exit the editor.
+
+**Verification**
+
+*   Verify that the PCI host devices were added to the node by running the following command. The example output shows that there is one device each associated with the `nvidia.com/GV100GL_Tesla_V100`, `nvidia.com/TU104GL_Tesla_T4`, and `intel.com/qat` resource names.
+    ```terminal
+    $ oc describe node <node_name>
+    ```
+
+    Example output:
+    ```terminal
+    Capacity:
+      cpu:                            64
+      devices.kubevirt.io/kvm:        110
+      devices.kubevirt.io/tun:        110
+      devices.kubevirt.io/vhost-net:  110
+      ephemeral-storage:              915128Mi
+      hugepages-1Gi:                  0
+      hugepages-2Mi:                  0
+      memory:                         131395264Ki
+      nvidia.com/GV100GL_Tesla_V100   1
+      nvidia.com/TU104GL_Tesla_T4     1
+      intel.com/qat:                  1
+      pods:                           250
+    Allocatable:
+      cpu:                            63500m
+      devices.kubevirt.io/kvm:        110
+      devices.kubevirt.io/tun:        110
+      devices.kubevirt.io/vhost-net:  110
+      ephemeral-storage:              863623130526
+      hugepages-1Gi:                  0
+      hugepages-2Mi:                  0
+      memory:                         130244288Ki
+      nvidia.com/GV100GL_Tesla_V100   1
+      nvidia.com/TU104GL_Tesla_T4     1
+      intel.com/qat:                  1
+      pods:                           250
+    ```
+
+    :::note
+
+    When using an {{ ibm_name }} Spyre device on `s390x` architecture, the allocated device is shown as follows: `ibm.com/spyre:         1`.
+    
+    :::

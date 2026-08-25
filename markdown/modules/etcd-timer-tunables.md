@@ -1,0 +1,25 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# {{ product_title }} timer tunables for etcd {id="etcd-timer-tunables_{{ context }}"}
+
+{{ product_title }} sets platform-specific etcd election timeout and heartbeat interval values. Knowing these tunables helps you align network and disk requirements with expected cluster behavior. {._abstract}
+
+{{ product_title }} maintains etcd timers that are optimized for each platform. {{ product_title }} has prescribed validated values that are optimized for each platform provider. The default etcd timers with `platform=none` or `platform=metal` are as follows:
+
+```terminal
+- name: ETCD_ELECTION_TIMEOUT
+  value: "1000"
+  ...
+- name: ETCD_HEARTBEAT_INTERVAL
+  value: "100"
+```
+
+From an etcd perspective, the two key values are election timeout and heartbeat interval:
+
+
+Heartbeat interval
+:   The frequency with which the leader notifies followers that it is still the leader.
+
+Election timeout
+:   This timeout is how long a follower node will go without hearing a heartbeat before it attempts to become leader itself.
+
+These values do not provide the whole story for the control plane or even etcd. An etcd cluster is sensitive to disk latencies. Because etcd must persist proposals to its log, disk activity from other processes might cause long fsync latencies. The consequence is that etcd might miss heartbeats, causing request timeouts and temporary leader loss. During a leader loss and reelection, the Kubernetes API cannot process any request that causes a service-affecting event and instability of the cluster.

@@ -1,0 +1,101 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating and exposing mediated devices {id="virt-creating-exposing-mediated-devices_{{ context }}"}
+
+As an administrator, you can create mediated devices and expose them to the cluster by editing the `HyperConverged` custom resource (CR). Before you edit the CR, explore a worker node to find the configuration values that are specific to your hardware devices. {._abstract}
+
+**Prerequisites**
+
+*   You installed the {{ oc_first }}.
+*   You enabled the Input-Output Memory Management Unit (IOMMU) driver.
+*   If your hardware vendor provides drivers, you installed them on the nodes where you want to create mediated devices.
+    *   If you use NVIDIA cards, you [installed the NVIDIA GRID driver](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/openshift-virtualization.html).
+
+**Procedure**
+
+1.  Identify the name selector and resource name values for the mediated devices by exploring a worker node:
+    1.  Start a debugging session with the worker node by using the `oc debug` command. For example:
+        ```terminal
+        $ oc debug node/node-11.redhat.com
+        ```
+    1.  Change the root directory of the shell process to the file system of the host node by running the following command:
+        ```terminal
+        # chroot /host
+        ```
+    1.  Navigate to the `mdev_bus` directory and view its contents. Each subdirectory name is a PCI address of a physical GPU. For example:
+        ```terminal
+        # cd sys/class/mdev_bus && ls
+        ```
+
+        Example output:
+        ```terminal
+        0000:4b:00.4
+        ```
+    1.  Go to the directory for your physical device and list the supported mediated device types as defined by the hardware vendor. For example:
+        ```terminal
+        # cd 0000:4b:00.4 && ls mdev_supported_types
+        ```
+
+        Example output:
+        ```terminal
+        nvidia-742  nvidia-744	nvidia-746  nvidia-748	nvidia-750  nvidia-752
+        nvidia-743  nvidia-745	nvidia-747  nvidia-749	nvidia-751  nvidia-753
+        ```
+    1.  Select the mediated device type that you want to use and identify its name selector value by viewing the contents of its `name` file. For example:
+        ```terminal
+        # cat nvidia-745/name
+        ```
+
+        Example output:
+        ```terminal
+        NVIDIA A2-2Q
+        ```
+1.  Open the `HyperConverged` CR in your default editor by running the following command:
+    ```terminal
+    $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+    ```
+1.  Create and expose the mediated devices by updating the configuration:
+    1.  Expose the mediated devices to the cluster by adding the `mdevNameSelector` and `resourceName` values to the `spec.permittedHostDevices.mediatedDevices` stanza. The `resourceName` value is based on the `mdevNameSelector` value, but you use underscores instead of spaces.
+
+        Example `HyperConverged` CR:
+        ```yaml
+        apiVersion: hco.kubevirt.io/v1beta1
+        kind: HyperConverged
+        metadata:
+          name: kubevirt-hyperconverged
+          namespace: {{ CNVNamespace }}
+        spec:
+          permittedHostDevices:
+            mediatedDevices:
+            - mdevNameSelector: NVIDIA A2-2Q
+              resourceName: nvidia.com/NVIDIA_A2-2Q
+              externalResourceProvider: true
+            - mdevNameSelector: NVIDIA A2-4Q
+              resourceName: nvidia.com/NVIDIA_A2-4Q
+              externalResourceProvider: true
+        # ...
+        ```
+
+        where:
+
+        `mdevNameSelector`
+        :   Specifies the mediated devices that map to this value on the host.
+
+
+`resourceName`
+:   Specifies the matching resource name that is allocated on the node.
+
+
+`externalResourceProvider`
+:   Specifies that the device is handled by an external provider, such as the NVIDIA GPU Operator.
+
+1.  Save your changes and exit the editor.
+
+**Verification**
+
+*   Confirm that the virtual GPU is attached to the node by running the following command:
+    ```terminal
+    $ oc get node <node_name> -o json \
+      | jq '.status.allocatable \
+      | with_entries(select(.key | startswith("nvidia.com/"))) \
+      | with_entries(select(.value != "0"))'
+    ```

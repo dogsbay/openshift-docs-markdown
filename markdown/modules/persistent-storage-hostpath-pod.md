@@ -1,0 +1,38 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Mounting the hostPath share in a privileged pod {id="persistent-storage-hostpath-pod_{{ context }}"}
+
+Mount a hostPath share in a privileged pod by referencing an existing persistent volume claim (PVC) in the pod specification. The pod must run as privileged to access the node’s storage. Do not mount to the container root or any path that matches the host to avoid corrupting the host system. {._abstract}
+
+After the PVC has been created, it can be used inside by an application. The following example demonstrates mounting this share inside of a pod.
+
+**Prerequisites**
+
+*   A persistent volume claim exists that is mapped to the underlying hostPath share.
+
+**Procedure**
+
+*   Create a privileged pod that mounts the existing persistent volume claim:
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-name
+    spec:
+      containers:
+        ...
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /data
+          name: hostpath-privileged
+      ...
+      securityContext: {}
+      volumes:
+        - name: hostpath-privileged
+          persistentVolumeClaim:
+            claimName: task-pvc-volume
+    ```
+    *   `metadata.name`: Specifies the name of the pod.
+    *   `spec.containers.securityContext.privileged`: The pod must run as privileged to access the node’s storage.
+    *   `spec.containers.volumeMounts.mountPath`: The path to mount the host path share inside the privileged pod. Do not mount to the container root, `/`, or any path that is the same in the host and the container. This can corrupt your host system if the container is sufficiently privileged, such as the host `/dev/pts` files. It is safe to mount the host by using `/host`.
+    *   `spec.volumes.persistentVolumeClaim.claimName`: Specifies the name of the `PersistentVolumeClaim` object that has been previously created.

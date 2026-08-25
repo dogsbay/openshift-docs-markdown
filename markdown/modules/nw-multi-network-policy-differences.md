@@ -1,0 +1,29 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Differences between multi-network policy and network policy {id="nw-multi-network-policy-differences_{{ context }}"}
+
+Although the `MultiNetworkPolicy` API implements the `NetworkPolicy` API, ensure that you understand the following key differences between the two policies: {._abstract}
+
+*   You must use the `MultiNetworkPolicy` API, as demonstrated in the following example configuration:
+    ```yaml
+    apiVersion: k8s.cni.cncf.io/v1beta1
+    kind: MultiNetworkPolicy
+    # ...
+    ```
+*   You must use the `multi-networkpolicy` resource name when using the CLI to interact with multi-network policies. For example, you can view a multi-network policy object with the `oc get multi-networkpolicy <name>` command where `<name>` is the name of a multi-network policy.
+*   You can use the `k8s.v1.cni.cncf.io/policy-for` annotation on a `MultiNetworkPolicy` object to point to a `NetworkAttachmentDefinition` (NAD) custom resource (CR). The NAD CR defines the network to which the policy applies. The following example multi-network policy includes the `k8s.v1.cni.cncf.io/policy-for` annotation:
+    ```yaml
+    apiVersion: k8s.cni.cncf.io/v1beta1
+    kind: MultiNetworkPolicy
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/policy-for:<namespace_name>/<network_name>
+    # ...
+    ```
+
+    where:
+
+    `<namespace_name>`
+    :   Specifies the namespace name.
+
+    `<network_name>`
+    :   Specifies the name of a network attachment definition.

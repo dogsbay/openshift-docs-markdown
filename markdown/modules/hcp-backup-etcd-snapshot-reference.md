@@ -1,0 +1,14 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Condition codes for the etcd snapshot method {id="hcp-backup-etcd-snapshot-reference_{{ context }}"}
+
+During the backup and restore process with the etcd snapshot method, you might see messages about the condition of {{ hcp }} resources. {._abstract}
+
+**Explanations of conditions during etcd snapshot backup and restore processes**
+
+| Resource | Condition, field, or annotation | Meaning |
+| --- | --- | --- |
+| `HCPEtcdBackup` | `BackupCompleted` | Tracks the backup lifecycle: `InProgress`, `Succeeded`, `Failed`, `Rejected`, or `EtcdUnhealthy`. |
+| `HostedControlPlane` | `EtcdSnapshotRestored` | This value is set to `True` after etcd is restored from the snapshot. |
+| `HostedCluster` | `Status.LastSuccessfulEtcdBackupURL` | Persists the last snapshot URL. After a successful backup, the HyperShift Operator sets this condition. |
+| `HostedCluster` | `etcd-snapshot-url` | The {{ oadp_short }} plugin inserts this annotation during the backup process. During the restore process, the plugin reads this annotation to set the `RestoreSnapshotURL` value. |
+| `HostedCluster` | `restored-from-backup` | This annotation is set during the restore process. It is removed after the `HostedClusterRestoredFromBackup` condition is `True`. |

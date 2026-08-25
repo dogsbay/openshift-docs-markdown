@@ -1,0 +1,109 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Packaging your AI model into an OCI image {id="microshift-rhoai-model-package-oci_{{ context }}"}
+
+You can package your model into an OCI image and use the ModelCar approach to help you set up offline environments. With the ModelCar approach, your model can be embedded just like any other container image. {._abstract}
+
+
+:::note
+
+If you already have S3-compatible object storage or a configured persistent volume claim, you can upload your AI model to those resources, but only the ModelCar approach is tested and supported.
+
+:::
+
+
+**Prerequisites**
+
+*   You have root user access to your machine.
+*   The {{ oc_first }} is installed.
+*   Podman is installed.
+*   Your model is ready to use.
+*   You understand the concepts in the "How to build a ModelCar container" section of the following article about building an OCI image suitable for an vLLM model server, [Build and deploy a ModelCar container in OpenShift AI](https://developers.redhat.com/articles/2025/01/30/build-and-deploy-modelcar-container-openshift-ai).
+
+    :::note
+
+    The exact directory structure depends on the model server. The following example uses a Containerfile with a ResNet-50 model that is compatible with the {{ ovms }} {{ ov }}. {{ ov }} generally does not require an additional hardware accelerator.
+    
+    :::
+
+
+**Procedure**
+
+1.  Prepare a Containerfile with a compatible model and model server.
+    ```text title="Example Containerfile with a ResNet-50 model used with the OVMS"
+    FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
+    RUN microdnf install -y wget && microdnf clean all
+    RUN mkdir -p /models/1 && chmod -R 755 /models/1
+    RUN wget -q -P /models/1 \
+      https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/2/resnet50-binary-0001/FP32-INT1/resnet50-binary-0001.bin \
+      https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/2/resnet50-binary-0001/FP32-INT1/resnet50-binary-0001.xml
+    ```
+1.  Set the `IMAGE_REF` environment variable to simplify your process by running the following command:
+    ```terminal
+    $ IMAGE_REF=_<ovms-resnet50:test>_
+    ```
+
+    where:
+
+    `_<ovms-resnet50:test>_`
+    :   Specifies the name of your image reference. In this example, the `_<repo:tag>_` format is used. Your image reference name is specific to your use case.
+
+1.  Build the Containerfile by running the following command:
+    ```terminal
+    $ sudo podman build -t $IMAGE_REF
+    ```
+
+    Because CRI-O and Podman share storage, using `sudo` is required to make the image part of the root’s container storage and usable by {{ microshift_short }}.
+    ```text title="Example output"
+    STEP 1/4: FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
+    Trying to pull registry.access.redhat.com/ubi9/ubi-minimal:latest...
+    Getting image source signatures
+    Checking if image destination supports signatures
+    Copying blob 533b69cfd644 done   |
+    Copying blob 863e9a7e2102 done   |
+    Copying config 098048e6f9 done   |
+    Writing manifest to image destination
+    Storing signatures
+    STEP 2/4: RUN microdnf install -y wget && microdnf clean all
+    << SNIP >>
+    --> 4c74352ad42e
+    STEP 3/4: RUN mkdir -p /models/1 && chmod -R 755 /models/1
+    --> bfd31acb1e81
+    STEP 4/4: RUN wget -q -P /models/1   https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/2/resnet50-binary-0001/FP32-INT1/resnet50-binary-0001.bin   https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/2/resnet50-binary-0001/FP32-INT1/resnet50-binary-0001.xml
+    COMMIT ovms-resnet50:test
+    --> 375b265c1c4b
+    Successfully tagged localhost/ovms-resnet50:test
+    375b265c1c4bc6f0a059c8739fb2b3a46e1b563728f6d9c51f26f29bb2c87
+    ```
+1.  Optional: Push the Containerfile to your registry by running the following command:
+    ```terminal
+    $ sudo podman push $IMAGE_REF
+    ```
+
+    :::important
+
+    For offline use cases, include a tag other than `latest`. If you use the `latest` tag, the container that fetches and sets up the model is configured with the `imagePullPolicy:` parameter set to `Always` and the local image is ignored. If you use any other tag than `latest`, the `imagePullPolicy:` parameter is set to `IfNotPresent`.
+    
+    :::
+
+
+**Verification**
+
+*   Verify that the image exists by running the following command:
+    ```terminal
+    $ sudo podman images _<ovms-resnet50>_
+    ```
+
+    where:
+
+    `_<ovms-resnet50>_`
+    :   Specifies the name of your image reference. 
+    ```text title="Example output"
+    REPOSITORY                TAG   IMAGE ID        CREATED         SIZE
+    localhost/ovms-resnet50   test  375b265c1c4b    3 minutes ago   136 MB
+    ```
+
+**Next steps**
+
+*   Configure a model-serving runtime.
+*   Confirm that your AI model is ready for inferencing.
+*   Make requests against the model server.

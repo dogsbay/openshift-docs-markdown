@@ -1,0 +1,369 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# PTP events REST API v1 endpoints {id="cnf-fast-event-notifications-api-refererence_{{ context }}"}
+
+## api/ocloudNotifications/v1/subscriptions {id="api-ocloud-notifications-v1-subscriptions_{{ context }}"}
+
+### HTTP method {id="_http_method"}
+
+`GET api/ocloudNotifications/v1/subscriptions`
+
+### Description {id="_description"}
+
+Returns a list of subscriptions. If subscriptions exist, a `200 OK` status code is returned along with the list of subscriptions.
+
+```json title="Example API response"
+[
+ {
+  "id": "75b1ad8f-c807-4c23-acf5-56f4b7ee3826",
+  "endpointUri": "http://localhost:9089/event",
+  "uriLocation": "http://localhost:8089/api/ocloudNotifications/v1/subscriptions/75b1ad8f-c807-4c23-acf5-56f4b7ee3826",
+  "resource": "/cluster/node/compute-1.example.com/ptp"
+ }
+]
+```
+
+### HTTP method {id="_http_method"}
+
+`POST api/ocloudNotifications/v1/subscriptions`
+
+### Description {id="_description"}
+
+Creates a new subscription for the required event by passing the appropriate payload.
+If a subscription is successfully created, or if it already exists, a `201 Created` status code is returned.
+You can subscribe to the following PTP events:
+
+*   `lock-state` events
+*   `os-clock-sync-state` events
+*   `clock-class` events
+*   `gnss-sync-status` events
+*   `sync-state` events
+
+**Query parameters**
+
+| Parameter | Type |
+| --- | --- |
+| subscription | data |
+
+```json title="Example PTP events subscription payload"
+{
+  "uriLocation": "http://localhost:8089/api/ocloudNotifications/v1/subscriptions",
+  "resource": "/cluster/node/compute-1.example.com/ptp"
+}
+```
+
+```json title="Example PTP lock-state events subscription payload"
+{
+"endpointUri": "http://localhost:8989/event",
+"resource": "/cluster/node/{node_name}/sync/ptp-status/lock-state"
+}
+```
+
+```json title="Example PTP os-clock-sync-state events subscription payload"
+{
+"endpointUri": "http://localhost:8989/event",
+"resource": "/cluster/node/{node_name}/sync/sync-status/os-clock-sync-state"
+}
+```
+
+```json title="Example PTP clock-class events subscription payload"
+{
+"endpointUri": "http://localhost:8989/event",
+"resource": "/cluster/node/{node_name}/sync/ptp-status/clock-class"
+}
+```
+
+```json title="Example PTP gnss-sync-status events subscription payload"
+{
+"endpointUri": "http://localhost:8989/event",
+"resource": "/cluster/node/{node_name}/sync/gnss-status/gnss-sync-status"
+}
+```
+
+```json title="Example sync-state subscription payload"
+{
+"endpointUri": "http://localhost:8989/event",
+"resource": "/cluster/node/{node_name}/sync/sync-status/sync-state"
+}
+```
+
+### HTTP method {id="_http_method"}
+
+`DELETE api/ocloudNotifications/v1/subscriptions`
+
+### Description {id="_description"}
+
+Deletes all subscriptions.
+
+```json title="Example API response"
+{
+"status": "deleted all subscriptions"
+}
+```
+
+## api/ocloudNotifications/v1/subscriptions/{{ subscription_id }} {id="api-ocloud-notifications-v1-subscriptions-subscription_id_{{ context }}"}
+
+### HTTP method {id="_http_method"}
+
+`GET api/ocloudNotifications/v1/subscriptions/{{ subscription_id }}`
+
+### Description {id="_description"}
+
+Returns details for the subscription with ID `subscription_id`.
+
+**Global path parameters**
+
+| Parameter | Type |
+| --- | --- |
+| `subscription_id` | string |
+
+```json title="Example API response"
+{
+  "id":"48210fb3-45be-4ce0-aa9b-41a0e58730ab",
+  "endpointUri": "http://localhost:9089/event",
+  "uriLocation":"http://localhost:8089/api/ocloudNotifications/v1/subscriptions/48210fb3-45be-4ce0-aa9b-41a0e58730ab",
+  "resource":"/cluster/node/compute-1.example.com/ptp"
+}
+```
+
+### HTTP method {id="_http_method"}
+
+`DELETE api/ocloudNotifications/v1/subscriptions/{{ subscription_id }}`
+
+### Description {id="_description"}
+
+Deletes the subscription with ID `subscription_id`.
+
+**Global path parameters**
+
+| Parameter | Type |
+| --- | --- |
+| `subscription_id` | string |
+
+```json title="Example API response"
+{
+"status": "OK"
+}
+```
+
+## api/ocloudNotifications/v1/health {id="api-ocloudnotifications-v1-health_{{ context }}"}
+
+### HTTP method {id="_http_method"}
+
+`GET api/ocloudNotifications/v1/health/`
+
+### Description {id="_description"}
+
+Returns the health status for the `ocloudNotifications` REST API.
+
+```terminal title="Example API response"
+OK
+```
+
+## api/ocloudNotifications/v1/publishers {id="api-ocloudnotifications-v1-publishers_{{ context }}"}
+
+
+:::important
+
+The `api/ocloudNotifications/v1/publishers` endpoint is only available from the cloud-event-proxy container in the PTP Operator managed pod.
+It is not available for consumer applications in the application pod.
+
+:::
+
+
+### HTTP method {id="_http_method"}
+
+`GET api/ocloudNotifications/v1/publishers`
+
+### Description {id="_description"}
+
+Returns a list of publisher details for the cluster node.
+The system generates notifications when the relevant equipment state changes.
+
+You can use equipment synchronization status subscriptions together to deliver a detailed view of the overall synchronization health of the system.
+
+```json title="Example API response"
+[
+  {
+    "id": "0fa415ae-a3cf-4299-876a-589438bacf75",
+    "endpointUri": "http://localhost:9085/api/ocloudNotifications/v1/dummy",
+    "uriLocation": "http://localhost:9085/api/ocloudNotifications/v1/publishers/0fa415ae-a3cf-4299-876a-589438bacf75",
+    "resource": "/cluster/node/compute-1.example.com/sync/sync-status/os-clock-sync-state"
+  },
+  {
+    "id": "28cd82df-8436-4f50-bbd9-7a9742828a71",
+    "endpointUri": "http://localhost:9085/api/ocloudNotifications/v1/dummy",
+    "uriLocation": "http://localhost:9085/api/ocloudNotifications/v1/publishers/28cd82df-8436-4f50-bbd9-7a9742828a71",
+    "resource": "/cluster/node/compute-1.example.com/sync/ptp-status/clock-class"
+  },
+  {
+    "id": "44aa480d-7347-48b0-a5b0-e0af01fa9677",
+    "endpointUri": "http://localhost:9085/api/ocloudNotifications/v1/dummy",
+    "uriLocation": "http://localhost:9085/api/ocloudNotifications/v1/publishers/44aa480d-7347-48b0-a5b0-e0af01fa9677",
+    "resource": "/cluster/node/compute-1.example.com/sync/ptp-status/lock-state"
+  },
+  {
+    "id": "778da345d-4567-67b0-a43f0-rty885a456",
+    "endpointUri": "http://localhost:9085/api/ocloudNotifications/v1/dummy",
+    "uriLocation": "http://localhost:9085/api/ocloudNotifications/v1/publishers/778da345d-4567-67b0-a43f0-rty885a456",
+    "resource": "/cluster/node/compute-1.example.com/sync/gnss-status/gnss-sync-status"
+  }
+]
+```
+
+## api/ocloudNotifications/v1/{{ resource_address }}/CurrentState {id="resource-address-current-state_{{ context }}"}
+
+### HTTP method {id="_http_method"}
+
+`GET api/ocloudNotifications/v1/cluster/node/{{ node_name }}/sync/ptp-status/lock-state/CurrentState`
+
+`GET api/ocloudNotifications/v1/cluster/node/{{ node_name }}/sync/sync-status/os-clock-sync-state/CurrentState`
+
+`GET api/ocloudNotifications/v1/cluster/node/{{ node_name }}/sync/ptp-status/clock-class/CurrentState`
+
+`GET api/ocloudNotifications/v1/cluster/node/{{ node_name }}/sync/sync-status/sync-state/CurrentState`
+
+`GET api/ocloudNotifications/v1/cluster/node/{{ node_name }}/sync/gnss-status/gnss-sync-state/CurrentState`
+
+### Description {id="_description"}
+
+Returns the current state of the `os-clock-sync-state`, `clock-class`, `lock-state`, `gnss-sync-status`, or `sync-state` events for the cluster node.
+
+*   `os-clock-sync-state` notifications describe the host operating system clock synchronization state. Can be in `LOCKED` or `FREERUN` state.
+*   `clock-class` notifications describe the current state of the PTP clock class.
+*   `lock-state` notifications describe the current status of the PTP equipment lock state. Can be in `LOCKED`, `HOLDOVER` or `FREERUN` state.
+*   `sync-state` notifications describe the current status of the least synchronized of the `ptp-status/lock-state` and
+`sync-status/os-clock-sync-state` endpoints.
+*   `gnss-sync-status` notifications describe the GNSS clock synchronization state.
+
+**Global path parameters**
+
+| Parameter | Type |
+| --- | --- |
+| `resource_address` | string |
+
+```json title="Example lock-state API response"
+{
+  "id": "c1ac3aa5-1195-4786-84f8-da0ea4462921",
+  "type": "event.sync.ptp-status.ptp-state-change",
+  "source": "/cluster/node/compute-1.example.com/sync/ptp-status/lock-state",
+  "dataContentType": "application/json",
+  "time": "2023-01-10T02:41:57.094981478Z",
+  "data": {
+    "version": "1.0",
+    "values": [
+      {
+        "resource": "/cluster/node/compute-1.example.com/ens5fx/master",
+        "dataType": "notification",
+        "valueType": "enumeration",
+        "value": "LOCKED"
+      },
+      {
+        "resource": "/cluster/node/compute-1.example.com/ens5fx/master",
+        "dataType": "metric",
+        "valueType": "decimal64.3",
+        "value": "29"
+      }
+    ]
+  }
+}
+```
+
+```json title="Example os-clock-sync-state API response"
+{
+  "specversion": "0.3",
+  "id": "4f51fe99-feaa-4e66-9112-66c5c9b9afcb",
+  "source": "/cluster/node/compute-1.example.com/sync/sync-status/os-clock-sync-state",
+  "type": "event.sync.sync-status.os-clock-sync-state-change",
+  "subject": "/cluster/node/compute-1.example.com/sync/sync-status/os-clock-sync-state",
+  "datacontenttype": "application/json",
+  "time": "2022-11-29T17:44:22.202Z",
+  "data": {
+    "version": "1.0",
+    "values": [
+      {
+        "resource": "/cluster/node/compute-1.example.com/CLOCK_REALTIME",
+        "dataType": "notification",
+        "valueType": "enumeration",
+        "value": "LOCKED"
+      },
+      {
+        "resource": "/cluster/node/compute-1.example.com/CLOCK_REALTIME",
+        "dataType": "metric",
+        "valueType": "decimal64.3",
+        "value": "27"
+      }
+    ]
+  }
+}
+```
+
+```json title="Example clock-class API response"
+{
+  "id": "064c9e67-5ad4-4afb-98ff-189c6aa9c205",
+  "type": "event.sync.ptp-status.ptp-clock-class-change",
+  "source": "/cluster/node/compute-1.example.com/sync/ptp-status/clock-class",
+  "dataContentType": "application/json",
+  "time": "2023-01-10T02:41:56.785673989Z",
+  "data": {
+    "version": "1.0",
+    "values": [
+      {
+        "resource": "/cluster/node/compute-1.example.com/ens5fx/master",
+        "dataType": "metric",
+        "valueType": "decimal64.3",
+        "value": "165"
+      }
+    ]
+  }
+}
+```
+
+```json title="Example sync-state API response"
+{
+    "specversion": "0.3",
+    "id": "8c9d6ecb-ae9f-4106-82c4-0a778a79838d",
+    "source": "/sync/sync-status/sync-state",
+    "type": "event.sync.sync-status.synchronization-state-change",
+    "subject": "/cluster/node/compute-1.example.com/sync/sync-status/sync-state",
+    "datacontenttype": "application/json",
+    "time": "2024-08-28T14:50:57.327585316Z",
+    "data":
+    {
+        "version": "1.0",
+        "values": [
+        {
+            "ResourceAddress": "/cluster/node/compute-1.example.com/sync/sync-status/sync-state",
+            "data_type": "notification",
+            "value_type": "enumeration",
+            "value": "LOCKED"
+        }]
+    }
+}
+```
+
+```json title="Example gnss-sync-status API response"
+{
+  "id": "435e1f2a-6854-4555-8520-767325c087d7",
+  "type": "event.sync.gnss-status.gnss-state-change",
+  "source": "/cluster/node/compute-1.example.com/sync/gnss-status/gnss-sync-status",
+  "dataContentType": "application/json",
+  "time": "2023-09-27T19:35:33.42347206Z",
+  "data": {
+    "version": "1.0",
+    "values": [
+      {
+        "resource": "/cluster/node/compute-1.example.com/ens2fx/master",
+        "dataType": "notification",
+        "valueType": "enumeration",
+        "value": "LOCKED"
+      },
+      {
+        "resource": "/cluster/node/compute-1.example.com/ens2fx/master",
+        "dataType": "metric",
+        "valueType": "decimal64.3",
+        "value": "5"
+      }
+    ]
+  }
+}
+```

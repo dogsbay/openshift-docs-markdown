@@ -1,0 +1,26 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Gathering data for specific resources {id="support-must-gather-targeted-collection-gathering-data_{{ context }}"}
+
+Instead of collecting data for the entire cluster, you can direct the `must-gather` tool to inspect a specific resource. This method is highly effective for isolating issues within a single project, Operator, or application. {._abstract}
+
+The `must-gather` tool uses `oc adm inspect` internally. You can specify what to inspect by passing the `inspect` command and its arguments after the `--` separator.
+
+**Procedure**
+
+*   To gather data for a specific namespace, such as `my-project`, run the following command:
+    ```terminal
+    $ oc adm must-gather --dest-dir=my-project-must-gather -- oc adm inspect ns/my-project
+    ```
+*   This command collects all standard resources within the `my-project` namespace, including logs from pods in that namespace, but excludes cluster-scoped resources.
+*   To gather data related to a specific Cluster Operator, such as `openshift-apiserver`, run the following command:
+    ```terminal
+    $ oc adm must-gather --dest-dir=apiserver-must-gather -- oc adm inspect clusteroperator/openshift-apiserver
+    ```
+*   To exclude rotated logs, such as `**.gz` or `**.1` files, from data collection, set the `REDUCE_LOGS` environment variable by running the following command:
+    ```terminal
+    $ oc adm must-gather -- REDUCE_LOGS=skip_rotated_logs /usr/bin/gather
+    ```
+*   To exclude logs entirely and significantly reduce the size of the `must-gather` archive, add a double dash (`--`) after `oc adm must-gather` command and add the `--no-logs` argument:
+    ```terminal
+    $ oc adm must-gather -- /usr/bin/gather --no-logs
+    ```

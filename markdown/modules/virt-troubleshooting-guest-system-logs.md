@@ -1,0 +1,15 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Guest system logs {id="virt-troubleshooting-guest-system-logs_{{ context }}"}
+
+To diagnose issues with virtual machine (VM) guests, you can configure access to and view their boot logs using the {{ product_title }} web console or the {{ oc_first }}.  {._abstract}
+
+If the guest VM has no network, you can access it using its VNC or serial console.
+
+This feature is disabled by default. If a VM does not explicitly have this setting enabled or disabled, it inherits the cluster-wide default setting.
+
+
+:::important
+
+If sensitive information such as credentials or other personally identifiable information (PII) is written to the serial console, it is logged with all other visible text. Use SSH to send sensitive data.
+
+:::

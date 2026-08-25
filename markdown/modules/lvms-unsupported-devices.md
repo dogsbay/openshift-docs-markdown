@@ -1,0 +1,79 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Devices not supported by {{ lvms }} {id="lvms-unsupported-devices_{{ context }}"}
+
+When adding device paths to the `LVMCluster` custom resource (CR), ensure devices are supported by {{ lvms }}. {{ lvms }} excludes unsupported devices to avoid complexity in managing logical volumes. {._abstract}
+
+If you do not specify any device path in the `deviceSelector` field, {{ lvms }} adds only the unused devices that it supports. 
+
+
+:::note
+
+To get information about the devices, run the following command:
+```terminal
+$ lsblk --paths --json -o \
+NAME,ROTA,TYPE,SIZE,MODEL,VENDOR,RO,STATE,KNAME,SERIAL,PARTLABEL,FSTYPE
+```
+
+:::
+
+
+{{ lvms }} does not support the following devices:
+
+
+Read-only devices
+:   Devices with the `ro` parameter set to `true`.
+
+
+Suspended devices
+:   Devices with the `state` parameter set to `suspended`.
+
+
+ROM devices
+:   Devices with the `type` parameter set to `rom`.
+
+
+LVM partition devices
+:   Devices with the `type` parameter set to `lvm`. 
+
+
+Devices with invalid partition labels
+:   Devices with the `partlabel` parameter set to `bios`, `boot`, or `reserved`.
+
+
+Devices with an invalid filesystem
+:   Devices with the `fstype` parameter set to any value other than `null` or `LVM2_member`.
+
+    :::important
+
+
+    {{ lvms }} supports devices with `fstype` parameter set to `LVM2_member` only if the devices do not contain children devices.
+    
+    :::
+
+
+
+Devices that are part of another volume group
+:   To get the information about the volume groups of the device, run the following command:
+    ```terminal
+    $ pvs <device-name>
+    ```
+
+    Where `<device-name>` is the device name.
+
+
+Devices with bind mounts
+:   To get the mount points of a device, run the following command:
+    ```terminal
+    $ cat /proc/1/mountinfo | grep <device-name>
+    ```
+
+    Where `<device-name>` is the device name.
+
+
+Devices that contain children devices
+
+    :::note
+
+:   It is recommended to wipe the device before using it in {{ lvms }} to prevent unexpected behavior.
+    
+    :::

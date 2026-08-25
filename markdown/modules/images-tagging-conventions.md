@@ -1,0 +1,30 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Image tag conventions {id="images-tagging-conventions_{{ context }}"}
+
+Image tag naming conventions in {{ product_title }} provide guidelines for creating tags that enable effective image pruning and maintain manageable image streams. Use consistent naming patterns to avoid tags that point to single revisions and never update. {._abstract}
+
+Tags that are too specific effectively pin the tag to a single image revision that is never updated. For example, if you create a tag named `v2.0.1-may-2019`, the tag points to just one revision of an image and is never updated. If you use default image pruning options, such an image is never removed.
+
+{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+In very large clusters, the schema of creating new tags for every revised image could eventually fill up the etcd datastore with excess tag metadata for images that are long outdated. If the tag is named `v2.0`, image revisions are more likely. This results in longer tag history and, therefore, the image pruner is more likely to remove old and unused images.
+{% endif %}
+
+To ensure proper garbage collection, use broader, more generic tags that are designed to be updated when a new image revision is built. The following table provides some recommended tagging conventions using the format `<image_name>:<image_tag>`.
+
+**Image tag naming conventions**
+
+| Description | Example |
+| --- | --- |
+| ***Major/Minor Version*** (Ideal for mutable pointers) | `myimage:v2.0` |
+| ***Full Revision*** (Often used for tracking, but requires manual pruning) | `myimage:v2.0.1` |
+| ***Architecture*** | `myimage:v2.0-x86_64` |
+| ***Base image*** | `myimage:v1.2-centos7` |
+| ***Latest*** | `myimage:latest` |
+| ***Latest stable*** | `myimage:stable` |
+
+
+:::note
+
+If your team requires the use of unique, date-specific, or highly revisioned tags like `v2.0.1-may-2019`, you must periodically inspect old and unsupported images and `istags` and remove them. Otherwise, you can experience increasing resource usage caused by retaining old images.
+
+:::

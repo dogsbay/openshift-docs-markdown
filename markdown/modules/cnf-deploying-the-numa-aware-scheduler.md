@@ -1,0 +1,55 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Deploying the NUMA-aware secondary pod scheduler {id="cnf-deploying-the-numa-aware-scheduler_{{ context }}"}
+
+To optimize the placement of high-performance workloads, deploy the NUMA-aware secondary pod scheduler. This component aligns pods with specific NUMA zones to ensure efficient resource utilization in your cluster. {._abstract}
+
+**Procedure**
+
+1.  Create the `NUMAResourcesScheduler` custom resource that deploys the NUMA-aware custom pod scheduler:
+    1.  Save the following minimal required YAML in the `nro-scheduler.yaml` file:
+        ```yaml
+        apiVersion: nodetopology.openshift.io/v1
+        kind: NUMAResourcesScheduler
+        metadata:
+          name: numaresourcesscheduler
+        spec:
+          imageSpec: "registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v{{ product_version }}"
+        # ...
+        ```
+        *   `spec.imageSpec`: In a disconnected environment, make sure to configure the resolution of this image by either:
+    1.  Create an `ImageTagMirrorSet` custom resource (CR). For more information, see "Configuring image registry repository mirroring" in the "Additional resources" section.
+    1.  Set the URL to the disconnected registry.
+    1.  Create the `NUMAResourcesScheduler` CR by running the following command:
+        ```terminal
+        $ oc create -f nro-scheduler.yaml
+        ```
+
+        :::note
+
+        In a hosted control plane cluster, run this command on the hosted control plane node.
+        
+        :::
+
+1.  After a few seconds, run the following command to confirm the successful deployment of the required resources:
+    ```terminal
+    $ oc get all -n openshift-numaresources
+    ```
+    ```terminal title="Example output"
+    NAME                                                    READY   STATUS    RESTARTS   AGE
+    pod/numaresources-controller-manager-7d9d84c58d-qk2mr   1/1     Running   0          12m
+    pod/numaresourcesoperator-worker-7d96r                  2/2     Running   0          97s
+    pod/numaresourcesoperator-worker-crsht                  2/2     Running   0          97s
+    pod/numaresourcesoperator-worker-jp9mw                  2/2     Running   0          97s
+    pod/secondary-scheduler-847cb74f84-9whlm                1/1     Running   0          10m
+
+    NAME                                          DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                     AGE
+    daemonset.apps/numaresourcesoperator-worker   3         3         3       3            3           node-role.kubernetes.io/worker=   98s
+
+    NAME                                               READY   UP-TO-DATE   AVAILABLE   AGE
+    deployment.apps/numaresources-controller-manager   1/1     1            1           12m
+    deployment.apps/secondary-scheduler                1/1     1            1           10m
+
+    NAME                                                          DESIRED   CURRENT   READY   AGE
+    replicaset.apps/numaresources-controller-manager-7d9d84c58d   1         1         1       12m
+    replicaset.apps/secondary-scheduler-847cb74f84                1         1         1       10m
+    ```

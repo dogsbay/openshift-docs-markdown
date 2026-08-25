@@ -1,0 +1,38 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Use I/O threads for your virtual block devices {id="use-io-threads-for-your-virtual-block-devices_{{ context }}"}
+
+To make virtual block devices use I/O threads, you must configure one or more I/O threads for the virtual server and each virtual block device to use one of these I/O threads. {._abstract}
+
+The following example specifies `<iothreads>3</iothreads>` to configure three I/O threads, with consecutive decimal thread IDs 1, 2, and 3. The `iothread="2"` parameter specifies the driver element of the disk device to use the I/O thread with ID 2.
+
+```xml title="Sample I/O thread specification"
+...
+<domain>
+ 	<iothreads>3</iothreads>
+  	 ...
+    	<devices>
+       ...
+          <disk type="block" device="disk">
+<driver ... iothread="2"/>
+    </disk>
+       ...
+    	</devices>
+   ...
+</domain>
+```
+
+where:
+
+
+`iothreads`
+:   Specifies the number of I/O threads.
+
+
+`disk`
+:   Specifies the driver element of the disk device.
+
+Threads can increase the performance of I/O operations for disk devices, but they also use memory and CPU resources. You can configure multiple devices to use the same thread. The best mapping of threads to devices depends on the available resources and the workload.
+
+Start with a small number of I/O threads. Often, a single I/O thread for all disk devices is sufficient. Do not configure more threads than the number of virtual CPUs, and do not configure idle threads.
+
+You can use the `virsh iothreadadd` command to add I/O threads with specific thread IDs to a running virtual server.

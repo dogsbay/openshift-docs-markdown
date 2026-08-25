@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Flowlogs-Pipeline does not consume network flows after installing Kafka {id="configure-network-traffic-flowlogs-pipeline-kafka_{{ context }}"}
+
+Resolve issues where the flow-pipeline fails to consume network flows from Kafka by manually restarting the flow-pipeline pods to restore the connection between the flow collector and your Kafka deployment. {._abstract}
+
+If you deployed the flow collector first with `deploymentModel: KAFKA` and then deployed Kafka, the flow collector might not connect correctly to Kafka. Manually restart the flow-pipeline pods where Flowlogs-pipeline does not consume network flows from Kafka.
+
+**Procedure**
+
+1.  Delete the flow-pipeline pods to restart them by running the following command:
+    ```terminal
+    $ oc delete pods -n netobserv -l app=flowlogs-pipeline-transformer
+    ```

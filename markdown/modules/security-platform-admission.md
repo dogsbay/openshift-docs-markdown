@@ -1,0 +1,36 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Protecting control plane with admission plugins {id="security-platform-admission_{{ context }}"}
+
+Where RBAC controls access rules between users and groups and available projects, you can define access to the {{ product_title }} master API by using _admission plugins_ .
+ 
+API requests go through a chain of rules that consist of the following admission plugins: {._abstract}
+
+*   Default admissions plugins: These implement a default set of policies and resources limits that are applied to components of the {{ product_title }} control plane.
+*   Mutating admission plugins: These plugins dynamically extend the admission chain. They call out to a webhook server and can both authenticate a request and modify the selected resource.
+*   Validating admission plugins: These validate requests for a selected resource and can both validate the request and ensure that the resource does not change again.
+
+API requests go through admissions plugins in a chain, with any failure along the way causing the request to be rejected. Each admission plugin is associated with particular resources and only responds to requests for those resources.
+
+## Security context constraints (SCCs) {id="security-deployment-sccs_{{ context }}"}
+
+You can use _security context constraints_ (SCCs) to define a set of conditions that a pod must run with to be accepted into the system.
+
+Some aspects that can be managed by SCCs include:
+
+*   Running of privileged containers
+*   Capabilities a container can request to be added
+*   Use of host directories as volumes
+*   SELinux context of the container
+*   Container user ID
+
+If you have the required permissions, you can adjust the default SCC policies to be more permissive, if required.
+
+## Granting roles to service accounts {id="security-service-account_{{ context }}"}
+
+You can assign roles to service accounts, in the same way that users are assigned role-based access. There are three default service accounts created for each project. A service account:
+
+*   is limited in scope to a particular project
+*   derives its name from its project
+*   is automatically assigned an API token and credentials to access the OpenShift Container Registry
+
+Service accounts associated with platform components automatically have their keys rotated.

@@ -1,0 +1,25 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Release notes for Red Hat {{ ServerlessProductName }} 1.22.0 {id="serverless-rn-1-22-0_{{ context }}"}
+
+{{ ServerlessProductName }} 1.22.0 is now available. New features, changes, and known issues that pertain to {{ ServerlessProductName }} on {{ product_title }} are included in this topic.
+
+## New features {id="new-features-1-22-0_{{ context }}"}
+
+*   {{ ServerlessProductName }} now uses Knative Serving 1.1.
+*   {{ ServerlessProductName }} now uses Knative Eventing 1.1.
+*   {{ ServerlessProductName }} now uses Kourier 1.1.
+*   {{ ServerlessProductName }} now uses Knative (`kn`) CLI 1.1.
+*   {{ ServerlessProductName }} now uses Knative Kafka 1.1.
+*   The `kn func` CLI plugin now uses `func` 0.23.
+*   Init containers support for Knative services is now available as a Technology Preview.
+*   Persistent volume claim (PVC) support for Knative services is now available as a Technology Preview.
+*   The `knative-serving`, `knative-serving-ingress`, `knative-eventing` and `knative-kafka` system namespaces now have the `knative.openshift.io/part-of: "openshift-serverless"` label by default.
+*   The **Knative Eventing - Kafka Broker/Trigger** dashboard has been added, which allows visualizing Kafka broker and trigger metrics in the web console.
+*   The **Knative Eventing - KafkaSink** dashboard has been added, which allows visualizing KafkaSink metrics in the web console.
+*   The **Knative Eventing - Broker/Trigger** dashboard is now called **Knative Eventing - Channel-based Broker/Trigger**.
+*   The `knative.openshift.io/part-of: "openshift-serverless"` label has substituted the `knative.openshift.io/system-namespace` label.
+*   Naming style in Knative Serving YAML configuration files changed from camel case (`ExampleName`) to hyphen style (`example-name`). Beginning with this release, use the hyphen style notation when creating or editing Knative Serving YAML configuration files.
+
+## Known issues {id="known-issues-1-22-0_{{ context }}"}
+
+*   The Federal Information Processing Standards (FIPS) mode is disabled for Kafka broker, Kafka source, and Kafka sink.

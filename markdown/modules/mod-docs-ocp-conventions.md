@@ -1,0 +1,105 @@
+# Modular docs OpenShift conventions {id="mod-docs-ocp-conventions_{{ context }}"}
+
+These Modular Docs conventions for OpenShift docs build on top of the CCS
+modular docs guidelines.
+
+These guidelines and conventions should be read along with the:
+
+*   General CCS
+[modular docs guidelines](https://redhat-documentation.github.io/modular-docs/).
+*   [AsciiDoc markup conventions](https://redhat-documentation.github.io/asciidoc-markup-conventions/)
+*   [OpenShift Contribution Guide](https://github.com/openshift/openshift-docs/blob/master/contributing_to_docs/contributing.adoc)
+*   [OpenShift Documentation Guidelines](https://github.com/openshift/openshift-docs/blob/master/contributing_to_docs/doc_guidelines.adoc)
+
+**❗ IMPORTANT**\
+If some convention is duplicated, the convention in this guide
+supersedes all others.
+
+## OpenShift CCS conventions {id="ocp-ccs-conventions_{{ context }}"}
+
+*   All assemblies must define a context that is unique.
+
+    Add this context at the top of the page, just before the first anchor id.
+
+    Example:
+    ```
+{%- set context = "assembly-gsg" %}
+    ```
+*   All assemblies must include the `_attributes/common-attributes.adoc` file near the
+context statement. This file contains the standard attributes for the collection.
+
+    `include::_attributes/common-attributes.adoc[leveloffset=+1]`
+*   All anchor ids must follow the format:
+    ```
+    [id="<anchor-name-with-dashes>_{context}"]
+    ```
+
+    Anchor name is _connected_ to the `&#123;context&#125;` using a dash.
+
+    Example:
+    ```
+    [id="creating-your-first-content_{context}"]
+    ```
+*   All modules anchor ids must have the `&#123;context&#125;` variable.
+
+    This is just reiterating the format described in the previous bullet point.
+*   A comment section must be present at the top of each module and assembly, as
+shown in the [modular docs templates](https://github.com/redhat-documentation/modular-docs/tree/master/modular-docs-manual/files).
+
+    The modules comment section must list which assemblies this module has been
+    included in, while the assemblies comment section must include other assemblies
+    that it itself is included in, if any.
+
+    Example comment section in an assembly:
+    ```
+    // This assembly is included in the following assemblies:
+    //
+    // NONE
+    ```
+
+    Example comment section in a module:
+    ```
+    // Module included in the following assemblies:
+    //
+    // mod_docs_guide/mod-docs-conventions-ocp.adoc
+    ```
+*   All modules must go in the modules directory which is present in the top level
+of the openshift-docs repository. These modules must follow the file naming
+conventions specified in the
+[modular docs guidelines](https://redhat-documentation.github.io/modular-docs/).
+*   All assemblies must go in the relevant guide/book. If you cannot find a relevant
+ guide/book, reach out to a member of the OpenShift CCS team. So guides/books contain assemblies, which
+ contain modules.
+*   modules and images folders are symlinked to the top level folder from each book/guide folder.
+*   In your assemblies, when you are linking to the content in other books, you must
+use the relative path starting like so:
+    ```
+    xref:../architecture/architecture.adoc#architecture[architecture] overview.
+    ```
+
+    :::important
+
+    You must not include xrefs in modules or create an xref to a module. You can
+    only use xrefs to link from one assembly to another.
+    
+    :::
+
+*   All modules in assemblies must be included using the following format (replace 'ilude' with 'include'):
+
+    `ilude::modules/<file_name_of_module>.adoc[]`
+
+    _OR_
+
+    `ilude::modules/<file_name_of_module>.adoc[leveloffset=+<offset_by>]`
+
+    if it requires a leveloffset.
+
+    Example:
+
+    `include::modules/creating-your-first-content.adoc[leveloffset=+1]`
+
+**📌 NOTE**\
+There is no `..` at the starting of the path.
+
+*   Do not use 3rd level folders even though AsciiBinder permits it. If you need
+to, work out a better way to organize your content.

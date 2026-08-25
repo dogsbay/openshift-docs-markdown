@@ -1,0 +1,8 @@
+{%- set _mod_docs_content_type = "SNIPPET" %}
+
+
+:::important
+
+If there is no retention period defined on the s3 bucket or in the LokiStack custom resource (CR), then the logs are not pruned and they stay in the s3 bucket forever, which might fill up the s3 storage.
+
+:::

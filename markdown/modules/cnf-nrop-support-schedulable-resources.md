@@ -1,0 +1,44 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# NUMA Resources Operator support for schedulable control-plane nodes {id="cnf-numa-resource-operator-support-scheduling-cp_{{ context }}"}
+
+You can enable schedulable control plane nodes to run user-defined pods, effectively turning the nodes into hybrid control plane and compute nodes. This configuration is especially beneficial in resource-constrained environments, such as compact clusters.  {._abstract}
+
+When enabled, the NUMA Resources Operator can apply its topology-aware scheduling to the nodes for guaranteed workloads, ensuring pods are placed according to the best NUMA affinity.
+
+Traditionally, control plane nodes in {{ product_title }} are dedicated to running critical cluster services. Enabling schedulable control plane nodes allows user-defined Pods to be scheduled on the nodes.
+
+You can make control plane nodes schedulable by setting the `mastersSchedulable` field to true in the `schedulers.config.openshift.io` resource.
+
+
+:::note
+
+When you enable schedulable control plane nodes, enabling workload partitioning is strongly recommended to safeguard critical infrastructure pods from resource starvation. This process restricts infrastructure components, like the `ovnkube-node` process, to dedicated, reserved CPUs. However, the OVS dynamic pinning feature relies on `ovnkube-node` having access to the CPUs designated for bustable/best-effort pods to correctly identify and use non-pinned CPUs. When workload partitioning configures the `ovnkube-node` process with CPU affinity for reserved CPUs, this dynamic pinning mechanism breaks.
+
+:::
+
+
+The NUMA Resources Operator provides topology-aware scheduling for workloads that need a specific NUMA affinity. When control plane nodes are made schedulable, the management capabilities of the Operator can be applied to them, just as they are to compute nodes. This ensures that NUMA-aware pods are placed on a node with the best NUMA topology, whether it is a control plane or compute node.
+
+When configuring the NUMA Resources Operator, its management scope is determined by the `nodeGroups` field in its custom resource (CR). This principle applies to both compact and multi-node clusters.
+
+
+Compact clusters
+:   In a compact cluster, all nodes are configured as schedulable control plane nodes. The NUMA Resources Operator can be configured to manage all nodes in the cluster. Follow the deployment instructions for more details on the process.
+
+
+Multi-Node OpenShift (MNO) clusters
+:   In a Multi-Node {{ product_title }} cluster, control plane nodes are made schedulable in addition to existing compute nodes. To manage these nodes, you can configure the NUMA Resources Operator by defining separate `nodeGroups` in the `NUMAResourcesOperator` CR for the control plane and compute nodes. This ensures that the NUMA Resources Operator correctly schedules pods on both sets of nodes based on resource availability and NUMA topology.
+
+
+:::note
+
+Modifying a performance profile often triggers control plane node reboots. Due to stricter Pod Disruption Budgets (PDBs) on control plane nodes, the cluster’s resilience mechanisms are activated. These mechanisms prevent the forced eviction of protected but unhealthy pods such as those in `CrashLoopBackOff`, which causes the Machine Config Pool (MCP) to stall during the reboot process.
+
+If the MCP becomes stuck due to this behavior, intervention is required to resolve the issue and allow the control plane upgrade to complete.
+
+To resolve this, administrators have two options:
+
+1.  Temporarily relax the PDB restrictions to allow the required eviction.
+1.  Manually delete the unhealthy pods to force the MCP to reconcile and continue the drain process.
+
+:::

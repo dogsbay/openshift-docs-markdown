@@ -1,0 +1,29 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Setting proxy environment variables through annotations {id="ossm-sidecar-injection-env-var_{{ context }}"}
+
+Configuration for the Envoy sidecar proxies is managed by the `ServiceMeshControlPlane`.
+
+You can set environment variables for the sidecar proxy for applications by adding pod annotations to the deployment in the `injection-template.yaml` file. The environment variables are injected to the sidecar.
+
+```yaml title="Example injection-template.yaml"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource
+spec:
+  replicas: 7
+  selector:
+    matchLabels:
+      app: resource
+  template:
+    metadata:
+      annotations:
+        sidecar.maistra.io/proxyEnv: "{ \"maistra_test_env\": \"env_value\", \"maistra_test_env_2\": \"env_value_2\" }"
+```
+
+
+:::warning
+
+You should never include `maistra.io/` labels and annotations when creating your own custom resources.  These labels and annotations indicate that the resources are generated and managed by the Operator. If you are copying content from an Operator-generated resource when creating your own resources, do not include labels or annotations that start with `maistra.io/`.  Resources that include these labels or annotations will be overwritten or deleted by the Operator during the next reconciliation.
+
+:::

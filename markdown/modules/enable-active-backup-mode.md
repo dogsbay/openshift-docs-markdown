@@ -1,0 +1,11 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enable active-backup mode for your cluster {id="enable-active-backup-mode_{{ context }}"}
+
+The `active-backup` mode provides fault tolerance for network connections by switching to a backup link where the primary link fails. {._abstract}
+
+The mode specifies the following ports for your cluster:
+
+*   An active port where one physical interface sends and receives traffic at any given time.
+*   A standby port where all other ports act as backup links and continously monitor their link status.
+
+During a failover process, if an active port or its link fails, the bonding logic switches all network traffic to a standby port. This standby port becomes the new active port. For failover to work, all ports in a bond must share the same Media Access Control (MAC) address.

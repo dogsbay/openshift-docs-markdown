@@ -1,0 +1,19 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# RouteAdvertisements object configuration {id="nw-bgp-routeadvertisements-object_{{ context }}"}
+
+To control how cluster networks and egress IP addresses are advertised to external routers, configure the cluster-scoped `RouteAdvertisements` object to specify networks and select the appropriate nodes and routing targets for your environment. {._abstract}
+
+You can define a `RouteAdvertisements` object, which is cluster scoped, with the following properties.
+
+The fields for the `RouteAdvertisements` custom resource (CR) are described in the following table:
+
+**`RouteAdvertisements` object**
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `metadata.name` | `string` | Specifies the name of the `RouteAdvertisements` object. |
+| `advertisements` | `array` | Specifies an array that can contain a list of different types of networks to advertise. Supports only the `"PodNetwork"` and `"EgressIP"` values. |
+| `frrConfigurationSelector` | `object` | Determines which `FRRConfiguration` CR the OVN-Kubernetes-driven `FRRConfiguration` CR is based on. |
+| `networkSelectors` | `array` | Specifies which networks to advertise among the default cluster network and cluster user-defined networks (CUDNs). Each entry sets `networkSelectionType` and the selector for that type (for example, `DefaultNetwork` or `ClusterUserDefinedNetworks` with `clusterUserDefinedNetworkSelector`). |
+| `nodeSelector` | `object` | Limits the advertisements to selected nodes. When `advertisements="PodNetwork"` is selected, all nodes must be selected. When `advertisements="EgressIP"` is selected, only the egress IP addresses assigned to the selected nodes are advertised. |
+| `targetVRF` | `string` | Determines which router to advertise the routes in. Routes are advertised on the routers associated with this virtual routing and forwarding (VRF) target, as specified on the selected `FRRConfiguration` CR. When omitted, the default VRF is used as the target. When specified as `auto`, a VRF with the same name as the network name is used as the target. |

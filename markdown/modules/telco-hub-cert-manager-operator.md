@@ -1,0 +1,25 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# cert-manager Operator {id="telco-hub-cert-manager-operator_{{ context }}"}
+
+The cert-manager Operator for {{ product_title }} manages the lifecycle of TLS certificates for hub cluster components and workloads. {._abstract}
+
+
+New in this release
+:   *   No reference design updates in this release.
+
+Description
+    :   The cert-manager Operator for {{ product_title }} manages the lifecycle of TLS certificates for cluster components and workloads.
+    The cert-manager Operator automates certificate issuance, renewal, and rotation, eliminating manual certificate management.
+    The reference configuration includes the cert-manager Operator to optionally manage certificates for the API server and ingress controller endpoints.
+
+    You can use {{ rh_rhacm }} `CertificatePolicy` resources to monitor certificate health across all managed clusters.
+
+
+Limits and requirements
+
+:   *   The reference configuration includes only the ACME DNS01 challenge type for platform certificate issuance.
+
+Engineering considerations
+
+:   *   Use {{ rh_rhacm }} `CertificatePolicy` resources on the hub cluster to monitor certificate expiration and compliance across managed clusters.
+    *   Optionally, configure a `PrometheusRule` on the hub cluster to generate alerts based on policy compliance status.

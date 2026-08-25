@@ -1,0 +1,33 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Export settings {id="persistent-storage-nfs-export-settings_{{ context }}"}
+
+Before you can enable arbitrary container users to read and write the volume, check that each exported volume on the NFS server meets the required conditions. {._abstract}
+
+**Prerequisites**
+
+*   You have access to the NFS server with root permissions.
+*   You have installed and configured an NFS server on your system.
+
+**Procedure**
+
+*   Every export must be exported using the following format:
+    ```terminal
+    /<example_fs> *(rw,root_squash)
+    ```
+*   The firewall must be configured to allow traffic to the mount point.
+    *   For NFSv4, configure the default port `2049` (**nfs**).
+        ```terminal title="NFSv4"
+        # iptables -I INPUT 1 -p tcp --dport 2049 -j ACCEPT
+        ```
+    *   For NFSv3, there are three ports to configure:
+    `2049` (**nfs**), `20048` (**mountd**), and `111` (**portmapper**).
+        ```terminal title="NFSv3"
+        # iptables -I INPUT 1 -p tcp --dport 2049 -j ACCEPT
+        ```
+        ```terminal
+        # iptables -I INPUT 1 -p tcp --dport 20048 -j ACCEPT
+        ```
+        ```terminal
+        # iptables -I INPUT 1 -p tcp --dport 111 -j ACCEPT
+        ```
+*   The NFS export and directory must be set up so that they are accessible by the target pods. Either set the export to be owned by the container’s primary UID, or supply the pod group access using `supplementalGroups`, as shown in the group IDs above.

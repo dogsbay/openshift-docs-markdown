@@ -1,0 +1,35 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Network Observablity Operator architecture {id="network-observability-architecture_{{ context }}"}
+
+Review the Network Observability Operator architecture, detailing how the `FlowCollector` resource manages the `eBPF agent`, which collects and enriches flows, sending the data to Loki for storage or Prometheus for metrics. {._abstract}
+
+The Network Observability Operator provides the `FlowCollector` API, which is instantiated at installation and configured to reconcile the `eBPF agent`, the `flowlogs-pipeline`, and the `netobserv-plugin` components. Only a single `FlowCollector` per cluster is supported.
+
+The `eBPF agent` runs on each cluster node with some privileges to collect network flows. The `flowlogs-pipeline` receives the network flows data and enriches the data with Kubernetes identifiers. If you choose to use Loki, the `flowlogs-pipeline` sends flow logs data to Loki for storing and indexing. The `netobserv-plugin`, which is a dynamic {{ product_title }} web console plugin, queries Loki to fetch network flows data. Cluster-admins can view the data in the web console.
+
+If you do not use Loki, you can generate metrics with Prometheus. Those metrics and their related dashboards are accessible in the web console. For more information, see "Network Observability without Loki".
+
+![Network Observability eBPF export architecture](/_assets/images/network-observability-architecture.png)
+
+There are three deployment model options for the Network Observability Operator.
+
+
+:::note
+
+The Network Observability Operator does not manage Loki or other data stores. You must install Loki separately by using the {{ loki_op }}. If you use Kafka, you must install it separately by using the Kafka Operator.
+
+:::
+
+
+
+Service deployment model
+:   When the `spec.deploymentModel` field in the `FlowCollector` resource is set to `Service`, agents are deployed per node as daemon sets. The `flowlogs-pipeline` is a standard deployment with a service. You can scale the `flowlogs-pipeline` component by using the `spec.processor.consumerReplicas` field.
+
+
+Direct deployment model
+:   When the `spec.deploymentModel` field is set to `Direct`, agents and the `flowlogs-pipeline` are both deployed per node as daemon sets. This model is suitable for technology assessments and small clusters. However, it is less memory-efficient in large clusters because each instance of `flowlogs-pipeline` caches the same cluster information.
+
+
+Kafka deployment model (optional)
+:   If you use the Kafka option, the `eBPF agent` sends the network flow data to Kafka. You can scale the `flowlogs-pipeline` component by using the `spec.processor.consumerReplicas` field. The `flowlogs-pipeline` component reads from the Kafka topic before sending data to Loki, as shown in the following diagram.
+    ![Network Observability using Kafka](/_assets/images/network-observability-arch-kafka-FLP.png)

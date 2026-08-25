@@ -1,0 +1,49 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Cluster-specific Operator IAM role reference {id="rosa-sts-operator-roles_{{ context }}"}
+
+Use Operator roles to authenticate to your AWS resources through an OpenID Connect (OIDC) provider, and obtain temporary permissions for cluster operations. Securing these permissions helps you successfully manage capabilities like back-end storage, cloud ingress controllers, and external cluster access. {._abstract}
+
+When you create the Operator roles, the account-wide Operator policies for the matching cluster version are attached to the roles.
+{%- if openshift_rosa %}
+The Operator policies are tagged with the Operator and version they are compatible with. The correct policy for an Operator role is determined by using the tags.
+{% endif %}
+{% if openshift_rosa_hcp %}
+AWS managed Operator policies are versioned in AWS IAM. The latest version of an AWS managed policy is always used, so you do not need to manage or schedule upgrades for AWS managed policies used by {{ product_title }}.
+{% endif %}
+
+
+:::note
+
+If more than one matching policy is available in your account for an Operator role, an interactive list of options is provided when you create the role.
+
+:::
+
+
+{% if openshift_rosa %}
+**ROSA cluster-specific Operator roles**
+
+| Resource | Description |
+| --- | --- |
+| `<cluster_name>-<hash>-openshift-cluster-csi-drivers-ebs-cloud-credentials` | An IAM role required by {{ product_title }} to manage back-end storage through the Container Storage Interface (CSI). |
+| `<cluster_name>-<hash>-openshift-machine-api-aws-cloud-credentials` | An IAM role required by the ROSA Machine Config Operator to perform core cluster functionality. |
+| `<cluster_name>-<hash>-openshift-cloud-credential-operator-cloud-credentials` | An IAM role required by the ROSA Cloud Credential Operator to manage cloud provider credentials. |
+| `<cluster_name>-<hash>-openshift-cloud-network-config-controller-credentials` | An IAM role required by the cloud network config controller to manage cloud network configuration for a cluster. |
+| `<cluster_name>-<hash>-openshift-image-registry-installer-cloud-credentials` | An IAM role required by the ROSA Image Registry Operator to manage the {{ product_registry }} storage in AWS S3 for a cluster. |
+| `<cluster_name>-<hash>-openshift-ingress-operator-cloud-credentials` | An IAM role required by the ROSA Ingress Operator to manage external access to a cluster. |
+| `<cluster_name>-<hash>-openshift-cloud-network-config-controller-cloud-credentials` | An IAM role required by the cloud network config controller to manage cloud network credentials for a cluster. |
+{% endif %}
+
+{% if openshift_rosa_hcp %}
+**Required Operator roles and AWS Managed policies for {{ product_title }}**
+
+| Role name | AWS Managed policy name | Role description |
+| --- | --- | --- |
+| `openshift-cloud-network-config-controller-credentials` | `ROSACloudNetworkConfigOperatorPolicy` | An IAM role required by the cloud network config controller to manage cloud network credentials for a cluster. |
+| `openshift-image-registry-installer-cloud-credentials` | `ROSAImageRegistryOperatorPolicy` | An IAM role required by the {{ product_title }} Image Registry Operator to manage the {{ product_registry }} storage in AWS S3 for a cluster. |
+| `kube-system-kube-controller-manager` | `ROSAKubeControllerPolicy` | An IAM role required for OpenShift management on hosted control planes (HCP) clusters. |
+| `kube-system-capa-controller-manager` | `ROSANodePoolManagementPolicy` | An IAM role required for node management on HCP clusters. |
+| `kube-system-control-plane-operator` | `ROSAControlPlaneOperatorPolicy` | An IAM role required for control plane management on HCP clusters. |
+| `kube-system-kms-provider` | `ROSAKMSProviderPolicy` | An IAM role required for OpenShift management on HCP clusters. |
+| `openshift-ingress-operator-cloud-credentials` | `ROSAIngressOperatorPolicy` | An IAM role required by the {{ product_title }} Ingress Operator to manage external access to a cluster. |
+| `openshift-cluster-csi-drivers-ebs-cloud-credentials` | `ROSAAmazonEBSCSIDriverOperatorPolicy` | An IAM role required by {{ product_title }} to manage back-end storage through the Container Storage Interface (CSI). |
+{% endif %}

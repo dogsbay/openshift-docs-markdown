@@ -1,0 +1,21 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Notable technical changes {id="rn-ocp-release-notes-notable-changes_{{ context }}"}
+
+You can review the list of technical changes for {{ product_title }} {{ product_version }} to see if any of the changes affect your clusters or environments. {._abstract}
+
+
+Platform components and Operators now use dedicated service accounts
+:   Most {{ product_title }} platform components and Operators have been updated to use dedicated service accounts instead of the `default` service account. This change follows the principle of least privilege, simplifies security audits, and reduces the risk of accidental permission elevation by ensuring that platform identities are isolated from user workloads.
+
+    The following dynamic tools continue to use the `default` service account to ensure operational efficiency:
+    *   `oc debug`: Uses the `default` service account to avoid the performance overhead of creating and removing unique service accounts for short-lived troubleshooting sessions.
+    *   `oc adm must-gather`: Uses the `default` service account to collect diagnostic data across the cluster without requiring extensive manual RBAC modifications.
+
+    For more information, see [Default project service accounts and roles](/authentication/using-service-accounts-in-applications#default-service-accounts-and-roles_using-service-accounts).
+
+
+Unused Cluster API Operator image removed from release image
+:   With this update, the {{ product_title }} release image no longer includes the `cluster-api-operator` image.
+    As a result, you can no longer pull this image from the release image manually.
+    If you mirror the release image, you can delete this image from your mirror.
+    ([OCPBUGS-61949](https://redhat.atlassian.net/browse/OCPBUGS-61949))

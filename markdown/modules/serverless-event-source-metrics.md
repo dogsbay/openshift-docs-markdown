@@ -1,0 +1,9 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Event source metrics {id="serverless-event-source-metrics_{{ context }}"}
+
+You can use the following metrics to verify that events have been delivered from the event source to the connected event sink.
+
+| Metric name | Description | Type | Tags | Unit |
+| --- | --- | --- | --- | --- |
+| `event_count` | Number of events sent by the event source. | Counter | `broker_name`, `container_name`, `filter_type`, `namespace_name`, `response_code`, `response_code_class`, `trigger_name`, `unique_name` | Integer (no units) |
+| `retry_event_count` | Number of retried events sent by the event source after initially failing to be delivered. | Counter | `event_source`, `event_type`, `name`, `namespace_name`, `resource_group`, `response_code`, `response_code_class`, `response_error`, `response_timeout` | Integer (no units) |

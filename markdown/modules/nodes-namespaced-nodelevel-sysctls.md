@@ -1,0 +1,30 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+
+# Namespaced and node-level sysctls {id="namespaced-and-node-level-sysctls"}
+
+In a {{ product_title }} cluster, you can use namespaced sysctls, which apply to specific pods on a node, or node-level sysctls, which affect an entire node. {._abstract}
+
+Some sysctls are _namespaced_ in the Linux kernels. This means that you can set them independently for each pod on a node. 
+Being namespaced is a requirement for sysctls to be accessible in a pod context within Kubernetes.
+
+The following sysctls are known to be namespaced:
+
+*   `_kernel.shm*_`
+*   `_kernel.msg*_`
+*   `_kernel.sem_`
+*   `_fs.mqueue.*_`
+
+Additionally, most of the sysctls in the `net.*` group are known to be namespaced. Their namespace adoption differs based on the kernel version and distributor.
+
+_Node-level_ sysctls are not namespaced and must be set
+manually by a cluster administrator, either by using of the underlying Linux
+distribution of the nodes, such as by modifying the `_/etc/sysctls.conf_` file,
+or by using a daemon set with privileged containers. You can also use the Node Tuning Operator to set _node-level_ sysctls.
+
+
+:::note
+
+Consider marking nodes with special sysctls as tainted. Only schedule pods onto
+them that need those sysctl settings. Use the taints and toleration feature to mark the nodes.
+
+:::

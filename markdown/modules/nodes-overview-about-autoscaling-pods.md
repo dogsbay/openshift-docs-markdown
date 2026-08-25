@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About autoscaling pods on a node {id="nodes-overview-about-autoscaling-pods_{{ context }}"}
+
+{{ product_title }} offers three tools that you can use to automatically scale the number of pods on your nodes and the resources allocated to pods. {._abstract}
+
+
+Horizontal Pod Autoscaler
+:   The Horizontal Pod Autoscaler (HPA) can automatically increase or decrease the scale of a replication controller or deployment, based on metrics collected from the pods that belong to that replication controller or deployment.
+
+
+Custom Metrics Autoscaler
+:   The Custom Metrics Autoscaler can automatically increase or decrease the number of pods for a deployment, stateful set, custom resource, or job based on custom metrics that are not based only on CPU or memory.
+
+
+Vertical Pod Autoscaler
+:   The Vertical Pod Autoscaler (VPA) can automatically review the historic and current CPU and memory resources for containers in pods and can update the resource limits and requests based on the usage values it learns.

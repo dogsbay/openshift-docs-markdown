@@ -1,0 +1,80 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating load balancers in {{ gcp_short }} {id="installation-creating-gcp-lb_{{ context }}"}
+
+You must configure load balancers in {{ gcp_first }} for your {{ product_title }} cluster to use. One way to create these components is to modify the provided Infrastructure Manager template. {._abstract}
+
+
+:::note
+
+If you do not use the provided template to create your {{ gcp_short }} infrastructure, you must review the provided information and manually create the infrastructure.
+If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
+
+:::
+
+
+**Prerequisites**
+
+*   You have defined the variables in the _Exporting common variables_ section.
+*   If you are not installing a cluster into a shared VPC, you have defined the variables in the _Creating a VPC in {{ gcp_short }}_ section.
+
+**Procedure**
+
+1.  If you are installing a cluster into a shared VPC, set environment variables for the cluster network and control plane subnet.
+    1.  Determine the shared VPC network name by running the following command:
+        ```terminal
+        $ gcloud compute networks list
+        ```
+    1.  Set the `CLUSTER_NETWORK` variable by running the following command:
+        ```terminal
+        $ export CLUSTER_NETWORK=$(gcloud compute networks describe <network_name> --format json | jq -r .selfLink)
+        ```
+
+        `<network_name>` specifies the name of the network you determined.
+    1.  List the available network subnets by running the following command:
+        ```terminal
+        $ gcloud compute networks subnets list --network=<network_name>
+        ```
+
+        `<network_name>` specifies the name of the network you determined.
+    1.  Select a subnet from the list, and set the `CONTROL_SUBNET` variable by running the following command:
+        ```terminal
+        $ export CONTROL_SUBNET=<control_subnet>
+        ```
+
+        `<control_subnet>` specifies the name of the subnet you selected from the list of subnets.
+1.  Copy the template from the **Infrastructure Manager template for the internal load balancer** section of this topic and save it as `02_lb_int.tf` in a directory called `02_lb_int` on your computer. This template describes the internal load balancing objects that your cluster requires.
+    1.  Create an internal load balancer by running the following command:
+        ```terminal
+        $ gcloud infra-manager deployments apply <internal_lb_deployment_name> \
+          --location=${REGION} \
+          --input-values=infra_id=${INFRA_ID},project=${PROJECT_NAME},region=${REGION},cluster_network=${CLUSTER_NETWORK},control_subnet=${CONTROL_SUBNET},zone_0=${ZONE_0},zone_1=${ZONE_1},zone_2=${ZONE_2} \
+          --project=${PROJECT_NAME} \
+          --local-source=./02_lb_int \
+          --service-account=${INSTALL_SERVICE_ACCOUNT}
+        ```
+
+        `<internal_lb_deployment_name>` specifies the name of the internal load balancer deployment you create.
+    1.  Export the `CLUSTER_IP` variable by running the following command:
+        ```terminal
+        $ export CLUSTER_IP=$(gcloud compute addresses describe ${INFRA_ID}-cluster-ip --region=${REGION} --format json | jq -r .address)
+        ```
+1.  Optional: For a public or externally available cluster, copy the template from the **Infrastructure Manager template for the external load balancer** section of this topic and save it as `02_lb_ext.tf` in a directory called `02_lb_ext` on your computer. This template describes the external load balancing objects that your cluster requires.
+    1.  Create an external load balancer by running the following command:
+        ```terminal
+        $ gcloud infra-manager deployments apply <external_lb_deployment_name> \
+          --location=${REGION} \
+          --input-values=infra_id=${INFRA_ID},project=${PROJECT_NAME},region=${REGION} \
+          --project=${PROJECT_NAME} \
+          --local-source=./02_lb_ext \
+          --service-account=${INSTALL_SERVICE_ACCOUNT}
+        ```
+
+        `<external_lb_deployment_name>` specifies the name of the external load balancer deployment you create.
+    1.  Export the `CLUSTER_PUBLIC_IP` variable by running the following command:
+        ```terminal
+        $ export CLUSTER_PUBLIC_IP=$(gcloud compute addresses describe ${INFRA_ID}-cluster-public-ip --region=${REGION} --format json | jq -r .address)
+        ```
+
+**Verification**
+
+{% include "./snippets/gcp-infra-manager-deployment-verify.md" %}

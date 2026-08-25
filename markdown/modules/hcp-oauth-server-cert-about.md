@@ -1,0 +1,23 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# OAuth server certificates for {{ hcp }} {id="hcp-oauth-server-cert-about_{{ context }}"}
+
+In {{ hcp }}, the OAuth server shares its serving certificate configuration with the Kubernetes API server. To configure a custom serving certificate for the OAuth server, you modify the `spec.configuration.apiServer` section in the `HostedCluster` resource. {._abstract}
+
+
+:::important
+
+This configuration method deviates from the standard {{ product_title }} behavior. In {{ product_title }}, OAuth certificates are configured separately through the `componentRoute` properties of the Ingress Operator. In {{ hcp }}, the `namedCertificates` configuration in the API server settings applies to both the Kubernetes API server and the OAuth server.
+
+:::
+
+
+In {{ hcp }}, the Control Plane Operator reads serving certificates through the shared `GetNamedCertificates()` function. Certificates are not configured in an OAuth-specific section of the `HostedCluster` resource. In addition, OAuth server certificates are not provided through an OAuth custom resource definition (CRD) configuration. Instead, {{ hcp }} automatically injects the selected certificates into the OAuth server deployment.
+
+**OAuth certificate differences between {{ product_title }} and {{ hcp }}**
+
+| Area | {{ product_title }} | {{ hcp }} |
+| --- | --- | --- |
+| Certificate source | Ingress Operator generates and maps certificates through component routes | OAuth uses `apiServer.servingCerts.namedCertificates` settings |
+| Certificate selection | Based on ingress-managed routes | Based on host name match in `namedCertificates` property |
+| User responsibility | No need to manually provide OAuth certificates | User must supply certificates if custom behavior is needed |
+| Code path | Ingress Operator manages the OAuth route | Control Plane Operator manages the OAuth server container runtime arguments |

@@ -1,0 +1,29 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Kubelet Settings {id="telco-core-kubelet-settings_{{ context }}"}
+
+Some CNF workloads make use of sysctls which are not in the list of system-wide safe `sysctls`.
+Generally network sysctls are namespaced and can be enabled by using the `kubeletconfig.experimental` annotation in the PerformanceProfile as a string of JSON in the form `allowedUnsafeSysctls`. {._abstract}
+
+Additionally, the `systemReserved` memory can be configured through the same `kubeletconfig.experimental` annotation to reserve memory for system daemons and kernel processes.
+
+```yaml title="Example snippet showing allowedUnsafeSysctls and systemReserved"
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  name: {{ .metadata.name }}
+  annotations:
+    # allowedUnsafeSysctls: some pods want the kernel stack to ignore IPv6 router Advertisement.
+    # systemReserved: when used, it should be tailored for each environment.
+    kubeletconfig.experimental: |
+      {
+       "allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],
+       "systemReserved":{"memory":"11Gi"}
+      }
+```
+
+
+:::note
+
+Although these are namespaced they may allow a pod to consume memory or other resources beyond any limits specified in the pod description. You must ensure that these `sysctls` do not exhaust platform resources.
+
+:::

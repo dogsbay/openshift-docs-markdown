@@ -1,0 +1,97 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Reference blueprint for installing {{ op_system_rt_kernel }} in a {{ op_system_ostree }} image {id="microshift-low-latency-blueprint-rhel-edge-rtk_{{ context }}"}
+
+An image blueprint is a persistent definition of required image customizations that you can use to create multiple builds. You can edit, rebuild, delete, and save the blueprint to easily rebuild images. {._abstract}
+
+```text title="Example blueprint used to install the real-time kernel in a {{ op_system_ostree }} image"
+name = "microshift-low-latency"
+description = "RHEL 9.4 and MicroShift configured for low latency"
+version = "0.0.1"
+modules = []
+groups = []
+distro = "rhel-94"
+
+[[packages]]
+name = "microshift"
+version = "*"
+
+[[packages]]
+name = "microshift-greenboot"
+version = "*"
+
+[[packages]]
+name = "microshift-networking"
+version = "*"
+
+[[packages]]
+name = "microshift-selinux"
+version = "*"
+
+[[packages]]
+name = "microshift-low-latency"
+version = "*"
+
+# Kernel RT is only available for x86_64
+[customizations.kernel]
+name = "kernel-rt"
+
+[customizations.services]
+enabled = ["microshift", "microshift-tuned"]
+
+[customizations.firewall]
+ports = ["22:tcp", "80:tcp", "443:tcp", "5353:udp", "6443:tcp", "30000-32767:tcp", "30000-32767:udp"]
+
+[customizations.firewall.services]
+enabled = ["mdns", "ssh", "http", "https"]
+
+[[customizations.firewall.zones]]
+name = "trusted"
+sources = ["10.42.0.0/16", "169.254.169.1"]
+
+[[customizations.files]]
+path = "/etc/microshift/config.yaml"
+data = """
+kubelet:
+  cpuManagerPolicy: static
+  cpuManagerPolicyOptions:
+    full-pcpus-only: "true"
+  cpuManagerReconcilePeriod: 5s
+  memoryManagerPolicy: Static
+  topologyManagerPolicy: single-numa-node
+  reservedSystemCPUs: 0-1
+  reservedMemory:
+  - limits:
+      memory: 1100Mi
+    numaNode: 0
+  kubeReserved:
+    memory: 500Mi
+  systemReserved:
+    memory: 500Mi
+  evictionHard:
+    imagefs.available: 15%
+    memory.available: 100Mi
+    nodefs.available: 10%
+    nodefs.inodesFree: 5%
+  evictionPressureTransitionPeriod: 5m
+"""
+
+[[customizations.files]]
+path = "/etc/tuned/microshift-baseline-variables.conf"
+data = """
+# Isolated cores should be complementary to the kubelet configuration reserved CPUs.
+# Isolated and reserved CPUs must contain all online CPUs.
+# Core #3 is for testing offlining, therefore it is skipped.
+isolated_cores=2,4-5
+hugepages_size=2M
+hugepages=10
+additional_args=test1=on test2=true dummy
+offline_cpu_set=3
+"""
+
+[[customizations.files]]
+path = "/etc/microshift/tuned.yaml"
+data = """
+profile: microshift-baseline
+reboot_after_apply: True
+"""
+```

@@ -1,0 +1,68 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling multipathing with kernel arguments on {{ op_system }} {id="rhcos-enabling-multipathday-1-power_{{ context }}"}
+
+During installation, you can enable multipathing for provisioned nodes on {{ ibm_power_name }}. {{ op_system }} supports multipathing on the primary disk, providing stronger resilience to hardware failure. {._abstract}
+
+During the initial cluster creation, you might want to add kernel arguments to all control plane or worker nodes. To add kernel arguments to control plane or worker nodes, you can create a `MachineConfig` object and inject that object into the set of manifest files used by Ignition during cluster setup.
+
+**Procedure**
+
+1.  Change to the directory that contains the installation program and generate the Kubernetes manifests for the cluster:
+    ```terminal
+    $ ./openshift-install create manifests --dir <installation_directory>
+    ```
+1.  Decide if you want to add kernel arguments to worker or control plane nodes.
+    *   Create a machine config file. For example, create a `99-master-kargs-mpath.yaml` that instructs the cluster to add the control plane label and identify the multipath kernel argument:
+        ```yaml
+        apiVersion: machineconfiguration.openshift.io/v1
+        kind: MachineConfig
+        metadata:
+          labels:
+            machineconfiguration.openshift.io/role: "master"
+          name: 99-master-kargs-mpath
+        spec:
+          kernelArguments:
+            - 'rd.multipath=default'
+            - 'root=/dev/disk/by-label/dm-mpath-root'
+        ```
+1.  To enable multipathing on worker nodes:
+    *   Create a machine config file. For example, create a `99-worker-kargs-mpath.yaml` that instructs the cluster to add the compute label and identify the multipath kernel argument:
+        ```yaml
+        apiVersion: machineconfiguration.openshift.io/v1
+        kind: MachineConfig
+        metadata:
+          labels:
+            machineconfiguration.openshift.io/role: "worker"
+          name: 99-worker-kargs-mpath
+        spec:
+          kernelArguments:
+            - 'rd.multipath=default'
+            - 'root=/dev/disk/by-label/dm-mpath-root'
+        ```
+
+        You can now continue on to create the cluster.
+
+
+:::important
+
+Additional postinstallation steps are required to fully enable multipathing. For more information, see "Enabling multipathing with kernel arguments on {{ op_system }}" in _Postinstallation machine configuration tasks_.
+
+:::
+
+
+In case of MPIO failure, use the `bootlist` command to update the boot device list with alternate logical device names. The command displays a boot list and designates the possible boot devices for when the system is booted in normal mode.
+
+1.  To display a boot list and specify the possible boot devices if the system is booted in normal mode, enter the following command:
+    ```terminal
+    $ bootlist -m normal -o
+    sda
+    ```
+1.  To update the boot list for normal mode and add alternate device names, enter the following command:
+    ```terminal
+    $ bootlist -m normal -o /dev/sdc /dev/sdd /dev/sde
+    sdc
+    sdd
+    sde
+    ```
+
+    If the original boot disk path is down, the node reboots from the alternate device registered in the normal boot device list.

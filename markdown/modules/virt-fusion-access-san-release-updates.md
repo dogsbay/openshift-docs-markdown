@@ -1,0 +1,70 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# {{ IBMFusionFirst }} release updates {id="virt-fusion-access-san-release-updates_{{ context }}"}
+
+Release updates for {{ IBMFusionFirst }}, including new features, bug fixes, and known issues. {._abstract}
+
+## New and changed features {id="virt-fusion-access-san-new-changes_{{ context }}"}
+
+
+{{ IBMFusionFirst }} 1.1.0 includes Spectrum Scale 5.2.3.5
+
+:   {{ IBMFusionFirst }} 1.1.0 uses Spectrum Scale version 5.2.3.5. When you upgrade to {{ IBMFusionFirst }} 1.1.0, Spectrum Scale is automatically upgraded to version 5.2.3.5.
+
+    [OCPNAS-294](https://issues.redhat.com/browse/OCPNAS-294)
+
+    [OCPNAS-279](https://issues.redhat.com/browse/OCPNAS-279)
+
+
+Backend redesign for `FileSystemClaim` resources
+
+:   {{ IBMFusionFirst }} updates the backend to use `FileSystemClaim` resources for managing filesystem related objects. Previously, filesystem creation could fail if the process was interrupted. With this update, backend handling improves reliability while keeping the user interface flow and appearance unchanged.
+
+    After you upgrade to {{ IBMFusionFirst }} 1.1.0, resources that were created by using the 1.0 user interface are automatically migrated and associated with a `FileSystemClaim` resource.
+
+    [OCPNAS-241](https://issues.redhat.com/browse/OCPNAS-241)
+
+
+Automatic creation of `VolumeSnapshotClass` resources for filesystems
+
+:   {{ IBMFusionFirst }} now creates a `VolumeSnapshotClass` resource alongside the `StorageClass` resource for each filesystem. This ensures that snapshot support is consistently available for newly created filesystems.
+
+    After upgrading from {{ IBMFusionFirst }} 1.0 to 1.1.0, a `VolumeSnapshotClass` resource is automatically created for existing filesystems that did not previously have one.
+
+    [OCPNAS-293](https://issues.redhat.com/browse/OCPNAS-293)
+
+
+Image registry requirements for kernel module management
+
+:   {{ IBMFusionFirst }} uses the {{ product_title }} image registry to manage the kernel module. Do not configure the registry to use `emptyDir` storage because it provides only temporary storage and is not suitable for production use. Configure {{ IBMFusionFirst }} to use a different image registry by creating a config map and secret after installing the Operator and before creating the `FusionAccess` CR.
+
+    [OCPNAS-213](https://issues.redhat.com/browse/OCPNAS-213)
+
+## Bug fixes {id="virt-fusion-access-san-bug-fixes_{{ context }}"}
+
+
+Filesystem creation button stays disabled until daemons are ready
+
+:   The {{ IBMFusionFirst }} Operator was updated to check the readiness of filesystem daemons before allowing a filesystem to be created. The ***Create file system*** button in the web console now stays disabled with a tooltip explaining the condition until the environment is ready. This change prevents filesystems from appearing stuck during creation.
+
+    [OCPNAS-184](https://issues.redhat.com/browse/OCPNAS-184)
+
+
+Filesystems cannot be deleted from the user interface
+
+:   The {{ product_title }} web console does not support deleting filesystems. To delete a filesystem, use the {{ oc_first }}.
+
+    [OCPNAS-217](https://issues.redhat.com/browse/OCPNAS-217)
+
+## Known issues {id="virt-fusion-access-san-known-issues_{{ context }}"}
+
+
+Filesystem creation might fail during core pod deletion
+
+:   Filesystem creation might fail if core pods are deleted at the same time. The filesystem might be partially created on the LUN, which results in the following persistent error:
+    ```terminal
+    Disk <ID> may still belong to an active file system
+    ```
+
+    No workaround is available. Contact IBM Support for assistance.
+
+    [OCPNAS-233](https://issues.redhat.com/browse/OCPNAS-233)

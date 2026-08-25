@@ -1,0 +1,106 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a LokiStack custom resource by using the CLI {id="logging-create-loki-cr-cli_{{ context }}"}
+
+You can create a `LokiStack` custom resource (CR) by using the {{ oc_first }}.
+
+**Prerequisites**
+
+*   You have administrator permissions.
+*   You installed the {{ loki_op }}.
+*   You installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Create a `LokiStack` CR:
+    ```yaml title="Example LokiStack CR"
+    apiVersion: loki.grafana.com/v1
+    kind: LokiStack
+    metadata:
+      name: logging-loki
+      namespace: openshift-logging
+    spec:
+      size: 1x.small # (1)
+      storage:
+        schemas:
+        - version: v12
+          effectiveDate: "2022-06-01"
+        secret:
+          name: logging-loki-s3 # (2)
+          type: s3 # (3)
+      storageClassName: <storage_class_name> # (4)
+      tenants:
+        mode: openshift-logging 
+    ```
+    1.  Specify the deployment size. In the {{ logging }} 5.8 and later versions, the supported size options for production instances of Loki are `1x.extra-small`, `1x.small`, or `1x.medium`.
+    1.  Specify the name of your log store secret.
+    1.  Specify the type of your log store secret.
+    1.  Specify the name of a storage class for temporary storage. For best performance, specify a storage class that allocates block storage. Available storage classes for your cluster can be listed by using the `oc get storageclasses` command.
+
+
+    :::important
+
+    It is not possible to change the number `1x` for the deployment size.
+    
+    :::
+
+
+    ```yaml title="Example LokiStack CR"
+    apiVersion: loki.grafana.com/v1
+    kind: LokiStack
+    metadata:
+      name: logging-loki # (1)
+      namespace: openshift-logging
+    spec:
+      size: 1x.small # (2)
+      storage:
+        schemas:
+          - effectiveDate: '2023-10-15'
+            version: v13
+        secret:
+          name: logging-loki-s3 # (3)
+          type: s3 # (4)
+          credentialMode: # (5)
+      storageClassName: <storage_class_name> # (6)
+      tenants:
+        mode: openshift-logging
+    ```
+    1.  Use the name `logging-loki`.
+    1.  Specify the deployment size. In the {{ logging }} 5.8 and later versions, the supported size options for production instances of Loki are `1x.extra-small`, `1x.small`, or `1x.medium`.
+    1.  Specify the secret used for your log storage.
+    1.  Specify the corresponding storage type.
+    1.  Optional field, {{ logging }} 5.9 and later. Supported user configured values are as follows: `static` is the default authentication mode available for all supported object storage types using credentials stored in a Secret. `token` for short-lived tokens retrieved from a credential source. In this mode the static configuration does not contain credentials needed for the object storage. Instead, they are generated during runtime using a service, which allows for shorter-lived credentials and much more granular control. This authentication mode is not supported for all object storage types. `token-cco` is the default value when Loki is running on managed STS mode and using CCO on STS/WIF clusters.
+    1.  Enter the name of a storage class for temporary storage. For best performance, specify a storage class that allocates block storage. Available storage classes for your cluster can be listed by using the `oc get storageclasses` command.
+        1.  Apply the `LokiStack` CR by running the following command:
+
+    **Verification**
+
+    *   Verify the installation by listing the pods in the `openshift-logging` project by running the following command and observing the output:
+        ```terminal
+        $ oc get pods -n openshift-logging
+        ```
+
+        Confirm that you see several pods for components of the {{ logging }}, similar to the following list:
+        ```terminal title="Example output"
+        NAME                                           READY   STATUS    RESTARTS   AGE
+        cluster-logging-operator-78fddc697-mnl82       1/1     Running   0          14m
+        collector-6cglq                                2/2     Running   0          45s
+        collector-8r664                                2/2     Running   0          45s
+        collector-8z7px                                2/2     Running   0          45s
+        collector-pdxl9                                2/2     Running   0          45s
+        collector-tc9dx                                2/2     Running   0          45s
+        collector-xkd76                                2/2     Running   0          45s
+        logging-loki-compactor-0                       1/1     Running   0          8m2s
+        logging-loki-distributor-b85b7d9fd-25j9g       1/1     Running   0          8m2s
+        logging-loki-distributor-b85b7d9fd-xwjs6       1/1     Running   0          8m2s
+        logging-loki-gateway-7bb86fd855-hjhl4          2/2     Running   0          8m2s
+        logging-loki-gateway-7bb86fd855-qjtlb          2/2     Running   0          8m2s
+        logging-loki-index-gateway-0                   1/1     Running   0          8m2s
+        logging-loki-index-gateway-1                   1/1     Running   0          7m29s
+        logging-loki-ingester-0                        1/1     Running   0          8m2s
+        logging-loki-ingester-1                        1/1     Running   0          6m46s
+        logging-loki-querier-f5cf9cb87-9fdjd           1/1     Running   0          8m2s
+        logging-loki-querier-f5cf9cb87-fp9v5           1/1     Running   0          8m2s
+        logging-loki-query-frontend-58c579fcb7-lfvbc   1/1     Running   0          8m2s
+        logging-loki-query-frontend-58c579fcb7-tjf9k   1/1     Running   0          8m2s
+        logging-view-plugin-79448d8df6-ckgmx           1/1     Running   0          46s
+        ```

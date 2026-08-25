@@ -1,0 +1,48 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling HTTP Strict Transport Security per-route {id="nw-enabling-hsts-per-route_{{ context }}"}
+
+To enforce secure HTTPS connections for specific applications, enable HTTP Strict Transport Security (HSTS) on a per-route basis. Applying the `haproxy.router.openshift.io/hsts_header` annotation to edge and re-encrypt routes ensures that browsers reject unencrypted traffic. {._abstract}
+
+**Prerequisites**
+
+{%- if not microshift %}
+*   You are logged in to the cluster with a user with administrator privileges for the project.
+{% endif %}
+{% if microshift %}
+*   You have root access to the cluster.
+{%- endif %}
+*   You installed the {{ oc_first }}.
+
+**Procedure**
+
+*   To enable HSTS on a route, add the `haproxy.router.openshift.io/hsts_header` value to the edge-terminated or re-encrypt route. You can use the `oc annotate` tool to do this by running the following command. To properly run the command, ensure that the semicolon (`;`) in the `haproxy.router.openshift.io/hsts_header` route annotation is also surrounded by double quotation marks (`""`).
+    ```terminal title="Example annotate command that sets the maximum age to 31536000 ms (approximately 8.5 hours)"
+    $ oc annotate route <route_name> -n <namespace> --overwrite=true "haproxy.router.openshift.io/hsts_header=max-age=31536000;\
+    includeSubDomains;preload"
+    ```
+    ```yaml title="Example route configured with an annotation"
+    apiVersion: route.openshift.io/v1
+    kind: Route
+    metadata:
+      annotations:
+        haproxy.router.openshift.io/hsts_header: max-age=31536000;includeSubDomains;preload
+    # ...
+    spec:
+      host: def.abc.com
+      tls:
+        termination: "reencrypt"
+        ...
+      wildcardPolicy: "Subdomain"
+    # ...
+    ```
+
+    where:
+
+    `max-age`
+    :   Specifies the measurement of the length of time, in seconds, for the HSTS policy. If set to `0`, it negates the policy.
+
+    `includeSubDomains`
+    :   Specifies that all subdomains of the host must have the same HSTS policy as the host. Optional parameter.
+
+    `preload`
+    :   Specifies that the site is included in the HSTS preload list when `max-age` is greater than `0`. For example, sites such as Google can construct a list of sites that have `preload` set. Browsers can then use these lists to determine which sites they can communicate with over HTTPS, even before they have interacted with the site. Without `preload` set, browsers must have interacted with the site over HTTPS, at least once, to get the header. Optional parameter.

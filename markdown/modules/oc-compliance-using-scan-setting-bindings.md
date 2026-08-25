@@ -1,0 +1,78 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Using ScanSettingBinding custom resources {id="using-scan-setting-bindings_{{ context }}"}
+
+When using the `ScanSetting` and `ScanSettingBinding` custom resources (CRs) that the Compliance Operator provides, it is possible to run scans for multiple profiles while using a common set of scan options, such as `schedule`, `machine roles`, `tolerations`, and so on.
+ 
+Although that is easier than working with multiple `ComplianceSuite` or `ComplianceScan` objects, it can confuse new users. {._abstract}
+
+The `oc compliance bind` subcommand helps you create a `ScanSettingBinding` CR.
+
+**Procedure**
+
+1.  Run:
+    ```terminal
+    $ oc compliance bind [--dry-run] -N <binding name> [-S <scansetting name>] <objtype/objname> [..<objtype/objname>]
+    ```
+    *   If you omit the `-S` flag, the `default` scan setting provided by the Compliance Operator is used.
+    *   The object type is the Kubernetes object type, which  can be `profile` or `tailoredprofile`. More than one object can be provided.
+    *   The object name is the name of the Kubernetes resource, such as `.metadata.name`.
+    *   Add the `--dry-run` option to display the YAML file of the objects that are created.
+
+        For example, given the following profiles and scan settings:
+        ```terminal
+        $ oc get profile.compliance -n openshift-compliance
+        ```
+        ```terminal title="Example output"
+        NAME                       AGE     VERSION
+        ocp4-cis                   3h49m   1.9.0
+        ocp4-cis-1-9               3h49m   1.9.0
+        ocp4-cis-node              3h49m   1.9.0
+        ocp4-cis-node-1-9          3h49m   1.9.0
+        ocp4-e8                    3h49m
+        ocp4-high                  3h49m   Revision 4
+        ocp4-high-node             3h49m   Revision 4
+        ocp4-high-node-rev-4       3h49m   Revision 4
+        ocp4-high-rev-4            3h49m   Revision 4
+        ocp4-moderate              3h49m   Revision 4
+        ocp4-moderate-node         3h49m   Revision 4
+        ocp4-moderate-node-rev-4   3h49m   Revision 4
+        ocp4-moderate-rev-4        3h49m   Revision 4
+        ocp4-nerc-cip              3h49m
+        ocp4-nerc-cip-node         3h49m
+        ocp4-pci-dss               3h49m   4.0.0
+        ocp4-pci-dss-3-2           3h49m   3.2.1
+        ocp4-pci-dss-4-0           3h49m   4.0.0
+        ocp4-pci-dss-node          3h49m   4.0.0
+        ocp4-pci-dss-node-3-2      3h49m   3.2.1
+        ocp4-pci-dss-node-4-0      3h49m   4.0.0
+        ocp4-stig                  3h49m   V2R3
+        ocp4-stig-node             3h49m   V2R3
+        ocp4-stig-node-v2r3        3h49m   V2R3
+        ocp4-stig-v2r3             3h49m   V2R3
+        rhcos4-e8                  3h49m
+        rhcos4-high                3h49m   Revision 4
+        rhcos4-high-rev-4          3h49m   Revision 4
+        rhcos4-moderate            3h49m   Revision 4
+        rhcos4-moderate-rev-4      3h49m   Revision 4
+        rhcos4-nerc-cip            3h49m
+        rhcos4-stig                3h49m   V2R3
+        rhcos4-stig-v2r3           3h49m   V2R3
+
+        ```
+        ```terminal
+        $ oc get scansettings -n openshift-compliance
+        ```
+        ```terminal title="Example output"
+        NAME                 AGE
+        default              10m
+        default-auto-apply   10m
+        ```
+1.  To apply the `default` settings to the `ocp4-cis` and `ocp4-cis-node` profiles, run:
+    ```terminal
+    $ oc compliance bind -N my-binding profile/ocp4-cis profile/ocp4-cis-node
+    ```
+    ```terminal title="Example output"
+    Creating ScanSettingBinding my-binding
+    ```
+
+    After the `ScanSettingBinding` CR is created, the bound profile begins scanning for both profiles with the related settings. Overall, this is the fastest way to begin scanning with the Compliance Operator.

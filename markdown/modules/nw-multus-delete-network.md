@@ -1,0 +1,43 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Removing a secondary NetworkAttachmentDefinition custom resource {id="nw-multus-delete-network_{{ context }}"}
+
+To clean up unused network configurations or free up network resources in {{ product_title }}, you can remove a secondary `NetworkAttachmentDefinition` CR. Edit the Cluster Network Operator CR and delete the `NetworkAttachmentDefinition` CR to remove the secondary network from your cluster. {._abstract}
+
+When a secondary network is removed from the cluster, it is not removed from any pods that it is attached to.
+
+**Prerequisites**
+
+*   Install the OpenShift CLI (`oc`).
+*   Log in as a user with `cluster-admin` privileges.
+
+**Procedure**
+
+1.  Edit the Cluster Network Operator (CNO) in your default text editor by running the following command:
+    ```terminal
+    $ oc edit networks.operator.openshift.io cluster
+    ```
+1.  Modify the custom resource (CR) by removing the configuration that the CNO created from the `additionalNetworks` collection for the secondary network that you want to remove.
+    ```yaml
+    apiVersion: operator.openshift.io/v1
+    kind: Network
+    metadata:
+      name: cluster
+    spec:
+      additionalNetworks: []
+    ```
+    where:
+
+
+    `spec.additionalNetworks`
+    :   Specifies the secondary network attachment definition that you want to remove from the `additionalNetworks` collection. If you are removing the configuration mapping for the only secondary network attachment definition in the `additionalNetworks` collection, you must specify an empty collection.
+1.  Remove the `NetworkAttachmentDefinition` CR from the network of your cluster by entering the following command:
+    ```terminal
+    $ oc delete net-attach-def <name_of_network_attachment_definition>
+    ```
+
+    Replace `<name_of_network_attachment_definition>` with the name of the `NetworkAttachmentDefinition` CR that you want to remove.
+1.  Save your changes and quit the text editor to commit your changes.
+1.  Optional: Confirm that the secondary network CR was deleted by running the following command:
+    ```terminal
+    $ oc get network-attachment-definition --all-namespaces
+    ```

@@ -1,0 +1,96 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring parallel container image pulls {id="nodes-nodes-parallel-container-pulls-configure_{{ context }}"}
+
+You can control the number of images that can be pulled by your workload simultaneously by using a kubelet configuration. You can set a maximum number of images that can be pulled or force workloads to pull images one at a time. {._abstract}
+
+**Prerequisites**
+
+*   You have a running {{ product_title }} cluster.
+*   You are logged in to the cluster as a user with administrative privileges.
+
+**Procedure**
+
+1.  Apply a custom label to the machine config pool where you want to configure parallel pulls by running a command similar to the following.
+    ```terminal
+    $ oc label machineconfigpool <mcp_name> parallel-pulls=set
+    ```
+1.  Create a custom resource (CR) to configure parallel image pulling.
+    ```yaml
+    apiVersion: machineconfiguration.openshift.io/v1
+    kind: KubeletConfig
+    metadata:
+      name: parallel-image-pulls
+    # ...
+    spec:
+      machineConfigPoolSelector:
+        matchLabels:
+          parallel-pulls: set
+      kubeletConfig:
+        serializeImagePulls: false
+        maxParallelImagePulls: 3
+    # ...
+    ```
+
+    where:
+
+    `serializeImagePulls`
+    :   Specifies whether parallel pulling is enabled for the nodes in the associated machine config pool. Set to `false` to enable parallel image pulls. Set to `true` to force serial image pulling. The default is `false`.
+
+    `maxParallelImagePulls`
+    :   Specifies the maximum number of images that can be pulled in parallel. Enter a number or set to `nil` to specify no limit. This field cannot be set if `SerializeImagePulls` is `true`. The default is `nil`.
+
+1.  Create the new machine config by running a command similar to the following:
+    ```terminal
+    $ oc create -f <file_name>.yaml
+    ```
+
+**Verification**
+
+1.  Check the machine configs to see that a new one was added by running the following command:
+    ```terminal
+    $ oc get MachineConfig
+    ```
+    ```terminal
+    NAME                                                GENERATEDBYCONTROLLER                        IGNITIONVERSION   AGE
+    00-master                                           70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             133m
+    00-worker                                           70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             133m
+    # ...
+    99-parallel-generated-kubelet                       70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             15s
+    # ...
+    rendered-parallel-c634a80f644740974ceb40c054c79e50  70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             10s
+    ```
+
+    where:
+
+    `99-parallel-generated-kubelet`
+    :   Specifies the new machine config. In this example, the machine config is for the `parallel` custom machine config pool. 
+
+    `rendered-parallel-<sha_numnber>`
+    :   Specifies the new rendered machine config. In this example, the machine config is for the `parallel` custom machine config pool. 
+
+1.  Check to see that the nodes in the `parallel` machine config pool are being updated by running the following command:
+    ```terminal
+    $ oc get machineconfigpool
+    ```
+    ```terminal
+    NAME       CONFIG                                               UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE
+    parallel   rendered-parallel-3904f0e69130d125b3b5ef0e981b1ce1   False     True       False      1              0                   0                     0                      65m
+    master     rendered-master-7536834c197384f3734c348c1d957c18     True      False      False      3              3                   3                     0                      140m
+    worker     rendered-worker-c634a80f644740974ceb40c054c79e50     True      False      False      2              2                   2                     0                      140m
+    ```
+1.  When the nodes are updated, verify that the parallel pull maximum was configured:
+    1.  Open an `oc debug` session to a node by running a command similar to the following:
+        ```terminal
+        $ oc debug node/<node_name>
+        ```
+    1.  Set `/host` as the root directory within the debug shell by running the following command:
+        ```terminal
+        sh-5.1# chroot /host
+        ```
+    1.  Examine the `kubelet.conf` file by running the following command:
+        ```terminal
+        sh-5.1# cat /etc/kubernetes/kubelet.conf | grep -i maxParallelImagePulls
+        ```
+        ```terminal
+        maxParallelImagePulls: 3
+        ```

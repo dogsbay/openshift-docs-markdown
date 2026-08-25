@@ -1,0 +1,21 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling or disabling VM delete protection by using the CLI {id="virt-enabling-disabling-vm-delete-protection-cli_{{ context }}"}
+
+To prevent the inadvertent deletion of a virtual machine (VM), you can enable VM delete protection by using the command line. You can also disable delete protection for a VM. {._abstract}
+
+By default, delete protection is not enabled for VMs. You must set the option for each individual VM.
+
+**Prerequisites**
+
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+*   Enable delete protection for a VM by running the following command:
+    ```terminal
+    $ oc patch vm <vm_name> --type merge -p '{"metadata":{"labels":{"kubevirt.io/vm-delete-protection":"True"}}}' -n <namespace>
+    ```
+*   Disable delete protection for a VM by running the following command:
+    ```terminal
+    $ oc patch vm <vm_name> --type json -p '[{"op": "remove", "path": "/metadata/labels/kubevirt.io~1vm-delete-protection"}]' -n <namespace>
+    ```

@@ -1,0 +1,124 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Account-wide IAM role and policy AWS CLI reference {id="rosa-sts-account-wide-role-and-policy-aws-cli_{{ context }}"}
+
+This section lists the `aws` CLI commands that the `rosa` command generates in the terminal. You can run the command in either manual or automatic mode.
+
+## Using manual mode for account role creation {id="rosa-sts-account-wide-role-and-policy-aws-cli-manual-mode_{{ context }}"}
+
+The manual role creation mode generates the `aws` commands for you to review and run. The following command starts that process, where `<openshift_version>` refers to your version of {{ product_title }} (ROSA), such as `{{ product_version }}`.
+
+```terminal
+$ rosa create account-roles --mode manual
+```
+
+
+:::note
+
+The provided command examples include the `ManagedOpenShift` prefix. The `ManagedOpenShift` prefix is the default value, if you do not specify a custom prefix by using the `--prefix` option.
+
+:::
+
+
+```terminal title="Command output"
+aws iam create-role \
+	--role-name ManagedOpenShift-Installer-Role \
+	--assume-role-policy-document file://sts_installer_trust_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=rosa_role_type,Value=installer
+
+aws iam put-role-policy \
+	--role-name ManagedOpenShift-Installer-Role \
+	--policy-name ManagedOpenShift-Installer-Role-Policy \
+	--policy-document file://sts_installer_permission_policy.json
+
+aws iam create-role \
+	--role-name ManagedOpenShift-ControlPlane-Role \
+	--assume-role-policy-document file://sts_instance_controlplane_trust_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=rosa_role_type,Value=instance_controlplane
+
+aws iam put-role-policy \
+	--role-name ManagedOpenShift-ControlPlane-Role \
+	--policy-name ManagedOpenShift-ControlPlane-Role-Policy \
+	--policy-document file://sts_instance_controlplane_permission_policy.json
+
+aws iam create-role \
+	--role-name ManagedOpenShift-Worker-Role \
+	--assume-role-policy-document file://sts_instance_worker_trust_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=rosa_role_type,Value=instance_worker
+
+aws iam put-role-policy \
+	--role-name ManagedOpenShift-Worker-Role \
+	--policy-name ManagedOpenShift-Worker-Role-Policy \
+	--policy-document file://sts_instance_worker_permission_policy.json
+
+aws iam create-role \
+	--role-name ManagedOpenShift-Support-Role \
+	--assume-role-policy-document file://sts_support_trust_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=rosa_role_type,Value=support
+
+aws iam put-role-policy \
+	--role-name ManagedOpenShift-Support-Role \
+	--policy-name ManagedOpenShift-Support-Role-Policy \
+	--policy-document file://sts_support_permission_policy.json
+
+aws iam create-policy \
+	--policy-name ManagedOpenShift-openshift-ingress-operator-cloud-credentials \
+	--policy-document file://openshift_ingress_operator_cloud_credentials_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=operator_namespace,Value=openshift-ingress-operator Key=operator_name,Value=cloud-credentials
+
+aws iam create-policy \
+	--policy-name ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent \
+	--policy-document file://openshift_cluster_csi_drivers_ebs_cloud_credentials_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=operator_namespace,Value=openshift-cluster-csi-drivers Key=operator_name,Value=ebs-cloud-credentials
+
+aws iam create-policy \
+	--policy-name ManagedOpenShift-openshift-machine-api-aws-cloud-credentials \
+	--policy-document file://openshift_machine_api_aws_cloud_credentials_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=operator_namespace,Value=openshift-machine-api Key=operator_name,Value=aws-cloud-credentials
+
+aws iam create-policy \
+	--policy-name ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede \
+	--policy-document file://openshift_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=operator_namespace,Value=openshift-cloud-credential-operator Key=operator_name,Value=cloud-credential-operator-iam-ro-creds
+
+aws iam create-policy \
+	--policy-name ManagedOpenShift-openshift-image-registry-installer-cloud-creden \
+	--policy-document file://openshift_image_registry_installer_cloud_credentials_policy.json \
+	--tags Key=rosa_openshift_version,Value=<openshift_version> Key=rosa_role_prefix,Value=ManagedOpenShift Key=operator_namespace,Value=openshift-image-registry Key=operator_name,Value=installer-cloud-credentials
+```
+
+## Using auto mode for role creation {id="rosa-sts-account-wide-role-and-policy-aws-cli-auto-mode_{{ context }}"}
+
+When you add the `--mode auto` argument, the {{ product_title }} (ROSA) CLI, `rosa`, creates your roles and policies. The following command starts that process:
+
+```terminal
+$ rosa create account-roles --mode auto
+```
+
+
+:::note
+
+The provided command examples include the `ManagedOpenShift` prefix. The `ManagedOpenShift` prefix is the default value, if you do not specify a custom prefix by using the `--prefix` option.
+
+:::
+
+
+```terminal title="Command output"
+I: Creating roles using 'arn:aws:iam::<ARN>:user/<UserID>'
+? Create the 'ManagedOpenShift-Installer-Role' role? Yes
+I: Created role 'ManagedOpenShift-Installer-Role' with ARN 'arn:aws:iam::<ARN>:role/ManagedOpenShift-Installer-Role'
+? Create the 'ManagedOpenShift-ControlPlane-Role' role? Yes
+I: Created role 'ManagedOpenShift-ControlPlane-Role' with ARN 'arn:aws:iam::<ARN>:role/ManagedOpenShift-ControlPlane-Role'
+? Create the 'ManagedOpenShift-Worker-Role' role? Yes
+I: Created role 'ManagedOpenShift-Worker-Role' with ARN 'arn:aws:iam::<ARN>:role/ManagedOpenShift-Worker-Role'
+? Create the 'ManagedOpenShift-Support-Role' role? Yes
+I: Created role 'ManagedOpenShift-Support-Role' with ARN 'arn:aws:iam::<ARN>:role/ManagedOpenShift-Support-Role'
+? Create the operator policies? Yes
+I: Created policy with ARN 'arn:aws:iam::<ARN>:policy/ManagedOpenShift-openshift-machine-api-aws-cloud-credentials'
+I: Created policy with ARN 'arn:aws:iam::<ARN>:policy/ManagedOpenShift-openshift-cloud-credential-operator-cloud-crede'
+I: Created policy with ARN 'arn:aws:iam::<ARN>:policy/ManagedOpenShift-openshift-image-registry-installer-cloud-creden'
+I: Created policy with ARN 'arn:aws:iam::<ARN>:policy/ManagedOpenShift-openshift-ingress-operator-cloud-credentials'
+I: Created policy with ARN 'arn:aws:iam::<ARN>:policy/ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credent'
+I: Created policy with ARN 'arn:aws:iam::<ARN>:policy/ManagedOpenShift-openshift-cloud-network-config-controller-cloud'
+I: To create a cluster with these roles, run the following command:
+rosa create cluster --sts
+```

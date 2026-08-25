@@ -1,0 +1,64 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring a dedicated disk for etcd {id="installation-azure-dedicated-disks_{{ context }}"}
+
+You can install your {{ product_title }} cluster on {{ azure_first }} with a dedicated data disk for `etcd`. This configuration attaches a separate managed disk to each control plane node and uses it only for `etcd` data, which can improve cluster performance and stability. {._abstract}
+
+{%- set FeatureName = "Dedicated disk for etcd" %}
+
+{% include "./snippets/technology-preview.md" %}
+
+**Prerequisites**
+
+*   You have created an `install-config.yaml` file.
+
+**Procedure**
+
+*   To configure a dedicated `etcd` disk, edit the `install-config.yaml` file and add the `diskSetup` and `dataDisks` parameters to the `controlPlane` stanza:
+    ```yaml
+    # ...
+    controlPlane:
+      architecture: amd64
+      hyperthreading: Enabled
+      name: master
+      platform:
+        azure:
+          type: Standard_D4s_v5
+          dataDisks:
+          - nameSuffix: etcddisk
+            cachingType: None
+            diskSizeGB: 20
+            lun: 0
+      diskSetup:
+      - type: etcd
+        etcd:
+          platformDiskID: etcddisk
+      replicas: 3
+    # ...
+    ```
+
+    where:
+
+    `controlPlane.platform.azure.dataDisks.nameSuffix`
+    :   Specifies the same value you defined for `platformDiskID`.
+
+    `controlPlane.platform.azure.dataDisks.cachingType`
+    :   Specifies `None`. Other caching requirements are not currently supported.
+
+    `controlPlane.platform.azure.dataDisks.diskSizeGB`
+    :   Specifies a disk size in GB. This value can be any integer greater than `0`.
+
+    :::note
+
+    A minimum of 20 GB ensures enough space is available for defragmentation operations.
+    
+    :::
+
+
+    `controlPlane.platform.azure.dataDisks.lun`
+    :   Specifies a logical unit number (LUN). This can be any integer from `0` through `63` that is not used by another disk.
+
+    `controlPlane.diskSetup.type`
+    :   Specifies `etcd`. This identifies `etcd` as the node component type to receive a dedicated disk.
+
+    `controlPlane.diskSetup.etcd.platformDiskID`
+    :   Specifies a name to identify the disk. This value must not exceed 12 characters.

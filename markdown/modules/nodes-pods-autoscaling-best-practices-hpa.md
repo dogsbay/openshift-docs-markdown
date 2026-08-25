@@ -1,0 +1,26 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Best practices {id="nodes-pods-autoscaling-best-practices-hpa_{{ context }}"}
+
+You can help ensure optimal performance in your cluster by configuring resource requests for all pods. Additionally, you can prevent frequent replica fluctuations by configuring the cooldown period. {._abstract}
+
+
+All pods must have resource requests configured
+:   The HPA makes a scaling decision based on the observed CPU or memory usage values of pods in an {{ product_title }} cluster. Utilization values are calculated as a percentage of the resource requests of each pod. Missing resource request values can affect the optimal performance of the HPA.
+
+For more information, see "Understanding resource requests and limits".
+
+
+Configure the cool down period
+:   During horizontal pod autoscaling, there might be a rapid scaling of events without a time gap. Configure the cool down period to prevent frequent replica fluctuations. You can specify a cool down period by configuring the `stabilizationWindowSeconds` field. The stabilization window is used to restrict the fluctuation of replicas count when the metrics used for scaling keep fluctuating. The autoscaling algorithm uses this window to infer a previous required state and avoid unwanted changes to workload scale.
+
+For example, a stabilization window is specified for the `scaleDown` field:
+
+```yaml
+behavior:
+  scaleDown:
+    stabilizationWindowSeconds: 300
+```
+
+In the previous example, all intended states for the past 5 minutes are considered. This approximates a rolling maximum, and avoids having the scaling algorithm often remove pods only to trigger recreating an equal pod just moments later.
+
+For more information, see "Scaling policies".

@@ -1,0 +1,8 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Communication across pods {id="learning-deploying-application-networking-multiple-pods_{{ context }}"}
+
+Pods are the smallest execution units in {{ product_title }}. Using pods abstracts the underlying infrastructure and helps you efficiently manage your containerized environments. {._abstract}
+
+In this workshop, there are at least two separate pods, each with its own service. One pod functions as the front end web application with a service and a publicly accessible route. The other pod functions as the backend microservice with a service object so that the front end pod can communicate with the microservice. 
+
+Communication occurs across the pods if there is more than one pod. The microservice is not accessible from outside the cluster and other namespaces or projects. The purpose of the microservice is to serve internal web requests and return a JSON object containing the current hostname (the pod’s name) and a randomly generated color string. This color string displays a box with that color on the OSToy application web console.

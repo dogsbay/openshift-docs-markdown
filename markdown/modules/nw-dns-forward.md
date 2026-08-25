@@ -1,0 +1,125 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Using DNS forwarding {id="nw-dns-forward_{{ context }}"}
+
+Configure DNS forwarding servers and upstream resolvers for the cluster. {._abstract}
+
+You can use DNS forwarding to override the default forwarding configuration in the `/etc/resolv.conf` file in the following ways:
+
+*   Specify name servers (`spec.servers`) for every zone. If the forwarded zone is the ingress domain managed by {{ product_title }}, then the upstream name server must be authorized for the domain.
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+
+    :::important
+
+    You must specify at least one zone. Otherwise, your cluster can lose functionality.
+    
+    :::
+
+{%- endif %}
+*   Provide a list of upstream DNS servers (`spec.upstreamResolvers`).
+*   Change the default forwarding policy.
+
+A DNS forwarding configuration for the default domain can have both the default servers specified in the `/etc/resolv.conf` file and the upstream DNS servers.
+
+
+:::important
+
+During pod creation, Kubernetes uses the `/etc/resolv.conf` file that exists on a node. If you modify the `/etc/resolv.conf` file on a host node, the changes do not propagate to the `/etc/resolv.conf` file that exists in a container. You must re-create the container for changes to take effect.
+
+:::
+
+
+**Procedure**
+
+*   Modify the DNS Operator object named `default`:
+    ```terminal
+    $ oc edit dns.operator/default
+    ```
+
+    After you issue the previous command, the Operator creates and updates the config map named `dns-default` with additional server configuration blocks based on `spec.servers`.
+{%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+
+    :::important
+
+    When specifying values for the `zones` parameter, ensure that you only forward to specific zones, such as your intranet. You must specify at least one zone. Otherwise, your cluster can lose functionality.
+    
+    :::
+
+{%- endif %}
+
+    If none of the servers have a zone that matches the query, then name resolution falls back to the upstream DNS servers.
+    ```yaml title="Configuring DNS forwarding"
+    apiVersion: operator.openshift.io/v1
+    kind: DNS
+    metadata:
+      name: default
+    spec:
+      cache:
+        negativeTTL: 0s
+        positiveTTL: 0s
+      logLevel: Normal
+      nodePlacement: {}
+      operatorLogLevel: Normal
+      servers:
+      - name: example-server
+        zones:
+        - example.com
+        forwardPlugin:
+          policy: Random
+          upstreams:
+          - 1.1.1.1
+          - 2.2.2.2:5353
+      upstreamResolvers:
+        policy: Random
+        protocolStrategy: ""
+        transportConfig: {}
+        upstreams:
+        - type: SystemResolvConf
+        - type: Network
+          address: 1.2.3.4
+          port: 53
+        status:
+          clusterDomain: cluster.local
+          clusterIP: x.y.z.10
+          conditions:
+    ...
+    ```
+
+    where:
+
+    `spec.servers.name`
+    :   Must comply with the `rfc6335` service name syntax.
+
+    `spec.servers.zones`
+    :   Must conform to the `rfc1123` subdomain syntax. The cluster domain `cluster.local` is invalid for `zones`.
+
+    `spec.servers.forwardPlugin.policy`
+    :   Specifies the upstream selection policy. Defaults to `Random`; allowed values are `RoundRobin` and `Sequential`.
+
+    `spec.servers.forwardPlugin.upstreams`
+    :   Must provide no more than 15 `upstreams` entries per `forwardPlugin`.
+
+    `spec.upstreamResolvers.upstreams`
+    :   Specifies an `upstreamResolvers` to override the default forwarding policy and forward DNS resolution to the specified DNS resolvers (upstream resolvers) for the default domain. You can use this field when you need custom upstream resolvers; otherwise queries use the servers declared in  `/etc/resolv.conf`.
+
+    `spec.upstreamResolvers.policy`
+    :   Specifies the upstream selection order. Defaults to `Sequential`; allowed values are `Random`, `RoundRobin`, and `Sequential`.
+
+    `spec.upstreamResolvers.protocolStrategy`
+    :   Specify `TCP` to force the protocol to use for upstream DNS requests, even if the request uses UDP. Valid values are `TCP` and omitted. When omitted, the platform chooses a default, normally the protocol of the original client request.
+
+    `spec.upstreamResolvers.transportConfig`
+    :   Specifies the transport type, server name, and optional custom CA or CA bundle to use when forwarding DNS requests to an upstream resolver.
+
+    `spec.upstreamResolvers.upstreams.type`
+    :   Specifies two types of `upstreams`: `SystemResolvConf` or `Network`. `SystemResolvConf` configures the upstream to use `/etc/resolv.conf` and `Network` defines a `Networkresolver`. You can specify one or both.
+
+    `spec.upstreamResolvers.upstreams.address`
+    :   Specifies a valid IPv4 or IPv6 address when type is `Network`.
+
+    `spec.upstreamResolvers.upstreams.port`
+    :   Specifies an optional field to provide a port number. Valid values are between `1` and `65535`; defaults to 853 when omitted.
+
+**Additional resources**
+{._additional-resources}
+
+*   [CoreDNS forward documentation](https://coredns.io/plugins/forward/)

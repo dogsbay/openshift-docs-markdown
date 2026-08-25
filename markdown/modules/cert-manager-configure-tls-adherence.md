@@ -1,0 +1,47 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring cluster TLS security profile adherence for cert-manager components {id="cert-manager-configure-tls-adherence_{{ context }}"}
+
+You can configure the {{ cert_manager_operator }} to apply the cluster-wide TLS security profile by setting the TLS adherence policy on the cluster `APIServer` resource. When the adherence policy is set to `StrictAllComponents`, cert-manager components automatically apply the cluster TLS security profile settings. {._abstract}
+
+{%- set FeatureName = "TLS adherence for cert-manager operands" %}
+{% include "./snippets/technology-preview.md" %}
+
+**Prerequisites**
+
+*   You have access to the cluster with `cluster-admin` privileges.
+*   You installed the {{ cert_manager_operator }}.
+*   You enabled the `TechPreviewNoUpgrade` feature set. For more information, see "Enabling features using feature gates".
+
+**Procedure**
+
+1.  Edit the cluster `APIServer` custom resource (CR) by running the following command:
+    ```terminal
+    $ oc edit apiserver cluster
+    ```
+1.  Add or modify the `tlsAdherence` field in the `spec` section and set it to `StrictAllComponents` by using the following example:
+    ```yaml
+    apiVersion: config.openshift.io/v1
+    kind: APIServer
+    metadata:
+      name: cluster
+    spec:
+      tlsSecurityProfile:
+        type: Intermediate
+        intermediate: {}
+      tlsAdherence: StrictAllComponents
+    ```
+
+    where:
+
+    `tlsSecurityProfile.type`
+    :   Optional: Specifies the TLS security profile type. Valid values are `Old`, `Intermediate`, `Modern`, or `Custom`. If not specified, the default is `Intermediate`. When specifying a profile type, you must also include the corresponding profile-specific field, for example, `intermediate: {}` for the `Intermediate` profile.
+
+
+`tlsAdherence: StrictAllComponents`
+:   Specifies that cluster-wide TLS settings are enforced on all components, including cert-manager.
+
+1.  Save the changes and exit the editor.
+
+**Verification**
+
+1.  The {{ cert_manager_operator }} automatically applies the cluster TLS security profile to the cert-manager controller, webhook, and CA injector deployments. Check that the TLS configuration is applied to the cert-manager components. For more information, see "Verifying TLS security profile adherence for cert-manager components".

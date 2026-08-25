@@ -1,0 +1,72 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Default admission plugins {id="admission-plug-ins-default_{{ context }}"}
+
+{%- if not (openshift_rosa or openshift_dedicated) %}
+{%- endif %}
+Default validating and mutating admission plugins are enabled in {{ product_title }}.
+These default plugins contribute to fundamental control plane functionality, such as ingress policy, cluster resource limit override, and quota policy. {._abstract}
+
+{% include "./snippets/default-projects.md" %}
+
+The following list includes the default validating admission plugins:
+
+*   `LimitRanger`
+*   `ServiceAccount`
+*   `PodNodeSelector`
+*   `Priority`
+*   `PodTolerationRestriction`
+*   `OwnerReferencesPermissionEnforcement`
+*   `PersistentVolumeClaimResize`
+*   `RuntimeClass`
+*   `CertificateApproval`
+*   `CertificateSigning`
+*   `CertificateSubjectRestriction`
+*   `autoscaling.openshift.io/ManagementCPUsOverride`
+*   `authorization.openshift.io/RestrictSubjectBindings`
+*   `scheduling.openshift.io/OriginPodNodeEnvironment`
+*   `network.openshift.io/ExternalIPRanger`
+*   `network.openshift.io/RestrictedEndpointsAdmission`
+*   `image.openshift.io/ImagePolicy`
+*   `security.openshift.io/SecurityContextConstraint`
+*   `security.openshift.io/SCCExecRestrictions`
+*   `route.openshift.io/IngressAdmission`
+*   `config.openshift.io/ValidateAPIServer`
+*   `config.openshift.io/ValidateAuthentication`
+*   `config.openshift.io/ValidateFeatureGate`
+*   `config.openshift.io/ValidateConsole`
+*   `operator.openshift.io/ValidateDNS`
+*   `config.openshift.io/ValidateImage`
+*   `config.openshift.io/ValidateOAuth`
+*   `config.openshift.io/ValidateProject`
+*   `config.openshift.io/DenyDeleteClusterConfiguration`
+*   `config.openshift.io/ValidateScheduler`
+*   `quota.openshift.io/ValidateClusterResourceQuota`
+*   `security.openshift.io/ValidateSecurityContextConstraints`
+*   `authorization.openshift.io/ValidateRoleBindingRestriction`
+*   `config.openshift.io/ValidateNetwork`
+*   `operator.openshift.io/ValidateKubeControllerManager`
+*   `ValidatingAdmissionWebhook`
+*   `ResourceQuota`
+*   `quota.openshift.io/ClusterResourceQuota`
+
+The following list includes the default mutating admission plugins:
+
+*   `NamespaceLifecycle`
+*   `LimitRanger`
+*   `ServiceAccount`
+*   `NodeRestriction`
+*   `TaintNodesByCondition`
+*   `PodNodeSelector`
+*   `Priority`
+*   `DefaultTolerationSeconds`
+*   `PodTolerationRestriction`
+*   `DefaultStorageClass`
+*   `StorageObjectInUseProtection`
+*   `RuntimeClass`
+*   `DefaultIngressClass`
+*   `autoscaling.openshift.io/ManagementCPUsOverride`
+*   `scheduling.openshift.io/OriginPodNodeEnvironment`
+*   `image.openshift.io/ImagePolicy`
+*   `security.openshift.io/SecurityContextConstraint`
+*   `security.openshift.io/DefaultSecurityContextConstraints`
+*   `MutatingAdmissionWebhook`

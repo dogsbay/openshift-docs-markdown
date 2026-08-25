@@ -1,0 +1,41 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# DNS flow enrichment and analysis reference {id="network-observability-dns-resolution-analysis-reference_{{ context }}"}
+
+Identify metadata added to network flows, leverage DNS data for network optimization, and understand the performance and storage impacts on the cluster. {._abstract}
+
+The following table describes the metadata fields added to network flows when DNS tracking is enabled.
+
+
+:::note
+
+Query names might be missing or truncated because of compression pointers or cache limitations.
+
+:::
+
+
+**DNS flow metadata**
+
+| Field | Description | Example |
+| --- | --- | --- |
+| `dns_query_name` | The Fully Qualified Domain Name (FQDN) being queried. | `example.com` |
+| `dns_response_code` | The status code returned by the DNS server. | `NoError`, `NXDomain` |
+| `dns_id` | The transaction ID used to match queries with responses. | `45213` |
+
+## Leverage DNS data for network optimization {id="leverage-dns-data-optimization_{{ context }}"}
+Use the captured DNS metadata for the following operational outcomes:
+
+*   Audit external dependencies: Ensure workloads are not reaching out to unauthorized external APIs or high-risk domains.
+*   Performance tuning: Monitor `DNS Latency` to identify if `CoreDNS` pods require additional scaling or if upstream DNS providers are lagging.
+
+## Identify misconfiguration errors {id="identify-misconfiguration-errors_{{ context }}"}
+A high frequency of `NXDOMAIN` responses typically indicates service discovery errors in application code or stale environment variables.
+
+`NXDOMAIN` errors can be frequent in Kubernetes because of DNS searches on services and pods. While these results do not necessarily indicate a misconfiguration or broken URL, they can negatively impact performance.
+
+When `NXDOMAIN` errors are returned despite an apparently valid Service or Pod host name, such as `my-svc.my-namespace.svc`, the resolver is likely configured to query DNS for different suffixes. You can optimize this by adding a trailing dot to fully qualified domain names to tell the resolver that the name is unambiguous.
+
+For example, instead of `https://my-svc.my-namespace.svc`, use `https://my-svc.my-namespace.svc.cluster.local.` with a trailing dot.
+
+## Loki storage considerations {id="loki-storage-considerations_{{ context }}"}
+
+DNS tracking increases the number of labels and the amount of metadata per flow. Ensure that the Loki storage is sized to accommodate the increased log volume.

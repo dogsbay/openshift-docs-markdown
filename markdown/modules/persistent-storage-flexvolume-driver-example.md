@@ -1,0 +1,54 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# FlexVolume driver example {id="flexvolume-driver-example_{{ context }}"}
+
+When working with FlexVolume drivers, it is helpful to become familiar with structure of the driver. {._abstract}
+
+The first command-line argument of the FlexVolume driver is always an operation name. Other parameters are specific to each operation. Most of the operations take a JavaScript Object Notation (JSON) string as a parameter. This parameter is a complete JSON string, and not the name of a file with the JSON data.
+
+The FlexVolume driver contains:
+
+*   All `flexVolume.options`.
+*   Some options from `flexVolume` prefixed by `kubernetes.io/`, such as `fsType` and `readwrite`.
+*   The content of the referenced secret, if specified, prefixed by `kubernetes.io/secret/`.
+
+```json title="FlexVolume driver JSON input example"
+{
+	"fooServer": "192.168.0.1:1234",
+        "fooVolumeName": "bar",
+	"kubernetes.io/fsType": "ext4",
+	"kubernetes.io/readwrite": "ro",
+	"kubernetes.io/secret/<key name>": "<key value>",
+	"kubernetes.io/secret/<another key name>": "<another key value>",
+}
+```
+where:
+
+
+`fooServer`
+:   Specifies all options from `flexVolume.options`.
+
+
+`kubernetes.io/fsType`
+:   Specifies the value of `flexVolume.fsType`.
+
+
+`kubernetes.io/readwrite`
+:   Specifies the value `ro` or `rw` based on `flexVolume.readOnly`.
+
+
+`kubernetes.io/secret/<key name>`
+:   Specifies all keys and their values from the secret referenced by `flexVolume.secretRef`.
+
+{{ product_title }} expects JSON data on standard output of the driver. When not
+specified, the output describes the result of the operation.
+
+```json title="FlexVolume driver default output example"
+{
+	"status": "<Success/Failure/Not supported>",
+	"message": "<Reason for success/failure>"
+}
+```
+
+Exit code of the driver should be `0` for success and `1` for error.
+
+Operations should be idempotent, which means that the mounting of an already mounted volume should result in a successful operation.

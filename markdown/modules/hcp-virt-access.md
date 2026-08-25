@@ -1,0 +1,35 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Accessing the hosted cluster {id="hcp-virt-access_{{ context }}"}
+
+You can access the hosted cluster by either getting the `kubeconfig` file and `kubeadmin` credential directly from resources, or by using the `hcp` command-line interface to generate a `kubeconfig` file. {._abstract}
+
+**Prerequisites**
+
+To access the hosted cluster by getting the `kubeconfig` file and credentials directly from resources, you must be familiar with the access secrets for hosted clusters. The _hosted cluster (hosting)_ namespace has hosted cluster resources and the access secrets. The _hosted control plane_ namespace is where the hosted control plane runs.
+
+The secret name formats are as follows:
+
+*   `kubeconfig` secret: `<hosted_cluster_namespace>-<name>-admin-kubeconfig` (clusters-hypershift-demo-admin-kubeconfig)
+*   `kubeadmin` password secret: `<hosted_cluster_namespace>-<name>-kubeadmin-password` (clusters-hypershift-demo-kubeadmin-password)
+
+The `kubeconfig` secret has a Base64-encoded `kubeconfig` field, which you can decode and save into a file to use with the following command:
+
+```terminal
+$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes
+```
+
+The `kubeadmin` password secret is also Base64-encoded. You can decode it and use the password to log in to the API server or console of the hosted cluster.
+
+To access the hosted cluster by using the `hcp` CLI to generate the `kubeconfig` file, take the following steps.
+
+**Procedure**
+
+1.  Generate the `kubeconfig` file by entering the following command:
+    ```terminal
+    $ hcp create kubeconfig --namespace <hosted_cluster_namespace> \
+      --name <hosted_cluster_name> > <hosted_cluster_name>.kubeconfig
+    ```
+1.  After you save the `kubeconfig` file, you can access the hosted cluster by entering the following example command:
+    ```terminal
+    $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes
+    ```

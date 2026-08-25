@@ -1,0 +1,6 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# The kubectl binary {id="oc-usage-kubectl_{{ context }}"}
+
+The Kubernetes CLI (`kubectl`) binary is provided as a means to support existing workflows and scripts for new {{ product_title }} users coming from a standard Kubernetes environment, or for those who prefer to use the `kubectl` CLI. Existing users of `kubectl` can continue to use the binary to interact with Kubernetes primitives, with no changes required to the {{ product_title }} cluster. {._abstract}
+
+You can install the supported `kubectl` binary by following the steps to install the OpenShift CLI. The `kubectl` binary is included in the archive if you download the binary, or is installed when you install the CLI by using an RPM.

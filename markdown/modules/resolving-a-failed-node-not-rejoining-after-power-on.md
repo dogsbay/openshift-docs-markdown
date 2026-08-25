@@ -1,0 +1,56 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Resolving a failed node not rejoining after power-on {id="resolving-a-failed-node-not-rejoining-after-power-on_{{ context }}"}
+
+If the failed node does not rejoin the cluster after being powered on, verify Corosync connectivity and service health. {._abstract}
+
+**Procedure**
+
+1.  Verify Corosync and cluster service status on the returning node by running the following command:
+    ```terminal
+    $ oc debug node/<returning-node> -- chroot /host bash -c '\
+      corosync-cfgtool -s\
+      systemctl status corosync pacemaker pcsd
+    '
+    ```
+1.  Verify network connectivity between both nodes.
+    *   For a  Cluster Network (Corosync), ping an adjacent node to check the peer node on the cluster network by running the following command:
+        ```terminal
+        $ ping -c 3 <peer_node_ip>
+        ```
+    *   For a Management or BMC Network (Fencing Path), run the following command:
+        ```terminal
+        $ ping -c 3
+        ```
+
+        The output is similar to the following example:
+        ```terminal
+        HTTP_CODE: 401
+        TIME_TOTAL: 0.224628s
+        TIME_CONNECT: 0.000322s
+        ```
+
+        :::note
+
+        The `HTTP 401` code is expected because the curl command does not pass credentials (no --user Administrator:password). It confirms the Redfish API is listening and rejecting unauthenticated requests.
+
+        TIME_CONNECT value is approximately 0.322ms which shows the fast connectivity.
+        
+        :::
+
+    *   For an Application Network (OpenShift/etcd), perform the following tasks:
+        *   Check API server health on the local node by running the following command:
+            ```terminal
+            $ curl -sk https://localhost:6443/healthz
+            ```
+        *   Check API server health on the peer node by running the following command:
+            ```terminal
+            $ curl -sk https://<peer-node-ip>:6443/healthz
+            ```
+        *   List etcd cluster members by running the following command:
+            ```terminal
+            $ podman exec etcd etcdctl member list --write-out=table
+            ```
+        *   Check etcd endpoint health across the cluster by running the following command:
+            ```terminal
+            $ podman exec etcd etcdctl endpoint health --cluster
+            ```

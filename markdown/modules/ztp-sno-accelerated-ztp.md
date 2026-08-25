@@ -1,0 +1,73 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Accelerated provisioning of {{ ztp }} {id="ztp-sno-accelerated-ztp_{{ context }}"}
+
+{%- set FeatureName = "Accelerated provisioning of {{ ztp }}" %}
+{% include "./snippets/technology-preview.md" %}
+
+You can reduce the time taken for cluster installation by using accelerated provisioning of {{ ztp }} for {{ sno }}.
+Accelerated ZTP speeds up installation by applying Day 2 manifests derived from policies at an earlier stage.
+
+
+:::important
+
+Accelerated provisioning of {{ ztp }} is supported only when installing {{ sno }} with Assisted Installer. Otherwise this installation method will fail.
+
+:::
+
+
+## Activating accelerated ZTP {id="activating-accelerated-ztp_{{ context }}"}
+
+You can activate accelerated ZTP using the `spec.clusters.clusterLabels.accelerated-ztp` label, as in the following example:
+
+```yaml title="Example Accelerated ZTP ClusterInstance CR."
+apiVersion: siteconfig.open-cluster-management.io/v1alpha1
+kind: ClusterInstance
+metadata:
+  name: "example-sno"
+  namespace: "example-sno"
+spec:
+  baseDomain: "example.com"
+  pullSecretRef:
+    name: "assisted-deployment-pull-secret"
+  clusterImageSetNameRef: "openshift-4.22"
+  sshPublicKey: "ssh-rsa AAAA..."
+  extraLabels:
+    ManagedCluster:                    # <-- Resource type as outer key
+      common: "true"
+      group-du-sno: ""
+      sites: "example-sno"
+      accelerated-ztp: full            # <-- Accelerated ZTP label
+# ...
+```
+
+You can use `accelerated-ztp: full` to fully automate the accelerated process.
+{{ ztp }} updates the `AgentClusterInstall` resource with a reference to the accelerated {{ ztp }} `ConfigMap`, and includes resources extracted from policies by {{ cgu_operator }}, and accelerated ZTP job manifests.
+
+If you use `accelerated-ztp: partial`, {{ ztp }} does not include the accelerated job manifests, but includes policy-derived objects created during the cluster installation of the following `kind` types:
+
+*   `PerformanceProfile.performance.openshift.io`
+*   `Tuned.tuned.openshift.io`
+*   `Namespace`
+*   `CatalogSource.operators.coreos.com`
+*   `ContainerRuntimeConfig.machineconfiguration.openshift.io`
+
+This partial acceleration can reduce the number of reboots done by the node when applying resources of the kind `Performance Profile`, `Tuned`, and `ContainerRuntimeConfig`.
+{{ cgu_operator }} installs the Operator subscriptions derived from policies after {{ rh_rhacm }} completes the import of the cluster, following the same flow as standard {{ ztp }}.
+
+The benefits of accelerated ZTP increase with the scale of your deployment.
+Using `accelerated-ztp: full` gives more benefit on a large number of clusters.
+With a smaller number of clusters, the reduction in installation time is less significant.
+Full accelerated ZTP leaves behind a namespace and a completed job on the spoke that need to be manually removed.
+
+One benefit of using `accelerated-ztp: partial` is that you can override the functionality of the on-spoke job if something goes wrong with the stock implementation or if you require a custom functionality.
+
+## The accelerated ZTP process {id="the-accelerated-ztp-process_{{ context }}"}
+
+Accelerated ZTP uses an additional `ConfigMap` to create the resources derived from policies on the spoke cluster.
+The standard `ConfigMap` includes manifests that the {{ ztp }} workflow uses to customize cluster installs.
+
+{{ cgu_operator }} detects that the `accelerated-ztp` label is set and then creates a second `ConfigMap`.
+As part of accelerated ZTP, the SiteConfig Operator adds a reference to that second `ConfigMap` using the naming convention `<spoke-cluster-name>-aztp`.
+
+After {{ cgu_operator }} creates that second `ConfigMap`, it finds all policies bound to the managed cluster and extracts the {{ ztp }} profile information.
+{{ cgu_operator }} adds the {{ ztp }} profile information to the `<spoke-cluster-name>-aztp` `ConfigMap` custom resource (CR) and applies the CR to the hub cluster API.

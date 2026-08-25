@@ -1,0 +1,44 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a storage class for GCP Filestore Storage {id="persistent-storage-csi-google-cloud-file-create-sc_{{ context }}"}
+
+To enable dynamic provisioning of GCP Filestore volumes, create a storage class that specifies VPC network configuration and connection mode settings. {._abstract}
+
+Ensure that the Operator is installed before creating a storage class for dynamic provisioning of Google Compute Platform (GCP) Filestore volumes.
+
+**Prerequisites**
+
+*   You are logged in to the running {{ product_title }} cluster.
+
+**Procedure**
+
+1.  Create a storage class using the following example YAML file:
+    ```yaml title="Example YAML file"
+    kind: StorageClass
+    apiVersion: storage.k8s.io/v1
+    metadata:
+      name: filestore-csi
+    provisioner: filestore.csi.storage.gke.io
+    parameters:
+      connect-mode: DIRECT_PEERING
+      network: network-name
+    allowVolumeExpansion: true
+    volumeBindingMode: WaitForFirstConsumer
+    ```
+    *   `parameters.connect-mode`: For a shared VPC, use the `connect-mode` parameter set to `PRIVATE_SERVICE_ACCESS`. For a non-shared VPC, the value is `DIRECT_PEERING`, which is the default setting.
+    *   `parameters.network`: Specify the name of the GCP virtual private cloud (VPC) network where Filestore instances should be created in. 
+1.  Specify the name of the VPC network where Filestore instances should be created in.
+
+    It is recommended to specify the VPC network that the Filestore instances should be created in. If no VPC network is specified, the Container Storage Interface (CSI) driver tries to create the instances in the default VPC network of the project.
+
+    On IPI installations, the VPC network name is typically the cluster name with the suffix "-network". However, on UPI installations, the VPC network name can be any value chosen by the user.
+
+    For a shared VPC (`connect-mode` = `PRIVATE_SERVICE_ACCESS`), the network needs to be the full VPC name. For example: `projects/shared-vpc-name/global/networks/gcp-filestore-network`.
+
+    You can find out the VPC network name by inspecting the `MachineSets` objects with the following command:
+    ```command
+    $ oc -n openshift-machine-api get machinesets -o yaml | grep "network:"
+                - network: gcp-filestore-network
+    (...)
+    ```
+
+    In this example, the VPC network name in this cluster is "gcp-filestore-network".

@@ -1,0 +1,96 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Key performance metrics {id="observability-key-performance-metrics_{{ context }}"}
+
+Depending on your system, you can have hundreds of available measurements. {._abstract}
+
+Consider the following key metrics:
+
+*   `etcd` response times
+*   API response times
+*   Pod restarts and scheduling
+*   Resource usage
+*   OVN health
+*   Overall cluster operator health
+
+If a metric is important, set up an alert for it.
+
+
+:::note
+
+You can check the available metrics by running the following command:
+
+```terminal
+$ oc -n openshift-monitoring exec -c prometheus prometheus-k8s-0 -- curl -qsk http://localhost:9090/api/v1/metadata | jq '.data
+```
+
+:::
+
+
+## Example queries in PromQL {id="example-queries-promql_{{ context }}"}
+
+Using the {{ product_title }} console, you can explore the following queries in the metrics query browser.
+
+
+:::note
+
+The URL for the console is https://&lt;OpenShift Console FQDN>/monitoring/query-browser.
+You can get the Openshift Console FQDN by running the following command:
+
+```terminal
+$ oc get routes -n openshift-console console -o jsonpath='{.status.ingress[0].host}'
+```
+
+:::
+
+
+**Node memory & CPU usage**
+
+| Metric | Query |
+| --- | --- |
+| CPU % requests by node | `sum by (node) (sum_over_time(kube_pod_container_resource_requests{resource="cpu"}[60m]))/sum by (node) (sum_over_time(kube_node_status_allocatable{resource="cpu"}[60m])) *100` |
+| Overall cluster CPU % utilization | `sum by (managed_cluster) (sum_over_time(kube_pod_container_resource_requests{resource="memory"}[60m]))/sum by (managed_cluster) (sum_over_time(kube_node_status_allocatable{resource="cpu"}[60m])) *100` |
+| Memory % requests by node | `sum by (node) (sum_over_time(kube_pod_container_resource_requests{resource="memory"}[60m]))/sum by (node) (sum_over_time(kube_node_status_allocatable{resource="memory"}[60m])) *100` |
+| Overall cluster memory % utilization | `(1-(sum by (managed_cluster)(avg_over_time((node_memory_MemAvailable_bytes[60m])) ))/sum by (managed_cluster)(avg_over_time(kube_node_status_allocatable{resource="memory"}[60m])))*100` |
+
+**API latency by verb**
+
+| Metric | Query |
+| --- | --- |
+| `GET` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"kube-apiserver\ |
+| openshift-apiserver", verb="GET"}[60m])))` | `PATCH` |
+| `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ | openshift-apiserver", verb="PATCH"}[60m])))` |
+| `POST` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ |
+| openshift-apiserver", verb="POST"}[60m])))` | `LIST` |
+| `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ | openshift-apiserver", verb="LIST"}[60m])))` |
+| `PUT` | `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ |
+| openshift-apiserver", verb="PUT"}[60m])))` | `DELETE` |
+| `histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver="kube-apiserver\ | openshift-apiserver", verb="DELETE"}[60m])))` |
+| Combined | `histogram_quantile(0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~"(openshift-apiserver\ |
+
+**`etcd`**
+
+| Metric | Query |
+| --- | --- |
+| `fsync` 99th percentile latency (per instance) | `histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[2m]))` |
+| `fsync` 99th percentile latency (per cluster) | `sum by (managed_cluster) ( histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[60m])))` |
+| Leader elections | `sum(rate(etcd_server_leader_changes_seen_total[1440m]))` |
+| Network latency | `histogram_quantile(0.99, rate(etcd_network_peer_round_trip_time_seconds_bucket[5m]))` |
+
+**Operator health**
+
+| Metric | Query |
+| --- | --- |
+| Degraded operators | `sum by (managed_cluster, name) (avg_over_time(cluster_operator_conditions{condition="Degraded", name!="version"}[60m]))` |
+| Total degraded operators per cluster | `sum by (managed_cluster) (avg_over_time(cluster_operator_conditions{condition="Degraded", name!="version"}[60m] ))` |
+
+## Recommendations for storage of metrics {id="recommendations-for-storage-of-metrics_{{ context }}"}
+
+By default, Prometheus does not back up saved metrics with persistent storage.
+If you restart the Prometheus pods, all metrics data are lost.
+You must configure the monitoring stack to use the back-end storage that is available on the platform.
+To meet the high IO demands of Prometheus, use local storage.
+
+For smaller clusters, you can use the Local Storage Operator for persistent storage for Prometheus. {{ odf_first }}, which deploys a ceph cluster for block, file, and object storage, is suitable for larger clusters.
+
+To keep system resource requirements low on a {{ sno }} cluster, do not provision back-end storage for the monitoring stack.
+Such clusters forward all metrics to the hub cluster where you can provision a third party monitoring platform.

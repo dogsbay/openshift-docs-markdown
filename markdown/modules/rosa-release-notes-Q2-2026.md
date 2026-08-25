@@ -1,0 +1,54 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Q2 2026 {id="rosa-q2-2026_{{ context }}"}
+
+The following items were added during the second quarter of 2026. {._abstract}
+
+
+New worker node instance types are available
+:   With this update, {{ product_title }} offers 8th generation worker instances such as G7e, P6-B300, and more. For more information and details on instance type differences, see
+{%- if not openshift_rosa_hcp %}
+    [{{ product_title }} instance types.](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/introduction_to_rosa/policies-and-service-definition#rosa-instance-types)
+{% endif %}
+{% if openshift_rosa_hcp %}
+    [{{ product_title }} instance types.](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition#rosa-hcp-instance-types)
+{% endif %}
+
+{% if openshift_rosa_hcp %}
+
+{{ autonode }} based on Karpenter v1.9 is available
+:   With this update, you can use {{ autonode }} to provision compute nodes based on workload demand. {{ autonode }} is based on the open-source Karpenter project and provides dynamic node provisioning that matches workload requirements without requiring pre-configured node pools. When pods no longer require a node, {{ autonode }} removes the node to reduce costs.
+
+    For more information, see [About {{ autonode }}](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/managing-compute-nodes-using-red-hat-build-of-karpenter#rosa-autonode-about).
+{% endif %}
+
+
+New version of {{ product_title }} available
+:   {{ product_title }} version 4.22 is available for new clusters.
+
+
+Upgrade channels are available
+:   You can select the new channels option for more precise, version-specific control over your cluster updates. You can target exact minor version paths, such as `stable-4.20` or `fast-4.21`, instead of relying on broader channel groups, which are being deprecated. For more information, see
+{%- if openshift_rosa_hcp %}
+     [Channels in {{ product_title }} clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/upgrading/index#rosa-hcp-upgrading-channels_rosa-hcp-upgrading).
+{% endif %}
+{% if openshift_rosa %}
+    [Channels in {{ product_title }} clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/upgrading/rosa-upgrading-sts#rosa-upgrading-channels_rosa-upgrading-sts).
+{% endif %}
+
+
+The `fast` upgrade channel is available as an update option
+:   You can select `fast` as an upgrade channel when creating or updating your {{ product_title }} clusters. Red&#160;Hat updates the `fast` channel with new versions of {{ product_title }} as soon as Red&#160;Hat declares the version as a general availability (GA) release.
+
+{% if openshift_rosa_hcp %}
+
+FIPS-encrypted {{ product_title }} clusters
+:   With this update, you can create {{ product_title }} clusters with Federal Information Processing Standards (FIPS) encryption that adhere to the highest data security levels. For more information, see [Deploying {{ product_title }} clusters using FIPS encryption](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/install_clusters/index#rosa-hcp-creating-cluster-with-fips-encryption).
+
+
+The Modern TLS 1.3 security profile for {{ product_title }} clusters
+:   With this update, you can enhance the security of your managed endpoints by enforcing the Modern Transport Layer Security (TLS) 1.3 security profile. This profile ensures that all communications with the API server and OAuth endpoints comply with the latest security standards.
+
+
+Machine pools can be scaled to zero nodes
+:   With this update, you can optimize infrastructure costs for {{ product_title }} by configuring machine pools to autoscale to zero nodes. By setting a minimum replica count of 0, use the cluster autoscaler to decommission all idle nodes in a pool. By doing this, you eliminate subscription and infrastructure expenses for high-cost resources, like GPU nodes or specialized on-demand workloads. For more information, see [Creating a machine pool](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/cluster_administration/managing-compute-nodes-using-machine-pools#creating_a_machine_pool_rosa-managing-worker-nodes).
+{% endif %}

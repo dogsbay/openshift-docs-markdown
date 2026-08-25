@@ -1,0 +1,16 @@
+# OpenShift Logging 5.0.5 {id="cluster-logging-release-notes-5-0-5"}
+
+This release includes [RHSA-2021:2374 - Security Advisory. Moderate: Openshift Logging Bug Fix Release (5.0.5)](https://access.redhat.com/errata/RHSA-2021:2374).
+
+## Security fixes {id="openshift-logging-5-0-5-security-fixes"}
+
+*   gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index
+validation. ([**CVE-2021-3121**](https://access.redhat.com/security/cve/CVE-2021-3121))
+*   glib: integer overflow in g_bytes_new function on 64-bit platforms due to an implicit cast from 64 bits to 32 bits([**CVE-2021-27219**](https://access.redhat.com/security/cve/cve-2021-27219))
+
+The following issues relate to the above CVEs:
+
+*   BZ#1921650 gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index validation([**BZ#1921650**](https://bugzilla.redhat.com/show_bug.cgi?id=1921650))
+*   LOG-1361 CVE-2021-3121 elasticsearch-operator-container: gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index validation [openshift-logging-5]([**LOG-1361**](https://issues.redhat.com/browse/LOG-1364))
+*   LOG-1362 CVE-2021-3121 elasticsearch-proxy-container: gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index validation [openshift-logging-5]([**LOG-1362**](https://issues.redhat.com/browse/LOG-1364))
+*   LOG-1363 CVE-2021-3121 logging-eventrouter-container: gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain index validation [openshift-logging-5]([**LOG-1363**](https://issues.redhat.com/browse/LOG-1364))

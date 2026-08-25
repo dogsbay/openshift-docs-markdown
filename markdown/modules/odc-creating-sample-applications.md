@@ -1,0 +1,18 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating sample applications {id="odc-creating-sample-applications_{{ context }}"}
+
+You can use the sample applications in the **+Add** flow of the **Developer** perspective to create, build, and deploy applications quickly.
+
+**Prerequisites**
+
+*   You have logged in to the {{ product_title }} web console and are in the **Developer** perspective.
+
+**Procedure**
+
+1.  In the **+Add** view, click the **Samples** tile to see the **Samples** page.
+1.  On the **Samples** page, select one of the available sample applications to see the **Create Sample Application** form.
+1.  In the **Create Sample Application Form**:
+    *   In the **Name** field, the deployment name is displayed by default. You can modify this name as required.
+    *   In the **Builder Image Version**, a builder image is selected by default. You can modify this image version by using the **Builder Image Version** drop-down list.
+    *   A sample Git repository URL is added by default.
+1.  Click **Create** to create the sample application. The build status of the sample application is displayed on the **Topology** view. After the sample application is created, you can see the deployment added to the application.

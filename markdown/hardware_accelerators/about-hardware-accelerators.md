@@ -1,0 +1,49 @@
+---
+title: About hardware accelerators
+---
+
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# About hardware accelerators {id="about-hardware-accelerators"}
+{% include "./_attributes/common-attributes.md" %}
+{%- set context = "about-hardware-accelerators" %}
+
+Specialized hardware accelerators play a key role in the emerging generative artificial intelligence and machine learning (AI/ML) industry. Specifically, hardware accelerators are essential to the training and serving of large language and other foundational models that power this new technology. Data scientists, data engineers, ML engineers, and developers can take advantage of the specialized hardware acceleration for data-intensive transformations and model development and serving. Much of that ecosystem is open source, with several contributing partners and open source foundations.
+
+Red&#160;Hat {{ product_title }} provides support for cards and peripheral hardware that add processing units that comprise hardware accelerators:
+
+*   Graphical processing units (GPUs)
+*   Neural processing units (NPUs)
+*   Application-specific integrated circuits (ASICs)
+*   Data processing units (DPUs)
+
+![Supported hardware accelerators cards and peripherals](/_assets/images/OCP_HW_Accelerators_5.png)
+
+Specialized hardware accelerators provide a rich set of benefits for AI/ML development:
+
+
+One platform for all
+:   A collaborative environment for developers, data engineers, data scientists, and DevOps
+
+Extended capabilities with Operators
+:   Operators allow for bringing AI/ML capabilities to {{ product_title }}
+
+Hybrid-cloud support
+:   On-premise support for model development, delivery, and deployment 
+
+Support for AI/ML workloads
+:   Model testing, iteration, integration, promotion, and serving into production as services
+
+Red&#160;Hat provides an optimized platform to enable these specialized hardware accelerators in {{ op_system_base_full }} and {{ product_title }} platforms at the Linux (kernel and userspace) and Kubernetes layers. To do this, Red&#160;Hat combines the proven capabilities of Red&#160;Hat OpenShift AI and Red&#160;Hat {{ product_title }} in a single enterprise-ready AI application platform. 
+
+Hardware Operators use the operating framework of a Kubernetes cluster to enable the required accelerator resources. You can also deploy the provided device plugin manually or as a daemon set. This plugin registers the GPU in the cluster. 
+
+Certain specialized hardware accelerators are designed to work within disconnected environments where a secure environment must be maintained for development and testing.  
+
+{% leveloffset +1 %}{% include "./modules/hardware-accelerators.md" %}{% endleveloffset %}
+
+**Additional resources**
+
+*   [Introduction to Red Hat OpenShift AI](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2-latest/html/introduction_to_red_hat_openshift_ai/index)
+*   [ NVIDIA GPU Operator on Red Hat {{ product_title }}](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/index.html)
+*   [AMD Instinct Accelerators](https://www.amd.com/en/products/accelerators/instinct.html)
+*   [Intel Gaudi Al Accelerators](https://www.intel.com/content/www/us/en/products/details/processors/ai-accelerators/gaudi-overview.html)

@@ -1,0 +1,34 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Reducing pod timeouts using seLinuxChangePolicy {id="using_selinuxChangePolicy_overview_{{ context }}"}
+
+The SELinux mount option applies security contexts during mount without recursive relabeling, reducing pod startup times on volumes with many files. This optimization is enabled by default for ReadWriteOncePod volumes and will become the default for ReadWriteOnce and ReadWriteMany volumes. {._abstract}
+
+SELinux (Security-Enhanced Linux) is a security mechanism that assigns security labels (contexts) to all objects (files, processes, network ports, and so on) on a system. These labels determine what a process can access. In {{ product_title }}, SELinux helps prevent containers from escaping and accessing the host system or other containers.
+
+When a pod starts, the container runtime recursively relabels all files on a volume to match the pod’s SELinux context. For volumes with many files, this can significantly increase pod startup times.
+
+Mount option specifies avoiding recursive relabeling of all files by attempting to mount the volume with the correct SELinux label directly using the -o context mount option, thus helping to avoid pod timeout problems. 
+
+## RWOP and SELinux mount option {id="using_selinuxChangePolicy_overview-mount-option-rwop_{{ context }}"}
+ReadWriteOncePod (RWOP) persistent volumes use the SELinux mount feature by default. 
+
+The mount option feature is driver dependent, and enabled by default in AWS EBS
+{%- if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+, Azure Disk, GCP PD, {{ ibm_cloud_title }} Block Storage volume, Cinder, vSphere,
+{%- endif %}
+and {{ rh_storage_first }}. For third-party drivers, contact your storage vendor.
+
+## RWO and RWX and SELinux mount option {id="using_selinuxChangePolicy_overview-mount-option-rwo-rwx_{{ context }}"}
+ReadWriteOnce (RWO) and ReadWriteMany (RWX) volumes use recursive relabeling by default.
+
+
+:::important
+
+In a future {{ product_title }} version, RWO and RWX volumes will use **mount option by default**.
+
+:::
+
+
+To assist you with the upcoming move to the mount option default, {{ product_title }} 4.20 reports SELinux-related conflicts when creating pods, and on running pods, to make you aware of potential conflicts, and to help you resolve them. For more information about this reporting, see the Red&#160;Hat Knowledgebase article "OpenShift reports SELinux-related conflicts when creating Pods".
+
+If you are unable to resolve the SELinux-related conflicts, you can proactively opt-out of the future move to mount option as default for selected pods or namespaces. To opt out, see "Opting out of the SELinux mount option default".

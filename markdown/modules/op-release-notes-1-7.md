@@ -1,0 +1,297 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Release notes for {{ pipelines_title }} General Availability 1.7 {id="op-release-notes-1-7_{{ context }}"}
+
+With this update, {{ pipelines_title }} General Availability (GA) 1.7 is available on {{ product_title }} 4.9, 4.10, and 4.11.
+
+## New features {id="new-features-1-7_{{ context }}"}
+
+In addition to the fixes and stability improvements, the following sections highlight what is new in {{ pipelines_title }} 1.7.
+
+### Pipelines {id="pipelines-new-features-1-7_{{ context }}"}
+
+*   With this update, `pipelines-<version>` is the default channel to install the {{ pipelines_title }} Operator. For example, the default channel to install the {{ pipelines_shortname }} Operator version `1.7` is `pipelines-1.7`. Cluster administrators can also use the `latest` channel to install the most recent stable version of the Operator.
+
+    :::note
+
+    The `preview` and `stable` channels will be deprecated and removed in a future release.
+    
+    :::
+
+*   When you run a command in a user namespace, your container runs as `root` (user id `0`) but has user privileges on the host. With this update, to run pods in the user namespace, you must pass the annotations that [CRI-O](https://cri-o.io/) expects.
+    *   To add these annotations for all users, run the `oc edit clustertask buildah` command and edit the `buildah` cluster task.
+    *   To add the annotations to a specific namespace, export the cluster task as a task to that namespace.
+*   Before this update, if certain conditions were not met, the `when` expression skipped a `Task` object and its dependent tasks. With this update, you can scope the `when` expression to guard the `Task` object only, not its dependent tasks. To enable this update, set the `scope-when-expressions-to-task` flag to `true` in the `TektonConfig` CRD.
+
+    :::note
+
+    The `scope-when-expressions-to-task` flag is deprecated and will be removed in a future release. As a best practice for {{ pipelines_shortname }}, use `when` expressions scoped to the guarded `Task` only.
+    
+    :::
+
+*   With this update, you can use variable substitution in the `subPath` field of a workspace within a task.
+*   With this update, you can reference parameters and results by using a bracket notation with single or double quotes. Prior to this update, you could only use the dot notation. For example, the following are now equivalent:
+    *   `$(param.myparam)`, `$(param['myparam'])`, and `$(param["myparam"])`.
+
+        You can use single or double quotes to enclose parameter names that contain problematic characters, such as `"."`. For example, `$(param['my.param'])` and `$(param["my.param"])`.
+*   With this update, you can include the `onError` parameter of a step in the task definition without enabling the `enable-api-fields` flag.
+
+### Triggers {id="triggers-new-features-1-7_{{ context }}"}
+
+*   With this update, the `feature-flag-triggers` config map has a new field `labels-exclusion-pattern`. You can set the value of this field to a regular expression (regex) pattern. The controller filters out labels that match the regex pattern from propagating from the event listener to the resources created for the event listener.
+*   With this update, the `TriggerGroups` field is added to the `EventListener` specification. Using this field, you can specify a set of interceptors to run before selecting and running a group of triggers. To enable this feature, in the `TektonConfig` custom resource definition, in the `pipeline` section, you must set the `enable-api-fields` field to `alpha`.
+*   With this update, `Trigger` resources support custom runs defined by a `TriggerTemplate` template.
+*   With this update, Triggers support emitting Kubernetes events from an `EventListener` pod.
+*   With this update, count metrics are available for the following objects: `ClusterInteceptor`, `EventListener`, `TriggerTemplate`, `ClusterTriggerBinding`, and `TriggerBinding`.
+*   This update adds the `ServicePort` specification to Kubernetes resource. You can use this specification to modify which port exposes the event listener service. The default port is `8080`.
+*   With this update, you can use the `targetURI` field in the `EventListener` specification to send cloud events during trigger processing. To enable this feature, in the `TektonConfig` custom resource definition, in the `pipeline` section, you must set the `enable-api-fields` field to `alpha`.
+*   With this update, the `tekton-triggers-eventlistener-roles` object now has a `patch` verb, in addition to the `create` verb that already exists.
+*   With this update, the `securityContext.runAsUser` parameter is removed from event listener deployment.
+
+### CLI {id="cli-new-features-1-7_{{ context }}"}
+
+*   With this update, the `tkn [pipeline | pipelinerun] export` command exports a pipeline or pipeline run as a YAML file. For example:
+    *   Export a pipeline named `test_pipeline` in the `openshift-pipelines` namespace:
+        ```terminal
+        $ tkn pipeline export test_pipeline -n openshift-pipelines
+        ```
+    *   Export a pipeline run named `test_pipeline_run` in the `openshift-pipelines` namespace:
+        ```terminal
+        $ tkn pipelinerun export test_pipeline_run -n openshift-pipelines
+        ```
+*   With this update, the `--grace` option is added to the `tkn pipelinerun cancel`. Use the `--grace` option to terminate a pipeline run gracefully instead of forcing the termination. To enable this feature, in the `TektonConfig` custom resource definition, in the `pipeline` section, you must set the `enable-api-fields` field to `alpha`.
+*   This update adds the Operator and Chains versions to the output of the `tkn version` command.
+
+    :::important
+
+    Tekton Chains is a Technology Preview feature.
+    
+    :::
+
+*   With this update, the `tkn pipelinerun describe` command displays all canceled task runs, when you cancel a pipeline run. Before this fix, only one task run was displayed.
+*   With this update, you can skip supplying the asking specifications for optional workspace when you run the `tkn [t | p | ct] start` command skips with the `--skip-optional-workspace` flag. You can also skip it when running in interactive mode.
+*   With this update, you can use the `tkn chains` command to manage Tekton Chains. You can also use the `--chains-namespace` option to specify the namespace where you want to install Tekton Chains.
+
+    :::important
+
+    Tekton Chains is a Technology Preview feature.
+    
+    :::
+
+
+### Operator {id="operator-new-features-1-7_{{ context }}"}
+
+*   With this update, you can use the {{ pipelines_title }} Operator to install and deploy Tekton Hub and Tekton Chains.
+
+    :::important
+
+    Tekton Chains and deployment of Tekton Hub on a cluster are Technology Preview features.
+    
+    :::
+
+*   With this update, you can find and use Pipelines as Code (PAC) as an add-on option.
+
+    :::important
+
+    Pipelines as Code is a Technology Preview feature.
+    
+    :::
+
+*   With this update, you can now disable the installation of community cluster tasks by setting the `communityClusterTasks` parameter to `false`. For example:
+    ```yaml
+    ...
+    spec:
+      profile: all
+      targetNamespace: openshift-pipelines
+      addon:
+        params:
+        - name: clusterTasks
+          value: "true"
+        - name: pipelineTemplates
+          value: "true"
+        - name: communityClusterTasks
+          value: "false"
+    ...
+    ```
+*   With this update, you can disable the integration of Tekton Hub with the ***Developer*** perspective by setting the `enable-devconsole-integration` flag in the `TektonConfig` custom resource to `false`. For example:
+    ```yaml
+    ...
+    hub:
+      params:
+        - name: enable-devconsole-integration
+          value: "true"
+    ...
+    ```
+*   With this update, the `operator-config.yaml` config map enables the output of the `tkn version` command to display of the Operator version.
+*   With this update, the version of the `argocd-task-sync-and-wait` tasks is modified to `v0.2`.
+*   With this update to the `TektonConfig` CRD, the `oc get tektonconfig` command displays the OPerator version.
+*   With this update, service monitor is added to the Triggers metrics.
+
+### Hub {id="hub-new-features-1-7_{{ context }}"}
+
+
+:::important
+
+Deploying Tekton Hub on a cluster is a Technology Preview feature.
+
+:::
+
+
+Tekton Hub helps you discover, search, and share reusable tasks and pipelines for your CI/CD workflows. A public instance of Tekton Hub is available at [hub.tekton.dev](https://hub.tekton.dev/).
+
+Staring with {{ pipelines_title }} 1.7, cluster administrators can also install and deploy a custom instance of Tekton Hub on enterprise clusters. You can curate a catalog with reusable tasks and pipelines specific to your organization.
+
+### Chains {id="chains-new-features-1-7_{{ context }}"}
+
+
+:::important
+
+Tekton Chains is a Technology Preview feature.
+
+:::
+
+
+Tekton Chains is a Kubernetes Custom Resource Definition (CRD) controller. You can use it to manage the supply chain security of the tasks and pipelines created using {{ pipelines_title }}.
+
+By default, Tekton Chains monitors the task runs in your {{ product_title }} cluster. Chains takes snapshots of completed task runs, converts them to one or more standard payload formats, and signs and stores all artifacts.
+
+Tekton Chains supports the following features:
+
+*   You can sign task runs, task run results, and OCI registry images with cryptographic key types and services such as `cosign`.
+*   You can use attestation formats such as `in-toto`.
+*   You can securely store signatures and signed artifacts using OCI repository as a storage backend.
+
+### Pipelines as Code (PAC) {id="pac-new-features-1-7_{{ context }}"}
+
+
+:::important
+
+Pipelines as Code is a Technology Preview feature.
+
+:::
+
+
+With Pipelines as Code, cluster administrators and users with the required privileges can define pipeline templates as part of source code Git repositories. When triggered by a source code push or a pull request for the configured Git repository, the feature runs the pipeline and reports status.
+
+Pipelines as Code supports the following features:
+
+*   Pull request status. When iterating over a pull request, the status and control of the pull request is exercised on the platform hosting the Git repository.
+*   GitHub checks the API to set the status of a pipeline run, including rechecks.
+*   GitHub pull request and commit events.
+*   Pull request actions in comments, such as `/retest`.
+*   Git events filtering, and a separate pipeline for each event.
+*   Automatic task resolution in {{ pipelines_shortname }} for local tasks, Tekton Hub, and remote URLs.
+*   Use of GitHub blobs and objects API for retrieving configurations.
+*   Access Control List (ACL) over a GitHub organization, or using a Prow-style `OWNER` file.
+*   The `tkn pac` plugin for the `tkn` CLI tool, which you can use to manage {{ pac }} repositories and bootstrapping.
+*   Support for GitHub Application, GitHub Webhook, Bitbucket Server, and Bitbucket Cloud.
+
+## Deprecated features {id="deprecated-features-1-7_{{ context }}"}
+
+*   Breaking change: This update removes the `disable-working-directory-overwrite` and `disable-home-env-overwrite` fields from the `TektonConfig` custom resource (CR). As a result, the `TektonConfig` CR no longer automatically sets the `$HOME` environment variable and `workingDir` parameter. You can still set the `$HOME` environment variable and `workingDir` parameter by using the `env` and `workingDir` fields in the `Task` custom resource definition (CRD).
+
+*   The `Conditions` custom resource definition (CRD) type is deprecated and planned to be removed in a future release. Instead, use the recommended `When` expression.
+
+*   Breaking change: The `Triggers` resource validates the templates and generates an error if you do not specify the `EventListener` and `TriggerBinding` values.
+
+## Known issues {id="known-issues-1-7_{{ context }}"}
+
+*   When you run Maven and Jib-Maven cluster tasks, the default container image is supported only on Intel (x86) architecture. Therefore, tasks will fail on ARM, {{ ibm_power_name }} Systems (ppc64le), {{ ibm_z_name }}, and {{ ibm_linuxone_name }} (s390x) clusters. As a workaround, you can specify a custom image by setting the `MAVEN_IMAGE` parameter value to `maven:3.6.3-adoptopenjdk-11`.
+
+    :::tip
+
+    Before you install tasks that are based on the Tekton Catalog on ARM, {{ ibm_power_name }} Systems (ppc64le), {{ ibm_z_name }}, and {{ ibm_linuxone_name }} (s390x) using `tkn hub`, verify if the task can be executed on these platforms. To check if `ppc64le` and `s390x` are listed in the "Platforms" section of the task information, you can run the following command: `tkn hub info task <name>`
+    
+    :::
+
+*   On {{ ibm_power_name }} Systems, {{ ibm_z_name }}, and {{ ibm_linuxone_name }}, the `s2i-dotnet` cluster task is unsupported.
+*   You cannot use the `nodejs:14-ubi8-minimal` image stream because doing so generates the following errors:
+    ```terminal
+    STEP 7: RUN /usr/libexec/s2i/assemble
+    /bin/sh: /usr/libexec/s2i/assemble: No such file or directory
+    subprocess exited with status 127
+    subprocess exited with status 127
+    error building at STEP "RUN /usr/libexec/s2i/assemble": exit status 127
+    time="2021-11-04T13:05:26Z" level=error msg="exit status 127"
+    ```
+
+*   Implicit parameter mapping incorrectly passes parameters from the top-level `Pipeline` or `PipelineRun` definitions to the `taskRef` tasks. Mapping should only occur from a top-level resource to tasks with in-line `taskSpec` specifications. This issue only affects clusters where this feature was enabled by setting the `enable-api-fields` field to `alpha` in the `pipeline` section of the `TektonConfig` custom resource definition.
+
+## Fixed issues {id="fixed-issues-1-7_{{ context }}"}
+
+*   With this update, if metadata such as `labels` and `annotations` are present in both `Pipeline` and `PipelineRun` object definitions, the values in the `PipelineRun` type takes precedence. You can observe similar behavior for `Task` and `TaskRun` objects.
+*   With this update, if the `timeouts.tasks` field or the `timeouts.finally` field is set to `0`, then the `timeouts.pipeline` is also set to `0`.
+*   With this update, the `-x` set flag is removed from scripts that do not use a shebang. The fix reduces potential data leak from script execution.
+*   With this update, any backslash character present in the usernames in Git credentials is escaped with an additional backslash in the `.gitconfig` file.
+
+*   With this update, the `finalizer` property of the `EventListener` object is not necessary for cleaning up logging and config maps.
+*   With this update, the default HTTP client associated with the event listener server is removed, and a custom HTTP client added. As a result, the timeouts have improved.
+*   With this update, the Triggers cluster role now works with owner references.
+*   With this update, the race condition in the event listener does not happen when multiple interceptors return extensions.
+
+*   With this update, the `tkn pr delete` command does not delete the pipeline runs with the `ignore-running` flag.
+
+*   With this update, the Operator pods do not continue restarting when you modify any add-on parameters.
+*   With this update, the `tkn serve` CLI pod is scheduled on infra nodes, if not configured in the subscription and config custom resources.
+*   With this update, cluster tasks with specified versions are not deleted during upgrade.
+
+## Release notes for {{ pipelines_title }} General Availability 1.7.1 {id="release-notes-1-7-1_{{ context }}"}
+
+With this update, {{ pipelines_title }} General Availability (GA) 1.7.1 is available on {{ product_title }} 4.9, 4.10, and 4.11.
+
+### Fixed issues {id="fixed-issues-1-7-1_{{ context }}"}
+
+*   Before this update, upgrading the {{ pipelines_title }} Operator deleted the data in the database associated with {{ tekton_hub }} and installed a new database. With this update, an Operator upgrade preserves the data.
+*   Before this update, only cluster administrators could access pipeline metrics in the {{ product_title }} console. With this update, users with other cluster roles also can access the pipeline metrics.
+*   Before this update, pipeline runs failed for pipelines containing tasks that emit large termination messages. The pipeline runs failed because the total size of termination messages of all containers in a pod cannot exceed 12 KB. With this update, the `place-tools` and `step-init` initialization containers that uses the same image are merged to reduce the number of containers running in each tasks’s pod. The solution reduces the chance of failed pipeline runs by minimizing the number of containers running in a task’s pod. However, it does not remove the limitation of the maximum allowed size of a termination message.
+*   Before this update, attempts to access resource URLs directly from the {{ tekton_hub }} web console resulted in an Nginx `404` error. With this update, the {{ tekton_hub }} web console image is fixed to allow accessing resource URLs directly from the {{ tekton_hub }} web console.
+*   Before this update, for each namespace the resource pruner job created a separate container to prune resources. With this update, the resource pruner job runs commands for all namespaces as a loop in one container.
+
+## Release notes for {{ pipelines_title }} General Availability 1.7.2 {id="release-notes-1-7-2_{{ context }}"}
+
+With this update, {{ pipelines_title }} General Availability (GA) 1.7.2 is available on {{ product_title }} 4.9, 4.10, and the upcoming version.
+
+### Known issues {id="known-issues-1-7-2_{{ context }}"}
+
+*   The `chains-config` config map for {{ tekton_chains }} in the `openshift-pipelines` namespace is automatically reset to default after upgrading the {{ pipelines_title }} Operator. Currently, there is no workaround for this issue.
+
+### Fixed issues {id="fixed-issues-1-7-2_{{ context }}"}
+
+*   Before this update, tasks on {{ pipelines_shortname }} 1.7.1 failed on using `init` as the first argument, followed by two or more arguments. With this update, the flags are parsed correctly and the task runs are successful.
+*   Before this update, installation of the {{ pipelines_title }} Operator on {{ product_title }} 4.9 and 4.10 failed due to invalid role binding, with the following error message:
+    ```terminal
+    error updating rolebinding openshift-operators-prometheus-k8s-read-binding: RoleBinding.rbac.authorization.k8s.io "openshift-operators-prometheus-k8s-read-binding" is invalid: roleRef: Invalid value: rbac.RoleRef{APIGroup:"rbac.authorization.k8s.io", Kind:"Role", Name:"openshift-operator-read"}: cannot change roleRef
+    ```
+
+    With this update, the {{ pipelines_title }} Operator installs with distinct role binding namespaces to avoid conflict with installation of other Operators.
+*   Before this update, upgrading the Operator triggered a reset of the `signing-secrets` secret key for {{ tekton_chains }} to its default value. With this update, the custom secret key persists after you upgrade the Operator.
+
+    :::note
+
+    Upgrading to {{ pipelines_title }} 1.7.2 resets the key. However, when you upgrade to future releases, the key is expected to persist.
+    
+    :::
+
+*   Before this update, all S2I build tasks failed with an error similar to the following message:
+    ```terminal
+    Error: error writing "0 0 4294967295\n" to /proc/22/uid_map: write /proc/22/uid_map: operation not permitted
+    time="2022-03-04T09:47:57Z" level=error msg="error writing \"0 0 4294967295\\n\" to /proc/22/uid_map: write /proc/22/uid_map: operation not permitted"
+    time="2022-03-04T09:47:57Z" level=error msg="(unable to determine exit status)"
+    ```
+
+    With this update, the `pipelines-scc` security context constraint (SCC) is compatible with the `SETFCAP` capability necessary for `Buildah` and `S2I` cluster tasks. As a result, the `Buildah` and `S2I` build tasks can run successfully.
+
+    To successfully run the `Buildah` cluster task and `S2I` build tasks for applications written in various languages and frameworks, add the following snippet for appropriate `steps` objects such as `build` and `push`:
+    ```yaml
+    securityContext:
+      capabilities:
+        add: ["SETFCAP"]
+    ```
+
+## Release notes for {{ pipelines_title }} General Availability 1.7.3 {id="release-notes-1-7-3_{{ context }}"}
+
+With this update, {{ pipelines_title }} General Availability (GA) 1.7.3 is available on {{ product_title }} 4.9, 4.10, and 4.11.
+
+### Fixed issues {id="fixed-issues-1-7-3_{{ context }}"}
+
+*   Before this update, the Operator failed when creating RBAC resources if any namespace was in a `Terminating` state. With this update, the Operator ignores namespaces in a `Terminating` state and creates the RBAC resources.
+*   Previously, upgrading the {{ pipelines_title }} Operator caused the `pipeline` service account to be recreated, which meant that the secrets linked to the service account were lost. This update fixes the issue. During upgrades, the Operator no longer recreates the `pipeline` service account. As a result, secrets attached to the `pipeline` service account persist after upgrades, and the resources (tasks and pipelines) continue to work correctly.

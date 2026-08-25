@@ -1,0 +1,41 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring network policy by using the FlowCollector custom resource {id="network-observability-deploy-network-policy_{{ context }}"}
+
+You can set up ingress and egress network policies to control pod traffic. This enhances security and collects only the network flow data you need. This reduces noise, supports compliance, and improves visibility into network communication. {._abstract}
+
+You can configure the `FlowCollector` custom resource (CR) to deploy an egress and ingress network policy for network observability. By default, the `spec.NetworkPolicy.enable` specification is set to `true`.
+
+If you have installed Loki, Kafka or any exporter in a different namespace that also has a network policy, you must ensure that the network observability components can communicate with them. Consider the following about your setup:
+
+*   Connection to Loki (as defined in the `FlowCollector` CR `spec.loki` parameter)
+*   Connection to Kafka (as defined in the `FlowCollector` CR `spec.kafka` parameter)
+*   Connection to any exporter (as defined in FlowCollector CR `spec.exporters` parameter)
+*   If you are using Loki and including it in the policy target, connection to an external object storage (as defined in your `LokiStack` related secret)
+
+**Procedure**
+
+1.  In the web console, go to **Ecosystem** -> **Installed Operators** page.
+1.  Under the **Provided APIs** heading for **Network Observability**, select **Flow Collector**.
+1.  Select **cluster** then select the **YAML** tab.
+1.  Configure the `FlowCollector` CR. A sample configuration is as follows:
+    <a name="network-observability-flowcollector-configuring-network-policy_{{ context }}"></a>
+    ```yaml title="Example FlowCollector CR for network policy"
+    apiVersion: flows.netobserv.io/v1beta2
+    kind: FlowCollector
+    metadata:
+      name: cluster
+    spec:
+      namespace: netobserv
+      networkPolicy:
+        enable: true
+        additionalNamespaces: ["openshift-console", "openshift-monitoring"]
+    # ...
+    ```
+
+    where:
+
+    `spec.networkPolicy.enable`
+    :   Specifies whether to enable network policy management. The default value is `true`.
+
+    `spec.networkPolicy.additionalNamespaces`
+    :   Specifies the namespaces to include in the network policy. The default values are `["openshift-console", "openshift-monitoring"]`.

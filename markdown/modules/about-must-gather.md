@@ -1,0 +1,55 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About the must-gather tool {id="about-must-gather_{{ context }}"}
+
+The `oc adm must-gather` CLI command collects the information from your cluster that is most likely needed for debugging issues, including: {._abstract}
+
+*   Resource definitions
+*   Service logs
+
+By default, the `oc adm must-gather` command uses the default plugin image and writes into `./must-gather.local`.
+
+Alternatively, you can collect specific information by running the command with the appropriate arguments as described in the following sections:
+
+*   To collect data related to one or more specific features, use the `--image` argument with an image, as listed in a following section.
+
+    For example:
+    ```terminal
+    $ oc adm must-gather \
+      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }}
+    ```
+*   To collect the audit logs, use the `-- /usr/bin/gather_audit_logs` argument, as described in a following section.
+
+For example:
+
+```terminal
+$ oc adm must-gather -- /usr/bin/gather_audit_logs
+```
+
+
+:::note
+
+*   Audit logs are not collected as part of the default set of information to reduce the size of the files.
+*   On a Windows operating system, install the `cwRsync` client and add to the `PATH`  variable for use with the `oc rsync` command.
+
+:::
+
+
+When you run `oc adm must-gather`, a new pod with a random name is created in a new project on the cluster. The data is collected on that pod and saved in a new directory that starts with `must-gather.local` in the current working directory.
+
+For example:
+
+```terminal
+NAMESPACE                      NAME                 READY   STATUS      RESTARTS      AGE
+...
+openshift-must-gather-5drcj    must-gather-bklx4    2/2     Running     0             72s
+openshift-must-gather-5drcj    must-gather-s8sdh    2/2     Running     0             72s
+...
+```
+Optionally, you can run the `oc adm must-gather` command in a specific namespace by using the `--run-namespace` option.
+
+For example:
+
+```terminal
+$ oc adm must-gather --run-namespace <namespace> \
+  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }}
+```

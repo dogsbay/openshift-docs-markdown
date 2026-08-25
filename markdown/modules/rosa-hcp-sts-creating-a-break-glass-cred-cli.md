@@ -1,0 +1,126 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a break glass credential for a {{ product_title }} cluster {id="rosa-hcp-sts-creating-a-break-glass-cred-cli_{{ context }}"}
+
+You can create a break glass credential to generate temporary cluster-admin credentials for {{ product_title }} clusters that use custom OIDC token issuers. The break glass credential provides a `kubeconfig` file that you can use to access the cluster. {._abstract}
+
+**Prerequisites**
+
+*   You have created a {{ product_title }} cluster with external authentication enabled. For more information, see _Creating a {{ product_title }} with HCP cluster that uses external authentication providers_.
+*   You have created an external authentication provider. For more information, see _Creating an external authentication provider_.
+*   You have an account with `cluster admin` permissions.
+
+**Procedure**
+
+1.  Create a break glass credential by using one of the following commands:
+    *   To create a break glass credential by using the interactive command interface to interactively specify custom settings, run the following command:
+        ```terminal
+        $ rosa create break-glass-credential -c <cluster_name> -i
+        ```
+
+        This command starts an interactive CLI process:
+        ```terminal
+        I: Enabling interactive mode
+        ? Username (optional):
+        ? Expiration duration (optional):
+        I: Successfully created a break glass credential for cluster 'ac-hcp-test'.
+        ```
+        where:
+
+
+        `Username`
+        :   If left blank, the `username` field is set to a randomly generated value.
+
+        `Expiration duration`
+        :   The minimum validity of the break glass credential is 10 minutes, and the maximum validity is 24 hours. If left blank, the expiration duration value defaults to 24 hours.
+    *   To create a break glass credential for cluster called `mycluster` with specified values:
+        ```terminal
+        $ rosa create break-glass-credential -c mycluster --username test-username --expiration 1h
+        ```
+1.  List the break glass credential IDs, status, and associated users that are available for a cluster called `mycluster` by running the following command:
+    ```terminal
+    $ rosa list break-glass-credential -c mycluster
+    ```
+    ```terminal title="Example output"
+    ID                                USERNAME    STATUS
+    2a7jli9n4phe6c02ul7ti91djtv2o51d  test-user   issued
+    ```
+
+    :::note
+
+    You can also view the credentials in a JSON output by adding the `-o json` argument to the command.
+    
+    :::
+
+1.  To view the status of a break glass credential, run the following command, replacing `<break_glass_credential_id>` with the break glass credential ID:
+    ```terminal
+    $ rosa describe break-glass-credential <break_glass_credential_id> -c <cluster_name>
+    ```
+    ```terminal title="Example output"
+    ID:                                    2a7jli9n4phe6c02ul7ti91djtv2o51d
+    Username:                              test-user
+    Expire at:                             Dec 28 2026 10:23:05 EDT
+    Status:                                issued
+    ```
+    The following is a list of possible `Status` field values:
+
+
+    `issued`
+    :   The break glass credential has been issued and is ready to use.
+
+    `expired`
+    :   The break glass credential has expired and can no longer be used.
+
+    `failed`
+    :   The break glass credential has failed to create. In this case, you receive a service log detailing the failure. For more information about service logs, see _Accessing the service logs for Red&#160;Hat OpenShift Service on AWS clusters_. For steps to contact Red&#160;Hat Support for assistance, see _Getting support_.
+
+    `awaiting_revocation`
+    :   The break glass credential is currently being revoked, meaning it cannot be used.
+
+    `revoked`
+    :   The break glass credential has been revoked and can no longer be used.
+1.  To retrieve the `kubeconfig`, run the following commands:
+    *   Create a `kubeconfigs` directory:
+        ```terminal
+        $ mkdir ~/kubeconfigs
+        ```
+    *   Export the newly generated `kubeconfig` file, replacing &lt;cluster_name> with the name of your cluster:
+        ```terminal
+        $ export CLUSTER_NAME=<cluster_name> && export KUBECONFIG=~/kubeconfigs/break-glass-${CLUSTER_NAME}.kubeconfig
+        ```
+    *   View the `kubeconfig`:
+        ```terminal
+        $ rosa describe break-glass-credential <break_glass_credential_id> -c mycluster --kubeconfig
+        ```
+        ```terminal title="Example output"
+        apiVersion: v1
+        clusters:
+        - cluster:
+            server: <server_url>
+          name: cluster
+        contexts:
+        - context:
+            cluster: cluster
+            namespace: default
+            user: test-username
+          name: admin
+        current-context: admin
+        kind: Config
+        preferences: {}
+        users:
+        - name: test-user
+          user:
+            client-certificate-data: <client-certificate-data>
+            client-key-data: <client-key-data>
+        ```
+        where:
+
+
+        `users.user.client-certificate-data`
+        :   The client-certificate contains a certificate for the user signed by the Kubernetes certificate authorities (CA).
+
+        `users.user.client-key-data`
+        :   The client-key contains the key that signed the client certificate.
+1.  Optional: To save the `kubeconfig`, run the following command :
+    ```terminal
+    $ rosa describe break-glass-credential <break_glass_credential_id> -c mycluster --kubeconfig > $KUBECONFIG
+    ```

@@ -1,0 +1,15 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# applicationConfig {id="eso-external-secrets-config_{{ context }}"}
+
+The `applicationConfig` object customizes the runtime behavior and deployment constraints of the operand. Use this section to control observability, define the operational scope, and configure webhook specifics. Additionally, you can tailor the deployment to your infrastructure requirements. {._abstract}
+
+| Field | Type | Description | Default | Validation |
+| --- | --- | --- | --- | --- |
+| `logLevel` | _integer_ | `logLevel` supports a range of values as defined in the [kubernetes logging guidelines](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#what-method-to-use). | 1 | The maximum range value is 5 The minimum range value is 1 Optional |
+| `operatingNamespace` | _string_ | `operatingNamespace` restricts the `external-secrets` operand operations to the provided namespace. Enabling this field disables `ClusterSecretStore` and `ClusterExternalSecret`. |  | The maximum length is 63 The minimum length is 1 Optional |
+| `webhookConfig` | _object_ | `webhookConfig` configures webhook specifics of the `external-secrets` operand. |  |  |
+| `resources` | [_ResourceRequirements_](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#resourcerequirements-v1-core) | `resources` defines the resource requirements. You cannot change the value of this field after setting it initially. For more information, see [https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) |  | Optional |
+| `affinity` | [_Affinity_](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#affinity-v1-core) | `affinity` sets the scheduling affinity rules. For more information, see [https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) |  | Optional |
+| `tolerations` | [_Toleration_](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#toleration-v1-core) _array_ | `tolerations` sets the pod tolerations. For more information, see [https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) |  | The maximum number of items is 50 The minimum number of items is 0 Optional |
+| `nodeSelector` | _object (keys:string, values:string)_ | `nodeSelector` defines the scheduling criteria by using node labels. For more information, see [https://kubernetes.io/docs/concepts/configuration/assign-pod-node/](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) |  | The maximum number of properties is 50 The minimum number of properties is 0 Optional |
+| `proxy` | _object (keys:string, values:string)_ | `proxy` sets the proxy configurations available in operand containers managed by the Operator as environment variables. |  | Optional |

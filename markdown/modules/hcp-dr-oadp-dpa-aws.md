@@ -1,0 +1,67 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating a Data Protection Application for {{ aws_short }} {id="hcp-dr-oadp-dpa-aws_{{ context }}"}
+
+Automate parts of the backup and restore process on {{ aws_short }} by creating a Data Protection Application (DPA). A DPA defines information including backup locations and Velero pod configurations. {._abstract}
+
+You can create a DPA by defining a `DataProtectionApplication` object.
+
+**Procedure**
+
+1.  Create a manifest file similar to the following example:
+    ```yaml
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: DataProtectionApplication
+    metadata:
+      name: dpa-sample
+      namespace: openshift-adp
+    spec:
+      backupLocations:
+        - name: default
+          velero:
+            provider: aws
+            default: true
+            objectStorage:
+              bucket: <bucket_name>
+              prefix: <bucket_prefix>
+            config:
+              region: minio
+              profile: "backupStorage"
+            credential:
+              key: cloud
+              name: cloud-credentials
+      snapshotLocations:
+        - velero:
+            provider: aws
+            config:
+              region: minio
+              profile: "volumeSnapshot"
+            credential:
+              key: cloud
+              name: cloud-credentials
+      configuration:
+        nodeAgent:
+          enable: true
+          uploaderType: kopia
+        velero:
+          defaultPlugins:
+            - openshift
+            - aws
+            - csi
+            - hypershift
+          resourceTimeout: 2h
+    ```
+    *   `spec.backupLocations.velero.objectStorage.bucket` specifies the bucket name; for example, `oadp-backup`.
+    *   `spec.backupLocations.velero.objectStorage.prefix` specifies the bucket prefix; for example, `hcp`.
+    *   `spec.backupLocations.velero.config.region` specifies the bucket region. The bucket region in this example is `minio`, which is a storage provider that is compatible with the S3 API.
+    *   `spec.snapshotLocations.velero.config.region` specifies the region. The region in this example is `minio`, which is a storage provider that is compatible with the S3 API.
+    *   `spec.configuration.nodeAgent.uploaderType` specifies `kopia` as the uploader type. The `restic` uploader type is deprecated for {{ oadp_short }} 1.5 and later.
+1.  Create the DPA resource by running the following command:
+    ```terminal
+    $ oc create -f dpa.yaml
+    ```
+
+    After you create the `DataProtectionApplication` object, new `velero` deployment and `node-agent` pods are created in the `openshift-adp` namespace.
+
+**Next steps**
+
+*   Back up the data plane workload.

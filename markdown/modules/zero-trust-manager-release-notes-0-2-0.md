@@ -1,0 +1,43 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# {{ zero_trust_full }} 0.2.0 (General Availability) {id="zero-trust-manager-release-notes-0-2-0_{{ context }}"}
+
+Issued: 09 August 2025 {._abstract}
+
+The following advisories are available for the {{ zero_trust_full }}:
+
+*   [RHBA-2025:15425](https://access.redhat.com/errata/RHBA-2025:15425)
+*   [RHBA-2025:15426](https://access.redhat.com/errata/RHBA-2025:15426)
+*   [RHBA-2025:15427](https://access.redhat.com/errata/RHBA-2025:15427)
+*   [RHBA-2025:15428](https://access.redhat.com/errata/RHBA-2025:15428)
+
+## New features and enhancements {id="zero-trust-manager-0-2-0-features-enhancements_{{ context }}"}
+
+
+Support for the managed OIDC Discovery Provider Route
+
+:   *   The Operator exposes the `SPIREOIDCDiscoveryProvider` spec through {{ product_title }} Routes under the domain `*.apps.<cluster_domain>` for the selected default installation.
+*   The `managedRoute` and `externalSecretRef` fields have been added to the `spireOidcDiscoveryProvider` spec.
+*   The `managedRoute` field is boolean and is set to `true` by default. If set to `false`, the Operator stops managing the route and the existing route will not be deleted automatically. If set back to `true`, the Operator resumes managing the route. If a route does not exist, the Operator creates a new one. If a route already exists, the Operator will override the user configuration if a conflict exists.
+*   The `externalSecretRef` references an externally managed Secret that has the TLS certificate for the `oidc-discovery-provider` Route host. When provided, this populates the route’s `.Spec.TLS.ExternalCertificate` field. For more information, see [Creating a route with externally managed certificate](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html-single/ingress_and_load_balancing/index#nw-ingress-route-secret-load-external-cert_secured-routes)
+
+Enabling the custom Certificate Authority Time-To-Live for the SPIRE bundle
+
+:   *   The following Time-To-Live (TTL) fields have been added to the `SpireServer` custom resource definition (CRD) API for SPIRE Server certificate management:
+    *   `CAValidity` (default: 24h)
+    *   `DefaultX509Validity` (default: 1h)
+    *   `DefaultJWTValidity` (default: 5m)
+*   The default values can be replaced in the server configuration with user-configurable options that give users the flexibility to customize certificate and {{ svid_full }} lifetimes based on their security requirements.
+
+Enabling Manual User Configurations
+
+:   *   The Operator controller switches to `create-only` mode once the `ztwim.openshift.io/create-only=true` annotation is present on the Operator’s APIs. This allows resource creation while skipping the updates. A user can update the resources manually to test their configuration. This annotation supports APIs such as `SpireServer`, `SpireAgents`, `SpiffeCSIDriver`, `SpireOIDCDiscoveryProvider`, and `ZeroTrustWorkloadIdentityManager`.
+*   When the annotation is applied, all derived resources including resources created and managed by the Operator are created but not updated.
+*   After the annotation is removed and the pod restarts, the Operator tries to come back to the required state. The annotation is applied only once during start or a restart.
+
+## Fixed issues {id="zero-trust-manager-0-2-0-bug-fixes_{{ context }}"}
+
+
+JSON Web Token Issuer field now requires a valid URL
+:   *   Before this update, the `JwtIssuer` field for both the `SpireServer` and the `SpireOidcDiscoveryProvider` custom resources did not require the input to be a URL, frequently causing configuration errors. With this release, the validation has been updated, and users must now manually enter a valid issuer URL in the `JwtIssuer` field for both custom resources. As a result, misconfigurations caused by a malformed issuer values are prevented, ensuring a stable and reliable setup.
+
+    ([SPIRE-117](https://issues.redhat.com/browse/SPIRE-117))

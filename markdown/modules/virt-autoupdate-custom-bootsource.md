@@ -1,0 +1,47 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling automatic updates for custom boot sources {id="virt-autoupdate-custom-bootsource_{{ context }}"}
+
+{{ VirtProductName }} automatically updates system-defined boot sources by default, but does not automatically update custom boot sources. You must manually enable automatic updates by editing the `HyperConverged` custom resource (CR). {._abstract}
+
+**Prerequisites**
+
+*   The cluster has a default storage class.
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+1.  Open the `HyperConverged` CR in your default editor by running the following command:
+    ```terminal
+    $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+    ```
+1.  Edit the `HyperConverged` CR, adding the appropriate template and boot source in the `dataImportCronTemplates` section. For example:
+    ```yaml
+    apiVersion: hco.kubevirt.io/v1beta1
+    kind: HyperConverged
+    metadata:
+      name: kubevirt-hyperconverged
+    spec:
+      dataImportCronTemplates:
+      - metadata:
+          name: centos-stream9-image-cron
+          annotations:
+            cdi.kubevirt.io/storage.bind.immediate.requested: "true"
+        spec:
+          schedule: "0 */12 * * *"
+          template:
+            spec:
+              source:
+                registry:
+                  url: docker://quay.io/containerdisks/centos-stream:9
+              storage:
+                resources:
+                  requests:
+                    storage: 30Gi
+          garbageCollect: Outdated
+          managedDataSource: centos-stream9
+    ```
+    *   `spec.dataImportCronTemplates.metadata.annotations` specifies a required annotation for storage classes with `volumeBindingMode` set to `WaitForFirstConsumer`.
+    *   `spec.dataImportCronTemplates.spec.schedule` specifies the schedule for the job, specified in cron format.
+    *   `spec.dataImportCronTemplates.spec.template.spec.source.registry` specifies the registry source to use to create a data volume. Use the default `pod` `pullMethod` and not `node` `pullMethod`, which is based on the `node` docker cache. The `node` docker cache is useful when a registry image is available via `Container.Image`, but the CDI importer is not authorized to access it.
+    *   `spec.dataImportCronTemplates.spec.managedDataSource` specifies the name of the managed data source. For the custom image to be detected as an available boot source, the name of the image’s `managedDataSource` must match the name of the template’s `DataSource`, which is found under `spec.dataVolumeTemplates.spec.sourceRef.name` in the VM template YAML file.
+1.  Save the file.

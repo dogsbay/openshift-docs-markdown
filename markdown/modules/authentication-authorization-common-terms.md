@@ -1,0 +1,124 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Glossary of common terms for {{ product_title }} authentication and authorization {id="openshift-auth-common-terms_{{ context }}"}
+
+This glossary defines common terms that are used in {{ product_title }} authentication and authorization. {._abstract}
+
+
+authentication
+:   An authentication determines access to an {{ product_title }} cluster and ensures only authenticated users access the {{ product_title }} cluster.
+
+
+authorization
+:   Authorization determines whether the identified user has permissions to perform the requested action.
+
+
+bearer token
+:   Bearer token is used to authenticate to API with the header `Authorization: Bearer <token>`.
+
+{%- if not (openshift_dedicated or openshift_rosa) %}
+
+Cloud Credential Operator
+:   The Cloud Credential Operator (CCO) manages cloud provider credentials as custom resource definitions (CRDs).
+{% endif %}
+
+
+config map
+:   A config map provides a way to inject configuration data into the pods. You can reference the data stored in a config map in a volume of type `ConfigMap`. Applications running in a pod can use this data.
+
+
+containers
+:   Lightweight and executable images that consist of software and all its dependencies. Because containers virtualize the operating system, you can run containers in a data center, public or private cloud, or your local host.
+
+
+Custom Resource (CR)
+:   A CR is an extension of the Kubernetes API.
+
+
+group
+:   A group is a set of users. A group is useful for granting permissions to multiple users one time.
+
+
+HTPasswd
+:   HTPasswd updates the files that store usernames and password for authentication of HTTP users.
+
+
+Keystone
+:   Keystone is an {{ rh_openstack_first }} project that provides identity, token, catalog, and policy services.
+
+
+Lightweight directory access protocol (LDAP)
+:   LDAP is a protocol that queries user information.
+
+{% if not (openshift_dedicated or openshift_rosa) %}
+
+manual mode
+:   In manual mode, a user manages cloud credentials instead of the Cloud Credential Operator (CCO).
+{% endif %}
+
+{% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
+
+mint mode
+:   In mint mode, the Cloud Credential Operator (CCO) uses the provided administrator-level cloud credential to create new credentials for components in the cluster with only the specific permissions that are required.
+
+    :::note
+
+
+    Mint mode is the default and the preferred setting for the CCO to use on the platforms for which it is supported.
+    
+    :::
+
+{% endif %}
+
+
+namespace
+:   A namespace isolates specific system resources that are visible to all processes. Inside a namespace, only processes that are members of that namespace can see those resources.
+
+
+node
+:   A node is a worker machine in the {{ product_title }} cluster. A node is either a virtual machine (VM) or a physical machine.
+
+
+OAuth client
+:   OAuth client is used to get a bearer token.
+
+
+OAuth server
+:   The {{ product_title }} control plane includes a built-in OAuth server that determines the user’s identity from the configured identity provider and creates an access token.
+
+
+OpenID Connect
+:   The OpenID Connect is a protocol to authenticate the users to use single sign-on (SSO) to access sites that use OpenID Providers.
+
+{% if not (openshift_dedicated or openshift_rosa) %}
+
+passthrough mode
+:   In passthrough mode, the Cloud Credential Operator (CCO) passes the provided cloud credential to the components that request cloud credentials.
+{% endif %}
+
+
+pod
+:   A pod is the smallest logical unit in Kubernetes. A pod consists of one or more containers to run in a worker node.
+
+
+regular users
+:   Users that are created automatically in the cluster upon first login or via the API.
+
+
+request header
+:   A request header is an HTTP header that is used to provide information about HTTP request context, so that the server can track the response of the request.
+
+
+role-based access control (RBAC)
+:   A key security control to ensure that cluster users and workloads have access to only the resources required to execute their roles.
+
+
+service accounts
+:   Service accounts are used by the cluster components or applications.
+
+
+system users
+:   Users that are created automatically when the cluster is installed.
+
+
+users
+:   Users is an entity that can make requests to API.

@@ -1,0 +1,72 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Adding TLS termination on the AWS Load Balancer {id="nw-adding-tls-termination_{{ context }}"}
+
+You can route the traffic for the domain to pods of a service and add TLS termination on the {{ aws_short }} Load Balancer. {._abstract}
+
+**Prerequisites**
+
+*   You have access to the {{ oc_first }}.
+
+**Procedure**
+
+1.  Create a YAML file that defines the `AWSLoadBalancerController` resource:
+    ```yaml title="Example add-tls-termination-albc.yaml file"
+    apiVersion: networking.olm.openshift.io/v1
+    kind: AWSLoadBalancerController
+    metadata:
+      name: cluster
+    spec:
+      subnetTagging: Auto
+      ingressClass: tls-termination
+    # ...
+    ```
+
+    where:
+
+    `spec.ingressClass`
+    :   Specifies the ingress class name. If the ingress class is not present in your cluster the AWS Load Balancer Controller creates one. The AWS Load Balancer Controller reconciles the additional ingress class values if `spec.controller` is set to `ingress.k8s.aws/alb`.
+
+1.  Create a YAML file that defines the `Ingress` resource:
+    ```yaml title="Example add-tls-termination-ingress.yaml file"
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: <example>
+      annotations:
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:xxxxx
+    spec:
+      ingressClassName: tls-termination
+      rules:
+      - host: example.com
+        http:
+            paths:
+              - path: /
+                pathType: Exact
+                backend:
+                  service:
+                    name: <example_service>
+                    port:
+                      number: 80
+    # ...
+    ```
+
+    where:
+
+    `metadata.name`
+    :   Specifies the ingress name.
+
+    `annotations.alb.ingress.kubernetes.io/scheme`
+    :   Specifies the controller that provisions the load balancer for ingress. The provisioning happens in a public subnet to access the load balancer over the internet.
+
+    `annotations.alb.ingress.kubernetes.io/certificate-arn`
+    :   Specifies the Amazon Resource Name (ARN) of the certificate that you attach to the load balancer.
+
+    `spec.ingressClassName`
+    :   Specifies the ingress class name.
+
+    `rules.host`
+    :   Specifies the domain for traffic routing.
+
+    `backend.service`
+    :   Specifies the service for traffic routing.

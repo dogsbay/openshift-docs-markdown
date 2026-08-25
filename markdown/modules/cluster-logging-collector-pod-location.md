@@ -1,0 +1,19 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Viewing logging collector pods {id="cluster-logging-collector-pod-location_{{ context }}"}
+
+You can view the logging collector pods and the corresponding nodes that they are running on.
+
+**Procedure**
+
+*   Run the following command in a project to view the logging collector pods and their details:
+    ```terminal
+    $ oc get pods --selector component=collector -o wide -n <project_name>
+    ```
+    ```terminal title="Example output"
+    NAME           READY  STATUS    RESTARTS   AGE     IP            NODE                  NOMINATED NODE   READINESS GATES
+    collector-8d69v  1/1    Running   0          134m    10.130.2.30   master1.example.com   <none>           <none>
+    collector-bd225  1/1    Running   0          134m    10.131.1.11   master2.example.com   <none>           <none>
+    collector-cvrzs  1/1    Running   0          134m    10.130.0.21   master3.example.com   <none>           <none>
+    collector-gpqg2  1/1    Running   0          134m    10.128.2.27   worker1.example.com   <none>           <none>
+    collector-l9j7j  1/1    Running   0          134m    10.129.2.31   worker2.example.com   <none>           <none>
+    ```

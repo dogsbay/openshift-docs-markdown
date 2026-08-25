@@ -1,0 +1,43 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About the Network Resources Injector {id="about-network-resource-injector_{{ context }}"}
+
+You can use the Network Resources Injector, a Kubernetes Dynamic Admission Controller application, to mutate resource requests and limits in a pod specification and mutate a pod specification with a Downward API volume. {._abstract}
+
+The Network Resources Injector provides the following capabilities:
+
+*   Mutation of resource requests and limits in a pod specification to add an SR-IOV resource name according to an SR-IOV network attachment definition annotation.
+*   Mutation of a pod specification with a Downward API volume to expose pod annotations, labels, and huge pages requests and limits. Containers that run in the pod can access the exposed information as files under the `/etc/podnetinfo` path.
+
+The SR-IOV Network Operator enables the Network Resources Injector when the `enableInjector` is set to `true` in the `SriovOperatorConfig` CR. The `network-resources-injector` pod runs as a daemon set on all control plane nodes. The following is an example of Network Resources Injector pods running in a cluster with three control plane nodes:
+
+```terminal
+$ oc get pods -n openshift-sriov-network-operator
+```
+
+```terminal title="Example output"
+NAME                                      READY   STATUS    RESTARTS   AGE
+network-resources-injector-5cz5p          1/1     Running   0          10m
+network-resources-injector-dwqpx          1/1     Running   0          10m
+network-resources-injector-lktz5          1/1     Running   0          10m
+```
+
+By default, the `failurePolicy` field in the Network Resources Injector webhook is set to `Ignore`. This default setting prevents pod creation from being blocked if the webhook is unavailable.
+
+If you set the `failurePolicy` field to `Fail`, and the Network Resources Injector webhook is unavailable, the webhook attempts to mutate all pod creation and update requests. This behavior can block pod creation and disrupt normal cluster operations. To prevent such issues, you can enable the `featureGates.resourceInjectorMatchCondition` feature in the `SriovOperatorConfig` object to limit the scope of the Network Resources Injector webhook. If this feature is enabled, the webhook applies only to pods with the secondary network annotation `k8s.v1.cni.cncf.io/networks`.
+
+If you set the `failurePolicy` field to `Fail` after enabling the `resourceInjectorMatchCondition` feature, the webhook applies only to pods with the secondary network annotation `k8s.v1.cni.cncf.io/networks`. If the webhook is unavailable, the cluster still deploys pods without this annotation; this prevents unnecessary disruptions to cluster operations.
+
+The `featureGates.resourceInjectorMatchCondition` feature is disabled by default. To enable this feature, set the `featureGates.resourceInjectorMatchCondition` field to `true` in the `SriovOperatorConfig` object.
+
+```yaml title="Example SriovOperatorConfig object configuration"
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovOperatorConfig
+metadata:
+  name: default
+  namespace: sriov-network-operator
+spec:
+# ...
+  featureGates:
+    resourceInjectorMatchCondition: true
+# ...
+```

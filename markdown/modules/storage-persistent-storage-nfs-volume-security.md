@@ -1,0 +1,37 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# NFS volume security {id="nfs-volume-security_{{ context }}"}
+
+To understand NFS volume security, including matching permissions and SELinux considerations, you should understand the basics of POSIX permissions, process UIDs, supplemental groups, and SELinux. {._abstract}
+
+Developers request NFS storage by referencing either a PVC by name or the NFS volume plugin directly in the `volumes` section of their `Pod`
+definition.
+
+The `/etc/exports` file on the NFS server contains the accessible NFS directories. The target NFS directory has POSIX owner and group IDs. The
+{{ product_title }} NFS plugin mounts the container’s NFS directory with the same POSIX ownership and permissions found on the exported NFS directory.
+However, the container is not run with its effective UID equal to the owner of the NFS mount, which is the desired behavior.
+
+As an example, if the target NFS directory appears on the NFS server as:
+
+```terminal
+$ ls -lZ /opt/nfs -d
+```
+
+```terminal title="Example output"
+drwxrws---. nfsnobody 5555 unconfined_u:object_r:usr_t:s0   /opt/nfs
+```
+```terminal
+$ id nfsnobody
+```
+```terminal title="Example output"
+uid=65534(nfsnobody) gid=65534(nfsnobody) groups=65534(nfsnobody)
+```
+
+Then the container must match SELinux labels, and either run with a UID of `65534`, the `nfsnobody` owner, or with `5555` in its supplemental groups to access the directory.
+
+
+:::note
+
+The owner ID of `65534` is used as an example. Even though NFS’s `root_squash` maps `root`, uid `0`, to `nfsnobody`, uid `65534`, NFS
+exports can have arbitrary owner IDs. Owner `65534` is not required for NFS exports.
+
+:::

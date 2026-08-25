@@ -1,0 +1,27 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Network Metrics Daemon {id="cnf-network-metrics-daemon_{{ context }}"}
+
+The Network Metrics Daemon collects and publishes network-related metrics to support performance management in complex pod environments. This component provides metadata for secondary interfaces, which is required for accurate traffic monitoring across distinct network attachments. {._abstract}
+
+The kubelet is already publishing network related metrics you can observe. These metrics are:
+
+*   `container_network_receive_bytes_total`
+*   `container_network_receive_errors_total`
+*   `container_network_receive_packets_total`
+*   `container_network_receive_packets_dropped_total`
+*   `container_network_transmit_bytes_total`
+*   `container_network_transmit_errors_total`
+*   `container_network_transmit_packets_total`
+*   `container_network_transmit_packets_dropped_total`
+
+The labels in these metrics contain, among others:
+
+*   Pod name
+*   Pod namespace
+*   Interface name (such as `eth0`)
+
+These metrics work well until new interfaces are added to the pod, for example via [Multus](https://github.com/intel/multus-cni), as it is not clear what the interface names refer to.
+
+The interface label refers to the interface name, but it is not clear what that interface is meant for. In case of many different interfaces, it would be impossible to understand what network the metrics you are monitoring refer to.
+
+This is addressed by introducing the new `pod_network_name_info` described in the following section.

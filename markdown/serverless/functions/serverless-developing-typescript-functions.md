@@ -1,0 +1,28 @@
+{%- set _mod_docs_content_type = "ASSEMBLY" %}
+# Developing TypeScript functions {id="serverless-developing-typescript-functions"}
+{%- set context = "serverless-developing-typescript-functions" %}
+{% include "./_attributes/common-attributes.md" %}
+
+After you have [created a TypeScript function project](/serverless/functions/serverless-functions-getting-started#serverless-create-func-kn_serverless-functions-getting-started), you can modify the template files provided to add business logic to your function. This includes configuring function invocation and the returned headers and status codes.
+
+## Prerequisites {id="prerequisites_serverless-developing-typescript-functions"}
+
+*   Before you can develop functions, you must complete the steps in [Setting up {{ FunctionsProductName }}](/serverless/functions/serverless-functions-setup#serverless-functions-setup).
+
+{% leveloffset +1 %}{% include "./modules/serverless-typescript-template.md" %}{% endleveloffset %}
+
+## About invoking TypeScript functions {id="serverless-developing-typescript-functions-about-invoking"}
+
+When using the Knative (`kn`) CLI to create a function project, you can generate a project that responds to CloudEvents or one that responds to simple HTTP requests. CloudEvents in Knative are transported over HTTP as a POST request, so both function types listen for and respond to incoming HTTP events.
+
+TypeScript functions can be invoked with a simple HTTP request. When an incoming request is received, functions are invoked with a `context` object as the first parameter.
+
+{% leveloffset +2 %}{% include "./modules/serverless-typescript-functions-context-objects.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/serverless-typescript-function-return-values.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/serverless-testing-typescript-functions.md" %}{% endleveloffset %}
+
+## Next steps {id="next-steps_serverless-developing-typescript-functions"}
+
+*   See the [TypeScript context object reference](/serverless/functions/serverless-functions-reference-guide#serverless-typescript-context-object-reference_serverless-functions-reference-guide) documentation.
+*   [Build](/serverless/functions/serverless-functions-getting-started#serverless-build-func-kn_serverless-functions-getting-started) and [deploy](/serverless/functions/serverless-functions-getting-started#serverless-deploy-func-kn_serverless-functions-getting-started) a function.
+*   See [the Pino API documentation](https://getpino.io/#/docs/api) for more information about logging with functions.

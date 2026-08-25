@@ -1,0 +1,11 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Default ingress and egress rules {id="cert-manager-nw-policy-rules_{{ context }}"}
+
+The default network policy applies the following ingress and egress rules to each component. {._abstract}
+
+| Component | Ingress ports | Egress ports | Description |
+| --- | --- | --- | --- |
+| `cert-manager` | 9402 | 6443, 5353 | Allows ingress traffic to metrics server and egress traffic to OpenShift API server. |
+| `cert-manager-webhook` | 9402, 10250 | 6443 | Allows ingress traffic to metrics and webhook servers, and egress traffic to OpenShift API server and internal DNS server. |
+| `cert-manager-cainjector` | 9402 | 6443 | Allows ingress traffic to metrics server and egress traffic to OpenShift API server. |
+| `istio-csr` | 6443, 9402 | 6443 | Allows ingress traffic to the gRPC Istio certificate request API, metrics servers and egress traffic to OpenShift API server. |

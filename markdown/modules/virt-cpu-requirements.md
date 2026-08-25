@@ -1,0 +1,24 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# CPU requirements {id="virt-cpu-requirements_{{ context }}"}
+
+{{ VirtProductName }} requires CPUs supported by {{ op_system_base_full }} 9 with specific virtualization extensions enabled. {._abstract}
+
+
+CPU requirements for {{ VirtProductName }}
+
+:   *   Must be supported by {{ op_system_base_full }} 9. See [Red Hat Ecosystem Catalog](https://catalog.redhat.com) for supported CPUs.
+
+    :::note
+
+
+    If your worker nodes have different CPUs, live migration failures might occur because different CPUs have different capabilities. You can mitigate this issue by ensuring that your worker nodes have CPUs with the appropriate capacity and by configuring node affinity rules for your virtual machines.
+
+
+    For more information, see "Configuring a required node affinity rule" in the Additional resources section.
+    
+    :::
+
+*   Supports AMD64, Intel 64-bit (x86-64-v2), {{ ibm_z_name }} (`s390x`), or ARM64-based (`arm64` or `aarch64`) architectures and their respective CPU extensions.
+*   Intel VT-x, AMD-V, or ARM virtualization extensions are enabled, or `s390x` virtualization support is enabled.
+*   NX (no execute) flag is enabled.
+*   If you use `s390x` architecture, the default CPU model is set to `gen15b`. For more information, see "Configuring the default CPU model" in the Additional resources section.

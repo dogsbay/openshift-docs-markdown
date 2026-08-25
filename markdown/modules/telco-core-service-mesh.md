@@ -1,0 +1,11 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Service Mesh {id="telco-core-service-mesh_{{ context }}"}
+
+Telco core cloud-native functions (CNFs) typically require a Service Mesh implementation. {._abstract}
+
+
+Description
+:   Telco core cloud-native functions (CNFs) typically require a Service Mesh implementation.
+    Specific Service Mesh features and performance requirements are dependent on the application.
+    The selection of Service Mesh implementation and configuration is outside the scope of this documentation.
+    The implementation must account for the impact of Service Mesh on cluster resource usage and performance, including additional latency introduced in pod networking.

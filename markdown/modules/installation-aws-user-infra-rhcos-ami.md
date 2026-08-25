@@ -1,0 +1,384 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# {{ op_system }} AMIs for the AWS infrastructure {id="installation-aws-user-infra-rhcos-ami_{{ context }}"}
+
+To deploy {{ product_title }} nodes on {{ aws_first }}, select from the valid {{ op_system_first }} AMIs for your region and instance architecture. {._abstract}
+
+
+:::note
+
+By importing your own AMI, you can also install to regions that do not have published {{ op_system }} AMIs.
+
+:::
+
+
+{% if not openshift_origin %}
+
+**x86_64 {{ op_system }} AMIs**
+
+<table>
+<thead>
+<tr>
+  <th>AWS zone</th>
+  <th>RHEL 9 AMI</th>
+  <th>RHEL 10 AMI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>af-south-1</code></td>
+  <td><code>ami-0e09db1a117f89982</code></td>
+  <td><code>ami-00b9419956a1b8301</code></td>
+</tr>
+<tr>
+  <td><code>ap-east-1</code></td>
+  <td><code>ami-0f3883046e2b590c4</code></td>
+  <td><code>ami-093ce74a7831d5796</code></td>
+</tr>
+<tr>
+  <td><code>ap-east-2</code></td>
+  <td><code>ami-05fda30c28d357b97</code></td>
+  <td><code>ami-0f1f5f78fad6126f3</code></td>
+</tr>
+<tr>
+  <td><code>ap-northeast-1</code></td>
+  <td><code>ami-0acebf7451fbed435</code></td>
+  <td><code>ami-0b1305ab18da2b503</code></td>
+</tr>
+<tr>
+  <td><code>ap-northeast-2</code></td>
+  <td><code>ami-07e85fe3474ab6f53</code></td>
+  <td><code>ami-089d5b21fb5472656</code></td>
+</tr>
+<tr>
+  <td><code>ap-northeast-3</code></td>
+  <td><code>ami-0bf06ecbd16316390</code></td>
+  <td><code>ami-08b988fa11f0772c3</code></td>
+</tr>
+<tr>
+  <td><code>ap-south-1</code></td>
+  <td><code>ami-001b087fae6b102a2</code></td>
+  <td><code>ami-030c986c15d7d21fe</code></td>
+</tr>
+<tr>
+  <td><code>ap-south-2</code></td>
+  <td><code>ami-02e59bb73395086de</code></td>
+  <td><code>ami-0baf89a420726a0c9</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-1</code></td>
+  <td><code>ami-07e0e4d66f0276e33</code></td>
+  <td><code>ami-07db2a2569bf635d5</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-2</code></td>
+  <td><code>ami-0656ee074d43ebeb9</code></td>
+  <td><code>ami-0c66ca97b4cb72a96</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-3</code></td>
+  <td><code>ami-0b8ac3107bf7b8091</code></td>
+  <td><code>ami-0ea4633b5accce1cc</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-4</code></td>
+  <td><code>ami-06a85e79ca82e97d3</code></td>
+  <td><code>ami-0b9a19c6d404ebe82</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-5</code></td>
+  <td><code>ami-068e811f466ce5eec</code></td>
+  <td><code>ami-0860196faab6d36f5</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-6</code></td>
+  <td><code>ami-01801dc800c336d1f</code></td>
+  <td><code>ami-05391d944831d449c</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-7</code></td>
+  <td><code>ami-01b449b1bf9c95caf</code></td>
+  <td><code>ami-0ea7c99fe14478e31</code></td>
+</tr>
+<tr>
+  <td><code>ca-central-1</code></td>
+  <td><code>ami-016a214bc34aed24c</code></td>
+  <td><code>ami-01a1c5433b11c6040</code></td>
+</tr>
+<tr>
+  <td><code>ca-west-1</code></td>
+  <td><code>ami-0279542db8d76fe7c</code></td>
+  <td><code>ami-0aaec38c9c3c18973</code></td>
+</tr>
+<tr>
+  <td><code>eu-central-1</code></td>
+  <td><code>ami-02b4be39da643ac06</code></td>
+  <td><code>ami-050a2036417aa85c9</code></td>
+</tr>
+<tr>
+  <td><code>eu-central-2</code></td>
+  <td><code>ami-09e9173753792f284</code></td>
+  <td><code>ami-0dc1cab1a5a382089</code></td>
+</tr>
+<tr>
+  <td><code>eu-north-1</code></td>
+  <td><code>ami-0b4a484d5db49d4a5</code></td>
+  <td><code>ami-0ebb900e33852ac20</code></td>
+</tr>
+<tr>
+  <td><code>eu-south-1</code></td>
+  <td><code>ami-02f2692568ca70d48</code></td>
+  <td><code>ami-06794550da69b4d4f</code></td>
+</tr>
+<tr>
+  <td><code>eu-south-2</code></td>
+  <td><code>ami-0777de9170dd480a0</code></td>
+  <td><code>ami-09b9b2363f8b9bf79</code></td>
+</tr>
+<tr>
+  <td><code>eu-west-1</code></td>
+  <td><code>ami-0754b5979bce4f62f</code></td>
+  <td><code>ami-00277e2896ce030cd</code></td>
+</tr>
+<tr>
+  <td><code>eu-west-2</code></td>
+  <td><code>ami-05a2b3abb8cf0cc92</code></td>
+  <td><code>ami-06c08d05f6a1085e5</code></td>
+</tr>
+<tr>
+  <td><code>eu-west-3</code></td>
+  <td><code>ami-01ba91ba1e67b52fa</code></td>
+  <td><code>ami-0c94bd2324f9a7dc4</code></td>
+</tr>
+<tr>
+  <td><code>il-central-1</code></td>
+  <td><code>ami-0be1e841b9475abc2</code></td>
+  <td><code>ami-090c5d273c266bcb1</code></td>
+</tr>
+<tr>
+  <td><code>mx-central-1</code></td>
+  <td><code>ami-04e5e190abb398aef</code></td>
+  <td><code>ami-0127400b1a4f4d8a8</code></td>
+</tr>
+<tr>
+  <td><code>sa-east-1</code></td>
+  <td><code>ami-09b6c03d247ba3007</code></td>
+  <td><code>ami-0d636038b33e48e74</code></td>
+</tr>
+<tr>
+  <td><code>us-east-1</code></td>
+  <td><code>ami-09a04cae40b5df1b1</code></td>
+  <td><code>ami-06c799e44545e8040</code></td>
+</tr>
+<tr>
+  <td><code>us-east-2</code></td>
+  <td><code>ami-008f91aec6651d818</code></td>
+  <td><code>ami-0b56c6461b8dfea32</code></td>
+</tr>
+<tr>
+  <td><code>us-gov-east-1</code></td>
+  <td><code>ami-083a079a4e93810d0</code></td>
+  <td><code>ami-00a5a8f684bfe21a4</code></td>
+</tr>
+<tr>
+  <td><code>us-gov-west-1</code></td>
+  <td><code>ami-03c270b5f712d93c5</code></td>
+  <td><code>ami-0ee3e9e7a587954c3</code></td>
+</tr>
+<tr>
+  <td><code>us-west-1</code></td>
+  <td><code>ami-000065c53330c76d2</code></td>
+  <td><code>ami-0ceb35adb65ceb3ee</code></td>
+</tr>
+<tr>
+  <td><code>us-west-2</code></td>
+  <td><code>ami-0106a1d635d4a36c0</code></td>
+  <td><code>ami-0a8a99e4004c7938d</code></td>
+</tr>
+</tbody>
+</table>
+
+**aarch64 {{ op_system }} AMIs**
+
+<table>
+<thead>
+<tr>
+  <th>AWS zone</th>
+  <th>RHEL 9 AMI</th>
+  <th>RHEL 10 AMI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>af-south-1</code></td>
+  <td><code>ami-09b3b126662fe7a18</code></td>
+  <td><code>ami-07c2492a6e610eb29</code></td>
+</tr>
+<tr>
+  <td><code>ap-east-1</code></td>
+  <td><code>ami-009fe8f4f06381d2e</code></td>
+  <td><code>ami-0c081ca051d9066c3</code></td>
+</tr>
+<tr>
+  <td><code>ap-east-2</code></td>
+  <td><code>ami-0403657dcda8a5e9c</code></td>
+  <td><code>ami-016834812d68d485e</code></td>
+</tr>
+<tr>
+  <td><code>ap-northeast-1</code></td>
+  <td><code>ami-0f9d02af671b8f84e</code></td>
+  <td><code>ami-0a93317cde971c817</code></td>
+</tr>
+<tr>
+  <td><code>ap-northeast-2</code></td>
+  <td><code>ami-09fb79703d81dad43</code></td>
+  <td><code>ami-008d018630379e1eb</code></td>
+</tr>
+<tr>
+  <td><code>ap-northeast-3</code></td>
+  <td><code>ami-038a507ec93b04ce1</code></td>
+  <td><code>ami-016bf4359ca8f9ea2</code></td>
+</tr>
+<tr>
+  <td><code>ap-south-1</code></td>
+  <td><code>ami-0eb4f5b5dbaa33c62</code></td>
+  <td><code>ami-01c3da87c9088e490</code></td>
+</tr>
+<tr>
+  <td><code>ap-south-2</code></td>
+  <td><code>ami-0d0f18aae857f459b</code></td>
+  <td><code>ami-089e3dc824dfc53cc</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-1</code></td>
+  <td><code>ami-0519530b4a949ac79</code></td>
+  <td><code>ami-047501898db0e6004</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-2</code></td>
+  <td><code>ami-029b0ef4d6d0872e6</code></td>
+  <td><code>ami-00aa2f8c59143b0ae</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-3</code></td>
+  <td><code>ami-0e04bab1932cc8079</code></td>
+  <td><code>ami-001bd2512362e7b35</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-4</code></td>
+  <td><code>ami-03b0fdc3fbc4a0fa4</code></td>
+  <td><code>ami-0c3a562ba17fcc7fe</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-5</code></td>
+  <td><code>ami-046fecd472297b7c4</code></td>
+  <td><code>ami-0abc0ee6a009667b2</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-6</code></td>
+  <td><code>ami-088024b57838dfd53</code></td>
+  <td><code>ami-0c8b6c104987a0fc3</code></td>
+</tr>
+<tr>
+  <td><code>ap-southeast-7</code></td>
+  <td><code>ami-00c84a187abf62194</code></td>
+  <td><code>ami-0fbf9de5c1828e872</code></td>
+</tr>
+<tr>
+  <td><code>ca-central-1</code></td>
+  <td><code>ami-0f65ba965f0cdf25b</code></td>
+  <td><code>ami-06be00da14f45f988</code></td>
+</tr>
+<tr>
+  <td><code>ca-west-1</code></td>
+  <td><code>ami-0ce3bfdc385214b60</code></td>
+  <td><code>ami-0260b4a668a59a922</code></td>
+</tr>
+<tr>
+  <td><code>eu-central-1</code></td>
+  <td><code>ami-077c9e69aa2a7442b</code></td>
+  <td><code>ami-001fdc3025ce50006</code></td>
+</tr>
+<tr>
+  <td><code>eu-central-2</code></td>
+  <td><code>ami-0843ce8434ed947e0</code></td>
+  <td><code>ami-0443b053f6e845524</code></td>
+</tr>
+<tr>
+  <td><code>eu-north-1</code></td>
+  <td><code>ami-047f81c57b0567e80</code></td>
+  <td><code>ami-06bc091c0435adf6f</code></td>
+</tr>
+<tr>
+  <td><code>eu-south-1</code></td>
+  <td><code>ami-048742ddf9599b9a3</code></td>
+  <td><code>ami-02ee91218bdc1bb3a</code></td>
+</tr>
+<tr>
+  <td><code>eu-south-2</code></td>
+  <td><code>ami-0385fbca30108a3a9</code></td>
+  <td><code>ami-0b8943a7a26627b01</code></td>
+</tr>
+<tr>
+  <td><code>eu-west-1</code></td>
+  <td><code>ami-04631bbd6c1be5b55</code></td>
+  <td><code>ami-064942d9b57521cf3</code></td>
+</tr>
+<tr>
+  <td><code>eu-west-2</code></td>
+  <td><code>ami-0915a41744ba40397</code></td>
+  <td><code>ami-0e13b80ab624fc7d3</code></td>
+</tr>
+<tr>
+  <td><code>eu-west-3</code></td>
+  <td><code>ami-09fd8d0e79f45b71a</code></td>
+  <td><code>ami-0b1bd601d3ecde37d</code></td>
+</tr>
+<tr>
+  <td><code>il-central-1</code></td>
+  <td><code>ami-0853f94ef8841751a</code></td>
+  <td><code>ami-0073de64ca6a1189b</code></td>
+</tr>
+<tr>
+  <td><code>mx-central-1</code></td>
+  <td><code>ami-039d2c56cbe869df0</code></td>
+  <td><code>ami-03bf73795d8dfac51</code></td>
+</tr>
+<tr>
+  <td><code>sa-east-1</code></td>
+  <td><code>ami-0915393860fee75df</code></td>
+  <td><code>ami-0f8e239c3eb87df2b</code></td>
+</tr>
+<tr>
+  <td><code>us-east-1</code></td>
+  <td><code>ami-0e3af3b58f5710e43</code></td>
+  <td><code>ami-04ec52f48c28d001d</code></td>
+</tr>
+<tr>
+  <td><code>us-east-2</code></td>
+  <td><code>ami-017020cb8aeeda203</code></td>
+  <td><code>ami-0469df626c198243e</code></td>
+</tr>
+<tr>
+  <td><code>us-gov-east-1</code></td>
+  <td><code>ami-014a147dae2cf3359</code></td>
+  <td><code>ami-03557a94deb16be46</code></td>
+</tr>
+<tr>
+  <td><code>us-gov-west-1</code></td>
+  <td><code>ami-07113f5ee8cde6fb3</code></td>
+  <td><code>ami-06460c1920305cf08</code></td>
+</tr>
+<tr>
+  <td><code>us-west-1</code></td>
+  <td><code>ami-09ca10147735afd05</code></td>
+  <td><code>ami-0cd45be3140b38916</code></td>
+</tr>
+<tr>
+  <td><code>us-west-2</code></td>
+  <td><code>ami-00e116f16409da3de</code></td>
+  <td><code>ami-03206cc79683aa1a6</code></td>
+</tr>
+</tbody>
+</table>
+
+{% endif %}

@@ -1,0 +1,121 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# odo storage {id="odo-storage_{{ context }}"}
+
+`odo` lets users manage storage volumes that are attached to the components. A storage volume can be either an ephemeral volume using an `emptyDir` Kubernetes volume, or a [Persistent Volume Claim](https://kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) (PVC). A PVC allows users to claim a persistent volume (such as a GCE PersistentDisk or an iSCSI volume) without understanding the details of the particular cloud environment. The persistent storage volume can be used to persist data across restarts and rebuilds of the component.
+
+## Adding a storage volume {id="_adding_a_storage_volume"}
+
+To add a storage volume to the cluster, run the command:
+
+```terminal
+$ odo storage create
+```
+
+```terminal
+$ odo storage create store --path /data --size 1Gi
+```
+
+```terminal title="Example output"
+✓  Added storage store to nodejs-project-ufyy
+```
+
+```terminal
+$ odo storage create tempdir --path /tmp --size 2Gi --ephemeral
+```
+
+```terminal title="Example output"
+✓  Added storage tempdir to nodejs-project-ufyy
+
+Please use `odo push` command to make the storage accessible to the component
+```
+
+In the above example, the first storage volume has been mounted to the `/data` path and has a size of `1Gi`, and the second volume has been mounted to `/tmp` and is ephemeral.
+
+## Listing the storage volumes {id="_listing_the_storage_volumes"}
+
+To check the storage volumes currently used by the component, run the command:
+
+```terminal
+$ odo storage list
+```
+
+```terminal
+$ odo storage list
+```
+
+```terminal title="Example output"
+The component 'nodejs-project-ufyy' has the following storage attached:
+NAME      SIZE     PATH      STATE
+store     1Gi      /data     Not Pushed
+tempdir   2Gi      /tmp      Not Pushed
+```
+
+## Deleting a storage volume {id="_deleting_a_storage_volume"}
+
+To delete a storage volume, run the command:
+
+```terminal
+$ odo storage delete
+```
+
+```terminal
+$ odo storage delete store -f
+```
+
+```terminal title="Example output"
+Deleted storage store from nodejs-project-ufyy
+
+Please use `odo push` command to delete the storage from the cluster
+```
+
+In the above example, using the `-f` flag force deletes the storage without asking user permission.
+
+## Adding storage to specific container {id="_adding_storage_to_specific_container"}
+
+If your devfile has multiple containers, you can specify which container you want the storage to attach to, using the `--container` flag in the `odo storage create` command.
+
+The following example is an excerpt from a devfile with multiple containers :
+
+```yaml
+components:
+  - name: nodejs1
+    container:
+      image: registry.access.redhat.com/ubi8/nodejs-12:1-36
+      memoryLimit: 1024Mi
+      endpoints:
+        - name: "3000-tcp"
+          targetPort: 3000
+      mountSources: true
+  - name: nodejs2
+    container:
+      image: registry.access.redhat.com/ubi8/nodejs-12:1-36
+      memoryLimit: 1024Mi
+```
+
+In the example, there are two containers,`nodejs1` and `nodejs2`. To attach storage to the `nodejs2` container, use the following command:
+
+```terminal
+$ odo storage create --container
+```
+
+```terminal
+$ odo storage create store --path /data --size 1Gi --container nodejs2
+```
+
+```terminal title="Example output"
+✓  Added storage store to nodejs-testing-xnfg
+
+Please use `odo push` command to make the storage accessible to the component
+```
+
+You can list the storage resources, using the `odo storage list` command:
+
+```terminal
+$ odo storage list
+```
+
+```terminal title="Example output"
+The component 'nodejs-testing-xnfg' has the following storage attached:
+NAME      SIZE     PATH      CONTAINER     STATE
+store     1Gi      /data     nodejs2       Not Pushed
+```

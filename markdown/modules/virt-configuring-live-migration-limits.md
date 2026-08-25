@@ -1,0 +1,58 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Configuring live migration limits and timeouts {id="virt-configuring-live-migration-limits_{{ context }}"}
+
+Configure live migration limits and timeouts for the cluster by updating the `HyperConverged` custom resource (CR), which is located in the `{{ CNVNamespace }}` namespace. {._abstract}
+
+**Prerequisites**
+
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+*   Edit the `HyperConverged` CR and add the necessary live migration parameters:
+    ```terminal
+    $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+    ```
+
+    Example configuration file:
+    ```yaml
+    apiVersion: hco.kubevirt.io/v1beta1
+    kind: HyperConverged
+    metadata:
+      name: kubevirt-hyperconverged
+      namespace: {{ CNVNamespace }}
+    spec:
+      liveMigrationConfig:
+        bandwidthPerMigration: 64Mi
+        completionTimeoutPerGiB: 800
+        parallelMigrationsPerCluster: 5
+        parallelOutboundMigrationsPerNode: 2
+        progressTimeout: 150
+        allowPostCopy: false
+    ```
+
+    where:
+
+    `bandwidthPerMigration`
+    :   Specifies the bandwidth of each migration in bytes per second. For example, a value of 2048Mi means 2048 MiB/s. Default: 0, which is unlimited.
+
+    `completionTimeoutPerGiB`
+    :   Specifies the length of time, in seconds per GiB of memory, at which the migration is canceled if it has not completed. For example, a VM with 6GiB memory times out if it has not completed migration in 4800 seconds. If the `Migration Method` is `BlockMigration`, the size of the migrating disks is included in the calculation.
+
+    `parallelMigrationsPerCluster`
+    :   Specifies the number of migrations running in parallel in the cluster. Default: `5`.
+
+    `parallelOutboundMigrationsPerNode`
+    :   Specifies the maximum number of outbound migrations per node. Default: `2`.
+
+    `progressTimeout`
+    :   Specifies the length of time, in seconds, at which the migration is canceled if memory copy fails to make progress. Default: `150`.
+
+    `allowPostCopy`
+    :   Specifies whether the post copy mode is enabled. You can enable post copy mode to allow the migration of one node to another to converge, even if a VM is running a heavy workload and the memory dirty rate is too high. By default, `allowPostCopy` is set to `false`.
+
+    :::note
+
+    You can restore the default value for any `spec.liveMigrationConfig` field by deleting that key/value pair and saving the file. For example, delete `progressTimeout: <value>` to restore the default `progressTimeout: 150`.
+    
+    :::

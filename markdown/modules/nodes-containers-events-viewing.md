@@ -1,0 +1,37 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Viewing events using the CLI {id="nodes-containers-events-viewing-cli_{{ context }}"}
+
+You can get a list of events in a given project by using the CLI. {._abstract}
+
+**Procedure**
+
+*   View events in a project by using a command similar to the following:
+    ```terminal
+    $ oc get events [-n <project>]
+    ```
+
+    where:
+
+    `project`
+    :   Specifies the name of the project.
+
+    For example:
+    ```terminal
+    $ oc get events -n openshift-config
+    ```
+    ```terminal title="Example output"
+    LAST SEEN   TYPE      REASON                   OBJECT                      MESSAGE
+    97m         Normal    Scheduled                pod/dapi-env-test-pod       Successfully assigned openshift-config/dapi-env-test-pod to ip-10-0-171-202.ec2.internal
+    97m         Normal    Pulling                  pod/dapi-env-test-pod       pulling image "gcr.io/google_containers/busybox"
+    97m         Normal    Pulled                   pod/dapi-env-test-pod       Successfully pulled image "gcr.io/google_containers/busybox"
+    97m         Normal    Created                  pod/dapi-env-test-pod       Created container
+    9m5s        Warning   FailedCreatePodSandBox   pod/dapi-volume-test-pod    Failed create pod sandbox: rpc error: code = Unknown desc = failed to create pod network sandbox k8s_dapi-volume-test-pod_openshift-config_6bc60c1f-452e-11e9-9140-0eec59c23068_0(748c7a40db3d08c07fb4f9eba774bd5effe5f0d5090a242432a73eee66ba9e22): Multus: Err adding pod to network "ovn-kubernetes": cannot set "ovn-kubernetes" ifname to "eth0": no netns: failed to Statfs "/proc/33366/ns/net": no such file or directory
+    8m31s       Normal    Scheduled                pod/dapi-volume-test-pod    Successfully assigned openshift-config/dapi-volume-test-pod to ip-10-0-171-202.ec2.internal
+    #...
+    ```
+*   View events in your project from the {{ product_title }} console:
+    1.  Launch the {{ product_title }} console.
+    1.  Click **Home** -> **Events** and select your project.
+    1.  Move to resource that you want to see events. For example: **Home** -> **Projects** -> &lt;project-name> -> &lt;resource-name>.
+
+        Many objects, such as pods and deployments, also have an **Events** tab, which shows events related to that object.

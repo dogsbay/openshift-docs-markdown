@@ -1,0 +1,15 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Clusters with restrictive network policies {id="serverless-services-network-policies_{{ context }}"}
+
+If you are using a cluster that multiple users have access to, your cluster might use network policies to control which pods, services, and namespaces can communicate with each other over the network. If your cluster uses restrictive network policies, it is possible that Knative system pods are not able to access your Knative application. For example, if your namespace has the following network policy, which denies all requests, Knative system pods cannot access your Knative application:
+
+```yaml title="Example NetworkPolicy object that denies all requests to the namespace"
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: deny-by-default
+  namespace: example-namespace
+spec:
+  podSelector:
+  ingress: []
+```

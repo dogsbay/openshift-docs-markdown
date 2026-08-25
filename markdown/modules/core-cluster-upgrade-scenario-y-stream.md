@@ -1,0 +1,29 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Y-stream updates {id="core-cluster-upgrade-scenario-y-stream_{{ context }}"}
+
+Y-stream updates move between minor versions, such as updating from 4.20.x to 4.21.0.
+These updates introduce new features, performance improvements, and might include API deprecations. {._abstract}
+
+Typically, Y-stream releases follow a four-month release cadence.
+You must update through consecutive y-stream versions and cannot skip versions.
+For example, to update from 4.20 to 4.22, you must update from 4.20 to 4.21, and then from 4.21 to 4.22.
+If you need to move 2 y-stream versions, consider EUS-to-EUS updates instead.
+
+The risk profile for y-stream updates is medium because they might include deprecated APIs and configuration changes.
+Review release notes carefully before updating to identify breaking changes that affect your workloads.
+
+The following list describes use cases for y-stream updates:
+
+*   Accessing new {{ product_title }} features and capabilities
+*   Maintaining support lifecycle compliance because older versions eventually lose support
+*   Meeting requirements for updated Operator versions
+*   Adopting performance improvements and optimizations
+
+Y-stream updates require a planned maintenance window.
+The control plane update typically completes in 60 to 120 minutes, and worker node updates take an additional 30 to 60 minutes.
+You can minimize workload disruption by pausing worker nodes and updating the control plane first.
+
+**Additional resources**
+{._additional-resources}
+
+*   [EUS-to-EUS updates](#core-cluster-upgrade-scenario-eus_{{ context }})

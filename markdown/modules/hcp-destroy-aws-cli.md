@@ -1,0 +1,38 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Destroying a hosted cluster on {{ aws_short }} by using the CLI {id="hcp-destroy-aws-cli_{{ context }}"}
+
+To delete a hosted cluster and its managed cluster resource from {{ hcp }} on {{ aws_first }}, use the command-line interface (CLI). {._abstract}
+
+**Procedure**
+
+1.  Delete the managed cluster resource on {{ mce_short }} by running the following command:
+    ```terminal
+    $ oc delete managedcluster <hosted_cluster_name>
+    ```
+
+    Replace `<hosted_cluster_name>` with the name of your cluster.
+1.  Delete the hosted cluster and its backend resources by running the following command:
+    ```terminal
+    $ hcp destroy cluster aws  \
+      --name <hosted_cluster_name> \
+      --infra-id <infra_id> \
+      --role-arn <arn_role> \
+      --sts-creds <path_to_sts_credential_file> \
+      --base-domain <base_domain>
+    ```
+
+    where:
+    *   `<hosted_cluster_name>` specifies the name of your hosted cluster, for example, `my-hosted-cluster`.
+    *   `<infra_id>` specifies the infrastructure name for your hosted cluster.
+    *   `<arn_role>` specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`.
+    *   `<path_to_sts_credential_file>` specifies the path to your {{ aws_short }} Security Token Service (STS) credentials file, for example, `/home/user/sts-creds/sts-creds.json`.
+    *   `<base_domain>` specifies your base domain, for example, `example.com`.
+
+        :::important
+
+        If your session token for {{ aws_short }} Security Token Service (STS) is expired, retrieve the STS credentials in a JSON file named `sts-creds.json` by running the following command:
+        ```terminal
+        $ aws sts get-session-token --output json > sts-creds.json
+        ```
+        
+        :::

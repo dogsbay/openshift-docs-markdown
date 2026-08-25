@@ -1,0 +1,20 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+
+# Troubleshooting latency when deleting a BareMetalHost resource {id="ipi-install-troubleshooothing-latency-when-deleting-a-baremetalhost-resource_{{ context }}"}
+
+You can disable the cleaning process to resolve latency when deleting a `BareMetalHost` resource if Ironic’s cleanup retries cause the provisioning status to remain in the deleting state. {._abstract}
+
+When the Bare Metal Operator (BMO) deletes a `BareMetalHost` resource, Ironic deprovisions the bare-metal host with a process called cleaning. When cleaning fails, Ironic retries the cleaning process three times, which is the source of the latency. The cleaning process might not succeed, causing the provisioning status of the bare-metal host to remain in the **deleting** state indefinitely. When this occurs, use the following procedure to disable the cleaning process.
+
+
+:::warning
+
+Do not remove finalizers from the `BareMetalHost` resource.
+
+:::
+
+
+**Procedure**
+
+1.  If the cleaning process fails and restarts, wait for it to finish. This might take about 5 minutes.
+1.  If the provisioning status remains in the **deleting** state, disable the cleaning process by modifying the `BareMetalHost` resource and setting the `automatedCleaningMode` field to `disabled`. See "Editing a `BareMetalHost` resource" for additional details.

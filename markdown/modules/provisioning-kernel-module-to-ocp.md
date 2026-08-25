@@ -1,0 +1,17 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Provisioning a kernel module to {{ product_title }} {id="provisioning-kernel-module-to-ocp_{{ context }}"}
+
+Depending on whether or not you must have the kernel module in place when {{ product_title }} cluster first boots, you can set up the
+kernel modules to be deployed in one of two ways. {._abstract}
+
+These two ways are listed as follows:
+
+*   Provision kernel modules at cluster install time (day-1): You can create the content as a `MachineConfig` object and provide it to `openshift-install` by including it with a set of manifest files.
+*   Provision kernel modules via Machine Config Operator (day-2): Deploy the kernel module software by using the Machine Config Operator (MCO) after the cluster is running.
+
+Regardless of the provisioning method, each node must be able to obtain the kernel packages and related software packages when a new kernel is detected. You can configure each node to obtain this content in one of the following ways:
+
+*   Provide {{ op_system_base }} entitlements to each node.
+*   Copy {{ op_system_base }} entitlements from the `/etc/pki/entitlement` directory on an existing {{ op_system_base }} host to the same location as the other files. These other files were provided when you built your Ignition config.
+when you build your Ignition config.
+*   Add pointers to a `yum` repository containing the kernel and other packages in the Docker file. The pointer must include new kernel packages as they are needed to match newly installed kernels.

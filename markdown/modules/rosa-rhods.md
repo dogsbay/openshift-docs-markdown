@@ -1,0 +1,4 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Red&#160;Hat OpenShift AI {id="rosa-AI_{{ context }}"}
+
+Red Hat OpenShift AI enables users to integrate data and AI and machine learning software to run end-to-end machine learning workflows. It provides a collection of notebook images with the tools and libraries required to develop and deploy data models. This allows data scientists to easily develop data models, integrate models into applications, and deploy applications using Red&#160;Hat OpenShift. OpenShift AI is available as an add-on to Red&#160;Hat managed environments such as {{ osd }} and {{ product_title }} (ROSA).

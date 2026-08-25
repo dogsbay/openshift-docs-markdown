@@ -1,0 +1,45 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# InfiniBand device configuration object {id="nw-sriov-ibnetwork-object_{{ context }}"}
+
+You can configure an InfiniBand (IB) network device by defining an `SriovIBNetwork` object. {._abstract}
+
+The following YAML describes an `SriovIBNetwork` object:
+
+```yaml
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovIBNetwork
+metadata:
+  name: <name>
+  namespace: openshift-sriov-network-operator
+spec:
+  resourceName: <sriov_resource_name>
+  networkNamespace: <target_namespace>
+  ipam: |-
+    {}
+  linkState: <link_state>
+  capabilities: <capabilities>
+```
+
+where:
+
+
+`name`
+:   A name for the object. The SR-IOV Network Operator creates a `NetworkAttachmentDefinition` object with same name.
+
+`namespace`
+:   The namespace where the SR-IOV Operator is installed.
+
+`resourceName`
+:   The value for the `spec.resourceName` parameter from the `SriovNetworkNodePolicy` object that defines the SR-IOV hardware for this additional network.
+
+`networkNamespace`
+:   The target namespace for the `SriovIBNetwork` object. Only pods in the target namespace can attach to the network device.
+
+`ipam`
+:   Optional parameter. A configuration object for the IPAM CNI plugin as a YAML block scalar. The plugin manages IP address assignment for the attachment definition.
+
+`linkState`
+:   Optional parameter. The link state of virtual function (VF). Allowed values are `enable`, `disable` and `auto`.
+
+`capabilities`
+:   Optional parameter. The capabilities to configure for this network. You can specify ’{ "ips": true }'` to enable IP address support or ’{ "infinibandGUID": true }'` to enable IB Global Unique Identifier (GUID) support.

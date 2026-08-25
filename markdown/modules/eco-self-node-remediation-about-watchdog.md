@@ -1,0 +1,20 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About watchdog devices {id="about-watchdog-devices_{{ context }}"}
+
+Watchdog devices can be any of the following:
+
+*   Independently powered hardware devices
+*   Hardware devices that share power with the hosts they control
+*   Virtual devices implemented in software, or `softdog`
+
+Hardware watchdog and `softdog` devices have electronic or software timers, respectively. These watchdog devices are used to ensure that the machine enters a safe state when an error condition is detected. The cluster is required to repeatedly reset the watchdog timer to prove that it is in a healthy state. This timer might elapse due to fault conditions, such as deadlocks, CPU starvation, and loss of network or disk access. If the timer expires, the watchdog device assumes that a fault has occurred and the device triggers a forced reset of the node.
+
+Hardware watchdog devices are more reliable than `softdog` devices.
+
+## Understanding Self Node Remediation Operator behavior with watchdog devices {id="understanding-pp-watchdog_{{ context }}"}
+
+The Self Node Remediation Operator determines the remediation strategy based on the watchdog devices that are present.
+
+If a hardware watchdog device is configured and available, the Operator uses it for remediation. If a hardware watchdog device is not configured, the Operator enables and uses a `softdog` device for remediation.
+
+If neither watchdog devices are supported, either by the system or by the configuration, the Operator remediates nodes by using software reboot.

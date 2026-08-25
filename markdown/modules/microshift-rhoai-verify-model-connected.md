@@ -1,0 +1,67 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Verifying that your AI model is accessible {id="microshift-rhoai-verify-model-connected_{{ context }}"}
+
+Before querying the model through the API, you can verify that the model is accessible and ready to provide answers based on the connected data.  {._abstract}
+
+The following examples continue with the {{ ovms }}.
+
+**Prerequisites**
+
+*   You configured the AI model-serving runtime.
+*   You uploaded your AI model to {{ microshift_short }}.
+*   {{ microshift_short }} is running.
+*   You installed {{ oc_first }}.
+
+**Procedure**
+
+1.  Get the IP address of the {{ microshift_short }} node and assign it to the `IP` variable as the following example command shows:
+    ```terminal
+    $ IP=$(oc get nodes -o json | jq -r '.items[0].status.addresses[0].address')
+    ```
+1.  Identify the name of the route you created by running the following command:
+    ```terminal
+    $ oc get route -n ai-test _<route_name>_ -o yaml
+    ```
+
+    where:
+
+    `_<route_name>_`
+    :   Specifies the actual name of your route.
+
+1.  Extract and assign the `HOST` value of the route to the `DOMAIN` variable by running the following command:
+    ```terminal
+    DOMAIN=$(oc get route -n ai-test _<route_name>_ -o=jsonpath="{ .status.ingress[0].host }")
+    ```
+
+    where:
+
+    `_<route_name>_`
+    :   Specifies the actual name of your route.
+
+1.  Enable data transfer from the route to the {{ microshift_short }} IP address by running the following command:
+    ```terminal
+    $ curl -i "${DOMAIN}/v2/models/ovms-resnet50/ready" --connect-to "${DOMAIN}::${IP}:"
+    ```
+
+    Instead of using the `--connect-to "${{ DOMAIN }}::${{ IP }}:"` flag, you can also use real DNS, or add the IP address and the domain to the `/etc/hosts` file.
+    ```text title="Example output"
+    HTTP/1.1 200 OK
+    content-type: application/json
+    date: Wed, 12 Mar 2025 16:01:32 GMT
+    content-length: 0
+    set-cookie: 56bb4b6df4f80f0b59f56aa0a5a91c1a=4af1408b4a1c40925456f73033d4a7d1; path=/; HttpOnly
+    ```
+1.  Query the model metadata by running the following command:
+    ```terminal
+    $ curl "${DOMAIN}/v2/models/ovms-resnet50" --connect-to "${DOMAIN}::${IP}:"
+    ```
+    ```json title="Example output"
+    {"name":"ovms-resnet50","versions":["1"],"platform":"OpenVINO","inputs":[{"name":"0","datatype":"FP32","shape":[1,224,224,3]}],"outputs":[{"name":"1463","datatype":"FP32","shape":[1,1000]}]
+    ```
+
+**Next steps**
+
+*   Verify that your model is ready for inferencing.
+*   Query the model.
+*   Verify the model response.
+*   Optional: Get the model server metrics.

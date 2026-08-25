@@ -1,0 +1,26 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Updates for node pools {id="hcp-updates-node-pools_{{ context }}"}
+
+You can update node pools by exposing the `spec.release` and `spec.config` values.  {._abstract}
+
+You can start a rolling node pool update in the following ways:
+
+*   Changing the `spec.release` or `spec.config` values.
+*   Changing any platform-specific field, such as the AWS instance type. The result is a set of new instances with the new type.
+*   Changing the cluster configuration, if the change propagates to the node.
+
+Node pools support replace updates and in-place updates. The `nodepool.spec.release` value dictates the version of any particular node pool. A `NodePool` object completes a replace or an in-place rolling update according to the `.spec.management.upgradeType` value.
+
+After you create a node pool, you cannot change the update type. If you want to change the update type, you must create a node pool and delete the other one.
+
+## Replace updates for node pools {id="hcp-updates-node-pools-replace_{{ context }}"}
+
+A _replace_ update creates instances in the new version while it removes old instances from the previous version. This update type is effective in cloud environments where this level of immutability is cost effective.
+
+Replace updates do not preserve any manual changes because the node is entirely re-provisioned.
+
+## In place updates for node pools {id="hcp-updates-node-pools-inplace_{{ context }}"}
+
+An _in-place_ update directly updates the operating systems of the instances. This type is suitable for environments where the infrastructure constraints are greater, such as bare metal.
+
+In-place updates can preserve manual changes, but reports errors if you manually change any file system or operating system configuration that the cluster directly manages, such as kubelet certificates.

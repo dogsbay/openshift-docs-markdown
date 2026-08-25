@@ -1,0 +1,103 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# {{ product_title }}-specific guidelines {id="images-create-guide-openshift_{{ context }}"}
+
+Use the integrated image-building capabilities of {{ product_title }} to create, manage, and deploy reproducible container images directly from source code or Dockerfiles.
+{%- if openshift_online %} {._abstract}
+
+## Privileges and volume builds {id="privileges-and-volume-builds_{{ context }}"}
+
+Container images cannot be built using the `VOLUME` directive in the `DOCKERFILE`. Images using a read/write file system must use persistent volumes or `emptyDir` volumes instead of local storage. Instead of specifying a volume in the Dockerfile, specify a directory for local storage and mount either a persistent volume or `emptyDir` volume to that directory when deploying the pod.
+{% endif %}
+
+## Enable images for source-to-image (S2I) {id="enable-images-for-source-to-image_{{ context }}"}
+
+For images that are intended to run application code provided by a third party, such as a Ruby image designed to run Ruby code provided by a developer, you can enable your image to work with the [Source-to-Image (S2I)](https://github.com/openshift/source-to-image) build tool. S2I is a framework that makes it easy to write images that take application source code as an input and produce a new image that runs the assembled application as output.
+
+## Support arbitrary user ids {id="use-uid_{{ context }}"}
+
+By default, {{ product_title }} runs containers using an arbitrarily assigned user ID. This provides additional security against processes escaping the container due to a container engine vulnerability and thereby achieving escalated permissions on the host node.
+
+For an image to support running as an arbitrary user, directories and files that are written to by processes in the image must be owned by the root group and be read/writable by that group. Files to be executed must also have group execute permissions.
+
+Adding the following to your Dockerfile sets the directory and file permissions to allow users in the root group to access them in the built image:
+
+```terminal
+RUN chgrp -R 0 /some/directory && \
+    chmod -R g=u /some/directory
+```
+
+Because the container user is always a member of the root group, the container user can read and write these files.
+
+
+:::warning
+
+Care must be taken when altering the directories and file permissions of the sensitive areas of a container. If applied to sensitive areas, such as the `/etc/passwd` file, such changes can allow the modification of these files by unintended users, potentially exposing the container or host. CRI-O supports the insertion of arbitrary user IDs into a container’s `/etc/passwd` file. As such, changing permissions is never required.
+
+Additionally, the `/etc/passwd` file should not exist in any container image. If it does, the CRI-O container runtime will fail to inject a random UID into the `/etc/passwd` file. In such cases, the container might face challenges in resolving the active UID. Failing to meet this requirement could impact the functionality of certain containerized applications.
+
+:::
+
+
+In addition, the processes running in the container must not listen on privileged ports, ports below 1024, since they are not running as a privileged user.
+
+{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+
+:::important
+
+If your S2I image does not include a `USER` declaration with a numeric user, your builds fail by default. To allow images that use either named users or the root `0` user to build in {{ product_title }}, you can add the project’s builder service account, `system:serviceaccount:<your-project>:builder`, to the `anyuid` security context constraint (SCC). Alternatively, you can allow all images to run as any user.
+
+:::
+
+{% endif %}
+
+## Use services for inter-image communication {id="use-services_{{ context }}"}
+
+For cases where your image needs to communicate with a service provided by another image, such as a web front end image that needs to access a database image to store and retrieve data, your image consumes an {{ product_title }} service. Services provide a static endpoint for access which does not change as containers are stopped, started, or moved. In addition, services provide load balancing for requests.
+
+## Provide common libraries {id="provide-common-libraries_{{ context }}"}
+
+For images that are intended to run application code provided by a third party, ensure that your image contains commonly used libraries for your platform. In particular, provide database drivers for common databases used with your platform. For example, provide JDBC drivers for MySQL and PostgreSQL if you are creating a Java framework image. Doing so prevents the need for common dependencies to be downloaded during application assembly time, speeding up application image builds. It also simplifies the work required by application developers to ensure all of their dependencies are met.
+
+## Use environment variables for configuration {id="use-env-vars_{{ context }}"}
+
+Users of your image are able to configure it without having to create a downstream image based on your image. This means that the runtime configuration is handled using environment variables. For a simple configuration, the running process can consume the environment variables directly. For a more complicated configuration or for runtimes which do not support this, configure the runtime by defining a template configuration file that is processed during startup. During this processing, values supplied using environment variables can be substituted into the configuration file or used to make decisions about what options to set in the configuration file.
+
+
+:::note
+
+It is also possible and recommended to pass secrets such as certificates and keys into the container using environment variables. This ensures that the secret values do not end up committed in an image and leaked into a container image registry.
+
+:::
+
+
+Providing environment variables allows consumers of your image to customize behavior, such as database settings, passwords, and performance tuning, without having to introduce a new layer on top of your image. Instead, they can simply define environment variable values when defining a pod and change those settings without rebuilding the image.
+
+For extremely complex scenarios, configuration can also be supplied using volumes that would be mounted into the container at runtime. However, if you elect to do it this way you must ensure that your image provides clear error messages on startup when the necessary volume or configuration is not present.
+
+This topic is related to the Using Services for Inter-image Communication topic in that configuration like datasources are defined in terms of environment variables that provide the service endpoint information. This allows an application to dynamically consume a datasource service that is defined in the {{ product_title }} environment without modifying the application image.
+
+In addition, tuning is done by inspecting the `cgroups` settings for the container. This allows the image to tune itself to the available memory, CPU, and other resources. For example, Java-based images tune their heap based on the `cgroup` maximum memory parameter to ensure they do not exceed the limits and get an out-of-memory error.
+
+## Set image metadata {id="set-image-metadata_{{ context }}"}
+
+Defining image metadata helps {{ product_title }} better consume your container images, allowing {{ product_title }} to create a better experience for developers using your image. For example, you can add metadata to provide helpful descriptions of your image, or offer suggestions on other images that are needed.
+
+## Clustering {id="clustering_{{ context }}"}
+
+You must fully understand what it means to run multiple instances of your image. In the simplest case, the load balancing function of a service handles routing traffic to all instances of your image. However, many frameworks must share information to perform leader election or failover state; for example, in session replication.
+
+Consider how your instances accomplish this communication when running in {{ product_title }}. Although pods can communicate directly with each other, their IP addresses change anytime the pod starts, stops, or is moved. Therefore, it is important for your clustering scheme to be dynamic.
+
+## Logging {id="logging_{{ context }}"}
+
+It is best to send all logging to standard out. {{ product_title }} collects standard out from containers and sends it to the centralized logging service where it can be viewed. If you must separate log content, prefix the output with an appropriate keyword, which makes it possible to filter the messages.
+
+If your image logs to a file, users must use manual operations to enter the running container and retrieve or view the log file.
+
+## Liveness and readiness probes {id="liveness-and-readiness-probes_{{ context }}"}
+
+Document example liveness and readiness probes that can be used with your image. These probes allow users to deploy your image with confidence that traffic is not be routed to the container until it is prepared to handle it, and that the container is restarted if the process gets into an unhealthy state.
+
+## Templates {id="templates_{{ context }}"}
+
+Consider providing an example template with your image. A template gives users an easy way to quickly get your image deployed with a working configuration. Your template must include the liveness and readiness probes you documented with the image, for completeness.

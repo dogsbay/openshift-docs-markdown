@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Updates and third-party workloads {id="microshift-greenboot-updates-workloads_{{ context }}"}
+
+After the update, you can examine the output of greenboot health checks and determine whether the update was declared valid. This health check can help you determine if the system is working properly. {._abstract}
+
+Health check scripts for updates are installed into the `/etc/greenboot/check/required.d` directory and are automatically executed during each system start. Exiting scripts with a nonzero status means the system start is declared as failed.
+
+
+:::important
+
+Wait until after an update is declared valid before starting third-party workloads. If a rollback is performed after workloads start, you can lose data. Some third-party workloads create or update data on a device before an update is complete. Upon rollback, the file system reverts to its state before the update.
+
+:::

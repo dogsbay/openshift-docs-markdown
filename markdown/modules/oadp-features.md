@@ -1,0 +1,40 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# OADP features {id="oadp-features_{{ context }}"}
+
+Review the backup, restore, and scheduling features of {{ oadp_first }} for protecting applications on {{ product_title }}. This helps you to understand the available capabilities for your data protection strategy. {._abstract}
+
+
+Backup
+:   You can use OADP to back up all applications on the OpenShift Platform, or you can filter the resources by type, namespace, or label.
+
+    OADP backs up Kubernetes objects and internal images by saving them as an archive file on object storage. OADP backs up persistent volumes (PVs) by creating snapshots with the native cloud snapshot API or with the Container Storage Interface (CSI). For cloud providers that do not support snapshots, OADP backs up resources and PV data with Restic.
+
+
+
+:::note
+
+You must exclude Operators from the backup of an application for backup and restore to succeed.
+
+:::
+
+
+
+Restore
+:   You can restore resources and PVs from a backup. You can restore all objects in a backup or filter the objects by namespace, PV, or label.
+
+
+
+:::note
+
+You must exclude Operators from the backup of an application for backup and restore to succeed.
+
+:::
+
+
+
+Schedule
+:   You can schedule backups at specified intervals.
+
+
+Hooks
+:   You can use hooks to run commands in a container on a pod, for example, `fsfreeze` to freeze a file system. You can configure a hook to run before or after a backup or restore. Restore hooks can run in an init container or in the application container.

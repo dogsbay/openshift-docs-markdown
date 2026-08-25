@@ -1,0 +1,183 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Running the Performance Profile Creator using Podman {id="running-the-performance-profile-profile-cluster-using-podman_{{ context }}"}
+
+As a cluster administrator, you can use Podman with the Performance Profile Creator (PPC) to create a performance profile. {._abstract}
+
+For more information about the PPC arguments, see the section "Performance Profile Creator arguments".
+
+
+:::important
+
+The PPC uses the `must-gather` data from your cluster to create the performance profile. If you make any changes to your cluster, such as relabeling a node targeted for performance configuration, you must re-create the `must-gather` data before running PPC again.
+
+:::
+
+
+**Prerequisites**
+
+*   Access to the cluster as a user with the `cluster-admin` role.
+*   A cluster installed on bare-metal hardware.
+*   You installed `podman` and the {{ oc_first }}.
+*   Access to the Node Tuning Operator image.
+*   You identified a machine config pool containing target nodes for configuration.
+*   You have access to the `must-gather` data for your cluster.
+
+**Procedure**
+
+1.  Check the machine config pool by running the following command:
+    ```terminal
+    $ oc get mcp
+    ```
+
+    The following output lists the available machine config pools:
+    ```terminal
+    NAME         CONFIG                                                 UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE
+    master       rendered-master-58433c8c3c0b4ed5feef95434d455490       True      False      False      3              3                   3                     0                      8h
+    worker       rendered-worker-668f56a164f151e4a853229729b6adc4       True      False      False      2              2                   2                     0                      8h
+    worker-cnf   rendered-worker-cnf-668f56a164f151e4a853229729b6adc4   True      False      False      1              1                   1                     0                      79m
+    ```
+1.  Use Podman to authenticate to `registry.redhat.io` by running the following command:
+    ```terminal
+    $ podman login registry.redhat.io
+    ```
+    ```bash
+    Username: <user_name>
+    Password: <password>
+    ```
+1.  Optional: Display help for the PPC tool by running the following command:
+    ```terminal
+    $ podman run --rm --entrypoint performance-profile-creator registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} -h
+    ```
+
+    The following output shows the available flags and commands for the PPC tool:
+    ```terminal
+    A tool that automates creation of Performance Profiles
+
+    Available Commands:
+      completion  Generate the autocompletion script for the specified shell
+      help        Help about any command
+      info        requires --must-gather-dir-path, ignores other arguments. [Valid values: log,json]
+
+    Usage:
+      performance-profile-creator [flags]
+      performance-profile-creator [command]
+
+    Flags:
+          --disable-ht                        Disable Hyperthreading
+          --enable-hardware-tuning            Enable setting maximum cpu frequencies
+      -h, --help                              help for performance-profile-creator
+          --mcp-name string                   MCP name corresponding to the target machines (required)
+          --must-gather-dir-path string       Must gather directory path (default "must-gather")
+          --offlined-cpu-count int            Number of offlined CPUs
+          --per-pod-power-management          Enable Per Pod Power Management
+          --power-consumption-mode string     The power consumption mode.  [Valid values: default, low-latency, ultra-low-latency] (default "default")
+          --profile-name string               Name of the performance profile to be created (default "performance")
+          --reserved-cpu-count int            Number of reserved CPUs (required)
+          --rt-kernel                         Enable Real Time Kernel (required)
+          --split-reserved-cpus-across-numa   Split the Reserved CPUs across NUMA nodes
+          --topology-manager-policy string    Kubelet Topology Manager Policy of the performance profile to be created. [Valid values: single-numa-node, best-effort, restricted] (default "restricted")
+          --user-level-networking             Run with User level Networking(DPDK) enabled
+
+    Use "performance-profile-creator [command] --help" for more information about a command.
+    ```
+1.  To display information about the cluster, run the PPC tool with the `info` command by running the following command:
+    ```terminal
+    $ podman run --entrypoint performance-profile-creator -v <path_to_must_gather>:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} info --must-gather-dir-path /must-gather
+    ```
+    *   `--entrypoint performance-profile-creator` defines the performance profile creator as a new entry point to `podman`.
+    *   `-v <path_to_must_gather>` specifies the path to either of the following components:
+        *   The directory containing the `must-gather` data.
+        *   An existing directory containing the `must-gather` decompressed .tar file.
+
+            The following output is generated from running the command:
+            ```terminal
+            PPC: Nodes names targeted by master pool are:
+            PPC: Nodes names targeted by worker-cnf pool are: host2.example.com
+            PPC: Nodes names targeted by worker pool are: host.example.com host1.example.com
+            PPC: Cluster info:
+            MCP 'master' nodes:
+            ---
+            MCP 'worker' nodes:
+            Node: host.example.com (NUMA cells: 1, HT: true)
+            NUMA cell 0 : [0 1 2 3]
+            CPU(s): 4
+            Node: host1.example.com (NUMA cells: 1, HT: true)
+            NUMA cell 0 : [0 1 2 3]
+            CPU(s): 4
+            ---
+            MCP 'worker-cnf' nodes:
+            Node: host2.example.com (NUMA cells: 1, HT: true)
+            NUMA cell 0 : [0 1 2 3]
+            CPU(s): 4
+            ---
+            ```
+1.  Create a performance profile by running the following command. The example uses sample PPC arguments and values:
+    ```terminal
+    $ podman run --entrypoint performance-profile-creator -v <path_to_must_gather>:/must-gather:z registry.redhat.io/openshift4/ose-cluster-node-tuning-rhel9-operator:v{{ product_version }} --mcp-name=worker-cnf --reserved-cpu-count=2 --rt-kernel=true --split-reserved-cpus-across-numa=false --must-gather-dir-path /must-gather --power-consumption-mode=ultra-low-latency > my-performance-profile.yaml
+    ```
+    *   `-v <path_to_must_gather>` specifies the path to either of the following components:
+        *   The directory containing the `must-gather` data.
+        *   The directory containing the `must-gather` decompressed .tar file.
+    *   `--mcp-name=worker-cnf` specifies the `worker-cnf` machine config pool.
+    *   `--reserved-cpu-count=2` specifies two reserved CPUs.
+    *   `--rt-kernel=true` enables the real-time kernel.
+    *   `--split-reserved-cpus-across-numa=false` disables reserved CPUs splitting across NUMA nodes.
+    *   `--power-consumption-mode=ultra-low-latency` specifies minimal latency at the cost of increased power consumption.
+
+        :::note
+
+        The `mcp-name` argument in this example is set to `worker-cnf` based on the output of the command `oc get mcp`. For {{ sno }} use `--mcp-name=master`.
+        
+        :::
+
+
+        The following output shows the CPU and NUMA allocation for the performance profile:
+        ```terminal
+        PPC: Nodes targeted by worker-cnf MCP are: [worker-2]
+        PPC: NUMA cell(s): 1
+        PPC: NUMA cell 0 : [0 1 2 3]
+        PPC: CPU(s): 4
+        PPC: 2 reserved CPUs allocated: 0-1
+        PPC: 2 isolated CPUs allocated: 2-3
+        PPC: Additional Kernel Args based on configuration: []
+        ```
+1.  Review the created YAML file by running the following command:
+    ```terminal
+    $ cat my-performance-profile.yaml
+    ```
+
+    The following example shows the contents of the generated performance profile:
+    ```yaml
+    ---
+    apiVersion: performance.openshift.io/v2
+    kind: PerformanceProfile
+    metadata:
+      name: performance
+    spec:
+      cpu:
+        isolated: 2-3
+        reserved: "0-1"
+      machineConfigPoolSelector:
+        machineconfiguration.openshift.io/role: worker-cnf
+      net:
+        userLevelNetworking: false
+      nodeSelector:
+        node-role.kubernetes.io/worker-cnf: ""
+      numa:
+        topologyPolicy: restricted
+      realTimeKernel:
+        enabled: true
+      workloadHints:
+        highPowerConsumption: true
+        perPodPowerManagement: false
+        realTime: true
+    ```
+1.  Apply the generated profile:
+    ```terminal
+    $ oc apply -f my-performance-profile.yaml
+    ```
+
+    The following output confirms that the performance profile is created:
+    ```terminal
+    performanceprofile.performance.openshift.io/performance created
+    ```

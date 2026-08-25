@@ -1,0 +1,28 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Cluster Samples Operator assistance for mirroring {id="installation-images-samples-disconnected-mirroring-assist_{{ context }}"}
+
+During installation, {{ product_title }} creates a config map named `imagestreamtag-to-image` in the `openshift-cluster-samples-operator` namespace. {._abstract}
+
+The `imagestreamtag-to-image` config map contains an entry, the populating image, for each image stream tag.
+
+The format of the key for each entry in the data field in the config map is `<image_stream_name>_<image_stream_tag_name>`.
+
+{% if not (openshift_rosa or openshift_dedicated) %}
+During a disconnected installation of {{ product_title }}, the status of the Cluster Samples Operator is set to `Removed`. If you choose to change it to `Managed`, it installs samples.
+
+
+:::note
+
+The use of samples in a network-restricted or discontinued environment might require access to services external to your network. Some example services include: Github, Maven Central, npm, RubyGems, PyPi and others. There might be additional steps to take that allow the Cluster Samples Operators objects to reach the services they require.
+
+:::
+
+{% endif %}
+
+Use the following principles to determine which images you need to mirror for your image streams to import:
+
+*   While the Cluster Samples Operator is set to `Removed`, you can create your mirrored registry, or determine which existing mirrored registry you want to use.
+*   Mirror the samples you want to the mirrored registry using the new config map as your guide.
+*   Add any of the image streams you did not mirror to the `skippedImagestreams` list of the Cluster Samples Operator configuration object.
+*   Set `samplesRegistry` of the Cluster Samples Operator configuration object to the mirrored registry.
+*   Then set the Cluster Samples Operator to `Managed` to install the image streams you have mirrored.

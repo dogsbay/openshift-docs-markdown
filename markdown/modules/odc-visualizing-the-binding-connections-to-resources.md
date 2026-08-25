@@ -1,0 +1,46 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Visualizing the binding connections to resources {id="odc-visualizing-the-binding-connections-to-resources_{{ context }}"}
+
+As a user, use **Label Selector** in the **Topology** view to visualize a service binding and simplify the process of binding applications to backing services. When creating `ServiceBinding` resources, specify labels by using **Label Selector** to find and connect applications instead of using the name of the application. The Service Binding Operator then consumes these `ServiceBinding` resources and specified labels to find the applications to create a service binding with.
+
+
+:::tip
+
+To navigate to a list of all connected resources, click the label selector associated with the `ServiceBinding` resource.
+
+:::
+
+
+To view the **Label Selector**, consider the following approaches:
+
+*   After you import a `ServiceBinding` resource, view the **Label Selector** associated with the service binding on the **ServiceBinding details** page.
+
+    **Figure 1. ServiceBinding details page**
+
+    ![odc-label-selector-sb-details](/_assets/images/odc-label-selector-sb-details.png)
+
+
+:::note
+
+To use **Label Selector** and to create one or more connections at once, you must import the YAML file of the `ServiceBinding` resource.
+
+:::
+
+
+*   After the connection is established and when you click the binding connector, the service binding connector **Details** side panel appears. You can view the **Label Selector** associated with the service binding on this panel.
+
+    **Figure 2. Topology label selector side panel**
+
+    ![odc-label-selector-topology-side-panel](/_assets/images/odc-label-selector-topology-side-panel.png)
+
+
+    :::note
+
+    When you delete a binding connector (a single connection within **Topology** along with a service binding), the action removes all connections that are tied to the deleted service binding. While deleting a binding connector, a confirmation dialog appears, which informs that all connectors will be deleted.
+
+    **Figure 3. Delete ServiceBinding confirmation dialog**
+
+    ![odc-delete-service-binding](/_assets/images/odc-delete-service-binding.png)
+
+    
+    :::

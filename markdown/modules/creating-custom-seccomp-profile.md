@@ -1,0 +1,34 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Creating seccomp profiles {id="creating-custom-seccomp-profile_{{ context }}"}
+
+You can use the `MachineConfig` object to create profiles.
+
+Seccomp can restrict system calls (syscalls) within a container, limiting the access of your application.
+
+**Prerequisites**
+
+*   You have cluster admin permissions.
+*   You have created a custom security context constraints (SCC). For more information, see _Additional resources_.
+
+**Procedure**
+
+*   Create the `MachineConfig` object:
+    ```yaml
+    apiVersion: machineconfiguration.openshift.io/v1
+    kind: MachineConfig
+    metadata:
+      labels:
+        machineconfiguration.openshift.io/role: worker
+      name: custom-seccomp
+    spec:
+      config:
+        ignition:
+          version: 3.2.0
+        storage:
+          files:
+          - contents:
+              source: data:text/plain;charset=utf-8;base64,<hash>
+            filesystem: root
+            mode: 0644
+            path: /var/lib/kubelet/seccomp/seccomp-nostat.json
+    ```

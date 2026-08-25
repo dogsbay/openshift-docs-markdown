@@ -1,0 +1,4 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# LokiStack behavior during cluster restarts {id="logging-loki-restart-hardening_{{ context }}"}
+
+When an {{ product_title }} cluster is restarted, LokiStack ingestion and the query path continue to operate within the available CPU and memory resources available for the node. This means that there is no downtime for the LokiStack during {{ product_title }} cluster updates. This behavior is achieved by using `PodDisruptionBudget` resources. The {{ loki_op }} provisions `PodDisruptionBudget` resources for Loki, which determine the minimum number of pods that must be available per component to ensure normal operations under certain conditions.

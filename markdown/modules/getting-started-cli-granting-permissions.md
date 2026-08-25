@@ -1,0 +1,29 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Granting view permissions {id="getting-started-cli-granting-permissions_{{ context }}"}
+
+Configure the necessary permissions for the application to access the required cluster resources. {._abstract}
+
+{{ product_title }} automatically creates several service accounts in every project. The `default` service account takes responsibility for running the pods. {{ product_title }} uses and injects this service account into every pod that launches.
+
+By default, the `default` service account has limited permissions to interact with the OpenShift API.
+
+As a requirement of the application, you must assign the `view` role to the `default` service account to allow it to communicate with the OpenShift API to learn about pods, services, and resources within the project.
+
+**Prerequisites**
+
+*   You have access to an {{ product_title }} cluster.
+*   You have installed the OpenShift CLI (`oc`).
+*   You have `cluster-admin` or project-level `admin` privileges.
+
+**Procedure**
+
+*   Add the `view` role to the `default` service account in the `user-getting-started` project by running the following command:
+    ```terminal
+    $ oc adm policy add-role-to-user view -z default -n user-getting-started
+    ```
+
+    :::important
+
+    If you are using a different project, replace `user-getting-started` with the name of your project.
+    
+    :::

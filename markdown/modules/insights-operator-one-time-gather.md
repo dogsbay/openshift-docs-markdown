@@ -1,0 +1,156 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Running an {{ insights_operator }} gather operation {id="insights-operator-one-time-gather_{{ context }}"}
+
+You must run a gather operation to create an {{ insights_operator }} archive. {._abstract}
+
+**Prerequisites**
+
+*   You are logged in to {{ product_title }} as `cluster-admin`.
+
+**Procedure**
+
+1.  Create a file named `gather-job.yaml` using this template:
+    ```yaml
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: insights-operator-job
+  annotations:
+    config.openshift.io/inject-proxy: insights-operator
+spec:
+  backoffLimit: 6
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: OnFailure
+      serviceAccountName: operator
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+        node-role.kubernetes.io/master: ""
+      tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+        operator: Exists
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 900
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 900
+      volumes:
+      - name: snapshots
+        emptyDir: {}
+      - name: service-ca-bundle
+        configMap:
+          name: service-ca-bundle
+          optional: true
+      initContainers:
+      - name: insights-operator
+        image: quay.io/openshift/origin-insights-operator:latest
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        - name: snapshots
+          mountPath: /var/lib/insights-operator
+        - name: service-ca-bundle
+          mountPath: /var/run/configmaps/service-ca-bundle
+          readOnly: true
+        ports:
+        - containerPort: 8443
+          name: https
+        resources:
+          requests:
+            cpu: 10m
+            memory: 70Mi
+        args:
+        - gather
+        - -v=4
+        - --config=/etc/insights-operator/server.yaml
+      containers:
+        - name: sleepy
+          image: quay.io/openshift/origin-base:latest
+          args:
+            - /bin/sh
+            - -c
+            - sleep 10m
+          volumeMounts: [{name: snapshots, mountPath: /var/lib/insights-operator}]
+```
+    ```
+1.  Copy your `insights-operator` image version:
+    ```terminal
+    $ oc get -n openshift-insights deployment insights-operator -o yaml
+    ```
+    ```yaml title="Example output"
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: insights-operator
+      namespace: openshift-insights
+    # ...
+    spec:
+      template:
+    # ...
+        spec:
+          containers:
+          - args:
+    # ...
+            image: registry.ci.openshift.org/ocp/4.15-2023-10-12-212500@sha256:a0aa581400805ad0...
+    # ...
+    ```
+
+    The `spec.template.spec.containers.image` field specifies your `insights-operator` image version.
+1.  Paste your image version in `gather-job.yaml`:
+    ```yaml
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      name: insights-operator-job
+    # ...
+    spec:
+    # ...
+      template:
+        spec:
+        initContainers:
+        - name: insights-operator
+          image: image: registry.ci.openshift.org/ocp/4.15-2023-10-12-212500@sha256:a0aa581400805ad0...
+          terminationMessagePolicy: FallbackToLogsOnError
+          volumeMounts:
+    ```
+
+    Replace the value of `spec.template.initContainers.image` with your `insights-operator` image version.
+1.  Create the gather job:
+    ```terminal
+    $ oc apply -n openshift-insights -f gather-job.yaml
+    ```
+1.  Find the name of the job pod:
+    ```terminal
+    $ oc describe -n openshift-insights job/insights-operator-job
+    ```
+    ```terminal title="Example output"
+    Name:             insights-operator-job
+    Namespace:        openshift-insights
+    # ...
+    Events:
+      Type    Reason            Age    From            Message
+      ----    ------            ----   ----            -------
+      Normal  SuccessfulCreate  7m18s  job-controller  Created pod: insights-operator-job-<your_job>
+    ```
+
+    Replace `insights-operator-job-<your_job>` with the name of the pod.
+1.  Verify that the operation has finished:
+    ```terminal
+    $ oc logs -n openshift-insights insights-operator-job-<your_job> insights-operator
+    ```
+    ```terminal title="Example output"
+    I0407 11:55:38.192084       1 diskrecorder.go:34] Wrote 108 records to disk in 33ms
+    ```
+1.  Save the created archive:
+    ```terminal
+    $ oc cp openshift-insights/insights-operator-job-_<your_job>_:/var/lib/insights-operator ./insights-data
+    ```
+1.  Clean up the job:
+    ```terminal
+    $ oc delete -n openshift-insights job insights-operator-job
+    ```

@@ -1,0 +1,6 @@
+{%- set _mod_docs_content_type = "SNIPPET" %}
+
+Affinity is a property of pods that controls the nodes on which they prefer to be scheduled. Anti-affinity is a property of pods
+that prevents a pod from being scheduled on a node.
+
+In {{ product_title }}, _pod affinity_ and _pod anti-affinity_ allow you to constrain which nodes your pod is eligible to be scheduled on based on the key-value labels on other pods.

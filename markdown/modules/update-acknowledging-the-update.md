@@ -1,0 +1,88 @@
+{%- set _mod_docs_content_type = "PROCEDURE" -%}
+{%- set parent_procedure = true %}
+# Acknowledging the control plane only or y-stream update {id="update-acknowledging-update-for-eus-eus-y-stream_{{ context }}"}
+
+When you update to all versions from 4.11 and later, you must manually acknowledge that the update can continue. {._abstract}
+
+
+:::important
+
+Before you acknowledge the update, verify that you are not using any of the Kubernetes APIs that are removed from the version you are updating to.
+For example, in {{ product_title }} 4.17, there are no API removals.
+See "Kubernetes API removals" for more information.
+
+:::
+
+
+**Prerequisites**
+
+*   You have verified that APIs for all of the applications running on your cluster are compatible with the next Y-stream release of {{ product_title }}.
+For more details about compatibility, see "Verifying cluster API versions between update versions".
+
+**Procedure**
+
+*   Check the cluster update status to determine if administrative acknowledgment is required by running the following command:
+    ```terminal
+    $ oc adm upgrade
+    ```
+
+    If the cluster update does not complete successfully, more details about the update failure are provided in the `Reason` and `Message` sections.
+
+    Example output:
+
+    ```terminal
+    Cluster version is 4.15.45
+
+    Upgradeable=False
+
+      Reason: MultipleReasons
+      Message: Cluster should not be upgraded between minor versions for multiple reasons: AdminAckRequired,ResourceDeletesInProgress
+      * Kubernetes 1.29 and therefore OpenShift 4.16 remove several APIs which require admin consideration. Please see the knowledge article https://access.redhat.com/articles/7031404 for details and instructions.
+      * Cluster minor level upgrades are not allowed while resource deletions are in progress; resources=PrometheusRule "openshift-kube-apiserver/kube-apiserver-recording-rules"
+
+    ReleaseAccepted=False
+
+      Reason: PreconditionChecks
+      Message: Preconditions failed for payload loaded version="4.16.34" image="quay.io/openshift-release-dev/ocp-release@sha256:41bb08c560f6db5039ccdf242e590e8b23049b5eb31e1c4f6021d1d520b353b8": Precondition "ClusterVersionUpgradeable" failed because of "MultipleReasons": Cluster should not be upgraded between minor versions for multiple reasons: AdminAckRequired,ResourceDeletesInProgress
+      * Kubernetes 1.29 and therefore OpenShift 4.16 remove several APIs which require admin consideration. Please see the knowledge article https://access.redhat.com/articles/7031404 for details and instructions.
+      * Cluster minor level upgrades are not allowed while resource deletions are in progress; resources=PrometheusRule "openshift-kube-apiserver/kube-apiserver-recording-rules"
+
+    Upstream is unset, so the cluster will use an appropriate default.
+    Channel: eus-4.16 (available channels: candidate-4.15, candidate-4.16, eus-4.16, fast-4.15, fast-4.16, stable-4.15, stable-4.16)
+
+    Recommended updates:
+
+      VERSION     IMAGE
+      4.16.34     quay.io/openshift-release-dev/ocp-release@sha256:41bb08c560f6db5039ccdf242e590e8b23049b5eb31e1c4f6021d1d520b353b8
+    ```
+
+
+    :::note
+
+    In this example, a linked Red&#160;Hat Knowledgebase article ([Preparing to upgrade to {{ product_title }} 4.16](https://access.redhat.com/articles/7031404)) provides more detail about verifying API compatibility between releases.
+    
+    :::
+
+
+**Verification**
+
+*   Verify the update by running the following command:
+    ```terminal
+    $ oc get configmap admin-acks -n openshift-config -o json | jq .data
+    ```
+
+    If the acknowledgment was successful, the output shows the acknowledged API removals for each update:
+
+    ```terminal
+    {
+      "ack-4.14-kube-1.28-api-removals-in-4.15": "true",
+      "ack-4.15-kube-1.29-api-removals-in-4.16": "true"
+    }
+    ```
+
+
+    :::note
+
+    In this example, the cluster is updated from version 4.14 to 4.15, and then from 4.15 to 4.16 in a Control Plane Only update.
+    
+    :::

@@ -1,0 +1,24 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Removing custom configuration from a cluster {id="removing-custom-config-from-cluster_{{ context }}"}
+
+You can remove custom configuration from your cluster by removing the `KubeletConfig` object that contains the configuration details.
+
+**Prerequisites**
+
+*   You have an existing {{ product_title }} cluster.
+*   You have installed the ROSA CLI (rosa).
+*   You have logged in to your Red Hat account by using the ROSA CLI.
+
+**Procedure**
+
+*   Remove custom configuration from the cluster by deleting the relevant custom `KubeletConfig` object:
+    ```terminal
+    $ rosa delete kubeletconfig --cluster <cluster_name> --name <kubeletconfig_name>
+    ```
+
+**Verification steps**
+
+*   Confirm that the custom `KubeletConfig` object is not listed for the cluster:
+    ```terminal
+    $ rosa describe kubeletconfig --name <cluster_name>
+    ```

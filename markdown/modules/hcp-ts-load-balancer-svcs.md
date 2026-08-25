@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Identifying why load balancer services for the hosted cluster are unavailable {id="hcp-ts-load-balancer-svcs_{{ context }}"}
+
+If a hosted control plane is not coming fully online because the load balancer services are not becoming available, check events, details, and the Kubernetes Cluster Configuration Manager (KCCM) pod. {._abstract}
+
+**Procedure**
+
+*   Look for events and details that are associated with the load balancer service within the hosted cluster.
+*   By default, load balancers for the hosted cluster are handled by the kubevirt-cloud-controller-manager within the hosted control plane namespace. Ensure that the KCCM pod is online and view its logs for errors or warnings. To identify the KCCM pod in the hosted control plane namespace, enter the following command:
+    ```terminal
+    $ oc get pods -n <hosted_control_plane_namespace> \
+      -l app=cloud-controller-manager
+    ```

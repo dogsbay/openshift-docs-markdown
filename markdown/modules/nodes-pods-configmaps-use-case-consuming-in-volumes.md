@@ -1,0 +1,97 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Injecting content into a volume by using config maps {id="nodes-pods-configmaps-use-case-consuming-in-volumes_{{ context }}"}
+
+You can use config maps to inject content into a volume. {._abstract}
+
+The following example `ConfigMap` custom resource (CR) contains two environment variables:
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: special-config
+  namespace: default
+data:
+  special.how: very
+  special.type: charm
+```
+
+The following procedure describes options for injecting content into a volume by using config maps.
+
+**Procedure**
+
+*   The most basic way to inject content into a volume by using a config map is to populate the volume with files where the key is the file name and the content of the file is the value of the key:
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: dapi-test-pod
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: test-container
+          image: gcr.io/google_containers/busybox
+          command: [ "/bin/sh", "-c", "cat", "/etc/config/special.how" ]
+          volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+      volumes:
+        - name: config-volume
+          configMap:
+            name: special-config
+      restartPolicy: Never
+    ```
+
+    where:
+
+    `spec.volumes.configMap.name`
+    :   Specifies a file containing key.
+    When this pod is run, the output of the cat command will be:
+    ```
+    very
+    ```
+
+*   You can also control the paths within the volume where config map keys are projected:
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: dapi-test-pod
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: test-container
+          image: gcr.io/google_containers/busybox
+          command: [ "/bin/sh", "-c", "cat", "/etc/config/path/to/special-key" ]
+          volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+      volumes:
+        - name: config-volume
+          configMap:
+            name: special-config
+            items:
+            - key: special.how
+              path: path/to/special-key
+      restartPolicy: Never
+    ```
+
+    where:
+
+    `spec.volumes.configMap.items.path`
+    :   Specifies the path to config map key.
+
+    When this pod is run, the output of the cat command is `very`.

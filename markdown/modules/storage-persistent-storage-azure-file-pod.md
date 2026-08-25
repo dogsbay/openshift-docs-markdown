@@ -1,0 +1,41 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Mount the Azure File share in a pod {id="create-azure-file-pod_{{ context }}"}
+
+After you create a persistent volume (PV), you can use the PV inside by an application. {._abstract}
+
+The following example demonstrates mounting this share inside of a pod.
+
+**Prerequisites**
+
+*   A persistent volume claim exists that is mapped to the underlying Azure File share.
+
+**Procedure**
+
+*   Create a pod that mounts the existing persistent volume claim:
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-name
+    spec:
+      containers:
+        ...
+        volumeMounts:
+        - mountPath: "/data"
+          name: azure-file-share
+      volumes:
+        - name: azure-file-share
+          persistentVolumeClaim:
+            claimName: claim1
+    ```
+
+    where:
+
+    `metadata.name`
+    :   Specifies the name of the pod.
+
+    `spec.containers.volumeMounts.mountPath`
+    :   Specifies the path to mount the Azure File share inside the pod, for example `/data`. Do not mount to the container root, `/`, or any path that is the same in the host and the container. This can corrupt your host system if the container is sufficiently privileged, such as the host `/dev/pts` files. It is safe to mount the host by using `/host`.
+
+    `spec.volumes.persistentVolumeClaim.claimName`
+    :   Specifies the name of the `PersistentVolumeClaim` object that has been previously created.

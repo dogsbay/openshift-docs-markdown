@@ -1,0 +1,51 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Health rule threshold and grouping customization {id="network-observability-health-rule-customization_{{ context }}"}
+
+Health rules in the Network Observability Operator are defined by using rule templates and variants in the `spec.processor.metrics.healthRules` field of the `FlowCollector` custom resource (CR). Customizing these templates allows for flexible, fine-grained alerting tailored to specific environment needs. {._abstract}
+
+For each template, a list of variants can be defined, each with distinct thresholds and grouping configurations.
+
+The following example shows a `FlowCollector` configuration with custom health rules:
+
+```yaml
+apiVersion: flows.netobserv.io/v1beta1
+kind: FlowCollector
+metadata:
+  name: flow-collector
+spec:
+  processor:
+    metrics:
+      healthRules:
+      - template: PacketDropsByKernel
+        mode: Alert # or Recording
+        variants:
+        # Triggered when aggregate cluster traffic reaches 10% drops
+        - thresholds:
+            critical: "10"
+        # Triggered per-node with increasing severity levels
+        - thresholds:
+            critical: "15"
+            warning: "10"
+            info: "5"
+          groupBy: Node
+```
+
+
+`spec.processor.metrics.healthRules.template`
+:   Specifies the name of the predefined rule template.
+
+`spec.processor.metrics.healthRules.mode`
+:   Specifies whether the rule functions as an `Alert` or a `Recording` rule.
+
+`spec.processor.metrics.healthRules.variants.thresholds`
+:   Specifies the numerical values that trigger the rule. Multiple severity levels, such as `critical`, `warning`, or `info`, can be defined within a single variant.
+
+`spec.processor.metrics.healthRules.variants.groupBy`
+:   Specifies the dimension used to aggregate the metric, such as `Node` or `Namespace`.
+
+
+:::note
+
+Customizing a rule replaces the default configuration for that template. To retain default configurations, the default settings must be manually included in the custom resource.
+
+:::

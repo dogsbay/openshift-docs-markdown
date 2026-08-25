@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Adjusting Ceph CPU and memory requirements based on collected data {id="oadp-odf-cpu-memory-requirements_{{ context }}"}
+
+The following recommendations are based on observations of performance made in the scale and performance lab. The changes are specifically related to {{ odf_first }}. If working with {{ odf_short }}, consult the appropriate tuning guides for official recommendations. {._abstract}
+
+## CPU and memory requirement for configurations {id="oadp-odf-config-cpu-memory-requirements_{{ context }}"}
+
+Backup and restore operations require large amounts of CephFS `PersistentVolumes` (PVs). To avoid Ceph MDS pods restarting with an `out-of-memory` (OOM) error, the following configuration is suggested:
+
+| Configuration types | Request | Max limit |
+| --- | --- | --- |
+| CPU | Request changed to 3 | Max limit to 3 |
+| Memory | Request changed to 8 Gi | Max limit to 128 Gi |

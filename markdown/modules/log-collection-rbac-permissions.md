@@ -1,0 +1,19 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Authorizing log collection RBAC permissions {id="log-collection-rbac-permissions_{{ context }}"}
+
+In logging 5.8 and later, the {{ clo }} provides `collect-audit-logs`, `collect-application-logs`, and `collect-infrastructure-logs` cluster roles, which enable the collector to collect audit logs, application logs, and infrastructure logs respectively.
+
+You can authorize RBAC permissions for log collection by binding the required cluster roles to a service account.
+
+**Prerequisites**
+
+*   The {{ clo }} is installed in the `openshift-logging` namespace.
+*   You have administrator permissions.
+
+**Procedure**
+
+1.  Create a service account for the collector. If you want to write logs to storage that requires a token for authentication, you must include a token in the service account.
+1.  Bind the appropriate cluster roles to the service account:
+    ```terminal title="Example binding command"
+    $ oc adm policy add-cluster-role-to-user <cluster_role_name> system:serviceaccount:<namespace_name>:<service_account_name>
+    ```

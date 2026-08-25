@@ -1,0 +1,11 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# etcd certificate types {id="etcd-certificate-types_{{ context }}"}
+
+Review the etcd peer, client, server, and metric certificate types and related secrets, so you know which certificate applies when configuring or troubleshooting etcd security. {._abstract}
+
+etcd certificates are used for encrypted communication between etcd member peers and encrypted client traffic. The following certificates are generated and used by etcd and other processes that communicate with etcd:
+
+*   Peer certificates: Used for communication between etcd members.
+*   Client certificates: Used for encrypted server-client communication. Client certificates are currently only used by the API server. Except for the proxy, ensure that no other service connects to etcd directly except for the proxy. Client secrets such as `etcd-client`, `etcd-metric-client`, `etcd-metric-signer`, and `etcd-signer` are added to the `openshift-config`, `openshift-etcd`, `openshift-etcd-operator`, and `openshift-kube-apiserver` namespaces.
+*   Server certificates: Used by the etcd server for authenticating client requests.
+*   Metric certificates: All metric consumers connect to the proxy with metric-client certificates.

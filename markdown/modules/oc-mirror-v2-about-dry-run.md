@@ -1,0 +1,6 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Verifying your selected images for mirroring {id="oc-mirror-v2-about-dry-run_{{ context }}"}
+
+You can use oc-mirror plugin v2 to perform a test run (dry run) that does not actually mirror any images. This enables you to review the list of images that would be mirrored. {._abstract}
+
+You can also use a dry run to catch any errors with your image set configuration early. When running a dry run on a mirror-to-disk workflow, the oc-mirror plugin v2 checks if all the images within the image set are available in its cache. Any missing images are listed in the `missing.txt` file. When a dry run is performed before mirroring, both `missing.txt` and `mapping.txt` files contain the same list of images.

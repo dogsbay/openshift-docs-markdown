@@ -1,0 +1,19 @@
+schemaVersion: 1
+site:
+  name: OpenShift Container Platform
+  basePath: ""
+content:
+  sources:
+    - path: ./markdown
+      from: dogsbay-md
+  excludeFromRoutes:
+    - _attributes
+    - modules
+    - snippets
+    - includes
+  routablesFrom: nav
+attributes:
+  product_title: OpenShift Container Platform
+  product_version: 4.22
+  openshift_enterprise: true
+output: ./site
