@@ -1,0 +1,29 @@
+---
+/**
+ * Two-column layout for API reference pages.
+ * Description/schema on the left, code/examples on the right (dark background).
+ * Stacks vertically on mobile.
+ *
+ * Usage:
+ *   <ApiLayout>
+ *     <EndpointCard slot="description" ... />
+ *     <ApiCodePanel slot="code">...</ApiCodePanel>
+ *   </ApiLayout>
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["grid grid-cols-1 lg:grid-cols-2 lg:min-h-[calc(100vh-3rem)]", className]}>
+  <div class="px-6 py-10 lg:border-r">
+    <slot name="description" />
+  </div>
+  <div class="bg-[var(--api-panel-bg)] text-[var(--api-panel-fg)]">
+    <div class="px-6 py-10 lg:sticky lg:top-12 lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto">
+      <slot name="code" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+/* CodeRich annotation styles — applied via CSS classes from Shiki transformers */
+
+/* ── All lines ────────────────────────────────────────── */
+.code-rich-body .line {
+  display: inline-flex;
+  width: 100%;
+}
+
+/* ── Gutter (single column: line number + diff marker) ── */
+.code-rich-body .gutter {
+  display: inline-block;
+  min-width: 4ch;
+  margin-right: 1.5ch;
+  text-align: right;
+  color: oklch(0.35 0 0 / 0.7);
+  user-select: none;
+  flex-shrink: 0;
+}
+.code-rich-body .gutter.add {
+  color: oklch(0.55 0.2 145);
+}
+.code-rich-body .gutter.remove {
+  color: oklch(0.55 0.2 25);
+}
+
+/* ── Diff line backgrounds ────────────────────────────── */
+.code-rich-body .line.diff.add {
+  background-color: oklch(0.75 0.18 145 / 0.15);
+}
+.code-rich-body .line.diff.remove {
+  background-color: oklch(0.65 0.2 25 / 0.15);
+}
+
+/* ── Focus ─────────────────────────────────────────────── */
+.code-rich-body pre.has-focused .line:not(.focused) {
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.code-rich-body pre.has-focused:hover .line:not(.focused) {
+  opacity: 0.9;
+}
+.code-rich-body pre.has-focused .line.focused {
+  opacity: 1;
+}
+
+/* ── Highlight (background only) ──────────────────────── */
+.code-rich-body .line.highlighted {
+  background-color: oklch(0.7 0.1 250 / 0.08);
+}
+
+/* ── Error / Warning / Info levels ─────────────────────── */
+.code-rich-body .line.highlighted.error {
+  background-color: oklch(0.65 0.2 25 / 0.08);
+}
+.code-rich-body .line.highlighted.warning {
+  background-color: oklch(0.75 0.18 65 / 0.08);
+}
+.code-rich-body .line.highlighted.info {
+  background-color: oklch(0.7 0.15 250 / 0.08);
+}
+
+/* ── Word highlight ────────────────────────────────────── */
+.code-rich-body .highlighted-word {
+  background-color: oklch(0.7 0.1 250 / 0.25);
+  border-radius: 3px;
+  padding: 1px 4px;
+  margin: 0 -1px;
+}
