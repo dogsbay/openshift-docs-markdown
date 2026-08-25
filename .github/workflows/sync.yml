@@ -171,11 +171,26 @@ jobs:
           # copying over the top would leave removed pages behind forever,
           # and a mirror that only ever grows is not a mirror.
           #
-          # `site/` is NOT touched: it belongs to build-site.yml. This step
-          # leaves it stale rather than deleting it, so the branch always has
-          # a site to look at; the next site build refreshes it.
+          # `site/`s CONTENT belongs to build-site.yml, so it is not deleted
+          # here — it is left stale rather than removed, and the next site
+          # build refreshes it.
           rm -rf markdown MIGRATION.md
           cp -r "$RUNNER_TEMP/out/content" markdown
+
+          # Seed the Astro SCAFFOLD. `dogsbay site build` refuses to run
+          # without one (it checks for <output>/package.json) — scaffolding
+          # is `site init`'s job, not the build's. migrate-asciidoc already
+          # emitted a scaffold at out/astro, so copy it rather than throwing
+          # it away and leaving the branch unbuildable, which is exactly how
+          # the first run of workflow 2 failed:
+          #
+          #   Error: no scaffold found at .../site.
+          #
+          # Merged, not replaced: this refreshes package.json / theme.css /
+          # astro.config.mjs to the current CLI while leaving site/dist and
+          # any generated pages in place for build-site to manage.
+          mkdir -p site
+          cp -r "$RUNNER_TEMP/out/astro/." site/
           # `if`, not `[ … ] && …`: under `set -e` a bare test that fails is
           # the last command of the list and kills the whole step.
           if [ -f "$RUNNER_TEMP/out/MIGRATION.md" ]; then
@@ -234,7 +249,7 @@ jobs:
 
           # Explicit paths, never `git add -A`: the runner temp is outside the
           # tree, but an accidental stray file should not ride along silently.
-          git add markdown README.md dogsbay.config.yml .gitignore
+          git add markdown site README.md dogsbay.config.yml .gitignore
           if [ -f MIGRATION.md ]; then git add MIGRATION.md; fi
 
           if git diff --cached --quiet; then

@@ -65,7 +65,15 @@ jobs:
             exit 1
           fi
           if [ ! -f dogsbay.config.yml ]; then
-            echo "::error::no dogsbay.config.yml on '$BRANCH' — run the sync workflow first"
+            echo "::error::no dogsbay.config.yml on '$BRANCH' — run workflow 1 first"
+            exit 1
+          fi
+          # `dogsbay site build` refuses to run without a scaffold, checking
+          # for <output>/package.json. Workflow 1 seeds it. Checked here so
+          # the failure names the cause instead of surfacing as a bare
+          # "no scaffold found" four steps later.
+          if [ ! -f site/package.json ]; then
+            echo "::error::no Astro scaffold at site/ on '$BRANCH' — re-run workflow 1, which seeds it"
             exit 1
           fi
           echo "markdown/: $(find markdown -name '*.md' | wc -l) file(s)"
